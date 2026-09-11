@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_STATUS,
   CreateStandaloneAd200ResponseResultsInner.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAd200ResponseResultsInner {
   /**
    * Gets or Sets node
@@ -49,7 +49,9 @@ public class CreateStandaloneAd200ResponseResultsInner {
     
     CREATIVE(String.valueOf("creative")),
     
-    AD(String.valueOf("ad"));
+    AD(String.valueOf("ad")),
+    
+    PERFORMANCE_MAX_CAMPAIGN(String.valueOf("performanceMaxCampaign"));
 
     private String value;
 
@@ -182,7 +184,7 @@ public class CreateStandaloneAd200ResponseResultsInner {
   }
 
   /**
-   * Why the node could not be validated (only on skipped).
+   * Why the node could not be validated (on skipped), or what the dry run could not check and what the request would do as sent (on validated). A Performance Max validation with no location targeting reports here that the campaign would run worldwide.
    * @return reason
    */
   @javax.annotation.Nullable

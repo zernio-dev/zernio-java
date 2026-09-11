@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   SocialAccount.JSON_PROPERTY_ENABLED,
   SocialAccount.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SocialAccount {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -475,7 +475,7 @@ public class SocialAccount {
   }
 
   /**
-   * Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. 
+   * Reference to the parent posting SocialAccount. Set for ads accounts that share or derive from a posting account&#39;s OAuth token. null for standalone ads (Google Ads) and all posting accounts. Meta ads business-login accounts also have no parent. 
    * @return parentAccountId
    */
   @javax.annotation.Nullable
@@ -531,7 +531,7 @@ public class SocialAccount {
   }
 
   /**
-   * Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN) - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). A declined or pending display name does not by itself block sending; sendability is reported separately via health_status (can_send_message). - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves. - verifiedName: Meta-verified business display name - displayPhoneNumber: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - wabaId: WhatsApp Business Account ID - phoneNumberId: Meta phone number ID  For LinkedIn accounts, profileData carries the profile details refreshed on each daily snapshot: - profileData.bio: The member&#39;s headline for personal accounts, or the organization description for organization accounts. null when the member has not set one. - profileData.extraData.vanityName: The member&#39;s profile slug, i.e. the /in/{vanityName} segment of profileUrl. Personal accounts only; an organization&#39;s own slug is in metadata.organizationInfo.vanityName. 
+   * Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN) - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). A declined or pending display name does not by itself block sending; sendability is reported separately via health_status (can_send_message). - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves. - verifiedName: Meta-verified business display name - displayPhoneNumber: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - wabaId: WhatsApp Business Account ID - phoneNumberId: Meta phone number ID  For Meta ads business-login accounts: - tokenType: system-user - businessId: The owning Business Manager ID when there is one owner; null for multiple owners. - businessIds: Owning Business Manager IDs discovered from granted ad accounts. - grantedAdAccountIds: Ad-account IDs granted to the token. - adAccountBusinesses: Map from ad-account ID to its owning business ID or null. - availablePages: Granted Page IDs and names. No Page tokens are exposed. - selectedPageId: The Page selected for creatives and lead forms, or null. - scopedAdAccountIds: Existing sync scope preserved on reconnect. Non-expiring tokens have no tokenExpiresAt field. Parent posting reconnects do not replace this token.  For LinkedIn accounts, profileData carries the profile details refreshed on each daily snapshot: - profileData.bio: The member&#39;s headline for personal accounts, or the organization description for organization accounts. null when the member has not set one. - profileData.extraData.vanityName: The member&#39;s profile slug, i.e. the /in/{vanityName} segment of profileUrl. Personal accounts only; an organization&#39;s own slug is in metadata.organizationInfo.vanityName. 
    * @return metadata
    */
   @javax.annotation.Nullable

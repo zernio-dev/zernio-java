@@ -40,9 +40,10 @@ import dev.zernio.ApiClient;
   ConnectAds200ResponseOneOf.JSON_PROPERTY_PLATFORM,
   ConnectAds200ResponseOneOf.JSON_PROPERTY_USERNAME,
   ConnectAds200ResponseOneOf.JSON_PROPERTY_DISPLAY_NAME,
+  ConnectAds200ResponseOneOf.JSON_PROPERTY_TOKEN_TYPE,
   ConnectAds200ResponseOneOf.JSON_PROPERTY_SCOPED_AD_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectAds200ResponseOneOf {
   public static final String JSON_PROPERTY_ALREADY_CONNECTED = "alreadyConnected";
   @javax.annotation.Nullable
@@ -63,6 +64,43 @@ public class ConnectAds200ResponseOneOf {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
   private String displayName;
+
+  /**
+   * Present for an existing business-login connection.
+   */
+  public enum TokenTypeEnum {
+    SYSTEM_USER(String.valueOf("system-user"));
+
+    private String value;
+
+    TokenTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TokenTypeEnum fromValue(String value) {
+      for (TokenTypeEnum b : TokenTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TOKEN_TYPE = "tokenType";
+  @javax.annotation.Nullable
+  private TokenTypeEnum tokenType;
 
   public static final String JSON_PROPERTY_SCOPED_AD_ACCOUNT_IDS = "scopedAdAccountIds";
   @javax.annotation.Nullable
@@ -191,6 +229,30 @@ public class ConnectAds200ResponseOneOf {
   }
 
 
+  public ConnectAds200ResponseOneOf tokenType(@javax.annotation.Nullable TokenTypeEnum tokenType) {
+    this.tokenType = tokenType;
+    return this;
+  }
+
+  /**
+   * Present for an existing business-login connection.
+   * @return tokenType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TOKEN_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TokenTypeEnum getTokenType() {
+    return tokenType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TOKEN_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTokenType(@javax.annotation.Nullable TokenTypeEnum tokenType) {
+    this.tokenType = tokenType;
+  }
+
+
   public ConnectAds200ResponseOneOf scopedAdAccountIds(@javax.annotation.Nullable List<String> scopedAdAccountIds) {
     this.scopedAdAccountIds = scopedAdAccountIds;
     return this;
@@ -240,12 +302,13 @@ public class ConnectAds200ResponseOneOf {
         Objects.equals(this.platform, connectAds200ResponseOneOf.platform) &&
         Objects.equals(this.username, connectAds200ResponseOneOf.username) &&
         Objects.equals(this.displayName, connectAds200ResponseOneOf.displayName) &&
+        Objects.equals(this.tokenType, connectAds200ResponseOneOf.tokenType) &&
         Objects.equals(this.scopedAdAccountIds, connectAds200ResponseOneOf.scopedAdAccountIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(alreadyConnected, accountId, platform, username, displayName, scopedAdAccountIds);
+    return Objects.hash(alreadyConnected, accountId, platform, username, displayName, tokenType, scopedAdAccountIds);
   }
 
   @Override
@@ -257,6 +320,7 @@ public class ConnectAds200ResponseOneOf {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    tokenType: ").append(toIndentedString(tokenType)).append("\n");
     sb.append("    scopedAdAccountIds: ").append(toIndentedString(scopedAdAccountIds)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -328,6 +392,11 @@ public class ConnectAds200ResponseOneOf {
     // add `displayName` to the URL query string
     if (getDisplayName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisplayName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisplayName()))));
+    }
+
+    // add `tokenType` to the URL query string
+    if (getTokenType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stokenType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTokenType()))));
     }
 
     // add `scopedAdAccountIds` to the URL query string

@@ -24,8 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.MetaPromotion;
-import dev.zernio.model.MetaPromotionStatus;
+import dev.zernio.model.GooglePmaxAssetGroupInput;
+import dev.zernio.model.GoogleRsaDescription;
+import dev.zernio.model.GoogleRsaHeadline;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -41,12 +43,15 @@ import dev.zernio.ApiClient;
  * Platform-specific creative data. Fields vary by platform.
  */
 @JsonPropertyOrder({
+  AdCreative.JSON_PROPERTY_ASSET_GROUP,
+  AdCreative.JSON_PROPERTY_ASSET_GROUP_RESOURCE_NAME,
+  AdCreative.JSON_PROPERTY_HEADLINES,
+  AdCreative.JSON_PROPERTY_DESCRIPTIONS,
+  AdCreative.JSON_PROPERTY_FINAL_URLS,
   AdCreative.JSON_PROPERTY_THUMBNAIL_URL,
   AdCreative.JSON_PROPERTY_IMAGE_URL,
   AdCreative.JSON_PROPERTY_VIDEO_ID,
   AdCreative.JSON_PROPERTY_VIDEO_URL,
-  AdCreative.JSON_PROPERTY_PROMOTION,
-  AdCreative.JSON_PROPERTY_PROMOTION_STATUS,
   AdCreative.JSON_PROPERTY_CREATIVE_ID,
   AdCreative.JSON_PROPERTY_OBJECT_TYPE,
   AdCreative.JSON_PROPERTY_OBJECT_STORY_ID,
@@ -67,8 +72,28 @@ import dev.zernio.ApiClient;
   AdCreative.JSON_PROPERTY_PINTEREST_TITLE,
   AdCreative.JSON_PROPERTY_PINTEREST_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreative {
+  public static final String JSON_PROPERTY_ASSET_GROUP = "assetGroup";
+  @javax.annotation.Nullable
+  private GooglePmaxAssetGroupInput assetGroup;
+
+  public static final String JSON_PROPERTY_ASSET_GROUP_RESOURCE_NAME = "assetGroupResourceName";
+  @javax.annotation.Nullable
+  private String assetGroupResourceName;
+
+  public static final String JSON_PROPERTY_HEADLINES = "headlines";
+  @javax.annotation.Nullable
+  private List<GoogleRsaHeadline> headlines = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DESCRIPTIONS = "descriptions";
+  @javax.annotation.Nullable
+  private List<GoogleRsaDescription> descriptions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_FINAL_URLS = "finalUrls";
+  @javax.annotation.Nullable
+  private List<URI> finalUrls = new ArrayList<>();
+
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   private JsonNullable<String> thumbnailUrl = JsonNullable.<String>undefined();
 
@@ -81,14 +106,6 @@ public class AdCreative {
 
   public static final String JSON_PROPERTY_VIDEO_URL = "videoUrl";
   private JsonNullable<String> videoUrl = JsonNullable.<String>undefined();
-
-  public static final String JSON_PROPERTY_PROMOTION = "promotion";
-  @javax.annotation.Nullable
-  private MetaPromotion promotion;
-
-  public static final String JSON_PROPERTY_PROMOTION_STATUS = "promotionStatus";
-  @javax.annotation.Nullable
-  private MetaPromotionStatus promotionStatus;
 
   public static final String JSON_PROPERTY_CREATIVE_ID = "creativeId";
   private JsonNullable<String> creativeId = JsonNullable.<String>undefined();
@@ -160,6 +177,150 @@ public class AdCreative {
 
   public AdCreative() { 
   }
+
+  public AdCreative assetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupInput assetGroup) {
+    this.assetGroup = assetGroup;
+    return this;
+  }
+
+  /**
+   * Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets.
+   * @return assetGroup
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GooglePmaxAssetGroupInput getAssetGroup() {
+    return assetGroup;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAssetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupInput assetGroup) {
+    this.assetGroup = assetGroup;
+  }
+
+
+  public AdCreative assetGroupResourceName(@javax.annotation.Nullable String assetGroupResourceName) {
+    this.assetGroupResourceName = assetGroupResourceName;
+    return this;
+  }
+
+  /**
+   * Google resource name of the created Performance Max asset group.
+   * @return assetGroupResourceName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP_RESOURCE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAssetGroupResourceName() {
+    return assetGroupResourceName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP_RESOURCE_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAssetGroupResourceName(@javax.annotation.Nullable String assetGroupResourceName) {
+    this.assetGroupResourceName = assetGroupResourceName;
+  }
+
+
+  public AdCreative headlines(@javax.annotation.Nullable List<GoogleRsaHeadline> headlines) {
+    this.headlines = headlines;
+    return this;
+  }
+
+  public AdCreative addHeadlinesItem(GoogleRsaHeadline headlinesItem) {
+    if (this.headlines == null) {
+      this.headlines = new ArrayList<>();
+    }
+    this.headlines.add(headlinesItem);
+    return this;
+  }
+
+  /**
+   * Google RSA only. Replaces the complete headline list. No padding or truncation on update.
+   * @return headlines
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GoogleRsaHeadline> getHeadlines() {
+    return headlines;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadlines(@javax.annotation.Nullable List<GoogleRsaHeadline> headlines) {
+    this.headlines = headlines;
+  }
+
+
+  public AdCreative descriptions(@javax.annotation.Nullable List<GoogleRsaDescription> descriptions) {
+    this.descriptions = descriptions;
+    return this;
+  }
+
+  public AdCreative addDescriptionsItem(GoogleRsaDescription descriptionsItem) {
+    if (this.descriptions == null) {
+      this.descriptions = new ArrayList<>();
+    }
+    this.descriptions.add(descriptionsItem);
+    return this;
+  }
+
+  /**
+   * Google RSA only. Replaces the complete description list. No padding or truncation on update.
+   * @return descriptions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GoogleRsaDescription> getDescriptions() {
+    return descriptions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptions(@javax.annotation.Nullable List<GoogleRsaDescription> descriptions) {
+    this.descriptions = descriptions;
+  }
+
+
+  public AdCreative finalUrls(@javax.annotation.Nullable List<URI> finalUrls) {
+    this.finalUrls = finalUrls;
+    return this;
+  }
+
+  public AdCreative addFinalUrlsItem(URI finalUrlsItem) {
+    if (this.finalUrls == null) {
+      this.finalUrls = new ArrayList<>();
+    }
+    this.finalUrls.add(finalUrlsItem);
+    return this;
+  }
+
+  /**
+   * Google RSA only. Replaces final URLs. Omitted lists stay unchanged.
+   * @return finalUrls
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FINAL_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<URI> getFinalUrls() {
+    return finalUrls;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FINAL_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFinalUrls(@javax.annotation.Nullable List<URI> finalUrls) {
+    this.finalUrls = finalUrls;
+  }
+
 
   public AdCreative thumbnailUrl(@javax.annotation.Nullable String thumbnailUrl) {
     this.thumbnailUrl = JsonNullable.<String>of(thumbnailUrl);
@@ -278,54 +439,6 @@ public class AdCreative {
 
   public void setVideoUrl(@javax.annotation.Nullable String videoUrl) {
     this.videoUrl = JsonNullable.<String>of(videoUrl);
-  }
-
-
-  public AdCreative promotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
-    return this;
-  }
-
-  /**
-   * Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied.
-   * @return promotion
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotion getPromotion() {
-    return promotion;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
-  }
-
-
-  public AdCreative promotionStatus(@javax.annotation.Nullable MetaPromotionStatus promotionStatus) {
-    this.promotionStatus = promotionStatus;
-    return this;
-  }
-
-  /**
-   * Get promotionStatus
-   * @return promotionStatus
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotionStatus getPromotionStatus() {
-    return promotionStatus;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotionStatus(@javax.annotation.Nullable MetaPromotionStatus promotionStatus) {
-    this.promotionStatus = promotionStatus;
   }
 
 
@@ -877,12 +990,15 @@ public class AdCreative {
       return false;
     }
     AdCreative adCreative = (AdCreative) o;
-    return equalsNullable(this.thumbnailUrl, adCreative.thumbnailUrl) &&
+    return Objects.equals(this.assetGroup, adCreative.assetGroup) &&
+        Objects.equals(this.assetGroupResourceName, adCreative.assetGroupResourceName) &&
+        Objects.equals(this.headlines, adCreative.headlines) &&
+        Objects.equals(this.descriptions, adCreative.descriptions) &&
+        Objects.equals(this.finalUrls, adCreative.finalUrls) &&
+        equalsNullable(this.thumbnailUrl, adCreative.thumbnailUrl) &&
         Objects.equals(this.imageUrl, adCreative.imageUrl) &&
         equalsNullable(this.videoId, adCreative.videoId) &&
         equalsNullable(this.videoUrl, adCreative.videoUrl) &&
-        Objects.equals(this.promotion, adCreative.promotion) &&
-        Objects.equals(this.promotionStatus, adCreative.promotionStatus) &&
         equalsNullable(this.creativeId, adCreative.creativeId) &&
         Objects.equals(this.objectType, adCreative.objectType) &&
         equalsNullable(this.objectStoryId, adCreative.objectStoryId) &&
@@ -910,7 +1026,7 @@ public class AdCreative {
 
   @Override
   public int hashCode() {
-    return Objects.hash(hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), promotion, promotionStatus, hashCodeNullable(creativeId), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, whatsappPhoneNumber, pinterestImageUrl, pinterestTitle, pinterestDescription);
+    return Objects.hash(assetGroup, assetGroupResourceName, headlines, descriptions, finalUrls, hashCodeNullable(thumbnailUrl), imageUrl, hashCodeNullable(videoId), hashCodeNullable(videoUrl), hashCodeNullable(creativeId), objectType, hashCodeNullable(objectStoryId), hashCodeNullable(effectiveObjectStoryId), hashCodeNullable(pageId), hashCodeNullable(effectiveInstagramMediaId), hashCodeNullable(instagramUserId), hashCodeNullable(instagramPermalinkUrl), mediaUrls, hashCodeNullable(isServing), servingHoldReasons, body, googleHeadline, googleDescription, linkUrl, whatsappPhoneNumber, pinterestImageUrl, pinterestTitle, pinterestDescription);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -924,12 +1040,15 @@ public class AdCreative {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class AdCreative {\n");
+    sb.append("    assetGroup: ").append(toIndentedString(assetGroup)).append("\n");
+    sb.append("    assetGroupResourceName: ").append(toIndentedString(assetGroupResourceName)).append("\n");
+    sb.append("    headlines: ").append(toIndentedString(headlines)).append("\n");
+    sb.append("    descriptions: ").append(toIndentedString(descriptions)).append("\n");
+    sb.append("    finalUrls: ").append(toIndentedString(finalUrls)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoId: ").append(toIndentedString(videoId)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
-    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
-    sb.append("    promotionStatus: ").append(toIndentedString(promotionStatus)).append("\n");
     sb.append("    creativeId: ").append(toIndentedString(creativeId)).append("\n");
     sb.append("    objectType: ").append(toIndentedString(objectType)).append("\n");
     sb.append("    objectStoryId: ").append(toIndentedString(objectStoryId)).append("\n");
@@ -996,6 +1115,47 @@ public class AdCreative {
 
     StringJoiner joiner = new StringJoiner("&");
 
+    // add `assetGroup` to the URL query string
+    if (getAssetGroup() != null) {
+      joiner.add(getAssetGroup().toUrlQueryString(prefix + "assetGroup" + suffix));
+    }
+
+    // add `assetGroupResourceName` to the URL query string
+    if (getAssetGroupResourceName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sassetGroupResourceName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAssetGroupResourceName()))));
+    }
+
+    // add `headlines` to the URL query string
+    if (getHeadlines() != null) {
+      for (int i = 0; i < getHeadlines().size(); i++) {
+        if (getHeadlines().get(i) != null) {
+          joiner.add(getHeadlines().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sheadlines%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `descriptions` to the URL query string
+    if (getDescriptions() != null) {
+      for (int i = 0; i < getDescriptions().size(); i++) {
+        if (getDescriptions().get(i) != null) {
+          joiner.add(getDescriptions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdescriptions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `finalUrls` to the URL query string
+    if (getFinalUrls() != null) {
+      for (int i = 0; i < getFinalUrls().size(); i++) {
+        if (getFinalUrls().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sfinalUrls%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getFinalUrls().get(i)))));
+        }
+      }
+    }
+
     // add `thumbnailUrl` to the URL query string
     if (getThumbnailUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnailUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnailUrl()))));
@@ -1014,16 +1174,6 @@ public class AdCreative {
     // add `videoUrl` to the URL query string
     if (getVideoUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoUrl()))));
-    }
-
-    // add `promotion` to the URL query string
-    if (getPromotion() != null) {
-      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
-    }
-
-    // add `promotionStatus` to the URL query string
-    if (getPromotionStatus() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spromotionStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPromotionStatus()))));
     }
 
     // add `creativeId` to the URL query string

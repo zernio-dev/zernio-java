@@ -24,22 +24,28 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting.   &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; are Meta-only. Omitted settings are   preserved from the live creative, including full rebuilds. Send   &#x60;promotion: null&#x60; to remove the explicit offer from the replacement.   A supplied creativeFeatures map overrides individual existing keys. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
+ * Replace or patch the ad&#39;s creative. Meta, TikTok, and LinkedIn.  - **Meta**: patch-style. Pass any subset: fields you omit are preserved from the   live creative, including media (&#x60;image_hash&#x60;/&#x60;video_id&#x60; are reused, no re-upload)   and &#x60;url_tags&#x60;. Sending the full set (&#x60;headline&#x60;, &#x60;body&#x60;, &#x60;callToAction&#x60;,   &#x60;linkUrl&#x60;, &#x60;imageUrl&#x60;) rebuilds the creative from scratch instead. Partial   patching reads the live &#x60;object_story_spec&#x60;, which Meta strips on SHARE /   page-post / dark / asset_feed creatives. Those return 422 asking for the full   set. A &#x60;videoUrl&#x60;/&#x60;videoId&#x60; on an image creative is a type change and also   needs the full set. &#x60;existingCreativeId&#x60; repoints the ad at a creative from   GET /v1/ads/creatives and ignores every other field. Meta creatives are   immutable, so any change creates a new creative and repoints the ad; the old   creative is retained on the ad account for historical reporting.   &#x60;creativeFeatures&#x60; is Meta-only. Omitted settings are preserved from the   live creative, including full rebuilds. A supplied creativeFeatures map   overrides individual existing keys. - **TikTok**: patch-style. Pass any subset; &#x60;headline&#x60; is ignored (TikTok creatives   have no headline slot). &#x60;body&#x60; becomes the in-feed &#x60;ad_text&#x60;; &#x60;linkUrl&#x60; becomes   &#x60;landing_page_url&#x60;; &#x60;videoUrl&#x60; triggers a fresh upload. &#x60;description&#x60;, &#x60;videoId&#x60;   and &#x60;existingCreativeId&#x60; are Meta-only and return 400. - **LinkedIn**: requires new media (image via &#x60;imageUrl&#x60; or video via &#x60;videoUrl&#x60;);   a text-only creative update returns 400. Uploads the media, creates a new inline   media creative on the same campaign, and pauses the old creative (best-effort).   The old creative is retained for historical reporting. &#x60;videoId&#x60; and   &#x60;existingCreativeId&#x60; are Meta-only and return 400. 
  */
 @JsonPropertyOrder({
   UpdateAdRequestCreative.JSON_PROPERTY_PROMOTION,
   UpdateAdRequestCreative.JSON_PROPERTY_CREATIVE_FEATURES,
   UpdateAdRequestCreative.JSON_PROPERTY_HEADLINE,
+  UpdateAdRequestCreative.JSON_PROPERTY_LONG_HEADLINE,
+  UpdateAdRequestCreative.JSON_PROPERTY_BUSINESS_NAME,
+  UpdateAdRequestCreative.JSON_PROPERTY_SQUARE_IMAGE_URL,
   UpdateAdRequestCreative.JSON_PROPERTY_BODY,
   UpdateAdRequestCreative.JSON_PROPERTY_DESCRIPTION,
   UpdateAdRequestCreative.JSON_PROPERTY_CALL_TO_ACTION,
@@ -49,11 +55,10 @@ import dev.zernio.ApiClient;
   UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_ID,
   UpdateAdRequestCreative.JSON_PROPERTY_EXISTING_CREATIVE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_PROMOTION = "promotion";
-  @javax.annotation.Nullable
-  private MetaPromotion promotion;
+  private JsonNullable<Object> promotion = JsonNullable.<Object>undefined();
 
   /**
    * Gets or Sets inner
@@ -98,6 +103,18 @@ public class UpdateAdRequestCreative {
   @javax.annotation.Nullable
   private String headline;
 
+  public static final String JSON_PROPERTY_LONG_HEADLINE = "longHeadline";
+  @javax.annotation.Nullable
+  private String longHeadline;
+
+  public static final String JSON_PROPERTY_BUSINESS_NAME = "businessName";
+  @javax.annotation.Nullable
+  private String businessName;
+
+  public static final String JSON_PROPERTY_SQUARE_IMAGE_URL = "squareImageUrl";
+  @javax.annotation.Nullable
+  private URI squareImageUrl;
+
   public static final String JSON_PROPERTY_BODY = "body";
   @javax.annotation.Nullable
   private String body;
@@ -133,27 +150,35 @@ public class UpdateAdRequestCreative {
   public UpdateAdRequestCreative() { 
   }
 
-  public UpdateAdRequestCreative promotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
+  public UpdateAdRequestCreative promotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
     return this;
   }
 
   /**
-   * Get promotion
+   * Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path.
    * @return promotion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotion getPromotion() {
-    return promotion;
+  @JsonIgnore
+  public Object getPromotion() {
+        return promotion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+
+  public JsonNullable<Object> getPromotion_JsonNullable() {
+    return promotion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROMOTION)
+  public void setPromotion_JsonNullable(JsonNullable<Object> promotion) {
     this.promotion = promotion;
+  }
+
+  public void setPromotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
   }
 
 
@@ -171,7 +196,7 @@ public class UpdateAdRequestCreative {
   }
 
   /**
-   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle is rejected by Meta.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable
@@ -210,6 +235,78 @@ public class UpdateAdRequestCreative {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setHeadline(@javax.annotation.Nullable String headline) {
     this.headline = headline;
+  }
+
+
+  public UpdateAdRequestCreative longHeadline(@javax.annotation.Nullable String longHeadline) {
+    this.longHeadline = longHeadline;
+    return this;
+  }
+
+  /**
+   * Google Display only. Replaces the responsive display ad&#39;s long headline.
+   * @return longHeadline
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LONG_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLongHeadline() {
+    return longHeadline;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LONG_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLongHeadline(@javax.annotation.Nullable String longHeadline) {
+    this.longHeadline = longHeadline;
+  }
+
+
+  public UpdateAdRequestCreative businessName(@javax.annotation.Nullable String businessName) {
+    this.businessName = businessName;
+    return this;
+  }
+
+  /**
+   * Google Display only. Replaces the responsive display ad&#39;s business name.
+   * @return businessName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessName() {
+    return businessName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessName(@javax.annotation.Nullable String businessName) {
+    this.businessName = businessName;
+  }
+
+
+  public UpdateAdRequestCreative squareImageUrl(@javax.annotation.Nullable URI squareImageUrl) {
+    this.squareImageUrl = squareImageUrl;
+    return this;
+  }
+
+  /**
+   * Google Display only. Uploaded as a new square (1:1) marketing image asset that replaces the current one.
+   * @return squareImageUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SQUARE_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getSquareImageUrl() {
+    return squareImageUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SQUARE_IMAGE_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSquareImageUrl(@javax.annotation.Nullable URI squareImageUrl) {
+    this.squareImageUrl = squareImageUrl;
   }
 
 
@@ -417,9 +514,12 @@ public class UpdateAdRequestCreative {
       return false;
     }
     UpdateAdRequestCreative updateAdRequestCreative = (UpdateAdRequestCreative) o;
-    return Objects.equals(this.promotion, updateAdRequestCreative.promotion) &&
+    return equalsNullable(this.promotion, updateAdRequestCreative.promotion) &&
         Objects.equals(this.creativeFeatures, updateAdRequestCreative.creativeFeatures) &&
         Objects.equals(this.headline, updateAdRequestCreative.headline) &&
+        Objects.equals(this.longHeadline, updateAdRequestCreative.longHeadline) &&
+        Objects.equals(this.businessName, updateAdRequestCreative.businessName) &&
+        Objects.equals(this.squareImageUrl, updateAdRequestCreative.squareImageUrl) &&
         Objects.equals(this.body, updateAdRequestCreative.body) &&
         Objects.equals(this.description, updateAdRequestCreative.description) &&
         Objects.equals(this.callToAction, updateAdRequestCreative.callToAction) &&
@@ -430,9 +530,20 @@ public class UpdateAdRequestCreative {
         Objects.equals(this.existingCreativeId, updateAdRequestCreative.existingCreativeId);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(promotion, creativeFeatures, headline, body, description, callToAction, linkUrl, imageUrl, videoUrl, videoId, existingCreativeId);
+    return Objects.hash(hashCodeNullable(promotion), creativeFeatures, headline, longHeadline, businessName, squareImageUrl, body, description, callToAction, linkUrl, imageUrl, videoUrl, videoId, existingCreativeId);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -442,6 +553,9 @@ public class UpdateAdRequestCreative {
     sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
+    sb.append("    longHeadline: ").append(toIndentedString(longHeadline)).append("\n");
+    sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
+    sb.append("    squareImageUrl: ").append(toIndentedString(squareImageUrl)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
@@ -499,7 +613,7 @@ public class UpdateAdRequestCreative {
 
     // add `promotion` to the URL query string
     if (getPromotion() != null) {
-      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spromotion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPromotion()))));
     }
 
     // add `creativeFeatures` to the URL query string
@@ -514,6 +628,21 @@ public class UpdateAdRequestCreative {
     // add `headline` to the URL query string
     if (getHeadline() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sheadline%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHeadline()))));
+    }
+
+    // add `longHeadline` to the URL query string
+    if (getLongHeadline() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slongHeadline%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLongHeadline()))));
+    }
+
+    // add `businessName` to the URL query string
+    if (getBusinessName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessName()))));
+    }
+
+    // add `squareImageUrl` to the URL query string
+    if (getSquareImageUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%ssquareImageUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSquareImageUrl()))));
     }
 
     // add `body` to the URL query string

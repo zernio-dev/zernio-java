@@ -4,12 +4,12 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**createAdInsightsReport**](AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
-| [**createAdInsightsReportWithHttpInfo**](AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit an async insights report run |
-| [**generateKeywordHistoricalMetrics**](AdInsightsApi.md#generateKeywordHistoricalMetrics) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
-| [**generateKeywordHistoricalMetricsWithHttpInfo**](AdInsightsApi.md#generateKeywordHistoricalMetricsWithHttpInfo) | **POST** /v1/ads/keywords/historical-metrics | Historical keyword metrics (Google Keyword Planner) |
-| [**generateKeywordIdeas**](AdInsightsApi.md#generateKeywordIdeas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
-| [**generateKeywordIdeasWithHttpInfo**](AdInsightsApi.md#generateKeywordIdeasWithHttpInfo) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas (Google Keyword Planner) |
+| [**createAdInsightsReport**](AdInsightsApi.md#createAdInsightsReport) | **POST** /v1/ads/insights/reports | Submit async insights report |
+| [**createAdInsightsReportWithHttpInfo**](AdInsightsApi.md#createAdInsightsReportWithHttpInfo) | **POST** /v1/ads/insights/reports | Submit async insights report |
+| [**generateKeywordHistoricalMetrics**](AdInsightsApi.md#generateKeywordHistoricalMetrics) | **POST** /v1/ads/keywords/historical-metrics | Get historical keyword metrics |
+| [**generateKeywordHistoricalMetricsWithHttpInfo**](AdInsightsApi.md#generateKeywordHistoricalMetricsWithHttpInfo) | **POST** /v1/ads/keywords/historical-metrics | Get historical keyword metrics |
+| [**generateKeywordIdeas**](AdInsightsApi.md#generateKeywordIdeas) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas |
+| [**generateKeywordIdeasWithHttpInfo**](AdInsightsApi.md#generateKeywordIdeasWithHttpInfo) | **POST** /v1/ads/keywords/ideas | Generate keyword ideas |
 | [**getAdAnalytics**](AdInsightsApi.md#getAdAnalytics) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdAnalyticsWithHttpInfo**](AdInsightsApi.md#getAdAnalyticsWithHttpInfo) | **GET** /v1/ads/{adId}/analytics | Get ad analytics |
 | [**getAdInsightsReport**](AdInsightsApi.md#getAdInsightsReport) | **GET** /v1/ads/insights/reports/{reportRunId} | Poll an async insights report run |
@@ -18,8 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdsSearchTermsWithHttpInfo**](AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**getCampaignAnalytics**](AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getCampaignAnalyticsWithHttpInfo**](AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
-| [**listLocalServicesLeadConversations**](AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
-| [**listLocalServicesLeadConversationsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | Conversations of a Local Services lead |
+| [**listLocalServicesLeadConversations**](AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations |
+| [**listLocalServicesLeadConversationsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations |
 | [**listLocalServicesLeads**](AdInsightsApi.md#listLocalServicesLeads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
 | [**listLocalServicesLeadsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadsWithHttpInfo) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
 | [**queryAdInsights**](AdInsightsApi.md#queryAdInsights) | **GET** /v1/ads/insights | Flexible live insights query |
@@ -31,7 +31,7 @@ All URIs are relative to *https://zernio.com/api*
 
 > CreateAdInsightsReport202Response createAdInsightsReport(createAdInsightsReportRequest)
 
-Submit an async insights report run
+Submit async insights report
 
 Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
 
@@ -95,6 +95,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
 | **401** | Unauthorized |  -  |
@@ -105,7 +107,7 @@ public class Example {
 
 > ApiResponse<CreateAdInsightsReport202Response> createAdInsightsReport createAdInsightsReportWithHttpInfo(createAdInsightsReportRequest)
 
-Submit an async insights report run
+Submit async insights report
 
 Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
 
@@ -172,6 +174,8 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
 | **401** | Unauthorized |  -  |
@@ -183,7 +187,7 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 
 > GenerateKeywordHistoricalMetrics200Response generateKeywordHistoricalMetrics(generateKeywordHistoricalMetricsRequest)
 
-Historical keyword metrics (Google Keyword Planner)
+Get historical keyword metrics
 
 Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
 
@@ -247,6 +251,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -257,7 +263,7 @@ public class Example {
 
 > ApiResponse<GenerateKeywordHistoricalMetrics200Response> generateKeywordHistoricalMetrics generateKeywordHistoricalMetricsWithHttpInfo(generateKeywordHistoricalMetricsRequest)
 
-Historical keyword metrics (Google Keyword Planner)
+Get historical keyword metrics
 
 Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
 
@@ -324,6 +330,8 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -335,7 +343,7 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 
 > GenerateKeywordIdeas200Response generateKeywordIdeas(generateKeywordIdeasRequest)
 
-Generate keyword ideas (Google Keyword Planner)
+Generate keyword ideas
 
 Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
 
@@ -399,6 +407,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -409,7 +419,7 @@ public class Example {
 
 > ApiResponse<GenerateKeywordIdeas200Response> generateKeywordIdeas generateKeywordIdeasWithHttpInfo(generateKeywordIdeasRequest)
 
-Generate keyword ideas (Google Keyword Planner)
+Generate keyword ideas
 
 Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
 
@@ -476,6 +486,8 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -723,6 +735,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Unauthorized |  -  |
@@ -806,6 +820,8 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Unauthorized |  -  |
@@ -893,6 +909,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Search terms |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -982,6 +1000,8 @@ ApiResponse<[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Search terms |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1165,7 +1185,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 
 > ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken)
 
-Conversations of a Local Services lead
+List lead conversations
 
 Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
 
@@ -1235,6 +1255,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Lead conversations |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1245,7 +1267,7 @@ public class Example {
 
 > ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversations listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken)
 
-Conversations of a Local Services lead
+List lead conversations
 
 Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
 
@@ -1318,6 +1340,8 @@ ApiResponse<[**ListLocalServicesLeadConversations200Response**](ListLocalService
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Lead conversations |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1407,6 +1431,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Local Services leads |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1498,6 +1524,8 @@ ApiResponse<[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Local Services leads |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1609,6 +1637,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -1722,6 +1752,8 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |

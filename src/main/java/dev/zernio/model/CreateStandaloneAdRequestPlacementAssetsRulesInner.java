@@ -38,9 +38,12 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_IMAGE_URL,
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_VIDEO_URL,
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_THUMBNAIL_URL,
+  CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_HEADLINE,
+  CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_BODY,
+  CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_DESCRIPTION,
   CreateStandaloneAdRequestPlacementAssetsRulesInner.JSON_PROPERTY_PLACEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nullable
@@ -53,6 +56,18 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   public static final String JSON_PROPERTY_THUMBNAIL_URL = "thumbnailUrl";
   @javax.annotation.Nullable
   private URI thumbnailUrl;
+
+  public static final String JSON_PROPERTY_HEADLINE = "headline";
+  @javax.annotation.Nullable
+  private String headline;
+
+  public static final String JSON_PROPERTY_BODY = "body";
+  @javax.annotation.Nullable
+  private String body;
+
+  public static final String JSON_PROPERTY_DESCRIPTION = "description";
+  @javax.annotation.Nullable
+  private String description;
 
   public static final String JSON_PROPERTY_PLACEMENTS = "placements";
   @javax.annotation.Nonnull
@@ -133,6 +148,78 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
   }
 
 
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner headline(@javax.annotation.Nullable String headline) {
+    this.headline = headline;
+    return this;
+  }
+
+  /**
+   * One headline pinned to this rule. Omit to inherit the top-level headline.
+   * @return headline
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getHeadline() {
+    return headline;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADLINE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadline(@javax.annotation.Nullable String headline) {
+    this.headline = headline;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner body(@javax.annotation.Nullable String body) {
+    this.body = body;
+    return this;
+  }
+
+  /**
+   * One primary text pinned to this rule. Omit to inherit the top-level body.
+   * @return body
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBody() {
+    return body;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BODY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBody(@javax.annotation.Nullable String body) {
+    this.body = body;
+  }
+
+
+  public CreateStandaloneAdRequestPlacementAssetsRulesInner description(@javax.annotation.Nullable String description) {
+    this.description = description;
+    return this;
+  }
+
+  /**
+   * One link description pinned to this rule. Omit to inherit the top-level description.
+   * @return description
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDescription() {
+    return description;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescription(@javax.annotation.Nullable String description) {
+    this.description = description;
+  }
+
+
   public CreateStandaloneAdRequestPlacementAssetsRulesInner placements(@javax.annotation.Nonnull CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements placements) {
     this.placements = placements;
     return this;
@@ -172,12 +259,15 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     return Objects.equals(this.imageUrl, createStandaloneAdRequestPlacementAssetsRulesInner.imageUrl) &&
         Objects.equals(this.videoUrl, createStandaloneAdRequestPlacementAssetsRulesInner.videoUrl) &&
         Objects.equals(this.thumbnailUrl, createStandaloneAdRequestPlacementAssetsRulesInner.thumbnailUrl) &&
+        Objects.equals(this.headline, createStandaloneAdRequestPlacementAssetsRulesInner.headline) &&
+        Objects.equals(this.body, createStandaloneAdRequestPlacementAssetsRulesInner.body) &&
+        Objects.equals(this.description, createStandaloneAdRequestPlacementAssetsRulesInner.description) &&
         Objects.equals(this.placements, createStandaloneAdRequestPlacementAssetsRulesInner.placements);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(imageUrl, videoUrl, thumbnailUrl, placements);
+    return Objects.hash(imageUrl, videoUrl, thumbnailUrl, headline, body, description, placements);
   }
 
   @Override
@@ -187,6 +277,9 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     sb.append("    imageUrl: ").append(toIndentedString(imageUrl)).append("\n");
     sb.append("    videoUrl: ").append(toIndentedString(videoUrl)).append("\n");
     sb.append("    thumbnailUrl: ").append(toIndentedString(thumbnailUrl)).append("\n");
+    sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
+    sb.append("    body: ").append(toIndentedString(body)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    placements: ").append(toIndentedString(placements)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -248,6 +341,21 @@ public class CreateStandaloneAdRequestPlacementAssetsRulesInner {
     // add `thumbnailUrl` to the URL query string
     if (getThumbnailUrl() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthumbnailUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThumbnailUrl()))));
+    }
+
+    // add `headline` to the URL query string
+    if (getHeadline() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sheadline%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHeadline()))));
+    }
+
+    // add `body` to the URL query string
+    if (getBody() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbody%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBody()))));
+    }
+
+    // add `description` to the URL query string
+    if (getDescription() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdescription%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDescription()))));
     }
 
     // add `placements` to the URL query string

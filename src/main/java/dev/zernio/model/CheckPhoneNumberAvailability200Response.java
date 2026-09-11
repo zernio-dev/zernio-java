@@ -39,11 +39,12 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_COUNTRY,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_NUMBER_TYPE,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AVAILABLE,
+  CheckPhoneNumberAvailability200Response.JSON_PROPERTY_PRE_ORDERABLE,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_ADDRESS_CONSTRAINT,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREAS,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREA_OPTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -56,6 +57,10 @@ public class CheckPhoneNumberAvailability200Response {
   public static final String JSON_PROPERTY_AVAILABLE = "available";
   @javax.annotation.Nullable
   private Boolean available;
+
+  public static final String JSON_PROPERTY_PRE_ORDERABLE = "preOrderable";
+  @javax.annotation.Nullable
+  private Boolean preOrderable;
 
   /**
    * Gets or Sets addressConstraint
@@ -181,6 +186,30 @@ public class CheckPhoneNumberAvailability200Response {
   }
 
 
+  public CheckPhoneNumberAvailability200Response preOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+    return this;
+  }
+
+  /**
+   * Nothing deliverable now, but this pair can be pre-ordered: submit KYC as usual and we buy regular stock the moment it returns, otherwise the carrier sources the number (usually 2 to 4 weeks, never guaranteed). Only document tiers (3/4) qualify.
+   * @return preOrderable
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPreOrderable() {
+    return preOrderable;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+  }
+
+
   public CheckPhoneNumberAvailability200Response addressConstraint(@javax.annotation.Nullable AddressConstraintEnum addressConstraint) {
     this.addressConstraint = addressConstraint;
     return this;
@@ -284,6 +313,7 @@ public class CheckPhoneNumberAvailability200Response {
     return Objects.equals(this.country, checkPhoneNumberAvailability200Response.country) &&
         Objects.equals(this.numberType, checkPhoneNumberAvailability200Response.numberType) &&
         Objects.equals(this.available, checkPhoneNumberAvailability200Response.available) &&
+        Objects.equals(this.preOrderable, checkPhoneNumberAvailability200Response.preOrderable) &&
         Objects.equals(this.addressConstraint, checkPhoneNumberAvailability200Response.addressConstraint) &&
         Objects.equals(this.areas, checkPhoneNumberAvailability200Response.areas) &&
         Objects.equals(this.areaOptions, checkPhoneNumberAvailability200Response.areaOptions);
@@ -291,7 +321,7 @@ public class CheckPhoneNumberAvailability200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType, available, addressConstraint, areas, areaOptions);
+    return Objects.hash(country, numberType, available, preOrderable, addressConstraint, areas, areaOptions);
   }
 
   @Override
@@ -301,6 +331,7 @@ public class CheckPhoneNumberAvailability200Response {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    available: ").append(toIndentedString(available)).append("\n");
+    sb.append("    preOrderable: ").append(toIndentedString(preOrderable)).append("\n");
     sb.append("    addressConstraint: ").append(toIndentedString(addressConstraint)).append("\n");
     sb.append("    areas: ").append(toIndentedString(areas)).append("\n");
     sb.append("    areaOptions: ").append(toIndentedString(areaOptions)).append("\n");
@@ -364,6 +395,11 @@ public class CheckPhoneNumberAvailability200Response {
     // add `available` to the URL query string
     if (getAvailable() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%savailable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAvailable()))));
+    }
+
+    // add `preOrderable` to the URL query string
+    if (getPreOrderable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreOrderable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreOrderable()))));
     }
 
     // add `addressConstraint` to the URL query string

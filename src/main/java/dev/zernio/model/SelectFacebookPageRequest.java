@@ -24,215 +24,229 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.SelectFacebookPageRequestUserProfile;
+import dev.zernio.model.SelectFacebookPageRequestOneOf;
+import dev.zernio.model.SelectFacebookPageRequestOneOf1;
+import dev.zernio.model.SelectFacebookPageRequestOneOfUserProfile;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * SelectFacebookPageRequest
- */
-@JsonPropertyOrder({
-  SelectFacebookPageRequest.JSON_PROPERTY_PROFILE_ID,
-  SelectFacebookPageRequest.JSON_PROPERTY_PAGE_ID,
-  SelectFacebookPageRequest.JSON_PROPERTY_TEMP_TOKEN,
-  SelectFacebookPageRequest.JSON_PROPERTY_USER_PROFILE,
-  SelectFacebookPageRequest.JSON_PROPERTY_REDIRECT_URL
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class SelectFacebookPageRequest {
-  public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
-  @javax.annotation.Nonnull
-  private String profileId;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_PAGE_ID = "pageId";
-  @javax.annotation.Nonnull
-  private String pageId;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = SelectFacebookPageRequest.SelectFacebookPageRequestDeserializer.class)
+@JsonSerialize(using = SelectFacebookPageRequest.SelectFacebookPageRequestSerializer.class)
+public class SelectFacebookPageRequest extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(SelectFacebookPageRequest.class.getName());
 
-  public static final String JSON_PROPERTY_TEMP_TOKEN = "tempToken";
-  @javax.annotation.Nonnull
-  private String tempToken;
+    public static class SelectFacebookPageRequestSerializer extends StdSerializer<SelectFacebookPageRequest> {
+        public SelectFacebookPageRequestSerializer(Class<SelectFacebookPageRequest> t) {
+            super(t);
+        }
 
-  public static final String JSON_PROPERTY_USER_PROFILE = "userProfile";
-  @javax.annotation.Nonnull
-  private SelectFacebookPageRequestUserProfile userProfile;
+        public SelectFacebookPageRequestSerializer() {
+            this(null);
+        }
 
-  public static final String JSON_PROPERTY_REDIRECT_URL = "redirect_url";
-  @javax.annotation.Nullable
-  private URI redirectUrl;
-
-  public SelectFacebookPageRequest() { 
-  }
-
-  public SelectFacebookPageRequest profileId(@javax.annotation.Nonnull String profileId) {
-    this.profileId = profileId;
-    return this;
-  }
-
-  /**
-   * Profile ID from your connection flow
-   * @return profileId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getProfileId() {
-    return profileId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PROFILE_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setProfileId(@javax.annotation.Nonnull String profileId) {
-    this.profileId = profileId;
-  }
-
-
-  public SelectFacebookPageRequest pageId(@javax.annotation.Nonnull String pageId) {
-    this.pageId = pageId;
-    return this;
-  }
-
-  /**
-   * The Facebook Page ID selected by the user
-   * @return pageId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PAGE_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getPageId() {
-    return pageId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PAGE_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPageId(@javax.annotation.Nonnull String pageId) {
-    this.pageId = pageId;
-  }
-
-
-  public SelectFacebookPageRequest tempToken(@javax.annotation.Nonnull String tempToken) {
-    this.tempToken = tempToken;
-    return this;
-  }
-
-  /**
-   * Temporary Facebook access token from OAuth
-   * @return tempToken
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_TEMP_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getTempToken() {
-    return tempToken;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_TEMP_TOKEN, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setTempToken(@javax.annotation.Nonnull String tempToken) {
-    this.tempToken = tempToken;
-  }
-
-
-  public SelectFacebookPageRequest userProfile(@javax.annotation.Nonnull SelectFacebookPageRequestUserProfile userProfile) {
-    this.userProfile = userProfile;
-    return this;
-  }
-
-  /**
-   * Get userProfile
-   * @return userProfile
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_USER_PROFILE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public SelectFacebookPageRequestUserProfile getUserProfile() {
-    return userProfile;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_USER_PROFILE, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setUserProfile(@javax.annotation.Nonnull SelectFacebookPageRequestUserProfile userProfile) {
-    this.userProfile = userProfile;
-  }
-
-
-  public SelectFacebookPageRequest redirectUrl(@javax.annotation.Nullable URI redirectUrl) {
-    this.redirectUrl = redirectUrl;
-    return this;
-  }
-
-  /**
-   * Optional custom redirect URL to return to after selection
-   * @return redirectUrl
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_REDIRECT_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public URI getRedirectUrl() {
-    return redirectUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_REDIRECT_URL, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setRedirectUrl(@javax.annotation.Nullable URI redirectUrl) {
-    this.redirectUrl = redirectUrl;
-  }
-
-
-  /**
-   * Return true if this selectFacebookPage_request object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+        @Override
+        public void serialize(SelectFacebookPageRequest value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    public static class SelectFacebookPageRequestDeserializer extends StdDeserializer<SelectFacebookPageRequest> {
+        public SelectFacebookPageRequestDeserializer() {
+            this(SelectFacebookPageRequest.class);
+        }
+
+        public SelectFacebookPageRequestDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public SelectFacebookPageRequest deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize SelectFacebookPageRequestOneOf
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SelectFacebookPageRequestOneOf.class.equals(Integer.class) || SelectFacebookPageRequestOneOf.class.equals(Long.class) || SelectFacebookPageRequestOneOf.class.equals(Float.class) || SelectFacebookPageRequestOneOf.class.equals(Double.class) || SelectFacebookPageRequestOneOf.class.equals(Boolean.class) || SelectFacebookPageRequestOneOf.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SelectFacebookPageRequestOneOf.class.equals(Integer.class) || SelectFacebookPageRequestOneOf.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SelectFacebookPageRequestOneOf.class.equals(Float.class) || SelectFacebookPageRequestOneOf.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SelectFacebookPageRequestOneOf.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SelectFacebookPageRequestOneOf.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SelectFacebookPageRequestOneOf.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SelectFacebookPageRequestOneOf'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SelectFacebookPageRequestOneOf'", e);
+            }
+
+            // deserialize SelectFacebookPageRequestOneOf1
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (SelectFacebookPageRequestOneOf1.class.equals(Integer.class) || SelectFacebookPageRequestOneOf1.class.equals(Long.class) || SelectFacebookPageRequestOneOf1.class.equals(Float.class) || SelectFacebookPageRequestOneOf1.class.equals(Double.class) || SelectFacebookPageRequestOneOf1.class.equals(Boolean.class) || SelectFacebookPageRequestOneOf1.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((SelectFacebookPageRequestOneOf1.class.equals(Integer.class) || SelectFacebookPageRequestOneOf1.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((SelectFacebookPageRequestOneOf1.class.equals(Float.class) || SelectFacebookPageRequestOneOf1.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (SelectFacebookPageRequestOneOf1.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (SelectFacebookPageRequestOneOf1.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(SelectFacebookPageRequestOneOf1.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'SelectFacebookPageRequestOneOf1'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'SelectFacebookPageRequestOneOf1'", e);
+            }
+
+            if (match == 1) {
+                SelectFacebookPageRequest ret = new SelectFacebookPageRequest();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for SelectFacebookPageRequest: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public SelectFacebookPageRequest getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "SelectFacebookPageRequest cannot be null");
+        }
     }
-    SelectFacebookPageRequest selectFacebookPageRequest = (SelectFacebookPageRequest) o;
-    return Objects.equals(this.profileId, selectFacebookPageRequest.profileId) &&
-        Objects.equals(this.pageId, selectFacebookPageRequest.pageId) &&
-        Objects.equals(this.tempToken, selectFacebookPageRequest.tempToken) &&
-        Objects.equals(this.userProfile, selectFacebookPageRequest.userProfile) &&
-        Objects.equals(this.redirectUrl, selectFacebookPageRequest.redirectUrl);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(profileId, pageId, tempToken, userProfile, redirectUrl);
-  }
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class SelectFacebookPageRequest {\n");
-    sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
-    sb.append("    pageId: ").append(toIndentedString(pageId)).append("\n");
-    sb.append("    tempToken: ").append(toIndentedString(tempToken)).append("\n");
-    sb.append("    userProfile: ").append(toIndentedString(userProfile)).append("\n");
-    sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public SelectFacebookPageRequest() {
+        super("oneOf", Boolean.FALSE);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public SelectFacebookPageRequest(SelectFacebookPageRequestOneOf o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public SelectFacebookPageRequest(SelectFacebookPageRequestOneOf1 o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("SelectFacebookPageRequestOneOf", SelectFacebookPageRequestOneOf.class);
+        schemas.put("SelectFacebookPageRequestOneOf1", SelectFacebookPageRequestOneOf1.class);
+        JSON.registerDescendants(SelectFacebookPageRequest.class, Collections.unmodifiableMap(schemas));
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return SelectFacebookPageRequest.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * SelectFacebookPageRequestOneOf, SelectFacebookPageRequestOneOf1
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(SelectFacebookPageRequestOneOf.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(SelectFacebookPageRequestOneOf1.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be SelectFacebookPageRequestOneOf, SelectFacebookPageRequestOneOf1");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * SelectFacebookPageRequestOneOf, SelectFacebookPageRequestOneOf1
+     *
+     * @return The actual instance (SelectFacebookPageRequestOneOf, SelectFacebookPageRequestOneOf1)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SelectFacebookPageRequestOneOf`. If the actual instance is not `SelectFacebookPageRequestOneOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SelectFacebookPageRequestOneOf`
+     * @throws ClassCastException if the instance is not `SelectFacebookPageRequestOneOf`
+     */
+    public SelectFacebookPageRequestOneOf getSelectFacebookPageRequestOneOf() throws ClassCastException {
+        return (SelectFacebookPageRequestOneOf)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `SelectFacebookPageRequestOneOf1`. If the actual instance is not `SelectFacebookPageRequestOneOf1`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `SelectFacebookPageRequestOneOf1`
+     * @throws ClassCastException if the instance is not `SelectFacebookPageRequestOneOf1`
+     */
+    public SelectFacebookPageRequestOneOf1 getSelectFacebookPageRequestOneOf1() throws ClassCastException {
+        return (SelectFacebookPageRequestOneOf1)super.getActualInstance();
+    }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -266,32 +280,20 @@ public class SelectFacebookPageRequest {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `profileId` to the URL query string
-    if (getProfileId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileId()))));
+    if (getActualInstance() instanceof SelectFacebookPageRequestOneOf) {
+        if (getActualInstance() != null) {
+          joiner.add(((SelectFacebookPageRequestOneOf)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `pageId` to the URL query string
-    if (getPageId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spageId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPageId()))));
+    if (getActualInstance() instanceof SelectFacebookPageRequestOneOf1) {
+        if (getActualInstance() != null) {
+          joiner.add(((SelectFacebookPageRequestOneOf1)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `tempToken` to the URL query string
-    if (getTempToken() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stempToken%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTempToken()))));
-    }
-
-    // add `userProfile` to the URL query string
-    if (getUserProfile() != null) {
-      joiner.add(getUserProfile().toUrlQueryString(prefix + "userProfile" + suffix));
-    }
-
-    // add `redirect_url` to the URL query string
-    if (getRedirectUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sredirect_url%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getRedirectUrl()))));
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

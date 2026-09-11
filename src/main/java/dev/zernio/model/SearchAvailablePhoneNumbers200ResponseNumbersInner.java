@@ -36,9 +36,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PHONE_NUMBER,
-  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_FEATURES
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_FEATURES,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_LOCALITY,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_BEST_EFFORT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -47,6 +49,14 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_FEATURES = "features";
   @javax.annotation.Nullable
   private List<String> features = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LOCALITY = "locality";
+  @javax.annotation.Nullable
+  private String locality;
+
+  public static final String JSON_PROPERTY_BEST_EFFORT = "bestEffort";
+  @javax.annotation.Nullable
+  private Boolean bestEffort;
 
   public SearchAvailablePhoneNumbers200ResponseNumbersInner() { 
   }
@@ -57,7 +67,7 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   }
 
   /**
-   * Get phoneNumber
+   * E.164. Pass it as &#x60;phoneNumber&#x60; on POST /v1/phone-numbers/purchase to buy this exact number.
    * @return phoneNumber
    */
   @javax.annotation.Nullable
@@ -107,6 +117,54 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   }
 
 
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner locality(@javax.annotation.Nullable String locality) {
+    this.locality = locality;
+    return this;
+  }
+
+  /**
+   * Town or rate center the number belongs to, as the carrier names it (e.g. WACO).
+   * @return locality
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCALITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLocality() {
+    return locality;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCALITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocality(@javax.annotation.Nullable String locality) {
+    this.locality = locality;
+  }
+
+
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner bestEffort(@javax.annotation.Nullable Boolean bestEffort) {
+    this.bestEffort = bestEffort;
+    return this;
+  }
+
+  /**
+   * true when the carrier added this number because too few matched your filters, so it may be outside the requested prefix or locality.
+   * @return bestEffort
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BEST_EFFORT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getBestEffort() {
+    return bestEffort;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BEST_EFFORT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBestEffort(@javax.annotation.Nullable Boolean bestEffort) {
+    this.bestEffort = bestEffort;
+  }
+
+
   /**
    * Return true if this searchAvailablePhoneNumbers_200_response_numbers_inner object is equal to o.
    */
@@ -120,12 +178,14 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
     }
     SearchAvailablePhoneNumbers200ResponseNumbersInner searchAvailablePhoneNumbers200ResponseNumbersInner = (SearchAvailablePhoneNumbers200ResponseNumbersInner) o;
     return Objects.equals(this.phoneNumber, searchAvailablePhoneNumbers200ResponseNumbersInner.phoneNumber) &&
-        Objects.equals(this.features, searchAvailablePhoneNumbers200ResponseNumbersInner.features);
+        Objects.equals(this.features, searchAvailablePhoneNumbers200ResponseNumbersInner.features) &&
+        Objects.equals(this.locality, searchAvailablePhoneNumbers200ResponseNumbersInner.locality) &&
+        Objects.equals(this.bestEffort, searchAvailablePhoneNumbers200ResponseNumbersInner.bestEffort);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, features);
+    return Objects.hash(phoneNumber, features, locality, bestEffort);
   }
 
   @Override
@@ -134,6 +194,8 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
     sb.append("class SearchAvailablePhoneNumbers200ResponseNumbersInner {\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    features: ").append(toIndentedString(features)).append("\n");
+    sb.append("    locality: ").append(toIndentedString(locality)).append("\n");
+    sb.append("    bestEffort: ").append(toIndentedString(bestEffort)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -193,6 +255,16 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getFeatures().get(i)))));
       }
+    }
+
+    // add `locality` to the URL query string
+    if (getLocality() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocality%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocality()))));
+    }
+
+    // add `bestEffort` to the URL query string
+    if (getBestEffort() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbestEffort%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBestEffort()))));
     }
 
     return joiner.toString();

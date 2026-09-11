@@ -51,12 +51,14 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
   PostAnalytics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
   PostAnalytics.JSON_PROPERTY_REELS_SKIP_RATE,
+  PostAnalytics.JSON_PROPERTY_COMPLETION_RATE,
+  PostAnalytics.JSON_PROPERTY_PROFILE_VIEWS,
   PostAnalytics.JSON_PROPERTY_REPOSTS,
   PostAnalytics.JSON_PROPERTY_VIDEO_DURATION_SECONDS,
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -104,6 +106,14 @@ public class PostAnalytics {
   public static final String JSON_PROPERTY_REELS_SKIP_RATE = "reelsSkipRate";
   @javax.annotation.Nullable
   private BigDecimal reelsSkipRate;
+
+  public static final String JSON_PROPERTY_COMPLETION_RATE = "completionRate";
+  @javax.annotation.Nullable
+  private BigDecimal completionRate;
+
+  public static final String JSON_PROPERTY_PROFILE_VIEWS = "profileViews";
+  @javax.annotation.Nullable
+  private Integer profileViews;
 
   public static final String JSON_PROPERTY_REPOSTS = "reposts";
   @javax.annotation.Nullable
@@ -419,6 +429,54 @@ public class PostAnalytics {
   }
 
 
+  public PostAnalytics completionRate(@javax.annotation.Nullable BigDecimal completionRate) {
+    this.completionRate = completionRate;
+    return this;
+  }
+
+  /**
+   * TikTok accounts connected through the TikTok for Business app only: share of viewers who watched the video to the end, 0 to 1, as TikTok reports it (T+24-48h, only for posts active in the last 7 days). 0 for other platforms. When a post is published to several accounts, the aggregate is weighted by views.
+   * @return completionRate
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMPLETION_RATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BigDecimal getCompletionRate() {
+    return completionRate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPLETION_RATE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCompletionRate(@javax.annotation.Nullable BigDecimal completionRate) {
+    this.completionRate = completionRate;
+  }
+
+
+  public PostAnalytics profileViews(@javax.annotation.Nullable Integer profileViews) {
+    this.profileViews = profileViews;
+    return this;
+  }
+
+  /**
+   * TikTok accounts connected through the TikTok for Business app only: profile views from users who reached the profile through this post (T+24-48h). 0 for other platforms.
+   * @return profileViews
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_VIEWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getProfileViews() {
+    return profileViews;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_VIEWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileViews(@javax.annotation.Nullable Integer profileViews) {
+    this.profileViews = profileViews;
+  }
+
+
   public PostAnalytics reposts(@javax.annotation.Nullable Integer reposts) {
     this.reposts = reposts;
     return this;
@@ -547,6 +605,8 @@ public class PostAnalytics {
         Objects.equals(this.igReelsAvgWatchTime, postAnalytics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, postAnalytics.igReelsVideoViewTotalTime) &&
         Objects.equals(this.reelsSkipRate, postAnalytics.reelsSkipRate) &&
+        Objects.equals(this.completionRate, postAnalytics.completionRate) &&
+        Objects.equals(this.profileViews, postAnalytics.profileViews) &&
         Objects.equals(this.reposts, postAnalytics.reposts) &&
         equalsNullable(this.videoDurationSeconds, postAnalytics.videoDurationSeconds) &&
         Objects.equals(this.engagementRate, postAnalytics.engagementRate) &&
@@ -559,7 +619,7 @@ public class PostAnalytics {
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, hashCodeNullable(follows), igReelsAvgWatchTime, igReelsVideoViewTotalTime, reelsSkipRate, reposts, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, clicks, views, hashCodeNullable(follows), igReelsAvgWatchTime, igReelsVideoViewTotalTime, reelsSkipRate, completionRate, profileViews, reposts, hashCodeNullable(videoDurationSeconds), engagementRate, lastUpdated);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -585,6 +645,8 @@ public class PostAnalytics {
     sb.append("    igReelsAvgWatchTime: ").append(toIndentedString(igReelsAvgWatchTime)).append("\n");
     sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
     sb.append("    reelsSkipRate: ").append(toIndentedString(reelsSkipRate)).append("\n");
+    sb.append("    completionRate: ").append(toIndentedString(completionRate)).append("\n");
+    sb.append("    profileViews: ").append(toIndentedString(profileViews)).append("\n");
     sb.append("    reposts: ").append(toIndentedString(reposts)).append("\n");
     sb.append("    videoDurationSeconds: ").append(toIndentedString(videoDurationSeconds)).append("\n");
     sb.append("    engagementRate: ").append(toIndentedString(engagementRate)).append("\n");
@@ -694,6 +756,16 @@ public class PostAnalytics {
     // add `reelsSkipRate` to the URL query string
     if (getReelsSkipRate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreelsSkipRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReelsSkipRate()))));
+    }
+
+    // add `completionRate` to the URL query string
+    if (getCompletionRate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompletionRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompletionRate()))));
+    }
+
+    // add `profileViews` to the URL query string
+    if (getProfileViews() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileViews%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileViews()))));
     }
 
     // add `reposts` to the URL query string

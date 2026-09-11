@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AddAccountCalloutsRequest.JSON_PROPERTY_CUSTOMER_ID,
   AddAccountCalloutsRequest.JSON_PROPERTY_CALLOUTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddAccountCalloutsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -62,7 +62,7 @@ public class AddAccountCalloutsRequest {
   }
 
   /**
-   * Zernio SocialAccount id owning the Google Ads connection.
+   * Zernio Google Ads connection id.
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -86,7 +86,7 @@ public class AddAccountCalloutsRequest {
   }
 
   /**
-   * Numeric Google Ads customer id. Only required when the connection has more than one.
+   * Google customer id without dashes. Required when the connection has multiple customers.
    * @return customerId
    */
   @javax.annotation.Nullable
@@ -118,7 +118,7 @@ public class AddAccountCalloutsRequest {
   }
 
   /**
-   * Callout text, 1-25 characters each; up to 20 per request (Google&#39;s CalloutAsset limits).
+   * Get callouts
    * @return callouts
    */
   @javax.annotation.Nonnull

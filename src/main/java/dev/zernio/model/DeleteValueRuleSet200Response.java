@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   DeleteValueRuleSet200Response.JSON_PROPERTY_VALUE_RULE_SET_ID,
   DeleteValueRuleSet200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DeleteValueRuleSet200Response {
   public static final String JSON_PROPERTY_VALUE_RULE_SET_ID = "valueRuleSetId";
   @javax.annotation.Nullable

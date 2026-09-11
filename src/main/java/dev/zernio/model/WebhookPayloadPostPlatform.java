@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for the per-platform terminal events &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60;, for &#x60;post.platform.deleted&#x60; (same shape, fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform; poll-driven ~hourly, not real-time), and for &#x60;post.tiktok.url_resolved&#x60; (same shape, fired when a published TikTok post&#39;s public URL is backfilled). Terminal events fire once per platform target inside a post as that platform reaches a terminal state (published or permanent failure). The &#x60;post&#x60; envelope mirrors the shape of &#x60;WebhookPayloadPost&#x60; so consumers can reuse rendering logic; the &#x60;platform&#x60; block identifies which specific platform transitioned; the &#x60;account&#x60; block identifies the connected account behind that platform-write. 
+ * Webhook payload for the per-platform terminal events &#x60;post.platform.published&#x60; and &#x60;post.platform.failed&#x60;, for &#x60;post.platform.deleted&#x60; (same shape, fired when Zernio&#39;s background sync detects that a platform target published through Zernio was later deleted on the platform; poll-driven ~hourly, not real-time), and for &#x60;post.tiktok.url_resolved&#x60; (same shape, fired when a published TikTok post&#39;s public URL is backfilled). Terminal events fire once per platform target inside a post as that platform reaches a terminal state (published or permanent failure), except that a target which later fails background reconciliation emits &#x60;post.platform.failed&#x60; a second time, after its own &#x60;post.platform.published&#x60;. The &#x60;post&#x60; envelope mirrors the shape of &#x60;WebhookPayloadPost&#x60; so consumers can reuse rendering logic; the &#x60;platform&#x60; block identifies which specific platform transitioned; the &#x60;account&#x60; block identifies the connected account behind that platform-write. 
  */
 @JsonPropertyOrder({
   WebhookPayloadPostPlatform.JSON_PROPERTY_ID,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadPostPlatform.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadPostPlatform.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPostPlatform {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

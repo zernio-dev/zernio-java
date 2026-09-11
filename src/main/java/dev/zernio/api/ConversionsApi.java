@@ -31,7 +31,6 @@ import dev.zernio.model.GetConversionDestination200Response;
 import dev.zernio.model.GetConversionMetrics200Response;
 import dev.zernio.model.GetConversionsQuality200Response;
 import dev.zernio.model.InlineObject1;
-import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListConversionActions200Response;
 import dev.zernio.model.ListConversionAssociations200Response;
 import dev.zernio.model.ListConversionDestinations200Response;
@@ -65,7 +64,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -447,7 +446,7 @@ public class ConversionsApi {
   }
 
   /**
-   * Create a website conversion action
+   * Create website conversion action
    * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
    * @param createConversionActionRequest  (required)
    * @return CreateConversionAction201Response
@@ -458,7 +457,7 @@ public class ConversionsApi {
   }
 
   /**
-   * Create a website conversion action
+   * Create website conversion action
    * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
    * @param createConversionActionRequest  (required)
    * @param headers Optional headers to include in the request
@@ -471,7 +470,7 @@ public class ConversionsApi {
   }
 
   /**
-   * Create a website conversion action
+   * Create website conversion action
    * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
    * @param createConversionActionRequest  (required)
    * @return ApiResponse&lt;CreateConversionAction201Response&gt;
@@ -482,7 +481,7 @@ public class ConversionsApi {
   }
 
   /**
-   * Create a website conversion action
+   * Create website conversion action
    * Creates a &#x60;WEBPAGE&#x60; conversion action (category &#x60;DEFAULT&#x60;) and returns it with its tag snippets, read back after creation since Google never returns them on the create response itself. Invalidates the cached list &#x60;GET&#x60; on this resource would otherwise keep serving. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on. 
    * @param createConversionActionRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1298,7 +1297,7 @@ public class ConversionsApi {
   }
 
   /**
-   * List conversion actions and their tag snippets
+   * List conversion actions
    * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
    * @param accountId SocialAccount _id (must be a googleads account). (required)
    * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
@@ -1311,7 +1310,7 @@ public class ConversionsApi {
   }
 
   /**
-   * List conversion actions and their tag snippets
+   * List conversion actions
    * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
    * @param accountId SocialAccount _id (must be a googleads account). (required)
    * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
@@ -1326,7 +1325,7 @@ public class ConversionsApi {
   }
 
   /**
-   * List conversion actions and their tag snippets
+   * List conversion actions
    * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
    * @param accountId SocialAccount _id (must be a googleads account). (required)
    * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)
@@ -1339,7 +1338,7 @@ public class ConversionsApi {
   }
 
   /**
-   * List conversion actions and their tag snippets
+   * List conversion actions
    * Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
    * @param accountId SocialAccount _id (must be a googleads account). (required)
    * @param customerId Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. (optional)

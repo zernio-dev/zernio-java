@@ -28,6 +28,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdImagesWithHttpInfo**](AdCreativesApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library |
 | [**listAdVideos**](AdCreativesApi.md#listAdVideos) | **GET** /v1/ads/videos | Ad video library |
 | [**listAdVideosWithHttpInfo**](AdCreativesApi.md#listAdVideosWithHttpInfo) | **GET** /v1/ads/videos | Ad video library |
+| [**listPartnershipAdContent**](AdCreativesApi.md#listPartnershipAdContent) | **GET** /v1/ads/partnership-content | List partnership ad content |
+| [**listPartnershipAdContentWithHttpInfo**](AdCreativesApi.md#listPartnershipAdContentWithHttpInfo) | **GET** /v1/ads/partnership-content | List partnership ad content |
+| [**listPartnershipAdPermissions**](AdCreativesApi.md#listPartnershipAdPermissions) | **GET** /v1/ads/partnership-permissions | List partnership permissions |
+| [**listPartnershipAdPermissionsWithHttpInfo**](AdCreativesApi.md#listPartnershipAdPermissionsWithHttpInfo) | **GET** /v1/ads/partnership-permissions | List partnership permissions |
+| [**setPartnershipAdPermission**](AdCreativesApi.md#setPartnershipAdPermission) | **POST** /v1/ads/partnership-permissions | Set partnership permission |
+| [**setPartnershipAdPermissionWithHttpInfo**](AdCreativesApi.md#setPartnershipAdPermissionWithHttpInfo) | **POST** /v1/ads/partnership-permissions | Set partnership permission |
 | [**updateAdCreative**](AdCreativesApi.md#updateAdCreative) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative |
 | [**updateAdCreativeWithHttpInfo**](AdCreativesApi.md#updateAdCreativeWithHttpInfo) | **PUT** /v1/ads/creatives/{creativeId} | Rename a creative |
 | [**uploadAdImage**](AdCreativesApi.md#uploadAdImage) | **POST** /v1/ads/images | Upload an ad image from base64 |
@@ -43,7 +49,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
 
 ### Example
 
@@ -105,6 +111,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Creative created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |
@@ -118,7 +126,7 @@ public class Example {
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
 
 ### Example
 
@@ -183,6 +191,8 @@ ApiResponse<[**CreateAdCreative201Response**](CreateAdCreative201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Creative created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |
@@ -261,6 +271,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative deleted |  -  |
 | **400** | Invalid input, the creative is in use, or Meta rejected the delete |  -  |
 | **401** | Unauthorized |  -  |
@@ -339,6 +351,8 @@ ApiResponse<[**DeleteAdCreative200Response**](DeleteAdCreative200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative deleted |  -  |
 | **400** | Invalid input, the creative is in use, or Meta rejected the delete |  -  |
 | **401** | Unauthorized |  -  |
@@ -417,6 +431,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Video deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -497,6 +513,8 @@ ApiResponse<[**DeleteAdVideo200Response**](DeleteAdVideo200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Video deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -571,6 +589,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Rendered previews |  -  |
 | **400** | Invalid input, or Meta rejected the creative spec / ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -648,6 +668,8 @@ ApiResponse<[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Rendered previews |  -  |
 | **400** | Invalid input, or Meta rejected the creative spec / ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -686,7 +708,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         try {
             GetAdCreative200Response result = apiInstance.getAdCreative(creativeId, accountId, fields);
             System.out.println(result);
@@ -708,7 +730,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 
 ### Return type
 
@@ -727,6 +749,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative details |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -764,7 +788,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         try {
             ApiResponse<GetAdCreative200Response> response = apiInstance.getAdCreativeWithHttpInfo(creativeId, accountId, fields);
             System.out.println("Status code: " + response.getStatusCode());
@@ -788,7 +812,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 
 ### Return type
 
@@ -807,6 +831,8 @@ ApiResponse<[**GetAdCreative200Response**](GetAdCreative200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative details |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1195,6 +1221,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Product sets |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1273,6 +1301,8 @@ ApiResponse<[**ListAdCatalogProductSets200Response**](ListAdCatalogProductSets20
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Product sets |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1349,6 +1379,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1427,6 +1459,8 @@ ApiResponse<[**ListAdCatalogs200Response**](ListAdCatalogs200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1464,7 +1498,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1488,7 +1522,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1509,6 +1543,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creatives (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1546,7 +1582,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1572,7 +1608,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1593,6 +1629,8 @@ ApiResponse<[**ListAdCreatives200Response**](ListAdCreatives200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creatives (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1630,7 +1668,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "hash,url,name,width,height,status"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1654,7 +1692,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1675,6 +1713,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad images (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1712,7 +1752,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "hash,url,name,width,height,status"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1738,7 +1778,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1759,6 +1799,8 @@ ApiResponse<[**ListAdImages200Response**](ListAdImages200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad images (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1796,7 +1838,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,title,status,thumbnails,length"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1820,7 +1862,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1841,6 +1883,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad videos (raw Meta shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -1878,7 +1922,7 @@ public class Example {
         AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,title,status,thumbnails,length"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -1904,7 +1948,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -1925,10 +1969,498 @@ ApiResponse<[**ListAdVideos200Response**](ListAdVideos200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad videos (raw Meta shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## listPartnershipAdContent
+
+> ListPartnershipAdContent200Response listPartnershipAdContent(accountId, creatorUsername, postUrl, onlyAllowlisted)
+
+List partnership ad content
+
+Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String creatorUsername = "creatorUsername_example"; // String | Creator username. Required unless postUrl is supplied.
+        URI postUrl = new URI(); // URI | Instagram post permalink. Required unless creatorUsername is supplied.
+        Boolean onlyAllowlisted = true; // Boolean | Return only creators with account-level permission.
+        try {
+            ListPartnershipAdContent200Response result = apiInstance.listPartnershipAdContent(accountId, creatorUsername, postUrl, onlyAllowlisted);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listPartnershipAdContent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **creatorUsername** | **String**| Creator username. Required unless postUrl is supplied. | [optional] |
+| **postUrl** | **URI**| Instagram post permalink. Required unless creatorUsername is supplied. | [optional] |
+| **onlyAllowlisted** | **Boolean**| Return only creators with account-level permission. | [optional] |
+
+### Return type
+
+[**ListPartnershipAdContent200Response**](ListPartnershipAdContent200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Advertisable Instagram media. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
+
+## listPartnershipAdContentWithHttpInfo
+
+> ApiResponse<ListPartnershipAdContent200Response> listPartnershipAdContent listPartnershipAdContentWithHttpInfo(accountId, creatorUsername, postUrl, onlyAllowlisted)
+
+List partnership ad content
+
+Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String creatorUsername = "creatorUsername_example"; // String | Creator username. Required unless postUrl is supplied.
+        URI postUrl = new URI(); // URI | Instagram post permalink. Required unless creatorUsername is supplied.
+        Boolean onlyAllowlisted = true; // Boolean | Return only creators with account-level permission.
+        try {
+            ApiResponse<ListPartnershipAdContent200Response> response = apiInstance.listPartnershipAdContentWithHttpInfo(accountId, creatorUsername, postUrl, onlyAllowlisted);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listPartnershipAdContent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **creatorUsername** | **String**| Creator username. Required unless postUrl is supplied. | [optional] |
+| **postUrl** | **URI**| Instagram post permalink. Required unless creatorUsername is supplied. | [optional] |
+| **onlyAllowlisted** | **Boolean**| Return only creators with account-level permission. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListPartnershipAdContent200Response**](ListPartnershipAdContent200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Advertisable Instagram media. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
+
+
+## listPartnershipAdPermissions
+
+> ListPartnershipAdPermissions200Response listPartnershipAdPermissions(accountId, creatorUsername)
+
+List partnership permissions
+
+Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String creatorUsername = "creatorUsername_example"; // String | Filter by creator username.
+        try {
+            ListPartnershipAdPermissions200Response result = apiInstance.listPartnershipAdPermissions(accountId, creatorUsername);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listPartnershipAdPermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **creatorUsername** | **String**| Filter by creator username. | [optional] |
+
+### Return type
+
+[**ListPartnershipAdPermissions200Response**](ListPartnershipAdPermissions200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partnership permissions. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
+
+## listPartnershipAdPermissionsWithHttpInfo
+
+> ApiResponse<ListPartnershipAdPermissions200Response> listPartnershipAdPermissions listPartnershipAdPermissionsWithHttpInfo(accountId, creatorUsername)
+
+List partnership permissions
+
+Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String creatorUsername = "creatorUsername_example"; // String | Filter by creator username.
+        try {
+            ApiResponse<ListPartnershipAdPermissions200Response> response = apiInstance.listPartnershipAdPermissionsWithHttpInfo(accountId, creatorUsername);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listPartnershipAdPermissions");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **creatorUsername** | **String**| Filter by creator username. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListPartnershipAdPermissions200Response**](ListPartnershipAdPermissions200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partnership permissions. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
+
+
+## setPartnershipAdPermission
+
+> SetPartnershipAdPermission200Response setPartnershipAdPermission(setPartnershipAdPermissionRequest)
+
+Set partnership permission
+
+Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest = new SetPartnershipAdPermissionRequest(); // SetPartnershipAdPermissionRequest | 
+        try {
+            SetPartnershipAdPermission200Response result = apiInstance.setPartnershipAdPermission(setPartnershipAdPermissionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#setPartnershipAdPermission");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setPartnershipAdPermissionRequest** | [**SetPartnershipAdPermissionRequest**](SetPartnershipAdPermissionRequest.md)|  | |
+
+### Return type
+
+[**SetPartnershipAdPermission200Response**](SetPartnershipAdPermission200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partnership permission state. |  -  |
+| **201** | Partnership permission state. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
+
+## setPartnershipAdPermissionWithHttpInfo
+
+> ApiResponse<SetPartnershipAdPermission200Response> setPartnershipAdPermission setPartnershipAdPermissionWithHttpInfo(setPartnershipAdPermissionRequest)
+
+Set partnership permission
+
+Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest = new SetPartnershipAdPermissionRequest(); // SetPartnershipAdPermissionRequest | 
+        try {
+            ApiResponse<SetPartnershipAdPermission200Response> response = apiInstance.setPartnershipAdPermissionWithHttpInfo(setPartnershipAdPermissionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#setPartnershipAdPermission");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setPartnershipAdPermissionRequest** | [**SetPartnershipAdPermissionRequest**](SetPartnershipAdPermissionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SetPartnershipAdPermission200Response**](SetPartnershipAdPermission200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partnership permission state. |  -  |
+| **201** | Partnership permission state. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Partnership operations also require private beta access. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The advertiser Instagram Business Account could not be resolved. |  -  |
 
 
 ## updateAdCreative
@@ -2001,6 +2533,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative renamed |  -  |
 | **400** | Invalid input, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |
@@ -2079,6 +2613,8 @@ ApiResponse<[**UpdateAdCreative200Response**](UpdateAdCreative200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Creative renamed |  -  |
 | **400** | Invalid input, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |
@@ -2153,6 +2689,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Image uploaded |  -  |
 | **400** | Invalid input, or Meta rejected the image |  -  |
 | **401** | Unauthorized |  -  |
@@ -2230,6 +2768,8 @@ ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Image uploaded |  -  |
 | **400** | Invalid input, or Meta rejected the image |  -  |
 | **401** | Unauthorized |  -  |
@@ -2305,6 +2845,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Video uploaded and ready |  -  |
 | **400** | Invalid input, or Meta rejected the upload |  -  |
 | **401** | Unauthorized |  -  |
@@ -2382,6 +2924,8 @@ ApiResponse<[**UploadAdVideo201Response**](UploadAdVideo201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Video uploaded and ready |  -  |
 | **400** | Invalid input, or Meta rejected the upload |  -  |
 | **401** | Unauthorized |  -  |

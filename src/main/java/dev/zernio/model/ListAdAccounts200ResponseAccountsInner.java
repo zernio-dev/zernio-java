@@ -41,6 +41,8 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_ID,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_NAME,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_CURRENCY,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_BUSINESS_ID,
+  ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_BUSINESS_NAME,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_STATUS,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_ACCOUNT_STATUS,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_APPROVAL_STATUS,
@@ -51,7 +53,7 @@ import dev.zernio.ApiClient;
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_SELECTABLE,
   ListAdAccounts200ResponseAccountsInner.JSON_PROPERTY_UNUSABLE_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -64,6 +66,14 @@ public class ListAdAccounts200ResponseAccountsInner {
   public static final String JSON_PROPERTY_CURRENCY = "currency";
   @javax.annotation.Nullable
   private String currency;
+
+  public static final String JSON_PROPERTY_BUSINESS_ID = "businessId";
+  @javax.annotation.Nullable
+  private String businessId;
+
+  public static final String JSON_PROPERTY_BUSINESS_NAME = "businessName";
+  @javax.annotation.Nullable
+  private String businessName;
 
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -171,6 +181,54 @@ public class ListAdAccounts200ResponseAccountsInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCurrency(@javax.annotation.Nullable String currency) {
     this.currency = currency;
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner businessId(@javax.annotation.Nullable String businessId) {
+    this.businessId = businessId;
+    return this;
+  }
+
+  /**
+   * Meta only. Owning Business Manager ID when available on the grant.
+   * @return businessId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessId() {
+    return businessId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessId(@javax.annotation.Nullable String businessId) {
+    this.businessId = businessId;
+  }
+
+
+  public ListAdAccounts200ResponseAccountsInner businessName(@javax.annotation.Nullable String businessName) {
+    this.businessName = businessName;
+    return this;
+  }
+
+  /**
+   * Owning business name when supplied by the platform.
+   * @return businessName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessName() {
+    return businessName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessName(@javax.annotation.Nullable String businessName) {
+    this.businessName = businessName;
   }
 
 
@@ -421,6 +479,8 @@ public class ListAdAccounts200ResponseAccountsInner {
     return Objects.equals(this.id, listAdAccounts200ResponseAccountsInner.id) &&
         Objects.equals(this.name, listAdAccounts200ResponseAccountsInner.name) &&
         Objects.equals(this.currency, listAdAccounts200ResponseAccountsInner.currency) &&
+        Objects.equals(this.businessId, listAdAccounts200ResponseAccountsInner.businessId) &&
+        Objects.equals(this.businessName, listAdAccounts200ResponseAccountsInner.businessName) &&
         Objects.equals(this.status, listAdAccounts200ResponseAccountsInner.status) &&
         equalsNullable(this.accountStatus, listAdAccounts200ResponseAccountsInner.accountStatus) &&
         Objects.equals(this.approvalStatus, listAdAccounts200ResponseAccountsInner.approvalStatus) &&
@@ -438,7 +498,7 @@ public class ListAdAccounts200ResponseAccountsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, currency, status, hashCodeNullable(accountStatus), approvalStatus, disableReason, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, hashCodeNullable(unusableReason));
+    return Objects.hash(id, name, currency, businessId, businessName, status, hashCodeNullable(accountStatus), approvalStatus, disableReason, timezoneName, timezoneOffsetHoursUtc, minimumDailyBudget, selectable, hashCodeNullable(unusableReason));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -455,6 +515,8 @@ public class ListAdAccounts200ResponseAccountsInner {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    currency: ").append(toIndentedString(currency)).append("\n");
+    sb.append("    businessId: ").append(toIndentedString(businessId)).append("\n");
+    sb.append("    businessName: ").append(toIndentedString(businessName)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    accountStatus: ").append(toIndentedString(accountStatus)).append("\n");
     sb.append("    approvalStatus: ").append(toIndentedString(approvalStatus)).append("\n");
@@ -524,6 +586,16 @@ public class ListAdAccounts200ResponseAccountsInner {
     // add `currency` to the URL query string
     if (getCurrency() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scurrency%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCurrency()))));
+    }
+
+    // add `businessId` to the URL query string
+    if (getBusinessId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessId()))));
+    }
+
+    // add `businessName` to the URL query string
+    if (getBusinessName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessName()))));
     }
 
     // add `status` to the URL query string

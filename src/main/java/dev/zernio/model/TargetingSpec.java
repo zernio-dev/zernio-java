@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_USER_OS = "userOs";
   @javax.annotation.Nullable
@@ -833,7 +833,7 @@ public class TargetingSpec {
   }
 
   /**
-   * LinkedIn B2B only. Industry URN id fragments.
+   * LinkedIn B2B only. Industry URN id fragments, or the full urn:li:industry:* URN from /v1/ads/targeting/search?dimension&#x3D;industry.
    * @return industries
    */
   @javax.annotation.Nullable
@@ -865,7 +865,7 @@ public class TargetingSpec {
   }
 
   /**
-   * LinkedIn B2B only.
+   * LinkedIn B2B only. Single-letter size codes (A to I), or the full urn:li:staffCountRange:* URN from /v1/ads/targeting/search?dimension&#x3D;companySize.
    * @return companySizes
    */
   @javax.annotation.Nullable
@@ -897,7 +897,7 @@ public class TargetingSpec {
   }
 
   /**
-   * LinkedIn B2B only.
+   * LinkedIn B2B only. Seniority URN id fragments, or the full urn:li:seniority:* URN from /v1/ads/targeting/search?dimension&#x3D;seniority.
    * @return seniorities
    */
   @javax.annotation.Nullable
@@ -929,7 +929,7 @@ public class TargetingSpec {
   }
 
   /**
-   * LinkedIn B2B only.
+   * LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction.
    * @return jobFunctions
    */
   @javax.annotation.Nullable

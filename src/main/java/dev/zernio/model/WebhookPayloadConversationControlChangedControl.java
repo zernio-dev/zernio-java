@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadConversationControlChangedControl.JSON_PROPERTY_PREVIOUS_OWNER,
   WebhookPayloadConversationControlChangedControl.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadConversationControlChangedControl {
   /**
    * Who answers now. ai_agent: Meta Business Agent; app: you; other: another partner app on the number.

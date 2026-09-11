@@ -38,10 +38,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SubmitPhoneNumberKyc200Response.JSON_PROPERTY_STATUS,
+  SubmitPhoneNumberKyc200Response.JSON_PROPERTY_PRE_ORDER,
   SubmitPhoneNumberKyc200Response.JSON_PROPERTY_PHONE_NUMBER,
   SubmitPhoneNumberKyc200Response.JSON_PROPERTY_NUMBERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKyc200Response {
   /**
    * Gets or Sets status
@@ -84,6 +85,10 @@ public class SubmitPhoneNumberKyc200Response {
   @javax.annotation.Nullable
   private StatusEnum status;
 
+  public static final String JSON_PROPERTY_PRE_ORDER = "preOrder";
+  @javax.annotation.Nullable
+  private Boolean preOrder;
+
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
   private SubmitPhoneNumberKyc200ResponsePhoneNumber phoneNumber;
@@ -116,6 +121,30 @@ public class SubmitPhoneNumberKyc200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public SubmitPhoneNumberKyc200Response preOrder(@javax.annotation.Nullable Boolean preOrder) {
+    this.preOrder = preOrder;
+    return this;
+  }
+
+  /**
+   * True when nothing was in stock and this submission placed a pre-order. The number stays &#x60;pending_regulatory&#x60; until we get it, from regular stock the moment it returns or sourced by the carrier (usually 2 to 4 weeks), and is not billed until active. Releasing it (DELETE /v1/phone-numbers/{id}) cancels the pre-order. A pre-order is one number: &#x60;quantity&#x60; above 1 is rejected with 400.
+   * @return preOrder
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPreOrder() {
+    return preOrder;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreOrder(@javax.annotation.Nullable Boolean preOrder) {
+    this.preOrder = preOrder;
   }
 
 
@@ -188,13 +217,14 @@ public class SubmitPhoneNumberKyc200Response {
     }
     SubmitPhoneNumberKyc200Response submitPhoneNumberKyc200Response = (SubmitPhoneNumberKyc200Response) o;
     return Objects.equals(this.status, submitPhoneNumberKyc200Response.status) &&
+        Objects.equals(this.preOrder, submitPhoneNumberKyc200Response.preOrder) &&
         Objects.equals(this.phoneNumber, submitPhoneNumberKyc200Response.phoneNumber) &&
         Objects.equals(this.numbers, submitPhoneNumberKyc200Response.numbers);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, phoneNumber, numbers);
+    return Objects.hash(status, preOrder, phoneNumber, numbers);
   }
 
   @Override
@@ -202,6 +232,7 @@ public class SubmitPhoneNumberKyc200Response {
     StringBuilder sb = new StringBuilder();
     sb.append("class SubmitPhoneNumberKyc200Response {\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    preOrder: ").append(toIndentedString(preOrder)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    numbers: ").append(toIndentedString(numbers)).append("\n");
     sb.append("}");
@@ -254,6 +285,11 @@ public class SubmitPhoneNumberKyc200Response {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `preOrder` to the URL query string
+    if (getPreOrder() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreOrder%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreOrder()))));
     }
 
     // add `phoneNumber` to the URL query string

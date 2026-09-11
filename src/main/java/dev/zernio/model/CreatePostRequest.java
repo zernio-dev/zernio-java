@@ -63,7 +63,7 @@ import dev.zernio.ApiClient;
   CreatePostRequest.JSON_PROPERTY_QUEUED_FROM_PROFILE,
   CreatePostRequest.JSON_PROPERTY_QUEUE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePostRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
@@ -334,7 +334,7 @@ public class CreatePostRequest {
   }
 
   /**
-   * TikTok only. Preview whether each &#x60;tiktok&#x60; entry in &#x60;platforms&#x60; could publish right now under the TikTok Direct Post daily limits, without creating, scheduling or publishing anything: no post is persisted and no upload slot is claimed, so it can be repeated freely. The request still goes through auth, the payment gate and body validation, then returns HTTP 200 with &#x60;{ dryRun: true, canPublish, tiktok: [...] }&#x60; instead of 201. Only &#x60;tiktok&#x60; entries are evaluated; other platforms in the body are ignored, and a body with no &#x60;tiktok&#x60; entry is rejected with 400 &#x60;invalid_field_value&#x60; on &#x60;platforms&#x60;. An entry with &#x60;platformSpecificData.tiktokSettings.draft: true&#x60; (Creator Inbox upload) is not subject to the limit and always reports &#x60;canPublish: true&#x60;.
+   * TikTok only. Preview whether each &#x60;tiktok&#x60; entry in &#x60;platforms&#x60; could publish right now under the TikTok Direct Post daily limits, without creating, scheduling or publishing anything: no post is persisted and no upload slot is claimed, so it can be repeated freely. The request still goes through auth, the payment gate and body validation, then returns HTTP 200 with &#x60;{ dryRun: true, canPublish, tiktok: [...] }&#x60; instead of 201. Only &#x60;tiktok&#x60; entries are evaluated; other platforms in the body are ignored, and a body with no &#x60;tiktok&#x60; entry is rejected with 400 &#x60;invalid_field_value&#x60; on &#x60;platforms&#x60;. An entry with &#x60;platformSpecificData.tiktokSettings.draft: true&#x60; (Creator Inbox upload) is not subject to the limit and always reports &#x60;canPublish: true&#x60;. Accounts connected through the TikTok for Business app do not go through these limits at all and also always report &#x60;canPublish: true&#x60;, so on those accounts a dry run confirms the request is well-formed rather than gating it.
    * @return dryRun
    */
   @javax.annotation.Nullable

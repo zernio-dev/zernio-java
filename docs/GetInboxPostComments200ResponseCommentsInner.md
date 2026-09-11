@@ -20,7 +20,7 @@
 |**canReply** | **Boolean** |  |  [optional] |
 |**canDelete** | **Boolean** |  |  [optional] |
 |**canHide** | **Boolean** | Whether this comment can be hidden (Facebook, Instagram, Threads) |  [optional] |
-|**canLike** | **Boolean** | Whether this comment can be liked (Facebook, X, Bluesky, Reddit) |  [optional] |
+|**canLike** | **Boolean** | Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn) |  [optional] |
 |**isHidden** | **Boolean** | Whether the comment is currently hidden |  [optional] |
 |**isLiked** | **Boolean** | Whether the current user has liked this comment |  [optional] |
 |**likeUri** | **String** | Bluesky like URI for unliking |  [optional] |

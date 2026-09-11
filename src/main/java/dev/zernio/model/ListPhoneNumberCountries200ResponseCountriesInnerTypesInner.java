@@ -25,6 +25,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -40,9 +44,11 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_WHATSAPP_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_SMS_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_CALLS_AVAILABLE,
-  ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_IN_STOCK
+  ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_IN_STOCK,
+  ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_FULFILMENT,
+  ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_PRE_ORDERABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   /**
    * Gets or Sets numberType
@@ -88,7 +94,7 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   private NumberTypeEnum numberType;
 
   /**
-   * Gets or Sets tier
+   * Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.
    */
   public enum TierEnum {
     NUMBER_1(Integer.valueOf(1)),
@@ -122,13 +128,12 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
           return b;
         }
       }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+      return null;
     }
   }
 
   public static final String JSON_PROPERTY_TIER = "tier";
-  @javax.annotation.Nullable
-  private TierEnum tier;
+  private JsonNullable<TierEnum> tier = JsonNullable.<TierEnum>undefined();
 
   public static final String JSON_PROPERTY_NEEDS_KYC = "needsKyc";
   @javax.annotation.Nullable
@@ -153,6 +158,49 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   public static final String JSON_PROPERTY_IN_STOCK = "inStock";
   @javax.annotation.Nullable
   private Boolean inStock;
+
+  /**
+   * &#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.
+   */
+  public enum FulfilmentEnum {
+    INSTANT(String.valueOf("instant")),
+    
+    REQUEST(String.valueOf("request"));
+
+    private String value;
+
+    FulfilmentEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static FulfilmentEnum fromValue(String value) {
+      for (FulfilmentEnum b : FulfilmentEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_FULFILMENT = "fulfilment";
+  @javax.annotation.Nullable
+  private FulfilmentEnum fulfilment;
+
+  public static final String JSON_PROPERTY_PRE_ORDERABLE = "preOrderable";
+  @javax.annotation.Nullable
+  private Boolean preOrderable;
 
   public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner() { 
   }
@@ -182,26 +230,34 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
 
 
   public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner tier(@javax.annotation.Nullable TierEnum tier) {
-    this.tier = tier;
+    this.tier = JsonNullable.<TierEnum>of(tier);
     return this;
   }
 
   /**
-   * Get tier
+   * Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read.
    * @return tier
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public TierEnum getTier() {
-    return tier;
+        return tier.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_TIER, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setTier(@javax.annotation.Nullable TierEnum tier) {
+
+  public JsonNullable<TierEnum> getTier_JsonNullable() {
+    return tier;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_TIER)
+  public void setTier_JsonNullable(JsonNullable<TierEnum> tier) {
     this.tier = tier;
+  }
+
+  public void setTier(@javax.annotation.Nullable TierEnum tier) {
+    this.tier = JsonNullable.<TierEnum>of(tier);
   }
 
 
@@ -349,6 +405,54 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   }
 
 
+  public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner fulfilment(@javax.annotation.Nullable FulfilmentEnum fulfilment) {
+    this.fulfilment = fulfilment;
+    return this;
+  }
+
+  /**
+   * &#x60;request&#x60;: the carrier stocks this type nowhere and only sources it to order, so it is always a pre-order.
+   * @return fulfilment
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FULFILMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public FulfilmentEnum getFulfilment() {
+    return fulfilment;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FULFILMENT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFulfilment(@javax.annotation.Nullable FulfilmentEnum fulfilment) {
+    this.fulfilment = fulfilment;
+  }
+
+
+  public ListPhoneNumberCountries200ResponseCountriesInnerTypesInner preOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+    return this;
+  }
+
+  /**
+   * Out of stock but orderable anyway. Submit KYC as usual (POST /v1/phone-numbers/kyc): we buy regular stock the moment it returns, otherwise the carrier sources the number. Usually 2 to 4 weeks, never guaranteed. Only document tiers (3/4) qualify, and nothing is billed until the number is active.
+   * @return preOrderable
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPreOrderable() {
+    return preOrderable;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+  }
+
+
   /**
    * Return true if this listPhoneNumberCountries_200_response_countries_inner_types_inner object is equal to o.
    */
@@ -362,18 +466,31 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
     }
     ListPhoneNumberCountries200ResponseCountriesInnerTypesInner listPhoneNumberCountries200ResponseCountriesInnerTypesInner = (ListPhoneNumberCountries200ResponseCountriesInnerTypesInner) o;
     return Objects.equals(this.numberType, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.numberType) &&
-        Objects.equals(this.tier, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.tier) &&
+        equalsNullable(this.tier, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.tier) &&
         Objects.equals(this.needsKyc, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.needsKyc) &&
         Objects.equals(this.monthlyCents, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.monthlyCents) &&
         Objects.equals(this.whatsappAvailable, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.whatsappAvailable) &&
         Objects.equals(this.smsAvailable, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.smsAvailable) &&
         Objects.equals(this.callsAvailable, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.callsAvailable) &&
-        Objects.equals(this.inStock, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.inStock);
+        Objects.equals(this.inStock, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.inStock) &&
+        Objects.equals(this.fulfilment, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.fulfilment) &&
+        Objects.equals(this.preOrderable, listPhoneNumberCountries200ResponseCountriesInnerTypesInner.preOrderable);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(numberType, tier, needsKyc, monthlyCents, whatsappAvailable, smsAvailable, callsAvailable, inStock);
+    return Objects.hash(numberType, hashCodeNullable(tier), needsKyc, monthlyCents, whatsappAvailable, smsAvailable, callsAvailable, inStock, fulfilment, preOrderable);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -388,6 +505,8 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
     sb.append("    smsAvailable: ").append(toIndentedString(smsAvailable)).append("\n");
     sb.append("    callsAvailable: ").append(toIndentedString(callsAvailable)).append("\n");
     sb.append("    inStock: ").append(toIndentedString(inStock)).append("\n");
+    sb.append("    fulfilment: ").append(toIndentedString(fulfilment)).append("\n");
+    sb.append("    preOrderable: ").append(toIndentedString(preOrderable)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -473,6 +592,16 @@ public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
     // add `inStock` to the URL query string
     if (getInStock() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sinStock%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInStock()))));
+    }
+
+    // add `fulfilment` to the URL query string
+    if (getFulfilment() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sfulfilment%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFulfilment()))));
+    }
+
+    // add `preOrderable` to the URL query string
+    if (getPreOrderable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreOrderable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreOrderable()))));
     }
 
     return joiner.toString();

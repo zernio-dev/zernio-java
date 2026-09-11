@@ -24,10 +24,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GooglePmaxAssetGroupUpdate;
+import dev.zernio.model.GoogleRsaDescription;
+import dev.zernio.model.GoogleRsaHeadline;
 import dev.zernio.model.UpdateAdRequestBudget;
 import dev.zernio.model.UpdateAdRequestCreative;
 import dev.zernio.model.UpdateAdRequestTargeting;
+import java.net.URI;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -36,14 +42,34 @@ import dev.zernio.ApiClient;
  * UpdateAdRequest
  */
 @JsonPropertyOrder({
+  UpdateAdRequest.JSON_PROPERTY_HEADLINES,
+  UpdateAdRequest.JSON_PROPERTY_DESCRIPTIONS,
+  UpdateAdRequest.JSON_PROPERTY_FINAL_URLS,
+  UpdateAdRequest.JSON_PROPERTY_ASSET_GROUP,
   UpdateAdRequest.JSON_PROPERTY_STATUS,
   UpdateAdRequest.JSON_PROPERTY_BUDGET,
   UpdateAdRequest.JSON_PROPERTY_TARGETING,
   UpdateAdRequest.JSON_PROPERTY_CREATIVE,
   UpdateAdRequest.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequest {
+  public static final String JSON_PROPERTY_HEADLINES = "headlines";
+  @javax.annotation.Nullable
+  private List<GoogleRsaHeadline> headlines = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_DESCRIPTIONS = "descriptions";
+  @javax.annotation.Nullable
+  private List<GoogleRsaDescription> descriptions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_FINAL_URLS = "finalUrls";
+  @javax.annotation.Nullable
+  private List<URI> finalUrls = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_ASSET_GROUP = "assetGroup";
+  @javax.annotation.Nullable
+  private GooglePmaxAssetGroupUpdate assetGroup;
+
   /**
    * Gets or Sets status
    */
@@ -101,6 +127,126 @@ public class UpdateAdRequest {
 
   public UpdateAdRequest() { 
   }
+
+  public UpdateAdRequest headlines(@javax.annotation.Nullable List<GoogleRsaHeadline> headlines) {
+    this.headlines = headlines;
+    return this;
+  }
+
+  public UpdateAdRequest addHeadlinesItem(GoogleRsaHeadline headlinesItem) {
+    if (this.headlines == null) {
+      this.headlines = new ArrayList<>();
+    }
+    this.headlines.add(headlinesItem);
+    return this;
+  }
+
+  /**
+   * Google Search and Display only. Replaces the complete headline list. Search takes 3-15, Display 1-5 and rejects pinnedField; the count is checked once the ad&#39;s channel is known. No padding or truncation on update.
+   * @return headlines
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GoogleRsaHeadline> getHeadlines() {
+    return headlines;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HEADLINES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHeadlines(@javax.annotation.Nullable List<GoogleRsaHeadline> headlines) {
+    this.headlines = headlines;
+  }
+
+
+  public UpdateAdRequest descriptions(@javax.annotation.Nullable List<GoogleRsaDescription> descriptions) {
+    this.descriptions = descriptions;
+    return this;
+  }
+
+  public UpdateAdRequest addDescriptionsItem(GoogleRsaDescription descriptionsItem) {
+    if (this.descriptions == null) {
+      this.descriptions = new ArrayList<>();
+    }
+    this.descriptions.add(descriptionsItem);
+    return this;
+  }
+
+  /**
+   * Google Search and Display only. Replaces the complete description list. Search takes 2-4, Display 1-5 and rejects pinnedField. No padding or truncation on update.
+   * @return descriptions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GoogleRsaDescription> getDescriptions() {
+    return descriptions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DESCRIPTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDescriptions(@javax.annotation.Nullable List<GoogleRsaDescription> descriptions) {
+    this.descriptions = descriptions;
+  }
+
+
+  public UpdateAdRequest finalUrls(@javax.annotation.Nullable List<URI> finalUrls) {
+    this.finalUrls = finalUrls;
+    return this;
+  }
+
+  public UpdateAdRequest addFinalUrlsItem(URI finalUrlsItem) {
+    if (this.finalUrls == null) {
+      this.finalUrls = new ArrayList<>();
+    }
+    this.finalUrls.add(finalUrlsItem);
+    return this;
+  }
+
+  /**
+   * Google Search and Display only. Replaces final URLs. Omitted lists stay unchanged. For Performance Max use assetGroup.finalUrl.
+   * @return finalUrls
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_FINAL_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<URI> getFinalUrls() {
+    return finalUrls;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_FINAL_URLS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setFinalUrls(@javax.annotation.Nullable List<URI> finalUrls) {
+    this.finalUrls = finalUrls;
+  }
+
+
+  public UpdateAdRequest assetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupUpdate assetGroup) {
+    this.assetGroup = assetGroup;
+    return this;
+  }
+
+  /**
+   * Google Performance Max only. Replaces whole asset roles on the ad&#39;s asset group. Returns 422 on any other platform or channel.
+   * @return assetGroup
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GooglePmaxAssetGroupUpdate getAssetGroup() {
+    return assetGroup;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAssetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupUpdate assetGroup) {
+    this.assetGroup = assetGroup;
+  }
+
 
   public UpdateAdRequest status(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
@@ -234,7 +380,11 @@ public class UpdateAdRequest {
       return false;
     }
     UpdateAdRequest updateAdRequest = (UpdateAdRequest) o;
-    return Objects.equals(this.status, updateAdRequest.status) &&
+    return Objects.equals(this.headlines, updateAdRequest.headlines) &&
+        Objects.equals(this.descriptions, updateAdRequest.descriptions) &&
+        Objects.equals(this.finalUrls, updateAdRequest.finalUrls) &&
+        Objects.equals(this.assetGroup, updateAdRequest.assetGroup) &&
+        Objects.equals(this.status, updateAdRequest.status) &&
         Objects.equals(this.budget, updateAdRequest.budget) &&
         Objects.equals(this.targeting, updateAdRequest.targeting) &&
         Objects.equals(this.creative, updateAdRequest.creative) &&
@@ -243,13 +393,17 @@ public class UpdateAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, budget, targeting, creative, name);
+    return Objects.hash(headlines, descriptions, finalUrls, assetGroup, status, budget, targeting, creative, name);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class UpdateAdRequest {\n");
+    sb.append("    headlines: ").append(toIndentedString(headlines)).append("\n");
+    sb.append("    descriptions: ").append(toIndentedString(descriptions)).append("\n");
+    sb.append("    finalUrls: ").append(toIndentedString(finalUrls)).append("\n");
+    sb.append("    assetGroup: ").append(toIndentedString(assetGroup)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    budget: ").append(toIndentedString(budget)).append("\n");
     sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
@@ -301,6 +455,42 @@ public class UpdateAdRequest {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `headlines` to the URL query string
+    if (getHeadlines() != null) {
+      for (int i = 0; i < getHeadlines().size(); i++) {
+        if (getHeadlines().get(i) != null) {
+          joiner.add(getHeadlines().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sheadlines%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `descriptions` to the URL query string
+    if (getDescriptions() != null) {
+      for (int i = 0; i < getDescriptions().size(); i++) {
+        if (getDescriptions().get(i) != null) {
+          joiner.add(getDescriptions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sdescriptions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `finalUrls` to the URL query string
+    if (getFinalUrls() != null) {
+      for (int i = 0; i < getFinalUrls().size(); i++) {
+        if (getFinalUrls().get(i) != null) {
+          joiner.add(String.format(java.util.Locale.ROOT, "%sfinalUrls%s%s=%s", prefix, suffix,
+              "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+              ApiClient.urlEncode(ApiClient.valueToString(getFinalUrls().get(i)))));
+        }
+      }
+    }
+
+    // add `assetGroup` to the URL query string
+    if (getAssetGroup() != null) {
+      joiner.add(getAssetGroup().toUrlQueryString(prefix + "assetGroup" + suffix));
+    }
 
     // add `status` to the URL query string
     if (getStatus() != null) {

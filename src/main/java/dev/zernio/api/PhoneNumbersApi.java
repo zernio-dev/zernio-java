@@ -95,7 +95,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -845,7 +845,7 @@ public class PhoneNumbersApi {
 
   /**
    * Watch an out-of-stock country
-   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
    * @param createPhoneNumberStockWatchRequest  (required)
    * @return PhoneNumberStockWatch
    * @throws ApiException if fails to make API call
@@ -856,7 +856,7 @@ public class PhoneNumbersApi {
 
   /**
    * Watch an out-of-stock country
-   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
    * @param createPhoneNumberStockWatchRequest  (required)
    * @param headers Optional headers to include in the request
    * @return PhoneNumberStockWatch
@@ -869,7 +869,7 @@ public class PhoneNumbersApi {
 
   /**
    * Watch an out-of-stock country
-   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
    * @param createPhoneNumberStockWatchRequest  (required)
    * @return ApiResponse&lt;PhoneNumberStockWatch&gt;
    * @throws ApiException if fails to make API call
@@ -880,7 +880,7 @@ public class PhoneNumbersApi {
 
   /**
    * Watch an out-of-stock country
-   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+   * Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
    * @param createPhoneNumberStockWatchRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PhoneNumberStockWatch&gt;
@@ -2177,7 +2177,7 @@ public class PhoneNumbersApi {
 
   /**
    * Purchase phone number
-   * Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchasePhoneNumberRequest  (required)
    * @return PurchasePhoneNumber200Response
    * @throws ApiException if fails to make API call
@@ -2188,7 +2188,7 @@ public class PhoneNumbersApi {
 
   /**
    * Purchase phone number
-   * Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchasePhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
    * @return PurchasePhoneNumber200Response
@@ -2201,7 +2201,7 @@ public class PhoneNumbersApi {
 
   /**
    * Purchase phone number
-   * Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchasePhoneNumberRequest  (required)
    * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2212,7 +2212,7 @@ public class PhoneNumbersApi {
 
   /**
    * Purchase phone number
-   * Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+   * Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
    * @param purchasePhoneNumberRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;PurchasePhoneNumber200Response&gt;
@@ -2937,7 +2937,7 @@ public class PhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -2954,7 +2954,7 @@ public class PhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -2973,7 +2973,7 @@ public class PhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)
@@ -2990,7 +2990,7 @@ public class PhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
    * @param country  (optional, default to US)
    * @param type Number type; defaults to the country&#39;s WhatsApp-safe type (optional)
    * @param prefix Area code (optional)

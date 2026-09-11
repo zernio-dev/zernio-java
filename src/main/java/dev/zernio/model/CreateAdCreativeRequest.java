@@ -25,13 +25,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateAdCreativeRequestCarouselCardsInner;
-import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -55,7 +58,7 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequest.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateAdCreativeRequest.JSON_PROPERTY_MULTI_ADVERTISER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -102,8 +105,7 @@ public class CreateAdCreativeRequest {
   private String urlTags;
 
   public static final String JSON_PROPERTY_PROMOTION = "promotion";
-  @javax.annotation.Nullable
-  private MetaPromotion promotion;
+  private JsonNullable<Object> promotion = JsonNullable.<Object>undefined();
 
   /**
    * Gets or Sets inner
@@ -458,27 +460,35 @@ public class CreateAdCreativeRequest {
   }
 
 
-  public CreateAdCreativeRequest promotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
+  public CreateAdCreativeRequest promotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
     return this;
   }
 
   /**
-   * Get promotion
+   * Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path.
    * @return promotion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotion getPromotion() {
-    return promotion;
+  @JsonIgnore
+  public Object getPromotion() {
+        return promotion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+
+  public JsonNullable<Object> getPromotion_JsonNullable() {
+    return promotion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROMOTION)
+  public void setPromotion_JsonNullable(JsonNullable<Object> promotion) {
     this.promotion = promotion;
+  }
+
+  public void setPromotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
   }
 
 
@@ -496,7 +506,7 @@ public class CreateAdCreativeRequest {
   }
 
   /**
-   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
+   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable
@@ -561,14 +571,25 @@ public class CreateAdCreativeRequest {
         Objects.equals(this.imageHash, createAdCreativeRequest.imageHash) &&
         Objects.equals(this.carouselCards, createAdCreativeRequest.carouselCards) &&
         Objects.equals(this.urlTags, createAdCreativeRequest.urlTags) &&
-        Objects.equals(this.promotion, createAdCreativeRequest.promotion) &&
+        equalsNullable(this.promotion, createAdCreativeRequest.promotion) &&
         Objects.equals(this.creativeFeatures, createAdCreativeRequest.creativeFeatures) &&
         Objects.equals(this.multiAdvertiser, createAdCreativeRequest.multiAdvertiser);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, promotion, creativeFeatures, multiAdvertiser);
+    return Objects.hash(accountId, adAccountId, headline, body, description, callToAction, linkUrl, imageUrl, imageHash, carouselCards, urlTags, hashCodeNullable(promotion), creativeFeatures, multiAdvertiser);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -698,7 +719,7 @@ public class CreateAdCreativeRequest {
 
     // add `promotion` to the URL query string
     if (getPromotion() != null) {
-      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spromotion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPromotion()))));
     }
 
     // add `creativeFeatures` to the URL query string

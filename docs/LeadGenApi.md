@@ -179,7 +179,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 
 Create a lead form
 
-Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -253,7 +253,7 @@ public class Example {
 
 Create a lead form
 
-Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -631,7 +631,7 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 
 List leads for a single form
 
-Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
 
 ### Example
 
@@ -701,6 +701,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Leads for the form. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -711,7 +713,7 @@ public class Example {
 
 List leads for a single form
 
-Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
 
 ### Example
 
@@ -784,6 +786,8 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Leads for the form. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -795,7 +799,7 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 
 List lead forms
 
-Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -818,7 +822,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id.
+        String accountId = "accountId_example"; // String | Connected Facebook, Meta ads business-login or LinkedIn ads account ID.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
@@ -841,7 +845,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected facebook or linkedin ads account id. | |
+| **accountId** | **String**| Connected Facebook, Meta ads business-login or LinkedIn ads account ID. | |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
@@ -874,7 +878,7 @@ public class Example {
 
 List lead forms
 
-Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -898,7 +902,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected facebook or linkedin ads account id.
+        String accountId = "accountId_example"; // String | Connected Facebook, Meta ads business-login or LinkedIn ads account ID.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn.
         Integer limit = 25; // Integer | 
         String cursor = "cursor_example"; // String | 
@@ -923,7 +927,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected facebook or linkedin ads account id. | |
+| **accountId** | **String**| Connected Facebook, Meta ads business-login or LinkedIn ads account ID. | |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **cursor** | **String**|  | [optional] |
@@ -984,7 +988,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
-        Integer since = 56; // Integer | Unix seconds; only leads created at/after this timestamp.
+        Integer since = 1757404800; // Integer | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000.
         String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
             ListLeads200Response result = apiInstance.listLeads(formId, accountId, adAccountId, limit, since, cursor);
@@ -1009,7 +1013,7 @@ public class Example {
 | **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. | [optional] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional] |
 | **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional] |
 
 ### Return type
@@ -1033,6 +1037,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## listLeadsWithHttpInfo
 
@@ -1068,7 +1074,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
-        Integer since = 56; // Integer | Unix seconds; only leads created at/after this timestamp.
+        Integer since = 1757404800; // Integer | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000.
         String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
             ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
@@ -1095,7 +1101,7 @@ public class Example {
 | **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
-| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. | [optional] |
+| **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional] |
 | **cursor** | **String**| Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). | [optional] |
 
 ### Return type
@@ -1119,4 +1125,6 @@ ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads add-on required. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 

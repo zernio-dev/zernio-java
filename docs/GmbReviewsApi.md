@@ -565,6 +565,8 @@ public class Example {
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch reviews |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getGoogleBusinessReviewsWithHttpInfo
 
@@ -649,6 +651,8 @@ ApiResponse<[**GetGoogleBusinessReviews200Response**](GetGoogleBusinessReviews20
 | **403** | Permission denied for this location |  -  |
 | **404** | Resource not found |  -  |
 | **500** | Failed to fetch reviews |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## replyToGoogleBusinessReview

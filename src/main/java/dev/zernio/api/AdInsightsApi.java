@@ -63,7 +63,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdInsightsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -181,7 +181,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Submit an async insights report run
+   * Submit async insights report
    * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
    * @param createAdInsightsReportRequest  (required)
    * @return CreateAdInsightsReport202Response
@@ -192,7 +192,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Submit an async insights report run
+   * Submit async insights report
    * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
    * @param createAdInsightsReportRequest  (required)
    * @param headers Optional headers to include in the request
@@ -205,7 +205,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Submit an async insights report run
+   * Submit async insights report
    * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
    * @param createAdInsightsReportRequest  (required)
    * @return ApiResponse&lt;CreateAdInsightsReport202Response&gt;
@@ -216,7 +216,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Submit an async insights report run
+   * Submit async insights report
    * Submits an asynchronous Meta insights report. Same query surface as GET /v1/ads/insights, but in the JSON body; Meta processes the report server-side, which is the right choice for long ranges or large accounts where the sync query is slow or rate-limited. Returns a &#x60;reportRunId&#x60; to poll via GET /v1/ads/insights/reports/{reportRunId}. 
    * @param createAdInsightsReportRequest  (required)
    * @param headers Optional headers to include in the request
@@ -304,7 +304,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Historical keyword metrics (Google Keyword Planner)
+   * Get historical keyword metrics
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
    * @param generateKeywordHistoricalMetricsRequest  (required)
    * @return GenerateKeywordHistoricalMetrics200Response
@@ -315,7 +315,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Historical keyword metrics (Google Keyword Planner)
+   * Get historical keyword metrics
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
    * @param generateKeywordHistoricalMetricsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -328,7 +328,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Historical keyword metrics (Google Keyword Planner)
+   * Get historical keyword metrics
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
    * @param generateKeywordHistoricalMetricsRequest  (required)
    * @return ApiResponse&lt;GenerateKeywordHistoricalMetrics200Response&gt;
@@ -339,7 +339,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Historical keyword metrics (Google Keyword Planner)
+   * Get historical keyword metrics
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordHistoricalMetrics for up to 1,000 exact keywords: historical search volume, competition and top-of-page bid ranges, plus averageCpcMicros when includeAverageCpc is set. Rows come back verbatim; counters are int64s encoded as strings, bid/CPC values are micros of the account currency. 
    * @param generateKeywordHistoricalMetricsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -427,7 +427,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Generate keyword ideas (Google Keyword Planner)
+   * Generate keyword ideas
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
    * @param generateKeywordIdeasRequest  (required)
    * @return GenerateKeywordIdeas200Response
@@ -438,7 +438,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Generate keyword ideas (Google Keyword Planner)
+   * Generate keyword ideas
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
    * @param generateKeywordIdeasRequest  (required)
    * @param headers Optional headers to include in the request
@@ -451,7 +451,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Generate keyword ideas (Google Keyword Planner)
+   * Generate keyword ideas
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
    * @param generateKeywordIdeasRequest  (required)
    * @return ApiResponse&lt;GenerateKeywordIdeas200Response&gt;
@@ -462,7 +462,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Generate keyword ideas (Google Keyword Planner)
+   * Generate keyword ideas
    * Google Ads only. Runs Keyword Planner&#39;s generateKeywordIdeas from seed keywords, a seed URL, or both, returning idea rows verbatim (avgMonthlySearches, competition, competitionIndex, top-of-page bid micros, monthlySearchVolumes). Counters are int64s encoded as strings; bid values are micros of the account currency. Omitting &#x60;countries&#x60; targets worldwide. 
    * @param generateKeywordIdeasRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1175,7 +1175,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Conversations of a Local Services lead
+   * List lead conversations
    * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
    * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
    * @param accountId Google ads SocialAccount id. (required)
@@ -1189,7 +1189,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Conversations of a Local Services lead
+   * List lead conversations
    * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
    * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
    * @param accountId Google ads SocialAccount id. (required)
@@ -1205,7 +1205,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Conversations of a Local Services lead
+   * List lead conversations
    * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
    * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
    * @param accountId Google ads SocialAccount id. (required)
@@ -1219,7 +1219,7 @@ public class AdInsightsApi {
   }
 
   /**
-   * Conversations of a Local Services lead
+   * List lead conversations
    * Conversation entries of one Local Services lead: phone calls (duration, recording URL) and messages (text, attachment URLs), oldest first. Read live from &#x60;local_services_lead_conversation&#x60;, always scoped to a single lead. Call-recording URLs require read access on the Google Ads account. Draws on the shared Google Ads operations budget.
    * @param leadId Numeric lead id from /v1/ads/local-services/leads. (required)
    * @param accountId Google ads SocialAccount id. (required)

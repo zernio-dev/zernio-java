@@ -1399,7 +1399,7 @@ ApiResponse<[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToPro
 
 Purchase phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
 
 ### Example
 
@@ -1465,7 +1465,7 @@ public class Example {
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -1476,7 +1476,7 @@ public class Example {
 
 Purchase phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
 
 ### Example
 
@@ -1545,7 +1545,7 @@ ApiResponse<[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNu
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |

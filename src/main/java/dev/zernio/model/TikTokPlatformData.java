@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -227,7 +227,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * One of the values returned by the TikTok creator info API for the account
+   * One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level).
    * @return privacyLevel
    */
   @javax.annotation.Nullable
@@ -492,7 +492,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided.
+   * Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). Any downloadable URL works: we rehost it ourselves. The image is stitched as a single frame at the start of the video to serve as the cover. Accounts connected through the TikTok for Business app hand it to TikTok as the cover instead, with no stitching, falling back to videoCoverTimestampMs without it. Overrides videoCoverTimestampMs when provided.
    * @return videoCoverImageUrl
    */
   @javax.annotation.Nullable
@@ -565,7 +565,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Set true to disclose AI-generated content
+   * Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app.
    * @return videoMadeWithAi
    */
   @javax.annotation.Nullable
@@ -589,7 +589,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * Optional long-form description for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated.
+   * Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted.
    * @return description
    */
   @javax.annotation.Nullable

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage400ResponsePlatformError.JSON_PROPERTY_FBTRACE_ID,
   SendInboxMessage400ResponsePlatformError.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400ResponsePlatformError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

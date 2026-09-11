@@ -28,6 +28,8 @@ import dev.zernio.model.AdPromotedObject;
 import dev.zernio.model.AdTracking;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.BoostPostRequestTargetingRegionsInner;
+import dev.zernio.model.CreateStandaloneAdRequestAdditionalDescriptionsInner;
+import dev.zernio.model.CreateStandaloneAdRequestAdditionalHeadlinesInner;
 import dev.zernio.model.CreateStandaloneAdRequestAttributionSpecInner;
 import dev.zernio.model.CreateStandaloneAdRequestBehaviorsInner;
 import dev.zernio.model.CreateStandaloneAdRequestBrandIdentity;
@@ -45,8 +47,8 @@ import dev.zernio.model.CreateStandaloneAdRequestSitelinksInner;
 import dev.zernio.model.CreateStandaloneAdRequestStructuredSnippetsInner;
 import dev.zernio.model.CreateStandaloneAdRequestTranslationsInner;
 import dev.zernio.model.CreateStandaloneAdRequestVideo;
+import dev.zernio.model.GooglePmaxAssetGroupInput;
 import dev.zernio.model.KeywordEntry;
-import dev.zernio.model.MetaPromotion;
 import dev.zernio.model.TargetingSpec;
 import dev.zernio.model.UpdateAdRequestTargetingInterestsInner;
 import java.math.BigDecimal;
@@ -57,6 +59,10 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -140,6 +146,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_PLACEMENT_ASSETS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AUDIENCE_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_TYPE,
+  CreateStandaloneAdRequest.JSON_PROPERTY_ASSET_GROUP,
   CreateStandaloneAdRequest.JSON_PROPERTY_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_NEGATIVE_KEYWORDS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_NEGATIVE_KEYWORDS,
@@ -169,7 +176,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_ATTRIBUTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -265,7 +272,7 @@ public class CreateStandaloneAdRequest {
   private String billingEvent;
 
   /**
-   * Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. Reusing existingCampaignId does not change the campaign. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
    */
   public enum BuyingTypeEnum {
     AUCTION(String.valueOf("AUCTION")),
@@ -301,15 +308,14 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_BUYING_TYPE = "buyingType";
   @javax.annotation.Nullable
-  private BuyingTypeEnum buyingType;
+  private BuyingTypeEnum buyingType = BuyingTypeEnum.AUCTION;
 
   public static final String JSON_PROPERTY_RF_PREDICTION_ID = "rfPredictionId";
   @javax.annotation.Nullable
   private String rfPredictionId;
 
   public static final String JSON_PROPERTY_PROMOTION = "promotion";
-  @javax.annotation.Nullable
-  private MetaPromotion promotion;
+  private JsonNullable<Object> promotion = JsonNullable.<Object>undefined();
 
   /**
    * Gets or Sets inner
@@ -398,7 +404,7 @@ public class CreateStandaloneAdRequest {
   private BigDecimal budgetAmount;
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
+   * Required on legacy, multi-creative and Performance Max shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
    */
   public enum BudgetTypeEnum {
     DAILY(String.valueOf("daily")),
@@ -437,7 +443,7 @@ public class CreateStandaloneAdRequest {
   private BudgetTypeEnum budgetType;
 
   /**
-   * Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+   * Google Performance Max accepts PAUSED only and always creates a paused campaign. Google Search and Display, Meta, TikTok, and LinkedIn: publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. Google Search and Display follow the same rule, and because Google keeps an independent switch at campaign, ad group and ad level, a PAUSED create leaves the campaign it creates PAUSED at Google. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -476,7 +482,7 @@ public class CreateStandaloneAdRequest {
   private StatusEnum status;
 
   /**
-   * Meta only. Overrides &#x60;status&#x60; for the campaign level alone, so you can create a live campaign whose ad set and ad stay paused, or the reverse. Omitted, it follows &#x60;status&#x60;.
+   * Meta and Google. Overrides &#x60;status&#x60; for the campaign level alone, so you can create a live campaign whose ad set and ad stay paused, or the reverse. Omitted, it follows &#x60;status&#x60;.
    */
   public enum CampaignStatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -515,7 +521,7 @@ public class CreateStandaloneAdRequest {
   private CampaignStatusEnum campaignStatus;
 
   /**
-   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. The returned ad stores the applied &#x60;budgetLevel&#x60; and budget in &#x60;campaignBudget&#x60; for CBO or &#x60;adSetBudget&#x60; for ABO. Edit CBO budgets with &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60; and ABO budgets with &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
    */
   public enum BudgetLevelEnum {
     ADSET(String.valueOf("adset")),
@@ -947,12 +953,14 @@ public class CreateStandaloneAdRequest {
   private String audienceId;
 
   /**
-   * Google only
+   * Google only. Performance Max requires assetGroup and is always created PAUSED.
    */
   public enum CampaignTypeEnum {
     DISPLAY(String.valueOf("display")),
     
-    SEARCH(String.valueOf("search"));
+    SEARCH(String.valueOf("search")),
+    
+    PMAX(String.valueOf("pmax"));
 
     private String value;
 
@@ -985,6 +993,10 @@ public class CreateStandaloneAdRequest {
   @javax.annotation.Nullable
   private CampaignTypeEnum campaignType = CampaignTypeEnum.DISPLAY;
 
+  public static final String JSON_PROPERTY_ASSET_GROUP = "assetGroup";
+  @javax.annotation.Nullable
+  private GooglePmaxAssetGroupInput assetGroup;
+
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
   private List<KeywordEntry> keywords = new ArrayList<>();
@@ -999,11 +1011,11 @@ public class CreateStandaloneAdRequest {
 
   public static final String JSON_PROPERTY_ADDITIONAL_HEADLINES = "additionalHeadlines";
   @javax.annotation.Nullable
-  private List<String> additionalHeadlines = new ArrayList<>();
+  private List<CreateStandaloneAdRequestAdditionalHeadlinesInner> additionalHeadlines = new ArrayList<>();
 
   public static final String JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS = "additionalDescriptions";
   @javax.annotation.Nullable
-  private List<String> additionalDescriptions = new ArrayList<>();
+  private List<CreateStandaloneAdRequestAdditionalDescriptionsInner> additionalDescriptions = new ArrayList<>();
 
   public static final String JSON_PROPERTY_SITELINKS = "sitelinks";
   @javax.annotation.Nullable
@@ -1488,7 +1500,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
+   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. Reusing existingCampaignId does not change the campaign. RESERVED &#x3D; Reach &amp; Frequency: requires &#x60;rfPredictionId&#x60; (a RESERVED prediction from /v1/ads/rf-predictions + /reserve). Budget, schedule and pricing come from the reservation, so budgetAmount/budgetType are not required and bid fields are ignored. Only the plain single-ad shape (no creatives[], adSetId, existingCampaignId or dynamicCreative).
    * @return buyingType
    */
   @javax.annotation.Nullable
@@ -1530,27 +1542,35 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest promotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
+  public CreateStandaloneAdRequest promotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
     return this;
   }
 
   /**
-   * Get promotion
+   * Not supported. Meta validates creative_sourcing_spec.promotion_metadata_spec on the create call and then discards it, so a Promotion set through the Marketing API never reaches the creative. Any object is rejected with 400 invalid_field_value. Send null or omit the field, and set the Promotion on the ad in Ads Manager. Verified on 2026-09-11 across Graph v19.0 to v25.0 and every write path.
    * @return promotion
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotion getPromotion() {
-    return promotion;
+  @JsonIgnore
+  public Object getPromotion() {
+        return promotion.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
+
+  public JsonNullable<Object> getPromotion_JsonNullable() {
+    return promotion;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_PROMOTION)
+  public void setPromotion_JsonNullable(JsonNullable<Object> promotion) {
     this.promotion = promotion;
+  }
+
+  public void setPromotion(@javax.annotation.Nullable Object promotion) {
+    this.promotion = JsonNullable.<Object>of(promotion);
   }
 
 
@@ -1568,7 +1588,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an enhancement; an explicit offer uses promotion.
+   * Meta only. Applied to each new creative, including standalone and attach shapes. With creatives[], these are defaults; an item replaces the whole feature map, including an empty map. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable
@@ -1616,7 +1636,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, existing video.id or existingCreativeId; media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error.
+   * Google Performance Max validates the complete atomic campaign and asset group with no resource creation or local persistence. Google validation still downloads image URLs and consumes quota. On Meta, validates the complete inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created, and validation bypasses Idempotency-Key storage. Supports a single image, all-image placementAssets with per-rule copy, existing video.id or existingCreativeId; other media pools, new video uploads, creatives[], adSetId and RESERVED buying return 400. Placement validation uses existing Instagram identities only. Existing campaign or creative nodes are marked skipped. Success returns 200 with per-node results; Meta rejection returns an error.
    * @return validateOnly
    */
   @javax.annotation.Nullable
@@ -1640,7 +1660,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
+   * Budget in WHOLE currency units (USD: 50 &#x3D; $50.00), NOT cents. Meta&#39;s own Marketing API takes this same number in minor units, so it is an easy and expensive mix-up. Required on legacy, multi-creative and Performance Max shapes. Inherited on attach. OpenAI Ads requires a $1 minimum (its budget is lifetime-only, see budgetType).
    * @return budgetAmount
    */
   @javax.annotation.Nullable
@@ -1664,7 +1684,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Required on legacy + multi-creative shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
+   * Required on legacy, multi-creative and Performance Max shapes. Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget concept on the platform); sending daily returns 422. OpenAI Ads lifetime budgets require &#x60;endDate&#x60; to give the lifetime cap a spend window.
    * @return budgetType
    */
   @javax.annotation.Nullable
@@ -1688,7 +1708,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta, TikTok, and LinkedIn. Publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
+   * Google Performance Max accepts PAUSED only and always creates a paused campaign. Google Search and Display, Meta, TikTok, and LinkedIn: publish state of the created entities. Omitted or ACTIVE publishes live (default, back-compat); PAUSED creates them paused so you can review before they spend. On Meta the pause is held on the campaign this call creates, leaving the ad set and ad switched on, so a single PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings the whole thing live. It is held at every level instead when the pause cannot rely on the campaign: &#x60;existingCampaignId&#x60; (that campaign may be running and is never touched) or &#x60;campaignStatus: ACTIVE&#x60;. Google Search and Display follow the same rule, and because Google keeps an independent switch at campaign, ad group and ad level, a PAUSED create leaves the campaign it creates PAUSED at Google. On TikTok the whole campaign &gt; ad group &gt; ad hierarchy stays paused. On LinkedIn the whole campaign group, campaign, and creative hierarchy stays PAUSED (intendedStatus PAUSED on each).
    * @return status
    */
   @javax.annotation.Nullable
@@ -1712,7 +1732,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Overrides &#x60;status&#x60; for the campaign level alone, so you can create a live campaign whose ad set and ad stay paused, or the reverse. Omitted, it follows &#x60;status&#x60;.
+   * Meta and Google. Overrides &#x60;status&#x60; for the campaign level alone, so you can create a live campaign whose ad set and ad stay paused, or the reverse. Omitted, it follows &#x60;status&#x60;.
    * @return campaignStatus
    */
   @javax.annotation.Nullable
@@ -1736,7 +1756,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
+   * Meta only. Where the budget lives, which selects the Meta budget model:   - &#x60;adset&#x60; (default): ABO (Ad-set Budget Optimization). The budget is set on the     ad set. This is the back-compatible behaviour; omit this field to keep it.   - &#x60;campaign&#x60;: CBO (Campaign Budget Optimization / Advantage Campaign Budget). The     budget AND &#x60;bidStrategy&#x60; are set on the CAMPAIGN, and Meta distributes spend     across ad sets automatically. The returned ad stores the applied &#x60;budgetLevel&#x60; and budget in &#x60;campaignBudget&#x60; for CBO or &#x60;adSetBudget&#x60; for ABO. Edit CBO budgets with &#x60;PUT /v1/ads/campaigns/{campaignId}&#x60; and ABO budgets with &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;. Meta requires the budget at exactly one level, never both. Non-Meta platforms ignore this field. Ignored on the attach shape (&#x60;adSetId&#x60;), which inherits the existing budget. 
    * @return budgetLevel
    */
   @javax.annotation.Nullable
@@ -1888,7 +1908,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Meta only. Multiple Text Options (Advantage+ Flexible Format): supply 1-5 primary-text variations and Meta optimises delivery across them, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;). Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60; which is limited to one). Requires &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, and &#x60;callToAction&#x60;. When set, the top-level &#x60;body&#x60; field is used as the &#x60;object_story_spec.link_data.message&#x60; (the preview text) and &#x60;headlines&#x60; must also be present. On a video creative the copy lands in &#x60;video_data.message&#x60; / &#x60;video_data.title&#x60; instead of &#x60;link_data&#x60;. Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;. 
+   * Meta only. Multiple Text Options (Advantage+ Flexible Format): supply 1-5 primary-text variations and Meta optimises delivery across them, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;). Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60; which is limited to one). Requires &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, and &#x60;callToAction&#x60;. When set, the top-level &#x60;body&#x60; field is used as the &#x60;object_story_spec.link_data.message&#x60; (the preview text) and &#x60;headlines&#x60; must also be present. On a video creative the copy lands in &#x60;video_data.message&#x60; / &#x60;video_data.title&#x60; instead of &#x60;link_data&#x60;. Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;placementAssets&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;. For placement-specific copy, use the singular &#x60;placementAssets.rules[].body&#x60; and &#x60;headline&#x60; fields instead. 
    * @return bodies
    */
   @javax.annotation.Nullable
@@ -3220,7 +3240,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google only
+   * Google only. Performance Max requires assetGroup and is always created PAUSED.
    * @return campaignType
    */
   @javax.annotation.Nullable
@@ -3235,6 +3255,30 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCampaignType(@javax.annotation.Nullable CampaignTypeEnum campaignType) {
     this.campaignType = campaignType;
+  }
+
+
+  public CreateStandaloneAdRequest assetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupInput assetGroup) {
+    this.assetGroup = assetGroup;
+    return this;
+  }
+
+  /**
+   * Get assetGroup
+   * @return assetGroup
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GooglePmaxAssetGroupInput getAssetGroup() {
+    return assetGroup;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ASSET_GROUP, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAssetGroup(@javax.annotation.Nullable GooglePmaxAssetGroupInput assetGroup) {
+    this.assetGroup = assetGroup;
   }
 
 
@@ -3334,12 +3378,12 @@ public class CreateStandaloneAdRequest {
   }
 
 
-  public CreateStandaloneAdRequest additionalHeadlines(@javax.annotation.Nullable List<String> additionalHeadlines) {
+  public CreateStandaloneAdRequest additionalHeadlines(@javax.annotation.Nullable List<CreateStandaloneAdRequestAdditionalHeadlinesInner> additionalHeadlines) {
     this.additionalHeadlines = additionalHeadlines;
     return this;
   }
 
-  public CreateStandaloneAdRequest addAdditionalHeadlinesItem(String additionalHeadlinesItem) {
+  public CreateStandaloneAdRequest addAdditionalHeadlinesItem(CreateStandaloneAdRequestAdditionalHeadlinesInner additionalHeadlinesItem) {
     if (this.additionalHeadlines == null) {
       this.additionalHeadlines = new ArrayList<>();
     }
@@ -3348,30 +3392,30 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search RSA only. Extra headlines.
+   * Google Search RSA only. Extra text assets as strings or objects with text and optional pinnedField. Existing string input remains supported. The effective create lists, including primary text and deduplication, must contain 3-15 headlines and 2-4 descriptions; excess entries return 400.
    * @return additionalHeadlines
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ADDITIONAL_HEADLINES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAdditionalHeadlines() {
+  public List<CreateStandaloneAdRequestAdditionalHeadlinesInner> getAdditionalHeadlines() {
     return additionalHeadlines;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ADDITIONAL_HEADLINES, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdditionalHeadlines(@javax.annotation.Nullable List<String> additionalHeadlines) {
+  public void setAdditionalHeadlines(@javax.annotation.Nullable List<CreateStandaloneAdRequestAdditionalHeadlinesInner> additionalHeadlines) {
     this.additionalHeadlines = additionalHeadlines;
   }
 
 
-  public CreateStandaloneAdRequest additionalDescriptions(@javax.annotation.Nullable List<String> additionalDescriptions) {
+  public CreateStandaloneAdRequest additionalDescriptions(@javax.annotation.Nullable List<CreateStandaloneAdRequestAdditionalDescriptionsInner> additionalDescriptions) {
     this.additionalDescriptions = additionalDescriptions;
     return this;
   }
 
-  public CreateStandaloneAdRequest addAdditionalDescriptionsItem(String additionalDescriptionsItem) {
+  public CreateStandaloneAdRequest addAdditionalDescriptionsItem(CreateStandaloneAdRequestAdditionalDescriptionsInner additionalDescriptionsItem) {
     if (this.additionalDescriptions == null) {
       this.additionalDescriptions = new ArrayList<>();
     }
@@ -3380,20 +3424,20 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google Search RSA only. Extra descriptions.
+   * Google Search RSA only. Extra text assets as strings or objects with text and optional pinnedField. Existing string input remains supported. The effective create lists, including primary text and deduplication, must contain 3-15 headlines and 2-4 descriptions; excess entries return 400.
    * @return additionalDescriptions
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<String> getAdditionalDescriptions() {
+  public List<CreateStandaloneAdRequestAdditionalDescriptionsInner> getAdditionalDescriptions() {
     return additionalDescriptions;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_ADDITIONAL_DESCRIPTIONS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setAdditionalDescriptions(@javax.annotation.Nullable List<String> additionalDescriptions) {
+  public void setAdditionalDescriptions(@javax.annotation.Nullable List<CreateStandaloneAdRequestAdditionalDescriptionsInner> additionalDescriptions) {
     this.additionalDescriptions = additionalDescriptions;
   }
 
@@ -3658,7 +3702,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Google only. Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard one. Exclusive with bidStrategy.
+   * Google Search and Display only. Performance Max rejects portfolio bidding. Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) to the new campaign instead of a standard one. Exclusive with bidStrategy.
    * @return portfolioBidStrategyId
    */
   @javax.annotation.Nullable
@@ -4028,7 +4072,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.billingEvent, createStandaloneAdRequest.billingEvent) &&
         Objects.equals(this.buyingType, createStandaloneAdRequest.buyingType) &&
         Objects.equals(this.rfPredictionId, createStandaloneAdRequest.rfPredictionId) &&
-        Objects.equals(this.promotion, createStandaloneAdRequest.promotion) &&
+        equalsNullable(this.promotion, createStandaloneAdRequest.promotion) &&
         Objects.equals(this.creativeFeatures, createStandaloneAdRequest.creativeFeatures) &&
         Objects.equals(this.multiAdvertiser, createStandaloneAdRequest.multiAdvertiser) &&
         Objects.equals(this.validateOnly, createStandaloneAdRequest.validateOnly) &&
@@ -4091,6 +4135,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.placementAssets, createStandaloneAdRequest.placementAssets) &&
         Objects.equals(this.audienceId, createStandaloneAdRequest.audienceId) &&
         Objects.equals(this.campaignType, createStandaloneAdRequest.campaignType) &&
+        Objects.equals(this.assetGroup, createStandaloneAdRequest.assetGroup) &&
         Objects.equals(this.keywords, createStandaloneAdRequest.keywords) &&
         Objects.equals(this.negativeKeywords, createStandaloneAdRequest.negativeKeywords) &&
         Objects.equals(this.campaignNegativeKeywords, createStandaloneAdRequest.campaignNegativeKeywords) &&
@@ -4121,9 +4166,20 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.promotedObject, createStandaloneAdRequest.promotedObject);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, promotion, creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, userOs, userDevice, isSkadnetworkAttribution, campaignAttribution, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, hashCodeNullable(promotion), creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, assetGroup, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, userOs, userDevice, isSkadnetworkAttribution, campaignAttribution, promotedObject);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -4205,6 +4261,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    placementAssets: ").append(toIndentedString(placementAssets)).append("\n");
     sb.append("    audienceId: ").append(toIndentedString(audienceId)).append("\n");
     sb.append("    campaignType: ").append(toIndentedString(campaignType)).append("\n");
+    sb.append("    assetGroup: ").append(toIndentedString(assetGroup)).append("\n");
     sb.append("    keywords: ").append(toIndentedString(keywords)).append("\n");
     sb.append("    negativeKeywords: ").append(toIndentedString(negativeKeywords)).append("\n");
     sb.append("    campaignNegativeKeywords: ").append(toIndentedString(campaignNegativeKeywords)).append("\n");
@@ -4342,7 +4399,7 @@ public class CreateStandaloneAdRequest {
 
     // add `promotion` to the URL query string
     if (getPromotion() != null) {
-      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
+      joiner.add(String.format(java.util.Locale.ROOT, "%spromotion%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPromotion()))));
     }
 
     // add `creativeFeatures` to the URL query string
@@ -4764,6 +4821,11 @@ public class CreateStandaloneAdRequest {
       joiner.add(String.format(java.util.Locale.ROOT, "%scampaignType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignType()))));
     }
 
+    // add `assetGroup` to the URL query string
+    if (getAssetGroup() != null) {
+      joiner.add(getAssetGroup().toUrlQueryString(prefix + "assetGroup" + suffix));
+    }
+
     // add `keywords` to the URL query string
     if (getKeywords() != null) {
       for (int i = 0; i < getKeywords().size(); i++) {
@@ -4797,18 +4859,20 @@ public class CreateStandaloneAdRequest {
     // add `additionalHeadlines` to the URL query string
     if (getAdditionalHeadlines() != null) {
       for (int i = 0; i < getAdditionalHeadlines().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sadditionalHeadlines%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getAdditionalHeadlines().get(i)))));
+        if (getAdditionalHeadlines().get(i) != null) {
+          joiner.add(getAdditionalHeadlines().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sadditionalHeadlines%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 
     // add `additionalDescriptions` to the URL query string
     if (getAdditionalDescriptions() != null) {
       for (int i = 0; i < getAdditionalDescriptions().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sadditionalDescriptions%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getAdditionalDescriptions().get(i)))));
+        if (getAdditionalDescriptions().get(i) != null) {
+          joiner.add(getAdditionalDescriptions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sadditionalDescriptions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
       }
     }
 

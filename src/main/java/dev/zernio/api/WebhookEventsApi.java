@@ -91,7 +91,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1191,7 +1191,7 @@ public class WebhookEventsApi {
 
   /**
    * Comment received event
-   * Fired when a new comment is received on a tracked post.
+   * Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
    * @param webhookPayloadComment  (required)
    * @throws ApiException if fails to make API call
    */
@@ -1201,7 +1201,7 @@ public class WebhookEventsApi {
 
   /**
    * Comment received event
-   * Fired when a new comment is received on a tracked post.
+   * Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
    * @param webhookPayloadComment  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -1212,7 +1212,7 @@ public class WebhookEventsApi {
 
   /**
    * Comment received event
-   * Fired when a new comment is received on a tracked post.
+   * Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
    * @param webhookPayloadComment  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -1223,7 +1223,7 @@ public class WebhookEventsApi {
 
   /**
    * Comment received event
-   * Fired when a new comment is received on a tracked post.
+   * Fired when a new comment is received on a tracked post. Delivered for Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit and TikTok. X/Twitter does NOT fire this event. Instagram, Facebook and TikTok arrive in real time from the platform&#39;s own webhook; the rest are poll-driven, so delivery is not instant. TikTok needs an account connected through the TikTok for Business app. 
    * @param webhookPayloadComment  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
@@ -3262,7 +3262,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform failed event
-   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
    * @param webhookPayloadPostPlatform  (required)
    * @throws ApiException if fails to make API call
    */
@@ -3272,7 +3272,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform failed event
-   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
    * @param webhookPayloadPostPlatform  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -3283,7 +3283,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform failed event
-   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
    * @param webhookPayloadPostPlatform  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -3294,7 +3294,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform failed event
-   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform fails permanently. Temporary/retryable failures do NOT fire this event, only permanent ones do, so retry loops stay quiet. The envelope event (&#x60;post.failed&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. Can also fire a second time for a target that already emitted &#x60;post.platform.published&#x60;, if background reconciliation later discovers the publish never actually completed. 
    * @param webhookPayloadPostPlatform  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
@@ -3371,7 +3371,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform published event
-   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
    * @param webhookPayloadPostPlatform  (required)
    * @throws ApiException if fails to make API call
    */
@@ -3381,7 +3381,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform published event
-   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
    * @param webhookPayloadPostPlatform  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -3392,7 +3392,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform published event
-   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
    * @param webhookPayloadPostPlatform  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -3403,7 +3403,7 @@ public class WebhookEventsApi {
 
   /**
    * Post platform published event
-   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. 
+   * Fired once per platform target inside a post as that platform finishes publishing successfully. Does NOT wait for the post-level rollup, so consumers building incremental UIs get notified immediately, even when other platforms on the same post are still processing. The envelope event (&#x60;post.published&#x60; / &#x60;post.partial&#x60;) fires separately AFTER all platforms have terminated. A target that later fails background reconciliation (e.g. a Facebook video Meta accepted but never actually published) emits &#x60;post.platform.failed&#x60; for the same target afterward. 
    * @param webhookPayloadPostPlatform  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;
@@ -4897,7 +4897,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp number action required event
-   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
    * @param onWhatsAppNumberActionRequiredRequest  (required)
    * @throws ApiException if fails to make API call
    */
@@ -4907,7 +4907,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp number action required event
-   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
    * @param onWhatsAppNumberActionRequiredRequest  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -4918,7 +4918,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp number action required event
-   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
    * @param onWhatsAppNumberActionRequiredRequest  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -4929,7 +4929,7 @@ public class WebhookEventsApi {
 
   /**
    * WhatsApp number action required event
-   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. 
+   * Fired when the regulator asks for more information on an already-placed regulated number order. The number stays pending (nothing was rejected); the customer can provide the missing information from the dashboard, or via the remediation endpoint. &#x60;reason&#x60; carries the regulator&#39;s request verbatim when available. &#x60;requirements&#x60; lists every requirement on the order with the reviewer&#39;s current verdict; the &#x60;declined&#x60; ones are what to fix, keyed by the same &#x60;requirementId&#x60; the remediation endpoint uses. Verdicts only change when a reviewer acts, so they describe the review at &#x60;reviewedAt&#x60;, the time of the reviewer&#39;s last comment. 
    * @param onWhatsAppNumberActionRequiredRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

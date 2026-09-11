@@ -8,6 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**phoneNumber** | **String** |  |  [optional] |
+|**locality** | **String** |  |  [optional] |
+|**bestEffort** | **Boolean** |  |  [optional] |
 
 
 

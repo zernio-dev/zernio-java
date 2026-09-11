@@ -24,9 +24,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.OnWhatsAppNumberActionRequiredRequestRequirementsInner;
 import dev.zernio.model.OnWhatsAppNumberDeclinedRequestNumber;
 import java.time.OffsetDateTime;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,9 +42,11 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_EVENT,
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_TIMESTAMP,
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_REASON,
+  OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_REQUIREMENTS,
+  OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_REVIEWED_AT,
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberActionRequiredRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -91,6 +96,14 @@ public class OnWhatsAppNumberActionRequiredRequest {
   public static final String JSON_PROPERTY_REASON = "reason";
   @javax.annotation.Nullable
   private String reason;
+
+  public static final String JSON_PROPERTY_REQUIREMENTS = "requirements";
+  @javax.annotation.Nullable
+  private List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> requirements = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_REVIEWED_AT = "reviewedAt";
+  @javax.annotation.Nullable
+  private OffsetDateTime reviewedAt;
 
   public static final String JSON_PROPERTY_NUMBER = "number";
   @javax.annotation.Nullable
@@ -195,6 +208,62 @@ public class OnWhatsAppNumberActionRequiredRequest {
   }
 
 
+  public OnWhatsAppNumberActionRequiredRequest requirements(@javax.annotation.Nullable List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> requirements) {
+    this.requirements = requirements;
+    return this;
+  }
+
+  public OnWhatsAppNumberActionRequiredRequest addRequirementsItem(OnWhatsAppNumberActionRequiredRequestRequirementsInner requirementsItem) {
+    if (this.requirements == null) {
+      this.requirements = new ArrayList<>();
+    }
+    this.requirements.add(requirementsItem);
+    return this;
+  }
+
+  /**
+   * Every requirement on the order with the reviewer&#39;s current verdict. Omitted when the order&#39;s requirements could not be read.
+   * @return requirements
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> getRequirements() {
+    return requirements;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REQUIREMENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setRequirements(@javax.annotation.Nullable List<OnWhatsAppNumberActionRequiredRequestRequirementsInner> requirements) {
+    this.requirements = requirements;
+  }
+
+
+  public OnWhatsAppNumberActionRequiredRequest reviewedAt(@javax.annotation.Nullable OffsetDateTime reviewedAt) {
+    this.reviewedAt = reviewedAt;
+    return this;
+  }
+
+  /**
+   * When the reviewer last commented on the order. Omitted when there is no reviewer comment.
+   * @return reviewedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REVIEWED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public OffsetDateTime getReviewedAt() {
+    return reviewedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REVIEWED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReviewedAt(@javax.annotation.Nullable OffsetDateTime reviewedAt) {
+    this.reviewedAt = reviewedAt;
+  }
+
+
   public OnWhatsAppNumberActionRequiredRequest number(@javax.annotation.Nullable OnWhatsAppNumberDeclinedRequestNumber number) {
     this.number = number;
     return this;
@@ -235,12 +304,14 @@ public class OnWhatsAppNumberActionRequiredRequest {
         Objects.equals(this.event, onWhatsAppNumberActionRequiredRequest.event) &&
         Objects.equals(this.timestamp, onWhatsAppNumberActionRequiredRequest.timestamp) &&
         Objects.equals(this.reason, onWhatsAppNumberActionRequiredRequest.reason) &&
+        Objects.equals(this.requirements, onWhatsAppNumberActionRequiredRequest.requirements) &&
+        Objects.equals(this.reviewedAt, onWhatsAppNumberActionRequiredRequest.reviewedAt) &&
         Objects.equals(this.number, onWhatsAppNumberActionRequiredRequest.number);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, event, timestamp, reason, number);
+    return Objects.hash(id, event, timestamp, reason, requirements, reviewedAt, number);
   }
 
   @Override
@@ -251,6 +322,8 @@ public class OnWhatsAppNumberActionRequiredRequest {
     sb.append("    event: ").append(toIndentedString(event)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
+    sb.append("    requirements: ").append(toIndentedString(requirements)).append("\n");
+    sb.append("    reviewedAt: ").append(toIndentedString(reviewedAt)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -317,6 +390,21 @@ public class OnWhatsAppNumberActionRequiredRequest {
     // add `reason` to the URL query string
     if (getReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReason()))));
+    }
+
+    // add `requirements` to the URL query string
+    if (getRequirements() != null) {
+      for (int i = 0; i < getRequirements().size(); i++) {
+        if (getRequirements().get(i) != null) {
+          joiner.add(getRequirements().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%srequirements%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `reviewedAt` to the URL query string
+    if (getReviewedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreviewedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReviewedAt()))));
     }
 
     // add `number` to the URL query string

@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateInboxConversationRequestHeaderLocation;
 import dev.zernio.model.CreateInboxConversationRequestHeaderMedia;
 import dev.zernio.model.CreateInboxConversationRequestTemplateButtonParamsInner;
+import dev.zernio.model.CreateInboxConversationRequestTemplateCardsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -49,10 +50,11 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_LANGUAGE,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_PARAMS,
   CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS,
+  CreateInboxConversationRequest.JSON_PROPERTY_TEMPLATE_CARDS,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_MEDIA,
   CreateInboxConversationRequest.JSON_PROPERTY_HEADER_LOCATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -130,6 +132,10 @@ public class CreateInboxConversationRequest {
   public static final String JSON_PROPERTY_TEMPLATE_BUTTON_PARAMS = "templateButtonParams";
   @javax.annotation.Nullable
   private List<CreateInboxConversationRequestTemplateButtonParamsInner> templateButtonParams = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_TEMPLATE_CARDS = "templateCards";
+  @javax.annotation.Nullable
+  private List<CreateInboxConversationRequestTemplateCardsInner> templateCards = new ArrayList<>();
 
   public static final String JSON_PROPERTY_HEADER_MEDIA = "headerMedia";
   @javax.annotation.Nullable
@@ -422,6 +428,38 @@ public class CreateInboxConversationRequest {
   }
 
 
+  public CreateInboxConversationRequest templateCards(@javax.annotation.Nullable List<CreateInboxConversationRequestTemplateCardsInner> templateCards) {
+    this.templateCards = templateCards;
+    return this;
+  }
+
+  public CreateInboxConversationRequest addTemplateCardsItem(CreateInboxConversationRequestTemplateCardsInner templateCardsItem) {
+    if (this.templateCards == null) {
+      this.templateCards = new ArrayList<>();
+    }
+    this.templateCards.add(templateCardsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. Per-card overrides for a CAROUSEL template, each addressed by the card&#39;s card_index. Carousel card body variables restart at {{1}} per card, so they cannot be expressed in the flat templateParams slot order; use this instead. A cardIndex naming a card the approved template does not have, a duplicate cardIndex, or a params count that does not match the card body&#39;s token count is rejected with 400 (INVALID_TEMPLATE_CARD_PARAM).
+   * @return templateCards
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CreateInboxConversationRequestTemplateCardsInner> getTemplateCards() {
+    return templateCards;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TEMPLATE_CARDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTemplateCards(@javax.annotation.Nullable List<CreateInboxConversationRequestTemplateCardsInner> templateCards) {
+    this.templateCards = templateCards;
+  }
+
+
   public CreateInboxConversationRequest headerMedia(@javax.annotation.Nullable CreateInboxConversationRequestHeaderMedia headerMedia) {
     this.headerMedia = headerMedia;
     return this;
@@ -493,13 +531,14 @@ public class CreateInboxConversationRequest {
         Objects.equals(this.templateLanguage, createInboxConversationRequest.templateLanguage) &&
         Objects.equals(this.templateParams, createInboxConversationRequest.templateParams) &&
         Objects.equals(this.templateButtonParams, createInboxConversationRequest.templateButtonParams) &&
+        Objects.equals(this.templateCards, createInboxConversationRequest.templateCards) &&
         Objects.equals(this.headerMedia, createInboxConversationRequest.headerMedia) &&
         Objects.equals(this.headerLocation, createInboxConversationRequest.headerLocation);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, templateButtonParams, headerMedia, headerLocation);
+    return Objects.hash(accountId, participantId, participantUsername, message, skipDmCheck, templateName, category, linkPreview, templateLanguage, templateParams, templateButtonParams, templateCards, headerMedia, headerLocation);
   }
 
   @Override
@@ -517,6 +556,7 @@ public class CreateInboxConversationRequest {
     sb.append("    templateLanguage: ").append(toIndentedString(templateLanguage)).append("\n");
     sb.append("    templateParams: ").append(toIndentedString(templateParams)).append("\n");
     sb.append("    templateButtonParams: ").append(toIndentedString(templateButtonParams)).append("\n");
+    sb.append("    templateCards: ").append(toIndentedString(templateCards)).append("\n");
     sb.append("    headerMedia: ").append(toIndentedString(headerMedia)).append("\n");
     sb.append("    headerLocation: ").append(toIndentedString(headerLocation)).append("\n");
     sb.append("}");
@@ -625,6 +665,16 @@ public class CreateInboxConversationRequest {
       for (int i = 0; i < getTemplateButtonParams().size(); i++) {
         if (getTemplateButtonParams().get(i) != null) {
           joiner.add(getTemplateButtonParams().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stemplateButtonParams%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `templateCards` to the URL query string
+    if (getTemplateCards() != null) {
+      for (int i = 0; i < getTemplateCards().size(); i++) {
+        if (getTemplateCards().get(i) != null) {
+          joiner.add(getTemplateCards().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%stemplateCards%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

@@ -20,6 +20,12 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AddAccountCallouts201Response;
 import dev.zernio.model.AddAccountCalloutsRequest;
+import dev.zernio.model.AddAccountSitelinks201Response;
+import dev.zernio.model.AddAccountSitelinksRequest;
+import dev.zernio.model.AddAccountStructuredSnippets201Response;
+import dev.zernio.model.AddAccountStructuredSnippetsRequest;
+import dev.zernio.model.CreateAdAccount201Response;
+import dev.zernio.model.CreateAdAccountRequest;
 import dev.zernio.model.CreateAdNegativeKeywordList201Response;
 import dev.zernio.model.CreateAdNegativeKeywordListRequest;
 import dev.zernio.model.CreateCustomConversionRequest;
@@ -43,6 +49,8 @@ import dev.zernio.model.HideAdCommentRequest;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListAccountCallouts200Response;
+import dev.zernio.model.ListAccountSitelinks200Response;
+import dev.zernio.model.ListAccountStructuredSnippets200Response;
 import dev.zernio.model.ListAdAccounts200Response;
 import dev.zernio.model.ListAdLabels200Response;
 import dev.zernio.model.ListAdNegativeKeywordLists200Response;
@@ -53,6 +61,7 @@ import dev.zernio.model.ListAdvertisableApplications200Response;
 import dev.zernio.model.ListCustomConversions200Response;
 import dev.zernio.model.ListHighDemandPeriods200Response;
 import dev.zernio.model.ListMetaBusinesses200Response;
+import dev.zernio.model.ListTikTokAdPixels200Response;
 import dev.zernio.model.ListValueRuleSets200Response;
 import java.time.LocalDate;
 import dev.zernio.model.RemoveAccountCallout200Response;
@@ -61,6 +70,10 @@ import dev.zernio.model.ReplaceAdNegativeKeywordListKeywords200Response;
 import dev.zernio.model.ReplaceAdNegativeKeywordListKeywordsRequest;
 import dev.zernio.model.ReplyToAdComment200Response;
 import dev.zernio.model.ReplyToAdCommentRequest;
+import dev.zernio.model.UpdateAccountCallouts200Response;
+import dev.zernio.model.UpdateAccountCalloutsRequest;
+import dev.zernio.model.UpdateAccountSitelinksRequest;
+import dev.zernio.model.UpdateAccountStructuredSnippetsRequest;
 import dev.zernio.model.UpdateAdAccount200Response;
 import dev.zernio.model.UpdateAdAccountRequest;
 import dev.zernio.model.UpdateAdNegativeKeywordList200Response;
@@ -93,7 +106,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -211,8 +224,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Add account-level callout extensions
-   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * Add account callouts
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
    * @param addAccountCalloutsRequest  (required)
    * @return AddAccountCallouts201Response
    * @throws ApiException if fails to make API call
@@ -222,8 +235,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Add account-level callout extensions
-   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * Add account callouts
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
    * @param addAccountCalloutsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return AddAccountCallouts201Response
@@ -235,8 +248,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Add account-level callout extensions
-   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * Add account callouts
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
    * @param addAccountCalloutsRequest  (required)
    * @return ApiResponse&lt;AddAccountCallouts201Response&gt;
    * @throws ApiException if fails to make API call
@@ -246,8 +259,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Add account-level callout extensions
-   * Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+   * Add account callouts
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
    * @param addAccountCalloutsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AddAccountCallouts201Response&gt;
@@ -318,6 +331,375 @@ public class AdAccountsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAccountCalloutsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Add account sitelinks
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountSitelinksRequest  (required)
+   * @return AddAccountSitelinks201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountSitelinks201Response addAccountSitelinks(@javax.annotation.Nonnull AddAccountSitelinksRequest addAccountSitelinksRequest) throws ApiException {
+    return addAccountSitelinks(addAccountSitelinksRequest, null);
+  }
+
+  /**
+   * Add account sitelinks
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountSitelinksRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AddAccountSitelinks201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountSitelinks201Response addAccountSitelinks(@javax.annotation.Nonnull AddAccountSitelinksRequest addAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddAccountSitelinks201Response> localVarResponse = addAccountSitelinksWithHttpInfo(addAccountSitelinksRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add account sitelinks
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountSitelinksRequest  (required)
+   * @return ApiResponse&lt;AddAccountSitelinks201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountSitelinks201Response> addAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull AddAccountSitelinksRequest addAccountSitelinksRequest) throws ApiException {
+    return addAccountSitelinksWithHttpInfo(addAccountSitelinksRequest, null);
+  }
+
+  /**
+   * Add account sitelinks
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountSitelinksRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AddAccountSitelinks201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountSitelinks201Response> addAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull AddAccountSitelinksRequest addAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addAccountSitelinksRequestBuilder(addAccountSitelinksRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addAccountSitelinks", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AddAccountSitelinks201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AddAccountSitelinks201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddAccountSitelinks201Response>() {});
+        
+
+        return new ApiResponse<AddAccountSitelinks201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addAccountSitelinksRequestBuilder(@javax.annotation.Nonnull AddAccountSitelinksRequest addAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'addAccountSitelinksRequest' is set
+    if (addAccountSitelinksRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addAccountSitelinksRequest' when calling addAccountSitelinks");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/sitelinks";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAccountSitelinksRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Add account snippets
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountStructuredSnippetsRequest  (required)
+   * @return AddAccountStructuredSnippets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountStructuredSnippets201Response addAccountStructuredSnippets(@javax.annotation.Nonnull AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest) throws ApiException {
+    return addAccountStructuredSnippets(addAccountStructuredSnippetsRequest, null);
+  }
+
+  /**
+   * Add account snippets
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountStructuredSnippetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AddAccountStructuredSnippets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AddAccountStructuredSnippets201Response addAccountStructuredSnippets(@javax.annotation.Nonnull AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AddAccountStructuredSnippets201Response> localVarResponse = addAccountStructuredSnippetsWithHttpInfo(addAccountStructuredSnippetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Add account snippets
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountStructuredSnippetsRequest  (required)
+   * @return ApiResponse&lt;AddAccountStructuredSnippets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountStructuredSnippets201Response> addAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest) throws ApiException {
+    return addAccountStructuredSnippetsWithHttpInfo(addAccountStructuredSnippetsRequest, null);
+  }
+
+  /**
+   * Add account snippets
+   * Creates assets and customer_asset links for this Google customer. Links apply at account level.
+   * @param addAccountStructuredSnippetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AddAccountStructuredSnippets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AddAccountStructuredSnippets201Response> addAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = addAccountStructuredSnippetsRequestBuilder(addAccountStructuredSnippetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("addAccountStructuredSnippets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AddAccountStructuredSnippets201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AddAccountStructuredSnippets201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AddAccountStructuredSnippets201Response>() {});
+        
+
+        return new ApiResponse<AddAccountStructuredSnippets201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder addAccountStructuredSnippetsRequestBuilder(@javax.annotation.Nonnull AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'addAccountStructuredSnippetsRequest' is set
+    if (addAccountStructuredSnippetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'addAccountStructuredSnippetsRequest' when calling addAccountStructuredSnippets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/structured-snippets";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addAccountStructuredSnippetsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Create Meta ad account
+   * Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+   * @param createAdAccountRequest  (required)
+   * @return CreateAdAccount201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdAccount201Response createAdAccount(@javax.annotation.Nonnull CreateAdAccountRequest createAdAccountRequest) throws ApiException {
+    return createAdAccount(createAdAccountRequest, null);
+  }
+
+  /**
+   * Create Meta ad account
+   * Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+   * @param createAdAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateAdAccount201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateAdAccount201Response createAdAccount(@javax.annotation.Nonnull CreateAdAccountRequest createAdAccountRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateAdAccount201Response> localVarResponse = createAdAccountWithHttpInfo(createAdAccountRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create Meta ad account
+   * Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+   * @param createAdAccountRequest  (required)
+   * @return ApiResponse&lt;CreateAdAccount201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdAccount201Response> createAdAccountWithHttpInfo(@javax.annotation.Nonnull CreateAdAccountRequest createAdAccountRequest) throws ApiException {
+    return createAdAccountWithHttpInfo(createAdAccountRequest, null);
+  }
+
+  /**
+   * Create Meta ad account
+   * Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+   * @param createAdAccountRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateAdAccount201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateAdAccount201Response> createAdAccountWithHttpInfo(@javax.annotation.Nonnull CreateAdAccountRequest createAdAccountRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createAdAccountRequestBuilder(createAdAccountRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createAdAccount", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateAdAccount201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateAdAccount201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateAdAccount201Response>() {});
+        
+
+        return new ApiResponse<CreateAdAccount201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createAdAccountRequestBuilder(@javax.annotation.Nonnull CreateAdAccountRequest createAdAccountRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createAdAccountRequest' is set
+    if (createAdAccountRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createAdAccountRequest' when calling createAdAccount");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createAdAccountRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -457,7 +839,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * Create or reuse a custom conversion
+   * Create custom conversion
    * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
    * @param accountId Meta ads SocialAccount id. (required)
    * @param createCustomConversionRequest  (required)
@@ -469,7 +851,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * Create or reuse a custom conversion
+   * Create custom conversion
    * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
    * @param accountId Meta ads SocialAccount id. (required)
    * @param createCustomConversionRequest  (required)
@@ -483,7 +865,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * Create or reuse a custom conversion
+   * Create custom conversion
    * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
    * @param accountId Meta ads SocialAccount id. (required)
    * @param createCustomConversionRequest  (required)
@@ -495,7 +877,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * Create or reuse a custom conversion
+   * Create custom conversion
    * Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
    * @param accountId Meta ads SocialAccount id. (required)
    * @param createCustomConversionRequest  (required)
@@ -836,7 +1218,7 @@ public class AdAccountsApi {
 
   /**
    * Delete an ad comment
-   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
@@ -850,7 +1232,7 @@ public class AdAccountsApi {
 
   /**
    * Delete an ad comment
-   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
@@ -866,7 +1248,7 @@ public class AdAccountsApi {
 
   /**
    * Delete an ad comment
-   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
@@ -880,7 +1262,7 @@ public class AdAccountsApi {
 
   /**
    * Delete an ad comment
-   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param since Start date of the comment lookup window. Defaults to 30 days before until. (optional)
@@ -1424,7 +1806,7 @@ public class AdAccountsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
    * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
@@ -1440,7 +1822,7 @@ public class AdAccountsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
    * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
@@ -1458,7 +1840,7 @@ public class AdAccountsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
    * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
@@ -1474,7 +1856,7 @@ public class AdAccountsApi {
 
   /**
    * List comments on an ad
-   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+   * Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
    * @param adId Internal Zernio ad ID or indexed platform ad/post ID. (required)
    * @param placement Which side of the ad to return comments for. Omit to default to the Instagram side when present, else Facebook. Returns ad_not_commentable if the ad has no such placement. (optional)
    * @param limit  (optional, default to 25)
@@ -2051,7 +2433,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * List DSA beneficiary/payor suggestions
+   * Get DSA recommendations
    * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
    * @param accountId Account ID (metaads, or a facebook/instagram posting account) (required)
    * @param adAccountId Meta ad account ID (act_...) (required)
@@ -2063,7 +2445,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * List DSA beneficiary/payor suggestions
+   * Get DSA recommendations
    * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
    * @param accountId Account ID (metaads, or a facebook/instagram posting account) (required)
    * @param adAccountId Meta ad account ID (act_...) (required)
@@ -2077,7 +2459,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * List DSA beneficiary/payor suggestions
+   * Get DSA recommendations
    * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
    * @param accountId Account ID (metaads, or a facebook/instagram posting account) (required)
    * @param adAccountId Meta ad account ID (act_...) (required)
@@ -2089,7 +2471,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * List DSA beneficiary/payor suggestions
+   * Get DSA recommendations
    * Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
    * @param accountId Account ID (metaads, or a facebook/instagram posting account) (required)
    * @param adAccountId Meta ad account ID (act_...) (required)
@@ -2487,7 +2869,7 @@ public class AdAccountsApi {
 
   /**
    * Hide or unhide an ad comment
-   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param hideAdCommentRequest  (required)
@@ -2502,7 +2884,7 @@ public class AdAccountsApi {
 
   /**
    * Hide or unhide an ad comment
-   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param hideAdCommentRequest  (required)
@@ -2519,7 +2901,7 @@ public class AdAccountsApi {
 
   /**
    * Hide or unhide an ad comment
-   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param hideAdCommentRequest  (required)
@@ -2534,7 +2916,7 @@ public class AdAccountsApi {
 
   /**
    * Hide or unhide an ad comment
-   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param hideAdCommentRequest  (required)
@@ -2652,10 +3034,10 @@ public class AdAccountsApi {
   }
 
   /**
-   * List account-level callout extensions
-   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
-   * @param accountId Google ads SocialAccount id. (required)
-   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * List account callouts
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
+   * @param accountId  (required)
+   * @param customerId  (optional)
    * @return ListAccountCallouts200Response
    * @throws ApiException if fails to make API call
    */
@@ -2664,10 +3046,10 @@ public class AdAccountsApi {
   }
 
   /**
-   * List account-level callout extensions
-   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
-   * @param accountId Google ads SocialAccount id. (required)
-   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * List account callouts
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
+   * @param accountId  (required)
+   * @param customerId  (optional)
    * @param headers Optional headers to include in the request
    * @return ListAccountCallouts200Response
    * @throws ApiException if fails to make API call
@@ -2678,10 +3060,10 @@ public class AdAccountsApi {
   }
 
   /**
-   * List account-level callout extensions
-   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
-   * @param accountId Google ads SocialAccount id. (required)
-   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * List account callouts
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
+   * @param accountId  (required)
+   * @param customerId  (optional)
    * @return ApiResponse&lt;ListAccountCallouts200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2690,10 +3072,10 @@ public class AdAccountsApi {
   }
 
   /**
-   * List account-level callout extensions
-   * Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
-   * @param accountId Google ads SocialAccount id. (required)
-   * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
+   * List account callouts
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
+   * @param accountId  (required)
+   * @param customerId  (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListAccountCallouts200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2790,8 +3172,284 @@ public class AdAccountsApi {
   }
 
   /**
+   * List account sitelinks
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ListAccountSitelinks200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountSitelinks200Response listAccountSitelinks(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountSitelinks(accountId, customerId, null);
+  }
+
+  /**
+   * List account sitelinks
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAccountSitelinks200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountSitelinks200Response listAccountSitelinks(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAccountSitelinks200Response> localVarResponse = listAccountSitelinksWithHttpInfo(accountId, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List account sitelinks
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ApiResponse&lt;ListAccountSitelinks200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountSitelinks200Response> listAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountSitelinksWithHttpInfo(accountId, customerId, null);
+  }
+
+  /**
+   * List account sitelinks
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAccountSitelinks200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountSitelinks200Response> listAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAccountSitelinksRequestBuilder(accountId, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAccountSitelinks", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAccountSitelinks200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAccountSitelinks200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAccountSitelinks200Response>() {});
+        
+
+        return new ApiResponse<ListAccountSitelinks200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAccountSitelinksRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountSitelinks");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/sitelinks";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List account snippets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ListAccountStructuredSnippets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountStructuredSnippets200Response listAccountStructuredSnippets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountStructuredSnippets(accountId, customerId, null);
+  }
+
+  /**
+   * List account snippets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAccountStructuredSnippets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAccountStructuredSnippets200Response listAccountStructuredSnippets(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAccountStructuredSnippets200Response> localVarResponse = listAccountStructuredSnippetsWithHttpInfo(accountId, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List account snippets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ApiResponse&lt;ListAccountStructuredSnippets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountStructuredSnippets200Response> listAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAccountStructuredSnippetsWithHttpInfo(accountId, customerId, null);
+  }
+
+  /**
+   * List account snippets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAccountStructuredSnippets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAccountStructuredSnippets200Response> listAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAccountStructuredSnippetsRequestBuilder(accountId, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAccountStructuredSnippets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAccountStructuredSnippets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAccountStructuredSnippets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAccountStructuredSnippets200Response>() {});
+        
+
+        return new ApiResponse<ListAccountStructuredSnippets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAccountStructuredSnippetsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAccountStructuredSnippets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/structured-snippets";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List ad accounts
-   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
    * @param accountId Account ID (required)
    * @param adAccountId Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. (optional)
    * @param limit Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. (optional)
@@ -2804,7 +3462,7 @@ public class AdAccountsApi {
 
   /**
    * List ad accounts
-   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
    * @param accountId Account ID (required)
    * @param adAccountId Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. (optional)
    * @param limit Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. (optional)
@@ -2819,7 +3477,7 @@ public class AdAccountsApi {
 
   /**
    * List ad accounts
-   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
    * @param accountId Account ID (required)
    * @param adAccountId Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. (optional)
    * @param limit Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. (optional)
@@ -2832,7 +3490,7 @@ public class AdAccountsApi {
 
   /**
    * List ad accounts
-   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+   * Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
    * @param accountId Account ID (required)
    * @param adAccountId Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. (optional)
    * @param limit Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. (optional)
@@ -3236,7 +3894,7 @@ public class AdAccountsApi {
    * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ListAdStudies200Response
@@ -3251,7 +3909,7 @@ public class AdAccountsApi {
    * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -3268,7 +3926,7 @@ public class AdAccountsApi {
    * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ApiResponse&lt;ListAdStudies200Response&gt;
@@ -3283,7 +3941,7 @@ public class AdAccountsApi {
    * Lists the ad account&#39;s A/B tests and lift studies (Meta&#39;s &#x60;/act_X/ad_studies&#x60;), rows returned verbatim. The default projection covers id, name, type, timing and cells with split percentages; &#x60;fields&#x60; is a raw-passthrough override.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -3949,7 +4607,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * High demand periods / budget schedules
+   * List high-demand periods
    * Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param campaignId Platform campaign id. Exactly one of campaignId / adSetId. (optional)
@@ -3964,7 +4622,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * High demand periods / budget schedules
+   * List high-demand periods
    * Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param campaignId Platform campaign id. Exactly one of campaignId / adSetId. (optional)
@@ -3981,7 +4639,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * High demand periods / budget schedules
+   * List high-demand periods
    * Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param campaignId Platform campaign id. Exactly one of campaignId / adSetId. (optional)
@@ -3996,7 +4654,7 @@ public class AdAccountsApi {
   }
 
   /**
-   * High demand periods / budget schedules
+   * List high-demand periods
    * Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param campaignId Platform campaign id. Exactly one of campaignId / adSetId. (optional)
@@ -4249,6 +4907,150 @@ public class AdAccountsApi {
   }
 
   /**
+   * List TikTok ad pixels
+   * Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param advertiserId Advertiser belonging to this connection. (optional)
+   * @param code Filter by a Pixel Code. (optional)
+   * @return ListTikTokAdPixels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTikTokAdPixels200Response listTikTokAdPixels(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String advertiserId, @javax.annotation.Nullable String code) throws ApiException {
+    return listTikTokAdPixels(accountId, advertiserId, code, null);
+  }
+
+  /**
+   * List TikTok ad pixels
+   * Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param advertiserId Advertiser belonging to this connection. (optional)
+   * @param code Filter by a Pixel Code. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListTikTokAdPixels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTikTokAdPixels200Response listTikTokAdPixels(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String advertiserId, @javax.annotation.Nullable String code, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListTikTokAdPixels200Response> localVarResponse = listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List TikTok ad pixels
+   * Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param advertiserId Advertiser belonging to this connection. (optional)
+   * @param code Filter by a Pixel Code. (optional)
+   * @return ApiResponse&lt;ListTikTokAdPixels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTikTokAdPixels200Response> listTikTokAdPixelsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String advertiserId, @javax.annotation.Nullable String code) throws ApiException {
+    return listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code, null);
+  }
+
+  /**
+   * List TikTok ad pixels
+   * Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param advertiserId Advertiser belonging to this connection. (optional)
+   * @param code Filter by a Pixel Code. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListTikTokAdPixels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTikTokAdPixels200Response> listTikTokAdPixelsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String advertiserId, @javax.annotation.Nullable String code, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listTikTokAdPixelsRequestBuilder(accountId, advertiserId, code, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listTikTokAdPixels", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListTikTokAdPixels200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListTikTokAdPixels200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListTikTokAdPixels200Response>() {});
+        
+
+        return new ApiResponse<ListTikTokAdPixels200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listTikTokAdPixelsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String advertiserId, @javax.annotation.Nullable String code, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listTikTokAdPixels");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/pixels";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "advertiserId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("advertiserId", advertiserId));
+    localVarQueryParameterBaseName = "code";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("code", code));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List value rule sets
    * Lists the ad account&#39;s value rule sets (Meta&#39;s &#x60;/act_X/value_rule_set&#x60;). A value rule set adjusts the auction bid up or down for audience segments you value differently; attach one to an ad set with &#x60;valueRuleSetId&#x60; on &#x60;POST /v1/ads/create&#x60; or &#x60;PUT /v1/ads/ad-sets/{adSetId}&#x60;.  Rows are returned in the same camelCase shape the &#x60;PUT&#x60; body takes, ids included, so a set round-trips 1:1: **the update is a full replace, not a patch**, so you GET, mutate and send the whole thing back.  Limits: 6 rule sets per ad account, 10 rules per set, 4 criteria per rule.  **Rule order is semantic.** Rules are evaluated in array order and only the FIRST matching rule adjusts the bid for an overlapping audience. The order you send is the order that is stored and returned.  Eligibility: value rule sets apply only to ad sets on the &#x60;LOWEST_COST_WITHOUT_CAP&#x60; (auto-bid) or &#x60;COST_CAP&#x60; bid strategies. Meta rejects the rest server-side.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
@@ -4403,8 +5205,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Remove an account-level callout extension
-   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * Remove account callout
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
    * @param removeAccountCalloutRequest  (required)
    * @return RemoveAccountCallout200Response
    * @throws ApiException if fails to make API call
@@ -4414,8 +5216,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Remove an account-level callout extension
-   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * Remove account callout
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
    * @param removeAccountCalloutRequest  (required)
    * @param headers Optional headers to include in the request
    * @return RemoveAccountCallout200Response
@@ -4427,8 +5229,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Remove an account-level callout extension
-   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * Remove account callout
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
    * @param removeAccountCalloutRequest  (required)
    * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
    * @throws ApiException if fails to make API call
@@ -4438,8 +5240,8 @@ public class AdAccountsApi {
   }
 
   /**
-   * Remove an account-level callout extension
-   * Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+   * Remove account callout
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
    * @param removeAccountCalloutRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
@@ -4502,6 +5304,252 @@ public class AdAccountsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/ads/accounts/callouts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(removeAccountCalloutRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove account sitelink
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountSitelink(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountSitelink(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove account sitelink
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountSitelink(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveAccountCallout200Response> localVarResponse = removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove account sitelink
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountSitelinkWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove account sitelink
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountSitelinkWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeAccountSitelinkRequestBuilder(removeAccountCalloutRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeAccountSitelink", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveAccountCallout200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveAccountCallout200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveAccountCallout200Response>() {});
+        
+
+        return new ApiResponse<RemoveAccountCallout200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeAccountSitelinkRequestBuilder(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'removeAccountCalloutRequest' is set
+    if (removeAccountCalloutRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'removeAccountCalloutRequest' when calling removeAccountSitelink");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/sitelinks";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(removeAccountCalloutRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove account snippet
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountStructuredSnippet(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountStructuredSnippet(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove account snippet
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveAccountCallout200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveAccountCallout200Response removeAccountStructuredSnippet(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveAccountCallout200Response> localVarResponse = removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove account snippet
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippetWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest) throws ApiException {
+    return removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest, null);
+  }
+
+  /**
+   * Remove account snippet
+   * Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+   * @param removeAccountCalloutRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveAccountCallout200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippetWithHttpInfo(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeAccountStructuredSnippetRequestBuilder(removeAccountCalloutRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeAccountStructuredSnippet", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveAccountCallout200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveAccountCallout200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveAccountCallout200Response>() {});
+        
+
+        return new ApiResponse<RemoveAccountCallout200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeAccountStructuredSnippetRequestBuilder(@javax.annotation.Nonnull RemoveAccountCalloutRequest removeAccountCalloutRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'removeAccountCalloutRequest' is set
+    if (removeAccountCalloutRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'removeAccountCalloutRequest' when calling removeAccountStructuredSnippet");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/structured-snippets";
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
@@ -4659,7 +5707,7 @@ public class AdAccountsApi {
 
   /**
    * Reply to an ad comment
-   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param replyToAdCommentRequest  (required)
@@ -4674,7 +5722,7 @@ public class AdAccountsApi {
 
   /**
    * Reply to an ad comment
-   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param replyToAdCommentRequest  (required)
@@ -4691,7 +5739,7 @@ public class AdAccountsApi {
 
   /**
    * Reply to an ad comment
-   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param replyToAdCommentRequest  (required)
@@ -4706,7 +5754,7 @@ public class AdAccountsApi {
 
   /**
    * Reply to an ad comment
-   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+   * Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
    * @param adId Internal Zernio ad ID or indexed platform ad ID. (required)
    * @param commentId TikTok comment ID from the ad comment listing. (required)
    * @param replyToAdCommentRequest  (required)
@@ -4809,6 +5857,375 @@ public class AdAccountsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(replyToAdCommentRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update account callouts
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountCalloutsRequest  (required)
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountCallouts(@javax.annotation.Nonnull UpdateAccountCalloutsRequest updateAccountCalloutsRequest) throws ApiException {
+    return updateAccountCallouts(updateAccountCalloutsRequest, null);
+  }
+
+  /**
+   * Update account callouts
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountCalloutsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountCallouts(@javax.annotation.Nonnull UpdateAccountCalloutsRequest updateAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAccountCallouts200Response> localVarResponse = updateAccountCalloutsWithHttpInfo(updateAccountCalloutsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update account callouts
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountCalloutsRequest  (required)
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull UpdateAccountCalloutsRequest updateAccountCalloutsRequest) throws ApiException {
+    return updateAccountCalloutsWithHttpInfo(updateAccountCalloutsRequest, null);
+  }
+
+  /**
+   * Update account callouts
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountCalloutsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountCalloutsWithHttpInfo(@javax.annotation.Nonnull UpdateAccountCalloutsRequest updateAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAccountCalloutsRequestBuilder(updateAccountCalloutsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAccountCallouts", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAccountCallouts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAccountCallouts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAccountCallouts200Response>() {});
+        
+
+        return new ApiResponse<UpdateAccountCallouts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAccountCalloutsRequestBuilder(@javax.annotation.Nonnull UpdateAccountCalloutsRequest updateAccountCalloutsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'updateAccountCalloutsRequest' is set
+    if (updateAccountCalloutsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAccountCalloutsRequest' when calling updateAccountCallouts");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/callouts";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAccountCalloutsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update account sitelinks
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountSitelinksRequest  (required)
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountSitelinks(@javax.annotation.Nonnull UpdateAccountSitelinksRequest updateAccountSitelinksRequest) throws ApiException {
+    return updateAccountSitelinks(updateAccountSitelinksRequest, null);
+  }
+
+  /**
+   * Update account sitelinks
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountSitelinksRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountSitelinks(@javax.annotation.Nonnull UpdateAccountSitelinksRequest updateAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAccountCallouts200Response> localVarResponse = updateAccountSitelinksWithHttpInfo(updateAccountSitelinksRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update account sitelinks
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountSitelinksRequest  (required)
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull UpdateAccountSitelinksRequest updateAccountSitelinksRequest) throws ApiException {
+    return updateAccountSitelinksWithHttpInfo(updateAccountSitelinksRequest, null);
+  }
+
+  /**
+   * Update account sitelinks
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountSitelinksRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountSitelinksWithHttpInfo(@javax.annotation.Nonnull UpdateAccountSitelinksRequest updateAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAccountSitelinksRequestBuilder(updateAccountSitelinksRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAccountSitelinks", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAccountCallouts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAccountCallouts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAccountCallouts200Response>() {});
+        
+
+        return new ApiResponse<UpdateAccountCallouts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAccountSitelinksRequestBuilder(@javax.annotation.Nonnull UpdateAccountSitelinksRequest updateAccountSitelinksRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'updateAccountSitelinksRequest' is set
+    if (updateAccountSitelinksRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAccountSitelinksRequest' when calling updateAccountSitelinks");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/sitelinks";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAccountSitelinksRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update account snippets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountStructuredSnippetsRequest  (required)
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountStructuredSnippets(@javax.annotation.Nonnull UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest) throws ApiException {
+    return updateAccountStructuredSnippets(updateAccountStructuredSnippetsRequest, null);
+  }
+
+  /**
+   * Update account snippets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountStructuredSnippetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateAccountCallouts200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateAccountCallouts200Response updateAccountStructuredSnippets(@javax.annotation.Nonnull UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateAccountCallouts200Response> localVarResponse = updateAccountStructuredSnippetsWithHttpInfo(updateAccountStructuredSnippetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update account snippets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountStructuredSnippetsRequest  (required)
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest) throws ApiException {
+    return updateAccountStructuredSnippetsWithHttpInfo(updateAccountStructuredSnippetsRequest, null);
+  }
+
+  /**
+   * Update account snippets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param updateAccountStructuredSnippetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateAccountCallouts200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateAccountCallouts200Response> updateAccountStructuredSnippetsWithHttpInfo(@javax.annotation.Nonnull UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAccountStructuredSnippetsRequestBuilder(updateAccountStructuredSnippetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAccountStructuredSnippets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateAccountCallouts200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateAccountCallouts200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateAccountCallouts200Response>() {});
+        
+
+        return new ApiResponse<UpdateAccountCallouts200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAccountStructuredSnippetsRequestBuilder(@javax.annotation.Nonnull UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'updateAccountStructuredSnippetsRequest' is set
+    if (updateAccountStructuredSnippetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateAccountStructuredSnippetsRequest' when calling updateAccountStructuredSnippets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/structured-snippets";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAccountStructuredSnippetsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

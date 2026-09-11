@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**assignGoogleBusinessLocation**](ConnectApi.md#assignGoogleBusinessLocation) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile |
 | [**assignGoogleBusinessLocationWithHttpInfo**](ConnectApi.md#assignGoogleBusinessLocationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-locations/assign | Assign Google Business Profile location to another profile |
+| [**completeMetaAdsBusinessLogin**](ConnectApi.md#completeMetaAdsBusinessLogin) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login |
+| [**completeMetaAdsBusinessLoginWithHttpInfo**](ConnectApi.md#completeMetaAdsBusinessLoginWithHttpInfo) | **GET** /v1/connect/meta-ads/callback | Complete Meta business login |
 | [**completeTelegramConnect**](ConnectApi.md#completeTelegramConnect) | **PATCH** /v1/connect/telegram | Check Telegram status |
 | [**completeTelegramConnectWithHttpInfo**](ConnectApi.md#completeTelegramConnectWithHttpInfo) | **PATCH** /v1/connect/telegram | Check Telegram status |
 | [**completeWhatsAppPhoneSelection**](ConnectApi.md#completeWhatsAppPhoneSelection) | **POST** /v1/connect/whatsapp/select-phone-number | Complete number selection |
@@ -38,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getGmbLocationsWithHttpInfo**](ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations |
 | [**getLinkedInOrganizations**](ConnectApi.md#getLinkedInOrganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
 | [**getLinkedInOrganizationsWithHttpInfo**](ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs |
+| [**getPageWebhookSubscription**](ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
+| [**getPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription |
 | [**getPendingOAuthData**](ConnectApi.md#getPendingOAuthData) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**getPendingOAuthDataWithHttpInfo**](ConnectApi.md#getPendingOAuthDataWithHttpInfo) | **GET** /v1/connect/pending-data | Get pending OAuth data |
 | [**getPinterestBoards**](ConnectApi.md#getPinterestBoards) | **GET** /v1/accounts/{accountId}/pinterest-boards | List Pinterest boards |
@@ -78,6 +82,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listSnapchatProfilesWithHttpInfo**](ConnectApi.md#listSnapchatProfilesWithHttpInfo) | **GET** /v1/connect/snapchat/select-profile | List Snapchat profiles |
 | [**listWhatsAppPhoneNumbers**](ConnectApi.md#listWhatsAppPhoneNumbers) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
 | [**listWhatsAppPhoneNumbersWithHttpInfo**](ConnectApi.md#listWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/connect/whatsapp/select-phone-number | List numbers for selection |
+| [**resyncPageWebhookSubscription**](ConnectApi.md#resyncPageWebhookSubscription) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
+| [**resyncPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
 | [**selectFacebookPage**](ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectFacebookPageWithHttpInfo**](ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectGoogleBusinessLocation**](ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
@@ -265,6 +271,154 @@ ApiResponse<[**AssignGoogleBusinessLocation200Response**](AssignGoogleBusinessLo
 | **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business Profile account not found |  -  |
 | **409** | Target profile already has a Google Business Profile connection (use PUT gmb-locations to switch its location) |  -  |
+
+
+## completeMetaAdsBusinessLogin
+
+> void completeMetaAdsBusinessLogin(state, code, error)
+
+Complete Meta business login
+
+Facebook Login for Business redirect target. Meta supplies the single-use authorization code and the authenticated state returned by connectAds. The state expires after 30 minutes and binds the user, profile, Page selection and ad-account scope. No bearer token is sent by the browser. Success reconnects only metaads and redirects to the original redirect_url. Invalid state returns 400; inaccessible profiles or missing ads access cannot connect. Dashboard logins with several Pages redirect to the Facebook Page picker with an encrypted selectionToken valid for ten minutes. Listing and selecting require the initiating user and current profile access. No plaintext platform token is returned to the browser.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String state = "ENCRYPTED_STATE"; // String | Authenticated state from the initial connectAds response.
+        String code = "code_example"; // String | Single-use authorization code returned by Meta.
+        String error = "error_example"; // String | Meta authorization error when the user declines the dialog.
+        try {
+            apiInstance.completeMetaAdsBusinessLogin(state, code, error);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#completeMetaAdsBusinessLogin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **state** | **String**| Authenticated state from the initial connectAds response. | |
+| **code** | **String**| Single-use authorization code returned by Meta. | [optional] |
+| **error** | **String**| Meta authorization error when the user declines the dialog. | [optional] |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **307** | Redirect to the original callback URL with connected&#x3D;metaads, profileId and accountId on success; authorization denial redirects with an error. Dashboard logins requiring a Page choice redirect to /connect/facebook/select-page with selectionToken. |  * Location -  <br>  |
+| **400** | Invalid request |  -  |
+| **403** | Ads access or profile access required. |  -  |
+| **409** | The new token grants do not match the existing connection, or its previous grants cannot be verified. |  -  |
+| **503** | Business login state signing is not configured. |  -  |
+
+## completeMetaAdsBusinessLoginWithHttpInfo
+
+> ApiResponse<Void> completeMetaAdsBusinessLogin completeMetaAdsBusinessLoginWithHttpInfo(state, code, error)
+
+Complete Meta business login
+
+Facebook Login for Business redirect target. Meta supplies the single-use authorization code and the authenticated state returned by connectAds. The state expires after 30 minutes and binds the user, profile, Page selection and ad-account scope. No bearer token is sent by the browser. Success reconnects only metaads and redirects to the original redirect_url. Invalid state returns 400; inaccessible profiles or missing ads access cannot connect. Dashboard logins with several Pages redirect to the Facebook Page picker with an encrypted selectionToken valid for ten minutes. Listing and selecting require the initiating user and current profile access. No plaintext platform token is returned to the browser.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String state = "ENCRYPTED_STATE"; // String | Authenticated state from the initial connectAds response.
+        String code = "code_example"; // String | Single-use authorization code returned by Meta.
+        String error = "error_example"; // String | Meta authorization error when the user declines the dialog.
+        try {
+            ApiResponse<Void> response = apiInstance.completeMetaAdsBusinessLoginWithHttpInfo(state, code, error);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#completeMetaAdsBusinessLogin");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **state** | **String**| Authenticated state from the initial connectAds response. | |
+| **code** | **String**| Single-use authorization code returned by Meta. | [optional] |
+| **error** | **String**| Meta authorization error when the user declines the dialog. | [optional] |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **307** | Redirect to the original callback URL with connected&#x3D;metaads, profileId and accountId on success; authorization denial redirects with an error. Dashboard logins requiring a Page choice redirect to /connect/facebook/select-page with selectionToken. |  * Location -  <br>  |
+| **400** | Invalid request |  -  |
+| **403** | Ads access or profile access required. |  -  |
+| **409** | The new token grants do not match the existing connection, or its previous grants cannot be verified. |  -  |
+| **503** | Business login state signing is not configured. |  -  |
 
 
 ## completeTelegramConnect
@@ -735,11 +889,11 @@ ApiResponse<[**ConfigureTikTokAdsBrandIdentity200Response**](ConfigureTikTokAdsB
 
 ## connectAds
 
-> ConnectAds200Response connectAds(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
+> ConnectAds200Response connectAds(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
 
 Connect ads for a platform
 
-Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Meta business login (opt-in).** Set &#x60;loginMode&#x3D;business&#x60; for &#x60;facebook&#x60; or &#x60;instagram&#x60; to use Facebook Login for Business and a Business Integration System User token. No posting account is created or required. This mode always returns an authUrl; it returns 503 when the server has no META_ADS_CONFIG_ID. Complete the dialog in a browser. The callback creates or reconnects only the metaads account, preserving its ID, history and scopedAdAccountIds. Non-empty successful subscription results replace subscribedAdAccountIds to remove stale grants; an empty result leaves routing unchanged. A reconnect must grant every previously scoped ad account (or every previous grant for an unscoped connection). Missing or unverifiable grants return 409 before changing the account.  Pass &#x60;pageId&#x60; to select a granted Page for creatives and lead forms. API integrations otherwise reuse the previous Page or sole granted Page. Multiple Pages without a selection return 400 with available Page IDs for API integrations; restart with pageId. Dashboard session logins use the sole current grant automatically or open the existing Facebook Page picker for several grants, including reconnects. Selection completes the Meta Ads connection. With no Pages granted the callback returns 400 with instructions to connect again and grant a Page. Success redirects with connected&#x3D;metaads, profileId and accountId. Business login reports metadata.tokenType&#x3D;system-user in GET /v1/accounts. An absent Meta expires_in leaves tokenExpiresAt absent; no personal-token re-exchange occurs. Subsequent classic requests can change the ad-account scope using the business token; force&#x3D;true requires loginMode&#x3D;business to reconnect that connection.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
 
 ### Example
 
@@ -762,16 +916,18 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String platform = "facebook"; // String | Platform to connect ads for. Only platforms with ads support are accepted.  `instagram` requires an Instagram account connected with loginMethod=facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. 
+        String platform = "facebook"; // String | Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, `instagram` requires an Instagram account connected with loginMethod=facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. 
         String profileId = "profileId_example"; // String | Your Zernio profile ID
+        String loginMode = "classic"; // String | Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow.
+        String pageId = "811889972008357"; // String | Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms.
         String accountId = "accountId_example"; // String | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok`: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms. 
         URI redirectUrl = new URI(); // URI | Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (`tiktok`, `twitter`) and standalone (`googleads`) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success `tiktok`, `twitter` and `googleads` land on the URL unchanged, while the same-token platforms (`facebook`, `instagram`, `linkedin`, `pinterest`) append `connected`, `profileId`, `accountId`, `username` and, on API-key calls, `connect_token`. On failure the same error contract applies as on GET /v1/connect/{platform}: `error` and `platform` are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows `platform` carries the ads platform id (`tiktokads`, `xads`, `googleads`), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard. 
         Boolean headless = false; // Boolean | Enable headless mode (same-token platforms only)
         Boolean force = false; // Boolean | Force a fresh OAuth even when an account already exists. Normally the endpoint returns `alreadyConnected: true` whenever a connected account is found, keying off its active state rather than token liveness. Set `force=true` to bypass that and always receivean `authUrl`. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place. 
-        String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
+        String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Business-login reconnects preserve the existing scope; supplied IDs are checked against the new grant. To change that scope after migration, call this endpoint with the IDs and omit loginMode. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
         List<String> adAccountIds = Arrays.asList(); // List<String> | Scope ad sync to multiple platform ad accounts (same platform support and id shapes as `adAccountId`). Repeat the param (`?adAccountIds=act_1&adAccountIds=act_2`) or comma-separate (`?adAccountIds=act_1,act_2`). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both `adAccountId` and `adAccountIds` keeps any previously persisted scope unchanged. 
         try {
-            ConnectAds200Response result = apiInstance.connectAds(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
+            ConnectAds200Response result = apiInstance.connectAds(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#connectAds");
@@ -789,13 +945,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **platform** | **String**| Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts.  | [enum: facebook, instagram, linkedin, tiktok, twitter, pinterest, googleads] |
+| **platform** | **String**| Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts.  | [enum: facebook, instagram, linkedin, tiktok, twitter, pinterest, googleads] |
 | **profileId** | **String**| Your Zernio profile ID | |
+| **loginMode** | **String**| Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow. | [optional] [default to classic] [enum: classic, business] |
+| **pageId** | **String**| Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms. | [optional] |
 | **accountId** | **String**| Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional] |
 | **redirectUrl** | **URI**| Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  | [optional] |
 | **headless** | **Boolean**| Enable headless mode (same-token platforms only) | [optional] [default to false] |
 | **force** | **Boolean**| Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  | [optional] [default to false] |
-| **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
+| **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Business-login reconnects preserve the existing scope; supplied IDs are checked against the new grant. To change that scope after migration, call this endpoint with the IDs and omit loginMode. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
 | **adAccountIds** | [**List&lt;String&gt;**](String.md)| Scope ad sync to multiple platform ad accounts (same platform support and id shapes as &#x60;adAccountId&#x60;). Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  | [optional] |
 
 ### Return type
@@ -820,14 +978,16 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
+| **409** | Reconnect a system-user connection with loginMode&#x3D;business. |  -  |
+| **503** | Business login is not configured or the platform is temporarily unavailable. |  -  |
 
 ## connectAdsWithHttpInfo
 
-> ApiResponse<ConnectAds200Response> connectAds connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
+> ApiResponse<ConnectAds200Response> connectAds connectAdsWithHttpInfo(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds)
 
 Connect ads for a platform
 
-Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
+Unified ads connection endpoint. Creates a dedicated ads SocialAccount for the specified platform.  **Meta business login (opt-in).** Set &#x60;loginMode&#x3D;business&#x60; for &#x60;facebook&#x60; or &#x60;instagram&#x60; to use Facebook Login for Business and a Business Integration System User token. No posting account is created or required. This mode always returns an authUrl; it returns 503 when the server has no META_ADS_CONFIG_ID. Complete the dialog in a browser. The callback creates or reconnects only the metaads account, preserving its ID, history and scopedAdAccountIds. Non-empty successful subscription results replace subscribedAdAccountIds to remove stale grants; an empty result leaves routing unchanged. A reconnect must grant every previously scoped ad account (or every previous grant for an unscoped connection). Missing or unverifiable grants return 409 before changing the account.  Pass &#x60;pageId&#x60; to select a granted Page for creatives and lead forms. API integrations otherwise reuse the previous Page or sole granted Page. Multiple Pages without a selection return 400 with available Page IDs for API integrations; restart with pageId. Dashboard session logins use the sole current grant automatically or open the existing Facebook Page picker for several grants, including reconnects. Selection completes the Meta Ads connection. With no Pages granted the callback returns 400 with instructions to connect again and grant a Page. Success redirects with connected&#x3D;metaads, profileId and accountId. Business login reports metadata.tokenType&#x3D;system-user in GET /v1/accounts. An absent Meta expires_in leaves tokenExpiresAt absent; no personal-token re-exchange occurs. Subsequent classic requests can change the ad-account scope using the business token; force&#x3D;true requires loginMode&#x3D;business to reconnect that connection.  **Same-token platforms (facebook, instagram, linkedin, pinterest).** The ads SocialAccount (metaads, linkedinads, pinterestads) reuses the OAuth token of the parent posting account, but only when an active parent exists and, for facebook and instagram, its stored token carries ads_management and ads_read (linkedin and pinterest need no extra scope). In that case no extra OAuth happens and the response is alreadyConnected: true.  When no such parent exists, or the scopes are missing, the endpoint returns an authUrl and a full OAuth round trip is required. When a parent exists but carries no token usable for ad accounts, the call fails with 400 RECONNECT_REQUIRED. Independently of the branch, the call can return 403 ADS_ADDON_REQUIRED without the ads add-on and 402 PAYMENT_REQUIRED when the billing gate is closed.  Meta Ads prerequisite: connecting Meta Ads (via facebook or instagram) requires a Facebook Page. Not because the ad account is read through a Page, but because both parent posting accounts are: the facebook flow only offers Pages you manage, and the instagram flow with loginMethod&#x3D;facebook_login only offers Instagram accounts linked to one of those Pages. Without a Page there is no parent account to inherit a token from. A user who manages no Facebook Page cannot complete this connection, and the facebook flow ends with error&#x3D;no_facebook_pages.  **Separate-token platforms (tiktok, twitter).** Starts the platform-specific marketing API OAuth flow and creates an ads SocialAccount (tiktokads, xads) with its own token. If the ads account already exists, returns alreadyConnected: true.   - tiktok: accountId is OPTIONAL. With accountId, the new tiktokads account links to that posting account (parentAccountId set), so Spark Ads + standalone ads using the posting TT_USER identity become available. Without accountId, ads-only mode kicks in: the new tiktokads account has parentAccountId&#x3D;null and standalone ads use a synthetic CUSTOMIZED_USER (\&quot;Brand Identity\&quot;); Spark Ads are unavailable because TikTok requires a posting account for them. The Brand Identity is configured separately via PATCH /v1/connect/tiktok-ads (or inline on POST /v1/ads/create via the brandIdentity field).   - twitter (X Ads): accountId is REQUIRED. There&#39;s no ads-only mode, because tweets need to be authored by a real X user.  **Standalone platforms (googleads).** Starts the Google Ads OAuth flow and creates a standalone ads SocialAccount (googleads) with no parent. If the account already exists, returns alreadyConnected: true.  Ads accounts appear as regular SocialAccount documents with ads platform values (e.g., metaads, tiktokads) in GET /v1/accounts. 
 
 ### Example
 
@@ -851,16 +1011,18 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String platform = "facebook"; // String | Platform to connect ads for. Only platforms with ads support are accepted.  `instagram` requires an Instagram account connected with loginMethod=facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. 
+        String platform = "facebook"; // String | Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, `instagram` requires an Instagram account connected with loginMethod=facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts. 
         String profileId = "profileId_example"; // String | Your Zernio profile ID
+        String loginMode = "classic"; // String | Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow.
+        String pageId = "811889972008357"; // String | Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms.
         String accountId = "accountId_example"; // String | Existing SocialAccount ID. Required for `twitter` (X Ads). Optional for `tiktok`: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (`facebook`, `instagram`, `linkedin`, `pinterest`) and standalone (`googleads`) platforms. 
         URI redirectUrl = new URI(); // URI | Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (`tiktok`, `twitter`) and standalone (`googleads`) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success `tiktok`, `twitter` and `googleads` land on the URL unchanged, while the same-token platforms (`facebook`, `instagram`, `linkedin`, `pinterest`) append `connected`, `profileId`, `accountId`, `username` and, on API-key calls, `connect_token`. On failure the same error contract applies as on GET /v1/connect/{platform}: `error` and `platform` are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows `platform` carries the ads platform id (`tiktokads`, `xads`, `googleads`), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard. 
         Boolean headless = false; // Boolean | Enable headless mode (same-token platforms only)
         Boolean force = false; // Boolean | Force a fresh OAuth even when an account already exists. Normally the endpoint returns `alreadyConnected: true` whenever a connected account is found, keying off its active state rather than token liveness. Set `force=true` to bypass that and always receivean `authUrl`. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place. 
-        String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
+        String adAccountId = "act_1330190928038136"; // String | Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Business-login reconnects preserve the existing scope; supplied IDs are checked against the new grant. To change that scope after migration, call this endpoint with the IDs and omit loginMode. Supported on `facebook`/`instagram` (Meta, `act_<digits>`), `linkedin` (bare numeric sponsored-account id), `googleads` (bare customer id digits) and `twitter` (X Ads, base36 account id). `tiktok` scopes advertisers at OAuth and `pinterest` has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use `adAccountIds` instead. 
         List<String> adAccountIds = Arrays.asList(); // List<String> | Scope ad sync to multiple platform ad accounts (same platform support and id shapes as `adAccountId`). Repeat the param (`?adAccountIds=act_1&adAccountIds=act_2`) or comma-separate (`?adAccountIds=act_1,act_2`). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both `adAccountId` and `adAccountIds` keeps any previously persisted scope unchanged. 
         try {
-            ApiResponse<ConnectAds200Response> response = apiInstance.connectAdsWithHttpInfo(platform, profileId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
+            ApiResponse<ConnectAds200Response> response = apiInstance.connectAdsWithHttpInfo(platform, profileId, loginMode, pageId, accountId, redirectUrl, headless, force, adAccountId, adAccountIds);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -880,13 +1042,15 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **platform** | **String**| Platform to connect ads for. Only platforms with ads support are accepted.  &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts.  | [enum: facebook, instagram, linkedin, tiktok, twitter, pinterest, googleads] |
+| **platform** | **String**| Platform to connect ads for. Only platforms with ads support are accepted.  In classic mode, &#x60;instagram&#x60; requires an Instagram account connected with loginMethod&#x3D;facebook_login whose token carries ads_management and ads_read. With an account connected through the default instagram_login flow no ads account can be created; do not use this value for those accounts.  | [enum: facebook, instagram, linkedin, tiktok, twitter, pinterest, googleads] |
 | **profileId** | **String**| Your Zernio profile ID | |
+| **loginMode** | **String**| Meta ads authorization mode. Business login is opt-in for Facebook and Instagram; classic preserves the posting-account flow. | [optional] [default to classic] [enum: classic, business] |
+| **pageId** | **String**| Business login only. Facebook Page ID to select from the token grants for ad creatives and lead forms. | [optional] |
 | **accountId** | **String**| Existing SocialAccount ID. Required for &#x60;twitter&#x60; (X Ads). Optional for &#x60;tiktok&#x60;: omit to enter ads-only mode (no TikTok posting account linked; ad creation uses a Brand Identity instead of a TT_USER). Ignored for same-token (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) and standalone (&#x60;googleads&#x60;) platforms.  | [optional] |
 | **redirectUrl** | **URI**| Custom URL the browser is sent to once the OAuth flow finishes. Honored on every ads platform, including the separate-token (&#x60;tiktok&#x60;, &#x60;twitter&#x60;) and standalone (&#x60;googleads&#x60;) flows. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On success &#x60;tiktok&#x60;, &#x60;twitter&#x60; and &#x60;googleads&#x60; land on the URL unchanged, while the same-token platforms (&#x60;facebook&#x60;, &#x60;instagram&#x60;, &#x60;linkedin&#x60;, &#x60;pinterest&#x60;) append &#x60;connected&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60;, &#x60;username&#x60; and, on API-key calls, &#x60;connect_token&#x60;. On failure the same error contract applies as on GET /v1/connect/{platform}: &#x60;error&#x60; and &#x60;platform&#x60; are always appended, other params are optional, and the value list there is not exhaustive. On the tiktok, twitter and googleads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;, &#x60;googleads&#x60;), not the value used in the request path. When omitted, the browser lands on the Zernio dashboard.  | [optional] |
 | **headless** | **Boolean**| Enable headless mode (same-token platforms only) | [optional] [default to false] |
 | **force** | **Boolean**| Force a fresh OAuth even when an account already exists. Normally the endpoint returns &#x60;alreadyConnected: true&#x60; whenever a connected account is found, keying off its active state rather than token liveness. Set &#x60;force&#x3D;true&#x60; to bypass that and always receivean &#x60;authUrl&#x60;. Completing the returned OAuth refreshes the stored token on the existing posting and ads accounts in place.  | [optional] [default to false] |
-| **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
+| **adAccountId** | **String**| Scope ad sync to a single platform ad account. Without this param, sync covers every ad account the connected token can see. Business-login reconnects preserve the existing scope; supplied IDs are checked against the new grant. To change that scope after migration, call this endpoint with the IDs and omit loginMode. Supported on &#x60;facebook&#x60;/&#x60;instagram&#x60; (Meta, &#x60;act_&lt;digits&gt;&#x60;), &#x60;linkedin&#x60; (bare numeric sponsored-account id), &#x60;googleads&#x60; (bare customer id digits) and &#x60;twitter&#x60; (X Ads, base36 account id). &#x60;tiktok&#x60; scopes advertisers at OAuth and &#x60;pinterest&#x60; has no ads discovery, so both ignore it. Meta ids are additionally validated against the connected token; unreachable IDs return 400. Setting a scope also removes already synced ads from de-scoped ad accounts. For multiple accounts use &#x60;adAccountIds&#x60; instead.  | [optional] |
 | **adAccountIds** | [**List&lt;String&gt;**](String.md)| Scope ad sync to multiple platform ad accounts (same platform support and id shapes as &#x60;adAccountId&#x60;). Repeat the param (&#x60;?adAccountIds&#x3D;act_1&amp;adAccountIds&#x3D;act_2&#x60;) or comma-separate (&#x60;?adAccountIds&#x3D;act_1,act_2&#x60;). Persisted server-side; latest call wins, and de-scoped ad accounts have their synced ads removed. Omitting both &#x60;adAccountId&#x60; and &#x60;adAccountIds&#x60; keeps any previously persisted scope unchanged.  | [optional] |
 
 ### Return type
@@ -911,6 +1075,8 @@ ApiResponse<[**ConnectAds200Response**](ConnectAds200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
+| **409** | Reconnect a system-user connection with loginMode&#x3D;business. |  -  |
+| **503** | Business login is not configured or the platform is temporarily unavailable. |  -  |
 
 
 ## connectBlueskyCredentials
@@ -2139,7 +2305,7 @@ ApiResponse<[**CreatePinterestBoard201Response**](CreatePinterestBoard201Respons
 
 Get OAuth connect URL
 
-Initiate an OAuth connection flow. Returns an authUrl to redirect the user to. Standard flow: Zernio hosts the selection UI, then redirects to your redirect_url. Headless mode (headless&#x3D;true): user is redirected to your redirect_url with OAuth data for custom UI. Use the platform-specific selection endpoints to complete. 
+Initiate an OAuth connection flow. Returns an authUrl to redirect the user to. Standard flow: Zernio hosts the selection UI, then redirects to your redirect_url. Headless mode (headless&#x3D;true): user is redirected to your redirect_url with OAuth data for custom UI. Use the platform-specific selection endpoints to complete.  TikTok: every connection now goes through the TikTok for Business app. One TikTok account per profile, so connecting on a profile that already holds one replaces it. Reconnecting the SAME account keeps it and all of its history; authorizing a DIFFERENT TikTok account takes the slot over and permanently deletes the previous account&#39;s analytics, inbox and DM history. The two are told apart by the &#x60;@handle&#x60; stored at the last connect, so an account whose handle has been renamed on TikTok since then reads as a different account. An authorization that leaves out a permission the connected account needs changes nothing at all and comes back as &#x60;missing_tiktok_permissions&#x60;; connect again and accept every permission on TikTok&#39;s screen. 
 
 ### Example
 
@@ -2164,7 +2330,7 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String platform = "facebook"; // String | Social media platform to connect. `snapchat` is a closed beta with no public release date: it returns 403 `PLATFORM_BETA_RESTRICTED` until the account is approved.
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.
-        URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected={platform}&profileId=X&accountId=Y&username=Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with `error` and `platform` appended. `error` and `platform` are always present. `error_message`, `is_user_fixable`, `reason` and `dashboard_url` are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, platform_requires_destination, reconnect_account_mismatch,   invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform=googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform=tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform=xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform=shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into `oauth_denied`. The provider's own value (for example Meta's `access_denied`) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and `google_ads_auth_failed` and `tiktok_ads_auth_failed` may carry the provider's raw error string in `error_message`.  2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value used in the request path. The googleads and shopify flows report `googleads` and `shopify`. 
+        URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected={platform}&profileId=X&accountId=Y&username=Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with `error` and `platform` appended. `error` and `platform` are always present. `error_message`, `is_user_fixable`, `reason` and `dashboard_url` are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, missing_tiktok_permissions, platform_requires_destination,   reconnect_account_mismatch, invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform=googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform=tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform=xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform=shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into `oauth_denied`. The provider's own value (for example Meta's `access_denied`) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and `google_ads_auth_failed` and `tiktok_ads_auth_failed` may carry the provider's raw error string in `error_message`.  2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value used in the request path. The googleads and shopify flows report `googleads` and `shopify`.  3. `missing_tiktok_permissions` means the TikTok authorization left out a permission the already-connected account needs, so nothing was changed and it keeps working as before. It is user-fixable: connect again and accept every permission on TikTok's screen. 
         Boolean headless = false; // Boolean | When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio's default account selection UI. Use this to build a custom connect experience.
         String loginMethod = "instagram_login"; // String | Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  `instagram_login` (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  `facebook_login`: the Facebook Login dialog, i.e. \"Instagram API with Facebook Login\". The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, `/v1/connect/instagram/select-account`.  `facebook_login` supports `headless=true` like the other selection platforms: the callback redirects to your `redirect_url` with `profileId`, `tempToken`, `platform=instagram`, `step=select_account` and `connect_token`, which you pass into the select-account endpoints to finish. The default `instagram_login` has no selection step, so it connects the account directly. 
         String onboarding = "api"; // String | WhatsApp only. Ignored for every other platform. Controls which screen Meta's Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as `business_app` below), preserving existing behavior for numbers already on the WhatsApp Business app.  `api`: standard Embedded Signup, showing Meta's WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  `business_app`: coexistence, i.e. 'Connect existing WhatsApp Business app' (a number shared between Cloud API and the consumer WhatsApp Business app). 
@@ -2193,7 +2359,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Social media platform to connect. &#x60;snapchat&#x60; is a closed beta with no public release date: it returns 403 &#x60;PLATFORM_BETA_RESTRICTED&#x60; until the account is approved. | [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, reddit, pinterest, bluesky, googlebusiness, telegram, snapchat, discord, slack, whatsapp] |
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. | |
-| **redirectUrl** | **URI**| Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with &#x60;error&#x60; and &#x60;platform&#x60; appended. &#x60;error&#x60; and &#x60;platform&#x60; are always present. &#x60;error_message&#x60;, &#x60;is_user_fixable&#x60;, &#x60;reason&#x60; and &#x60;dashboard_url&#x60; are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, platform_requires_destination, reconnect_account_mismatch,   invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform&#x3D;googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform&#x3D;tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform&#x3D;xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform&#x3D;shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into &#x60;oauth_denied&#x60;. The provider&#39;s own value (for example Meta&#39;s &#x60;access_denied&#x60;) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and &#x60;google_ads_auth_failed&#x60; and &#x60;tiktok_ads_auth_failed&#x60; may carry the provider&#39;s raw error string in &#x60;error_message&#x60;.  2. On the tiktok and twitter ads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;), not the value used in the request path. The googleads and shopify flows report &#x60;googleads&#x60; and &#x60;shopify&#x60;.  | [optional] |
+| **redirectUrl** | **URI**| Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with &#x60;error&#x60; and &#x60;platform&#x60; appended. &#x60;error&#x60; and &#x60;platform&#x60; are always present. &#x60;error_message&#x60;, &#x60;is_user_fixable&#x60;, &#x60;reason&#x60; and &#x60;dashboard_url&#x60; are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, missing_tiktok_permissions, platform_requires_destination,   reconnect_account_mismatch, invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform&#x3D;googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform&#x3D;tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform&#x3D;xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform&#x3D;shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into &#x60;oauth_denied&#x60;. The provider&#39;s own value (for example Meta&#39;s &#x60;access_denied&#x60;) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and &#x60;google_ads_auth_failed&#x60; and &#x60;tiktok_ads_auth_failed&#x60; may carry the provider&#39;s raw error string in &#x60;error_message&#x60;.  2. On the tiktok and twitter ads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;), not the value used in the request path. The googleads and shopify flows report &#x60;googleads&#x60; and &#x60;shopify&#x60;.  3. &#x60;missing_tiktok_permissions&#x60; means the TikTok authorization left out a permission the already-connected account needs, so nothing was changed and it keeps working as before. It is user-fixable: connect again and accept every permission on TikTok&#39;s screen.  | [optional] |
 | **headless** | **Boolean**| When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. | [optional] [default to false] |
 | **loginMethod** | **String**| Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  | [optional] [default to instagram_login] [enum: instagram_login, facebook_login] |
 | **onboarding** | **String**| WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  | [optional] [enum: api, business_app] |
@@ -2232,7 +2398,7 @@ public class Example {
 
 Get OAuth connect URL
 
-Initiate an OAuth connection flow. Returns an authUrl to redirect the user to. Standard flow: Zernio hosts the selection UI, then redirects to your redirect_url. Headless mode (headless&#x3D;true): user is redirected to your redirect_url with OAuth data for custom UI. Use the platform-specific selection endpoints to complete. 
+Initiate an OAuth connection flow. Returns an authUrl to redirect the user to. Standard flow: Zernio hosts the selection UI, then redirects to your redirect_url. Headless mode (headless&#x3D;true): user is redirected to your redirect_url with OAuth data for custom UI. Use the platform-specific selection endpoints to complete.  TikTok: every connection now goes through the TikTok for Business app. One TikTok account per profile, so connecting on a profile that already holds one replaces it. Reconnecting the SAME account keeps it and all of its history; authorizing a DIFFERENT TikTok account takes the slot over and permanently deletes the previous account&#39;s analytics, inbox and DM history. The two are told apart by the &#x60;@handle&#x60; stored at the last connect, so an account whose handle has been renamed on TikTok since then reads as a different account. An authorization that leaves out a permission the connected account needs changes nothing at all and comes back as &#x60;missing_tiktok_permissions&#x60;; connect again and accept every permission on TikTok&#39;s screen. 
 
 ### Example
 
@@ -2258,7 +2424,7 @@ public class Example {
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String platform = "facebook"; // String | Social media platform to connect. `snapchat` is a closed beta with no public release date: it returns 403 `PLATFORM_BETA_RESTRICTED` until the account is approved.
         String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409.
-        URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected={platform}&profileId=X&accountId=Y&username=Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with `error` and `platform` appended. `error` and `platform` are always present. `error_message`, `is_user_fixable`, `reason` and `dashboard_url` are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, platform_requires_destination, reconnect_account_mismatch,   invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform=googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform=tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform=xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform=shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into `oauth_denied`. The provider's own value (for example Meta's `access_denied`) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and `google_ads_auth_failed` and `tiktok_ads_auth_failed` may carry the provider's raw error string in `error_message`.  2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value used in the request path. The googleads and shopify flows report `googleads` and `shopify`. 
+        URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected={platform}&profileId=X&accountId=Y&username=Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with `error` and `platform` appended. `error` and `platform` are always present. `error_message`, `is_user_fixable`, `reason` and `dashboard_url` are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, missing_tiktok_permissions, platform_requires_destination,   reconnect_account_mismatch, invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform=googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform=tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform=xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform=shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into `oauth_denied`. The provider's own value (for example Meta's `access_denied`) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and `google_ads_auth_failed` and `tiktok_ads_auth_failed` may carry the provider's raw error string in `error_message`.  2. On the tiktok and twitter ads flows `platform` carries the ads platform id (`tiktokads`, `xads`), not the value used in the request path. The googleads and shopify flows report `googleads` and `shopify`.  3. `missing_tiktok_permissions` means the TikTok authorization left out a permission the already-connected account needs, so nothing was changed and it keeps working as before. It is user-fixable: connect again and accept every permission on TikTok's screen. 
         Boolean headless = false; // Boolean | When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio's default account selection UI. Use this to build a custom connect experience.
         String loginMethod = "instagram_login"; // String | Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  `instagram_login` (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  `facebook_login`: the Facebook Login dialog, i.e. \"Instagram API with Facebook Login\". The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, `/v1/connect/instagram/select-account`.  `facebook_login` supports `headless=true` like the other selection platforms: the callback redirects to your `redirect_url` with `profileId`, `tempToken`, `platform=instagram`, `step=select_account` and `connect_token`, which you pass into the select-account endpoints to finish. The default `instagram_login` has no selection step, so it connects the account directly. 
         String onboarding = "api"; // String | WhatsApp only. Ignored for every other platform. Controls which screen Meta's Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as `business_app` below), preserving existing behavior for numbers already on the WhatsApp Business app.  `api`: standard Embedded Signup, showing Meta's WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  `business_app`: coexistence, i.e. 'Connect existing WhatsApp Business app' (a number shared between Cloud API and the consumer WhatsApp Business app). 
@@ -2289,7 +2455,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **platform** | **String**| Social media platform to connect. &#x60;snapchat&#x60; is a closed beta with no public release date: it returns 403 &#x60;PLATFORM_BETA_RESTRICTED&#x60; until the account is approved. | [enum: facebook, instagram, linkedin, twitter, tiktok, youtube, threads, reddit, pinterest, bluesky, googlebusiness, telegram, snapchat, discord, slack, whatsapp] |
 | **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). For WhatsApp, a Zernio-provisioned number can only be connected on the profile it was provisioned to; connecting from any other profile is rejected with a 409. | |
-| **redirectUrl** | **URI**| Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with &#x60;error&#x60; and &#x60;platform&#x60; appended. &#x60;error&#x60; and &#x60;platform&#x60; are always present. &#x60;error_message&#x60;, &#x60;is_user_fixable&#x60;, &#x60;reason&#x60; and &#x60;dashboard_url&#x60; are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, platform_requires_destination, reconnect_account_mismatch,   invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform&#x3D;googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform&#x3D;tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform&#x3D;xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform&#x3D;shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into &#x60;oauth_denied&#x60;. The provider&#39;s own value (for example Meta&#39;s &#x60;access_denied&#x60;) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and &#x60;google_ads_auth_failed&#x60; and &#x60;tiktok_ads_auth_failed&#x60; may carry the provider&#39;s raw error string in &#x60;error_message&#x60;.  2. On the tiktok and twitter ads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;), not the value used in the request path. The googleads and shopify flows report &#x60;googleads&#x60; and &#x60;shopify&#x60;.  | [optional] |
+| **redirectUrl** | **URI**| Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. Result params are appended with the URL API, so an existing query string is preserved. Standard mode appends connected&#x3D;{platform}&amp;profileId&#x3D;X&amp;accountId&#x3D;Y&amp;username&#x3D;Z. Headless mode appends OAuth data params for platforms requiring selection (e.g. LinkedIn orgs, Facebook pages). If no selection is needed, the account is created directly and the redirect includes accountId.  On failure, the browser is sent to the same redirect_url with &#x60;error&#x60; and &#x60;platform&#x60; appended. &#x60;error&#x60; and &#x60;platform&#x60; are always present. &#x60;error_message&#x60;, &#x60;is_user_fixable&#x60;, &#x60;reason&#x60; and &#x60;dashboard_url&#x60; are conditional and must be treated as optional.  This list is NOT exhaustive and new values may be added at any time. Treat an unrecognized value as a generic failure rather than matching it exhaustively. Existing values are not renamed or removed without notice.  OAuth and callback:   oauth_denied, invalid_callback, invalid_state, unsupported_platform, connection_failed,   internal_error, token_exchange_failed, byok_config_error, personal_account_not_supported,   missing_google_permissions, missing_tiktok_permissions, platform_requires_destination,   reconnect_account_mismatch, invalid_request  Access and limits:   profile_not_found, invalid_profile_id, access_denied, account_limit_exceeded,   profile_limit_exceeded, payment_required  Destination selection:   no_facebook_pages, facebook_pages_error, no_google_locations, google_locations_error,   google_permission_denied, no_snapchat_public_profiles, snapchat_profiles_error,   discord_no_guild, slack_no_team  WhatsApp:   whatsapp_error, one_whatsapp_per_profile, whatsapp_number_already_connected,   whatsapp_number_pinned_to_profile, connection_cancelled  Google Ads (platform&#x3D;googleads):   google_ads_auth_failed, google_ads_invalid_state, google_ads_config_error,   google_ads_token_failed, google_ads_quota_exhausted, google_ads_callback_error  TikTok Ads (platform&#x3D;tiktokads):   tiktok_ads_auth_failed, tiktok_ads_invalid_state, tiktok_ads_access_denied,   tiktok_ads_config_error, tiktok_ads_token_failed, tiktok_ads_account_not_found,   tiktok_ads_callback_error  X Ads (platform&#x3D;xads):   x_ads_denied, x_ads_auth_failed, x_ads_config_error, x_ads_account_not_found,   x_ads_state_error, x_ads_token_failed, x_ads_token_missing, x_ads_callback_error  Shopify (platform&#x3D;shopify):   shopify_auth_failed, shopify_config_error, shopify_invalid_state, shopify_invalid_hmac,   shopify_invalid_shop, shopify_missing_scopes, shopify_callback_error  1. On this endpoint every upstream OAuth error is collapsed into &#x60;oauth_denied&#x60;. The provider&#39;s own value (for example Meta&#39;s &#x60;access_denied&#x60;) is not forwarded. The dedicated ads flows below are different: they use their own denial slugs and &#x60;google_ads_auth_failed&#x60; and &#x60;tiktok_ads_auth_failed&#x60; may carry the provider&#39;s raw error string in &#x60;error_message&#x60;.  2. On the tiktok and twitter ads flows &#x60;platform&#x60; carries the ads platform id (&#x60;tiktokads&#x60;, &#x60;xads&#x60;), not the value used in the request path. The googleads and shopify flows report &#x60;googleads&#x60; and &#x60;shopify&#x60;.  3. &#x60;missing_tiktok_permissions&#x60; means the TikTok authorization left out a permission the already-connected account needs, so nothing was changed and it keeps working as before. It is user-fixable: connect again and accept every permission on TikTok&#39;s screen.  | [optional] |
 | **headless** | **Boolean**| When true, the user is redirected to your redirect_url with raw OAuth data (code, state) instead of Zernio&#39;s default account selection UI. Use this to build a custom connect experience. | [optional] [default to false] |
 | **loginMethod** | **String**| Instagram only. Which of the two Instagram connection methods to use. Ignored for every other platform.  &#x60;instagram_login&#x60; (the default, and what you get if you omit this): the Instagram Login dialog. The user authorizes their Instagram professional account directly, no Facebook Page required.  &#x60;facebook_login&#x60;: the Facebook Login dialog, i.e. \&quot;Instagram API with Facebook Login\&quot;. The user authorizes a Facebook Page that has a linked Instagram professional account, and every API call for that account then runs through the Page. Use this when the customer manages Instagram through a Page and expects the Facebook consent screen. Because the user has to pick which Page to connect, the callback continues at the account-selection step, &#x60;/v1/connect/instagram/select-account&#x60;.  &#x60;facebook_login&#x60; supports &#x60;headless&#x3D;true&#x60; like the other selection platforms: the callback redirects to your &#x60;redirect_url&#x60; with &#x60;profileId&#x60;, &#x60;tempToken&#x60;, &#x60;platform&#x3D;instagram&#x60;, &#x60;step&#x3D;select_account&#x60; and &#x60;connect_token&#x60;, which you pass into the select-account endpoints to finish. The default &#x60;instagram_login&#x60; has no selection step, so it connects the account directly.  | [optional] [default to instagram_login] [enum: instagram_login, facebook_login] |
 | **onboarding** | **String**| WhatsApp only. Ignored for every other platform. Controls which screen Meta&#39;s Embedded Signup popup shows.  If omitted, the connection defaults to coexistence (same as &#x60;business_app&#x60; below), preserving existing behavior for numbers already on the WhatsApp Business app.  &#x60;api&#x60;: standard Embedded Signup, showing Meta&#39;s WABA/number picker. Use this to connect a phone number already on Cloud API elsewhere.  &#x60;business_app&#x60;: coexistence, i.e. &#39;Connect existing WhatsApp Business app&#39; (a number shared between Cloud API and the consumer WhatsApp Business app).  | [optional] [enum: api, business_app] |
@@ -2783,6 +2949,156 @@ ApiResponse<[**GetLinkedInOrganizations200Response**](GetLinkedInOrganizations20
 | **200** | Organizations list |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+
+
+## getPageWebhookSubscription
+
+> GetPageWebhookSubscription200Response getPageWebhookSubscription(accountId)
+
+Read a Facebook Page&#39;s webhook subscription
+
+Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            GetPageWebhookSubscription200Response result = apiInstance.getPageWebhookSubscription(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getPageWebhookSubscription");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**GetPageWebhookSubscription200Response**](GetPageWebhookSubscription200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s current subscription |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The connection has no selected Page |  -  |
+
+## getPageWebhookSubscriptionWithHttpInfo
+
+> ApiResponse<GetPageWebhookSubscription200Response> getPageWebhookSubscription getPageWebhookSubscriptionWithHttpInfo(accountId)
+
+Read a Facebook Page&#39;s webhook subscription
+
+Returns the webhook fields Zernio&#39;s app is subscribed to on the connected Page, read live from Meta. Use it to confirm &#x60;leadgen&#x60; is present: a Page missing it keeps delivering every other event while lead ads stop arriving, with nothing to indicate it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<GetPageWebhookSubscription200Response> response = apiInstance.getPageWebhookSubscriptionWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getPageWebhookSubscription");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetPageWebhookSubscription200Response**](GetPageWebhookSubscription200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s current subscription |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The connection has no selected Page |  -  |
 
 
 ## getPendingOAuthData
@@ -4641,11 +4957,11 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 
 ## listFacebookPages
 
-> ListFacebookPages200Response listFacebookPages(profileId, tempToken)
+> ListFacebookPages200Response listFacebookPages(profileId, tempToken, selectionToken)
 
 List Facebook pages
 
-Returns the list of Facebook Pages the user can manage after OAuth. Extract tempToken and userProfile from the OAuth redirect params and pass them here. Use the X-Connect-Token header if connecting via API key.
+Returns Facebook Pages after OAuth. Classic connections require profileId and tempToken from the OAuth redirect. Use X-Connect-Token for headless connections. The dashboard business-login picker instead sends only selectionToken, an encrypted grant valid for ten minutes. This requires the initiating user and current profile access and returns only Page IDs and names. X-Connect-Token cannot authorize business selection.
 
 ### Example
 
@@ -4674,10 +4990,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the OAuth callback redirect
+        String profileId = "profileId_example"; // String | Profile ID from your classic connection flow. Required with tempToken.
+        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId.
+        String selectionToken = "ENCRYPTED_SELECTION_TOKEN"; // String | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes.
         try {
-            ListFacebookPages200Response result = apiInstance.listFacebookPages(profileId, tempToken);
+            ListFacebookPages200Response result = apiInstance.listFacebookPages(profileId, tempToken, selectionToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listFacebookPages");
@@ -4695,8 +5012,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Temporary Facebook access token from the OAuth callback redirect | |
+| **profileId** | **String**| Profile ID from your classic connection flow. Required with tempToken. | [optional] |
+| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId. | [optional] |
+| **selectionToken** | **String**| Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. | [optional] |
 
 ### Return type
 
@@ -4716,17 +5034,18 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of Facebook Pages available for connection |  -  |
-| **400** | Missing required parameters (profileId or tempToken) |  -  |
+| **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
+| **403** | The caller is not the initiating user or no longer has profile access. |  -  |
 | **401** | Unauthorized |  -  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 ## listFacebookPagesWithHttpInfo
 
-> ApiResponse<ListFacebookPages200Response> listFacebookPages listFacebookPagesWithHttpInfo(profileId, tempToken)
+> ApiResponse<ListFacebookPages200Response> listFacebookPages listFacebookPagesWithHttpInfo(profileId, tempToken, selectionToken)
 
 List Facebook pages
 
-Returns the list of Facebook Pages the user can manage after OAuth. Extract tempToken and userProfile from the OAuth redirect params and pass them here. Use the X-Connect-Token header if connecting via API key.
+Returns Facebook Pages after OAuth. Classic connections require profileId and tempToken from the OAuth redirect. Use X-Connect-Token for headless connections. The dashboard business-login picker instead sends only selectionToken, an encrypted grant valid for ten minutes. This requires the initiating user and current profile access and returns only Page IDs and names. X-Connect-Token cannot authorize business selection.
 
 ### Example
 
@@ -4756,10 +5075,11 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
-        String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the OAuth callback redirect
+        String profileId = "profileId_example"; // String | Profile ID from your classic connection flow. Required with tempToken.
+        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId.
+        String selectionToken = "ENCRYPTED_SELECTION_TOKEN"; // String | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes.
         try {
-            ApiResponse<ListFacebookPages200Response> response = apiInstance.listFacebookPagesWithHttpInfo(profileId, tempToken);
+            ApiResponse<ListFacebookPages200Response> response = apiInstance.listFacebookPagesWithHttpInfo(profileId, tempToken, selectionToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4779,8 +5099,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Temporary Facebook access token from the OAuth callback redirect | |
+| **profileId** | **String**| Profile ID from your classic connection flow. Required with tempToken. | [optional] |
+| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId. | [optional] |
+| **selectionToken** | **String**| Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. | [optional] |
 
 ### Return type
 
@@ -4800,7 +5121,8 @@ ApiResponse<[**ListFacebookPages200Response**](ListFacebookPages200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | List of Facebook Pages available for connection |  -  |
-| **400** | Missing required parameters (profileId or tempToken) |  -  |
+| **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
+| **403** | The caller is not the initiating user or no longer has profile access. |  -  |
 | **401** | Unauthorized |  -  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
@@ -5943,13 +6265,165 @@ ApiResponse<[**ListWhatsAppPhoneNumbers200Response**](ListWhatsAppPhoneNumbers20
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
 
+## resyncPageWebhookSubscription
+
+> ResyncPageWebhookSubscription200Response resyncPageWebhookSubscription(accountId)
+
+Re-subscribe a Facebook Page to Zernio&#39;s webhooks
+
+Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ResyncPageWebhookSubscription200Response result = apiInstance.resyncPageWebhookSubscription(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#resyncPageWebhookSubscription");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**ResyncPageWebhookSubscription200Response**](ResyncPageWebhookSubscription200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The subscription after re-subscribing |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The connection has no selected Page |  -  |
+| **502** | Meta rejected the subscription |  -  |
+
+## resyncPageWebhookSubscriptionWithHttpInfo
+
+> ApiResponse<ResyncPageWebhookSubscription200Response> resyncPageWebhookSubscription resyncPageWebhookSubscriptionWithHttpInfo(accountId)
+
+Re-subscribe a Facebook Page to Zernio&#39;s webhooks
+
+Re-sends the full field set to Meta and returns the subscription read back afterwards. Meta only honours the field set sent at subscribe time, so a Page connected before a field existed stays without it until this runs. The response reflects what Meta actually granted, not what was requested. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<ResyncPageWebhookSubscription200Response> response = apiInstance.resyncPageWebhookSubscriptionWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#resyncPageWebhookSubscription");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**ResyncPageWebhookSubscription200Response**](ResyncPageWebhookSubscription200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The subscription after re-subscribing |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The connection has no selected Page |  -  |
+| **502** | Meta rejected the subscription |  -  |
+
+
 ## selectFacebookPage
 
 > SelectFacebookPage200Response selectFacebookPage(selectFacebookPageRequest)
 
 Select Facebook page
 
-Complete the headless flow by saving the user&#39;s selected Facebook page. Pass the userProfile from the OAuth redirect and use X-Connect-Token if connecting via API key.
+Complete a classic Facebook Page connection with profileId, pageId, tempToken and userProfile. Use X-Connect-Token for headless connections. The dashboard business-login picker instead sends only selectionToken and pageId to complete a Meta Ads connection. The server verifies the initiating user, profile access, current grants and connection eligibility. The profile, platform token, ad-account scope and return URL come only from the encrypted grant. Business selection requires a session or bearer authentication for the initiating user; X-Connect-Token is not accepted. It returns redirect_url with connected&#x3D;metaads on success or an eligibility error redirect.
 
 ### Example
 
@@ -6017,8 +6491,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Facebook Page connected successfully |  -  |
-| **400** | Missing required fields (profileId, pageId, tempToken, or userProfile) |  -  |
+| **200** | Facebook Page connected or business-login redirect returned. |  -  |
+| **400** | Invalid or expired selectionToken, invalid Page choice, forbidden grant overrides, or missing classic connection fields. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |
@@ -6031,7 +6505,7 @@ public class Example {
 
 Select Facebook page
 
-Complete the headless flow by saving the user&#39;s selected Facebook page. Pass the userProfile from the OAuth redirect and use X-Connect-Token if connecting via API key.
+Complete a classic Facebook Page connection with profileId, pageId, tempToken and userProfile. Use X-Connect-Token for headless connections. The dashboard business-login picker instead sends only selectionToken and pageId to complete a Meta Ads connection. The server verifies the initiating user, profile access, current grants and connection eligibility. The profile, platform token, ad-account scope and return URL come only from the encrypted grant. Business selection requires a session or bearer authentication for the initiating user; X-Connect-Token is not accepted. It returns redirect_url with connected&#x3D;metaads on success or an eligibility error redirect.
 
 ### Example
 
@@ -6102,8 +6576,8 @@ ApiResponse<[**SelectFacebookPage200Response**](SelectFacebookPage200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Facebook Page connected successfully |  -  |
-| **400** | Missing required fields (profileId, pageId, tempToken, or userProfile) |  -  |
+| **200** | Facebook Page connected or business-login redirect returned. |  -  |
+| **400** | Invalid or expired selectionToken, invalid Page choice, forbidden grant overrides, or missing classic connection fields. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |

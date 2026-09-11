@@ -2,16 +2,36 @@
 
 # SelectFacebookPageRequest
 
+## oneOf schemas
+* [SelectFacebookPageRequestOneOf](SelectFacebookPageRequestOneOf.md)
+* [SelectFacebookPageRequestOneOf1](SelectFacebookPageRequestOneOf1.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.SelectFacebookPageRequest;
+import dev.zernio.model.SelectFacebookPageRequestOneOf;
+import dev.zernio.model.SelectFacebookPageRequestOneOf1;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**profileId** | **String** | Profile ID from your connection flow |  |
-|**pageId** | **String** | The Facebook Page ID selected by the user |  |
-|**tempToken** | **String** | Temporary Facebook access token from OAuth |  |
-|**userProfile** | [**SelectFacebookPageRequestUserProfile**](SelectFacebookPageRequestUserProfile.md) |  |  |
-|**redirectUrl** | **URI** | Optional custom redirect URL to return to after selection |  [optional] |
+public class Example {
+    public static void main(String[] args) {
+        SelectFacebookPageRequest exampleSelectFacebookPageRequest = new SelectFacebookPageRequest();
 
+        // create a new SelectFacebookPageRequestOneOf
+        SelectFacebookPageRequestOneOf exampleSelectFacebookPageRequestOneOf = new SelectFacebookPageRequestOneOf();
+        // set SelectFacebookPageRequest to SelectFacebookPageRequestOneOf
+        exampleSelectFacebookPageRequest.setActualInstance(exampleSelectFacebookPageRequestOneOf);
+        // to get back the SelectFacebookPageRequestOneOf set earlier
+        SelectFacebookPageRequestOneOf testSelectFacebookPageRequestOneOf = (SelectFacebookPageRequestOneOf) exampleSelectFacebookPageRequest.getActualInstance();
+
+        // create a new SelectFacebookPageRequestOneOf1
+        SelectFacebookPageRequestOneOf1 exampleSelectFacebookPageRequestOneOf1 = new SelectFacebookPageRequestOneOf1();
+        // set SelectFacebookPageRequest to SelectFacebookPageRequestOneOf1
+        exampleSelectFacebookPageRequest.setActualInstance(exampleSelectFacebookPageRequestOneOf1);
+        // to get back the SelectFacebookPageRequestOneOf1 set earlier
+        SelectFacebookPageRequestOneOf1 testSelectFacebookPageRequestOneOf1 = (SelectFacebookPageRequestOneOf1) exampleSelectFacebookPageRequest.getActualInstance();
+    }
+}
+```
 
 

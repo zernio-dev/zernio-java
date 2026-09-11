@@ -8,7 +8,6 @@ Each creative must supply EXACTLY ONE of `imageUrl` (image creative) or `video` 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**promotion** | [**MetaPromotion**](MetaPromotion.md) | Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer. |  [optional] |
 |**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Replaces the entire top-level creativeFeatures map for this item. Omit to inherit; an empty map clears these defaults. |  [optional] |
 |**name** | **String** | Exact name for this ad. Falls back to &#x60;&lt;name&gt; #N&#x60; (N &#x3D; 1-based position). |  [optional] |
 |**headline** | **String** |  |  |

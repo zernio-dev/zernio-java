@@ -9,8 +9,6 @@
 |------------ | ------------- | ------------- | -------------|
 |**adAccountId** | **String** |  |  [optional] |
 |**creativeId** | **String** | Platform creative id, reusable via existingCreativeId. |  [optional] |
-|**promotion** | [**MetaPromotion**](MetaPromotion.md) |  |  [optional] |
-|**promotionStatus** | **MetaPromotionStatus** |  |  [optional] |
 
 
 

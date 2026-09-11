@@ -247,6 +247,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Audience created |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
@@ -323,6 +325,8 @@ ApiResponse<[**CreateAdAudience201Response**](CreateAdAudience201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Audience created |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
@@ -703,6 +707,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -784,6 +791,9 @@ ApiResponse<[**ListAdAudiences200Response**](ListAdAudiences200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Audiences |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

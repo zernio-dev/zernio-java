@@ -52,7 +52,7 @@ public class Example {
         LocalDate since = LocalDate.now(); // LocalDate | Earliest delivery date (YYYY-MM-DD).
         LocalDate until = LocalDate.now(); // LocalDate | Latest delivery date (YYYY-MM-DD).
         String searchType = "KEYWORD_UNORDERED"; // String | Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them).
-        String fields = "fields_example"; // String | Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads.
+        String fields = "id,page_name,ad_delivery_start_time,ad_creative_bodies"; // String | Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page. LinkedIn accepts at most 25.
         String after = "after_example"; // String | paging.after of the previous page.
         try {
@@ -88,7 +88,7 @@ public class Example {
 | **since** | **LocalDate**| Earliest delivery date (YYYY-MM-DD). | [optional] |
 | **until** | **LocalDate**| Latest delivery date (YYYY-MM-DD). | [optional] |
 | **searchType** | **String**| Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). | [optional] [default to KEYWORD_UNORDERED] [enum: KEYWORD_UNORDERED, KEYWORD_EXACT_PHRASE] |
-| **fields** | **String**| Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. | [optional] |
+| **fields** | **String**| Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page. LinkedIn accepts at most 25. | [optional] [default to 25] |
 | **after** | **String**| paging.after of the previous page. | [optional] |
 
@@ -109,11 +109,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Archived ads (raw platform shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (legacy plans need the Ads add-on; included on usage-based plans), or &#x60;payment_required&#x60;: the billing owner has no payment method on file and no legacy paid plan. Searches are free; the card keeps the shared archive quota for real accounts. |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta and LinkedIn accounts |  -  |
 | **503** | Meta&#39;s Ad Library is unavailable on Zernio&#39;s side (&#x60;PLATFORM_DISABLED&#x60;); LinkedIn searches are unaffected. |  -  |
 
@@ -161,7 +162,7 @@ public class Example {
         LocalDate since = LocalDate.now(); // LocalDate | Earliest delivery date (YYYY-MM-DD).
         LocalDate until = LocalDate.now(); // LocalDate | Latest delivery date (YYYY-MM-DD).
         String searchType = "KEYWORD_UNORDERED"; // String | Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them).
-        String fields = "fields_example"; // String | Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads.
+        String fields = "id,page_name,ad_delivery_start_time,ad_creative_bodies"; // String | Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page. LinkedIn accepts at most 25.
         String after = "after_example"; // String | paging.after of the previous page.
         try {
@@ -199,7 +200,7 @@ public class Example {
 | **since** | **LocalDate**| Earliest delivery date (YYYY-MM-DD). | [optional] |
 | **until** | **LocalDate**| Latest delivery date (YYYY-MM-DD). | [optional] |
 | **searchType** | **String**| Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). | [optional] [default to KEYWORD_UNORDERED] [enum: KEYWORD_UNORDERED, KEYWORD_EXACT_PHRASE] |
-| **fields** | **String**| Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. | [optional] |
+| **fields** | **String**| Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page. LinkedIn accepts at most 25. | [optional] [default to 25] |
 | **after** | **String**| paging.after of the previous page. | [optional] |
 
@@ -220,11 +221,12 @@ ApiResponse<[**SearchAdLibrary200Response**](SearchAdLibrary200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Archived ads (raw platform shape) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (legacy plans need the Ads add-on; included on usage-based plans), or &#x60;payment_required&#x60;: the billing owner has no payment method on file and no legacy paid plan. Searches are free; the card keeps the shared archive quota for real accounts. |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta and LinkedIn accounts |  -  |
 | **503** | Meta&#39;s Ad Library is unavailable on Zernio&#39;s side (&#x60;PLATFORM_DISABLED&#x60;); LinkedIn searches are unaffected. |  -  |
 

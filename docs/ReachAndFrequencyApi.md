@@ -4,14 +4,14 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**cancelRfReservation**](ReachAndFrequencyApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation |
-| [**cancelRfReservationWithHttpInfo**](ReachAndFrequencyApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel a Reach &amp; Frequency reservation |
-| [**createRfPrediction**](ReachAndFrequencyApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction |
-| [**createRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create a Reach &amp; Frequency prediction |
-| [**getRfPrediction**](ReachAndFrequencyApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction |
-| [**getRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Read a Reach &amp; Frequency prediction |
-| [**reserveRfPrediction**](ReachAndFrequencyApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction |
-| [**reserveRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve a Reach &amp; Frequency prediction |
+| [**cancelRfReservation**](ReachAndFrequencyApi.md#cancelRfReservation) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel reach-frequency booking |
+| [**cancelRfReservationWithHttpInfo**](ReachAndFrequencyApi.md#cancelRfReservationWithHttpInfo) | **DELETE** /v1/ads/rf-predictions/{predictionId} | Cancel reach-frequency booking |
+| [**createRfPrediction**](ReachAndFrequencyApi.md#createRfPrediction) | **POST** /v1/ads/rf-predictions | Create reach-frequency prediction |
+| [**createRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#createRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions | Create reach-frequency prediction |
+| [**getRfPrediction**](ReachAndFrequencyApi.md#getRfPrediction) | **GET** /v1/ads/rf-predictions/{predictionId} | Get reach-frequency prediction |
+| [**getRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#getRfPredictionWithHttpInfo) | **GET** /v1/ads/rf-predictions/{predictionId} | Get reach-frequency prediction |
+| [**reserveRfPrediction**](ReachAndFrequencyApi.md#reserveRfPrediction) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve reach-frequency inventory |
+| [**reserveRfPredictionWithHttpInfo**](ReachAndFrequencyApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve reach-frequency inventory |
 
 
 
@@ -19,7 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 
 > void cancelRfReservation(predictionId, accountId, adAccountId)
 
-Cancel a Reach &amp; Frequency reservation
+Cancel reach-frequency booking
 
 Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
 
@@ -86,6 +86,8 @@ null (empty response body)
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Reservation cancelled |  -  |
 | **400** | Invalid input, or Meta rejected the cancel |  -  |
 | **401** | Unauthorized |  -  |
@@ -95,7 +97,7 @@ null (empty response body)
 
 > ApiResponse<Void> cancelRfReservation cancelRfReservationWithHttpInfo(predictionId, accountId, adAccountId)
 
-Cancel a Reach &amp; Frequency reservation
+Cancel reach-frequency booking
 
 Releases a RESERVATION&#39;s locked price and inventory. Unreserved predictions expire on their own.
 
@@ -165,6 +167,8 @@ ApiResponse<Void>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Reservation cancelled |  -  |
 | **400** | Invalid input, or Meta rejected the cancel |  -  |
 | **401** | Unauthorized |  -  |
@@ -175,7 +179,7 @@ ApiResponse<Void>
 
 > CreateRfPrediction201Response createRfPrediction(createRfPredictionRequest)
 
-Create a Reach &amp; Frequency prediction
+Create reach-frequency prediction
 
 Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
 
@@ -239,6 +243,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Prediction created (usually ready within seconds) |  -  |
 | **400** | Invalid input, or Meta rejected the prediction; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -249,7 +255,7 @@ public class Example {
 
 > ApiResponse<CreateRfPrediction201Response> createRfPrediction createRfPredictionWithHttpInfo(createRfPredictionRequest)
 
-Create a Reach &amp; Frequency prediction
+Create reach-frequency prediction
 
 Creates an R&amp;F prediction. This is a QUOTE, nothing is bought and no ad entities are created. Provide a date range plus exactly one of &#x60;budgetAmount&#x60; (Meta predicts reach) or &#x60;reach&#x60; (Meta predicts the budget). The response carries the estimate and its allowed bounds (min/max budget and reach). Predictions expire on their own; to buy, reserve one via POST /v1/ads/rf-predictions/{predictionId}/reserve and pass the RESERVED id to POST /v1/ads/create with &#x60;buyingType: \&quot;RESERVED\&quot;&#x60;.  Reservation campaigns reject automatic placements. Top-level &#x60;placements&#x60; wins; when it is omitted, &#x60;targeting.placements&#x60; is used; when neither is set, placements default to Facebook feed (+ Instagram stream when a linked IG professional account resolves). Instagram placements require that IG account.
 
@@ -316,6 +322,8 @@ ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Prediction created (usually ready within seconds) |  -  |
 | **400** | Invalid input, or Meta rejected the prediction; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -327,7 +335,7 @@ ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md
 
 > CreateRfPrediction201Response getRfPrediction(predictionId, accountId, adAccountId)
 
-Read a Reach &amp; Frequency prediction
+Get reach-frequency prediction
 
 ### Example
 
@@ -393,6 +401,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Prediction status and estimates |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
@@ -402,7 +412,7 @@ public class Example {
 
 > ApiResponse<CreateRfPrediction201Response> getRfPrediction getRfPredictionWithHttpInfo(predictionId, accountId, adAccountId)
 
-Read a Reach &amp; Frequency prediction
+Get reach-frequency prediction
 
 ### Example
 
@@ -471,6 +481,8 @@ ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Prediction status and estimates |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
@@ -481,7 +493,7 @@ ApiResponse<[**CreateRfPrediction201Response**](CreateRfPrediction201Response.md
 
 > ReserveRfPrediction201Response reserveRfPrediction(predictionId, reserveRfPredictionRequest)
 
-Reserve a Reach &amp; Frequency prediction
+Reserve reach-frequency inventory
 
 Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
 
@@ -547,6 +559,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
 | **400** | Invalid input, or Meta rejected the reserve |  -  |
 | **401** | Unauthorized |  -  |
@@ -556,7 +570,7 @@ public class Example {
 
 > ApiResponse<ReserveRfPrediction201Response> reserveRfPrediction reserveRfPredictionWithHttpInfo(predictionId, reserveRfPredictionRequest)
 
-Reserve a Reach &amp; Frequency prediction
+Reserve reach-frequency inventory
 
 Locks the quoted price + inventory until the returned &#x60;expiresAt&#x60; and mints a NEW prediction id. Pass that RESERVED id (not the original) as &#x60;rfPredictionId&#x60; on POST /v1/ads/create. Release an unused reservation via DELETE.
 
@@ -625,6 +639,8 @@ ApiResponse<[**ReserveRfPrediction201Response**](ReserveRfPrediction201Response.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Reserved; &#x60;prediction.predictionId&#x60; is the new RESERVED id |  -  |
 | **400** | Invalid input, or Meta rejected the reserve |  -  |
 | **401** | Unauthorized |  -  |

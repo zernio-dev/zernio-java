@@ -24,6 +24,7 @@ import dev.zernio.model.AddAdKeywords201Response;
 import dev.zernio.model.AddAdKeywordsRequest;
 import dev.zernio.model.AdsListResponse;
 import dev.zernio.model.AdsTimelineResponse;
+import dev.zernio.model.AttachAdGroupAssets201Response;
 import dev.zernio.model.AttachCampaignAssets201Response;
 import dev.zernio.model.AttachCampaignAssetsRequest;
 import java.math.BigDecimal;
@@ -60,14 +61,20 @@ import dev.zernio.model.GetCampaignTargeting200Response;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
 import dev.zernio.model.ListAdCampaigns200Response;
+import dev.zernio.model.ListAdGroupAssets200Response;
 import dev.zernio.model.ListAdKeywords200Response;
 import dev.zernio.model.ListAdNegativeKeywordLists200Response;
 import dev.zernio.model.ListAdSets200Response;
 import dev.zernio.model.ListAds202Response;
 import dev.zernio.model.ListBidStrategies200Response;
+import dev.zernio.model.ListCampaignAssets200Response;
 import dev.zernio.model.ListCampaignNegativeKeywords200Response;
+import dev.zernio.model.ListGoogleAssetGroups200Response;
 import java.time.LocalDate;
+import dev.zernio.model.RemoveAdGroupAssetsRequest;
 import dev.zernio.model.RemoveAdKeyword200Response;
+import dev.zernio.model.RemoveCampaignAssets200Response;
+import dev.zernio.model.RemoveCampaignAssetsRequest;
 import dev.zernio.model.ReplaceAdNegativeKeywordListKeywords200Response;
 import dev.zernio.model.ReplaceCampaignNegativeKeywordListsRequest;
 import dev.zernio.model.ReplaceCampaignNegativeKeywords200Response;
@@ -86,6 +93,8 @@ import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
 import dev.zernio.model.UpdateBidStrategy200Response;
 import dev.zernio.model.UpdateBidStrategyRequest;
+import dev.zernio.model.UpdateCampaignAssets200Response;
+import dev.zernio.model.UpdateCampaignAssetsRequest;
 import dev.zernio.model.UpdateCampaignTargeting200Response;
 import dev.zernio.model.UpdateCampaignTargetingRequest;
 
@@ -114,7 +123,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -232,7 +241,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Add Search keywords to an ad group
+   * Add Search ad-group keywords
    * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
    * @param addAdKeywordsRequest  (required)
    * @return AddAdKeywords201Response
@@ -243,7 +252,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Add Search keywords to an ad group
+   * Add Search ad-group keywords
    * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
    * @param addAdKeywordsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -256,7 +265,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Add Search keywords to an ad group
+   * Add Search ad-group keywords
    * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
    * @param addAdKeywordsRequest  (required)
    * @return ApiResponse&lt;AddAdKeywords201Response&gt;
@@ -267,7 +276,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Add Search keywords to an ad group
+   * Add Search ad-group keywords
    * Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
    * @param addAdKeywordsRequest  (required)
    * @param headers Optional headers to include in the request
@@ -355,9 +364,141 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Attach extension assets to a Google Search campaign
-   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
-   * @param campaignId Numeric Google platform campaign id. (required)
+   * Attach ad-group assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @return AttachAdGroupAssets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachAdGroupAssets201Response attachAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest) throws ApiException {
+    return attachAdGroupAssets(adSetId, attachCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Attach ad-group assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AttachAdGroupAssets201Response
+   * @throws ApiException if fails to make API call
+   */
+  public AttachAdGroupAssets201Response attachAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AttachAdGroupAssets201Response> localVarResponse = attachAdGroupAssetsWithHttpInfo(adSetId, attachCampaignAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Attach ad-group assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @return ApiResponse&lt;AttachAdGroupAssets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachAdGroupAssets201Response> attachAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest) throws ApiException {
+    return attachAdGroupAssetsWithHttpInfo(adSetId, attachCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Attach ad-group assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param attachCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AttachAdGroupAssets201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AttachAdGroupAssets201Response> attachAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = attachAdGroupAssetsRequestBuilder(adSetId, attachCampaignAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("attachAdGroupAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AttachAdGroupAssets201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AttachAdGroupAssets201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AttachAdGroupAssets201Response>() {});
+        
+
+        return new ApiResponse<AttachAdGroupAssets201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder attachAdGroupAssetsRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull AttachCampaignAssetsRequest attachCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling attachAdGroupAssets");
+    }
+    // verify the required parameter 'attachCampaignAssetsRequest' is set
+    if (attachCampaignAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'attachCampaignAssetsRequest' when calling attachAdGroupAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}/assets"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(attachCampaignAssetsRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Attach campaign assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param campaignId Numeric Google platform id. (required)
    * @param attachCampaignAssetsRequest  (required)
    * @return AttachCampaignAssets201Response
    * @throws ApiException if fails to make API call
@@ -367,9 +508,9 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Attach extension assets to a Google Search campaign
-   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
-   * @param campaignId Numeric Google platform campaign id. (required)
+   * Attach campaign assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param campaignId Numeric Google platform id. (required)
    * @param attachCampaignAssetsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return AttachCampaignAssets201Response
@@ -381,9 +522,9 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Attach extension assets to a Google Search campaign
-   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
-   * @param campaignId Numeric Google platform campaign id. (required)
+   * Attach campaign assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param campaignId Numeric Google platform id. (required)
    * @param attachCampaignAssetsRequest  (required)
    * @return ApiResponse&lt;AttachCampaignAssets201Response&gt;
    * @throws ApiException if fails to make API call
@@ -393,9 +534,9 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Attach extension assets to a Google Search campaign
-   * Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
-   * @param campaignId Numeric Google platform campaign id. (required)
+   * Attach campaign assets
+   * Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+   * @param campaignId Numeric Google platform id. (required)
    * @param attachCampaignAssetsRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;AttachCampaignAssets201Response&gt;
@@ -1000,7 +1141,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Create a Google Ads portfolio bid strategy
+   * Create portfolio bid strategy
    * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
    * @param createBidStrategyRequest  (required)
    * @return CreateBidStrategy201Response
@@ -1011,7 +1152,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Create a Google Ads portfolio bid strategy
+   * Create portfolio bid strategy
    * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
    * @param createBidStrategyRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1024,7 +1165,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Create a Google Ads portfolio bid strategy
+   * Create portfolio bid strategy
    * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
    * @param createBidStrategyRequest  (required)
    * @return ApiResponse&lt;CreateBidStrategy201Response&gt;
@@ -1035,7 +1176,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Create a Google Ads portfolio bid strategy
+   * Create portfolio bid strategy
    * Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
    * @param createBidStrategyRequest  (required)
    * @param headers Optional headers to include in the request
@@ -1124,7 +1265,7 @@ public class AdCampaignsApi {
 
   /**
    * Create standalone ad
-   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
    * @param createStandaloneAdRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return CreateStandaloneAd200Response
@@ -1136,7 +1277,7 @@ public class AdCampaignsApi {
 
   /**
    * Create standalone ad
-   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
    * @param createStandaloneAdRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
@@ -1150,7 +1291,7 @@ public class AdCampaignsApi {
 
   /**
    * Create standalone ad
-   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
    * @param createStandaloneAdRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @return ApiResponse&lt;CreateStandaloneAd200Response&gt;
@@ -1162,7 +1303,7 @@ public class AdCampaignsApi {
 
   /**
    * Create standalone ad
-   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+   * Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
    * @param createStandaloneAdRequest  (required)
    * @param idempotencyKey Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. (optional)
    * @param headers Optional headers to include in the request
@@ -2035,53 +2176,49 @@ public class AdCampaignsApi {
 
   /**
    * Get ad details
-   * Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+   * Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  (required)
-   * @param refreshPromotion Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. (optional, default to false)
    * @return GetAd200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAd200Response getAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Boolean refreshPromotion) throws ApiException {
-    return getAd(adId, refreshPromotion, null);
+  public GetAd200Response getAd(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAd(adId, null);
   }
 
   /**
    * Get ad details
-   * Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+   * Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  (required)
-   * @param refreshPromotion Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return GetAd200Response
    * @throws ApiException if fails to make API call
    */
-  public GetAd200Response getAd(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Boolean refreshPromotion, Map<String, String> headers) throws ApiException {
-    ApiResponse<GetAd200Response> localVarResponse = getAdWithHttpInfo(adId, refreshPromotion, headers);
+  public GetAd200Response getAd(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAd200Response> localVarResponse = getAdWithHttpInfo(adId, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Get ad details
-   * Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+   * Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  (required)
-   * @param refreshPromotion Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. (optional, default to false)
    * @return ApiResponse&lt;GetAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAd200Response> getAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Boolean refreshPromotion) throws ApiException {
-    return getAdWithHttpInfo(adId, refreshPromotion, null);
+  public ApiResponse<GetAd200Response> getAdWithHttpInfo(@javax.annotation.Nonnull String adId) throws ApiException {
+    return getAdWithHttpInfo(adId, null);
   }
 
   /**
    * Get ad details
-   * Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+   * Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
    * @param adId Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  (required)
-   * @param refreshPromotion Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. (optional, default to false)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAd200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<GetAd200Response> getAdWithHttpInfo(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Boolean refreshPromotion, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = getAdRequestBuilder(adId, refreshPromotion, headers);
+  public ApiResponse<GetAd200Response> getAdWithHttpInfo(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdRequestBuilder(adId, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -2128,7 +2265,7 @@ public class AdCampaignsApi {
     }
   }
 
-  private HttpRequest.Builder getAdRequestBuilder(@javax.annotation.Nonnull String adId, @javax.annotation.Nullable Boolean refreshPromotion, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder getAdRequestBuilder(@javax.annotation.Nonnull String adId, Map<String, String> headers) throws ApiException {
     // verify the required parameter 'adId' is set
     if (adId == null) {
       throw new ApiException(400, "Missing the required parameter 'adId' when calling getAd");
@@ -2139,22 +2276,7 @@ public class AdCampaignsApi {
     String localVarPath = "/v1/ads/{adId}"
         .replace("{adId}", ApiClient.urlEncode(adId.toString()));
 
-    List<Pair> localVarQueryParams = new ArrayList<>();
-    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
-    String localVarQueryParameterBaseName;
-    localVarQueryParameterBaseName = "refreshPromotion";
-    localVarQueryParams.addAll(ApiClient.parameterToPairs("refreshPromotion", refreshPromotion));
-
-    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
-      StringJoiner queryJoiner = new StringJoiner("&");
-      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
-      if (localVarQueryStringJoiner.length() != 0) {
-        queryJoiner.add(localVarQueryStringJoiner.toString());
-      }
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
-    } else {
-      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
-    }
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 
@@ -2171,11 +2293,11 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Live ad-set details incl. learning phase
+   * Get live ad-set details
    * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
    * @param adSetId Meta ad set id (platformAdSetId). (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @return GetAdSetDetails200Response
    * @throws ApiException if fails to make API call
    */
@@ -2184,11 +2306,11 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Live ad-set details incl. learning phase
+   * Get live ad-set details
    * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
    * @param adSetId Meta ad set id (platformAdSetId). (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdSetDetails200Response
    * @throws ApiException if fails to make API call
@@ -2199,11 +2321,11 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Live ad-set details incl. learning phase
+   * Get live ad-set details
    * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
    * @param adSetId Meta ad set id (platformAdSetId). (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @return ApiResponse&lt;GetAdSetDetails200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -2212,11 +2334,11 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Live ad-set details incl. learning phase
+   * Get live ad-set details
    * Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
    * @param adSetId Meta ad set id (platformAdSetId). (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdSetDetails200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2856,7 +2978,7 @@ public class AdCampaignsApi {
 
   /**
    * Read a Google campaign&#39;s device, location, and language targeting
-   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
    * @param campaignId Google platform campaign ID (required)
    * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
    * @return GetCampaignTargeting200Response
@@ -2868,7 +2990,7 @@ public class AdCampaignsApi {
 
   /**
    * Read a Google campaign&#39;s device, location, and language targeting
-   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
    * @param campaignId Google platform campaign ID (required)
    * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
    * @param headers Optional headers to include in the request
@@ -2882,7 +3004,7 @@ public class AdCampaignsApi {
 
   /**
    * Read a Google campaign&#39;s device, location, and language targeting
-   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
    * @param campaignId Google platform campaign ID (required)
    * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
    * @return ApiResponse&lt;GetCampaignTargeting200Response&gt;
@@ -2894,7 +3016,7 @@ public class AdCampaignsApi {
 
   /**
    * Read a Google campaign&#39;s device, location, and language targeting
-   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+   * Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
    * @param campaignId Google platform campaign ID (required)
    * @param platform Disambiguates when the same campaignId string exists on more than one connected platform. (optional)
    * @param headers Optional headers to include in the request
@@ -3171,6 +3293,153 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("hasDelivery", hasDelivery));
     localVarQueryParameterBaseName = "minSpend";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("minSpend", minSpend));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List ad-group assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ListAdGroupAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdGroupAssets200Response listAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAdGroupAssets(adSetId, accountId, customerId, null);
+  }
+
+  /**
+   * List ad-group assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListAdGroupAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListAdGroupAssets200Response listAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListAdGroupAssets200Response> localVarResponse = listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List ad-group assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ApiResponse&lt;ListAdGroupAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdGroupAssets200Response> listAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId, null);
+  }
+
+  /**
+   * List ad-group assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListAdGroupAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListAdGroupAssets200Response> listAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listAdGroupAssetsRequestBuilder(adSetId, accountId, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listAdGroupAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListAdGroupAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListAdGroupAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListAdGroupAssets200Response>() {});
+        
+
+        return new ApiResponse<ListAdGroupAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listAdGroupAssetsRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling listAdGroupAssets");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listAdGroupAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}/assets"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -3744,7 +4013,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * List Google Ads portfolio bid strategies
+   * List portfolio bid strategies
    * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
@@ -3758,7 +4027,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * List Google Ads portfolio bid strategies
+   * List portfolio bid strategies
    * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
@@ -3774,7 +4043,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * List Google Ads portfolio bid strategies
+   * List portfolio bid strategies
    * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
@@ -3788,7 +4057,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * List Google Ads portfolio bid strategies
+   * List portfolio bid strategies
    * Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
    * @param accountId Google ads SocialAccount id. (required)
    * @param customerId Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. (optional)
@@ -3867,6 +4136,153 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
     localVarQueryParameterBaseName = "toDate";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List campaign assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ListCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCampaignAssets200Response listCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listCampaignAssets(campaignId, accountId, customerId, null);
+  }
+
+  /**
+   * List campaign assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListCampaignAssets200Response listCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListCampaignAssets200Response> localVarResponse = listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List campaign assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @return ApiResponse&lt;ListCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCampaignAssets200Response> listCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId) throws ApiException {
+    return listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId, null);
+  }
+
+  /**
+   * List campaign assets
+   * Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param accountId  (required)
+   * @param customerId  (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListCampaignAssets200Response> listCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listCampaignAssetsRequestBuilder(campaignId, accountId, customerId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listCampaignAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListCampaignAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListCampaignAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListCampaignAssets200Response>() {});
+        
+
+        return new ApiResponse<ListCampaignAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listCampaignAssetsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String customerId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling listCampaignAssets");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listCampaignAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/assets"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "customerId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("customerId", customerId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -4168,6 +4584,256 @@ public class AdCampaignsApi {
   }
 
   /**
+   * List Performance Max asset groups
+   * Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+   * @param campaignId Google Ads campaign id. (required)
+   * @return ListGoogleAssetGroups200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListGoogleAssetGroups200Response listGoogleAssetGroups(@javax.annotation.Nonnull String campaignId) throws ApiException {
+    return listGoogleAssetGroups(campaignId, null);
+  }
+
+  /**
+   * List Performance Max asset groups
+   * Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+   * @param campaignId Google Ads campaign id. (required)
+   * @param headers Optional headers to include in the request
+   * @return ListGoogleAssetGroups200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListGoogleAssetGroups200Response listGoogleAssetGroups(@javax.annotation.Nonnull String campaignId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListGoogleAssetGroups200Response> localVarResponse = listGoogleAssetGroupsWithHttpInfo(campaignId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List Performance Max asset groups
+   * Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+   * @param campaignId Google Ads campaign id. (required)
+   * @return ApiResponse&lt;ListGoogleAssetGroups200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListGoogleAssetGroups200Response> listGoogleAssetGroupsWithHttpInfo(@javax.annotation.Nonnull String campaignId) throws ApiException {
+    return listGoogleAssetGroupsWithHttpInfo(campaignId, null);
+  }
+
+  /**
+   * List Performance Max asset groups
+   * Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+   * @param campaignId Google Ads campaign id. (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListGoogleAssetGroups200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListGoogleAssetGroups200Response> listGoogleAssetGroupsWithHttpInfo(@javax.annotation.Nonnull String campaignId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listGoogleAssetGroupsRequestBuilder(campaignId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listGoogleAssetGroups", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListGoogleAssetGroups200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListGoogleAssetGroups200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListGoogleAssetGroups200Response>() {});
+        
+
+        return new ApiResponse<ListGoogleAssetGroups200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listGoogleAssetGroupsRequestBuilder(@javax.annotation.Nonnull String campaignId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling listGoogleAssetGroups");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/asset-groups"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove ad-group assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param removeAdGroupAssetsRequest  (required)
+   * @return RemoveCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveCampaignAssets200Response removeAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest) throws ApiException {
+    return removeAdGroupAssets(adSetId, removeAdGroupAssetsRequest, null);
+  }
+
+  /**
+   * Remove ad-group assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param removeAdGroupAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveCampaignAssets200Response removeAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveCampaignAssets200Response> localVarResponse = removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove ad-group assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param removeAdGroupAssetsRequest  (required)
+   * @return ApiResponse&lt;RemoveCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveCampaignAssets200Response> removeAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest) throws ApiException {
+    return removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest, null);
+  }
+
+  /**
+   * Remove ad-group assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param removeAdGroupAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveCampaignAssets200Response> removeAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeAdGroupAssetsRequestBuilder(adSetId, removeAdGroupAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeAdGroupAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveCampaignAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveCampaignAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveCampaignAssets200Response>() {});
+        
+
+        return new ApiResponse<RemoveCampaignAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeAdGroupAssetsRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling removeAdGroupAssets");
+    }
+    // verify the required parameter 'removeAdGroupAssetsRequest' is set
+    if (removeAdGroupAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'removeAdGroupAssetsRequest' when calling removeAdGroupAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}/assets"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(removeAdGroupAssetsRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Remove a Search keyword
    * Removes one keyword criterion (positive or negative) from its ad group (M.140).
    * @param keywordId Zernio keyword ID (not the Google criterion ID) (required)
@@ -4274,6 +4940,138 @@ public class AdCampaignsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove campaign assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param removeCampaignAssetsRequest  (required)
+   * @return RemoveCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveCampaignAssets200Response removeCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull RemoveCampaignAssetsRequest removeCampaignAssetsRequest) throws ApiException {
+    return removeCampaignAssets(campaignId, removeCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Remove campaign assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param removeCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveCampaignAssets200Response removeCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull RemoveCampaignAssetsRequest removeCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveCampaignAssets200Response> localVarResponse = removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove campaign assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param removeCampaignAssetsRequest  (required)
+   * @return ApiResponse&lt;RemoveCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveCampaignAssets200Response> removeCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull RemoveCampaignAssetsRequest removeCampaignAssetsRequest) throws ApiException {
+    return removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Remove campaign assets
+   * Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param removeCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveCampaignAssets200Response> removeCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull RemoveCampaignAssetsRequest removeCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeCampaignAssetsRequestBuilder(campaignId, removeCampaignAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeCampaignAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveCampaignAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveCampaignAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveCampaignAssets200Response>() {});
+        
+
+        return new ApiResponse<RemoveCampaignAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeCampaignAssetsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull RemoveCampaignAssetsRequest removeCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling removeCampaignAssets");
+    }
+    // verify the required parameter 'removeCampaignAssetsRequest' is set
+    if (removeCampaignAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'removeCampaignAssetsRequest' when calling removeCampaignAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/assets"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(removeCampaignAssetsRequest);
+      localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -4551,7 +5349,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @return UpdateAd200Response
@@ -4563,7 +5361,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4577,7 +5375,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @return ApiResponse&lt;UpdateAd200Response&gt;
@@ -4589,7 +5387,7 @@ public class AdCampaignsApi {
 
   /**
    * Update ad
-   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+   * Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
    * @param adId  (required)
    * @param updateAdRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4683,7 +5481,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return UpdateAdCampaign200Response
@@ -4695,7 +5493,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4709,7 +5507,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @return ApiResponse&lt;UpdateAdCampaign200Response&gt;
@@ -4721,7 +5519,7 @@ public class AdCampaignsApi {
 
   /**
    * Update a campaign
-   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+   * Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4815,7 +5613,7 @@ public class AdCampaignsApi {
 
   /**
    * Pause or resume a campaign
-   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignStatusRequest  (required)
    * @return UpdateAdCampaignStatus200Response
@@ -4827,7 +5625,7 @@ public class AdCampaignsApi {
 
   /**
    * Pause or resume a campaign
-   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignStatusRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4841,7 +5639,7 @@ public class AdCampaignsApi {
 
   /**
    * Pause or resume a campaign
-   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignStatusRequest  (required)
    * @return ApiResponse&lt;UpdateAdCampaignStatus200Response&gt;
@@ -4853,7 +5651,7 @@ public class AdCampaignsApi {
 
   /**
    * Pause or resume a campaign
-   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+   * Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
    * @param campaignId Platform campaign ID (required)
    * @param updateAdCampaignStatusRequest  (required)
    * @param headers Optional headers to include in the request
@@ -4930,6 +5728,138 @@ public class AdCampaignsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateAdCampaignStatusRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Update ad-group assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @return UpdateCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAssets200Response updateAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest) throws ApiException {
+    return updateAdGroupAssets(adSetId, updateCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Update ad-group assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAssets200Response updateAdGroupAssets(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCampaignAssets200Response> localVarResponse = updateAdGroupAssetsWithHttpInfo(adSetId, updateCampaignAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update ad-group assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @return ApiResponse&lt;UpdateCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAssets200Response> updateAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest) throws ApiException {
+    return updateAdGroupAssetsWithHttpInfo(adSetId, updateCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Update ad-group assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param adSetId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAssets200Response> updateAdGroupAssetsWithHttpInfo(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateAdGroupAssetsRequestBuilder(adSetId, updateCampaignAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateAdGroupAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCampaignAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCampaignAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCampaignAssets200Response>() {});
+        
+
+        return new ApiResponse<UpdateCampaignAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateAdGroupAssetsRequestBuilder(@javax.annotation.Nonnull String adSetId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'adSetId' is set
+    if (adSetId == null) {
+      throw new ApiException(400, "Missing the required parameter 'adSetId' when calling updateAdGroupAssets");
+    }
+    // verify the required parameter 'updateCampaignAssetsRequest' is set
+    if (updateCampaignAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCampaignAssetsRequest' when calling updateAdGroupAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/ad-sets/{adSetId}/assets"
+        .replace("{adSetId}", ApiClient.urlEncode(adSetId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateCampaignAssetsRequest);
       localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -5474,7 +6404,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a Google Ads portfolio bid strategy
+   * Update portfolio bid strategy
    * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
    * @param strategyId Numeric Google Ads bid strategy id. (required)
    * @param updateBidStrategyRequest  (required)
@@ -5486,7 +6416,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a Google Ads portfolio bid strategy
+   * Update portfolio bid strategy
    * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
    * @param strategyId Numeric Google Ads bid strategy id. (required)
    * @param updateBidStrategyRequest  (required)
@@ -5500,7 +6430,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a Google Ads portfolio bid strategy
+   * Update portfolio bid strategy
    * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
    * @param strategyId Numeric Google Ads bid strategy id. (required)
    * @param updateBidStrategyRequest  (required)
@@ -5512,7 +6442,7 @@ public class AdCampaignsApi {
   }
 
   /**
-   * Update a Google Ads portfolio bid strategy
+   * Update portfolio bid strategy
    * Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
    * @param strategyId Numeric Google Ads bid strategy id. (required)
    * @param updateBidStrategyRequest  (required)
@@ -5606,8 +6536,140 @@ public class AdCampaignsApi {
   }
 
   /**
+   * Update campaign assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @return UpdateCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAssets200Response updateCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest) throws ApiException {
+    return updateCampaignAssets(campaignId, updateCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Update campaign assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateCampaignAssets200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAssets200Response updateCampaignAssets(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCampaignAssets200Response> localVarResponse = updateCampaignAssetsWithHttpInfo(campaignId, updateCampaignAssetsRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Update campaign assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @return ApiResponse&lt;UpdateCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAssets200Response> updateCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest) throws ApiException {
+    return updateCampaignAssetsWithHttpInfo(campaignId, updateCampaignAssetsRequest, null);
+  }
+
+  /**
+   * Update campaign assets
+   * Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+   * @param campaignId Numeric Google platform id. (required)
+   * @param updateCampaignAssetsRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateCampaignAssets200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAssets200Response> updateCampaignAssetsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateCampaignAssetsRequestBuilder(campaignId, updateCampaignAssetsRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateCampaignAssets", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCampaignAssets200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCampaignAssets200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCampaignAssets200Response>() {});
+        
+
+        return new ApiResponse<UpdateCampaignAssets200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateCampaignAssetsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAssetsRequest updateCampaignAssetsRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling updateCampaignAssets");
+    }
+    // verify the required parameter 'updateCampaignAssetsRequest' is set
+    if (updateCampaignAssetsRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCampaignAssetsRequest' when calling updateCampaignAssets");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/assets"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateCampaignAssetsRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Edit a Google campaign&#39;s device, location, or language targeting
-   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
    * @param campaignId Google platform campaign ID (required)
    * @param updateCampaignTargetingRequest  (required)
    * @return UpdateCampaignTargeting200Response
@@ -5619,7 +6681,7 @@ public class AdCampaignsApi {
 
   /**
    * Edit a Google campaign&#39;s device, location, or language targeting
-   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
    * @param campaignId Google platform campaign ID (required)
    * @param updateCampaignTargetingRequest  (required)
    * @param headers Optional headers to include in the request
@@ -5633,7 +6695,7 @@ public class AdCampaignsApi {
 
   /**
    * Edit a Google campaign&#39;s device, location, or language targeting
-   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
    * @param campaignId Google platform campaign ID (required)
    * @param updateCampaignTargetingRequest  (required)
    * @return ApiResponse&lt;UpdateCampaignTargeting200Response&gt;
@@ -5645,7 +6707,7 @@ public class AdCampaignsApi {
 
   /**
    * Edit a Google campaign&#39;s device, location, or language targeting
-   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+   * Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
    * @param campaignId Google platform campaign ID (required)
    * @param updateCampaignTargetingRequest  (required)
    * @param headers Optional headers to include in the request

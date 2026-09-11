@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RemoveAccountCalloutRequest.JSON_PROPERTY_CUSTOMER_ID,
   RemoveAccountCalloutRequest.JSON_PROPERTY_ASSET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveAccountCalloutRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -60,7 +60,7 @@ public class RemoveAccountCalloutRequest {
   }
 
   /**
-   * Zernio SocialAccount id owning the Google Ads connection.
+   * Zernio Google Ads connection id.
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -84,7 +84,7 @@ public class RemoveAccountCalloutRequest {
   }
 
   /**
-   * Numeric Google Ads customer id. Only required when the connection has more than one.
+   * Google customer id without dashes. Required when the connection has multiple customers.
    * @return customerId
    */
   @javax.annotation.Nullable
@@ -108,7 +108,7 @@ public class RemoveAccountCalloutRequest {
   }
 
   /**
-   * Numeric asset id from GET /v1/ads/accounts/callouts.
+   * Get assetId
    * @return assetId
    */
   @javax.annotation.Nonnull

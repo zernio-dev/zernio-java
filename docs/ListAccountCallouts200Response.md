@@ -9,8 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**customerId** | **String** |  |  [optional] |
 |**callouts** | [**List&lt;ListAccountCallouts200ResponseCalloutsInner&gt;**](ListAccountCallouts200ResponseCalloutsInner.md) |  |  [optional] |
-|**cachedAt** | **OffsetDateTime** | When this list was fetched from Google. Null when it was never served from cache. |  [optional] |
-|**stale** | **Boolean** | True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read. |  [optional] |
+|**cachedAt** | **OffsetDateTime** | Time of the cached Google read. Null when no cache was used. |  [optional] |
+|**stale** | **Boolean** | True when exhausted quota required returning the last successful read. |  [optional] |
 
 
 

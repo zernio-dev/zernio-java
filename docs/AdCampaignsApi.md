@@ -4,10 +4,12 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addAdKeywords**](AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search keywords to an ad group |
-| [**addAdKeywordsWithHttpInfo**](AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search keywords to an ad group |
-| [**attachCampaignAssets**](AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign |
-| [**attachCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#attachCampaignAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach extension assets to a Google Search campaign |
+| [**addAdKeywords**](AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
+| [**addAdKeywordsWithHttpInfo**](AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
+| [**attachAdGroupAssets**](AdCampaignsApi.md#attachAdGroupAssets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
+| [**attachAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#attachAdGroupAssetsWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
+| [**attachCampaignAssets**](AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets |
+| [**attachCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#attachCampaignAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets |
 | [**boostPost**](AdCampaignsApi.md#boostPost) | **POST** /v1/ads/boost | Boost post as ad |
 | [**boostPostWithHttpInfo**](AdCampaignsApi.md#boostPostWithHttpInfo) | **POST** /v1/ads/boost | Boost post as ad |
 | [**bulkUpdateAdCampaignStatus**](AdCampaignsApi.md#bulkUpdateAdCampaignStatus) | **POST** /v1/ads/campaigns/bulk-status | Pause or resume many campaigns |
@@ -16,8 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createAdCampaignWithHttpInfo**](AdCampaignsApi.md#createAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns | Create a standalone campaign |
 | [**createAdSet**](AdCampaignsApi.md#createAdSet) | **POST** /v1/ads/ad-sets | Create a standalone ad group |
 | [**createAdSetWithHttpInfo**](AdCampaignsApi.md#createAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets | Create a standalone ad group |
-| [**createBidStrategy**](AdCampaignsApi.md#createBidStrategy) | **POST** /v1/ads/bid-strategies | Create a Google Ads portfolio bid strategy |
-| [**createBidStrategyWithHttpInfo**](AdCampaignsApi.md#createBidStrategyWithHttpInfo) | **POST** /v1/ads/bid-strategies | Create a Google Ads portfolio bid strategy |
+| [**createBidStrategy**](AdCampaignsApi.md#createBidStrategy) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy |
+| [**createBidStrategyWithHttpInfo**](AdCampaignsApi.md#createBidStrategyWithHttpInfo) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy |
 | [**createStandaloneAd**](AdCampaignsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdCampaignsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
 | [**deleteAd**](AdCampaignsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad |
@@ -34,8 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**duplicateAdSetWithHttpInfo**](AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
 | [**getAd**](AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
-| [**getAdSetDetails**](AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase |
-| [**getAdSetDetailsWithHttpInfo**](AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Live ad-set details incl. learning phase |
+| [**getAdSetDetails**](AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
+| [**getAdSetDetailsWithHttpInfo**](AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
@@ -46,20 +48,30 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCampaignTargetingWithHttpInfo**](AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
+| [**listAdGroupAssets**](AdCampaignsApi.md#listAdGroupAssets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets |
+| [**listAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#listAdGroupAssetsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets |
 | [**listAdKeywords**](AdCampaignsApi.md#listAdKeywords) | **GET** /v1/ads/keywords | List Search keywords |
 | [**listAdKeywordsWithHttpInfo**](AdCampaignsApi.md#listAdKeywordsWithHttpInfo) | **GET** /v1/ads/keywords | List Search keywords |
 | [**listAdSets**](AdCampaignsApi.md#listAdSets) | **GET** /v1/ads/ad-sets | List ad sets |
 | [**listAdSetsWithHttpInfo**](AdCampaignsApi.md#listAdSetsWithHttpInfo) | **GET** /v1/ads/ad-sets | List ad sets |
 | [**listAds**](AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
-| [**listBidStrategies**](AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List Google Ads portfolio bid strategies |
-| [**listBidStrategiesWithHttpInfo**](AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List Google Ads portfolio bid strategies |
+| [**listBidStrategies**](AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
+| [**listBidStrategiesWithHttpInfo**](AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
+| [**listCampaignAssets**](AdCampaignsApi.md#listCampaignAssets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets |
+| [**listCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#listCampaignAssetsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets |
 | [**listCampaignNegativeKeywordLists**](AdCampaignsApi.md#listCampaignNegativeKeywordLists) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists |
 | [**listCampaignNegativeKeywordListsWithHttpInfo**](AdCampaignsApi.md#listCampaignNegativeKeywordListsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | List campaign negative lists |
 | [**listCampaignNegativeKeywords**](AdCampaignsApi.md#listCampaignNegativeKeywords) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
 | [**listCampaignNegativeKeywordsWithHttpInfo**](AdCampaignsApi.md#listCampaignNegativeKeywordsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
+| [**listGoogleAssetGroups**](AdCampaignsApi.md#listGoogleAssetGroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
+| [**listGoogleAssetGroupsWithHttpInfo**](AdCampaignsApi.md#listGoogleAssetGroupsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
+| [**removeAdGroupAssets**](AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
+| [**removeAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**removeAdKeyword**](AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**removeAdKeywordWithHttpInfo**](AdCampaignsApi.md#removeAdKeywordWithHttpInfo) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
+| [**removeCampaignAssets**](AdCampaignsApi.md#removeCampaignAssets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
+| [**removeCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#removeCampaignAssetsWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
 | [**replaceCampaignNegativeKeywordLists**](AdCampaignsApi.md#replaceCampaignNegativeKeywordLists) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists |
 | [**replaceCampaignNegativeKeywordListsWithHttpInfo**](AdCampaignsApi.md#replaceCampaignNegativeKeywordListsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists |
 | [**replaceCampaignNegativeKeywords**](AdCampaignsApi.md#replaceCampaignNegativeKeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
@@ -70,6 +82,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdCampaignWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
 | [**updateAdCampaignStatus**](AdCampaignsApi.md#updateAdCampaignStatus) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
 | [**updateAdCampaignStatusWithHttpInfo**](AdCampaignsApi.md#updateAdCampaignStatusWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/status | Pause or resume a campaign |
+| [**updateAdGroupAssets**](AdCampaignsApi.md#updateAdGroupAssets) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets |
+| [**updateAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#updateAdGroupAssetsWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/assets | Update ad-group assets |
 | [**updateAdKeyword**](AdCampaignsApi.md#updateAdKeyword) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
 | [**updateAdKeywordWithHttpInfo**](AdCampaignsApi.md#updateAdKeywordWithHttpInfo) | **PATCH** /v1/ads/keywords/{keywordId} | Pause or enable a Search keyword |
 | [**updateAdSet**](AdCampaignsApi.md#updateAdSet) | **PUT** /v1/ads/ad-sets/{adSetId} | Update an ad set |
@@ -78,8 +92,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdSetStatusWithHttpInfo**](AdCampaignsApi.md#updateAdSetStatusWithHttpInfo) | **PUT** /v1/ads/ad-sets/{adSetId}/status | Pause or resume a single ad set |
 | [**updateAdStatus**](AdCampaignsApi.md#updateAdStatus) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateAdStatusWithHttpInfo**](AdCampaignsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
-| [**updateBidStrategy**](AdCampaignsApi.md#updateBidStrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update a Google Ads portfolio bid strategy |
-| [**updateBidStrategyWithHttpInfo**](AdCampaignsApi.md#updateBidStrategyWithHttpInfo) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update a Google Ads portfolio bid strategy |
+| [**updateBidStrategy**](AdCampaignsApi.md#updateBidStrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy |
+| [**updateBidStrategyWithHttpInfo**](AdCampaignsApi.md#updateBidStrategyWithHttpInfo) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy |
+| [**updateCampaignAssets**](AdCampaignsApi.md#updateCampaignAssets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
+| [**updateCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
 | [**updateCampaignTargeting**](AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
 | [**updateCampaignTargetingWithHttpInfo**](AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
 
@@ -89,7 +105,7 @@ All URIs are relative to *https://zernio.com/api*
 
 > AddAdKeywords201Response addAdKeywords(addAdKeywordsRequest)
 
-Add Search keywords to an ad group
+Add Search ad-group keywords
 
 Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
 
@@ -153,17 +169,18 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Keywords added |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | The ad group (\&quot;adSetId\&quot;) was not found for this account. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
 ## addAdKeywordsWithHttpInfo
 
 > ApiResponse<AddAdKeywords201Response> addAdKeywords addAdKeywordsWithHttpInfo(addAdKeywordsRequest)
 
-Add Search keywords to an ad group
+Add Search ad-group keywords
 
 Adds one or more keyword criteria to an existing Google Search ad group, without touching the keywords already there (unlike the whole-set diff on &#x60;PUT /v1/ads/{adId}&#x60;, &#x60;keywords&#x60;/&#x60;negativeKeywords&#x60; in &#x60;platformSpecificData&#x60;, which replaces the set). Set &#x60;negative: true&#x60; to add ad-group-level negatives instead of positive keywords. 
 
@@ -230,20 +247,21 @@ ApiResponse<[**AddAdKeywords201Response**](AddAdKeywords201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Keywords added |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | The ad group (\&quot;adSetId\&quot;) was not found for this account. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
 
-## attachCampaignAssets
+## attachAdGroupAssets
 
-> AttachCampaignAssets201Response attachCampaignAssets(campaignId, attachCampaignAssetsRequest)
+> AttachAdGroupAssets201Response attachAdGroupAssets(adSetId, attachCampaignAssetsRequest)
 
-Attach extension assets to a Google Search campaign
+Attach ad-group assets
 
-Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
 
 ### Example
 
@@ -266,13 +284,13 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
         AttachCampaignAssetsRequest attachCampaignAssetsRequest = new AttachCampaignAssetsRequest(); // AttachCampaignAssetsRequest | 
         try {
-            AttachCampaignAssets201Response result = apiInstance.attachCampaignAssets(campaignId, attachCampaignAssetsRequest);
+            AttachAdGroupAssets201Response result = apiInstance.attachAdGroupAssets(adSetId, attachCampaignAssetsRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling AdCampaignsApi#attachCampaignAssets");
+            System.err.println("Exception when calling AdCampaignsApi#attachAdGroupAssets");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -287,12 +305,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **adSetId** | **String**| Numeric Google platform id. | |
 | **attachCampaignAssetsRequest** | [**AttachCampaignAssetsRequest**](AttachCampaignAssetsRequest.md)|  | |
 
 ### Return type
 
-[**AttachCampaignAssets201Response**](AttachCampaignAssets201Response.md)
+[**AttachAdGroupAssets201Response**](AttachAdGroupAssets201Response.md)
 
 
 ### Authorization
@@ -307,20 +325,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Assets attached |  -  |
-| **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
-## attachCampaignAssetsWithHttpInfo
+## attachAdGroupAssetsWithHttpInfo
 
-> ApiResponse<AttachCampaignAssets201Response> attachCampaignAssets attachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest)
+> ApiResponse<AttachAdGroupAssets201Response> attachAdGroupAssets attachAdGroupAssetsWithHttpInfo(adSetId, attachCampaignAssetsRequest)
 
-Attach extension assets to a Google Search campaign
+Attach ad-group assets
 
-Attach sitelinks, callouts and/or structured snippets to an already-existing Google Search campaign. These are the same builders POST /v1/ads/create uses, but without rebuilding the hierarchy. At least one of sitelinks, callouts or structuredSnippets is required.  Google-only. Other platforms have no equivalent extension surface and return 501.  Approval status is Google-async; poll &#x60;asset.policy_summary&#x60; after review. Assets stay in the account library even if the campaign is later deleted.
+Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
 
 ### Example
 
@@ -344,7 +364,169 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        AttachCampaignAssetsRequest attachCampaignAssetsRequest = new AttachCampaignAssetsRequest(); // AttachCampaignAssetsRequest | 
+        try {
+            ApiResponse<AttachAdGroupAssets201Response> response = apiInstance.attachAdGroupAssetsWithHttpInfo(adSetId, attachCampaignAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#attachAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **attachCampaignAssetsRequest** | [**AttachCampaignAssetsRequest**](AttachCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AttachAdGroupAssets201Response**](AttachAdGroupAssets201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## attachCampaignAssets
+
+> AttachCampaignAssets201Response attachCampaignAssets(campaignId, attachCampaignAssetsRequest)
+
+Attach campaign assets
+
+Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        AttachCampaignAssetsRequest attachCampaignAssetsRequest = new AttachCampaignAssetsRequest(); // AttachCampaignAssetsRequest | 
+        try {
+            AttachCampaignAssets201Response result = apiInstance.attachCampaignAssets(campaignId, attachCampaignAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#attachCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **attachCampaignAssetsRequest** | [**AttachCampaignAssetsRequest**](AttachCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+[**AttachCampaignAssets201Response**](AttachCampaignAssets201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## attachCampaignAssetsWithHttpInfo
+
+> ApiResponse<AttachCampaignAssets201Response> attachCampaignAssets attachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest)
+
+Attach campaign assets
+
+Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
         AttachCampaignAssetsRequest attachCampaignAssetsRequest = new AttachCampaignAssetsRequest(); // AttachCampaignAssetsRequest | 
         try {
             ApiResponse<AttachCampaignAssets201Response> response = apiInstance.attachCampaignAssetsWithHttpInfo(campaignId, attachCampaignAssetsRequest);
@@ -367,7 +549,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **campaignId** | **String**| Numeric Google platform id. | |
 | **attachCampaignAssetsRequest** | [**AttachCampaignAssetsRequest**](AttachCampaignAssetsRequest.md)|  | |
 
 ### Return type
@@ -387,12 +569,14 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Assets attached |  -  |
-| **400** | Invalid input, Google rejected the assets, an unknown customerId (not one of this connection&#39;s Google Ads accounts), or a required customerId missing when the connection has multiple Google Ads accounts |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## boostPost
@@ -465,11 +649,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
+| **409** | The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or (for TikTok) the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
 ## boostPostWithHttpInfo
@@ -545,11 +730,12 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **409** | An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
+| **409** | The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads), missing linked account, or (for TikTok) the connected TikTok user is not authorized as an Identity on the target advertiser. Returned with code &#x60;ads_connection_required&#x60;; the message includes the actionable \&quot;TikTok Ads Manager → Assets → Identity\&quot; remediation step. Also returned as &#x60;idempotency_key_reused&#x60; when an Idempotency-Key is reused with a different request body.  |  -  |
 
 
@@ -773,6 +959,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
@@ -852,6 +1040,8 @@ ApiResponse<[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
@@ -929,11 +1119,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Ad group created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **404** | accountId does not belong to a Google Ads connection |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## createAdSetWithHttpInfo
@@ -1009,11 +1200,12 @@ ApiResponse<[**CreateAdSet201Response**](CreateAdSet201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Ad group created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **404** | accountId does not belong to a Google Ads connection |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
@@ -1021,7 +1213,7 @@ ApiResponse<[**CreateAdSet201Response**](CreateAdSet201Response.md)>
 
 > CreateBidStrategy201Response createBidStrategy(createBidStrategyRequest)
 
-Create a Google Ads portfolio bid strategy
+Create portfolio bid strategy
 
 Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
 
@@ -1085,10 +1277,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Bid strategy created |  -  |
 | **400** | Invalid input, or Google rejected the strategy (e.g. shared-budget alignment). The message carries Google&#39;s error. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -1097,7 +1290,7 @@ public class Example {
 
 > ApiResponse<CreateBidStrategy201Response> createBidStrategy createBidStrategyWithHttpInfo(createBidStrategyRequest)
 
-Create a Google Ads portfolio bid strategy
+Create portfolio bid strategy
 
 Creates a standalone bid strategy shared across campaigns. Attach it to a campaign with &#x60;portfolioBidStrategyId&#x60; on POST /v1/ads/create, PUT /v1/ads/campaigns/{campaignId}, or PUT /v1/ads/ad-sets/{adSetId}. Attaching a strategy aligned to a shared budget fails there with a 400 (Google&#39;s &#x60;BIDDING_STRATEGY_AND_BUDGET_MUST_BE_ALIGNED&#x60;); this is not retryable.
 
@@ -1164,10 +1357,11 @@ ApiResponse<[**CreateBidStrategy201Response**](CreateBidStrategy201Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Bid strategy created |  -  |
 | **400** | Invalid input, or Google rejected the strategy (e.g. shared-budget alignment). The message carries Google&#39;s error. |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -1179,7 +1373,7 @@ ApiResponse<[**CreateBidStrategy201Response**](CreateBidStrategy201Response.md)>
 
 Create standalone ad
 
-Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
 
 ### Example
 
@@ -1243,6 +1437,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | validateOnly dry-run passed, nothing was created |  -  |
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
@@ -1251,6 +1447,7 @@ public class Example {
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 | **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## createStandaloneAdWithHttpInfo
 
@@ -1258,7 +1455,7 @@ public class Example {
 
 Create standalone ad
 
-Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Three mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;promotion&#x60; and &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;. An item replaces the whole feature map; its &#x60;promotion&#x60; replaces the default offer, and &#x60;promotion: null&#x60; disables that default for the item. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads. Only ads supplied a &#x60;promotion&#x60; receive live readback; multi-create batches those reads in groups of up to 50 IDs without per-ad fallback. Inspect &#x60;ad.creative.promotionStatus&#x60; (or &#x60;ads[].creative.promotionStatus&#x60;). &#x60;not_returned&#x60; means Meta omitted the metadata; successful creation does not by itself prove the offer was applied or will display.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
+Create a paid ad with custom creative across Meta, Google Ads, Pinterest, TikTok, X, LinkedIn, and OpenAI Ads (ChatGPT Ads).  Google Performance Max: set &#x60;campaignType: \&quot;pmax\&quot;&#x60; and supply &#x60;assetGroup&#x60; with text, images by role, business name and finalUrl. Creates a daily budget, PAUSED campaign and asset group atomically. &#x60;validateOnly: true&#x60; validates the complete request with Google without creating or persisting resources. Read assets with &#x60;GET /v1/ads/campaigns/{campaignId}/asset-groups&#x60;. The logo is required; video is optional via &#x60;assetGroup.youtubeVideoId&#x60;. Brand guidelines are disabled at creation. All supplied asset links are validated together against Google&#39;s minimum asset requirements. PMax rejects ACTIVE creation, portfolio bidding, bid caps, legacy creative fields and attach shapes. Geo and language targeting are supported; omitted geo targets all locations. PMax does not require top-level goal, headline, body or linkUrl. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus roasAverageFloor for Maximize Conversion Value with target ROAS.  Other mutually-exclusive request shapes are selected by the body:  - Legacy single-creative shape (all platforms, the default). - Meta-only multi-creative shape via the creatives array: one ad set with N ads sharing budget and targeting. - Attach shape via adSetId: adds one new ad to an existing ad set, inheriting its budget, targeting, and schedule (Meta, Google Ads, TikTok, and LinkedIn). On LinkedIn adSetId is the existing Campaign id, and the budget, schedule, targeting and bidding fields must be omitted.  Meta accepts &#x60;creativeFeatures&#x60; on the single and attach shapes and as defaults for &#x60;creatives[]&#x60;; an item replaces the whole feature map. &#x60;promotion&#x60; is not supported on any shape and any object is rejected with 400. Reusing &#x60;existingCreativeId&#x60; uses the existing creative settings instead of new settings. Requested settings are persisted for lists, exports, and default ad-detail reads.  Per-platform required fields, budget minimums, and video-ad rules are documented on each property below.  LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content \&quot;dark post\&quot; authored by a Company Page (see &#x60;organizationId&#x60;). Supported goals are engagement, traffic, awareness, and video_views (video ads use the &#x60;video&#x60; field; video_views requires a video), and traffic ads require &#x60;linkUrl&#x60;.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h. 
 
 ### Example
 
@@ -1325,6 +1522,8 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | validateOnly dry-run passed, nothing was created |  -  |
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
@@ -1333,6 +1532,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
 | **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502.  |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## deleteAd
@@ -1553,9 +1753,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Campaign deleted |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Campaign not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
 ## deleteAdCampaignWithHttpInfo
@@ -1631,9 +1833,11 @@ ApiResponse<[**DeleteAdCampaign200Response**](DeleteAdCampaign200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Campaign deleted |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Campaign not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
 
@@ -2275,11 +2479,11 @@ ApiResponse<[**DuplicateAdSet200Response**](DuplicateAdSet200Response.md)>
 
 ## getAd
 
-> GetAd200Response getAd(adId, refreshPromotion)
+> GetAd200Response getAd(adId)
 
 Get ad details
 
-Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
 
 ### Example
 
@@ -2303,9 +2507,8 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs. See description for details. 
-        Boolean refreshPromotion = false; // Boolean | Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call.
         try {
-            GetAd200Response result = apiInstance.getAd(adId, refreshPromotion);
+            GetAd200Response result = apiInstance.getAd(adId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAd");
@@ -2324,7 +2527,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  | |
-| **refreshPromotion** | **Boolean**| Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. | [optional] [default to false] |
 
 ### Return type
 
@@ -2350,11 +2552,11 @@ public class Example {
 
 ## getAdWithHttpInfo
 
-> ApiResponse<GetAd200Response> getAd getAdWithHttpInfo(adId, refreshPromotion)
+> ApiResponse<GetAd200Response> getAd getAdWithHttpInfo(adId)
 
 Get ad details
 
-Returns an ad with its creative, targeting, status, and performance metrics.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. By default, creative.promotion and creative.creativeFeatures contain stored requested settings, which do not confirm platform application. With &#x60;refreshPromotion&#x3D;true&#x60;, Meta promotion metadata is read live and exposed as &#x60;ad.creative.promotion&#x60; with &#x60;promotionStatus&#x60;. Only &#x60;applied&#x60; confirms an offer; &#x60;not_returned&#x60; means the creative read succeeded without promotion metadata, and &#x60;unavailable&#x60; means it failed. 
+Returns an ad with its creative, targeting, status, and performance metrics. Google Search ads include current creative.headlines, creative.descriptions and creative.finalUrls, preserving pinnedField. Top-level cachedAt and stale report cache freshness. Google mutations invalidate this read. RSA enrichment requires a stored advertisingChannelType of SEARCH. Ads with an unknown or other channel return their stored details without a Google read. If RSA enrichment fails, the stored ad is returned with HTTP 200 and without cache metadata.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: - the Zernio internal &#x60;_id&#x60; (24-char hex) - Meta&#39;s numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;) - the creative&#39;s &#x60;effective_object_story_id&#x60; (&#x60;{pageId}_{postId}&#x60; shape, Facebook side) - the creative&#39;s &#x60;effective_instagram_media_id&#x60; (Instagram side)  Any of the four resolve to the same ad. Caller doesn&#39;t need a translation step. &#x60;creative.creativeFeatures&#x60; holds the stored requested settings, which do not confirm platform application. 
 
 ### Example
 
@@ -2379,9 +2581,8 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adId = "adId_example"; // String | Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of the creative's effective story/media IDs. See description for details. 
-        Boolean refreshPromotion = false; // Boolean | Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call.
         try {
-            ApiResponse<GetAd200Response> response = apiInstance.getAdWithHttpInfo(adId, refreshPromotion);
+            ApiResponse<GetAd200Response> response = apiInstance.getAdWithHttpInfo(adId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2402,7 +2603,6 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adId** | **String**| Zernio &#x60;_id&#x60; (hex), Meta &#x60;platformAdId&#x60; (numeric), or one of the creative&#39;s effective story/media IDs. See description for details.  | |
-| **refreshPromotion** | **Boolean**| Meta only. Read current promotion metadata from Meta and include promotionStatus. Omit for stored creative settings with no promotion-specific Graph call. | [optional] [default to false] |
 
 ### Return type
 
@@ -2431,7 +2631,7 @@ ApiResponse<[**GetAd200Response**](GetAd200Response.md)>
 
 > GetAdSetDetails200Response getAdSetDetails(adSetId, accountId, fields)
 
-Live ad-set details incl. learning phase
+Get live ad-set details
 
 Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
 
@@ -2458,7 +2658,7 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Meta ad set id (platformAdSetId).
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,status,ads.limit(100){id,name,status,issues_info}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         try {
             GetAdSetDetails200Response result = apiInstance.getAdSetDetails(adSetId, accountId, fields);
             System.out.println(result);
@@ -2480,7 +2680,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Meta ad set id (platformAdSetId). | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 
 ### Return type
 
@@ -2499,6 +2699,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The ad set as returned by Meta |  -  |
 | **400** | Invalid input, or Meta rejected the query; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -2508,7 +2710,7 @@ public class Example {
 
 > ApiResponse<GetAdSetDetails200Response> getAdSetDetails getAdSetDetailsWithHttpInfo(adSetId, accountId, fields)
 
-Live ad-set details incl. learning phase
+Get live ad-set details
 
 Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
 
@@ -2536,7 +2738,7 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Meta ad set id (platformAdSetId).
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,status,ads.limit(100){id,name,status,issues_info}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         try {
             ApiResponse<GetAdSetDetails200Response> response = apiInstance.getAdSetDetailsWithHttpInfo(adSetId, accountId, fields);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2560,7 +2762,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Meta ad set id (platformAdSetId). | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 
 ### Return type
 
@@ -2579,6 +2781,8 @@ ApiResponse<[**GetAdSetDetails200Response**](GetAdSetDetails200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The ad set as returned by Meta |  -  |
 | **400** | Invalid input, or Meta rejected the query; the message carries Meta&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
@@ -3041,11 +3245,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
 | **400** | Invalid input (accountId, customerId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **404** | Campaign not found on Google Ads |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads account: the connection behind accountId resolves to another platform. |  -  |
 
 ## getCampaignBiddingWithHttpInfo
@@ -3125,11 +3330,12 @@ ApiResponse<[**GetCampaignBidding200Response**](GetCampaignBidding200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
 | **400** | Invalid input (accountId, customerId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
-| **404** | Campaign not found on Google Ads |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads account: the connection behind accountId resolves to another platform. |  -  |
 
 
@@ -3139,7 +3345,7 @@ ApiResponse<[**GetCampaignBidding200Response**](GetCampaignBidding200Response.md
 
 Read a Google campaign&#39;s device, location, and language targeting
 
-Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
 
 ### Example
 
@@ -3216,7 +3422,7 @@ public class Example {
 
 Read a Google campaign&#39;s device, location, and language targeting
 
-Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; always lists all four device types with &#x60;included&#x60; reflecting Google&#39;s negative device criteria (a device absent from any negative criterion is included by default). This read has no bid-modifier source, so &#x60;bidModifier&#x60; is always &#x60;null&#x60; even for a device with one configured. 
+Google Ads compliance requires geo, language, budget, and bidding targeting set at creation to stay editable afterwards; this reads the campaign state so an integrator can build an editor around it. Cached for the quota window (10 minutes fresh, up to 7 days last-good), not always a live read. Google only; every other platform returns 501.  &#x60;devices&#x60; lists the device criteria the campaign carries, which depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV. &#x60;bidModifier&#x60; is Google&#39;s bid adjustment for that device, &#x60;null&#x60; when it has none, and &#x60;0&#x60; when the device is switched off; &#x60;included&#x60; is false for exactly that case. 
 
 ### Example
 
@@ -3385,6 +3591,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Paginated campaigns |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
@@ -3487,10 +3695,178 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Paginated campaigns |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdGroupAssets
+
+> ListAdGroupAssets200Response listAdGroupAssets(adSetId, accountId, customerId)
+
+List ad-group assets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ListAdGroupAssets200Response result = apiInstance.listAdGroupAssets(adSetId, accountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListAdGroupAssets200Response**](ListAdGroupAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## listAdGroupAssetsWithHttpInfo
+
+> ApiResponse<ListAdGroupAssets200Response> listAdGroupAssets listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId)
+
+List ad-group assets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ApiResponse<ListAdGroupAssets200Response> response = apiInstance.listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdGroupAssets200Response**](ListAdGroupAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## listAdKeywords
@@ -4057,7 +4433,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 
 > ListBidStrategies200Response listBidStrategies(accountId, customerId, fromDate, toDate)
 
-List Google Ads portfolio bid strategies
+List portfolio bid strategies
 
 Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
@@ -4127,10 +4503,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Portfolio bid strategies |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -4138,7 +4515,7 @@ public class Example {
 
 > ApiResponse<ListBidStrategies200Response> listBidStrategies listBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate)
 
-List Google Ads portfolio bid strategies
+List portfolio bid strategies
 
 Bidding strategy report: type, status, campaign count, clicks, cost, cost per conversion, impressions, average CPC and conversions over the date range (default last 30 days). Reads Google&#39;s &#x60;bidding_strategy&#x60; resource, cached for the quota window. Draws on the shared Google Ads operations budget. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
 
@@ -4211,12 +4588,179 @@ ApiResponse<[**ListBidStrategies200Response**](ListBidStrategies200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Portfolio bid strategies |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## listCampaignAssets
+
+> ListCampaignAssets200Response listCampaignAssets(campaignId, accountId, customerId)
+
+List campaign assets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ListCampaignAssets200Response result = apiInstance.listCampaignAssets(campaignId, accountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListCampaignAssets200Response**](ListCampaignAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## listCampaignAssetsWithHttpInfo
+
+> ApiResponse<ListCampaignAssets200Response> listCampaignAssets listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId)
+
+List campaign assets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ApiResponse<ListCampaignAssets200Response> response = apiInstance.listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListCampaignAssets200Response**](ListCampaignAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## listCampaignNegativeKeywordLists
@@ -4293,8 +4837,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -4376,8 +4920,8 @@ ApiResponse<[**ListAdNegativeKeywordLists200Response**](ListAdNegativeKeywordLis
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -4539,6 +5083,322 @@ ApiResponse<[**ListCampaignNegativeKeywords200Response**](ListCampaignNegativeKe
 | **501** | Only available on Google Ads campaigns |  -  |
 
 
+## listGoogleAssetGroups
+
+> ListGoogleAssetGroups200Response listGoogleAssetGroups(campaignId)
+
+List Performance Max asset groups
+
+Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        try {
+            ListGoogleAssetGroups200Response result = apiInstance.listGoogleAssetGroups(campaignId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listGoogleAssetGroups");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+
+### Return type
+
+[**ListGoogleAssetGroups200Response**](ListGoogleAssetGroups200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Asset groups and linked assets. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **429** | Google quota or operation budget exhausted with no cached response. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## listGoogleAssetGroupsWithHttpInfo
+
+> ApiResponse<ListGoogleAssetGroups200Response> listGoogleAssetGroups listGoogleAssetGroupsWithHttpInfo(campaignId)
+
+List Performance Max asset groups
+
+Read Performance Max asset groups and their linked text, image and YouTube assets. campaignId is the platform campaign id returned by creation or the campaign list. The campaign must be visible to the caller. Uses a 10-minute cache, with the last successful response served as stale when Google quota is exhausted. Removed groups and asset links are excluded. Campaign-level brand assets on campaigns with brand guidelines enabled are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        try {
+            ApiResponse<ListGoogleAssetGroups200Response> response = apiInstance.listGoogleAssetGroupsWithHttpInfo(campaignId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listGoogleAssetGroups");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+
+### Return type
+
+ApiResponse<[**ListGoogleAssetGroups200Response**](ListGoogleAssetGroups200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Asset groups and linked assets. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **429** | Google quota or operation budget exhausted with no cached response. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+
+## removeAdGroupAssets
+
+> RemoveCampaignAssets200Response removeAdGroupAssets(adSetId, removeAdGroupAssetsRequest)
+
+Remove ad-group assets
+
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest = new RemoveAdGroupAssetsRequest(); // RemoveAdGroupAssetsRequest | 
+        try {
+            RemoveCampaignAssets200Response result = apiInstance.removeAdGroupAssets(adSetId, removeAdGroupAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **removeAdGroupAssetsRequest** | [**RemoveAdGroupAssetsRequest**](RemoveAdGroupAssetsRequest.md)|  | |
+
+### Return type
+
+[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## removeAdGroupAssetsWithHttpInfo
+
+> ApiResponse<RemoveCampaignAssets200Response> removeAdGroupAssets removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest)
+
+Remove ad-group assets
+
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest = new RemoveAdGroupAssetsRequest(); // RemoveAdGroupAssetsRequest | 
+        try {
+            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **removeAdGroupAssetsRequest** | [**RemoveAdGroupAssetsRequest**](RemoveAdGroupAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
 ## removeAdKeyword
 
 > RemoveAdKeyword200Response removeAdKeyword(keywordId)
@@ -4607,10 +5467,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword removed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Keyword not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## removeAdKeywordWithHttpInfo
 
@@ -4683,10 +5544,173 @@ ApiResponse<[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword removed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Keyword not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
+## removeCampaignAssets
+
+> RemoveCampaignAssets200Response removeCampaignAssets(campaignId, removeCampaignAssetsRequest)
+
+Remove campaign assets
+
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        RemoveCampaignAssetsRequest removeCampaignAssetsRequest = new RemoveCampaignAssetsRequest(); // RemoveCampaignAssetsRequest | 
+        try {
+            RemoveCampaignAssets200Response result = apiInstance.removeCampaignAssets(campaignId, removeCampaignAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **removeCampaignAssetsRequest** | [**RemoveCampaignAssetsRequest**](RemoveCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## removeCampaignAssetsWithHttpInfo
+
+> ApiResponse<RemoveCampaignAssets200Response> removeCampaignAssets removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest)
+
+Remove campaign assets
+
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        RemoveCampaignAssetsRequest removeCampaignAssetsRequest = new RemoveCampaignAssetsRequest(); // RemoveCampaignAssetsRequest | 
+        try {
+            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **removeCampaignAssetsRequest** | [**RemoveCampaignAssetsRequest**](RemoveCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## replaceCampaignNegativeKeywordLists
@@ -4763,8 +5787,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -4846,8 +5870,8 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -5017,7 +6041,7 @@ ApiResponse<[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNega
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
 
 ### Example
 
@@ -5082,10 +6106,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
-| **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions |  -  |
+| **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, a LinkedIn targeting update without countries or regions, or a Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
+| **422** | The ad has no campaign or ad group on the platform yet, the Google targeting edit asks for something that is create-only (&#x60;locations.customLocations&#x60;), or a creative field the ad&#39;s channel cannot carry: assetGroup on a non-Performance-Max ad, a Google Display field on a Search ad, a pinnedField on a Display headline, or any Google-only field on another platform. A Google creative edit that cannot reach Google at all (the ad has no &#x60;platformAdId&#x60;, or its ad account cannot be loaded) also returns 422 rather than a 200 that changed nothing. |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
@@ -5095,7 +6120,7 @@ public class Example {
 
 Update ad
 
-Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, and DEVICE bid adjustments via &#x60;targeting.devices&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed); a kind left out is untouched. Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate broad targeting post-create without recreating   the campaign. &#x60;creative&#x60; returns 501. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
+Patch one or more fields on an ad. Status, budget, targeting, and creative changes are propagated to the platform.  Per-platform support: - **Meta** (Facebook + Instagram): all fields supported. - **TikTok**: status, budget, targeting (via &#x60;/v2/adgroup/update/&#x60;), and creative   (via &#x60;/v2/ad/update/&#x60; patch-style: &#x60;headline&#x60; is ignored, &#x60;body&#x60; becomes &#x60;ad_text&#x60;). - **Google**: status, budget, KEYWORD edits via &#x60;targeting.keywords&#x60; /   &#x60;targeting.negativeKeywords&#x60;, DEVICE bid adjustments via &#x60;targeting.devices&#x60;,   LOCATION edits via &#x60;targeting.locations&#x60; (or the equivalent top-level   &#x60;targeting.countries&#x60; / &#x60;regions&#x60; / &#x60;cities&#x60; / &#x60;zips&#x60; / &#x60;metros&#x60;), and LANGUAGE   edits via &#x60;targeting.languages&#x60;.   Each list you send becomes the FULL new set of its kind (criteria not in the   list are removed, except devices, which Google cannot remove and which are   switched off with a bid modifier of 0 instead); a kind left out is untouched.   Any other &#x60;targeting&#x60; field   returns 400: Google cannot mutate it post-create without recreating   the campaign. Creative edits are dispatched on the ad&#39;s &#x60;advertisingChannelType&#x60;,   and every supported field replaces a whole set; a field you omit is preserved.   - **Search**: top-level &#x60;headlines&#x60;, &#x60;descriptions&#x60; and &#x60;finalUrls&#x60;. Use 3-15 headlines     (1-30 characters) and 2-4 descriptions (1-90 characters). Omit an asset to remove it;     omit pinnedField on an included asset to unpin it. Updates do not pad or truncate text.     The legacy creative fields remain unsupported.   - **Display**: top-level &#x60;headlines&#x60; (1-5, no pinnedField, display ads have no pinned     positions), &#x60;descriptions&#x60; (1-5) and &#x60;finalUrls&#x60;, plus &#x60;creative.longHeadline&#x60;,     &#x60;creative.businessName&#x60;, &#x60;creative.imageUrl&#x60; (the landscape marketing image) and     &#x60;creative.squareImageUrl&#x60;. Each image URL is uploaded as a new Google asset and the ad     is pointed at it; Google assets are immutable, so the previous asset stays in the     account&#39;s asset library.   - **Performance Max**: top-level &#x60;assetGroup&#x60;, which swaps asset roles on the ad&#39;s asset     group. The other creative fields return 422 for this channel, and &#x60;assetGroup&#x60; returns     422 on any other channel. - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),   the B2B facets, and audience segments; applied to the LinkedIn Campaign via   PARTIAL_UPDATE, and REPLACES the campaign&#39;s entire targetingCriteria, not a merge),   and creative (uploads new media, creates a replacement inline creative on the same   campaign, pauses the old one). - **Pinterest / X / OpenAI Ads**: status + budget only. Sending   &#x60;targeting&#x60; or &#x60;creative&#x60; returns 501 with code &#x60;unsupported_platform_operation&#x60;.   OpenAI Ads budget is lifetime-only (see &#x60;budget.type&#x60; below).  **Google location and language replacement:** locations, languages and devices are campaign-level criteria on Google, so these edits apply to every ad group and ad in the ad&#39;s campaign. Send the complete list you want to keep. Zernio diffs it against the campaign&#39;s live criteria and sends the removes and the creates in ONE &#x60;googleAds:mutate&#x60;, so the campaign is never left with a half-applied set; criteria already in the list keep their criterion ID and history. Excluded (negative) locations are left untouched. Two cases are refused rather than applied: an empty location list returns 400 (a Google campaign with no location criteria targets every country, which is never what \&quot;remove my locations\&quot; means, so omit the field instead), and radius targeting (&#x60;customLocations&#x60;) returns 422 because it is a separate Google criterion type that this replacement neither creates nor removes. Send either &#x60;targeting.locations&#x60; or the top-level geo fields, not both: mixing them returns 400.  **Google keyword replacement:** These edits affect the ad&#39;s entire ad group, including sibling ads. Positive (&#x60;targeting.keywords&#x60;) and negative (&#x60;targeting.negativeKeywords&#x60;) sets are independent: omit a field to leave that set unchanged, or send &#x60;[]&#x60; to remove every keyword of that kind.  Zernio compares each supplied set with Google&#39;s live criteria by case-insensitive keyword text and match type. A matching criterion is left untouched, retaining its criterion ID, enabled/paused status, keyword-level bid overrides, labels, and criterion-associated history/statistics. Zernio does not reset its quality score; Google continues to calculate scores and statistics normally. Text comparison does not trim whitespace.  A bare string or an object without &#x60;matchType&#x60; means &#x60;broad&#x60;, not the existing criterion&#39;s match type. For example, resending an existing &#x60;{ \&quot;text\&quot;: \&quot;plumber\&quot;, \&quot;matchType\&quot;: \&quot;exact\&quot; }&#x60; preserves it; sending &#x60;\&quot;plumber\&quot;&#x60; instead removes that EXACT criterion and requests a BROAD one. Changing text or match type removes criteria no longer requested and creates any missing criteria. New criteria get new IDs and do not inherit removed criteria&#39;s bid overrides, labels, or history. Historical reporting for a removed criterion is not transferred to its replacement.  To add keywords without replacing a set, use [POST /v1/ads/keywords](https://docs.zernio.com/ad-campaigns/add-ad-keywords). Use &#x60;PATCH /v1/ads/keywords/{keywordId}&#x60; to pause/enable one keyword, or &#x60;DELETE /v1/ads/keywords/{keywordId}&#x60; to remove it. 
 
 ### Example
 
@@ -5163,10 +6188,11 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
-| **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, or a LinkedIn targeting update without countries or regions |  -  |
+| **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, a LinkedIn targeting update without countries or regions, or a Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
+| **422** | The ad has no campaign or ad group on the platform yet, the Google targeting edit asks for something that is create-only (&#x60;locations.customLocations&#x60;), or a creative field the ad&#39;s channel cannot carry: assetGroup on a non-Performance-Max ad, a Google Display field on a Search ad, a pinnedField on a Display headline, or any Google-only field on another platform. A Google creative edit that cannot reach Google at all (the ad has no &#x60;platformAdId&#x60;, or its ad account cannot be loaded) also returns 422 rather than a 200 that changed nothing. |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
 
@@ -5177,7 +6203,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 
 Update a campaign
 
-Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
 
 ### Example
 
@@ -5245,8 +6271,8 @@ public class Example {
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **404** | Campaign not found |  -  |
-| **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
 ## updateAdCampaignWithHttpInfo
@@ -5255,7 +6281,7 @@ public class Example {
 
 Update a campaign
 
-Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
+Campaign-level edits. Send at least one of &#x60;budget&#x60;, &#x60;bidStrategy&#x60;, &#x60;portfolioBidStrategyId&#x60;, &#x60;name&#x60; or &#x60;platformSpecificData&#x60;. An unsupported field is always an error, never a silent drop.  | Body field | Meta | Google | Others | |---|---|---|---| | &#x60;bidStrategy&#x60; | Yes | Yes | 501 | | &#x60;bidAmount&#x60;, &#x60;roasAverageFloor&#x60; | 400 (ad-set level) | Yes | 400 | | &#x60;portfolioBidStrategyId&#x60; | 400 | Yes | 400 | | &#x60;budget&#x60; (CBO; ABO returns 409) | Yes | Daily only | 501 | | &#x60;name&#x60; | Yes | 501 | 501 | | &#x60;platformSpecificData.spendCap&#x60; | Yes | 400 | 400 | | &#x60;accountId&#x60; (empty campaigns) | Yes | - | - |  Meta budget edits check the live campaign budget, so an older local ABO stamp cannot block a CBO campaign. A successful edit repairs local ad budget fields. A live ABO campaign still returns 409 with the ad-set budget endpoint.  On Google: &#x60;LOWEST_COST_WITHOUT_CAP&#x60; &#x3D; Maximize Conversions, &#x60;COST_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Target CPA, &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60; + &#x60;roasAverageFloor&#x60; &#x3D; Target ROAS, &#x60;LOWEST_COST_WITH_BID_CAP&#x60; + &#x60;bidAmount&#x60; &#x3D; Maximize Clicks with a CPC ceiling; &#x60;portfolioBidStrategyId&#x60; attaches a portfolio strategy instead (exclusive with &#x60;bidStrategy&#x60;). Setting the standard triplet on a campaign that is currently on a PORTFOLIO strategy is rejected: detach it in Google Ads first, since it is shared across campaigns.  Google budget updates read the current budget before mutation. Shared budgets return 409 unless allowSharedBudgetUpdate&#x3D;true is explicitly supplied, because the change affects every campaign using that budget. Unknown sharing state also returns 409.  &#x60;accountId&#x60; forwards the update straight to Meta for a campaign with zero ads, which would otherwise 404; the response then carries &#x60;updated: 0&#x60;. 
 
 ### Example
 
@@ -5326,8 +6352,8 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
-| **404** | Campaign not found |  -  |
-| **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
 
@@ -5337,7 +6363,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 
 Pause or resume a campaign
 
-Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
 
 ### Example
 
@@ -5413,7 +6439,7 @@ public class Example {
 
 Pause or resume a campaign
 
-Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on. 
+Writes the campaign&#39;s own on/off switch, then lets the platform cascade delivery to its ad sets and ads. Makes one platform API call, not one per ad.  The switch is always written, whatever delivery status the ads underneath report: an ad still in review does not block resuming its campaign. The echoed &#x60;status&#x60; is the confirmation that it landed.  &#x60;updated&#x60; / &#x60;skipped&#x60; describe only the ads whose own stored status CHANGED alongside it, so &#x60;updated: 0&#x60; is a normal successful response, not a no-op. Ads are skipped when they are in a terminal status (rejected, completed, cancelled), already in the target state, or switched on but not yet delivering. The last group keeps its &#x60;pending_review&#x60; / &#x60;error&#x60; status until the platform reports what it became. &#x60;skippedReasons&#x60; names which case applies.  On Meta this flips the campaign only. An ad set paused in its own right stays paused, so pair this with PUT /v1/ads/ad-sets/{adSetId}/status when you also need the ad set switched back on.  Google keeps an independent on/off switch at campaign, ad group and ad level and the most restrictive one wins, so &#x60;active&#x60; switches the campaign on TOGETHER with the ad groups and ads Zernio tracks under it, in one mutate. Without that the campaign reads ENABLED while a paused ad group or ad keeps it from serving. &#x60;paused&#x60; writes the campaign alone, which already stops delivery and leaves each ad&#39;s own switch as you set it. 
 
 ### Example
 
@@ -5487,6 +6513,168 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 | **404** | No ads found for this campaign |  -  |
 
 
+## updateAdGroupAssets
+
+> UpdateCampaignAssets200Response updateAdGroupAssets(adSetId, updateCampaignAssetsRequest)
+
+Update ad-group assets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        UpdateCampaignAssetsRequest updateCampaignAssetsRequest = new UpdateCampaignAssetsRequest(); // UpdateCampaignAssetsRequest | 
+        try {
+            UpdateCampaignAssets200Response result = apiInstance.updateAdGroupAssets(adSetId, updateCampaignAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **updateCampaignAssetsRequest** | [**UpdateCampaignAssetsRequest**](UpdateCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## updateAdGroupAssetsWithHttpInfo
+
+> ApiResponse<UpdateCampaignAssets200Response> updateAdGroupAssets updateAdGroupAssetsWithHttpInfo(adSetId, updateCampaignAssetsRequest)
+
+Update ad-group assets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Numeric Google platform id.
+        UpdateCampaignAssetsRequest updateCampaignAssetsRequest = new UpdateCampaignAssetsRequest(); // UpdateCampaignAssetsRequest | 
+        try {
+            ApiResponse<UpdateCampaignAssets200Response> response = apiInstance.updateAdGroupAssetsWithHttpInfo(adSetId, updateCampaignAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateAdGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Numeric Google platform id. | |
+| **updateCampaignAssetsRequest** | [**UpdateCampaignAssetsRequest**](UpdateCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
 ## updateAdKeyword
 
 > UpdateAdKeyword200Response updateAdKeyword(keywordId, updateAdKeywordRequest)
@@ -5557,10 +6745,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Keyword not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
 
 ## updateAdKeywordWithHttpInfo
@@ -5636,10 +6825,11 @@ ApiResponse<[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Keyword not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
 
 
@@ -6121,7 +7311,7 @@ ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
 
 > UpdateBidStrategy200Response updateBidStrategy(strategyId, updateBidStrategyRequest)
 
-Update a Google Ads portfolio bid strategy
+Update portfolio bid strategy
 
 Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
 
@@ -6187,10 +7377,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Bid strategy updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -6198,7 +7389,7 @@ public class Example {
 
 > ApiResponse<UpdateBidStrategy200Response> updateBidStrategy updateBidStrategyWithHttpInfo(strategyId, updateBidStrategyRequest)
 
-Update a Google Ads portfolio bid strategy
+Update portfolio bid strategy
 
 Renames or retargets a portfolio bid strategy. The strategy&#39;s status is output only on Google&#39;s side, so it cannot be changed here; remove a strategy in Google Ads. &#x60;type&#x60; is only needed alongside &#x60;targetCpa&#x60;/&#x60;targetRoas&#x60; to disambiguate the field Google writes to (TARGET_CPA and MAXIMIZE_CONVERSIONS both take a target CPA; TARGET_ROAS and MAXIMIZE_CONVERSION_VALUE both take a target ROAS); the strategy&#39;s family is otherwise immutable once created.
 
@@ -6267,12 +7458,175 @@ ApiResponse<[**UpdateBidStrategy200Response**](UpdateBidStrategy200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Bid strategy updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## updateCampaignAssets
+
+> UpdateCampaignAssets200Response updateCampaignAssets(campaignId, updateCampaignAssetsRequest)
+
+Update campaign assets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        UpdateCampaignAssetsRequest updateCampaignAssetsRequest = new UpdateCampaignAssetsRequest(); // UpdateCampaignAssetsRequest | 
+        try {
+            UpdateCampaignAssets200Response result = apiInstance.updateCampaignAssets(campaignId, updateCampaignAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **updateCampaignAssetsRequest** | [**UpdateCampaignAssetsRequest**](UpdateCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## updateCampaignAssetsWithHttpInfo
+
+> ApiResponse<UpdateCampaignAssets200Response> updateCampaignAssets updateCampaignAssetsWithHttpInfo(campaignId, updateCampaignAssetsRequest)
+
+Update campaign assets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform id.
+        UpdateCampaignAssetsRequest updateCampaignAssetsRequest = new UpdateCampaignAssetsRequest(); // UpdateCampaignAssetsRequest | 
+        try {
+            ApiResponse<UpdateCampaignAssets200Response> response = apiInstance.updateCampaignAssetsWithHttpInfo(campaignId, updateCampaignAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateCampaignAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform id. | |
+| **updateCampaignAssetsRequest** | [**UpdateCampaignAssetsRequest**](UpdateCampaignAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## updateCampaignTargeting
@@ -6281,7 +7635,7 @@ ApiResponse<[**UpdateBidStrategy200Response**](UpdateBidStrategy200Response.md)>
 
 Edit a Google campaign&#39;s device, location, or language targeting
 
-Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
 
 ### Example
 
@@ -6358,7 +7712,7 @@ public class Example {
 
 Edit a Google campaign&#39;s device, location, or language targeting
 
-Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
+Google Ads compliance row M.10: geo and language targeting set at creation must stay editable afterwards. Send at least one of &#x60;devices&#x60;, &#x60;locations&#x60;, &#x60;languages&#x60;; each provided field REPLACES that field&#39;s existing criteria on the campaign (a full set, not a delta). Fields left out of the body are untouched. Google only; every other platform returns 501.  &#x60;devices&#x60; is the full set of device bid modifiers: a supported device you leave out is switched off with a bid modifier of 0, since Google cannot remove a device criterion. A device the campaign&#39;s channel does not carry, and a set that switches every device off, both return 422.  &#x60;locations&#x60; accepts the same shapes as campaign creation: a bare array of ISO country codes, or an object with &#x60;countries&#x60;/&#x60;regions&#x60;/&#x60;cities&#x60;/&#x60;zips&#x60;/&#x60;metros&#x60; key lists (&#x60;key&#x60; from GET /v1/ads/targeting/search?dimension&#x3D;geo). Negative (excluded) locations are left untouched by this endpoint. An empty location list returns 400 instead of removing every criterion: a Google campaign with no location criteria targets every country, so omit &#x60;locations&#x60; to leave targeting alone.  The removes and the creates go out in ONE Google &#x60;googleAds:mutate&#x60;, so a failed edit leaves the campaign&#39;s previous set intact rather than a half-applied one.  &#x60;languages&#x60; is an array of Google&#39;s language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;); an unknown code returns 400.  The response includes the refreshed &#x60;devices&#x60;/&#x60;locations&#x60;/&#x60;languages&#x60; state read back from Google after the edit, and invalidates the cached copy &#x60;GET&#x60; on this campaign would otherwise keep serving. 
 
 ### Example
 

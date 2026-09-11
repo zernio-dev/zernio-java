@@ -97,7 +97,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
         Integer page = 1; // Integer | Page number (default 1)
-        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0.
+        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0.
         String order = "asc"; // String | Sort order
         try {
             GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
@@ -127,7 +127,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type
@@ -195,7 +195,7 @@ public class Example {
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
         Integer limit = 50; // Integer | Page size (default 50)
         Integer page = 1; // Integer | Page number (default 1)
-        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0.
+        String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0.
         String order = "asc"; // String | Sort order
         try {
             ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
@@ -227,7 +227,7 @@ public class Example {
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
 | **limit** | **Integer**| Page size (default 50) | [optional] [default to 50] |
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
-| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Instagram-only metrics (follows, reposts, reels_skip_rate, ig_reels_*) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate] |
+| **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 
 ### Return type
@@ -1648,6 +1648,8 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getGoogleBusinessPerformanceWithHttpInfo
 
@@ -1731,6 +1733,8 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getGoogleBusinessSearchKeywords
@@ -1810,6 +1814,8 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getGoogleBusinessSearchKeywordsWithHttpInfo
 
@@ -1891,6 +1897,8 @@ ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSe
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getInstagramAccountInsights
@@ -2819,6 +2827,8 @@ public class Example {
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getLinkedInPostAnalyticsWithHttpInfo
 
@@ -2899,6 +2909,8 @@ ApiResponse<[**GetLinkedInPostAnalytics200Response**](GetLinkedInPostAnalytics20
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getLinkedInPostReactions
@@ -3641,6 +3653,8 @@ public class Example {
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getYouTubeChannelInsightsWithHttpInfo
 
@@ -3727,6 +3741,8 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getYouTubeDailyViews
@@ -3980,6 +3996,8 @@ public class Example {
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getYouTubeDemographicsWithHttpInfo
 
@@ -4067,6 +4085,8 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
 | **412** | YouTube Analytics scope not granted |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getYouTubeVideoRetention
@@ -4245,7 +4265,7 @@ ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md
 
 Sync an external post
 
-Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - Account access and connection state are checked before any platform call, including requests inside the debounce window. - Inactive accounts or accounts marked &#x60;needsReconnection&#x60; return &#x60;409&#x60; with code &#x60;ads_connection_required&#x60;. Stop scheduled retries for that account until it is reconnected, then read &#x60;GET /v1/accounts&#x60; for its current account ID. - For connected accounts, we fetch the latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
 
 ### Example
 
@@ -4310,6 +4330,11 @@ public class Example {
 | **200** | Sync result. When &#x60;url&#x60; or &#x60;postId&#x60; is provided, returns the matched post (or &#x60;found: false&#x60;). When neither is provided, returns the account&#39;s freshly-synced recent posts.  |  -  |
 | **400** | Invalid request (e.g. &#x60;accountId&#x60; missing or malformed) |  -  |
 | **404** | Account not found (or not owned by the authenticated user) |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
+| **401** | The platform authorization has expired. Reconnect the account. |  -  |
+| **403** | The API key lacks access to this account or the platform denied access. |  -  |
+| **409** | The account is inactive or needs reconnection. Stop scheduled retries until it is reconnected. |  -  |
 
 ## syncExternalPostsWithHttpInfo
 
@@ -4317,7 +4342,7 @@ public class Example {
 
 Sync an external post
 
-Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - We check our stored copy first and return immediately if the post is already known (no platform call). - Otherwise we fetch the account&#39;s latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
+Fetch an account&#39;s latest external posts (published directly on the platform, not through Zernio) on demand, so a newly published post is retrievable within seconds instead of waiting for the background sync (which refreshes each account at most every ~90 minutes).  Primary use case: verifying a submitted post. When a user publishes on the platform and immediately pastes the post URL into your app, call this with &#x60;accountId&#x60; plus &#x60;url&#x60; (or &#x60;postId&#x60;) to confirm the post exists and return its metadata.  Behavior: - Account access and connection state are checked before any platform call, including requests inside the debounce window. - Inactive accounts or accounts marked &#x60;needsReconnection&#x60; return &#x60;409&#x60; with code &#x60;ads_connection_required&#x60;. Stop scheduled retries for that account until it is reconnected, then read &#x60;GET /v1/accounts&#x60; for its current account ID. - For connected accounts, we fetch the latest posts live from the platform, then match and return the submitted post. - Requests are debounced per account (~15s): if the account was synced inside that window, the live fetch is skipped.  &#x60;accountId&#x60; is required, because a post URL or id alone cannot be resolved to an account, and the account must be connected to Zernio (we use its token to read the platform). Supported for every platform with a listing API (Instagram, Facebook, TikTok, YouTube, X, Threads, Pinterest, Reddit, Bluesky, Google Business Profile, and LinkedIn organization accounts).  LinkedIn personal profiles: LinkedIn has no listing API for personal profiles, so a &#x60;url&#x60; is REQUIRED and imports that single post. Pass any LinkedIn post URL (&#x60;linkedin.com/posts/…&#x60;, &#x60;linkedin.com/feed/update/urn:li:activity:…&#x60;) or a &#x60;urn:li:share:…&#x60; / &#x60;urn:li:ugcPost:…&#x60; URN. Works for posts published outside Zernio and before the account was connected, any age; the post must be authored by the connected member. Imported posts return full analytics (impressions, reach, reactions, comments, reshares, saves) and keep refreshing on the background analytics cycle, but carry no content/media (LinkedIn does not expose them for personal profiles).  &#x60;url&#x60; accepts any format the platform uses (e.g. &#x60;instagram.com/p/…&#x60;, &#x60;instagram.com/reel/…&#x60;, &#x60;youtu.be/…&#x60;, &#x60;youtube.com/shorts/…&#x60;, &#x60;tiktok.com/@user/video/…&#x60;, &#x60;vm.tiktok.com&#x60; short links, &#x60;pinterest.com/pin/…&#x60; on any regional domain, and &#x60;pin.it&#x60; short links). Pass &#x60;postId&#x60; (the platform media/video/pin id) as an alternative locator.  Note: post-level analytics (reach, impressions) still carry the platform&#39;s own delay (e.g. ~24h on Instagram). This endpoint confirms the post exists and returns its metadata plus basic engagement (likes, comments), not delayed insights. 
 
 ### Example
 
@@ -4385,4 +4410,9 @@ ApiResponse<[**SyncExternalPosts200Response**](SyncExternalPosts200Response.md)>
 | **200** | Sync result. When &#x60;url&#x60; or &#x60;postId&#x60; is provided, returns the matched post (or &#x60;found: false&#x60;). When neither is provided, returns the account&#39;s freshly-synced recent posts.  |  -  |
 | **400** | Invalid request (e.g. &#x60;accountId&#x60; missing or malformed) |  -  |
 | **404** | Account not found (or not owned by the authenticated user) |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
+| **401** | The platform authorization has expired. Reconnect the account. |  -  |
+| **403** | The API key lacks access to this account or the platform denied access. |  -  |
+| **409** | The account is inactive or needs reconnection. Stop scheduled retries until it is reconnected. |  -  |
 

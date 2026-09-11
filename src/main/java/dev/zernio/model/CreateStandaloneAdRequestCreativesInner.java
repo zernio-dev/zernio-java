@@ -25,7 +25,6 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CreateStandaloneAdRequestCreativesInnerVideo;
-import dev.zernio.model.MetaPromotion;
 import java.net.URI;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -38,7 +37,6 @@ import dev.zernio.ApiClient;
  * Each creative must supply EXACTLY ONE of &#x60;imageUrl&#x60; (image creative) or &#x60;video&#x60; (video creative).
  */
 @JsonPropertyOrder({
-  CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_PROMOTION,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CREATIVE_FEATURES,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_NAME,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_HEADLINE,
@@ -49,12 +47,8 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_LINK_URL,
   CreateStandaloneAdRequestCreativesInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequestCreativesInner {
-  public static final String JSON_PROPERTY_PROMOTION = "promotion";
-  @javax.annotation.Nullable
-  private MetaPromotion promotion;
-
   /**
    * Gets or Sets inner
    */
@@ -211,30 +205,6 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   public CreateStandaloneAdRequestCreativesInner() { 
   }
-
-  public CreateStandaloneAdRequestCreativesInner promotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
-    return this;
-  }
-
-  /**
-   * Overrides the top-level offer for this item. Omit to inherit; null disables the inherited offer.
-   * @return promotion
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public MetaPromotion getPromotion() {
-    return promotion;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PROMOTION, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPromotion(@javax.annotation.Nullable MetaPromotion promotion) {
-    this.promotion = promotion;
-  }
-
 
   public CreateStandaloneAdRequestCreativesInner creativeFeatures(@javax.annotation.Nullable Map<String, InnerEnum> creativeFeatures) {
     this.creativeFeatures = creativeFeatures;
@@ -472,8 +442,7 @@ public class CreateStandaloneAdRequestCreativesInner {
       return false;
     }
     CreateStandaloneAdRequestCreativesInner createStandaloneAdRequestCreativesInner = (CreateStandaloneAdRequestCreativesInner) o;
-    return Objects.equals(this.promotion, createStandaloneAdRequestCreativesInner.promotion) &&
-        Objects.equals(this.creativeFeatures, createStandaloneAdRequestCreativesInner.creativeFeatures) &&
+    return Objects.equals(this.creativeFeatures, createStandaloneAdRequestCreativesInner.creativeFeatures) &&
         Objects.equals(this.name, createStandaloneAdRequestCreativesInner.name) &&
         Objects.equals(this.headline, createStandaloneAdRequestCreativesInner.headline) &&
         Objects.equals(this.body, createStandaloneAdRequestCreativesInner.body) &&
@@ -486,14 +455,13 @@ public class CreateStandaloneAdRequestCreativesInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(promotion, creativeFeatures, name, headline, body, description, imageUrl, video, linkUrl, callToAction);
+    return Objects.hash(creativeFeatures, name, headline, body, description, imageUrl, video, linkUrl, callToAction);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class CreateStandaloneAdRequestCreativesInner {\n");
-    sb.append("    promotion: ").append(toIndentedString(promotion)).append("\n");
     sb.append("    creativeFeatures: ").append(toIndentedString(creativeFeatures)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    headline: ").append(toIndentedString(headline)).append("\n");
@@ -549,11 +517,6 @@ public class CreateStandaloneAdRequestCreativesInner {
     }
 
     StringJoiner joiner = new StringJoiner("&");
-
-    // add `promotion` to the URL query string
-    if (getPromotion() != null) {
-      joiner.add(getPromotion().toUrlQueryString(prefix + "promotion" + suffix));
-    }
 
     // add `creativeFeatures` to the URL query string
     if (getCreativeFeatures() != null) {

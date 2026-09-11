@@ -35,10 +35,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PROFILE_ID,
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_COUNTRY,
+  PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PHONE_NUMBER,
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchaseWhatsAppPhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -47,6 +48,10 @@ public class PurchaseWhatsAppPhoneNumberRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
   private String country = "US";
+
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  @javax.annotation.Nullable
+  private String phoneNumber;
 
   public static final String JSON_PROPERTY_PURCHASE_INTENT_ID = "purchaseIntentId";
   @javax.annotation.Nullable
@@ -104,6 +109,30 @@ public class PurchaseWhatsAppPhoneNumberRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountry(@javax.annotation.Nullable String country) {
     this.country = country;
+  }
+
+
+  public PurchaseWhatsAppPhoneNumberRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Fails with 409 code PHONE_NUMBER_UNAVAILABLE when it is no longer available. 
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -169,13 +198,14 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     PurchaseWhatsAppPhoneNumberRequest purchaseWhatsAppPhoneNumberRequest = (PurchaseWhatsAppPhoneNumberRequest) o;
     return Objects.equals(this.profileId, purchaseWhatsAppPhoneNumberRequest.profileId) &&
         Objects.equals(this.country, purchaseWhatsAppPhoneNumberRequest.country) &&
+        Objects.equals(this.phoneNumber, purchaseWhatsAppPhoneNumberRequest.phoneNumber) &&
         Objects.equals(this.purchaseIntentId, purchaseWhatsAppPhoneNumberRequest.purchaseIntentId) &&
         Objects.equals(this.allowMultiple, purchaseWhatsAppPhoneNumberRequest.allowMultiple);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, purchaseIntentId, allowMultiple);
+    return Objects.hash(profileId, country, phoneNumber, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -184,6 +214,7 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     sb.append("class PurchaseWhatsAppPhoneNumberRequest {\n");
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    purchaseIntentId: ").append(toIndentedString(purchaseIntentId)).append("\n");
     sb.append("    allowMultiple: ").append(toIndentedString(allowMultiple)).append("\n");
     sb.append("}");
@@ -241,6 +272,11 @@ public class PurchaseWhatsAppPhoneNumberRequest {
     // add `country` to the URL query string
     if (getCountry() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%scountry%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountry()))));
+    }
+
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
     }
 
     // add `purchaseIntentId` to the URL query string

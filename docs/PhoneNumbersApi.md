@@ -823,7 +823,7 @@ ApiResponse<[**CreatePhoneNumberPortIn201Response**](CreatePhoneNumberPortIn201R
 
 Watch an out-of-stock country
 
-Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
 
 ### Example
 
@@ -897,7 +897,7 @@ public class Example {
 
 Watch an out-of-stock country
 
-Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched. Those are sourced by a carrier request rather than held in stock, so a watch records interest and no date is implied. 
+Get notified the first time an out-of-stock country has deliverable numbers again: an email to the account holder plus the &#x60;phone_number.stock_available&#x60; webhook. Stock is re-checked every 6h. One watch per country and number type; a repeat request returns the existing watch (200). The watch is consumed when it fires, so re-create it if you miss the stock. Up to 20 watches at once.  Countries and types marked &#x60;fulfilment: request&#x60; by GET /v1/phone-numbers/countries can also be watched, but anything with &#x60;preOrderable: true&#x60; does not need a watch: submit KYC and the carrier sources the number to order. 
 
 ### Example
 
@@ -2435,7 +2435,7 @@ ApiResponse<[**ListPhoneNumbers200Response**](ListPhoneNumbers200Response.md)>
 
 Purchase phone number
 
-Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
 
 ### Example
 
@@ -2501,7 +2501,7 @@ public class Example {
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -2512,7 +2512,7 @@ public class Example {
 
 Purchase phone number
 
-Payment-first: you do not pick a specific number, the system provisions one and auto-assigns it. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
 
 ### Example
 
@@ -2581,7 +2581,7 @@ ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode).  |  -  |
+| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -3359,7 +3359,7 @@ ApiResponse<[**ReviewPhoneNumberKycPacket200Response**](ReviewPhoneNumberKycPack
 
 Search available numbers
 
-Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
 
 ### Example
 
@@ -3443,7 +3443,7 @@ public class Example {
 
 Search available numbers
 
-Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). 
+Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
 
 ### Example
 

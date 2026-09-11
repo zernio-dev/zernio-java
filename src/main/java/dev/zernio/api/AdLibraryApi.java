@@ -48,7 +48,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdLibraryApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -182,7 +182,7 @@ public class AdLibraryApi {
    * @param since Earliest delivery date (YYYY-MM-DD). (optional)
    * @param until Latest delivery date (YYYY-MM-DD). (optional)
    * @param searchType Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)
-   * @param fields Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)
+   * @param fields Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page. LinkedIn accepts at most 25. (optional, default to 25)
    * @param after paging.after of the previous page. (optional)
    * @return SearchAdLibrary200Response
@@ -209,7 +209,7 @@ public class AdLibraryApi {
    * @param since Earliest delivery date (YYYY-MM-DD). (optional)
    * @param until Latest delivery date (YYYY-MM-DD). (optional)
    * @param searchType Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)
-   * @param fields Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)
+   * @param fields Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page. LinkedIn accepts at most 25. (optional, default to 25)
    * @param after paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -238,7 +238,7 @@ public class AdLibraryApi {
    * @param since Earliest delivery date (YYYY-MM-DD). (optional)
    * @param until Latest delivery date (YYYY-MM-DD). (optional)
    * @param searchType Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)
-   * @param fields Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)
+   * @param fields Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page. LinkedIn accepts at most 25. (optional, default to 25)
    * @param after paging.after of the previous page. (optional)
    * @return ApiResponse&lt;SearchAdLibrary200Response&gt;
@@ -265,7 +265,7 @@ public class AdLibraryApi {
    * @param since Earliest delivery date (YYYY-MM-DD). (optional)
    * @param until Latest delivery date (YYYY-MM-DD). (optional)
    * @param searchType Meta only. Whether q matches words in any order or as an exact phrase (comma-separate phrases to match all of them). (optional, default to KEYWORD_UNORDERED)
-   * @param fields Meta only. Raw Graph projection override, e.g. add spend,impressions,demographic_distribution for political ads. (optional)
+   * @param fields Meta only. Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page. LinkedIn accepts at most 25. (optional, default to 25)
    * @param after paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request

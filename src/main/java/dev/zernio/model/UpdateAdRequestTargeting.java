@@ -30,6 +30,10 @@ import dev.zernio.model.UpdateAdRequestTargetingKeywordsInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -44,10 +48,12 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MIN,
   UpdateAdRequestTargeting.JSON_PROPERTY_AGE_MAX,
   UpdateAdRequestTargeting.JSON_PROPERTY_COUNTRIES,
+  UpdateAdRequestTargeting.JSON_PROPERTY_LOCATIONS,
+  UpdateAdRequestTargeting.JSON_PROPERTY_LANGUAGES,
   UpdateAdRequestTargeting.JSON_PROPERTY_INTERESTS,
   UpdateAdRequestTargeting.JSON_PROPERTY_ADVANTAGE_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_KEYWORDS = "keywords";
   @javax.annotation.Nullable
@@ -72,6 +78,13 @@ public class UpdateAdRequestTargeting {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_LOCATIONS = "locations";
+  private JsonNullable<Object> locations = JsonNullable.<Object>of(null);
+
+  public static final String JSON_PROPERTY_LANGUAGES = "languages";
+  @javax.annotation.Nullable
+  private List<String> languages = new ArrayList<>();
 
   public static final String JSON_PROPERTY_INTERESTS = "interests";
   @javax.annotation.Nullable
@@ -197,7 +210,7 @@ public class UpdateAdRequestTargeting {
   }
 
   /**
-   * Google only. The FULL new set of device criteria for the campaign; devices not listed are excluded. Entries are a device name alone (included, no bid adjustment) or { device, bidModifier }.
+   * Google only. The FULL new set of device bid modifiers for the campaign. Entries are a device name alone (targeted, bid modifier reset to 1) or { device, bidModifier }. A supported device you leave out is switched off, written as a bid modifier of 0. Google never removes a device criterion, so an excluded device reads back as bidModifier 0 rather than disappearing, and a set that switches every device off returns 422. Which devices a campaign carries depends on its channel: Search campaigns have MOBILE, DESKTOP and TABLET, Display campaigns also have CONNECTED_TV, and sending a device the campaign does not carry returns 422.
    * @return devices
    */
   @javax.annotation.Nullable
@@ -281,7 +294,7 @@ public class UpdateAdRequestTargeting {
   }
 
   /**
-   * Get countries
+   * ISO 3166-1 alpha-2 codes. On Google this is the FULL new country set for the campaign (same contract as &#x60;locations&#x60;); on LinkedIn it replaces the campaign&#39;s geo criteria.
    * @return countries
    */
   @javax.annotation.Nullable
@@ -296,6 +309,70 @@ public class UpdateAdRequestTargeting {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public UpdateAdRequestTargeting locations(@javax.annotation.Nullable Object locations) {
+    this.locations = JsonNullable.<Object>of(locations);
+    return this;
+  }
+
+  /**
+   * Get locations
+   * @return locations
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Object getLocations() {
+        return locations.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getLocations_JsonNullable() {
+    return locations;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_LOCATIONS)
+  public void setLocations_JsonNullable(JsonNullable<Object> locations) {
+    this.locations = locations;
+  }
+
+  public void setLocations(@javax.annotation.Nullable Object locations) {
+    this.locations = JsonNullable.<Object>of(locations);
+  }
+
+
+  public UpdateAdRequestTargeting languages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
+    return this;
+  }
+
+  public UpdateAdRequestTargeting addLanguagesItem(String languagesItem) {
+    if (this.languages == null) {
+      this.languages = new ArrayList<>();
+    }
+    this.languages.add(languagesItem);
+    return this;
+  }
+
+  /**
+   * Google only. The FULL new language set for the campaign, as Google language codes (ISO 639-1, plus variants such as &#x60;zh_CN&#x60;). An unknown code returns 400.
+   * @return languages
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getLanguages() {
+    return languages;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguages(@javax.annotation.Nullable List<String> languages) {
+    this.languages = languages;
   }
 
 
@@ -373,13 +450,26 @@ public class UpdateAdRequestTargeting {
         Objects.equals(this.ageMin, updateAdRequestTargeting.ageMin) &&
         Objects.equals(this.ageMax, updateAdRequestTargeting.ageMax) &&
         Objects.equals(this.countries, updateAdRequestTargeting.countries) &&
+        equalsNullable(this.locations, updateAdRequestTargeting.locations) &&
+        Objects.equals(this.languages, updateAdRequestTargeting.languages) &&
         Objects.equals(this.interests, updateAdRequestTargeting.interests) &&
         Objects.equals(this.advantageAudience, updateAdRequestTargeting.advantageAudience);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(keywords, negativeKeywords, devices, ageMin, ageMax, countries, interests, advantageAudience);
+    return Objects.hash(keywords, negativeKeywords, devices, ageMin, ageMax, countries, hashCodeNullable(locations), languages, interests, advantageAudience);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -392,6 +482,8 @@ public class UpdateAdRequestTargeting {
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
     sb.append("    ageMax: ").append(toIndentedString(ageMax)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    interests: ").append(toIndentedString(interests)).append("\n");
     sb.append("    advantageAudience: ").append(toIndentedString(advantageAudience)).append("\n");
     sb.append("}");
@@ -487,6 +579,20 @@ public class UpdateAdRequestTargeting {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `locations` to the URL query string
+    if (getLocations() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocations()))));
+    }
+
+    // add `languages` to the URL query string
+    if (getLanguages() != null) {
+      for (int i = 0; i < getLanguages().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%slanguages%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getLanguages().get(i)))));
       }
     }
 

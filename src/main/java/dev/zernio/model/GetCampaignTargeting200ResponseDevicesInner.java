@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetCampaignTargeting200ResponseDevicesInner.JSON_PROPERTY_INCLUDED,
   GetCampaignTargeting200ResponseDevicesInner.JSON_PROPERTY_BID_MODIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignTargeting200ResponseDevicesInner {
   /**
    * Gets or Sets device
@@ -151,7 +151,7 @@ public class GetCampaignTargeting200ResponseDevicesInner {
   }
 
   /**
-   * Always null on this read (see description).
+   * Google&#39;s bid adjustment for this device: null when it has none, 0 when the device is switched off, otherwise 0.1 to 10.
    * @return bidModifier
    */
   @javax.annotation.Nullable

@@ -47,9 +47,11 @@ import dev.zernio.ApiClient;
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_IG_REELS_AVG_WATCH_TIME,
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_IG_REELS_VIDEO_VIEW_TOTAL_TIME,
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_REPOSTS,
-  AnalyticsDeltaEntryMetrics.JSON_PROPERTY_REELS_SKIP_RATE
+  AnalyticsDeltaEntryMetrics.JSON_PROPERTY_REELS_SKIP_RATE,
+  AnalyticsDeltaEntryMetrics.JSON_PROPERTY_COMPLETION_RATE,
+  AnalyticsDeltaEntryMetrics.JSON_PROPERTY_PROFILE_VIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsDeltaEntryMetrics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nonnull
@@ -106,6 +108,14 @@ public class AnalyticsDeltaEntryMetrics {
   public static final String JSON_PROPERTY_REELS_SKIP_RATE = "reelsSkipRate";
   @javax.annotation.Nonnull
   private BigDecimal reelsSkipRate;
+
+  public static final String JSON_PROPERTY_COMPLETION_RATE = "completionRate";
+  @javax.annotation.Nonnull
+  private BigDecimal completionRate;
+
+  public static final String JSON_PROPERTY_PROFILE_VIEWS = "profileViews";
+  @javax.annotation.Nonnull
+  private Integer profileViews;
 
   public AnalyticsDeltaEntryMetrics() { 
   }
@@ -446,6 +456,54 @@ public class AnalyticsDeltaEntryMetrics {
   }
 
 
+  public AnalyticsDeltaEntryMetrics completionRate(@javax.annotation.Nonnull BigDecimal completionRate) {
+    this.completionRate = completionRate;
+    return this;
+  }
+
+  /**
+   * TikTok business lane: share of viewers who watched to the end, 0 to 1
+   * @return completionRate
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_COMPLETION_RATE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public BigDecimal getCompletionRate() {
+    return completionRate;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMPLETION_RATE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCompletionRate(@javax.annotation.Nonnull BigDecimal completionRate) {
+    this.completionRate = completionRate;
+  }
+
+
+  public AnalyticsDeltaEntryMetrics profileViews(@javax.annotation.Nonnull Integer profileViews) {
+    this.profileViews = profileViews;
+    return this;
+  }
+
+  /**
+   * TikTok business lane: profile views attributed to the post
+   * @return profileViews
+   */
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_VIEWS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public Integer getProfileViews() {
+    return profileViews;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_VIEWS, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setProfileViews(@javax.annotation.Nonnull Integer profileViews) {
+    this.profileViews = profileViews;
+  }
+
+
   /**
    * Return true if this AnalyticsDeltaEntry_metrics object is equal to o.
    */
@@ -471,12 +529,14 @@ public class AnalyticsDeltaEntryMetrics {
         Objects.equals(this.igReelsAvgWatchTime, analyticsDeltaEntryMetrics.igReelsAvgWatchTime) &&
         Objects.equals(this.igReelsVideoViewTotalTime, analyticsDeltaEntryMetrics.igReelsVideoViewTotalTime) &&
         Objects.equals(this.reposts, analyticsDeltaEntryMetrics.reposts) &&
-        Objects.equals(this.reelsSkipRate, analyticsDeltaEntryMetrics.reelsSkipRate);
+        Objects.equals(this.reelsSkipRate, analyticsDeltaEntryMetrics.reelsSkipRate) &&
+        Objects.equals(this.completionRate, analyticsDeltaEntryMetrics.completionRate) &&
+        Objects.equals(this.profileViews, analyticsDeltaEntryMetrics.profileViews);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(impressions, reach, likes, comments, shares, saves, sends, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, reposts, reelsSkipRate);
+    return Objects.hash(impressions, reach, likes, comments, shares, saves, sends, clicks, views, follows, igReelsAvgWatchTime, igReelsVideoViewTotalTime, reposts, reelsSkipRate, completionRate, profileViews);
   }
 
   @Override
@@ -497,6 +557,8 @@ public class AnalyticsDeltaEntryMetrics {
     sb.append("    igReelsVideoViewTotalTime: ").append(toIndentedString(igReelsVideoViewTotalTime)).append("\n");
     sb.append("    reposts: ").append(toIndentedString(reposts)).append("\n");
     sb.append("    reelsSkipRate: ").append(toIndentedString(reelsSkipRate)).append("\n");
+    sb.append("    completionRate: ").append(toIndentedString(completionRate)).append("\n");
+    sb.append("    profileViews: ").append(toIndentedString(profileViews)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -612,6 +674,16 @@ public class AnalyticsDeltaEntryMetrics {
     // add `reelsSkipRate` to the URL query string
     if (getReelsSkipRate() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sreelsSkipRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReelsSkipRate()))));
+    }
+
+    // add `completionRate` to the URL query string
+    if (getCompletionRate() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scompletionRate%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCompletionRate()))));
+    }
+
+    // add `profileViews` to the URL query string
+    if (getProfileViews() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprofileViews%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getProfileViews()))));
     }
 
     return joiner.toString();

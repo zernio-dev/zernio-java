@@ -37,9 +37,11 @@ import dev.zernio.ApiClient;
   LikePost200Response.JSON_PROPERTY_POST_ID,
   LikePost200Response.JSON_PROPERTY_PLATFORM,
   LikePost200Response.JSON_PROPERTY_LIKED,
-  LikePost200Response.JSON_PROPERTY_LIKE_URI
+  LikePost200Response.JSON_PROPERTY_LIKE_URI,
+  LikePost200Response.JSON_PROPERTY_ALREADY_REACTED,
+  LikePost200Response.JSON_PROPERTY_REACTION_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LikePost200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
@@ -60,6 +62,14 @@ public class LikePost200Response {
   public static final String JSON_PROPERTY_LIKE_URI = "likeUri";
   @javax.annotation.Nullable
   private String likeUri;
+
+  public static final String JSON_PROPERTY_ALREADY_REACTED = "alreadyReacted";
+  @javax.annotation.Nullable
+  private Boolean alreadyReacted;
+
+  public static final String JSON_PROPERTY_REACTION_TYPE = "reactionType";
+  @javax.annotation.Nullable
+  private String reactionType;
 
   public LikePost200Response() { 
   }
@@ -184,6 +194,54 @@ public class LikePost200Response {
   }
 
 
+  public LikePost200Response alreadyReacted(@javax.annotation.Nullable Boolean alreadyReacted) {
+    this.alreadyReacted = alreadyReacted;
+    return this;
+  }
+
+  /**
+   * LinkedIn only: the account already had this exact reaction, so nothing was created
+   * @return alreadyReacted
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ALREADY_REACTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getAlreadyReacted() {
+    return alreadyReacted;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ALREADY_REACTED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAlreadyReacted(@javax.annotation.Nullable Boolean alreadyReacted) {
+    this.alreadyReacted = alreadyReacted;
+  }
+
+
+  public LikePost200Response reactionType(@javax.annotation.Nullable String reactionType) {
+    this.reactionType = reactionType;
+    return this;
+  }
+
+  /**
+   * LinkedIn only: the reaction type now in effect
+   * @return reactionType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_REACTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getReactionType() {
+    return reactionType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_REACTION_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setReactionType(@javax.annotation.Nullable String reactionType) {
+    this.reactionType = reactionType;
+  }
+
+
   /**
    * Return true if this likePost_200_response object is equal to o.
    */
@@ -200,12 +258,14 @@ public class LikePost200Response {
         Objects.equals(this.postId, likePost200Response.postId) &&
         Objects.equals(this.platform, likePost200Response.platform) &&
         Objects.equals(this.liked, likePost200Response.liked) &&
-        Objects.equals(this.likeUri, likePost200Response.likeUri);
+        Objects.equals(this.likeUri, likePost200Response.likeUri) &&
+        Objects.equals(this.alreadyReacted, likePost200Response.alreadyReacted) &&
+        Objects.equals(this.reactionType, likePost200Response.reactionType);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(status, postId, platform, liked, likeUri);
+    return Objects.hash(status, postId, platform, liked, likeUri, alreadyReacted, reactionType);
   }
 
   @Override
@@ -217,6 +277,8 @@ public class LikePost200Response {
     sb.append("    platform: ").append(toIndentedString(platform)).append("\n");
     sb.append("    liked: ").append(toIndentedString(liked)).append("\n");
     sb.append("    likeUri: ").append(toIndentedString(likeUri)).append("\n");
+    sb.append("    alreadyReacted: ").append(toIndentedString(alreadyReacted)).append("\n");
+    sb.append("    reactionType: ").append(toIndentedString(reactionType)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -287,6 +349,16 @@ public class LikePost200Response {
     // add `likeUri` to the URL query string
     if (getLikeUri() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slikeUri%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLikeUri()))));
+    }
+
+    // add `alreadyReacted` to the URL query string
+    if (getAlreadyReacted() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%salreadyReacted%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAlreadyReacted()))));
+    }
+
+    // add `reactionType` to the URL query string
+    if (getReactionType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sreactionType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getReactionType()))));
     }
 
     return joiner.toString();

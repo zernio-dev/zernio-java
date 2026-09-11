@@ -9,7 +9,7 @@ Photo carousels up to 35 images. Video titles up to 2200 chars, photo titles tru
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**draft** | **Boolean** | When true, sends the post to the TikTok Creator Inbox as a draft instead of publishing immediately. The creator receives an inbox notification to complete posting via TikTok&#39;s editing flow. Maps to TikTok API post_mode: \&quot;MEDIA_UPLOAD\&quot; (photos) or the dedicated inbox endpoint (videos). When false or omitted, publishes directly via post_mode: \&quot;DIRECT_POST\&quot;. Note: publish_type is not a supported field. Use this field instead.  |  [optional] |
-|**privacyLevel** | **String** | One of the values returned by the TikTok creator info API for the account |  [optional] |
+|**privacyLevel** | **String** | One of the values returned by the TikTok creator info API for the account. Accounts connected through the TikTok for Business app publish videos as public only: a non-public value on a video post is rejected at creation unless draft is true (photo posts keep every level). |  [optional] |
 |**allowComment** | **Boolean** | Allow comments on the post |  [optional] |
 |**allowDuet** | **Boolean** | Allow duets (required for video posts) |  [optional] |
 |**allowStitch** | **Boolean** | Allow stitches (required for video posts) |  [optional] |
@@ -20,11 +20,11 @@ Photo carousels up to 35 images. Video titles up to 2200 chars, photo titles tru
 |**expressConsentGiven** | **Boolean** | User has given express consent for posting |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) | Optional override. Defaults based on provided media items. |  [optional] |
 |**videoCoverTimestampMs** | **Integer** | Optional for video posts. Timestamp in milliseconds to select which frame to use as thumbnail (defaults to 1000ms/1 second). Ignored when videoCoverImageUrl is provided. |  [optional] |
-|**videoCoverImageUrl** | **URI** | Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). The image is stitched as a single frame at the start of the video and used as the cover. Overrides videoCoverTimestampMs when provided. |  [optional] |
+|**videoCoverImageUrl** | **URI** | Optional for video posts. URL of a custom thumbnail image (JPG, PNG, or WebP, max 20MB). Any downloadable URL works: we rehost it ourselves. The image is stitched as a single frame at the start of the video to serve as the cover. Accounts connected through the TikTok for Business app hand it to TikTok as the cover instead, with no stitching, falling back to videoCoverTimestampMs without it. Overrides videoCoverTimestampMs when provided. |  [optional] |
 |**photoCoverIndex** | **Integer** | Optional for photo carousels. Index of image to use as cover, 0-based (defaults to 0/first image). |  [optional] |
 |**autoAddMusic** | **Boolean** | When true, TikTok may add recommended music (photos only) |  [optional] |
-|**videoMadeWithAi** | **Boolean** | Set true to disclose AI-generated content |  [optional] |
-|**description** | **String** | Optional long-form description for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. |  [optional] |
+|**videoMadeWithAi** | **Boolean** | Set true to disclose AI-generated content. Accounts connected through the TikTok for Business app carry the disclosure on video posts only: the business photo endpoint has no AI disclosure field, so true on a direct photo post is rejected at creation rather than published undisclosed. Send draft true to publish such a photo post and set the disclosure in the TikTok app. |  [optional] |
+|**description** | **String** | Optional long-form caption for photo posts (max 4000 chars). Recommended when content exceeds 90 chars, as photo titles are auto-truncated. Falls back to the post content when omitted. |  [optional] |
 
 
 

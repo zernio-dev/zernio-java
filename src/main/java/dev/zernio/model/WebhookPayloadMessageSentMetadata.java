@@ -24,20 +24,34 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WebhookPayloadMessageSentMetadataLocation;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
 import dev.zernio.ApiClient;
 /**
- * Platform-specific context for the sent message. The key is present only when the send carried some context, and absent otherwise: it is never null and never an empty object.
+ * Platform-specific context for the sent message: a quote-reply reference, a WhatsApp location pin or WhatsApp contact cards. The key is present only when the send carried some context, and absent otherwise: it is never null and never an empty object. Read it to tell a location or contact-card message from a text one without a GET on the message.
  */
 @JsonPropertyOrder({
+  WebhookPayloadMessageSentMetadata.JSON_PROPERTY_LOCATION,
+  WebhookPayloadMessageSentMetadata.JSON_PROPERTY_CONTACTS,
   WebhookPayloadMessageSentMetadata.JSON_PROPERTY_QUOTED_MESSAGE_ID,
   WebhookPayloadMessageSentMetadata.JSON_PROPERTY_THREAD_TS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMetadata {
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageSentMetadataLocation location;
+
+  public static final String JSON_PROPERTY_CONTACTS = "contacts";
+  @javax.annotation.Nullable
+  private List<Map<String, Object>> contacts = new ArrayList<>();
+
   public static final String JSON_PROPERTY_QUOTED_MESSAGE_ID = "quotedMessageId";
   @javax.annotation.Nullable
   private String quotedMessageId;
@@ -48,6 +62,62 @@ public class WebhookPayloadMessageSentMetadata {
 
   public WebhookPayloadMessageSentMetadata() { 
   }
+
+  public WebhookPayloadMessageSentMetadata location(@javax.annotation.Nullable WebhookPayloadMessageSentMetadataLocation location) {
+    this.location = location;
+    return this;
+  }
+
+  /**
+   * Get location
+   * @return location
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageSentMetadataLocation getLocation() {
+    return location;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocation(@javax.annotation.Nullable WebhookPayloadMessageSentMetadataLocation location) {
+    this.location = location;
+  }
+
+
+  public WebhookPayloadMessageSentMetadata contacts(@javax.annotation.Nullable List<Map<String, Object>> contacts) {
+    this.contacts = contacts;
+    return this;
+  }
+
+  public WebhookPayloadMessageSentMetadata addContactsItem(Map<String, Object> contactsItem) {
+    if (this.contacts == null) {
+      this.contacts = new ArrayList<>();
+    }
+    this.contacts.add(contactsItem);
+    return this;
+  }
+
+  /**
+   * WhatsApp only. The contact cards this message carries. On API sends this is the &#x60;contacts&#x60; array exactly as given to the inbox send API (&#x60;name&#x60;, &#x60;phones[].phone&#x60; / &#x60;type&#x60;, &#x60;emails[]&#x60;); on Coexistence echoes of a card shared from the WhatsApp Business app it is Meta&#39;s shape (&#x60;phones[].wa_id&#x60;, &#x60;vcard&#x60;). The message &#x60;text&#x60; is only the emoji preview (&#x60;👤 &lt;name&gt;&#x60;); the cards live here. 
+   * @return contacts
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<Map<String, Object>> getContacts() {
+    return contacts;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CONTACTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setContacts(@javax.annotation.Nullable List<Map<String, Object>> contacts) {
+    this.contacts = contacts;
+  }
+
 
   public WebhookPayloadMessageSentMetadata quotedMessageId(@javax.annotation.Nullable String quotedMessageId) {
     this.quotedMessageId = quotedMessageId;
@@ -109,19 +179,23 @@ public class WebhookPayloadMessageSentMetadata {
       return false;
     }
     WebhookPayloadMessageSentMetadata webhookPayloadMessageSentMetadata = (WebhookPayloadMessageSentMetadata) o;
-    return Objects.equals(this.quotedMessageId, webhookPayloadMessageSentMetadata.quotedMessageId) &&
+    return Objects.equals(this.location, webhookPayloadMessageSentMetadata.location) &&
+        Objects.equals(this.contacts, webhookPayloadMessageSentMetadata.contacts) &&
+        Objects.equals(this.quotedMessageId, webhookPayloadMessageSentMetadata.quotedMessageId) &&
         Objects.equals(this.threadTs, webhookPayloadMessageSentMetadata.threadTs);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotedMessageId, threadTs);
+    return Objects.hash(location, contacts, quotedMessageId, threadTs);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class WebhookPayloadMessageSentMetadata {\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
     sb.append("    quotedMessageId: ").append(toIndentedString(quotedMessageId)).append("\n");
     sb.append("    threadTs: ").append(toIndentedString(threadTs)).append("\n");
     sb.append("}");
@@ -170,6 +244,20 @@ public class WebhookPayloadMessageSentMetadata {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `location` to the URL query string
+    if (getLocation() != null) {
+      joiner.add(getLocation().toUrlQueryString(prefix + "location" + suffix));
+    }
+
+    // add `contacts` to the URL query string
+    if (getContacts() != null) {
+      for (int i = 0; i < getContacts().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scontacts%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getContacts().get(i)))));
+      }
+    }
 
     // add `quotedMessageId` to the URL query string
     if (getQuotedMessageId() != null) {

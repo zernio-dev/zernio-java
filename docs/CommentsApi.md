@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**likePostWithHttpInfo**](CommentsApi.md#likePostWithHttpInfo) | **POST** /v1/inbox/posts/{postId}/like | Like post |
 | [**listInboxComments**](CommentsApi.md#listInboxComments) | **GET** /v1/inbox/comments | List commented posts |
 | [**listInboxCommentsWithHttpInfo**](CommentsApi.md#listInboxCommentsWithHttpInfo) | **GET** /v1/inbox/comments | List commented posts |
+| [**pinInboxComment**](CommentsApi.md#pinInboxComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/pin | Pin comment |
+| [**pinInboxCommentWithHttpInfo**](CommentsApi.md#pinInboxCommentWithHttpInfo) | **POST** /v1/inbox/comments/{postId}/{commentId}/pin | Pin comment |
 | [**replyToInboxPost**](CommentsApi.md#replyToInboxPost) | **POST** /v1/inbox/comments/{postId} | Reply to comment |
 | [**replyToInboxPostWithHttpInfo**](CommentsApi.md#replyToInboxPostWithHttpInfo) | **POST** /v1/inbox/comments/{postId} | Reply to comment |
 | [**sendPrivateReplyToComment**](CommentsApi.md#sendPrivateReplyToComment) | **POST** /v1/inbox/comments/{postId}/{commentId}/private-reply | Send private reply |
@@ -30,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**unlikeInboxCommentWithHttpInfo**](CommentsApi.md#unlikeInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/like | Unlike comment |
 | [**unlikePost**](CommentsApi.md#unlikePost) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post |
 | [**unlikePostWithHttpInfo**](CommentsApi.md#unlikePostWithHttpInfo) | **DELETE** /v1/inbox/posts/{postId}/like | Unlike post |
+| [**unpinInboxComment**](CommentsApi.md#unpinInboxComment) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/pin | Unpin comment |
+| [**unpinInboxCommentWithHttpInfo**](CommentsApi.md#unpinInboxCommentWithHttpInfo) | **DELETE** /v1/inbox/comments/{postId}/{commentId}/pin | Unpin comment |
 
 
 
@@ -363,7 +367,7 @@ ApiResponse<[**EditInboxComment200Response**](EditInboxComment200Response.md)>
 
 Get post comments
 
-Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
 
 ### Example
 
@@ -391,7 +395,7 @@ public class Example {
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
-        String commentId = "commentId_example"; // String | (Reddit only) Get replies to a specific comment
+        String commentId = "commentId_example"; // String | (Reddit and TikTok only) Get replies to a specific comment
         try {
             GetInboxPostComments200Response result = apiInstance.getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId);
             System.out.println(result);
@@ -416,7 +420,7 @@ public class Example {
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
-| **commentId** | **String**| (Reddit only) Get replies to a specific comment | [optional] |
+| **commentId** | **String**| (Reddit and TikTok only) Get replies to a specific comment | [optional] |
 
 ### Return type
 
@@ -448,7 +452,7 @@ public class Example {
 
 Get post comments
 
-Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
 
 ### Example
 
@@ -477,7 +481,7 @@ public class Example {
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
-        String commentId = "commentId_example"; // String | (Reddit only) Get replies to a specific comment
+        String commentId = "commentId_example"; // String | (Reddit and TikTok only) Get replies to a specific comment
         try {
             ApiResponse<GetInboxPostComments200Response> response = apiInstance.getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -504,7 +508,7 @@ public class Example {
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
-| **commentId** | **String**| (Reddit only) Get replies to a specific comment | [optional] |
+| **commentId** | **String**| (Reddit and TikTok only) Get replies to a specific comment | [optional] |
 
 ### Return type
 
@@ -537,7 +541,7 @@ ApiResponse<[**GetInboxPostComments200Response**](GetInboxPostComments200Respons
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
 
 ### Example
 
@@ -614,7 +618,7 @@ public class Example {
 
 Hide comment
 
-Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
 
 ### Example
 
@@ -765,6 +769,7 @@ public class Example {
 | **400** | Platform does not support liking comments |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 ## likeInboxCommentWithHttpInfo
 
@@ -845,6 +850,7 @@ ApiResponse<[**LikeInboxComment200Response**](LikeInboxComment200Response.md)>
 | **400** | Platform does not support liking comments |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform permission |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 
 ## likePost
@@ -922,6 +928,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 ## likePostWithHttpInfo
 
@@ -1001,6 +1008,7 @@ ApiResponse<[**LikePost200Response**](LikePost200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
+| **409** | LinkedIn only: the account already holds a different reaction on this target (code invalid_resource_state); remove it before creating another. |  -  |
 
 
 ## listInboxComments
@@ -1179,6 +1187,164 @@ ApiResponse<[**ListInboxComments200Response**](ListInboxComments200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated posts with comments |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+
+
+## pinInboxComment
+
+> PinInboxComment200Response pinInboxComment(postId, commentId, pinInboxCommentRequest)
+
+Pin comment
+
+Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        PinInboxCommentRequest pinInboxCommentRequest = new PinInboxCommentRequest(); // PinInboxCommentRequest | 
+        try {
+            PinInboxComment200Response result = apiInstance.pinInboxComment(postId, commentId, pinInboxCommentRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#pinInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **pinInboxCommentRequest** | [**PinInboxCommentRequest**](PinInboxCommentRequest.md)|  | |
+
+### Return type
+
+[**PinInboxComment200Response**](PinInboxComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment pinned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+
+## pinInboxCommentWithHttpInfo
+
+> ApiResponse<PinInboxComment200Response> pinInboxComment pinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest)
+
+Pin comment
+
+Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        PinInboxCommentRequest pinInboxCommentRequest = new PinInboxCommentRequest(); // PinInboxCommentRequest | 
+        try {
+            ApiResponse<PinInboxComment200Response> response = apiInstance.pinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#pinInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **pinInboxCommentRequest** | [**PinInboxCommentRequest**](PinInboxCommentRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PinInboxComment200Response**](PinInboxComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment pinned |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1677,7 +1843,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
 
 ### Example
 
@@ -1754,7 +1920,7 @@ public class Example {
 
 Unhide comment
 
-Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
 
 ### Example
 
@@ -2149,4 +2315,162 @@ ApiResponse<[**UnlikePost200Response**](UnlikePost200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required, or the account is missing the platform scope |  -  |
 | **404** | Account or post not found |  -  |
+
+
+## unpinInboxComment
+
+> PinInboxComment200Response unpinInboxComment(postId, commentId, accountId)
+
+Unpin comment
+
+Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            PinInboxComment200Response result = apiInstance.unpinInboxComment(postId, commentId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#unpinInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+[**PinInboxComment200Response**](PinInboxComment200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment unpinned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
+
+## unpinInboxCommentWithHttpInfo
+
+> ApiResponse<PinInboxComment200Response> unpinInboxComment unpinInboxCommentWithHttpInfo(postId, commentId, accountId)
+
+Unpin comment
+
+Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommentsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommentsApi apiInstance = new CommentsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        String commentId = "commentId_example"; // String | 
+        String accountId = "accountId_example"; // String | 
+        try {
+            ApiResponse<PinInboxComment200Response> response = apiInstance.unpinInboxCommentWithHttpInfo(postId, commentId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommentsApi#unpinInboxComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **commentId** | **String**|  | |
+| **accountId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**PinInboxComment200Response**](PinInboxComment200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Comment unpinned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Inbox addon required |  -  |
 

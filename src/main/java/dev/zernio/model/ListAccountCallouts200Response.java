@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListAccountCallouts200Response.JSON_PROPERTY_CACHED_AT,
   ListAccountCallouts200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccountCallouts200Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable
@@ -128,7 +128,7 @@ public class ListAccountCallouts200Response {
   }
 
   /**
-   * When this list was fetched from Google. Null when it was never served from cache.
+   * Time of the cached Google read. Null when no cache was used.
    * @return cachedAt
    */
   @javax.annotation.Nullable
@@ -160,7 +160,7 @@ public class ListAccountCallouts200Response {
   }
 
   /**
-   * True when Google&#39;s daily API quota was exhausted and this is the last successful fetch, not a live read.
+   * True when exhausted quota required returning the last successful read.
    * @return stale
    */
   @javax.annotation.Nullable

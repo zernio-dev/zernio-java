@@ -406,6 +406,8 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 ## getAccountPostsWithHttpInfo
 
@@ -483,6 +485,8 @@ ApiResponse<[**GetAccountPosts200Response**](GetAccountPosts200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getAllAccountsHealth
@@ -1500,6 +1504,7 @@ public class Example {
 | **200** | Accounts (with optional pagination) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## listAccountsWithHttpInfo
 
@@ -1585,6 +1590,7 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 | **200** | Accounts (with optional pagination) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## moveAccountToProfile

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestTargetingDevicesInnerOneOf.JSON_PROPERTY_DEVICE,
   UpdateAdRequestTargetingDevicesInnerOneOf.JSON_PROPERTY_BID_MODIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestTargetingDevicesInnerOneOf {
   /**
    * Gets or Sets device
@@ -119,8 +119,8 @@ public class UpdateAdRequestTargetingDevicesInnerOneOf {
   }
 
   /**
-   * Google device bid modifier, 0.1 to 10 (minus 90% to plus 900%). Omit a device to exclude it.
-   * minimum: 0.1
+   * Google device bid modifier. 0 switches the device off (minus 100%); otherwise 0.1 to 10 (minus 90% to plus 900%). Google rejects any value between 0 and 0.1.
+   * minimum: 0
    * maximum: 10
    * @return bidModifier
    */

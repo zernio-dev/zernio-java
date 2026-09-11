@@ -37,13 +37,14 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumberRequest.JSON_PROPERTY_COUNTRY,
   PurchasePhoneNumberRequest.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumberRequest.JSON_PROPERTY_AREA_CODE,
+  PurchasePhoneNumberRequest.JSON_PROPERTY_PHONE_NUMBER,
   PurchasePhoneNumberRequest.JSON_PROPERTY_CONNECT_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_SMS,
   PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -99,6 +100,10 @@ public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
   @javax.annotation.Nullable
   private String areaCode;
+
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  @javax.annotation.Nullable
+  private String phoneNumber;
 
   public static final String JSON_PROPERTY_CONNECT_WHATSAPP = "connectWhatsapp";
   @javax.annotation.Nullable
@@ -216,6 +221,30 @@ public class PurchasePhoneNumberRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAreaCode(@javax.annotation.Nullable String areaCode) {
     this.areaCode = areaCode;
+  }
+
+
+  public PurchasePhoneNumberRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Hard constraint: when it is no longer available (bought by someone else, or WhatsApp&#39;s buy-time check rejects it) the purchase fails with 409 code PHONE_NUMBER_UNAVAILABLE instead of assigning another number; search again and pick another. Only for countries and types that activate instantly: a regulated one (202 kyc_required) returns 400 when phoneNumber is set. 
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
   }
 
 
@@ -355,6 +384,7 @@ public class PurchasePhoneNumberRequest {
         Objects.equals(this.country, purchasePhoneNumberRequest.country) &&
         Objects.equals(this.numberType, purchasePhoneNumberRequest.numberType) &&
         Objects.equals(this.areaCode, purchasePhoneNumberRequest.areaCode) &&
+        Objects.equals(this.phoneNumber, purchasePhoneNumberRequest.phoneNumber) &&
         Objects.equals(this.connectWhatsapp, purchasePhoneNumberRequest.connectWhatsapp) &&
         Objects.equals(this.wantsSms, purchasePhoneNumberRequest.wantsSms) &&
         Objects.equals(this.wantsWhatsapp, purchasePhoneNumberRequest.wantsWhatsapp) &&
@@ -364,7 +394,7 @@ public class PurchasePhoneNumberRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, numberType, areaCode, connectWhatsapp, wantsSms, wantsWhatsapp, purchaseIntentId, allowMultiple);
+    return Objects.hash(profileId, country, numberType, areaCode, phoneNumber, connectWhatsapp, wantsSms, wantsWhatsapp, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -375,6 +405,7 @@ public class PurchasePhoneNumberRequest {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    connectWhatsapp: ").append(toIndentedString(connectWhatsapp)).append("\n");
     sb.append("    wantsSms: ").append(toIndentedString(wantsSms)).append("\n");
     sb.append("    wantsWhatsapp: ").append(toIndentedString(wantsWhatsapp)).append("\n");
@@ -445,6 +476,11 @@ public class PurchasePhoneNumberRequest {
     // add `areaCode` to the URL query string
     if (getAreaCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
+    }
+
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
     }
 
     // add `connectWhatsapp` to the URL query string

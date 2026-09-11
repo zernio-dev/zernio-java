@@ -91,6 +91,7 @@ public class Example {
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Active per-post automation already exists for this platformPostId. Does not apply to account-wide automations. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## createCommentAutomationWithHttpInfo
 
@@ -167,6 +168,7 @@ ApiResponse<[**CreateCommentAutomation200Response**](CreateCommentAutomation200R
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **409** | Active per-post automation already exists for this platformPostId. Does not apply to account-wide automations. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## deleteCommentAutomation
@@ -696,6 +698,7 @@ public class Example {
 | **200** | Automations list |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## listCommentAutomationsWithHttpInfo
 
@@ -771,6 +774,7 @@ ApiResponse<[**ListCommentAutomations200Response**](ListCommentAutomations200Res
 | **200** | Automations list |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## updateCommentAutomation

@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**device** | [**DeviceEnum**](#DeviceEnum) |  |  [optional] |
 |**included** | **Boolean** |  |  [optional] |
-|**bidModifier** | **BigDecimal** | Always null on this read (see description). |  [optional] |
+|**bidModifier** | **BigDecimal** | Google&#39;s bid adjustment for this device: null when it has none, 0 when the device is switched off, otherwise 0.1 to 10. |  [optional] |
 
 
 

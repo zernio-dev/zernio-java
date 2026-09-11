@@ -33,6 +33,8 @@ import dev.zernio.model.LikePost200Response;
 import dev.zernio.model.LikePostRequest;
 import dev.zernio.model.ListInboxComments200Response;
 import java.time.OffsetDateTime;
+import dev.zernio.model.PinInboxComment200Response;
+import dev.zernio.model.PinInboxCommentRequest;
 import dev.zernio.model.ReplyToInboxPost200Response;
 import dev.zernio.model.ReplyToInboxPostRequest;
 import dev.zernio.model.SendPrivateReplyToComment200Response;
@@ -67,7 +69,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -478,13 +480,13 @@ public class CommentsApi {
 
   /**
    * Get post comments
-   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
    * @param postId Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies. (required)
    * @param accountId  (required)
    * @param subreddit (Reddit only) Subreddit name (optional)
    * @param limit Maximum number of comments to return (optional, default to 25)
    * @param cursor Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)
-   * @param commentId (Reddit only) Get replies to a specific comment (optional)
+   * @param commentId (Reddit and TikTok only) Get replies to a specific comment (optional)
    * @return GetInboxPostComments200Response
    * @throws ApiException if fails to make API call
    */
@@ -494,13 +496,13 @@ public class CommentsApi {
 
   /**
    * Get post comments
-   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
    * @param postId Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies. (required)
    * @param accountId  (required)
    * @param subreddit (Reddit only) Subreddit name (optional)
    * @param limit Maximum number of comments to return (optional, default to 25)
    * @param cursor Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)
-   * @param commentId (Reddit only) Get replies to a specific comment (optional)
+   * @param commentId (Reddit and TikTok only) Get replies to a specific comment (optional)
    * @param headers Optional headers to include in the request
    * @return GetInboxPostComments200Response
    * @throws ApiException if fails to make API call
@@ -512,13 +514,13 @@ public class CommentsApi {
 
   /**
    * Get post comments
-   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
    * @param postId Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies. (required)
    * @param accountId  (required)
    * @param subreddit (Reddit only) Subreddit name (optional)
    * @param limit Maximum number of comments to return (optional, default to 25)
    * @param cursor Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)
-   * @param commentId (Reddit only) Get replies to a specific comment (optional)
+   * @param commentId (Reddit and TikTok only) Get replies to a specific comment (optional)
    * @return ApiResponse&lt;GetInboxPostComments200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -528,13 +530,13 @@ public class CommentsApi {
 
   /**
    * Get post comments
-   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately. 
+   * Fetch comments for a specific post. Requires accountId query parameter.  On Facebook and Instagram, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. This is not available on YouTube, where &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;. 
    * @param postId Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook and Instagram, a comment ID is also accepted here and returns that comment&#39;s replies. (required)
    * @param accountId  (required)
    * @param subreddit (Reddit only) Subreddit name (optional)
    * @param limit Maximum number of comments to return (optional, default to 25)
    * @param cursor Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. (optional)
-   * @param commentId (Reddit only) Get replies to a specific comment (optional)
+   * @param commentId (Reddit and TikTok only) Get replies to a specific comment (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetInboxPostComments200Response&gt;
    * @throws ApiException if fails to make API call
@@ -643,7 +645,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -656,7 +658,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -671,7 +673,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -684,7 +686,7 @@ public class CommentsApi {
 
   /**
    * Hide comment
-   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, and X. Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
+   * Hide a comment on a post. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). Hidden comments are only visible to the commenter and page admin. For X, the reply must belong to a conversation started by the authenticated user. 
    * @param postId  (required)
    * @param commentId  (required)
    * @param hideInboxCommentRequest  (required)
@@ -1232,6 +1234,147 @@ public class CommentsApi {
   }
 
   /**
+   * Pin comment
+   * Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param pinInboxCommentRequest  (required)
+   * @return PinInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PinInboxComment200Response pinInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull PinInboxCommentRequest pinInboxCommentRequest) throws ApiException {
+    return pinInboxComment(postId, commentId, pinInboxCommentRequest, null);
+  }
+
+  /**
+   * Pin comment
+   * Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param pinInboxCommentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return PinInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PinInboxComment200Response pinInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull PinInboxCommentRequest pinInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<PinInboxComment200Response> localVarResponse = pinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Pin comment
+   * Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param pinInboxCommentRequest  (required)
+   * @return ApiResponse&lt;PinInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PinInboxComment200Response> pinInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull PinInboxCommentRequest pinInboxCommentRequest) throws ApiException {
+    return pinInboxCommentWithHttpInfo(postId, commentId, pinInboxCommentRequest, null);
+  }
+
+  /**
+   * Pin comment
+   * Pin a top-level comment to the top of a post&#39;s comment section. TikTok accounts connected through the TikTok for Business app only; every other platform returns 400. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param pinInboxCommentRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PinInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PinInboxComment200Response> pinInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull PinInboxCommentRequest pinInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = pinInboxCommentRequestBuilder(postId, commentId, pinInboxCommentRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("pinInboxComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PinInboxComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PinInboxComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PinInboxComment200Response>() {});
+        
+
+        return new ApiResponse<PinInboxComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder pinInboxCommentRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull PinInboxCommentRequest pinInboxCommentRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling pinInboxComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling pinInboxComment");
+    }
+    // verify the required parameter 'pinInboxCommentRequest' is set
+    if (pinInboxCommentRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'pinInboxCommentRequest' when calling pinInboxComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/comments/{postId}/{commentId}/pin"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(pinInboxCommentRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Reply to comment
    * Post a reply to a post or specific comment. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of posting the comment a second time; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different postId returns 422 rather than replaying the other post&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) list the post&#39;s comments before retrying with the same key, and treat an empty result as inconclusive rather than as proof nothing was posted. 
    * @param postId Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. (required)
@@ -1654,7 +1797,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1667,7 +1810,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1682,7 +1825,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -1695,7 +1838,7 @@ public class CommentsApi {
 
   /**
    * Unhide comment
-   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, and X. 
+   * Unhide a previously hidden comment. Supported by Facebook, Instagram, Threads, X, and TikTok (accounts connected through the TikTok for Business app). 
    * @param postId  (required)
    * @param commentId  (required)
    * @param accountId  (required)
@@ -2079,6 +2222,156 @@ public class CommentsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
     localVarQueryParameterBaseName = "likeUri";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("likeUri", likeUri));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Unpin comment
+   * Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param accountId  (required)
+   * @return PinInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PinInboxComment200Response unpinInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return unpinInboxComment(postId, commentId, accountId, null);
+  }
+
+  /**
+   * Unpin comment
+   * Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return PinInboxComment200Response
+   * @throws ApiException if fails to make API call
+   */
+  public PinInboxComment200Response unpinInboxComment(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<PinInboxComment200Response> localVarResponse = unpinInboxCommentWithHttpInfo(postId, commentId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Unpin comment
+   * Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param accountId  (required)
+   * @return ApiResponse&lt;PinInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PinInboxComment200Response> unpinInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return unpinInboxCommentWithHttpInfo(postId, commentId, accountId, null);
+  }
+
+  /**
+   * Unpin comment
+   * Unpin a previously pinned comment. TikTok accounts connected through the TikTok for Business app only. 
+   * @param postId  (required)
+   * @param commentId  (required)
+   * @param accountId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;PinInboxComment200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<PinInboxComment200Response> unpinInboxCommentWithHttpInfo(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = unpinInboxCommentRequestBuilder(postId, commentId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("unpinInboxComment", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<PinInboxComment200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        PinInboxComment200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<PinInboxComment200Response>() {});
+        
+
+        return new ApiResponse<PinInboxComment200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder unpinInboxCommentRequestBuilder(@javax.annotation.Nonnull String postId, @javax.annotation.Nonnull String commentId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'postId' is set
+    if (postId == null) {
+      throw new ApiException(400, "Missing the required parameter 'postId' when calling unpinInboxComment");
+    }
+    // verify the required parameter 'commentId' is set
+    if (commentId == null) {
+      throw new ApiException(400, "Missing the required parameter 'commentId' when calling unpinInboxComment");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling unpinInboxComment");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/comments/{postId}/{commentId}/pin"
+        .replace("{postId}", ApiClient.urlEncode(postId.toString()))
+        .replace("{commentId}", ApiClient.urlEncode(commentId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

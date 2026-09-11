@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentComment.JSON_PROPERTY_AD,
   WebhookPayloadCommentComment.JSON_PROPERTY_ATTACHMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentComment {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -71,7 +71,7 @@ public class WebhookPayloadCommentComment {
     
     FACEBOOK(String.valueOf("facebook")),
     
-    TWITTER(String.valueOf("twitter")),
+    THREADS(String.valueOf("threads")),
     
     YOUTUBE(String.valueOf("youtube")),
     
@@ -79,7 +79,9 @@ public class WebhookPayloadCommentComment {
     
     BLUESKY(String.valueOf("bluesky")),
     
-    REDDIT(String.valueOf("reddit"));
+    REDDIT(String.valueOf("reddit")),
+    
+    TIKTOK(String.valueOf("tiktok"));
 
     private String value;
 

@@ -45,9 +45,10 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_SMS_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_OUTBOUND_CALLING_AVAILABLE,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_IN_STOCK,
+  ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_PRE_ORDERABLE,
   ListPhoneNumberCountries200ResponseCountriesInner.JSON_PROPERTY_TYPES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -123,6 +124,10 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
   public static final String JSON_PROPERTY_IN_STOCK = "inStock";
   @javax.annotation.Nullable
   private Boolean inStock;
+
+  public static final String JSON_PROPERTY_PRE_ORDERABLE = "preOrderable";
+  @javax.annotation.Nullable
+  private Boolean preOrderable;
 
   public static final String JSON_PROPERTY_TYPES = "types";
   @javax.annotation.Nullable
@@ -347,6 +352,30 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
   }
 
 
+  public ListPhoneNumberCountries200ResponseCountriesInner preOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+    return this;
+  }
+
+  /**
+   * At least one out-of-stock type here can be pre-ordered (see &#x60;types[].preOrderable&#x60;).
+   * @return preOrderable
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPreOrderable() {
+    return preOrderable;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRE_ORDERABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPreOrderable(@javax.annotation.Nullable Boolean preOrderable) {
+    this.preOrderable = preOrderable;
+  }
+
+
   public ListPhoneNumberCountries200ResponseCountriesInner types(@javax.annotation.Nullable List<ListPhoneNumberCountries200ResponseCountriesInnerTypesInner> types) {
     this.types = types;
     return this;
@@ -400,12 +429,13 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
         Objects.equals(this.smsAvailable, listPhoneNumberCountries200ResponseCountriesInner.smsAvailable) &&
         Objects.equals(this.outboundCallingAvailable, listPhoneNumberCountries200ResponseCountriesInner.outboundCallingAvailable) &&
         Objects.equals(this.inStock, listPhoneNumberCountries200ResponseCountriesInner.inStock) &&
+        Objects.equals(this.preOrderable, listPhoneNumberCountries200ResponseCountriesInner.preOrderable) &&
         Objects.equals(this.types, listPhoneNumberCountries200ResponseCountriesInner.types);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, tier, monthlyCents, needsKyc, callsAvailable, whatsappAvailable, smsAvailable, outboundCallingAvailable, inStock, types);
+    return Objects.hash(code, tier, monthlyCents, needsKyc, callsAvailable, whatsappAvailable, smsAvailable, outboundCallingAvailable, inStock, preOrderable, types);
   }
 
   @Override
@@ -421,6 +451,7 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
     sb.append("    smsAvailable: ").append(toIndentedString(smsAvailable)).append("\n");
     sb.append("    outboundCallingAvailable: ").append(toIndentedString(outboundCallingAvailable)).append("\n");
     sb.append("    inStock: ").append(toIndentedString(inStock)).append("\n");
+    sb.append("    preOrderable: ").append(toIndentedString(preOrderable)).append("\n");
     sb.append("    types: ").append(toIndentedString(types)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -512,6 +543,11 @@ public class ListPhoneNumberCountries200ResponseCountriesInner {
     // add `inStock` to the URL query string
     if (getInStock() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sinStock%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getInStock()))));
+    }
+
+    // add `preOrderable` to the URL query string
+    if (getPreOrderable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%spreOrderable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPreOrderable()))));
     }
 
     // add `types` to the URL query string

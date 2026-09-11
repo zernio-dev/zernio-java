@@ -61,7 +61,7 @@ import dev.zernio.ApiClient;
   PlatformTarget.JSON_PROPERTY_ERROR_CATEGORY,
   PlatformTarget.JSON_PROPERTY_ERROR_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PlatformTarget {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable
@@ -153,7 +153,7 @@ public class PlatformTarget {
   private String errorMessage;
 
   /**
-   * Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown
+   * Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (a shared quota pool the integration draws on is empty, including our own capacity gate in front of one; not caused by your content or account, and safe to retry once the pool frees up), system_error (Zernio infra), unknown
    */
   public enum ErrorCategoryEnum {
     AUTH_EXPIRED(String.valueOf("auth_expired")),
@@ -625,7 +625,7 @@ public class PlatformTarget {
   }
 
   /**
-   * Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (shared daily API quota empty, resumes at the platform&#39;s reset), system_error (Zernio infra), unknown
+   * Error category for programmatic handling: auth_expired (token expired/revoked), user_content (wrong format/too long), user_abuse (rate limits/spam), account_issue (config problems), platform_rejected (policy violation), platform_error (5xx/maintenance), platform_rate_limit (platform throttling, retried automatically), quota_exhausted (a shared quota pool the integration draws on is empty, including our own capacity gate in front of one; not caused by your content or account, and safe to retry once the pool frees up), system_error (Zernio infra), unknown
    * @return errorCategory
    */
   @javax.annotation.Nullable

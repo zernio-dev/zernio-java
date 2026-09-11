@@ -34,6 +34,11 @@ import dev.zernio.model.ListAdCatalogs200Response;
 import dev.zernio.model.ListAdCreatives200Response;
 import dev.zernio.model.ListAdImages200Response;
 import dev.zernio.model.ListAdVideos200Response;
+import dev.zernio.model.ListPartnershipAdContent200Response;
+import dev.zernio.model.ListPartnershipAdPermissions200Response;
+import dev.zernio.model.SetPartnershipAdPermission200Response;
+import dev.zernio.model.SetPartnershipAdPermissionRequest;
+import java.net.URI;
 import dev.zernio.model.UpdateAdCreative200Response;
 import dev.zernio.model.UpdateAdCreativeRequest;
 import dev.zernio.model.UploadAdImage201Response;
@@ -66,7 +71,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCreativesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -185,7 +190,7 @@ public class AdCreativesApi {
 
   /**
    * Create a standalone creative
-   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
    * @param createAdCreativeRequest  (required)
    * @return CreateAdCreative201Response
    * @throws ApiException if fails to make API call
@@ -196,7 +201,7 @@ public class AdCreativesApi {
 
   /**
    * Create a standalone creative
-   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
    * @param createAdCreativeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateAdCreative201Response
@@ -209,7 +214,7 @@ public class AdCreativesApi {
 
   /**
    * Create a standalone creative
-   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
    * @param createAdCreativeRequest  (required)
    * @return ApiResponse&lt;CreateAdCreative201Response&gt;
    * @throws ApiException if fails to make API call
@@ -220,7 +225,7 @@ public class AdCreativesApi {
 
   /**
    * Create a standalone creative
-   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;promotion&#x60; configures an explicit offer separately from Advantage+ &#x60;creativeFeatures&#x60;. Only when &#x60;promotion&#x60; is supplied does the response read the creative back from Meta; &#x60;promotionStatus: not_returned&#x60; means Meta accepted creation but omitted promotion metadata, so the requested offer is not confirmed as applied.
+   * Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
    * @param createAdCreativeRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateAdCreative201Response&gt;
@@ -726,7 +731,7 @@ public class AdCreativesApi {
    * One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
    * @param creativeId Platform creative id (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @return GetAdCreative200Response
    * @throws ApiException if fails to make API call
    */
@@ -739,7 +744,7 @@ public class AdCreativesApi {
    * One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
    * @param creativeId Platform creative id (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param headers Optional headers to include in the request
    * @return GetAdCreative200Response
    * @throws ApiException if fails to make API call
@@ -754,7 +759,7 @@ public class AdCreativesApi {
    * One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
    * @param creativeId Platform creative id (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @return ApiResponse&lt;GetAdCreative200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -767,7 +772,7 @@ public class AdCreativesApi {
    * One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
    * @param creativeId Platform creative id (required)
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetAdCreative200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1411,7 +1416,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ListAdCreatives200Response
@@ -1426,7 +1431,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1443,7 +1448,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ApiResponse&lt;ListAdCreatives200Response&gt;
@@ -1458,7 +1463,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1571,7 +1576,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ListAdImages200Response
@@ -1586,7 +1591,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1603,7 +1608,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ApiResponse&lt;ListAdImages200Response&gt;
@@ -1618,7 +1623,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1731,7 +1736,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ListAdVideos200Response
@@ -1746,7 +1751,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1763,7 +1768,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @return ApiResponse&lt;ListAdVideos200Response&gt;
@@ -1778,7 +1783,7 @@ public class AdCreativesApi {
    * Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
    * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
    * @param adAccountId Meta ad account id (act_&lt;n&gt;). (required)
-   * @param fields Comma-separated Graph field override (supports nested {} projections). (optional)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. (optional)
    * @param limit Rows per page (optional, default to 25)
    * @param after Cursor from paging.after of the previous page. (optional)
    * @param headers Optional headers to include in the request
@@ -1875,6 +1880,417 @@ public class AdCreativesApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List partnership ad content
+   * Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Creator username. Required unless postUrl is supplied. (optional)
+   * @param postUrl Instagram post permalink. Required unless creatorUsername is supplied. (optional)
+   * @param onlyAllowlisted Return only creators with account-level permission. (optional)
+   * @return ListPartnershipAdContent200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPartnershipAdContent200Response listPartnershipAdContent(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, @javax.annotation.Nullable URI postUrl, @javax.annotation.Nullable Boolean onlyAllowlisted) throws ApiException {
+    return listPartnershipAdContent(accountId, creatorUsername, postUrl, onlyAllowlisted, null);
+  }
+
+  /**
+   * List partnership ad content
+   * Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Creator username. Required unless postUrl is supplied. (optional)
+   * @param postUrl Instagram post permalink. Required unless creatorUsername is supplied. (optional)
+   * @param onlyAllowlisted Return only creators with account-level permission. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListPartnershipAdContent200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPartnershipAdContent200Response listPartnershipAdContent(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, @javax.annotation.Nullable URI postUrl, @javax.annotation.Nullable Boolean onlyAllowlisted, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListPartnershipAdContent200Response> localVarResponse = listPartnershipAdContentWithHttpInfo(accountId, creatorUsername, postUrl, onlyAllowlisted, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List partnership ad content
+   * Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Creator username. Required unless postUrl is supplied. (optional)
+   * @param postUrl Instagram post permalink. Required unless creatorUsername is supplied. (optional)
+   * @param onlyAllowlisted Return only creators with account-level permission. (optional)
+   * @return ApiResponse&lt;ListPartnershipAdContent200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPartnershipAdContent200Response> listPartnershipAdContentWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, @javax.annotation.Nullable URI postUrl, @javax.annotation.Nullable Boolean onlyAllowlisted) throws ApiException {
+    return listPartnershipAdContentWithHttpInfo(accountId, creatorUsername, postUrl, onlyAllowlisted, null);
+  }
+
+  /**
+   * List partnership ad content
+   * Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Creator username. Required unless postUrl is supplied. (optional)
+   * @param postUrl Instagram post permalink. Required unless creatorUsername is supplied. (optional)
+   * @param onlyAllowlisted Return only creators with account-level permission. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListPartnershipAdContent200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPartnershipAdContent200Response> listPartnershipAdContentWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, @javax.annotation.Nullable URI postUrl, @javax.annotation.Nullable Boolean onlyAllowlisted, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listPartnershipAdContentRequestBuilder(accountId, creatorUsername, postUrl, onlyAllowlisted, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listPartnershipAdContent", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListPartnershipAdContent200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListPartnershipAdContent200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListPartnershipAdContent200Response>() {});
+        
+
+        return new ApiResponse<ListPartnershipAdContent200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listPartnershipAdContentRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, @javax.annotation.Nullable URI postUrl, @javax.annotation.Nullable Boolean onlyAllowlisted, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listPartnershipAdContent");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/partnership-content";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "creatorUsername";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("creatorUsername", creatorUsername));
+    localVarQueryParameterBaseName = "postUrl";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("postUrl", postUrl));
+    localVarQueryParameterBaseName = "onlyAllowlisted";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("onlyAllowlisted", onlyAllowlisted));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List partnership permissions
+   * Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Filter by creator username. (optional)
+   * @return ListPartnershipAdPermissions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPartnershipAdPermissions200Response listPartnershipAdPermissions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername) throws ApiException {
+    return listPartnershipAdPermissions(accountId, creatorUsername, null);
+  }
+
+  /**
+   * List partnership permissions
+   * Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Filter by creator username. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListPartnershipAdPermissions200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListPartnershipAdPermissions200Response listPartnershipAdPermissions(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListPartnershipAdPermissions200Response> localVarResponse = listPartnershipAdPermissionsWithHttpInfo(accountId, creatorUsername, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List partnership permissions
+   * Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Filter by creator username. (optional)
+   * @return ApiResponse&lt;ListPartnershipAdPermissions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPartnershipAdPermissions200Response> listPartnershipAdPermissionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername) throws ApiException {
+    return listPartnershipAdPermissionsWithHttpInfo(accountId, creatorUsername, null);
+  }
+
+  /**
+   * List partnership permissions
+   * Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+   * @param accountId Zernio SocialAccount ID. (required)
+   * @param creatorUsername Filter by creator username. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListPartnershipAdPermissions200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListPartnershipAdPermissions200Response> listPartnershipAdPermissionsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listPartnershipAdPermissionsRequestBuilder(accountId, creatorUsername, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listPartnershipAdPermissions", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListPartnershipAdPermissions200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListPartnershipAdPermissions200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListPartnershipAdPermissions200Response>() {});
+        
+
+        return new ApiResponse<ListPartnershipAdPermissions200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listPartnershipAdPermissionsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String creatorUsername, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listPartnershipAdPermissions");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/partnership-permissions";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "creatorUsername";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("creatorUsername", creatorUsername));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set partnership permission
+   * Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+   * @param setPartnershipAdPermissionRequest  (required)
+   * @return SetPartnershipAdPermission200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SetPartnershipAdPermission200Response setPartnershipAdPermission(@javax.annotation.Nonnull SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest) throws ApiException {
+    return setPartnershipAdPermission(setPartnershipAdPermissionRequest, null);
+  }
+
+  /**
+   * Set partnership permission
+   * Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+   * @param setPartnershipAdPermissionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return SetPartnershipAdPermission200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SetPartnershipAdPermission200Response setPartnershipAdPermission(@javax.annotation.Nonnull SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SetPartnershipAdPermission200Response> localVarResponse = setPartnershipAdPermissionWithHttpInfo(setPartnershipAdPermissionRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set partnership permission
+   * Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+   * @param setPartnershipAdPermissionRequest  (required)
+   * @return ApiResponse&lt;SetPartnershipAdPermission200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SetPartnershipAdPermission200Response> setPartnershipAdPermissionWithHttpInfo(@javax.annotation.Nonnull SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest) throws ApiException {
+    return setPartnershipAdPermissionWithHttpInfo(setPartnershipAdPermissionRequest, null);
+  }
+
+  /**
+   * Set partnership permission
+   * Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+   * @param setPartnershipAdPermissionRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SetPartnershipAdPermission200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SetPartnershipAdPermission200Response> setPartnershipAdPermissionWithHttpInfo(@javax.annotation.Nonnull SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setPartnershipAdPermissionRequestBuilder(setPartnershipAdPermissionRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setPartnershipAdPermission", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SetPartnershipAdPermission200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SetPartnershipAdPermission200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SetPartnershipAdPermission200Response>() {});
+        
+
+        return new ApiResponse<SetPartnershipAdPermission200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setPartnershipAdPermissionRequestBuilder(@javax.annotation.Nonnull SetPartnershipAdPermissionRequest setPartnershipAdPermissionRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'setPartnershipAdPermissionRequest' is set
+    if (setPartnershipAdPermissionRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setPartnershipAdPermissionRequest' when calling setPartnershipAdPermission");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/partnership-permissions";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setPartnershipAdPermissionRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

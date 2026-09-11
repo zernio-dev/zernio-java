@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.WebhookPayloadMessageMetadataLocation;
 import dev.zernio.model.WebhookPayloadMessageMetadataOrder;
 import dev.zernio.model.WebhookPayloadMessageMetadataQuotedMessage;
 import dev.zernio.model.WebhookPayloadMessageMetadataReferral;
@@ -58,6 +59,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NFM_REPLY_NAME,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_ORDER,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_REFERRED_PRODUCT,
+  WebhookPayloadMessageMetadata.JSON_PROPERTY_LOCATION,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_CONTACTS_ORIGIN,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_STORY_REPLY,
@@ -66,7 +68,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_UNSUPPORTED,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_STANDBY = "standby";
   @javax.annotation.Nullable
@@ -164,6 +166,10 @@ public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_REFERRED_PRODUCT = "referredProduct";
   @javax.annotation.Nullable
   private WebhookPayloadMessageMetadataReferredProduct referredProduct;
+
+  public static final String JSON_PROPERTY_LOCATION = "location";
+  @javax.annotation.Nullable
+  private WebhookPayloadMessageMetadataLocation location;
 
   public static final String JSON_PROPERTY_CONTACTS = "contacts";
   @javax.annotation.Nullable
@@ -599,6 +605,30 @@ public class WebhookPayloadMessageMetadata {
   }
 
 
+  public WebhookPayloadMessageMetadata location(@javax.annotation.Nullable WebhookPayloadMessageMetadataLocation location) {
+    this.location = location;
+    return this;
+  }
+
+  /**
+   * Get location
+   * @return location
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public WebhookPayloadMessageMetadataLocation getLocation() {
+    return location;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocation(@javax.annotation.Nullable WebhookPayloadMessageMetadataLocation location) {
+    this.location = location;
+  }
+
+
   public WebhookPayloadMessageMetadata contacts(@javax.annotation.Nullable List<Map<String, Object>> contacts) {
     this.contacts = contacts;
     return this;
@@ -802,6 +832,7 @@ public class WebhookPayloadMessageMetadata {
         Objects.equals(this.nfmReplyName, webhookPayloadMessageMetadata.nfmReplyName) &&
         Objects.equals(this.order, webhookPayloadMessageMetadata.order) &&
         Objects.equals(this.referredProduct, webhookPayloadMessageMetadata.referredProduct) &&
+        Objects.equals(this.location, webhookPayloadMessageMetadata.location) &&
         Objects.equals(this.contacts, webhookPayloadMessageMetadata.contacts) &&
         Objects.equals(this.contactsOrigin, webhookPayloadMessageMetadata.contactsOrigin) &&
         Objects.equals(this.storyReply, webhookPayloadMessageMetadata.storyReply) &&
@@ -813,7 +844,7 @@ public class WebhookPayloadMessageMetadata {
 
   @Override
   public int hashCode() {
-    return Objects.hash(standby, quotedMessageId, quotedMessage, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
+    return Objects.hash(standby, quotedMessageId, quotedMessage, quickReplyPayload, postbackPayload, postbackTitle, callbackData, interactiveType, interactiveId, buttonPayload, flowResponseJson, flowResponseData, nfmReplyName, order, referredProduct, location, contacts, contactsOrigin, storyReply, isStoryMention, referral, unsupported, noRenderableContent);
   }
 
   @Override
@@ -835,6 +866,7 @@ public class WebhookPayloadMessageMetadata {
     sb.append("    nfmReplyName: ").append(toIndentedString(nfmReplyName)).append("\n");
     sb.append("    order: ").append(toIndentedString(order)).append("\n");
     sb.append("    referredProduct: ").append(toIndentedString(referredProduct)).append("\n");
+    sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
     sb.append("    contactsOrigin: ").append(toIndentedString(contactsOrigin)).append("\n");
     sb.append("    storyReply: ").append(toIndentedString(storyReply)).append("\n");
@@ -966,6 +998,11 @@ public class WebhookPayloadMessageMetadata {
     // add `referredProduct` to the URL query string
     if (getReferredProduct() != null) {
       joiner.add(getReferredProduct().toUrlQueryString(prefix + "referredProduct" + suffix));
+    }
+
+    // add `location` to the URL query string
+    if (getLocation() != null) {
+      joiner.add(getLocation().toUrlQueryString(prefix + "location" + suffix));
     }
 
     // add `contacts` to the URL query string

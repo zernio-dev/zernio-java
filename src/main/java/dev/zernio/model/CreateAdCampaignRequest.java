@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -134,7 +134,7 @@ public class CreateAdCampaignRequest {
   private AdPromotedObject promotedObject;
 
   /**
-   * Meta only. SKAdNetwork app promotion requires AUCTION.
+   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
    */
   public enum BuyingTypeEnum {
     AUCTION(String.valueOf("AUCTION")),
@@ -170,7 +170,7 @@ public class CreateAdCampaignRequest {
 
   public static final String JSON_PROPERTY_BUYING_TYPE = "buyingType";
   @javax.annotation.Nullable
-  private BuyingTypeEnum buyingType;
+  private BuyingTypeEnum buyingType = BuyingTypeEnum.AUCTION;
 
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable
@@ -513,7 +513,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Meta only. SKAdNetwork app promotion requires AUCTION.
+   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
    * @return buyingType
    */
   @javax.annotation.Nullable

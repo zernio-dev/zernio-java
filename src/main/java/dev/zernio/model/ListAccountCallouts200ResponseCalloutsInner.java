@@ -34,22 +34,22 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListAccountCallouts200ResponseCalloutsInner.JSON_PROPERTY_ASSET_ID,
-  ListAccountCallouts200ResponseCalloutsInner.JSON_PROPERTY_TEXT,
-  ListAccountCallouts200ResponseCalloutsInner.JSON_PROPERTY_STATUS
+  ListAccountCallouts200ResponseCalloutsInner.JSON_PROPERTY_STATUS,
+  ListAccountCallouts200ResponseCalloutsInner.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAccountCallouts200ResponseCalloutsInner {
   public static final String JSON_PROPERTY_ASSET_ID = "assetId";
   @javax.annotation.Nullable
   private String assetId;
 
-  public static final String JSON_PROPERTY_TEXT = "text";
-  @javax.annotation.Nullable
-  private String text;
-
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private String status;
+
+  public static final String JSON_PROPERTY_TEXT = "text";
+  @javax.annotation.Nullable
+  private String text;
 
   public ListAccountCallouts200ResponseCalloutsInner() { 
   }
@@ -78,6 +78,30 @@ public class ListAccountCallouts200ResponseCalloutsInner {
   }
 
 
+  public ListAccountCallouts200ResponseCalloutsInner status(@javax.annotation.Nullable String status) {
+    this.status = status;
+    return this;
+  }
+
+  /**
+   * Get status
+   * @return status
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getStatus() {
+    return status;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setStatus(@javax.annotation.Nullable String status) {
+    this.status = status;
+  }
+
+
   public ListAccountCallouts200ResponseCalloutsInner text(@javax.annotation.Nullable String text) {
     this.text = text;
     return this;
@@ -102,30 +126,6 @@ public class ListAccountCallouts200ResponseCalloutsInner {
   }
 
 
-  public ListAccountCallouts200ResponseCalloutsInner status(@javax.annotation.Nullable String status) {
-    this.status = status;
-    return this;
-  }
-
-  /**
-   * customer_asset.status, e.g. ENABLED, REMOVED, PAUSED.
-   * @return status
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getStatus() {
-    return status;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_STATUS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStatus(@javax.annotation.Nullable String status) {
-    this.status = status;
-  }
-
-
   /**
    * Return true if this listAccountCallouts_200_response_callouts_inner object is equal to o.
    */
@@ -139,13 +139,13 @@ public class ListAccountCallouts200ResponseCalloutsInner {
     }
     ListAccountCallouts200ResponseCalloutsInner listAccountCallouts200ResponseCalloutsInner = (ListAccountCallouts200ResponseCalloutsInner) o;
     return Objects.equals(this.assetId, listAccountCallouts200ResponseCalloutsInner.assetId) &&
-        Objects.equals(this.text, listAccountCallouts200ResponseCalloutsInner.text) &&
-        Objects.equals(this.status, listAccountCallouts200ResponseCalloutsInner.status);
+        Objects.equals(this.status, listAccountCallouts200ResponseCalloutsInner.status) &&
+        Objects.equals(this.text, listAccountCallouts200ResponseCalloutsInner.text);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assetId, text, status);
+    return Objects.hash(assetId, status, text);
   }
 
   @Override
@@ -153,8 +153,8 @@ public class ListAccountCallouts200ResponseCalloutsInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListAccountCallouts200ResponseCalloutsInner {\n");
     sb.append("    assetId: ").append(toIndentedString(assetId)).append("\n");
-    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -207,14 +207,14 @@ public class ListAccountCallouts200ResponseCalloutsInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sassetId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAssetId()))));
     }
 
-    // add `text` to the URL query string
-    if (getText() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%stext%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getText()))));
-    }
-
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `text` to the URL query string
+    if (getText() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stext%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getText()))));
     }
 
     return joiner.toString();

@@ -4,12 +4,18 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
-| [**addAccountCallouts**](AdAccountsApi.md#addAccountCallouts) | **POST** /v1/ads/accounts/callouts | Add account-level callout extensions |
-| [**addAccountCalloutsWithHttpInfo**](AdAccountsApi.md#addAccountCalloutsWithHttpInfo) | **POST** /v1/ads/accounts/callouts | Add account-level callout extensions |
+| [**addAccountCallouts**](AdAccountsApi.md#addAccountCallouts) | **POST** /v1/ads/accounts/callouts | Add account callouts |
+| [**addAccountCalloutsWithHttpInfo**](AdAccountsApi.md#addAccountCalloutsWithHttpInfo) | **POST** /v1/ads/accounts/callouts | Add account callouts |
+| [**addAccountSitelinks**](AdAccountsApi.md#addAccountSitelinks) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks |
+| [**addAccountSitelinksWithHttpInfo**](AdAccountsApi.md#addAccountSitelinksWithHttpInfo) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks |
+| [**addAccountStructuredSnippets**](AdAccountsApi.md#addAccountStructuredSnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
+| [**addAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#addAccountStructuredSnippetsWithHttpInfo) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
+| [**createAdAccount**](AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account |
+| [**createAdAccountWithHttpInfo**](AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create Meta ad account |
 | [**createAdNegativeKeywordList**](AdAccountsApi.md#createAdNegativeKeywordList) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
 | [**createAdNegativeKeywordListWithHttpInfo**](AdAccountsApi.md#createAdNegativeKeywordListWithHttpInfo) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
-| [**createCustomConversion**](AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion |
-| [**createCustomConversionWithHttpInfo**](AdAccountsApi.md#createCustomConversionWithHttpInfo) | **POST** /v1/accounts/{accountId}/custom-conversions | Create or reuse a custom conversion |
+| [**createCustomConversion**](AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion |
+| [**createCustomConversionWithHttpInfo**](AdAccountsApi.md#createCustomConversionWithHttpInfo) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion |
 | [**createHighDemandPeriod**](AdAccountsApi.md#createHighDemandPeriod) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
 | [**createHighDemandPeriodWithHttpInfo**](AdAccountsApi.md#createHighDemandPeriodWithHttpInfo) | **POST** /v1/ads/high-demand-periods | Schedule a budget increase |
 | [**createValueRuleSet**](AdAccountsApi.md#createValueRuleSet) | **POST** /v1/ads/value-rule-sets | Create a value rule set |
@@ -30,16 +36,20 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdsActivityLogWithHttpInfo**](AdAccountsApi.md#getAdsActivityLogWithHttpInfo) | **GET** /v1/ads/activity | Ad account change / audit log |
 | [**getDsaDefaults**](AdAccountsApi.md#getDsaDefaults) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
 | [**getDsaDefaultsWithHttpInfo**](AdAccountsApi.md#getDsaDefaultsWithHttpInfo) | **GET** /v1/ads/dsa-defaults | Get ad account DSA defaults |
-| [**getDsaRecommendations**](AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
-| [**getDsaRecommendationsWithHttpInfo**](AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | List DSA beneficiary/payor suggestions |
+| [**getDsaRecommendations**](AdAccountsApi.md#getDsaRecommendations) | **GET** /v1/ads/dsa-recommendations | Get DSA recommendations |
+| [**getDsaRecommendationsWithHttpInfo**](AdAccountsApi.md#getDsaRecommendationsWithHttpInfo) | **GET** /v1/ads/dsa-recommendations | Get DSA recommendations |
 | [**getIosFourteenCampaignLimits**](AdAccountsApi.md#getIosFourteenCampaignLimits) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
 | [**getIosFourteenCampaignLimitsWithHttpInfo**](AdAccountsApi.md#getIosFourteenCampaignLimitsWithHttpInfo) | **GET** /v1/ads/ios-fourteen-campaign-limits | Get iOS 14 campaign limits |
 | [**getValueRuleSet**](AdAccountsApi.md#getValueRuleSet) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**getValueRuleSetWithHttpInfo**](AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**hideAdComment**](AdAccountsApi.md#hideAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
 | [**hideAdCommentWithHttpInfo**](AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
-| [**listAccountCallouts**](AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
-| [**listAccountCalloutsWithHttpInfo**](AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account-level callout extensions |
+| [**listAccountCallouts**](AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account callouts |
+| [**listAccountCalloutsWithHttpInfo**](AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account callouts |
+| [**listAccountSitelinks**](AdAccountsApi.md#listAccountSitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
+| [**listAccountSitelinksWithHttpInfo**](AdAccountsApi.md#listAccountSitelinksWithHttpInfo) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
+| [**listAccountStructuredSnippets**](AdAccountsApi.md#listAccountStructuredSnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
+| [**listAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
 | [**listAdAccounts**](AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdLabels**](AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels |
@@ -56,18 +66,30 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdvertisableApplicationsWithHttpInfo**](AdAccountsApi.md#listAdvertisableApplicationsWithHttpInfo) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**listCustomConversions**](AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**listCustomConversionsWithHttpInfo**](AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
-| [**listHighDemandPeriods**](AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules |
-| [**listHighDemandPeriodsWithHttpInfo**](AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | High demand periods / budget schedules |
+| [**listHighDemandPeriods**](AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | List high-demand periods |
+| [**listHighDemandPeriodsWithHttpInfo**](AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | List high-demand periods |
 | [**listMetaBusinesses**](AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list |
 | [**listMetaBusinessesWithHttpInfo**](AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list |
+| [**listTikTokAdPixels**](AdAccountsApi.md#listTikTokAdPixels) | **GET** /v1/ads/pixels | List TikTok ad pixels |
+| [**listTikTokAdPixelsWithHttpInfo**](AdAccountsApi.md#listTikTokAdPixelsWithHttpInfo) | **GET** /v1/ads/pixels | List TikTok ad pixels |
 | [**listValueRuleSets**](AdAccountsApi.md#listValueRuleSets) | **GET** /v1/ads/value-rule-sets | List value rule sets |
 | [**listValueRuleSetsWithHttpInfo**](AdAccountsApi.md#listValueRuleSetsWithHttpInfo) | **GET** /v1/ads/value-rule-sets | List value rule sets |
-| [**removeAccountCallout**](AdAccountsApi.md#removeAccountCallout) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension |
-| [**removeAccountCalloutWithHttpInfo**](AdAccountsApi.md#removeAccountCalloutWithHttpInfo) | **DELETE** /v1/ads/accounts/callouts | Remove an account-level callout extension |
+| [**removeAccountCallout**](AdAccountsApi.md#removeAccountCallout) | **DELETE** /v1/ads/accounts/callouts | Remove account callout |
+| [**removeAccountCalloutWithHttpInfo**](AdAccountsApi.md#removeAccountCalloutWithHttpInfo) | **DELETE** /v1/ads/accounts/callouts | Remove account callout |
+| [**removeAccountSitelink**](AdAccountsApi.md#removeAccountSitelink) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink |
+| [**removeAccountSitelinkWithHttpInfo**](AdAccountsApi.md#removeAccountSitelinkWithHttpInfo) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink |
+| [**removeAccountStructuredSnippet**](AdAccountsApi.md#removeAccountStructuredSnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
+| [**removeAccountStructuredSnippetWithHttpInfo**](AdAccountsApi.md#removeAccountStructuredSnippetWithHttpInfo) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
 | [**replaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replyToAdComment**](AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
 | [**replyToAdCommentWithHttpInfo**](AdAccountsApi.md#replyToAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
+| [**updateAccountCallouts**](AdAccountsApi.md#updateAccountCallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts |
+| [**updateAccountCalloutsWithHttpInfo**](AdAccountsApi.md#updateAccountCalloutsWithHttpInfo) | **PUT** /v1/ads/accounts/callouts | Update account callouts |
+| [**updateAccountSitelinks**](AdAccountsApi.md#updateAccountSitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks |
+| [**updateAccountSitelinksWithHttpInfo**](AdAccountsApi.md#updateAccountSitelinksWithHttpInfo) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks |
+| [**updateAccountStructuredSnippets**](AdAccountsApi.md#updateAccountStructuredSnippets) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
+| [**updateAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#updateAccountStructuredSnippetsWithHttpInfo) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
 | [**updateAdAccount**](AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdAccountWithHttpInfo**](AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdNegativeKeywordList**](AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
@@ -81,9 +103,9 @@ All URIs are relative to *https://zernio.com/api*
 
 > AddAccountCallouts201Response addAccountCallouts(addAccountCalloutsRequest)
 
-Add account-level callout extensions
+Add account callouts
 
-Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
 
 ### Example
 
@@ -145,20 +167,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Callouts created |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 ## addAccountCalloutsWithHttpInfo
 
 > ApiResponse<AddAccountCallouts201Response> addAccountCallouts addAccountCalloutsWithHttpInfo(addAccountCalloutsRequest)
 
-Add account-level callout extensions
+Add account callouts
 
-Creates one asset plus one &#x60;customerAsset&#x60; link (field type CALLOUT) per callout text, in a single mutate. Google only; every other platform returns 501.
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
 
 ### Example
 
@@ -223,12 +247,486 @@ ApiResponse<[**AddAccountCallouts201Response**](AddAccountCallouts201Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Callouts created |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## addAccountSitelinks
+
+> AddAccountSitelinks201Response addAccountSitelinks(addAccountSitelinksRequest)
+
+Add account sitelinks
+
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AddAccountSitelinksRequest addAccountSitelinksRequest = new AddAccountSitelinksRequest(); // AddAccountSitelinksRequest | 
+        try {
+            AddAccountSitelinks201Response result = apiInstance.addAccountSitelinks(addAccountSitelinksRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#addAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAccountSitelinksRequest** | [**AddAccountSitelinksRequest**](AddAccountSitelinksRequest.md)|  | |
+
+### Return type
+
+[**AddAccountSitelinks201Response**](AddAccountSitelinks201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## addAccountSitelinksWithHttpInfo
+
+> ApiResponse<AddAccountSitelinks201Response> addAccountSitelinks addAccountSitelinksWithHttpInfo(addAccountSitelinksRequest)
+
+Add account sitelinks
+
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AddAccountSitelinksRequest addAccountSitelinksRequest = new AddAccountSitelinksRequest(); // AddAccountSitelinksRequest | 
+        try {
+            ApiResponse<AddAccountSitelinks201Response> response = apiInstance.addAccountSitelinksWithHttpInfo(addAccountSitelinksRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#addAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAccountSitelinksRequest** | [**AddAccountSitelinksRequest**](AddAccountSitelinksRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddAccountSitelinks201Response**](AddAccountSitelinks201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## addAccountStructuredSnippets
+
+> AddAccountStructuredSnippets201Response addAccountStructuredSnippets(addAccountStructuredSnippetsRequest)
+
+Add account snippets
+
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest = new AddAccountStructuredSnippetsRequest(); // AddAccountStructuredSnippetsRequest | 
+        try {
+            AddAccountStructuredSnippets201Response result = apiInstance.addAccountStructuredSnippets(addAccountStructuredSnippetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#addAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAccountStructuredSnippetsRequest** | [**AddAccountStructuredSnippetsRequest**](AddAccountStructuredSnippetsRequest.md)|  | |
+
+### Return type
+
+[**AddAccountStructuredSnippets201Response**](AddAccountStructuredSnippets201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## addAccountStructuredSnippetsWithHttpInfo
+
+> ApiResponse<AddAccountStructuredSnippets201Response> addAccountStructuredSnippets addAccountStructuredSnippetsWithHttpInfo(addAccountStructuredSnippetsRequest)
+
+Add account snippets
+
+Creates assets and customer_asset links for this Google customer. Links apply at account level.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AddAccountStructuredSnippetsRequest addAccountStructuredSnippetsRequest = new AddAccountStructuredSnippetsRequest(); // AddAccountStructuredSnippetsRequest | 
+        try {
+            ApiResponse<AddAccountStructuredSnippets201Response> response = apiInstance.addAccountStructuredSnippetsWithHttpInfo(addAccountStructuredSnippetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#addAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addAccountStructuredSnippetsRequest** | [**AddAccountStructuredSnippetsRequest**](AddAccountStructuredSnippetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddAccountStructuredSnippets201Response**](AddAccountStructuredSnippets201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Assets created and attached. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## createAdAccount
+
+> CreateAdAccount201Response createAdAccount(createAdAccountRequest)
+
+Create Meta ad account
+
+Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateAdAccountRequest createAdAccountRequest = new CreateAdAccountRequest(); // CreateAdAccountRequest | 
+        try {
+            CreateAdAccount201Response result = apiInstance.createAdAccount(createAdAccountRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createAdAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createAdAccountRequest** | [**CreateAdAccountRequest**](CreateAdAccountRequest.md)|  | |
+
+### Return type
+
+[**CreateAdAccount201Response**](CreateAdAccount201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Ad account created. Check connectionUpdated and payment instructions. |  -  |
+| **400** | Invalid input or Meta rejection. details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access denied or Meta permission missing. details.reason may be business_management_required, business_admin_required or business_access_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
+
+## createAdAccountWithHttpInfo
+
+> ApiResponse<CreateAdAccount201Response> createAdAccount createAdAccountWithHttpInfo(createAdAccountRequest)
+
+Create Meta ad account
+
+Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateAdAccountRequest createAdAccountRequest = new CreateAdAccountRequest(); // CreateAdAccountRequest | 
+        try {
+            ApiResponse<CreateAdAccount201Response> response = apiInstance.createAdAccountWithHttpInfo(createAdAccountRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createAdAccount");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createAdAccountRequest** | [**CreateAdAccountRequest**](CreateAdAccountRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateAdAccount201Response**](CreateAdAccount201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **201** | Ad account created. Check connectionUpdated and payment instructions. |  -  |
+| **400** | Invalid input or Meta rejection. details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access denied or Meta permission missing. details.reason may be business_management_required, business_admin_required or business_access_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
 
 
 ## createAdNegativeKeywordList
@@ -303,8 +801,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -384,8 +882,8 @@ ApiResponse<[**CreateAdNegativeKeywordList201Response**](CreateAdNegativeKeyword
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -395,7 +893,7 @@ ApiResponse<[**CreateAdNegativeKeywordList201Response**](CreateAdNegativeKeyword
 
 > CustomConversionResult createCustomConversion(accountId, createCustomConversionRequest)
 
-Create or reuse a custom conversion
+Create custom conversion
 
 Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
 
@@ -461,6 +959,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | An existing custom conversion was reused |  -  |
 | **201** | Custom conversion created |  -  |
 | **400** | Invalid input, or Meta rejected the conversion (bad rule, per-account cap reached) |  -  |
@@ -471,7 +971,7 @@ public class Example {
 
 > ApiResponse<CustomConversionResult> createCustomConversion createCustomConversionWithHttpInfo(accountId, createCustomConversionRequest)
 
-Create or reuse a custom conversion
+Create custom conversion
 
 Provision the Meta custom conversion an ads flow optimises toward, and hand back the &#x60;customConversionId&#x60; for &#x60;promotedObject.customConversionId&#x60; on POST /v1/ads/create. Removes the manual \&quot;create it in Ads Manager first\&quot; step.  **Reuse is ours, not Meta&#39;s.** Meta&#39;s create is not idempotent, so a retried request would otherwise mint a duplicate carrying none of the original&#39;s optimisation history. A non-archived conversion with the same &#x60;name&#x60; on the same &#x60;pixelId&#x60; is returned instead of created, with &#x60;reused: true&#x60; and a 200 rather than a 201.  &#x60;rule&#x60; is forwarded verbatim in Meta&#39;s own grammar (e.g. &#x60;{\&quot;url\&quot;: {\&quot;i_contains\&quot;: \&quot;thank-you\&quot;}}&#x60;); Meta validates it and rejects a malformed one with \&quot;A conversion rule is required at creation time\&quot;.
 
@@ -540,6 +1040,8 @@ ApiResponse<[**CustomConversionResult**](CustomConversionResult.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | An existing custom conversion was reused |  -  |
 | **201** | Custom conversion created |  -  |
 | **400** | Invalid input, or Meta rejected the conversion (bad rule, per-account cap reached) |  -  |
@@ -615,6 +1117,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Budget schedule created |  -  |
 | **400** | Invalid input, or Meta rejected the schedule |  -  |
 | **401** | Unauthorized |  -  |
@@ -691,6 +1195,8 @@ ApiResponse<[**CreateHighDemandPeriod201Response**](CreateHighDemandPeriod201Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Budget schedule created |  -  |
 | **400** | Invalid input, or Meta rejected the schedule |  -  |
 | **401** | Unauthorized |  -  |
@@ -765,6 +1271,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Value rule set created |  -  |
 | **400** | Invalid input, or Meta rejected the create (per-account rule-set cap, ineligible criteria, or an account that is not enabled for value rules) |  -  |
 | **401** | Unauthorized |  -  |
@@ -841,6 +1349,8 @@ ApiResponse<[**CreateValueRuleSet201Response**](CreateValueRuleSet201Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Value rule set created |  -  |
 | **400** | Invalid input, or Meta rejected the create (per-account rule-set cap, ineligible criteria, or an account that is not enabled for value rules) |  -  |
 | **401** | Unauthorized |  -  |
@@ -853,7 +1363,7 @@ ApiResponse<[**CreateValueRuleSet201Response**](CreateValueRuleSet201Response.md
 
 Delete an ad comment
 
-Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -924,8 +1434,8 @@ public class Example {
 | **200** | Comment action completed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
-| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **403** | Ads access, own-comment deletion or supported identity is unavailable (feature_not_available), or TikTok denies ad-detail access (insufficient_permissions). |  -  |
+| **404** | Ad is inaccessible or unavailable on TikTok for identity resolution (ad_not_found), or the comment was not found on this ad in the selected date window (resource_not_found). |  -  |
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
@@ -936,7 +1446,7 @@ public class Example {
 
 Delete an ad comment
 
-Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Delete your own TikTok ad comment or reply. TikTok must return can_delete&#x3D;true for the comment. Other users&#39; comments can be hidden instead.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -1010,8 +1520,8 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 | **200** | Comment action completed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
-| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **403** | Ads access, own-comment deletion or supported identity is unavailable (feature_not_available), or TikTok denies ad-detail access (insufficient_permissions). |  -  |
+| **404** | Ad is inaccessible or unavailable on TikTok for identity resolution (ad_not_found), or the comment was not found on this ad in the selected date window (resource_not_found). |  -  |
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
@@ -1095,8 +1605,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -1182,8 +1692,8 @@ ApiResponse<[**DeleteAdNegativeKeywordList200Response**](DeleteAdNegativeKeyword
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -1259,6 +1769,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set deleted |  -  |
 | **400** | Invalid input, or Meta rejected the delete. A bad id comes back as GraphMethodException code 100 / subcode 33, which reads like a permission error rather than a 404. |  -  |
 | **401** | Unauthorized |  -  |
@@ -1337,6 +1849,8 @@ ApiResponse<[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set deleted |  -  |
 | **400** | Invalid input, or Meta rejected the delete. A bad id comes back as GraphMethodException code 100 / subcode 33, which reads like a permission error rather than a 404. |  -  |
 | **401** | Unauthorized |  -  |
@@ -1413,6 +1927,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Account finances |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1491,6 +2007,8 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Account finances |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -1503,7 +2021,7 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1588,7 +2106,7 @@ public class Example {
 
 List comments on an ad
 
-Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment and an identity with comment-management permission. &#x60;canDelete&#x60; reflects TikTok&#39;s own-comment deletion capability. &#x60;canHide&#x60; is supported and &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
+Returns comments on an ad&#39;s underlying creative post. Useful for moderating or analyzing engagement on dark posts (ad creatives that never went live organically), which the regular GET /v1/inbox/comments/{postId} endpoint cannot serve because dark posts are not in Zernio&#39;s post database.  An ad that runs on both Facebook feed and Instagram feed has two separate underlying posts with separate comment threads (the creative&#39;s effective_object_story_id and effective_instagram_media_id). Use the &#x60;placement&#x60; query param to pick one; with no param the Instagram side is returned when it exists, otherwise Facebook. The identifiers are read from the ad record (persisted during sync) with a Marketing-API fallback for ads that predate the field.  For Instagram-placed comments, the Instagram account that runs the ad must be connected to Zernio, because those comments are read through that account&#39;s token. If no connected Instagram account on the profile can read the ad&#39;s media, the call returns ads_connection_required (the Facebook side, if any, is still readable via ?placement&#x3D;facebook).  TikTok uses the connected TikTok Ads advertiser token and supports both paid video ads and Spark Ads. &#x60;since&#x60; and &#x60;until&#x60; select a date window of at most 30 days; the default is the last 30 days. TikTok searches by ad group, so Zernio filters each page to this ad. A page can be empty while &#x60;pagination.hasMore&#x60; is true. Reuse &#x60;pagination.cursor&#x60; with the same &#x60;limit&#x60;; the cursor retains the date window. &#x60;placement&#x60; is Meta-only and returns a 400 for TikTok. Listing needs no identity or video item ID. When the ad group is stored, each page makes one comment-list call and no ad-detail lookup, including for external ads that TikTok no longer returns from ad details. &#x60;meta.tiktokItemId: null&#x60; does not prevent listing. If the ad group is missing, Zernio fetches ad details; unavailable details return 404 ad_not_found, and no ad group returns 400 ad_not_commentable.  TikTok returns replies as separate comments with &#x60;parentId&#x60;; nested reply fetching is not supported. &#x60;canReply&#x60; requires a first-level comment, comment-management permission, a video item ID and a supported TT_USER or CUSTOMIZED_USER identity. &#x60;canDelete&#x60; requires TikTok&#39;s own-comment deletion capability, a video item ID and a supported identity. Both flags are false when identity or item is unknown. Listing uses stored and comment-specific fields without fetching identity. A direct reply or delete request can lazily resolve missing fields and succeed even after a false flag. &#x60;canHide&#x60; is true because visibility changes need only advertiser and comment IDs. &#x60;canLike&#x60; is false. Use the ad comment reply, hide and delete operations below to moderate TikTok comments. Other platforms return feature_not_available.  Requires the Ads add-on. Response shape matches GET /v1/inbox/comments/{postId}.  The &#x60;{adId}&#x60; path segment accepts any identifier dialect Zernio indexes for the ad: Zernio internal &#x60;_id&#x60; (24-char hex), the numeric &#x60;platformAdId&#x60; (the value shipped in &#x60;comment.received&#x60; webhooks as &#x60;comment.ad.id&#x60;), or the creative&#39;s &#x60;effective_object_story_id&#x60; / &#x60;effective_instagram_media_id&#x60;. Caller doesn&#39;t need a translation step. 
 
 ### Example
 
@@ -1749,8 +2267,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -1836,8 +2354,8 @@ ApiResponse<[**GetAdNegativeKeywordList200Response**](GetAdNegativeKeywordList20
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -1923,6 +2441,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Activity rows (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -2011,6 +2531,8 @@ ApiResponse<[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Activity rows (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -2087,10 +2609,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Current DSA defaults (empty object when none are set) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## getDsaDefaultsWithHttpInfo
 
@@ -2165,17 +2688,18 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Current DSA defaults (empty object when none are set) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## getDsaRecommendations
 
 > GetDsaRecommendations200Response getDsaRecommendations(accountId, adAccountId)
 
-List DSA beneficiary/payor suggestions
+Get DSA recommendations
 
 Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
 
@@ -2241,16 +2765,17 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## getDsaRecommendationsWithHttpInfo
 
 > ApiResponse<GetDsaRecommendations200Response> getDsaRecommendations getDsaRecommendationsWithHttpInfo(accountId, adAccountId)
 
-List DSA beneficiary/payor suggestions
+Get DSA recommendations
 
 Returns Meta&#39;s suggested beneficiary/payor names for an ad account, derived by Meta from the account&#39;s recent activity. Useful for prefilling &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60; inputs, or the defaults sent to &#x60;PATCH /v1/ads/accounts&#x60;, in your own UI.  Meta returns a single flat list. Entries are not labeled as beneficiary or payor, and since these are legal disclosures Zernio never applies them automatically: let your user pick the right entity. The list may be empty for accounts with little activity. Meta accounts only. 
 
@@ -2319,10 +2844,11 @@ ApiResponse<[**GetDsaRecommendations200Response**](GetDsaRecommendations200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Suggested DSA strings (may be empty when Meta has no recommendations) |  -  |
 | **400** | Non-Meta adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## getIosFourteenCampaignLimits
@@ -2397,11 +2923,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Application campaign limits. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 ## getIosFourteenCampaignLimitsWithHttpInfo
@@ -2479,11 +3006,12 @@ ApiResponse<[**GetIosFourteenCampaignLimits200Response**](GetIosFourteenCampaign
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Application campaign limits. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 
@@ -2557,6 +3085,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set |  -  |
 | **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
 | **401** | Unauthorized |  -  |
@@ -2635,6 +3165,8 @@ ApiResponse<[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set |  -  |
 | **400** | Invalid input, or Meta rejected the read. A bad id comes back as GraphMethodException code 100 / subcode 33, which cannot be told apart from a permission problem. |  -  |
 | **401** | Unauthorized |  -  |
@@ -2647,7 +3179,7 @@ ApiResponse<[**GetValueRuleSet200Response**](GetValueRuleSet200Response.md)>
 
 Hide or unhide an ad comment
 
-Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -2732,7 +3264,7 @@ public class Example {
 
 Hide or unhide an ad comment
 
-Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Hide or restore a TikTok ad comment. Send hidden&#x3D;true to hide it or hidden&#x3D;false to make it public again. Identity and video item ID are not required; no identity lookup is performed.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -2819,9 +3351,9 @@ ApiResponse<[**HideAdComment200Response**](HideAdComment200Response.md)>
 
 > ListAccountCallouts200Response listAccountCallouts(accountId, customerId)
 
-List account-level callout extensions
+List account callouts
 
-Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
 
 ### Example
 
@@ -2844,8 +3376,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
         try {
             ListAccountCallouts200Response result = apiInstance.listAccountCallouts(accountId, customerId);
             System.out.println(result);
@@ -2865,8 +3397,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
 
 ### Return type
 
@@ -2885,21 +3417,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Account-level callouts |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **429** | Google Ads operations budget exhausted; retry later |  -  |
-| **501** | Only available on Google Ads accounts |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 ## listAccountCalloutsWithHttpInfo
 
 > ApiResponse<ListAccountCallouts200Response> listAccountCallouts listAccountCalloutsWithHttpInfo(accountId, customerId)
 
-List account-level callout extensions
+List account callouts
 
-Google Ads compliance row C.75: callout assets linked at the CUSTOMER level via &#x60;customer_asset&#x60; (not a campaign or ad group), so they serve fleet-wide across the account. Google only; every other platform returns 501. Cached for the quota window (10 minutes fresh, up to 7 days last-good), and gated by the shared Google Ads operations budget on a cache miss. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read.
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included. Preserves Google RMF C.75 account-level callouts.
 
 ### Example
 
@@ -2923,8 +3456,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
         try {
             ApiResponse<ListAccountCallouts200Response> response = apiInstance.listAccountCalloutsWithHttpInfo(accountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2946,8 +3479,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
 
 ### Return type
 
@@ -2966,13 +3499,338 @@ ApiResponse<[**ListAccountCallouts200Response**](ListAccountCallouts200Response.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Account-level callouts |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **429** | Google Ads operations budget exhausted; retry later |  -  |
-| **501** | Only available on Google Ads accounts |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## listAccountSitelinks
+
+> ListAccountSitelinks200Response listAccountSitelinks(accountId, customerId)
+
+List account sitelinks
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ListAccountSitelinks200Response result = apiInstance.listAccountSitelinks(accountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListAccountSitelinks200Response**](ListAccountSitelinks200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## listAccountSitelinksWithHttpInfo
+
+> ApiResponse<ListAccountSitelinks200Response> listAccountSitelinks listAccountSitelinksWithHttpInfo(accountId, customerId)
+
+List account sitelinks
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ApiResponse<ListAccountSitelinks200Response> response = apiInstance.listAccountSitelinksWithHttpInfo(accountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAccountSitelinks200Response**](ListAccountSitelinks200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## listAccountStructuredSnippets
+
+> ListAccountStructuredSnippets200Response listAccountStructuredSnippets(accountId, customerId)
+
+List account snippets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ListAccountStructuredSnippets200Response result = apiInstance.listAccountStructuredSnippets(accountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListAccountStructuredSnippets200Response**](ListAccountStructuredSnippets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## listAccountStructuredSnippetsWithHttpInfo
+
+> ApiResponse<ListAccountStructuredSnippets200Response> listAccountStructuredSnippets listAccountStructuredSnippetsWithHttpInfo(accountId, customerId)
+
+List account snippets
+
+Lists directly attached Google assets. Fresh reads are cached for 10 minutes; exhausted quota may return the last successful read with stale&#x3D;true. Inherited assets are not included.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String customerId = "customerId_example"; // String | 
+        try {
+            ApiResponse<ListAccountStructuredSnippets200Response> response = apiInstance.listAccountStructuredSnippetsWithHttpInfo(accountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **customerId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAccountStructuredSnippets200Response**](ListAccountStructuredSnippets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## listAdAccounts
@@ -2981,7 +3839,7 @@ ApiResponse<[**ListAccountCallouts200Response**](ListAccountCallouts200Response.
 
 List ad accounts
 
-Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
 
 ### Example
 
@@ -3047,6 +3905,9 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Ad accounts |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or Instagram missing linked Facebook account |  -  |
@@ -3058,7 +3919,7 @@ public class Example {
 
 List ad accounts
 
-Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs).  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
 
 ### Example
 
@@ -3127,6 +3988,9 @@ ApiResponse<[**ListAdAccounts200Response**](ListAdAccounts200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **400** | Invalid request |  -  |
 | **200** | Ad accounts |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or Instagram missing linked Facebook account |  -  |
@@ -3207,6 +4071,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad labels (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -3289,6 +4155,8 @@ ApiResponse<[**ListAdLabels200Response**](ListAdLabels200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad labels (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -3371,8 +4239,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -3456,8 +4324,8 @@ ApiResponse<[**ListAdNegativeKeywordLists200Response**](ListAdNegativeKeywordLis
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -3494,7 +4362,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,type,cells{id,name,treatment_percentage}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -3518,7 +4386,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -3539,6 +4407,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad studies (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -3576,7 +4446,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String fields = "fields_example"; // String | Comma-separated Graph field override (supports nested {} projections).
+        String fields = "id,name,type,cells{id,name,treatment_percentage}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -3602,7 +4472,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **fields** | **String**| Comma-separated Graph field override (supports nested {} projections). | [optional] |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 25] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -3623,6 +4493,8 @@ ApiResponse<[**ListAdStudies200Response**](ListAdStudies200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Ad studies (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -3697,10 +4569,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Business centers |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | TikTok account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | TikTok Ads not connected |  -  |
 
 ## listAdsBusinessCentersWithHttpInfo
@@ -3774,10 +4647,11 @@ ApiResponse<[**ListAdsBusinessCenters200Response**](ListAdsBusinessCenters200Res
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Business centers |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | TikTok account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | TikTok Ads not connected |  -  |
 
 
@@ -3851,11 +4725,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Instagram identities and Page linkage. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 ## listAdsInstagramAccountsWithHttpInfo
@@ -3931,11 +4806,12 @@ ApiResponse<[**ListAdsInstagramAccounts200Response**](ListAdsInstagramAccounts20
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Instagram identities and Page linkage. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 
@@ -4009,11 +4885,12 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Applications available for promotion. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 ## listAdvertisableApplicationsWithHttpInfo
@@ -4089,11 +4966,12 @@ ApiResponse<[**ListAdvertisableApplications200Response**](ListAdvertisableApplic
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Applications available for promotion. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The account or Meta asset is not accessible. |  -  |
-| **404** | Resource not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
 
 
@@ -4167,6 +5045,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Custom conversions |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -4245,6 +5125,8 @@ ApiResponse<[**ListCustomConversions200Response**](ListCustomConversions200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Custom conversions |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -4255,7 +5137,7 @@ ApiResponse<[**ListCustomConversions200Response**](ListCustomConversions200Respo
 
 > ListHighDemandPeriods200Response listHighDemandPeriods(accountId, campaignId, adSetId, limit, after)
 
-High demand periods / budget schedules
+List high-demand periods
 
 Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
 
@@ -4327,6 +5209,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Budget schedules (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -4336,7 +5220,7 @@ public class Example {
 
 > ApiResponse<ListHighDemandPeriods200Response> listHighDemandPeriods listHighDemandPeriodsWithHttpInfo(accountId, campaignId, adSetId, limit, after)
 
-High demand periods / budget schedules
+List high-demand periods
 
 Scheduled budget increases (Meta&#39;s budget-scheduling API). The Graph edge lives on the campaign and ad-set nodes only, so exactly one of &#x60;campaignId&#x60; / &#x60;adSetId&#x60; (platform ids) is required. Rows returned verbatim (budget_value, budget_value_type, time window, recurrence).
 
@@ -4411,6 +5295,8 @@ ApiResponse<[**ListHighDemandPeriods200Response**](ListHighDemandPeriods200Respo
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Budget schedules (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -4489,6 +5375,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Businesses (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
@@ -4569,10 +5457,176 @@ ApiResponse<[**ListMetaBusinesses200Response**](ListMetaBusinesses200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Businesses (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## listTikTokAdPixels
+
+> ListTikTokAdPixels200Response listTikTokAdPixels(accountId, advertiserId, code)
+
+List TikTok ad pixels
+
+Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String advertiserId = "advertiserId_example"; // String | Advertiser belonging to this connection.
+        String code = "code_example"; // String | Filter by a Pixel Code.
+        try {
+            ListTikTokAdPixels200Response result = apiInstance.listTikTokAdPixels(accountId, advertiserId, code);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listTikTokAdPixels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **advertiserId** | **String**| Advertiser belonging to this connection. | [optional] |
+| **code** | **String**| Filter by a Pixel Code. | [optional] |
+
+### Return type
+
+[**ListTikTokAdPixels200Response**](ListTikTokAdPixels200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | TikTok pixels. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | Pixel Management permission is missing (code reconnect_required). Reconnect TikTok Ads to grant it. |  -  |
+
+## listTikTokAdPixelsWithHttpInfo
+
+> ApiResponse<ListTikTokAdPixels200Response> listTikTokAdPixels listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code)
+
+List TikTok ad pixels
+
+Lists pixels and their supported optimization events for a connected TikTok Ads account. The advertiser defaults to the first advertiser on the connection. Reconnect if Pixel Management permission has not been granted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
+        String advertiserId = "advertiserId_example"; // String | Advertiser belonging to this connection.
+        String code = "code_example"; // String | Filter by a Pixel Code.
+        try {
+            ApiResponse<ListTikTokAdPixels200Response> response = apiInstance.listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listTikTokAdPixels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount ID. | |
+| **advertiserId** | **String**| Advertiser belonging to this connection. | [optional] |
+| **code** | **String**| Filter by a Pixel Code. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListTikTokAdPixels200Response**](ListTikTokAdPixels200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | TikTok pixels. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | Pixel Management permission is missing (code reconnect_required). Reconnect TikTok Ads to grant it. |  -  |
 
 
 ## listValueRuleSets
@@ -4649,6 +5703,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule sets |  -  |
 | **400** | Invalid input, or Meta rejected the query. Meta answers a bad rule-set id with GraphMethodException code 100 / subcode 33, which is indistinguishable between not-found, no-permission, and account-not-enabled. |  -  |
 | **401** | Unauthorized |  -  |
@@ -4731,6 +5787,8 @@ ApiResponse<[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule sets |  -  |
 | **400** | Invalid input, or Meta rejected the query. Meta answers a bad rule-set id with GraphMethodException code 100 / subcode 33, which is indistinguishable between not-found, no-permission, and account-not-enabled. |  -  |
 | **401** | Unauthorized |  -  |
@@ -4741,9 +5799,9 @@ ApiResponse<[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)>
 
 > RemoveAccountCallout200Response removeAccountCallout(removeAccountCalloutRequest)
 
-Remove an account-level callout extension
+Remove account callout
 
-Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
 
 ### Example
 
@@ -4805,20 +5863,22 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Callout removed |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 ## removeAccountCalloutWithHttpInfo
 
 > ApiResponse<RemoveAccountCallout200Response> removeAccountCallout removeAccountCalloutWithHttpInfo(removeAccountCalloutRequest)
 
-Remove an account-level callout extension
+Remove account callout
 
-Removes the &#x60;customerAsset&#x60; link (&#x60;customers/{cid}/customerAssets/{assetId}~CALLOUT&#x60;). Google only; every other platform returns 501.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
 
 ### Example
 
@@ -4883,12 +5943,330 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Callout removed |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
-| **404** | Resource not found |  -  |
-| **501** | Only supported on Google Ads |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## removeAccountSitelink
+
+> RemoveAccountCallout200Response removeAccountSitelink(removeAccountCalloutRequest)
+
+Remove account sitelink
+
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        try {
+            RemoveAccountCallout200Response result = apiInstance.removeAccountSitelink(removeAccountCalloutRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAccountSitelink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+
+### Return type
+
+[**RemoveAccountCallout200Response**](RemoveAccountCallout200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## removeAccountSitelinkWithHttpInfo
+
+> ApiResponse<RemoveAccountCallout200Response> removeAccountSitelink removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest)
+
+Remove account sitelink
+
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        try {
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAccountSitelink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## removeAccountStructuredSnippet
+
+> RemoveAccountCallout200Response removeAccountStructuredSnippet(removeAccountCalloutRequest)
+
+Remove account snippet
+
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        try {
+            RemoveAccountCallout200Response result = apiInstance.removeAccountStructuredSnippet(removeAccountCalloutRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAccountStructuredSnippet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+
+### Return type
+
+[**RemoveAccountCallout200Response**](RemoveAccountCallout200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## removeAccountStructuredSnippetWithHttpInfo
+
+> ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippet removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest)
+
+Remove account snippet
+
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        try {
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAccountStructuredSnippet");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## replaceAdNegativeKeywordListKeywords
@@ -4965,8 +6343,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -5048,8 +6426,8 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -5061,7 +6439,7 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 
 Reply to an ad comment
 
-Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -5134,8 +6512,8 @@ public class Example {
 | **200** | Comment action completed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
-| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **403** | Ads access or supported identity is unavailable (feature_not_available), or TikTok denies ad-detail access or comment-management permission (insufficient_permissions). Grant permission and reconnect the TikTok Ads account before retrying. |  -  |
+| **404** | Ad is inaccessible or unavailable on TikTok for identity resolution (ad_not_found), or the comment was not found on this ad in the selected date window (resource_not_found). |  -  |
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
@@ -5146,7 +6524,7 @@ public class Example {
 
 Reply to an ad comment
 
-Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
+Reply to a first-level TikTok ad comment. Requires a TT_USER or CUSTOMIZED_USER identity with comment-management permission. Replies to replies are rejected. The response commentId identifies the new reply. This operation is not idempotent; do not blindly retry an uncertain response.  Unknown identity and video item fields are resolved only when needed for this action, then persisted for reuse. Comment-specific fields take precedence. If TikTok no longer returns the ad needed to resolve identity, 404 ad_not_found directs you to check deletion or archival in TikTok Ads Manager. Listing can still succeed. Unsupported or unavailable identity returns 403 feature_not_available. Denied access to ad details returns 403 insufficient_permissions with reconnect guidance and the upstream platformError.  Requires Ads access. The ad is resolved within the caller&#39;s accessible profiles. Before moderation, Zernio verifies that the comment belongs to this ad using TikTok&#39;s ad-group comment listing. The default search window is the last 30 days. Use since/until for older comments, with at most 30 days between the dates. Lookups scan at most 2,000 ad-group comments; narrow the date window if exceeded. Meta returns 501 feature_not_available with guidance to use the existing inbox comment endpoints and the account/post IDs from GET /v1/ads/{adId}/comments. 
 
 ### Example
 
@@ -5222,11 +6600,485 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 | **200** | Comment action completed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | Ads access or the required TikTok comment capability is unavailable. |  -  |
-| **404** | Ad is inaccessible or the comment was not found on this ad in the selected date window. |  -  |
+| **403** | Ads access or supported identity is unavailable (feature_not_available), or TikTok denies ad-detail access or comment-management permission (insufficient_permissions). Grant permission and reconnect the TikTok Ads account before retrying. |  -  |
+| **404** | Ad is inaccessible or unavailable on TikTok for identity resolution (ad_not_found), or the comment was not found on this ad in the selected date window (resource_not_found). |  -  |
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+
+## updateAccountCallouts
+
+> UpdateAccountCallouts200Response updateAccountCallouts(updateAccountCalloutsRequest)
+
+Update account callouts
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountCalloutsRequest updateAccountCalloutsRequest = new UpdateAccountCalloutsRequest(); // UpdateAccountCalloutsRequest | 
+        try {
+            UpdateAccountCallouts200Response result = apiInstance.updateAccountCallouts(updateAccountCalloutsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountCallouts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountCalloutsRequest** | [**UpdateAccountCalloutsRequest**](UpdateAccountCalloutsRequest.md)|  | |
+
+### Return type
+
+[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## updateAccountCalloutsWithHttpInfo
+
+> ApiResponse<UpdateAccountCallouts200Response> updateAccountCallouts updateAccountCalloutsWithHttpInfo(updateAccountCalloutsRequest)
+
+Update account callouts
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountCalloutsRequest updateAccountCalloutsRequest = new UpdateAccountCalloutsRequest(); // UpdateAccountCalloutsRequest | 
+        try {
+            ApiResponse<UpdateAccountCallouts200Response> response = apiInstance.updateAccountCalloutsWithHttpInfo(updateAccountCalloutsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountCallouts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountCalloutsRequest** | [**UpdateAccountCalloutsRequest**](UpdateAccountCalloutsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## updateAccountSitelinks
+
+> UpdateAccountCallouts200Response updateAccountSitelinks(updateAccountSitelinksRequest)
+
+Update account sitelinks
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountSitelinksRequest updateAccountSitelinksRequest = new UpdateAccountSitelinksRequest(); // UpdateAccountSitelinksRequest | 
+        try {
+            UpdateAccountCallouts200Response result = apiInstance.updateAccountSitelinks(updateAccountSitelinksRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountSitelinksRequest** | [**UpdateAccountSitelinksRequest**](UpdateAccountSitelinksRequest.md)|  | |
+
+### Return type
+
+[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## updateAccountSitelinksWithHttpInfo
+
+> ApiResponse<UpdateAccountCallouts200Response> updateAccountSitelinks updateAccountSitelinksWithHttpInfo(updateAccountSitelinksRequest)
+
+Update account sitelinks
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountSitelinksRequest updateAccountSitelinksRequest = new UpdateAccountSitelinksRequest(); // UpdateAccountSitelinksRequest | 
+        try {
+            ApiResponse<UpdateAccountCallouts200Response> response = apiInstance.updateAccountSitelinksWithHttpInfo(updateAccountSitelinksRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountSitelinks");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountSitelinksRequest** | [**UpdateAccountSitelinksRequest**](UpdateAccountSitelinksRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+
+## updateAccountStructuredSnippets
+
+> UpdateAccountCallouts200Response updateAccountStructuredSnippets(updateAccountStructuredSnippetsRequest)
+
+Update account snippets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest = new UpdateAccountStructuredSnippetsRequest(); // UpdateAccountStructuredSnippetsRequest | 
+        try {
+            UpdateAccountCallouts200Response result = apiInstance.updateAccountStructuredSnippets(updateAccountStructuredSnippetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountStructuredSnippetsRequest** | [**UpdateAccountStructuredSnippetsRequest**](UpdateAccountStructuredSnippetsRequest.md)|  | |
+
+### Return type
+
+[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
+
+## updateAccountStructuredSnippetsWithHttpInfo
+
+> ApiResponse<UpdateAccountCallouts200Response> updateAccountStructuredSnippets updateAccountStructuredSnippetsWithHttpInfo(updateAccountStructuredSnippetsRequest)
+
+Update account snippets
+
+Edits existing Google assets in place. Send updates with assetResourceName and the fields to change. An asset is shared: changes affect every attachment using it. Omitted fields stay unchanged. The operation consumes the Google operations budget and invalidates affected cached lists.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAccountStructuredSnippetsRequest updateAccountStructuredSnippetsRequest = new UpdateAccountStructuredSnippetsRequest(); // UpdateAccountStructuredSnippetsRequest | 
+        try {
+            ApiResponse<UpdateAccountCallouts200Response> response = apiInstance.updateAccountStructuredSnippetsWithHttpInfo(updateAccountStructuredSnippetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAccountStructuredSnippets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAccountStructuredSnippetsRequest** | [**UpdateAccountStructuredSnippetsRequest**](UpdateAccountStructuredSnippetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Assets returned. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access is required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | Google Ads operations budget or platform quota exhausted. |  -  |
+| **501** | Only supported on Google Ads. |  -  |
 
 
 ## updateAdAccount
@@ -5297,10 +7149,11 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## updateAdAccountWithHttpInfo
 
@@ -5373,10 +7226,11 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
-| **404** | Account not found |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## updateAdNegativeKeywordList
@@ -5453,8 +7307,8 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -5536,8 +7390,8 @@ ApiResponse<[**UpdateAdNegativeKeywordList200Response**](UpdateAdNegativeKeyword
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
-| **404** | Resource not found |  -  |
-| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
 | **422** | Google Ads connection is missing or unavailable. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Available only on Google Ads. |  -  |
@@ -5613,6 +7467,8 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set replaced |  -  |
 | **400** | Invalid input, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |
@@ -5691,6 +7547,8 @@ ApiResponse<[**UpdateValueRuleSet200Response**](UpdateValueRuleSet200Response.md
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Value rule set replaced |  -  |
 | **400** | Invalid input, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |

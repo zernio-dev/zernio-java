@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.AttachCampaignAssetsRequestSitelinksInner;
-import dev.zernio.model.AttachCampaignAssetsRequestStructuredSnippetsInner;
+import dev.zernio.model.GoogleSitelink;
+import dev.zernio.model.GoogleStructuredSnippet;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * AttachCampaignAssetsRequest
+ * Provide at least one of sitelinks, callouts or structuredSnippets. Sitelink description1 and description2 must be supplied together.
  */
 @JsonPropertyOrder({
   AttachCampaignAssetsRequest.JSON_PROPERTY_ACCOUNT_ID,
@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AttachCampaignAssetsRequest.JSON_PROPERTY_CALLOUTS,
   AttachCampaignAssetsRequest.JSON_PROPERTY_STRUCTURED_SNIPPETS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AttachCampaignAssetsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -55,7 +55,7 @@ public class AttachCampaignAssetsRequest {
 
   public static final String JSON_PROPERTY_SITELINKS = "sitelinks";
   @javax.annotation.Nullable
-  private List<AttachCampaignAssetsRequestSitelinksInner> sitelinks = new ArrayList<>();
+  private List<GoogleSitelink> sitelinks = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CALLOUTS = "callouts";
   @javax.annotation.Nullable
@@ -63,7 +63,7 @@ public class AttachCampaignAssetsRequest {
 
   public static final String JSON_PROPERTY_STRUCTURED_SNIPPETS = "structuredSnippets";
   @javax.annotation.Nullable
-  private List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets = new ArrayList<>();
+  private List<GoogleStructuredSnippet> structuredSnippets = new ArrayList<>();
 
   public AttachCampaignAssetsRequest() { 
   }
@@ -74,7 +74,7 @@ public class AttachCampaignAssetsRequest {
   }
 
   /**
-   * Zernio Google Ads SocialAccount id. Resolves the customer id + refresh token.
+   * Zernio Google Ads connection id.
    * @return accountId
    */
   @javax.annotation.Nonnull
@@ -98,7 +98,7 @@ public class AttachCampaignAssetsRequest {
   }
 
   /**
-   * Numeric Google Ads customer id. Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+   * Google customer id without dashes. Required when the connection has multiple customers.
    * @return customerId
    */
   @javax.annotation.Nullable
@@ -116,12 +116,12 @@ public class AttachCampaignAssetsRequest {
   }
 
 
-  public AttachCampaignAssetsRequest sitelinks(@javax.annotation.Nullable List<AttachCampaignAssetsRequestSitelinksInner> sitelinks) {
+  public AttachCampaignAssetsRequest sitelinks(@javax.annotation.Nullable List<GoogleSitelink> sitelinks) {
     this.sitelinks = sitelinks;
     return this;
   }
 
-  public AttachCampaignAssetsRequest addSitelinksItem(AttachCampaignAssetsRequestSitelinksInner sitelinksItem) {
+  public AttachCampaignAssetsRequest addSitelinksItem(GoogleSitelink sitelinksItem) {
     if (this.sitelinks == null) {
       this.sitelinks = new ArrayList<>();
     }
@@ -130,20 +130,20 @@ public class AttachCampaignAssetsRequest {
   }
 
   /**
-   * See POST /v1/ads/create sitelinks, same shape.
+   * Get sitelinks
    * @return sitelinks
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_SITELINKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<AttachCampaignAssetsRequestSitelinksInner> getSitelinks() {
+  public List<GoogleSitelink> getSitelinks() {
     return sitelinks;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_SITELINKS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setSitelinks(@javax.annotation.Nullable List<AttachCampaignAssetsRequestSitelinksInner> sitelinks) {
+  public void setSitelinks(@javax.annotation.Nullable List<GoogleSitelink> sitelinks) {
     this.sitelinks = sitelinks;
   }
 
@@ -180,12 +180,12 @@ public class AttachCampaignAssetsRequest {
   }
 
 
-  public AttachCampaignAssetsRequest structuredSnippets(@javax.annotation.Nullable List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets) {
+  public AttachCampaignAssetsRequest structuredSnippets(@javax.annotation.Nullable List<GoogleStructuredSnippet> structuredSnippets) {
     this.structuredSnippets = structuredSnippets;
     return this;
   }
 
-  public AttachCampaignAssetsRequest addStructuredSnippetsItem(AttachCampaignAssetsRequestStructuredSnippetsInner structuredSnippetsItem) {
+  public AttachCampaignAssetsRequest addStructuredSnippetsItem(GoogleStructuredSnippet structuredSnippetsItem) {
     if (this.structuredSnippets == null) {
       this.structuredSnippets = new ArrayList<>();
     }
@@ -200,14 +200,14 @@ public class AttachCampaignAssetsRequest {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SNIPPETS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public List<AttachCampaignAssetsRequestStructuredSnippetsInner> getStructuredSnippets() {
+  public List<GoogleStructuredSnippet> getStructuredSnippets() {
     return structuredSnippets;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_STRUCTURED_SNIPPETS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setStructuredSnippets(@javax.annotation.Nullable List<AttachCampaignAssetsRequestStructuredSnippetsInner> structuredSnippets) {
+  public void setStructuredSnippets(@javax.annotation.Nullable List<GoogleStructuredSnippet> structuredSnippets) {
     this.structuredSnippets = structuredSnippets;
   }
 

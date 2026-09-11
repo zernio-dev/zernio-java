@@ -79,7 +79,7 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   /**
    * Gets or Sets inner
@@ -431,7 +431,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an enhancement; use the separate promotion field for an explicit offer. The deprecated standard_enhancements bundle is rejected by Meta.
+   * Meta Advantage+ creative enhancements. Map snake_case feature names to OPT_IN or OPT_OUT; Meta validates supported keys and unspecified features default to OPT_OUT. auto_promotion_tag is an Advantage+ enhancement, not the Ads Manager Promotion setting. The deprecated standard_enhancements bundle is rejected by Meta.
    * @return creativeFeatures
    */
   @javax.annotation.Nullable

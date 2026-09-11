@@ -8,12 +8,15 @@ Platform-specific creative data. Fields vary by platform.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**assetGroup** | [**GooglePmaxAssetGroupInput**](GooglePmaxAssetGroupInput.md) | Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets. |  [optional] |
+|**assetGroupResourceName** | **String** | Google resource name of the created Performance Max asset group. |  [optional] |
+|**headlines** | [**List&lt;GoogleRsaHeadline&gt;**](GoogleRsaHeadline.md) | Google RSA only. Replaces the complete headline list. No padding or truncation on update. |  [optional] |
+|**descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google RSA only. Replaces the complete description list. No padding or truncation on update. |  [optional] |
+|**finalUrls** | **List&lt;URI&gt;** | Google RSA only. Replaces final URLs. Omitted lists stay unchanged. |  [optional] |
 |**thumbnailUrl** | **String** | Primary thumbnail/image URL |  [optional] |
 |**imageUrl** | **String** | Alternative image URL |  [optional] |
 |**videoId** | **String** | Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token. |  [optional] |
 |**videoUrl** | **String** | Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads. |  [optional] |
-|**promotion** | [**MetaPromotion**](MetaPromotion.md) | Meta offer read from the live creative on creation or GET /v1/ads/{adId}. Null when metadata is not returned or cannot be read. Requested values are never echoed as applied. |  [optional] |
-|**promotionStatus** | **MetaPromotionStatus** |  |  [optional] |
 |**creativeId** | **String** | Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create. |  [optional] |
 |**objectType** | **String** | Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews: when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available. |  [optional] |
 |**objectStoryId** | **String** | Meta creative &#x60;object_story_id&#x60; (the SHARE reference). Frequently absent, because Meta omits it for SHARE creatives. Use effectiveObjectStoryId instead. |  [optional] |

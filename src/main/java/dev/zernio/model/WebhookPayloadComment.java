@@ -34,7 +34,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Webhook payload for comment received events (Instagram, Facebook, X, YouTube, LinkedIn, Bluesky, Reddit)
+ * Webhook payload for comment received events (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event. TikTok events carry only the author id: the comment.update webhook has no username, picture or owner flag.
  */
 @JsonPropertyOrder({
   WebhookPayloadComment.JSON_PROPERTY_ID,
@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadComment.JSON_PROPERTY_ACCOUNT,
   WebhookPayloadComment.JSON_PROPERTY_TIMESTAMP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadComment {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

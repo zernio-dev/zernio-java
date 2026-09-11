@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-09T18:09:39.457592012Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T17:34:45.292619894Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LeadGenApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -315,7 +315,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @return CreateLeadForm200Response
    * @throws ApiException if fails to make API call
@@ -326,7 +326,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CreateLeadForm200Response
@@ -339,7 +339,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @return ApiResponse&lt;CreateLeadForm200Response&gt;
    * @throws ApiException if fails to make API call
@@ -350,7 +350,7 @@ public class LeadGenApi {
 
   /**
    * Create a lead form
-   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+   * Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
    * @param createLeadFormRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CreateLeadForm200Response&gt;
@@ -711,7 +711,7 @@ public class LeadGenApi {
 
   /**
    * List leads for a single form
-   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
    * @param formId  (required)
    * @param accountId  (required)
    * @param limit  (optional, default to 25)
@@ -726,7 +726,7 @@ public class LeadGenApi {
 
   /**
    * List leads for a single form
-   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
    * @param formId  (required)
    * @param accountId  (required)
    * @param limit  (optional, default to 25)
@@ -743,7 +743,7 @@ public class LeadGenApi {
 
   /**
    * List leads for a single form
-   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
    * @param formId  (required)
    * @param accountId  (required)
    * @param limit  (optional, default to 25)
@@ -758,7 +758,7 @@ public class LeadGenApi {
 
   /**
    * List leads for a single form
-   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. 
+   * Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
    * @param formId  (required)
    * @param accountId  (required)
    * @param limit  (optional, default to 25)
@@ -870,8 +870,8 @@ public class LeadGenApi {
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
-   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected Facebook, Meta ads business-login or LinkedIn ads account ID. (required)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
@@ -884,8 +884,8 @@ public class LeadGenApi {
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
-   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected Facebook, Meta ads business-login or LinkedIn ads account ID. (required)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
@@ -900,8 +900,8 @@ public class LeadGenApi {
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
-   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected Facebook, Meta ads business-login or LinkedIn ads account ID. (required)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
@@ -914,8 +914,8 @@ public class LeadGenApi {
 
   /**
    * List lead forms
-   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
-   * @param accountId Connected facebook or linkedin ads account id. (required)
+   * Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+   * @param accountId Connected Facebook, Meta ads business-login or LinkedIn ads account ID. (required)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id (used to resolve the owning organization). Required for LinkedIn. (optional)
    * @param limit  (optional, default to 25)
    * @param cursor  (optional)
@@ -1025,7 +1025,7 @@ public class LeadGenApi {
    * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)
    * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @return ListLeads200Response
    * @throws ApiException if fails to make API call
@@ -1041,7 +1041,7 @@ public class LeadGenApi {
    * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)
    * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @param headers Optional headers to include in the request
    * @return ListLeads200Response
@@ -1059,7 +1059,7 @@ public class LeadGenApi {
    * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)
    * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @return ApiResponse&lt;ListLeads200Response&gt;
    * @throws ApiException if fails to make API call
@@ -1075,7 +1075,7 @@ public class LeadGenApi {
    * @param accountId Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. (optional)
    * @param adAccountId LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). (optional)
    * @param limit  (optional, default to 25)
-   * @param since Unix seconds; only leads created at/after this timestamp. (optional)
+   * @param since Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. (optional)
    * @param cursor Keyset cursor from a previous response&#39;s pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset). (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListLeads200Response&gt;
