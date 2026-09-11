@@ -11,6 +11,7 @@ Such unions are collapsed to a free-form schema (Java `Object`, which Jackson
 still deserializes into the right runtime shape) instead of failing the build.
 """
 
+import json
 import sys
 
 import yaml
@@ -59,8 +60,10 @@ def main():
     collapsed = []
     collapse_unexpressible_unions(spec, "$", collapsed)
 
+    # JSON, not YAML: swagger-parser's SnakeYAML rejects YAML over 3,145,728
+    # code points, and the spec outgrew that on 2026-09-09.
     with open(destination, "w") as out:
-        yaml.safe_dump(spec, out, sort_keys=False, allow_unicode=True, width=10**9)
+        json.dump(spec, out, ensure_ascii=False, default=str)
 
     for location in collapsed:
         print(f"collapsed to free-form (unexpressible in Java): {location}")
