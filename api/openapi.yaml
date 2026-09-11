@@ -31565,6 +31565,70 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+    get:
+      description: |-
+        Reads one campaign live from Meta, returned verbatim, so a caller that knows a
+        campaign id no longer has to page `GET /v1/ads/campaigns` to find it. The default
+        projection covers name, status, objective, buying type, bid strategy, budgets,
+        spend cap, schedule and `issues_info`. `fields` is a raw-passthrough override;
+        unknown fields return Meta's 400 verbatim. A campaign the resolved connection
+        cannot see comes back as Meta's own 400, not a 404.
+      operationId: getAdCampaignDetails
+      parameters:
+      - description: Meta campaign id (platformCampaignId).
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated Graph field override. Supports nested {} projections\
+          \ and Graph field modifiers."
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          example: "id,name,status,daily_budget"
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdCampaignDetails_200_response"
+          description: The campaign as returned by Meta
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Get live campaign details
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
     put:
       description: |
         Campaign-level edits. Send at least one of `budget`, `bidStrategy`,
@@ -33265,6 +33329,11 @@ paths:
             \ add a card to resume."
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          description: "Meta admits one write per 30 seconds to a metered object,\
+            \ ad creatives above all. Zernio waits out two of those windows and replays\
+            \ the call before surfacing this, so it only appears when the object is\
+            \ being edited faster than that. Retry in 30 seconds."
         "422":
           description: "The ad has no campaign or ad group on the platform yet, the\
             \ Google targeting edit asks for something that is create-only (`locations.customLocations`),\
@@ -38919,11 +38988,12 @@ paths:
   /v1/ads/lead-forms:
     get:
       description: |
-        Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page, including a Page selected on a metaads business-login connection. LinkedIn: forms owned by the ad account's Company Page. Pass `adAccountId` (LinkedIn forms are org-owned). Requires the Ads add-on.
+        Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the `metaads` ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account's Company Page. Pass `adAccountId` (LinkedIn forms are org-owned). Requires the Ads add-on.
       operationId: listLeadForms
       parameters:
-      - description: "Connected Facebook, Meta ads business-login or LinkedIn ads\
-          \ account ID."
+      - description: "Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta\
+          \ ads connection resolves its Page through the Facebook account linked to\
+          \ the same profile."
         explode: true
         in: query
         name: accountId
@@ -38981,7 +39051,7 @@ paths:
       - application/json
     post:
       description: |
-        Creates a Lead Gen form. The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (a facebook account or a metaads business-login account with a selected Page) (POST /{page-id}/leadgen_forms); the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
+        Creates a Lead Gen form. The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
       operationId: createLeadForm
       requestBody:
         content:
@@ -39031,7 +39101,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Connected facebook or linkedin ads account id (selects the platform).
+      - description: "Connected Meta ads, facebook or linkedin ads account id (selects\
+          \ the platform). A Meta ads connection resolves its Page through the Facebook\
+          \ account linked to the same profile."
         explode: true
         in: query
         name: accountId
@@ -39074,7 +39146,9 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Connected facebook or linkedin ads account id (selects the platform).
+      - description: "Connected Meta ads, facebook or linkedin ads account id (selects\
+          \ the platform). A Meta ads connection resolves its Page through the Facebook\
+          \ account linked to the same profile."
         explode: true
         in: query
         name: accountId
@@ -94905,6 +94979,13 @@ components:
         channel: SEARCH
         cachedAt: 2000-01-23T04:56:07.000+00:00
         biddingStrategyType: biddingStrategyType
+    getAdCampaignDetails_200_response:
+      example:
+        campaign: "{}"
+      properties:
+        campaign:
+          description: Raw Meta campaign; keys are the requested Graph fields.
+          type: object
     updateAdCampaign_request_budget:
       description: "Meta CBO or Google daily campaign budget, in whole currency units."
       properties:

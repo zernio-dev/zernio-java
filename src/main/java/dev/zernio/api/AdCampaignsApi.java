@@ -53,6 +53,7 @@ import dev.zernio.model.DuplicateAdSet200Response;
 import dev.zernio.model.DuplicateAdSetRequest;
 import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.GetAd200Response;
+import dev.zernio.model.GetAdCampaignDetails200Response;
 import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree202Response;
 import dev.zernio.model.GetAdsTimeline202Response;
@@ -123,7 +124,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:51:44.615433220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2277,6 +2278,153 @@ public class AdCampaignsApi {
         .replace("{adId}", ApiClient.urlEncode(adId.toString()));
 
     localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get live campaign details
+   * Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+   * @param campaignId Meta campaign id (platformCampaignId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)
+   * @return GetAdCampaignDetails200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdCampaignDetails200Response getAdCampaignDetails(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getAdCampaignDetails(campaignId, accountId, fields, null);
+  }
+
+  /**
+   * Get live campaign details
+   * Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+   * @param campaignId Meta campaign id (platformCampaignId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdCampaignDetails200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdCampaignDetails200Response getAdCampaignDetails(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdCampaignDetails200Response> localVarResponse = getAdCampaignDetailsWithHttpInfo(campaignId, accountId, fields, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get live campaign details
+   * Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+   * @param campaignId Meta campaign id (platformCampaignId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)
+   * @return ApiResponse&lt;GetAdCampaignDetails200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdCampaignDetails200Response> getAdCampaignDetailsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields) throws ApiException {
+    return getAdCampaignDetailsWithHttpInfo(campaignId, accountId, fields, null);
+  }
+
+  /**
+   * Get live campaign details
+   * Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+   * @param campaignId Meta campaign id (platformCampaignId). (required)
+   * @param accountId Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. (required)
+   * @param fields Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdCampaignDetails200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdCampaignDetails200Response> getAdCampaignDetailsWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdCampaignDetailsRequestBuilder(campaignId, accountId, fields, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdCampaignDetails", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdCampaignDetails200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdCampaignDetails200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdCampaignDetails200Response>() {});
+        
+
+        return new ApiResponse<GetAdCampaignDetails200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdCampaignDetailsRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String fields, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling getAdCampaignDetails");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdCampaignDetails");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "fields";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fields", fields));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
 
     localVarRequestBuilder.header("Accept", "application/json");
 

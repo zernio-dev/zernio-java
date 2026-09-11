@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateBidStrategy201ResponseStrategy.JSON_PROPERTY_ID,
   CreateBidStrategy201ResponseStrategy.JSON_PROPERTY_RESOURCE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:33:39.560672359Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:51:44.615433220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBidStrategy201ResponseStrategy {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

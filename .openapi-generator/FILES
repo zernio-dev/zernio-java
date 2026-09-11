@@ -598,6 +598,7 @@ docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAnalytics202Response.md
 docs/GetAdAudience200Response.md
+docs/GetAdCampaignDetails200Response.md
 docs/GetAdComments200Response.md
 docs/GetAdComments200ResponseMeta.md
 docs/GetAdComments200ResponsePagination.md
@@ -2770,6 +2771,7 @@ src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
 src/main/java/dev/zernio/model/GetAdAnalytics202Response.java
 src/main/java/dev/zernio/model/GetAdAudience200Response.java
+src/main/java/dev/zernio/model/GetAdCampaignDetails200Response.java
 src/main/java/dev/zernio/model/GetAdComments200Response.java
 src/main/java/dev/zernio/model/GetAdComments200ResponseMeta.java
 src/main/java/dev/zernio/model/GetAdComments200ResponsePagination.java
@@ -4239,9 +4241,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/MetaLeadFormContextCardTest.java
-src/test/java/dev/zernio/model/MetaLeadFormLegalContentPrivacyPolicyTest.java
-src/test/java/dev/zernio/model/MetaLeadFormLegalContentTest.java
-src/test/java/dev/zernio/model/MetaLeadFormQuestionsInnerTest.java
-src/test/java/dev/zernio/model/MetaLeadFormTest.java
-src/test/java/dev/zernio/model/MetaLeadFormThankYouPageTest.java
+src/test/java/dev/zernio/model/GetAdCampaignDetails200ResponseTest.java

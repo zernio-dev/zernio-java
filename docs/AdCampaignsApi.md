@@ -36,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**duplicateAdSetWithHttpInfo**](AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
 | [**getAd**](AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
+| [**getAdCampaignDetails**](AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
+| [**getAdCampaignDetailsWithHttpInfo**](AdCampaignsApi.md#getAdCampaignDetailsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
 | [**getAdSetDetails**](AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdSetDetailsWithHttpInfo**](AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
@@ -2625,6 +2627,168 @@ ApiResponse<[**GetAd200Response**](GetAd200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
+
+
+## getAdCampaignDetails
+
+> GetAdCampaignDetails200Response getAdCampaignDetails(campaignId, accountId, fields)
+
+Get live campaign details
+
+Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Meta campaign id (platformCampaignId).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String fields = "id,name,status,daily_budget"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers.
+        try {
+            GetAdCampaignDetails200Response result = apiInstance.getAdCampaignDetails(campaignId, accountId, fields);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdCampaignDetails");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Meta campaign id (platformCampaignId). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. | [optional] |
+
+### Return type
+
+[**GetAdCampaignDetails200Response**](GetAdCampaignDetails200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | The campaign as returned by Meta |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdCampaignDetailsWithHttpInfo
+
+> ApiResponse<GetAdCampaignDetails200Response> getAdCampaignDetails getAdCampaignDetailsWithHttpInfo(campaignId, accountId, fields)
+
+Get live campaign details
+
+Reads one campaign live from Meta, returned verbatim, so a caller that knows a campaign id no longer has to page &#x60;GET /v1/ads/campaigns&#x60; to find it. The default projection covers name, status, objective, buying type, bid strategy, budgets, spend cap, schedule and &#x60;issues_info&#x60;. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim. A campaign the resolved connection cannot see comes back as Meta&#39;s own 400, not a 404.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Meta campaign id (platformCampaignId).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String fields = "id,name,status,daily_budget"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers.
+        try {
+            ApiResponse<GetAdCampaignDetails200Response> response = apiInstance.getAdCampaignDetailsWithHttpInfo(campaignId, accountId, fields);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdCampaignDetails");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Meta campaign id (platformCampaignId). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdCampaignDetails200Response**](GetAdCampaignDetails200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | The campaign as returned by Meta |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## getAdSetDetails
@@ -6110,6 +6274,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
+| **429** | Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds. |  -  |
 | **422** | The ad has no campaign or ad group on the platform yet, the Google targeting edit asks for something that is create-only (&#x60;locations.customLocations&#x60;), or a creative field the ad&#39;s channel cannot carry: assetGroup on a non-Performance-Max ad, a Google Display field on a Search ad, a pinnedField on a Display headline, or any Google-only field on another platform. A Google creative edit that cannot reach Google at all (the ad has no &#x60;platformAdId&#x60;, or its ad account cannot be loaded) also returns 422 rather than a 200 that changed nothing. |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |
@@ -6192,6 +6357,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
+| **429** | Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds. |  -  |
 | **422** | The ad has no campaign or ad group on the platform yet, the Google targeting edit asks for something that is create-only (&#x60;locations.customLocations&#x60;), or a creative field the ad&#39;s channel cannot carry: assetGroup on a non-Performance-Max ad, a Google Display field on a Search ad, a pinnedField on a Display headline, or any Google-only field on another platform. A Google creative edit that cannot reach Google at all (the ad has no &#x60;platformAdId&#x60;, or its ad account cannot be loaded) also returns 422 rather than a 200 that changed nothing. |  -  |
 | **501** | targeting or creative not supported on the platform (supported on Meta, TikTok, and LinkedIn) |  -  |
 | **502** | Meta accepted the request then failed to produce the media (upload session, chunk transfer, processing timeout, or a response with no image hash). Inspect &#x60;platformError.reason&#x60;. |  -  |

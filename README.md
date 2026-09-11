@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-11T18:33:39.560672359Z[Etc/UTC]
+- Build date: 2026-09-11T18:51:44.615433220Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -313,6 +313,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
 *AdCampaignsApi* | [**getAd**](docs/AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
 *AdCampaignsApi* | [**getAdWithHttpInfo**](docs/AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
+*AdCampaignsApi* | [**getAdCampaignDetails**](docs/AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
+*AdCampaignsApi* | [**getAdCampaignDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdCampaignDetailsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
 *AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
@@ -2138,6 +2140,7 @@ Class | Method | HTTP request | Description
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [GetAdAnalytics202Response](docs/GetAdAnalytics202Response.md)
  - [GetAdAudience200Response](docs/GetAdAudience200Response.md)
+ - [GetAdCampaignDetails200Response](docs/GetAdCampaignDetails200Response.md)
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
