@@ -48,12 +48,12 @@ jobs:
       - name: Normalize spec for the Java generator
         run: |
           python3 -c 'import yaml' 2>/dev/null || python3 -m pip install --quiet --break-system-packages pyyaml
-          python3 scripts/normalize-spec-for-java.py openapi.yaml "$RUNNER_TEMP/openapi-java.yaml"
+          python3 scripts/normalize-spec-for-java.py openapi.yaml "$RUNNER_TEMP/openapi-java.json"
 
       - name: Generate SDK
         run: |
           openapi-generator-cli generate \
-            -i "$RUNNER_TEMP/openapi-java.yaml" \
+            -i "$RUNNER_TEMP/openapi-java.json" \
             -g java \
             -o . \
             --skip-validate-spec \
