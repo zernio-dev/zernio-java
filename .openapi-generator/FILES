@@ -456,6 +456,9 @@ docs/CreateWhatsAppTemplateRequestLibraryTemplateButtonInputsInnerUrl.md
 docs/CreateWorkflow200Response.md
 docs/CreateWorkflow200ResponseWorkflow.md
 docs/CreateWorkflowRequest.md
+docs/CreateYoutubePlaylist201Response.md
+docs/CreateYoutubePlaylist201ResponsePlaylist.md
+docs/CreateYoutubePlaylistRequest.md
 docs/CrosspostDiscordMessage200Response.md
 docs/CtwaAdRequestBody.md
 docs/CtwaAdRequestBodyCitiesInner.md
@@ -2631,6 +2634,9 @@ src/main/java/dev/zernio/model/CreateWhatsAppTemplateRequestLibraryTemplateButto
 src/main/java/dev/zernio/model/CreateWorkflow200Response.java
 src/main/java/dev/zernio/model/CreateWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/CreateWorkflowRequest.java
+src/main/java/dev/zernio/model/CreateYoutubePlaylist201Response.java
+src/main/java/dev/zernio/model/CreateYoutubePlaylist201ResponsePlaylist.java
+src/main/java/dev/zernio/model/CreateYoutubePlaylistRequest.java
 src/main/java/dev/zernio/model/CrosspostDiscordMessage200Response.java
 src/main/java/dev/zernio/model/CtwaAdRequestBody.java
 src/main/java/dev/zernio/model/CtwaAdRequestBodyCitiesInner.java
@@ -4241,4 +4247,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetAdCampaignDetails200ResponseTest.java
+src/test/java/dev/zernio/model/CreateYoutubePlaylist201ResponsePlaylistTest.java
+src/test/java/dev/zernio/model/CreateYoutubePlaylist201ResponseTest.java
+src/test/java/dev/zernio/model/CreateYoutubePlaylistRequestTest.java

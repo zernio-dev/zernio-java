@@ -32,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
 | [**createPinterestBoard**](ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**createPinterestBoardWithHttpInfo**](ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
+| [**createYoutubePlaylist**](ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
+| [**createYoutubePlaylistWithHttpInfo**](ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getConnectUrlWithHttpInfo**](ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getFacebookPages**](ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages |
@@ -2297,6 +2299,166 @@ ApiResponse<[**CreatePinterestBoard201Response**](CreatePinterestBoard201Respons
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
 | **502** | Pinterest rejected the request (e.g. duplicate board name) |  -  |
+
+
+## createYoutubePlaylist
+
+> CreateYoutubePlaylist201Response createYoutubePlaylist(accountId, createYoutubePlaylistRequest)
+
+Create YouTube playlist
+
+Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        CreateYoutubePlaylistRequest createYoutubePlaylistRequest = new CreateYoutubePlaylistRequest(); // CreateYoutubePlaylistRequest | 
+        try {
+            CreateYoutubePlaylist201Response result = apiInstance.createYoutubePlaylist(accountId, createYoutubePlaylistRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createYoutubePlaylist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **createYoutubePlaylistRequest** | [**CreateYoutubePlaylistRequest**](CreateYoutubePlaylistRequest.md)|  | |
+
+### Return type
+
+[**CreateYoutubePlaylist201Response**](CreateYoutubePlaylist201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Playlist created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | API key lacks access to the account or YouTube denied permission. |  -  |
+| **404** | Account not found or inaccessible. |  -  |
+| **429** | YouTube rate limit exceeded. |  -  |
+| **502** | YouTube request failed. Check existing playlists before retrying, because the playlist may have been created. |  -  |
+
+## createYoutubePlaylistWithHttpInfo
+
+> ApiResponse<CreateYoutubePlaylist201Response> createYoutubePlaylist createYoutubePlaylistWithHttpInfo(accountId, createYoutubePlaylistRequest)
+
+Create YouTube playlist
+
+Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account&#39;s default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube&#39;s public API and must be enabled manually in YouTube&#39;s desktop playlist settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        CreateYoutubePlaylistRequest createYoutubePlaylistRequest = new CreateYoutubePlaylistRequest(); // CreateYoutubePlaylistRequest | 
+        try {
+            ApiResponse<CreateYoutubePlaylist201Response> response = apiInstance.createYoutubePlaylistWithHttpInfo(accountId, createYoutubePlaylistRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#createYoutubePlaylist");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **createYoutubePlaylistRequest** | [**CreateYoutubePlaylistRequest**](CreateYoutubePlaylistRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateYoutubePlaylist201Response**](CreateYoutubePlaylist201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Playlist created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | API key lacks access to the account or YouTube denied permission. |  -  |
+| **404** | Account not found or inaccessible. |  -  |
+| **429** | YouTube rate limit exceeded. |  -  |
+| **502** | YouTube request failed. Check existing playlists before retrying, because the playlist may have been created. |  -  |
 
 
 ## getConnectUrl

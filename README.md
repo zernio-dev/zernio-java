@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-11T18:51:44.615433220Z[Etc/UTC]
+- Build date: 2026-09-13T14:17:44.218587786Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -731,6 +731,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
+*ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
+*ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectUrlWithHttpInfo**](docs/ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getFacebookPages**](docs/ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
@@ -2000,6 +2002,9 @@ Class | Method | HTTP request | Description
  - [CreateWorkflow200Response](docs/CreateWorkflow200Response.md)
  - [CreateWorkflow200ResponseWorkflow](docs/CreateWorkflow200ResponseWorkflow.md)
  - [CreateWorkflowRequest](docs/CreateWorkflowRequest.md)
+ - [CreateYoutubePlaylist201Response](docs/CreateYoutubePlaylist201Response.md)
+ - [CreateYoutubePlaylist201ResponsePlaylist](docs/CreateYoutubePlaylist201ResponsePlaylist.md)
+ - [CreateYoutubePlaylistRequest](docs/CreateYoutubePlaylistRequest.md)
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)

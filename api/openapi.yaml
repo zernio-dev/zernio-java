@@ -14045,6 +14045,63 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+    post:
+      description: |
+        Creates an empty playlist on the connected YouTube channel. Requires a title; privacy defaults to private. Returns the same playlist shape as the list endpoint. Pass the returned playlist.id as platformSpecificData.playlistId when publishing a video. Does not change the account's default playlist. Requires the youtube or youtube.force-ssl OAuth scope. Costs 50 YouTube quota units. This operation is not idempotent and is not automatically retried: repeating a request can create another playlist, including after a timeout. List playlists before retrying an ambiguous failure. Official series settings are not exposed by YouTube's public API and must be enabled manually in YouTube's desktop playlist settings.
+      operationId: createYoutubePlaylist
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              title: Tutorials
+              description: Step-by-step video tutorials
+              privacy: private
+            schema:
+              $ref: "#/components/schemas/createYoutubePlaylist_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                playlist:
+                  id: PLxxxxxxxxxxxxx
+                  title: Tutorials
+                  description: Step-by-step video tutorials
+                  privacy: private
+                  itemCount: 0
+                  thumbnailUrl: ""
+              schema:
+                $ref: "#/components/schemas/createYoutubePlaylist_201_response"
+          description: Playlist created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: API key lacks access to the account or YouTube denied permission.
+        "404":
+          description: Account not found or inaccessible.
+        "429":
+          description: YouTube rate limit exceeded.
+        "502":
+          description: "YouTube request failed. Check existing playlists before retrying,\
+            \ because the playlist may have been created."
+      summary: Create YouTube playlist
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     put:
       description: "Sets the default playlist used when publishing videos for this\
         \ account. When a post does not specify a playlistId, the default playlist\
@@ -74721,6 +74778,70 @@ components:
       properties:
         success:
           type: boolean
+    createYoutubePlaylist_request:
+      properties:
+        title:
+          description: Playlist title. Leading and trailing whitespace is removed.
+          minLength: 1
+          type: string
+        description:
+          description: Optional playlist description.
+          type: string
+        privacy:
+          default: private
+          enum:
+          - private
+          - public
+          - unlisted
+          type: string
+      required:
+      - title
+    createYoutubePlaylist_201_response_playlist:
+      example:
+        description: description
+        privacy: private
+        id: id
+        title: title
+        itemCount: 0
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        privacy:
+          enum:
+          - private
+          - public
+          - unlisted
+          type: string
+        itemCount:
+          type: integer
+        thumbnailUrl:
+          type: string
+      required:
+      - description
+      - id
+      - itemCount
+      - privacy
+      - thumbnailUrl
+      - title
+    createYoutubePlaylist_201_response:
+      example:
+        playlist:
+          description: description
+          privacy: private
+          id: id
+          title: title
+          itemCount: 0
+          thumbnailUrl: thumbnailUrl
+      properties:
+        playlist:
+          $ref: "#/components/schemas/createYoutubePlaylist_201_response_playlist"
+      required:
+      - playlist
     getGmbLocations_200_response_locations_inner:
       example:
         accountId: accountId

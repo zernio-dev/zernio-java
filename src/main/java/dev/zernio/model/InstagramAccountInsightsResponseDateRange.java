@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   InstagramAccountInsightsResponseDateRange.JSON_PROPERTY_SINCE,
   InstagramAccountInsightsResponseDateRange.JSON_PROPERTY_UNTIL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-11T18:51:44.615433220Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-13T14:17:44.218587786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InstagramAccountInsightsResponseDateRange {
   public static final String JSON_PROPERTY_SINCE = "since";
   @javax.annotation.Nullable
