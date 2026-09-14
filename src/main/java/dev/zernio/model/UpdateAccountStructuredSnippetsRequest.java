@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateAccountStructuredSnippetsRequest.JSON_PROPERTY_CUSTOMER_ID,
   UpdateAccountStructuredSnippetsRequest.JSON_PROPERTY_UPDATES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountStructuredSnippetsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

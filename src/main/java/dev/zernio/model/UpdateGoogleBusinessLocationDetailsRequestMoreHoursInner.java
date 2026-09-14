@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner.JSON_PROPERTY_HOURS_TYPE_ID,
   UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner.JSON_PROPERTY_PERIODS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequestMoreHoursInner {
   public static final String JSON_PROPERTY_HOURS_TYPE_ID = "hoursTypeId";
   @javax.annotation.Nullable

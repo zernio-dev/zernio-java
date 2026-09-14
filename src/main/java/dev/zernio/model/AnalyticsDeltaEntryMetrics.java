@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_COMPLETION_RATE,
   AnalyticsDeltaEntryMetrics.JSON_PROPERTY_PROFILE_VIEWS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsDeltaEntryMetrics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nonnull

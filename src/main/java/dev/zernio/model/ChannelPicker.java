@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ChannelPicker.JSON_PROPERTY_TEAM,
   ChannelPicker.JSON_PROPERTY_CHANNELS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ChannelPicker {
   public static final String JSON_PROPERTY_TEAM = "team";
   @javax.annotation.Nonnull
