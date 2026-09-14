@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateAccountGroupRequest.JSON_PROPERTY_NAME,
   UpdateAccountGroupRequest.JSON_PROPERTY_ACCOUNT_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:09:12.875912991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountGroupRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

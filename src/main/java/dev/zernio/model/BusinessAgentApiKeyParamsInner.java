@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BusinessAgentApiKeyParamsInner.JSON_PROPERTY_VALUE,
   BusinessAgentApiKeyParamsInner.JSON_PROPERTY_PREFIX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:09:12.875912991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentApiKeyParamsInner {
   public static final String JSON_PROPERTY_FIELD_NAME = "field_name";
   @javax.annotation.Nonnull

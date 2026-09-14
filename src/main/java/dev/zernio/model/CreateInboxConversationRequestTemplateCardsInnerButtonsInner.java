@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequestTemplateCardsInnerButtonsInner.JSON_PROPERTY_SUB_TYPE,
   CreateInboxConversationRequestTemplateCardsInnerButtonsInner.JSON_PROPERTY_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:09:12.875912991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:11:50.809045657Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequestTemplateCardsInnerButtonsInner {
   public static final String JSON_PROPERTY_INDEX = "index";
   @javax.annotation.Nonnull
