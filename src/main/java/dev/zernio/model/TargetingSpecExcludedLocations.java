@@ -40,6 +40,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   TargetingSpecExcludedLocations.JSON_PROPERTY_COUNTRIES,
+  TargetingSpecExcludedLocations.JSON_PROPERTY_COUNTRY_GROUPS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_REGIONS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CITIES,
   TargetingSpecExcludedLocations.JSON_PROPERTY_ZIPS,
@@ -47,11 +48,86 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocations.JSON_PROPERTY_NEIGHBORHOODS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CUSTOM_LOCATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:14:10.125078906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocations {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  /**
+   * Gets or Sets countryGroups
+   */
+  public enum CountryGroupsEnum {
+    AFRICA(String.valueOf("africa")),
+    
+    ASIA(String.valueOf("asia")),
+    
+    EUROPE(String.valueOf("europe")),
+    
+    NORTH_AMERICA(String.valueOf("north_america")),
+    
+    SOUTH_AMERICA(String.valueOf("south_america")),
+    
+    OCEANIA(String.valueOf("oceania")),
+    
+    CENTRAL_AMERICA(String.valueOf("central_america")),
+    
+    CARIBBEAN(String.valueOf("caribbean")),
+    
+    EEA(String.valueOf("eea")),
+    
+    EURO_AREA(String.valueOf("euro_area")),
+    
+    NAFTA(String.valueOf("nafta")),
+    
+    MERCOSUR(String.valueOf("mercosur")),
+    
+    AFTA(String.valueOf("afta")),
+    
+    APEC(String.valueOf("apec")),
+    
+    GCC(String.valueOf("gcc")),
+    
+    CISFTA(String.valueOf("cisfta")),
+    
+    EMERGING_MARKETS(String.valueOf("emerging_markets")),
+    
+    ITUNES_APP_STORE(String.valueOf("itunes_app_store")),
+    
+    ANDROID_FREE_STORE(String.valueOf("android_free_store")),
+    
+    ANDROID_PAID_STORE(String.valueOf("android_paid_store"));
+
+    private String value;
+
+    CountryGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountryGroupsEnum fromValue(String value) {
+      for (CountryGroupsEnum b : CountryGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_COUNTRY_GROUPS = "countryGroups";
+  @javax.annotation.Nullable
+  private List<CountryGroupsEnum> countryGroups = new ArrayList<>();
 
   public static final String JSON_PROPERTY_REGIONS = "regions";
   @javax.annotation.Nullable
@@ -109,6 +185,38 @@ public class TargetingSpecExcludedLocations {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public TargetingSpecExcludedLocations countryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
+    return this;
+  }
+
+  public TargetingSpecExcludedLocations addCountryGroupsItem(CountryGroupsEnum countryGroupsItem) {
+    if (this.countryGroups == null) {
+      this.countryGroups = new ArrayList<>();
+    }
+    this.countryGroups.add(countryGroupsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Continents and trade blocs to exclude (&#x60;excluded_geo_locations.country_groups&#x60;).
+   * @return countryGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CountryGroupsEnum> getCountryGroups() {
+    return countryGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
   }
 
 
@@ -317,6 +425,7 @@ public class TargetingSpecExcludedLocations {
     }
     TargetingSpecExcludedLocations targetingSpecExcludedLocations = (TargetingSpecExcludedLocations) o;
     return Objects.equals(this.countries, targetingSpecExcludedLocations.countries) &&
+        Objects.equals(this.countryGroups, targetingSpecExcludedLocations.countryGroups) &&
         Objects.equals(this.regions, targetingSpecExcludedLocations.regions) &&
         Objects.equals(this.cities, targetingSpecExcludedLocations.cities) &&
         Objects.equals(this.zips, targetingSpecExcludedLocations.zips) &&
@@ -327,7 +436,7 @@ public class TargetingSpecExcludedLocations {
 
   @Override
   public int hashCode() {
-    return Objects.hash(countries, regions, cities, zips, places, neighborhoods, customLocations);
+    return Objects.hash(countries, countryGroups, regions, cities, zips, places, neighborhoods, customLocations);
   }
 
   @Override
@@ -335,6 +444,7 @@ public class TargetingSpecExcludedLocations {
     StringBuilder sb = new StringBuilder();
     sb.append("class TargetingSpecExcludedLocations {\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    countryGroups: ").append(toIndentedString(countryGroups)).append("\n");
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
@@ -394,6 +504,15 @@ public class TargetingSpecExcludedLocations {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `countryGroups` to the URL query string
+    if (getCountryGroups() != null) {
+      for (int i = 0; i < getCountryGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scountryGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCountryGroups().get(i)))));
       }
     }
 

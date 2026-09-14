@@ -115,6 +115,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_ORGANIZATION_ID,
   CreateStandaloneAdRequest.JSON_PROPERTY_TARGETING,
   CreateStandaloneAdRequest.JSON_PROPERTY_COUNTRIES,
+  CreateStandaloneAdRequest.JSON_PROPERTY_COUNTRY_GROUPS,
   CreateStandaloneAdRequest.JSON_PROPERTY_CITIES,
   CreateStandaloneAdRequest.JSON_PROPERTY_REGIONS,
   CreateStandaloneAdRequest.JSON_PROPERTY_AGE_MIN,
@@ -176,7 +177,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_ATTRIBUTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:14:10.125078906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -749,6 +750,81 @@ public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable
   private List<String> countries = new ArrayList<>();
+
+  /**
+   * Gets or Sets countryGroups
+   */
+  public enum CountryGroupsEnum {
+    AFRICA(String.valueOf("africa")),
+    
+    ASIA(String.valueOf("asia")),
+    
+    EUROPE(String.valueOf("europe")),
+    
+    NORTH_AMERICA(String.valueOf("north_america")),
+    
+    SOUTH_AMERICA(String.valueOf("south_america")),
+    
+    OCEANIA(String.valueOf("oceania")),
+    
+    CENTRAL_AMERICA(String.valueOf("central_america")),
+    
+    CARIBBEAN(String.valueOf("caribbean")),
+    
+    EEA(String.valueOf("eea")),
+    
+    EURO_AREA(String.valueOf("euro_area")),
+    
+    NAFTA(String.valueOf("nafta")),
+    
+    MERCOSUR(String.valueOf("mercosur")),
+    
+    AFTA(String.valueOf("afta")),
+    
+    APEC(String.valueOf("apec")),
+    
+    GCC(String.valueOf("gcc")),
+    
+    CISFTA(String.valueOf("cisfta")),
+    
+    EMERGING_MARKETS(String.valueOf("emerging_markets")),
+    
+    ITUNES_APP_STORE(String.valueOf("itunes_app_store")),
+    
+    ANDROID_FREE_STORE(String.valueOf("android_free_store")),
+    
+    ANDROID_PAID_STORE(String.valueOf("android_paid_store"));
+
+    private String value;
+
+    CountryGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountryGroupsEnum fromValue(String value) {
+      for (CountryGroupsEnum b : CountryGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_COUNTRY_GROUPS = "countryGroups";
+  @javax.annotation.Nullable
+  private List<CountryGroupsEnum> countryGroups = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CITIES = "cities";
   @javax.annotation.Nullable
@@ -2363,6 +2439,38 @@ public class CreateStandaloneAdRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setCountries(@javax.annotation.Nullable List<String> countries) {
     this.countries = countries;
+  }
+
+
+  public CreateStandaloneAdRequest countryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
+    return this;
+  }
+
+  public CreateStandaloneAdRequest addCountryGroupsItem(CountryGroupsEnum countryGroupsItem) {
+    if (this.countryGroups == null) {
+      this.countryGroups = new ArrayList<>();
+    }
+    this.countryGroups.add(countryGroupsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. 
+   * @return countryGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CountryGroupsEnum> getCountryGroups() {
+    return countryGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
   }
 
 
@@ -4104,6 +4212,7 @@ public class CreateStandaloneAdRequest {
         Objects.equals(this.organizationId, createStandaloneAdRequest.organizationId) &&
         Objects.equals(this.targeting, createStandaloneAdRequest.targeting) &&
         Objects.equals(this.countries, createStandaloneAdRequest.countries) &&
+        Objects.equals(this.countryGroups, createStandaloneAdRequest.countryGroups) &&
         Objects.equals(this.cities, createStandaloneAdRequest.cities) &&
         Objects.equals(this.regions, createStandaloneAdRequest.regions) &&
         Objects.equals(this.ageMin, createStandaloneAdRequest.ageMin) &&
@@ -4172,7 +4281,7 @@ public class CreateStandaloneAdRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, hashCodeNullable(promotion), creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, assetGroup, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, userOs, userDevice, isSkadnetworkAttribution, campaignAttribution, promotedObject);
+    return Objects.hash(accountId, adAccountId, name, campaignName, adSetName, adName, tracking, goal, optimizationGoal, billingEvent, buyingType, rfPredictionId, hashCodeNullable(promotion), creativeFeatures, multiAdvertiser, validateOnly, budgetAmount, budgetType, status, campaignStatus, budgetLevel, currency, headline, longHeadline, body, description, bodies, headlines, descriptions, callToAction, linkUrl, leadGenFormId, imageUrl, images, video, creatives, adSetId, existingCampaignId, existingCreativeId, businessName, boardId, organizationId, targeting, countries, countryGroups, cities, regions, ageMin, ageMax, interests, zips, metros, customLocations, behaviors, workPositions, workEmployers, workIndustries, incomeTier, languages, placements, savedTargetingId, rawTargeting, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, endDate, startDate, instagramAccountId, dynamicCreative, carouselCards, defaultLocale, translations, placementAssets, audienceId, campaignType, assetGroup, keywords, negativeKeywords, campaignNegativeKeywords, additionalHeadlines, additionalDescriptions, sitelinks, callouts, structuredSnippets, advantageAudience, attributionSpec, gender, bidStrategy, bidAmount, roasAverageFloor, portfolioBidStrategyId, valueRuleSetId, valueRulesApplied, platformSpecificData, dsaBeneficiary, dsaPayor, brandIdentity, identityType, smartPlus, userOs, userDevice, isSkadnetworkAttribution, campaignAttribution, promotedObject);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -4230,6 +4339,7 @@ public class CreateStandaloneAdRequest {
     sb.append("    organizationId: ").append(toIndentedString(organizationId)).append("\n");
     sb.append("    targeting: ").append(toIndentedString(targeting)).append("\n");
     sb.append("    countries: ").append(toIndentedString(countries)).append("\n");
+    sb.append("    countryGroups: ").append(toIndentedString(countryGroups)).append("\n");
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    regions: ").append(toIndentedString(regions)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
@@ -4579,6 +4689,15 @@ public class CreateStandaloneAdRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%scountries%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getCountries().get(i)))));
+      }
+    }
+
+    // add `countryGroups` to the URL query string
+    if (getCountryGroups() != null) {
+      for (int i = 0; i < getCountryGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scountryGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCountryGroups().get(i)))));
       }
     }
 

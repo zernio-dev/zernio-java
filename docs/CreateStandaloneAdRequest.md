@@ -51,6 +51,7 @@
 |**organizationId** | **String** | LinkedIn only. The Company Page that authors the Direct Sponsored Content (\&quot;dark\&quot;) post backing the ad. Accepts a numeric organization ID or a full &#x60;urn:li:organization:N&#x60; URN. Required unless the resolved &#x60;accountId&#x60; is a connected LinkedIn Company-Page account (defaults to that page) or the LinkedIn ad account is org-owned (defaults to the account&#39;s owning organization). The authenticated member must be an ADMINISTRATOR or DIRECT_SPONSORED_CONTENT_POSTER of this page (and the page must be associated with the ad account), or LinkedIn returns 403. Ignored by every other platform. |  [optional] |
 |**targeting** | [**TargetingSpec**](TargetingSpec.md) | Nested targeting object, the same TargetingSpec shape as &#x60;POST /v1/ads/boost&#x60;, &#x60;POST /v1/ads/targeting/reach-estimate&#x60;, and &#x60;saved_targeting&#x60; audiences. Merged UNDER the flat inline targeting fields below: &#x60;savedTargetingId&#x60; &lt; &#x60;targeting&#x60; &lt; flat fields (a flat field present on the body replaces the nested value entirely). Both forms are equivalent; use whichever your integration already builds.  |  [optional] |
 |**countries** | **List&lt;String&gt;** | ISO 3166-1 alpha-2 country codes (e.g. [&#39;NL&#39;]). Defaults to [&#39;US&#39;] when no other geo targeting (flat or nested &#x60;targeting&#x60;) is provided. (LinkedIn and OpenAI Ads currently honour country-level targeting only; any other targeting field returns 400 for OpenAI Ads.) |  [optional] |
+|**countryGroups** | [**List&lt;CountryGroupsEnum&gt;**](#List&lt;CountryGroupsEnum&gt;) | Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;.  |  [optional] |
 |**cities** | [**List&lt;CreateStandaloneAdRequestCitiesInner&gt;**](CreateStandaloneAdRequestCitiesInner.md) | City-level geo targeting (Meta and TikTok). Each city is targeted by the platform&#39;s opaque &#x60;key&#x60; (the city ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;. Optional &#x60;radius&#x60; + &#x60;distance_unit&#x60; (Meta only) extend the targeting beyond the city limits (e.g. radius 25 km around the city center). Both must be set together, or both omitted (Meta defaults to ~16 km when omitted).  On Meta, cannot overlap with the same country in &#x60;countries&#x60; (Meta returns a \&quot;locations overlap\&quot; error). Either drop the country or scope it to a different country. On TikTok, keys are numeric location ids and can be sent without &#x60;countries&#x60;.  |  [optional] |
 |**regions** | [**List&lt;CreateStandaloneAdRequestRegionsInner&gt;**](CreateStandaloneAdRequestRegionsInner.md) | Region-level (state/province) geo targeting (Meta and TikTok). Each region is targeted by the platform&#39;s opaque &#x60;key&#x60; (the region ID) which can be looked up via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;q&#x3D;&lt;name&gt;&amp;countryCode&#x3D;&lt;ISO&gt;&#x60;.  |  [optional] |
 |**ageMin** | **Integer** |  |  [optional] |
@@ -233,6 +234,33 @@
 | APPLY | &quot;APPLY&quot; |
 | SEE_MORE | &quot;SEE_MORE&quot; |
 | BUY_NOW | &quot;BUY_NOW&quot; |
+
+
+
+## Enum: List&lt;CountryGroupsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| AFRICA | &quot;africa&quot; |
+| ASIA | &quot;asia&quot; |
+| EUROPE | &quot;europe&quot; |
+| NORTH_AMERICA | &quot;north_america&quot; |
+| SOUTH_AMERICA | &quot;south_america&quot; |
+| OCEANIA | &quot;oceania&quot; |
+| CENTRAL_AMERICA | &quot;central_america&quot; |
+| CARIBBEAN | &quot;caribbean&quot; |
+| EEA | &quot;eea&quot; |
+| EURO_AREA | &quot;euro_area&quot; |
+| NAFTA | &quot;nafta&quot; |
+| MERCOSUR | &quot;mercosur&quot; |
+| AFTA | &quot;afta&quot; |
+| APEC | &quot;apec&quot; |
+| GCC | &quot;gcc&quot; |
+| CISFTA | &quot;cisfta&quot; |
+| EMERGING_MARKETS | &quot;emerging_markets&quot; |
+| ITUNES_APP_STORE | &quot;itunes_app_store&quot; |
+| ANDROID_FREE_STORE | &quot;android_free_store&quot; |
+| ANDROID_PAID_STORE | &quot;android_paid_store&quot; |
 
 
 

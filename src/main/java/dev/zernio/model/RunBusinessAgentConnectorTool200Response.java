@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RunBusinessAgentConnectorTool200Response.JSON_PROPERTY_OUTPUT,
   RunBusinessAgentConnectorTool200Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:14:10.125078906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RunBusinessAgentConnectorTool200Response {
   public static final String JSON_PROPERTY_OUTPUT = "output";
   @javax.annotation.Nullable
