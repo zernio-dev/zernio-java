@@ -4247,6 +4247,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateYoutubePlaylist201ResponsePlaylistTest.java
-src/test/java/dev/zernio/model/CreateYoutubePlaylist201ResponseTest.java
-src/test/java/dev/zernio/model/CreateYoutubePlaylistRequestTest.java

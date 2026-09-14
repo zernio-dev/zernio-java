@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetDiscordChannels200ResponseChannelsInner.JSON_PROPERTY_NAME,
   GetDiscordChannels200ResponseChannelsInner.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-13T14:17:44.218587786Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T07:09:12.875912991Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetDiscordChannels200ResponseChannelsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

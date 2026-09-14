@@ -9123,8 +9123,11 @@ paths:
               tempToken: EAAxxxxx...
               userProfile:
                 id: "987654321"
-                name: John Doe
+                username: john.doe
+                displayName: John Doe
                 profilePicture: https://...
+                profileUrl: https://facebook.com/987654321
+                bio: null
               redirect_url: https://yourdomain.com/integrations/callback
             schema:
               $ref: "#/components/schemas/selectFacebookPage_request"
@@ -18860,7 +18863,8 @@ paths:
         style: form
       - description: Filter by platform. `metaads` is a synthetic value meaning the
           user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic
-          posts only.
+          posts only. `tiktok` covers accounts connected through the TikTok Business
+          app only; developer-app TikTok accounts are returned under `meta.accountsSkipped`.
         explode: true
         in: query
         name: platform
@@ -18875,6 +18879,7 @@ paths:
           - youtube
           - linkedin
           - reddit
+          - tiktok
           - metaads
           type: string
         style: form

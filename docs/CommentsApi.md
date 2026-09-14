@@ -1041,7 +1041,7 @@ public class Example {
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile ID
-        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only.
+        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only. `tiktok` covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under `meta.accountsSkipped`.
         Integer minComments = 56; // Integer | Minimum comment count
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Posts created after this date
         String sortBy = "date"; // String | Sort field
@@ -1069,7 +1069,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, metaads] |
+| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, tiktok, metaads] |
 | **minComments** | **Integer**| Minimum comment count | [optional] |
 | **since** | **OffsetDateTime**| Posts created after this date | [optional] |
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
@@ -1130,7 +1130,7 @@ public class Example {
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
         String profileId = "profileId_example"; // String | Filter by profile ID
-        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only.
+        String platform = "facebook"; // String | Filter by platform. `metaads` is a synthetic value meaning the user's ads (boosted/dark posts) only; `facebook`/`instagram` return organic posts only. `tiktok` covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under `meta.accountsSkipped`.
         Integer minComments = 56; // Integer | Minimum comment count
         OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Posts created after this date
         String sortBy = "date"; // String | Sort field
@@ -1160,7 +1160,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, metaads] |
+| **platform** | **String**| Filter by platform. &#x60;metaads&#x60; is a synthetic value meaning the user&#39;s ads (boosted/dark posts) only; &#x60;facebook&#x60;/&#x60;instagram&#x60; return organic posts only. &#x60;tiktok&#x60; covers accounts connected through the TikTok Business app only; developer-app TikTok accounts are returned under &#x60;meta.accountsSkipped&#x60;. | [optional] [enum: facebook, instagram, twitter, bluesky, threads, youtube, linkedin, reddit, tiktok, metaads] |
 | **minComments** | **Integer**| Minimum comment count | [optional] |
 | **since** | **OffsetDateTime**| Posts created after this date | [optional] |
 | **sortBy** | **String**| Sort field | [optional] [default to date] [enum: date, comments] |
