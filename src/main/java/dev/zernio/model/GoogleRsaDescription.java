@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GoogleRsaDescription.JSON_PROPERTY_TEXT,
   GoogleRsaDescription.JSON_PROPERTY_PINNED_FIELD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleRsaDescription {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull

@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   UpdateAdRequestCreative.JSON_PROPERTY_VIDEO_ID,
   UpdateAdRequestCreative.JSON_PROPERTY_EXISTING_CREATIVE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdRequestCreative {
   public static final String JSON_PROPERTY_PROMOTION = "promotion";
   private JsonNullable<Object> promotion = JsonNullable.<Object>undefined();

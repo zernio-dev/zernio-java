@@ -30,7 +30,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Instagram/Facebook only. Meta&#39;s own diagnostic fields for the rejected send, passed through verbatim so you can tell failure classes apart and quote them to Meta. Absent when the failure did not come from Meta.
+ * Instagram, Facebook, or WhatsApp. Meta&#39;s diagnostic fields for the rejected send or template lookup. WhatsApp lookup errors retain only code, message, and error_data.details. Absent when the failure did not come from Meta.
  */
 @JsonPropertyOrder({
   SendInboxMessage400ResponsePlatformError.JSON_PROPERTY_CODE,
@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage400ResponsePlatformError.JSON_PROPERTY_FBTRACE_ID,
   SendInboxMessage400ResponsePlatformError.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400ResponsePlatformError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable

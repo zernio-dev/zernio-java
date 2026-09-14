@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-14T16:57:53.152014510Z[Etc/UTC]
+- Build date: 2026-09-14T17:03:37.618894267Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1890,9 +1890,13 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversation201Response](docs/CreateInboxConversation201Response.md)
  - [CreateInboxConversation201ResponseData](docs/CreateInboxConversation201ResponseData.md)
  - [CreateInboxConversation400Response](docs/CreateInboxConversation400Response.md)
+ - [CreateInboxConversation400ResponseAnyOf](docs/CreateInboxConversation400ResponseAnyOf.md)
  - [CreateInboxConversation404Response](docs/CreateInboxConversation404Response.md)
+ - [CreateInboxConversation404ResponseAnyOf](docs/CreateInboxConversation404ResponseAnyOf.md)
  - [CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
+ - [CreateInboxConversation422ResponseAnyOf](docs/CreateInboxConversation422ResponseAnyOf.md)
  - [CreateInboxConversation429Response](docs/CreateInboxConversation429Response.md)
+ - [CreateInboxConversation429ResponseAnyOf](docs/CreateInboxConversation429ResponseAnyOf.md)
  - [CreateInboxConversationRequest](docs/CreateInboxConversationRequest.md)
  - [CreateInboxConversationRequest1](docs/CreateInboxConversationRequest1.md)
  - [CreateInboxConversationRequestHeaderLocation](docs/CreateInboxConversationRequestHeaderLocation.md)
@@ -3063,6 +3067,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessage200ResponseWarningsInner](docs/SendInboxMessage200ResponseWarningsInner.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
  - [SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
+ - [SendInboxMessage502Response](docs/SendInboxMessage502Response.md)
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)
  - [SendInboxMessageRequest1](docs/SendInboxMessageRequest1.md)
  - [SendInboxMessageRequestButtonsInner](docs/SendInboxMessageRequestButtonsInner.md)
@@ -3576,6 +3581,11 @@ Class | Method | HTTP request | Description
  - [WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)
  - [WhatsAppTemplateComponent](docs/WhatsAppTemplateComponent.md)
+ - [WhatsAppTemplateLookupError](docs/WhatsAppTemplateLookupError.md)
+ - [WhatsAppTemplateLookupErrorDetails](docs/WhatsAppTemplateLookupErrorDetails.md)
+ - [WhatsAppTemplateLookupErrorDetailsProviderHeaders](docs/WhatsAppTemplateLookupErrorDetailsProviderHeaders.md)
+ - [WhatsAppTemplateLookupErrorPlatformError](docs/WhatsAppTemplateLookupErrorPlatformError.md)
+ - [WhatsAppTemplateLookupErrorPlatformErrorErrorData](docs/WhatsAppTemplateLookupErrorPlatformErrorErrorData.md)
  - [WorkflowEdge](docs/WorkflowEdge.md)
  - [WorkflowExecutionEvent](docs/WorkflowExecutionEvent.md)
  - [WorkflowNode](docs/WorkflowNode.md)

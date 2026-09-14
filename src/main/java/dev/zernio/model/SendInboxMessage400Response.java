@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   SendInboxMessage400Response.JSON_PROPERTY_PLATFORM,
   SendInboxMessage400Response.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessage400Response {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -92,6 +92,8 @@ public class SendInboxMessage400Response {
     PLATFORM_LIMITATION(String.valueOf("PLATFORM_LIMITATION")),
     
     MISSING_PARTICIPANT(String.valueOf("MISSING_PARTICIPANT")),
+    
+    INVALID_TEMPLATE_HEADER(String.valueOf("INVALID_TEMPLATE_HEADER")),
     
     DIRECT_SEND_NOT_ELIGIBLE(String.valueOf("DIRECT_SEND_NOT_ELIGIBLE")),
     
@@ -221,7 +223,7 @@ public class SendInboxMessage400Response {
   }
 
   /**
-   * Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook).
+   * Present alongside code platform_api_error. The platform that rejected the send (e.g. instagram, facebook, whatsapp).
    * @return platform
    */
   @javax.annotation.Nullable

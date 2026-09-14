@@ -17461,6 +17461,8 @@ paths:
 
         **WhatsApp.** This is the endpoint for sending an approved template message to a phone number. Provide templateName, templateLanguage, and templateParams (variable values for the text header, body and dynamic URL buttons, in that order), with the recipient phone in participantId. A template is required because WhatsApp does not permit freeform messages to open a conversation; a missing template returns TEMPLATE_REQUIRED.
 
+        Before sending, Zernio must resolve an exact APPROVED template definition matching both templateName and templateLanguage. If Meta rejects that lookup, or the exact approved definition is absent, Zernio sends no message and returns the canonical platform error instead. Lookup errors use code `platform_api_error`, type `platform_error`, and platform `whatsapp`. Sanitized Meta code, message, and `error_data.details` are returned in `platformError`; `details` identifies `phase: template_lookup`, the query-free endpoint, upstream status, and only safe provider usage or retry headers.
+
         - Templates with media headers (image, video, document) are handled automatically: Zernio reads the approved template definition and fills the header at send time with the template's approved sample asset. To send a DIFFERENT asset per message (e.g. a distinct invoice PDF for each recipient), pass the headerMedia field with a public link (or a Meta media id); it overrides the sample for that send.
         - A template whose approved header format is LOCATION has no header asset to reconstruct at all: Meta only accepts the location at send time, so pass headerLocation (latitude and longitude required) whenever such a template is sent; headerMedia and headerLocation cannot both be supplied.
         - A button that carries its own value at send time (a copy-code button holding a Pix payment code or a coupon, a flow token) is sent with templateButtonParams, addressed by the button's index; templateParams covers text variables and dynamic URL buttons only.
@@ -17502,7 +17504,8 @@ paths:
             \ platform does not accept (PLATFORM_LIMITATION), template required to\
             \ start a WhatsApp conversation (TEMPLATE_REQUIRED), template variables\
             \ that do not match the approved definition (INVALID_TEMPLATE_PARAMS,\
-            \ INVALID_TEMPLATE_BUTTON_PARAM), templateCards that do not match the\
+            \ INVALID_TEMPLATE_BUTTON_PARAM), a missing or incompatible required template\
+            \ header (INVALID_TEMPLATE_HEADER), templateCards that do not match the\
             \ approved carousel definition (INVALID_TEMPLATE_CARD_PARAM), category\
             \ combined with templateName or used on a non-WhatsApp account, or the\
             \ WhatsApp Business Account is not eligible for Direct Send: DIRECT_SEND_NOT_ELIGIBLE\
@@ -17531,8 +17534,23 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/createInboxConversation_429_response"
-          description: "X API rate limit exceeded, or Reddit rate limit reached for\
-            \ this account"
+          description: "X API rate limit exceeded, Reddit rate limit reached, or Meta\
+            \ rejected the WhatsApp template-definition lookup. A lookup failure sends\
+            \ no message."
+        "502":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+          description: The exact approved WhatsApp template definition is unavailable.
+            No message was sent.
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+          description: Meta rejected the WhatsApp template-definition lookup with
+            another upstream status. No message was sent.
       security:
       - bearerAuth: []
       summary: Create conversation
@@ -17878,6 +17896,14 @@ paths:
         to a phone number you have no conversation with yet, use the
         create-conversation endpoint (POST /v1/inbox/conversations) instead.
 
+        Zernio resolves the exact APPROVED template name and language before any
+        WhatsApp template send. A failed lookup or missing exact definition sends
+        no message and returns code `platform_api_error`, type `platform_error`,
+        and platform `whatsapp`. Sanitized Meta code, message, and
+        `error_data.details` are returned in `platformError`; `details` identifies
+        `phase: template_lookup`, the query-free endpoint, upstream status, and
+        only safe provider usage or retry headers.
+
         WhatsApp rich interactive messages (list, CTA URL, Flow, location request)
         are available via the `interactive` field. Tap events are delivered through
         the `message.received` webhook with WhatsApp-specific `metadata` fields
@@ -17983,10 +18009,30 @@ paths:
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
           $ref: "#/components/responses/IdempotencyKeyReused"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+          description: Meta rejected the WhatsApp template-definition lookup. No message
+            was sent.
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
         "502":
-          $ref: "#/components/responses/UpstreamFailure"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendInboxMessage_502_response"
+          description: "The exact approved WhatsApp template definition is unavailable,\
+            \ or the platform returned an upstream failure. No WhatsApp template message\
+            \ is sent when definition lookup fails."
+        default:
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+          description: Meta rejected the WhatsApp template-definition lookup with
+            another upstream status. No message was sent.
       security:
       - bearerAuth: []
       summary: Send message
@@ -46407,6 +46453,50 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
+    WhatsAppTemplateLookupError:
+      example:
+        code: platform_api_error
+        platformError:
+          code: 0
+          message: message
+          error_data:
+            details: details
+        details:
+          phase: template_lookup
+          endpoint: endpoint
+          providerHeaders:
+            x-app-usage: x-app-usage
+            retry-after: retry-after
+            x-business-use-case-usage: x-business-use-case-usage
+          upstreamStatus: 6
+        error: error
+        type: platform_error
+        platform: whatsapp
+      properties:
+        error:
+          type: string
+        type:
+          enum:
+          - platform_error
+          type: string
+        code:
+          enum:
+          - platform_api_error
+          type: string
+        platform:
+          enum:
+          - whatsapp
+          type: string
+        platformError:
+          $ref: "#/components/schemas/WhatsAppTemplateLookupError_platformError"
+        details:
+          $ref: "#/components/schemas/WhatsAppTemplateLookupError_details"
+      required:
+      - code
+      - details
+      - error
+      - platform
+      - type
     AdTracking:
       description: "Meta only. Attaches pixel measurement to the ad regardless of\
         \ the optimization goal (the \"Website events\" tracking row in Ads Manager).\
@@ -77836,7 +77926,7 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/createInboxConversation_201_response_data"
-    createInboxConversation_400_response:
+    createInboxConversation_400_response_anyOf:
       example:
         code: PLATFORM_NOT_SUPPORTED
         error: error
@@ -77850,12 +77940,17 @@ components:
           - TEMPLATE_REQUIRED
           - INVALID_TEMPLATE_PARAMS
           - INVALID_TEMPLATE_BUTTON_PARAM
+          - INVALID_TEMPLATE_HEADER
           - INVALID_TEMPLATE_CARD_PARAM
           - DIRECT_SEND_NOT_ELIGIBLE
           - DIRECT_SEND_LIMITED
           - DIRECT_SEND_BLOCKED
           type: string
-    createInboxConversation_404_response:
+    createInboxConversation_400_response:
+      anyOf:
+      - $ref: "#/components/schemas/createInboxConversation_400_response_anyOf"
+      - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+    createInboxConversation_404_response_anyOf:
       example:
         code: account_not_found
         error: error
@@ -77867,7 +77962,11 @@ components:
           - account_not_found
           - PARTICIPANT_NOT_FOUND
           type: string
-    createInboxConversation_422_response:
+    createInboxConversation_404_response:
+      anyOf:
+      - $ref: "#/components/schemas/createInboxConversation_404_response_anyOf"
+      - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+    createInboxConversation_422_response_anyOf:
       example:
         code: DM_NOT_ALLOWED
         error: error
@@ -77878,7 +77977,11 @@ components:
           enum:
           - DM_NOT_ALLOWED
           type: string
-    createInboxConversation_429_response:
+    createInboxConversation_422_response:
+      anyOf:
+      - $ref: "#/components/schemas/createInboxConversation_422_response_anyOf"
+      - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
+    createInboxConversation_429_response_anyOf:
       example:
         code: rate_limited
         error: error
@@ -77889,6 +77992,10 @@ components:
           enum:
           - rate_limited
           type: string
+    createInboxConversation_429_response:
+      anyOf:
+      - $ref: "#/components/schemas/createInboxConversation_429_response_anyOf"
+      - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
     searchInboxConversations_200_response_data_inner_conversation:
       example:
         accountId: accountId
@@ -79912,9 +80019,10 @@ components:
         data:
           $ref: "#/components/schemas/sendInboxMessage_200_response_data"
     sendInboxMessage_400_response_platformError:
-      description: "Instagram/Facebook only. Meta's own diagnostic fields for the\
-        \ rejected send, passed through verbatim so you can tell failure classes apart\
-        \ and quote them to Meta. Absent when the failure did not come from Meta."
+      description: "Instagram, Facebook, or WhatsApp. Meta's diagnostic fields for\
+        \ the rejected send or template lookup. WhatsApp lookup errors retain only\
+        \ code, message, and error_data.details. Absent when the failure did not come\
+        \ from Meta."
       example:
         code: 1
         subcode: 5
@@ -79966,6 +80074,7 @@ components:
           enum:
           - PLATFORM_LIMITATION
           - MISSING_PARTICIPANT
+          - INVALID_TEMPLATE_HEADER
           - DIRECT_SEND_NOT_ELIGIBLE
           - DIRECT_SEND_LIMITED
           - DIRECT_SEND_BLOCKED
@@ -79973,10 +80082,14 @@ components:
           type: string
         platform:
           description: "Present alongside code platform_api_error. The platform that\
-            \ rejected the send (e.g. instagram, facebook)."
+            \ rejected the send (e.g. instagram, facebook, whatsapp)."
           type: string
         platformError:
           $ref: "#/components/schemas/sendInboxMessage_400_response_platformError"
+    sendInboxMessage_502_response:
+      anyOf:
+      - $ref: "#/components/schemas/ErrorResponse"
+      - $ref: "#/components/schemas/WhatsAppTemplateLookupError"
     editInboxMessage_request_replyMarkup_keyboard_inner_inner:
       properties:
         text:
@@ -110145,6 +110258,65 @@ components:
         reason:
           enum:
           - max_attempts_reached
+    WhatsAppTemplateLookupError_platformError_error_data:
+      example:
+        details: details
+      properties:
+        details:
+          type: string
+    WhatsAppTemplateLookupError_platformError:
+      description: "Sanitized Meta lookup error fields, present when Meta returned\
+        \ them."
+      example:
+        code: 0
+        message: message
+        error_data:
+          details: details
+      properties:
+        code:
+          type: integer
+        message:
+          type: string
+        error_data:
+          $ref: "#/components/schemas/WhatsAppTemplateLookupError_platformError_error_data"
+    WhatsAppTemplateLookupError_details_providerHeaders:
+      additionalProperties: false
+      description: Safe provider headers retained from the lookup response.
+      example:
+        x-app-usage: x-app-usage
+        retry-after: retry-after
+        x-business-use-case-usage: x-business-use-case-usage
+      properties:
+        retry-after:
+          type: string
+        x-app-usage:
+          type: string
+        x-business-use-case-usage:
+          type: string
+    WhatsAppTemplateLookupError_details:
+      example:
+        phase: template_lookup
+        endpoint: endpoint
+        providerHeaders:
+          x-app-usage: x-app-usage
+          retry-after: retry-after
+          x-business-use-case-usage: x-business-use-case-usage
+        upstreamStatus: 6
+      properties:
+        phase:
+          enum:
+          - template_lookup
+          type: string
+        endpoint:
+          description: Meta endpoint path without query parameters or access tokens
+          type: string
+        upstreamStatus:
+          type: integer
+        providerHeaders:
+          $ref: "#/components/schemas/WhatsAppTemplateLookupError_details_providerHeaders"
+      required:
+      - endpoint
+      - phase
     MetaLeadForm_legal_content_privacy_policy:
       example:
         link_text: link_text

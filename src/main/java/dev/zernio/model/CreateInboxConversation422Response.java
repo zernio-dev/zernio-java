@@ -24,153 +24,189 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreateInboxConversation422ResponseAnyOf;
+import dev.zernio.model.WhatsAppTemplateLookupError;
+import dev.zernio.model.WhatsAppTemplateLookupErrorDetails;
+import dev.zernio.model.WhatsAppTemplateLookupErrorPlatformError;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * CreateInboxConversation422Response
- */
-@JsonPropertyOrder({
-  CreateInboxConversation422Response.JSON_PROPERTY_ERROR,
-  CreateInboxConversation422Response.JSON_PROPERTY_CODE
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class CreateInboxConversation422Response {
-  public static final String JSON_PROPERTY_ERROR = "error";
-  @javax.annotation.Nullable
-  private String error;
+import dev.zernio.JSON;
 
-  /**
-   * Gets or Sets code
-   */
-  public enum CodeEnum {
-    DM_NOT_ALLOWED(String.valueOf("DM_NOT_ALLOWED"));
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using=CreateInboxConversation422Response.CreateInboxConversation422ResponseDeserializer.class)
+@JsonSerialize(using = CreateInboxConversation422Response.CreateInboxConversation422ResponseSerializer.class)
+public class CreateInboxConversation422Response extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreateInboxConversation422Response.class.getName());
 
-    private String value;
+    public static class CreateInboxConversation422ResponseSerializer extends StdSerializer<CreateInboxConversation422Response> {
+        public CreateInboxConversation422ResponseSerializer(Class<CreateInboxConversation422Response> t) {
+            super(t);
+        }
 
-    CodeEnum(String value) {
-      this.value = value;
+        public CreateInboxConversation422ResponseSerializer() {
+            this(null);
+        }
+
+        @Override
+        public void serialize(CreateInboxConversation422Response value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
 
-    @JsonValue
-    public String getValue() {
-      return value;
+    public static class CreateInboxConversation422ResponseDeserializer extends StdDeserializer<CreateInboxConversation422Response> {
+        public CreateInboxConversation422ResponseDeserializer() {
+            this(CreateInboxConversation422Response.class);
+        }
+
+        public CreateInboxConversation422ResponseDeserializer(Class<?> vc) {
+            super(vc);
+        }
+
+        @Override
+        public CreateInboxConversation422Response deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+
+            Object deserialized = null;
+            // deserialize CreateInboxConversation422ResponseAnyOf
+            try {
+                deserialized = tree.traverse(jp.getCodec()).readValueAs(CreateInboxConversation422ResponseAnyOf.class);
+                CreateInboxConversation422Response ret = new CreateInboxConversation422Response();
+                ret.setActualInstance(deserialized);
+                return ret;
+            } catch (Exception e) {
+                // deserialization failed, continue, log to help debugging
+                log.log(Level.FINER, "Input data does not match 'CreateInboxConversation422Response'", e);
+            }
+
+            // deserialize WhatsAppTemplateLookupError
+            try {
+                deserialized = tree.traverse(jp.getCodec()).readValueAs(WhatsAppTemplateLookupError.class);
+                CreateInboxConversation422Response ret = new CreateInboxConversation422Response();
+                ret.setActualInstance(deserialized);
+                return ret;
+            } catch (Exception e) {
+                // deserialization failed, continue, log to help debugging
+                log.log(Level.FINER, "Input data does not match 'CreateInboxConversation422Response'", e);
+            }
+
+            throw new IOException("Failed deserialization for CreateInboxConversation422Response: no match found");
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public CreateInboxConversation422Response getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CreateInboxConversation422Response cannot be null");
+        }
+    }
+
+    // store a list of schema names defined in anyOf
+    public static final Map<String, Class<?>> schemas = new HashMap<String, Class<?>>();
+
+    public CreateInboxConversation422Response() {
+        super("anyOf", Boolean.FALSE);
+    }
+
+    public CreateInboxConversation422Response(CreateInboxConversation422ResponseAnyOf o) {
+        super("anyOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    public CreateInboxConversation422Response(WhatsAppTemplateLookupError o) {
+        super("anyOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("CreateInboxConversation422ResponseAnyOf", CreateInboxConversation422ResponseAnyOf.class);
+        schemas.put("WhatsAppTemplateLookupError", WhatsAppTemplateLookupError.class);
+        JSON.registerDescendants(CreateInboxConversation422Response.class, Collections.unmodifiableMap(schemas));
     }
 
     @Override
-    public String toString() {
-      return String.valueOf(value);
+    public Map<String, Class<?>> getSchemas() {
+        return CreateInboxConversation422Response.schemas;
     }
 
-    @JsonCreator
-    public static CodeEnum fromValue(String value) {
-      for (CodeEnum b : CodeEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
+    /**
+     * Set the instance that matches the anyOf child schema, check
+     * the instance parameter is valid against the anyOf child schemas:
+     * CreateInboxConversation422ResponseAnyOf, WhatsAppTemplateLookupError
+     *
+     * It could be an instance of the 'anyOf' schemas.
+     * The anyOf child schemas may themselves be a composed schema (allOf, anyOf, anyOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(CreateInboxConversation422ResponseAnyOf.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
         }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+
+        if (JSON.isInstanceOf(WhatsAppTemplateLookupError.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be CreateInboxConversation422ResponseAnyOf, WhatsAppTemplateLookupError");
     }
-  }
 
-  public static final String JSON_PROPERTY_CODE = "code";
-  @javax.annotation.Nullable
-  private CodeEnum code;
-
-  public CreateInboxConversation422Response() { 
-  }
-
-  public CreateInboxConversation422Response error(@javax.annotation.Nullable String error) {
-    this.error = error;
-    return this;
-  }
-
-  /**
-   * Get error
-   * @return error
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public String getError() {
-    return error;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ERROR, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setError(@javax.annotation.Nullable String error) {
-    this.error = error;
-  }
-
-
-  public CreateInboxConversation422Response code(@javax.annotation.Nullable CodeEnum code) {
-    this.code = code;
-    return this;
-  }
-
-  /**
-   * Get code
-   * @return code
-   */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public CodeEnum getCode() {
-    return code;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CODE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCode(@javax.annotation.Nullable CodeEnum code) {
-    this.code = code;
-  }
-
-
-  /**
-   * Return true if this createInboxConversation_422_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Get the actual instance, which can be the following:
+     * CreateInboxConversation422ResponseAnyOf, WhatsAppTemplateLookupError
+     *
+     * @return The actual instance (CreateInboxConversation422ResponseAnyOf, WhatsAppTemplateLookupError)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Get the actual instance of `CreateInboxConversation422ResponseAnyOf`. If the actual instance is not `CreateInboxConversation422ResponseAnyOf`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CreateInboxConversation422ResponseAnyOf`
+     * @throws ClassCastException if the instance is not `CreateInboxConversation422ResponseAnyOf`
+     */
+    public CreateInboxConversation422ResponseAnyOf getCreateInboxConversation422ResponseAnyOf() throws ClassCastException {
+        return (CreateInboxConversation422ResponseAnyOf)super.getActualInstance();
     }
-    CreateInboxConversation422Response createInboxConversation422Response = (CreateInboxConversation422Response) o;
-    return Objects.equals(this.error, createInboxConversation422Response.error) &&
-        Objects.equals(this.code, createInboxConversation422Response.code);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(error, code);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateInboxConversation422Response {\n");
-    sb.append("    error: ").append(toIndentedString(error)).append("\n");
-    sb.append("    code: ").append(toIndentedString(code)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Get the actual instance of `WhatsAppTemplateLookupError`. If the actual instance is not `WhatsAppTemplateLookupError`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `WhatsAppTemplateLookupError`
+     * @throws ClassCastException if the instance is not `WhatsAppTemplateLookupError`
+     */
+    public WhatsAppTemplateLookupError getWhatsAppTemplateLookupError() throws ClassCastException {
+        return (WhatsAppTemplateLookupError)super.getActualInstance();
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -204,17 +240,8 @@ public class CreateInboxConversation422Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `error` to the URL query string
-    if (getError() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
-    }
-
-    // add `code` to the URL query string
-    if (getCode() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%scode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCode()))));
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

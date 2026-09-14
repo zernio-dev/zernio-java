@@ -2,29 +2,36 @@
 
 # CreateInboxConversation400Response
 
+## anyOf schemas
+* [CreateInboxConversation400ResponseAnyOf](CreateInboxConversation400ResponseAnyOf.md)
+* [WhatsAppTemplateLookupError](WhatsAppTemplateLookupError.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.CreateInboxConversation400Response;
+import dev.zernio.model.CreateInboxConversation400ResponseAnyOf;
+import dev.zernio.model.WhatsAppTemplateLookupError;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**error** | **String** |  |  [optional] |
-|**code** | [**CodeEnum**](#CodeEnum) |  |  [optional] |
+public class Example {
+    public static void main(String[] args) {
+        CreateInboxConversation400Response exampleCreateInboxConversation400Response = new CreateInboxConversation400Response();
 
+        // create a new CreateInboxConversation400ResponseAnyOf
+        CreateInboxConversation400ResponseAnyOf exampleCreateInboxConversation400ResponseAnyOf = new CreateInboxConversation400ResponseAnyOf();
+        // set CreateInboxConversation400Response to CreateInboxConversation400ResponseAnyOf
+        exampleCreateInboxConversation400Response.setActualInstance(exampleCreateInboxConversation400ResponseAnyOf);
+        // to get back the CreateInboxConversation400ResponseAnyOf set earlier
+        CreateInboxConversation400ResponseAnyOf testCreateInboxConversation400ResponseAnyOf = (CreateInboxConversation400ResponseAnyOf) exampleCreateInboxConversation400Response.getActualInstance();
 
-
-## Enum: CodeEnum
-
-| Name | Value |
-|---- | -----|
-| PLATFORM_NOT_SUPPORTED | &quot;PLATFORM_NOT_SUPPORTED&quot; |
-| PLATFORM_LIMITATION | &quot;PLATFORM_LIMITATION&quot; |
-| TEMPLATE_REQUIRED | &quot;TEMPLATE_REQUIRED&quot; |
-| INVALID_TEMPLATE_PARAMS | &quot;INVALID_TEMPLATE_PARAMS&quot; |
-| INVALID_TEMPLATE_BUTTON_PARAM | &quot;INVALID_TEMPLATE_BUTTON_PARAM&quot; |
-| INVALID_TEMPLATE_CARD_PARAM | &quot;INVALID_TEMPLATE_CARD_PARAM&quot; |
-| DIRECT_SEND_NOT_ELIGIBLE | &quot;DIRECT_SEND_NOT_ELIGIBLE&quot; |
-| DIRECT_SEND_LIMITED | &quot;DIRECT_SEND_LIMITED&quot; |
-| DIRECT_SEND_BLOCKED | &quot;DIRECT_SEND_BLOCKED&quot; |
-
+        // create a new WhatsAppTemplateLookupError
+        WhatsAppTemplateLookupError exampleWhatsAppTemplateLookupError = new WhatsAppTemplateLookupError();
+        // set CreateInboxConversation400Response to WhatsAppTemplateLookupError
+        exampleCreateInboxConversation400Response.setActualInstance(exampleWhatsAppTemplateLookupError);
+        // to get back the WhatsAppTemplateLookupError set earlier
+        WhatsAppTemplateLookupError testWhatsAppTemplateLookupError = (WhatsAppTemplateLookupError) exampleCreateInboxConversation400Response.getActualInstance();
+    }
+}
+```
 
 
