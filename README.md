@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-14T13:51:37.802325376Z[Etc/UTC]
+- Build date: 2026-09-14T15:08:28.060543343Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2196,6 +2196,7 @@ Class | Method | HTTP request | Description
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
  - [GetCommentAutomation200ResponseLogsInner](docs/GetCommentAutomation200ResponseLogsInner.md)
+ - [GetCommentAutomation200ResponseLogsInnerPlatformError](docs/GetCommentAutomation200ResponseLogsInnerPlatformError.md)
  - [GetConnectUrl200Response](docs/GetConnectUrl200Response.md)
  - [GetContact200Response](docs/GetContact200Response.md)
  - [GetContact200ResponseChannelsInner](docs/GetContact200ResponseChannelsInner.md)

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BusinessAgentBusinessInformationContactInfo.JSON_PROPERTY_HOURS_OF_OPERATION,
   BusinessAgentBusinessInformationContactInfo.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T15:08:28.060543343Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentBusinessInformationContactInfo {
   public static final String JSON_PROPERTY_EMAIL = "email";
   @javax.annotation.Nullable

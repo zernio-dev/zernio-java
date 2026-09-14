@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.GetCommentAutomation200ResponseLogsInnerPlatformError;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -45,12 +46,14 @@ import dev.zernio.ApiClient;
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_IS_FOLLOWER,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENTER_FOLLOWER_COUNT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_ERROR,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_PLATFORM_ERROR,
+  GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_PRIVATE_REPLY_CONSUMED,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_STATUS,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_COMMENT_REPLY_ERROR,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_NEXT_DUE_AT,
   GetCommentAutomation200ResponseLogsInner.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T15:08:28.060543343Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -214,6 +217,14 @@ public class GetCommentAutomation200ResponseLogsInner {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
   private String error;
+
+  public static final String JSON_PROPERTY_PLATFORM_ERROR = "platformError";
+  @javax.annotation.Nullable
+  private GetCommentAutomation200ResponseLogsInnerPlatformError platformError;
+
+  public static final String JSON_PROPERTY_PRIVATE_REPLY_CONSUMED = "privateReplyConsumed";
+  @javax.annotation.Nullable
+  private Boolean privateReplyConsumed;
 
   /**
    * Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case).
@@ -535,6 +546,54 @@ public class GetCommentAutomation200ResponseLogsInner {
   }
 
 
+  public GetCommentAutomation200ResponseLogsInner platformError(@javax.annotation.Nullable GetCommentAutomation200ResponseLogsInnerPlatformError platformError) {
+    this.platformError = platformError;
+    return this;
+  }
+
+  /**
+   * Get platformError
+   * @return platformError
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public GetCommentAutomation200ResponseLogsInnerPlatformError getPlatformError() {
+    return platformError;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_ERROR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformError(@javax.annotation.Nullable GetCommentAutomation200ResponseLogsInnerPlatformError platformError) {
+    this.platformError = platformError;
+  }
+
+
+  public GetCommentAutomation200ResponseLogsInner privateReplyConsumed(@javax.annotation.Nullable Boolean privateReplyConsumed) {
+    this.privateReplyConsumed = privateReplyConsumed;
+    return this;
+  }
+
+  /**
+   * True when the failed send spent the comment&#39;s single Instagram private reply (subcode 1545133 or 2534023), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs, on Facebook, and on rows written before this field existed.
+   * @return privateReplyConsumed
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PRIVATE_REPLY_CONSUMED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getPrivateReplyConsumed() {
+    return privateReplyConsumed;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PRIVATE_REPLY_CONSUMED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrivateReplyConsumed(@javax.annotation.Nullable Boolean privateReplyConsumed) {
+    this.privateReplyConsumed = privateReplyConsumed;
+  }
+
+
   public GetCommentAutomation200ResponseLogsInner commentReplyStatus(@javax.annotation.Nullable CommentReplyStatusEnum commentReplyStatus) {
     this.commentReplyStatus = commentReplyStatus;
     return this;
@@ -654,6 +713,8 @@ public class GetCommentAutomation200ResponseLogsInner {
         Objects.equals(this.commenterIsFollower, getCommentAutomation200ResponseLogsInner.commenterIsFollower) &&
         Objects.equals(this.commenterFollowerCount, getCommentAutomation200ResponseLogsInner.commenterFollowerCount) &&
         Objects.equals(this.error, getCommentAutomation200ResponseLogsInner.error) &&
+        Objects.equals(this.platformError, getCommentAutomation200ResponseLogsInner.platformError) &&
+        Objects.equals(this.privateReplyConsumed, getCommentAutomation200ResponseLogsInner.privateReplyConsumed) &&
         Objects.equals(this.commentReplyStatus, getCommentAutomation200ResponseLogsInner.commentReplyStatus) &&
         Objects.equals(this.commentReplyError, getCommentAutomation200ResponseLogsInner.commentReplyError) &&
         Objects.equals(this.nextDueAt, getCommentAutomation200ResponseLogsInner.nextDueAt) &&
@@ -662,7 +723,7 @@ public class GetCommentAutomation200ResponseLogsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, commentId, commenterId, commenterName, commentText, source, status, audienceOutcome, commenterIsFollower, commenterFollowerCount, error, commentReplyStatus, commentReplyError, nextDueAt, createdAt);
+    return Objects.hash(id, commentId, commenterId, commenterName, commentText, source, status, audienceOutcome, commenterIsFollower, commenterFollowerCount, error, platformError, privateReplyConsumed, commentReplyStatus, commentReplyError, nextDueAt, createdAt);
   }
 
   @Override
@@ -680,6 +741,8 @@ public class GetCommentAutomation200ResponseLogsInner {
     sb.append("    commenterIsFollower: ").append(toIndentedString(commenterIsFollower)).append("\n");
     sb.append("    commenterFollowerCount: ").append(toIndentedString(commenterFollowerCount)).append("\n");
     sb.append("    error: ").append(toIndentedString(error)).append("\n");
+    sb.append("    platformError: ").append(toIndentedString(platformError)).append("\n");
+    sb.append("    privateReplyConsumed: ").append(toIndentedString(privateReplyConsumed)).append("\n");
     sb.append("    commentReplyStatus: ").append(toIndentedString(commentReplyStatus)).append("\n");
     sb.append("    commentReplyError: ").append(toIndentedString(commentReplyError)).append("\n");
     sb.append("    nextDueAt: ").append(toIndentedString(nextDueAt)).append("\n");
@@ -784,6 +847,16 @@ public class GetCommentAutomation200ResponseLogsInner {
     // add `error` to the URL query string
     if (getError() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%serror%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getError()))));
+    }
+
+    // add `platformError` to the URL query string
+    if (getPlatformError() != null) {
+      joiner.add(getPlatformError().toUrlQueryString(prefix + "platformError" + suffix));
+    }
+
+    // add `privateReplyConsumed` to the URL query string
+    if (getPrivateReplyConsumed() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sprivateReplyConsumed%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrivateReplyConsumed()))));
     }
 
     // add `commentReplyStatus` to the URL query string

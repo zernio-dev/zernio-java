@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListBlogs200Response.JSON_PROPERTY_BLOGS,
   ListBlogs200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:51:37.802325376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T15:08:28.060543343Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBlogs200Response {
   /**
    * Gets or Sets platform

@@ -93314,6 +93314,18 @@ components:
         updatedAt:
           format: date-time
           type: string
+    getCommentAutomation_200_response_logs_inner_platformError:
+      description: "Platform error codes of the failed DM (Meta `code` and `error_subcode`),\
+        \ when the platform sent them. Absent on successful rows and on rows written\
+        \ before this field existed."
+      example:
+        code: 5
+        subcode: 5
+      properties:
+        code:
+          type: integer
+        subcode:
+          type: integer
     getCommentAutomation_200_response_logs_inner:
       example:
         commentReplyError: commentReplyError
@@ -93328,8 +93340,12 @@ components:
         commenterId: commenterId
         commenterIsFollower: true
         createdAt: 2000-01-23T04:56:07.000+00:00
+        platformError:
+          code: 5
+          subcode: 5
         commentId: commentId
         id: id
+        privateReplyConsumed: true
         status: pending
       properties:
         id:
@@ -93381,6 +93397,14 @@ components:
         error:
           description: DM error message if status is failed
           type: string
+        platformError:
+          $ref: "#/components/schemas/getCommentAutomation_200_response_logs_inner_platformError"
+        privateReplyConsumed:
+          description: "True when the failed send spent the comment's single Instagram\
+            \ private reply (subcode 1545133 or 2534023), the same rule as `details.privateReplyConsumed`\
+            \ on the private-reply endpoint. Absent on direct DMs, on Facebook, and\
+            \ on rows written before this field existed."
+          type: boolean
         commentReplyStatus:
           description: Outcome of the optional public reply on the triggering comment.
             'skipped' if no commentReply was configured or if the DM failed (the public
@@ -93474,8 +93498,12 @@ components:
           commenterId: commenterId
           commenterIsFollower: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          platformError:
+            code: 5
+            subcode: 5
           commentId: commentId
           id: id
+          privateReplyConsumed: true
           status: pending
         - commentReplyError: commentReplyError
           nextDueAt: 2000-01-23T04:56:07.000+00:00
@@ -93489,8 +93517,12 @@ components:
           commenterId: commenterId
           commenterIsFollower: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          platformError:
+            code: 5
+            subcode: 5
           commentId: commentId
           id: id
+          privateReplyConsumed: true
           status: pending
       properties:
         success:
@@ -93838,8 +93870,12 @@ components:
           commenterId: commenterId
           commenterIsFollower: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          platformError:
+            code: 5
+            subcode: 5
           commentId: commentId
           id: id
+          privateReplyConsumed: true
           status: pending
         - commentReplyError: commentReplyError
           nextDueAt: 2000-01-23T04:56:07.000+00:00
@@ -93853,8 +93889,12 @@ components:
           commenterId: commenterId
           commenterIsFollower: true
           createdAt: 2000-01-23T04:56:07.000+00:00
+          platformError:
+            code: 5
+            subcode: 5
           commentId: commentId
           id: id
+          privateReplyConsumed: true
           status: pending
       properties:
         success:
