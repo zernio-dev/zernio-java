@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberRemediation200Response.JSON_PROPERTY_DECLINE_REASON,
   GetPhoneNumberRemediation200Response.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberRemediation200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

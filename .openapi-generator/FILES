@@ -4277,13 +4277,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateInboxConversation400ResponseAnyOfTest.java
-src/test/java/dev/zernio/model/CreateInboxConversation404ResponseAnyOfTest.java
-src/test/java/dev/zernio/model/CreateInboxConversation422ResponseAnyOfTest.java
-src/test/java/dev/zernio/model/CreateInboxConversation429ResponseAnyOfTest.java
-src/test/java/dev/zernio/model/SendInboxMessage502ResponseTest.java
-src/test/java/dev/zernio/model/WhatsAppTemplateLookupErrorDetailsProviderHeadersTest.java
-src/test/java/dev/zernio/model/WhatsAppTemplateLookupErrorDetailsTest.java
-src/test/java/dev/zernio/model/WhatsAppTemplateLookupErrorPlatformErrorErrorDataTest.java
-src/test/java/dev/zernio/model/WhatsAppTemplateLookupErrorPlatformErrorTest.java
-src/test/java/dev/zernio/model/WhatsAppTemplateLookupErrorTest.java

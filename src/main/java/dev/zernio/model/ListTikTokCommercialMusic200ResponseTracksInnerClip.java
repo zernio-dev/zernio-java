@@ -30,14 +30,19 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * The trending excerpt of the track, when TikTok provides one
+ * The trending excerpt of the track, when TikTok provides one. Its id is also accepted as musicSoundId.
  */
 @JsonPropertyOrder({
+  ListTikTokCommercialMusic200ResponseTracksInnerClip.JSON_PROPERTY_ID,
   ListTikTokCommercialMusic200ResponseTracksInnerClip.JSON_PROPERTY_DURATION_SEC,
   ListTikTokCommercialMusic200ResponseTracksInnerClip.JSON_PROPERTY_PREVIEW_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTikTokCommercialMusic200ResponseTracksInnerClip {
+  public static final String JSON_PROPERTY_ID = "id";
+  @javax.annotation.Nullable
+  private String id;
+
   public static final String JSON_PROPERTY_DURATION_SEC = "durationSec";
   @javax.annotation.Nullable
   private Integer durationSec;
@@ -48,6 +53,30 @@ public class ListTikTokCommercialMusic200ResponseTracksInnerClip {
 
   public ListTikTokCommercialMusic200ResponseTracksInnerClip() { 
   }
+
+  public ListTikTokCommercialMusic200ResponseTracksInnerClip id(@javax.annotation.Nullable String id) {
+    this.id = id;
+    return this;
+  }
+
+  /**
+   * Get id
+   * @return id
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getId() {
+    return id;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setId(@javax.annotation.Nullable String id) {
+    this.id = id;
+  }
+
 
   public ListTikTokCommercialMusic200ResponseTracksInnerClip durationSec(@javax.annotation.Nullable Integer durationSec) {
     this.durationSec = durationSec;
@@ -109,19 +138,21 @@ public class ListTikTokCommercialMusic200ResponseTracksInnerClip {
       return false;
     }
     ListTikTokCommercialMusic200ResponseTracksInnerClip listTikTokCommercialMusic200ResponseTracksInnerClip = (ListTikTokCommercialMusic200ResponseTracksInnerClip) o;
-    return Objects.equals(this.durationSec, listTikTokCommercialMusic200ResponseTracksInnerClip.durationSec) &&
+    return Objects.equals(this.id, listTikTokCommercialMusic200ResponseTracksInnerClip.id) &&
+        Objects.equals(this.durationSec, listTikTokCommercialMusic200ResponseTracksInnerClip.durationSec) &&
         Objects.equals(this.previewUrl, listTikTokCommercialMusic200ResponseTracksInnerClip.previewUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(durationSec, previewUrl);
+    return Objects.hash(id, durationSec, previewUrl);
   }
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListTikTokCommercialMusic200ResponseTracksInnerClip {\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    durationSec: ").append(toIndentedString(durationSec)).append("\n");
     sb.append("    previewUrl: ").append(toIndentedString(previewUrl)).append("\n");
     sb.append("}");
@@ -170,6 +201,11 @@ public class ListTikTokCommercialMusic200ResponseTracksInnerClip {
     }
 
     StringJoiner joiner = new StringJoiner("&");
+
+    // add `id` to the URL query string
+    if (getId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
 
     // add `durationSec` to the URL query string
     if (getDurationSec() != null) {

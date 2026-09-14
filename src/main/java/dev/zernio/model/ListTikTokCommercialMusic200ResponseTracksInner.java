@@ -37,6 +37,7 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_ID,
+  ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_COMMERCIAL_MUSIC_ID,
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_NAME,
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_ARTIST,
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_DURATION_SEC,
@@ -46,11 +47,15 @@ import dev.zernio.ApiClient;
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_RANK,
   ListTikTokCommercialMusic200ResponseTracksInner.JSON_PROPERTY_CLIP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListTikTokCommercialMusic200ResponseTracksInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
   private String id;
+
+  public static final String JSON_PROPERTY_COMMERCIAL_MUSIC_ID = "commercialMusicId";
+  @javax.annotation.Nullable
+  private String commercialMusicId;
 
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
@@ -93,7 +98,7 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
   }
 
   /**
-   * The commercial_music_id to send as musicSoundId
+   * The id to send as musicSoundId (the full track&#39;s song clip id). TikTok rejects the commercial music id itself at publish time.
    * @return id
    */
   @javax.annotation.Nullable
@@ -108,6 +113,30 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setId(@javax.annotation.Nullable String id) {
     this.id = id;
+  }
+
+
+  public ListTikTokCommercialMusic200ResponseTracksInner commercialMusicId(@javax.annotation.Nullable String commercialMusicId) {
+    this.commercialMusicId = commercialMusicId;
+    return this;
+  }
+
+  /**
+   * TikTok&#39;s commercial_music_id, for reference only
+   * @return commercialMusicId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COMMERCIAL_MUSIC_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCommercialMusicId() {
+    return commercialMusicId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COMMERCIAL_MUSIC_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCommercialMusicId(@javax.annotation.Nullable String commercialMusicId) {
+    this.commercialMusicId = commercialMusicId;
   }
 
 
@@ -324,6 +353,7 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
     }
     ListTikTokCommercialMusic200ResponseTracksInner listTikTokCommercialMusic200ResponseTracksInner = (ListTikTokCommercialMusic200ResponseTracksInner) o;
     return Objects.equals(this.id, listTikTokCommercialMusic200ResponseTracksInner.id) &&
+        Objects.equals(this.commercialMusicId, listTikTokCommercialMusic200ResponseTracksInner.commercialMusicId) &&
         Objects.equals(this.name, listTikTokCommercialMusic200ResponseTracksInner.name) &&
         Objects.equals(this.artist, listTikTokCommercialMusic200ResponseTracksInner.artist) &&
         Objects.equals(this.durationSec, listTikTokCommercialMusic200ResponseTracksInner.durationSec) &&
@@ -336,7 +366,7 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, artist, durationSec, genres, previewUrl, thumbnailUrl, rank, clip);
+    return Objects.hash(id, commercialMusicId, name, artist, durationSec, genres, previewUrl, thumbnailUrl, rank, clip);
   }
 
   @Override
@@ -344,6 +374,7 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
     StringBuilder sb = new StringBuilder();
     sb.append("class ListTikTokCommercialMusic200ResponseTracksInner {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    commercialMusicId: ").append(toIndentedString(commercialMusicId)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    artist: ").append(toIndentedString(artist)).append("\n");
     sb.append("    durationSec: ").append(toIndentedString(durationSec)).append("\n");
@@ -402,6 +433,11 @@ public class ListTikTokCommercialMusic200ResponseTracksInner {
     // add `id` to the URL query string
     if (getId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sid%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getId()))));
+    }
+
+    // add `commercialMusicId` to the URL query string
+    if (getCommercialMusicId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scommercialMusicId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCommercialMusicId()))));
     }
 
     // add `name` to the URL query string

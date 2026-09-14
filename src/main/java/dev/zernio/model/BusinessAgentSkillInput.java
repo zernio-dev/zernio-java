@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BusinessAgentSkillInput.JSON_PROPERTY_DESCRIPTION,
   BusinessAgentSkillInput.JSON_PROPERTY_SKILL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentSkillInput {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

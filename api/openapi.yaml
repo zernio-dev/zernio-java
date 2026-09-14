@@ -68608,11 +68608,15 @@ components:
       - isFollower
       - userId
     listTikTokCommercialMusic_200_response_tracks_inner_clip:
-      description: "The trending excerpt of the track, when TikTok provides one"
+      description: "The trending excerpt of the track, when TikTok provides one. Its\
+        \ id is also accepted as musicSoundId."
       example:
         previewUrl: previewUrl
+        id: id
         durationSec: 1
       properties:
+        id:
+          type: string
         durationSec:
           type: integer
         previewUrl:
@@ -68620,6 +68624,7 @@ components:
     listTikTokCommercialMusic_200_response_tracks_inner:
       example:
         previewUrl: previewUrl
+        commercialMusicId: commercialMusicId
         artist: artist
         genres:
         - genres
@@ -68630,11 +68635,16 @@ components:
         durationSec: 0
         clip:
           previewUrl: previewUrl
+          id: id
           durationSec: 1
         thumbnailUrl: thumbnailUrl
       properties:
         id:
-          description: The commercial_music_id to send as musicSoundId
+          description: The id to send as musicSoundId (the full track's song clip
+            id). TikTok rejects the commercial music id itself at publish time.
+          type: string
+        commercialMusicId:
+          description: "TikTok's commercial_music_id, for reference only"
           type: string
         name:
           type: string
@@ -68660,6 +68670,7 @@ components:
       example:
         tracks:
         - previewUrl: previewUrl
+          commercialMusicId: commercialMusicId
           artist: artist
           genres:
           - genres
@@ -68670,9 +68681,11 @@ components:
           durationSec: 0
           clip:
             previewUrl: previewUrl
+            id: id
             durationSec: 1
           thumbnailUrl: thumbnailUrl
         - previewUrl: previewUrl
+          commercialMusicId: commercialMusicId
           artist: artist
           genres:
           - genres
@@ -68683,6 +68696,7 @@ components:
           durationSec: 0
           clip:
             previewUrl: previewUrl
+            id: id
             durationSec: 1
           thumbnailUrl: thumbnailUrl
       properties:
@@ -115006,7 +115020,9 @@ components:
         \ TikTok ignores every post_info field."
       properties:
         musicSoundId:
-          description: The commercial_music_id of the track.
+          description: "The id field of a track from GET /v1/accounts/{accountId}/tiktok/commercial-music\
+            \ (a song clip id). TikTok fails the publish with a generic 51065 when\
+            \ given the commercial music id instead."
           type: string
         musicSoundVolume:
           default: 50

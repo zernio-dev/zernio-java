@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TikTokPlatformDataMusicSoundInfo.JSON_PROPERTY_MUSIC_SOUND_START,
   TikTokPlatformDataMusicSoundInfo.JSON_PROPERTY_MUSIC_SOUND_END
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:03:37.618894267Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformDataMusicSoundInfo {
   public static final String JSON_PROPERTY_MUSIC_SOUND_ID = "musicSoundId";
   @javax.annotation.Nonnull
@@ -65,7 +65,7 @@ public class TikTokPlatformDataMusicSoundInfo {
   }
 
   /**
-   * The commercial_music_id of the track.
+   * The id field of a track from GET /v1/accounts/{accountId}/tiktok/commercial-music (a song clip id). TikTok fails the publish with a generic 51065 when given the commercial music id instead.
    * @return musicSoundId
    */
   @javax.annotation.Nonnull
