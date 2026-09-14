@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-14T17:41:32.019536085Z[Etc/UTC]
+- Build date: 2026-09-14T17:44:06.196046398Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -323,6 +323,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics
 *AdCampaignsApi* | [**getAdsTimelineWithHttpInfo**](docs/AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics
+*AdCampaignsApi* | [**getCampaignAdSchedule**](docs/AdCampaignsApi.md#getCampaignAdSchedule) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting)
+*AdCampaignsApi* | [**getCampaignAdScheduleWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignAdScheduleWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting)
 *AdCampaignsApi* | [**getCampaignBidding**](docs/AdCampaignsApi.md#getCampaignBidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding
 *AdCampaignsApi* | [**getCampaignBiddingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignBiddingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding
 *AdCampaignsApi* | [**getCampaignTargeting**](docs/AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting
@@ -375,6 +377,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateAdStatusWithHttpInfo**](docs/AdCampaignsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad
 *AdCampaignsApi* | [**updateBidStrategy**](docs/AdCampaignsApi.md#updateBidStrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy
 *AdCampaignsApi* | [**updateBidStrategyWithHttpInfo**](docs/AdCampaignsApi.md#updateBidStrategyWithHttpInfo) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy
+*AdCampaignsApi* | [**updateCampaignAdSchedule**](docs/AdCampaignsApi.md#updateCampaignAdSchedule) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting)
+*AdCampaignsApi* | [**updateCampaignAdScheduleWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignAdScheduleWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting)
 *AdCampaignsApi* | [**updateCampaignAssets**](docs/AdCampaignsApi.md#updateCampaignAssets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets
 *AdCampaignsApi* | [**updateCampaignAssetsWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets
 *AdCampaignsApi* | [**updateCampaignTargeting**](docs/AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting
@@ -1594,12 +1598,14 @@ Class | Method | HTTP request | Description
  - [AdFunnelCounts](docs/AdFunnelCounts.md)
  - [AdKeyword](docs/AdKeyword.md)
  - [AdKeywordMetrics](docs/AdKeywordMetrics.md)
+ - [AdKeywordQuality](docs/AdKeywordQuality.md)
  - [AdMetrics](docs/AdMetrics.md)
  - [AdNegativeKeywordList](docs/AdNegativeKeywordList.md)
  - [AdNegativeKeywordListKeyword](docs/AdNegativeKeywordListKeyword.md)
  - [AdPromotedObject](docs/AdPromotedObject.md)
  - [AdReviewStatus](docs/AdReviewStatus.md)
  - [AdSchedule](docs/AdSchedule.md)
+ - [AdScheduleWindow](docs/AdScheduleWindow.md)
  - [AdStatus](docs/AdStatus.md)
  - [AdTracking](docs/AdTracking.md)
  - [AdTreeAdSet](docs/AdTreeAdSet.md)
@@ -2193,6 +2199,10 @@ Class | Method | HTTP request | Description
  - [GetCallsUsage200Response](docs/GetCallsUsage200Response.md)
  - [GetCallsUsage200ResponseGroupsInner](docs/GetCallsUsage200ResponseGroupsInner.md)
  - [GetCallsUsage200ResponseTotals](docs/GetCallsUsage200ResponseTotals.md)
+ - [GetCampaignAdSchedule200Response](docs/GetCampaignAdSchedule200Response.md)
+ - [GetCampaignAdSchedule200ResponsePerformance](docs/GetCampaignAdSchedule200ResponsePerformance.md)
+ - [GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner](docs/GetCampaignAdSchedule200ResponsePerformanceByDayOfWeekInner.md)
+ - [GetCampaignAdSchedule200ResponsePerformanceByHourInner](docs/GetCampaignAdSchedule200ResponsePerformanceByHourInner.md)
  - [GetCampaignAnalytics202Response](docs/GetCampaignAnalytics202Response.md)
  - [GetCampaignBidding200Response](docs/GetCampaignBidding200Response.md)
  - [GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
@@ -3280,6 +3290,9 @@ Class | Method | HTTP request | Description
  - [UpdateBusinessAgentSettingsRequestFollowup](docs/UpdateBusinessAgentSettingsRequestFollowup.md)
  - [UpdateBusinessAgentSettingsRequestHandoff](docs/UpdateBusinessAgentSettingsRequestHandoff.md)
  - [UpdateBusinessAgentSettingsRequestRollout](docs/UpdateBusinessAgentSettingsRequestRollout.md)
+ - [UpdateCampaignAdSchedule200Response](docs/UpdateCampaignAdSchedule200Response.md)
+ - [UpdateCampaignAdScheduleRequest](docs/UpdateCampaignAdScheduleRequest.md)
+ - [UpdateCampaignAdScheduleRequestScheduleInner](docs/UpdateCampaignAdScheduleRequestScheduleInner.md)
  - [UpdateCampaignAssets200Response](docs/UpdateCampaignAssets200Response.md)
  - [UpdateCampaignAssetsRequest](docs/UpdateCampaignAssetsRequest.md)
  - [UpdateCampaignTargeting200Response](docs/UpdateCampaignTargeting200Response.md)

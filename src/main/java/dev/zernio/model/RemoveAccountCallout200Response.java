@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   RemoveAccountCallout200Response.JSON_PROPERTY_REMOVED,
   RemoveAccountCallout200Response.JSON_PROPERTY_CUSTOMER_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveAccountCallout200Response {
   public static final String JSON_PROPERTY_REMOVED = "removed";
   @javax.annotation.Nullable

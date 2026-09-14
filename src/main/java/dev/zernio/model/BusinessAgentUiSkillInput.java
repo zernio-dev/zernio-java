@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   BusinessAgentUiSkillInput.JSON_PROPERTY_INSTRUCTION,
   BusinessAgentUiSkillInput.JSON_PROPERTY_FLOW_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentUiSkillInput {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

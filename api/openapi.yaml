@@ -31565,6 +31565,202 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/campaigns/{campaignId}/ad-schedule:
+    get:
+      description: |
+        The windows a Google campaign serves in, with the bid modifier on each, plus the
+        criterion ids Google minted for them.
+
+        An EMPTY `schedule` is meaningful and is not a failed lookup: Google has no
+        "all day" criterion, so a campaign with no ad schedule serves around the clock.
+        `servesAroundTheClock` states that explicitly.
+
+        Set `includePerformance=true` to also get delivery split by day of week and by hour,
+        which is the evidence for deciding what the schedule should be. It is one extra
+        Google call segmented by both dimensions at once, so the two views always agree.
+
+        Google Ads only. The response carries `cachedAt` and `stale`, set when a
+        quota-exhausted call falls back to the last-good copy instead of a live read.
+      operationId: getCampaignAdSchedule
+      parameters:
+      - description: Numeric Google platform campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Disambiguates the campaign id when the connection spans platforms.
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - google
+          type: string
+        style: form
+      - description: Also return delivery by day of week and by hour. Costs one extra
+          Google call.
+        explode: true
+        in: query
+        name: includePerformance
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: Trailing window for the performance split. Ignored when fromDate
+          and toDate are both given.
+        explode: true
+        in: query
+        name: windowDays
+        required: false
+        schema:
+          default: 30
+          maximum: 90
+          minimum: 1
+          type: integer
+        style: form
+      - description: Start of an explicit performance range (YYYY-MM-DD). Use together
+          with toDate.
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: End of an explicit performance range (YYYY-MM-DD). Must be on
+          or after fromDate.
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignAdSchedule_200_response"
+          description: The campaign's ad schedule
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "501":
+          description: "Not a Google Ads campaign: ad schedules are a Google criterion."
+      security:
+      - bearerAuth: []
+      summary: Read a campaign's ad schedule (dayparting)
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    put:
+      description: |
+        Replaces the campaign's whole ad schedule with the windows you send. This is a
+        REPLACE, not a merge: windows you leave out stop serving.
+
+        Send `schedule: []` to clear dayparting, which returns the campaign to serving around
+        the clock.
+
+        Google rules enforced here, so you get a named field instead of a criterion error:
+        at most 6 windows per day, a window must end after it starts, windows on the same day
+        may not overlap, `endHour` 24 is midnight and cannot carry minutes, and minutes are
+        quarter-hours only (0, 15, 30, 45). `bidModifier` is 0.1-10.0; Google's 0 means
+        "off" for devices only, so a window is switched off by leaving it out.
+
+        Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and
+        12:00-17:00 on the same day are adjacent and both valid.
+
+        Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on
+        update), so this removes the live criteria and creates the new ones in a single atomic
+        mutate. The response is read back from Google and carries the new criterion ids.
+      operationId: updateCampaignAdSchedule
+      parameters:
+      - description: Numeric Google platform campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            examples:
+              officeHours:
+                summary: "Weekday office hours, bidding up over lunch"
+                value:
+                  schedule:
+                  - dayOfWeek: MONDAY
+                    startHour: 9
+                    endHour: 17
+                  - dayOfWeek: TUESDAY
+                    startHour: 9
+                    endHour: 17
+                  - dayOfWeek: WEDNESDAY
+                    startHour: 9
+                    endHour: 12
+                    bidModifier: 1.5
+                  - dayOfWeek: WEDNESDAY
+                    startHour: 12
+                    endHour: 17
+              clearSchedule:
+                summary: Serve around the clock again
+                value:
+                  schedule: []
+            schema:
+              $ref: "#/components/schemas/updateCampaignAdSchedule_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCampaignAdSchedule_200_response"
+          description: The schedule as Google stored it
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads access required. Legacy plans need the Ads add-on; included
+            by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "The schedule breaks a Google rule: too many windows on a day,\
+            \ an overlap, a window that ends before it starts, minutes on hour 24,\
+            \ or a bid modifier outside 0.1-10.0."
+        "501":
+          description: "Not a Google Ads campaign: ad schedules are a Google criterion."
+      security:
+      - bearerAuth: []
+      summary: Replace a campaign's ad schedule (dayparting)
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/bidding:
     get:
       description: |
@@ -63697,6 +63893,11 @@ components:
         campaignId: campaignId
         matchType: exact
         platform: google
+        quality:
+          score: 6
+          adRelevance: BELOW_AVERAGE
+          expectedCtr: BELOW_AVERAGE
+          landingPageExperience: BELOW_AVERAGE
         accountId: accountId
         negative: true
         adSetStatus: adSetStatus
@@ -63706,13 +63907,13 @@ components:
         qualityScore: 0
         id: id
         metrics:
-          conversions: 2.3021358869347655
-          cost: 5.637376656633329
-          firstPageCpc: 7.061401241503109
-          clicks: 1
-          windowDays: 6
+          conversions: 7.061401241503109
+          cost: 2.3021358869347655
+          firstPageCpc: 9.301444243932576
+          clicks: 5
+          windowDays: 1
           impressions: 5
-          firstPositionCpc: 9.301444243932576
+          firstPositionCpc: 3.616076749251911
         keyword: keyword
         campaignName: campaignName
         syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -63766,15 +63967,75 @@ components:
         negative:
           type: boolean
         qualityScore:
-          description: "Google Quality Score, 1-10. Null when unrated."
+          description: "Deprecated, use `quality.score`. Google Quality Score, 1-10.\
+            \ Null when unrated."
           nullable: true
           type: integer
+        quality:
+          $ref: "#/components/schemas/AdKeyword_quality"
         syncedAt:
           format: date-time
           nullable: true
           type: string
         metrics:
           $ref: "#/components/schemas/AdKeyword_metrics"
+    AdScheduleWindow:
+      description: "One ad schedule window as Google stores it. Half-open: it is exclusive\
+        \ of the end minute, so 09:00-12:00 and 12:00-17:00 are adjacent, not overlapping."
+      example:
+        endHour: 3
+        dayOfWeek: MONDAY
+        criterionId: criterionId
+        bidModifier: 5.637376656633329
+        startHour: 1
+        resourceName: resourceName
+        startMinute: 6
+        endMinute: 5
+      properties:
+        criterionId:
+          description: "Google campaign criterion id. Changes whenever the window\
+            \ is rewritten, because Google cannot edit a schedule in place."
+          type: string
+        resourceName:
+          type: string
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        startHour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        endHour:
+          description: 24 means midnight at the end of the day.
+          maximum: 24
+          minimum: 0
+          type: integer
+        endMinute:
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        bidModifier:
+          description: "Bid adjustment for this window, 0.1-10.0. Null when the window\
+            \ runs at the campaign bid."
+          nullable: true
+          type: number
     KeywordEntry:
       description: "A Google Search keyword: a bare string (BROAD match), or an object\
         \ naming the match type."
@@ -94858,6 +95119,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -94867,13 +95133,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -94883,6 +95149,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -94892,13 +95163,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -94959,6 +95230,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -94968,13 +95244,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -94984,6 +95260,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -94993,13 +95274,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -95036,6 +95317,11 @@ components:
           campaignId: campaignId
           matchType: exact
           platform: google
+          quality:
+            score: 6
+            adRelevance: BELOW_AVERAGE
+            expectedCtr: BELOW_AVERAGE
+            landingPageExperience: BELOW_AVERAGE
           accountId: accountId
           negative: true
           adSetStatus: adSetStatus
@@ -95045,13 +95331,13 @@ components:
           qualityScore: 0
           id: id
           metrics:
-            conversions: 2.3021358869347655
-            cost: 5.637376656633329
-            firstPageCpc: 7.061401241503109
-            clicks: 1
-            windowDays: 6
+            conversions: 7.061401241503109
+            cost: 2.3021358869347655
+            firstPageCpc: 9.301444243932576
+            clicks: 5
+            windowDays: 1
             impressions: 5
-            firstPositionCpc: 9.301444243932576
+            firstPositionCpc: 3.616076749251911
           keyword: keyword
           campaignName: campaignName
           syncedAt: 2000-01-23T04:56:07.000+00:00
@@ -95475,6 +95761,256 @@ components:
           items:
             type: string
           type: array
+    getCampaignAdSchedule_200_response_performance_byDayOfWeek_inner:
+      example:
+        conversions: 2.027123023002322
+        dayOfWeek: MONDAY
+        cost: 3.616076749251911
+        clicks: 9
+        impressions: 7
+      properties:
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        cost:
+          description: "Account currency, not USD-normalized."
+          type: number
+        conversions:
+          type: number
+    getCampaignAdSchedule_200_response_performance_byHour_inner:
+      example:
+        conversions: 1.4894159098541704
+        cost: 1.0246457001441578
+        hour: 9
+        clicks: 1
+        impressions: 7
+      properties:
+        hour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        impressions:
+          type: integer
+        clicks:
+          type: integer
+        cost:
+          description: "Account currency, not USD-normalized."
+          type: number
+        conversions:
+          type: number
+    getCampaignAdSchedule_200_response_performance:
+      description: Only present when includePerformance=true.
+      example:
+        byDayOfWeek:
+        - conversions: 2.027123023002322
+          dayOfWeek: MONDAY
+          cost: 3.616076749251911
+          clicks: 9
+          impressions: 7
+        - conversions: 2.027123023002322
+          dayOfWeek: MONDAY
+          cost: 3.616076749251911
+          clicks: 9
+          impressions: 7
+        windowDays: 2
+        byHour:
+        - conversions: 1.4894159098541704
+          cost: 1.0246457001441578
+          hour: 9
+          clicks: 1
+          impressions: 7
+        - conversions: 1.4894159098541704
+          cost: 1.0246457001441578
+          hour: 9
+          clicks: 1
+          impressions: 7
+      properties:
+        windowDays:
+          description: "The trailing window used, or null when an explicit fromDate/toDate\
+            \ range was given."
+          nullable: true
+          type: integer
+        byDayOfWeek:
+          description: "One entry per day that delivered, Monday first."
+          items:
+            $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance_byDayOfWeek_inner"
+          type: array
+        byHour:
+          description: "One entry per hour that delivered, 0-23 in the account time\
+            \ zone."
+          items:
+            $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance_byHour_inner"
+          type: array
+    getCampaignAdSchedule_200_response:
+      example:
+        schedule:
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        stale: true
+        performance:
+          byDayOfWeek:
+          - conversions: 2.027123023002322
+            dayOfWeek: MONDAY
+            cost: 3.616076749251911
+            clicks: 9
+            impressions: 7
+          - conversions: 2.027123023002322
+            dayOfWeek: MONDAY
+            cost: 3.616076749251911
+            clicks: 9
+            impressions: 7
+          windowDays: 2
+          byHour:
+          - conversions: 1.4894159098541704
+            cost: 1.0246457001441578
+            hour: 9
+            clicks: 1
+            impressions: 7
+          - conversions: 1.4894159098541704
+            cost: 1.0246457001441578
+            hour: 9
+            clicks: 1
+            impressions: 7
+        campaignId: campaignId
+        servesAroundTheClock: true
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        campaignId:
+          type: string
+        schedule:
+          items:
+            $ref: "#/components/schemas/AdScheduleWindow"
+          type: array
+        servesAroundTheClock:
+          description: "True when the campaign carries no ad schedule at all, so it\
+            \ can serve at any time."
+          type: boolean
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when a quota-exhausted read served the last-good copy.
+          type: boolean
+        performance:
+          $ref: "#/components/schemas/getCampaignAdSchedule_200_response_performance"
+    updateCampaignAdSchedule_request_schedule_inner:
+      properties:
+        dayOfWeek:
+          enum:
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          - SUNDAY
+          type: string
+        startHour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        startMinute:
+          default: 0
+          description: Quarter-hours only.
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        endHour:
+          description: 24 means midnight at the end of the day.
+          maximum: 24
+          minimum: 0
+          type: integer
+        endMinute:
+          default: 0
+          description: Quarter-hours only. Must be 0 when endHour is 24.
+          enum:
+          - 0
+          - 15
+          - 30
+          - 45
+          type: integer
+        bidModifier:
+          default: null
+          description: Bid adjustment for this window. Null runs it at the campaign
+            bid.
+          maximum: 10
+          minimum: 0.1
+          nullable: true
+          type: number
+      required:
+      - dayOfWeek
+      - endHour
+      - startHour
+    updateCampaignAdSchedule_request:
+      properties:
+        schedule:
+          description: "The complete set of windows. Required, so clearing the schedule\
+            \ is always deliberate rather than an omission."
+          items:
+            $ref: "#/components/schemas/updateCampaignAdSchedule_request_schedule_inner"
+          maxItems: 42
+          type: array
+      required:
+      - schedule
+    updateCampaignAdSchedule_200_response:
+      example:
+        schedule:
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        - endHour: 3
+          dayOfWeek: MONDAY
+          criterionId: criterionId
+          bidModifier: 5.637376656633329
+          startHour: 1
+          resourceName: resourceName
+          startMinute: 6
+          endMinute: 5
+        campaignId: campaignId
+        servesAroundTheClock: true
+      properties:
+        campaignId:
+          type: string
+        schedule:
+          items:
+            $ref: "#/components/schemas/AdScheduleWindow"
+          type: array
+        servesAroundTheClock:
+          type: boolean
     getCampaignBidding_200_response:
       allOf:
       - properties:
@@ -117406,17 +117942,63 @@ components:
           type: string
         page_id:
           type: string
+    AdKeyword_quality:
+      description: |
+        Google Quality Score and the three component ratings behind it
+        (`ad_group_criterion.quality_info`). Every field is null until Google has rated the
+        keyword: a keyword with too little traffic is unrated, and negatives are never rated.
+        Google's own UNKNOWN / UNSPECIFIED buckets are reported as null so "unrated" has a
+        single representation.
+      example:
+        score: 6
+        adRelevance: BELOW_AVERAGE
+        expectedCtr: BELOW_AVERAGE
+        landingPageExperience: BELOW_AVERAGE
+      properties:
+        score:
+          description: "Quality Score, 1-10."
+          nullable: true
+          type: integer
+        expectedCtr:
+          description: How the click-through rate compares with other ads in the same
+            position (`search_predicted_ctr`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
+        adRelevance:
+          description: How closely the ad matches the intent behind the search (`creative_quality_score`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
+        landingPageExperience:
+          description: How relevant and useful the landing page is to people who click
+            (`post_click_quality_score`).
+          enum:
+          - BELOW_AVERAGE
+          - AVERAGE
+          - ABOVE_AVERAGE
+          - null
+          nullable: true
+          type: string
     AdKeyword_metrics:
       description: Trailing 30-day window. Null on rows synced before the metrics
         columns existed (re-synced on the keyword's next weekly sweep).
       example:
-        conversions: 2.3021358869347655
-        cost: 5.637376656633329
-        firstPageCpc: 7.061401241503109
-        clicks: 1
-        windowDays: 6
+        conversions: 7.061401241503109
+        cost: 2.3021358869347655
+        firstPageCpc: 9.301444243932576
+        clicks: 5
+        windowDays: 1
         impressions: 5
-        firstPositionCpc: 9.301444243932576
+        firstPositionCpc: 3.616076749251911
       properties:
         windowDays:
           type: integer

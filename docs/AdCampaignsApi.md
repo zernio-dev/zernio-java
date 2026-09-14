@@ -44,6 +44,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
 | [**getAdsTimelineWithHttpInfo**](AdCampaignsApi.md#getAdsTimelineWithHttpInfo) | **GET** /v1/ads/timeline | Get daily account metrics |
+| [**getCampaignAdSchedule**](AdCampaignsApi.md#getCampaignAdSchedule) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting) |
+| [**getCampaignAdScheduleWithHttpInfo**](AdCampaignsApi.md#getCampaignAdScheduleWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/ad-schedule | Read a campaign&#39;s ad schedule (dayparting) |
 | [**getCampaignBidding**](AdCampaignsApi.md#getCampaignBidding) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding |
 | [**getCampaignBiddingWithHttpInfo**](AdCampaignsApi.md#getCampaignBiddingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding |
 | [**getCampaignTargeting**](AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
@@ -96,6 +98,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdStatusWithHttpInfo**](AdCampaignsApi.md#updateAdStatusWithHttpInfo) | **PUT** /v1/ads/{adId}/status | Pause or resume a single ad |
 | [**updateBidStrategy**](AdCampaignsApi.md#updateBidStrategy) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy |
 | [**updateBidStrategyWithHttpInfo**](AdCampaignsApi.md#updateBidStrategyWithHttpInfo) | **PATCH** /v1/ads/bid-strategies/{strategyId} | Update portfolio bid strategy |
+| [**updateCampaignAdSchedule**](AdCampaignsApi.md#updateCampaignAdSchedule) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting) |
+| [**updateCampaignAdScheduleWithHttpInfo**](AdCampaignsApi.md#updateCampaignAdScheduleWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/ad-schedule | Replace a campaign&#39;s ad schedule (dayparting) |
 | [**updateCampaignAssets**](AdCampaignsApi.md#updateCampaignAssets) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
 | [**updateCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
 | [**updateCampaignTargeting**](AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
@@ -3333,6 +3337,180 @@ ApiResponse<[**AdsTimelineResponse**](AdsTimelineResponse.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## getCampaignAdSchedule
+
+> GetCampaignAdSchedule200Response getCampaignAdSchedule(campaignId, platform, includePerformance, windowDays, fromDate, toDate)
+
+Read a campaign&#39;s ad schedule (dayparting)
+
+The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        String platform = "google"; // String | Disambiguates the campaign id when the connection spans platforms.
+        Boolean includePerformance = true; // Boolean | Also return delivery by day of week and by hour. Costs one extra Google call.
+        Integer windowDays = 30; // Integer | Trailing window for the performance split. Ignored when fromDate and toDate are both given.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of an explicit performance range (YYYY-MM-DD). Use together with toDate.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate.
+        try {
+            GetCampaignAdSchedule200Response result = apiInstance.getCampaignAdSchedule(campaignId, platform, includePerformance, windowDays, fromDate, toDate);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getCampaignAdSchedule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **platform** | **String**| Disambiguates the campaign id when the connection spans platforms. | [optional] [enum: google] |
+| **includePerformance** | **Boolean**| Also return delivery by day of week and by hour. Costs one extra Google call. | [optional] |
+| **windowDays** | **Integer**| Trailing window for the performance split. Ignored when fromDate and toDate are both given. | [optional] [default to 30] |
+| **fromDate** | **LocalDate**| Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. | [optional] |
+| **toDate** | **LocalDate**| End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. | [optional] |
+
+### Return type
+
+[**GetCampaignAdSchedule200Response**](GetCampaignAdSchedule200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The campaign&#39;s ad schedule |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
+
+## getCampaignAdScheduleWithHttpInfo
+
+> ApiResponse<GetCampaignAdSchedule200Response> getCampaignAdSchedule getCampaignAdScheduleWithHttpInfo(campaignId, platform, includePerformance, windowDays, fromDate, toDate)
+
+Read a campaign&#39;s ad schedule (dayparting)
+
+The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        String platform = "google"; // String | Disambiguates the campaign id when the connection spans platforms.
+        Boolean includePerformance = true; // Boolean | Also return delivery by day of week and by hour. Costs one extra Google call.
+        Integer windowDays = 30; // Integer | Trailing window for the performance split. Ignored when fromDate and toDate are both given.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start of an explicit performance range (YYYY-MM-DD). Use together with toDate.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate.
+        try {
+            ApiResponse<GetCampaignAdSchedule200Response> response = apiInstance.getCampaignAdScheduleWithHttpInfo(campaignId, platform, includePerformance, windowDays, fromDate, toDate);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getCampaignAdSchedule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **platform** | **String**| Disambiguates the campaign id when the connection spans platforms. | [optional] [enum: google] |
+| **includePerformance** | **Boolean**| Also return delivery by day of week and by hour. Costs one extra Google call. | [optional] |
+| **windowDays** | **Integer**| Trailing window for the performance split. Ignored when fromDate and toDate are both given. | [optional] [default to 30] |
+| **fromDate** | **LocalDate**| Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. | [optional] |
+| **toDate** | **LocalDate**| End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetCampaignAdSchedule200Response**](GetCampaignAdSchedule200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The campaign&#39;s ad schedule |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
 
 
 ## getCampaignBidding
@@ -7631,6 +7809,166 @@ ApiResponse<[**UpdateBidStrategy200Response**](UpdateBidStrategy200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## updateCampaignAdSchedule
+
+> UpdateCampaignAdSchedule200Response updateCampaignAdSchedule(campaignId, updateCampaignAdScheduleRequest)
+
+Replace a campaign&#39;s ad schedule (dayparting)
+
+Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest = new UpdateCampaignAdScheduleRequest(); // UpdateCampaignAdScheduleRequest | 
+        try {
+            UpdateCampaignAdSchedule200Response result = apiInstance.updateCampaignAdSchedule(campaignId, updateCampaignAdScheduleRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateCampaignAdSchedule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **updateCampaignAdScheduleRequest** | [**UpdateCampaignAdScheduleRequest**](UpdateCampaignAdScheduleRequest.md)|  | |
+
+### Return type
+
+[**UpdateCampaignAdSchedule200Response**](UpdateCampaignAdSchedule200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The schedule as Google stored it |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | The schedule breaks a Google rule: too many windows on a day, an overlap, a window that ends before it starts, minutes on hour 24, or a bid modifier outside 0.1-10.0. |  -  |
+| **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
+
+## updateCampaignAdScheduleWithHttpInfo
+
+> ApiResponse<UpdateCampaignAdSchedule200Response> updateCampaignAdSchedule updateCampaignAdScheduleWithHttpInfo(campaignId, updateCampaignAdScheduleRequest)
+
+Replace a campaign&#39;s ad schedule (dayparting)
+
+Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
+        UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest = new UpdateCampaignAdScheduleRequest(); // UpdateCampaignAdScheduleRequest | 
+        try {
+            ApiResponse<UpdateCampaignAdSchedule200Response> response = apiInstance.updateCampaignAdScheduleWithHttpInfo(campaignId, updateCampaignAdScheduleRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateCampaignAdSchedule");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Numeric Google platform campaign id. | |
+| **updateCampaignAdScheduleRequest** | [**UpdateCampaignAdScheduleRequest**](UpdateCampaignAdScheduleRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateCampaignAdSchedule200Response**](UpdateCampaignAdSchedule200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The schedule as Google stored it |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | The schedule breaks a Google rule: too many windows on a day, an overlap, a window that ends before it starts, minutes on hour 24, or a bid modifier outside 0.1-10.0. |  -  |
+| **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
 
 
 ## updateCampaignAssets

@@ -22,7 +22,8 @@
 |**matchType** | [**MatchTypeEnum**](#MatchTypeEnum) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**negative** | **Boolean** |  |  [optional] |
-|**qualityScore** | **Integer** | Google Quality Score, 1-10. Null when unrated. |  [optional] |
+|**qualityScore** | **Integer** | Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated. |  [optional] |
+|**quality** | [**AdKeywordQuality**](AdKeywordQuality.md) |  |  [optional] |
 |**syncedAt** | **OffsetDateTime** |  |  [optional] |
 |**metrics** | [**AdKeywordMetrics**](AdKeywordMetrics.md) |  |  [optional] |
 

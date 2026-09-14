@@ -57,6 +57,7 @@ import dev.zernio.model.GetAdCampaignDetails200Response;
 import dev.zernio.model.GetAdSetDetails200Response;
 import dev.zernio.model.GetAdTree202Response;
 import dev.zernio.model.GetAdsTimeline202Response;
+import dev.zernio.model.GetCampaignAdSchedule200Response;
 import dev.zernio.model.GetCampaignBidding200Response;
 import dev.zernio.model.GetCampaignTargeting200Response;
 import dev.zernio.model.InlineObject1;
@@ -94,6 +95,8 @@ import dev.zernio.model.UpdateAdSetStatus200Response;
 import dev.zernio.model.UpdateAdStatus200Response;
 import dev.zernio.model.UpdateBidStrategy200Response;
 import dev.zernio.model.UpdateBidStrategyRequest;
+import dev.zernio.model.UpdateCampaignAdSchedule200Response;
+import dev.zernio.model.UpdateCampaignAdScheduleRequest;
 import dev.zernio.model.UpdateCampaignAssets200Response;
 import dev.zernio.model.UpdateCampaignAssetsRequest;
 import dev.zernio.model.UpdateCampaignTargeting200Response;
@@ -124,7 +127,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdCampaignsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2941,6 +2944,167 @@ public class AdCampaignsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
     localVarQueryParameterBaseName = "platform";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Read a campaign&#39;s ad schedule (dayparting)
+   * The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param platform Disambiguates the campaign id when the connection spans platforms. (optional)
+   * @param includePerformance Also return delivery by day of week and by hour. Costs one extra Google call. (optional)
+   * @param windowDays Trailing window for the performance split. Ignored when fromDate and toDate are both given. (optional, default to 30)
+   * @param fromDate Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. (optional)
+   * @param toDate End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. (optional)
+   * @return GetCampaignAdSchedule200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignAdSchedule200Response getCampaignAdSchedule(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includePerformance, @javax.annotation.Nullable Integer windowDays, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return getCampaignAdSchedule(campaignId, platform, includePerformance, windowDays, fromDate, toDate, null);
+  }
+
+  /**
+   * Read a campaign&#39;s ad schedule (dayparting)
+   * The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param platform Disambiguates the campaign id when the connection spans platforms. (optional)
+   * @param includePerformance Also return delivery by day of week and by hour. Costs one extra Google call. (optional)
+   * @param windowDays Trailing window for the performance split. Ignored when fromDate and toDate are both given. (optional, default to 30)
+   * @param fromDate Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. (optional)
+   * @param toDate End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetCampaignAdSchedule200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetCampaignAdSchedule200Response getCampaignAdSchedule(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includePerformance, @javax.annotation.Nullable Integer windowDays, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetCampaignAdSchedule200Response> localVarResponse = getCampaignAdScheduleWithHttpInfo(campaignId, platform, includePerformance, windowDays, fromDate, toDate, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Read a campaign&#39;s ad schedule (dayparting)
+   * The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param platform Disambiguates the campaign id when the connection spans platforms. (optional)
+   * @param includePerformance Also return delivery by day of week and by hour. Costs one extra Google call. (optional)
+   * @param windowDays Trailing window for the performance split. Ignored when fromDate and toDate are both given. (optional, default to 30)
+   * @param fromDate Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. (optional)
+   * @param toDate End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. (optional)
+   * @return ApiResponse&lt;GetCampaignAdSchedule200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignAdSchedule200Response> getCampaignAdScheduleWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includePerformance, @javax.annotation.Nullable Integer windowDays, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate) throws ApiException {
+    return getCampaignAdScheduleWithHttpInfo(campaignId, platform, includePerformance, windowDays, fromDate, toDate, null);
+  }
+
+  /**
+   * Read a campaign&#39;s ad schedule (dayparting)
+   * The windows a Google campaign serves in, with the bid modifier on each, plus the criterion ids Google minted for them.  An EMPTY &#x60;schedule&#x60; is meaningful and is not a failed lookup: Google has no \&quot;all day\&quot; criterion, so a campaign with no ad schedule serves around the clock. &#x60;servesAroundTheClock&#x60; states that explicitly.  Set &#x60;includePerformance&#x3D;true&#x60; to also get delivery split by day of week and by hour, which is the evidence for deciding what the schedule should be. It is one extra Google call segmented by both dimensions at once, so the two views always agree.  Google Ads only. The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param platform Disambiguates the campaign id when the connection spans platforms. (optional)
+   * @param includePerformance Also return delivery by day of week and by hour. Costs one extra Google call. (optional)
+   * @param windowDays Trailing window for the performance split. Ignored when fromDate and toDate are both given. (optional, default to 30)
+   * @param fromDate Start of an explicit performance range (YYYY-MM-DD). Use together with toDate. (optional)
+   * @param toDate End of an explicit performance range (YYYY-MM-DD). Must be on or after fromDate. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetCampaignAdSchedule200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetCampaignAdSchedule200Response> getCampaignAdScheduleWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includePerformance, @javax.annotation.Nullable Integer windowDays, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getCampaignAdScheduleRequestBuilder(campaignId, platform, includePerformance, windowDays, fromDate, toDate, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getCampaignAdSchedule", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetCampaignAdSchedule200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetCampaignAdSchedule200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetCampaignAdSchedule200Response>() {});
+        
+
+        return new ApiResponse<GetCampaignAdSchedule200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getCampaignAdScheduleRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nullable String platform, @javax.annotation.Nullable Boolean includePerformance, @javax.annotation.Nullable Integer windowDays, @javax.annotation.Nullable LocalDate fromDate, @javax.annotation.Nullable LocalDate toDate, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling getCampaignAdSchedule");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/ad-schedule"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "platform";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("platform", platform));
+    localVarQueryParameterBaseName = "includePerformance";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("includePerformance", includePerformance));
+    localVarQueryParameterBaseName = "windowDays";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("windowDays", windowDays));
+    localVarQueryParameterBaseName = "fromDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("fromDate", fromDate));
+    localVarQueryParameterBaseName = "toDate";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("toDate", toDate));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");
@@ -6669,6 +6833,138 @@ public class AdCampaignsApi {
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateBidStrategyRequest);
       localVarRequestBuilder.method("PATCH", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Replace a campaign&#39;s ad schedule (dayparting)
+   * Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param updateCampaignAdScheduleRequest  (required)
+   * @return UpdateCampaignAdSchedule200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAdSchedule200Response updateCampaignAdSchedule(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest) throws ApiException {
+    return updateCampaignAdSchedule(campaignId, updateCampaignAdScheduleRequest, null);
+  }
+
+  /**
+   * Replace a campaign&#39;s ad schedule (dayparting)
+   * Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param updateCampaignAdScheduleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateCampaignAdSchedule200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateCampaignAdSchedule200Response updateCampaignAdSchedule(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateCampaignAdSchedule200Response> localVarResponse = updateCampaignAdScheduleWithHttpInfo(campaignId, updateCampaignAdScheduleRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Replace a campaign&#39;s ad schedule (dayparting)
+   * Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param updateCampaignAdScheduleRequest  (required)
+   * @return ApiResponse&lt;UpdateCampaignAdSchedule200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAdSchedule200Response> updateCampaignAdScheduleWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest) throws ApiException {
+    return updateCampaignAdScheduleWithHttpInfo(campaignId, updateCampaignAdScheduleRequest, null);
+  }
+
+  /**
+   * Replace a campaign&#39;s ad schedule (dayparting)
+   * Replaces the campaign&#39;s whole ad schedule with the windows you send. This is a REPLACE, not a merge: windows you leave out stop serving.  Send &#x60;schedule: []&#x60; to clear dayparting, which returns the campaign to serving around the clock.  Google rules enforced here, so you get a named field instead of a criterion error: at most 6 windows per day, a window must end after it starts, windows on the same day may not overlap, &#x60;endHour&#x60; 24 is midnight and cannot carry minutes, and minutes are quarter-hours only (0, 15, 30, 45). &#x60;bidModifier&#x60; is 0.1-10.0; Google&#39;s 0 means \&quot;off\&quot; for devices only, so a window is switched off by leaving it out.  Windows are half-open (Google is exclusive of the end minute), so 09:00-12:00 and 12:00-17:00 on the same day are adjacent and both valid.  Google cannot edit an ad schedule in place (every AdScheduleInfo field is prohibited on update), so this removes the live criteria and creates the new ones in a single atomic mutate. The response is read back from Google and carries the new criterion ids. 
+   * @param campaignId Numeric Google platform campaign id. (required)
+   * @param updateCampaignAdScheduleRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateCampaignAdSchedule200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateCampaignAdSchedule200Response> updateCampaignAdScheduleWithHttpInfo(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = updateCampaignAdScheduleRequestBuilder(campaignId, updateCampaignAdScheduleRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("updateCampaignAdSchedule", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateCampaignAdSchedule200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateCampaignAdSchedule200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateCampaignAdSchedule200Response>() {});
+        
+
+        return new ApiResponse<UpdateCampaignAdSchedule200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder updateCampaignAdScheduleRequestBuilder(@javax.annotation.Nonnull String campaignId, @javax.annotation.Nonnull UpdateCampaignAdScheduleRequest updateCampaignAdScheduleRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'campaignId' is set
+    if (campaignId == null) {
+      throw new ApiException(400, "Missing the required parameter 'campaignId' when calling updateCampaignAdSchedule");
+    }
+    // verify the required parameter 'updateCampaignAdScheduleRequest' is set
+    if (updateCampaignAdScheduleRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'updateCampaignAdScheduleRequest' when calling updateCampaignAdSchedule");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/campaigns/{campaignId}/ad-schedule"
+        .replace("{campaignId}", ApiClient.urlEncode(campaignId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(updateCampaignAdScheduleRequest);
+      localVarRequestBuilder.method("PUT", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
     }

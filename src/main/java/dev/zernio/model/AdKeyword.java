@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdKeywordMetrics;
+import dev.zernio.model.AdKeywordQuality;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
@@ -55,10 +56,11 @@ import dev.zernio.ApiClient;
   AdKeyword.JSON_PROPERTY_STATUS,
   AdKeyword.JSON_PROPERTY_NEGATIVE,
   AdKeyword.JSON_PROPERTY_QUALITY_SCORE,
+  AdKeyword.JSON_PROPERTY_QUALITY,
   AdKeyword.JSON_PROPERTY_SYNCED_AT,
   AdKeyword.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:41:32.019536085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdKeyword {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -225,6 +227,10 @@ public class AdKeyword {
 
   public static final String JSON_PROPERTY_QUALITY_SCORE = "qualityScore";
   private JsonNullable<Integer> qualityScore = JsonNullable.<Integer>undefined();
+
+  public static final String JSON_PROPERTY_QUALITY = "quality";
+  @javax.annotation.Nullable
+  private AdKeywordQuality quality;
 
   public static final String JSON_PROPERTY_SYNCED_AT = "syncedAt";
   private JsonNullable<OffsetDateTime> syncedAt = JsonNullable.<OffsetDateTime>undefined();
@@ -634,7 +640,7 @@ public class AdKeyword {
   }
 
   /**
-   * Google Quality Score, 1-10. Null when unrated.
+   * Deprecated, use &#x60;quality.score&#x60;. Google Quality Score, 1-10. Null when unrated.
    * @return qualityScore
    */
   @javax.annotation.Nullable
@@ -657,6 +663,30 @@ public class AdKeyword {
 
   public void setQualityScore(@javax.annotation.Nullable Integer qualityScore) {
     this.qualityScore = JsonNullable.<Integer>of(qualityScore);
+  }
+
+
+  public AdKeyword quality(@javax.annotation.Nullable AdKeywordQuality quality) {
+    this.quality = quality;
+    return this;
+  }
+
+  /**
+   * Get quality
+   * @return quality
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUALITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdKeywordQuality getQuality() {
+    return quality;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUALITY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuality(@javax.annotation.Nullable AdKeywordQuality quality) {
+    this.quality = quality;
   }
 
 
@@ -744,6 +774,7 @@ public class AdKeyword {
         Objects.equals(this.status, adKeyword.status) &&
         Objects.equals(this.negative, adKeyword.negative) &&
         equalsNullable(this.qualityScore, adKeyword.qualityScore) &&
+        Objects.equals(this.quality, adKeyword.quality) &&
         equalsNullable(this.syncedAt, adKeyword.syncedAt) &&
         Objects.equals(this.metrics, adKeyword.metrics);
   }
@@ -754,7 +785,7 @@ public class AdKeyword {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, profileId, platform, adAccountId, campaignId, hashCodeNullable(campaignName), hashCodeNullable(campaignStatus), adSetId, hashCodeNullable(adSetName), hashCodeNullable(adSetStatus), keyword, matchType, status, negative, hashCodeNullable(qualityScore), hashCodeNullable(syncedAt), metrics);
+    return Objects.hash(id, accountId, profileId, platform, adAccountId, campaignId, hashCodeNullable(campaignName), hashCodeNullable(campaignStatus), adSetId, hashCodeNullable(adSetName), hashCodeNullable(adSetStatus), keyword, matchType, status, negative, hashCodeNullable(qualityScore), quality, hashCodeNullable(syncedAt), metrics);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -784,6 +815,7 @@ public class AdKeyword {
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
     sb.append("    negative: ").append(toIndentedString(negative)).append("\n");
     sb.append("    qualityScore: ").append(toIndentedString(qualityScore)).append("\n");
+    sb.append("    quality: ").append(toIndentedString(quality)).append("\n");
     sb.append("    syncedAt: ").append(toIndentedString(syncedAt)).append("\n");
     sb.append("    metrics: ").append(toIndentedString(metrics)).append("\n");
     sb.append("}");
@@ -911,6 +943,11 @@ public class AdKeyword {
     // add `qualityScore` to the URL query string
     if (getQualityScore() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%squalityScore%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQualityScore()))));
+    }
+
+    // add `quality` to the URL query string
+    if (getQuality() != null) {
+      joiner.add(getQuality().toUrlQueryString(prefix + "quality" + suffix));
     }
 
     // add `syncedAt` to the URL query string
