@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -35,9 +36,11 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_CODE,
   GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_TITLE,
-  GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_MESSAGE
+  GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_MESSAGE,
+  GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_DETAILS,
+  GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.JSON_PROPERTY_HREF
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T10:07:46.405936921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -50,6 +53,14 @@ public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
+
+  public static final String JSON_PROPERTY_DETAILS = "details";
+  @javax.annotation.Nullable
+  private String details;
+
+  public static final String JSON_PROPERTY_HREF = "href";
+  @javax.annotation.Nullable
+  private URI href;
 
   public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError() { 
   }
@@ -126,6 +137,54 @@ public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
   }
 
 
+  public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError details(@javax.annotation.Nullable String details) {
+    this.details = details;
+    return this;
+  }
+
+  /**
+   * Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.
+   * @return details
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDetails() {
+    return details;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetails(@javax.annotation.Nullable String details) {
+    this.details = details;
+  }
+
+
+  public GetInboxConversationMessages200ResponseMessagesInnerDeliveryError href(@javax.annotation.Nullable URI href) {
+    this.href = href;
+    return this;
+  }
+
+  /**
+   * Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.
+   * @return href
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getHref() {
+    return href;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHref(@javax.annotation.Nullable URI href) {
+    this.href = href;
+  }
+
+
   /**
    * Return true if this getInboxConversationMessages_200_response_messages_inner_deliveryError object is equal to o.
    */
@@ -140,12 +199,14 @@ public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
     GetInboxConversationMessages200ResponseMessagesInnerDeliveryError getInboxConversationMessages200ResponseMessagesInnerDeliveryError = (GetInboxConversationMessages200ResponseMessagesInnerDeliveryError) o;
     return Objects.equals(this.code, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.code) &&
         Objects.equals(this.title, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.title) &&
-        Objects.equals(this.message, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.message);
+        Objects.equals(this.message, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.message) &&
+        Objects.equals(this.details, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.details) &&
+        Objects.equals(this.href, getInboxConversationMessages200ResponseMessagesInnerDeliveryError.href);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, title, message);
+    return Objects.hash(code, title, message, details, href);
   }
 
   @Override
@@ -155,6 +216,8 @@ public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -215,6 +278,16 @@ public class GetInboxConversationMessages200ResponseMessagesInnerDeliveryError {
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `details` to the URL query string
+    if (getDetails() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdetails%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetails()))));
+    }
+
+    // add `href` to the URL query string
+    if (getHref() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     return joiner.toString();

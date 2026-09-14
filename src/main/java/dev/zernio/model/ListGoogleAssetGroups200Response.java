@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListGoogleAssetGroups200Response.JSON_PROPERTY_CACHED_AT,
   ListGoogleAssetGroups200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T10:07:46.405936921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleAssetGroups200Response {
   public static final String JSON_PROPERTY_ASSET_GROUPS = "assetGroups";
   @javax.annotation.Nonnull

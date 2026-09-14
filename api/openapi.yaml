@@ -51268,6 +51268,8 @@ components:
         statusAt: 2000-01-23T04:56:07.000+00:00
         error:
           code: 0
+          details: details
+          href: https://openapi-generator.tech
           title: title
           message: message
           explanation: explanation
@@ -78211,6 +78213,8 @@ components:
       description: Populated when deliveryStatus === "failed".
       example:
         code: 6
+        details: details
+        href: https://openapi-generator.tech
         title: title
         message: message
       properties:
@@ -78219,6 +78223,15 @@ components:
         title:
           type: string
         message:
+          type: string
+        details:
+          description: "Platform's extended detail for `code` (WhatsApp: Meta's `error_data.details`),\
+            \ when the platform sent one. Absent on SMS."
+          type: string
+        href:
+          description: "Link to the platform's documentation for `code`, when the\
+            \ platform sent one."
+          format: uri
           type: string
     getInboxConversationMessages_200_response_messages_inner_reactions_inner:
       example:
@@ -78294,6 +78307,8 @@ components:
         deliveredAt: 2000-01-23T04:56:07.000+00:00
         deliveryError:
           code: 6
+          details: details
+          href: https://openapi-generator.tech
           title: title
           message: message
         accountId: accountId
@@ -78523,6 +78538,8 @@ components:
           deliveredAt: 2000-01-23T04:56:07.000+00:00
           deliveryError:
             code: 6
+            details: details
+            href: https://openapi-generator.tech
             title: title
             message: message
           accountId: accountId
@@ -78593,6 +78610,8 @@ components:
           deliveredAt: 2000-01-23T04:56:07.000+00:00
           deliveryError:
             code: 6
+            details: details
+            href: https://openapi-generator.tech
             title: title
             message: message
           accountId: accountId
@@ -113011,6 +113030,8 @@ components:
       description: Populated only on message.failed.
       example:
         code: 0
+        details: details
+        href: https://openapi-generator.tech
         title: title
         message: message
         explanation: explanation
@@ -113021,11 +113042,21 @@ components:
           type: string
         message:
           type: string
+        details:
+          description: "Platform's extended detail for `code` (WhatsApp: Meta's `error_data.details`),\
+            \ when the platform sent one. Absent on SMS."
+          type: string
+        href:
+          description: "Link to the platform's documentation for `code`, when the\
+            \ platform sent one."
+          format: uri
+          type: string
         explanation:
           description: |
             Plain-language translation of `code` (e.g. for 131026, that the
             recipient has likely opted out of marketing messages while utility
-            templates are unaffected). Null for unmapped codes; fall back to
+            templates are unaffected, or for 131031, that Meta restricted the
+            WhatsApp Business Account). Null for unmapped codes; fall back to
             title/message.
           nullable: true
           type: string

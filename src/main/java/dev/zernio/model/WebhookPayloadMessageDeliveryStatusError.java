@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.net.URI;
 import java.util.Arrays;
 import org.openapitools.jackson.nullable.JsonNullable;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -40,9 +41,11 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_CODE,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_TITLE,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_MESSAGE,
+  WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_DETAILS,
+  WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_HREF,
   WebhookPayloadMessageDeliveryStatusError.JSON_PROPERTY_EXPLANATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T08:50:26.668079139Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T10:07:46.405936921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
@@ -55,6 +58,14 @@ public class WebhookPayloadMessageDeliveryStatusError {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
   private String message;
+
+  public static final String JSON_PROPERTY_DETAILS = "details";
+  @javax.annotation.Nullable
+  private String details;
+
+  public static final String JSON_PROPERTY_HREF = "href";
+  @javax.annotation.Nullable
+  private URI href;
 
   public static final String JSON_PROPERTY_EXPLANATION = "explanation";
   private JsonNullable<String> explanation = JsonNullable.<String>undefined();
@@ -134,13 +145,61 @@ public class WebhookPayloadMessageDeliveryStatusError {
   }
 
 
+  public WebhookPayloadMessageDeliveryStatusError details(@javax.annotation.Nullable String details) {
+    this.details = details;
+    return this;
+  }
+
+  /**
+   * Platform&#39;s extended detail for &#x60;code&#x60; (WhatsApp: Meta&#39;s &#x60;error_data.details&#x60;), when the platform sent one. Absent on SMS.
+   * @return details
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getDetails() {
+    return details;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetails(@javax.annotation.Nullable String details) {
+    this.details = details;
+  }
+
+
+  public WebhookPayloadMessageDeliveryStatusError href(@javax.annotation.Nullable URI href) {
+    this.href = href;
+    return this;
+  }
+
+  /**
+   * Link to the platform&#39;s documentation for &#x60;code&#x60;, when the platform sent one.
+   * @return href
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public URI getHref() {
+    return href;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_HREF, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setHref(@javax.annotation.Nullable URI href) {
+    this.href = href;
+  }
+
+
   public WebhookPayloadMessageDeliveryStatusError explanation(@javax.annotation.Nullable String explanation) {
     this.explanation = JsonNullable.<String>of(explanation);
     return this;
   }
 
   /**
-   * Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected). Null for unmapped codes; fall back to title/message. 
+   * Plain-language translation of &#x60;code&#x60; (e.g. for 131026, that the recipient has likely opted out of marketing messages while utility templates are unaffected, or for 131031, that Meta restricted the WhatsApp Business Account). Null for unmapped codes; fall back to title/message. 
    * @return explanation
    */
   @javax.annotation.Nullable
@@ -181,6 +240,8 @@ public class WebhookPayloadMessageDeliveryStatusError {
     return Objects.equals(this.code, webhookPayloadMessageDeliveryStatusError.code) &&
         Objects.equals(this.title, webhookPayloadMessageDeliveryStatusError.title) &&
         Objects.equals(this.message, webhookPayloadMessageDeliveryStatusError.message) &&
+        Objects.equals(this.details, webhookPayloadMessageDeliveryStatusError.details) &&
+        Objects.equals(this.href, webhookPayloadMessageDeliveryStatusError.href) &&
         equalsNullable(this.explanation, webhookPayloadMessageDeliveryStatusError.explanation);
   }
 
@@ -190,7 +251,7 @@ public class WebhookPayloadMessageDeliveryStatusError {
 
   @Override
   public int hashCode() {
-    return Objects.hash(code, title, message, hashCodeNullable(explanation));
+    return Objects.hash(code, title, message, details, href, hashCodeNullable(explanation));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -207,6 +268,8 @@ public class WebhookPayloadMessageDeliveryStatusError {
     sb.append("    code: ").append(toIndentedString(code)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    details: ").append(toIndentedString(details)).append("\n");
+    sb.append("    href: ").append(toIndentedString(href)).append("\n");
     sb.append("    explanation: ").append(toIndentedString(explanation)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -268,6 +331,16 @@ public class WebhookPayloadMessageDeliveryStatusError {
     // add `message` to the URL query string
     if (getMessage() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%smessage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessage()))));
+    }
+
+    // add `details` to the URL query string
+    if (getDetails() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdetails%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetails()))));
+    }
+
+    // add `href` to the URL query string
+    if (getHref() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%shref%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHref()))));
     }
 
     // add `explanation` to the URL query string
