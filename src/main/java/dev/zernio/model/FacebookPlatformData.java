@@ -32,7 +32,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require single vertical video (9:16, 3-60s). Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. Draft, carousel, and colored-background text options live under facebookSettings, see FacebookSettings. 
+ * Feed posts support up to 10 images (no mixed video+image). Stories require single media (24h, no captions). Reels require a single vertical video (9:16). The Zernio API does not preflight Reel duration. Meta&#39;s Reels publishing guide documents 3-90 seconds. Geo-restriction is a hard visibility restriction: users outside the specified countries cannot see the post. Not supported for stories. Draft, carousel, and colored-background text options live under facebookSettings, see FacebookSettings. 
  */
 @JsonPropertyOrder({
   FacebookPlatformData.JSON_PROPERTY_CONTENT_TYPE,
@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   FacebookPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
   FacebookPlatformData.JSON_PROPERTY_FACEBOOK_SETTINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:32:00.408206935Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FacebookPlatformData {
   /**
    * Set to &#39;story&#39; for Page Stories (24h ephemeral) or &#39;reel&#39; for Reels (short vertical video). Defaults to feed post if omitted.

@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GoogleAssetUpdate.JSON_PROPERTY_CALLOUT_ASSET,
   GoogleAssetUpdate.JSON_PROPERTY_STRUCTURED_SNIPPET_ASSET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:32:00.408206935Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:57:53.152014510Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAssetUpdate {
   public static final String JSON_PROPERTY_ASSET_RESOURCE_NAME = "assetResourceName";
   @javax.annotation.Nonnull
