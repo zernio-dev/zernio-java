@@ -15,6 +15,7 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**cities** | [**List&lt;TargetingSpecCitiesInner&gt;**](TargetingSpecCitiesInner.md) | City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits; both must be set together or both omitted. &#x60;radius&#x60; is only honoured on platforms whose capability map allows city radius (Meta). |  [optional] |
 |**zips** | [**List&lt;BoostPostRequestTargetingRegionsInner&gt;**](BoostPostRequestTargetingRegionsInner.md) | Postal/ZIP targeting. &#x60;key&#x60; is the platform&#39;s postal location ID (e.g. Meta &#x60;US:94304&#x60;). Supported on Meta, Google, TikTok, Pinterest, X. |  [optional] |
 |**metros** | [**List&lt;BoostPostRequestTargetingRegionsInner&gt;**](BoostPostRequestTargetingRegionsInner.md) | DMA / metro-area targeting. &#x60;key&#x60; is the platform&#39;s metro ID (e.g. Meta &#x60;DMA:807&#x60;). |  [optional] |
+|**countryGroups** | [**List&lt;CountryGroupsEnum&gt;**](#List&lt;CountryGroupsEnum&gt;) | Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;.  |  [optional] |
 |**customLocations** | [**List&lt;TargetingSpecCustomLocationsInner&gt;**](TargetingSpecCustomLocationsInner.md) | Point-radius (lat/lng) targeting (Meta custom_locations / Google proximity). Honoured on Meta and Google; ignored on platforms without radius support. |  [optional] |
 |**excludedLocations** | [**TargetingSpecExcludedLocations**](TargetingSpecExcludedLocations.md) |  |  [optional] |
 |**ageMin** | **Integer** | Minimum age. Applied on Meta, TikTok and Pinterest; ignored on Google, LinkedIn and X. Each platform clamps to its own range: Meta and Pinterest effectively cap at 65 (65 &#x3D; 65+), TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18 there. |  [optional] |
@@ -33,6 +34,33 @@ Normalized, platform-agnostic ad-targeting spec. Every field is optional, an emp
 |**jobFunctions** | **List&lt;String&gt;** | LinkedIn B2B only. Function URN id fragments, or the full urn:li:function:* URN from /v1/ads/targeting/search?dimension&#x3D;jobFunction. |  [optional] |
 |**audienceInclude** | **List&lt;String&gt;** | Platform audience IDs to include, as returned by GET /v1/ads/audiences (Meta custom audience ids, TikTok audience ids, Pinterest customer list ids, LinkedIn segment ids (the platformAudienceId from GET /v1/ads/audiences; Zernio resolves it to the targetable LinkedIn ad segment, an unknown id returns 400), Google user list ids, X custom audience ids). Not supported on OpenAI (400). |  [optional] |
 |**audienceExclude** | **List&lt;String&gt;** | Platform audience IDs to exclude; same ID formats as audienceInclude. Not supported on OpenAI (400). |  [optional] |
+
+
+
+## Enum: List&lt;CountryGroupsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| AFRICA | &quot;africa&quot; |
+| ASIA | &quot;asia&quot; |
+| EUROPE | &quot;europe&quot; |
+| NORTH_AMERICA | &quot;north_america&quot; |
+| SOUTH_AMERICA | &quot;south_america&quot; |
+| OCEANIA | &quot;oceania&quot; |
+| CENTRAL_AMERICA | &quot;central_america&quot; |
+| CARIBBEAN | &quot;caribbean&quot; |
+| EEA | &quot;eea&quot; |
+| EURO_AREA | &quot;euro_area&quot; |
+| NAFTA | &quot;nafta&quot; |
+| MERCOSUR | &quot;mercosur&quot; |
+| AFTA | &quot;afta&quot; |
+| APEC | &quot;apec&quot; |
+| GCC | &quot;gcc&quot; |
+| CISFTA | &quot;cisfta&quot; |
+| EMERGING_MARKETS | &quot;emerging_markets&quot; |
+| ITUNES_APP_STORE | &quot;itunes_app_store&quot; |
+| ANDROID_FREE_STORE | &quot;android_free_store&quot; |
+| ANDROID_PAID_STORE | &quot;android_paid_store&quot; |
 
 
 

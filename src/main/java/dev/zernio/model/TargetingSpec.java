@@ -47,6 +47,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_CITIES,
   TargetingSpec.JSON_PROPERTY_ZIPS,
   TargetingSpec.JSON_PROPERTY_METROS,
+  TargetingSpec.JSON_PROPERTY_COUNTRY_GROUPS,
   TargetingSpec.JSON_PROPERTY_CUSTOM_LOCATIONS,
   TargetingSpec.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   TargetingSpec.JSON_PROPERTY_AGE_MIN,
@@ -66,7 +67,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T10:07:46.405936921Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T13:14:10.125078906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_USER_OS = "userOs";
   @javax.annotation.Nullable
@@ -95,6 +96,81 @@ public class TargetingSpec {
   public static final String JSON_PROPERTY_METROS = "metros";
   @javax.annotation.Nullable
   private List<BoostPostRequestTargetingRegionsInner> metros = new ArrayList<>();
+
+  /**
+   * Gets or Sets countryGroups
+   */
+  public enum CountryGroupsEnum {
+    AFRICA(String.valueOf("africa")),
+    
+    ASIA(String.valueOf("asia")),
+    
+    EUROPE(String.valueOf("europe")),
+    
+    NORTH_AMERICA(String.valueOf("north_america")),
+    
+    SOUTH_AMERICA(String.valueOf("south_america")),
+    
+    OCEANIA(String.valueOf("oceania")),
+    
+    CENTRAL_AMERICA(String.valueOf("central_america")),
+    
+    CARIBBEAN(String.valueOf("caribbean")),
+    
+    EEA(String.valueOf("eea")),
+    
+    EURO_AREA(String.valueOf("euro_area")),
+    
+    NAFTA(String.valueOf("nafta")),
+    
+    MERCOSUR(String.valueOf("mercosur")),
+    
+    AFTA(String.valueOf("afta")),
+    
+    APEC(String.valueOf("apec")),
+    
+    GCC(String.valueOf("gcc")),
+    
+    CISFTA(String.valueOf("cisfta")),
+    
+    EMERGING_MARKETS(String.valueOf("emerging_markets")),
+    
+    ITUNES_APP_STORE(String.valueOf("itunes_app_store")),
+    
+    ANDROID_FREE_STORE(String.valueOf("android_free_store")),
+    
+    ANDROID_PAID_STORE(String.valueOf("android_paid_store"));
+
+    private String value;
+
+    CountryGroupsEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CountryGroupsEnum fromValue(String value) {
+      for (CountryGroupsEnum b : CountryGroupsEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_COUNTRY_GROUPS = "countryGroups";
+  @javax.annotation.Nullable
+  private List<CountryGroupsEnum> countryGroups = new ArrayList<>();
 
   public static final String JSON_PROPERTY_CUSTOM_LOCATIONS = "customLocations";
   @javax.annotation.Nullable
@@ -468,6 +544,38 @@ public class TargetingSpec {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setMetros(@javax.annotation.Nullable List<BoostPostRequestTargetingRegionsInner> metros) {
     this.metros = metros;
+  }
+
+
+  public TargetingSpec countryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
+    return this;
+  }
+
+  public TargetingSpec addCountryGroupsItem(CountryGroupsEnum countryGroupsItem) {
+    if (this.countryGroups == null) {
+      this.countryGroups = new ArrayList<>();
+    }
+    this.countryGroups.add(countryGroupsItem);
+    return this;
+  }
+
+  /**
+   * Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;. 
+   * @return countryGroups
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CountryGroupsEnum> getCountryGroups() {
+    return countryGroups;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_GROUPS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountryGroups(@javax.annotation.Nullable List<CountryGroupsEnum> countryGroups) {
+    this.countryGroups = countryGroups;
   }
 
 
@@ -1030,6 +1138,7 @@ public class TargetingSpec {
         Objects.equals(this.cities, targetingSpec.cities) &&
         Objects.equals(this.zips, targetingSpec.zips) &&
         Objects.equals(this.metros, targetingSpec.metros) &&
+        Objects.equals(this.countryGroups, targetingSpec.countryGroups) &&
         Objects.equals(this.customLocations, targetingSpec.customLocations) &&
         Objects.equals(this.excludedLocations, targetingSpec.excludedLocations) &&
         Objects.equals(this.ageMin, targetingSpec.ageMin) &&
@@ -1052,7 +1161,7 @@ public class TargetingSpec {
 
   @Override
   public int hashCode() {
-    return Objects.hash(userOs, userDevice, countries, regions, cities, zips, metros, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, workPositions, workEmployers, workIndustries, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
+    return Objects.hash(userOs, userDevice, countries, regions, cities, zips, metros, countryGroups, customLocations, excludedLocations, ageMin, ageMax, gender, incomeTier, languages, interests, behaviors, workPositions, workEmployers, workIndustries, industries, companySizes, seniorities, jobFunctions, audienceInclude, audienceExclude);
   }
 
   @Override
@@ -1066,6 +1175,7 @@ public class TargetingSpec {
     sb.append("    cities: ").append(toIndentedString(cities)).append("\n");
     sb.append("    zips: ").append(toIndentedString(zips)).append("\n");
     sb.append("    metros: ").append(toIndentedString(metros)).append("\n");
+    sb.append("    countryGroups: ").append(toIndentedString(countryGroups)).append("\n");
     sb.append("    customLocations: ").append(toIndentedString(customLocations)).append("\n");
     sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
     sb.append("    ageMin: ").append(toIndentedString(ageMin)).append("\n");
@@ -1195,6 +1305,15 @@ public class TargetingSpec {
           joiner.add(getMetros().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%smetros%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
+      }
+    }
+
+    // add `countryGroups` to the URL query string
+    if (getCountryGroups() != null) {
+      for (int i = 0; i < getCountryGroups().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%scountryGroups%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getCountryGroups().get(i)))));
       }
     }
 

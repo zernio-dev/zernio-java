@@ -31,6 +31,7 @@
 |**regions** | [**List&lt;CtwaAdRequestBodyRegionsInner&gt;**](CtwaAdRequestBodyRegionsInner.md) | Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region).  |  [optional] |
 |**zips** | [**List&lt;CtwaAdRequestBodyZipsInner&gt;**](CtwaAdRequestBodyZipsInner.md) | ZIP / postal-code geo targeting. &#x60;key&#x60; is the platform&#39;s postal id resolved via /v1/ads/targeting/search.  |  [optional] |
 |**metros** | [**List&lt;CtwaAdRequestBodyZipsInner&gt;**](CtwaAdRequestBodyZipsInner.md) | DMA / metro-area geo targeting. &#x60;key&#x60; is Meta&#39;s metro id (e.g. &#x60;DMA:807&#x60;).  |  [optional] |
+|**countryGroups** | [**List&lt;CountryGroupsEnum&gt;**](#List&lt;CountryGroupsEnum&gt;) | Meta only. Continents and trade blocs (&#x60;geo_locations.country_groups&#x60;), for targeting a whole region without listing its countries. Combines with &#x60;countries&#x60; rather than replacing it, and is also accepted under &#x60;excludedLocations&#x60;. Discoverable via &#x60;GET /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;country_group&#x60;.  |  [optional] |
 |**customLocations** | [**List&lt;CreateStandaloneAdRequestCustomLocationsInner&gt;**](CreateStandaloneAdRequestCustomLocationsInner.md) | Point-radius geo (Meta &#x60;geo_locations.custom_locations&#x60;). Use for targeting a radius around a specific lat/long when no Meta city/region key fits. &#x60;distanceUnit&#x60; is required.  |  [optional] |
 |**ageMin** | **Integer** |  |  [optional] |
 |**ageMax** | **Integer** |  |  [optional] |
@@ -68,6 +69,33 @@
 |---- | -----|
 | DAILY | &quot;daily&quot; |
 | LIFETIME | &quot;lifetime&quot; |
+
+
+
+## Enum: List&lt;CountryGroupsEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| AFRICA | &quot;africa&quot; |
+| ASIA | &quot;asia&quot; |
+| EUROPE | &quot;europe&quot; |
+| NORTH_AMERICA | &quot;north_america&quot; |
+| SOUTH_AMERICA | &quot;south_america&quot; |
+| OCEANIA | &quot;oceania&quot; |
+| CENTRAL_AMERICA | &quot;central_america&quot; |
+| CARIBBEAN | &quot;caribbean&quot; |
+| EEA | &quot;eea&quot; |
+| EURO_AREA | &quot;euro_area&quot; |
+| NAFTA | &quot;nafta&quot; |
+| MERCOSUR | &quot;mercosur&quot; |
+| AFTA | &quot;afta&quot; |
+| APEC | &quot;apec&quot; |
+| GCC | &quot;gcc&quot; |
+| CISFTA | &quot;cisfta&quot; |
+| EMERGING_MARKETS | &quot;emerging_markets&quot; |
+| ITUNES_APP_STORE | &quot;itunes_app_store&quot; |
+| ANDROID_FREE_STORE | &quot;android_free_store&quot; |
+| ANDROID_PAID_STORE | &quot;android_paid_store&quot; |
 
 
 

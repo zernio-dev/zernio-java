@@ -39895,6 +39895,7 @@ paths:
           enum:
           - all
           - country
+          - country_group
           - region
           - city
           - subcity
@@ -46790,6 +46791,9 @@ components:
           body: body
           creativeFeatures: ""
           headline: headline
+        countryGroups:
+        - africa
+        - africa
         placements:
           whatsappPositions:
           - status
@@ -47056,6 +47060,37 @@ components:
             (e.g. `DMA:807`).
           items:
             $ref: "#/components/schemas/CtwaAdRequestBody_zips_inner"
+          type: array
+        countryGroups:
+          description: |
+            Meta only. Continents and trade blocs (`geo_locations.country_groups`),
+            for targeting a whole region without listing its countries. Combines
+            with `countries` rather than replacing it, and is also accepted under
+            `excludedLocations`. Discoverable via
+            `GET /v1/ads/targeting/search?dimension=geo&geoType=country_group`.
+          items:
+            enum:
+            - africa
+            - asia
+            - europe
+            - north_america
+            - south_america
+            - oceania
+            - central_america
+            - caribbean
+            - eea
+            - euro_area
+            - nafta
+            - mercosur
+            - afta
+            - apec
+            - gcc
+            - cisfta
+            - emerging_markets
+            - itunes_app_store
+            - android_free_store
+            - android_paid_store
+            type: string
           type: array
         customLocations:
           description: |
@@ -60802,6 +60837,37 @@ components:
             (e.g. Meta `DMA:807`).
           items:
             $ref: "#/components/schemas/boostPost_request_targeting_regions_inner"
+          type: array
+        countryGroups:
+          description: |
+            Meta only. Continents and trade blocs (`geo_locations.country_groups`),
+            for targeting a whole region without listing its countries. Combines
+            with `countries` rather than replacing it, and is also accepted under
+            `excludedLocations`. Discoverable via
+            `GET /v1/ads/targeting/search?dimension=geo&geoType=country_group`.
+          items:
+            enum:
+            - africa
+            - asia
+            - europe
+            - north_america
+            - south_america
+            - oceania
+            - central_america
+            - caribbean
+            - eea
+            - euro_area
+            - nafta
+            - mercosur
+            - afta
+            - apec
+            - gcc
+            - cisfta
+            - emerging_markets
+            - itunes_app_store
+            - android_free_store
+            - android_paid_store
+            type: string
           type: array
         customLocations:
           description: Point-radius (lat/lng) targeting (Meta custom_locations / Google
