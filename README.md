@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-14T15:08:28.060543343Z[Etc/UTC]
+- Build date: 2026-09-14T16:32:00.408206935Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -167,6 +167,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**listAccounts**](docs/AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**listAccountsWithHttpInfo**](docs/AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts
+*AccountsApi* | [**listTikTokCommercialMusic**](docs/AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
+*AccountsApi* | [**listTikTokCommercialMusicWithHttpInfo**](docs/AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
@@ -2770,6 +2772,9 @@ Class | Method | HTTP request | Description
  - [ListTikTokAdPixels200Response](docs/ListTikTokAdPixels200Response.md)
  - [ListTikTokAdPixels200ResponsePixelsInner](docs/ListTikTokAdPixels200ResponsePixelsInner.md)
  - [ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner](docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md)
+ - [ListTikTokCommercialMusic200Response](docs/ListTikTokCommercialMusic200Response.md)
+ - [ListTikTokCommercialMusic200ResponseTracksInner](docs/ListTikTokCommercialMusic200ResponseTracksInner.md)
+ - [ListTikTokCommercialMusic200ResponseTracksInnerClip](docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
@@ -3182,6 +3187,7 @@ Class | Method | HTTP request | Description
  - [TikTokDryRunVerdict](docs/TikTokDryRunVerdict.md)
  - [TikTokDryRunVerdictTiktokInner](docs/TikTokDryRunVerdictTiktokInner.md)
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
+ - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)

@@ -1239,6 +1239,9 @@ docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
 docs/ListTikTokAdPixels200Response.md
 docs/ListTikTokAdPixels200ResponsePixelsInner.md
 docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md
+docs/ListTikTokCommercialMusic200Response.md
+docs/ListTikTokCommercialMusic200ResponseTracksInner.md
+docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
 docs/ListTrackingTagSharedAccounts200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
@@ -1666,6 +1669,7 @@ docs/ThreadsPlatformData.md
 docs/TikTokDryRunVerdict.md
 docs/TikTokDryRunVerdictTiktokInner.md
 docs/TikTokPlatformData.md
+docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
 docs/TrackingTagsApi.md
@@ -3403,6 +3407,9 @@ src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInne
 src/main/java/dev/zernio/model/ListTikTokAdPixels200Response.java
 src/main/java/dev/zernio/model/ListTikTokAdPixels200ResponsePixelsInner.java
 src/main/java/dev/zernio/model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.java
+src/main/java/dev/zernio/model/ListTikTokCommercialMusic200Response.java
+src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInner.java
+src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInnerClip.java
 src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
 src/main/java/dev/zernio/model/ListTrackingTags200Response.java
 src/main/java/dev/zernio/model/ListUsers200Response.java
@@ -3815,6 +3822,7 @@ src/main/java/dev/zernio/model/ThreadsPlatformData.java
 src/main/java/dev/zernio/model/TikTokDryRunVerdict.java
 src/main/java/dev/zernio/model/TikTokDryRunVerdictTiktokInner.java
 src/main/java/dev/zernio/model/TikTokPlatformData.java
+src/main/java/dev/zernio/model/TikTokPlatformDataMusicSoundInfo.java
 src/main/java/dev/zernio/model/TrackingTag.java
 src/main/java/dev/zernio/model/TransferVoiceCall200Response.java
 src/main/java/dev/zernio/model/TransferVoiceCallRequest.java
@@ -4249,4 +4257,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetCommentAutomation200ResponseLogsInnerPlatformErrorTest.java
+src/test/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTest.java
+src/test/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInnerClipTest.java
+src/test/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInnerTest.java
+src/test/java/dev/zernio/model/TikTokPlatformDataMusicSoundInfoTest.java

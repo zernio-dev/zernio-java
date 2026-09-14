@@ -24,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
+| [**listTikTokCommercialMusic**](AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
+| [**listTikTokCommercialMusicWithHttpInfo**](AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
@@ -1591,6 +1593,158 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+
+## listTikTokCommercialMusic
+
+> ListTikTokCommercialMusic200Response listTikTokCommercialMusic(accountId, countryCode)
+
+List trending commercial music
+
+Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String countryCode = "countryCode_example"; // String | Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok's global chart.
+        try {
+            ListTikTokCommercialMusic200Response result = apiInstance.listTikTokCommercialMusic(accountId, countryCode);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listTikTokCommercialMusic");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **countryCode** | **String**| Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. | [optional] |
+
+### Return type
+
+[**ListTikTokCommercialMusic200Response**](ListTikTokCommercialMusic200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The trending tracks, rank 1 first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
+
+## listTikTokCommercialMusicWithHttpInfo
+
+> ApiResponse<ListTikTokCommercialMusic200Response> listTikTokCommercialMusic listTikTokCommercialMusicWithHttpInfo(accountId, countryCode)
+
+List trending commercial music
+
+Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String countryCode = "countryCode_example"; // String | Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok's global chart.
+        try {
+            ApiResponse<ListTikTokCommercialMusic200Response> response = apiInstance.listTikTokCommercialMusicWithHttpInfo(accountId, countryCode);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listTikTokCommercialMusic");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **countryCode** | **String**| Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListTikTokCommercialMusic200Response**](ListTikTokCommercialMusic200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The trending tracks, rank 1 first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
 
 
 ## moveAccountToProfile

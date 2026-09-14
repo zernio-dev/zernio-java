@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.TikTokPlatformDataMusicSoundInfo;
 import java.net.URI;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
@@ -49,10 +50,12 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_VIDEO_COVER_IMAGE_URL,
   TikTokPlatformData.JSON_PROPERTY_PHOTO_COVER_INDEX,
   TikTokPlatformData.JSON_PROPERTY_AUTO_ADD_MUSIC,
+  TikTokPlatformData.JSON_PROPERTY_MUSIC_SOUND_INFO,
+  TikTokPlatformData.JSON_PROPERTY_VIDEO_ORIGINAL_SOUND_VOLUME,
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T15:08:28.060543343Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:32:00.408206935Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -185,6 +188,14 @@ public class TikTokPlatformData {
   public static final String JSON_PROPERTY_AUTO_ADD_MUSIC = "autoAddMusic";
   @javax.annotation.Nullable
   private Boolean autoAddMusic;
+
+  public static final String JSON_PROPERTY_MUSIC_SOUND_INFO = "musicSoundInfo";
+  @javax.annotation.Nullable
+  private TikTokPlatformDataMusicSoundInfo musicSoundInfo;
+
+  public static final String JSON_PROPERTY_VIDEO_ORIGINAL_SOUND_VOLUME = "videoOriginalSoundVolume";
+  @javax.annotation.Nullable
+  private Integer videoOriginalSoundVolume;
 
   public static final String JSON_PROPERTY_VIDEO_MADE_WITH_AI = "videoMadeWithAi";
   @javax.annotation.Nullable
@@ -541,7 +552,7 @@ public class TikTokPlatformData {
   }
 
   /**
-   * When true, TikTok may add recommended music (photos only)
+   * When true, TikTok may add recommended music (photos only). With the brand-organic or branded-content toggle on, TikTok allows Commercial Music Library tracks only, so this attaches nothing there; use musicSoundInfo instead.
    * @return autoAddMusic
    */
   @javax.annotation.Nullable
@@ -556,6 +567,56 @@ public class TikTokPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAutoAddMusic(@javax.annotation.Nullable Boolean autoAddMusic) {
     this.autoAddMusic = autoAddMusic;
+  }
+
+
+  public TikTokPlatformData musicSoundInfo(@javax.annotation.Nullable TikTokPlatformDataMusicSoundInfo musicSoundInfo) {
+    this.musicSoundInfo = musicSoundInfo;
+    return this;
+  }
+
+  /**
+   * Get musicSoundInfo
+   * @return musicSoundInfo
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MUSIC_SOUND_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TikTokPlatformDataMusicSoundInfo getMusicSoundInfo() {
+    return musicSoundInfo;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MUSIC_SOUND_INFO, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMusicSoundInfo(@javax.annotation.Nullable TikTokPlatformDataMusicSoundInfo musicSoundInfo) {
+    this.musicSoundInfo = musicSoundInfo;
+  }
+
+
+  public TikTokPlatformData videoOriginalSoundVolume(@javax.annotation.Nullable Integer videoOriginalSoundVolume) {
+    this.videoOriginalSoundVolume = videoOriginalSoundVolume;
+    return this;
+  }
+
+  /**
+   * Volume of the video&#39;s own sound when a commercial track is attached (0 to 100). Requires musicSoundInfo. Video posts only.
+   * minimum: 0
+   * maximum: 100
+   * @return videoOriginalSoundVolume
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ORIGINAL_SOUND_VOLUME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideoOriginalSoundVolume() {
+    return videoOriginalSoundVolume;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO_ORIGINAL_SOUND_VOLUME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideoOriginalSoundVolume(@javax.annotation.Nullable Integer videoOriginalSoundVolume) {
+    this.videoOriginalSoundVolume = videoOriginalSoundVolume;
   }
 
 
@@ -634,13 +695,15 @@ public class TikTokPlatformData {
         Objects.equals(this.videoCoverImageUrl, tikTokPlatformData.videoCoverImageUrl) &&
         Objects.equals(this.photoCoverIndex, tikTokPlatformData.photoCoverIndex) &&
         Objects.equals(this.autoAddMusic, tikTokPlatformData.autoAddMusic) &&
+        Objects.equals(this.musicSoundInfo, tikTokPlatformData.musicSoundInfo) &&
+        Objects.equals(this.videoOriginalSoundVolume, tikTokPlatformData.videoOriginalSoundVolume) &&
         Objects.equals(this.videoMadeWithAi, tikTokPlatformData.videoMadeWithAi) &&
         Objects.equals(this.description, tikTokPlatformData.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, videoCoverImageUrl, photoCoverIndex, autoAddMusic, videoMadeWithAi, description);
+    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, videoCoverImageUrl, photoCoverIndex, autoAddMusic, musicSoundInfo, videoOriginalSoundVolume, videoMadeWithAi, description);
   }
 
   @Override
@@ -662,6 +725,8 @@ public class TikTokPlatformData {
     sb.append("    videoCoverImageUrl: ").append(toIndentedString(videoCoverImageUrl)).append("\n");
     sb.append("    photoCoverIndex: ").append(toIndentedString(photoCoverIndex)).append("\n");
     sb.append("    autoAddMusic: ").append(toIndentedString(autoAddMusic)).append("\n");
+    sb.append("    musicSoundInfo: ").append(toIndentedString(musicSoundInfo)).append("\n");
+    sb.append("    videoOriginalSoundVolume: ").append(toIndentedString(videoOriginalSoundVolume)).append("\n");
     sb.append("    videoMadeWithAi: ").append(toIndentedString(videoMadeWithAi)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
@@ -784,6 +849,16 @@ public class TikTokPlatformData {
     // add `autoAddMusic` to the URL query string
     if (getAutoAddMusic() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sautoAddMusic%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAutoAddMusic()))));
+    }
+
+    // add `musicSoundInfo` to the URL query string
+    if (getMusicSoundInfo() != null) {
+      joiner.add(getMusicSoundInfo().toUrlQueryString(prefix + "musicSoundInfo" + suffix));
+    }
+
+    // add `videoOriginalSoundVolume` to the URL query string
+    if (getVideoOriginalSoundVolume() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideoOriginalSoundVolume%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoOriginalSoundVolume()))));
     }
 
     // add `videoMadeWithAi` to the URL query string

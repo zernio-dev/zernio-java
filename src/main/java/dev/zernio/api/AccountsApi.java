@@ -33,6 +33,7 @@ import dev.zernio.model.GetTikTokCreatorInfo200Response;
 import dev.zernio.model.GetYouTubeDailyViews400Response;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.InlineObject2;
+import dev.zernio.model.ListTikTokCommercialMusic200Response;
 import java.time.LocalDate;
 import dev.zernio.model.MoveAccountToProfile200Response;
 import dev.zernio.model.MoveAccountToProfileRequest;
@@ -66,7 +67,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T15:08:28.060543343Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T16:32:00.408206935Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1480,6 +1481,143 @@ public class AccountsApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("page", page));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List trending commercial music
+   * Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+   * @param accountId The TikTok account ID (required)
+   * @param countryCode Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)
+   * @return ListTikTokCommercialMusic200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTikTokCommercialMusic200Response listTikTokCommercialMusic(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String countryCode) throws ApiException {
+    return listTikTokCommercialMusic(accountId, countryCode, null);
+  }
+
+  /**
+   * List trending commercial music
+   * Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+   * @param accountId The TikTok account ID (required)
+   * @param countryCode Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ListTikTokCommercialMusic200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTikTokCommercialMusic200Response listTikTokCommercialMusic(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String countryCode, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListTikTokCommercialMusic200Response> localVarResponse = listTikTokCommercialMusicWithHttpInfo(accountId, countryCode, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List trending commercial music
+   * Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+   * @param accountId The TikTok account ID (required)
+   * @param countryCode Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)
+   * @return ApiResponse&lt;ListTikTokCommercialMusic200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTikTokCommercialMusic200Response> listTikTokCommercialMusicWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String countryCode) throws ApiException {
+    return listTikTokCommercialMusicWithHttpInfo(accountId, countryCode, null);
+  }
+
+  /**
+   * List trending commercial music
+   * Returns the 100 currently trending tracks of TikTok&#39;s Commercial Music Library for a TikTok account connected through the TikTok for Business app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating a post. The list is not paged; countryCode selects the country chart.
+   * @param accountId The TikTok account ID (required)
+   * @param countryCode Two-letter ISO 3166-1 country code of the chart to read (for example ES). Defaults to TikTok&#39;s global chart. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListTikTokCommercialMusic200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTikTokCommercialMusic200Response> listTikTokCommercialMusicWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String countryCode, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listTikTokCommercialMusicRequestBuilder(accountId, countryCode, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listTikTokCommercialMusic", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListTikTokCommercialMusic200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListTikTokCommercialMusic200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListTikTokCommercialMusic200Response>() {});
+        
+
+        return new ApiResponse<ListTikTokCommercialMusic200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listTikTokCommercialMusicRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String countryCode, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listTikTokCommercialMusic");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tiktok/commercial-music"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "countryCode";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("countryCode", countryCode));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -7771,6 +7771,50 @@ paths:
       - instagram
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/tiktok/commercial-music:
+    get:
+      description: Returns the 100 currently trending tracks of TikTok's Commercial
+        Music Library for a TikTok account connected through the TikTok for Business
+        app. Use a track id as tiktokSettings.musicSoundInfo.musicSoundId when creating
+        a post. The list is not paged; countryCode selects the country chart.
+      operationId: listTikTokCommercialMusic
+      parameters:
+      - description: The TikTok account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Two-letter ISO 3166-1 country code of the chart to read (for
+          example ES). Defaults to TikTok's global chart.
+        explode: true
+        in: query
+        name: countryCode
+        required: false
+        schema:
+          maxLength: 2
+          minLength: 2
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTikTokCommercialMusic_200_response"
+          description: "The trending tracks, rank 1 first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: Account not found
+      summary: List trending commercial music
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/tiktok/creator-info:
     get:
       description: "Returns TikTok creator details, available privacy levels, posting\
@@ -53733,8 +53777,19 @@ components:
           minimum: 0
           type: integer
         autoAddMusic:
-          description: "When true, TikTok may add recommended music (photos only)"
+          description: "When true, TikTok may add recommended music (photos only).\
+            \ With the brand-organic or branded-content toggle on, TikTok allows Commercial\
+            \ Music Library tracks only, so this attaches nothing there; use musicSoundInfo\
+            \ instead."
           type: boolean
+        musicSoundInfo:
+          $ref: "#/components/schemas/TikTokPlatformData_musicSoundInfo"
+        videoOriginalSoundVolume:
+          description: Volume of the video's own sound when a commercial track is
+            attached (0 to 100). Requires musicSoundInfo. Video posts only.
+          maximum: 100
+          minimum: 0
+          type: integer
         videoMadeWithAi:
           description: "Set true to disclose AI-generated content. Accounts connected\
             \ through the TikTok for Business app carry the disclosure on video posts\
@@ -68462,6 +68517,89 @@ components:
       - accountId
       - isFollower
       - userId
+    listTikTokCommercialMusic_200_response_tracks_inner_clip:
+      description: "The trending excerpt of the track, when TikTok provides one"
+      example:
+        previewUrl: previewUrl
+        durationSec: 1
+      properties:
+        durationSec:
+          type: integer
+        previewUrl:
+          type: string
+    listTikTokCommercialMusic_200_response_tracks_inner:
+      example:
+        previewUrl: previewUrl
+        artist: artist
+        genres:
+        - genres
+        - genres
+        name: name
+        rank: 6
+        id: id
+        durationSec: 0
+        clip:
+          previewUrl: previewUrl
+          durationSec: 1
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          description: The commercial_music_id to send as musicSoundId
+          type: string
+        name:
+          type: string
+        artist:
+          type: string
+        durationSec:
+          type: integer
+        genres:
+          items:
+            type: string
+          type: array
+        previewUrl:
+          description: Preview audio of the full track
+          type: string
+        thumbnailUrl:
+          type: string
+        rank:
+          description: "Position in the trending chart, 1 first"
+          type: integer
+        clip:
+          $ref: "#/components/schemas/listTikTokCommercialMusic_200_response_tracks_inner_clip"
+    listTikTokCommercialMusic_200_response:
+      example:
+        tracks:
+        - previewUrl: previewUrl
+          artist: artist
+          genres:
+          - genres
+          - genres
+          name: name
+          rank: 6
+          id: id
+          durationSec: 0
+          clip:
+            previewUrl: previewUrl
+            durationSec: 1
+          thumbnailUrl: thumbnailUrl
+        - previewUrl: previewUrl
+          artist: artist
+          genres:
+          - genres
+          - genres
+          name: name
+          rank: 6
+          id: id
+          durationSec: 0
+          clip:
+            previewUrl: previewUrl
+            durationSec: 1
+          thumbnailUrl: thumbnailUrl
+      properties:
+        tracks:
+          items:
+            $ref: "#/components/schemas/listTikTokCommercialMusic_200_response_tracks_inner"
+          type: array
     getTikTokCreatorInfo_200_response_creator:
       example:
         avatarUrl: avatarUrl
@@ -114688,6 +114826,36 @@ components:
           description: Coupon code for the offer
           example: SAVE20
           type: string
+    TikTokPlatformData_musicSoundInfo:
+      description: "Commercial Music Library track to attach. Accounts connected through\
+        \ the TikTok for Business app only: a developer-app account rejects the post\
+        \ at publish time with a message that says so. Pick musicSoundId from GET\
+        \ /v1/accounts/{accountId}/tiktok/commercial-music. Ignored on drafts, where\
+        \ TikTok ignores every post_info field."
+      properties:
+        musicSoundId:
+          description: The commercial_music_id of the track.
+          type: string
+        musicSoundVolume:
+          default: 50
+          description: "Track volume. TikTok defaults an omitted volume to 0, which\
+            \ publishes the track silently, so we default to the app's 50. Video posts\
+            \ only."
+          maximum: 100
+          minimum: 0
+          type: integer
+        musicSoundStart:
+          description: Start point of the track in milliseconds (default 0). Video
+            posts only.
+          minimum: 0
+          type: integer
+        musicSoundEnd:
+          description: "End point of the track in milliseconds (default: the video\
+            \ length). Must be greater than musicSoundStart. Video posts only."
+          minimum: 0
+          type: integer
+      required:
+      - musicSoundId
     DiscordPlatformData_embeds_inner_footer:
       properties:
         text:
