@@ -1500,6 +1500,8 @@ docs/SearchInboxConversations200ResponseMeta.md
 docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md
 docs/SearchInstagramAudio200Response.md
 docs/SearchReddit200Response.md
+docs/SearchTikTokLocations200Response.md
+docs/SearchTikTokLocations200ResponseLocationsInner.md
 docs/SearchTweets200Response.md
 docs/SearchTweets200ResponseMeta.md
 docs/SearchTweets200ResponsePagination.md
@@ -3676,6 +3678,8 @@ src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchInboxConversations200ResponseMetaFailedAccountsInner.java
 src/main/java/dev/zernio/model/SearchInstagramAudio200Response.java
 src/main/java/dev/zernio/model/SearchReddit200Response.java
+src/main/java/dev/zernio/model/SearchTikTokLocations200Response.java
+src/main/java/dev/zernio/model/SearchTikTokLocations200ResponseLocationsInner.java
 src/main/java/dev/zernio/model/SearchTweets200Response.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseMeta.java
 src/main/java/dev/zernio/model/SearchTweets200ResponsePagination.java
@@ -4297,3 +4301,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SearchTikTokLocations200ResponseLocationsInnerTest.java
+src/test/java/dev/zernio/model/SearchTikTokLocations200ResponseTest.java

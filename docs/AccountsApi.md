@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listTikTokCommercialMusicWithHttpInfo**](AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
+| [**searchTikTokLocations**](AccountsApi.md#searchTikTokLocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
+| [**searchTikTokLocationsWithHttpInfo**](AccountsApi.md#searchTikTokLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateAccountWithHttpInfo**](AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account |
 | [**updateBlueskySettings**](AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings |
@@ -1901,6 +1903,158 @@ ApiResponse<[**MoveAccountToProfile200Response**](MoveAccountToProfile200Respons
 | **401** | Unauthorized |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
+
+
+## searchTikTokLocations
+
+> SearchTikTokLocations200Response searchTikTokLocations(accountId, query)
+
+Search TikTok location tags
+
+Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String query = "query_example"; // String | Place name to search, for example a city, a venue or an address
+        try {
+            SearchTikTokLocations200Response result = apiInstance.searchTikTokLocations(accountId, query);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#searchTikTokLocations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **query** | **String**| Place name to search, for example a city, a venue or an address | |
+
+### Return type
+
+[**SearchTikTokLocations200Response**](SearchTikTokLocations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The closest location tags, best match first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
+
+## searchTikTokLocationsWithHttpInfo
+
+> ApiResponse<SearchTikTokLocations200Response> searchTikTokLocations searchTikTokLocationsWithHttpInfo(accountId, query)
+
+Search TikTok location tags
+
+Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The TikTok account ID
+        String query = "query_example"; // String | Place name to search, for example a city, a venue or an address
+        try {
+            ApiResponse<SearchTikTokLocations200Response> response = apiInstance.searchTikTokLocationsWithHttpInfo(accountId, query);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#searchTikTokLocations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The TikTok account ID | |
+| **query** | **String**| Place name to search, for example a city, a venue or an address | |
+
+### Return type
+
+ApiResponse<[**SearchTikTokLocations200Response**](SearchTikTokLocations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The closest location tags, best match first |  -  |
+| **400** | Invalid request |  -  |
+| **404** | Account not found |  -  |
 
 
 ## updateAccount

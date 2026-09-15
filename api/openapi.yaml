@@ -7815,6 +7815,51 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/tiktok/locations:
+    get:
+      description: "Searches the location tags a TikTok account connected through\
+        \ the TikTok for Business app can attach to a video post. Send a result's\
+        \ id and name as tiktokSettings.locationId and locationName when creating\
+        \ a post. TikTok answers the 20 closest matches and fills the list with fuzzy\
+        \ matches when nothing matches, so an unrelated result does not mean the place\
+        \ is missing."
+      operationId: searchTikTokLocations
+      parameters:
+      - description: The TikTok account ID
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Place name to search, for example a city, a venue or an address"
+        explode: true
+        in: query
+        name: query
+        required: true
+        schema:
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/searchTikTokLocations_200_response"
+          description: "The closest location tags, best match first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: Account not found
+      summary: Search TikTok location tags
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/tiktok/creator-info:
     get:
       description: "Returns TikTok creator details, available privacy levels, posting\
@@ -54090,6 +54135,25 @@ components:
             \ undisclosed. Send draft true to publish such a photo post and set the\
             \ disclosure in the TikTok app."
           type: boolean
+        locationId:
+          description: "Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations.\
+            \ Accounts connected through the TikTok for Business app and video posts\
+            \ only: a developer-app account rejects the post at publish time with\
+            \ a message that says so, and a direct photo post is rejected at creation\
+            \ since the business photo endpoint has no location field. Requires locationName.\
+            \ Ignored on drafts, where TikTok ignores every post_info field."
+          type: string
+        locationName:
+          description: "Display name of the location tag, as returned next to its\
+            \ id. Required with locationId; a locationId without it is rejected at\
+            \ creation."
+          type: string
+        isAdsOnly:
+          description: "Set true to publish the video as an \"Only show in ads\" post:\
+            \ it is kept off the profile and exists to be used as a Spark Ad. Accounts\
+            \ connected through the TikTok for Business app and video posts only,\
+            \ with the same rejections as locationId. Ignored on drafts."
+          type: boolean
         description:
           description: "Optional long-form caption for photo posts (max 4000 chars).\
             \ Recommended when content exceeds 90 chars, as photo titles are auto-truncated.\
@@ -68970,6 +69034,35 @@ components:
         tracks:
           items:
             $ref: "#/components/schemas/listTikTokCommercialMusic_200_response_tracks_inner"
+          type: array
+    searchTikTokLocations_200_response_locations_inner:
+      example:
+        address: address
+        name: name
+        id: id
+      properties:
+        id:
+          description: The value to send as locationId
+          type: string
+        name:
+          description: The value to send as locationName
+          type: string
+        address:
+          description: "Address or region TikTok shows for the place, for disambiguation"
+          type: string
+    searchTikTokLocations_200_response:
+      example:
+        locations:
+        - address: address
+          name: name
+          id: id
+        - address: address
+          name: name
+          id: id
+      properties:
+        locations:
+          items:
+            $ref: "#/components/schemas/searchTikTokLocations_200_response_locations_inner"
           type: array
     getTikTokCreatorInfo_200_response_creator:
       example:

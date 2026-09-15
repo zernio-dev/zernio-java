@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   LinkedInLeadFormPlatformDataLocale.JSON_PROPERTY_COUNTRY,
   LinkedInLeadFormPlatformDataLocale.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T09:57:30.030305194Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:09:27.033189502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInLeadFormPlatformDataLocale {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable

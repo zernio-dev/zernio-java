@@ -53,9 +53,12 @@ import dev.zernio.ApiClient;
   TikTokPlatformData.JSON_PROPERTY_MUSIC_SOUND_INFO,
   TikTokPlatformData.JSON_PROPERTY_VIDEO_ORIGINAL_SOUND_VOLUME,
   TikTokPlatformData.JSON_PROPERTY_VIDEO_MADE_WITH_AI,
+  TikTokPlatformData.JSON_PROPERTY_LOCATION_ID,
+  TikTokPlatformData.JSON_PROPERTY_LOCATION_NAME,
+  TikTokPlatformData.JSON_PROPERTY_IS_ADS_ONLY,
   TikTokPlatformData.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T09:57:30.030305194Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:09:27.033189502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformData {
   public static final String JSON_PROPERTY_DRAFT = "draft";
   @javax.annotation.Nullable
@@ -200,6 +203,18 @@ public class TikTokPlatformData {
   public static final String JSON_PROPERTY_VIDEO_MADE_WITH_AI = "videoMadeWithAi";
   @javax.annotation.Nullable
   private Boolean videoMadeWithAi;
+
+  public static final String JSON_PROPERTY_LOCATION_ID = "locationId";
+  @javax.annotation.Nullable
+  private String locationId;
+
+  public static final String JSON_PROPERTY_LOCATION_NAME = "locationName";
+  @javax.annotation.Nullable
+  private String locationName;
+
+  public static final String JSON_PROPERTY_IS_ADS_ONLY = "isAdsOnly";
+  @javax.annotation.Nullable
+  private Boolean isAdsOnly;
 
   public static final String JSON_PROPERTY_DESCRIPTION = "description";
   @javax.annotation.Nullable
@@ -644,6 +659,78 @@ public class TikTokPlatformData {
   }
 
 
+  public TikTokPlatformData locationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+    return this;
+  }
+
+  /**
+   * Location tag to attach, as the id of a result from GET /v1/accounts/{accountId}/tiktok/locations. Accounts connected through the TikTok for Business app and video posts only: a developer-app account rejects the post at publish time with a message that says so, and a direct photo post is rejected at creation since the business photo endpoint has no location field. Requires locationName. Ignored on drafts, where TikTok ignores every post_info field.
+   * @return locationId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLocationId() {
+    return locationId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocationId(@javax.annotation.Nullable String locationId) {
+    this.locationId = locationId;
+  }
+
+
+  public TikTokPlatformData locationName(@javax.annotation.Nullable String locationName) {
+    this.locationName = locationName;
+    return this;
+  }
+
+  /**
+   * Display name of the location tag, as returned next to its id. Required with locationId; a locationId without it is rejected at creation.
+   * @return locationName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getLocationName() {
+    return locationName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LOCATION_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLocationName(@javax.annotation.Nullable String locationName) {
+    this.locationName = locationName;
+  }
+
+
+  public TikTokPlatformData isAdsOnly(@javax.annotation.Nullable Boolean isAdsOnly) {
+    this.isAdsOnly = isAdsOnly;
+    return this;
+  }
+
+  /**
+   * Set true to publish the video as an \&quot;Only show in ads\&quot; post: it is kept off the profile and exists to be used as a Spark Ad. Accounts connected through the TikTok for Business app and video posts only, with the same rejections as locationId. Ignored on drafts.
+   * @return isAdsOnly
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_IS_ADS_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getIsAdsOnly() {
+    return isAdsOnly;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_IS_ADS_ONLY, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIsAdsOnly(@javax.annotation.Nullable Boolean isAdsOnly) {
+    this.isAdsOnly = isAdsOnly;
+  }
+
+
   public TikTokPlatformData description(@javax.annotation.Nullable String description) {
     this.description = description;
     return this;
@@ -698,12 +785,15 @@ public class TikTokPlatformData {
         Objects.equals(this.musicSoundInfo, tikTokPlatformData.musicSoundInfo) &&
         Objects.equals(this.videoOriginalSoundVolume, tikTokPlatformData.videoOriginalSoundVolume) &&
         Objects.equals(this.videoMadeWithAi, tikTokPlatformData.videoMadeWithAi) &&
+        Objects.equals(this.locationId, tikTokPlatformData.locationId) &&
+        Objects.equals(this.locationName, tikTokPlatformData.locationName) &&
+        Objects.equals(this.isAdsOnly, tikTokPlatformData.isAdsOnly) &&
         Objects.equals(this.description, tikTokPlatformData.description);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, videoCoverImageUrl, photoCoverIndex, autoAddMusic, musicSoundInfo, videoOriginalSoundVolume, videoMadeWithAi, description);
+    return Objects.hash(draft, privacyLevel, allowComment, allowDuet, allowStitch, commercialContentType, brandPartnerPromote, isBrandOrganicPost, contentPreviewConfirmed, expressConsentGiven, mediaType, videoCoverTimestampMs, videoCoverImageUrl, photoCoverIndex, autoAddMusic, musicSoundInfo, videoOriginalSoundVolume, videoMadeWithAi, locationId, locationName, isAdsOnly, description);
   }
 
   @Override
@@ -728,6 +818,9 @@ public class TikTokPlatformData {
     sb.append("    musicSoundInfo: ").append(toIndentedString(musicSoundInfo)).append("\n");
     sb.append("    videoOriginalSoundVolume: ").append(toIndentedString(videoOriginalSoundVolume)).append("\n");
     sb.append("    videoMadeWithAi: ").append(toIndentedString(videoMadeWithAi)).append("\n");
+    sb.append("    locationId: ").append(toIndentedString(locationId)).append("\n");
+    sb.append("    locationName: ").append(toIndentedString(locationName)).append("\n");
+    sb.append("    isAdsOnly: ").append(toIndentedString(isAdsOnly)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -864,6 +957,21 @@ public class TikTokPlatformData {
     // add `videoMadeWithAi` to the URL query string
     if (getVideoMadeWithAi() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoMadeWithAi%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoMadeWithAi()))));
+    }
+
+    // add `locationId` to the URL query string
+    if (getLocationId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocationId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationId()))));
+    }
+
+    // add `locationName` to the URL query string
+    if (getLocationName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slocationName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLocationName()))));
+    }
+
+    // add `isAdsOnly` to the URL query string
+    if (getIsAdsOnly() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sisAdsOnly%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIsAdsOnly()))));
     }
 
     // add `description` to the URL query string

@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-15T09:57:30.030305194Z[Etc/UTC]
+- Build date: 2026-09-15T10:09:27.033189502Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -171,6 +171,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**listTikTokCommercialMusicWithHttpInfo**](docs/AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
+*AccountsApi* | [**searchTikTokLocations**](docs/AccountsApi.md#searchTikTokLocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags
+*AccountsApi* | [**searchTikTokLocationsWithHttpInfo**](docs/AccountsApi.md#searchTikTokLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateBlueskySettings**](docs/AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
@@ -3025,6 +3027,8 @@ Class | Method | HTTP request | Description
  - [SearchInboxConversations200ResponseMetaFailedAccountsInner](docs/SearchInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [SearchInstagramAudio200Response](docs/SearchInstagramAudio200Response.md)
  - [SearchReddit200Response](docs/SearchReddit200Response.md)
+ - [SearchTikTokLocations200Response](docs/SearchTikTokLocations200Response.md)
+ - [SearchTikTokLocations200ResponseLocationsInner](docs/SearchTikTokLocations200ResponseLocationsInner.md)
  - [SearchTweets200Response](docs/SearchTweets200Response.md)
  - [SearchTweets200ResponseMeta](docs/SearchTweets200ResponseMeta.md)
  - [SearchTweets200ResponsePagination](docs/SearchTweets200ResponsePagination.md)

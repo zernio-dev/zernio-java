@@ -37,6 +37,7 @@ import dev.zernio.model.ListTikTokCommercialMusic200Response;
 import java.time.LocalDate;
 import dev.zernio.model.MoveAccountToProfile200Response;
 import dev.zernio.model.MoveAccountToProfileRequest;
+import dev.zernio.model.SearchTikTokLocations200Response;
 import dev.zernio.model.UpdateAccount200Response;
 import dev.zernio.model.UpdateAccountRequest;
 import dev.zernio.model.UpdateBlueskySettingsRequest;
@@ -67,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T09:57:30.030305194Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:09:27.033189502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1765,6 +1766,147 @@ public class AccountsApi {
     } catch (IOException e) {
       throw new ApiException(e);
     }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Search TikTok location tags
+   * Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+   * @param accountId The TikTok account ID (required)
+   * @param query Place name to search, for example a city, a venue or an address (required)
+   * @return SearchTikTokLocations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchTikTokLocations200Response searchTikTokLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query) throws ApiException {
+    return searchTikTokLocations(accountId, query, null);
+  }
+
+  /**
+   * Search TikTok location tags
+   * Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+   * @param accountId The TikTok account ID (required)
+   * @param query Place name to search, for example a city, a venue or an address (required)
+   * @param headers Optional headers to include in the request
+   * @return SearchTikTokLocations200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SearchTikTokLocations200Response searchTikTokLocations(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchTikTokLocations200Response> localVarResponse = searchTikTokLocationsWithHttpInfo(accountId, query, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Search TikTok location tags
+   * Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+   * @param accountId The TikTok account ID (required)
+   * @param query Place name to search, for example a city, a venue or an address (required)
+   * @return ApiResponse&lt;SearchTikTokLocations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchTikTokLocations200Response> searchTikTokLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query) throws ApiException {
+    return searchTikTokLocationsWithHttpInfo(accountId, query, null);
+  }
+
+  /**
+   * Search TikTok location tags
+   * Searches the location tags a TikTok account connected through the TikTok for Business app can attach to a video post. Send a result&#39;s id and name as tiktokSettings.locationId and locationName when creating a post. TikTok answers the 20 closest matches and fills the list with fuzzy matches when nothing matches, so an unrelated result does not mean the place is missing.
+   * @param accountId The TikTok account ID (required)
+   * @param query Place name to search, for example a city, a venue or an address (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SearchTikTokLocations200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SearchTikTokLocations200Response> searchTikTokLocationsWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchTikTokLocationsRequestBuilder(accountId, query, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("searchTikTokLocations", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SearchTikTokLocations200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SearchTikTokLocations200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SearchTikTokLocations200Response>() {});
+        
+
+        return new ApiResponse<SearchTikTokLocations200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder searchTikTokLocationsRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String query, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling searchTikTokLocations");
+    }
+    // verify the required parameter 'query' is set
+    if (query == null) {
+      throw new ApiException(400, "Missing the required parameter 'query' when calling searchTikTokLocations");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tiktok/locations"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "query";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("query", query));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
