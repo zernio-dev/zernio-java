@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   AdKeywordQuality.JSON_PROPERTY_AD_RELEVANCE,
   AdKeywordQuality.JSON_PROPERTY_LANDING_PAGE_EXPERIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T16:30:36.009043714Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T18:14:34.489651804Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdKeywordQuality {
   public static final String JSON_PROPERTY_SCORE = "score";
   private JsonNullable<Integer> score = JsonNullable.<Integer>undefined();

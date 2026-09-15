@@ -34,13 +34,14 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.  On a Google Ads 429 it carries &#x60;quotaExhausted: true&#x60;, which marks the failure as Google&#39;s own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries &#x60;quotaScope&#x60;: &#x60;DEVELOPER&#x60; means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), &#x60;ACCOUNT&#x60; means your own ad account. A Meta 429 carries neither field. 
+ * Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.  On a Google Ads 429 it carries &#x60;quotaExhausted: true&#x60;, which marks the failure as Google&#39;s own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries &#x60;quotaScope&#x60;: &#x60;DEVELOPER&#x60; means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), &#x60;ACCOUNT&#x60; means your own ad account. A Meta 429 carries neither field.  A Zernio Google Ads budget 429 carries &#x60;budgetScope&#x60; instead, and never &#x60;quotaExhausted&#x60;: these are Zernio&#39;s own limits, applied before the call reaches Google. &#x60;user&#x60; is your own burst or daily allowance, so the work is yours to reschedule; &#x60;platform&#x60; is the fleet-wide daily budget shared with every other customer, so only waiting for the reset clears it. The two scopes are separate axes from &#x60;quotaScope&#x60;, not the same pool named twice. 
  */
 @JsonPropertyOrder({
   ErrorResponseDetails.JSON_PROPERTY_QUOTA_EXHAUSTED,
-  ErrorResponseDetails.JSON_PROPERTY_QUOTA_SCOPE
+  ErrorResponseDetails.JSON_PROPERTY_QUOTA_SCOPE,
+  ErrorResponseDetails.JSON_PROPERTY_BUDGET_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T16:30:36.009043714Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T18:14:34.489651804Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponseDetails {
   public static final String JSON_PROPERTY_QUOTA_EXHAUSTED = "quotaExhausted";
   @javax.annotation.Nullable
@@ -84,6 +85,45 @@ public class ErrorResponseDetails {
   public static final String JSON_PROPERTY_QUOTA_SCOPE = "quotaScope";
   @javax.annotation.Nullable
   private QuotaScopeEnum quotaScope;
+
+  /**
+   * Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.
+   */
+  public enum BudgetScopeEnum {
+    USER(String.valueOf("user")),
+    
+    PLATFORM(String.valueOf("platform"));
+
+    private String value;
+
+    BudgetScopeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static BudgetScopeEnum fromValue(String value) {
+      for (BudgetScopeEnum b : BudgetScopeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_BUDGET_SCOPE = "budgetScope";
+  @javax.annotation.Nullable
+  private BudgetScopeEnum budgetScope;
 
   public ErrorResponseDetails() { 
   }
@@ -133,6 +173,30 @@ public class ErrorResponseDetails {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setQuotaScope(@javax.annotation.Nullable QuotaScopeEnum quotaScope) {
     this.quotaScope = quotaScope;
+  }
+
+
+  public ErrorResponseDetails budgetScope(@javax.annotation.Nullable BudgetScopeEnum budgetScope) {
+    this.budgetScope = budgetScope;
+    return this;
+  }
+
+  /**
+   * Zernio Google Ads operations-budget 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own burst/daily allowance; &#x60;platform&#x60; is the fleet-wide daily budget shared across customers.
+   * @return budgetScope
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_SCOPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BudgetScopeEnum getBudgetScope() {
+    return budgetScope;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUDGET_SCOPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBudgetScope(@javax.annotation.Nullable BudgetScopeEnum budgetScope) {
+    this.budgetScope = budgetScope;
   }
 
   /**
@@ -192,13 +256,14 @@ public class ErrorResponseDetails {
     }
     ErrorResponseDetails errorResponseDetails = (ErrorResponseDetails) o;
     return Objects.equals(this.quotaExhausted, errorResponseDetails.quotaExhausted) &&
-        Objects.equals(this.quotaScope, errorResponseDetails.quotaScope)&&
+        Objects.equals(this.quotaScope, errorResponseDetails.quotaScope) &&
+        Objects.equals(this.budgetScope, errorResponseDetails.budgetScope)&&
         Objects.equals(this.additionalProperties, errorResponseDetails.additionalProperties);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(quotaExhausted, quotaScope, additionalProperties);
+    return Objects.hash(quotaExhausted, quotaScope, budgetScope, additionalProperties);
   }
 
   @Override
@@ -207,6 +272,7 @@ public class ErrorResponseDetails {
     sb.append("class ErrorResponseDetails {\n");
     sb.append("    quotaExhausted: ").append(toIndentedString(quotaExhausted)).append("\n");
     sb.append("    quotaScope: ").append(toIndentedString(quotaScope)).append("\n");
+    sb.append("    budgetScope: ").append(toIndentedString(budgetScope)).append("\n");
     sb.append("    additionalProperties: ").append(toIndentedString(additionalProperties)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -263,6 +329,11 @@ public class ErrorResponseDetails {
     // add `quotaScope` to the URL query string
     if (getQuotaScope() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%squotaScope%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getQuotaScope()))));
+    }
+
+    // add `budgetScope` to the URL query string
+    if (getBudgetScope() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbudgetScope%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBudgetScope()))));
     }
 
     return joiner.toString();

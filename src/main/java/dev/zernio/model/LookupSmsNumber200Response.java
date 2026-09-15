@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   LookupSmsNumber200Response.JSON_PROPERTY_LINE_TYPE,
   LookupSmsNumber200Response.JSON_PROPERTY_SMS_REACHABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T16:30:36.009043714Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T18:14:34.489651804Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LookupSmsNumber200Response {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
