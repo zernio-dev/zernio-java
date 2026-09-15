@@ -96142,7 +96142,6 @@ components:
           - 45
           type: integer
         bidModifier:
-          default: null
           description: Bid adjustment for this window. Null runs it at the campaign
             bid.
           maximum: 10
