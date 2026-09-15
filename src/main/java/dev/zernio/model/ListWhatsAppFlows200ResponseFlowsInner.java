@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_VERSION,
   ListWhatsAppFlows200ResponseFlowsInner.JSON_PROPERTY_LINEAGE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:09:27.033189502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWhatsAppFlows200ResponseFlowsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

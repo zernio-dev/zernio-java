@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   MetaInstagramIdentityRef.JSON_PROPERTY_USERNAME,
   MetaInstagramIdentityRef.JSON_PROPERTY_PROFILE_PICTURE_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:09:27.033189502Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaInstagramIdentityRef {
   public static final String JSON_PROPERTY_IG_USER_ID = "igUserId";
   @javax.annotation.Nonnull
