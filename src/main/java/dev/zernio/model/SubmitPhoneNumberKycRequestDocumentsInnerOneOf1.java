@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import java.time.LocalDate;
 import java.util.Arrays;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
@@ -34,9 +35,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.JSON_PROPERTY_REQUIREMENT_ID,
-  SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.JSON_PROPERTY_DOCUMENT_ID
+  SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.JSON_PROPERTY_DOCUMENT_ID,
+  SubmitPhoneNumberKycRequestDocumentsInnerOneOf1.JSON_PROPERTY_ISSUED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T14:57:59.446447276Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nonnull
@@ -45,6 +47,10 @@ public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
   public static final String JSON_PROPERTY_DOCUMENT_ID = "documentId";
   @javax.annotation.Nonnull
   private String documentId;
+
+  public static final String JSON_PROPERTY_ISSUED_AT = "issuedAt";
+  @javax.annotation.Nullable
+  private LocalDate issuedAt;
 
   public SubmitPhoneNumberKycRequestDocumentsInnerOneOf1() { 
   }
@@ -97,6 +103,30 @@ public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
   }
 
 
+  public SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 issuedAt(@javax.annotation.Nullable LocalDate issuedAt) {
+    this.issuedAt = issuedAt;
+    return this;
+  }
+
+  /**
+   * Date printed on the document (YYYY-MM-DD), for slots the regulator windows such as proof of address. The pre-submit review trusts it over its own read of the PDF.
+   * @return issuedAt
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ISSUED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LocalDate getIssuedAt() {
+    return issuedAt;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ISSUED_AT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setIssuedAt(@javax.annotation.Nullable LocalDate issuedAt) {
+    this.issuedAt = issuedAt;
+  }
+
+
   /**
    * Return true if this submitPhoneNumberKyc_request_documents_inner_oneOf_1 object is equal to o.
    */
@@ -110,12 +140,13 @@ public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
     }
     SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 submitPhoneNumberKycRequestDocumentsInnerOneOf1 = (SubmitPhoneNumberKycRequestDocumentsInnerOneOf1) o;
     return Objects.equals(this.requirementId, submitPhoneNumberKycRequestDocumentsInnerOneOf1.requirementId) &&
-        Objects.equals(this.documentId, submitPhoneNumberKycRequestDocumentsInnerOneOf1.documentId);
+        Objects.equals(this.documentId, submitPhoneNumberKycRequestDocumentsInnerOneOf1.documentId) &&
+        Objects.equals(this.issuedAt, submitPhoneNumberKycRequestDocumentsInnerOneOf1.issuedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(requirementId, documentId);
+    return Objects.hash(requirementId, documentId, issuedAt);
   }
 
   @Override
@@ -124,6 +155,7 @@ public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
     sb.append("class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {\n");
     sb.append("    requirementId: ").append(toIndentedString(requirementId)).append("\n");
     sb.append("    documentId: ").append(toIndentedString(documentId)).append("\n");
+    sb.append("    issuedAt: ").append(toIndentedString(issuedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +211,11 @@ public class SubmitPhoneNumberKycRequestDocumentsInnerOneOf1 {
     // add `documentId` to the URL query string
     if (getDocumentId() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdocumentId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDocumentId()))));
+    }
+
+    // add `issuedAt` to the URL query string
+    if (getIssuedAt() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sissuedAt%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getIssuedAt()))));
     }
 
     return joiner.toString();

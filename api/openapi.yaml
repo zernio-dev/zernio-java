@@ -86977,6 +86977,12 @@ components:
         documentId:
           description: Id from POST /v1/phone-numbers/kyc/upload-document.
           type: string
+        issuedAt:
+          description: "Date printed on the document (YYYY-MM-DD), for slots the regulator\
+            \ windows such as proof of address. The pre-submit review trusts it over\
+            \ its own read of the PDF."
+          format: date
+          type: string
       required:
       - documentId
       - requirementId
@@ -88022,6 +88028,12 @@ components:
           type: string
         documentId:
           description: Id of a document already uploaded out-of-band.
+          type: string
+        issuedAt:
+          description: "Date printed on the document (YYYY-MM-DD), for slots the regulator\
+            \ windows such as proof of address. The pre-submit review trusts it over\
+            \ its own read of the PDF."
+          format: date
           type: string
       required:
       - requirementId
