@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetYoutubeCaptions200ResponseCuesInner.JSON_PROPERTY_END,
   GetYoutubeCaptions200ResponseCuesInner.JSON_PROPERTY_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetYoutubeCaptions200ResponseCuesInner {
   public static final String JSON_PROPERTY_START = "start";
   @javax.annotation.Nullable

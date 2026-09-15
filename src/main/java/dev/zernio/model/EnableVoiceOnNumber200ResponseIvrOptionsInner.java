@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EnableVoiceOnNumber200ResponseIvrOptionsInner.JSON_PROPERTY_FORWARD_TO,
   EnableVoiceOnNumber200ResponseIvrOptionsInner.JSON_PROPERTY_LABEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EnableVoiceOnNumber200ResponseIvrOptionsInner {
   public static final String JSON_PROPERTY_DIGIT = "digit";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateLookupErrorDetailsProviderHeaders.JSON_PROPERTY_X_APP_USAGE,
   WhatsAppTemplateLookupErrorDetailsProviderHeaders.JSON_PROPERTY_X_BUSINESS_USE_CASE_USAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateLookupErrorDetailsProviderHeaders {
   public static final String JSON_PROPERTY_RETRY_AFTER = "retry-after";
   @javax.annotation.Nullable

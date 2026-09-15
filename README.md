@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-15T10:11:49.762574015Z[Etc/UTC]
+- Build date: 2026-09-15T11:00:07.802229551Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2111,6 +2111,7 @@ Class | Method | HTTP request | Description
  - [EnrollContacts200ResponseResultsInner](docs/EnrollContacts200ResponseResultsInner.md)
  - [EnrollContactsRequest](docs/EnrollContactsRequest.md)
  - [ErrorResponse](docs/ErrorResponse.md)
+ - [ErrorResponseDetails](docs/ErrorResponseDetails.md)
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
  - [Expired](docs/Expired.md)

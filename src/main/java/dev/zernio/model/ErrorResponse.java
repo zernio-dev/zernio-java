@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.ErrorResponseDetails;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,7 +44,7 @@ import dev.zernio.ApiClient;
   ErrorResponse.JSON_PROPERTY_PLATFORM_ERROR,
   ErrorResponse.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponse {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
@@ -116,7 +117,7 @@ public class ErrorResponse {
 
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
-  private Map<String, Object> details = new HashMap<>();
+  private ErrorResponseDetails details;
 
   public ErrorResponse() { 
   }
@@ -273,34 +274,26 @@ public class ErrorResponse {
   }
 
 
-  public ErrorResponse details(@javax.annotation.Nullable Map<String, Object> details) {
+  public ErrorResponse details(@javax.annotation.Nullable ErrorResponseDetails details) {
     this.details = details;
     return this;
   }
 
-  public ErrorResponse putDetailsItem(String key, Object detailsItem) {
-    if (this.details == null) {
-      this.details = new HashMap<>();
-    }
-    this.details.put(key, detailsItem);
-    return this;
-  }
-
   /**
-   * Additional structured context (e.g. field-level validation errors), for example &#x60;privateReplyConsumed&#x60; on the private-reply endpoint&#39;s 400 when the comment&#39;s single reply is already spent.
+   * Get details
    * @return details
    */
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public Map<String, Object> getDetails() {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public ErrorResponseDetails getDetails() {
     return details;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_DETAILS, required = false)
-  @JsonInclude(content = JsonInclude.Include.ALWAYS, value = JsonInclude.Include.USE_DEFAULTS)
-  public void setDetails(@javax.annotation.Nullable Map<String, Object> details) {
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setDetails(@javax.annotation.Nullable ErrorResponseDetails details) {
     this.details = details;
   }
 
@@ -425,11 +418,7 @@ public class ErrorResponse {
 
     // add `details` to the URL query string
     if (getDetails() != null) {
-      for (String _key : getDetails().keySet()) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%sdetails%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
-            getDetails().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getDetails().get(_key)))));
-      }
+      joiner.add(String.format(java.util.Locale.ROOT, "%sdetails%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDetails()))));
     }
 
     return joiner.toString();

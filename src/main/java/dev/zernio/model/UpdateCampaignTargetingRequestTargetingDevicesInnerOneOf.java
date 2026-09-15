@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.JSON_PROPERTY_DEVICE,
   UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf.JSON_PROPERTY_BID_MODIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T10:11:49.762574015Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargetingRequestTargetingDevicesInnerOneOf {
   /**
    * Gets or Sets device
