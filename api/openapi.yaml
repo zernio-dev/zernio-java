@@ -20882,6 +20882,16 @@ paths:
               schema:
                 $ref: "#/components/schemas/replyToInboxReview_200_response"
           description: Reply posted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Facebook refused the reply for this review (code platform_api_error,\
+            \ platform facebook, Meta error 12 echoed in platformError). Permanent\
+            \ for that review: Graph cannot address its underlying post, and it usually\
+            \ already carries a reply from the Page, which the review listing reports\
+            \ under hasReply. Do not retry."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":

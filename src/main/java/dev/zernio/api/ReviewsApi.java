@@ -20,6 +20,7 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.DeleteInboxReviewReply200Response;
 import dev.zernio.model.DeleteInboxReviewReplyRequest;
+import dev.zernio.model.ErrorResponse;
 import dev.zernio.model.InlineObject1;
 import dev.zernio.model.ListInboxReviews200Response;
 import dev.zernio.model.ReplyToInboxReview200Response;
@@ -56,7 +57,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:00:07.802229551Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

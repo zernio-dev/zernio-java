@@ -422,6 +422,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
+| **400** | Facebook refused the reply for this review (code platform_api_error, platform facebook, Meta error 12 echoed in platformError). Permanent for that review: Graph cannot address its underlying post, and it usually already carries a reply from the Page, which the review listing reports under hasReply. Do not retry. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
@@ -503,6 +504,7 @@ ApiResponse<[**ReplyToInboxReview200Response**](ReplyToInboxReview200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
+| **400** | Facebook refused the reply for this review (code platform_api_error, platform facebook, Meta error 12 echoed in platformError). Permanent for that review: Graph cannot address its underlying post, and it usually already carries a reply from the Page, which the review listing reports under hasReply. Do not retry. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
