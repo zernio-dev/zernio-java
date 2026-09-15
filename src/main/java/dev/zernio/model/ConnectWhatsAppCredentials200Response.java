@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_WEBHOOK_NOTICE,
   ConnectWhatsAppCredentials200Response.JSON_PROPERTY_ACCOUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppCredentials200Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

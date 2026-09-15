@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.BoostPostRequestBudget;
 import dev.zernio.model.BoostPostRequestPlatformSpecificData;
+import dev.zernio.model.BoostPostRequestPromotedObject;
 import dev.zernio.model.BoostPostRequestSchedule;
 import dev.zernio.model.BoostPostRequestTargeting;
 import dev.zernio.model.BoostPostRequestTracking;
@@ -73,13 +74,14 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_LINK_URL,
   BoostPostRequest.JSON_PROPERTY_CALL_TO_ACTION,
   BoostPostRequest.JSON_PROPERTY_SPARK_AUTH_CODE,
+  BoostPostRequest.JSON_PROPERTY_PROMOTED_OBJECT,
   BoostPostRequest.JSON_PROPERTY_DSA_BENEFICIARY,
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
   BoostPostRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
   BoostPostRequest.JSON_PROPERTY_STATUS,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   /**
    * Gets or Sets inner
@@ -358,6 +360,10 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_SPARK_AUTH_CODE = "sparkAuthCode";
   @javax.annotation.Nullable
   private String sparkAuthCode;
+
+  public static final String JSON_PROPERTY_PROMOTED_OBJECT = "promotedObject";
+  @javax.annotation.Nullable
+  private BoostPostRequestPromotedObject promotedObject;
 
   public static final String JSON_PROPERTY_DSA_BENEFICIARY = "dsaBeneficiary";
   @javax.annotation.Nullable
@@ -1143,6 +1149,30 @@ public class BoostPostRequest {
   }
 
 
+  public BoostPostRequest promotedObject(@javax.annotation.Nullable BoostPostRequestPromotedObject promotedObject) {
+    this.promotedObject = promotedObject;
+    return this;
+  }
+
+  /**
+   * Get promotedObject
+   * @return promotedObject
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public BoostPostRequestPromotedObject getPromotedObject() {
+    return promotedObject;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROMOTED_OBJECT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPromotedObject(@javax.annotation.Nullable BoostPostRequestPromotedObject promotedObject) {
+    this.promotedObject = promotedObject;
+  }
+
+
   public BoostPostRequest dsaBeneficiary(@javax.annotation.Nullable String dsaBeneficiary) {
     this.dsaBeneficiary = dsaBeneficiary;
     return this;
@@ -1303,6 +1333,7 @@ public class BoostPostRequest {
         Objects.equals(this.linkUrl, boostPostRequest.linkUrl) &&
         Objects.equals(this.callToAction, boostPostRequest.callToAction) &&
         Objects.equals(this.sparkAuthCode, boostPostRequest.sparkAuthCode) &&
+        Objects.equals(this.promotedObject, boostPostRequest.promotedObject) &&
         Objects.equals(this.dsaBeneficiary, boostPostRequest.dsaBeneficiary) &&
         Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor) &&
         Objects.equals(this.leadGenFormId, boostPostRequest.leadGenFormId) &&
@@ -1312,7 +1343,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(creativeFeatures, postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
+    return Objects.hash(creativeFeatures, postId, platformPostId, accountId, adAccountId, name, goal, adSetId, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, schedule, targeting, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, promotedObject, dsaBeneficiary, dsaPayor, leadGenFormId, status, optimizationGoal);
   }
 
   @Override
@@ -1347,6 +1378,7 @@ public class BoostPostRequest {
     sb.append("    linkUrl: ").append(toIndentedString(linkUrl)).append("\n");
     sb.append("    callToAction: ").append(toIndentedString(callToAction)).append("\n");
     sb.append("    sparkAuthCode: ").append(toIndentedString(sparkAuthCode)).append("\n");
+    sb.append("    promotedObject: ").append(toIndentedString(promotedObject)).append("\n");
     sb.append("    dsaBeneficiary: ").append(toIndentedString(dsaBeneficiary)).append("\n");
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
@@ -1561,6 +1593,11 @@ public class BoostPostRequest {
     // add `sparkAuthCode` to the URL query string
     if (getSparkAuthCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%ssparkAuthCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getSparkAuthCode()))));
+    }
+
+    // add `promotedObject` to the URL query string
+    if (getPromotedObject() != null) {
+      joiner.add(getPromotedObject().toUrlQueryString(prefix + "promotedObject" + suffix));
     }
 
     // add `dsaBeneficiary` to the URL query string

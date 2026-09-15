@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListBusinessAgentUiSkills200Response.JSON_PROPERTY_UI_SKILLS,
   ListBusinessAgentUiSkills200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListBusinessAgentUiSkills200Response {
   public static final String JSON_PROPERTY_UI_SKILLS = "uiSkills";
   @javax.annotation.Nonnull

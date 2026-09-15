@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SyncExternalPostsRequest.JSON_PROPERTY_URL,
   SyncExternalPostsRequest.JSON_PROPERTY_POST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SyncExternalPostsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   BusinessAgentStatusUnverifiedStepsInner.JSON_PROPERTY_URL,
   BusinessAgentStatusUnverifiedStepsInner.JSON_PROPERTY_DESCRIPTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentStatusUnverifiedStepsInner {
   /**
    * Gets or Sets step

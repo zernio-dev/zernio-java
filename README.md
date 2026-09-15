@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.0.4
 
-- Build date: 2026-09-14T17:44:06.196046398Z[Etc/UTC]
+- Build date: 2026-09-15T08:43:48.140731160Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1702,6 +1702,7 @@ Class | Method | HTTP request | Description
  - [BoostPostRequest](docs/BoostPostRequest.md)
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
  - [BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
+ - [BoostPostRequestPromotedObject](docs/BoostPostRequestPromotedObject.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
  - [BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)

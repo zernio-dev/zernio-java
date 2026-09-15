@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversation400ResponseAnyOf.JSON_PROPERTY_ERROR,
   CreateInboxConversation400ResponseAnyOf.JSON_PROPERTY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-14T17:44:06.196046398Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversation400ResponseAnyOf {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nullable
