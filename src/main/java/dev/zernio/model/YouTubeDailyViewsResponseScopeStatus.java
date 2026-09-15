@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   YouTubeDailyViewsResponseScopeStatus.JSON_PROPERTY_HAS_ANALYTICS_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:36:08.632374487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:54:38.903616906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponseScopeStatus {
   public static final String JSON_PROPERTY_HAS_ANALYTICS_SCOPE = "hasAnalyticsScope";
   @javax.annotation.Nullable

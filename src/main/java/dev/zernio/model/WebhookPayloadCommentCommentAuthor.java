@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_IS_OWN_ACCOUNT,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:36:08.632374487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:54:38.903616906Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -183,7 +183,7 @@ public class WebhookPayloadCommentCommentAuthor {
   }
 
   /**
-   * True when this comment was authored by the connected account itself (Meta re-delivers the account&#39;s own replies as comments events). Populated on the Instagram and Facebook realtime webhooks only; absent means not evaluated, never \&quot;not the account\&quot;.
+   * True when this comment was authored by the connected account itself. Populated on the Instagram and Facebook realtime webhooks (Meta re-delivers the account&#39;s own replies as comments events) and on TikTok, where it is inferred: comments created through this API are always flagged, and once the account&#39;s own author identifier is known (from one of those or from a comments listing) every author is compared against it. Absent means not evaluated, never \&quot;not the account\&quot;.
    * @return isOwnAccount
    */
   @javax.annotation.Nullable
