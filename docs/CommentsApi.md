@@ -43,7 +43,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Delete comment
 
-Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
+Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters. 
 
 ### Example
 
@@ -122,7 +122,7 @@ public class Example {
 
 Delete comment
 
-Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn. Requires accountId and commentId query parameters. 
+Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only). Requires accountId and commentId query parameters. 
 
 ### Example
 

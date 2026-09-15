@@ -54,7 +54,7 @@ import dev.zernio.ApiClient;
   CreateAdCampaignRequest.JSON_PROPERTY_ROAS_AVERAGE_FLOOR,
   CreateAdCampaignRequest.JSON_PROPERTY_PORTFOLIO_BID_STRATEGY_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T09:57:30.030305194Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCampaignRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -134,7 +134,7 @@ public class CreateAdCampaignRequest {
   private AdPromotedObject promotedObject;
 
   /**
-   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
+   * Meta only. OMIT on non-Meta platforms (Google Ads, etc.): any value is rejected with a 400. On Meta the server applies AUCTION when omitted, so it does not need to be sent; RESERVED &#x3D; Reach &amp; Frequency. SKAdNetwork app promotion requires AUCTION.
    */
   public enum BuyingTypeEnum {
     AUCTION(String.valueOf("AUCTION")),
@@ -170,7 +170,7 @@ public class CreateAdCampaignRequest {
 
   public static final String JSON_PROPERTY_BUYING_TYPE = "buyingType";
   @javax.annotation.Nullable
-  private BuyingTypeEnum buyingType = BuyingTypeEnum.AUCTION;
+  private BuyingTypeEnum buyingType;
 
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable
@@ -513,7 +513,7 @@ public class CreateAdCampaignRequest {
   }
 
   /**
-   * Meta only. Defaults to AUCTION and is explicitly sent on new campaigns, including validateOnly. SKAdNetwork app promotion requires AUCTION.
+   * Meta only. OMIT on non-Meta platforms (Google Ads, etc.): any value is rejected with a 400. On Meta the server applies AUCTION when omitted, so it does not need to be sent; RESERVED &#x3D; Reach &amp; Frequency. SKAdNetwork app promotion requires AUCTION.
    * @return buyingType
    */
   @javax.annotation.Nullable

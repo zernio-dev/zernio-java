@@ -30,26 +30,26 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * TikTok-only on this endpoint. The pixel a Website Conversion ad group optimizes toward, so a Spark Ad built from an existing organic post can optimize for a conversion instead of only engagement or traffic. Required when &#x60;goal&#x60; is &#x60;conversions&#x60;; ignored on every other goal, because only a WEB_CONVERSIONS ad group accepts these fields.  Combine freely with &#x60;platformPostId&#x60; + &#x60;sparkAuthCode&#x60;: the pixel lives on the ad group and the Spark item on the creative, so they never conflict. 
+ * TikTok-only on this endpoint. The pixel a Website Conversion ad group optimizes toward, so a Spark Ad built from an existing organic post can optimize for a conversion instead of only engagement or traffic.  Required when &#x60;goal&#x60; is &#x60;conversions&#x60;, and BOTH fields are required: TikTok refuses a conversion ad group with no pixel (\&quot;Please select a pixel\&quot;) and equally one that has a pixel but no event (\&quot;Select a pixel event.\&quot;), because the event is what the ad group optimizes toward. Ignored on every other goal, since only a WEB_CONVERSIONS ad group accepts them.  Combine freely with &#x60;platformPostId&#x60; + &#x60;sparkAuthCode&#x60;: the pixel lives on the ad group and the Spark item on the creative, so they never conflict. 
  */
 @JsonPropertyOrder({
   BoostPostRequestPromotedObject.JSON_PROPERTY_PIXEL_ID,
   BoostPostRequestPromotedObject.JSON_PROPERTY_CUSTOM_EVENT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T08:43:48.140731160Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T09:57:30.030305194Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequestPromotedObject {
   public static final String JSON_PROPERTY_PIXEL_ID = "pixelId";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String pixelId;
 
   public static final String JSON_PROPERTY_CUSTOM_EVENT_TYPE = "customEventType";
-  @javax.annotation.Nullable
+  @javax.annotation.Nonnull
   private String customEventType;
 
   public BoostPostRequestPromotedObject() { 
   }
 
-  public BoostPostRequestPromotedObject pixelId(@javax.annotation.Nullable String pixelId) {
+  public BoostPostRequestPromotedObject pixelId(@javax.annotation.Nonnull String pixelId) {
     this.pixelId = pixelId;
     return this;
   }
@@ -58,41 +58,41 @@ public class BoostPostRequestPromotedObject {
    * TikTok Pixel. Either the numeric pixel id or the alphanumeric pixel code from Events Manager, which is resolved for you.
    * @return pixelId
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getPixelId() {
     return pixelId;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPixelId(@javax.annotation.Nullable String pixelId) {
+  @JsonProperty(value = JSON_PROPERTY_PIXEL_ID, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setPixelId(@javax.annotation.Nonnull String pixelId) {
     this.pixelId = pixelId;
   }
 
 
-  public BoostPostRequestPromotedObject customEventType(@javax.annotation.Nullable String customEventType) {
+  public BoostPostRequestPromotedObject customEventType(@javax.annotation.Nonnull String customEventType) {
     this.customEventType = customEventType;
     return this;
   }
 
   /**
-   * Optimization event, as a TikTok optimization_event code (e.g. ON_WEB_ORDER, SHOPPING, FORM) or the exact event name shown in Events Manager, which is resolved to its code. Omit to let TikTok optimize for the ad group default.
+   * Optimization event, as a TikTok optimization_event code (e.g. ON_WEB_ORDER, SHOPPING, FORM) or the exact event name shown in Events Manager, which is resolved to its code. The event must already exist on that pixel, or TikTok rejects the ad group.
    * @return customEventType
    */
-  @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @javax.annotation.Nonnull
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public String getCustomEventType() {
     return customEventType;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_TYPE, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setCustomEventType(@javax.annotation.Nullable String customEventType) {
+  @JsonProperty(value = JSON_PROPERTY_CUSTOM_EVENT_TYPE, required = true)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setCustomEventType(@javax.annotation.Nonnull String customEventType) {
     this.customEventType = customEventType;
   }
 

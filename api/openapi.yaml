@@ -19062,7 +19062,7 @@ paths:
   /v1/inbox/comments/{postId}:
     delete:
       description: |
-        Delete a comment on a post. Supported by Facebook, Instagram, Bluesky, Reddit, YouTube, and LinkedIn.
+        Delete a comment on a post. Supported by Facebook, Instagram, Threads, LinkedIn, Reddit, Bluesky, X (Twitter), YouTube, and TikTok (accounts connected through the TikTok for Business app). Not supported on Google Business (reviews only).
         Requires accountId and commentId query parameters.
       operationId: deleteInboxComment
       parameters:
@@ -95595,10 +95595,10 @@ components:
         promotedObject:
           $ref: "#/components/schemas/AdPromotedObject"
         buyingType:
-          default: AUCTION
-          description: "Meta only. Defaults to AUCTION and is explicitly sent on new\
-            \ campaigns, including validateOnly. SKAdNetwork app promotion requires\
-            \ AUCTION."
+          description: "Meta only. OMIT on non-Meta platforms (Google Ads, etc.):\
+            \ any value is rejected with a 400. On Meta the server applies AUCTION\
+            \ when omitted, so it does not need to be sent; RESERVED = Reach & Frequency.\
+            \ SKAdNetwork app promotion requires AUCTION."
           enum:
           - AUCTION
           - RESERVED
@@ -103948,9 +103948,13 @@ components:
       description: |
         TikTok-only on this endpoint. The pixel a Website Conversion ad group
         optimizes toward, so a Spark Ad built from an existing organic post can
-        optimize for a conversion instead of only engagement or traffic. Required
-        when `goal` is `conversions`; ignored on every other goal, because only a
-        WEB_CONVERSIONS ad group accepts these fields.
+        optimize for a conversion instead of only engagement or traffic.
+
+        Required when `goal` is `conversions`, and BOTH fields are required:
+        TikTok refuses a conversion ad group with no pixel ("Please select a
+        pixel") and equally one that has a pixel but no event ("Select a pixel
+        event."), because the event is what the ad group optimizes toward. Ignored
+        on every other goal, since only a WEB_CONVERSIONS ad group accepts them.
 
         Combine freely with `platformPostId` + `sparkAuthCode`: the pixel lives on
         the ad group and the Spark item on the creative, so they never conflict.
@@ -103962,9 +103966,12 @@ components:
         customEventType:
           description: "Optimization event, as a TikTok optimization_event code (e.g.\
             \ ON_WEB_ORDER, SHOPPING, FORM) or the exact event name shown in Events\
-            \ Manager, which is resolved to its code. Omit to let TikTok optimize\
-            \ for the ad group default."
+            \ Manager, which is resolved to its code. The event must already exist\
+            \ on that pixel, or TikTok rejects the ad group."
           type: string
+      required:
+      - customEventType
+      - pixelId
     boostPost_request:
       properties:
         creativeFeatures:
