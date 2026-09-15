@@ -26124,6 +26124,11 @@ paths:
         GET /v1/phone-numbers/countries can also be watched, but anything with
         `preOrderable: true` does not need a watch: submit KYC and the carrier
         sources the number to order.
+
+        Pass `areaCode` (with `numberType`) to watch one sold-out area, for
+        example an entry of `soldOutAreas` from
+        GET /v1/phone-numbers/availability. Area stock is checked live on the
+        same 6h cadence.
       operationId: createPhoneNumberStockWatch
       requestBody:
         content:
@@ -26150,8 +26155,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "409":
-          description: "The country is in stock right now (buy instead of watching),\
-            \ or the 20-country watch limit is reached (code invalid_resource_state)."
+          description: "The country (or the watched area) is in stock right now (buy\
+            \ instead of watching), or the 20-watch limit is reached (code invalid_resource_state)."
       security:
       - bearerAuth: []
       summary: Watch an out-of-stock country
@@ -50104,6 +50109,7 @@ components:
       example:
         country: country
         createdAt: 2000-01-23T04:56:07.000+00:00
+        areaCode: areaCode
         numberType: local
         id: id
         countryName: countryName
@@ -50124,6 +50130,11 @@ components:
           - national
           - toll_free
           - null
+          nullable: true
+          type: string
+        areaCode:
+          description: "The watched area code (NDC), or null when the watch covers\
+            \ every area."
           nullable: true
           type: string
         createdAt:
@@ -50147,6 +50158,8 @@ components:
             numberType: numberType
           - availableCount: 0
             numberType: numberType
+          areaCode: areaCode
+          areaName: areaName
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
@@ -86513,10 +86526,33 @@ components:
           description: "Numbers available in this area: country-wide count for US/CA,\
             \ numbers seen on the latest inventory page otherwise."
           type: integer
+    checkPhoneNumberAvailability_200_response_soldOutAreas_inner:
+      example:
+        name: name
+        ndc: ndc
+        preOrderable: true
+      properties:
+        ndc:
+          description: Area code (national destination code).
+          type: string
+        name:
+          description: Area name.
+          type: string
+        preOrderable:
+          description: "Whether this area can be pre-ordered: the carrier sources\
+            \ a number in it (usually 2 to 4 weeks, never guaranteed)."
+          type: boolean
     checkPhoneNumberAvailability_200_response:
       example:
         country: country
         numberType: numberType
+        soldOutAreas:
+        - name: name
+          ndc: ndc
+          preOrderable: true
+        - name: name
+          ndc: ndc
+          preOrderable: true
         addressConstraint: geo
         available: true
         areas:
@@ -86561,6 +86597,12 @@ components:
             Live inventory grouped by area code. For US and CA this is the full country inventory (every area code with stock, recognizable metros listed first, then alphabetical); other countries are ordered largest stock first; they list the areas in the latest inventory page (up to 500 numbers, which for most countries is the entire pool). Empty when out of stock (or the area lookup failed). Pass a chosen `ndc` as `areaCode` on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area.
           items:
             $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaOptions_inner"
+          type: array
+        soldOutAreas:
+          description: |
+            Areas that had stock in the last 90 days and have none now. Pass one as `areaCode` with `preOrder: true` on the KYC submit when `preOrderable` is true, or watch it with POST /v1/phone-numbers/stock-watches.
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_soldOutAreas_inner"
           type: array
     purchaseWhatsAppPhoneNumber_request:
       properties:
@@ -87013,6 +87055,11 @@ components:
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
           type: string
+        preOrder:
+          description: "With areaCode: pre-order that area when it has no stock (an\
+            \ area listed in soldOutAreas with preOrderable true) instead of failing\
+            \ with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area."
+          type: boolean
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.
@@ -88210,6 +88257,11 @@ components:
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
           type: string
+        preOrder:
+          description: "With areaCode: pre-order that area when it has no stock (an\
+            \ area listed in soldOutAreas with preOrderable true) instead of failing\
+            \ with AREA_CODE_UNAVAILABLE. The carrier sources a number in that area."
+          type: boolean
         endUserFirstName:
           description: End user's legal first name. Required when the country has
             an action/ID-verification (Onfido) requirement.
@@ -88497,11 +88549,13 @@ components:
         watches:
         - country: country
           createdAt: 2000-01-23T04:56:07.000+00:00
+          areaCode: areaCode
           numberType: local
           id: id
           countryName: countryName
         - country: country
           createdAt: 2000-01-23T04:56:07.000+00:00
+          areaCode: areaCode
           numberType: local
           id: id
           countryName: countryName
@@ -88525,6 +88579,10 @@ components:
           - mobile
           - national
           - toll_free
+          type: string
+        areaCode:
+          description: Narrow the watch to one area code (NDC). Requires numberType.
+          pattern: "^\\d{1,4}$"
           type: string
       required:
       - country
@@ -112321,6 +112379,8 @@ components:
           numberType: numberType
         - availableCount: 0
           numberType: numberType
+        areaCode: areaCode
+        areaName: areaName
       properties:
         country:
           description: ISO 3166-1 alpha-2 country code of the watched country.
@@ -112331,6 +112391,13 @@ components:
           items:
             $ref: "#/components/schemas/WebhookPayloadPhoneNumberStockAvailable_stock_types_inner"
           type: array
+        areaCode:
+          description: "Set when the watch named an area: the area code (NDC) that\
+            \ is back in stock."
+          type: string
+        areaName:
+          description: "The name of that area, when known."
+          type: string
       required:
       - country
       - types

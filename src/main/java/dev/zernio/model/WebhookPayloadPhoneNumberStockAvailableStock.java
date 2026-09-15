@@ -37,9 +37,11 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_COUNTRY,
-  WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_TYPES
+  WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_TYPES,
+  WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_AREA_CODE,
+  WebhookPayloadPhoneNumberStockAvailableStock.JSON_PROPERTY_AREA_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadPhoneNumberStockAvailableStock {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
@@ -48,6 +50,14 @@ public class WebhookPayloadPhoneNumberStockAvailableStock {
   public static final String JSON_PROPERTY_TYPES = "types";
   @javax.annotation.Nonnull
   private List<WebhookPayloadPhoneNumberStockAvailableStockTypesInner> types = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
+  @javax.annotation.Nullable
+  private String areaCode;
+
+  public static final String JSON_PROPERTY_AREA_NAME = "areaName";
+  @javax.annotation.Nullable
+  private String areaName;
 
   public WebhookPayloadPhoneNumberStockAvailableStock() { 
   }
@@ -108,6 +118,54 @@ public class WebhookPayloadPhoneNumberStockAvailableStock {
   }
 
 
+  public WebhookPayloadPhoneNumberStockAvailableStock areaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+    return this;
+  }
+
+  /**
+   * Set when the watch named an area: the area code (NDC) that is back in stock.
+   * @return areaCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAreaCode() {
+    return areaCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAreaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+  }
+
+
+  public WebhookPayloadPhoneNumberStockAvailableStock areaName(@javax.annotation.Nullable String areaName) {
+    this.areaName = areaName;
+    return this;
+  }
+
+  /**
+   * The name of that area, when known.
+   * @return areaName
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AREA_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAreaName() {
+    return areaName;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAreaName(@javax.annotation.Nullable String areaName) {
+    this.areaName = areaName;
+  }
+
+
   /**
    * Return true if this WebhookPayloadPhoneNumberStockAvailable_stock object is equal to o.
    */
@@ -121,12 +179,14 @@ public class WebhookPayloadPhoneNumberStockAvailableStock {
     }
     WebhookPayloadPhoneNumberStockAvailableStock webhookPayloadPhoneNumberStockAvailableStock = (WebhookPayloadPhoneNumberStockAvailableStock) o;
     return Objects.equals(this.country, webhookPayloadPhoneNumberStockAvailableStock.country) &&
-        Objects.equals(this.types, webhookPayloadPhoneNumberStockAvailableStock.types);
+        Objects.equals(this.types, webhookPayloadPhoneNumberStockAvailableStock.types) &&
+        Objects.equals(this.areaCode, webhookPayloadPhoneNumberStockAvailableStock.areaCode) &&
+        Objects.equals(this.areaName, webhookPayloadPhoneNumberStockAvailableStock.areaName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, types);
+    return Objects.hash(country, types, areaCode, areaName);
   }
 
   @Override
@@ -135,6 +195,8 @@ public class WebhookPayloadPhoneNumberStockAvailableStock {
     sb.append("class WebhookPayloadPhoneNumberStockAvailableStock {\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    types: ").append(toIndentedString(types)).append("\n");
+    sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
+    sb.append("    areaName: ").append(toIndentedString(areaName)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -195,6 +257,16 @@ public class WebhookPayloadPhoneNumberStockAvailableStock {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `areaCode` to the URL query string
+    if (getAreaCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
+    }
+
+    // add `areaName` to the URL query string
+    if (getAreaName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaName()))));
     }
 
     return joiner.toString();

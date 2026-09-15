@@ -217,6 +217,7 @@ docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
 docs/CheckPhoneNumberAvailability200Response.md
 docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
+docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md
 docs/CheckPhoneNumberPortability200Response.md
 docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
@@ -2429,6 +2430,7 @@ src/main/java/dev/zernio/model/ChannelPickerChannelsInner.java
 src/main/java/dev/zernio/model/ChannelPickerTeam.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200Response.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200ResponseResultsInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortabilityRequest.java
@@ -4303,3 +4305,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInnerTest.java

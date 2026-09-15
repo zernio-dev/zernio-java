@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CheckPhoneNumberAvailability200ResponseAreaOptionsInner;
+import dev.zernio.model.CheckPhoneNumberAvailability200ResponseSoldOutAreasInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -42,9 +43,10 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_PRE_ORDERABLE,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_ADDRESS_CONSTRAINT,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREAS,
-  CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREA_OPTIONS
+  CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREA_OPTIONS,
+  CheckPhoneNumberAvailability200Response.JSON_PROPERTY_SOLD_OUT_AREAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -110,6 +112,10 @@ public class CheckPhoneNumberAvailability200Response {
   public static final String JSON_PROPERTY_AREA_OPTIONS = "areaOptions";
   @javax.annotation.Nullable
   private List<CheckPhoneNumberAvailability200ResponseAreaOptionsInner> areaOptions = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_SOLD_OUT_AREAS = "soldOutAreas";
+  @javax.annotation.Nullable
+  private List<CheckPhoneNumberAvailability200ResponseSoldOutAreasInner> soldOutAreas = new ArrayList<>();
 
   public CheckPhoneNumberAvailability200Response() { 
   }
@@ -298,6 +304,38 @@ public class CheckPhoneNumberAvailability200Response {
   }
 
 
+  public CheckPhoneNumberAvailability200Response soldOutAreas(@javax.annotation.Nullable List<CheckPhoneNumberAvailability200ResponseSoldOutAreasInner> soldOutAreas) {
+    this.soldOutAreas = soldOutAreas;
+    return this;
+  }
+
+  public CheckPhoneNumberAvailability200Response addSoldOutAreasItem(CheckPhoneNumberAvailability200ResponseSoldOutAreasInner soldOutAreasItem) {
+    if (this.soldOutAreas == null) {
+      this.soldOutAreas = new ArrayList<>();
+    }
+    this.soldOutAreas.add(soldOutAreasItem);
+    return this;
+  }
+
+  /**
+   * Areas that had stock in the last 90 days and have none now. Pass one as &#x60;areaCode&#x60; with &#x60;preOrder: true&#x60; on the KYC submit when &#x60;preOrderable&#x60; is true, or watch it with POST /v1/phone-numbers/stock-watches. 
+   * @return soldOutAreas
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_SOLD_OUT_AREAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CheckPhoneNumberAvailability200ResponseSoldOutAreasInner> getSoldOutAreas() {
+    return soldOutAreas;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_SOLD_OUT_AREAS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setSoldOutAreas(@javax.annotation.Nullable List<CheckPhoneNumberAvailability200ResponseSoldOutAreasInner> soldOutAreas) {
+    this.soldOutAreas = soldOutAreas;
+  }
+
+
   /**
    * Return true if this checkPhoneNumberAvailability_200_response object is equal to o.
    */
@@ -316,12 +354,13 @@ public class CheckPhoneNumberAvailability200Response {
         Objects.equals(this.preOrderable, checkPhoneNumberAvailability200Response.preOrderable) &&
         Objects.equals(this.addressConstraint, checkPhoneNumberAvailability200Response.addressConstraint) &&
         Objects.equals(this.areas, checkPhoneNumberAvailability200Response.areas) &&
-        Objects.equals(this.areaOptions, checkPhoneNumberAvailability200Response.areaOptions);
+        Objects.equals(this.areaOptions, checkPhoneNumberAvailability200Response.areaOptions) &&
+        Objects.equals(this.soldOutAreas, checkPhoneNumberAvailability200Response.soldOutAreas);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType, available, preOrderable, addressConstraint, areas, areaOptions);
+    return Objects.hash(country, numberType, available, preOrderable, addressConstraint, areas, areaOptions, soldOutAreas);
   }
 
   @Override
@@ -335,6 +374,7 @@ public class CheckPhoneNumberAvailability200Response {
     sb.append("    addressConstraint: ").append(toIndentedString(addressConstraint)).append("\n");
     sb.append("    areas: ").append(toIndentedString(areas)).append("\n");
     sb.append("    areaOptions: ").append(toIndentedString(areaOptions)).append("\n");
+    sb.append("    soldOutAreas: ").append(toIndentedString(soldOutAreas)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -421,6 +461,16 @@ public class CheckPhoneNumberAvailability200Response {
       for (int i = 0; i < getAreaOptions().size(); i++) {
         if (getAreaOptions().get(i) != null) {
           joiner.add(getAreaOptions().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sareaOptions%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `soldOutAreas` to the URL query string
+    if (getSoldOutAreas() != null) {
+      for (int i = 0; i < getSoldOutAreas().size(); i++) {
+        if (getSoldOutAreas().get(i) != null) {
+          joiner.add(getSoldOutAreas().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%ssoldOutAreas%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

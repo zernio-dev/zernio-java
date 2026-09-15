@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendDiscordDirectMessage200ResponseAccount.JSON_PROPERTY_USERNAME,
   SendDiscordDirectMessage200ResponseAccount.JSON_PROPERTY_DISPLAY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendDiscordDirectMessage200ResponseAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

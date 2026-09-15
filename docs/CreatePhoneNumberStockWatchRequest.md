@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**country** | **String** | ISO 3166-1 alpha-2 code of a country listed by GET /v1/phone-numbers/countries. |  |
 |**numberType** | [**NumberTypeEnum**](#NumberTypeEnum) | Narrow the watch to one number type. Omit to be notified when any type in the country is back. |  [optional] |
+|**areaCode** | **String** | Narrow the watch to one area code (NDC). Requires numberType. |  [optional] |
 
 
 

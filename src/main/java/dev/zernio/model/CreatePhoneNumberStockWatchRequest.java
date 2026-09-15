@@ -34,9 +34,10 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_COUNTRY,
-  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_NUMBER_TYPE
+  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_NUMBER_TYPE,
+  CreatePhoneNumberStockWatchRequest.JSON_PROPERTY_AREA_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberStockWatchRequest {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nonnull
@@ -84,6 +85,10 @@ public class CreatePhoneNumberStockWatchRequest {
   public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
   @javax.annotation.Nullable
   private NumberTypeEnum numberType;
+
+  public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
+  @javax.annotation.Nullable
+  private String areaCode;
 
   public CreatePhoneNumberStockWatchRequest() { 
   }
@@ -136,6 +141,30 @@ public class CreatePhoneNumberStockWatchRequest {
   }
 
 
+  public CreatePhoneNumberStockWatchRequest areaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+    return this;
+  }
+
+  /**
+   * Narrow the watch to one area code (NDC). Requires numberType.
+   * @return areaCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getAreaCode() {
+    return areaCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAreaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = areaCode;
+  }
+
+
   /**
    * Return true if this createPhoneNumberStockWatch_request object is equal to o.
    */
@@ -149,12 +178,13 @@ public class CreatePhoneNumberStockWatchRequest {
     }
     CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = (CreatePhoneNumberStockWatchRequest) o;
     return Objects.equals(this.country, createPhoneNumberStockWatchRequest.country) &&
-        Objects.equals(this.numberType, createPhoneNumberStockWatchRequest.numberType);
+        Objects.equals(this.numberType, createPhoneNumberStockWatchRequest.numberType) &&
+        Objects.equals(this.areaCode, createPhoneNumberStockWatchRequest.areaCode);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType);
+    return Objects.hash(country, numberType, areaCode);
   }
 
   @Override
@@ -163,6 +193,7 @@ public class CreatePhoneNumberStockWatchRequest {
     sb.append("class CreatePhoneNumberStockWatchRequest {\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
+    sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -218,6 +249,11 @@ public class CreatePhoneNumberStockWatchRequest {
     // add `numberType` to the URL query string
     if (getNumberType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
+    }
+
+    // add `areaCode` to the URL query string
+    if (getAreaCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
     }
 
     return joiner.toString();

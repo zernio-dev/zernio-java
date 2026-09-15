@@ -26,6 +26,10 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import java.time.OffsetDateTime;
 import java.util.Arrays;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -38,9 +42,10 @@ import dev.zernio.ApiClient;
   PhoneNumberStockWatch.JSON_PROPERTY_COUNTRY,
   PhoneNumberStockWatch.JSON_PROPERTY_COUNTRY_NAME,
   PhoneNumberStockWatch.JSON_PROPERTY_NUMBER_TYPE,
+  PhoneNumberStockWatch.JSON_PROPERTY_AREA_CODE,
   PhoneNumberStockWatch.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:25:05.831355476Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T11:27:22.716333289Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumberStockWatch {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -96,6 +101,9 @@ public class PhoneNumberStockWatch {
   public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
   @javax.annotation.Nullable
   private NumberTypeEnum numberType;
+
+  public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
+  private JsonNullable<String> areaCode = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_CREATED_AT = "createdAt";
   @javax.annotation.Nonnull
@@ -200,6 +208,38 @@ public class PhoneNumberStockWatch {
   }
 
 
+  public PhoneNumberStockWatch areaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = JsonNullable.<String>of(areaCode);
+    return this;
+  }
+
+  /**
+   * The watched area code (NDC), or null when the watch covers every area.
+   * @return areaCode
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getAreaCode() {
+        return areaCode.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_AREA_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getAreaCode_JsonNullable() {
+    return areaCode;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_AREA_CODE)
+  public void setAreaCode_JsonNullable(JsonNullable<String> areaCode) {
+    this.areaCode = areaCode;
+  }
+
+  public void setAreaCode(@javax.annotation.Nullable String areaCode) {
+    this.areaCode = JsonNullable.<String>of(areaCode);
+  }
+
+
   public PhoneNumberStockWatch createdAt(@javax.annotation.Nonnull OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -240,12 +280,24 @@ public class PhoneNumberStockWatch {
         Objects.equals(this.country, phoneNumberStockWatch.country) &&
         Objects.equals(this.countryName, phoneNumberStockWatch.countryName) &&
         Objects.equals(this.numberType, phoneNumberStockWatch.numberType) &&
+        equalsNullable(this.areaCode, phoneNumberStockWatch.areaCode) &&
         Objects.equals(this.createdAt, phoneNumberStockWatch.createdAt);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, country, countryName, numberType, createdAt);
+    return Objects.hash(id, country, countryName, numberType, hashCodeNullable(areaCode), createdAt);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -256,6 +308,7 @@ public class PhoneNumberStockWatch {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    countryName: ").append(toIndentedString(countryName)).append("\n");
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
+    sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -322,6 +375,11 @@ public class PhoneNumberStockWatch {
     // add `numberType` to the URL query string
     if (getNumberType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
+    }
+
+    // add `areaCode` to the URL query string
+    if (getAreaCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
     }
 
     // add `createdAt` to the URL query string
