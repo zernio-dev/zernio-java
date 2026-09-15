@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_COMMENTS,
   YouTubeDailyViewsResponseDailyViewsInner.JSON_PROPERTY_SHARES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T14:57:59.446447276Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:36:08.632374487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class YouTubeDailyViewsResponseDailyViewsInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable

@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   CreateAdInsightsReportRequest.JSON_PROPERTY_TO_DATE,
   CreateAdInsightsReportRequest.JSON_PROPERTY_TIME_INCREMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T14:57:59.446447276Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T15:36:08.632374487Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdInsightsReportRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
