@@ -4335,17 +4335,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/ProductsApiTest.java
-src/test/java/dev/zernio/model/GetProduct200ResponseTest.java
-src/test/java/dev/zernio/model/ListProducts200ResponseTest.java
-src/test/java/dev/zernio/model/ProductImageTest.java
-src/test/java/dev/zernio/model/ProductOptionsInnerTest.java
-src/test/java/dev/zernio/model/ProductSeoTest.java
-src/test/java/dev/zernio/model/ProductTest.java
-src/test/java/dev/zernio/model/ProductVariantSelectedOptionsInnerTest.java
-src/test/java/dev/zernio/model/ProductVariantTest.java
-src/test/java/dev/zernio/model/UpdateProductRequestSeoTest.java
-src/test/java/dev/zernio/model/UpdateProductRequestTest.java
-src/test/java/dev/zernio/model/UpdateProductRequestVariantsInnerCompareAtPriceTest.java
-src/test/java/dev/zernio/model/UpdateProductRequestVariantsInnerPriceTest.java
-src/test/java/dev/zernio/model/UpdateProductRequestVariantsInnerTest.java
