@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.6.0
+  version: 1.7.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75,6 +75,15 @@ tags:
     the containers; articles are the posts inside them. All content lives on
     the platform; Zernio proxies it and stores nothing.
   name: Blogs
+- description: |
+    Read and edit the product catalog on connected accounts. Currently
+    supported for Shopify accounts (scopes read_products and write_products).
+    Products are listed with their variants, options and images; edits cover
+    the product's own fields (title, description, handle, tags, vendor, type,
+    status, SEO) and variant prices. No product creation, inventory or
+    orders. All data lives on the platform; Zernio proxies it and stores
+    nothing.
+  name: Products
 - description: |
     Read the authenticated user and team members.
   name: Users
@@ -9027,14 +9036,17 @@ paths:
       description: |
         Initiate the Shopify OAuth flow for a store. Shopify is a connect-only
         platform: the connected account does not publish social posts, it powers
-        the Blogs API (`/v1/accounts/{accountId}/blogs`). Returns an `authUrl`
+        the Blogs API (`/v1/accounts/{accountId}/blogs`) and the Products API
+        (`/v1/accounts/{accountId}/products`). Returns an `authUrl`
         to redirect the merchant to; after they approve the install, Shopify
         redirects their browser to Zernio's callback, the account is created on
         the profile (platform `shopify`), and the browser is redirected to
         `redirect_url` (or the Zernio dashboard when omitted). Requested scopes
-        are `read_content` and `write_content` (content only; no customer or
-        order data). Connecting the same profile to a store again refreshes the
-        stored token in place.
+        are `read_content`, `write_content`, `read_products` and
+        `write_products` (content and products only; no customer or order
+        data). Connecting the same profile to a store again refreshes the
+        stored token in place, and is how a store connected under the older
+        content-only grant picks up product access.
       operationId: getShopifyConnectUrl
       parameters:
       - description: Your Zernio profile ID (get from /v1/profiles).
@@ -9101,7 +9113,8 @@ paths:
         Token-paste alternative to the OAuth flow: connect a store using the
         Admin API access token of a custom app the merchant created in their
         own Shopify admin (Settings → Apps and sales channels → Develop apps,
-        with the `read_content`/`write_content` scopes). Use this when the
+        with the `read_content`, `write_content`, `read_products` and
+        `write_products` scopes). Use this when the
         one-click OAuth connect is unavailable or when your users prefer not
         to install a third-party app on their store. The token is validated
         against the store before anything is saved; custom-app tokens do not
@@ -46089,6 +46102,231 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/products:
+    get:
+      description: |
+        Lists the products on the connected store in the platform's default
+        order, each with its variants, options and images. Cursor-paginated:
+        pass `limit` (1-50, default 20) and the `cursor` from a previous
+        response's `nextCursor`; `nextCursor` is null when there are no more
+        pages. Filter with `status` and/or `query` (the platform's product
+        search syntax, e.g. `title:*shirt* vendor:Acme tag:summer`).
+
+        Supported on Shopify (platform `shopify`); accounts on other
+        platforms return 400. A store connected before product access was
+        added answers 403 insufficient_permissions until the merchant
+        reconnects it through `GET /v1/connect/shopify`.
+      operationId: listProducts
+      parameters:
+      - description: Connected Shopify SocialAccount id.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page size (1-50).
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: Opaque cursor from a previous response. Omit for the first page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only products in this status.
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          enum:
+          - active
+          - draft
+          - archived
+          type: string
+        style: form
+      - description: "Platform product search syntax, passed through verbatim (Shopify:\
+          \ title, vendor, product_type, tag, sku, handle, created_at, updated_at,\
+          \ ...)."
+        explode: true
+        in: query
+        name: query
+        required: false
+        schema:
+          maxLength: 500
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listProducts_200_response"
+          description: Products listed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The platform rejected the request (code insufficient_permissions).
+            The store lacks the product scopes or the token was revoked; reconnect
+            the Shopify account.
+        "404":
+          description: Account not found or not accessible (code account_not_found).
+        "429":
+          description: "Rate limited, either by Zernio or by Shopify. Retry later."
+      security:
+      - bearerAuth: []
+      summary: List products
+      tags:
+      - Products
+      x-resource-group: publishing
+      x-platforms:
+      - shopify
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/products/{productId}:
+    get:
+      description: |
+        Fetches a single product with its variants, options and images.
+        `productId` is the platform's numeric product id from
+        `GET /v1/accounts/{accountId}/products`, not a Zernio id.
+
+        Supported on Shopify (platform `shopify`); accounts on other
+        platforms return 400.
+      operationId: getProduct
+      parameters:
+      - description: Connected Shopify SocialAccount id.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Platform-native numeric product id. Non-numeric values return
+          400.
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getProduct_200_response"
+          description: Product fetched
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The platform rejected the request (code insufficient_permissions).
+            The store lacks the product scopes or the token was revoked; reconnect
+            the Shopify account.
+        "404":
+          description: "Account not found or not accessible (code account_not_found),\
+            \ or product not found (code product_not_found)."
+        "429":
+          description: "Rate limited, either by Zernio or by Shopify. Retry later."
+      security:
+      - bearerAuth: []
+      summary: Get a product
+      tags:
+      - Products
+      x-resource-group: publishing
+      x-platforms:
+      - shopify
+      x-accepts:
+      - application/json
+    patch:
+      description: |
+        Partial-updates a product. Send any subset of `title`,
+        `descriptionHtml`, `handle`, `vendor`, `productType`, `tags`, `status`,
+        `seo` and `variants`; at least one field is required (an empty body
+        returns 400). `tags` replaces the full tag list. `variants` updates
+        the price and compare-at price of the listed variant ids only; other
+        variants are untouched, and a variant id that does not belong to the
+        product is a 400. Responds with the product as it is after the update.
+
+        Supported on Shopify (platform `shopify`); accounts on other
+        platforms return 400. A store connected before product access was
+        added answers 403 insufficient_permissions until the merchant
+        reconnects it through `GET /v1/connect/shopify`.
+      operationId: updateProduct
+      parameters:
+      - description: Connected Shopify SocialAccount id.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Platform-native numeric product id. Non-numeric values return
+          400.
+        explode: false
+        in: path
+        name: productId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateProduct_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getProduct_200_response"
+          description: Product updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The platform rejected the request (code insufficient_permissions).
+            The store lacks the product scopes or the token was revoked; reconnect
+            the Shopify account.
+        "404":
+          description: "Account not found or not accessible (code account_not_found),\
+            \ or product not found (code product_not_found)."
+        "429":
+          description: "Rate limited, either by Zernio or by Shopify. Retry later."
+      security:
+      - bearerAuth: []
+      summary: Update a product
+      tags:
+      - Products
+      x-resource-group: publishing
+      x-platforms:
+      - shopify
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/verify/verifications:
     post:
       description: |
@@ -64707,6 +64945,204 @@ components:
           nullable: true
           type: string
         updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+    ProductImage:
+      example:
+        altText: altText
+        url: url
+      properties:
+        url:
+          type: string
+        altText:
+          nullable: true
+          type: string
+    ProductVariant:
+      description: A purchasable variant of a product (one per option combination).
+      example:
+        availableForSale: true
+        price: price
+        inventoryQuantity: 0
+        selectedOptions:
+        - name: name
+          value: value
+        - name: name
+          value: value
+        id: id
+        title: title
+        sku: sku
+        barcode: barcode
+        compareAtPrice: compareAtPrice
+      properties:
+        id:
+          description: Platform-native variant id (numeric string for Shopify).
+          type: string
+        title:
+          description: "Option combination label, e.g. \"S / Blue\"."
+          type: string
+        sku:
+          nullable: true
+          type: string
+        barcode:
+          nullable: true
+          type: string
+        price:
+          description: "Decimal amount in the store currency, e.g. \"19.90\"."
+          type: string
+        compareAtPrice:
+          description: Strike-through price; null when the variant is not on sale.
+          nullable: true
+          type: string
+        inventoryQuantity:
+          description: Units on hand across locations; null when inventory is not
+            tracked.
+          nullable: true
+          type: integer
+        availableForSale:
+          type: boolean
+        selectedOptions:
+          items:
+            $ref: "#/components/schemas/ProductVariant_selectedOptions_inner"
+          type: array
+    Product:
+      description: "A product on the connected platform with its variants, options\
+        \ and images. All data lives on the platform; Zernio proxies it and stores\
+        \ nothing."
+      example:
+        images:
+        - altText: altText
+          url: url
+        - altText: altText
+          url: url
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        handle: handle
+        variants:
+        - availableForSale: true
+          price: price
+          inventoryQuantity: 0
+          selectedOptions:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          id: id
+          title: title
+          sku: sku
+          barcode: barcode
+          compareAtPrice: compareAtPrice
+        - availableForSale: true
+          price: price
+          inventoryQuantity: 0
+          selectedOptions:
+          - name: name
+            value: value
+          - name: name
+            value: value
+          id: id
+          title: title
+          sku: sku
+          barcode: barcode
+          compareAtPrice: compareAtPrice
+        totalInventory: 6
+        title: title
+        platform: shopify
+        tags:
+        - tags
+        - tags
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        featuredImage: ""
+        vendor: vendor
+        options:
+        - values:
+          - values
+          - values
+          name: name
+        - values:
+          - values
+          - values
+          name: name
+        onlineStoreUrl: onlineStoreUrl
+        descriptionHtml: descriptionHtml
+        id: id
+        seo:
+          description: description
+          title: title
+        productType: productType
+        status: active
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Platform-native product id (numeric string for Shopify).
+          type: string
+        platform:
+          enum:
+          - shopify
+          type: string
+        title:
+          type: string
+        handle:
+          description: URL slug of the product.
+          type: string
+        descriptionHtml:
+          description: Product description as HTML.
+          nullable: true
+          type: string
+        vendor:
+          nullable: true
+          type: string
+        productType:
+          description: Free-text product type as set on the store.
+          nullable: true
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+        status:
+          enum:
+          - active
+          - draft
+          - archived
+          type: string
+        featuredImage:
+          allOf:
+          - $ref: "#/components/schemas/ProductImage"
+          nullable: true
+        images:
+          description: "First 20 images in the product media, in store order."
+          items:
+            $ref: "#/components/schemas/ProductImage"
+          type: array
+        options:
+          description: "Option axes (e.g. Size, Color) and their values."
+          items:
+            $ref: "#/components/schemas/Product_options_inner"
+          type: array
+        variants:
+          description: First 100 variants.
+          items:
+            $ref: "#/components/schemas/ProductVariant"
+          type: array
+        seo:
+          $ref: "#/components/schemas/Product_seo"
+        totalInventory:
+          nullable: true
+          type: integer
+        onlineStoreUrl:
+          description: Public storefront URL; null while the product is not published
+            to the online store.
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          nullable: true
+          type: string
+        updatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        publishedAt:
           format: date-time
           nullable: true
           type: string
@@ -110733,6 +111169,292 @@ components:
             publication natively on the platform.
           format: date-time
           type: string
+    listProducts_200_response:
+      example:
+        nextCursor: nextCursor
+        platform: shopify
+        products:
+        - images:
+          - altText: altText
+            url: url
+          - altText: altText
+            url: url
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          variants:
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          totalInventory: 6
+          title: title
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          featuredImage: ""
+          vendor: vendor
+          options:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          onlineStoreUrl: onlineStoreUrl
+          descriptionHtml: descriptionHtml
+          id: id
+          seo:
+            description: description
+            title: title
+          productType: productType
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - images:
+          - altText: altText
+            url: url
+          - altText: altText
+            url: url
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          variants:
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          totalInventory: 6
+          title: title
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          featuredImage: ""
+          vendor: vendor
+          options:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          onlineStoreUrl: onlineStoreUrl
+          descriptionHtml: descriptionHtml
+          id: id
+          seo:
+            description: description
+            title: title
+          productType: productType
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        platform:
+          enum:
+          - shopify
+          type: string
+        products:
+          items:
+            $ref: "#/components/schemas/Product"
+          type: array
+        nextCursor:
+          description: Cursor for the next page; null when there are no more pages.
+          nullable: true
+          type: string
+    getProduct_200_response:
+      example:
+        product:
+          images:
+          - altText: altText
+            url: url
+          - altText: altText
+            url: url
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          variants:
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          - availableForSale: true
+            price: price
+            inventoryQuantity: 0
+            selectedOptions:
+            - name: name
+              value: value
+            - name: name
+              value: value
+            id: id
+            title: title
+            sku: sku
+            barcode: barcode
+            compareAtPrice: compareAtPrice
+          totalInventory: 6
+          title: title
+          platform: shopify
+          tags:
+          - tags
+          - tags
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          featuredImage: ""
+          vendor: vendor
+          options:
+          - values:
+            - values
+            - values
+            name: name
+          - values:
+            - values
+            - values
+            name: name
+          onlineStoreUrl: onlineStoreUrl
+          descriptionHtml: descriptionHtml
+          id: id
+          seo:
+            description: description
+            title: title
+          productType: productType
+          status: active
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        platform: shopify
+      properties:
+        platform:
+          enum:
+          - shopify
+          type: string
+        product:
+          $ref: "#/components/schemas/Product"
+    updateProduct_request_seo:
+      description: Search-engine title and description overrides.
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+    updateProduct_request_variants_inner_price:
+      description: Decimal amount in the store currency. Numbers are formatted to
+        two decimals.
+      oneOf:
+      - minimum: 0
+        type: number
+      - pattern: "^\\d+(\\.\\d{1,2})?$"
+        type: string
+    updateProduct_request_variants_inner_compareAtPrice:
+      description: Strike-through price. Send null to remove it.
+      nullable: true
+      oneOf:
+      - minimum: 0
+        type: number
+      - pattern: "^\\d+(\\.\\d{1,2})?$"
+        type: string
+    updateProduct_request_variants_inner:
+      properties:
+        id:
+          description: Variant id from the product response.
+          pattern: ^\d+$
+          type: string
+        price:
+          $ref: "#/components/schemas/updateProduct_request_variants_inner_price"
+        compareAtPrice:
+          $ref: "#/components/schemas/updateProduct_request_variants_inner_compareAtPrice"
+      required:
+      - id
+    updateProduct_request:
+      description: At least one field is required.
+      properties:
+        title:
+          minLength: 1
+          type: string
+        descriptionHtml:
+          description: Product description as HTML.
+          type: string
+        handle:
+          description: URL slug of the product.
+          minLength: 1
+          type: string
+        vendor:
+          type: string
+        productType:
+          type: string
+        tags:
+          description: Replaces the full tag list.
+          items:
+            type: string
+          type: array
+        status:
+          description: archived hides the product everywhere; draft keeps it editable
+            but unpublished.
+          enum:
+          - active
+          - draft
+          - archived
+          type: string
+        seo:
+          $ref: "#/components/schemas/updateProduct_request_seo"
+        variants:
+          description: Price changes per variant. Only the listed variants change.
+          items:
+            $ref: "#/components/schemas/updateProduct_request_variants_inner"
+          maxItems: 100
+          minItems: 1
+          type: array
     createVerification_request:
       properties:
         channel:
@@ -118750,6 +119472,39 @@ components:
         url:
           type: string
         altText:
+          nullable: true
+          type: string
+    ProductVariant_selectedOptions_inner:
+      example:
+        name: name
+        value: value
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+    Product_options_inner:
+      example:
+        values:
+        - values
+        - values
+        name: name
+      properties:
+        name:
+          type: string
+        values:
+          items:
+            type: string
+          type: array
+    Product_seo:
+      example:
+        description: description
+        title: title
+      properties:
+        title:
+          nullable: true
+          type: string
+        description:
           nullable: true
           type: string
     BusinessAgentSettings_rollout:

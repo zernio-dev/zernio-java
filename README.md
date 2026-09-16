@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.6.0
+- API version: 1.7.0
 
-- Build date: 2026-09-16T15:02:48.871791130Z[Etc/UTC]
+- Build date: 2026-09-16T15:59:17.581103024Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.6.0</version>
+  <version>1.7.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.6.0"
+compile "dev.zernio:zernio-sdk:1.7.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.6.0.jar`
+- `target/zernio-sdk-1.7.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1141,6 +1141,12 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**updatePostWithHttpInfo**](docs/PostsApi.md#updatePostWithHttpInfo) | **PUT** /v1/posts/{postId} | Update post
 *PostsApi* | [**updatePostMetadata**](docs/PostsApi.md#updatePostMetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
 *PostsApi* | [**updatePostMetadataWithHttpInfo**](docs/PostsApi.md#updatePostMetadataWithHttpInfo) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
+*ProductsApi* | [**getProduct**](docs/ProductsApi.md#getProduct) | **GET** /v1/accounts/{accountId}/products/{productId} | Get a product
+*ProductsApi* | [**getProductWithHttpInfo**](docs/ProductsApi.md#getProductWithHttpInfo) | **GET** /v1/accounts/{accountId}/products/{productId} | Get a product
+*ProductsApi* | [**listProducts**](docs/ProductsApi.md#listProducts) | **GET** /v1/accounts/{accountId}/products | List products
+*ProductsApi* | [**listProductsWithHttpInfo**](docs/ProductsApi.md#listProductsWithHttpInfo) | **GET** /v1/accounts/{accountId}/products | List products
+*ProductsApi* | [**updateProduct**](docs/ProductsApi.md#updateProduct) | **PATCH** /v1/accounts/{accountId}/products/{productId} | Update a product
+*ProductsApi* | [**updateProductWithHttpInfo**](docs/ProductsApi.md#updateProductWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/products/{productId} | Update a product
 *ProfilesApi* | [**createProfile**](docs/ProfilesApi.md#createProfile) | **POST** /v1/profiles | Create profile
 *ProfilesApi* | [**createProfileWithHttpInfo**](docs/ProfilesApi.md#createProfileWithHttpInfo) | **POST** /v1/profiles | Create profile
 *ProfilesApi* | [**deleteProfile**](docs/ProfilesApi.md#deleteProfile) | **DELETE** /v1/profiles/{profileId} | Delete profile
@@ -2395,6 +2401,7 @@ Class | Method | HTTP request | Description
  - [GetPostTimeline404Response](docs/GetPostTimeline404Response.md)
  - [GetPostingFrequency200Response](docs/GetPostingFrequency200Response.md)
  - [GetPostingFrequency200ResponseFrequencyInner](docs/GetPostingFrequency200ResponseFrequencyInner.md)
+ - [GetProduct200Response](docs/GetProduct200Response.md)
  - [GetRedditFlairs200Response](docs/GetRedditFlairs200Response.md)
  - [GetRedditFlairs200ResponseFlairsInner](docs/GetRedditFlairs200ResponseFlairsInner.md)
  - [GetRedditSubreddits200Response](docs/GetRedditSubreddits200Response.md)
@@ -2765,6 +2772,7 @@ Class | Method | HTTP request | Description
  - [ListPhoneNumbers200ResponseSandboxTemplate](docs/ListPhoneNumbers200ResponseSandboxTemplate.md)
  - [ListPinterestBoardsForSelection200Response](docs/ListPinterestBoardsForSelection200Response.md)
  - [ListPinterestBoardsForSelection200ResponseBoardsInner](docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md)
+ - [ListProducts200Response](docs/ListProducts200Response.md)
  - [ListQueueSlots200Response](docs/ListQueueSlots200Response.md)
  - [ListQueueSlots200ResponseOneOf](docs/ListQueueSlots200ResponseOneOf.md)
  - [ListSequenceEnrollments200Response](docs/ListSequenceEnrollments200Response.md)
@@ -2900,6 +2908,12 @@ Class | Method | HTTP request | Description
  - [PreflightSmsRegistration200ResponseAdvisoriesInner](docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md)
  - [PreflightSmsRegistration200ResponseComposed](docs/PreflightSmsRegistration200ResponseComposed.md)
  - [PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
+ - [Product](docs/Product.md)
+ - [ProductImage](docs/ProductImage.md)
+ - [ProductOptionsInner](docs/ProductOptionsInner.md)
+ - [ProductSeo](docs/ProductSeo.md)
+ - [ProductVariant](docs/ProductVariant.md)
+ - [ProductVariantSelectedOptionsInner](docs/ProductVariantSelectedOptionsInner.md)
  - [Profile](docs/Profile.md)
  - [ProfileCreateResponse](docs/ProfileCreateResponse.md)
  - [ProfileDeleteResponse](docs/ProfileDeleteResponse.md)
@@ -3377,6 +3391,11 @@ Class | Method | HTTP request | Description
  - [UpdatePostMetadataRequest](docs/UpdatePostMetadataRequest.md)
  - [UpdatePostRequest](docs/UpdatePostRequest.md)
  - [UpdatePostRequestPlatformsInner](docs/UpdatePostRequestPlatformsInner.md)
+ - [UpdateProductRequest](docs/UpdateProductRequest.md)
+ - [UpdateProductRequestSeo](docs/UpdateProductRequestSeo.md)
+ - [UpdateProductRequestVariantsInner](docs/UpdateProductRequestVariantsInner.md)
+ - [UpdateProductRequestVariantsInnerCompareAtPrice](docs/UpdateProductRequestVariantsInnerCompareAtPrice.md)
+ - [UpdateProductRequestVariantsInnerPrice](docs/UpdateProductRequestVariantsInnerPrice.md)
  - [UpdateProfileRequest](docs/UpdateProfileRequest.md)
  - [UpdateQueueSlotRequest](docs/UpdateQueueSlotRequest.md)
  - [UpdateRedditSubredditsRequest](docs/UpdateRedditSubredditsRequest.md)

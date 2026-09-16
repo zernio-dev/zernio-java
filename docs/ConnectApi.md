@@ -1543,7 +1543,7 @@ ApiResponse<[**ConnectOpenAIAdsCredentials200Response**](ConnectOpenAIAdsCredent
 
 Connect a Shopify store with a custom-app Admin token
 
-Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;, &#x60;write_content&#x60;, &#x60;read_products&#x60; and &#x60;write_products&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
 
 ### Example
 
@@ -1617,7 +1617,7 @@ public class Example {
 
 Connect a Shopify store with a custom-app Admin token
 
-Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;/&#x60;write_content&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
+Token-paste alternative to the OAuth flow: connect a store using the Admin API access token of a custom app the merchant created in their own Shopify admin (Settings → Apps and sales channels → Develop apps, with the &#x60;read_content&#x60;, &#x60;write_content&#x60;, &#x60;read_products&#x60; and &#x60;write_products&#x60; scopes). Use this when the one-click OAuth connect is unavailable or when your users prefer not to install a third-party app on their store. The token is validated against the store before anything is saved; custom-app tokens do not expire. Connecting the same profile to a store again replaces the stored token in place. 
 
 ### Example
 
@@ -3875,7 +3875,7 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 
 Get Shopify OAuth connect URL
 
-Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;) and the Products API (&#x60;/v1/accounts/{accountId}/products&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60;, &#x60;write_content&#x60;, &#x60;read_products&#x60; and &#x60;write_products&#x60; (content and products only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place, and is how a store connected under the older content-only grant picks up product access. 
 
 ### Example
 
@@ -3955,7 +3955,7 @@ public class Example {
 
 Get Shopify OAuth connect URL
 
-Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60; and &#x60;write_content&#x60; (content only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place. 
+Initiate the Shopify OAuth flow for a store. Shopify is a connect-only platform: the connected account does not publish social posts, it powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;) and the Products API (&#x60;/v1/accounts/{accountId}/products&#x60;). Returns an &#x60;authUrl&#x60; to redirect the merchant to; after they approve the install, Shopify redirects their browser to Zernio&#39;s callback, the account is created on the profile (platform &#x60;shopify&#x60;), and the browser is redirected to &#x60;redirect_url&#x60; (or the Zernio dashboard when omitted). Requested scopes are &#x60;read_content&#x60;, &#x60;write_content&#x60;, &#x60;read_products&#x60; and &#x60;write_products&#x60; (content and products only; no customer or order data). Connecting the same profile to a store again refreshes the stored token in place, and is how a store connected under the older content-only grant picks up product access. 
 
 ### Example
 
