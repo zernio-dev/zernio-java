@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetPageWebhookSubscription200Response.JSON_PROPERTY_SUBSCRIBED_FIELDS,
   GetPageWebhookSubscription200Response.JSON_PROPERTY_WARNING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-15T18:14:34.489651804Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-16T00:09:13.807999675Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPageWebhookSubscription200Response {
   public static final String JSON_PROPERTY_PAGE_ID = "pageId";
   @javax.annotation.Nullable
