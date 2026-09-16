@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   UpdatePostMetadataRequest.JSON_PROPERTY_CONTAINS_SYNTHETIC_MEDIA,
   UpdatePostMetadataRequest.JSON_PROPERTY_PLAYLIST_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-16T00:09:13.807999675Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-16T08:19:26.656457049Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdatePostMetadataRequest {
   /**
    * The platform to update metadata on
@@ -378,7 +378,7 @@ public class UpdatePostMetadataRequest {
   }
 
   /**
-   * Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 2 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
+   * Public URL of a custom thumbnail image (JPEG, PNG, or GIF, max 50 MB, recommended 1280x720). Works on any video you own, including existing videos not published through Zernio. The channel must be verified (phone verification) to set custom thumbnails.
    * @return thumbnailUrl
    */
   @javax.annotation.Nullable
