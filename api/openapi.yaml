@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.3.0
+  version: 1.4.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -104403,6 +104403,20 @@ components:
           description: Platform ad account ID
           type: string
         name:
+          maxLength: 255
+          type: string
+        campaignName:
+          description: "Exact name for the campaign this boost provisions. Omitted\
+            \ keeps the default `<name> - Campaign`. Every platform: on LinkedIn it\
+            \ names the campaign group. Ignored on the Meta attach shape (`adSetId`),\
+            \ which creates no campaign."
+          maxLength: 255
+          type: string
+        adSetName:
+          description: "Exact name for the ad-group level this boost provisions. Omitted\
+            \ keeps the default `<name> - Ad Group`. Meta: ad set; TikTok, Pinterest,\
+            \ Google: ad group; X: line item; LinkedIn: the campaign under the campaign\
+            \ group. Ignored on the Meta attach shape."
           maxLength: 255
           type: string
         goal:
