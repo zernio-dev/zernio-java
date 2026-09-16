@@ -24362,6 +24362,13 @@ paths:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
             Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchasePhoneNumber_503_response"
+          description: "The carrier could not take the order just now (code CARRIER_UNAVAILABLE);\
+            \ the number is not taken, retry the same request in a minute."
         "202":
           content:
             application/json:
@@ -24686,6 +24693,13 @@ paths:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
             Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).
+        "503":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchasePhoneNumber_503_response"
+          description: "The carrier could not take the order just now (code CARRIER_UNAVAILABLE);\
+            \ the number is not taken, retry the same request in a minute."
         "202":
           content:
             application/json:
@@ -86442,6 +86456,17 @@ components:
           - PURCHASE_VELOCITY
           - AREA_CODE_UNAVAILABLE
           - PHONE_NUMBER_UNAVAILABLE
+          type: string
+    purchasePhoneNumber_503_response:
+      example:
+        code: CARRIER_UNAVAILABLE
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          enum:
+          - CARRIER_UNAVAILABLE
           type: string
     purchasePhoneNumber_202_response:
       example:

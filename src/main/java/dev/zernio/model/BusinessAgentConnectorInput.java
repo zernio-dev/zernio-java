@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   BusinessAgentConnectorInput.JSON_PROPERTY_USER_AUTH_INJECTION_CONFIG,
   BusinessAgentConnectorInput.JSON_PROPERTY_REQUIRES_CERTIFICATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-16T11:51:52.517463446Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-16T11:54:26.152516279Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentConnectorInput {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

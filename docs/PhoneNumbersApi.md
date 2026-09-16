@@ -2502,6 +2502,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
+| **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |
@@ -2582,6 +2583,7 @@ ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.
 | **401** | Unauthorized |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number).  |  -  |
+| **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
 | **422** | International numbers require usage-based billing (legacy Stripe users are US-only). Response body code: USAGE_BILLING_REQUIRED. |  -  |

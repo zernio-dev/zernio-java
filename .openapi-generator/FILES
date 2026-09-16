@@ -1382,6 +1382,7 @@ docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md
 docs/PurchasePhoneNumber200ResponseOneOf2.md
 docs/PurchasePhoneNumber202Response.md
 docs/PurchasePhoneNumber409Response.md
+docs/PurchasePhoneNumber503Response.md
 docs/PurchasePhoneNumberRequest.md
 docs/PurchaseWhatsAppPhoneNumber200Response.md
 docs/PurchaseWhatsAppPhoneNumber200ResponseOneOf.md
@@ -3566,6 +3567,7 @@ src/main/java/dev/zernio/model/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.j
 src/main/java/dev/zernio/model/PurchasePhoneNumber200ResponseOneOf2.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber202Response.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber409Response.java
+src/main/java/dev/zernio/model/PurchasePhoneNumber503Response.java
 src/main/java/dev/zernio/model/PurchasePhoneNumberRequest.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200Response.java
 src/main/java/dev/zernio/model/PurchaseWhatsAppPhoneNumber200ResponseOneOf.java
@@ -4305,3 +4307,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PurchasePhoneNumber503ResponseTest.java
