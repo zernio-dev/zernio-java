@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.1.0
+  version: 1.2.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -102275,6 +102275,19 @@ components:
           - OPT_IN
           - OPT_OUT
           type: string
+        aiDisclosure:
+          description: "Meta only. Meta's \"Ad includes media created or edited with\
+            \ AI\" disclosure, the checkbox in Ads Manager, stored on the creative\
+            \ as `generative_asset_spec.transparency_metadata.self_disclosure`. OPT_IN\
+            \ checks it, OPT_OUT explicitly declares no AI media, omitted leaves Meta's\
+            \ default. Applied to each new creative, including standalone, creatives[]\
+            \ and attach shapes, and preserved when a creative is rebuilt. This sets\
+            \ the disclosure on the ad; whether and when the viewer-facing label renders\
+            \ is Meta's decision."
+          enum:
+          - OPT_IN
+          - OPT_OUT
+          type: string
       required:
       - accountId
       - adAccountId
@@ -105399,6 +105412,19 @@ components:
             \ ad alongside other advertisers' in one unit. Meta auto-enrols since\
             \ Aug 2024, so send OPT_OUT to leave. It is a top-level creative field,\
             \ NOT a `creativeFeatures` key, and Meta rejects it there."
+          enum:
+          - OPT_IN
+          - OPT_OUT
+          type: string
+        aiDisclosure:
+          description: "Meta only. Meta's \"Ad includes media created or edited with\
+            \ AI\" disclosure, the checkbox in Ads Manager, stored on the creative\
+            \ as `generative_asset_spec.transparency_metadata.self_disclosure`. OPT_IN\
+            \ checks it, OPT_OUT explicitly declares no AI media, omitted leaves Meta's\
+            \ default. Applied to each new creative, including standalone, creatives[]\
+            \ and attach shapes, and preserved when a creative is rebuilt. This sets\
+            \ the disclosure on the ad; whether and when the viewer-facing label renders\
+            \ is Meta's decision."
           enum:
           - OPT_IN
           - OPT_OUT
