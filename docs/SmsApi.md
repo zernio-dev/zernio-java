@@ -2825,6 +2825,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
+| **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
 ## startSmsRegistrationWithHttpInfo
 
@@ -2901,6 +2902,7 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
+| **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
 
 ## uploadSmsOptInProof

@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.2.0
+  version: 1.2.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22927,6 +22927,11 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "422":
           description: Carrier registry rejected a field; `param` names it when known.
+        "409":
+          description: "The brand already exists at the carrier and failed identity\
+            \ verification (a rejected registration of yours with the same EIN or\
+            \ legal name); the fix is applied to that brand on reply, a new registration\
+            \ would file and bill a second one."
       security:
       - bearerAuth: []
       summary: Start a carrier registration
