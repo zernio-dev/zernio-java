@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.5.0
+  version: 1.6.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8734,6 +8734,26 @@ paths:
           enum:
           - classic
           - business
+          type: string
+        style: form
+      - description: "Business login only. Ad-account permission the connection's\
+          \ system user will hold. `full` asks the owner for Full control (MANAGE;\
+          \ required to create pixels and other account-level assets through Zernio).\
+          \ `advertise` asks for Manage campaigns (ADVERTISE), enough for campaigns,\
+          \ ad sets, creatives, ads, media and reporting, for owners who will not\
+          \ grant billing-level control to an integration. Either way Meta only lets\
+          \ a business admin complete the grant. 503 if the advertise configuration\
+          \ is not set up."
+        example: advertise
+        explode: true
+        in: query
+        name: permissionLevel
+        required: false
+        schema:
+          default: full
+          enum:
+          - full
+          - advertise
           type: string
         style: form
       - description: Business login only. Facebook Page ID to select from the token
