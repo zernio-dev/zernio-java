@@ -15,7 +15,7 @@
 |**analytics** | [**PostAnalytics**](PostAnalytics.md) |  |  [optional] |
 |**syncStatus** | [**SyncStatusEnum**](#SyncStatusEnum) | Sync state of analytics for this platform |  [optional] |
 |**platformPostUrl** | **URI** |  |  [optional] |
-|**errorMessage** | **String** | Error details when status is failed |  [optional] |
+|**errorMessage** | **String** | Error details when status is failed, or why analytics are unavailable for a published entry (e.g. Google Business Profile, a TikTok upload that never received a video id) |  [optional] |
 
 
 

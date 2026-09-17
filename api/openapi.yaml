@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.8.0
+  version: 1.8.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53214,7 +53214,9 @@ components:
             \ for immediate posts; for scheduled posts, fetch via GET /v1/posts/{postId}\
             \ after publish time. Empty when the platform confirmed the publish without\
             \ returning an id a permalink can be built from (TikTok returns a publish\
-            \ id for some uploads); the TikTok reconcile cron backfills it later."
+            \ id for some uploads); the TikTok reconcile cron backfills it later.\
+            \ If TikTok never returns one, /v1/analytics reports that entry as syncStatus\
+            \ unavailable."
           example: https://twitter.com/acmecorp/status/1234567890123456789
           nullable: true
           type: string
@@ -55748,7 +55750,9 @@ components:
           nullable: true
           type: string
         errorMessage:
-          description: Error details when status is failed
+          description: "Error details when status is failed, or why analytics are\
+            \ unavailable for a published entry (e.g. Google Business Profile, a TikTok\
+            \ upload that never received a video id)"
           nullable: true
           type: string
     AnalyticsOverview:
