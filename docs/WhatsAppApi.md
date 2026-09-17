@@ -4091,7 +4091,7 @@ ApiResponse<[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents
 
 List the catalogs linked to a WhatsApp number
 
-The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
+The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. Pass &#x60;catalogAccountId&#x60;: the WhatsApp connection&#39;s own (embedded signup) token answers an empty list even when a catalog is linked, only a Meta login with catalog_management sees the link. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
 
 ### Example
 
@@ -4167,7 +4167,7 @@ public class Example {
 
 List the catalogs linked to a WhatsApp number
 
-The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
+The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. Pass &#x60;catalogAccountId&#x60;: the WhatsApp connection&#39;s own (embedded signup) token answers an empty list even when a catalog is linked, only a Meta login with catalog_management sees the link. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
 
 ### Example
 

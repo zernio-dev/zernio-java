@@ -23,7 +23,6 @@
 |**category** | **String** |  |  [optional] |
 |**productType** | **String** |  |  [optional] |
 |**gtin** | **String** |  |  [optional] |
-|**mpn** | **String** |  |  [optional] |
 |**inventory** | **Integer** |  |  [optional] |
 |**visibility** | **String** |  |  [optional] |
 |**color** | **String** |  |  [optional] |
