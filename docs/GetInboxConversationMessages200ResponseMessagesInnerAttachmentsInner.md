@@ -14,6 +14,7 @@
 |**refreshUrl** | **String** | Instagram and Facebook only. Endpoint that resolves this attachment to a working url every time, re-minting it from Meta when the stored one has expired. Safe to store and render indefinitely. |  [optional] |
 |**filename** | **String** |  |  [optional] |
 |**previewUrl** | **String** |  |  [optional] |
+|**payload** | **Map&lt;String, Object&gt;** | Template content (title, subtitle, image, buttons) when type is template |  [optional] |
 
 
 
@@ -27,6 +28,7 @@
 | FILE | &quot;file&quot; |
 | STICKER | &quot;sticker&quot; |
 | SHARE | &quot;share&quot; |
+| TEMPLATE | &quot;template&quot; |
 
 
 
