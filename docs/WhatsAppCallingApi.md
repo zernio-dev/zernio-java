@@ -414,11 +414,11 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
-| **400** | Invalid request (including forwardTo set to the number itself) |  -  |
+| **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
-| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
 
 ## enableWhatsAppCallingWithHttpInfo
 
@@ -494,11 +494,11 @@ ApiResponse<[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLe
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
-| **400** | Invalid request (including forwardTo set to the number itself) |  -  |
+| **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Phone number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
-| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
 
 
 ## enableWhatsAppCallingLegacy
@@ -572,10 +572,10 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
-| **400** | Invalid request (including forwardTo set to the number itself) |  -  |
+| **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
-| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
 
 ## enableWhatsAppCallingLegacyWithHttpInfo
 
@@ -651,10 +651,10 @@ ApiResponse<[**EnableWhatsAppCallingLegacy200Response**](EnableWhatsAppCallingLe
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calling enabled |  -  |
-| **400** | Invalid request (including forwardTo set to the number itself) |  -  |
+| **400** | Invalid request (including forwardTo set to the number itself), or Meta refused enablement (platform_api_error with platformError.code 138015, for example a production number below the 2,000-recipient messaging tier; Meta public test numbers and Sandbox accounts are exempt) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp phone number not found |  -  |
-| **422** | Not eligible to enable calling: not on usage-based billing, or the number&#39;s messaging limit is below Meta&#39;s ~2,000-daily-recipient threshold (TIER_250). Warm the number up to raise the limit. |  -  |
+| **422** | Not eligible to enable calling: not on usage-based billing. |  -  |
 
 
 ## getWhatsAppCall

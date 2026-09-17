@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.16.0
+  version: 1.16.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -21804,15 +21804,16 @@ paths:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
         "400":
-          description: Invalid request (including forwardTo set to the number itself)
+          description: "Invalid request (including forwardTo set to the number itself),\
+            \ or Meta refused enablement (platform_api_error with platformError.code\
+            \ 138015, for example a production number below the 2,000-recipient messaging\
+            \ tier; Meta public test numbers and Sandbox accounts are exempt)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: WhatsApp phone number not found
         "422":
-          description: "Not eligible to enable calling: not on usage-based billing,\
-            \ or the number's messaging limit is below Meta's ~2,000-daily-recipient\
-            \ threshold (TIER_250). Warm the number up to raise the limit."
+          description: "Not eligible to enable calling: not on usage-based billing."
       security:
       - bearerAuth: []
       summary: Enable calling on a number
@@ -26983,7 +26984,10 @@ paths:
                 $ref: "#/components/schemas/enableWhatsAppCallingLegacy_200_response"
           description: Calling enabled
         "400":
-          description: Invalid request (including forwardTo set to the number itself)
+          description: "Invalid request (including forwardTo set to the number itself),\
+            \ or Meta refused enablement (platform_api_error with platformError.code\
+            \ 138015, for example a production number below the 2,000-recipient messaging\
+            \ tier; Meta public test numbers and Sandbox accounts are exempt)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -26992,9 +26996,7 @@ paths:
           description: This number is attached to a SIP trunk; detach it first (code
             invalid_resource_state).
         "422":
-          description: "Not eligible to enable calling: not on usage-based billing,\
-            \ or the number's messaging limit is below Meta's ~2,000-daily-recipient\
-            \ threshold (TIER_250). Warm the number up to raise the limit."
+          description: "Not eligible to enable calling: not on usage-based billing."
       security:
       - bearerAuth: []
       summary: Enable calling on a number
