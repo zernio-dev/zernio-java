@@ -1068,6 +1068,8 @@ docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md
 docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md
 docs/LinkedInMentionsApi.md
 docs/LinkedInPlatformData.md
+docs/LinkedInPlatformDataAudience.md
+docs/LinkedInPlatformDataAudienceInterfaceLocalesInner.md
 docs/LinkedInPlatformDataPoll.md
 docs/ListAccountCallouts200Response.md
 docs/ListAccountCallouts200ResponseCalloutsInner.md
@@ -3284,6 +3286,8 @@ src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.j
 src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.java
 src/main/java/dev/zernio/model/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.java
 src/main/java/dev/zernio/model/LinkedInPlatformData.java
+src/main/java/dev/zernio/model/LinkedInPlatformDataAudience.java
+src/main/java/dev/zernio/model/LinkedInPlatformDataAudienceInterfaceLocalesInner.java
 src/main/java/dev/zernio/model/LinkedInPlatformDataPoll.java
 src/main/java/dev/zernio/model/ListAccountCallouts200Response.java
 src/main/java/dev/zernio/model/ListAccountCallouts200ResponseCalloutsInner.java
@@ -4351,3 +4355,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/LinkedInPlatformDataAudienceInterfaceLocalesInnerTest.java
+src/test/java/dev/zernio/model/LinkedInPlatformDataAudienceTest.java

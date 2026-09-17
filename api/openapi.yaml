@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.16.1
+  version: 1.17.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54290,6 +54290,8 @@ components:
           description: Set to true to disable automatic link previews for URLs in
             the post content (default is false)
           type: boolean
+        audience:
+          $ref: "#/components/schemas/LinkedInPlatformData_audience"
         reshareUrl:
           description: "LinkedIn post link to repost (use the post's \"Copy link to\
             \ post\" action), or a urn:li:share / urn:li:ugcPost / urn:li:groupPost\
@@ -116826,6 +116828,93 @@ components:
           type: integer
       required:
       - audioId
+    LinkedInPlatformData_audience_interfaceLocales_inner:
+      properties:
+        language:
+          description: "ISO 639-1, lowercase"
+          type: string
+        country:
+          description: "ISO 3166-1 alpha-2, uppercase"
+          type: string
+      required:
+      - country
+      - language
+    LinkedInPlatformData_audience:
+      description: "Organization pages only. Audience targeting for the post (Ads\
+        \ Manager's \"Targeted audience\"), sent as LinkedIn's distribution.targetEntities:\
+        \ OR inside a facet, AND across facets. LinkedIn rejects the post when the\
+        \ targeted audience is under 300 members, and Zernio rejects it on a personal\
+        \ profile. URN facets accept a full urn:li:<type>:<id> or the bare numeric\
+        \ id; find ids with GET /v1/ads/targeting/search?platform=linkedin (types\
+        \ country, region, industry, jobFunction, seniority, companySize)."
+      properties:
+        countries:
+          description: "ISO 3166-1 alpha-2 codes with a built-in LinkedIn geo URN\
+            \ (same list as geoRestriction.countries, merged with it). Other countries\
+            \ and sub-country regions go in geoLocations."
+          items:
+            type: string
+          maxItems: 25
+          type: array
+        geoLocations:
+          description: "LinkedIn geo URNs or ids (urn:li:geo:103644278 or 103644278):\
+            \ countries, states, regions, cities."
+          items:
+            type: string
+          type: array
+        interfaceLocales:
+          description: "Members' LinkedIn interface locale, e.g. { language: es, country:\
+            \ ES }."
+          items:
+            $ref: "#/components/schemas/LinkedInPlatformData_audience_interfaceLocales_inner"
+          type: array
+        industries:
+          description: urn:li:industry:<id> or id.
+          items:
+            type: string
+          type: array
+        jobFunctions:
+          description: urn:li:function:<id> or id.
+          items:
+            type: string
+          type: array
+        seniorities:
+          description: urn:li:seniority:<id> or id.
+          items:
+            type: string
+          type: array
+        staffCountRanges:
+          description: Company size of the member's current employer.
+          items:
+            enum:
+            - SIZE_1
+            - SIZE_2_TO_10
+            - SIZE_11_TO_50
+            - SIZE_51_TO_200
+            - SIZE_201_TO_500
+            - SIZE_501_TO_1000
+            - SIZE_1001_TO_5000
+            - SIZE_5001_TO_10000
+            - SIZE_10001_OR_MORE
+            type: string
+          type: array
+        degrees:
+          description: urn:li:degree:<id> or id (LinkedIn standardized degrees).
+          items:
+            type: string
+          type: array
+        fieldsOfStudy:
+          description: urn:li:fieldOfStudy:<id> or id (LinkedIn standardized fields
+            of study).
+          items:
+            type: string
+          type: array
+        organizations:
+          description: "Schools, as urn:li:organization:<id> or id (LinkedIn's Organization\
+            \ Lookup)."
+          items:
+            type: string
+          type: array
     LinkedInPlatformData_poll:
       description: "Create a LinkedIn poll with this post. Cannot be combined with\
         \ media or reshareUrl. Polls cannot be edited after publishing on LinkedIn,\

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.16.1
+- API version: 1.17.0
 
-- Build date: 2026-09-17T14:52:52.317303145Z[Etc/UTC]
+- Build date: 2026-09-17T16:06:16.387259235Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.16.1</version>
+  <version>1.17.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.16.1"
+compile "dev.zernio:zernio-sdk:1.17.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.16.1.jar`
+- `target/zernio-sdk-1.17.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2617,6 +2617,8 @@ Class | Method | HTTP request | Description
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md)
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md)
  - [LinkedInPlatformData](docs/LinkedInPlatformData.md)
+ - [LinkedInPlatformDataAudience](docs/LinkedInPlatformDataAudience.md)
+ - [LinkedInPlatformDataAudienceInterfaceLocalesInner](docs/LinkedInPlatformDataAudienceInterfaceLocalesInner.md)
  - [LinkedInPlatformDataPoll](docs/LinkedInPlatformDataPoll.md)
  - [ListAccountCallouts200Response](docs/ListAccountCallouts200Response.md)
  - [ListAccountCallouts200ResponseCalloutsInner](docs/ListAccountCallouts200ResponseCalloutsInner.md)
