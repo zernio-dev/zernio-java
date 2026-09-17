@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.11.0
+  version: 1.12.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35062,8 +35062,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph action breakdowns. Segments the actions[]\
-          \ arrays in each row."
+      - description: "Comma-separated Graph action breakdowns; segments the actions[]\
+          \ arrays in each row. Pass `none` to clear Meta's default action_type breakdown,\
+          \ required to combine some non-action breakdowns such as instagram_ads_follow_type\
+          \ (otherwise Meta returns a (#100) invalid-combination error)."
         explode: true
         in: query
         name: actionBreakdowns
@@ -102060,7 +102062,9 @@ components:
           description: Comma-separated Graph breakdowns.
           type: string
         actionBreakdowns:
-          description: "Comma-separated Graph action breakdowns (e.g. action_type,action_destination)."
+          description: "Comma-separated Graph action breakdowns (e.g. action_type,action_destination).\
+            \ Pass `none` to clear Meta's default action_type breakdown, needed for\
+            \ some non-action breakdowns such as instagram_ads_follow_type."
           type: string
         actionAttributionWindows:
           description: "Meta attribution windows (e.g. [\"7d_click\", \"1d_view\"\

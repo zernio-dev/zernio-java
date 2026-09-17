@@ -1570,7 +1570,7 @@ public class Example {
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
-        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row.
+        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass `none` to clear Meta's default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error).
         String actionAttributionWindows = "actionAttributionWindows_example"; // String | Comma-separated Meta attribution windows. Action values are returned keyed per window.
         String actionReportTime = "actionReportTime_example"; // String | When actions are counted: impression, conversion or mixed.
         Boolean useUnifiedAttributionSetting = true; // Boolean | Use the ad sets' own attribution settings for action counting.
@@ -1608,7 +1608,7 @@ public class Example {
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
-| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional] |
+| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass &#x60;none&#x60; to clear Meta&#39;s default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error). | [optional] |
 | **actionAttributionWindows** | **String**| Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional] |
 | **actionReportTime** | **String**| When actions are counted: impression, conversion or mixed. | [optional] |
 | **useUnifiedAttributionSetting** | **Boolean**| Use the ad sets&#39; own attribution settings for action counting. | [optional] |
@@ -1683,7 +1683,7 @@ public class Example {
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
         String breakdowns = "breakdowns_example"; // String | Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform).
-        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row.
+        String actionBreakdowns = "actionBreakdowns_example"; // String | Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass `none` to clear Meta's default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error).
         String actionAttributionWindows = "actionAttributionWindows_example"; // String | Comma-separated Meta attribution windows. Action values are returned keyed per window.
         String actionReportTime = "actionReportTime_example"; // String | When actions are counted: impression, conversion or mixed.
         Boolean useUnifiedAttributionSetting = true; // Boolean | Use the ad sets' own attribution settings for action counting.
@@ -1723,7 +1723,7 @@ public class Example {
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
 | **breakdowns** | **String**| Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform). | [optional] |
-| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns. Segments the actions[] arrays in each row. | [optional] |
+| **actionBreakdowns** | **String**| Comma-separated Graph action breakdowns; segments the actions[] arrays in each row. Pass &#x60;none&#x60; to clear Meta&#39;s default action_type breakdown, required to combine some non-action breakdowns such as instagram_ads_follow_type (otherwise Meta returns a (#100) invalid-combination error). | [optional] |
 | **actionAttributionWindows** | **String**| Comma-separated Meta attribution windows. Action values are returned keyed per window. | [optional] |
 | **actionReportTime** | **String**| When actions are counted: impression, conversion or mixed. | [optional] |
 | **useUnifiedAttributionSetting** | **Boolean**| Use the ad sets&#39; own attribution settings for action counting. | [optional] |
