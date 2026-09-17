@@ -32,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppBlockedUsersWithHttpInfo**](WhatsAppApi.md#getWhatsAppBlockedUsersWithHttpInfo) | **GET** /v1/whatsapp/block-users | List blocked users |
 | [**getWhatsAppBusinessProfile**](WhatsAppApi.md#getWhatsAppBusinessProfile) | **GET** /v1/whatsapp/business-profile | Get business profile |
 | [**getWhatsAppBusinessProfileWithHttpInfo**](WhatsAppApi.md#getWhatsAppBusinessProfileWithHttpInfo) | **GET** /v1/whatsapp/business-profile | Get business profile |
+| [**getWhatsAppCommerceSettings**](WhatsAppApi.md#getWhatsAppCommerceSettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
+| [**getWhatsAppCommerceSettingsWithHttpInfo**](WhatsAppApi.md#getWhatsAppCommerceSettingsWithHttpInfo) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
 | [**getWhatsAppDataset**](WhatsAppApi.md#getWhatsAppDataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**getWhatsAppDatasetWithHttpInfo**](WhatsAppApi.md#getWhatsAppDatasetWithHttpInfo) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**getWhatsAppDisplayName**](WhatsAppApi.md#getWhatsAppDisplayName) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status |
@@ -50,8 +52,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username |
 | [**getWhatsappBusinessUsernameSuggestions**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
 | [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions |
+| [**linkWhatsAppCatalog**](WhatsAppApi.md#linkWhatsAppCatalog) | **POST** /v1/whatsapp/catalogs | Link a catalog to a WhatsApp number |
+| [**linkWhatsAppCatalogWithHttpInfo**](WhatsAppApi.md#linkWhatsAppCatalogWithHttpInfo) | **POST** /v1/whatsapp/catalogs | Link a catalog to a WhatsApp number |
 | [**listWhatsAppAccountEvents**](WhatsAppApi.md#listWhatsAppAccountEvents) | **GET** /v1/whatsapp/account-events | List account notifications |
 | [**listWhatsAppAccountEventsWithHttpInfo**](WhatsAppApi.md#listWhatsAppAccountEventsWithHttpInfo) | **GET** /v1/whatsapp/account-events | List account notifications |
+| [**listWhatsAppCatalogs**](WhatsAppApi.md#listWhatsAppCatalogs) | **GET** /v1/whatsapp/catalogs | List the catalogs linked to a WhatsApp number |
+| [**listWhatsAppCatalogsWithHttpInfo**](WhatsAppApi.md#listWhatsAppCatalogsWithHttpInfo) | **GET** /v1/whatsapp/catalogs | List the catalogs linked to a WhatsApp number |
 | [**listWhatsAppConversions**](WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppConversionsWithHttpInfo**](WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events |
 | [**listWhatsAppGroupChats**](WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups |
@@ -72,8 +78,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**setWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**unblockWhatsAppUsers**](WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
 | [**unblockWhatsAppUsersWithHttpInfo**](WhatsAppApi.md#unblockWhatsAppUsersWithHttpInfo) | **DELETE** /v1/whatsapp/block-users | Unblock users |
+| [**unlinkWhatsAppCatalog**](WhatsAppApi.md#unlinkWhatsAppCatalog) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number |
+| [**unlinkWhatsAppCatalogWithHttpInfo**](WhatsAppApi.md#unlinkWhatsAppCatalogWithHttpInfo) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number |
 | [**updateWhatsAppBusinessProfile**](WhatsAppApi.md#updateWhatsAppBusinessProfile) | **POST** /v1/whatsapp/business-profile | Update business profile |
 | [**updateWhatsAppBusinessProfileWithHttpInfo**](WhatsAppApi.md#updateWhatsAppBusinessProfileWithHttpInfo) | **POST** /v1/whatsapp/business-profile | Update business profile |
+| [**updateWhatsAppCommerceSettings**](WhatsAppApi.md#updateWhatsAppCommerceSettings) | **PUT** /v1/whatsapp/commerce-settings | Update a number&#39;s commerce settings |
+| [**updateWhatsAppCommerceSettingsWithHttpInfo**](WhatsAppApi.md#updateWhatsAppCommerceSettingsWithHttpInfo) | **PUT** /v1/whatsapp/commerce-settings | Update a number&#39;s commerce settings |
 | [**updateWhatsAppDisplayName**](WhatsAppApi.md#updateWhatsAppDisplayName) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change |
 | [**updateWhatsAppDisplayNameWithHttpInfo**](WhatsAppApi.md#updateWhatsAppDisplayNameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change |
 | [**updateWhatsAppGroupChat**](WhatsAppApi.md#updateWhatsAppGroupChat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings |
@@ -2229,6 +2239,162 @@ ApiResponse<[**GetWhatsAppBusinessProfile200Response**](GetWhatsAppBusinessProfi
 | **404** | WhatsApp account not found |  -  |
 
 
+## getWhatsAppCommerceSettings
+
+> GetWhatsAppCommerceSettings200Response getWhatsAppCommerceSettings(accountId, catalogAccountId)
+
+Get a number&#39;s commerce settings
+
+Whether the linked catalog is shown on the business profile (&#x60;isCatalogVisible&#x60;) and whether customers can build a cart (&#x60;isCartEnabled&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            GetWhatsAppCommerceSettings200Response result = apiInstance.getWhatsAppCommerceSettings(accountId, catalogAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppCommerceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Commerce settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## getWhatsAppCommerceSettingsWithHttpInfo
+
+> ApiResponse<GetWhatsAppCommerceSettings200Response> getWhatsAppCommerceSettings getWhatsAppCommerceSettingsWithHttpInfo(accountId, catalogAccountId)
+
+Get a number&#39;s commerce settings
+
+Whether the linked catalog is shown on the business profile (&#x60;isCatalogVisible&#x60;) and whether customers can build a cart (&#x60;isCartEnabled&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            ApiResponse<GetWhatsAppCommerceSettings200Response> response = apiInstance.getWhatsAppCommerceSettingsWithHttpInfo(accountId, catalogAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppCommerceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Commerce settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
 ## getWhatsAppDataset
 
 > GetWhatsAppDataset200Response getWhatsAppDataset(accountId)
@@ -3613,6 +3779,158 @@ ApiResponse<[**GetWhatsappBusinessUsernameSuggestions200Response**](GetWhatsappB
 | **404** | WhatsApp account not found |  -  |
 
 
+## linkWhatsAppCatalog
+
+> ListWhatsAppCatalogs200Response linkWhatsAppCatalog(linkWhatsAppCatalogRequest)
+
+Link a catalog to a WhatsApp number
+
+Connects a Meta Commerce catalog (owned by the same business portfolio as the WhatsApp Business Account) to the number&#39;s WABA. The WhatsApp connection&#39;s own token cannot do this, so pass &#x60;catalogAccountId&#x60; naming a facebook, instagram or metaads account whose Meta login carries catalog_management.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        LinkWhatsAppCatalogRequest linkWhatsAppCatalogRequest = new LinkWhatsAppCatalogRequest(); // LinkWhatsAppCatalogRequest | 
+        try {
+            ListWhatsAppCatalogs200Response result = apiInstance.linkWhatsAppCatalog(linkWhatsAppCatalogRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#linkWhatsAppCatalog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **linkWhatsAppCatalogRequest** | [**LinkWhatsAppCatalogRequest**](LinkWhatsAppCatalogRequest.md)|  | |
+
+### Return type
+
+[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Linked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## linkWhatsAppCatalogWithHttpInfo
+
+> ApiResponse<ListWhatsAppCatalogs200Response> linkWhatsAppCatalog linkWhatsAppCatalogWithHttpInfo(linkWhatsAppCatalogRequest)
+
+Link a catalog to a WhatsApp number
+
+Connects a Meta Commerce catalog (owned by the same business portfolio as the WhatsApp Business Account) to the number&#39;s WABA. The WhatsApp connection&#39;s own token cannot do this, so pass &#x60;catalogAccountId&#x60; naming a facebook, instagram or metaads account whose Meta login carries catalog_management.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        LinkWhatsAppCatalogRequest linkWhatsAppCatalogRequest = new LinkWhatsAppCatalogRequest(); // LinkWhatsAppCatalogRequest | 
+        try {
+            ApiResponse<ListWhatsAppCatalogs200Response> response = apiInstance.linkWhatsAppCatalogWithHttpInfo(linkWhatsAppCatalogRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#linkWhatsAppCatalog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **linkWhatsAppCatalogRequest** | [**LinkWhatsAppCatalogRequest**](LinkWhatsAppCatalogRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Linked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
 ## listWhatsAppAccountEvents
 
 > ListWhatsAppAccountEvents200Response listWhatsAppAccountEvents(accountId, limit)
@@ -3765,6 +4083,162 @@ ApiResponse<[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+
+## listWhatsAppCatalogs
+
+> ListWhatsAppCatalogs200Response listWhatsAppCatalogs(accountId, catalogAccountId)
+
+List the catalogs linked to a WhatsApp number
+
+The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            ListWhatsAppCatalogs200Response result = apiInstance.listWhatsAppCatalogs(accountId, catalogAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#listWhatsAppCatalogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Linked catalogs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## listWhatsAppCatalogsWithHttpInfo
+
+> ApiResponse<ListWhatsAppCatalogs200Response> listWhatsAppCatalogs listWhatsAppCatalogsWithHttpInfo(accountId, catalogAccountId)
+
+List the catalogs linked to a WhatsApp number
+
+The Meta Commerce catalogs connected to the number&#39;s WhatsApp Business Account. A linked catalog is what product, product_list and catalog_message interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages) and what customers browse in the WhatsApp app. Create and fill catalogs with the /v1/ads/catalogs endpoints.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            ApiResponse<ListWhatsAppCatalogs200Response> response = apiInstance.listWhatsAppCatalogsWithHttpInfo(accountId, catalogAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#listWhatsAppCatalogs");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Linked catalogs |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## listWhatsAppConversions
@@ -5307,6 +5781,162 @@ ApiResponse<[**UnblockWhatsAppUsers200Response**](UnblockWhatsAppUsers200Respons
 | **404** | WhatsApp account not found |  -  |
 
 
+## unlinkWhatsAppCatalog
+
+> UnlinkWhatsAppCatalog200Response unlinkWhatsAppCatalog(accountId, catalogId, catalogAccountId)
+
+Unlink a catalog from a WhatsApp number
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogId = "catalogId_example"; // String | Meta catalog ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            UnlinkWhatsAppCatalog200Response result = apiInstance.unlinkWhatsAppCatalog(accountId, catalogId, catalogAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#unlinkWhatsAppCatalog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogId** | **String**| Meta catalog ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+[**UnlinkWhatsAppCatalog200Response**](UnlinkWhatsAppCatalog200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unlinked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## unlinkWhatsAppCatalogWithHttpInfo
+
+> ApiResponse<UnlinkWhatsAppCatalog200Response> unlinkWhatsAppCatalog unlinkWhatsAppCatalogWithHttpInfo(accountId, catalogId, catalogAccountId)
+
+Unlink a catalog from a WhatsApp number
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        String catalogId = "catalogId_example"; // String | Meta catalog ID
+        String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account's own
+        try {
+            ApiResponse<UnlinkWhatsAppCatalog200Response> response = apiInstance.unlinkWhatsAppCatalogWithHttpInfo(accountId, catalogId, catalogAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#unlinkWhatsAppCatalog");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **catalogId** | **String**| Meta catalog ID | |
+| **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token performs the call instead of the account&#39;s own | [optional] |
+
+### Return type
+
+ApiResponse<[**UnlinkWhatsAppCatalog200Response**](UnlinkWhatsAppCatalog200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unlinked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
 ## updateWhatsAppBusinessProfile
 
 > UnpublishPost200Response updateWhatsAppBusinessProfile(updateWhatsAppBusinessProfileRequest)
@@ -5455,6 +6085,154 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 | **400** | Validation error (field too long, too many websites, etc.) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+
+
+## updateWhatsAppCommerceSettings
+
+> GetWhatsAppCommerceSettings200Response updateWhatsAppCommerceSettings(updateWhatsAppCommerceSettingsRequest)
+
+Update a number&#39;s commerce settings
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        UpdateWhatsAppCommerceSettingsRequest updateWhatsAppCommerceSettingsRequest = new UpdateWhatsAppCommerceSettingsRequest(); // UpdateWhatsAppCommerceSettingsRequest | 
+        try {
+            GetWhatsAppCommerceSettings200Response result = apiInstance.updateWhatsAppCommerceSettings(updateWhatsAppCommerceSettingsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#updateWhatsAppCommerceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateWhatsAppCommerceSettingsRequest** | [**UpdateWhatsAppCommerceSettingsRequest**](UpdateWhatsAppCommerceSettingsRequest.md)|  | |
+
+### Return type
+
+[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+## updateWhatsAppCommerceSettingsWithHttpInfo
+
+> ApiResponse<GetWhatsAppCommerceSettings200Response> updateWhatsAppCommerceSettings updateWhatsAppCommerceSettingsWithHttpInfo(updateWhatsAppCommerceSettingsRequest)
+
+Update a number&#39;s commerce settings
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        UpdateWhatsAppCommerceSettingsRequest updateWhatsAppCommerceSettingsRequest = new UpdateWhatsAppCommerceSettingsRequest(); // UpdateWhatsAppCommerceSettingsRequest | 
+        try {
+            ApiResponse<GetWhatsAppCommerceSettings200Response> response = apiInstance.updateWhatsAppCommerceSettingsWithHttpInfo(updateWhatsAppCommerceSettingsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#updateWhatsAppCommerceSettings");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateWhatsAppCommerceSettingsRequest** | [**UpdateWhatsAppCommerceSettingsRequest**](UpdateWhatsAppCommerceSettingsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSettings200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated settings |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
 ## updateWhatsAppDisplayName

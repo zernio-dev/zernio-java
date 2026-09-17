@@ -1,0 +1,14 @@
+
+
+# DeleteAdCatalog200Response
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**success** | **Boolean** |  |  [optional] |
+|**catalogId** | **String** |  |  [optional] |
+
+
+

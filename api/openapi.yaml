@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.17.0
+  version: 1.18.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23627,6 +23627,196 @@ paths:
       x-resource-group: accounts
       x-accepts:
       - application/json
+  /v1/whatsapp/catalogs:
+    delete:
+      operationId: unlinkWhatsAppCatalog
+      parameters:
+      - description: WhatsApp account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      - description: Meta catalog ID
+        explode: true
+        in: query
+        name: catalogId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/unlinkWhatsAppCatalog_200_response"
+          description: Unlinked
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Unlink a catalog from a WhatsApp number
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    get:
+      description: "The Meta Commerce catalogs connected to the number's WhatsApp\
+        \ Business Account. A linked catalog is what product, product_list and catalog_message\
+        \ interactive messages sell from (see POST /v1/inbox/conversations/{conversationId}/messages)\
+        \ and what customers browse in the WhatsApp app. Create and fill catalogs\
+        \ with the /v1/ads/catalogs endpoints."
+      operationId: listWhatsAppCatalogs
+      parameters:
+      - description: WhatsApp account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppCatalogs_200_response"
+          description: Linked catalogs
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: List the catalogs linked to a WhatsApp number
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    post:
+      description: "Connects a Meta Commerce catalog (owned by the same business portfolio\
+        \ as the WhatsApp Business Account) to the number's WABA. The WhatsApp connection's\
+        \ own token cannot do this, so pass `catalogAccountId` naming a facebook,\
+        \ instagram or metaads account whose Meta login carries catalog_management."
+      operationId: linkWhatsAppCatalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/linkWhatsAppCatalog_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listWhatsAppCatalogs_200_response"
+          description: Linked
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Link a catalog to a WhatsApp number
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/whatsapp/commerce-settings:
+    get:
+      description: Whether the linked catalog is shown on the business profile (`isCatalogVisible`)
+        and whether customers can build a cart (`isCartEnabled`).
+      operationId: getWhatsAppCommerceSettings
+      parameters:
+      - description: WhatsApp account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCommerceSettings_200_response"
+          description: Commerce settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Get a number's commerce settings
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateWhatsAppCommerceSettings
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateWhatsAppCommerceSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getWhatsAppCommerceSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+      security:
+      - bearerAuth: []
+      summary: Update a number's commerce settings
+      tags:
+      - WhatsApp
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/whatsapp/business-profile:
     get:
       description: |
@@ -41020,15 +41210,14 @@ paths:
       - application/json
   /v1/ads/catalogs:
     get:
-      description: "Lists the Meta product catalogs reachable from an ad account (owned\
-        \ + agency-shared catalogs of the ad account's business), for Advantage+ catalog\
-        \ ads (`goal: catalog_sales` on POST /v1/ads/create, e.g. vehicle inventory\
-        \ catalogs). Read-only; uses scopes customers already granted (no reconnect\
-        \ needed). Catalog contents (items, feeds) are managed in Meta Commerce Manager,\
-        \ not through this API."
+      description: "Lists the Meta Commerce catalogs of a business portfolio (owned\
+        \ + agency-shared). The business comes from `businessId`, else the ad account's\
+        \ owner (`adAccountId`), else the WhatsApp Business Account's owner when `accountId`\
+        \ is a WhatsApp connection, else the only business the Meta login can see.\
+        \ Reads work with scopes customers already granted."
       operationId: listAdCatalogs
       parameters:
-      - description: "A facebook, instagram, or metaads account ID"
+      - description: "A facebook, instagram, metaads or whatsapp account ID"
         explode: true
         in: query
         name: accountId
@@ -41036,11 +41225,29 @@ paths:
         schema:
           type: string
         style: form
-      - description: Meta ad account ID (act_...)
+      - description: "A facebook, instagram or metaads account whose Meta login carries\
+          \ catalog_management; its token is used instead of the account's own (needed\
+          \ for WhatsApp connections, whose token cannot manage catalogs)."
+        explode: true
+        in: query
+        name: catalogAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account ID (act_...) whose owner business to list
         explode: true
         in: query
         name: adAccountId
-        required: true
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Meta business portfolio ID to list
+        explode: true
+        in: query
+        name: businessId
+        required: false
         schema:
           type: string
         style: form
@@ -41060,47 +41267,573 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          $ref: "#/components/responses/CatalogPermissionDenied"
       security:
       - bearerAuth: []
       summary: List Meta product catalogs
       tags:
-      - Ad Creatives
+      - Product Catalogs
       x-resource-group: ads
       x-platforms:
       - meta
+      x-accepts:
+      - application/json
+    post:
+      description: "Creates a Meta Commerce catalog in the business portfolio (resolved\
+        \ like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook\
+        \ Shops and the WhatsApp Business catalog: link it to a WhatsApp number with\
+        \ POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login."
+      operationId: createAdCatalog
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCatalog_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalog_201_response"
+          description: Catalog created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      security:
+      - bearerAuth: []
+      summary: Create a Meta product catalog
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}:
+    delete:
+      description: Deletes the catalog and every product in it on Meta. Ads and WhatsApp
+        numbers that use it lose their catalog.
+      operationId: deleteAdCatalog
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdCatalog_200_response"
+          description: Deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a product catalog
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    get:
+      operationId: getAdCatalog
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalog_201_response"
+          description: Catalog
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a product catalog
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/products:
+    get:
+      description: Pages through the catalog's products. Filter by your own `retailerId`
+        to look one up. `price` and `salePrice` come back formatted by Meta (for example
+        "€49.90").
+      operationId: listAdCatalogProducts
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Cursor from the previous page's `nextCursor`
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only the product with this retailer id (your SKU)
+        explode: true
+        in: query
+        name: retailerId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCatalogProducts_200_response"
+          description: Products
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List a catalog's products
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: "Adds one product. `retailerId` is your SKU and stays the handle\
+        \ for later lookups and batch updates. For many products at once use POST\
+        \ /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on\
+        \ the Meta login."
+      operationId: createAdCatalogProduct
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCatalogProduct_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogProduct_201_response"
+          description: Product created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Add a product to a catalog
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/products/batch:
+    post:
+      description: "Up to 5000 CREATE / UPDATE / DELETE requests keyed by `retailerId`,\
+        \ processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle}\
+        \ for the outcome and per-item errors. CREATE requests need name, url, imageUrl,\
+        \ price and currency."
+      operationId: batchAdCatalogProducts
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/batchAdCatalogProducts_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/batchAdCatalogProducts_202_response"
+          description: Accepted by Meta
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: "Create, update or delete products in bulk"
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/batches/{handle}:
+    get:
+      operationId: getAdCatalogBatch
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - description: Handle returned by the batch call
+        explode: false
+        in: path
+        name: handle
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdCatalogBatch_200_response"
+          description: Batch status
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a bulk request's status
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/products/{productId}:
+    delete:
+      operationId: deleteAdCatalogProduct
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogProductId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdCatalogProduct_200_response"
+          description: Deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a product
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    get:
+      operationId: getAdCatalogProduct
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogProductId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogProduct_201_response"
+          description: Product
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get a product
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    put:
+      description: "Partial update: only the fields sent change. `retailerId` cannot\
+        \ change."
+      operationId: updateAdCatalogProduct
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogProductId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdCatalogProduct_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogProduct_201_response"
+          description: Product updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a product
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/feeds:
+    get:
+      operationId: listAdCatalogFeeds
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCatalogFeeds_200_response"
+          description: Feeds
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List a catalog's product feeds
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: "A feed pulls a CSV/TSV/XML product file from a URL. With `schedule`\
+        \ Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads."
+      operationId: createAdCatalogFeed
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCatalogFeed_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogFeed_201_response"
+          description: Feed created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Create a product feed
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads:
+    get:
+      operationId: listAdCatalogFeedUploads
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdCatalogFeedUploads_200_response"
+          description: "Uploads, newest first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List a feed's uploads
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: "Asks Meta to fetch the product file at `url` into the feed. Processing\
+        \ is asynchronous: read the outcome with GET uploads."
+      operationId: createAdCatalogFeedUpload
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - explode: false
+        in: path
+        name: feedId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCatalogFeedUpload_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogFeedUpload_202_response"
+          description: Fetch started
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Fetch a feed file now
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/ads/catalogs/{catalogId}/product-sets:
     get:
       description: "Lists a Meta product catalog's product sets, the unit a catalog\
         \ ad promotes. Pass the chosen set id, not the parent catalog id, as `promotedObject.productSetId`\
-        \ on POST /v1/ads/create with `goal: catalog_sales`. Creation verifies set\
-        \ visibility and returns 400 for a catalog id or an inaccessible set."
+        \ on POST /v1/ads/create with `goal: catalog_sales`."
       operationId: listAdCatalogProductSets
       parameters:
-      - description: Meta product catalog ID (from GET /v1/ads/catalogs)
-        explode: false
-        in: path
-        name: catalogId
-        required: true
-        schema:
-          type: string
-        style: simple
-      - description: "A facebook, instagram, or metaads account ID"
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
+      - $ref: "#/components/parameters/CatalogId"
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
       responses:
-        "409":
-          $ref: "#/components/responses/AccountConnectionRequired"
-        "404":
-          $ref: "#/components/responses/AccountUnavailable"
         "200":
           content:
             application/json:
@@ -41112,16 +41845,138 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
       security:
       - bearerAuth: []
       summary: List a catalog's product sets
       tags:
-      - Ad Creatives
+      - Product Catalogs
       x-resource-group: ads
       x-platforms:
       - meta
+      x-accepts:
+      - application/json
+    post:
+      description: "A product set is a filter over the catalog, e.g. `{\"retailer_id\"\
+        : {\"is_any\": [\"sku-1\", \"sku-2\"]}}` or `{\"brand\": {\"i_contains\":\
+        \ \"acme\"}}` (Meta's product set filter syntax)."
+      operationId: createAdCatalogProductSet
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdCatalogProductSet_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogProductSet_201_response"
+          description: Product set created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Create a product set
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/catalogs/{catalogId}/product-sets/{productSetId}:
+    delete:
+      operationId: deleteAdCatalogProductSet
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - explode: false
+        in: path
+        name: productSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/CatalogAccountId"
+      - $ref: "#/components/parameters/CatalogTokenAccountId"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteAdCatalogProductSet_200_response"
+          description: Deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete a product set
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    put:
+      operationId: updateAdCatalogProductSet
+      parameters:
+      - $ref: "#/components/parameters/CatalogId"
+      - explode: false
+        in: path
+        name: productSetId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdCatalogProductSet_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdCatalogProductSet_201_response"
+          description: Product set updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CatalogPermissionDenied"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update a product set
+      tags:
+      - Product Catalogs
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/ads/audiences:
@@ -46955,6 +47810,45 @@ components:
         type: integer
       style: simple
   parameters:
+    CatalogId:
+      description: Meta product catalog ID (from GET /v1/ads/catalogs)
+      explode: false
+      in: path
+      name: catalogId
+      required: true
+      schema:
+        type: string
+      style: simple
+    CatalogProductId:
+      description: Meta product item ID (from the products list; not the retailer
+        id)
+      explode: false
+      in: path
+      name: productId
+      required: true
+      schema:
+        type: string
+      style: simple
+    CatalogAccountId:
+      description: "A facebook, instagram, metaads or whatsapp account ID"
+      explode: true
+      in: query
+      name: accountId
+      required: true
+      schema:
+        type: string
+      style: form
+    CatalogTokenAccountId:
+      description: "A facebook, instagram or metaads account whose Meta login carries\
+        \ catalog_management; its token performs the call instead of the account's\
+        \ own"
+      explode: true
+      in: query
+      name: catalogAccountId
+      required: false
+      schema:
+        type: string
+      style: form
     BusinessAgentAccountId:
       description: WhatsApp social account id (the number must be managed through
         the Cloud API).
@@ -47005,6 +47899,13 @@ components:
         type: string
       style: simple
   responses:
+    CatalogPermissionDenied:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "The Meta login behind the account lacks catalog_management (code\
+        \ insufficient_permissions). Reconnect granting it, or pass catalogAccountId."
     AccountUnavailable:
       content:
         application/json:
@@ -47219,6 +48120,351 @@ components:
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
+    MetaProductCatalog:
+      example:
+        name: name
+        businessId: businessId
+        vertical: vertical
+        id: id
+        productCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        vertical:
+          description: "Catalog vertical (e.g. commerce, vehicles, hotels)"
+          nullable: true
+          type: string
+        productCount:
+          type: integer
+        businessId:
+          nullable: true
+          type: string
+    MetaCatalogProductInput:
+      description: One product shape for single and bulk calls. Money is in major
+        units (12.99); Zernio converts to what Meta wants.
+      properties:
+        retailerId:
+          description: Your SKU; unique inside the catalog
+          maxLength: 100
+          type: string
+        name:
+          maxLength: 200
+          type: string
+        description:
+          maxLength: 9999
+          type: string
+        url:
+          description: Product page
+          format: uri
+          type: string
+        imageUrl:
+          format: uri
+          type: string
+        additionalImageUrls:
+          items:
+            format: uri
+            type: string
+          maxItems: 20
+          type: array
+        price:
+          description: "Major units, e.g. 12.99"
+          type: number
+        currency:
+          description: "ISO 4217, e.g. EUR"
+          type: string
+        salePrice:
+          type: number
+        salePriceStartDate:
+          description: ISO 8601
+          type: string
+        salePriceEndDate:
+          description: ISO 8601
+          type: string
+        availability:
+          enum:
+          - in stock
+          - out of stock
+          - preorder
+          - available for order
+          - discontinued
+          - pending
+          type: string
+        condition:
+          enum:
+          - new
+          - refurbished
+          - used
+          type: string
+        brand:
+          maxLength: 100
+          type: string
+        category:
+          maxLength: 250
+          type: string
+        googleProductCategory:
+          maxLength: 250
+          type: string
+        productType:
+          maxLength: 750
+          type: string
+        gtin:
+          maxLength: 50
+          type: string
+        mpn:
+          maxLength: 100
+          type: string
+        inventory:
+          minimum: 0
+          type: integer
+        visibility:
+          enum:
+          - published
+          - staging
+          type: string
+        color:
+          maxLength: 200
+          type: string
+        size:
+          maxLength: 200
+          type: string
+        gender:
+          enum:
+          - female
+          - male
+          - unisex
+          type: string
+        material:
+          maxLength: 200
+          type: string
+        pattern:
+          maxLength: 100
+          type: string
+        customLabel0:
+          maxLength: 100
+          type: string
+        customLabel1:
+          maxLength: 100
+          type: string
+        customLabel2:
+          maxLength: 100
+          type: string
+        customLabel3:
+          maxLength: 100
+          type: string
+        customLabel4:
+          maxLength: 100
+          type: string
+    MetaCatalogProduct:
+      example:
+        color: color
+        gender: gender
+        customLabels:
+        - customLabels
+        - customLabels
+        pattern: pattern
+        description: description
+        availability: availability
+        inventory: 0
+        price: price
+        imageUrl: imageUrl
+        currency: currency
+        id: id
+        brand: brand
+        productType: productType
+        gtin: gtin
+        reviewRejectionReasons:
+        - reviewRejectionReasons
+        - reviewRejectionReasons
+        visibility: visibility
+        salePrice: salePrice
+        mpn: mpn
+        retailerId: retailerId
+        url: url
+        condition: condition
+        size: size
+        material: material
+        name: name
+        additionalImageUrls:
+        - additionalImageUrls
+        - additionalImageUrls
+        reviewStatus: reviewStatus
+        category: category
+      properties:
+        id:
+          description: Meta product item ID (use in the product endpoints)
+          type: string
+        retailerId:
+          nullable: true
+          type: string
+        name:
+          type: string
+        description:
+          nullable: true
+          type: string
+        url:
+          nullable: true
+          type: string
+        imageUrl:
+          nullable: true
+          type: string
+        additionalImageUrls:
+          items:
+            type: string
+          type: array
+        price:
+          description: "Formatted by Meta, e.g. \"€49.90\""
+          nullable: true
+          type: string
+        salePrice:
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        availability:
+          nullable: true
+          type: string
+        condition:
+          nullable: true
+          type: string
+        brand:
+          nullable: true
+          type: string
+        category:
+          nullable: true
+          type: string
+        productType:
+          nullable: true
+          type: string
+        gtin:
+          nullable: true
+          type: string
+        mpn:
+          nullable: true
+          type: string
+        inventory:
+          nullable: true
+          type: integer
+        visibility:
+          nullable: true
+          type: string
+        color:
+          nullable: true
+          type: string
+        size:
+          nullable: true
+          type: string
+        gender:
+          nullable: true
+          type: string
+        material:
+          nullable: true
+          type: string
+        pattern:
+          nullable: true
+          type: string
+        customLabels:
+          description: custom_label_0 to custom_label_4
+          items:
+            nullable: true
+            type: string
+          type: array
+        reviewStatus:
+          description: "Meta's commerce review status (approved, rejected, pending,\
+            \ ...)"
+          nullable: true
+          type: string
+        reviewRejectionReasons:
+          items:
+            type: string
+          type: array
+    MetaProductFeed:
+      example:
+        schedule:
+          dayOfWeek: dayOfWeek
+          hour: 6
+          interval: interval
+          url: url
+        name: name
+        createdTime: createdTime
+        id: id
+        latestUpload: ""
+        productCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        productCount:
+          type: integer
+        schedule:
+          $ref: "#/components/schemas/MetaProductFeed_schedule"
+        createdTime:
+          nullable: true
+          type: string
+        latestUpload:
+          allOf:
+          - $ref: "#/components/schemas/MetaFeedUpload"
+          nullable: true
+    MetaFeedUpload:
+      example:
+        startTime: startTime
+        id: id
+        endTime: endTime
+        warningCount: 6
+        itemsDetected: 1
+        itemsDeleted: 5
+        url: url
+        errorCount: 0
+      properties:
+        id:
+          type: string
+        url:
+          nullable: true
+          type: string
+        startTime:
+          nullable: true
+          type: string
+        endTime:
+          nullable: true
+          type: string
+        errorCount:
+          type: integer
+        warningCount:
+          type: integer
+        itemsDetected:
+          type: integer
+        itemsDeleted:
+          type: integer
+    MetaProductSet:
+      example:
+        filter:
+          key: ""
+        name: name
+        id: id
+        productCount: 0
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        productCount:
+          type: integer
+        filter:
+          additionalProperties: true
+          nullable: true
+          type: object
+    WhatsAppCommerceSettings:
+      example:
+        isCartEnabled: true
+        isCatalogVisible: true
+      properties:
+        isCartEnabled:
+          type: boolean
+        isCatalogVisible:
+          type: boolean
     WhatsAppTemplateLookupError:
       example:
         code: platform_api_error
@@ -86169,6 +87415,68 @@ components:
       properties:
         template:
           $ref: "#/components/schemas/getWhatsAppLibraryTemplate_200_response_template"
+    listWhatsAppCatalogs_200_response:
+      example:
+        wabaId: wabaId
+        catalogs:
+        - name: name
+          id: id
+        - name: name
+          id: id
+      properties:
+        wabaId:
+          type: string
+        catalogs:
+          items:
+            $ref: "#/components/schemas/updateFacebookPage_200_response_selectedPage"
+          type: array
+    linkWhatsAppCatalog_request:
+      properties:
+        accountId:
+          description: WhatsApp account ID
+          type: string
+        catalogAccountId:
+          description: Account whose Meta login token performs the call
+          type: string
+        catalogId:
+          description: Meta catalog ID
+          type: string
+      required:
+      - accountId
+      - catalogId
+    unlinkWhatsAppCatalog_200_response:
+      example:
+        wabaId: wabaId
+        catalogId: catalogId
+        success: true
+      properties:
+        success:
+          type: boolean
+        wabaId:
+          type: string
+        catalogId:
+          type: string
+    getWhatsAppCommerceSettings_200_response:
+      example:
+        settings:
+          isCartEnabled: true
+          isCatalogVisible: true
+      properties:
+        settings:
+          $ref: "#/components/schemas/WhatsAppCommerceSettings"
+    updateWhatsAppCommerceSettings_request:
+      properties:
+        accountId:
+          description: WhatsApp account ID
+          type: string
+        catalogAccountId:
+          type: string
+        isCartEnabled:
+          type: boolean
+        isCatalogVisible:
+          type: boolean
+      required:
+      - accountId
     getWhatsAppBusinessProfile_200_response_businessProfile:
       example:
         profilePictureUrl: https://openapi-generator.tech
@@ -108926,39 +110234,462 @@ components:
           type: array
       required:
       - available
-    listAdCatalogs_200_response_catalogs_inner:
-      example:
-        name: name
-        vertical: vertical
-        id: id
-        productCount: 0
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        vertical:
-          description: "Catalog vertical (e.g. commerce, vehicles, hotels)"
-          nullable: true
-          type: string
-        productCount:
-          type: integer
     listAdCatalogs_200_response:
       example:
         catalogs:
         - name: name
+          businessId: businessId
           vertical: vertical
           id: id
           productCount: 0
         - name: name
+          businessId: businessId
+          vertical: vertical
+          id: id
+          productCount: 0
+        businessId: businessId
+      properties:
+        businessId:
+          type: string
+        catalogs:
+          items:
+            $ref: "#/components/schemas/MetaProductCatalog"
+          type: array
+    createAdCatalog_request:
+      properties:
+        accountId:
+          description: "A facebook, instagram, metaads or whatsapp account ID"
+          type: string
+        catalogAccountId:
+          description: Account whose Meta login token performs the call (see GET)
+          type: string
+        adAccountId:
+          description: Ad account whose owner business creates the catalog
+          type: string
+        businessId:
+          description: Business portfolio that owns the catalog
+          type: string
+        name:
+          maxLength: 100
+          type: string
+        vertical:
+          default: commerce
+          enum:
+          - commerce
+          - vehicles
+          - hotels
+          - flights
+          - destinations
+          - home_listings
+          - local_service_business
+          - offline_commerce
+          - ticketed_experiences
+          - transactable_items
+          type: string
+      required:
+      - accountId
+      - name
+    createAdCatalog_201_response:
+      example:
+        catalog:
+          name: name
+          businessId: businessId
           vertical: vertical
           id: id
           productCount: 0
       properties:
-        catalogs:
+        catalog:
+          $ref: "#/components/schemas/MetaProductCatalog"
+    deleteAdCatalog_200_response:
+      example:
+        catalogId: catalogId
+        success: true
+      properties:
+        success:
+          type: boolean
+        catalogId:
+          type: string
+    listAdCatalogProducts_200_response:
+      example:
+        nextCursor: nextCursor
+        products:
+        - color: color
+          gender: gender
+          customLabels:
+          - customLabels
+          - customLabels
+          pattern: pattern
+          description: description
+          availability: availability
+          inventory: 0
+          price: price
+          imageUrl: imageUrl
+          currency: currency
+          id: id
+          brand: brand
+          productType: productType
+          gtin: gtin
+          reviewRejectionReasons:
+          - reviewRejectionReasons
+          - reviewRejectionReasons
+          visibility: visibility
+          salePrice: salePrice
+          mpn: mpn
+          retailerId: retailerId
+          url: url
+          condition: condition
+          size: size
+          material: material
+          name: name
+          additionalImageUrls:
+          - additionalImageUrls
+          - additionalImageUrls
+          reviewStatus: reviewStatus
+          category: category
+        - color: color
+          gender: gender
+          customLabels:
+          - customLabels
+          - customLabels
+          pattern: pattern
+          description: description
+          availability: availability
+          inventory: 0
+          price: price
+          imageUrl: imageUrl
+          currency: currency
+          id: id
+          brand: brand
+          productType: productType
+          gtin: gtin
+          reviewRejectionReasons:
+          - reviewRejectionReasons
+          - reviewRejectionReasons
+          visibility: visibility
+          salePrice: salePrice
+          mpn: mpn
+          retailerId: retailerId
+          url: url
+          condition: condition
+          size: size
+          material: material
+          name: name
+          additionalImageUrls:
+          - additionalImageUrls
+          - additionalImageUrls
+          reviewStatus: reviewStatus
+          category: category
+      properties:
+        products:
           items:
-            $ref: "#/components/schemas/listAdCatalogs_200_response_catalogs_inner"
+            $ref: "#/components/schemas/MetaCatalogProduct"
           type: array
+        nextCursor:
+          nullable: true
+          type: string
+    createAdCatalogProduct_request_product:
+      allOf:
+      - $ref: "#/components/schemas/MetaCatalogProductInput"
+      - required:
+        - currency
+        - imageUrl
+        - name
+        - price
+        - retailerId
+        - url
+        type: object
+    createAdCatalogProduct_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        product:
+          $ref: "#/components/schemas/createAdCatalogProduct_request_product"
+      required:
+      - accountId
+      - product
+    createAdCatalogProduct_201_response:
+      example:
+        product:
+          color: color
+          gender: gender
+          customLabels:
+          - customLabels
+          - customLabels
+          pattern: pattern
+          description: description
+          availability: availability
+          inventory: 0
+          price: price
+          imageUrl: imageUrl
+          currency: currency
+          id: id
+          brand: brand
+          productType: productType
+          gtin: gtin
+          reviewRejectionReasons:
+          - reviewRejectionReasons
+          - reviewRejectionReasons
+          visibility: visibility
+          salePrice: salePrice
+          mpn: mpn
+          retailerId: retailerId
+          url: url
+          condition: condition
+          size: size
+          material: material
+          name: name
+          additionalImageUrls:
+          - additionalImageUrls
+          - additionalImageUrls
+          reviewStatus: reviewStatus
+          category: category
+      properties:
+        product:
+          $ref: "#/components/schemas/MetaCatalogProduct"
+    batchAdCatalogProducts_request_requests_inner_product:
+      allOf:
+      - $ref: "#/components/schemas/MetaCatalogProductInput"
+      - required:
+        - retailerId
+        type: object
+    batchAdCatalogProducts_request_requests_inner:
+      properties:
+        method:
+          enum:
+          - CREATE
+          - UPDATE
+          - DELETE
+          type: string
+        product:
+          $ref: "#/components/schemas/batchAdCatalogProducts_request_requests_inner_product"
+      required:
+      - method
+      - product
+    batchAdCatalogProducts_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        requests:
+          items:
+            $ref: "#/components/schemas/batchAdCatalogProducts_request_requests_inner"
+          maxItems: 5000
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - requests
+    batchAdCatalogProducts_202_response:
+      example:
+        handles:
+        - handles
+        - handles
+        statusUrl: statusUrl
+      properties:
+        handles:
+          items:
+            type: string
+          type: array
+        statusUrl:
+          type: string
+    getAdCatalogBatch_200_response_batch_errors_inner:
+      example:
+        retailerId: retailerId
+        message: message
+      properties:
+        retailerId:
+          nullable: true
+          type: string
+        message:
+          type: string
+    getAdCatalogBatch_200_response_batch:
+      example:
+        errorsTotalCount: 0
+        handle: handle
+        errors:
+        - retailerId: retailerId
+          message: message
+        - retailerId: retailerId
+          message: message
+        status: status
+      properties:
+        handle:
+          type: string
+        status:
+          description: "Meta's status, e.g. initial, in_progress, finished"
+          type: string
+        errorsTotalCount:
+          type: integer
+        errors:
+          items:
+            $ref: "#/components/schemas/getAdCatalogBatch_200_response_batch_errors_inner"
+          type: array
+    getAdCatalogBatch_200_response:
+      example:
+        batch:
+          errorsTotalCount: 0
+          handle: handle
+          errors:
+          - retailerId: retailerId
+            message: message
+          - retailerId: retailerId
+            message: message
+          status: status
+      properties:
+        batch:
+          $ref: "#/components/schemas/getAdCatalogBatch_200_response_batch"
+    updateAdCatalogProduct_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        product:
+          $ref: "#/components/schemas/MetaCatalogProductInput"
+      required:
+      - accountId
+      - product
+    deleteAdCatalogProduct_200_response:
+      example:
+        productId: productId
+        success: true
+      properties:
+        success:
+          type: boolean
+        productId:
+          type: string
+    listAdCatalogFeeds_200_response:
+      example:
+        feeds:
+        - schedule:
+            dayOfWeek: dayOfWeek
+            hour: 6
+            interval: interval
+            url: url
+          name: name
+          createdTime: createdTime
+          id: id
+          latestUpload: ""
+          productCount: 0
+        - schedule:
+            dayOfWeek: dayOfWeek
+            hour: 6
+            interval: interval
+            url: url
+          name: name
+          createdTime: createdTime
+          id: id
+          latestUpload: ""
+          productCount: 0
+      properties:
+        feeds:
+          items:
+            $ref: "#/components/schemas/MetaProductFeed"
+          type: array
+    createAdCatalogFeed_request_schedule:
+      properties:
+        interval:
+          enum:
+          - HOURLY
+          - DAILY
+          - WEEKLY
+          type: string
+        url:
+          format: uri
+          type: string
+        hour:
+          maximum: 23
+          minimum: 0
+          type: integer
+        dayOfWeek:
+          enum:
+          - SUNDAY
+          - MONDAY
+          - TUESDAY
+          - WEDNESDAY
+          - THURSDAY
+          - FRIDAY
+          - SATURDAY
+          type: string
+      required:
+      - interval
+      - url
+    createAdCatalogFeed_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        name:
+          maxLength: 100
+          type: string
+        schedule:
+          $ref: "#/components/schemas/createAdCatalogFeed_request_schedule"
+      required:
+      - accountId
+      - name
+    createAdCatalogFeed_201_response:
+      example:
+        feed:
+          schedule:
+            dayOfWeek: dayOfWeek
+            hour: 6
+            interval: interval
+            url: url
+          name: name
+          createdTime: createdTime
+          id: id
+          latestUpload: ""
+          productCount: 0
+      properties:
+        feed:
+          $ref: "#/components/schemas/MetaProductFeed"
+    listAdCatalogFeedUploads_200_response:
+      example:
+        uploads:
+        - startTime: startTime
+          id: id
+          endTime: endTime
+          warningCount: 6
+          itemsDetected: 1
+          itemsDeleted: 5
+          url: url
+          errorCount: 0
+        - startTime: startTime
+          id: id
+          endTime: endTime
+          warningCount: 6
+          itemsDetected: 1
+          itemsDeleted: 5
+          url: url
+          errorCount: 0
+      properties:
+        uploads:
+          items:
+            $ref: "#/components/schemas/MetaFeedUpload"
+          type: array
+    createAdCatalogFeedUpload_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        url:
+          format: uri
+          type: string
+      required:
+      - accountId
+      - url
+    createAdCatalogFeedUpload_202_response:
+      example:
+        upload:
+          id: id
+      properties:
+        upload:
+          $ref: "#/components/schemas/createTestLead_200_response_testLead"
     listAdCatalogProductSets_200_response_productSets_inner:
       example:
         name: name
@@ -108985,6 +110716,56 @@ components:
           items:
             $ref: "#/components/schemas/listAdCatalogProductSets_200_response_productSets_inner"
           type: array
+    createAdCatalogProductSet_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        name:
+          maxLength: 100
+          type: string
+        filter:
+          additionalProperties: {}
+          description: Meta product set filter
+      required:
+      - accountId
+      - filter
+      - name
+    createAdCatalogProductSet_201_response:
+      example:
+        productSet:
+          filter:
+            key: ""
+          name: name
+          id: id
+          productCount: 0
+      properties:
+        productSet:
+          $ref: "#/components/schemas/MetaProductSet"
+    updateAdCatalogProductSet_request:
+      properties:
+        accountId:
+          type: string
+        catalogAccountId:
+          type: string
+        name:
+          maxLength: 100
+          type: string
+        filter:
+          additionalProperties: true
+          type: object
+      required:
+      - accountId
+    deleteAdCatalogProductSet_200_response:
+      example:
+        success: true
+        productSetId: productSetId
+      properties:
+        success:
+          type: boolean
+        productSetId:
+          type: string
     listAdAudiences_200_response_audiences_inner:
       example:
         accountId: accountId
@@ -112483,6 +114264,23 @@ components:
         reason:
           enum:
           - max_attempts_reached
+    MetaProductFeed_schedule:
+      example:
+        dayOfWeek: dayOfWeek
+        hour: 6
+        interval: interval
+        url: url
+      properties:
+        interval:
+          type: string
+        url:
+          type: string
+        hour:
+          nullable: true
+          type: integer
+        dayOfWeek:
+          nullable: true
+          type: string
     WhatsAppTemplateLookupError_platformError_error_data:
       example:
         details: details

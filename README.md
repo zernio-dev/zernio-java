@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.17.0
+- API version: 1.18.0
 
-- Build date: 2026-09-17T17:17:42.606634479Z[Etc/UTC]
+- Build date: 2026-09-17T17:22:14.583037227Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.17.0</version>
+  <version>1.18.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.17.0"
+compile "dev.zernio:zernio-sdk:1.18.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.17.0.jar`
+- `target/zernio-sdk-1.18.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -399,10 +399,6 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**getAdMediaWithHttpInfo**](docs/AdCreativesApi.md#getAdMediaWithHttpInfo) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad
 *AdCreativesApi* | [**getAdPreviews**](docs/AdCreativesApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
 *AdCreativesApi* | [**getAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
-*AdCreativesApi* | [**listAdCatalogProductSets**](docs/AdCreativesApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
-*AdCreativesApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/AdCreativesApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
-*AdCreativesApi* | [**listAdCatalogs**](docs/AdCreativesApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
-*AdCreativesApi* | [**listAdCatalogsWithHttpInfo**](docs/AdCreativesApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
 *AdCreativesApi* | [**listAdCreatives**](docs/AdCreativesApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library
 *AdCreativesApi* | [**listAdCreativesWithHttpInfo**](docs/AdCreativesApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library
 *AdCreativesApi* | [**listAdImages**](docs/AdCreativesApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library
@@ -1145,6 +1141,44 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**updatePostWithHttpInfo**](docs/PostsApi.md#updatePostWithHttpInfo) | **PUT** /v1/posts/{postId} | Update post
 *PostsApi* | [**updatePostMetadata**](docs/PostsApi.md#updatePostMetadata) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
 *PostsApi* | [**updatePostMetadataWithHttpInfo**](docs/PostsApi.md#updatePostMetadataWithHttpInfo) | **POST** /v1/posts/{postId}/update-metadata | Update post metadata
+*ProductCatalogsApi* | [**batchAdCatalogProducts**](docs/ProductCatalogsApi.md#batchAdCatalogProducts) | **POST** /v1/ads/catalogs/{catalogId}/products/batch | Create, update or delete products in bulk
+*ProductCatalogsApi* | [**batchAdCatalogProductsWithHttpInfo**](docs/ProductCatalogsApi.md#batchAdCatalogProductsWithHttpInfo) | **POST** /v1/ads/catalogs/{catalogId}/products/batch | Create, update or delete products in bulk
+*ProductCatalogsApi* | [**createAdCatalog**](docs/ProductCatalogsApi.md#createAdCatalog) | **POST** /v1/ads/catalogs | Create a Meta product catalog
+*ProductCatalogsApi* | [**createAdCatalogWithHttpInfo**](docs/ProductCatalogsApi.md#createAdCatalogWithHttpInfo) | **POST** /v1/ads/catalogs | Create a Meta product catalog
+*ProductCatalogsApi* | [**createAdCatalogFeed**](docs/ProductCatalogsApi.md#createAdCatalogFeed) | **POST** /v1/ads/catalogs/{catalogId}/feeds | Create a product feed
+*ProductCatalogsApi* | [**createAdCatalogFeedWithHttpInfo**](docs/ProductCatalogsApi.md#createAdCatalogFeedWithHttpInfo) | **POST** /v1/ads/catalogs/{catalogId}/feeds | Create a product feed
+*ProductCatalogsApi* | [**createAdCatalogFeedUpload**](docs/ProductCatalogsApi.md#createAdCatalogFeedUpload) | **POST** /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads | Fetch a feed file now
+*ProductCatalogsApi* | [**createAdCatalogFeedUploadWithHttpInfo**](docs/ProductCatalogsApi.md#createAdCatalogFeedUploadWithHttpInfo) | **POST** /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads | Fetch a feed file now
+*ProductCatalogsApi* | [**createAdCatalogProduct**](docs/ProductCatalogsApi.md#createAdCatalogProduct) | **POST** /v1/ads/catalogs/{catalogId}/products | Add a product to a catalog
+*ProductCatalogsApi* | [**createAdCatalogProductWithHttpInfo**](docs/ProductCatalogsApi.md#createAdCatalogProductWithHttpInfo) | **POST** /v1/ads/catalogs/{catalogId}/products | Add a product to a catalog
+*ProductCatalogsApi* | [**createAdCatalogProductSet**](docs/ProductCatalogsApi.md#createAdCatalogProductSet) | **POST** /v1/ads/catalogs/{catalogId}/product-sets | Create a product set
+*ProductCatalogsApi* | [**createAdCatalogProductSetWithHttpInfo**](docs/ProductCatalogsApi.md#createAdCatalogProductSetWithHttpInfo) | **POST** /v1/ads/catalogs/{catalogId}/product-sets | Create a product set
+*ProductCatalogsApi* | [**deleteAdCatalog**](docs/ProductCatalogsApi.md#deleteAdCatalog) | **DELETE** /v1/ads/catalogs/{catalogId} | Delete a product catalog
+*ProductCatalogsApi* | [**deleteAdCatalogWithHttpInfo**](docs/ProductCatalogsApi.md#deleteAdCatalogWithHttpInfo) | **DELETE** /v1/ads/catalogs/{catalogId} | Delete a product catalog
+*ProductCatalogsApi* | [**deleteAdCatalogProduct**](docs/ProductCatalogsApi.md#deleteAdCatalogProduct) | **DELETE** /v1/ads/catalogs/{catalogId}/products/{productId} | Delete a product
+*ProductCatalogsApi* | [**deleteAdCatalogProductWithHttpInfo**](docs/ProductCatalogsApi.md#deleteAdCatalogProductWithHttpInfo) | **DELETE** /v1/ads/catalogs/{catalogId}/products/{productId} | Delete a product
+*ProductCatalogsApi* | [**deleteAdCatalogProductSet**](docs/ProductCatalogsApi.md#deleteAdCatalogProductSet) | **DELETE** /v1/ads/catalogs/{catalogId}/product-sets/{productSetId} | Delete a product set
+*ProductCatalogsApi* | [**deleteAdCatalogProductSetWithHttpInfo**](docs/ProductCatalogsApi.md#deleteAdCatalogProductSetWithHttpInfo) | **DELETE** /v1/ads/catalogs/{catalogId}/product-sets/{productSetId} | Delete a product set
+*ProductCatalogsApi* | [**getAdCatalog**](docs/ProductCatalogsApi.md#getAdCatalog) | **GET** /v1/ads/catalogs/{catalogId} | Get a product catalog
+*ProductCatalogsApi* | [**getAdCatalogWithHttpInfo**](docs/ProductCatalogsApi.md#getAdCatalogWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId} | Get a product catalog
+*ProductCatalogsApi* | [**getAdCatalogBatch**](docs/ProductCatalogsApi.md#getAdCatalogBatch) | **GET** /v1/ads/catalogs/{catalogId}/batches/{handle} | Get a bulk request&#39;s status
+*ProductCatalogsApi* | [**getAdCatalogBatchWithHttpInfo**](docs/ProductCatalogsApi.md#getAdCatalogBatchWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/batches/{handle} | Get a bulk request&#39;s status
+*ProductCatalogsApi* | [**getAdCatalogProduct**](docs/ProductCatalogsApi.md#getAdCatalogProduct) | **GET** /v1/ads/catalogs/{catalogId}/products/{productId} | Get a product
+*ProductCatalogsApi* | [**getAdCatalogProductWithHttpInfo**](docs/ProductCatalogsApi.md#getAdCatalogProductWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/products/{productId} | Get a product
+*ProductCatalogsApi* | [**listAdCatalogFeedUploads**](docs/ProductCatalogsApi.md#listAdCatalogFeedUploads) | **GET** /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads | List a feed&#39;s uploads
+*ProductCatalogsApi* | [**listAdCatalogFeedUploadsWithHttpInfo**](docs/ProductCatalogsApi.md#listAdCatalogFeedUploadsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads | List a feed&#39;s uploads
+*ProductCatalogsApi* | [**listAdCatalogFeeds**](docs/ProductCatalogsApi.md#listAdCatalogFeeds) | **GET** /v1/ads/catalogs/{catalogId}/feeds | List a catalog&#39;s product feeds
+*ProductCatalogsApi* | [**listAdCatalogFeedsWithHttpInfo**](docs/ProductCatalogsApi.md#listAdCatalogFeedsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/feeds | List a catalog&#39;s product feeds
+*ProductCatalogsApi* | [**listAdCatalogProductSets**](docs/ProductCatalogsApi.md#listAdCatalogProductSets) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*ProductCatalogsApi* | [**listAdCatalogProductSetsWithHttpInfo**](docs/ProductCatalogsApi.md#listAdCatalogProductSetsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/product-sets | List a catalog&#39;s product sets
+*ProductCatalogsApi* | [**listAdCatalogProducts**](docs/ProductCatalogsApi.md#listAdCatalogProducts) | **GET** /v1/ads/catalogs/{catalogId}/products | List a catalog&#39;s products
+*ProductCatalogsApi* | [**listAdCatalogProductsWithHttpInfo**](docs/ProductCatalogsApi.md#listAdCatalogProductsWithHttpInfo) | **GET** /v1/ads/catalogs/{catalogId}/products | List a catalog&#39;s products
+*ProductCatalogsApi* | [**listAdCatalogs**](docs/ProductCatalogsApi.md#listAdCatalogs) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*ProductCatalogsApi* | [**listAdCatalogsWithHttpInfo**](docs/ProductCatalogsApi.md#listAdCatalogsWithHttpInfo) | **GET** /v1/ads/catalogs | List Meta product catalogs
+*ProductCatalogsApi* | [**updateAdCatalogProduct**](docs/ProductCatalogsApi.md#updateAdCatalogProduct) | **PUT** /v1/ads/catalogs/{catalogId}/products/{productId} | Update a product
+*ProductCatalogsApi* | [**updateAdCatalogProductWithHttpInfo**](docs/ProductCatalogsApi.md#updateAdCatalogProductWithHttpInfo) | **PUT** /v1/ads/catalogs/{catalogId}/products/{productId} | Update a product
+*ProductCatalogsApi* | [**updateAdCatalogProductSet**](docs/ProductCatalogsApi.md#updateAdCatalogProductSet) | **PUT** /v1/ads/catalogs/{catalogId}/product-sets/{productSetId} | Update a product set
+*ProductCatalogsApi* | [**updateAdCatalogProductSetWithHttpInfo**](docs/ProductCatalogsApi.md#updateAdCatalogProductSetWithHttpInfo) | **PUT** /v1/ads/catalogs/{catalogId}/product-sets/{productSetId} | Update a product set
 *ProductsApi* | [**getProduct**](docs/ProductsApi.md#getProduct) | **GET** /v1/accounts/{accountId}/products/{productId} | Get a product
 *ProductsApi* | [**getProductWithHttpInfo**](docs/ProductsApi.md#getProductWithHttpInfo) | **GET** /v1/accounts/{accountId}/products/{productId} | Get a product
 *ProductsApi* | [**listProducts**](docs/ProductsApi.md#listProducts) | **GET** /v1/accounts/{accountId}/products | List products
@@ -1403,6 +1437,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppBlockedUsersWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBlockedUsersWithHttpInfo) | **GET** /v1/whatsapp/block-users | List blocked users
 *WhatsAppApi* | [**getWhatsAppBusinessProfile**](docs/WhatsAppApi.md#getWhatsAppBusinessProfile) | **GET** /v1/whatsapp/business-profile | Get business profile
 *WhatsAppApi* | [**getWhatsAppBusinessProfileWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBusinessProfileWithHttpInfo) | **GET** /v1/whatsapp/business-profile | Get business profile
+*WhatsAppApi* | [**getWhatsAppCommerceSettings**](docs/WhatsAppApi.md#getWhatsAppCommerceSettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings
+*WhatsAppApi* | [**getWhatsAppCommerceSettingsWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppCommerceSettingsWithHttpInfo) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings
 *WhatsAppApi* | [**getWhatsAppDataset**](docs/WhatsAppApi.md#getWhatsAppDataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**getWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppDatasetWithHttpInfo) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**getWhatsAppDisplayName**](docs/WhatsAppApi.md#getWhatsAppDisplayName) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
@@ -1421,8 +1457,12 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username | Get business username
 *WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestions**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestions) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
 *WhatsAppApi* | [**getWhatsappBusinessUsernameSuggestionsWithHttpInfo**](docs/WhatsAppApi.md#getWhatsappBusinessUsernameSuggestionsWithHttpInfo) | **GET** /v1/whatsapp/business-profile/username/suggestions | Get username suggestions
+*WhatsAppApi* | [**linkWhatsAppCatalog**](docs/WhatsAppApi.md#linkWhatsAppCatalog) | **POST** /v1/whatsapp/catalogs | Link a catalog to a WhatsApp number
+*WhatsAppApi* | [**linkWhatsAppCatalogWithHttpInfo**](docs/WhatsAppApi.md#linkWhatsAppCatalogWithHttpInfo) | **POST** /v1/whatsapp/catalogs | Link a catalog to a WhatsApp number
 *WhatsAppApi* | [**listWhatsAppAccountEvents**](docs/WhatsAppApi.md#listWhatsAppAccountEvents) | **GET** /v1/whatsapp/account-events | List account notifications
 *WhatsAppApi* | [**listWhatsAppAccountEventsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppAccountEventsWithHttpInfo) | **GET** /v1/whatsapp/account-events | List account notifications
+*WhatsAppApi* | [**listWhatsAppCatalogs**](docs/WhatsAppApi.md#listWhatsAppCatalogs) | **GET** /v1/whatsapp/catalogs | List the catalogs linked to a WhatsApp number
+*WhatsAppApi* | [**listWhatsAppCatalogsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppCatalogsWithHttpInfo) | **GET** /v1/whatsapp/catalogs | List the catalogs linked to a WhatsApp number
 *WhatsAppApi* | [**listWhatsAppConversions**](docs/WhatsAppApi.md#listWhatsAppConversions) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppConversionsWithHttpInfo**](docs/WhatsAppApi.md#listWhatsAppConversionsWithHttpInfo) | **GET** /v1/whatsapp/conversions | List conversion events
 *WhatsAppApi* | [**listWhatsAppGroupChats**](docs/WhatsAppApi.md#listWhatsAppGroupChats) | **GET** /v1/whatsapp/wa-groups | List active groups
@@ -1443,8 +1483,12 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**setWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username
 *WhatsAppApi* | [**unblockWhatsAppUsers**](docs/WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users
 *WhatsAppApi* | [**unblockWhatsAppUsersWithHttpInfo**](docs/WhatsAppApi.md#unblockWhatsAppUsersWithHttpInfo) | **DELETE** /v1/whatsapp/block-users | Unblock users
+*WhatsAppApi* | [**unlinkWhatsAppCatalog**](docs/WhatsAppApi.md#unlinkWhatsAppCatalog) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number
+*WhatsAppApi* | [**unlinkWhatsAppCatalogWithHttpInfo**](docs/WhatsAppApi.md#unlinkWhatsAppCatalogWithHttpInfo) | **DELETE** /v1/whatsapp/catalogs | Unlink a catalog from a WhatsApp number
 *WhatsAppApi* | [**updateWhatsAppBusinessProfile**](docs/WhatsAppApi.md#updateWhatsAppBusinessProfile) | **POST** /v1/whatsapp/business-profile | Update business profile
 *WhatsAppApi* | [**updateWhatsAppBusinessProfileWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppBusinessProfileWithHttpInfo) | **POST** /v1/whatsapp/business-profile | Update business profile
+*WhatsAppApi* | [**updateWhatsAppCommerceSettings**](docs/WhatsAppApi.md#updateWhatsAppCommerceSettings) | **PUT** /v1/whatsapp/commerce-settings | Update a number&#39;s commerce settings
+*WhatsAppApi* | [**updateWhatsAppCommerceSettingsWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppCommerceSettingsWithHttpInfo) | **PUT** /v1/whatsapp/commerce-settings | Update a number&#39;s commerce settings
 *WhatsAppApi* | [**updateWhatsAppDisplayName**](docs/WhatsAppApi.md#updateWhatsAppDisplayName) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change
 *WhatsAppApi* | [**updateWhatsAppDisplayNameWithHttpInfo**](docs/WhatsAppApi.md#updateWhatsAppDisplayNameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/display-name | Request display name change
 *WhatsAppApi* | [**updateWhatsAppGroupChat**](docs/WhatsAppApi.md#updateWhatsAppGroupChat) | **POST** /v1/whatsapp/wa-groups/{groupId} | Update group settings
@@ -1689,6 +1733,10 @@ Class | Method | HTTP request | Description
  - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
  - [AttachNumberToSipTrunkRequest](docs/AttachNumberToSipTrunkRequest.md)
+ - [BatchAdCatalogProducts202Response](docs/BatchAdCatalogProducts202Response.md)
+ - [BatchAdCatalogProductsRequest](docs/BatchAdCatalogProductsRequest.md)
+ - [BatchAdCatalogProductsRequestRequestsInner](docs/BatchAdCatalogProductsRequestRequestsInner.md)
+ - [BatchAdCatalogProductsRequestRequestsInnerProduct](docs/BatchAdCatalogProductsRequestRequestsInnerProduct.md)
  - [BatchGetGoogleBusinessReviews200Response](docs/BatchGetGoogleBusinessReviews200Response.md)
  - [BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner](docs/BatchGetGoogleBusinessReviews200ResponseLocationReviewsInner.md)
  - [BatchGetGoogleBusinessReviewsRequest](docs/BatchGetGoogleBusinessReviewsRequest.md)
@@ -1848,6 +1896,18 @@ Class | Method | HTTP request | Description
  - [CreateAdCampaign200Response](docs/CreateAdCampaign200Response.md)
  - [CreateAdCampaign201Response](docs/CreateAdCampaign201Response.md)
  - [CreateAdCampaignRequest](docs/CreateAdCampaignRequest.md)
+ - [CreateAdCatalog201Response](docs/CreateAdCatalog201Response.md)
+ - [CreateAdCatalogFeed201Response](docs/CreateAdCatalogFeed201Response.md)
+ - [CreateAdCatalogFeedRequest](docs/CreateAdCatalogFeedRequest.md)
+ - [CreateAdCatalogFeedRequestSchedule](docs/CreateAdCatalogFeedRequestSchedule.md)
+ - [CreateAdCatalogFeedUpload202Response](docs/CreateAdCatalogFeedUpload202Response.md)
+ - [CreateAdCatalogFeedUploadRequest](docs/CreateAdCatalogFeedUploadRequest.md)
+ - [CreateAdCatalogProduct201Response](docs/CreateAdCatalogProduct201Response.md)
+ - [CreateAdCatalogProductRequest](docs/CreateAdCatalogProductRequest.md)
+ - [CreateAdCatalogProductRequestProduct](docs/CreateAdCatalogProductRequestProduct.md)
+ - [CreateAdCatalogProductSet201Response](docs/CreateAdCatalogProductSet201Response.md)
+ - [CreateAdCatalogProductSetRequest](docs/CreateAdCatalogProductSetRequest.md)
+ - [CreateAdCatalogRequest](docs/CreateAdCatalogRequest.md)
  - [CreateAdCreative201Response](docs/CreateAdCreative201Response.md)
  - [CreateAdCreativeRequest](docs/CreateAdCreativeRequest.md)
  - [CreateAdCreativeRequestCarouselCardsInner](docs/CreateAdCreativeRequestCarouselCardsInner.md)
@@ -2055,6 +2115,9 @@ Class | Method | HTTP request | Description
  - [DeleteAccountGroup200Response](docs/DeleteAccountGroup200Response.md)
  - [DeleteAdCampaign200Response](docs/DeleteAdCampaign200Response.md)
  - [DeleteAdCampaignRequest](docs/DeleteAdCampaignRequest.md)
+ - [DeleteAdCatalog200Response](docs/DeleteAdCatalog200Response.md)
+ - [DeleteAdCatalogProduct200Response](docs/DeleteAdCatalogProduct200Response.md)
+ - [DeleteAdCatalogProductSet200Response](docs/DeleteAdCatalogProductSet200Response.md)
  - [DeleteAdCreative200Response](docs/DeleteAdCreative200Response.md)
  - [DeleteAdNegativeKeywordList200Response](docs/DeleteAdNegativeKeywordList200Response.md)
  - [DeleteAdSet200Response](docs/DeleteAdSet200Response.md)
@@ -2178,6 +2241,9 @@ Class | Method | HTTP request | Description
  - [GetAdAnalytics202Response](docs/GetAdAnalytics202Response.md)
  - [GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [GetAdCampaignDetails200Response](docs/GetAdCampaignDetails200Response.md)
+ - [GetAdCatalogBatch200Response](docs/GetAdCatalogBatch200Response.md)
+ - [GetAdCatalogBatch200ResponseBatch](docs/GetAdCatalogBatch200ResponseBatch.md)
+ - [GetAdCatalogBatch200ResponseBatchErrorsInner](docs/GetAdCatalogBatch200ResponseBatchErrorsInner.md)
  - [GetAdComments200Response](docs/GetAdComments200Response.md)
  - [GetAdComments200ResponseMeta](docs/GetAdComments200ResponseMeta.md)
  - [GetAdComments200ResponsePagination](docs/GetAdComments200ResponsePagination.md)
@@ -2472,6 +2538,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppCallRecording200Response](docs/GetWhatsAppCallRecording200Response.md)
  - [GetWhatsAppCalling200Response](docs/GetWhatsAppCalling200Response.md)
  - [GetWhatsAppCallingConfig200Response](docs/GetWhatsAppCallingConfig200Response.md)
+ - [GetWhatsAppCommerceSettings200Response](docs/GetWhatsAppCommerceSettings200Response.md)
  - [GetWhatsAppDataset200Response](docs/GetWhatsAppDataset200Response.md)
  - [GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
@@ -2587,6 +2654,7 @@ Class | Method | HTTP request | Description
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
  - [LikePost200Response](docs/LikePost200Response.md)
  - [LikePostRequest](docs/LikePostRequest.md)
+ - [LinkWhatsAppCatalogRequest](docs/LinkWhatsAppCatalogRequest.md)
  - [LinkedInAdsPlatformData](docs/LinkedInAdsPlatformData.md)
  - [LinkedInAdsPlatformDataCarousel](docs/LinkedInAdsPlatformDataCarousel.md)
  - [LinkedInAdsPlatformDataCarouselCardsInner](docs/LinkedInAdsPlatformDataCarouselCardsInner.md)
@@ -2633,10 +2701,12 @@ Class | Method | HTTP request | Description
  - [ListAdAudiences200Response](docs/ListAdAudiences200Response.md)
  - [ListAdAudiences200ResponseAudiencesInner](docs/ListAdAudiences200ResponseAudiencesInner.md)
  - [ListAdCampaigns200Response](docs/ListAdCampaigns200Response.md)
+ - [ListAdCatalogFeedUploads200Response](docs/ListAdCatalogFeedUploads200Response.md)
+ - [ListAdCatalogFeeds200Response](docs/ListAdCatalogFeeds200Response.md)
  - [ListAdCatalogProductSets200Response](docs/ListAdCatalogProductSets200Response.md)
  - [ListAdCatalogProductSets200ResponseProductSetsInner](docs/ListAdCatalogProductSets200ResponseProductSetsInner.md)
+ - [ListAdCatalogProducts200Response](docs/ListAdCatalogProducts200Response.md)
  - [ListAdCatalogs200Response](docs/ListAdCatalogs200Response.md)
- - [ListAdCatalogs200ResponseCatalogsInner](docs/ListAdCatalogs200ResponseCatalogsInner.md)
  - [ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
  - [ListAdGroupAssets200Response](docs/ListAdGroupAssets200Response.md)
  - [ListAdGroupAssets200ResponseCalloutsInner](docs/ListAdGroupAssets200ResponseCalloutsInner.md)
@@ -2827,6 +2897,7 @@ Class | Method | HTTP request | Description
  - [ListWhatsAppCalls200Response](docs/ListWhatsAppCalls200Response.md)
  - [ListWhatsAppCalls200ResponseCallsInner](docs/ListWhatsAppCalls200ResponseCallsInner.md)
  - [ListWhatsAppCalls200ResponseCallsInnerBilling](docs/ListWhatsAppCalls200ResponseCallsInnerBilling.md)
+ - [ListWhatsAppCatalogs200Response](docs/ListWhatsAppCatalogs200Response.md)
  - [ListWhatsAppConversions200Response](docs/ListWhatsAppConversions200Response.md)
  - [ListWhatsAppConversions200ResponseEventsInner](docs/ListWhatsAppConversions200ResponseEventsInner.md)
  - [ListWhatsAppFlowResponses200Response](docs/ListWhatsAppFlowResponses200Response.md)
@@ -2861,6 +2932,9 @@ Class | Method | HTTP request | Description
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
+ - [MetaCatalogProduct](docs/MetaCatalogProduct.md)
+ - [MetaCatalogProductInput](docs/MetaCatalogProductInput.md)
+ - [MetaFeedUpload](docs/MetaFeedUpload.md)
  - [MetaInstagramIdentityRef](docs/MetaInstagramIdentityRef.md)
  - [MetaLeadForm](docs/MetaLeadForm.md)
  - [MetaLeadFormContextCard](docs/MetaLeadFormContextCard.md)
@@ -2870,6 +2944,10 @@ Class | Method | HTTP request | Description
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [MetaLeadFormQuestionsInner](docs/MetaLeadFormQuestionsInner.md)
  - [MetaLeadFormThankYouPage](docs/MetaLeadFormThankYouPage.md)
+ - [MetaProductCatalog](docs/MetaProductCatalog.md)
+ - [MetaProductFeed](docs/MetaProductFeed.md)
+ - [MetaProductFeedSchedule](docs/MetaProductFeedSchedule.md)
+ - [MetaProductSet](docs/MetaProductSet.md)
  - [Money](docs/Money.md)
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
@@ -3254,6 +3332,7 @@ Class | Method | HTTP request | Description
  - [UnfollowUser200Response](docs/UnfollowUser200Response.md)
  - [UnlikeInboxComment200Response](docs/UnlikeInboxComment200Response.md)
  - [UnlikePost200Response](docs/UnlikePost200Response.md)
+ - [UnlinkWhatsAppCatalog200Response](docs/UnlinkWhatsAppCatalog200Response.md)
  - [UnpinDiscordMessage200Response](docs/UnpinDiscordMessage200Response.md)
  - [UnpublishPost200Response](docs/UnpublishPost200Response.md)
  - [UnpublishPostRequest](docs/UnpublishPostRequest.md)
@@ -3283,6 +3362,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdCampaignRequestPlatformSpecificData](docs/UpdateAdCampaignRequestPlatformSpecificData.md)
  - [UpdateAdCampaignStatus200Response](docs/UpdateAdCampaignStatus200Response.md)
  - [UpdateAdCampaignStatusRequest](docs/UpdateAdCampaignStatusRequest.md)
+ - [UpdateAdCatalogProductRequest](docs/UpdateAdCatalogProductRequest.md)
+ - [UpdateAdCatalogProductSetRequest](docs/UpdateAdCatalogProductSetRequest.md)
  - [UpdateAdCreative200Response](docs/UpdateAdCreative200Response.md)
  - [UpdateAdCreativeRequest](docs/UpdateAdCreativeRequest.md)
  - [UpdateAdKeyword200Response](docs/UpdateAdKeyword200Response.md)
@@ -3426,6 +3507,7 @@ Class | Method | HTTP request | Description
  - [UpdateWebhookSettingsRequest](docs/UpdateWebhookSettingsRequest.md)
  - [UpdateWhatsAppBusinessProfileRequest](docs/UpdateWhatsAppBusinessProfileRequest.md)
  - [UpdateWhatsAppCallingLegacyRequest](docs/UpdateWhatsAppCallingLegacyRequest.md)
+ - [UpdateWhatsAppCommerceSettingsRequest](docs/UpdateWhatsAppCommerceSettingsRequest.md)
  - [UpdateWhatsAppDisplayName200Response](docs/UpdateWhatsAppDisplayName200Response.md)
  - [UpdateWhatsAppDisplayName200ResponseDisplayName](docs/UpdateWhatsAppDisplayName200ResponseDisplayName.md)
  - [UpdateWhatsAppDisplayNameRequest](docs/UpdateWhatsAppDisplayNameRequest.md)
@@ -3626,6 +3708,7 @@ Class | Method | HTTP request | Description
  - [WhatsAppCarouselCardComponent](docs/WhatsAppCarouselCardComponent.md)
  - [WhatsAppCarouselComponent](docs/WhatsAppCarouselComponent.md)
  - [WhatsAppCarouselComponentCardsInner](docs/WhatsAppCarouselComponentCardsInner.md)
+ - [WhatsAppCommerceSettings](docs/WhatsAppCommerceSettings.md)
  - [WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)

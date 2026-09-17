@@ -7,7 +7,8 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**catalogs** | [**List&lt;ListAdCatalogs200ResponseCatalogsInner&gt;**](ListAdCatalogs200ResponseCatalogsInner.md) |  |  [optional] |
+|**businessId** | **String** |  |  [optional] |
+|**catalogs** | [**List&lt;MetaProductCatalog&gt;**](MetaProductCatalog.md) |  |  [optional] |
 
 
 
