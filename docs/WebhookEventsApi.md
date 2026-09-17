@@ -1681,7 +1681,7 @@ ApiResponse<Void>
 
 Conversation started event
 
-Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky). Naturally deduped: a given conversation only fires this event the very first time it appears. 
+Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky, TikTok). Naturally deduped: a given conversation only fires this event the very first time it appears. 
 
 ### Example
 
@@ -1750,7 +1750,7 @@ null (empty response body)
 
 Conversation started event
 
-Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky). Naturally deduped: a given conversation only fires this event the very first time it appears. 
+Fired once when a new conversation begins between one of your connected accounts and a contact, in either direction. Works across every DM platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit, Bluesky, TikTok). Naturally deduped: a given conversation only fires this event the very first time it appears. 
 
 ### Example
 

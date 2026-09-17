@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.8.1
+  version: 1.9.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51304,6 +51304,7 @@ components:
           - bluesky
           - sms
           - slack
+          - tiktok
           type: string
         platformConversationId:
           type: string
@@ -51561,6 +51562,7 @@ components:
           callbackData: callbackData
           flowResponseData:
             key: ""
+          tiktokMessageType: tiktokMessageType
           location:
             address: address
             latitude: 5.962133916683182
@@ -51671,6 +51673,7 @@ components:
       example:
         metadata:
           quotedMessageId: quotedMessageId
+          tiktokMessageType: tiktokMessageType
           location:
             address: address
             latitude: 0.8008281904610115
@@ -52126,7 +52129,7 @@ components:
         Fired once when a new conversation begins, in either direction. A conversation
         starts the first time an account and a contact exchange a message on any DM
         platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit,
-        Bluesky, SMS). Platform-agnostic: one subscription covers every DM platform.
+        Bluesky, SMS, TikTok). Platform-agnostic: one subscription covers every DM platform.
       example:
         startedAt: 2000-01-23T04:56:07.000+00:00
         id: id
@@ -114524,6 +114527,11 @@ components:
           - telegram
           - whatsapp
           - sms
+          - twitter
+          - bluesky
+          - reddit
+          - slack
+          - tiktok
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -114848,8 +114856,8 @@ components:
     WebhookPayloadMessage_metadata:
       description: "Platform-specific message context (present when the message is\
         \ a quick reply tap, postback button tap, inline keyboard callback, a quote-reply\
-        \ to an earlier message, or a WhatsApp inbound that Meta Business Agent is\
-        \ answering)"
+        \ to an earlier message, a WhatsApp inbound that Meta Business Agent is answering,\
+        \ or a TikTok DM that is not plain text)"
       example:
         quickReplyPayload: quickReplyPayload
         postbackTitle: postbackTitle
@@ -114902,6 +114910,7 @@ components:
         callbackData: callbackData
         flowResponseData:
           key: ""
+        tiktokMessageType: tiktokMessageType
         location:
           address: address
           latitude: 5.962133916683182
@@ -115047,6 +115056,12 @@ components:
             field has no error envelope, only the boolean. Absence means
             "not flagged", never "checked and renderable".
           type: boolean
+        tiktokMessageType:
+          description: "TikTok only. The message type as TikTok reports it, forwarded\
+            \ verbatim (for example image, video, sticker, share_post, emoji, reaction,\
+            \ template). Present on every TikTok DM that is not plain text; those\
+            \ arrive with text empty and, for image and video, an attachment."
+          type: string
     WebhookPayloadMessageSent_message_attachments_inner:
       example:
         originalType: originalType
@@ -115165,6 +115180,7 @@ components:
           - reddit
           - bluesky
           - slack
+          - tiktok
           type: string
         platformMessageId:
           description: Platform's message ID
@@ -115270,12 +115286,14 @@ components:
           type: string
     WebhookPayloadMessageSent_metadata:
       description: "Platform-specific context for the sent message: a quote-reply\
-        \ reference, a WhatsApp location pin or WhatsApp contact cards. The key is\
-        \ present only when the send carried some context, and absent otherwise: it\
-        \ is never null and never an empty object. Read it to tell a location or contact-card\
-        \ message from a text one without a GET on the message."
+        \ reference, a WhatsApp location pin, WhatsApp contact cards or the TikTok\
+        \ message type. The key is present only when the send carried some context,\
+        \ and absent otherwise: it is never null and never an empty object. Read it\
+        \ to tell a location or contact-card message from a text one without a GET\
+        \ on the message."
       example:
         quotedMessageId: quotedMessageId
+        tiktokMessageType: tiktokMessageType
         location:
           address: address
           latitude: 0.8008281904610115
@@ -115329,6 +115347,14 @@ components:
           description: |
             Slack only. Parent thread ts of the sent message. Pass it back as
             `replyTo` on the inbox send API to keep replying inside the thread.
+          type: string
+        tiktokMessageType:
+          description: "TikTok only. The message type as TikTok reports it, forwarded\
+            \ verbatim (for example image, video, sticker, share_post, emoji, reaction,\
+            \ template). Present on every TikTok DM that is not plain text; those\
+            \ arrive with text empty and, for image and video, an attachment. Absent\
+            \ on image sends made through the Zernio API, which carry the image in\
+            \ attachments."
           type: string
     WebhookPayloadMessageDeliveryStatus_error:
       description: Populated only on message.failed.

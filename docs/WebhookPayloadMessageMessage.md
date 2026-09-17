@@ -30,6 +30,11 @@
 | TELEGRAM | &quot;telegram&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
 | SMS | &quot;sms&quot; |
+| TWITTER | &quot;twitter&quot; |
+| BLUESKY | &quot;bluesky&quot; |
+| REDDIT | &quot;reddit&quot; |
+| SLACK | &quot;slack&quot; |
+| TIKTOK | &quot;tiktok&quot; |
 
 
 

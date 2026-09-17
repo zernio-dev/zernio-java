@@ -33,6 +33,7 @@ The conversation object included in conversation lifecycle webhook payloads (con
 | BLUESKY | &quot;bluesky&quot; |
 | SMS | &quot;sms&quot; |
 | SLACK | &quot;slack&quot; |
+| TIKTOK | &quot;tiktok&quot; |
 
 
 
