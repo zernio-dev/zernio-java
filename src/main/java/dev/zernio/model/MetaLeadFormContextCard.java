@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   MetaLeadFormContextCard.JSON_PROPERTY_BUTTON_TEXT,
   MetaLeadFormContextCard.JSON_PROPERTY_COVER_PHOTO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T16:06:16.387259235Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T17:17:42.606634479Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormContextCard {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   BusinessAgentStatus.JSON_PROPERTY_MANUAL_STEPS,
   BusinessAgentStatus.JSON_PROPERTY_UNVERIFIED_STEPS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T16:06:16.387259235Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T17:17:42.606634479Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentStatus {
   public static final String JSON_PROPERTY_ELIGIBLE = "eligible";
   @javax.annotation.Nullable

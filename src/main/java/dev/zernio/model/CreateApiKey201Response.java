@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateApiKey201Response.JSON_PROPERTY_MESSAGE,
   CreateApiKey201Response.JSON_PROPERTY_API_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T16:06:16.387259235Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T17:17:42.606634479Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateApiKey201Response {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable
