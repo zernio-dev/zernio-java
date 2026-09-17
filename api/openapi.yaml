@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.13.2
+  version: 1.14.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -105122,6 +105122,17 @@ components:
           items:
             $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
+    boostPost_request_sparkPosts_inner:
+      properties:
+        platformPostId:
+          description: TikTok post (item) id.
+          type: string
+        sparkAuthCode:
+          description: That post's Spark code.
+          type: string
+      required:
+      - platformPostId
+      - sparkAuthCode
     boostPost_request_promotedObject:
       description: |
         TikTok-only on this endpoint. The pixel a Website Conversion ad group
@@ -105401,6 +105412,18 @@ components:
             \ one per ad account and reuses it, and `callToAction` is rejected with\
             \ a 400 on this path."
           type: boolean
+        sparkPosts:
+          description: "TikTok Smart+ only (requires `smartPlus: true`). Several Spark\
+            \ posts as creatives of ONE Smart+ ad, each with its own post code (TikTok\
+            \ allows 1-50 per ad; posts from different creators mix). Replaces `platformPostId`\
+            \ + `sparkAuthCode`. Without `adSetId` it creates campaign + ad group\
+            \ + one ad carrying all of them; with `adSetId` it creates one new ad\
+            \ with all of them in that ad group. Rejected with a 400 on other platforms."
+          items:
+            $ref: "#/components/schemas/boostPost_request_sparkPosts_inner"
+          maxItems: 50
+          minItems: 1
+          type: array
         promotedObject:
           $ref: "#/components/schemas/boostPost_request_promotedObject"
         dsaBeneficiary:
