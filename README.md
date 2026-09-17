@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.14.0
+- API version: 1.15.0
 
-- Build date: 2026-09-17T13:40:07.804779628Z[Etc/UTC]
+- Build date: 2026-09-17T13:58:02.842180138Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.14.0</version>
+  <version>1.15.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.14.0"
+compile "dev.zernio:zernio-sdk:1.15.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.14.0.jar`
+- `target/zernio-sdk-1.15.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1714,6 +1714,7 @@ Class | Method | HTTP request | Description
  - [BoostPostRequest](docs/BoostPostRequest.md)
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
  - [BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
+ - [BoostPostRequestPromoCodesInner](docs/BoostPostRequestPromoCodesInner.md)
  - [BoostPostRequestPromotedObject](docs/BoostPostRequestPromotedObject.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [BoostPostRequestSparkPostsInner](docs/BoostPostRequestSparkPostsInner.md)

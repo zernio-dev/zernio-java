@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.14.0
+  version: 1.15.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -105133,6 +105133,39 @@ components:
       required:
       - platformPostId
       - sparkAuthCode
+    boostPost_request_promoCodes_inner:
+      properties:
+        discountType:
+          enum:
+          - PERCENTAGE
+          - CASH
+          type: string
+        discountValue:
+          description: "PERCENTAGE: integer 1-100. CASH: amount greater than 0 in\
+            \ discountCurrency."
+          type: number
+        discountCurrency:
+          description: ISO 4217; required for CASH.
+          type: string
+        promoCode:
+          description: Code entered at checkout; omit for an automatic offer.
+          maxLength: 30
+          type: string
+        minimumPurchaseType:
+          enum:
+          - QUANTITY
+          - SUBTOTAL
+          type: string
+        minimumPurchaseValue:
+          description: "Required with minimumPurchaseType; QUANTITY is an integer\
+            \ >= 0, SUBTOTAL an amount > 0."
+          type: number
+        minimumPurchaseCurrency:
+          description: ISO 4217; required for SUBTOTAL.
+          type: string
+      required:
+      - discountType
+      - discountValue
     boostPost_request_promotedObject:
       description: |
         TikTok-only on this endpoint. The pixel a Website Conversion ad group
@@ -105422,6 +105455,18 @@ components:
           items:
             $ref: "#/components/schemas/boostPost_request_sparkPosts_inner"
           maxItems: 50
+          minItems: 1
+          type: array
+        promoCodes:
+          description: "TikTok Smart+ Web Conversions only (requires `smartPlus: true`,\
+            \ goal `conversions`). Promo codes or offers TikTok highlights on the\
+            \ ad (Ads Manager's \"Add promo code or offer\"). A promo code needs shoppers\
+            \ to enter it at checkout; an entry without `promoCode` is an offer applied\
+            \ automatically. Rejected with a 400 on other platforms and on Lead Generation\
+            \ campaigns."
+          items:
+            $ref: "#/components/schemas/boostPost_request_promoCodes_inner"
+          maxItems: 10
           minItems: 1
           type: array
         promotedObject:
