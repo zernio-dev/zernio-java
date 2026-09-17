@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.20.0
+  version: 1.20.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
