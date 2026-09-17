@@ -84,10 +84,15 @@ jobs:
         if: steps.changes.outputs.has_changes == 'true'
         id: version
         run: |
-          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
-          NEW_VERSION=$(echo $LATEST_TAG | awk -F. '{printf "v%d.%d.%d", $1, $2, $3+1}' | sed 's/vv/v/')
-          MVN_VERSION=$(echo $NEW_VERSION | sed 's/v//')
-          echo "new_version=$NEW_VERSION" >> $GITHUB_OUTPUT
+          # Base = max(highest tag, highest published Maven version). git
+          # describe can select an older tag when multiple tags point to the
+          # same commit, which made every run recompute and republish 0.0.952.
+          # Checking Central also self-heals any publish/tag divergence.
+          TAG_VERSION=$(git tag -l 'v*' | sed 's/^v//' | sort -V | tail -1)
+          CENTRAL_PUBLISHED=$(curl -sf --retry 3 https://repo1.maven.org/maven2/com/zernio/zernio-sdk/maven-metadata.xml | sed -n 's:.*<latest>\([^<]*\)</latest>.*:\1:p' | grep -E '^[0-9]+\.[0-9]+\.[0-9]+$' || echo "0.0.0")
+          BASE=$(printf '%s\n' "${TAG_VERSION:-0.0.0}" "$CENTRAL_PUBLISHED" | sort -V | tail -1)
+          MVN_VERSION=$(echo "$BASE" | awk -F. '{printf "%d.%d.%d", $1, $2, $3+1}')
+          echo "new_version=v$MVN_VERSION" >> $GITHUB_OUTPUT
           echo "mvn_version=$MVN_VERSION" >> $GITHUB_OUTPUT
 
       - name: Update pom version
