@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.9.0
+  version: 1.9.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53014,8 +53014,7 @@ components:
           - document
           type: string
         url:
-          description: "A media item with a null, missing or empty url is dropped\
-            \ from non-draft posts (drafts keep it as a pending-upload placeholder)."
+          description: "A media item with a null, missing or empty url is dropped."
           format: uri
           type: string
         title:
