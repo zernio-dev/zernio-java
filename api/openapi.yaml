@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.9.2
+  version: 1.9.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47013,7 +47013,7 @@ components:
                 code: PAYMENT_REQUIRED
                 reason: free_tier_exceeded
                 documentation_url: https://docs.zernio.com/billing/payment-method-required
-                dashboard_url: https://zernio.com/dashboard?tab=billing
+                dashboard_url: https://zernio.com/dashboard/billing?add_payment_method=1
                 details:
                   free_tier_account_limit: 2
                   current_account_count: 3
@@ -47026,7 +47026,7 @@ components:
                 code: PAYMENT_REQUIRED
                 reason: twitter_passthrough
                 documentation_url: https://docs.zernio.com/billing/payment-method-required
-                dashboard_url: https://zernio.com/dashboard?tab=billing
+                dashboard_url: https://zernio.com/dashboard/billing?add_payment_method=1
                 details:
                   has_payment_method: false
             enterpriseRequired:
@@ -47070,8 +47070,9 @@ components:
 
         SDK consumers should switch on `reason` to render the right
         prompt. For `free_tier_exceeded` and `twitter_passthrough`,
-        redirect the end-user to `dashboard_url` to add a payment method
-        via Zernio's hosted Stripe Setup Checkout. For
+        redirect the end-user to `dashboard_url`: it opens the
+        add-payment-method drawer on the Zernio billing page, and the
+        request succeeds once the card is on file. For
         `enterprise_required`, redirect to `dashboard_url` (the
         enterprise contact form) to adjust the contract's limit.
   schemas:
@@ -119818,7 +119819,7 @@ components:
         error: X (Twitter) requires a payment method due to API pass-through costs.
           Add a payment method to connect an X account.
         documentation_url: https://docs.zernio.com/billing/payment-method-required
-        dashboard_url: https://zernio.com/dashboard?tab=billing
+        dashboard_url: https://zernio.com/dashboard/billing?add_payment_method=1
       properties:
         error:
           description: Human-readable error message suitable for end-user display.
@@ -119845,10 +119846,11 @@ components:
         dashboard_url:
           description: |
             Deep-link to send the end-user to. For
-            `free_tier_exceeded` and `twitter_passthrough` this is
-            the Zernio billing tab. For `enterprise_required` this
-            is the Zernio enterprise contact page.
-          example: https://zernio.com/dashboard?tab=billing
+            `free_tier_exceeded` and `twitter_passthrough` this opens
+            the add-payment-method drawer on the Zernio billing page.
+            For `enterprise_required` this is the Zernio enterprise
+            contact page.
+          example: https://zernio.com/dashboard/billing?add_payment_method=1
           format: uri
           type: string
         details:

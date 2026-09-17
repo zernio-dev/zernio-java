@@ -11,7 +11,7 @@
 |**code** | [**CodeEnum**](#CodeEnum) | Machine-readable error code. Stable across versions. |  |
 |**reason** | [**ReasonEnum**](#ReasonEnum) | Discriminator for which gate fired. |  |
 |**documentationUrl** | **URI** | Link to the relevant documentation page. |  [optional] |
-|**dashboardUrl** | **URI** | Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this is the Zernio billing tab. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page.  |  [optional] |
+|**dashboardUrl** | **URI** | Deep-link to send the end-user to. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60; this opens the add-payment-method drawer on the Zernio billing page. For &#x60;enterprise_required&#x60; this is the Zernio enterprise contact page.  |  [optional] |
 |**details** | [**InlineObject4Details**](InlineObject4Details.md) |  |  [optional] |
 
 
