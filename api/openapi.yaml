@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.19.0
+  version: 1.20.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -33108,11 +33108,17 @@ paths:
   /v1/ads/ad-sets/{adSetId}/duplicate:
     post:
       description: |-
-        Duplicates an ad set, including its ads and creatives by default (`deepCopy: true`),
-        via Meta's native `POST /{adset-id}/copies`. The copy is created paused so callers can
-        review before launching. `campaignId` retargets the copy into another campaign; omitted
-        = the source's own campaign. The new hierarchy materializes asynchronously, and sync
-        discovery is triggered automatically (`syncAfter: false` to skip).
+        Duplicates an ad set. The copy is created paused so callers can review before launching.
+        `campaignId` retargets the copy into another campaign; omitted = the source's own campaign.
+
+        Meta: ads and creatives are included by default (`deepCopy: true`) via Meta's native
+        `POST /{adset-id}/copies`; the new hierarchy materializes asynchronously and sync discovery
+        is triggered automatically (`syncAfter: false` to skip).
+
+        TikTok: the ad group is read and recreated under the campaign with its targeting, bidding,
+        budget and schedule (start reset to now); `deepCopy: true` recreates its ads too (default
+        false). `startTime`, `endTime` and `renameStrategy` are ignored and `statusOption` must be
+        PAUSED or absent. The copy appears on the next discovery sync.
       operationId: duplicateAdSet
       parameters:
       - description: "Optional client-generated unique key (e.g. a UUID) that makes\
@@ -33169,6 +33175,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json

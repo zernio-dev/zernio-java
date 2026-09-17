@@ -2327,7 +2327,7 @@ ApiResponse<[**DuplicateAdCampaign200Response**](DuplicateAdCampaign200Response.
 
 Duplicate an ad set
 
-Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously, and sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
+Duplicates an ad set. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign.  Meta: ads and creatives are included by default (&#x60;deepCopy: true&#x60;) via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;; the new hierarchy materializes asynchronously and sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).  TikTok: the ad group is read and recreated under the campaign with its targeting, bidding, budget and schedule (start reset to now); &#x60;deepCopy: true&#x60; recreates its ads too (default false). &#x60;startTime&#x60;, &#x60;endTime&#x60; and &#x60;renameStrategy&#x60; are ignored and &#x60;statusOption&#x60; must be PAUSED or absent. The copy appears on the next discovery sync.
 
 ### Example
 
@@ -2406,7 +2406,7 @@ public class Example {
 
 Duplicate an ad set
 
-Duplicates an ad set, including its ads and creatives by default (&#x60;deepCopy: true&#x60;), via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign. The new hierarchy materializes asynchronously, and sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).
+Duplicates an ad set. The copy is created paused so callers can review before launching. &#x60;campaignId&#x60; retargets the copy into another campaign; omitted &#x3D; the source&#39;s own campaign.  Meta: ads and creatives are included by default (&#x60;deepCopy: true&#x60;) via Meta&#39;s native &#x60;POST /{adset-id}/copies&#x60;; the new hierarchy materializes asynchronously and sync discovery is triggered automatically (&#x60;syncAfter: false&#x60; to skip).  TikTok: the ad group is read and recreated under the campaign with its targeting, bidding, budget and schedule (start reset to now); &#x60;deepCopy: true&#x60; recreates its ads too (default false). &#x60;startTime&#x60;, &#x60;endTime&#x60; and &#x60;renameStrategy&#x60; are ignored and &#x60;statusOption&#x60; must be PAUSED or absent. The copy appears on the next discovery sync.
 
 ### Example
 
