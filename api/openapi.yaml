@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.15.0
+  version: 1.16.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -105216,7 +105216,12 @@ components:
           description: Platform post ID (alternative to postId)
           type: string
         accountId:
-          description: Account ID
+          description: "Zernio account id. Normally the connected posting account\
+            \ (facebook, instagram, tiktok, linkedin, pinterest, twitter) or a googleads\
+            \ account. TikTok: the TikTok Ads connection (platform tiktokads) is accepted\
+            \ too when the post brings its own authorization (sparkAuthCode or sparkPosts),\
+            \ so Spark ads need no organic TikTok account connected; such a call must\
+            \ use platformPostId, not postId."
           type: string
         adAccountId:
           description: Platform ad account ID
