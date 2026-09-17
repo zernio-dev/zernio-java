@@ -44,6 +44,8 @@
 | DISCORD | &quot;discord&quot; |
 | SLACK | &quot;slack&quot; |
 | WHATSAPP | &quot;whatsapp&quot; |
+| SHOPIFY | &quot;shopify&quot; |
+| WORDPRESS | &quot;wordpress&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | METAADS | &quot;metaads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |

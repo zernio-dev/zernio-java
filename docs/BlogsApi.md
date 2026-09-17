@@ -33,7 +33,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create a blog
 
-Creates a blog on the connected store. The platform generates the URL &#x60;handle&#x60; from the title when omitted.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Creates a blog on the connected store. The platform generates the URL &#x60;handle&#x60; from the title when omitted.  Supported on Shopify (platform &#x60;shopify&#x60;). A WordPress connection is its existing site, so WordPress returns 405 for blog creation. 
 
 ### Example
 
@@ -111,7 +111,7 @@ public class Example {
 
 Create a blog
 
-Creates a blog on the connected store. The platform generates the URL &#x60;handle&#x60; from the title when omitted.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Creates a blog on the connected store. The platform generates the URL &#x60;handle&#x60; from the title when omitted.  Supported on Shopify (platform &#x60;shopify&#x60;). A WordPress connection is its existing site, so WordPress returns 405 for blog creation. 
 
 ### Example
 
@@ -193,7 +193,7 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - &#x60;isPublished: false&#x60; keeps the article as a draft. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Creates an article on the blog. Publishing behavior:  - WordPress defaults to a draft when both publishing fields are omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description). WordPress rejects &#x60;seo&#x60;; SEO   plugin and custom-field writes are not supported.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
 
 ### Example
 
@@ -216,8 +216,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
         try {
             CreateBlogArticle201Response result = apiInstance.createBlogArticle(accountId, blogId, createBlogArticleRequest);
@@ -238,8 +238,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
 
 ### Return type
@@ -262,10 +262,11 @@ public class Example {
 | **201** | Article created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support creating articles. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article mutations are not blindly retried. |  -  |
 
 ## createBlogArticleWithHttpInfo
 
@@ -273,7 +274,7 @@ public class Example {
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - &#x60;isPublished: false&#x60; keeps the article as a draft. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Creates an article on the blog. Publishing behavior:  - WordPress defaults to a draft when both publishing fields are omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description). WordPress rejects &#x60;seo&#x60;; SEO   plugin and custom-field writes are not supported.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
 
 ### Example
 
@@ -297,8 +298,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
         try {
             ApiResponse<CreateBlogArticle201Response> response = apiInstance.createBlogArticleWithHttpInfo(accountId, blogId, createBlogArticleRequest);
@@ -321,8 +322,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
 
 ### Return type
@@ -345,10 +346,11 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 | **201** | Article created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support creating articles. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article mutations are not blindly retried. |  -  |
 
 
 ## deleteBlog
@@ -357,7 +359,7 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 
 Delete a blog
 
-Deletes the blog AND every article in it. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Deletes the blog AND every article in it. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Disconnect a WordPress account instead of deleting its site; WordPress returns 405 here. 
 
 ### Example
 
@@ -434,7 +436,7 @@ null (empty response body)
 
 Delete a blog
 
-Deletes the blog AND every article in it. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Deletes the blog AND every article in it. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Disconnect a WordPress account instead of deleting its site; WordPress returns 405 here. 
 
 ### Example
 
@@ -515,7 +517,7 @@ ApiResponse<Void>
 
 Delete a blog article
 
-Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -538,8 +540,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         try {
             apiInstance.deleteBlogArticle(accountId, blogId, articleId);
@@ -559,8 +561,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 
 ### Return type
@@ -583,10 +585,11 @@ null (empty response body)
 | **204** | Article deleted (no content). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support deleting an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article deletion is not blindly retried. |  -  |
 
 ## deleteBlogArticleWithHttpInfo
 
@@ -594,7 +597,7 @@ null (empty response body)
 
 Delete a blog article
 
-Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -618,8 +621,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         try {
             ApiResponse<Void> response = apiInstance.deleteBlogArticleWithHttpInfo(accountId, blogId, articleId);
@@ -641,8 +644,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 
 ### Return type
@@ -665,19 +668,20 @@ ApiResponse<Void>
 | **204** | Article deleted (no content). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support deleting an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article deletion is not blindly retried. |  -  |
 
 
 ## getBlog
 
-> CreateBlog201Response getBlog(accountId, blogId)
+> GetBlog200Response getBlog(accountId, blogId)
 
 Get a blog
 
-Fetches a single blog. &#x60;blogId&#x60; is the platform&#39;s numeric blog id from &#x60;GET /v1/accounts/{accountId}/blogs&#x60;, not a Zernio id.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Fetches a single blog. Use the platform-native &#x60;blogId&#x60; returned by &#x60;GET /v1/accounts/{accountId}/blogs&#x60;: a Shopify numeric blog id, the WordPress.com numeric site id, or &#x60;1&#x60; for a self-hosted WordPress site. The self-hosted id is scoped to its connected account. 
 
 ### Example
 
@@ -700,10 +704,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         try {
-            CreateBlog201Response result = apiInstance.getBlog(accountId, blogId);
+            GetBlog200Response result = apiInstance.getBlog(accountId, blogId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BlogsApi#getBlog");
@@ -721,12 +725,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 
 ### Return type
 
-[**CreateBlog201Response**](CreateBlog201Response.md)
+[**GetBlog200Response**](GetBlog200Response.md)
 
 
 ### Authorization
@@ -744,18 +748,19 @@ public class Example {
 | **200** | Blog fetched |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support fetching a blog. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 ## getBlogWithHttpInfo
 
-> ApiResponse<CreateBlog201Response> getBlog getBlogWithHttpInfo(accountId, blogId)
+> ApiResponse<GetBlog200Response> getBlog getBlogWithHttpInfo(accountId, blogId)
 
 Get a blog
 
-Fetches a single blog. &#x60;blogId&#x60; is the platform&#39;s numeric blog id from &#x60;GET /v1/accounts/{accountId}/blogs&#x60;, not a Zernio id.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Fetches a single blog. Use the platform-native &#x60;blogId&#x60; returned by &#x60;GET /v1/accounts/{accountId}/blogs&#x60;: a Shopify numeric blog id, the WordPress.com numeric site id, or &#x60;1&#x60; for a self-hosted WordPress site. The self-hosted id is scoped to its connected account. 
 
 ### Example
 
@@ -779,10 +784,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         try {
-            ApiResponse<CreateBlog201Response> response = apiInstance.getBlogWithHttpInfo(accountId, blogId);
+            ApiResponse<GetBlog200Response> response = apiInstance.getBlogWithHttpInfo(accountId, blogId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -802,12 +807,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 
 ### Return type
 
-ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
+ApiResponse<[**GetBlog200Response**](GetBlog200Response.md)>
 
 
 ### Authorization
@@ -825,10 +830,11 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 | **200** | Blog fetched |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support fetching a blog. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 
 ## getBlogArticle
@@ -837,7 +843,7 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 
 Get a blog article
 
-Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
 
 ### Example
 
@@ -860,8 +866,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         try {
             CreateBlogArticle201Response result = apiInstance.getBlogArticle(accountId, blogId, articleId);
@@ -882,8 +888,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 
 ### Return type
@@ -906,10 +912,11 @@ public class Example {
 | **200** | Article fetched |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support fetching an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 ## getBlogArticleWithHttpInfo
 
@@ -917,7 +924,7 @@ public class Example {
 
 Get a blog article
 
-Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
 
 ### Example
 
@@ -941,8 +948,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         try {
             ApiResponse<CreateBlogArticle201Response> response = apiInstance.getBlogArticleWithHttpInfo(accountId, blogId, articleId);
@@ -965,8 +972,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 
 ### Return type
@@ -989,10 +996,11 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 | **200** | Article fetched |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support fetching an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 
 ## listBlogArticles
@@ -1001,7 +1009,7 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 
 List blog articles
 
-Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress results include native &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. 
 
 ### Example
 
@@ -1024,8 +1032,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1047,8 +1055,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1072,10 +1080,11 @@ public class Example {
 | **200** | Articles listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support listing articles. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 ## listBlogArticlesWithHttpInfo
 
@@ -1083,7 +1092,7 @@ public class Example {
 
 List blog articles
 
-Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). WordPress results include native &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. 
 
 ### Example
 
@@ -1107,8 +1116,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1132,8 +1141,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1157,10 +1166,11 @@ ApiResponse<[**ListBlogArticles200Response**](ListBlogArticles200Response.md)>
 | **200** | Articles listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or blog not found (code blog_not_found). |  -  |
 | **405** | Platform does not support listing articles. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 
 ## listBlogs
@@ -1169,7 +1179,7 @@ ApiResponse<[**ListBlogArticles200Response**](ListBlogArticles200Response.md)>
 
 List blogs
 
-Lists the blogs on the connected store, newest-first as the platform returns them. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -1192,7 +1202,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1214,7 +1224,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1238,10 +1248,11 @@ public class Example {
 | **200** | Blogs listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **405** | Platform does not support listing blogs. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 ## listBlogsWithHttpInfo
 
@@ -1249,7 +1260,7 @@ public class Example {
 
 List blogs
 
-Lists the blogs on the connected store, newest-first as the platform returns them. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -1273,7 +1284,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1297,7 +1308,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1321,10 +1332,11 @@ ApiResponse<[**ListBlogs200Response**](ListBlogs200Response.md)>
 | **200** | Blogs listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **405** | Platform does not support listing blogs. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. |  -  |
 
 
 ## updateBlog
@@ -1333,7 +1345,7 @@ ApiResponse<[**ListBlogs200Response**](ListBlogs200Response.md)>
 
 Update a blog
 
-Partial-updates a blog. Send any subset of &#x60;title&#x60; and &#x60;handle&#x60;; at least one field is required (an empty body returns 400).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Partial-updates a blog. Send any subset of &#x60;title&#x60; and &#x60;handle&#x60;; at least one field is required (an empty body returns 400).  Supported on Shopify (platform &#x60;shopify&#x60;). WordPress site settings are not writable through this API, so WordPress returns 405. 
 
 ### Example
 
@@ -1413,7 +1425,7 @@ public class Example {
 
 Update a blog
 
-Partial-updates a blog. Send any subset of &#x60;title&#x60; and &#x60;handle&#x60;; at least one field is required (an empty body returns 400).  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Partial-updates a blog. Send any subset of &#x60;title&#x60; and &#x60;handle&#x60;; at least one field is required (an empty body returns 400).  Supported on Shopify (platform &#x60;shopify&#x60;). WordPress site settings are not writable through this API, so WordPress returns 405. 
 
 ### Example
 
@@ -1497,7 +1509,7 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 
 Update a blog article
 
-Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -1520,8 +1532,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         UpdateBlogArticleRequest updateBlogArticleRequest = new UpdateBlogArticleRequest(); // UpdateBlogArticleRequest | 
         try {
@@ -1543,8 +1555,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 | **updateBlogArticleRequest** | [**UpdateBlogArticleRequest**](UpdateBlogArticleRequest.md)|  | |
 
@@ -1568,10 +1580,11 @@ public class Example {
 | **200** | Article updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support updating an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article mutations are not blindly retried. |  -  |
 
 ## updateBlogArticleWithHttpInfo
 
@@ -1579,7 +1592,7 @@ public class Example {
 
 Update a blog article
 
-Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform.  Supported on Shopify (platform &#x60;shopify&#x60;). Accounts on platforms without blogs support return 400; a blogs-capable platform that lacks this specific operation returns 405. 
+Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes.  Supported on Shopify (&#x60;shopify&#x60;) and WordPress (&#x60;wordpress&#x60;). 
 
 ### Example
 
@@ -1603,8 +1616,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify SocialAccount id.
-        String blogId = "blogId_example"; // String | Platform-native numeric blog id. Non-numeric values return 400.
+        String accountId = "accountId_example"; // String | Connected Shopify or WordPress account id.
+        String blogId = "blogId_example"; // String | Platform-native numeric blog/site id returned by the list operation.
         String articleId = "articleId_example"; // String | Platform-native numeric article id. Non-numeric values return 400.
         UpdateBlogArticleRequest updateBlogArticleRequest = new UpdateBlogArticleRequest(); // UpdateBlogArticleRequest | 
         try {
@@ -1628,8 +1641,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify SocialAccount id. | |
-| **blogId** | **String**| Platform-native numeric blog id. Non-numeric values return 400. | |
+| **accountId** | **String**| Connected Shopify or WordPress account id. | |
+| **blogId** | **String**| Platform-native numeric blog/site id returned by the list operation. | |
 | **articleId** | **String**| Platform-native numeric article id. Non-numeric values return 400. | |
 | **updateBlogArticleRequest** | [**UpdateBlogArticleRequest**](UpdateBlogArticleRequest.md)|  | |
 
@@ -1653,8 +1666,9 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 | **200** | Article updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The platform rejected the request (code insufficient_permissions); reconnect the Shopify account to restore access. |  -  |
+| **403** | The platform rejected the request (code insufficient_permissions); reconnect the account or restore the WordPress user capabilities. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), blog not found (code blog_not_found), or article not found (code blog_article_not_found). |  -  |
 | **405** | Platform does not support updating an article. |  -  |
-| **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
+| **429** | Rate limited by Zernio or the connected platform. Retry later. |  -  |
+| **502** | The connected platform returned an unclassified upstream error. Article mutations are not blindly retried. |  -  |
 

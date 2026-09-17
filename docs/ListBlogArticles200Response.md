@@ -18,6 +18,7 @@
 | Name | Value |
 |---- | -----|
 | SHOPIFY | &quot;shopify&quot; |
+| WORDPRESS | &quot;wordpress&quot; |
 
 
 

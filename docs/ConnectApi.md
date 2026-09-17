@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**connectWhatsAppCredentialsWithHttpInfo**](ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials |
 | [**connectWhatsAppEmbeddedSignup**](ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
 | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup |
+| [**connectWordPressWithApplicationPassword**](ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
+| [**connectWordPressWithApplicationPasswordWithHttpInfo**](ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password |
 | [**createPinterestBoard**](ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**createPinterestBoardWithHttpInfo**](ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**createYoutubePlaylist**](ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
@@ -60,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTelegramConnectStatusWithHttpInfo**](ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code |
 | [**getWhatsAppSdkConfig**](ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config |
 | [**getWhatsAppSdkConfigWithHttpInfo**](ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config |
+| [**getWordPressAuthUrl**](ConnectApi.md#getWordPressAuthUrl) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL |
+| [**getWordPressAuthUrlWithHttpInfo**](ConnectApi.md#getWordPressAuthUrlWithHttpInfo) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL |
 | [**getYoutubeCaptions**](ConnectApi.md#getYoutubeCaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript |
 | [**getYoutubeCaptionsWithHttpInfo**](ConnectApi.md#getYoutubeCaptionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript |
 | [**getYoutubePlaylists**](ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists |
@@ -2147,6 +2151,176 @@ ApiResponse<[**ConnectWhatsAppEmbeddedSignup200Response**](ConnectWhatsAppEmbedd
 | **401** | Unauthorized |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **409** | The number is already connected on another profile or team |  -  |
+
+
+## connectWordPressWithApplicationPassword
+
+> ConnectWordPressWithApplicationPassword200Response connectWordPressWithApplicationPassword(connectWordPressWithApplicationPasswordRequest)
+
+Connect self-hosted WordPress with an application password
+
+Connects one self-hosted WordPress site using a WordPress username and application password. &#x60;siteUrl&#x60; must use HTTPS and may include the path where WordPress is installed. Zernio discovers the REST API, verifies the credentials and required post/media/taxonomy capabilities, then stores the password encrypted. Create an application password in the WordPress user&#39;s profile; do not send the user&#39;s login password. Reconnecting the same site and profile updates the connection in place. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectWordPressWithApplicationPasswordRequest connectWordPressWithApplicationPasswordRequest = new ConnectWordPressWithApplicationPasswordRequest(); // ConnectWordPressWithApplicationPasswordRequest | 
+        try {
+            ConnectWordPressWithApplicationPassword200Response result = apiInstance.connectWordPressWithApplicationPassword(connectWordPressWithApplicationPasswordRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectWordPressWithApplicationPassword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectWordPressWithApplicationPasswordRequest** | [**ConnectWordPressWithApplicationPasswordRequest**](ConnectWordPressWithApplicationPasswordRequest.md)|  | |
+
+### Return type
+
+[**ConnectWordPressWithApplicationPassword200Response**](ConnectWordPressWithApplicationPassword200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WordPress site connected as a platform account |  -  |
+| **400** | Malformed body, non-HTTPS &#x60;siteUrl&#x60;, invalid username, unavailable REST API, or a site that cannot support the required WordPress operations. |  -  |
+| **401** | Invalid API key or WordPress application password. |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | No access to the Zernio profile, or the WordPress user lacks required capabilities. |  -  |
+| **404** | Zernio profile not found or WordPress REST endpoint not found. |  -  |
+| **502** | The WordPress site returned an unclassified upstream error. |  -  |
+| **503** | The WordPress site could not be reached. |  -  |
+
+## connectWordPressWithApplicationPasswordWithHttpInfo
+
+> ApiResponse<ConnectWordPressWithApplicationPassword200Response> connectWordPressWithApplicationPassword connectWordPressWithApplicationPasswordWithHttpInfo(connectWordPressWithApplicationPasswordRequest)
+
+Connect self-hosted WordPress with an application password
+
+Connects one self-hosted WordPress site using a WordPress username and application password. &#x60;siteUrl&#x60; must use HTTPS and may include the path where WordPress is installed. Zernio discovers the REST API, verifies the credentials and required post/media/taxonomy capabilities, then stores the password encrypted. Create an application password in the WordPress user&#39;s profile; do not send the user&#39;s login password. Reconnecting the same site and profile updates the connection in place. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        ConnectWordPressWithApplicationPasswordRequest connectWordPressWithApplicationPasswordRequest = new ConnectWordPressWithApplicationPasswordRequest(); // ConnectWordPressWithApplicationPasswordRequest | 
+        try {
+            ApiResponse<ConnectWordPressWithApplicationPassword200Response> response = apiInstance.connectWordPressWithApplicationPasswordWithHttpInfo(connectWordPressWithApplicationPasswordRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#connectWordPressWithApplicationPassword");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **connectWordPressWithApplicationPasswordRequest** | [**ConnectWordPressWithApplicationPasswordRequest**](ConnectWordPressWithApplicationPasswordRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ConnectWordPressWithApplicationPassword200Response**](ConnectWordPressWithApplicationPassword200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | WordPress site connected as a platform account |  -  |
+| **400** | Malformed body, non-HTTPS &#x60;siteUrl&#x60;, invalid username, unavailable REST API, or a site that cannot support the required WordPress operations. |  -  |
+| **401** | Invalid API key or WordPress application password. |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | No access to the Zernio profile, or the WordPress user lacks required capabilities. |  -  |
+| **404** | Zernio profile not found or WordPress REST endpoint not found. |  -  |
+| **502** | The WordPress site returned an unclassified upstream error. |  -  |
+| **503** | The WordPress site could not be reached. |  -  |
 
 
 ## createPinterestBoard
@@ -4487,6 +4661,178 @@ ApiResponse<[**GetWhatsAppSdkConfig200Response**](GetWhatsAppSdkConfig200Respons
 |-------------|-------------|------------------|
 | **200** | Meta app configuration for Embedded Signup |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## getWordPressAuthUrl
+
+> GetWordPressAuthUrl200Response getWordPressAuthUrl(profileId, redirectUrl)
+
+Get WordPress.com OAuth connect URL
+
+Initiates OAuth for a WordPress.com site or a Jetpack-connected site. WordPress is a connect-only blog platform: the connected account powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;) and does not support social posts, inbox, analytics, ads, or Shopify product operations. Redirect the user to &#x60;authUrl&#x60;; after authorization, WordPress returns the browser to Zernio&#39;s internal callback and Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted). Reconnecting the same site and profile updates the stored connection in place. The consent request omits &#x60;scope&#x60; to use WordPress.com&#39;s default single-site grant. Granular scopes cannot access the &#x60;/wp/v2&#x60; article API. Zernio checks that API before saving the connection and does not request explicit &#x60;global&#x60; authorization across all sites. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        try {
+            GetWordPressAuthUrl200Response result = apiInstance.getWordPressAuthUrl(profileId, redirectUrl);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getWordPressAuthUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+
+### Return type
+
+[**GetWordPressAuthUrl200Response**](GetWordPressAuthUrl200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid &#x60;profileId&#x60; or &#x60;redirect_url&#x60;. |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | WordPress.com OAuth or state signing is not configured. |  -  |
+
+## getWordPressAuthUrlWithHttpInfo
+
+> ApiResponse<GetWordPressAuthUrl200Response> getWordPressAuthUrl getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl)
+
+Get WordPress.com OAuth connect URL
+
+Initiates OAuth for a WordPress.com site or a Jetpack-connected site. WordPress is a connect-only blog platform: the connected account powers the Blogs API (&#x60;/v1/accounts/{accountId}/blogs&#x60;) and does not support social posts, inbox, analytics, ads, or Shopify product operations. Redirect the user to &#x60;authUrl&#x60;; after authorization, WordPress returns the browser to Zernio&#39;s internal callback and Zernio redirects to &#x60;redirect_url&#x60; (or the dashboard when omitted). Reconnecting the same site and profile updates the stored connection in place. The consent request omits &#x60;scope&#x60; to use WordPress.com&#39;s default single-site grant. Granular scopes cannot access the &#x60;/wp/v2&#x60; article API. Zernio checks that API before saving the connection and does not request explicit &#x60;global&#x60; authorization across all sites. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String profileId = "profileId_example"; // String | Your Zernio profile ID (get from /v1/profiles).
+        String redirectUrl = "redirectUrl_example"; // String | Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as `myapp://callback`; relative and unsafe URLs return 400.
+        try {
+            ApiResponse<GetWordPressAuthUrl200Response> response = apiInstance.getWordPressAuthUrlWithHttpInfo(profileId, redirectUrl);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getWordPressAuthUrl");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**| Your Zernio profile ID (get from /v1/profiles). | |
+| **redirectUrl** | **String**| Custom redirect after connection. Must be an absolute http(s) URL or custom app scheme such as &#x60;myapp://callback&#x60;; relative and unsafe URLs return 400. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetWordPressAuthUrl200Response**](GetWordPressAuthUrl200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | OAuth authorization URL and authenticated state |  -  |
+| **400** | Invalid &#x60;profileId&#x60; or &#x60;redirect_url&#x60;. |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60; and &#x60;twitter_passthrough&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file. For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
+| **403** | API key does not have access to this profile. |  -  |
+| **404** | Profile not found or access denied. |  -  |
+| **503** | WordPress.com OAuth or state signing is not configured. |  -  |
 
 
 ## getYoutubeCaptions

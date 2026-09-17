@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.10.0
+- API version: 1.11.0
 
-- Build date: 2026-09-17T10:56:57.118443321Z[Etc/UTC]
+- Build date: 2026-09-17T11:06:46.554700769Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.10.0</version>
+  <version>1.11.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.10.0"
+compile "dev.zernio:zernio-sdk:1.11.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.10.0.jar`
+- `target/zernio-sdk-1.11.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -737,6 +737,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
 *ConnectApi* | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
+*ConnectApi* | [**connectWordPressWithApplicationPassword**](docs/ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
+*ConnectApi* | [**connectWordPressWithApplicationPasswordWithHttpInfo**](docs/ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
@@ -767,6 +769,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getWhatsAppSdkConfig**](docs/ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWhatsAppSdkConfigWithHttpInfo**](docs/ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
+*ConnectApi* | [**getWordPressAuthUrl**](docs/ConnectApi.md#getWordPressAuthUrl) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL
+*ConnectApi* | [**getWordPressAuthUrlWithHttpInfo**](docs/ConnectApi.md#getWordPressAuthUrlWithHttpInfo) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL
 *ConnectApi* | [**getYoutubeCaptions**](docs/ConnectApi.md#getYoutubeCaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
 *ConnectApi* | [**getYoutubeCaptionsWithHttpInfo**](docs/ConnectApi.md#getYoutubeCaptionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
 *ConnectApi* | [**getYoutubePlaylists**](docs/ConnectApi.md#getYoutubePlaylists) | **GET** /v1/accounts/{accountId}/youtube-playlists | List YouTube playlists
@@ -1819,6 +1823,9 @@ Class | Method | HTTP request | Description
  - [ConnectWhatsAppEmbeddedSignup200Response](docs/ConnectWhatsAppEmbeddedSignup200Response.md)
  - [ConnectWhatsAppEmbeddedSignup200ResponseAccount](docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md)
  - [ConnectWhatsAppEmbeddedSignupRequest](docs/ConnectWhatsAppEmbeddedSignupRequest.md)
+ - [ConnectWordPressWithApplicationPassword200Response](docs/ConnectWordPressWithApplicationPassword200Response.md)
+ - [ConnectWordPressWithApplicationPassword200ResponseAccount](docs/ConnectWordPressWithApplicationPassword200ResponseAccount.md)
+ - [ConnectWordPressWithApplicationPasswordRequest](docs/ConnectWordPressWithApplicationPasswordRequest.md)
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
@@ -2199,6 +2206,7 @@ Class | Method | HTTP request | Description
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)
  - [GetBestTimeToPost403Response](docs/GetBestTimeToPost403Response.md)
+ - [GetBlog200Response](docs/GetBlog200Response.md)
  - [GetBlueskySettings200Response](docs/GetBlueskySettings200Response.md)
  - [GetBroadcast200Response](docs/GetBroadcast200Response.md)
  - [GetBroadcast200ResponseBroadcast](docs/GetBroadcast200ResponseBroadcast.md)
@@ -2495,6 +2503,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppTemplates200ResponseTemplatesInner](docs/GetWhatsAppTemplates200ResponseTemplatesInner.md)
  - [GetWhatsappBusinessUsername200Response](docs/GetWhatsappBusinessUsername200Response.md)
  - [GetWhatsappBusinessUsernameSuggestions200Response](docs/GetWhatsappBusinessUsernameSuggestions200Response.md)
+ - [GetWordPressAuthUrl200Response](docs/GetWordPressAuthUrl200Response.md)
  - [GetWorkflow200Response](docs/GetWorkflow200Response.md)
  - [GetWorkflow200ResponseWorkflow](docs/GetWorkflow200ResponseWorkflow.md)
  - [GetWorkflowVersion200Response](docs/GetWorkflowVersion200Response.md)
@@ -3300,6 +3309,7 @@ Class | Method | HTTP request | Description
  - [UpdateBidStrategy200ResponseStrategy](docs/UpdateBidStrategy200ResponseStrategy.md)
  - [UpdateBidStrategyRequest](docs/UpdateBidStrategyRequest.md)
  - [UpdateBlogArticleRequest](docs/UpdateBlogArticleRequest.md)
+ - [UpdateBlogArticleRequestImage](docs/UpdateBlogArticleRequestImage.md)
  - [UpdateBlogRequest](docs/UpdateBlogRequest.md)
  - [UpdateBlueskySettingsRequest](docs/UpdateBlueskySettingsRequest.md)
  - [UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)

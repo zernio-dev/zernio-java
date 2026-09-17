@@ -256,6 +256,9 @@ docs/ConnectWhatsAppCredentialsRequest.md
 docs/ConnectWhatsAppEmbeddedSignup200Response.md
 docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md
 docs/ConnectWhatsAppEmbeddedSignupRequest.md
+docs/ConnectWordPressWithApplicationPassword200Response.md
+docs/ConnectWordPressWithApplicationPassword200ResponseAccount.md
+docs/ConnectWordPressWithApplicationPasswordRequest.md
 docs/Connected.md
 docs/ConnectedAccount.md
 docs/ConnectedApp.md
@@ -641,6 +644,7 @@ docs/GetAnalytics402Response.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
 docs/GetBestTimeToPost403Response.md
+docs/GetBlog200Response.md
 docs/GetBlueskySettings200Response.md
 docs/GetBroadcast200Response.md
 docs/GetBroadcast200ResponseBroadcast.md
@@ -937,6 +941,7 @@ docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
 docs/GetWhatsappBusinessUsername200Response.md
 docs/GetWhatsappBusinessUsernameSuggestions200Response.md
+docs/GetWordPressAuthUrl200Response.md
 docs/GetWorkflow200Response.md
 docs/GetWorkflow200ResponseWorkflow.md
 docs/GetWorkflowVersion200Response.md
@@ -1774,6 +1779,7 @@ docs/UpdateBidStrategy200Response.md
 docs/UpdateBidStrategy200ResponseStrategy.md
 docs/UpdateBidStrategyRequest.md
 docs/UpdateBlogArticleRequest.md
+docs/UpdateBlogArticleRequestImage.md
 docs/UpdateBlogRequest.md
 docs/UpdateBlueskySettingsRequest.md
 docs/UpdateBroadcast200Response.md
@@ -2482,6 +2488,9 @@ src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
 src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignup200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppEmbeddedSignupRequest.java
+src/main/java/dev/zernio/model/ConnectWordPressWithApplicationPassword200Response.java
+src/main/java/dev/zernio/model/ConnectWordPressWithApplicationPassword200ResponseAccount.java
+src/main/java/dev/zernio/model/ConnectWordPressWithApplicationPasswordRequest.java
 src/main/java/dev/zernio/model/Connected.java
 src/main/java/dev/zernio/model/ConnectedAccount.java
 src/main/java/dev/zernio/model/ConnectedApp.java
@@ -2862,6 +2871,7 @@ src/main/java/dev/zernio/model/GetAnalytics402Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200ResponseSlotsInner.java
 src/main/java/dev/zernio/model/GetBestTimeToPost403Response.java
+src/main/java/dev/zernio/model/GetBlog200Response.java
 src/main/java/dev/zernio/model/GetBlueskySettings200Response.java
 src/main/java/dev/zernio/model/GetBroadcast200Response.java
 src/main/java/dev/zernio/model/GetBroadcast200ResponseBroadcast.java
@@ -3158,6 +3168,7 @@ src/main/java/dev/zernio/model/GetWhatsAppTemplates200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200ResponseTemplatesInner.java
 src/main/java/dev/zernio/model/GetWhatsappBusinessUsername200Response.java
 src/main/java/dev/zernio/model/GetWhatsappBusinessUsernameSuggestions200Response.java
+src/main/java/dev/zernio/model/GetWordPressAuthUrl200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/GetWorkflowVersion200Response.java
@@ -3963,6 +3974,7 @@ src/main/java/dev/zernio/model/UpdateBidStrategy200Response.java
 src/main/java/dev/zernio/model/UpdateBidStrategy200ResponseStrategy.java
 src/main/java/dev/zernio/model/UpdateBidStrategyRequest.java
 src/main/java/dev/zernio/model/UpdateBlogArticleRequest.java
+src/main/java/dev/zernio/model/UpdateBlogArticleRequestImage.java
 src/main/java/dev/zernio/model/UpdateBlogRequest.java
 src/main/java/dev/zernio/model/UpdateBlueskySettingsRequest.java
 src/main/java/dev/zernio/model/UpdateBroadcast200Response.java
@@ -4335,3 +4347,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectWordPressWithApplicationPassword200ResponseAccountTest.java
+src/test/java/dev/zernio/model/ConnectWordPressWithApplicationPassword200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectWordPressWithApplicationPasswordRequestTest.java
+src/test/java/dev/zernio/model/GetBlog200ResponseTest.java
+src/test/java/dev/zernio/model/GetWordPressAuthUrl200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateBlogArticleRequestImageTest.java
