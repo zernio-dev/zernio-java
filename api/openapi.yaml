@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.12.0
+  version: 1.12.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -105392,7 +105392,9 @@ components:
             \ (the Smart+ ad runs the post under the identity that redeeming its Spark\
             \ code creates; a Business Center-owned post is not accepted there) and\
             \ `promotedObject.pixelId` + `customEventType`. `app_promotion` is not\
-            \ available on a Spark post. Rejected with a 400 on other platforms."
+            \ available on a Spark post. Rejected with a 400 on other platforms. On\
+            \ a Smart+ Spark ad `callToAction` is only sent when given; omit it to\
+            \ run the post with its own call to action."
           type: boolean
         promotedObject:
           $ref: "#/components/schemas/boostPost_request_promotedObject"
