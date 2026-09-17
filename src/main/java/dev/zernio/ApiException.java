@@ -15,7 +15,7 @@ package dev.zernio;
 
 import java.net.http.HttpHeaders;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T23:47:21.642080914Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-17T23:49:57.133714447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiException extends Exception {
     private static final long serialVersionUID = 1L;
 
