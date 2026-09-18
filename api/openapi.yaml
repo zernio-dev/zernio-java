@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.21.2
+  version: 1.21.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40837,8 +40837,8 @@ paths:
         last impression. EU-delivered ads carry impression ranges and the disclosed targeting facets.
         Pages are capped at 25 ads (`limit` > 25 is a 400); `after` is the next offset.
 
-        Which params apply: `q`, `countries`, `since`, `until`, `limit`, `after` on both; `pageIds`,
-        `adType`, `status`, `platforms`, `mediaType`, `languages`, `searchType`, `fields` are Meta-only;
+        Which params apply: `q`, `countries`, `limit`, `after` on both; `pageIds`, `adType`, `status`,
+        `platforms`, `mediaType`, `languages`, `searchType`, `fields`, `since`, `until` are Meta-only;
         `advertiser` is LinkedIn-only. Passing a param the account's platform does not support is a 400
         naming the param.
       operationId: searchAdLibrary
@@ -40963,7 +40963,9 @@ paths:
         schema:
           type: string
         style: form
-      - description: Earliest delivery date (YYYY-MM-DD).
+      - description: "Meta only. Earliest delivery date (YYYY-MM-DD). LinkedIn's archive\
+          \ does not filter by date, so it is a 400 there: filter on details.adStatistics.firstImpressionAt\
+          \ / latestImpressionAt instead (EU-delivered ads only)."
         explode: true
         in: query
         name: since
@@ -40972,7 +40974,8 @@ paths:
           format: date
           type: string
         style: form
-      - description: Latest delivery date (YYYY-MM-DD).
+      - description: "Meta only. Latest delivery date (YYYY-MM-DD); a 400 on LinkedIn,\
+          \ see since."
         explode: true
         in: query
         name: until
