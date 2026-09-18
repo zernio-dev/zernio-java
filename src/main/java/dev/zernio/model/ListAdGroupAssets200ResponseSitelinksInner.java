@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListAdGroupAssets200ResponseSitelinksInner.JSON_PROPERTY_DESCRIPTION1,
   ListAdGroupAssets200ResponseSitelinksInner.JSON_PROPERTY_DESCRIPTION2
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:09:06.528914980Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:12:05.296217836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdGroupAssets200ResponseSitelinksInner {
   public static final String JSON_PROPERTY_ASSET_RESOURCE_NAME = "assetResourceName";
   @javax.annotation.Nullable

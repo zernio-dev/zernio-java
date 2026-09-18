@@ -24,7 +24,10 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CtwaAdRequestBodyWelcomeMessageQuickRepliesInner;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -34,17 +37,22 @@ import dev.zernio.ApiClient;
  */
 @JsonPropertyOrder({
   CtwaAdRequestBodyWelcomeMessage.JSON_PROPERTY_TEXT,
-  CtwaAdRequestBodyWelcomeMessage.JSON_PROPERTY_PREFILL_TEXT
+  CtwaAdRequestBodyWelcomeMessage.JSON_PROPERTY_PREFILL_TEXT,
+  CtwaAdRequestBodyWelcomeMessage.JSON_PROPERTY_QUICK_REPLIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:09:06.528914980Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:12:05.296217836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBodyWelcomeMessage {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nonnull
   private String text;
 
   public static final String JSON_PROPERTY_PREFILL_TEXT = "prefillText";
-  @javax.annotation.Nonnull
+  @javax.annotation.Nullable
   private String prefillText;
+
+  public static final String JSON_PROPERTY_QUICK_REPLIES = "quickReplies";
+  @javax.annotation.Nullable
+  private List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> quickReplies = new ArrayList<>();
 
   public CtwaAdRequestBodyWelcomeMessage() { 
   }
@@ -73,27 +81,59 @@ public class CtwaAdRequestBodyWelcomeMessage {
   }
 
 
-  public CtwaAdRequestBodyWelcomeMessage prefillText(@javax.annotation.Nonnull String prefillText) {
+  public CtwaAdRequestBodyWelcomeMessage prefillText(@javax.annotation.Nullable String prefillText) {
     this.prefillText = prefillText;
     return this;
   }
 
   /**
-   * Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product).
+   * Message put into the user&#39;s text input, ready to send. Replaces Meta&#39;s default (\&quot;Hi! I want more info.\&quot;). Lets one ad steer the opening message toward what it promotes (e.g. a specific product). Exactly one of prefillText or quickReplies.
    * @return prefillText
    */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PREFILL_TEXT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PREFILL_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public String getPrefillText() {
     return prefillText;
   }
 
 
-  @JsonProperty(value = JSON_PROPERTY_PREFILL_TEXT, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPrefillText(@javax.annotation.Nonnull String prefillText) {
+  @JsonProperty(value = JSON_PROPERTY_PREFILL_TEXT, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPrefillText(@javax.annotation.Nullable String prefillText) {
     this.prefillText = prefillText;
+  }
+
+
+  public CtwaAdRequestBodyWelcomeMessage quickReplies(@javax.annotation.Nullable List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> quickReplies) {
+    this.quickReplies = quickReplies;
+    return this;
+  }
+
+  public CtwaAdRequestBodyWelcomeMessage addQuickRepliesItem(CtwaAdRequestBodyWelcomeMessageQuickRepliesInner quickRepliesItem) {
+    if (this.quickReplies == null) {
+      this.quickReplies = new ArrayList<>();
+    }
+    this.quickReplies.add(quickRepliesItem);
+    return this;
+  }
+
+  /**
+   * Tappable chips under the greeting instead of a prefilled message. Exactly one of prefillText or quickReplies. Put your own campaign or ad key in each payload: the tap arrives on the messages webhook with that payload even where Meta delivers no ad referral (Pages owned by an EU business under the Europe/Japan Messenger restrictions). 
+   * @return quickReplies
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_QUICK_REPLIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> getQuickReplies() {
+    return quickReplies;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_QUICK_REPLIES, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setQuickReplies(@javax.annotation.Nullable List<CtwaAdRequestBodyWelcomeMessageQuickRepliesInner> quickReplies) {
+    this.quickReplies = quickReplies;
   }
 
 
@@ -110,12 +150,13 @@ public class CtwaAdRequestBodyWelcomeMessage {
     }
     CtwaAdRequestBodyWelcomeMessage ctwaAdRequestBodyWelcomeMessage = (CtwaAdRequestBodyWelcomeMessage) o;
     return Objects.equals(this.text, ctwaAdRequestBodyWelcomeMessage.text) &&
-        Objects.equals(this.prefillText, ctwaAdRequestBodyWelcomeMessage.prefillText);
+        Objects.equals(this.prefillText, ctwaAdRequestBodyWelcomeMessage.prefillText) &&
+        Objects.equals(this.quickReplies, ctwaAdRequestBodyWelcomeMessage.quickReplies);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(text, prefillText);
+    return Objects.hash(text, prefillText, quickReplies);
   }
 
   @Override
@@ -124,6 +165,7 @@ public class CtwaAdRequestBodyWelcomeMessage {
     sb.append("class CtwaAdRequestBodyWelcomeMessage {\n");
     sb.append("    text: ").append(toIndentedString(text)).append("\n");
     sb.append("    prefillText: ").append(toIndentedString(prefillText)).append("\n");
+    sb.append("    quickReplies: ").append(toIndentedString(quickReplies)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -179,6 +221,16 @@ public class CtwaAdRequestBodyWelcomeMessage {
     // add `prefillText` to the URL query string
     if (getPrefillText() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sprefillText%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPrefillText()))));
+    }
+
+    // add `quickReplies` to the URL query string
+    if (getQuickReplies() != null) {
+      for (int i = 0; i < getQuickReplies().size(); i++) {
+        if (getQuickReplies().get(i) != null) {
+          joiner.add(getQuickReplies().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%squickReplies%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
     }
 
     return joiner.toString();

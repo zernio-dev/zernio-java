@@ -49066,6 +49066,17 @@ components:
         - regionalRegulatedCategories
         adAccountId: adAccountId
         welcomeMessage:
+          quickReplies:
+          - payload: payload
+            title: title
+          - payload: payload
+            title: title
+          - payload: payload
+            title: title
+          - payload: payload
+            title: title
+          - payload: payload
+            title: title
           text: text
           prefillText: prefillText
         bidAmount: 3.616076749251911
@@ -114701,12 +114712,42 @@ components:
             this field to control the poster frame exactly.
           format: uri
           type: string
+    CtwaAdRequestBody_welcomeMessage_quickReplies_inner:
+      example:
+        payload: payload
+        title: title
+      properties:
+        title:
+          description: Chip label the person taps.
+          maxLength: 20
+          minLength: 1
+          type: string
+        payload:
+          description: Opaque string you choose; delivered on the message.received
+            webhook as interactiveMetadata.quickReplyPayload when the chip is tapped.
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - payload
+      - title
     CtwaAdRequestBody_welcomeMessage:
       description: |
         Custom chat welcome message (Meta's `page_welcome_message`,
         "Mensaje de bienvenida" / "Mensaje predefinido" in Ads Manager).
         Single-creative shape only; for `creatives[]` set it per entry.
       example:
+        quickReplies:
+        - payload: payload
+          title: title
+        - payload: payload
+          title: title
+        - payload: payload
+          title: title
+        - payload: payload
+          title: title
+        - payload: payload
+          title: title
         text: text
         prefillText: prefillText
       properties:
@@ -114718,11 +114759,24 @@ components:
         prefillText:
           description: "Message put into the user's text input, ready to send. Replaces\
             \ Meta's default (\"Hi! I want more info.\"). Lets one ad steer the opening\
-            \ message toward what it promotes (e.g. a specific product)."
+            \ message toward what it promotes (e.g. a specific product). Exactly one\
+            \ of prefillText or quickReplies."
           minLength: 1
           type: string
+        quickReplies:
+          description: |
+            Tappable chips under the greeting instead of a prefilled
+            message. Exactly one of prefillText or quickReplies. Put
+            your own campaign or ad key in each payload: the tap arrives
+            on the messages webhook with that payload even where Meta
+            delivers no ad referral (Pages owned by an EU business under
+            the Europe/Japan Messenger restrictions).
+          items:
+            $ref: "#/components/schemas/CtwaAdRequestBody_welcomeMessage_quickReplies_inner"
+          maxItems: 13
+          minItems: 1
+          type: array
       required:
-      - prefillText
       - text
     CtwaAdRequestBody_creatives_inner_video:
       description: |

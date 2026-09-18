@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   MetaProductFeed.JSON_PROPERTY_CREATED_TIME,
   MetaProductFeed.JSON_PROPERTY_LATEST_UPLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:09:06.528914980Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:12:05.296217836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaProductFeed {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

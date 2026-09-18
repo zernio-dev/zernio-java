@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   CreateAdAccount201Response.JSON_PROPERTY_NEXT_STEPS,
   CreateAdAccount201Response.JSON_PROPERTY_WARNINGS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:09:06.528914980Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:12:05.296217836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdAccount201Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nonnull

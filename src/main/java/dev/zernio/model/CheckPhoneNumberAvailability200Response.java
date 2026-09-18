@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_AREA_OPTIONS,
   CheckPhoneNumberAvailability200Response.JSON_PROPERTY_SOLD_OUT_AREAS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:09:06.528914980Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-18T10:12:05.296217836Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberAvailability200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
