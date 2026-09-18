@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.23.0
+  version: 1.24.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8056,6 +8056,8 @@ paths:
               example:
                 valid: true
                 userId: 6507a1b2c3d4e5f6a7b8c9d0
+                name: Ada Lovelace
+                email: ada@example.com
                 authType: oauth
                 scope: posts:read posts:write accounts:read
               schema:
@@ -71533,12 +71535,22 @@ components:
       example:
         valid: true
         scope: scope
+        name: name
         authType: api_key
         userId: userId
+        email: email
       properties:
         valid:
           type: boolean
         userId:
+          type: string
+        name:
+          description: Display name of the credential's owner.
+          nullable: true
+          type: string
+        email:
+          description: Email of the credential's owner.
+          nullable: true
           type: string
         authType:
           enum:

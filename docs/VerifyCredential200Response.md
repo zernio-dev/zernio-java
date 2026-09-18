@@ -9,6 +9,8 @@
 |------------ | ------------- | ------------- | -------------|
 |**valid** | **Boolean** |  |  [optional] |
 |**userId** | **String** |  |  [optional] |
+|**name** | **String** | Display name of the credential&#39;s owner. |  [optional] |
+|**email** | **String** | Email of the credential&#39;s owner. |  [optional] |
 |**authType** | [**AuthTypeEnum**](#AuthTypeEnum) |  |  [optional] |
 |**scope** | **String** | Granted OAuth scopes, space-separated. Null for API keys. |  [optional] |
 
