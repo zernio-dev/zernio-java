@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.21.0
+  version: 1.21.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -52696,8 +52696,14 @@ components:
         status: active
       properties:
         id:
+          description: "Zernio's internal conversation id (also the message's conversationId).\
+            \ Accepted by every /v1/inbox/conversations/{conversationId} endpoint."
           type: string
         platformConversationId:
+          description: "The platform's conversation id. This is the `id` GET /v1/inbox/conversations\
+            \ returns for the same conversation (on Instagram and Messenger it is\
+            \ the participant's IGSID / PSID), so key your records on it to match\
+            \ webhooks with list rows. Also accepted by the conversation endpoints."
           type: string
         participantId:
           type: string
@@ -52740,7 +52746,9 @@ components:
         status: active
       properties:
         id:
-          description: Internal conversation ID
+          description: "The platform's conversation id, equal to `conversation.platformConversationId`\
+            \ on inbox webhooks (whose `conversation.id` is Zernio's internal id).\
+            \ Both are accepted by the conversation endpoints."
           type: string
         platform:
           enum:
@@ -52756,6 +52764,7 @@ components:
           - tiktok
           type: string
         platformConversationId:
+          description: Same value as `id`.
           type: string
         participantId:
           description: "Contact's platform identifier (IGSID, PSID, wa_id, etc.)"

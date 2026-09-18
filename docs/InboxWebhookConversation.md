@@ -8,8 +8,8 @@ The conversation context included in inbox webhook payloads.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  |
-|**platformConversationId** | **String** |  |  |
+|**id** | **String** | Zernio&#39;s internal conversation id (also the message&#39;s conversationId). Accepted by every /v1/inbox/conversations/{conversationId} endpoint. |  |
+|**platformConversationId** | **String** | The platform&#39;s conversation id. This is the &#x60;id&#x60; GET /v1/inbox/conversations returns for the same conversation (on Instagram and Messenger it is the participant&#39;s IGSID / PSID), so key your records on it to match webhooks with list rows. Also accepted by the conversation endpoints. |  |
 |**participantId** | **String** |  |  [optional] |
 |**participantName** | **String** |  |  [optional] |
 |**participantUsername** | **String** |  |  [optional] |
