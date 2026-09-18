@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
+|**integrationLane** | [**IntegrationLaneEnum**](#IntegrationLaneEnum) | TikTok only. The TikTok integration the account is connected through: business (TikTok for Business, Accounts API) or developer (the original integration). Absent on other platforms. |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**displayName** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Overall health status |  [optional] |
@@ -18,6 +19,15 @@
 |**recommendations** | **List&lt;String&gt;** | Actionable recommendations to fix issues |  [optional] |
 |**messagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  |  [optional] |
 |**platformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  |  [optional] |
+
+
+
+## Enum: IntegrationLaneEnum
+
+| Name | Value |
+|---- | -----|
+| BUSINESS | &quot;business&quot; |
+| DEVELOPER | &quot;developer&quot; |
 
 
 
