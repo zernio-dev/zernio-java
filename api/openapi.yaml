@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.20.3
+  version: 1.21.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -36631,6 +36631,57 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      x-accepts:
+      - application/json
+  /v1/ads/tiktok-identities:
+    get:
+      description: "The identities an ad on this TikTok advertiser may run as (the\
+        \ profile shown on the ad): the advertiser's own TikTok accounts (TT_USER),\
+        \ Business Center authorized accounts (BC_AUTH_TT) and custom brand identities\
+        \ (CUSTOMIZED_USER). Pass the chosen `identityId` on POST /v1/ads/create or\
+        \ POST /v1/ads/boost. Spark-post identities (AUTH_CODE) are not listed; a\
+        \ Spark code creates its own."
+      operationId: listAdsTikTokIdentities
+      parameters:
+      - description: A tiktok or tiktokads account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: TikTok advertiser ID
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdsTikTokIdentities_200_response"
+          description: Identities
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      security:
+      - bearerAuth: []
+      summary: List TikTok ad identities
+      tags:
+      - Ad Creatives
+      x-resource-group: ads
+      x-platforms:
+      - tiktok
       x-accepts:
       - application/json
   /v1/ads/instagram-accounts:
@@ -104143,6 +104194,59 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+    listAdsTikTokIdentities_200_response_identities_inner:
+      example:
+        identityAuthorizedBcId: identityAuthorizedBcId
+        identityType: TT_USER
+        identityId: identityId
+        displayName: displayName
+        profileImage: profileImage
+        username: username
+      properties:
+        identityId:
+          type: string
+        identityType:
+          enum:
+          - TT_USER
+          - BC_AUTH_TT
+          - CUSTOMIZED_USER
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        username:
+          nullable: true
+          type: string
+        profileImage:
+          nullable: true
+          type: string
+        identityAuthorizedBcId:
+          description: Business Center that authorized a BC_AUTH_TT identity
+          nullable: true
+          type: string
+    listAdsTikTokIdentities_200_response:
+      example:
+        identities:
+        - identityAuthorizedBcId: identityAuthorizedBcId
+          identityType: TT_USER
+          identityId: identityId
+          displayName: displayName
+          profileImage: profileImage
+          username: username
+        - identityAuthorizedBcId: identityAuthorizedBcId
+          identityType: TT_USER
+          identityId: identityId
+          displayName: displayName
+          profileImage: profileImage
+          username: username
+        adAccountId: adAccountId
+      properties:
+        adAccountId:
+          type: string
+        identities:
+          items:
+            $ref: "#/components/schemas/listAdsTikTokIdentities_200_response_identities_inner"
+          type: array
     listAdsInstagramAccounts_200_response_accounts_inner:
       allOf:
       - $ref: "#/components/schemas/MetaInstagramIdentityRef"
@@ -106592,6 +106696,20 @@ components:
             be combined with adSetId or smartPlus. On Meta use POST /v1/ads/create
             with existingCampaignId.
           type: string
+        identityId:
+          description: "TikTok only. The identity the ad runs as (the profile shown\
+            \ on the ad), from GET /v1/ads/tiktok-identities. Default: the connected\
+            \ TikTok account's own identity. Must be authorized on the advertiser\
+            \ or the call fails naming the available ones."
+          type: string
+        identityType:
+          description: TikTok only. Type of identityId; resolved from the advertiser's
+            identity list when omitted.
+          enum:
+          - TT_USER
+          - CUSTOMIZED_USER
+          - BC_AUTH_TT
+          type: string
         budget:
           $ref: "#/components/schemas/boostPost_request_budget"
         instagramAccountId:
@@ -108711,6 +108829,11 @@ components:
           type: string
         brandIdentity:
           $ref: "#/components/schemas/createStandaloneAd_request_brandIdentity"
+        identityId:
+          description: "TikTok: the identity the ad runs as, from GET /v1/ads/tiktok-identities.\
+            \ Overrides the connected account's own identity; must be authorized on\
+            \ the advertiser."
+          type: string
         identityType:
           description: |
             TikTok only. Forces the identity attribution on the ad:
@@ -108732,6 +108855,7 @@ components:
           enum:
           - TT_USER
           - CUSTOMIZED_USER
+          - BC_AUTH_TT
           type: string
         smartPlus:
           description: |

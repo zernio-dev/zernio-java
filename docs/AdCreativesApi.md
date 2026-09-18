@@ -24,6 +24,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdImagesWithHttpInfo**](AdCreativesApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library |
 | [**listAdVideos**](AdCreativesApi.md#listAdVideos) | **GET** /v1/ads/videos | Ad video library |
 | [**listAdVideosWithHttpInfo**](AdCreativesApi.md#listAdVideosWithHttpInfo) | **GET** /v1/ads/videos | Ad video library |
+| [**listAdsTikTokIdentities**](AdCreativesApi.md#listAdsTikTokIdentities) | **GET** /v1/ads/tiktok-identities | List TikTok ad identities |
+| [**listAdsTikTokIdentitiesWithHttpInfo**](AdCreativesApi.md#listAdsTikTokIdentitiesWithHttpInfo) | **GET** /v1/ads/tiktok-identities | List TikTok ad identities |
 | [**listPartnershipAdContent**](AdCreativesApi.md#listPartnershipAdContent) | **GET** /v1/ads/partnership-content | List partnership ad content |
 | [**listPartnershipAdContentWithHttpInfo**](AdCreativesApi.md#listPartnershipAdContentWithHttpInfo) | **GET** /v1/ads/partnership-content | List partnership ad content |
 | [**listPartnershipAdPermissions**](AdCreativesApi.md#listPartnershipAdPermissions) | **GET** /v1/ads/partnership-permissions | List partnership permissions |
@@ -1655,6 +1657,162 @@ ApiResponse<[**ListAdVideos200Response**](ListAdVideos200Response.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## listAdsTikTokIdentities
+
+> ListAdsTikTokIdentities200Response listAdsTikTokIdentities(accountId, adAccountId)
+
+List TikTok ad identities
+
+The identities an ad on this TikTok advertiser may run as (the profile shown on the ad): the advertiser&#39;s own TikTok accounts (TT_USER), Business Center authorized accounts (BC_AUTH_TT) and custom brand identities (CUSTOMIZED_USER). Pass the chosen &#x60;identityId&#x60; on POST /v1/ads/create or POST /v1/ads/boost. Spark-post identities (AUTH_CODE) are not listed; a Spark code creates its own.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | A tiktok or tiktokads account ID
+        String adAccountId = "adAccountId_example"; // String | TikTok advertiser ID
+        try {
+            ListAdsTikTokIdentities200Response result = apiInstance.listAdsTikTokIdentities(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listAdsTikTokIdentities");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A tiktok or tiktokads account ID | |
+| **adAccountId** | **String**| TikTok advertiser ID | |
+
+### Return type
+
+[**ListAdsTikTokIdentities200Response**](ListAdsTikTokIdentities200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Identities |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## listAdsTikTokIdentitiesWithHttpInfo
+
+> ApiResponse<ListAdsTikTokIdentities200Response> listAdsTikTokIdentities listAdsTikTokIdentitiesWithHttpInfo(accountId, adAccountId)
+
+List TikTok ad identities
+
+The identities an ad on this TikTok advertiser may run as (the profile shown on the ad): the advertiser&#39;s own TikTok accounts (TT_USER), Business Center authorized accounts (BC_AUTH_TT) and custom brand identities (CUSTOMIZED_USER). Pass the chosen &#x60;identityId&#x60; on POST /v1/ads/create or POST /v1/ads/boost. Spark-post identities (AUTH_CODE) are not listed; a Spark code creates its own.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String accountId = "accountId_example"; // String | A tiktok or tiktokads account ID
+        String adAccountId = "adAccountId_example"; // String | TikTok advertiser ID
+        try {
+            ApiResponse<ListAdsTikTokIdentities200Response> response = apiInstance.listAdsTikTokIdentitiesWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#listAdsTikTokIdentities");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A tiktok or tiktokads account ID | |
+| **adAccountId** | **String**| TikTok advertiser ID | |
+
+### Return type
+
+ApiResponse<[**ListAdsTikTokIdentities200Response**](ListAdsTikTokIdentities200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Identities |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
 ## listPartnershipAdContent

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.20.3
+- API version: 1.21.0
 
-- Build date: 2026-09-17T23:49:57.133714447Z[Etc/UTC]
+- Build date: 2026-09-18T01:05:33.232211227Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.20.3</version>
+  <version>1.21.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.20.3"
+compile "dev.zernio:zernio-sdk:1.21.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.20.3.jar`
+- `target/zernio-sdk-1.21.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -405,6 +405,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**listAdImagesWithHttpInfo**](docs/AdCreativesApi.md#listAdImagesWithHttpInfo) | **GET** /v1/ads/images | Ad image library
 *AdCreativesApi* | [**listAdVideos**](docs/AdCreativesApi.md#listAdVideos) | **GET** /v1/ads/videos | Ad video library
 *AdCreativesApi* | [**listAdVideosWithHttpInfo**](docs/AdCreativesApi.md#listAdVideosWithHttpInfo) | **GET** /v1/ads/videos | Ad video library
+*AdCreativesApi* | [**listAdsTikTokIdentities**](docs/AdCreativesApi.md#listAdsTikTokIdentities) | **GET** /v1/ads/tiktok-identities | List TikTok ad identities
+*AdCreativesApi* | [**listAdsTikTokIdentitiesWithHttpInfo**](docs/AdCreativesApi.md#listAdsTikTokIdentitiesWithHttpInfo) | **GET** /v1/ads/tiktok-identities | List TikTok ad identities
 *AdCreativesApi* | [**listPartnershipAdContent**](docs/AdCreativesApi.md#listPartnershipAdContent) | **GET** /v1/ads/partnership-content | List partnership ad content
 *AdCreativesApi* | [**listPartnershipAdContentWithHttpInfo**](docs/AdCreativesApi.md#listPartnershipAdContentWithHttpInfo) | **GET** /v1/ads/partnership-content | List partnership ad content
 *AdCreativesApi* | [**listPartnershipAdPermissions**](docs/AdCreativesApi.md#listPartnershipAdPermissions) | **GET** /v1/ads/partnership-permissions | List partnership permissions
@@ -2726,6 +2728,8 @@ Class | Method | HTTP request | Description
  - [ListAdsInstagramAccounts200ResponseAccountsInner](docs/ListAdsInstagramAccounts200ResponseAccountsInner.md)
  - [ListAdsInstagramAccounts200ResponsePagesInner](docs/ListAdsInstagramAccounts200ResponsePagesInner.md)
  - [ListAdsInstagramAccounts200ResponseResolved](docs/ListAdsInstagramAccounts200ResponseResolved.md)
+ - [ListAdsTikTokIdentities200Response](docs/ListAdsTikTokIdentities200Response.md)
+ - [ListAdsTikTokIdentities200ResponseIdentitiesInner](docs/ListAdsTikTokIdentities200ResponseIdentitiesInner.md)
  - [ListAdvertisableApplications200Response](docs/ListAdvertisableApplications200Response.md)
  - [ListAdvertisableApplications200ResponseApplicationsInner](docs/ListAdvertisableApplications200ResponseApplicationsInner.md)
  - [ListApiKeys200Response](docs/ListApiKeys200Response.md)
