@@ -31,7 +31,7 @@ Platform-specific message context (present when the message is a quick reply tap
 |**referral** | [**WebhookPayloadMessageMetadataReferral**](WebhookPayloadMessageMetadataReferral.md) |  |  [optional] |
 |**unsupported** | [**WebhookPayloadMessageMetadataUnsupported**](WebhookPayloadMessageMetadataUnsupported.md) |  |  [optional] |
 |**noRenderableContent** | **Boolean** | Instagram / Facebook Messenger only. Set when the message carries nothing an integrator can render (a &#x60;template&#x60; attachment with no text and no parseable content, or Meta&#39;s own &#x60;is_unsupported&#x60; flag). Sibling of &#x60;unsupported&#x60; above (WhatsApp only, carries Meta&#39;s error code/title/details): this field has no error envelope, only the boolean. Absence means \&quot;not flagged\&quot;, never \&quot;checked and renderable\&quot;.  |  [optional] |
-|**tiktokMessageType** | **String** | TikTok only. The message type as TikTok reports it, forwarded verbatim (for example image, video, sticker, share_post, emoji, reaction, template). Present on every TikTok DM that is not plain text; those arrive with text empty and, for image and video, an attachment. |  [optional] |
+|**tiktokMessageType** | **String** | TikTok only. The message type as TikTok reports it, forwarded verbatim (for example image, video, sticker, share_post, emoji, reaction, template). Present on every TikTok DM that is not plain text; those arrive with text empty and, for image, video, share_post, sticker and emoji, an attachment (share_post as type share with the embed url and payload.videoId; sticker/emoji as type sticker, url signed and expiring). |  [optional] |
 
 
 

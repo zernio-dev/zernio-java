@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.25.0
+  version: 1.25.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -116530,7 +116530,7 @@ components:
         url: url
       properties:
         type:
-          description: "Attachment type (image, video, file, sticker, audio)"
+          description: "Attachment type (image, video, file, sticker, audio, share)"
           type: string
         url:
           description: |
@@ -117520,7 +117520,9 @@ components:
           description: "TikTok only. The message type as TikTok reports it, forwarded\
             \ verbatim (for example image, video, sticker, share_post, emoji, reaction,\
             \ template). Present on every TikTok DM that is not plain text; those\
-            \ arrive with text empty and, for image and video, an attachment."
+            \ arrive with text empty and, for image, video, share_post, sticker and\
+            \ emoji, an attachment (share_post as type share with the embed url and\
+            \ payload.videoId; sticker/emoji as type sticker, url signed and expiring)."
           type: string
     WebhookPayloadMessageSent_message_attachments_inner:
       example:
@@ -117812,9 +117814,11 @@ components:
           description: "TikTok only. The message type as TikTok reports it, forwarded\
             \ verbatim (for example image, video, sticker, share_post, emoji, reaction,\
             \ template). Present on every TikTok DM that is not plain text; those\
-            \ arrive with text empty and, for image and video, an attachment. Absent\
-            \ on image sends made through the Zernio API, which carry the image in\
-            \ attachments."
+            \ arrive with text empty and, for image, video, share_post, sticker and\
+            \ emoji, an attachment (share_post as type share with the embed url and\
+            \ payload.videoId; sticker/emoji as type sticker, url signed and expiring).\
+            \ Absent on image sends made through the Zernio API, which carry the image\
+            \ in attachments."
           type: string
     WebhookPayloadMessageDeliveryStatus_error:
       description: Populated only on message.failed.
