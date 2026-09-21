@@ -31,6 +31,7 @@
 | WHATSAPP | &quot;whatsapp&quot; |
 | SMS | &quot;sms&quot; |
 | SLACK | &quot;slack&quot; |
+| IMESSAGE | &quot;imessage&quot; |
 
 
 

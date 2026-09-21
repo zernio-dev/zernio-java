@@ -34,6 +34,7 @@ The conversation object included in conversation lifecycle webhook payloads (con
 | SMS | &quot;sms&quot; |
 | SLACK | &quot;slack&quot; |
 | TIKTOK | &quot;tiktok&quot; |
+| IMESSAGE | &quot;imessage&quot; |
 
 
 

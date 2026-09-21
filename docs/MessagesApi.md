@@ -45,7 +45,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add reaction
 
-Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
+Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - &#39;iMessage: The six Apple tapbacks (❤️ 👍 👎 😂 ‼️ ❓) render natively; any other emoji is sent as a custom emoji tapback (iOS 18+ recipients)&#39; - All others: Returns 400 (not supported) 
 
 ### Example
 
@@ -123,7 +123,7 @@ public class Example {
 
 Add reaction
 
-Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - All others: Returns 400 (not supported) 
+Add an emoji reaction to a message. Platform support: - Telegram: Supports a subset of Unicode emoji reactions - WhatsApp: Supports any standard emoji (one reaction per message per sender) - Instagram and Facebook Messenger: Any standard emoji, subject to Meta&#39;s 24h messaging window - Slack: The emoji must have a Slack name (e.g. &#x60;:thumbsup:&#x60;); unnamed characters return 400 - &#39;iMessage: The six Apple tapbacks (❤️ 👍 👎 😂 ‼️ ❓) render natively; any other emoji is sent as a custom emoji tapback (iOS 18+ recipients)&#39; - All others: Returns 400 (not supported) 
 
 ### Example
 
@@ -365,7 +365,7 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 
 Delete message
 
-Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot&#39;s own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender&#39;s view only - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
+Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot&#39;s own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender&#39;s view only - &#39;iMessage: Unsend (the bubble disappears for the recipient) within 2 minutes of sending (Apple&#39;&#39;s limit; 409 &#x60;unsend_window_expired&#x60; after that). Own outbound messages only.&#39; - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
 
 ### Example
 
@@ -443,7 +443,7 @@ public class Example {
 
 Delete message
 
-Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot&#39;s own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender&#39;s view only - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
+Delete a message from a conversation. Platform support varies: - Telegram: Full delete (bot&#39;s own messages anytime, others if admin) - X: Full delete (own DM events only) - Bluesky: Delete for self only (recipient still sees it) - Reddit: Delete from sender&#39;s view only - &#39;iMessage: Unsend (the bubble disappears for the recipient) within 2 minutes of sending (Apple&#39;&#39;s limit; 409 &#x60;unsend_window_expired&#x60; after that). Own outbound messages only.&#39; - Facebook, Instagram, WhatsApp: Not supported (returns 400) 
 
 ### Example
 
@@ -525,7 +525,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Edit message
 
-Edit the text and/or reply markup of a previously sent Telegram message. Only supported for Telegram. Returns 400 for other platforms. 
+Edit a previously sent message. Platform support: - Telegram: text and/or reply markup, any time - &#39;iMessage: text only, within 15 minutes of sending (Apple&#39;&#39;s limit; 409 &#x60;edit_window_expired&#x60; after that). Group messages included. The stored message keeps its edit history.&#39; - All others: returns 400 
 
 ### Example
 
@@ -549,7 +549,7 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The Telegram message ID to edit
+        String messageId = "messageId_example"; // String | The platform message ID to edit (iMessage also accepts the Zernio message id)
         EditInboxMessageRequest editInboxMessageRequest = new EditInboxMessageRequest(); // EditInboxMessageRequest | 
         try {
             EditInboxMessage200Response result = apiInstance.editInboxMessage(conversationId, messageId, editInboxMessageRequest);
@@ -571,7 +571,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The Telegram message ID to edit | |
+| **messageId** | **String**| The platform message ID to edit (iMessage also accepts the Zernio message id) | |
 | **editInboxMessageRequest** | [**EditInboxMessageRequest**](EditInboxMessageRequest.md)|  | |
 
 ### Return type
@@ -602,7 +602,7 @@ public class Example {
 
 Edit message
 
-Edit the text and/or reply markup of a previously sent Telegram message. Only supported for Telegram. Returns 400 for other platforms. 
+Edit a previously sent message. Platform support: - Telegram: text and/or reply markup, any time - &#39;iMessage: text only, within 15 minutes of sending (Apple&#39;&#39;s limit; 409 &#x60;edit_window_expired&#x60; after that). Group messages included. The stored message keeps its edit history.&#39; - All others: returns 400 
 
 ### Example
 
@@ -627,7 +627,7 @@ public class Example {
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | The conversation ID
-        String messageId = "messageId_example"; // String | The Telegram message ID to edit
+        String messageId = "messageId_example"; // String | The platform message ID to edit (iMessage also accepts the Zernio message id)
         EditInboxMessageRequest editInboxMessageRequest = new EditInboxMessageRequest(); // EditInboxMessageRequest | 
         try {
             ApiResponse<EditInboxMessage200Response> response = apiInstance.editInboxMessageWithHttpInfo(conversationId, messageId, editInboxMessageRequest);
@@ -651,7 +651,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| The conversation ID | |
-| **messageId** | **String**| The Telegram message ID to edit | |
+| **messageId** | **String**| The platform message ID to edit (iMessage also accepts the Zernio message id) | |
 | **editInboxMessageRequest** | [**EditInboxMessageRequest**](EditInboxMessageRequest.md)|  | |
 
 ### Return type
@@ -1227,7 +1227,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp, imessage] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |
@@ -1314,7 +1314,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp] |
+| **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp, imessage] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |
@@ -1349,7 +1349,7 @@ ApiResponse<[**ListInboxConversations200Response**](ListInboxConversations200Res
 
 Mark a conversation as read
 
-Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  For iMessage, this also marks the conversation read with the contact (1:1 conversations only). Best-effort.  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
 
 ### Example
 
@@ -1424,7 +1424,7 @@ public class Example {
 
 Mark a conversation as read
 
-Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
+Marks all unread incoming messages in the conversation as read.  For WhatsApp, this also sends read receipts (blue ticks) to the contact, EXCEPT on coexistence accounts (where the WhatsApp Business app on the customer&#39;s phone owns read state and we never override it).  For iMessage, this also marks the conversation read with the contact (1:1 conversations only). Best-effort.  This is the explicit, human-driven counterpart to &#x60;GET .../messages&#x60;, which is side-effect-free and does NOT mark anything read. Call this when a user actually views the conversation. 
 
 ### Example
 
@@ -1503,7 +1503,7 @@ ApiResponse<[**MarkConversationRead200Response**](MarkConversationRead200Respons
 
 Remove reaction
 
-Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
+Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - &#39;iMessage: Retracts your existing tapback or emoji reaction on the message (400 when you have none)&#39; - All others: Returns 400 (not supported) 
 
 ### Example
 
@@ -1581,7 +1581,7 @@ public class Example {
 
 Remove reaction
 
-Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - All others: Returns 400 (not supported) 
+Remove a reaction from a message. Platform support: - Telegram: Send empty reaction array to clear - WhatsApp: Send empty emoji to remove - Instagram and Facebook Messenger: Sends Meta&#39;s &#x60;unreact&#x60; action; the emoji does not need to be repeated - Slack: Removes the reaction we previously sent on that message - &#39;iMessage: Retracts your existing tapback or emoji reaction on the message (400 when you have none)&#39; - All others: Returns 400 (not supported) 
 
 ### Example
 
@@ -1715,7 +1715,7 @@ public class Example {
 | **query** | **String**| Text to search for, in message content and in the contact&#39;s name, username, or phone number | |
 | **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. | [optional] [enum: incoming, outgoing] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack, imessage] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
 | **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |
@@ -1803,7 +1803,7 @@ public class Example {
 | **query** | **String**| Text to search for, in message content and in the contact&#39;s name, username, or phone number | |
 | **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. | [optional] [enum: incoming, outgoing] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack, imessage] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
 | **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |
@@ -2009,7 +2009,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 
 Send typing indicator
 
-Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
+Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - iMessage: Shows a typing bubble for ~15 seconds (1:1 conversations only; requires a recent two-way exchange) - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
 
 ### Example
 
@@ -2085,7 +2085,7 @@ public class Example {
 
 Send typing indicator
 
-Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
+Show a typing indicator in a conversation. Platform support: - Facebook Messenger: Shows \&quot;Page is typing...\&quot; for 20 seconds - Instagram: Shows \&quot;typing...\&quot; to the recipient (works for both Instagram Login and Facebook Login accounts). The recipient must be signed in to Instagram to see it. - Telegram: Shows \&quot;Bot is typing...\&quot; for 5 seconds - WhatsApp: Shows \&quot;typing...\&quot; for up to 25 seconds. Requires a recent inbound message in the conversation (Meta references the inbound message id) and also marks that message as read as a side-effect. - iMessage: Shows a typing bubble for ~15 seconds (1:1 conversations only; requires a recent two-way exchange) - All others: Returns 200 but no-op (platform doesn&#39;t support it)  Typing indicators are best-effort. The endpoint always returns 200 even if the platform call fails; &#x60;success&#x60; reports whether a typing indicator was actually sent to the platform (&#x60;false&#x60; on unsupported platforms or when the platform call failed). 
 
 ### Example
 
