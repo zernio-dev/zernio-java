@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.30.0
+  version: 1.31.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -108253,6 +108253,31 @@ components:
           type: number
         fundingSource:
           $ref: "#/components/schemas/getAdAccountFinance_200_response_fundingSource"
+    listAdAccounts_200_response_accounts_inner_fundingSourceDetails:
+      description: |
+        Meta only. Meta's `funding_source_details` object, forwarded unchanged.
+        ABSENT under exactly the same condition as `fundingSource`: this
+        connection's token cannot see billing on the ad account. It is never
+        sent as null or as an empty object, so treat the missing key as
+        'unknown', never as 'no payment method configured'.
+      example:
+        displayString: displayString
+        id: id
+        type: 5
+      properties:
+        id:
+          description: Meta's ID for the funding instrument. Matches `fundingSource`.
+          type: string
+        displayString:
+          description: "Meta's own human-readable label for the funding instrument,\
+            \ e.g. 'Available Balance (EUR)' or a masked card. Meta composes this\
+            \ string; do not parse it."
+          type: string
+        type:
+          description: "Meta's raw numeric funding-source type, forwarded unchanged.\
+            \ Meta publishes no mapping from these numbers to payment-method kinds,\
+            \ so none is documented here and none should be inferred."
+          type: integer
     listAdAccounts_200_response_accounts_inner:
       example:
         approvalStatus: approvalStatus
@@ -108268,6 +108293,11 @@ components:
         timezoneName: timezoneName
         currency: currency
         id: id
+        fundingSource: fundingSource
+        fundingSourceDetails:
+          displayString: displayString
+          id: id
+          type: 5
         status: status
       properties:
         id:
@@ -108319,6 +108349,15 @@ components:
             \ billing events have higher minimums. Absent when the connected token\
             \ cannot read it."
           type: number
+        fundingSource:
+          description: "Meta only. Meta's `funding_source` ID for the ad account,\
+            \ forwarded unchanged. ABSENT when this connection's token cannot see\
+            \ billing on the account, which is not the same as the account having\
+            \ no payment method: never read the missing key as `no payment method\
+            \ configured`."
+          type: string
+        fundingSourceDetails:
+          $ref: "#/components/schemas/listAdAccounts_200_response_accounts_inner_fundingSourceDetails"
         selectable:
           description: Meta and X only. Whether the account can create/run ads now.
             Absent (treat as true) on other platforms.
@@ -108345,6 +108384,11 @@ components:
           timezoneName: timezoneName
           currency: currency
           id: id
+          fundingSource: fundingSource
+          fundingSourceDetails:
+            displayString: displayString
+            id: id
+            type: 5
           status: status
         - approvalStatus: approvalStatus
           disableReason: 0
@@ -108359,6 +108403,11 @@ components:
           timezoneName: timezoneName
           currency: currency
           id: id
+          fundingSource: fundingSource
+          fundingSourceDetails:
+            displayString: displayString
+            id: id
+            type: 5
           status: status
         cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
