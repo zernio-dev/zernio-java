@@ -62,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdsBusinessCentersWithHttpInfo**](AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers |
 | [**listAdsInstagramAccounts**](AdAccountsApi.md#listAdsInstagramAccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
 | [**listAdsInstagramAccountsWithHttpInfo**](AdAccountsApi.md#listAdsInstagramAccountsWithHttpInfo) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities |
+| [**listAdsInstagramPosts**](AdAccountsApi.md#listAdsInstagramPosts) | **GET** /v1/ads/instagram-posts | List Instagram posts to boost |
+| [**listAdsInstagramPostsWithHttpInfo**](AdAccountsApi.md#listAdsInstagramPostsWithHttpInfo) | **GET** /v1/ads/instagram-posts | List Instagram posts to boost |
 | [**listAdvertisableApplications**](AdAccountsApi.md#listAdvertisableApplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**listAdvertisableApplicationsWithHttpInfo**](AdAccountsApi.md#listAdvertisableApplicationsWithHttpInfo) | **GET** /v1/ads/advertisable-applications | List advertisable apps |
 | [**listCustomConversions**](AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
@@ -4813,6 +4815,180 @@ ApiResponse<[**ListAdsInstagramAccounts200Response**](ListAdsInstagramAccounts20
 | **403** | The account or Meta asset is not accessible. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Meta Ads and Facebook accounts. |  -  |
+
+
+## listAdsInstagramPosts
+
+> ListAdsInstagramPosts200Response listAdsInstagramPosts(accountId, adAccountId, igUserId, limit, after)
+
+List Instagram posts to boost
+
+Lists the media of the Instagram account this Meta connection can reach, so an existing Instagram post can be boosted without connecting the Instagram account separately. Each &#x60;posts[].id&#x60; is the existing-post id to send as &#x60;platformPostId&#x60; when creating the ad; Meta turns it into &#x60;source_instagram_media_id&#x60; on the creative. Identity resolution reuses the same resolver as &#x60;/v1/ads/instagram-accounts&#x60;. &#x60;igUserId&#x60; is always checked against the identities the connection can reach and is never trusted as sent. When no identity is reachable the endpoint fails instead of returning an empty list, and the two causes stay apart: &#x60;403 reconnect_required&#x60; means the connection predates Instagram access (Meta then omits &#x60;instagram_business_account&#x60; from the Page read rather than erroring, so it looks identical to having no data) and the account must be reconnected granting Instagram access, while &#x60;422 instagram_business_account_unresolved&#x60; means the Page genuinely has no Instagram professional account linked.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads, Facebook or Instagram SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account.
+        String igUserId = "igUserId_example"; // String | Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400.
+        Integer limit = 25; // Integer | Number of posts to return per page.
+        String after = "after_example"; // String | Opaque Meta cursor from a previous response's paging.after.
+        try {
+            ListAdsInstagramPosts200Response result = apiInstance.listAdsInstagramPosts(accountId, adAccountId, igUserId, limit, after);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdsInstagramPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads, Facebook or Instagram SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account. | [optional] |
+| **igUserId** | **String**| Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400. | [optional] |
+| **limit** | **Integer**| Number of posts to return per page. | [optional] [default to 25] |
+| **after** | **String**| Opaque Meta cursor from a previous response&#39;s paging.after. | [optional] |
+
+### Return type
+
+[**ListAdsInstagramPosts200Response**](ListAdsInstagramPosts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Instagram posts available to boost. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The connection predates Instagram access (code reconnect_required) and must be reconnected, or the Meta asset is not accessible. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | The Facebook Page has no linked Instagram professional account (code instagram_business_account_unresolved), or the connection has no Page selected and no adAccountId was passed (code linked_account_required). |  -  |
+| **501** | Only supported on Meta Ads, Facebook and Instagram accounts. |  -  |
+
+## listAdsInstagramPostsWithHttpInfo
+
+> ApiResponse<ListAdsInstagramPosts200Response> listAdsInstagramPosts listAdsInstagramPostsWithHttpInfo(accountId, adAccountId, igUserId, limit, after)
+
+List Instagram posts to boost
+
+Lists the media of the Instagram account this Meta connection can reach, so an existing Instagram post can be boosted without connecting the Instagram account separately. Each &#x60;posts[].id&#x60; is the existing-post id to send as &#x60;platformPostId&#x60; when creating the ad; Meta turns it into &#x60;source_instagram_media_id&#x60; on the creative. Identity resolution reuses the same resolver as &#x60;/v1/ads/instagram-accounts&#x60;. &#x60;igUserId&#x60; is always checked against the identities the connection can reach and is never trusted as sent. When no identity is reachable the endpoint fails instead of returning an empty list, and the two causes stay apart: &#x60;403 reconnect_required&#x60; means the connection predates Instagram access (Meta then omits &#x60;instagram_business_account&#x60; from the Page read rather than erroring, so it looks identical to having no data) and the account must be reconnected granting Instagram access, while &#x60;422 instagram_business_account_unresolved&#x60; means the Page genuinely has no Instagram professional account linked.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio Meta Ads, Facebook or Instagram SocialAccount ID.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account.
+        String igUserId = "igUserId_example"; // String | Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400.
+        Integer limit = 25; // Integer | Number of posts to return per page.
+        String after = "after_example"; // String | Opaque Meta cursor from a previous response's paging.after.
+        try {
+            ApiResponse<ListAdsInstagramPosts200Response> response = apiInstance.listAdsInstagramPostsWithHttpInfo(accountId, adAccountId, igUserId, limit, after);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdsInstagramPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio Meta Ads, Facebook or Instagram SocialAccount ID. | |
+| **adAccountId** | **String**| Meta ad account ID including the act_ prefix. Narrows identity resolution to the Instagram accounts reachable from this ad account. | [optional] |
+| **igUserId** | **String**| Instagram identity to list. Must be one this connection can reach, otherwise the request is rejected with a 400. | [optional] |
+| **limit** | **Integer**| Number of posts to return per page. | [optional] [default to 25] |
+| **after** | **String**| Opaque Meta cursor from a previous response&#39;s paging.after. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdsInstagramPosts200Response**](ListAdsInstagramPosts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | Instagram posts available to boost. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The connection predates Instagram access (code reconnect_required) and must be reconnected, or the Meta asset is not accessible. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | The Facebook Page has no linked Instagram professional account (code instagram_business_account_unresolved), or the connection has no Page selected and no adAccountId was passed (code linked_account_required). |  -  |
+| **501** | Only supported on Meta Ads, Facebook and Instagram accounts. |  -  |
 
 
 ## listAdvertisableApplications

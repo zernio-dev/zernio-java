@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.29.0
+  version: 1.30.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37543,6 +37543,116 @@ paths:
       security:
       - bearerAuth: []
       summary: List Instagram ad identities
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+  /v1/ads/instagram-posts:
+    get:
+      description: "Lists the media of the Instagram account this Meta connection\
+        \ can reach, so an existing Instagram post can be boosted without connecting\
+        \ the Instagram account separately. Each `posts[].id` is the existing-post\
+        \ id to send as `platformPostId` when creating the ad; Meta turns it into\
+        \ `source_instagram_media_id` on the creative. Identity resolution reuses\
+        \ the same resolver as `/v1/ads/instagram-accounts`. `igUserId` is always\
+        \ checked against the identities the connection can reach and is never trusted\
+        \ as sent. When no identity is reachable the endpoint fails instead of returning\
+        \ an empty list, and the two causes stay apart: `403 reconnect_required` means\
+        \ the connection predates Instagram access (Meta then omits `instagram_business_account`\
+        \ from the Page read rather than erroring, so it looks identical to having\
+        \ no data) and the account must be reconnected granting Instagram access,\
+        \ while `422 instagram_business_account_unresolved` means the Page genuinely\
+        \ has no Instagram professional account linked."
+      operationId: listAdsInstagramPosts
+      parameters:
+      - description: "Zernio Meta Ads, Facebook or Instagram SocialAccount ID."
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account ID including the act_ prefix. Narrows identity
+          resolution to the Instagram accounts reachable from this ad account.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: "^act_[0-9]+$"
+          type: string
+        style: form
+      - description: "Instagram identity to list. Must be one this connection can\
+          \ reach, otherwise the request is rejected with a 400."
+        explode: true
+        in: query
+        name: igUserId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Number of posts to return per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: Opaque Meta cursor from a previous response's paging.after.
+        explode: true
+        in: query
+        name: after
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "200":
+          content:
+            application/json:
+              example:
+                igUserId: "17841400000000000"
+                username: example
+                posts:
+                - id: "18050809559368305"
+                  caption: Launch day
+                  mediaType: VIDEO
+                  thumbnailUrl: https://scontent.cdninstagram.com/thumb.jpg
+                  permalink: https://www.instagram.com/reel/ABCdef/
+                  timestamp: 2026-09-18T09:00:00+0000
+                paging:
+                  after: QVFIUl...
+              schema:
+                $ref: "#/components/schemas/listAdsInstagramPosts_200_response"
+          description: Instagram posts available to boost.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "The connection predates Instagram access (code reconnect_required)\
+            \ and must be reconnected, or the Meta asset is not accessible."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "The Facebook Page has no linked Instagram professional account\
+            \ (code instagram_business_account_unresolved), or the connection has\
+            \ no Page selected and no adAccountId was passed (code linked_account_required)."
+        "501":
+          description: "Only supported on Meta Ads, Facebook and Instagram accounts."
+      security:
+      - bearerAuth: []
+      summary: List Instagram posts to boost
       tags:
       - Ad Accounts
       x-resource-group: ads
@@ -106381,6 +106491,91 @@ components:
       - accounts
       - pages
       - resolved
+    listAdsInstagramPosts_200_response_posts_inner:
+      example:
+        mediaUrl: mediaUrl
+        caption: caption
+        mediaType: mediaType
+        id: id
+        permalink: permalink
+        thumbnailUrl: thumbnailUrl
+        timestamp: timestamp
+      properties:
+        id:
+          description: Instagram media ID. Pass this as the existing-post id when
+            creating an ad.
+          type: string
+        caption:
+          description: "Caption, when the media has one."
+          type: string
+        mediaType:
+          description: "Meta media_type, e.g. IMAGE, VIDEO or CAROUSEL_ALBUM."
+          type: string
+        mediaUrl:
+          description: Media URL. Meta omits it for some media types.
+          type: string
+        thumbnailUrl:
+          description: "Thumbnail URL. Present for VIDEO, where mediaUrl may be absent."
+          type: string
+        permalink:
+          description: Public Instagram permalink.
+          type: string
+        timestamp:
+          description: Publish time as Meta reports it.
+          type: string
+      required:
+      - id
+      - mediaType
+      - timestamp
+    listAdsInstagramPosts_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: "Cursor for the next page, or null when this is the last one."
+          nullable: true
+          type: string
+      required:
+      - after
+    listAdsInstagramPosts_200_response:
+      example:
+        igUserId: igUserId
+        paging:
+          after: after
+        posts:
+        - mediaUrl: mediaUrl
+          caption: caption
+          mediaType: mediaType
+          id: id
+          permalink: permalink
+          thumbnailUrl: thumbnailUrl
+          timestamp: timestamp
+        - mediaUrl: mediaUrl
+          caption: caption
+          mediaType: mediaType
+          id: id
+          permalink: permalink
+          thumbnailUrl: thumbnailUrl
+          timestamp: timestamp
+        username: username
+      properties:
+        igUserId:
+          description: Instagram identity the posts belong to.
+          type: string
+        username:
+          description: Instagram username; empty when Meta does not expose it.
+          type: string
+        posts:
+          items:
+            $ref: "#/components/schemas/listAdsInstagramPosts_200_response_posts_inner"
+          type: array
+        paging:
+          $ref: "#/components/schemas/listAdsInstagramPosts_200_response_paging"
+      required:
+      - igUserId
+      - paging
+      - posts
+      - username
     listAdvertisableApplications_200_response_applications_inner:
       example:
         name: name

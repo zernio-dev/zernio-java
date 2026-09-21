@@ -1153,6 +1153,9 @@ docs/ListAdsInstagramAccounts200Response.md
 docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
 docs/ListAdsInstagramAccounts200ResponsePagesInner.md
 docs/ListAdsInstagramAccounts200ResponseResolved.md
+docs/ListAdsInstagramPosts200Response.md
+docs/ListAdsInstagramPosts200ResponsePaging.md
+docs/ListAdsInstagramPosts200ResponsePostsInner.md
 docs/ListAdsTikTokIdentities200Response.md
 docs/ListAdsTikTokIdentities200ResponseIdentitiesInner.md
 docs/ListAdvertisableApplications200Response.md
@@ -3451,6 +3454,9 @@ src/main/java/dev/zernio/model/ListAdsInstagramAccounts200Response.java
 src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseAccountsInner.java
 src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseResolved.java
+src/main/java/dev/zernio/model/ListAdsInstagramPosts200Response.java
+src/main/java/dev/zernio/model/ListAdsInstagramPosts200ResponsePaging.java
+src/main/java/dev/zernio/model/ListAdsInstagramPosts200ResponsePostsInner.java
 src/main/java/dev/zernio/model/ListAdsTikTokIdentities200Response.java
 src/main/java/dev/zernio/model/ListAdsTikTokIdentities200ResponseIdentitiesInner.java
 src/main/java/dev/zernio/model/ListAdvertisableApplications200Response.java
@@ -4513,3 +4519,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListAdsInstagramPosts200ResponsePagingTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramPosts200ResponsePostsInnerTest.java
+src/test/java/dev/zernio/model/ListAdsInstagramPosts200ResponseTest.java

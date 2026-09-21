@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.29.0
+- API version: 1.30.0
 
-- Build date: 2026-09-21T09:56:52.188386356Z[Etc/UTC]
+- Build date: 2026-09-21T11:51:52.352783593Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.29.0</version>
+  <version>1.30.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.29.0"
+compile "dev.zernio:zernio-sdk:1.30.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.29.0.jar`
+- `target/zernio-sdk-1.30.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -237,6 +237,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAdsBusinessCentersWithHttpInfo**](docs/AdAccountsApi.md#listAdsBusinessCentersWithHttpInfo) | **GET** /v1/ads/business-centers | List TikTok Business Centers
 *AdAccountsApi* | [**listAdsInstagramAccounts**](docs/AdAccountsApi.md#listAdsInstagramAccounts) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities
 *AdAccountsApi* | [**listAdsInstagramAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdsInstagramAccountsWithHttpInfo) | **GET** /v1/ads/instagram-accounts | List Instagram ad identities
+*AdAccountsApi* | [**listAdsInstagramPosts**](docs/AdAccountsApi.md#listAdsInstagramPosts) | **GET** /v1/ads/instagram-posts | List Instagram posts to boost
+*AdAccountsApi* | [**listAdsInstagramPostsWithHttpInfo**](docs/AdAccountsApi.md#listAdsInstagramPostsWithHttpInfo) | **GET** /v1/ads/instagram-posts | List Instagram posts to boost
 *AdAccountsApi* | [**listAdvertisableApplications**](docs/AdAccountsApi.md#listAdvertisableApplications) | **GET** /v1/ads/advertisable-applications | List advertisable apps
 *AdAccountsApi* | [**listAdvertisableApplicationsWithHttpInfo**](docs/AdAccountsApi.md#listAdvertisableApplicationsWithHttpInfo) | **GET** /v1/ads/advertisable-applications | List advertisable apps
 *AdAccountsApi* | [**listCustomConversions**](docs/AdAccountsApi.md#listCustomConversions) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
@@ -2781,6 +2783,9 @@ Class | Method | HTTP request | Description
  - [ListAdsInstagramAccounts200ResponseAccountsInner](docs/ListAdsInstagramAccounts200ResponseAccountsInner.md)
  - [ListAdsInstagramAccounts200ResponsePagesInner](docs/ListAdsInstagramAccounts200ResponsePagesInner.md)
  - [ListAdsInstagramAccounts200ResponseResolved](docs/ListAdsInstagramAccounts200ResponseResolved.md)
+ - [ListAdsInstagramPosts200Response](docs/ListAdsInstagramPosts200Response.md)
+ - [ListAdsInstagramPosts200ResponsePaging](docs/ListAdsInstagramPosts200ResponsePaging.md)
+ - [ListAdsInstagramPosts200ResponsePostsInner](docs/ListAdsInstagramPosts200ResponsePostsInner.md)
  - [ListAdsTikTokIdentities200Response](docs/ListAdsTikTokIdentities200Response.md)
  - [ListAdsTikTokIdentities200ResponseIdentitiesInner](docs/ListAdsTikTokIdentities200ResponseIdentitiesInner.md)
  - [ListAdvertisableApplications200Response](docs/ListAdvertisableApplications200Response.md)
