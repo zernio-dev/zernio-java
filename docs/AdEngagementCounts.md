@@ -15,7 +15,7 @@ The single `engagement` total split into the interactions behind it.  `engagemen
 |**shares** | **Integer** | Shares of the ad&#39;s post. Meta reports these under the action type literally named &#x60;post&#x60;; TikTok under &#x60;share&#x60;. |  [optional] |
 |**saves** | **Integer** | Saves of the ad&#39;s post (&#x60;onsite_conversion.post_save&#x60;). |  [optional] |
 |**pageLikes** | **Integer** | New Page likes attributed to the ad (&#x60;like&#x60;). |  [optional] |
-|**videoViews** | **Integer** | 3-second video views (&#x60;video_view&#x60;). For completion-based counts use &#x60;videoThruplayWatchedActions&#x60;. |  [optional] |
+|**videoViews** | **Integer** | Video views, from the &#x60;video_view&#x60; action. Meta counts a 3-second view; LinkedIn&#39;s own &#x60;videoViews&#x60; threshold (2 continuous seconds, or 25% of the video) lands under the same key, so compare across platforms with care. For completion-based counts use &#x60;videoThruplayWatchedActions&#x60;. |  [optional] |
 |**linkClicks** | **Integer** | Attributed link clicks (&#x60;link_click&#x60;). This is the attribution-window count, which differs from the in-session count in the sibling &#x60;inlineLinkClicks&#x60; field. |  [optional] |
 
 

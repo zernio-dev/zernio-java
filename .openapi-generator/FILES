@@ -1126,6 +1126,9 @@ docs/ListAdLabels200Response.md
 docs/ListAdNegativeKeywordLists200Response.md
 docs/ListAdSets200Response.md
 docs/ListAdSets200ResponseAdSetsInner.md
+docs/ListAdSets200ResponseAdSetsInnerBudget.md
+docs/ListAdSets200ResponseAdSetsInnerSchedule.md
+docs/ListAdSets200ResponseAdSetsInnerTargeting.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
@@ -3388,6 +3391,9 @@ src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdNegativeKeywordLists200Response.java
 src/main/java/dev/zernio/model/ListAdSets200Response.java
 src/main/java/dev/zernio/model/ListAdSets200ResponseAdSetsInner.java
+src/main/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerBudget.java
+src/main/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerSchedule.java
+src/main/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerTargeting.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAdVideos200Response.java
 src/main/java/dev/zernio/model/ListAds202Response.java
@@ -4441,3 +4447,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerBudgetTest.java
+src/test/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerScheduleTest.java
+src/test/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerTargetingTest.java

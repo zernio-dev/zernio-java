@@ -17,7 +17,9 @@
 |**accountId** | **String** |  |  [optional] |
 |**profileId** | **String** |  |  [optional] |
 |**currency** | **String** |  |  [optional] |
-|**budget** | **Object** |  |  [optional] |
+|**budget** | [**ListAdSets200ResponseAdSetsInnerBudget**](ListAdSets200ResponseAdSetsInnerBudget.md) |  |  [optional] |
+|**schedule** | [**ListAdSets200ResponseAdSetsInnerSchedule**](ListAdSets200ResponseAdSetsInnerSchedule.md) |  |  [optional] |
+|**targeting** | [**ListAdSets200ResponseAdSetsInnerTargeting**](ListAdSets200ResponseAdSetsInnerTargeting.md) |  |  [optional] |
 |**isExternal** | **Boolean** |  |  [optional] |
 |**platformCreatedAt** | **OffsetDateTime** |  |  [optional] |
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.25.1
+- API version: 1.26.0
 
-- Build date: 2026-09-19T12:53:06.278353841Z[Etc/UTC]
+- Build date: 2026-09-21T08:01:54.833840143Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.25.1</version>
+  <version>1.26.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.25.1"
+compile "dev.zernio:zernio-sdk:1.26.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.25.1.jar`
+- `target/zernio-sdk-1.26.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2721,6 +2721,9 @@ Class | Method | HTTP request | Description
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
  - [ListAdSets200Response](docs/ListAdSets200Response.md)
  - [ListAdSets200ResponseAdSetsInner](docs/ListAdSets200ResponseAdSetsInner.md)
+ - [ListAdSets200ResponseAdSetsInnerBudget](docs/ListAdSets200ResponseAdSetsInnerBudget.md)
+ - [ListAdSets200ResponseAdSetsInnerSchedule](docs/ListAdSets200ResponseAdSetsInnerSchedule.md)
+ - [ListAdSets200ResponseAdSetsInnerTargeting](docs/ListAdSets200ResponseAdSetsInnerTargeting.md)
  - [ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [ListAdVideos200Response](docs/ListAdVideos200Response.md)
  - [ListAds202Response](docs/ListAds202Response.md)
