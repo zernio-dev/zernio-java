@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.32.0
+  version: 1.32.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -122223,8 +122223,9 @@ components:
         xSpendLimitCents:
           description: |
             Monthly X spend cap set by the account owner, or null if no cap.
-            When current X spend hits this cap, analytics and inbox sync are
-            auto-paused for X accounts. Publishing is never blocked by this cap.
+            When current X spend hits this cap, all billable X API activity is
+            paused until the billing period resets or the cap is raised, including
+            publishing, analytics and inbox sync, and likes, reposts and follows.
           nullable: true
           type: integer
     XApiPricing_tiers_inner:
