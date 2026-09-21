@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.27.0
+  version: 1.28.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22923,7 +22923,10 @@ paths:
         account.connected webhook. Billing starts at activation (monthly per
         sender, no proration). Requires usage-based billing and a valid
         payment method. Pass purchaseIntentId to make retries idempotent —
-        the provider-side order is never retried automatically.
+        the provider-side order is never retried automatically. Ordered phone
+        senders include SMS/RCS fallback with call forwarding and the ability
+        to message contacts who have not written first (sending intervals
+        still apply).
       operationId: orderImessageSender
       requestBody:
         content:
@@ -23282,6 +23285,9 @@ paths:
         "403":
           description: "iMessage is in private beta and not enabled for this account\
             \ (code: PLATFORM_BETA_RESTRICTED)"
+        "502":
+          description: The provider could not list numbers; ordering without availableNumberId
+            still works
       security:
       - bearerAuth: []
       summary: List instantly available iMessage numbers
@@ -87937,6 +87943,7 @@ components:
     listImessageAvailableNumbers_200_response_numbers_inner:
       example:
         phone: phone
+        location: location
         id: id
         region: region
       properties:
@@ -87948,13 +87955,19 @@ components:
           type: string
         region:
           type: string
+        location:
+          description: "Area the provider reports for the number (e.g. a US state),\
+            \ when known"
+          type: string
     listImessageAvailableNumbers_200_response:
       example:
         numbers:
         - phone: phone
+          location: location
           id: id
           region: region
         - phone: phone
+          location: location
           id: id
           region: region
         region: region

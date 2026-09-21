@@ -1207,6 +1207,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
+| **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 ## listImessageAvailableNumbersWithHttpInfo
 
@@ -1283,6 +1284,7 @@ ApiResponse<[**ListImessageAvailableNumbers200Response**](ListImessageAvailableN
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | iMessage is in private beta and not enabled for this account (code: PLATFORM_BETA_RESTRICTED) |  -  |
+| **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 
 ## listImessageSenderOrders
@@ -1581,7 +1583,7 @@ ApiResponse<[**ListImessageSenders200Response**](ListImessageSenders200Response.
 
 Order a new iMessage sender
 
-Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. 
+Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
 
 ### Example
 
@@ -1659,7 +1661,7 @@ public class Example {
 
 Order a new iMessage sender
 
-Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. 
+Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
 
 ### Example
 
