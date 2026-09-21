@@ -27,6 +27,7 @@ Metrics a platform does not report are 0, not absent.
 |**websiteClicks** | **Integer** | TikTok business lane: website-link clicks attributed to the post (also inside clicks) |  |
 |**impressionSources** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: share of views by surface (forYou, follow, search, personalProfile, sound, directMessage, other), fractions 0 to 1. Empty object elsewhere. |  |
 |**audienceTypes** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: follower / nonFollower and newViewer / returnViewer shares, fractions 0 to 1. Empty object elsewhere. |  |
+|**audienceCountries** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: viewer-country shares keyed by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in &#x60;other&#x60;. Empty object elsewhere. |  |
 
 
 
