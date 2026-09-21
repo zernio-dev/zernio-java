@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.31.0
+  version: 1.31.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22878,12 +22878,12 @@ paths:
           description: "iMessage is in private beta and not enabled for this account\
             \ (code: PLATFORM_BETA_RESTRICTED)"
         "402":
-          description: Payment method or plan upgrade required to connect another
-            account
+          description: "A valid payment method is required (code: payment_method_required)"
         "404":
           description: Profile not found or access denied
         "409":
-          description: "Sender already registered to another profile (code: imessage_sender_conflict)"
+          description: "Sender already registered to another profile (code: imessage_sender_conflict),\
+            \ or billing setup is incomplete and support must finish it (code: billing_setup_incomplete)"
       security:
       - bearerAuth: []
       summary: Register an iMessage sender
@@ -22967,7 +22967,8 @@ paths:
         "404":
           description: Profile not found or access denied
         "409":
-          description: "This profile already has a live iMessage sender (code: imessage_sender_conflict)"
+          description: "This profile already has a live iMessage sender (code: imessage_sender_conflict),\
+            \ or billing setup is incomplete and support must finish it (code: billing_setup_incomplete)"
         "422":
           description: "Workspace is not on usage-based billing (code: usage_billing_required)"
         "502":
