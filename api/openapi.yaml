@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.32.1
+  version: 1.33.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -110726,6 +110726,15 @@ components:
             budgets Meta also requires `endDate`. (Same `schedule.startDate` semantics already
             available on `POST /v1/ads/boost`.)
           format: date-time
+          type: string
+        pageId:
+          description: |
+            Meta only. The Facebook Page the ad runs as (`object_story_spec.page_id`). Defaults to
+            the Page bound to the connection. Pass another Page ID to run the ad as that Page: any
+            Page granted to the connection is accepted (for a business-login connection, every Page
+            granted in Meta's dialog; list them with GET /v1/ads/instagram-accounts). The Instagram
+            identity is re-resolved for that Page unless `instagramAccountId` is set. A Page the
+            connection cannot see is a 400 on `pageId` naming the granted Pages.
           type: string
         instagramAccountId:
           description: |
