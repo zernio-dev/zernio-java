@@ -1861,7 +1861,7 @@ ApiResponse<[**RemediatePhoneNumber200Response**](RemediatePhoneNumber200Respons
 
 ## searchAvailableWhatsAppNumbers
 
-> SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit)
+> SearchAvailableWhatsAppNumbers200Response searchAvailableWhatsAppNumbers(country, numberType, areaCode, type, prefix, locality, contains, limit)
 
 Search available numbers
 
@@ -1889,13 +1889,15 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "US"; // String | 
-        String type = "type_example"; // String | Number type; defaults to the country's WhatsApp-safe type
-        String prefix = "prefix_example"; // String | Area code
+        String numberType = "local"; // String | Number type; defaults to the country's WhatsApp-safe type (the same name as on purchase, availability and kyc)
+        String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
+        String type = "type_example"; // String | Alias of numberType, kept for existing callers
+        String prefix = "prefix_example"; // String | Alias of areaCode, kept for existing callers
         String locality = "locality_example"; // String | City
         String contains = "contains_example"; // String | Pattern to match within the number
         Integer limit = 20; // Integer | 
         try {
-            SearchAvailableWhatsAppNumbers200Response result = apiInstance.searchAvailableWhatsAppNumbers(country, type, prefix, locality, contains, limit);
+            SearchAvailableWhatsAppNumbers200Response result = apiInstance.searchAvailableWhatsAppNumbers(country, numberType, areaCode, type, prefix, locality, contains, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppPhoneNumbersApi#searchAvailableWhatsAppNumbers");
@@ -1914,8 +1916,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | [optional] [default to US] |
-| **type** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type | [optional] |
-| **prefix** | **String**| Area code | [optional] |
+| **numberType** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) | [optional] [enum: local, mobile, national, toll_free] |
+| **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
+| **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
+| **prefix** | **String**| Alias of areaCode, kept for existing callers | [optional] |
 | **locality** | **String**| City | [optional] |
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
@@ -1938,12 +1942,12 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
 | **401** | Unauthorized |  -  |
 
 ## searchAvailableWhatsAppNumbersWithHttpInfo
 
-> ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbers searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit)
+> ApiResponse<SearchAvailableWhatsAppNumbers200Response> searchAvailableWhatsAppNumbers searchAvailableWhatsAppNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, limit)
 
 Search available numbers
 
@@ -1972,13 +1976,15 @@ public class Example {
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
         String country = "US"; // String | 
-        String type = "type_example"; // String | Number type; defaults to the country's WhatsApp-safe type
-        String prefix = "prefix_example"; // String | Area code
+        String numberType = "local"; // String | Number type; defaults to the country's WhatsApp-safe type (the same name as on purchase, availability and kyc)
+        String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
+        String type = "type_example"; // String | Alias of numberType, kept for existing callers
+        String prefix = "prefix_example"; // String | Alias of areaCode, kept for existing callers
         String locality = "locality_example"; // String | City
         String contains = "contains_example"; // String | Pattern to match within the number
         Integer limit = 20; // Integer | 
         try {
-            ApiResponse<SearchAvailableWhatsAppNumbers200Response> response = apiInstance.searchAvailableWhatsAppNumbersWithHttpInfo(country, type, prefix, locality, contains, limit);
+            ApiResponse<SearchAvailableWhatsAppNumbers200Response> response = apiInstance.searchAvailableWhatsAppNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1999,8 +2005,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **country** | **String**|  | [optional] [default to US] |
-| **type** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type | [optional] |
-| **prefix** | **String**| Area code | [optional] |
+| **numberType** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) | [optional] [enum: local, mobile, national, toll_free] |
+| **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
+| **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
+| **prefix** | **String**| Alias of areaCode, kept for existing callers | [optional] |
 | **locality** | **String**| City | [optional] |
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
@@ -2023,7 +2031,7 @@ ApiResponse<[**SearchAvailableWhatsAppNumbers200Response**](SearchAvailableWhats
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
-| **400** | Country not available |  -  |
+| **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
 | **401** | Unauthorized |  -  |
 
 
