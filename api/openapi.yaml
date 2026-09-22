@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.44.0
+  version: 1.45.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -5085,8 +5085,10 @@ paths:
       - application/json
   /v1/posts:
     get:
-      description: Returns a paginated list of posts. Published posts include platformPostUrl
-        with the public URL on each platform.
+      description: "Returns a paginated list of posts. Published posts include platformPostUrl\
+        \ with the public URL on each platform. A query parameter that is not listed\
+        \ here returns 400 naming it and the accepted parameters, so a misspelled\
+        \ filter never silently returns the unfiltered list."
       operationId: listPosts
       parameters:
       - $ref: "#/components/parameters/PageParam"
@@ -5100,6 +5102,16 @@ paths:
           default: 10
           maximum: 500
           minimum: 1
+          type: integer
+        style: form
+      - description: Row offset. Takes precedence over page when both are sent; the
+          response pagination.page is derived from it.
+        explode: true
+        in: query
+        name: offset
+        required: false
+        schema:
+          minimum: 0
           type: integer
         style: form
       - description: Which collection to read. `zernio` (default) returns posts authored
@@ -5160,7 +5172,29 @@ paths:
           type: string
         style: form
       - description: "Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty\
-          \ value means no date filter; any other malformed value returns 400."
+          \ value means no date filter; any other malformed value returns 400. The\
+          \ same name the other date-window filters use (ads, analytics)."
+        explode: true
+        in: query
+        name: fromDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty\
+          \ value means no date filter; any other malformed value returns 400. The\
+          \ same name the other date-window filters use (ads, analytics)."
+        explode: true
+        in: query
+        name: toDate
+        required: false
+        schema:
+          format: date
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of fromDate, kept for existing callers"
         explode: true
         in: query
         name: dateFrom
@@ -5169,8 +5203,8 @@ paths:
           format: date
           type: string
         style: form
-      - description: "Zero-padded YYYY-MM-DD, or a full ISO 8601 datetime. An empty\
-          \ value means no date filter; any other malformed value returns 400."
+      - deprecated: true
+        description: "Alias of toDate, kept for existing callers"
         explode: true
         in: query
         name: dateTo
