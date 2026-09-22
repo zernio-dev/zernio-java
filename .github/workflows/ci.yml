@@ -24,5 +24,10 @@ jobs:
           distribution: 'temurin'
           java-version: '17'
 
+      - name: Test spec normalization
+        run: |
+          python3 -m pip install --quiet --break-system-packages pyyaml
+          python3 -m unittest discover -s scripts -p 'test_*.py'
+
       - name: Build
         run: mvn compile -q

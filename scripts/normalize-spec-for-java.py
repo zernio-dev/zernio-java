@@ -40,6 +40,12 @@ def collapse_unexpressible_unions(node, path, collapsed):
     if not isinstance(node, dict):
         return
 
+    items = node.get("items")
+    if node.get("uniqueItems") and isinstance(items, dict) and "enum" in items:
+        # native Java's Set<Enum> addItem helper constructs HashSet<String>.
+        # Use List<Enum>; the API still enforces uniqueness on the wire.
+        del node["uniqueItems"]
+
     for keyword in COMPOSED_KEYWORDS:
         branches = node.get(keyword)
         if not isinstance(branches, list):
