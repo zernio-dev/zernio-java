@@ -171,7 +171,7 @@ ApiResponse<[**CreateApiKey201Response**](CreateApiKey201Response.md)>
 
 Delete key
 
-Permanently revokes and deletes an API key.
+Permanently revokes and deletes an API key. The team owner can revoke any team member&#39;s key; a non-owner member can only revoke their own.
 
 ### Example
 
@@ -244,7 +244,7 @@ public class Example {
 
 Delete key
 
-Permanently revokes and deletes an API key.
+Permanently revokes and deletes an API key. The team owner can revoke any team member&#39;s key; a non-owner member can only revoke their own.
 
 ### Example
 
@@ -321,7 +321,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 
 List keys
 
-Returns all API keys for the authenticated user. Keys are returned with a preview only, not the full key value.
+Returns API keys with a preview only, not the full key value. For a regular team member this is their own keys; for the team owner this is every team member&#39;s keys, each carrying a &#x60;createdBy&#x60; field.
 
 ### Example
 
@@ -389,7 +389,7 @@ This endpoint does not need any parameter.
 
 List keys
 
-Returns all API keys for the authenticated user. Keys are returned with a preview only, not the full key value.
+Returns API keys with a preview only, not the full key value. For a regular team member this is their own keys; for the team owner this is every team member&#39;s keys, each carrying a &#x60;createdBy&#x60; field.
 
 ### Example
 

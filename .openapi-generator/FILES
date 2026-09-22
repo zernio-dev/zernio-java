@@ -103,6 +103,7 @@ docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
 docs/AnalyticsSinglePostResponseMediaItemsInner.md
 docs/ApiKey.md
+docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
 docs/ApiKeysApi.md
 docs/AppealSmsRegistration200Response.md
@@ -2432,6 +2433,7 @@ src/main/java/dev/zernio/model/AnalyticsOverviewDataStaleness.java
 src/main/java/dev/zernio/model/AnalyticsSinglePostResponse.java
 src/main/java/dev/zernio/model/AnalyticsSinglePostResponseMediaItemsInner.java
 src/main/java/dev/zernio/model/ApiKey.java
+src/main/java/dev/zernio/model/ApiKeyCreatedBy.java
 src/main/java/dev/zernio/model/ApiKeyProfileIdsInner.java
 src/main/java/dev/zernio/model/AppealSmsRegistration200Response.java
 src/main/java/dev/zernio/model/AppealSmsRegistrationRequest.java
@@ -4521,3 +4523,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ApiKeyCreatedByTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.33.2
+- API version: 1.34.0
 
-- Build date: 2026-09-22T09:49:00.847616211Z[Etc/UTC]
+- Build date: 2026-09-22T10:26:33.609999214Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.33.2</version>
+  <version>1.34.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.33.2"
+compile "dev.zernio:zernio-sdk:1.34.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.33.2.jar`
+- `target/zernio-sdk-1.34.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1760,6 +1760,7 @@ Class | Method | HTTP request | Description
  - [AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)
  - [AnalyticsSinglePostResponseMediaItemsInner](docs/AnalyticsSinglePostResponseMediaItemsInner.md)
  - [ApiKey](docs/ApiKey.md)
+ - [ApiKeyCreatedBy](docs/ApiKeyCreatedBy.md)
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [AppealSmsRegistration200Response](docs/AppealSmsRegistration200Response.md)
  - [AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
