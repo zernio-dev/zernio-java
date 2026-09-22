@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.45.1
+  version: 1.46.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -31901,7 +31901,17 @@ paths:
         schema:
           type: string
         style: form
-      - description: Numeric Google ad group id filter.
+      - description: "Platform ad set ID (Google ad group). Same value as adSetId\
+          \ on listAdKeywords and /ad-sets/{adSetId}/assets."
+        explode: true
+        in: query
+        name: adSetId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adSetId, kept for existing callers."
         explode: true
         in: query
         name: adGroupId

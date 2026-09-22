@@ -831,7 +831,7 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 
 ## getAdsSearchTerms
 
-> GetAdsSearchTerms200Response getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken)
+> GetAdsSearchTerms200Response getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
 
 Google Ads search terms report
 
@@ -863,10 +863,11 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
-        String adGroupId = "adGroupId_example"; // String | Numeric Google ad group id filter.
+        String adSetId = "adSetId_example"; // String | Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets.
+        String adGroupId = "adGroupId_example"; // String | Alias of adSetId, kept for existing callers.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            GetAdsSearchTerms200Response result = apiInstance.getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            GetAdsSearchTerms200Response result = apiInstance.getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#getAdsSearchTerms");
@@ -889,7 +890,8 @@ public class Example {
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 | **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
-| **adGroupId** | **String**| Numeric Google ad group id filter. | [optional] |
+| **adSetId** | **String**| Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets. | [optional] |
+| **adGroupId** | **String**| Alias of adSetId, kept for existing callers. | [optional] |
 | **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
 
 ### Return type
@@ -919,7 +921,7 @@ public class Example {
 
 ## getAdsSearchTermsWithHttpInfo
 
-> ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTerms getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken)
+> ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTerms getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
 
 Google Ads search terms report
 
@@ -952,10 +954,11 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
-        String adGroupId = "adGroupId_example"; // String | Numeric Google ad group id filter.
+        String adSetId = "adSetId_example"; // String | Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets.
+        String adGroupId = "adGroupId_example"; // String | Alias of adSetId, kept for existing callers.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adGroupId, pageToken);
+            ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -980,7 +983,8 @@ public class Example {
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 | **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
-| **adGroupId** | **String**| Numeric Google ad group id filter. | [optional] |
+| **adSetId** | **String**| Platform ad set ID (Google ad group). Same value as adSetId on listAdKeywords and /ad-sets/{adSetId}/assets. | [optional] |
+| **adGroupId** | **String**| Alias of adSetId, kept for existing callers. | [optional] |
 | **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
 
 ### Return type
