@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.43.0
+  version: 1.44.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -17001,11 +17001,23 @@ paths:
       description: Permanently delete a webhook configuration.
       operationId: deleteWebhookSettings
       parameters:
-      - description: Webhook ID to delete
+      - description: "Webhook ID to delete, the same name the other /v1/webhooks operations\
+          \ use (logs, redeliver, test). Required unless the deprecated `id` is sent\
+          \ instead."
+        explode: true
+        in: query
+        name: webhookId
+        required: false
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of webhookId, kept for existing callers"
         explode: true
         in: query
         name: id
-        required: true
+        required: false
         schema:
           pattern: "^[a-fA-F0-9]{24}$"
           type: string
@@ -17018,7 +17030,9 @@ paths:
                 $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
           description: Webhook deleted successfully
         "400":
-          description: Webhook ID missing or not a valid ID
+          description: "webhookId missing or not a valid ID, or a query parameter\
+            \ this endpoint does not know (the message lists the accepted ones; nothing\
+            \ is silently ignored)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -17165,7 +17179,7 @@ paths:
       - application/json
     put:
       description: |
-        Update an existing webhook configuration. All fields except `_id` are optional; only provided fields will be updated.
+        Update an existing webhook configuration. All fields except `webhookId` are optional; only provided fields will be updated. `webhookId` is the same name the other /v1/webhooks operations use (logs, redeliver, test); the deprecated `_id` is still accepted in its place.
 
         When provided, `name` must be 1-50 characters, `url` must be a valid URL, and `events` must contain at least one event. Whitespace is trimmed from `url` before validation.
 
@@ -80679,8 +80693,13 @@ components:
           type: array
     updateWebhookSettings_request:
       properties:
+        webhookId:
+          description: Webhook ID to update. Required unless the deprecated `_id`
+            is sent instead.
+          type: string
         _id:
-          description: Webhook ID to update (required)
+          deprecated: true
+          description: "Alias of webhookId, kept for existing callers"
           type: string
         name:
           description: Webhook name (1-50 characters). Must be non-empty if provided.
@@ -80785,8 +80804,6 @@ components:
             - webhooks
             type: string
           type: array
-      required:
-      - _id
     updateWebhookSettings_200_response:
       example:
         webhook:
