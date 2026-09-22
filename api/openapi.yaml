@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.33.1
+  version: 1.33.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -33932,6 +33932,10 @@ paths:
         automatically (`syncAfter: false` to skip). Creative settings returned by Meta,
         including explicit promotion metadata and creativeFeatures, are preserved when the
         native copy requires a creative rebuild. Metadata Meta does not return cannot be recovered.
+        When Meta refuses the native copy with its capability error (code 3), which happens for
+        some creatives built by other tools, the ad is rebuilt instead: a new creative from the
+        source's returned spec and a new ad in the target ad set, carrying the source name,
+        status option, rename options and tracking specs.
       operationId: duplicateAd
       parameters:
       - description: "Optional client-generated unique key (e.g. a UUID) that makes\
