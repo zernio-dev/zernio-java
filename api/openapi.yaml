@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.35.0
+  version: 1.36.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -101514,6 +101514,17 @@ components:
           type: string
         syncAfter:
           default: true
+          type: boolean
+        reuseSourceCreative:
+          default: false
+          description: "Point the copy at the source ad's creative object instead\
+            \ of copying it, so the copy keeps the same Facebook post, the same Instagram\
+            \ media, their existing likes, comments and shares, and the full creative\
+            \ setup (text variations included). This is what Ads Manager's \"show\
+            \ existing reactions, comments and shares\" does. Meta's native copy always\
+            \ publishes new posts. A creative belongs to one ad account, so `adSetId`\
+            \ must be in the source ad's account. 400 when the source ad has no creative\
+            \ yet."
           type: boolean
     duplicateAd_200_response:
       example:
