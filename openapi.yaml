@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.46.0"
+  version: "1.47.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -29490,9 +29490,15 @@ paths:
             type: integer
             minimum: 0
             default: 0
-        - name: account_id
+        - name: accountId
           in: query
           description: Filter by connected account ID
+          schema:
+            type: string
+        - name: account_id
+          in: query
+          deprecated: true
+          description: "Alias of accountId, kept for existing callers"
           schema:
             type: string
         - name: event
@@ -29500,9 +29506,15 @@ paths:
           description: Filter webhook logs by event (e.g. post.published, message.received)
           schema:
             type: string
-        - name: request_id
+        - name: requestId
           in: query
           description: Correlation ID. Returns every log spawned by a single API request
+          schema:
+            type: string
+        - name: request_id
+          in: query
+          deprecated: true
+          description: "Alias of requestId, kept for existing callers"
           schema:
             type: string
         - name: from
@@ -29517,19 +29529,38 @@ paths:
           schema:
             type: string
             format: date-time
-        - name: status_code
+        - name: statusCode
           in: query
           description: Filter by exact HTTP status code (api_request logs)
           schema:
             type: integer
-        - name: api_key_id
+        - name: status_code
+          in: query
+          deprecated: true
+          description: "Alias of statusCode, kept for existing callers"
+          schema:
+            type: integer
+        - name: apiKeyId
           in: query
           description: Filter by the API key that made the request (api_request logs)
           schema:
             type: string
-        - name: include_read_receipts
+        - name: api_key_id
+          in: query
+          deprecated: true
+          description: "Alias of apiKeyId, kept for existing callers"
+          schema:
+            type: string
+        - name: includeReadReceipts
           in: query
           description: Include message.read / message.delivered events (hidden by default for messaging logs)
+          schema:
+            type: boolean
+            default: false
+        - name: include_read_receipts
+          in: query
+          deprecated: true
+          description: "Alias of includeReadReceipts, kept for existing callers"
           schema:
             type: boolean
             default: false
@@ -29615,6 +29646,7 @@ paths:
                         type: integer
                       hasMore:
                         type: boolean
+        '400': { description: "Invalid filter value. Unknown parameters are ignored on this list; the histogram, facets and export routes reject them." }
         '401': { $ref: '#/components/responses/Unauthorized' }
   # Unified Inbox Endpoints
   /v1/inbox/conversations:

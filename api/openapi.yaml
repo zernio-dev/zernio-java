@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.46.0
+  version: 1.47.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -17618,6 +17618,15 @@ paths:
       - description: Filter by connected account ID
         explode: true
         in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of accountId, kept for existing callers"
+        explode: true
+        in: query
         name: account_id
         required: false
         schema:
@@ -17632,6 +17641,15 @@ paths:
           type: string
         style: form
       - description: Correlation ID. Returns every log spawned by a single API request
+        explode: true
+        in: query
+        name: requestId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of requestId, kept for existing callers"
         explode: true
         in: query
         name: request_id
@@ -17660,12 +17678,30 @@ paths:
       - description: Filter by exact HTTP status code (api_request logs)
         explode: true
         in: query
+        name: statusCode
+        required: false
+        schema:
+          type: integer
+        style: form
+      - deprecated: true
+        description: "Alias of statusCode, kept for existing callers"
+        explode: true
+        in: query
         name: status_code
         required: false
         schema:
           type: integer
         style: form
       - description: Filter by the API key that made the request (api_request logs)
+        explode: true
+        in: query
+        name: apiKeyId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of apiKeyId, kept for existing callers"
         explode: true
         in: query
         name: api_key_id
@@ -17675,6 +17711,16 @@ paths:
         style: form
       - description: Include message.read / message.delivered events (hidden by default
           for messaging logs)
+        explode: true
+        in: query
+        name: includeReadReceipts
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - deprecated: true
+        description: "Alias of includeReadReceipts, kept for existing callers"
         explode: true
         in: query
         name: include_read_receipts
@@ -17690,6 +17736,9 @@ paths:
               schema:
                 $ref: "#/components/schemas/listLogs_200_response"
           description: Logs retrieved successfully
+        "400":
+          description: "Invalid filter value. Unknown parameters are ignored on this\
+            \ list; the histogram, facets and export routes reject them."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
