@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.38.0
+  version: 1.39.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40335,6 +40335,11 @@ paths:
 
         `instagramAccountId`, `destinationType`, `whatsappPhoneNumber` and `adSetId`
         are Meta-only and return 400 on other platforms.
+
+        `accountId` may be a Facebook, Instagram or Meta ads (business login)
+        connection. A business-login connection has no posting account, so pass
+        the post as `platformPostId` (Facebook `pageId_postId` or an Instagram
+        media id); a Zernio `postId` is a 400 there.
 
         **Messaging boosts (Meta).** Use `goal: engagement` with
         `callToAction: WHATSAPP_MESSAGE`, `MESSAGE_PAGE`, or `INSTAGRAM_MESSAGE`.
