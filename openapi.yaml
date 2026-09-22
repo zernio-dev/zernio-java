@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.52.1"
+  version: "1.52.2"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -29548,6 +29548,8 @@ paths:
       description: |
         Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging.
         Filter by type, platform, status, and time range. Logs are retained for 90 days.
+        Legacy query aliases remain accepted: `account_id` for `accountId`, `request_id` for `requestId`,
+        `status_code` for `statusCode`, `api_key_id` for `apiKeyId`, and `include_read_receipts` for `includeReadReceipts`.
       security:
         - bearerAuth: []
       parameters:
@@ -29610,12 +29612,6 @@ paths:
           description: Filter by connected account ID
           schema:
             type: string
-        - name: account_id
-          in: query
-          deprecated: true
-          description: "Alias of accountId, kept for existing callers"
-          schema:
-            type: string
         - name: event
           in: query
           description: Filter webhook logs by event (e.g. post.published, message.received)
@@ -29624,12 +29620,6 @@ paths:
         - name: requestId
           in: query
           description: Correlation ID. Returns every log spawned by a single API request
-          schema:
-            type: string
-        - name: request_id
-          in: query
-          deprecated: true
-          description: "Alias of requestId, kept for existing callers"
           schema:
             type: string
         - name: from
@@ -29649,33 +29639,14 @@ paths:
           description: Filter by exact HTTP status code (api_request logs)
           schema:
             type: integer
-        - name: status_code
-          in: query
-          deprecated: true
-          description: "Alias of statusCode, kept for existing callers"
-          schema:
-            type: integer
         - name: apiKeyId
           in: query
           description: Filter by the API key that made the request (api_request logs)
           schema:
             type: string
-        - name: api_key_id
-          in: query
-          deprecated: true
-          description: "Alias of apiKeyId, kept for existing callers"
-          schema:
-            type: string
         - name: includeReadReceipts
           in: query
           description: Include message.read / message.delivered events (hidden by default for messaging logs)
-          schema:
-            type: boolean
-            default: false
-        - name: include_read_receipts
-          in: query
-          deprecated: true
-          description: "Alias of includeReadReceipts, kept for existing callers"
           schema:
             type: boolean
             default: false

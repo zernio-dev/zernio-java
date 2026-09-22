@@ -11,11 +11,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## listLogs
 
-> ListLogs200Response listLogs(type, status, platform, action, search, days, limit, skip, accountId, accountId2, event, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2)
+> ListLogs200Response listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts)
 
 List activity logs
 
-Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
+Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. Legacy query aliases remain accepted: &#x60;account_id&#x60; for &#x60;accountId&#x60;, &#x60;request_id&#x60; for &#x60;requestId&#x60;, &#x60;status_code&#x60; for &#x60;statusCode&#x60;, &#x60;api_key_id&#x60; for &#x60;apiKeyId&#x60;, and &#x60;include_read_receipts&#x60; for &#x60;includeReadReceipts&#x60;. 
 
 ### Example
 
@@ -47,20 +47,15 @@ public class Example {
         Integer limit = 50; // Integer | Maximum number of logs to return (max 100)
         Integer skip = 0; // Integer | Number of logs to skip (for pagination)
         String accountId = "accountId_example"; // String | Filter by connected account ID
-        String accountId2 = "accountId_example"; // String | Alias of accountId, kept for existing callers
         String event = "event_example"; // String | Filter webhook logs by event (e.g. post.published, message.received)
         String requestId = "requestId_example"; // String | Correlation ID. Returns every log spawned by a single API request
-        String requestId2 = "requestId_example"; // String | Alias of requestId, kept for existing callers
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Precise start instant (ISO 8601); narrows within the day range
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
-        Integer statusCode2 = 56; // Integer | Alias of statusCode, kept for existing callers
         String apiKeyId = "apiKeyId_example"; // String | Filter by the API key that made the request (api_request logs)
-        String apiKeyId2 = "apiKeyId_example"; // String | Alias of apiKeyId, kept for existing callers
         Boolean includeReadReceipts = false; // Boolean | Include message.read / message.delivered events (hidden by default for messaging logs)
-        Boolean includeReadReceipts2 = false; // Boolean | Alias of includeReadReceipts, kept for existing callers
         try {
-            ListLogs200Response result = apiInstance.listLogs(type, status, platform, action, search, days, limit, skip, accountId, accountId2, event, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2);
+            ListLogs200Response result = apiInstance.listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LogsApi#listLogs");
@@ -87,18 +82,13 @@ public class Example {
 | **limit** | **Integer**| Maximum number of logs to return (max 100) | [optional] [default to 50] |
 | **skip** | **Integer**| Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **String**| Filter by connected account ID | [optional] |
-| **accountId2** | **String**| Alias of accountId, kept for existing callers | [optional] |
 | **event** | **String**| Filter webhook logs by event (e.g. post.published, message.received) | [optional] |
 | **requestId** | **String**| Correlation ID. Returns every log spawned by a single API request | [optional] |
-| **requestId2** | **String**| Alias of requestId, kept for existing callers | [optional] |
 | **from** | **OffsetDateTime**| Precise start instant (ISO 8601); narrows within the day range | [optional] |
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |
-| **statusCode2** | **Integer**| Alias of statusCode, kept for existing callers | [optional] |
 | **apiKeyId** | **String**| Filter by the API key that made the request (api_request logs) | [optional] |
-| **apiKeyId2** | **String**| Alias of apiKeyId, kept for existing callers | [optional] |
 | **includeReadReceipts** | **Boolean**| Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
-| **includeReadReceipts2** | **Boolean**| Alias of includeReadReceipts, kept for existing callers | [optional] [default to false] |
 
 ### Return type
 
@@ -123,11 +113,11 @@ public class Example {
 
 ## listLogsWithHttpInfo
 
-> ApiResponse<ListLogs200Response> listLogs listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, accountId2, event, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2)
+> ApiResponse<ListLogs200Response> listLogs listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts)
 
 List activity logs
 
-Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. 
+Unified logs endpoint. Returns logs for publishing, connections, webhooks, and messaging. Filter by type, platform, status, and time range. Logs are retained for 90 days. Legacy query aliases remain accepted: &#x60;account_id&#x60; for &#x60;accountId&#x60;, &#x60;request_id&#x60; for &#x60;requestId&#x60;, &#x60;status_code&#x60; for &#x60;statusCode&#x60;, &#x60;api_key_id&#x60; for &#x60;apiKeyId&#x60;, and &#x60;include_read_receipts&#x60; for &#x60;includeReadReceipts&#x60;. 
 
 ### Example
 
@@ -160,20 +150,15 @@ public class Example {
         Integer limit = 50; // Integer | Maximum number of logs to return (max 100)
         Integer skip = 0; // Integer | Number of logs to skip (for pagination)
         String accountId = "accountId_example"; // String | Filter by connected account ID
-        String accountId2 = "accountId_example"; // String | Alias of accountId, kept for existing callers
         String event = "event_example"; // String | Filter webhook logs by event (e.g. post.published, message.received)
         String requestId = "requestId_example"; // String | Correlation ID. Returns every log spawned by a single API request
-        String requestId2 = "requestId_example"; // String | Alias of requestId, kept for existing callers
         OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Precise start instant (ISO 8601); narrows within the day range
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
-        Integer statusCode2 = 56; // Integer | Alias of statusCode, kept for existing callers
         String apiKeyId = "apiKeyId_example"; // String | Filter by the API key that made the request (api_request logs)
-        String apiKeyId2 = "apiKeyId_example"; // String | Alias of apiKeyId, kept for existing callers
         Boolean includeReadReceipts = false; // Boolean | Include message.read / message.delivered events (hidden by default for messaging logs)
-        Boolean includeReadReceipts2 = false; // Boolean | Alias of includeReadReceipts, kept for existing callers
         try {
-            ApiResponse<ListLogs200Response> response = apiInstance.listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, accountId2, event, requestId, requestId2, from, to, statusCode, statusCode2, apiKeyId, apiKeyId2, includeReadReceipts, includeReadReceipts2);
+            ApiResponse<ListLogs200Response> response = apiInstance.listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -202,18 +187,13 @@ public class Example {
 | **limit** | **Integer**| Maximum number of logs to return (max 100) | [optional] [default to 50] |
 | **skip** | **Integer**| Number of logs to skip (for pagination) | [optional] [default to 0] |
 | **accountId** | **String**| Filter by connected account ID | [optional] |
-| **accountId2** | **String**| Alias of accountId, kept for existing callers | [optional] |
 | **event** | **String**| Filter webhook logs by event (e.g. post.published, message.received) | [optional] |
 | **requestId** | **String**| Correlation ID. Returns every log spawned by a single API request | [optional] |
-| **requestId2** | **String**| Alias of requestId, kept for existing callers | [optional] |
 | **from** | **OffsetDateTime**| Precise start instant (ISO 8601); narrows within the day range | [optional] |
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |
-| **statusCode2** | **Integer**| Alias of statusCode, kept for existing callers | [optional] |
 | **apiKeyId** | **String**| Filter by the API key that made the request (api_request logs) | [optional] |
-| **apiKeyId2** | **String**| Alias of apiKeyId, kept for existing callers | [optional] |
 | **includeReadReceipts** | **Boolean**| Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
-| **includeReadReceipts2** | **Boolean**| Alias of includeReadReceipts, kept for existing callers | [optional] [default to false] |
 
 ### Return type
 
