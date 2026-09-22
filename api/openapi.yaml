@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.37.0
+  version: 1.38.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44494,6 +44494,8 @@ paths:
         `objectStoryId`, either per creative or at the top level. Omit fresh
         media and copy for that creative. Optional `whatsappPhoneNumber` selects
         a number already paired with the Page (WhatsApp destination only).
+        `accountId` is a Facebook, Instagram or Meta ads (business login) connection;
+        `pageId` picks the Page when that connection was granted several.
       operationId: createMessagingAd
       requestBody:
         content:
@@ -50111,6 +50113,7 @@ components:
         - countries
         - countries
         audienceId: audienceId
+        pageId: pageId
         roasAverageFloor: 2.027123023002322
         accountId: accountId
         ageMin: 24
@@ -50178,6 +50181,12 @@ components:
             \ used as object_story_id even with an Instagram account. Mutually exclusive\
             \ with existingPostId and fresh creative fields."
           pattern: ^\d+_\d+$
+          type: string
+        pageId:
+          description: "Facebook Page the ad runs as, when the connection was granted\
+            \ several Pages. Defaults to the Page bound to the connection. Any Page\
+            \ granted to the connection is accepted; other ids answer 400 listing\
+            \ the granted Pages. Same semantics as `pageId` on POST /v1/ads/create."
           type: string
         whatsappPhoneNumber:
           description: "WhatsApp only. Optional E.164 number already paired with the\
