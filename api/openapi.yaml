@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.45.0
+  version: 1.45.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51133,9 +51133,12 @@ components:
           maxLength: 20
           type: string
         notFollowingMessage:
-          description: Sent to a commenter we know does not follow (followerStatus=follower).
-            Omit to stay silent on a keyword comment; a confirm tap always gets an
-            answer.
+          description: "Sent to a commenter we know does not follow (followerStatus=follower),\
+            \ and after a confirm tap that does not unlock the DM. When following\
+            \ is what would unlock it, the message carries the confirm button so they\
+            \ can re-check once they follow; above 640 characters it goes out as plain\
+            \ text without the button. Omit to stay silent on a keyword comment; a\
+            \ confirm tap always gets an answer (a default message is used)."
           maxLength: 1000
           type: string
     DmButton:
