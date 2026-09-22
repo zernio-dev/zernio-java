@@ -15,6 +15,7 @@
 |**locationName** | **String** | Human-readable Google Business Profile location display name. Google Business Profile only; absent for other platforms. |  [optional] |
 |**reviewer** | [**ListInboxReviews200ResponseDataInnerReviewer**](ListInboxReviews200ResponseDataInnerReviewer.md) |  |  [optional] |
 |**rating** | **Integer** |  |  [optional] |
+|**recommendationType** | [**RecommendationTypeEnum**](#RecommendationTypeEnum) | Facebook recommendation: positive means recommends, negative means does not recommend. Null or absent when unavailable; absent for other platforms. Independent of the numeric rating. |  [optional] |
 |**text** | **String** |  |  [optional] |
 |**created** | **OffsetDateTime** |  |  [optional] |
 |**hasReply** | **Boolean** |  |  [optional] |
@@ -23,6 +24,15 @@
 |**photos** | [**List&lt;ListInboxReviews200ResponseDataInnerPhotosInner&gt;**](ListInboxReviews200ResponseDataInnerPhotosInner.md) | Photos attached to the review. Google Business Profile only; always an empty array for other platforms. |  [optional] |
 |**reply** | [**ListInboxReviews200ResponseDataInnerReply**](ListInboxReviews200ResponseDataInnerReply.md) |  |  [optional] |
 |**reviewUrl** | **String** |  |  [optional] |
+
+
+
+## Enum: RecommendationTypeEnum
+
+| Name | Value |
+|---- | -----|
+| POSITIVE | &quot;positive&quot; |
+| NEGATIVE | &quot;negative&quot; |
 
 
 

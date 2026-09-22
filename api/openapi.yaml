@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.36.0
+  version: 1.37.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -85931,6 +85931,7 @@ components:
         hasReply: true
         id: id
         text: text
+        recommendationType: positive
         reply:
           created: 2000-01-23T04:56:07.000+00:00
           id: id
@@ -85960,6 +85961,16 @@ components:
           $ref: "#/components/schemas/listInboxReviews_200_response_data_inner_reviewer"
         rating:
           type: integer
+        recommendationType:
+          description: "Facebook recommendation: positive means recommends, negative\
+            \ means does not recommend. Null or absent when unavailable; absent for\
+            \ other platforms. Independent of the numeric rating."
+          enum:
+          - positive
+          - negative
+          - null
+          nullable: true
+          type: string
         text:
           type: string
         created:
@@ -86025,6 +86036,7 @@ components:
           hasReply: true
           id: id
           text: text
+          recommendationType: positive
           reply:
             created: 2000-01-23T04:56:07.000+00:00
             id: id
@@ -86049,6 +86061,7 @@ components:
           hasReply: true
           id: id
           text: text
+          recommendationType: positive
           reply:
             created: 2000-01-23T04:56:07.000+00:00
             id: id
