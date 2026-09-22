@@ -12,6 +12,8 @@
 |**accountId** | **String** | Facebook or Instagram SocialAccount ID. |  |
 |**adAccountId** | **String** | Meta ad account ID, e.g. &#x60;act_123456789&#x60;. |  |
 |**name** | **String** | Ad display name. Used to derive campaign / ad set names. On the multi-creative shape, each ad&#39;s Meta name gets a \&quot; #N\&quot; suffix (1-indexed) so Ads Manager shows them as a numbered batch.  |  |
+|**campaignName** | **String** | Exact name for the campaign this request provisions. Omitted keeps &#x60;&lt;name&gt; - Campaign&#x60;. Ignored with &#x60;adSetId&#x60; (the ad set already has a campaign). |  [optional] |
+|**adSetName** | **String** | Exact name for the ad set this request provisions. Omitted keeps &#x60;&lt;name&gt; - Ad Set&#x60;. Ignored with &#x60;adSetId&#x60;. |  [optional] |
 |**existingPostId** | **String** | Messaging and CTWA only. Platform post or reel ID, resolved like boost platformPostId. Facebook IDs become object_story_id; Instagram IDs become source_instagram_media_id using the connected Instagram identity. Mutually exclusive with objectStoryId and fresh creative fields. |  [optional] |
 |**objectStoryId** | **String** | Messaging and CTWA only. Raw Facebook pageId_postId reference, used as object_story_id even with an Instagram account. Mutually exclusive with existingPostId and fresh creative fields. |  [optional] |
 |**pageId** | **String** | Facebook Page the ad runs as, when the connection was granted several Pages. Defaults to the Page bound to the connection. Any Page granted to the connection is accepted; other ids answer 400 listing the granted Pages. Same semantics as &#x60;pageId&#x60; on POST /v1/ads/create. |  [optional] |

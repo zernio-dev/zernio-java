@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.39.0
+  version: 1.40.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -49998,6 +49998,7 @@ components:
       example:
         budgetType: daily
         bidStrategy: LOWEST_COST_WITHOUT_CAP
+        adSetName: adSetName
         regions:
         - key: key
         - key: key
@@ -50144,6 +50145,7 @@ components:
         - name: name
           id: id
         creativeFeatures: ""
+        campaignName: campaignName
         metros:
         - name: name
           key: key
@@ -50174,6 +50176,17 @@ components:
             " #N" suffix (1-indexed) so Ads Manager shows them as a
             numbered batch.
           minLength: 1
+          type: string
+        campaignName:
+          description: Exact name for the campaign this request provisions. Omitted
+            keeps `<name> - Campaign`. Ignored with `adSetId` (the ad set already
+            has a campaign).
+          maxLength: 255
+          type: string
+        adSetName:
+          description: Exact name for the ad set this request provisions. Omitted
+            keeps `<name> - Ad Set`. Ignored with `adSetId`.
+          maxLength: 255
           type: string
         existingPostId:
           description: "Messaging and CTWA only. Platform post or reel ID, resolved\
