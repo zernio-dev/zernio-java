@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.33.0
+  version: 1.33.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -112096,6 +112096,7 @@ components:
         - path
         - path
         audienceSize: 0
+        countryCode: countryCode
         name: name
         id: id
         type: type
@@ -112125,6 +112126,12 @@ components:
             \ platform returns it."
           nullable: true
           type: integer
+        countryCode:
+          description: "ISO-3166 alpha-2 of the country a sub-country geo result (city,\
+            \ region, zip, metro) belongs to, when the platform reports it (Meta does).\
+            \ Useful to know whether a location falls under the EU DSA disclosure\
+            \ rules before creating the ad."
+          type: string
       required:
       - id
       - name
@@ -112136,6 +112143,7 @@ components:
           - path
           - path
           audienceSize: 0
+          countryCode: countryCode
           name: name
           id: id
           type: type
@@ -112143,6 +112151,7 @@ components:
           - path
           - path
           audienceSize: 0
+          countryCode: countryCode
           name: name
           id: id
           type: type
