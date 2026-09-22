@@ -329,7 +329,7 @@ ApiResponse<[**FollowUser200Response**](FollowUser200Response.md)>
 
 ## getTweet
 
-> GetTweet200Response getTweet(accountId, id)
+> GetTweet200Response getTweet(accountId, tweetId, id)
 
 Look up a tweet
 
@@ -357,9 +357,10 @@ public class Example {
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
         String accountId = "accountId_example"; // String | The account ID whose X token is used for the lookup
-        String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+        String tweetId = "tweetId_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark).
+        String id = "id_example"; // String | Alias of tweetId, kept for existing callers
         try {
-            GetTweet200Response result = apiInstance.getTweet(accountId, id);
+            GetTweet200Response result = apiInstance.getTweet(accountId, tweetId, id);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling TwitterEngagementApi#getTweet");
@@ -378,7 +379,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The account ID whose X token is used for the lookup | |
-| **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
+| **tweetId** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark). | |
+| **id** | **String**| Alias of tweetId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -398,7 +400,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The resolved tweet |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Missing or malformed tweetId or accountId, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
@@ -407,7 +409,7 @@ public class Example {
 
 ## getTweetWithHttpInfo
 
-> ApiResponse<GetTweet200Response> getTweet getTweetWithHttpInfo(accountId, id)
+> ApiResponse<GetTweet200Response> getTweet getTweetWithHttpInfo(accountId, tweetId, id)
 
 Look up a tweet
 
@@ -436,9 +438,10 @@ public class Example {
 
         TwitterEngagementApi apiInstance = new TwitterEngagementApi(defaultClient);
         String accountId = "accountId_example"; // String | The account ID whose X token is used for the lookup
-        String id = "id_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+        String tweetId = "tweetId_example"; // String | Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark).
+        String id = "id_example"; // String | Alias of tweetId, kept for existing callers
         try {
-            ApiResponse<GetTweet200Response> response = apiInstance.getTweetWithHttpInfo(accountId, id);
+            ApiResponse<GetTweet200Response> response = apiInstance.getTweetWithHttpInfo(accountId, tweetId, id);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -459,7 +462,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The account ID whose X token is used for the lookup | |
-| **id** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...) | |
+| **tweetId** | **String**| Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...). The same name the other /v1/twitter operations use (retweet, bookmark). | |
+| **id** | **String**| Alias of tweetId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -479,7 +483,7 @@ ApiResponse<[**GetTweet200Response**](GetTweet200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The resolved tweet |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Missing or malformed tweetId or accountId, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |

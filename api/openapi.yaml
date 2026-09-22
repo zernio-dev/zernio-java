@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.41.0
+  version: 1.42.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20789,11 +20789,21 @@ paths:
         schema:
           type: string
         style: form
-      - description: Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...)
+      - description: "Numeric tweet ID or a tweet URL (e.g. https://x.com/user/status/123...).\
+          \ The same name the other /v1/twitter operations use (retweet, bookmark)."
+        explode: true
+        in: query
+        name: tweetId
+        required: true
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of tweetId, kept for existing callers"
         explode: true
         in: query
         name: id
-        required: true
+        required: false
         schema:
           type: string
         style: form
@@ -20805,7 +20815,9 @@ paths:
                 $ref: "#/components/schemas/getTweet_200_response"
           description: The resolved tweet
         "400":
-          $ref: "#/components/responses/BadRequest"
+          description: "Missing or malformed tweetId or accountId, or a query parameter\
+            \ this endpoint does not know (the message lists the accepted ones; nothing\
+            \ is silently ignored)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
