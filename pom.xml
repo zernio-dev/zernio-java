@@ -46,6 +46,9 @@
                     <publishingServerId>central</publishingServerId>
                     <autoPublish>true</autoPublish>
                     <waitUntil>published</waitUntil>
+                    <!-- Central can finish publishing after its default 30-minute polling window. -->
+                    <waitMaxTime>3600</waitMaxTime>
+                    <ignorePublishedComponents>true</ignorePublishedComponents>
                 </configuration>
             </plugin>
             <plugin>
