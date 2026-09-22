@@ -20,6 +20,7 @@ Skin chosen when the hosted signup session was issued (`brandName`, `primaryColo
 |---- | -----|
 | EN | &quot;en&quot; |
 | ES | &quot;es&quot; |
+| PT_BR | &quot;pt-BR&quot; |
 
 
 

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.JSON_PROPERTY_STATUS,
   GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.JSON_PROPERTY_FILLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:05:49.718507699Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:11:29.371779512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable

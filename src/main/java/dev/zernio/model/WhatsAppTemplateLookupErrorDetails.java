@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WhatsAppTemplateLookupErrorDetails.JSON_PROPERTY_UPSTREAM_STATUS,
   WhatsAppTemplateLookupErrorDetails.JSON_PROPERTY_PROVIDER_HEADERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:05:49.718507699Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:11:29.371779512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateLookupErrorDetails {
   /**
    * Gets or Sets phase

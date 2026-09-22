@@ -38,10 +38,11 @@ import dev.zernio.ApiClient;
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_PROFILE_ID,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_COUNTRY,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_AREA_CODE,
+  CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_LANGUAGE,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_BRANDING,
   CreatePhoneNumberKycLinkRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:05:49.718507699Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-22T14:11:29.371779512Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatePhoneNumberKycLinkRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -54,6 +55,47 @@ public class CreatePhoneNumberKycLinkRequest {
   public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
   @javax.annotation.Nullable
   private String areaCode;
+
+  /**
+   * Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.
+   */
+  public enum LanguageEnum {
+    EN(String.valueOf("en")),
+    
+    ES(String.valueOf("es")),
+    
+    PT_BR(String.valueOf("pt-BR"));
+
+    private String value;
+
+    LanguageEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static LanguageEnum fromValue(String value) {
+      for (LanguageEnum b : LanguageEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_LANGUAGE = "language";
+  @javax.annotation.Nullable
+  private LanguageEnum language;
 
   public static final String JSON_PROPERTY_BRANDING = "branding";
   @javax.annotation.Nullable
@@ -138,6 +180,30 @@ public class CreatePhoneNumberKycLinkRequest {
   }
 
 
+  public CreatePhoneNumberKycLinkRequest language(@javax.annotation.Nullable LanguageEnum language) {
+    this.language = language;
+    return this;
+  }
+
+  /**
+   * Language of the hosted page: its copy, the carrier requirement texts (translated once per country and cached), the pre-submit review notes and the status emails to the end customer. Omitted: the browser language of the end customer, falling back to English. The end customer can also switch with &#x60;?lang&#x3D;&#x60; on the page.
+   * @return language
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public LanguageEnum getLanguage() {
+    return language;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_LANGUAGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setLanguage(@javax.annotation.Nullable LanguageEnum language) {
+    this.language = language;
+  }
+
+
   public CreatePhoneNumberKycLinkRequest branding(@javax.annotation.Nullable CreatePhoneNumberKycLinkRequestBranding branding) {
     this.branding = branding;
     return this;
@@ -201,13 +267,14 @@ public class CreatePhoneNumberKycLinkRequest {
     return Objects.equals(this.profileId, createPhoneNumberKycLinkRequest.profileId) &&
         Objects.equals(this.country, createPhoneNumberKycLinkRequest.country) &&
         Objects.equals(this.areaCode, createPhoneNumberKycLinkRequest.areaCode) &&
+        Objects.equals(this.language, createPhoneNumberKycLinkRequest.language) &&
         Objects.equals(this.branding, createPhoneNumberKycLinkRequest.branding) &&
         Objects.equals(this.redirectUrl, createPhoneNumberKycLinkRequest.redirectUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, areaCode, branding, redirectUrl);
+    return Objects.hash(profileId, country, areaCode, language, branding, redirectUrl);
   }
 
   @Override
@@ -217,6 +284,7 @@ public class CreatePhoneNumberKycLinkRequest {
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
+    sb.append("    language: ").append(toIndentedString(language)).append("\n");
     sb.append("    branding: ").append(toIndentedString(branding)).append("\n");
     sb.append("    redirectUrl: ").append(toIndentedString(redirectUrl)).append("\n");
     sb.append("}");
@@ -279,6 +347,11 @@ public class CreatePhoneNumberKycLinkRequest {
     // add `areaCode` to the URL query string
     if (getAreaCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
+    }
+
+    // add `language` to the URL query string
+    if (getLanguage() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%slanguage%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLanguage()))));
     }
 
     // add `branding` to the URL query string
