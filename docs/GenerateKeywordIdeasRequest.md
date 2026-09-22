@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Zernio googleads SocialAccount id. |  |
-|**customerId** | **String** | Numeric Google Ads customer id (no dashes); only needed when the connection has several accounts. |  [optional] |
+|**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). |  [optional] |
+|**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 |**seedKeywords** | **List&lt;String&gt;** | Seed terms. Provide these, seedUrl, or both. |  [optional] |
 |**seedUrl** | **URI** | Landing page to mine for ideas. Provide this, seedKeywords, or both. |  [optional] |
 |**countries** | **List&lt;String&gt;** | ISO 3166-1 alpha-2 country codes. Omitted &#x3D; worldwide. |  [optional] |

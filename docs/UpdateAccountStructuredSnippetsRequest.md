@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Zernio Google Ads connection id. |  |
-|**customerId** | **String** | Google customer id without dashes. Required when the connection has multiple customers. |  [optional] |
+|**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. |  [optional] |
+|**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 |**updates** | [**List&lt;UpdateAccountStructuredSnippetsRequestUpdatesInner&gt;**](UpdateAccountStructuredSnippetsRequestUpdatesInner.md) |  |  |
 
 

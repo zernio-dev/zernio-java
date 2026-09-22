@@ -1343,11 +1343,11 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 
 ## listConversionActions
 
-> ListConversionActions200Response listConversionActions(accountId, customerId, type)
+> ListConversionActions200Response listConversionActions(accountId, adAccountId, customerId, type)
 
 List conversion actions
 
-Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
 
 ### Example
 
@@ -1371,10 +1371,11 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String accountId = "accountId_example"; // String | SocialAccount _id (must be a googleads account).
-        String customerId = "customerId_example"; // String | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String type = "type_example"; // String | Filter by Google's ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS).
         try {
-            ListConversionActions200Response result = apiInstance.listConversionActions(accountId, customerId, type);
+            ListConversionActions200Response result = apiInstance.listConversionActions(accountId, adAccountId, customerId, type);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#listConversionActions");
@@ -1393,7 +1394,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| SocialAccount _id (must be a googleads account). | |
-| **customerId** | **String**| Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **type** | **String**| Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). | [optional] |
 
 ### Return type
@@ -1423,11 +1425,11 @@ public class Example {
 
 ## listConversionActionsWithHttpInfo
 
-> ApiResponse<ListConversionActions200Response> listConversionActions listConversionActionsWithHttpInfo(accountId, customerId, type)
+> ApiResponse<ListConversionActions200Response> listConversionActions listConversionActionsWithHttpInfo(accountId, adAccountId, customerId, type)
 
 List conversion actions
 
-Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;customerId&#x60; is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;customerId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
+Lists Google Ads conversion actions on the resolved customer, all types by default. Each action&#39;s &#x60;tagSnippets&#x60; (global site tag + event snippet) is included when Google has them for that action&#39;s type, e.g. &#x60;WEBPAGE&#x60;. Google-only; other platforms return &#x60;501&#x60;. Requires the Ads add-on.  &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is optional: when omitted, it is resolved from the connection&#39;s accessible Google Ads customers, and the call fails with &#x60;400&#x60; when more than one is accessible (pass &#x60;adAccountId&#x60; to disambiguate).  The list itself is cached for the quota window (1 hour fresh, up to 7 days last-good; the cache key does not vary on &#x60;type&#x60;). The response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;, set when a quota-exhausted call falls back to the last-good copy instead of a live read. 
 
 ### Example
 
@@ -1452,10 +1454,11 @@ public class Example {
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         String accountId = "accountId_example"; // String | SocialAccount _id (must be a googleads account).
-        String customerId = "customerId_example"; // String | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String type = "type_example"; // String | Filter by Google's ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS).
         try {
-            ApiResponse<ListConversionActions200Response> response = apiInstance.listConversionActionsWithHttpInfo(accountId, customerId, type);
+            ApiResponse<ListConversionActions200Response> response = apiInstance.listConversionActionsWithHttpInfo(accountId, adAccountId, customerId, type);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1476,7 +1479,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| SocialAccount _id (must be a googleads account). | |
-| **customerId** | **String**| Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **type** | **String**| Filter by Google&#39;s ConversionActionType enum (e.g. WEBPAGE, UPLOAD_CLICKS). | [optional] |
 
 ### Return type

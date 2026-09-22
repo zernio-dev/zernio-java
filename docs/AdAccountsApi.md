@@ -1531,7 +1531,7 @@ ApiResponse<[**ReplyToAdComment200Response**](ReplyToAdComment200Response.md)>
 
 ## deleteAdNegativeKeywordList
 
-> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, customerId, platform)
+> DeleteAdNegativeKeywordList200Response deleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -1560,10 +1560,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, customerId, platform);
+            DeleteAdNegativeKeywordList200Response result = apiInstance.deleteAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#deleteAdNegativeKeywordList");
@@ -1583,6 +1584,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -1615,7 +1617,7 @@ public class Example {
 
 ## deleteAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform)
+> ApiResponse<DeleteAdNegativeKeywordList200Response> deleteAdNegativeKeywordList deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform)
 
 Delete a negative keyword list
 
@@ -1645,10 +1647,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            ApiResponse<DeleteAdNegativeKeywordList200Response> response = apiInstance.deleteAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1670,6 +1673,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -2193,7 +2197,7 @@ ApiResponse<[**GetAdComments200Response**](GetAdComments200Response.md)>
 
 ## getAdNegativeKeywordList
 
-> GetAdNegativeKeywordList200Response getAdNegativeKeywordList(listId, accountId, customerId, platform)
+> GetAdNegativeKeywordList200Response getAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform)
 
 Get a negative keyword list
 
@@ -2222,10 +2226,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            GetAdNegativeKeywordList200Response result = apiInstance.getAdNegativeKeywordList(listId, accountId, customerId, platform);
+            GetAdNegativeKeywordList200Response result = apiInstance.getAdNegativeKeywordList(listId, accountId, adAccountId, customerId, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#getAdNegativeKeywordList");
@@ -2245,6 +2250,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -2277,7 +2283,7 @@ public class Example {
 
 ## getAdNegativeKeywordListWithHttpInfo
 
-> ApiResponse<GetAdNegativeKeywordList200Response> getAdNegativeKeywordList getAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform)
+> ApiResponse<GetAdNegativeKeywordList200Response> getAdNegativeKeywordList getAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform)
 
 Get a negative keyword list
 
@@ -2307,10 +2313,11 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String listId = "listId_example"; // String | 
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ApiResponse<GetAdNegativeKeywordList200Response> response = apiInstance.getAdNegativeKeywordListWithHttpInfo(listId, accountId, customerId, platform);
+            ApiResponse<GetAdNegativeKeywordList200Response> response = apiInstance.getAdNegativeKeywordListWithHttpInfo(listId, accountId, adAccountId, customerId, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2332,6 +2339,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **listId** | **String**|  | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -3351,7 +3359,7 @@ ApiResponse<[**HideAdComment200Response**](HideAdComment200Response.md)>
 
 ## listAccountCallouts
 
-> ListAccountCallouts200Response listAccountCallouts(accountId, customerId)
+> ListAccountCallouts200Response listAccountCallouts(accountId, adAccountId, customerId)
 
 List account callouts
 
@@ -3379,9 +3387,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ListAccountCallouts200Response result = apiInstance.listAccountCallouts(accountId, customerId);
+            ListAccountCallouts200Response result = apiInstance.listAccountCallouts(accountId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAccountCallouts");
@@ -3400,6 +3409,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -3430,7 +3440,7 @@ public class Example {
 
 ## listAccountCalloutsWithHttpInfo
 
-> ApiResponse<ListAccountCallouts200Response> listAccountCallouts listAccountCalloutsWithHttpInfo(accountId, customerId)
+> ApiResponse<ListAccountCallouts200Response> listAccountCallouts listAccountCalloutsWithHttpInfo(accountId, adAccountId, customerId)
 
 List account callouts
 
@@ -3459,9 +3469,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ApiResponse<ListAccountCallouts200Response> response = apiInstance.listAccountCalloutsWithHttpInfo(accountId, customerId);
+            ApiResponse<ListAccountCallouts200Response> response = apiInstance.listAccountCalloutsWithHttpInfo(accountId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3482,6 +3493,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -3513,7 +3525,7 @@ ApiResponse<[**ListAccountCallouts200Response**](ListAccountCallouts200Response.
 
 ## listAccountSitelinks
 
-> ListAccountSitelinks200Response listAccountSitelinks(accountId, customerId)
+> ListAccountSitelinks200Response listAccountSitelinks(accountId, adAccountId, customerId)
 
 List account sitelinks
 
@@ -3541,9 +3553,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ListAccountSitelinks200Response result = apiInstance.listAccountSitelinks(accountId, customerId);
+            ListAccountSitelinks200Response result = apiInstance.listAccountSitelinks(accountId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAccountSitelinks");
@@ -3562,6 +3575,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -3592,7 +3606,7 @@ public class Example {
 
 ## listAccountSitelinksWithHttpInfo
 
-> ApiResponse<ListAccountSitelinks200Response> listAccountSitelinks listAccountSitelinksWithHttpInfo(accountId, customerId)
+> ApiResponse<ListAccountSitelinks200Response> listAccountSitelinks listAccountSitelinksWithHttpInfo(accountId, adAccountId, customerId)
 
 List account sitelinks
 
@@ -3621,9 +3635,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ApiResponse<ListAccountSitelinks200Response> response = apiInstance.listAccountSitelinksWithHttpInfo(accountId, customerId);
+            ApiResponse<ListAccountSitelinks200Response> response = apiInstance.listAccountSitelinksWithHttpInfo(accountId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3644,6 +3659,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -3675,7 +3691,7 @@ ApiResponse<[**ListAccountSitelinks200Response**](ListAccountSitelinks200Respons
 
 ## listAccountStructuredSnippets
 
-> ListAccountStructuredSnippets200Response listAccountStructuredSnippets(accountId, customerId)
+> ListAccountStructuredSnippets200Response listAccountStructuredSnippets(accountId, adAccountId, customerId)
 
 List account snippets
 
@@ -3703,9 +3719,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ListAccountStructuredSnippets200Response result = apiInstance.listAccountStructuredSnippets(accountId, customerId);
+            ListAccountStructuredSnippets200Response result = apiInstance.listAccountStructuredSnippets(accountId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAccountStructuredSnippets");
@@ -3724,6 +3741,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -3754,7 +3772,7 @@ public class Example {
 
 ## listAccountStructuredSnippetsWithHttpInfo
 
-> ApiResponse<ListAccountStructuredSnippets200Response> listAccountStructuredSnippets listAccountStructuredSnippetsWithHttpInfo(accountId, customerId)
+> ApiResponse<ListAccountStructuredSnippets200Response> listAccountStructuredSnippets listAccountStructuredSnippetsWithHttpInfo(accountId, adAccountId, customerId)
 
 List account snippets
 
@@ -3783,9 +3801,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ApiResponse<ListAccountStructuredSnippets200Response> response = apiInstance.listAccountStructuredSnippetsWithHttpInfo(accountId, customerId);
+            ApiResponse<ListAccountStructuredSnippets200Response> response = apiInstance.listAccountStructuredSnippetsWithHttpInfo(accountId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3806,6 +3825,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -4167,7 +4187,7 @@ ApiResponse<[**ListAdLabels200Response**](ListAdLabels200Response.md)>
 
 ## listAdNegativeKeywordLists
 
-> ListAdNegativeKeywordLists200Response listAdNegativeKeywordLists(accountId, customerId, platform)
+> ListAdNegativeKeywordLists200Response listAdNegativeKeywordLists(accountId, adAccountId, customerId, platform)
 
 List negative keyword lists
 
@@ -4195,10 +4215,11 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ListAdNegativeKeywordLists200Response result = apiInstance.listAdNegativeKeywordLists(accountId, customerId, platform);
+            ListAdNegativeKeywordLists200Response result = apiInstance.listAdNegativeKeywordLists(accountId, adAccountId, customerId, platform);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAdNegativeKeywordLists");
@@ -4217,6 +4238,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -4249,7 +4271,7 @@ public class Example {
 
 ## listAdNegativeKeywordListsWithHttpInfo
 
-> ApiResponse<ListAdNegativeKeywordLists200Response> listAdNegativeKeywordLists listAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform)
+> ApiResponse<ListAdNegativeKeywordLists200Response> listAdNegativeKeywordLists listAdNegativeKeywordListsWithHttpInfo(accountId, adAccountId, customerId, platform)
 
 List negative keyword lists
 
@@ -4278,10 +4300,11 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         String platform = "facebook"; // String | 
         try {
-            ApiResponse<ListAdNegativeKeywordLists200Response> response = apiInstance.listAdNegativeKeywordListsWithHttpInfo(accountId, customerId, platform);
+            ApiResponse<ListAdNegativeKeywordLists200Response> response = apiInstance.listAdNegativeKeywordListsWithHttpInfo(accountId, adAccountId, customerId, platform);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4302,6 +4325,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 | **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
 
@@ -5643,7 +5667,7 @@ ApiResponse<[**ListMetaBusinesses200Response**](ListMetaBusinesses200Response.md
 
 ## listTikTokAdPixels
 
-> ListTikTokAdPixels200Response listTikTokAdPixels(accountId, advertiserId, code)
+> ListTikTokAdPixels200Response listTikTokAdPixels(accountId, adAccountId, advertiserId, code)
 
 List TikTok ad pixels
 
@@ -5671,10 +5695,11 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
-        String advertiserId = "advertiserId_example"; // String | Advertiser belonging to this connection.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection.
+        String advertiserId = "advertiserId_example"; // String | Alias of adAccountId, kept for existing callers
         String code = "code_example"; // String | Filter by a Pixel Code.
         try {
-            ListTikTokAdPixels200Response result = apiInstance.listTikTokAdPixels(accountId, advertiserId, code);
+            ListTikTokAdPixels200Response result = apiInstance.listTikTokAdPixels(accountId, adAccountId, advertiserId, code);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listTikTokAdPixels");
@@ -5693,7 +5718,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount ID. | |
-| **advertiserId** | **String**| Advertiser belonging to this connection. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. | [optional] |
+| **advertiserId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **code** | **String**| Filter by a Pixel Code. | [optional] |
 
 ### Return type
@@ -5723,7 +5749,7 @@ public class Example {
 
 ## listTikTokAdPixelsWithHttpInfo
 
-> ApiResponse<ListTikTokAdPixels200Response> listTikTokAdPixels listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code)
+> ApiResponse<ListTikTokAdPixels200Response> listTikTokAdPixels listTikTokAdPixelsWithHttpInfo(accountId, adAccountId, advertiserId, code)
 
 List TikTok ad pixels
 
@@ -5752,10 +5778,11 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount ID.
-        String advertiserId = "advertiserId_example"; // String | Advertiser belonging to this connection.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection.
+        String advertiserId = "advertiserId_example"; // String | Alias of adAccountId, kept for existing callers
         String code = "code_example"; // String | Filter by a Pixel Code.
         try {
-            ApiResponse<ListTikTokAdPixels200Response> response = apiInstance.listTikTokAdPixelsWithHttpInfo(accountId, advertiserId, code);
+            ApiResponse<ListTikTokAdPixels200Response> response = apiInstance.listTikTokAdPixelsWithHttpInfo(accountId, adAccountId, advertiserId, code);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -5776,7 +5803,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount ID. | |
-| **advertiserId** | **String**| Advertiser belonging to this connection. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (TikTok advertiser id, digits only). Defaults to the first advertiser on the connection. | [optional] |
+| **advertiserId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **code** | **String**| Filter by a Pixel Code. | [optional] |
 
 ### Return type

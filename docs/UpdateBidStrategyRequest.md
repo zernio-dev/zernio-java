@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Google ads SocialAccount id. |  |
-|**customerId** | **String** | Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. |  [optional] |
+|**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. |  [optional] |
+|**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 |**targetCpa** | **BigDecimal** |  |  [optional] |

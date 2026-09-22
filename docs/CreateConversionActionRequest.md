@@ -8,7 +8,8 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | SocialAccount ID. Must be a &#x60;googleads&#x60; account. |  |
-|**customerId** | **String** | Google Ads customer id (digits only). Resolved automatically when the connection has exactly one accessible customer. |  [optional] |
+|**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Resolved automatically when the connection has exactly one accessible customer. |  [optional] |
+|**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 |**name** | **String** |  |  |
 |**type** | [**TypeEnum**](#TypeEnum) | Only WEBPAGE is supported for creation today. |  |
 |**defaultValue** | **BigDecimal** | Default conversion value used when an event doesn&#39;t carry its own value. |  [optional] |

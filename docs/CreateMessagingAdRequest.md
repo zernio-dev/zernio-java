@@ -53,7 +53,8 @@
 |**dsaPayor** | **String** | Legal entity that pays for the ad. Can differ from &#x60;dsaBeneficiary&#x60; (for example, an agency paying for a client&#39;s ads). Same rules as &#x60;dsaBeneficiary&#x60;: required for EU targeting unless the ad account has a default payor.  |  [optional] |
 |**regionalRegulatedCategories** | **List&lt;String&gt;** | Meta only. Regional regulation categories required when the ad set targets certain countries (e.g. BRAZIL_REGULATION, SINGAPORE_UNIVERSAL, TAIWAN_UNIVERSAL, THAILAND_UNIVERSAL, AUSTRALIA_FINSERV, INDIA_FINSERV, TAIWAN_FINSERV). Forwarded to the ad set. |  [optional] |
 |**regionalRegulationIdentities** | **Map&lt;String, Integer&gt;** | Meta only. Beneficiary/payer entity IDs required alongside regionalRegulatedCategories. Values are numeric IDs from the advertiser&#39;s Meta verification/authorization setup. Keys depend on the declared category: BRAZIL_REGULATION and THAILAND_UNIVERSAL use universal_beneficiary / universal_payer; SINGAPORE_UNIVERSAL uses singapore_universal_beneficiary / singapore_universal_payer; TAIWAN_UNIVERSAL uses taiwan_universal_beneficiary / taiwan_universal_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary / taiwan_finserv_payer; AUSTRALIA_FINSERV uses australia_finserv_beneficiary / australia_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer. Both beneficiary and payer must be included. If omitted and the advertiser has set defaults in Meta Ads Manager advertising settings, Meta auto-fills them.  |  [optional] |
-|**destination** | [**DestinationEnum**](#DestinationEnum) | Where the conversation opens when the ad is tapped. |  |
+|**destination** | [**DestinationEnum**](#DestinationEnum) | Where the conversation opens when the ad is tapped. Set this OR &#x60;destinations&#x60;, not both. |  [optional] |
+|**destinations** | [**List&lt;DestinationsEnum&gt;**](#List&lt;DestinationsEnum&gt;) | Two or three messaging apps on ONE ad set, like Ads Manager&#39;s \&quot;all messaging apps\&quot;: the ad set gets Meta&#39;s combined destination_type (e.g. MESSAGING_INSTAGRAM_DIRECT_MESSENGER_WHATSAPP) and the creative one CTA per app, so Meta opens the app each viewer is likeliest to answer from. WhatsApp in the list still needs the Page paired with a WhatsApp Business number. With &#x60;adSetId&#x60;, the existing ad set must already use that combined destination_type. Set this OR &#x60;destination&#x60;, not both. |  [optional] |
 
 
 
@@ -151,6 +152,16 @@
 
 
 ## Enum: DestinationEnum
+
+| Name | Value |
+|---- | -----|
+| WHATSAPP | &quot;whatsapp&quot; |
+| MESSENGER | &quot;messenger&quot; |
+| INSTAGRAM_DIRECT | &quot;instagram_direct&quot; |
+
+
+
+## Enum: List&lt;DestinationsEnum&gt;
 
 | Name | Value |
 |---- | -----|

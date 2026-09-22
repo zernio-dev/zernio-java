@@ -831,7 +831,7 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 
 ## getAdsSearchTerms
 
-> GetAdsSearchTerms200Response getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
+> GetAdsSearchTerms200Response getAdsSearchTerms(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
 
 Google Ads search terms report
 
@@ -859,7 +859,8 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
@@ -867,7 +868,7 @@ public class Example {
         String adGroupId = "adGroupId_example"; // String | Alias of adSetId, kept for existing callers.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            GetAdsSearchTerms200Response result = apiInstance.getAdsSearchTerms(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+            GetAdsSearchTerms200Response result = apiInstance.getAdsSearchTerms(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#getAdsSearchTerms");
@@ -886,7 +887,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 | **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
@@ -921,7 +923,7 @@ public class Example {
 
 ## getAdsSearchTermsWithHttpInfo
 
-> ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTerms getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
+> ApiResponse<GetAdsSearchTerms200Response> getAdsSearchTerms getAdsSearchTermsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken)
 
 Google Ads search terms report
 
@@ -950,7 +952,8 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         String campaignId = "campaignId_example"; // String | Numeric Google campaign id filter.
@@ -958,7 +961,7 @@ public class Example {
         String adGroupId = "adGroupId_example"; // String | Alias of adSetId, kept for existing callers.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.getAdsSearchTermsWithHttpInfo(accountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
+            ApiResponse<GetAdsSearchTerms200Response> response = apiInstance.getAdsSearchTermsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, campaignId, adSetId, adGroupId, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -979,7 +982,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 | **campaignId** | **String**| Numeric Google campaign id filter. | [optional] |
@@ -1187,7 +1191,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 
 ## listLocalServicesLeadConversations
 
-> ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken)
+> ListLocalServicesLeadConversations200Response listLocalServicesLeadConversations(leadId, accountId, adAccountId, customerId, pageToken)
 
 List lead conversations
 
@@ -1216,10 +1220,11 @@ public class Example {
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String leadId = "leadId_example"; // String | Numeric lead id from /v1/ads/local-services/leads.
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ListLocalServicesLeadConversations200Response result = apiInstance.listLocalServicesLeadConversations(leadId, accountId, customerId, pageToken);
+            ListLocalServicesLeadConversations200Response result = apiInstance.listLocalServicesLeadConversations(leadId, accountId, adAccountId, customerId, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeadConversations");
@@ -1239,7 +1244,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **leadId** | **String**| Numeric lead id from /v1/ads/local-services/leads. | |
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
 
 ### Return type
@@ -1269,7 +1275,7 @@ public class Example {
 
 ## listLocalServicesLeadConversationsWithHttpInfo
 
-> ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversations listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken)
+> ApiResponse<ListLocalServicesLeadConversations200Response> listLocalServicesLeadConversations listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, adAccountId, customerId, pageToken)
 
 List lead conversations
 
@@ -1299,10 +1305,11 @@ public class Example {
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String leadId = "leadId_example"; // String | Numeric lead id from /v1/ads/local-services/leads.
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, customerId, pageToken);
+            ApiResponse<ListLocalServicesLeadConversations200Response> response = apiInstance.listLocalServicesLeadConversationsWithHttpInfo(leadId, accountId, adAccountId, customerId, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1324,7 +1331,8 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **leadId** | **String**| Numeric lead id from /v1/ads/local-services/leads. | |
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **pageToken** | **String**| Cursor from paging.nextPageToken of the previous page. | [optional] |
 
 ### Return type
@@ -1355,7 +1363,7 @@ ApiResponse<[**ListLocalServicesLeadConversations200Response**](ListLocalService
 
 ## listLocalServicesLeads
 
-> ListLocalServicesLeads200Response listLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
+> ListLocalServicesLeads200Response listLocalServicesLeads(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
 
 Google Local Services Ads leads
 
@@ -1383,7 +1391,8 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Leads created at/after this day.
         LocalDate toDate = LocalDate.now(); // LocalDate | Leads created at/before this day.
         String leadType = "PHONE_CALL"; // String | 
@@ -1391,7 +1400,7 @@ public class Example {
         Boolean chargedOnly = true; // Boolean | true = only leads Google charged for.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ListLocalServicesLeads200Response result = apiInstance.listLocalServicesLeads(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            ListLocalServicesLeads200Response result = apiInstance.listLocalServicesLeads(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#listLocalServicesLeads");
@@ -1410,7 +1419,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Leads created at/after this day. | [optional] |
 | **toDate** | **LocalDate**| Leads created at/before this day. | [optional] |
 | **leadType** | **String**|  | [optional] [enum: PHONE_CALL, MESSAGE, BOOKING] |
@@ -1445,7 +1455,7 @@ public class Example {
 
 ## listLocalServicesLeadsWithHttpInfo
 
-> ApiResponse<ListLocalServicesLeads200Response> listLocalServicesLeads listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
+> ApiResponse<ListLocalServicesLeads200Response> listLocalServicesLeads listLocalServicesLeadsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken)
 
 Google Local Services Ads leads
 
@@ -1474,7 +1484,8 @@ public class Example {
 
         AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Leads created at/after this day.
         LocalDate toDate = LocalDate.now(); // LocalDate | Leads created at/before this day.
         String leadType = "PHONE_CALL"; // String | 
@@ -1482,7 +1493,7 @@ public class Example {
         Boolean chargedOnly = true; // Boolean | true = only leads Google charged for.
         String pageToken = "pageToken_example"; // String | Cursor from paging.nextPageToken of the previous page.
         try {
-            ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.listLocalServicesLeadsWithHttpInfo(accountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
+            ApiResponse<ListLocalServicesLeads200Response> response = apiInstance.listLocalServicesLeadsWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate, leadType, leadStatus, chargedOnly, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1503,7 +1514,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Leads created at/after this day. | [optional] |
 | **toDate** | **LocalDate**| Leads created at/before this day. | [optional] |
 | **leadType** | **String**|  | [optional] [enum: PHONE_CALL, MESSAGE, BOOKING] |
@@ -1539,11 +1551,11 @@ ApiResponse<[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Res
 
 ## queryAdInsights
 
-> QueryAdInsights200Response queryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> QueryAdInsights200Response queryAdInsights(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query
 
-Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
 
 ### Example
 
@@ -1569,7 +1581,8 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
         String objectId = "objectId_example"; // String | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id).
         String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
-        String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
+        String adAccountId = "adAccountId_example"; // String | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
@@ -1586,7 +1599,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            QueryAdInsights200Response result = apiInstance.queryAdInsights(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdInsightsApi#queryAdInsights");
@@ -1607,7 +1620,8 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
 | **objectId** | **String**| Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional] |
 | **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
-| **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
+| **adAccountId** | **String**| Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |
@@ -1651,11 +1665,11 @@ public class Example {
 
 ## queryAdInsightsWithHttpInfo
 
-> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
+> ApiResponse<QueryAdInsights200Response> queryAdInsights queryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after)
 
 Flexible live insights query
 
-Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;customerId&#x60; is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
+Live, flexible insights query. The account&#39;s platform picks the contract:  **Meta (facebook/instagram)**: forwards caller-chosen &#x60;fields&#x60;, &#x60;breakdowns&#x60; and &#x60;filtering&#x60; to any Meta insights node and returns Meta&#39;s rows verbatim. &#x60;objectId&#x60; (required) selects the node; &#x60;level&#x60; sets row granularity. Semantic validation is Meta&#39;s: an unknown field or invalid breakdown combination returns a 400 carrying Meta&#39;s message. For long ranges or agency-scale accounts prefer the async variant (POST /v1/ads/insights/reports).  **Google Ads (googleads)**: raw GAQL passthrough. Send any read-only GAQL SELECT via &#x60;query&#x60; (campaign/keyword/search-term/geo/demographic/asset/shopping resources, &#x60;change_event&#x60;, any &#x60;segments.*&#x60;) and rows come back verbatim (camelCase, counters as strings). Results are paged at a fixed 10,000 rows; follow &#x60;paging.nextPageToken&#x60; with &#x60;pageToken&#x60;. &#x60;adAccountId&#x60; (alias &#x60;customerId&#x60;) is only needed when the connection has several Google Ads accounts. Semantic validation is Google&#39;s: an invalid query returns a 400 carrying Google&#39;s message (note: selecting &#x60;segments.date&#x60; requires a finite date filter). 
 
 ### Example
 
@@ -1682,7 +1696,8 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract.
         String objectId = "objectId_example"; // String | Meta only (required there): insights node (act_<n>, campaign id, ad set id or ad id).
         String query = "query_example"; // String | Google only (required there): the GAQL SELECT statement to run.
-        String customerId = "customerId_example"; // String | Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts.
+        String adAccountId = "adAccountId_example"; // String | Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         String pageToken = "pageToken_example"; // String | Google only: cursor from paging.nextPageToken of the previous page.
         String level = "ad"; // String | Row granularity
         String fields = "fields_example"; // String | Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted = Meta's default set.
@@ -1699,7 +1714,7 @@ public class Example {
         Integer limit = 25; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
-            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, query, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
+            ApiResponse<QueryAdInsights200Response> response = apiInstance.queryAdInsightsWithHttpInfo(accountId, objectId, query, adAccountId, customerId, pageToken, level, fields, breakdowns, actionBreakdowns, actionAttributionWindows, actionReportTime, useUnifiedAttributionSetting, filtering, datePreset, fromDate, toDate, timeIncrement, limit, after);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1722,7 +1737,8 @@ public class Example {
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant); its platform selects the Meta or Google contract. | |
 | **objectId** | **String**| Meta only (required there): insights node (act_&lt;n&gt;, campaign id, ad set id or ad id). | [optional] |
 | **query** | **String**| Google only (required there): the GAQL SELECT statement to run. | [optional] |
-| **customerId** | **String**| Google only: numeric customer id (no dashes) when the connection has several Google Ads accounts. | [optional] |
+| **adAccountId** | **String**| Google only: platform ad account ID (Google customer ID, digits only) when the connection has several Google Ads accounts. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **pageToken** | **String**| Google only: cursor from paging.nextPageToken of the previous page. | [optional] |
 | **level** | **String**| Row granularity | [optional] [enum: ad, adset, campaign, account] |
 | **fields** | **String**| Comma-separated Graph insights fields (e.g. spend,impressions,frequency,website_purchase_roas). Omitted &#x3D; Meta&#39;s default set. | [optional] |

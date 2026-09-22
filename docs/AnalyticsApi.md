@@ -923,7 +923,7 @@ ApiResponse<[**GetDailyMetrics200Response**](GetDailyMetrics200Response.md)>
 
 ## getFacebookPageInsights
 
-> InstagramAccountInsightsResponse getFacebookPageInsights(accountId, metrics, since, until, metricType)
+> InstagramAccountInsightsResponse getFacebookPageInsights(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get Facebook Page insights
 
@@ -952,11 +952,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the connected Facebook Page.
         String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\".  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \"micro_amount\" plus an ISO 4217 \"currency\". monetization_approximate_earnings returns a bare number per day, so its unit is always \"unspecified\" and its \"currency\" is always null. The two are on different scales and are not comparable to each other. Both keep their daily \"values\" on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \"total\" is their sum. Meta does not document whether a bucket carries that day's earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \"total\" against the Page's own Meta export before relying on it; the daily \"values\" are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \"metrics\": Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \"unavailableMetrics\" covers the narrower case where Meta returned no bucket for the metric at all (\"no_data\") or rejected the request outright, and the metric is then omitted from \"metrics\" rather than reported as 0. 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals only. \"time_series\" returns daily values in the \"values\" array. 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getFacebookPageInsights(accountId, metrics, since, until, metricType);
+            InstagramAccountInsightsResponse result = apiInstance.getFacebookPageInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getFacebookPageInsights");
@@ -976,8 +978,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the connected Facebook Page. | |
 | **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -1005,7 +1009,7 @@ public class Example {
 
 ## getFacebookPageInsightsWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getFacebookPageInsights getFacebookPageInsightsWithHttpInfo(accountId, metrics, since, until, metricType)
+> ApiResponse<InstagramAccountInsightsResponse> getFacebookPageInsights getFacebookPageInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get Facebook Page insights
 
@@ -1035,11 +1039,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the connected Facebook Page.
         String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\".  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \"micro_amount\" plus an ISO 4217 \"currency\". monetization_approximate_earnings returns a bare number per day, so its unit is always \"unspecified\" and its \"currency\" is always null. The two are on different scales and are not comparable to each other. Both keep their daily \"values\" on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \"total\" is their sum. Meta does not document whether a bucket carries that day's earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \"total\" against the Page's own Meta export before relying on it; the daily \"values\" are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \"metrics\": Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \"unavailableMetrics\" covers the narrower case where Meta returned no bucket for the metric at all (\"no_data\") or rejected the request outright, and the metric is then omitted from \"metrics\" rather than reported as 0. 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals only. \"time_series\" returns daily values in the \"values\" array. 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getFacebookPageInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getFacebookPageInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1061,8 +1067,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the connected Facebook Page. | |
 | **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;page_media_view,page_post_engagements,page_follows,followers_gained,followers_lost\&quot;.  Live Meta metrics (current names, post-Nov-2025):   - page_media_view       (replaces deprecated page_impressions)   - page_views_total   - page_post_engagements   - page_video_views   - page_video_view_time   - page_follows          (replaces deprecated page_fans)  Zernio-synthesized from daily follower snapshots (filling the Nov-2025 gap left by the page_fan_adds / page_fan_removes deprecation):   - followers_gained   - followers_lost  Monetization (opt-in, not in the defaults):   - content_monetization_earnings   - monetization_approximate_earnings  Each monetization metric is fetched with its own separate Graph call, so requesting both adds two calls. Values are approximate and Meta restates them after the fact.  content_monetization_earnings returns an object per day and always carries unit \&quot;micro_amount\&quot; plus an ISO 4217 \&quot;currency\&quot;. monetization_approximate_earnings returns a bare number per day, so its unit is always \&quot;unspecified\&quot; and its \&quot;currency\&quot; is always null. The two are on different scales and are not comparable to each other. Both keep their daily \&quot;values\&quot; on every metricType and are never rescaled by Zernio.  Earnings here are Page-level daily buckets and \&quot;total\&quot; is their sum. Meta does not document whether a bucket carries that day&#39;s earnings or a running total, and every Page measured so far earned exactly 0, so reconcile \&quot;total\&quot; against the Page&#39;s own Meta export before relying on it; the daily \&quot;values\&quot; are always returned for that purpose. Per-post lifetime earnings are served by GET /v1/analytics/facebook/post-earnings.  A Page that is not enrolled in monetization, or that earned nothing, returns normal daily buckets of 0 in \&quot;metrics\&quot;: Meta does not distinguish the two, so a 0 total here does NOT mean the Page is enrolled. \&quot;unavailableMetrics\&quot; covers the narrower case where Meta returned no bucket for the metric at all (\&quot;no_data\&quot;) or rejected the request outright, and the metric is then omitted from \&quot;metrics\&quot; rather than reported as 0.  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals only. \&quot;time_series\&quot; returns daily values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -1571,7 +1579,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 
 ## getGoogleBusinessPerformance
 
-> GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(accountId, metrics, startDate, endDate)
+> GetGoogleBusinessPerformance200Response getGoogleBusinessPerformance(accountId, metrics, fromDate, toDate, startDate, endDate)
 
 Get Google Business Profile performance metrics
 
@@ -1600,10 +1608,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
         String metrics = "metrics_example"; // String | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            GetGoogleBusinessPerformance200Response result = apiInstance.getGoogleBusinessPerformance(accountId, metrics, startDate, endDate);
+            GetGoogleBusinessPerformance200Response result = apiInstance.getGoogleBusinessPerformance(accountId, metrics, fromDate, toDate, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessPerformance");
@@ -1623,8 +1633,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
 | **metrics** | **String**| Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  | [optional] |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -1653,7 +1665,7 @@ public class Example {
 
 ## getGoogleBusinessPerformanceWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformance getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate)
+> ApiResponse<GetGoogleBusinessPerformance200Response> getGoogleBusinessPerformance getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, fromDate, toDate, startDate, endDate)
 
 Get Google Business Profile performance metrics
 
@@ -1683,10 +1695,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
         String metrics = "metrics_example"; // String | Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            ApiResponse<GetGoogleBusinessPerformance200Response> response = apiInstance.getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, startDate, endDate);
+            ApiResponse<GetGoogleBusinessPerformance200Response> response = apiInstance.getGoogleBusinessPerformanceWithHttpInfo(accountId, metrics, fromDate, toDate, startDate, endDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1708,8 +1722,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
 | **metrics** | **String**| Comma-separated metric names. Defaults to all available metrics. Valid values: BUSINESS_IMPRESSIONS_DESKTOP_MAPS, BUSINESS_IMPRESSIONS_DESKTOP_SEARCH, BUSINESS_IMPRESSIONS_MOBILE_MAPS, BUSINESS_IMPRESSIONS_MOBILE_SEARCH, BUSINESS_CONVERSATIONS, BUSINESS_DIRECTION_REQUESTS, CALL_CLICKS, WEBSITE_CLICKS, BUSINESS_BOOKINGS, BUSINESS_FOOD_ORDERS, BUSINESS_FOOD_MENU_CLICKS  | [optional] |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. Max 18 months back. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -1903,7 +1919,7 @@ ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSe
 
 ## getInstagramAccountInsights
 
-> InstagramAccountInsightsResponse getInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown)
+> InstagramAccountInsightsResponse getInstagramAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown)
 
 Get Instagram insights
 
@@ -1932,12 +1948,14 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
         String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"reach,views,accounts_engaged,total_interactions\". Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \"reach\" supports metricType=time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead. 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
         String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getInstagramAccountInsights(accountId, metrics, since, until, metricType, breakdown);
+            InstagramAccountInsightsResponse result = apiInstance.getInstagramAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getInstagramAccountInsights");
@@ -1957,8 +1975,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
 | **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead.  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
 | **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
 
@@ -1988,7 +2008,7 @@ public class Example {
 
 ## getInstagramAccountInsightsWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getInstagramAccountInsights getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown)
+> ApiResponse<InstagramAccountInsightsResponse> getInstagramAccountInsights getInstagramAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown)
 
 Get Instagram insights
 
@@ -2018,12 +2038,14 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
         String metrics = "metrics_example"; // String | Comma-separated list of metrics. Defaults to \"reach,views,accounts_engaged,total_interactions\". Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \"reach\" supports metricType=time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead. 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
         String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType, breakdown);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2045,8 +2067,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
 | **metrics** | **String**| Comma-separated list of metrics. Defaults to \&quot;reach,views,accounts_engaged,total_interactions\&quot;. Valid metrics: reach, views, accounts_engaged, total_interactions, comments, likes, saves, shares, replies, reposts, follows_and_unfollows, profile_links_taps. Note: only \&quot;reach\&quot; supports metricType&#x3D;time_series. All other metrics (including follows_and_unfollows) are total_value only. This is an Instagram Graph API limitation, not a Zernio limitation - the IG API does not return time-series data for these metrics. For a daily running follower count, use /v1/analytics/instagram/follower-history instead.  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
 | **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
 
@@ -2243,7 +2267,7 @@ ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md
 
 ## getInstagramFollowerHistory
 
-> InstagramAccountInsightsResponse getInstagramFollowerHistory(accountId, metrics, since, until, metricType)
+> InstagramAccountInsightsResponse getInstagramFollowerHistory(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get Instagram follower history
 
@@ -2272,11 +2296,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"follower_count,followers_gained,followers_lost\".   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" returns aggregated totals (latest for follower_count, sum for gained/lost). \"time_series\" returns per-day values in the \"values\" array. 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getInstagramFollowerHistory(accountId, metrics, since, until, metricType);
+            InstagramAccountInsightsResponse result = apiInstance.getInstagramFollowerHistory(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getInstagramFollowerHistory");
@@ -2296,8 +2322,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;follower_count,followers_gained,followers_lost\&quot;.   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; returns aggregated totals (latest for follower_count, sum for gained/lost). \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -2325,7 +2353,7 @@ public class Example {
 
 ## getInstagramFollowerHistoryWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getInstagramFollowerHistory getInstagramFollowerHistoryWithHttpInfo(accountId, metrics, since, until, metricType)
+> ApiResponse<InstagramAccountInsightsResponse> getInstagramFollowerHistory getInstagramFollowerHistoryWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get Instagram follower history
 
@@ -2355,11 +2383,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"follower_count,followers_gained,followers_lost\".   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" returns aggregated totals (latest for follower_count, sum for gained/lost). \"time_series\" returns per-day values in the \"values\" array. 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramFollowerHistoryWithHttpInfo(accountId, metrics, since, until, metricType);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramFollowerHistoryWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2381,8 +2411,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;follower_count,followers_gained,followers_lost\&quot;.   - follower_count   : per-day raw follower count   - followers_gained : sum of positive daily deltas   - followers_lost   : sum of absolute negative daily deltas  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; returns aggregated totals (latest for follower_count, sum for gained/lost). \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -2411,7 +2443,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 ## getLinkedInAggregateAnalytics
 
-> GetLinkedInAggregateAnalytics200Response getLinkedInAggregateAnalytics(accountId, aggregation, startDate, endDate, metrics)
+> GetLinkedInAggregateAnalytics200Response getLinkedInAggregateAnalytics(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics)
 
 Get LinkedIn aggregate stats
 
@@ -2440,11 +2472,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The ID of the LinkedIn personal account
         String aggregation = "TOTAL"; // String | TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY.
-        LocalDate startDate = LocalDate.parse("2024-01-01"); // LocalDate | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics.
-        LocalDate endDate = LocalDate.parse("2024-01-31"); // LocalDate | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted.
+        LocalDate fromDate = LocalDate.parse("2024-01-01"); // LocalDate | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics.
+        LocalDate toDate = LocalDate.parse("2024-01-31"); // LocalDate | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted.
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metrics = "IMPRESSION,REACTION,COMMENT,POST_SAVE,POST_SEND"; // String | Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all.
         try {
-            GetLinkedInAggregateAnalytics200Response result = apiInstance.getLinkedInAggregateAnalytics(accountId, aggregation, startDate, endDate, metrics);
+            GetLinkedInAggregateAnalytics200Response result = apiInstance.getLinkedInAggregateAnalytics(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getLinkedInAggregateAnalytics");
@@ -2464,8 +2498,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The ID of the LinkedIn personal account | |
 | **aggregation** | **String**| TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY. | [optional] [default to TOTAL] [enum: TOTAL, DAILY] |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metrics** | **String**| Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all. | [optional] |
 
 ### Return type
@@ -2494,7 +2530,7 @@ public class Example {
 
 ## getLinkedInAggregateAnalyticsWithHttpInfo
 
-> ApiResponse<GetLinkedInAggregateAnalytics200Response> getLinkedInAggregateAnalytics getLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, startDate, endDate, metrics)
+> ApiResponse<GetLinkedInAggregateAnalytics200Response> getLinkedInAggregateAnalytics getLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics)
 
 Get LinkedIn aggregate stats
 
@@ -2524,11 +2560,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The ID of the LinkedIn personal account
         String aggregation = "TOTAL"; // String | TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY.
-        LocalDate startDate = LocalDate.parse("2024-01-01"); // LocalDate | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics.
-        LocalDate endDate = LocalDate.parse("2024-01-31"); // LocalDate | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted.
+        LocalDate fromDate = LocalDate.parse("2024-01-01"); // LocalDate | Start date (YYYY-MM-DD). If omitted, returns lifetime analytics.
+        LocalDate toDate = LocalDate.parse("2024-01-31"); // LocalDate | End date (YYYY-MM-DD, exclusive). Defaults to today if omitted.
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metrics = "IMPRESSION,REACTION,COMMENT,POST_SAVE,POST_SEND"; // String | Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all.
         try {
-            ApiResponse<GetLinkedInAggregateAnalytics200Response> response = apiInstance.getLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, startDate, endDate, metrics);
+            ApiResponse<GetLinkedInAggregateAnalytics200Response> response = apiInstance.getLinkedInAggregateAnalyticsWithHttpInfo(accountId, aggregation, fromDate, toDate, startDate, endDate, metrics);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2550,8 +2588,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The ID of the LinkedIn personal account | |
 | **aggregation** | **String**| TOTAL (default, lifetime totals) or DAILY (time series). MEMBERS_REACHED not available with DAILY. | [optional] [default to TOTAL] [enum: TOTAL, DAILY] |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). If omitted, returns lifetime analytics. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD, exclusive). Defaults to today if omitted. | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metrics** | **String**| Comma-separated metrics: IMPRESSION, MEMBERS_REACHED, REACTION, COMMENT, RESHARE, POST_SAVE, POST_SEND. Omit for all. | [optional] |
 
 ### Return type
@@ -2581,7 +2621,7 @@ ApiResponse<[**GetLinkedInAggregateAnalytics200Response**](GetLinkedInAggregateA
 
 ## getLinkedInOrgAggregateAnalytics
 
-> InstagramAccountInsightsResponse getLinkedInOrgAggregateAnalytics(accountId, metrics, since, until, metricType)
+> InstagramAccountInsightsResponse getLinkedInOrgAggregateAnalytics(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get LinkedIn org analytics
 
@@ -2610,11 +2650,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the LinkedIn organization account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\".  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getLinkedInOrgAggregateAnalytics(accountId, metrics, since, until, metricType);
+            InstagramAccountInsightsResponse result = apiInstance.getLinkedInOrgAggregateAnalytics(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getLinkedInOrgAggregateAnalytics");
@@ -2634,8 +2676,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the LinkedIn organization account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\&quot;.  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**|  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -2665,7 +2709,7 @@ public class Example {
 
 ## getLinkedInOrgAggregateAnalyticsWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getLinkedInOrgAggregateAnalytics getLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, since, until, metricType)
+> ApiResponse<InstagramAccountInsightsResponse> getLinkedInOrgAggregateAnalytics getLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get LinkedIn org analytics
 
@@ -2695,11 +2739,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the LinkedIn organization account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\".  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, since, until, metricType);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getLinkedInOrgAggregateAnalyticsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2721,8 +2767,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the LinkedIn organization account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;impressions,clicks,engagement_rate,organic_followers_gained,followers_gained,followers_lost\&quot;.  Share statistics (support both total_value and time_series):   - impressions   - unique_impressions   - clicks   - likes   - comments   - shares   - engagement_rate       (0..1, LinkedIn-computed)  Follower-gain statistics (support total_value and time_series):   - organic_followers_gained   (per-day organic gains for time_series; sum of organic gains over the range for total_value)   - paid_followers_gained      (per-day paid gains for time_series; sum of paid gains over the range for total_value)  Page-view statistics (total_value ONLY - LinkedIn platform limit):   - page_views_total   - page_views_overview   - page_views_careers   - page_views_jobs   - page_views_life  Zernio-synthesized from daily follower snapshots:   - followers_gained   - followers_lost  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**|  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -3403,7 +3451,7 @@ ApiResponse<[**GetPostingFrequency200Response**](GetPostingFrequency200Response.
 
 ## getTikTokAccountInsights
 
-> InstagramAccountInsightsResponse getTikTokAccountInsights(accountId, metrics, since, until, metricType)
+> InstagramAccountInsightsResponse getTikTokAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get TikTok account-level insights
 
@@ -3432,11 +3480,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the TikTok account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"follower_count,likes_count,video_count,followers_gained,followers_lost\".  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas) 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" returns the latest cumulative counter value. \"time_series\" returns daily values joined from AccountStats snapshots. 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getTikTokAccountInsights(accountId, metrics, since, until, metricType);
+            InstagramAccountInsightsResponse result = apiInstance.getTikTokAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getTikTokAccountInsights");
@@ -3456,8 +3506,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the TikTok account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;follower_count,likes_count,video_count,followers_gained,followers_lost\&quot;.  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas)  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; returns the latest cumulative counter value. \&quot;time_series\&quot; returns daily values joined from AccountStats snapshots.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -3486,7 +3538,7 @@ public class Example {
 
 ## getTikTokAccountInsightsWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getTikTokAccountInsights getTikTokAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType)
+> ApiResponse<InstagramAccountInsightsResponse> getTikTokAccountInsights getTikTokAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get TikTok account-level insights
 
@@ -3516,11 +3568,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the TikTok account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"follower_count,likes_count,video_count,followers_gained,followers_lost\".  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas) 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today.
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" returns the latest cumulative counter value. \"time_series\" returns daily values joined from AccountStats snapshots. 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getTikTokAccountInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getTikTokAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3542,8 +3596,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the TikTok account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;follower_count,likes_count,video_count,followers_gained,followers_lost\&quot;.  Live from /v2/user/info/ (requires user.info.stats scope):   - follower_count  (cumulative; time series joined from AccountStats)   - following_count (cumulative; time series joined from AccountStats.metadata)   - likes_count     (cumulative; time series joined from AccountStats.metadata)   - video_count     (cumulative; time series joined from AccountStats.metadata)  Zernio-synthesized:   - followers_gained  (sum of positive daily follower deltas)   - followers_lost    (sum of absolute negative daily deltas)  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; returns the latest cumulative counter value. \&quot;time_series\&quot; returns daily values joined from AccountStats snapshots.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -3573,7 +3629,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 ## getYouTubeChannelInsights
 
-> InstagramAccountInsightsResponse getYouTubeChannelInsights(accountId, metrics, since, until, metricType)
+> InstagramAccountInsightsResponse getYouTubeChannelInsights(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get YouTube channel insights
 
@@ -3602,11 +3658,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"views,estimatedMinutesWatched,subscribersGained,subscribersLost\".  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value. 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value. 
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals. \"time_series\" returns per-day values in the \"values\" array. 
         try {
-            InstagramAccountInsightsResponse result = apiInstance.getYouTubeChannelInsights(accountId, metrics, since, until, metricType);
+            InstagramAccountInsightsResponse result = apiInstance.getYouTubeChannelInsights(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getYouTubeChannelInsights");
@@ -3626,8 +3684,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;views,estimatedMinutesWatched,subscribersGained,subscribersLost\&quot;.  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals. \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -3658,7 +3718,7 @@ public class Example {
 
 ## getYouTubeChannelInsightsWithHttpInfo
 
-> ApiResponse<InstagramAccountInsightsResponse> getYouTubeChannelInsights getYouTubeChannelInsightsWithHttpInfo(accountId, metrics, since, until, metricType)
+> ApiResponse<InstagramAccountInsightsResponse> getYouTubeChannelInsights getYouTubeChannelInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType)
 
 Get YouTube channel insights
 
@@ -3688,11 +3748,13 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account.
         String metrics = "metrics_example"; // String | Comma-separated list. Defaults to \"views,estimatedMinutesWatched,subscribersGained,subscribersLost\".  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost 
-        LocalDate since = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate until = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value. 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response's dateRange.until field reflects your requested value. 
+        LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals. \"time_series\" returns per-day values in the \"values\" array. 
         try {
-            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getYouTubeChannelInsightsWithHttpInfo(accountId, metrics, since, until, metricType);
+            ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getYouTubeChannelInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3714,8 +3776,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account. | |
 | **metrics** | **String**| Comma-separated list. Defaults to \&quot;views,estimatedMinutesWatched,subscribersGained,subscribersLost\&quot;.  Live YouTube Analytics v2 metrics:   - views   - estimatedMinutesWatched   - averageViewDuration          (ratio - weighted mean computed across days)   - subscribersGained   - subscribersLost  Zernio-synthesized from daily follower snapshots (cross-platform parity):   - followers_gained   - followers_lost  | [optional] |
-| **since** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **until** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to today. YouTube Analytics has a 2-3 day delay, so the fetch is internally clamped to 3 days ago; any requested range extending beyond that returns zero values for the tail days. The response&#39;s dateRange.until field reflects your requested value.  | [optional] |
+| **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals. \&quot;time_series\&quot; returns per-day values in the \&quot;values\&quot; array.  | [optional] [default to total_value] [enum: time_series, total_value] |
 
 ### Return type
@@ -3747,7 +3811,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 ## getYouTubeDailyViews
 
-> YouTubeDailyViewsResponse getYouTubeDailyViews(videoId, accountId, startDate, endDate)
+> YouTubeDailyViewsResponse getYouTubeDailyViews(videoId, accountId, fromDate, toDate, startDate, endDate)
 
 Get YouTube daily views
 
@@ -3776,10 +3840,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
         String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews. 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews. 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            YouTubeDailyViewsResponse result = apiInstance.getYouTubeDailyViews(videoId, accountId, startDate, endDate);
+            YouTubeDailyViewsResponse result = apiInstance.getYouTubeDailyViews(videoId, accountId, fromDate, toDate, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getYouTubeDailyViews");
@@ -3799,8 +3865,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
 | **accountId** | **String**| The Zernio account ID for the YouTube account | |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -3829,7 +3897,7 @@ public class Example {
 
 ## getYouTubeDailyViewsWithHttpInfo
 
-> ApiResponse<YouTubeDailyViewsResponse> getYouTubeDailyViews getYouTubeDailyViewsWithHttpInfo(videoId, accountId, startDate, endDate)
+> ApiResponse<YouTubeDailyViewsResponse> getYouTubeDailyViews getYouTubeDailyViewsWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate)
 
 Get YouTube daily views
 
@@ -3859,10 +3927,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
         String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews. 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to 30 days ago.
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews. 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            ApiResponse<YouTubeDailyViewsResponse> response = apiInstance.getYouTubeDailyViewsWithHttpInfo(videoId, accountId, startDate, endDate);
+            ApiResponse<YouTubeDailyViewsResponse> response = apiInstance.getYouTubeDailyViewsWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3884,8 +3954,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
 | **accountId** | **String**| The Zernio account ID for the YouTube account | |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to 30 days ago. | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response), and days YouTube has not processed yet are omitted from dailyViews.  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -3915,7 +3987,7 @@ ApiResponse<[**YouTubeDailyViewsResponse**](YouTubeDailyViewsResponse.md)>
 
 ## getYouTubeDemographics
 
-> YouTubeDemographicsResponse getYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate)
+> YouTubeDemographicsResponse getYouTubeDemographics(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate)
 
 Get YouTube demographics
 
@@ -3945,10 +4017,12 @@ public class Example {
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account
         String videoId = "videoId_example"; // String | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found). 
         String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted. 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            YouTubeDemographicsResponse result = apiInstance.getYouTubeDemographics(accountId, videoId, breakdown, startDate, endDate);
+            YouTubeDemographicsResponse result = apiInstance.getYouTubeDemographics(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getYouTubeDemographics");
@@ -3969,8 +4043,10 @@ public class Example {
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account | |
 | **videoId** | **String**| YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional] |
 | **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional] |
-| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -4001,7 +4077,7 @@ public class Example {
 
 ## getYouTubeDemographicsWithHttpInfo
 
-> ApiResponse<YouTubeDemographicsResponse> getYouTubeDemographics getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate)
+> ApiResponse<YouTubeDemographicsResponse> getYouTubeDemographics getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate)
 
 Get YouTube demographics
 
@@ -4032,10 +4108,12 @@ public class Example {
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the YouTube account
         String videoId = "videoId_example"; // String | YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found). 
         String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted. 
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video's publish date (lifetime) when videoId is provided. 
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            ApiResponse<YouTubeDemographicsResponse> response = apiInstance.getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, startDate, endDate);
+            ApiResponse<YouTubeDemographicsResponse> response = apiInstance.getYouTubeDemographicsWithHttpInfo(accountId, videoId, breakdown, fromDate, toDate, startDate, endDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4058,8 +4136,10 @@ public class Example {
 | **accountId** | **String**| The Zernio SocialAccount ID for the YouTube account | |
 | **videoId** | **String**| YouTube video ID. When provided, demographics are scoped to this single video (must belong to the connected channel; otherwise 404 video_not_found).  | [optional] |
 | **breakdown** | **String**| Comma-separated list of demographic dimensions: age, gender, country. Defaults to all three if omitted.  | [optional] |
-| **startDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format. Defaults to 90 days ago, or to the video&#39;s publish date (lifetime) when videoId is provided.  | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -4091,7 +4171,7 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 
 ## getYouTubeVideoRetention
 
-> YouTubeVideoRetentionResponse getYouTubeVideoRetention(videoId, accountId, startDate, endDate)
+> YouTubeVideoRetentionResponse getYouTubeVideoRetention(videoId, accountId, fromDate, toDate, startDate, endDate)
 
 Get YouTube video retention curve
 
@@ -4120,10 +4200,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
         String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            YouTubeVideoRetentionResponse result = apiInstance.getYouTubeVideoRetention(videoId, accountId, startDate, endDate);
+            YouTubeVideoRetentionResponse result = apiInstance.getYouTubeVideoRetention(videoId, accountId, fromDate, toDate, startDate, endDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getYouTubeVideoRetention");
@@ -4143,8 +4225,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
 | **accountId** | **String**| The Zernio account ID for the YouTube account | |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -4174,7 +4258,7 @@ public class Example {
 
 ## getYouTubeVideoRetentionWithHttpInfo
 
-> ApiResponse<YouTubeVideoRetentionResponse> getYouTubeVideoRetention getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate)
+> ApiResponse<YouTubeVideoRetentionResponse> getYouTubeVideoRetention getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate)
 
 Get YouTube video retention curve
 
@@ -4204,10 +4288,12 @@ public class Example {
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
         String videoId = "videoId_example"; // String | The YouTube video ID (e.g., \"dQw4w9WgXcQ\")
         String accountId = "accountId_example"; // String | The Zernio account ID for the YouTube account
-        LocalDate startDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
-        LocalDate endDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate fromDate = LocalDate.now(); // LocalDate | Start date (YYYY-MM-DD). Defaults to the video's publish date (lifetime curve).
+        LocalDate toDate = LocalDate.now(); // LocalDate | End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response). 
+        LocalDate startDate = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
+        LocalDate endDate = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         try {
-            ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, startDate, endDate);
+            ApiResponse<YouTubeVideoRetentionResponse> response = apiInstance.getYouTubeVideoRetentionWithHttpInfo(videoId, accountId, fromDate, toDate, startDate, endDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4229,8 +4315,10 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **videoId** | **String**| The YouTube video ID (e.g., \&quot;dQw4w9WgXcQ\&quot;) | |
 | **accountId** | **String**| The Zernio account ID for the YouTube account | |
-| **startDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
-| **endDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit endDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **fromDate** | **LocalDate**| Start date (YYYY-MM-DD). Defaults to the video&#39;s publish date (lifetime curve). | [optional] |
+| **toDate** | **LocalDate**| End date (YYYY-MM-DD). Defaults to 3 days ago, the newest fully finalized day (YouTube finalizes analytics with a ~3-day delay). An explicit toDate is honored up to today: days inside the delay window are provisional and may still be revised by YouTube (see provisionalSince in the response).  | [optional] |
+| **startDate** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
+| **endDate** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 
 ### Return type
 

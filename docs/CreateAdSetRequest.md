@@ -12,7 +12,8 @@
 |**campaignId** | **String** | Google platform campaign ID (numeric) the ad group is created under. |  |
 |**name** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**customerId** | **String** | Numeric Google Ads customer id. Only required when the connection has more than one. |  [optional] |
+|**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one. |  [optional] |
+|**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 
 
 

@@ -2,7 +2,7 @@
 
 # BoostPostRequestBudget
 
-Required unless adSetId is set.
+Alias of budgetAmount + budgetType, kept for existing callers
 
 ## Properties
 

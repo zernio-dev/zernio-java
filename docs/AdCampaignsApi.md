@@ -3515,7 +3515,7 @@ ApiResponse<[**GetCampaignAdSchedule200Response**](GetCampaignAdSchedule200Respo
 
 ## getCampaignBidding
 
-> GetCampaignBidding200Response getCampaignBidding(campaignId, accountId, platform, customerId)
+> GetCampaignBidding200Response getCampaignBidding(campaignId, accountId, platform, adAccountId, customerId)
 
 Read a campaign&#39;s current bidding
 
@@ -3545,9 +3545,10 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
         String accountId = "accountId_example"; // String | Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.
         String platform = "google"; // String | Required: campaign IDs are not globally unique. Only \"google\" is supported today.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            GetCampaignBidding200Response result = apiInstance.getCampaignBidding(campaignId, accountId, platform, customerId);
+            GetCampaignBidding200Response result = apiInstance.getCampaignBidding(campaignId, accountId, platform, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getCampaignBidding");
@@ -3568,7 +3569,8 @@ public class Example {
 | **campaignId** | **String**| Numeric Google platform campaign id. | |
 | **accountId** | **String**| Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. | |
 | **platform** | **String**| Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. | [enum: google] |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -3589,7 +3591,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
-| **400** | Invalid input (accountId, customerId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
+| **400** | Invalid input (accountId, adAccountId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -3597,7 +3599,7 @@ public class Example {
 
 ## getCampaignBiddingWithHttpInfo
 
-> ApiResponse<GetCampaignBidding200Response> getCampaignBidding getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId)
+> ApiResponse<GetCampaignBidding200Response> getCampaignBidding getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, adAccountId, customerId)
 
 Read a campaign&#39;s current bidding
 
@@ -3628,9 +3630,10 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Numeric Google platform campaign id.
         String accountId = "accountId_example"; // String | Zernio Google Ads SocialAccount id: resolves the customer id + refresh token.
         String platform = "google"; // String | Required: campaign IDs are not globally unique. Only \"google\" is supported today.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<GetCampaignBidding200Response> response = apiInstance.getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, customerId);
+            ApiResponse<GetCampaignBidding200Response> response = apiInstance.getCampaignBiddingWithHttpInfo(campaignId, accountId, platform, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3653,7 +3656,8 @@ public class Example {
 | **campaignId** | **String**| Numeric Google platform campaign id. | |
 | **accountId** | **String**| Zernio Google Ads SocialAccount id: resolves the customer id + refresh token. | |
 | **platform** | **String**| Required: campaign IDs are not globally unique. Only \&quot;google\&quot; is supported today. | [enum: google] |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple Google Ads accounts; optional (and inferred) when it has only one. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -3674,7 +3678,7 @@ ApiResponse<[**GetCampaignBidding200Response**](GetCampaignBidding200Response.md
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
-| **400** | Invalid input (accountId, customerId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
+| **400** | Invalid input (accountId, adAccountId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -4047,7 +4051,7 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 
 ## listAdGroupAssets
 
-> ListAdGroupAssets200Response listAdGroupAssets(adSetId, accountId, customerId)
+> ListAdGroupAssets200Response listAdGroupAssets(adSetId, accountId, adAccountId, customerId)
 
 List ad-group assets
 
@@ -4076,9 +4080,10 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Numeric Google platform id.
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ListAdGroupAssets200Response result = apiInstance.listAdGroupAssets(adSetId, accountId, customerId);
+            ListAdGroupAssets200Response result = apiInstance.listAdGroupAssets(adSetId, accountId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listAdGroupAssets");
@@ -4098,6 +4103,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Numeric Google platform id. | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -4128,7 +4134,7 @@ public class Example {
 
 ## listAdGroupAssetsWithHttpInfo
 
-> ApiResponse<ListAdGroupAssets200Response> listAdGroupAssets listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId)
+> ApiResponse<ListAdGroupAssets200Response> listAdGroupAssets listAdGroupAssetsWithHttpInfo(adSetId, accountId, adAccountId, customerId)
 
 List ad-group assets
 
@@ -4158,9 +4164,10 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Numeric Google platform id.
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ApiResponse<ListAdGroupAssets200Response> response = apiInstance.listAdGroupAssetsWithHttpInfo(adSetId, accountId, customerId);
+            ApiResponse<ListAdGroupAssets200Response> response = apiInstance.listAdGroupAssetsWithHttpInfo(adSetId, accountId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4182,6 +4189,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Numeric Google platform id. | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -4773,7 +4781,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 
 ## listBidStrategies
 
-> ListBidStrategies200Response listBidStrategies(accountId, customerId, fromDate, toDate)
+> ListBidStrategies200Response listBidStrategies(accountId, adAccountId, customerId, fromDate, toDate)
 
 List portfolio bid strategies
 
@@ -4801,11 +4809,12 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         try {
-            ListBidStrategies200Response result = apiInstance.listBidStrategies(accountId, customerId, fromDate, toDate);
+            ListBidStrategies200Response result = apiInstance.listBidStrategies(accountId, adAccountId, customerId, fromDate, toDate);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listBidStrategies");
@@ -4824,7 +4833,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 
@@ -4855,7 +4865,7 @@ public class Example {
 
 ## listBidStrategiesWithHttpInfo
 
-> ApiResponse<ListBidStrategies200Response> listBidStrategies listBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate)
+> ApiResponse<ListBidStrategies200Response> listBidStrategies listBidStrategiesWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate)
 
 List portfolio bid strategies
 
@@ -4884,11 +4894,12 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Google ads SocialAccount id.
-        String customerId = "customerId_example"; // String | Numeric Google Ads customer id (no dashes). Defaults to the account's connected customer.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Defaults to the account's connected customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         LocalDate fromDate = LocalDate.now(); // LocalDate | Defaults to 30 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Defaults to today.
         try {
-            ApiResponse<ListBidStrategies200Response> response = apiInstance.listBidStrategiesWithHttpInfo(accountId, customerId, fromDate, toDate);
+            ApiResponse<ListBidStrategies200Response> response = apiInstance.listBidStrategiesWithHttpInfo(accountId, adAccountId, customerId, fromDate, toDate);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4909,7 +4920,8 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Google ads SocialAccount id. | |
-| **customerId** | **String**| Numeric Google Ads customer id (no dashes). Defaults to the account&#39;s connected customer. | [optional] |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Defaults to the account&#39;s connected customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 | **fromDate** | **LocalDate**| Defaults to 30 days ago. | [optional] |
 | **toDate** | **LocalDate**| Defaults to today. | [optional] |
 
@@ -4941,7 +4953,7 @@ ApiResponse<[**ListBidStrategies200Response**](ListBidStrategies200Response.md)>
 
 ## listCampaignAssets
 
-> ListCampaignAssets200Response listCampaignAssets(campaignId, accountId, customerId)
+> ListCampaignAssets200Response listCampaignAssets(campaignId, accountId, adAccountId, customerId)
 
 List campaign assets
 
@@ -4970,9 +4982,10 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Numeric Google platform id.
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ListCampaignAssets200Response result = apiInstance.listCampaignAssets(campaignId, accountId, customerId);
+            ListCampaignAssets200Response result = apiInstance.listCampaignAssets(campaignId, accountId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listCampaignAssets");
@@ -4992,6 +5005,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Numeric Google platform id. | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type
@@ -5022,7 +5036,7 @@ public class Example {
 
 ## listCampaignAssetsWithHttpInfo
 
-> ApiResponse<ListCampaignAssets200Response> listCampaignAssets listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId)
+> ApiResponse<ListCampaignAssets200Response> listCampaignAssets listCampaignAssetsWithHttpInfo(campaignId, accountId, adAccountId, customerId)
 
 List campaign assets
 
@@ -5052,9 +5066,10 @@ public class Example {
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Numeric Google platform id.
         String accountId = "accountId_example"; // String | 
+        String adAccountId = "adAccountId_example"; // String | 
         String customerId = "customerId_example"; // String | 
         try {
-            ApiResponse<ListCampaignAssets200Response> response = apiInstance.listCampaignAssetsWithHttpInfo(campaignId, accountId, customerId);
+            ApiResponse<ListCampaignAssets200Response> response = apiInstance.listCampaignAssetsWithHttpInfo(campaignId, accountId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -5076,6 +5091,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Numeric Google platform id. | |
 | **accountId** | **String**|  | |
+| **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
 
 ### Return type

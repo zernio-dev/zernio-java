@@ -20,11 +20,15 @@
 |**existingCampaignId** | **String** | TikTok only. Create the ad group and the Spark ad under this existing TikTok campaign instead of creating a new campaign. The campaign keeps its own status and objective (the objective must fit &#x60;goal&#x60;). Cannot be combined with adSetId or smartPlus. On Meta use POST /v1/ads/create with existingCampaignId. |  [optional] |
 |**identityId** | **String** | TikTok only. The identity the ad runs as (the profile shown on the ad), from GET /v1/ads/tiktok-identities. Default: the connected TikTok account&#39;s own identity. Must be authorized on the advertiser or the call fails naming the available ones. |  [optional] |
 |**identityType** | [**IdentityTypeEnum**](#IdentityTypeEnum) | TikTok only. Type of identityId; resolved from the advertiser&#39;s identity list when omitted. |  [optional] |
+|**budgetAmount** | **BigDecimal** | Budget in whole currency units, the same flat field as POST /v1/ads/create. Required unless adSetId is set. Minimum varies: TikTok&#x3D;$20, Pinterest&#x3D;$5, others&#x3D;$1 |  [optional] |
+|**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) | Goes together with budgetAmount. lifetime requires schedule.endDate. |  [optional] |
 |**budget** | [**BoostPostRequestBudget**](BoostPostRequestBudget.md) |  |  [optional] |
 |**instagramAccountId** | **String** | Meta only. Instagram identity the ad runs AS (creative.instagram_user_id), overriding the account linked to the Page. Live-verified against a Page-post creative. |  [optional] |
 |**destinationType** | [**DestinationTypeEnum**](#DestinationTypeEnum) | Meta only. Ad-set destination_type: where the click LANDS, as opposed to instagramAccountId which is who the ad runs as. Independent of plain link CTAs and their goal. A messaging callToAction selects its destination automatically; an explicit destinationType must then match. Lead ads use ON_AD. |  [optional] |
 |**whatsappPhoneNumber** | **String** | Meta WhatsApp only. E.164 number already paired with the Page. Omit to use the default pairing. Requires WHATSAPP_MESSAGE callToAction. Stored as creative.whatsappPhoneNumber on the ad. |  [optional] |
 |**currency** | **String** | ISO 4217 currency code matching the ad account&#39;s currency. Meta only. Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is). |  [optional] |
+|**startDate** | **OffsetDateTime** | Ad-set start time (ISO 8601, e.g. \&quot;2026-06-10T09:00:00Z\&quot;), mapped to the ad set&#39;s &#x60;start_time&#x60;. When omitted the ad starts delivering immediately. Same field as on POST /v1/ads/create. |  [optional] |
+|**endDate** | **OffsetDateTime** | Ad-set end time (ISO 8601), mapped to the ad set&#39;s &#x60;end_time&#x60;. Required for lifetime budgets. Same field as on POST /v1/ads/create. |  [optional] |
 |**schedule** | [**BoostPostRequestSchedule**](BoostPostRequestSchedule.md) |  |  [optional] |
 |**targeting** | [**BoostPostRequestTargeting**](BoostPostRequestTargeting.md) |  |  [optional] |
 |**rawTargeting** | **Map&lt;String, Object&gt;** | Meta only. A Meta-native targeting spec (e.g. &#x60;{ \&quot;geo_locations\&quot;: { \&quot;cities\&quot;: [{ \&quot;key\&quot;: \&quot;...\&quot;, \&quot;radius\&quot;: 15, \&quot;distance_unit\&quot;: \&quot;kilometer\&quot; }] } }&#x60;). Sent alone it is forwarded unchanged. Use for advanced fields the structured object does not expose (flexible_spec, excluded audiences, business places, user_os, wireless_carrier).  Can be combined with &#x60;targeting&#x60;: rawTargeting is the BASE layer and the built camelCase spec is merged on top, key by key (camelCase wins on collision). The merge goes one level deep inside &#x60;geo_locations&#x60; and &#x60;excluded_geo_locations&#x60; (built sub-keys win; raw-only sub-keys such as &#x60;location_types&#x60; survive). Array values (&#x60;flexible_spec&#x60;, ...) are replaced as a whole key, never element-merged.  When &#x60;rawTargeting&#x60; is present the &#x60;advantage_audience: 0&#x60; default that Zernio normally applies is no longer emitted, so it cannot clobber a &#x60;targeting_automation&#x60; sent in the raw spec. Meta requires &#x60;targeting_automation&#x60; on ad set creation, so include it in the raw spec, or send &#x60;targeting.advantage_audience&#x60; (0 or 1), which is merged over raw as &#x60;targeting_automation&#x60;.  |  [optional] |
@@ -82,6 +86,15 @@
 | TT_USER | &quot;TT_USER&quot; |
 | CUSTOMIZED_USER | &quot;CUSTOMIZED_USER&quot; |
 | BC_AUTH_TT | &quot;BC_AUTH_TT&quot; |
+
+
+
+## Enum: BudgetTypeEnum
+
+| Name | Value |
+|---- | -----|
+| DAILY | &quot;daily&quot; |
+| LIFETIME | &quot;lifetime&quot; |
 
 
 
