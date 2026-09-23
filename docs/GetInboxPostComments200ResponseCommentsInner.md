@@ -21,7 +21,7 @@
 |**canDelete** | **Boolean** |  |  [optional] |
 |**canHide** | **Boolean** | Whether this comment can be hidden (Facebook, Instagram, Threads) |  [optional] |
 |**canLike** | **Boolean** | Whether this comment can be liked (Facebook, X, Bluesky, Reddit, LinkedIn) |  [optional] |
-|**isHidden** | **Boolean** | Whether the comment is currently hidden |  [optional] |
+|**isHidden** | **Boolean** | Whether the comment is currently hidden. On Instagram accounts connected through Facebook Login, Meta leaves hidden comments (and their replies) out of the list entirely, so they never appear with isHidden true; Instagram Login accounts and Facebook Pages return them with isHidden true. |  [optional] |
 |**isLiked** | **Boolean** | Whether the current user has liked this comment |  [optional] |
 |**likeUri** | **String** | Bluesky like URI for unliking |  [optional] |
 |**cid** | **String** | Bluesky content identifier |  [optional] |
