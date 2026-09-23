@@ -2619,7 +2619,7 @@ public class Example {
         String accountId = "accountId_example"; // String | A facebook, instagram, metaads or whatsapp account ID
         String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account's own (needed for WhatsApp connections, whose token cannot manage catalogs).
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...) whose owner business to list
-        String businessId = "businessId_example"; // String | Meta business portfolio ID to list
+        String businessId = "businessId_example"; // String | Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries `details.businesses` (id + name) so a client can offer the choice.
         try {
             ListAdCatalogs200Response result = apiInstance.listAdCatalogs(accountId, catalogAccountId, adAccountId, businessId);
             System.out.println(result);
@@ -2642,7 +2642,7 @@ public class Example {
 | **accountId** | **String**| A facebook, instagram, metaads or whatsapp account ID | |
 | **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account&#39;s own (needed for WhatsApp connections, whose token cannot manage catalogs). | [optional] |
 | **adAccountId** | **String**| Meta ad account ID (act_...) whose owner business to list | [optional] |
-| **businessId** | **String**| Meta business portfolio ID to list | [optional] |
+| **businessId** | **String**| Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries &#x60;details.businesses&#x60; (id + name) so a client can offer the choice. | [optional] |
 
 ### Return type
 
@@ -2701,7 +2701,7 @@ public class Example {
         String accountId = "accountId_example"; // String | A facebook, instagram, metaads or whatsapp account ID
         String catalogAccountId = "catalogAccountId_example"; // String | A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account's own (needed for WhatsApp connections, whose token cannot manage catalogs).
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...) whose owner business to list
-        String businessId = "businessId_example"; // String | Meta business portfolio ID to list
+        String businessId = "businessId_example"; // String | Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries `details.businesses` (id + name) so a client can offer the choice.
         try {
             ApiResponse<ListAdCatalogs200Response> response = apiInstance.listAdCatalogsWithHttpInfo(accountId, catalogAccountId, adAccountId, businessId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2726,7 +2726,7 @@ public class Example {
 | **accountId** | **String**| A facebook, instagram, metaads or whatsapp account ID | |
 | **catalogAccountId** | **String**| A facebook, instagram or metaads account whose Meta login carries catalog_management; its token is used instead of the account&#39;s own (needed for WhatsApp connections, whose token cannot manage catalogs). | [optional] |
 | **adAccountId** | **String**| Meta ad account ID (act_...) whose owner business to list | [optional] |
-| **businessId** | **String**| Meta business portfolio ID to list | [optional] |
+| **businessId** | **String**| Meta business portfolio ID to list. When it is omitted and the Meta login can see several portfolios, the 400 carries &#x60;details.businesses&#x60; (id + name) so a client can offer the choice. | [optional] |
 
 ### Return type
 

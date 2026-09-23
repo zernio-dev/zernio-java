@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.56.0
+  version: 1.57.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42696,7 +42696,9 @@ paths:
         schema:
           type: string
         style: form
-      - description: Meta business portfolio ID to list
+      - description: "Meta business portfolio ID to list. When it is omitted and the\
+          \ Meta login can see several portfolios, the 400 carries `details.businesses`\
+          \ (id + name) so a client can offer the choice."
         explode: true
         in: query
         name: businessId
