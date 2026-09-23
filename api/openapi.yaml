@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.53.0
+  version: 1.53.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -109552,7 +109552,11 @@ components:
           description: Zernio post ID (provide this or platformPostId)
           type: string
         platformPostId:
-          description: Platform post ID (alternative to postId)
+          description: "Platform post ID (alternative to postId). Meta: a Page post\
+            \ id (`<pageId>_<postId>` or the bare post id) or an Instagram media id.\
+            \ On a Meta Ads business-login connection (platform metaads) the id is\
+            \ resolved live: an Instagram media id is boosted as that media, running\
+            \ as the Instagram account that owns it."
           type: string
         accountId:
           description: "Zernio account id. Normally the connected posting account\
