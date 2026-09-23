@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.57.0
+  version: 1.58.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58817,8 +58817,13 @@ components:
             \ views that is non-zero, so it is not the same basis on every post: a\
             \ post with impressions divides by impressions, one without falls back\
             \ to reach, then to views. If you need a single consistent basis (e.g.\
-            \ interactions / reach), compute it from the raw fields above. The engagementRate\
-            \ on the LinkedIn account endpoints is a different formula."
+            \ interactions / reach), compute it from the raw fields above. When this\
+            \ object is the post-level roll-up of a cross-posted post, the denominator\
+            \ is the SUM of the denominators resolved per platform entry: an entry\
+            \ reporting none of impressions, reach or views is excluded from both\
+            \ sides of the ratio. Each platformAnalytics entry below keeps its own\
+            \ single denominator. The engagementRate on the LinkedIn account endpoints\
+            \ is a different formula."
           example: 6.59
           type: number
         lastUpdated:
