@@ -19,7 +19,7 @@
 |**commenterFollowerCount** | **Integer** |  |  [optional] |
 |**error** | **String** | DM error message if status is failed |  [optional] |
 |**platformError** | [**GetCommentAutomation200ResponseLogsInnerPlatformError**](GetCommentAutomation200ResponseLogsInnerPlatformError.md) |  |  [optional] |
-|**privateReplyConsumed** | **Boolean** | True when the failed send spent the comment&#39;s single Instagram private reply (subcode 1545133 or 2534023), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs, on Facebook, and on rows written before this field existed. |  [optional] |
+|**privateReplyConsumed** | **Boolean** | True when the failed send spent the comment&#39;s single private reply (Instagram subcode 1545133 or 2534023, or Meta code 10900 on Instagram and Facebook), the same rule as &#x60;details.privateReplyConsumed&#x60; on the private-reply endpoint. Absent on direct DMs and on rows written before this field existed. |  [optional] |
 |**commentReplyStatus** | [**CommentReplyStatusEnum**](#CommentReplyStatusEnum) | Outcome of the optional public reply on the triggering comment. &#39;skipped&#39; if no commentReply was configured or if the DM failed (the public reply is not attempted in that case). |  [optional] |
 |**commentReplyError** | **String** | Public-reply error message if commentReplyStatus is failed |  [optional] |
 |**nextDueAt** | **OffsetDateTime** | When the next queued send fires. Present only while something is still pending. |  [optional] |

@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.61.1
+  version: 1.62.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -99032,10 +99032,11 @@ components:
         platformError:
           $ref: "#/components/schemas/getCommentAutomation_200_response_logs_inner_platformError"
         privateReplyConsumed:
-          description: "True when the failed send spent the comment's single Instagram\
-            \ private reply (subcode 1545133 or 2534023), the same rule as `details.privateReplyConsumed`\
-            \ on the private-reply endpoint. Absent on direct DMs, on Facebook, and\
-            \ on rows written before this field existed."
+          description: "True when the failed send spent the comment's single private\
+            \ reply (Instagram subcode 1545133 or 2534023, or Meta code 10900 on Instagram\
+            \ and Facebook), the same rule as `details.privateReplyConsumed` on the\
+            \ private-reply endpoint. Absent on direct DMs and on rows written before\
+            \ this field existed."
           type: boolean
         commentReplyStatus:
           description: Outcome of the optional public reply on the triggering comment.
