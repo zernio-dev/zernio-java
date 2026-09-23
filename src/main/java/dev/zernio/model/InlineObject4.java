@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   InlineObject4.JSON_PROPERTY_DASHBOARD_URL,
   InlineObject4.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject4 {
   public static final String JSON_PROPERTY_ERROR = "error";
   @javax.annotation.Nonnull
@@ -93,7 +93,9 @@ public class InlineObject4 {
     
     TWITTER_PASSTHROUGH(String.valueOf("twitter_passthrough")),
     
-    ENTERPRISE_REQUIRED(String.valueOf("enterprise_required"));
+    ENTERPRISE_REQUIRED(String.valueOf("enterprise_required")),
+    
+    CARD_VERIFICATION_REQUIRED(String.valueOf("card_verification_required"));
 
     private String value;
 

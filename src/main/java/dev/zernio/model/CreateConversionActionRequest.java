@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   CreateConversionActionRequest.JSON_PROPERTY_DEFAULT_VALUE,
   CreateConversionActionRequest.JSON_PROPERTY_ALWAYS_USE_DEFAULT_VALUE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateConversionActionRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

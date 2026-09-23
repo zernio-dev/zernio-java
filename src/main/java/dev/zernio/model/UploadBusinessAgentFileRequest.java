@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadBusinessAgentFileRequest.JSON_PROPERTY_URL,
   UploadBusinessAgentFileRequest.JSON_PROPERTY_FILE_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadBusinessAgentFileRequest {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

@@ -99,7 +99,7 @@ import dev.zernio.ApiClient;
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATION,
   CreateMessagingAdRequest.JSON_PROPERTY_DESTINATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateMessagingAdRequest {
   /**
    * Gets or Sets inner

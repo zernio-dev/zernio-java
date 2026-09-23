@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_REJECTED_REASON,
   GetWhatsAppTemplate200ResponseTemplate.JSON_PROPERTY_QUALITY_SCORE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppTemplate200ResponseTemplate {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

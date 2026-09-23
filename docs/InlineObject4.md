@@ -31,6 +31,7 @@
 | FREE_TIER_EXCEEDED | &quot;free_tier_exceeded&quot; |
 | TWITTER_PASSTHROUGH | &quot;twitter_passthrough&quot; |
 | ENTERPRISE_REQUIRED | &quot;enterprise_required&quot; |
+| CARD_VERIFICATION_REQUIRED | &quot;card_verification_required&quot; |
 
 
 

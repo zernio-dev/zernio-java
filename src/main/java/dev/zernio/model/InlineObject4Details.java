@@ -36,9 +36,10 @@ import dev.zernio.ApiClient;
   InlineObject4Details.JSON_PROPERTY_FREE_TIER_ACCOUNT_LIMIT,
   InlineObject4Details.JSON_PROPERTY_CURRENT_ACCOUNT_COUNT,
   InlineObject4Details.JSON_PROPERTY_HAS_PAYMENT_METHOD,
+  InlineObject4Details.JSON_PROPERTY_VERIFICATION_AMOUNT_CENTS,
   InlineObject4Details.JSON_PROPERTY_EFFECTIVE_ACCOUNT_LIMIT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:25:03.214734509Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-23T12:29:56.197382593Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InlineObject4Details {
   public static final String JSON_PROPERTY_FREE_TIER_ACCOUNT_LIMIT = "free_tier_account_limit";
   @javax.annotation.Nullable
@@ -51,6 +52,10 @@ public class InlineObject4Details {
   public static final String JSON_PROPERTY_HAS_PAYMENT_METHOD = "has_payment_method";
   @javax.annotation.Nullable
   private Boolean hasPaymentMethod;
+
+  public static final String JSON_PROPERTY_VERIFICATION_AMOUNT_CENTS = "verification_amount_cents";
+  @javax.annotation.Nullable
+  private Integer verificationAmountCents;
 
   public static final String JSON_PROPERTY_EFFECTIVE_ACCOUNT_LIMIT = "effective_account_limit";
   @javax.annotation.Nullable
@@ -131,6 +136,30 @@ public class InlineObject4Details {
   }
 
 
+  public InlineObject4Details verificationAmountCents(@javax.annotation.Nullable Integer verificationAmountCents) {
+    this.verificationAmountCents = verificationAmountCents;
+    return this;
+  }
+
+  /**
+   * One-time card verification charge in USD cents, credited to usage. Only set when reason&#x3D;card_verification_required.
+   * @return verificationAmountCents
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VERIFICATION_AMOUNT_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVerificationAmountCents() {
+    return verificationAmountCents;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VERIFICATION_AMOUNT_CENTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVerificationAmountCents(@javax.annotation.Nullable Integer verificationAmountCents) {
+    this.verificationAmountCents = verificationAmountCents;
+  }
+
+
   public InlineObject4Details effectiveAccountLimit(@javax.annotation.Nullable Integer effectiveAccountLimit) {
     this.effectiveAccountLimit = effectiveAccountLimit;
     return this;
@@ -170,12 +199,13 @@ public class InlineObject4Details {
     return Objects.equals(this.freeTierAccountLimit, inlineObject4Details.freeTierAccountLimit) &&
         Objects.equals(this.currentAccountCount, inlineObject4Details.currentAccountCount) &&
         Objects.equals(this.hasPaymentMethod, inlineObject4Details.hasPaymentMethod) &&
+        Objects.equals(this.verificationAmountCents, inlineObject4Details.verificationAmountCents) &&
         Objects.equals(this.effectiveAccountLimit, inlineObject4Details.effectiveAccountLimit);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(freeTierAccountLimit, currentAccountCount, hasPaymentMethod, effectiveAccountLimit);
+    return Objects.hash(freeTierAccountLimit, currentAccountCount, hasPaymentMethod, verificationAmountCents, effectiveAccountLimit);
   }
 
   @Override
@@ -185,6 +215,7 @@ public class InlineObject4Details {
     sb.append("    freeTierAccountLimit: ").append(toIndentedString(freeTierAccountLimit)).append("\n");
     sb.append("    currentAccountCount: ").append(toIndentedString(currentAccountCount)).append("\n");
     sb.append("    hasPaymentMethod: ").append(toIndentedString(hasPaymentMethod)).append("\n");
+    sb.append("    verificationAmountCents: ").append(toIndentedString(verificationAmountCents)).append("\n");
     sb.append("    effectiveAccountLimit: ").append(toIndentedString(effectiveAccountLimit)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -246,6 +277,11 @@ public class InlineObject4Details {
     // add `has_payment_method` to the URL query string
     if (getHasPaymentMethod() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%shas_payment_method%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getHasPaymentMethod()))));
+    }
+
+    // add `verification_amount_cents` to the URL query string
+    if (getVerificationAmountCents() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sverification_amount_cents%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVerificationAmountCents()))));
     }
 
     // add `effective_account_limit` to the URL query string
