@@ -608,7 +608,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comment hidden |  -  |
-| **400** | Platform does not support hiding comments |  -  |
+| **400** | Platform does not support hiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -688,7 +688,7 @@ ApiResponse<[**HideInboxComment200Response**](HideInboxComment200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comment hidden |  -  |
-| **400** | Platform does not support hiding comments |  -  |
+| **400** | Platform does not support hiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1910,7 +1910,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comment unhidden |  -  |
-| **400** | Platform does not support unhiding comments |  -  |
+| **400** | Platform does not support unhiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1990,7 +1990,7 @@ ApiResponse<[**HideInboxComment200Response**](HideInboxComment200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Comment unhidden |  -  |
-| **400** | Platform does not support unhiding comments |  -  |
+| **400** | Platform does not support unhiding comments (code PLATFORM_LIMITATION), or the platform rejected the call (code PLATFORM_API_ERROR with the upstream status, for example a comment that no longer exists; the platform&#39;s own error code and subcode are in platformError). |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Inbox addon required |  -  |
 
