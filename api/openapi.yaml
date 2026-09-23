@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.58.0
+  version: 1.59.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -25728,7 +25728,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
-            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another).
+            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).
         "503":
           content:
             application/json:
@@ -26086,7 +26086,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/purchasePhoneNumber_409_response"
           description: |
-            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another).
+            Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).
         "503":
           content:
             application/json:
@@ -91096,6 +91096,7 @@ components:
           - AREA_CODE_UNAVAILABLE
           - PHONE_NUMBER_UNAVAILABLE
           - COUNTRY_OUT_OF_STOCK
+          - NO_WHATSAPP_ELIGIBLE_NUMBER
           type: string
     purchasePhoneNumber_503_response:
       example:
