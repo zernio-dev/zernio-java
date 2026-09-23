@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.53.1
+- API version: 1.54.0
 
-- Build date: 2026-09-23T05:53:07.939997231Z[Etc/UTC]
+- Build date: 2026-09-23T07:59:36.265592722Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.53.1</version>
+  <version>1.54.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.53.1"
+compile "dev.zernio:zernio-sdk:1.54.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.53.1.jar`
+- `target/zernio-sdk-1.54.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1801,6 +1801,7 @@ Class | Method | HTTP request | Description
  - [BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [BookmarkPostRequest](docs/BookmarkPostRequest.md)
  - [BoostPostRequest](docs/BoostPostRequest.md)
+ - [BoostPostRequestAttributionSpecInner](docs/BoostPostRequestAttributionSpecInner.md)
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
  - [BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
  - [BoostPostRequestPromoCodesInner](docs/BoostPostRequestPromoCodesInner.md)
@@ -2088,7 +2089,6 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequest](docs/CreateStandaloneAdRequest.md)
  - [CreateStandaloneAdRequestAdditionalDescriptionsInner](docs/CreateStandaloneAdRequestAdditionalDescriptionsInner.md)
  - [CreateStandaloneAdRequestAdditionalHeadlinesInner](docs/CreateStandaloneAdRequestAdditionalHeadlinesInner.md)
- - [CreateStandaloneAdRequestAttributionSpecInner](docs/CreateStandaloneAdRequestAttributionSpecInner.md)
  - [CreateStandaloneAdRequestBehaviorsInner](docs/CreateStandaloneAdRequestBehaviorsInner.md)
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCarouselCardsInner](docs/CreateStandaloneAdRequestCarouselCardsInner.md)

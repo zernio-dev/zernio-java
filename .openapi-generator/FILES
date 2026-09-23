@@ -146,6 +146,7 @@ docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
 docs/BoostPostRequest.md
+docs/BoostPostRequestAttributionSpecInner.md
 docs/BoostPostRequestBudget.md
 docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestPromoCodesInner.md
@@ -442,7 +443,6 @@ docs/CreateStandaloneAd201ResponseOneOf1.md
 docs/CreateStandaloneAdRequest.md
 docs/CreateStandaloneAdRequestAdditionalDescriptionsInner.md
 docs/CreateStandaloneAdRequestAdditionalHeadlinesInner.md
-docs/CreateStandaloneAdRequestAttributionSpecInner.md
 docs/CreateStandaloneAdRequestBehaviorsInner.md
 docs/CreateStandaloneAdRequestBrandIdentity.md
 docs/CreateStandaloneAdRequestCarouselCardsInner.md
@@ -2474,6 +2474,7 @@ src/main/java/dev/zernio/model/BlueskyPlatformData.java
 src/main/java/dev/zernio/model/BookmarkPost200Response.java
 src/main/java/dev/zernio/model/BookmarkPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequest.java
+src/main/java/dev/zernio/model/BoostPostRequestAttributionSpecInner.java
 src/main/java/dev/zernio/model/BoostPostRequestBudget.java
 src/main/java/dev/zernio/model/BoostPostRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/BoostPostRequestPromoCodesInner.java
@@ -2761,7 +2762,6 @@ src/main/java/dev/zernio/model/CreateStandaloneAd201ResponseOneOf1.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequest.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestAdditionalDescriptionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestAdditionalHeadlinesInner.java
-src/main/java/dev/zernio/model/CreateStandaloneAdRequestAttributionSpecInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestBehaviorsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestBrandIdentity.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestCarouselCardsInner.java
@@ -4523,3 +4523,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPostRequestAttributionSpecInnerTest.java

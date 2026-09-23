@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.53.1
+  version: 1.54.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -109533,6 +109533,23 @@ components:
           description: "Meta only. Custom Conversion to optimize against, instead\
             \ of pixelId + customEventType."
           type: string
+    boostPost_request_attributionSpec_inner:
+      properties:
+        eventType:
+          enum:
+          - CLICK_THROUGH
+          - VIEW_THROUGH
+          - ENGAGED_VIDEO_VIEW
+          type: string
+        windowDays:
+          enum:
+          - 1
+          - 7
+          - 28
+          type: integer
+      required:
+      - eventType
+      - windowDays
     boostPost_request:
       properties:
         creativeFeatures:
@@ -109897,6 +109914,37 @@ components:
           - ACTIVE
           - PAUSED
           type: string
+        budgetLevel:
+          description: "Meta only, same semantics as POST /v1/ads/create: campaign\
+            \ = Advantage campaign budget (CBO), the budget and bid strategy sit on\
+            \ the campaign and the ad set inherits them. Default adset. Not allowed\
+            \ with adSetId."
+          enum:
+          - adset
+          - campaign
+          type: string
+        attributionSpec:
+          description: "Meta only. Ad-set attribution windows, same shape as POST\
+            \ /v1/ads/create. Applied on OUTCOME_SALES, OUTCOME_LEADS and OUTCOME_APP_PROMOTION\
+            \ campaigns (conversions, lead_conversion, lead_generation, app_promotion);\
+            \ other objectives keep Meta's default. Not allowed with adSetId."
+          items:
+            $ref: "#/components/schemas/boostPost_request_attributionSpec_inner"
+          maxItems: 3
+          minItems: 1
+          type: array
+        bodies:
+          description: "Meta only. Extra primary-text options Meta rotates on the\
+            \ boosted post (asset_feed_spec.bodies with DEGREES_OF_FREEDOM); the post\
+            \ keeps its own text as one of the options. Works for Facebook posts and\
+            \ Instagram media. Under a conversions or traffic goal Meta also wants\
+            \ a website URL on the options, taken from `linkUrl` (send it with a `callToAction`);\
+            \ engagement boosts need none."
+          items:
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
         optimizationGoal:
           description: |
             Meta, or TikTok with `goal: video_views`. TikTok: ENGAGED_VIEW (6-second
@@ -110709,23 +110757,6 @@ components:
       required:
       - header
       - values
-    createStandaloneAd_request_attributionSpec_inner:
-      properties:
-        eventType:
-          enum:
-          - CLICK_THROUGH
-          - VIEW_THROUGH
-          - ENGAGED_VIDEO_VIEW
-          type: string
-        windowDays:
-          enum:
-          - 1
-          - 7
-          - 28
-          type: integer
-      required:
-      - eventType
-      - windowDays
     createStandaloneAd_request_platformSpecificData:
       description: |
         Platform-specific options. The platform is derived from `accountId`;
@@ -111679,7 +111710,7 @@ components:
             surface as a Meta 400.
             Example: `[{ "eventType": "CLICK_THROUGH", "windowDays": 7 }, { "eventType": "VIEW_THROUGH", "windowDays": 1 }]`
           items:
-            $ref: "#/components/schemas/createStandaloneAd_request_attributionSpec_inner"
+            $ref: "#/components/schemas/boostPost_request_attributionSpec_inner"
           maxItems: 3
           minItems: 1
           type: array
