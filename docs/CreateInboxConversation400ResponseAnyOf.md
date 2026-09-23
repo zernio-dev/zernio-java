@@ -26,6 +26,7 @@
 | DIRECT_SEND_NOT_ELIGIBLE | &quot;DIRECT_SEND_NOT_ELIGIBLE&quot; |
 | DIRECT_SEND_LIMITED | &quot;DIRECT_SEND_LIMITED&quot; |
 | DIRECT_SEND_BLOCKED | &quot;DIRECT_SEND_BLOCKED&quot; |
+| INVALID_CONTENT | &quot;invalid_content&quot; |
 
 
 

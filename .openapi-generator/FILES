@@ -379,6 +379,7 @@ docs/CreateInboxConversation400Response.md
 docs/CreateInboxConversation400ResponseAnyOf.md
 docs/CreateInboxConversation404Response.md
 docs/CreateInboxConversation404ResponseAnyOf.md
+docs/CreateInboxConversation409Response.md
 docs/CreateInboxConversation422Response.md
 docs/CreateInboxConversation422ResponseAnyOf.md
 docs/CreateInboxConversation429Response.md
@@ -2699,6 +2700,7 @@ src/main/java/dev/zernio/model/CreateInboxConversation400Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation400ResponseAnyOf.java
 src/main/java/dev/zernio/model/CreateInboxConversation404Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation404ResponseAnyOf.java
+src/main/java/dev/zernio/model/CreateInboxConversation409Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation422Response.java
 src/main/java/dev/zernio/model/CreateInboxConversation422ResponseAnyOf.java
 src/main/java/dev/zernio/model/CreateInboxConversation429Response.java
@@ -4525,3 +4527,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateInboxConversation409ResponseTest.java

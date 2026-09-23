@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.62.0
+- API version: 1.63.0
 
-- Build date: 2026-09-23T16:21:27.664072166Z[Etc/UTC]
+- Build date: 2026-09-23T22:06:05.902226698Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.62.0</version>
+  <version>1.63.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.62.0"
+compile "dev.zernio:zernio-sdk:1.63.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.62.0.jar`
+- `target/zernio-sdk-1.63.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2027,6 +2027,7 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversation400ResponseAnyOf](docs/CreateInboxConversation400ResponseAnyOf.md)
  - [CreateInboxConversation404Response](docs/CreateInboxConversation404Response.md)
  - [CreateInboxConversation404ResponseAnyOf](docs/CreateInboxConversation404ResponseAnyOf.md)
+ - [CreateInboxConversation409Response](docs/CreateInboxConversation409Response.md)
  - [CreateInboxConversation422Response](docs/CreateInboxConversation422Response.md)
  - [CreateInboxConversation422ResponseAnyOf](docs/CreateInboxConversation422ResponseAnyOf.md)
  - [CreateInboxConversation429Response](docs/CreateInboxConversation429Response.md)

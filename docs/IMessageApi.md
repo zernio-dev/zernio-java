@@ -503,7 +503,7 @@ ApiResponse<[**CreateImessageGroup202Response**](CreateImessageGroup202Response.
 
 Create a tracked iMessage opt-in link
 
-Generates a per-campaign link that opens Messages on this sender with &#x60;body&#x60; prefilled. iMessage is send-first: a sender can only message a contact who has written to it (a send to anyone else fails with &#x60;recipient_must_message_first&#x60;), and the contact&#39;s tap-and-send is what opens that door.  Each link carries a unique code in place of the &#x60;[opt-in-code]&#x60; placeholder; when the contact sends it, the resulting &#x60;message.received&#x60; webhook (and the stored inbox message&#39;s &#x60;metadata&#x60;) has &#x60;optIn: true&#x60; and your &#x60;parameters&#x60; under &#x60;optInParameters&#x60;, so you can attribute the conversation to the campaign or lead that produced it.  For an untracked link, use the sender&#39;s &#x60;optInLink&#x60; instead. 
+Generates a per-campaign link that opens Messages on this sender with &#x60;body&#x60; prefilled. A thread the contact opens skips the pacing and the first-message content rule that apply when the sender writes first, and it is the only way in for senders without the add-on for new contacts (their sends to anyone else fail with &#x60;recipient_must_message_first&#x60;).  Each link carries a unique code in place of the &#x60;[opt-in-code]&#x60; placeholder; when the contact sends it, the resulting &#x60;message.received&#x60; webhook (and the stored inbox message&#39;s &#x60;metadata&#x60;) has &#x60;optIn: true&#x60; and your &#x60;parameters&#x60; under &#x60;optInParameters&#x60;, so you can attribute the conversation to the campaign or lead that produced it.  For an untracked link, use the sender&#39;s &#x60;optInLink&#x60; instead. 
 
 ### Example
 
@@ -579,7 +579,7 @@ public class Example {
 
 Create a tracked iMessage opt-in link
 
-Generates a per-campaign link that opens Messages on this sender with &#x60;body&#x60; prefilled. iMessage is send-first: a sender can only message a contact who has written to it (a send to anyone else fails with &#x60;recipient_must_message_first&#x60;), and the contact&#39;s tap-and-send is what opens that door.  Each link carries a unique code in place of the &#x60;[opt-in-code]&#x60; placeholder; when the contact sends it, the resulting &#x60;message.received&#x60; webhook (and the stored inbox message&#39;s &#x60;metadata&#x60;) has &#x60;optIn: true&#x60; and your &#x60;parameters&#x60; under &#x60;optInParameters&#x60;, so you can attribute the conversation to the campaign or lead that produced it.  For an untracked link, use the sender&#39;s &#x60;optInLink&#x60; instead. 
+Generates a per-campaign link that opens Messages on this sender with &#x60;body&#x60; prefilled. A thread the contact opens skips the pacing and the first-message content rule that apply when the sender writes first, and it is the only way in for senders without the add-on for new contacts (their sends to anyone else fail with &#x60;recipient_must_message_first&#x60;).  Each link carries a unique code in place of the &#x60;[opt-in-code]&#x60; placeholder; when the contact sends it, the resulting &#x60;message.received&#x60; webhook (and the stored inbox message&#39;s &#x60;metadata&#x60;) has &#x60;optIn: true&#x60; and your &#x60;parameters&#x60; under &#x60;optInParameters&#x60;, so you can attribute the conversation to the campaign or lead that produced it.  For an untracked link, use the sender&#39;s &#x60;optInLink&#x60; instead. 
 
 ### Example
 
