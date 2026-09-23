@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.54.0
+  version: 1.55.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41511,6 +41511,56 @@ paths:
       x-accepts:
       - application/json
   /v1/ads/lead-forms/{formId}/test-leads:
+    delete:
+      description: |
+        Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta's Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused.
+      operationId: deleteTestLead
+      parameters:
+      - explode: false
+        in: path
+        name: formId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: The facebook or metaads account whose Page owns the form.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: The test lead id returned by createTestLead (or shown in the
+          Testing Tool). Omitted = the test lead currently on the form.
+        explode: true
+        in: query
+        name: leadId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteTestLead_200_response"
+          description: Test lead deleted.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: The form has no test lead.
+      summary: Delete a test lead
+      tags:
+      - Lead Gen
+      x-resource-group: contacts
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
     post:
       description: |
         Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time.
@@ -112695,6 +112745,20 @@ components:
           type: string
         testLead:
           $ref: "#/components/schemas/createTestLead_200_response_testLead"
+    deleteTestLead_200_response:
+      example:
+        deleted:
+        - deleted
+        - deleted
+        status: status
+      properties:
+        status:
+          type: string
+        deleted:
+          description: Ids of the test leads removed.
+          items:
+            type: string
+          type: array
     listAdImages_200_response:
       example:
         data:

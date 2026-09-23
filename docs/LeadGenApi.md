@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createLeadFormWithHttpInfo**](LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createTestLead**](LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
 | [**createTestLeadWithHttpInfo**](LeadGenApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
+| [**deleteTestLead**](LeadGenApi.md#deleteTestLead) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead |
+| [**deleteTestLeadWithHttpInfo**](LeadGenApi.md#deleteTestLeadWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead |
 | [**getLeadForm**](LeadGenApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**getLeadFormWithHttpInfo**](LeadGenApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form |
 | [**listFormLeads**](LeadGenApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form |
@@ -477,6 +479,164 @@ ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
 | **200** | Test lead created. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## deleteTestLead
+
+> DeleteTestLead200Response deleteTestLead(formId, accountId, leadId)
+
+Delete a test lead
+
+Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | The facebook or metaads account whose Page owns the form.
+        String leadId = "leadId_example"; // String | The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted = the test lead currently on the form.
+        try {
+            DeleteTestLead200Response result = apiInstance.deleteTestLead(formId, accountId, leadId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#deleteTestLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**| The facebook or metaads account whose Page owns the form. | |
+| **leadId** | **String**| The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted &#x3D; the test lead currently on the form. | [optional] |
+
+### Return type
+
+[**DeleteTestLead200Response**](DeleteTestLead200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Test lead deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The form has no test lead. |  -  |
+
+## deleteTestLeadWithHttpInfo
+
+> ApiResponse<DeleteTestLead200Response> deleteTestLead deleteTestLeadWithHttpInfo(formId, accountId, leadId)
+
+Delete a test lead
+
+Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String formId = "formId_example"; // String | 
+        String accountId = "accountId_example"; // String | The facebook or metaads account whose Page owns the form.
+        String leadId = "leadId_example"; // String | The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted = the test lead currently on the form.
+        try {
+            ApiResponse<DeleteTestLead200Response> response = apiInstance.deleteTestLeadWithHttpInfo(formId, accountId, leadId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#deleteTestLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **formId** | **String**|  | |
+| **accountId** | **String**| The facebook or metaads account whose Page owns the form. | |
+| **leadId** | **String**| The test lead id returned by createTestLead (or shown in the Testing Tool). Omitted &#x3D; the test lead currently on the form. | [optional] |
+
+### Return type
+
+ApiResponse<[**DeleteTestLead200Response**](DeleteTestLead200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Test lead deleted. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The form has no test lead. |  -  |
 
 
 ## getLeadForm

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.54.0
+- API version: 1.55.0
 
-- Build date: 2026-09-23T07:59:36.265592722Z[Etc/UTC]
+- Build date: 2026-09-23T08:09:03.308222642Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.54.0</version>
+  <version>1.55.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.54.0"
+compile "dev.zernio:zernio-sdk:1.55.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.54.0.jar`
+- `target/zernio-sdk-1.55.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1047,6 +1047,8 @@ Class | Method | HTTP request | Description
 *LeadGenApi* | [**createLeadFormWithHttpInfo**](docs/LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
 *LeadGenApi* | [**createTestLead**](docs/LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
 *LeadGenApi* | [**createTestLeadWithHttpInfo**](docs/LeadGenApi.md#createTestLeadWithHttpInfo) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
+*LeadGenApi* | [**deleteTestLead**](docs/LeadGenApi.md#deleteTestLead) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead
+*LeadGenApi* | [**deleteTestLeadWithHttpInfo**](docs/LeadGenApi.md#deleteTestLeadWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId}/test-leads | Delete a test lead
 *LeadGenApi* | [**getLeadForm**](docs/LeadGenApi.md#getLeadForm) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *LeadGenApi* | [**getLeadFormWithHttpInfo**](docs/LeadGenApi.md#getLeadFormWithHttpInfo) | **GET** /v1/ads/lead-forms/{formId} | Get a lead form
 *LeadGenApi* | [**listFormLeads**](docs/LeadGenApi.md#listFormLeads) | **GET** /v1/ads/lead-forms/{formId}/leads | List leads for a single form
@@ -2177,6 +2179,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
+ - [DeleteTestLead200Response](docs/DeleteTestLead200Response.md)
  - [DeleteValueRuleSet200Response](docs/DeleteValueRuleSet200Response.md)
  - [DeleteWhatsAppTemplate200Response](docs/DeleteWhatsAppTemplate200Response.md)
  - [DeleteWhatsAppTemplateById200Response](docs/DeleteWhatsAppTemplateById200Response.md)
