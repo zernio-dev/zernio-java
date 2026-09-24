@@ -77,7 +77,7 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseAnalyticsDailyInner.JSON_PROPERTY_LAST_SYNCED_AT,
   CampaignAnalyticsResponseAnalyticsDailyInner.JSON_PROPERTY_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseAnalyticsDailyInner {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable

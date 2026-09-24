@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   XArticleEntityOneOf4Value.JSON_PROPERTY_MUTABILITY,
   XArticleEntityOneOf4Value.JSON_PROPERTY_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleEntityOneOf4Value {
   /**
    * Gets or Sets type

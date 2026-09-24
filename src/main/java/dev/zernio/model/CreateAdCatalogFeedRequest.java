@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CreateAdCatalogFeedRequest.JSON_PROPERTY_NAME,
   CreateAdCatalogFeedRequest.JSON_PROPERTY_SCHEDULE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCatalogFeedRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

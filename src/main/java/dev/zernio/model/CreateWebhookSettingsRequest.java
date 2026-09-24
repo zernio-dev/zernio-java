@@ -44,9 +44,10 @@ import dev.zernio.ApiClient;
   CreateWebhookSettingsRequest.JSON_PROPERTY_EVENTS,
   CreateWebhookSettingsRequest.JSON_PROPERTY_IS_ACTIVE,
   CreateWebhookSettingsRequest.JSON_PROPERTY_CUSTOM_HEADERS,
-  CreateWebhookSettingsRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
+  CreateWebhookSettingsRequest.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS,
+  CreateWebhookSettingsRequest.JSON_PROPERTY_PROFILE_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateWebhookSettingsRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull
@@ -262,6 +263,10 @@ public class CreateWebhookSettingsRequest {
   @javax.annotation.Nullable
   private List<DisabledResourceGroupsEnum> disabledResourceGroups = new ArrayList<>();
 
+  public static final String JSON_PROPERTY_PROFILE_IDS = "profileIds";
+  @javax.annotation.Nullable
+  private List<String> profileIds = new ArrayList<>();
+
   public CreateWebhookSettingsRequest() { 
   }
 
@@ -457,6 +462,38 @@ public class CreateWebhookSettingsRequest {
   }
 
 
+  public CreateWebhookSettingsRequest profileIds(@javax.annotation.Nullable List<String> profileIds) {
+    this.profileIds = profileIds;
+    return this;
+  }
+
+  public CreateWebhookSettingsRequest addProfileIdsItem(String profileIdsItem) {
+    if (this.profileIds == null) {
+      this.profileIds = new ArrayList<>();
+    }
+    this.profileIds.add(profileIdsItem);
+    return this;
+  }
+
+  /**
+   * Profiles this subscription receives events for. Omit or send an empty array to receive every profile. Every id must be a profile in your team, otherwise the request fails with 404 &#x60;profile_not_found&#x60; and nothing is created. Typical use is routing the profile that holds test accounts to a staging endpoint.
+   * @return profileIds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getProfileIds() {
+    return profileIds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileIds(@javax.annotation.Nullable List<String> profileIds) {
+    this.profileIds = profileIds;
+  }
+
+
   /**
    * Return true if this createWebhookSettings_request object is equal to o.
    */
@@ -475,12 +512,13 @@ public class CreateWebhookSettingsRequest {
         Objects.equals(this.events, createWebhookSettingsRequest.events) &&
         Objects.equals(this.isActive, createWebhookSettingsRequest.isActive) &&
         Objects.equals(this.customHeaders, createWebhookSettingsRequest.customHeaders) &&
-        Objects.equals(this.disabledResourceGroups, createWebhookSettingsRequest.disabledResourceGroups);
+        Objects.equals(this.disabledResourceGroups, createWebhookSettingsRequest.disabledResourceGroups) &&
+        Objects.equals(this.profileIds, createWebhookSettingsRequest.profileIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name, url, secret, events, isActive, customHeaders, disabledResourceGroups);
+    return Objects.hash(name, url, secret, events, isActive, customHeaders, disabledResourceGroups, profileIds);
   }
 
   @Override
@@ -494,6 +532,7 @@ public class CreateWebhookSettingsRequest {
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
     sb.append("    customHeaders: ").append(toIndentedString(customHeaders)).append("\n");
     sb.append("    disabledResourceGroups: ").append(toIndentedString(disabledResourceGroups)).append("\n");
+    sb.append("    profileIds: ").append(toIndentedString(profileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -585,6 +624,15 @@ public class CreateWebhookSettingsRequest {
         joiner.add(String.format(java.util.Locale.ROOT, "%sdisabledResourceGroups%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getDisabledResourceGroups().get(i)))));
+      }
+    }
+
+    // add `profileIds` to the URL query string
+    if (getProfileIds() != null) {
+      for (int i = 0; i < getProfileIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sprofileIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getProfileIds().get(i)))));
       }
     }
 

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   AdNegativeKeywordListKeyword.JSON_PROPERTY_TEXT,
   AdNegativeKeywordListKeyword.JSON_PROPERTY_MATCH_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdNegativeKeywordListKeyword {
   public static final String JSON_PROPERTY_CRITERION_ID = "criterionId";
   @javax.annotation.Nullable

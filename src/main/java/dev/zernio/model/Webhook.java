@@ -48,9 +48,10 @@ import dev.zernio.ApiClient;
   Webhook.JSON_PROPERTY_LAST_FIRED_AT,
   Webhook.JSON_PROPERTY_FAILURE_COUNT,
   Webhook.JSON_PROPERTY_CUSTOM_HEADERS,
-  Webhook.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS
+  Webhook.JSON_PROPERTY_DISABLED_RESOURCE_GROUPS,
+  Webhook.JSON_PROPERTY_PROFILE_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class Webhook {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
@@ -277,6 +278,10 @@ public class Webhook {
   public static final String JSON_PROPERTY_DISABLED_RESOURCE_GROUPS = "disabledResourceGroups";
   @javax.annotation.Nullable
   private List<DisabledResourceGroupsEnum> disabledResourceGroups = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_PROFILE_IDS = "profileIds";
+  @javax.annotation.Nullable
+  private List<String> profileIds = new ArrayList<>();
 
   public Webhook() { 
   }
@@ -545,6 +550,38 @@ public class Webhook {
   }
 
 
+  public Webhook profileIds(@javax.annotation.Nullable List<String> profileIds) {
+    this.profileIds = profileIds;
+    return this;
+  }
+
+  public Webhook addProfileIdsItem(String profileIdsItem) {
+    if (this.profileIds == null) {
+      this.profileIds = new ArrayList<>();
+    }
+    this.profileIds.add(profileIdsItem);
+    return this;
+  }
+
+  /**
+   * Profiles this subscription receives events for (allowlist). Absent or empty means every profile, which is how every subscription created before this field existed behaves. A scoped subscription is only sent events attributable to a listed profile; events with no profile behind them (&#x60;verification.*&#x60;, &#x60;phone_number.*&#x60;) are not delivered to it. Applied when the event is emitted: a redelivery replays a delivery already made to this endpoint, and a test fire ignores the list.
+   * @return profileIds
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getProfileIds() {
+    return profileIds;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PROFILE_IDS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setProfileIds(@javax.annotation.Nullable List<String> profileIds) {
+    this.profileIds = profileIds;
+  }
+
+
   /**
    * Return true if this Webhook object is equal to o.
    */
@@ -566,12 +603,13 @@ public class Webhook {
         Objects.equals(this.lastFiredAt, webhook.lastFiredAt) &&
         Objects.equals(this.failureCount, webhook.failureCount) &&
         Objects.equals(this.customHeaders, webhook.customHeaders) &&
-        Objects.equals(this.disabledResourceGroups, webhook.disabledResourceGroups);
+        Objects.equals(this.disabledResourceGroups, webhook.disabledResourceGroups) &&
+        Objects.equals(this.profileIds, webhook.profileIds);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, url, secret, events, isActive, lastFiredAt, failureCount, customHeaders, disabledResourceGroups);
+    return Objects.hash(id, name, url, secret, events, isActive, lastFiredAt, failureCount, customHeaders, disabledResourceGroups, profileIds);
   }
 
   @Override
@@ -588,6 +626,7 @@ public class Webhook {
     sb.append("    failureCount: ").append(toIndentedString(failureCount)).append("\n");
     sb.append("    customHeaders: ").append(toIndentedString(customHeaders)).append("\n");
     sb.append("    disabledResourceGroups: ").append(toIndentedString(disabledResourceGroups)).append("\n");
+    sb.append("    profileIds: ").append(toIndentedString(profileIds)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -694,6 +733,15 @@ public class Webhook {
         joiner.add(String.format(java.util.Locale.ROOT, "%sdisabledResourceGroups%s%s=%s", prefix, suffix,
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getDisabledResourceGroups().get(i)))));
+      }
+    }
+
+    // add `profileIds` to the URL query string
+    if (getProfileIds() != null) {
+      for (int i = 0; i < getProfileIds().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sprofileIds%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getProfileIds().get(i)))));
       }
     }
 

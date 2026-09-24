@@ -69,7 +69,7 @@ import dev.zernio.ApiClient;
   BatchAdCatalogProductsRequestRequestsInnerProduct.JSON_PROPERTY_CUSTOM_LABEL3,
   BatchAdCatalogProductsRequestRequestsInnerProduct.JSON_PROPERTY_CUSTOM_LABEL4
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BatchAdCatalogProductsRequestRequestsInnerProduct {
   public static final String JSON_PROPERTY_RETAILER_ID = "retailerId";
   @javax.annotation.Nonnull

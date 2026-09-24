@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GooglePmaxAssetGroupAssetsInner.JSON_PROPERTY_IMAGE_URL,
   GooglePmaxAssetGroupAssetsInner.JSON_PROPERTY_YOUTUBE_VIDEO_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:05:29.600439412Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-24T08:11:32.004601452Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GooglePmaxAssetGroupAssetsInner {
   public static final String JSON_PROPERTY_RESOURCE_NAME = "resourceName";
   @javax.annotation.Nonnull
