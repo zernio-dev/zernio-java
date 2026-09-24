@@ -8,11 +8,17 @@ on:
   release:
     types: [published]
   workflow_dispatch:
+    inputs:
+      deployment_id:
+        description: Existing Central deployment to resume without uploading again
+        required: false
+        type: string
 
 jobs:
   publish:
     name: Build, sign & deploy
     runs-on: ubuntu-latest
+    timeout-minutes: 200
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -40,8 +46,9 @@ jobs:
         # maven.test.skip (not skipTests) so the auto-generated, never-built test
         # stubs are not even compiled — they lag the regenerated API signatures
         # and generate.yml only ever runs `mvn compile`, so they have never built.
-        run: mvn --batch-mode --no-transfer-progress -P sign-artifacts -Dmaven.test.skip=true deploy
+        run: python3 scripts/publish_to_central.py
         env:
+          CENTRAL_DEPLOYMENT_ID: ${{ inputs.deployment_id }}
           MAVEN_CENTRAL_USERNAME: ${{ secrets.MAVEN_CENTRAL_USERNAME }}
           MAVEN_CENTRAL_PASSWORD: ${{ secrets.MAVEN_CENTRAL_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
