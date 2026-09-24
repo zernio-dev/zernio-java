@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.71.0
+  version: 1.72.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7882,7 +7882,9 @@ paths:
         token can be perfectly valid while Meta refuses to serve the phone-number object (for
         example after a phone-side coexistence disconnect), so `tokenStatus` alone is not a
         liveness signal for WhatsApp. When the Meta link is dead, `platformConnection.status` is
-        `disconnected` and the overall `status` is `error`.
+        `disconnected` and the overall `status` is `error`. When Meta reports that the number's
+        inbound message webhook does not reach Zernio, `platformConnection.inboundWebhookSubscribed`
+        is `false`, an entry is added to `issues`, and the overall `status` is at least `warning`.
       operationId: getAccountHealth
       parameters:
       - description: The account ID to check
@@ -72972,6 +72974,7 @@ components:
         \ channel, performed at request time (the same read as GET /v1/whatsapp/number-info)."
       example:
         checkedAt: 2000-01-23T04:56:07.000+00:00
+        inboundWebhookSubscribed: true
         metaError:
           code: 0
           subcode: 6
@@ -73002,6 +73005,17 @@ components:
           type: string
         metaError:
           $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection_metaError"
+        inboundWebhookSubscribed:
+          description: "From the phone number's Meta health_status. `false` = Meta\
+            \ says Zernio is not subscribed to the message webhook for this number,\
+            \ so inbound messages are not delivered even though the number is CONNECTED\
+            \ and can still send. Fix by re-subscribing (reconnect the number); if\
+            \ it stays `false`, the number is routed to a different WhatsApp Business\
+            \ Account (typically after linking it to a Facebook Page). `true` = Meta\
+            \ reports no such problem. `null` = Meta did not report it (read failed\
+            \ or no health_status), not evidence either way."
+          nullable: true
+          type: boolean
     getAccountHealth_200_response:
       example:
         accountId: accountId
@@ -73055,6 +73069,7 @@ components:
         status: healthy
         platformConnection:
           checkedAt: 2000-01-23T04:56:07.000+00:00
+          inboundWebhookSubscribed: true
           metaError:
             code: 0
             subcode: 6

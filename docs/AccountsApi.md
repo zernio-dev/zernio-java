@@ -193,7 +193,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 
 Check account health
 
-Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
+Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. When Meta reports that the number&#39;s inbound message webhook does not reach Zernio, &#x60;platformConnection.inboundWebhookSubscribed&#x60; is &#x60;false&#x60;, an entry is added to &#x60;issues&#x60;, and the overall &#x60;status&#x60; is at least &#x60;warning&#x60;. 
 
 ### Example
 
@@ -266,7 +266,7 @@ public class Example {
 
 Check account health
 
-Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. 
+Returns detailed health info for a specific account including token status, permissions, and recommendations.  For WhatsApp accounts the response also includes &#x60;platformConnection&#x60;, a live probe of the Meta link behind the channel (the same read as &#x60;GET /v1/whatsapp/number-info&#x60;). The OAuth token can be perfectly valid while Meta refuses to serve the phone-number object (for example after a phone-side coexistence disconnect), so &#x60;tokenStatus&#x60; alone is not a liveness signal for WhatsApp. When the Meta link is dead, &#x60;platformConnection.status&#x60; is &#x60;disconnected&#x60; and the overall &#x60;status&#x60; is &#x60;error&#x60;. When Meta reports that the number&#39;s inbound message webhook does not reach Zernio, &#x60;platformConnection.inboundWebhookSubscribed&#x60; is &#x60;false&#x60;, an entry is added to &#x60;issues&#x60;, and the overall &#x60;status&#x60; is at least &#x60;warning&#x60;. 
 
 ### Example
 
