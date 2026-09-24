@@ -797,6 +797,7 @@ docs/GetInboxConversationMessages200ResponseMessagesInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.md
 docs/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.md
+docs/GetInboxConversationMessages200ResponseMessagesInnerStoryReply.md
 docs/GetInboxConversationMessages200ResponsePagination.md
 docs/GetInboxHeatmap200Response.md
 docs/GetInboxHeatmap200ResponseBucketsInner.md
@@ -3119,6 +3120,7 @@ src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesIn
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerDeliveryError.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerReactionsInner.java
+src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerStoryReply.java
 src/main/java/dev/zernio/model/GetInboxConversationMessages200ResponsePagination.java
 src/main/java/dev/zernio/model/GetInboxHeatmap200Response.java
 src/main/java/dev/zernio/model/GetInboxHeatmap200ResponseBucketsInner.java
@@ -4533,3 +4535,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetInboxConversationMessages200ResponseMessagesInnerStoryReplyTest.java

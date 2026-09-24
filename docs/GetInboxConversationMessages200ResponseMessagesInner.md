@@ -19,8 +19,9 @@
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 |**attachments** | [**List&lt;GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner&gt;**](GetInboxConversationMessages200ResponseMessagesInnerAttachmentsInner.md) |  |  [optional] |
 |**subject** | **String** | Reddit message subject |  [optional] |
-|**storyReply** | **Boolean** | Instagram story reply |  [optional] |
-|**isStoryMention** | **Boolean** | Instagram story mention |  [optional] |
+|**storyReply** | [**GetInboxConversationMessages200ResponseMessagesInnerStoryReply**](GetInboxConversationMessages200ResponseMessagesInnerStoryReply.md) |  |  [optional] |
+|**isStoryMention** | **Boolean** | Instagram only. True when the message is the user mentioning the account in their own story. The story itself is the &#x60;share&#x60; attachment with &#x60;originalType: \&quot;story_mention\&quot;&#x60;. Also set on imported history, read off Meta&#39;s &#x60;story.mention&#x60;. |  [optional] |
+|**noRenderableContent** | **Boolean** | Instagram and Facebook Messenger only. True when Meta withholds the content of this message from the API (its &#x60;is_unsupported&#x60; flag): &#x60;message&#x60; is empty, &#x60;attachments&#x60; is empty, and there is nothing to fetch, now or later. Distinguishes such a message from an ordinary empty one such as a story reply with no text. Absent on other platforms. |  [optional] |
 |**isEdited** | **Boolean** | True if the sender has edited this message at least once. |  [optional] |
 |**editedAt** | **OffsetDateTime** | When the most recent edit happened. |  [optional] |
 |**editCount** | **Integer** | Total number of edits applied. |  [optional] |

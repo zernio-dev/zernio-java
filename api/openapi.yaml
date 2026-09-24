@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.69.0
+  version: 1.70.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -83413,6 +83413,21 @@ components:
           additionalProperties: {}
           description: "Template content (title, subtitle, image, buttons) when type\
             \ is template"
+    getInboxConversationMessages_200_response_messages_inner_storyReply:
+      description: "Instagram only. Present when the message replies to one of the\
+        \ account's stories. Also set on history imported after connecting, read off\
+        \ Meta's `story.reply_to`."
+      example:
+        storyId: storyId
+        storyUrl: storyUrl
+      properties:
+        storyId:
+          description: The Instagram story ID the user replied to.
+          type: string
+        storyUrl:
+          description: Meta CDN URL for the story media. Expires roughly 24 hours
+            after the story posted; fetch promptly or treat 404s as expected.
+          type: string
     getInboxConversationMessages_200_response_messages_inner_deliveryError:
       description: Populated when deliveryStatus === "failed".
       example:
@@ -83507,8 +83522,11 @@ components:
         sentVia: human
         direction: incoming
         editCount: 0
-        storyReply: true
+        storyReply:
+          storyId: storyId
+          storyUrl: storyUrl
         conversationId: conversationId
+        noRenderableContent: true
         sentAt: 2000-01-23T04:56:07.000+00:00
         message: message
         readAt: 2000-01-23T04:56:07.000+00:00
@@ -83580,12 +83598,19 @@ components:
           nullable: true
           type: string
         storyReply:
-          description: Instagram story reply
-          nullable: true
-          type: boolean
+          $ref: "#/components/schemas/getInboxConversationMessages_200_response_messages_inner_storyReply"
         isStoryMention:
-          description: Instagram story mention
-          nullable: true
+          description: "Instagram only. True when the message is the user mentioning\
+            \ the account in their own story. The story itself is the `share` attachment\
+            \ with `originalType: \"story_mention\"`. Also set on imported history,\
+            \ read off Meta's `story.mention`."
+          type: boolean
+        noRenderableContent:
+          description: "Instagram and Facebook Messenger only. True when Meta withholds\
+            \ the content of this message from the API (its `is_unsupported` flag):\
+            \ `message` is empty, `attachments` is empty, and there is nothing to\
+            \ fetch, now or later. Distinguishes such a message from an ordinary empty\
+            \ one such as a story reply with no text. Absent on other platforms."
           type: boolean
         isEdited:
           description: True if the sender has edited this message at least once.
@@ -83744,8 +83769,11 @@ components:
           sentVia: human
           direction: incoming
           editCount: 0
-          storyReply: true
+          storyReply:
+            storyId: storyId
+            storyUrl: storyUrl
           conversationId: conversationId
+          noRenderableContent: true
           sentAt: 2000-01-23T04:56:07.000+00:00
           message: message
           readAt: 2000-01-23T04:56:07.000+00:00
@@ -83820,8 +83848,11 @@ components:
           sentVia: human
           direction: incoming
           editCount: 0
-          storyReply: true
+          storyReply:
+            storyId: storyId
+            storyUrl: storyUrl
           conversationId: conversationId
+          noRenderableContent: true
           sentAt: 2000-01-23T04:56:07.000+00:00
           message: message
           readAt: 2000-01-23T04:56:07.000+00:00
