@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.63.0
+- API version: 1.64.0
 
-- Build date: 2026-09-23T22:06:05.902226698Z[Etc/UTC]
+- Build date: 2026-09-24T06:41:16.006864616Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.63.0</version>
+  <version>1.64.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.63.0"
+compile "dev.zernio:zernio-sdk:1.64.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.63.0.jar`
+- `target/zernio-sdk-1.64.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -435,6 +435,8 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**getAdsSearchTermsWithHttpInfo**](docs/AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report
 *AdInsightsApi* | [**getCampaignAnalytics**](docs/AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
 *AdInsightsApi* | [**getCampaignAnalyticsWithHttpInfo**](docs/AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics
+*AdInsightsApi* | [**getTikTokSmartPlusMaterialReport**](docs/AdInsightsApi.md#getTikTokSmartPlusMaterialReport) | **GET** /v1/ads/tiktok-smart-plus-materials | Per-creative performance inside TikTok Smart+ ads
+*AdInsightsApi* | [**getTikTokSmartPlusMaterialReportWithHttpInfo**](docs/AdInsightsApi.md#getTikTokSmartPlusMaterialReportWithHttpInfo) | **GET** /v1/ads/tiktok-smart-plus-materials | Per-creative performance inside TikTok Smart+ ads
 *AdInsightsApi* | [**listLocalServicesLeadConversations**](docs/AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations
 *AdInsightsApi* | [**listLocalServicesLeadConversationsWithHttpInfo**](docs/AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations
 *AdInsightsApi* | [**listLocalServicesLeads**](docs/AdInsightsApi.md#listLocalServicesLeads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads
@@ -2564,6 +2566,9 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md)
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
+ - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
+ - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)

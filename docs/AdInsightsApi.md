@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdsSearchTermsWithHttpInfo**](AdInsightsApi.md#getAdsSearchTermsWithHttpInfo) | **GET** /v1/ads/search-terms | Google Ads search terms report |
 | [**getCampaignAnalytics**](AdInsightsApi.md#getCampaignAnalytics) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
 | [**getCampaignAnalyticsWithHttpInfo**](AdInsightsApi.md#getCampaignAnalyticsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/analytics | Get campaign analytics |
+| [**getTikTokSmartPlusMaterialReport**](AdInsightsApi.md#getTikTokSmartPlusMaterialReport) | **GET** /v1/ads/tiktok-smart-plus-materials | Per-creative performance inside TikTok Smart+ ads |
+| [**getTikTokSmartPlusMaterialReportWithHttpInfo**](AdInsightsApi.md#getTikTokSmartPlusMaterialReportWithHttpInfo) | **GET** /v1/ads/tiktok-smart-plus-materials | Per-creative performance inside TikTok Smart+ ads |
 | [**listLocalServicesLeadConversations**](AdInsightsApi.md#listLocalServicesLeadConversations) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations |
 | [**listLocalServicesLeadConversationsWithHttpInfo**](AdInsightsApi.md#listLocalServicesLeadConversationsWithHttpInfo) | **GET** /v1/ads/local-services/leads/{leadId}/conversations | List lead conversations |
 | [**listLocalServicesLeads**](AdInsightsApi.md#listLocalServicesLeads) | **GET** /v1/ads/local-services/leads | Google Local Services Ads leads |
@@ -1187,6 +1189,190 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Google operations budget or quota exhausted without a cached impression-share result. |  -  |
+
+
+## getTikTokSmartPlusMaterialReport
+
+> GetTikTokSmartPlusMaterialReport200Response getTikTokSmartPlusMaterialReport(accountId, adAccountId, startDate, endDate, level, smartPlusAdIds, adGroupIds, page, pageSize)
+
+Per-creative performance inside TikTok Smart+ ads
+
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A tiktok or tiktokads account ID
+        String adAccountId = "adAccountId_example"; // String | TikTok advertiser ID
+        LocalDate startDate = LocalDate.now(); // LocalDate | YYYY-MM-DD, in the advertiser's time zone
+        LocalDate endDate = LocalDate.now(); // LocalDate | YYYY-MM-DD, on or after startDate
+        String level = "ad"; // String | Key each row by Smart+ ad or by ad group
+        String smartPlusAdIds = "smartPlusAdIds_example"; // String | Comma-separated Smart+ ad ids to filter by (up to 100)
+        String adGroupIds = "adGroupIds_example"; // String | Comma-separated ad group ids to filter by (up to 100)
+        Integer page = 1; // Integer | 
+        Integer pageSize = 100; // Integer | 
+        try {
+            GetTikTokSmartPlusMaterialReport200Response result = apiInstance.getTikTokSmartPlusMaterialReport(accountId, adAccountId, startDate, endDate, level, smartPlusAdIds, adGroupIds, page, pageSize);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#getTikTokSmartPlusMaterialReport");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A tiktok or tiktokads account ID | |
+| **adAccountId** | **String**| TikTok advertiser ID | |
+| **startDate** | **LocalDate**| YYYY-MM-DD, in the advertiser&#39;s time zone | |
+| **endDate** | **LocalDate**| YYYY-MM-DD, on or after startDate | |
+| **level** | **String**| Key each row by Smart+ ad or by ad group | [optional] [default to ad] [enum: ad, adGroup] |
+| **smartPlusAdIds** | **String**| Comma-separated Smart+ ad ids to filter by (up to 100) | [optional] |
+| **adGroupIds** | **String**| Comma-separated ad group ids to filter by (up to 100) | [optional] |
+| **page** | **Integer**|  | [optional] [default to 1] |
+| **pageSize** | **Integer**|  | [optional] [default to 100] |
+
+### Return type
+
+[**GetTikTokSmartPlusMaterialReport200Response**](GetTikTokSmartPlusMaterialReport200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Material rows |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## getTikTokSmartPlusMaterialReportWithHttpInfo
+
+> ApiResponse<GetTikTokSmartPlusMaterialReport200Response> getTikTokSmartPlusMaterialReport getTikTokSmartPlusMaterialReportWithHttpInfo(accountId, adAccountId, startDate, endDate, level, smartPlusAdIds, adGroupIds, page, pageSize)
+
+Per-creative performance inside TikTok Smart+ ads
+
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdInsightsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdInsightsApi apiInstance = new AdInsightsApi(defaultClient);
+        String accountId = "accountId_example"; // String | A tiktok or tiktokads account ID
+        String adAccountId = "adAccountId_example"; // String | TikTok advertiser ID
+        LocalDate startDate = LocalDate.now(); // LocalDate | YYYY-MM-DD, in the advertiser's time zone
+        LocalDate endDate = LocalDate.now(); // LocalDate | YYYY-MM-DD, on or after startDate
+        String level = "ad"; // String | Key each row by Smart+ ad or by ad group
+        String smartPlusAdIds = "smartPlusAdIds_example"; // String | Comma-separated Smart+ ad ids to filter by (up to 100)
+        String adGroupIds = "adGroupIds_example"; // String | Comma-separated ad group ids to filter by (up to 100)
+        Integer page = 1; // Integer | 
+        Integer pageSize = 100; // Integer | 
+        try {
+            ApiResponse<GetTikTokSmartPlusMaterialReport200Response> response = apiInstance.getTikTokSmartPlusMaterialReportWithHttpInfo(accountId, adAccountId, startDate, endDate, level, smartPlusAdIds, adGroupIds, page, pageSize);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdInsightsApi#getTikTokSmartPlusMaterialReport");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A tiktok or tiktokads account ID | |
+| **adAccountId** | **String**| TikTok advertiser ID | |
+| **startDate** | **LocalDate**| YYYY-MM-DD, in the advertiser&#39;s time zone | |
+| **endDate** | **LocalDate**| YYYY-MM-DD, on or after startDate | |
+| **level** | **String**| Key each row by Smart+ ad or by ad group | [optional] [default to ad] [enum: ad, adGroup] |
+| **smartPlusAdIds** | **String**| Comma-separated Smart+ ad ids to filter by (up to 100) | [optional] |
+| **adGroupIds** | **String**| Comma-separated ad group ids to filter by (up to 100) | [optional] |
+| **page** | **Integer**|  | [optional] [default to 1] |
+| **pageSize** | **Integer**|  | [optional] [default to 100] |
+
+### Return type
+
+ApiResponse<[**GetTikTokSmartPlusMaterialReport200Response**](GetTikTokSmartPlusMaterialReport200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Material rows |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
 ## listLocalServicesLeadConversations

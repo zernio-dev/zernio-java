@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.63.0
+  version: 1.64.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37879,6 +37879,122 @@ paths:
       summary: List TikTok ad identities
       tags:
       - Ad Creatives
+      x-resource-group: ads
+      x-platforms:
+      - tiktok
+      x-accepts:
+      - application/json
+  /v1/ads/tiktok-smart-plus-materials:
+    get:
+      description: "Breaks a Smart+ ad (or ad group) down by creative material, one\
+        \ row per Spark post, video or image, from TikTok's Smart+ material report.\
+        \ For a Spark post `tiktokItemId` is the TikTok post id. Conversion metrics\
+        \ are TikTok web (pixel) events. TikTok allows two dimensions per report,\
+        \ so rows are keyed by the Smart+ ad (`level=ad`) or by the ad group (`level=adGroup`),\
+        \ not both. Metrics TikTok returns empty come back as null."
+      operationId: getTikTokSmartPlusMaterialReport
+      parameters:
+      - description: A tiktok or tiktokads account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: TikTok advertiser ID
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "YYYY-MM-DD, in the advertiser's time zone"
+        explode: true
+        in: query
+        name: startDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "YYYY-MM-DD, on or after startDate"
+        explode: true
+        in: query
+        name: endDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Key each row by Smart+ ad or by ad group
+        explode: true
+        in: query
+        name: level
+        required: false
+        schema:
+          default: ad
+          enum:
+          - ad
+          - adGroup
+          type: string
+        style: form
+      - description: Comma-separated Smart+ ad ids to filter by (up to 100)
+        explode: true
+        in: query
+        name: smartPlusAdIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Comma-separated ad group ids to filter by (up to 100)
+        explode: true
+        in: query
+        name: adGroupIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          maximum: 1000
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTikTokSmartPlusMaterialReport_200_response"
+          description: Material rows
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      security:
+      - bearerAuth: []
+      summary: Per-creative performance inside TikTok Smart+ ads
+      tags:
+      - Ad Insights
       x-resource-group: ads
       x-platforms:
       - tiktok
@@ -107091,6 +107207,163 @@ components:
         identities:
           items:
             $ref: "#/components/schemas/listAdsTikTokIdentities_200_response_identities_inner"
+          type: array
+    getTikTokSmartPlusMaterialReport_200_response_rows_inner_metrics:
+      example:
+        purchaseValue: 1.2315135367772556
+        addPaymentInfo: 4.145608029883936
+        purchases: 7.386281948385884
+        spend: 5.637376656633329
+        cpc: 9.301444243932576
+        clicks: 7.061401241503109
+        addToCart: 3.616076749251911
+        roas: 1.0246457001441578
+        impressions: 2.3021358869347655
+        initiateCheckout: 2.027123023002322
+      properties:
+        spend:
+          nullable: true
+          type: number
+        impressions:
+          nullable: true
+          type: number
+        clicks:
+          nullable: true
+          type: number
+        cpc:
+          nullable: true
+          type: number
+        addToCart:
+          nullable: true
+          type: number
+        initiateCheckout:
+          nullable: true
+          type: number
+        addPaymentInfo:
+          nullable: true
+          type: number
+        purchases:
+          nullable: true
+          type: number
+        purchaseValue:
+          nullable: true
+          type: number
+        roas:
+          nullable: true
+          type: number
+    getTikTokSmartPlusMaterialReport_200_response_rows_inner:
+      example:
+        smartPlusAdId: smartPlusAdId
+        materialType: materialType
+        name: name
+        tiktokItemId: tiktokItemId
+        metrics:
+          purchaseValue: 1.2315135367772556
+          addPaymentInfo: 4.145608029883936
+          purchases: 7.386281948385884
+          spend: 5.637376656633329
+          cpc: 9.301444243932576
+          clicks: 7.061401241503109
+          addToCart: 3.616076749251911
+          roas: 1.0246457001441578
+          impressions: 2.3021358869347655
+          initiateCheckout: 2.027123023002322
+        materialId: materialId
+        adGroupId: adGroupId
+      properties:
+        materialId:
+          description: TikTok main material id
+          type: string
+        materialType:
+          description: "e.g. VIDEO_SPARK_ADS, VIDEO, IMAGE"
+          nullable: true
+          type: string
+        tiktokItemId:
+          description: The TikTok post id when the material is a Spark post
+          nullable: true
+          type: string
+        name:
+          description: Material name or post caption
+          nullable: true
+          type: string
+        smartPlusAdId:
+          description: Set when level=ad
+          nullable: true
+          type: string
+        adGroupId:
+          description: Set when level=adGroup
+          nullable: true
+          type: string
+        metrics:
+          $ref: "#/components/schemas/getTikTokSmartPlusMaterialReport_200_response_rows_inner_metrics"
+    getTikTokSmartPlusMaterialReport_200_response:
+      example:
+        level: ad
+        endDate: endDate
+        adAccountId: adAccountId
+        totalPages: 5
+        pageSize: 6
+        page: 0
+        totalRows: 1
+        rows:
+        - smartPlusAdId: smartPlusAdId
+          materialType: materialType
+          name: name
+          tiktokItemId: tiktokItemId
+          metrics:
+            purchaseValue: 1.2315135367772556
+            addPaymentInfo: 4.145608029883936
+            purchases: 7.386281948385884
+            spend: 5.637376656633329
+            cpc: 9.301444243932576
+            clicks: 7.061401241503109
+            addToCart: 3.616076749251911
+            roas: 1.0246457001441578
+            impressions: 2.3021358869347655
+            initiateCheckout: 2.027123023002322
+          materialId: materialId
+          adGroupId: adGroupId
+        - smartPlusAdId: smartPlusAdId
+          materialType: materialType
+          name: name
+          tiktokItemId: tiktokItemId
+          metrics:
+            purchaseValue: 1.2315135367772556
+            addPaymentInfo: 4.145608029883936
+            purchases: 7.386281948385884
+            spend: 5.637376656633329
+            cpc: 9.301444243932576
+            clicks: 7.061401241503109
+            addToCart: 3.616076749251911
+            roas: 1.0246457001441578
+            impressions: 2.3021358869347655
+            initiateCheckout: 2.027123023002322
+          materialId: materialId
+          adGroupId: adGroupId
+        startDate: startDate
+      properties:
+        adAccountId:
+          type: string
+        level:
+          enum:
+          - ad
+          - adGroup
+          type: string
+        startDate:
+          type: string
+        endDate:
+          type: string
+        page:
+          type: integer
+        pageSize:
+          type: integer
+        totalRows:
+          type: integer
+        totalPages:
+          type: integer
+        rows:
+          items:
+            $ref: "#/components/schemas/getTikTokSmartPlusMaterialReport_200_response_rows_inner"
           type: array
     listAdsInstagramAccounts_200_response_accounts_inner:
       allOf:
