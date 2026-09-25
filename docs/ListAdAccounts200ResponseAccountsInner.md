@@ -19,10 +19,21 @@
 |**timezoneName** | **String** | IANA timezone of the ad account (Meta only). Drives daily-budget reset and Insights day boundaries. |  [optional] |
 |**timezoneOffsetHoursUtc** | **BigDecimal** | Signed UTC offset in hours, reflecting current DST (Meta only). |  [optional] |
 |**minimumDailyBudget** | **BigDecimal** | Meta only. Minimum daily budget for the account, in the account currency&#39;s major units. This is the impressions-billed minimum; other billing events have higher minimums. Absent when the connected token cannot read it. |  [optional] |
-|**fundingSource** | **String** | Meta only. Meta&#39;s &#x60;funding_source&#x60; ID for the ad account, forwarded unchanged. ABSENT when this connection&#39;s token cannot see billing on the account, which is not the same as the account having no payment method: never read the missing key as &#x60;no payment method configured&#x60;. |  [optional] |
+|**fundingSource** | **String** | Meta only. Meta&#39;s &#x60;funding_source&#x60; ID for the ad account, forwarded unchanged. ABSENT both when this connection&#39;s token cannot see billing and when the account has no payment method; read &#x60;billingStatus&#x60; to tell the two apart. |  [optional] |
 |**fundingSourceDetails** | [**ListAdAccounts200ResponseAccountsInnerFundingSourceDetails**](ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.md) |  |  [optional] |
+|**billingStatus** | [**BillingStatusEnum**](#BillingStatusEnum) | Meta only. Whether the ad account has a payment method, derived as follows: - &#x60;missing&#x60; when &#x60;accountStatus&#x60; is &#x60;3&#x60; (UNSETTLED) or &#x60;9&#x60; (IN_GRACE_PERIOD),   when &#x60;disableReason&#x60; is &#x60;3&#x60; (RISK_PAYMENT), or when the connected person   has the MANAGE task on the account (admin, who always sees billing) and   Meta returns no funding source. Ad creation on such an account fails at   the ad step with Meta code 100 / subcode 1359188: add a payment method in   Meta&#39;s Billing &amp; payments center. - &#x60;ok&#x60; when Meta returns a funding source. This is presence, not validity:   Meta can still refuse the card or balance at ad creation. - &#x60;unknown&#x60; when the connected person is not an admin of the account, or   the token cannot read the billing fields.  |  [optional] |
 |**selectable** | **Boolean** | Meta and X only. Whether the account can create/run ads now. Absent (treat as true) on other platforms. |  [optional] |
 |**unusableReason** | **String** | Meta and X only. Human-readable reason when selectable is false; null when selectable. |  [optional] |
+
+
+
+## Enum: BillingStatusEnum
+
+| Name | Value |
+|---- | -----|
+| OK | &quot;ok&quot; |
+| MISSING | &quot;missing&quot; |
+| UNKNOWN | &quot;unknown&quot; |
 
 
 

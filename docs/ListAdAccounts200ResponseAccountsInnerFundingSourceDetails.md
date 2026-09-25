@@ -2,7 +2,7 @@
 
 # ListAdAccounts200ResponseAccountsInnerFundingSourceDetails
 
-Meta only. Meta's `funding_source_details` object, forwarded unchanged. ABSENT under exactly the same condition as `fundingSource`: this connection's token cannot see billing on the ad account. It is never sent as null or as an empty object, so treat the missing key as 'unknown', never as 'no payment method configured'. 
+Meta only. Meta's `funding_source_details` object, forwarded unchanged. ABSENT under exactly the same conditions as `fundingSource`, never sent as null or as an empty object. Read `billingStatus` for what the absence means. 
 
 ## Properties
 
