@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.83.0
+- API version: 1.83.1
 
-- Build date: 2026-09-25T11:28:41.561848518Z[Etc/UTC]
+- Build date: 2026-09-25T11:38:10.210050900Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.83.0</version>
+  <version>1.83.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.83.0"
+compile "dev.zernio:zernio-sdk:1.83.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.83.0.jar`
+- `target/zernio-sdk-1.83.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3281,7 +3281,7 @@ Class | Method | HTTP request | Description
  - [SendInboxMessage200ResponseWarningsInner](docs/SendInboxMessage200ResponseWarningsInner.md)
  - [SendInboxMessage400Response](docs/SendInboxMessage400Response.md)
  - [SendInboxMessage400ResponsePlatformError](docs/SendInboxMessage400ResponsePlatformError.md)
- - [SendInboxMessage502Response](docs/SendInboxMessage502Response.md)
+ - [SendInboxMessage429Response](docs/SendInboxMessage429Response.md)
  - [SendInboxMessageRequest](docs/SendInboxMessageRequest.md)
  - [SendInboxMessageRequest1](docs/SendInboxMessageRequest1.md)
  - [SendInboxMessageRequestButtonsInner](docs/SendInboxMessageRequestButtonsInner.md)

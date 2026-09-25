@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.83.0
+  version: 1.83.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -18766,16 +18766,27 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/WhatsAppTemplateLookupError"
-          description: Meta rejected the WhatsApp template-definition lookup. No message
-            was sent.
+                $ref: "#/components/schemas/sendInboxMessage_429_response"
+          description: "Rate limited. Either the connected account's upstream platform\
+            \ quota is exhausted (code rate_limited, see Retry-After; Reddit allows\
+            \ 1000 requests per 10 minutes per connected user), or Meta rejected the\
+            \ WhatsApp template-definition lookup (code platform_api_error). No message\
+            \ was sent."
+          headers:
+            Retry-After:
+              description: "Seconds until the upstream quota resets, when the platform\
+                \ reported it."
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "503":
           $ref: "#/components/responses/TemporarilyUnavailable"
         "502":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/sendInboxMessage_502_response"
+                $ref: "#/components/schemas/sendInboxMessage_429_response"
           description: "The exact approved WhatsApp template definition is unavailable,\
             \ or the platform returned an upstream failure. No WhatsApp template message\
             \ is sent when definition lookup fails."
@@ -85384,7 +85395,7 @@ components:
           type: string
         platformError:
           $ref: "#/components/schemas/sendInboxMessage_400_response_platformError"
-    sendInboxMessage_502_response:
+    sendInboxMessage_429_response:
       anyOf:
       - $ref: "#/components/schemas/ErrorResponse"
       - $ref: "#/components/schemas/WhatsAppTemplateLookupError"

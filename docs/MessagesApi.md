@@ -1912,7 +1912,7 @@ public class Example {
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
-| **429** | Meta rejected the WhatsApp template-definition lookup. No message was sent. |  -  |
+| **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The exact approved WhatsApp template definition is unavailable, or the platform returned an upstream failure. No WhatsApp template message is sent when definition lookup fails. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
@@ -1999,7 +1999,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
-| **429** | Meta rejected the WhatsApp template-definition lookup. No message was sent. |  -  |
+| **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The exact approved WhatsApp template definition is unavailable, or the platform returned an upstream failure. No WhatsApp template message is sent when definition lookup fails. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
