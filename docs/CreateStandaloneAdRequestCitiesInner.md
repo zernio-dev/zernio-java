@@ -2,23 +2,36 @@
 
 # CreateStandaloneAdRequestCitiesInner
 
+## oneOf schemas
+* [CreateStandaloneAdRequestCitiesInnerOneOf](CreateStandaloneAdRequestCitiesInnerOneOf.md)
+* [String](String.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.CreateStandaloneAdRequestCitiesInner;
+import dev.zernio.model.CreateStandaloneAdRequestCitiesInnerOneOf;
+import dev.zernio.model.String;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**key** | **String** | Meta city ID, from /v1/ads/targeting/search results. |  |
-|**radius** | **BigDecimal** | Optional radius around the city. Must be set together with distance_unit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng). |  [optional] |
-|**distanceUnit** | [**DistanceUnitEnum**](#DistanceUnitEnum) | Unit for radius. Required if radius is set. |  [optional] |
+public class Example {
+    public static void main(String[] args) {
+        CreateStandaloneAdRequestCitiesInner exampleCreateStandaloneAdRequestCitiesInner = new CreateStandaloneAdRequestCitiesInner();
 
+        // create a new CreateStandaloneAdRequestCitiesInnerOneOf
+        CreateStandaloneAdRequestCitiesInnerOneOf exampleCreateStandaloneAdRequestCitiesInnerOneOf = new CreateStandaloneAdRequestCitiesInnerOneOf();
+        // set CreateStandaloneAdRequestCitiesInner to CreateStandaloneAdRequestCitiesInnerOneOf
+        exampleCreateStandaloneAdRequestCitiesInner.setActualInstance(exampleCreateStandaloneAdRequestCitiesInnerOneOf);
+        // to get back the CreateStandaloneAdRequestCitiesInnerOneOf set earlier
+        CreateStandaloneAdRequestCitiesInnerOneOf testCreateStandaloneAdRequestCitiesInnerOneOf = (CreateStandaloneAdRequestCitiesInnerOneOf) exampleCreateStandaloneAdRequestCitiesInner.getActualInstance();
 
-
-## Enum: DistanceUnitEnum
-
-| Name | Value |
-|---- | -----|
-| MILE | &quot;mile&quot; |
-| KILOMETER | &quot;kilometer&quot; |
-
+        // create a new String
+        String exampleString = new String();
+        // set CreateStandaloneAdRequestCitiesInner to String
+        exampleCreateStandaloneAdRequestCitiesInner.setActualInstance(exampleString);
+        // to get back the String set earlier
+        String testString = (String) exampleCreateStandaloneAdRequestCitiesInner.getActualInstance();
+    }
+}
+```
 
 

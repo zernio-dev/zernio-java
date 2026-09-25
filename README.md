@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.88.0
+- API version: 1.89.0
 
-- Build date: 2026-09-25T14:11:42.017570809Z[Etc/UTC]
+- Build date: 2026-09-25T14:58:02.460957516Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.88.0</version>
+  <version>1.89.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.88.0"
+compile "dev.zernio:zernio-sdk:1.89.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.88.0.jar`
+- `target/zernio-sdk-1.89.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2104,6 +2104,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestBrandIdentity](docs/CreateStandaloneAdRequestBrandIdentity.md)
  - [CreateStandaloneAdRequestCarouselCardsInner](docs/CreateStandaloneAdRequestCarouselCardsInner.md)
  - [CreateStandaloneAdRequestCitiesInner](docs/CreateStandaloneAdRequestCitiesInner.md)
+ - [CreateStandaloneAdRequestCitiesInnerOneOf](docs/CreateStandaloneAdRequestCitiesInnerOneOf.md)
  - [CreateStandaloneAdRequestCreativesInner](docs/CreateStandaloneAdRequestCreativesInner.md)
  - [CreateStandaloneAdRequestCreativesInnerVideo](docs/CreateStandaloneAdRequestCreativesInnerVideo.md)
  - [CreateStandaloneAdRequestCustomLocationsInner](docs/CreateStandaloneAdRequestCustomLocationsInner.md)
@@ -2115,10 +2116,12 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
  - [CreateStandaloneAdRequestPlatformSpecificData](docs/CreateStandaloneAdRequestPlatformSpecificData.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
+ - [CreateStandaloneAdRequestRegionsInnerOneOf](docs/CreateStandaloneAdRequestRegionsInnerOneOf.md)
  - [CreateStandaloneAdRequestSitelinksInner](docs/CreateStandaloneAdRequestSitelinksInner.md)
  - [CreateStandaloneAdRequestStructuredSnippetsInner](docs/CreateStandaloneAdRequestStructuredSnippetsInner.md)
  - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
+ - [CreateStandaloneAdRequestZipsInner](docs/CreateStandaloneAdRequestZipsInner.md)
  - [CreateTestLead200Response](docs/CreateTestLead200Response.md)
  - [CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)
  - [CreateTestLeadRequest](docs/CreateTestLeadRequest.md)
@@ -2673,6 +2676,7 @@ Class | Method | HTTP request | Description
  - [GoogleBusinessReview](docs/GoogleBusinessReview.md)
  - [GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
  - [GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
+ - [GoogleLocationTargetingType](docs/GoogleLocationTargetingType.md)
  - [GooglePmaxAssetGroup](docs/GooglePmaxAssetGroup.md)
  - [GooglePmaxAssetGroupAssetsInner](docs/GooglePmaxAssetGroupAssetsInner.md)
  - [GooglePmaxAssetGroupInput](docs/GooglePmaxAssetGroupInput.md)
@@ -3405,6 +3409,7 @@ Class | Method | HTTP request | Description
  - [SyncExternalPostsRequest](docs/SyncExternalPostsRequest.md)
  - [TargetingSpec](docs/TargetingSpec.md)
  - [TargetingSpecCitiesInner](docs/TargetingSpecCitiesInner.md)
+ - [TargetingSpecCitiesInnerOneOf](docs/TargetingSpecCitiesInnerOneOf.md)
  - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
  - [TargetingSpecExcludedLocations](docs/TargetingSpecExcludedLocations.md)
  - [TargetingSpecExcludedLocationsCitiesInner](docs/TargetingSpecExcludedLocationsCitiesInner.md)

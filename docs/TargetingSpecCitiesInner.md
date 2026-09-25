@@ -2,24 +2,36 @@
 
 # TargetingSpecCitiesInner
 
+## oneOf schemas
+* [String](String.md)
+* [TargetingSpecCitiesInnerOneOf](TargetingSpecCitiesInnerOneOf.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.TargetingSpecCitiesInner;
+import dev.zernio.model.String;
+import dev.zernio.model.TargetingSpecCitiesInnerOneOf;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**key** | **String** |  |  |
-|**name** | **String** |  |  [optional] |
-|**radius** | **BigDecimal** | Radius around the city. Requires distanceUnit. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng), which allows a smaller radius. |  [optional] |
-|**distanceUnit** | [**DistanceUnitEnum**](#DistanceUnitEnum) | Required if radius is set. |  [optional] |
+public class Example {
+    public static void main(String[] args) {
+        TargetingSpecCitiesInner exampleTargetingSpecCitiesInner = new TargetingSpecCitiesInner();
 
+        // create a new String
+        String exampleString = new String();
+        // set TargetingSpecCitiesInner to String
+        exampleTargetingSpecCitiesInner.setActualInstance(exampleString);
+        // to get back the String set earlier
+        String testString = (String) exampleTargetingSpecCitiesInner.getActualInstance();
 
-
-## Enum: DistanceUnitEnum
-
-| Name | Value |
-|---- | -----|
-| MILE | &quot;mile&quot; |
-| KILOMETER | &quot;kilometer&quot; |
-
+        // create a new TargetingSpecCitiesInnerOneOf
+        TargetingSpecCitiesInnerOneOf exampleTargetingSpecCitiesInnerOneOf = new TargetingSpecCitiesInnerOneOf();
+        // set TargetingSpecCitiesInner to TargetingSpecCitiesInnerOneOf
+        exampleTargetingSpecCitiesInner.setActualInstance(exampleTargetingSpecCitiesInnerOneOf);
+        // to get back the TargetingSpecCitiesInnerOneOf set earlier
+        TargetingSpecCitiesInnerOneOf testTargetingSpecCitiesInnerOneOf = (TargetingSpecCitiesInnerOneOf) exampleTargetingSpecCitiesInner.getActualInstance();
+    }
+}
+```
 
 
