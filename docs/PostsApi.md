@@ -359,7 +359,7 @@ ApiResponse<[**CreatePost200Response**](CreatePost200Response.md)>
 
 Delete post
 
-Delete a draft or scheduled post from Zernio. Published posts cannot be deleted; use the Unpublish endpoint instead. Upload quota is automatically refunded.
+Delete a post from Zernio. Any status except &#x60;published&#x60; can be deleted: &#x60;draft&#x60;, &#x60;scheduled&#x60;, &#x60;publishing&#x60;, &#x60;failed&#x60;, &#x60;partial&#x60; and &#x60;cancelled&#x60;. Published posts cannot be deleted; use the Unpublish endpoint instead. Upload quota is automatically refunded for draft and scheduled posts.  Deleting a &#x60;publishing&#x60; or &#x60;partial&#x60; post is how you stop entries that are still pending, for example entries held on a disconnected account. It removes the whole post record from Zernio, including the entries that were already published, but it does not remove anything already live on a platform (use Unpublish for that first if needed). An entry that a worker has already started sending when you delete may still go out, or may fail because media uploaded to Zernio and not used by another post is deleted with the post. Analytics for entries already published are removed too. Deleting also frees the content for re-creation, so the same caption and media are no longer reported as a duplicate. 
 
 ### Example
 
@@ -433,7 +433,7 @@ public class Example {
 
 Delete post
 
-Delete a draft or scheduled post from Zernio. Published posts cannot be deleted; use the Unpublish endpoint instead. Upload quota is automatically refunded.
+Delete a post from Zernio. Any status except &#x60;published&#x60; can be deleted: &#x60;draft&#x60;, &#x60;scheduled&#x60;, &#x60;publishing&#x60;, &#x60;failed&#x60;, &#x60;partial&#x60; and &#x60;cancelled&#x60;. Published posts cannot be deleted; use the Unpublish endpoint instead. Upload quota is automatically refunded for draft and scheduled posts.  Deleting a &#x60;publishing&#x60; or &#x60;partial&#x60; post is how you stop entries that are still pending, for example entries held on a disconnected account. It removes the whole post record from Zernio, including the entries that were already published, but it does not remove anything already live on a platform (use Unpublish for that first if needed). An entry that a worker has already started sending when you delete may still go out, or may fail because media uploaded to Zernio and not used by another post is deleted with the post. Analytics for entries already published are removed too. Deleting also frees the content for re-creation, so the same caption and media are no longer reported as a duplicate. 
 
 ### Example
 
