@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   ErrorResponseDetails.JSON_PROPERTY_QUOTA_SCOPE,
   ErrorResponseDetails.JSON_PROPERTY_BUDGET_SCOPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponseDetails {
   /**
    * Meta ad create failures only. The step that failed: &#x60;media&#x60; (image/video download or upload), &#x60;campaign&#x60;, &#x60;adset&#x60;, &#x60;creative&#x60;, &#x60;ad&#x60; (the ad POST itself, where Meta&#39;s code 31 / 3858385 hold and 100 / 1359188 payment rejections land), &#x60;activation&#x60; (switching the created objects on), or &#x60;other&#x60; (a read or check before any write).

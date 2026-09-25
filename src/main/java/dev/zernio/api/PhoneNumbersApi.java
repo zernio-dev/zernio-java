@@ -33,6 +33,7 @@ import java.io.File;
 import dev.zernio.model.GetPhoneNumber200Response;
 import dev.zernio.model.GetPhoneNumberClaim200Response;
 import dev.zernio.model.GetPhoneNumberKycForm200Response;
+import dev.zernio.model.GetPhoneNumberPortClaim200Response;
 import dev.zernio.model.GetPhoneNumberPortInOrderRequirements200Response;
 import dev.zernio.model.GetPhoneNumberPortInRequirements200Response;
 import dev.zernio.model.GetPhoneNumberRemediation200Response;
@@ -98,7 +99,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -479,7 +480,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check portability
-   * Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+   * Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
    * @param checkPhoneNumberPortabilityRequest  (required)
    * @return CheckPhoneNumberPortability200Response
    * @throws ApiException if fails to make API call
@@ -490,7 +491,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check portability
-   * Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+   * Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
    * @param checkPhoneNumberPortabilityRequest  (required)
    * @param headers Optional headers to include in the request
    * @return CheckPhoneNumberPortability200Response
@@ -503,7 +504,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check portability
-   * Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+   * Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
    * @param checkPhoneNumberPortabilityRequest  (required)
    * @return ApiResponse&lt;CheckPhoneNumberPortability200Response&gt;
    * @throws ApiException if fails to make API call
@@ -514,7 +515,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check portability
-   * Pre-flight portability check: whether each number can be ported in and whether it qualifies for FastPort, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing. 
+   * Pre-flight portability check: whether each number can be ported in, whether it qualifies for FastPort, and its current carrier and line type where the carrier lookup knows them, BEFORE the user commits to a port order (LOA, invoice, service address). Read-only; creates no order and bills nothing.  Works without an API key for one number per request. Keyless calls are what the checker at https://zernio.com/port-your-number makes: they must come from that page (a browser bot check rejects scripted callers with 401), are limited per IP (3 a minute, 10 a day) and by a shared daily budget (429 once spent), because each check runs a paid carrier lookup. Each portable keyless result carries a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that opens the dashboard&#39;s port form with the number filled in. Send an API key to check up to 50 numbers without those limits. 
    * @param checkPhoneNumberPortabilityRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;CheckPhoneNumberPortability200Response&gt;
@@ -1446,6 +1447,124 @@ public class PhoneNumbersApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Resolve a port claim
+   * Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+   * @param claimId  (required)
+   * @return GetPhoneNumberPortClaim200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortClaim200Response getPhoneNumberPortClaim(@javax.annotation.Nonnull String claimId) throws ApiException {
+    return getPhoneNumberPortClaim(claimId, null);
+  }
+
+  /**
+   * Resolve a port claim
+   * Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+   * @param claimId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetPhoneNumberPortClaim200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberPortClaim200Response getPhoneNumberPortClaim(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPhoneNumberPortClaim200Response> localVarResponse = getPhoneNumberPortClaimWithHttpInfo(claimId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Resolve a port claim
+   * Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+   * @param claimId  (required)
+   * @return ApiResponse&lt;GetPhoneNumberPortClaim200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortClaim200Response> getPhoneNumberPortClaimWithHttpInfo(@javax.annotation.Nonnull String claimId) throws ApiException {
+    return getPhoneNumberPortClaimWithHttpInfo(claimId, null);
+  }
+
+  /**
+   * Resolve a port claim
+   * Resolves a &#x60;claimId&#x60; from a keyless portability check into the number it carries. The dashboard calls it when a person lands from a port &#x60;claimUrl&#x60;, to open the port form with that number filled in. It does not start a port. 
+   * @param claimId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetPhoneNumberPortClaim200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberPortClaim200Response> getPhoneNumberPortClaimWithHttpInfo(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPhoneNumberPortClaimRequestBuilder(claimId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPhoneNumberPortClaim", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetPhoneNumberPortClaim200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetPhoneNumberPortClaim200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPhoneNumberPortClaim200Response>() {});
+        
+
+        return new ApiResponse<GetPhoneNumberPortClaim200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPhoneNumberPortClaimRequestBuilder(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'claimId' is set
+    if (claimId == null) {
+      throw new ApiException(400, "Missing the required parameter 'claimId' when calling getPhoneNumberPortClaim");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/port-in/claims/{claimId}"
+        .replace("{claimId}", ApiClient.urlEncode(claimId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 

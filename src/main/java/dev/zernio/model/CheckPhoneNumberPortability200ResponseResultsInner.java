@@ -40,12 +40,16 @@ import dev.zernio.ApiClient;
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PORTABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_FAST_PORTABLE,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_MESSAGING_CAPABLE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_LINE_TYPE,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_CARRIER_NAME,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_COUNTRY_CODE,
   CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_PHONE_NUMBER_TYPE,
-  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_NOT_PORTABLE_REASON,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_CLAIM_ID,
+  CheckPhoneNumberPortability200ResponseResultsInner.JSON_PROPERTY_CLAIM_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortability200ResponseResultsInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -59,8 +63,14 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   @javax.annotation.Nullable
   private Boolean fastPortable;
 
+  public static final String JSON_PROPERTY_MESSAGING_CAPABLE = "messagingCapable";
+  private JsonNullable<Boolean> messagingCapable = JsonNullable.<Boolean>undefined();
+
   public static final String JSON_PROPERTY_LINE_TYPE = "lineType";
   private JsonNullable<String> lineType = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CARRIER_NAME = "carrierName";
+  private JsonNullable<String> carrierName = JsonNullable.<String>undefined();
 
   public static final String JSON_PROPERTY_COUNTRY_CODE = "countryCode";
   private JsonNullable<String> countryCode = JsonNullable.<String>undefined();
@@ -70,6 +80,14 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   public static final String JSON_PROPERTY_NOT_PORTABLE_REASON = "notPortableReason";
   private JsonNullable<String> notPortableReason = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CLAIM_ID = "claimId";
+  @javax.annotation.Nullable
+  private String claimId;
+
+  public static final String JSON_PROPERTY_CLAIM_URL = "claimUrl";
+  @javax.annotation.Nullable
+  private String claimUrl;
 
   public CheckPhoneNumberPortability200ResponseResultsInner() { 
   }
@@ -146,13 +164,45 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
 
+  public CheckPhoneNumberPortability200ResponseResultsInner messagingCapable(@javax.annotation.Nullable Boolean messagingCapable) {
+    this.messagingCapable = JsonNullable.<Boolean>of(messagingCapable);
+    return this;
+  }
+
+  /**
+   * Whether texting can be enabled on the number once ported; null when the carrier does not say.
+   * @return messagingCapable
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Boolean getMessagingCapable() {
+        return messagingCapable.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_MESSAGING_CAPABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Boolean> getMessagingCapable_JsonNullable() {
+    return messagingCapable;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_MESSAGING_CAPABLE)
+  public void setMessagingCapable_JsonNullable(JsonNullable<Boolean> messagingCapable) {
+    this.messagingCapable = messagingCapable;
+  }
+
+  public void setMessagingCapable(@javax.annotation.Nullable Boolean messagingCapable) {
+    this.messagingCapable = JsonNullable.<Boolean>of(messagingCapable);
+  }
+
+
   public CheckPhoneNumberPortability200ResponseResultsInner lineType(@javax.annotation.Nullable String lineType) {
     this.lineType = JsonNullable.<String>of(lineType);
     return this;
   }
 
   /**
-   * Line type when known (mobile, landline, voip…). A US/CA mobile number requires the transfer PIN at submit.
+   * Line type when known (mobile, landline, voip, toll-free, unknown). US/CA portable numbers only. A US/CA mobile number requires the transfer PIN at submit.
    * @return lineType
    */
   @javax.annotation.Nullable
@@ -175,6 +225,38 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   public void setLineType(@javax.annotation.Nullable String lineType) {
     this.lineType = JsonNullable.<String>of(lineType);
+  }
+
+
+  public CheckPhoneNumberPortability200ResponseResultsInner carrierName(@javax.annotation.Nullable String carrierName) {
+    this.carrierName = JsonNullable.<String>of(carrierName);
+    return this;
+  }
+
+  /**
+   * The number&#39;s current carrier, when the lookup knows it. US/CA portable numbers only.
+   * @return carrierName
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getCarrierName() {
+        return carrierName.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_CARRIER_NAME, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getCarrierName_JsonNullable() {
+    return carrierName;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_CARRIER_NAME)
+  public void setCarrierName_JsonNullable(JsonNullable<String> carrierName) {
+    this.carrierName = carrierName;
+  }
+
+  public void setCarrierName(@javax.annotation.Nullable String carrierName) {
+    this.carrierName = JsonNullable.<String>of(carrierName);
   }
 
 
@@ -216,7 +298,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
   /**
-   * Carrier number-type classification (local, mobile, national, toll_free…), the numberType for the requirements endpoint.
+   * Carrier number-type classification (local, mobile, national, toll_free...), the numberType for the requirements endpoint.
    * @return phoneNumberType
    */
   @javax.annotation.Nullable
@@ -274,6 +356,54 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
   }
 
 
+  public CheckPhoneNumberPortability200ResponseResultsInner claimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+    return this;
+  }
+
+  /**
+   * Keyless calls and claimLinks&#x3D;true only, on portable results. Resolve it with GET /v1/phone-numbers/port-in/claims/{claimId}. Expires after 7 days.
+   * @return claimId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimId() {
+    return claimId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+  }
+
+
+  public CheckPhoneNumberPortability200ResponseResultsInner claimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+    return this;
+  }
+
+  /**
+   * Keyless calls and claimLinks&#x3D;true only, on portable results. A signup link that lands on the dashboard&#39;s port form with this number filled in.
+   * @return claimUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimUrl() {
+    return claimUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+  }
+
+
   /**
    * Return true if this checkPhoneNumberPortability_200_response_results_inner object is equal to o.
    */
@@ -289,10 +419,14 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     return Objects.equals(this.phoneNumber, checkPhoneNumberPortability200ResponseResultsInner.phoneNumber) &&
         Objects.equals(this.portable, checkPhoneNumberPortability200ResponseResultsInner.portable) &&
         Objects.equals(this.fastPortable, checkPhoneNumberPortability200ResponseResultsInner.fastPortable) &&
+        equalsNullable(this.messagingCapable, checkPhoneNumberPortability200ResponseResultsInner.messagingCapable) &&
         equalsNullable(this.lineType, checkPhoneNumberPortability200ResponseResultsInner.lineType) &&
+        equalsNullable(this.carrierName, checkPhoneNumberPortability200ResponseResultsInner.carrierName) &&
         equalsNullable(this.countryCode, checkPhoneNumberPortability200ResponseResultsInner.countryCode) &&
         equalsNullable(this.phoneNumberType, checkPhoneNumberPortability200ResponseResultsInner.phoneNumberType) &&
-        equalsNullable(this.notPortableReason, checkPhoneNumberPortability200ResponseResultsInner.notPortableReason);
+        equalsNullable(this.notPortableReason, checkPhoneNumberPortability200ResponseResultsInner.notPortableReason) &&
+        Objects.equals(this.claimId, checkPhoneNumberPortability200ResponseResultsInner.claimId) &&
+        Objects.equals(this.claimUrl, checkPhoneNumberPortability200ResponseResultsInner.claimUrl);
   }
 
   private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
@@ -301,7 +435,7 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(lineType), hashCodeNullable(countryCode), hashCodeNullable(phoneNumberType), hashCodeNullable(notPortableReason));
+    return Objects.hash(phoneNumber, portable, fastPortable, hashCodeNullable(messagingCapable), hashCodeNullable(lineType), hashCodeNullable(carrierName), hashCodeNullable(countryCode), hashCodeNullable(phoneNumberType), hashCodeNullable(notPortableReason), claimId, claimUrl);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -318,10 +452,14 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    portable: ").append(toIndentedString(portable)).append("\n");
     sb.append("    fastPortable: ").append(toIndentedString(fastPortable)).append("\n");
+    sb.append("    messagingCapable: ").append(toIndentedString(messagingCapable)).append("\n");
     sb.append("    lineType: ").append(toIndentedString(lineType)).append("\n");
+    sb.append("    carrierName: ").append(toIndentedString(carrierName)).append("\n");
     sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
     sb.append("    phoneNumberType: ").append(toIndentedString(phoneNumberType)).append("\n");
     sb.append("    notPortableReason: ").append(toIndentedString(notPortableReason)).append("\n");
+    sb.append("    claimId: ").append(toIndentedString(claimId)).append("\n");
+    sb.append("    claimUrl: ").append(toIndentedString(claimUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -384,9 +522,19 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
       joiner.add(String.format(java.util.Locale.ROOT, "%sfastPortable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getFastPortable()))));
     }
 
+    // add `messagingCapable` to the URL query string
+    if (getMessagingCapable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smessagingCapable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMessagingCapable()))));
+    }
+
     // add `lineType` to the URL query string
     if (getLineType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%slineType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getLineType()))));
+    }
+
+    // add `carrierName` to the URL query string
+    if (getCarrierName() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scarrierName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCarrierName()))));
     }
 
     // add `countryCode` to the URL query string
@@ -402,6 +550,16 @@ public class CheckPhoneNumberPortability200ResponseResultsInner {
     // add `notPortableReason` to the URL query string
     if (getNotPortableReason() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%snotPortableReason%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNotPortableReason()))));
+    }
+
+    // add `claimId` to the URL query string
+    if (getClaimId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimId()))));
+    }
+
+    // add `claimUrl` to the URL query string
+    if (getClaimUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimUrl()))));
     }
 
     return joiner.toString();

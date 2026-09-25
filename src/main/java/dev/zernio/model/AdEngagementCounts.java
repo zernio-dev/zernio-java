@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   AdEngagementCounts.JSON_PROPERTY_VIDEO_VIEWS,
   AdEngagementCounts.JSON_PROPERTY_LINK_CLICKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdEngagementCounts {
   public static final String JSON_PROPERTY_POST_ENGAGEMENT = "postEngagement";
   @javax.annotation.Nullable

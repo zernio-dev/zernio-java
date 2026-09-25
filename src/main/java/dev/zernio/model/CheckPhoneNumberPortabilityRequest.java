@@ -35,13 +35,18 @@ import dev.zernio.ApiClient;
  * CheckPhoneNumberPortabilityRequest
  */
 @JsonPropertyOrder({
-  CheckPhoneNumberPortabilityRequest.JSON_PROPERTY_PHONE_NUMBERS
+  CheckPhoneNumberPortabilityRequest.JSON_PROPERTY_PHONE_NUMBERS,
+  CheckPhoneNumberPortabilityRequest.JSON_PROPERTY_CLAIM_LINKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CheckPhoneNumberPortabilityRequest {
   public static final String JSON_PROPERTY_PHONE_NUMBERS = "phoneNumbers";
   @javax.annotation.Nonnull
   private List<String> phoneNumbers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_CLAIM_LINKS = "claimLinks";
+  @javax.annotation.Nullable
+  private Boolean claimLinks;
 
   public CheckPhoneNumberPortabilityRequest() { 
   }
@@ -60,7 +65,7 @@ public class CheckPhoneNumberPortabilityRequest {
   }
 
   /**
-   * E.164 numbers to check, e.g. +13035550000.
+   * E.164 numbers to check, e.g. +13035550000. At most one without an API key.
    * @return phoneNumbers
    */
   @javax.annotation.Nonnull
@@ -78,6 +83,30 @@ public class CheckPhoneNumberPortabilityRequest {
   }
 
 
+  public CheckPhoneNumberPortabilityRequest claimLinks(@javax.annotation.Nullable Boolean claimLinks) {
+    this.claimLinks = claimLinks;
+    return this;
+  }
+
+  /**
+   * true adds &#x60;claimId&#x60; and &#x60;claimUrl&#x60; to portable results even when you send an API key, e.g. to hand a user a signup link that opens the port form with their number.
+   * @return claimLinks
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_LINKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getClaimLinks() {
+    return claimLinks;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_LINKS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimLinks(@javax.annotation.Nullable Boolean claimLinks) {
+    this.claimLinks = claimLinks;
+  }
+
+
   /**
    * Return true if this checkPhoneNumberPortability_request object is equal to o.
    */
@@ -90,12 +119,13 @@ public class CheckPhoneNumberPortabilityRequest {
       return false;
     }
     CheckPhoneNumberPortabilityRequest checkPhoneNumberPortabilityRequest = (CheckPhoneNumberPortabilityRequest) o;
-    return Objects.equals(this.phoneNumbers, checkPhoneNumberPortabilityRequest.phoneNumbers);
+    return Objects.equals(this.phoneNumbers, checkPhoneNumberPortabilityRequest.phoneNumbers) &&
+        Objects.equals(this.claimLinks, checkPhoneNumberPortabilityRequest.claimLinks);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumbers);
+    return Objects.hash(phoneNumbers, claimLinks);
   }
 
   @Override
@@ -103,6 +133,7 @@ public class CheckPhoneNumberPortabilityRequest {
     StringBuilder sb = new StringBuilder();
     sb.append("class CheckPhoneNumberPortabilityRequest {\n");
     sb.append("    phoneNumbers: ").append(toIndentedString(phoneNumbers)).append("\n");
+    sb.append("    claimLinks: ").append(toIndentedString(claimLinks)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -157,6 +188,11 @@ public class CheckPhoneNumberPortabilityRequest {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumbers().get(i)))));
       }
+    }
+
+    // add `claimLinks` to the URL query string
+    if (getClaimLinks() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimLinks%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimLinks()))));
     }
 
     return joiner.toString();

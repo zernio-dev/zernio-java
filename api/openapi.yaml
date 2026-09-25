@@ -27022,10 +27022,21 @@ paths:
   /v1/phone-numbers/port-in/check:
     post:
       description: |
-        Pre-flight portability check: whether each number can be ported in and
-        whether it qualifies for FastPort, BEFORE the user commits to a port
-        order (LOA, invoice, service address). Read-only; creates no order and
-        bills nothing.
+        Pre-flight portability check: whether each number can be ported in,
+        whether it qualifies for FastPort, and its current carrier and line
+        type where the carrier lookup knows them, BEFORE the user commits to a
+        port order (LOA, invoice, service address). Read-only; creates no
+        order and bills nothing.
+
+        Works without an API key for one number per request. Keyless calls
+        are what the checker at https://zernio.com/port-your-number makes:
+        they must come from that page (a browser bot check rejects scripted
+        callers with 401), are limited per IP (3 a minute, 10 a day) and by a
+        shared daily budget (429 once spent), because each check runs a paid
+        carrier lookup. Each portable keyless result carries a `claimId` and
+        a `claimUrl`: a signup link that opens the dashboard's port form with
+        the number filled in. Send an API key to check up to 50 numbers
+        without those limits.
       operationId: checkPhoneNumberPortability
       requestBody:
         content:
@@ -27040,15 +27051,59 @@ paths:
               schema:
                 $ref: "#/components/schemas/checkPhoneNumberPortability_200_response"
           description: Per-number portability.
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Keyless calls only. The per-IP limit or the shared daily budget
+            is spent; `Retry-After` says when to try again. Send an API key to skip
+            both.
       security:
+      - {}
       - bearerAuth: []
       summary: Check portability
       tags:
       - Phone Numbers
       x-resource-group: telephony
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/phone-numbers/port-in/claims/{claimId}:
+    get:
+      description: |
+        Resolves a `claimId` from a keyless portability check into the number
+        it carries. The dashboard calls it when a person lands from a port
+        `claimUrl`, to open the port form with that number filled in. It does
+        not start a port.
+      operationId: getPhoneNumberPortClaim
+      parameters:
+      - explode: false
+        in: path
+        name: claimId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPhoneNumberPortClaim_200_response"
+          description: The claimed number.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: The claim expired (after 7 days) or is invalid.
+      security:
+      - bearerAuth: []
+      summary: Resolve a port claim
+      tags:
+      - Phone Numbers
+      x-resource-group: telephony
       x-accepts:
       - application/json
   /v1/phone-numbers/port-in/documents:
@@ -93666,22 +93721,32 @@ components:
     checkPhoneNumberPortability_request:
       properties:
         phoneNumbers:
-          description: "E.164 numbers to check, e.g. +13035550000."
+          description: "E.164 numbers to check, e.g. +13035550000. At most one without\
+            \ an API key."
           items:
             type: string
           maxItems: 50
           minItems: 1
           type: array
+        claimLinks:
+          description: "true adds `claimId` and `claimUrl` to portable results even\
+            \ when you send an API key, e.g. to hand a user a signup link that opens\
+            \ the port form with their number."
+          type: boolean
       required:
       - phoneNumbers
     checkPhoneNumberPortability_200_response_results_inner:
       example:
         phoneNumber: phoneNumber
+        carrierName: carrierName
+        messagingCapable: true
         countryCode: countryCode
+        claimUrl: claimUrl
         lineType: lineType
         phoneNumberType: phoneNumberType
         portable: true
         notPortableReason: notPortableReason
+        claimId: claimId
         fastPortable: true
       properties:
         phoneNumber:
@@ -93691,9 +93756,20 @@ components:
         fastPortable:
           description: Qualifies for the carrier's accelerated FastPort lane.
           type: boolean
+        messagingCapable:
+          description: Whether texting can be enabled on the number once ported; null
+            when the carrier does not say.
+          nullable: true
+          type: boolean
         lineType:
-          description: "Line type when known (mobile, landline, voip…). A US/CA mobile\
-            \ number requires the transfer PIN at submit."
+          description: "Line type when known (mobile, landline, voip, toll-free, unknown).\
+            \ US/CA portable numbers only. A US/CA mobile number requires the transfer\
+            \ PIN at submit."
+          nullable: true
+          type: string
+        carrierName:
+          description: "The number's current carrier, when the lookup knows it. US/CA\
+            \ portable numbers only."
           nullable: true
           type: string
         countryCode:
@@ -93703,35 +93779,65 @@ components:
           type: string
         phoneNumberType:
           description: "Carrier number-type classification (local, mobile, national,\
-            \ toll_free…), the numberType for the requirements endpoint."
+            \ toll_free...), the numberType for the requirements endpoint."
           nullable: true
           type: string
         notPortableReason:
           description: Carrier reason when not portable; null when portable.
           nullable: true
           type: string
+        claimId:
+          description: "Keyless calls and claimLinks=true only, on portable results.\
+            \ Resolve it with GET /v1/phone-numbers/port-in/claims/{claimId}. Expires\
+            \ after 7 days."
+          type: string
+        claimUrl:
+          description: "Keyless calls and claimLinks=true only, on portable results.\
+            \ A signup link that lands on the dashboard's port form with this number\
+            \ filled in."
+          type: string
     checkPhoneNumberPortability_200_response:
       example:
         results:
         - phoneNumber: phoneNumber
+          carrierName: carrierName
+          messagingCapable: true
           countryCode: countryCode
+          claimUrl: claimUrl
           lineType: lineType
           phoneNumberType: phoneNumberType
           portable: true
           notPortableReason: notPortableReason
+          claimId: claimId
           fastPortable: true
         - phoneNumber: phoneNumber
+          carrierName: carrierName
+          messagingCapable: true
           countryCode: countryCode
+          claimUrl: claimUrl
           lineType: lineType
           phoneNumberType: phoneNumberType
           portable: true
           notPortableReason: notPortableReason
+          claimId: claimId
           fastPortable: true
       properties:
         results:
           items:
             $ref: "#/components/schemas/checkPhoneNumberPortability_200_response_results_inner"
           type: array
+    getPhoneNumberPortClaim_200_response:
+      example:
+        phoneNumber: phoneNumber
+        countryCode: countryCode
+      properties:
+        phoneNumber:
+          description: E.164.
+          type: string
+        countryCode:
+          description: ISO country of the number.
+          nullable: true
+          type: string
     uploadPhoneNumberPortInDocument_request:
       properties:
         file:

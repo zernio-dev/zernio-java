@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AddImessageGroupParticipantRequest.JSON_PROPERTY_ACCOUNT_ID,
   AddImessageGroupParticipantRequest.JSON_PROPERTY_CONTACT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddImessageGroupParticipantRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

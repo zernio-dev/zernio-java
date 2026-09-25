@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumbers200ResponseSandboxTemplate.JSON_PROPERTY_NAME,
   ListPhoneNumbers200ResponseSandboxTemplate.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumbers200ResponseSandboxTemplate {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable

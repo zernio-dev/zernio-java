@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListMetaBusinesses200Response.JSON_PROPERTY_DATA,
   ListMetaBusinesses200Response.JSON_PROPERTY_PAGING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListMetaBusinesses200Response {
   public static final String JSON_PROPERTY_DATA = "data";
   @javax.annotation.Nullable

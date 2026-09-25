@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponsePlatformConnection.JSON_PROPERTY_META_ERROR,
   GetAccountHealth200ResponsePlatformConnection.JSON_PROPERTY_INBOUND_WEBHOOK_SUBSCRIBED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponsePlatformConnection {
   /**
    * &#x60;connected&#x60; &#x3D; Meta served the channel object. &#x60;disconnected&#x60; &#x3D; Meta refused to serve it (Graph error 100, subcode 33), which is how a phone-side coexistence disconnect surfaces. &#x60;unknown&#x60; &#x3D; the live read failed for another reason (timeout, transient Meta error), not evidence either way.

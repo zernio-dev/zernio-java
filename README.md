@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.93.0
 
-- Build date: 2026-09-25T17:37:26.572586544Z[Etc/UTC]
+- Build date: 2026-09-25T17:52:31.650530578Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1131,6 +1131,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**getPhoneNumberClaimWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberClaimWithHttpInfo) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim
 *PhoneNumbersApi* | [**getPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
 *PhoneNumbersApi* | [**getPhoneNumberKycFormWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberKycFormWithHttpInfo) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
+*PhoneNumbersApi* | [**getPhoneNumberPortClaim**](docs/PhoneNumbersApi.md#getPhoneNumberPortClaim) | **GET** /v1/phone-numbers/port-in/claims/{claimId} | Resolve a port claim
+*PhoneNumbersApi* | [**getPhoneNumberPortClaimWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberPortClaimWithHttpInfo) | **GET** /v1/phone-numbers/port-in/claims/{claimId} | Resolve a port claim
 *PhoneNumbersApi* | [**getPhoneNumberPortInOrderRequirements**](docs/PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements
 *PhoneNumbersApi* | [**getPhoneNumberPortInOrderRequirementsWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirementsWithHttpInfo) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements
 *PhoneNumbersApi* | [**getPhoneNumberPortInRequirements**](docs/PhoneNumbersApi.md#getPhoneNumberPortInRequirements) | **GET** /v1/phone-numbers/port-in/requirements | Country porting requirements
@@ -2535,6 +2537,7 @@ Class | Method | HTTP request | Description
  - [GetPhoneNumberKycForm200ResponseReusableDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableDetailsInner.md)
  - [GetPhoneNumberKycForm200ResponseReusableOptionsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInner.md)
  - [GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner](docs/GetPhoneNumberKycForm200ResponseReusableOptionsInnerDetailsInner.md)
+ - [GetPhoneNumberPortClaim200Response](docs/GetPhoneNumberPortClaim200Response.md)
  - [GetPhoneNumberPortInOrderRequirements200Response](docs/GetPhoneNumberPortInOrderRequirements200Response.md)
  - [GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner](docs/GetPhoneNumberPortInOrderRequirements200ResponseRequirementsInner.md)
  - [GetPhoneNumberPortInRequirements200Response](docs/GetPhoneNumberPortInRequirements200Response.md)

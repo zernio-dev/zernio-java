@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   FoodMenuLabel.JSON_PROPERTY_DESCRIPTION,
   FoodMenuLabel.JSON_PROPERTY_LANGUAGE_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:37:26.572586544Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T17:52:31.650530578Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class FoodMenuLabel {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nonnull
