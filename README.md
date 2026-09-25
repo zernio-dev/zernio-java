@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.78.0
+- API version: 1.79.0
 
-- Build date: 2026-09-25T10:01:56.167476663Z[Etc/UTC]
+- Build date: 2026-09-25T10:31:57.631913958Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -19,6 +19,10 @@ existing versions keep working. Deprecated operations are marked
 
 Errors: every 4xx/5xx response is application/json with a machine-readable
 'code' and a human-readable 'error' message (see the ErrorResponse schema).
+
+Request ids: responses carry an X-Request-Id header with the id we log the
+request under. Quote it when reporting a problem. A valid x-request-id you
+send is reused as that id.
 
 
   For more information, please visit [https://zernio.com](https://zernio.com)
@@ -56,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.78.0</version>
+  <version>1.79.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.78.0"
+compile "dev.zernio:zernio-sdk:1.79.0"
 ```
 
 ### Others
@@ -79,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.78.0.jar`
+- `target/zernio-sdk-1.79.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3230,7 +3234,6 @@ Class | Method | HTTP request | Description
  - [SearchTweets200ResponseTweetsInnerAuthor](docs/SearchTweets200ResponseTweetsInnerAuthor.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
- - [SelectFacebookPage409Response](docs/SelectFacebookPage409Response.md)
  - [SelectFacebookPageRequest](docs/SelectFacebookPageRequest.md)
  - [SelectFacebookPageRequestOneOf](docs/SelectFacebookPageRequestOneOf.md)
  - [SelectFacebookPageRequestOneOf1](docs/SelectFacebookPageRequestOneOf1.md)

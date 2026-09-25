@@ -1610,7 +1610,6 @@ docs/SearchTweets200ResponseTweetsInner.md
 docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
-docs/SelectFacebookPage409Response.md
 docs/SelectFacebookPageRequest.md
 docs/SelectFacebookPageRequestOneOf.md
 docs/SelectFacebookPageRequestOneOf1.md
@@ -3906,7 +3905,6 @@ src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInner.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthor.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseAccount.java
-src/main/java/dev/zernio/model/SelectFacebookPage409Response.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequest.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOf.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOf1.java
