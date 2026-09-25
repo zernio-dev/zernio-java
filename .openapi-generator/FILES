@@ -4549,8 +4549,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseAreaTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseCountryTest.java
-src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseTest.java
-src/test/java/dev/zernio/model/PurchasePhoneNumber401ResponseDetailsTest.java
-src/test/java/dev/zernio/model/PurchasePhoneNumber401ResponseTest.java

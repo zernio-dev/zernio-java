@@ -367,7 +367,7 @@ ApiResponse<[**EditInboxComment200Response**](EditInboxComment200Response.md)>
 
 Get post comments
 
-Fetch comments for a specific post. Requires accountId query parameter.  On Facebook, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. Instagram does not support this and returns 400: its replies come nested in each comment&#39;s &#x60;replies&#x60; array, with no separate paging. YouTube does not support it either, &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;.  Hidden comments: Facebook Pages and Instagram accounts connected through Instagram Login return them with &#x60;isHidden: true&#x60;. Instagram accounts connected through Facebook Login do not return them at all (Meta omits them, together with their replies), so a hidden comment and a deleted one look the same on this read. 
+Fetch comments for a specific post. Requires accountId query parameter.  Pass &#x60;commentId&#x60; (Facebook, Instagram, Reddit, TikTok) to fetch replies to a specific comment instead of the post&#39;s top-level comments. Facebook, Instagram and TikTok return the comment&#39;s replies, paged by &#x60;limit&#x60;/&#x60;cursor&#x60;; Reddit returns the focused comment thread instead. On Facebook and Instagram the requested comment itself comes back in the top-level &#x60;comment&#x60; field.  On Facebook, passing a COMMENT id as &#x60;postId&#x60; (instead of using &#x60;commentId&#x60;) is also supported for backwards compatibility and returns that comment&#39;s replies the same way. Prefer &#x60;commentId&#x60; for new integrations; it also works on Instagram, which rejects a comment id passed as &#x60;postId&#x60;. YouTube does not support either form, &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;.  Hidden comments: Facebook Pages and Instagram accounts connected through Instagram Login return them with &#x60;isHidden: true&#x60;. Instagram accounts connected through Facebook Login do not return them at all (Meta omits them, together with their replies), so a hidden comment and a deleted one look the same on this read. 
 
 ### Example
 
@@ -390,12 +390,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies (not supported on Instagram).
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
         String accountId = "accountId_example"; // String | 
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
-        String commentId = "commentId_example"; // String | (Reddit and TikTok only) Get replies to a specific comment
+        String commentId = "commentId_example"; // String | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level `comment` field and comments[] holds its replies.
         try {
             GetInboxPostComments200Response result = apiInstance.getInboxPostComments(postId, accountId, subreddit, limit, cursor, commentId);
             System.out.println(result);
@@ -415,12 +415,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies (not supported on Instagram). | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
 | **accountId** | **String**|  | |
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
-| **commentId** | **String**| (Reddit and TikTok only) Get replies to a specific comment | [optional] |
+| **commentId** | **String**| (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level &#x60;comment&#x60; field and comments[] holds its replies. | [optional] |
 
 ### Return type
 
@@ -452,7 +452,7 @@ public class Example {
 
 Get post comments
 
-Fetch comments for a specific post. Requires accountId query parameter.  On Facebook, passing a COMMENT id as &#x60;postId&#x60; is also supported and returns that comment&#39;s replies instead of the post&#39;s top-level comments. Instagram does not support this and returns 400: its replies come nested in each comment&#39;s &#x60;replies&#x60; array, with no separate paging. YouTube does not support it either, &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;.  Hidden comments: Facebook Pages and Instagram accounts connected through Instagram Login return them with &#x60;isHidden: true&#x60;. Instagram accounts connected through Facebook Login do not return them at all (Meta omits them, together with their replies), so a hidden comment and a deleted one look the same on this read. 
+Fetch comments for a specific post. Requires accountId query parameter.  Pass &#x60;commentId&#x60; (Facebook, Instagram, Reddit, TikTok) to fetch replies to a specific comment instead of the post&#39;s top-level comments. Facebook, Instagram and TikTok return the comment&#39;s replies, paged by &#x60;limit&#x60;/&#x60;cursor&#x60;; Reddit returns the focused comment thread instead. On Facebook and Instagram the requested comment itself comes back in the top-level &#x60;comment&#x60; field.  On Facebook, passing a COMMENT id as &#x60;postId&#x60; (instead of using &#x60;commentId&#x60;) is also supported for backwards compatibility and returns that comment&#39;s replies the same way. Prefer &#x60;commentId&#x60; for new integrations; it also works on Instagram, which rejects a comment id passed as &#x60;postId&#x60;. YouTube does not support either form, &#x60;postId&#x60; must be a video id.  Responses are cached for up to 10 minutes, so a page may lag new comments by that window. Do not poll this endpoint for real-time updates: subscribe to the &#x60;comment.received&#x60; webhook, which delivers new comments as they arrive. Your own writes (creating, replying to, or deleting a comment) refresh the cache immediately.  TikTok is served for accounts connected through the TikTok for Business app: &#x60;postId&#x60; is the TikTok video id, each top-level comment carries up to three inline replies, and &#x60;commentId&#x60; pages the full reply list of one comment. Developer-app TikTok accounts return 400 with code &#x60;PLATFORM_LIMITATION&#x60;.  Hidden comments: Facebook Pages and Instagram accounts connected through Instagram Login return them with &#x60;isHidden: true&#x60;. Instagram accounts connected through Facebook Login do not return them at all (Meta omits them, together with their replies), so a hidden comment and a deleted one look the same on this read. 
 
 ### Example
 
@@ -476,12 +476,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies (not supported on Instagram).
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
         String accountId = "accountId_example"; // String | 
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
         String cursor = "cursor_example"; // String | Pagination cursor, returned by a previous call as `pagination.cursor`. This is the platform's own opaque paging value passed through verbatim: never construct, decode or validate it client-side.
-        String commentId = "commentId_example"; // String | (Reddit and TikTok only) Get replies to a specific comment
+        String commentId = "commentId_example"; // String | (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level `comment` field and comments[] holds its replies.
         try {
             ApiResponse<GetInboxPostComments200Response> response = apiInstance.getInboxPostCommentsWithHttpInfo(postId, accountId, subreddit, limit, cursor, commentId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -503,12 +503,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies (not supported on Instagram). | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
 | **accountId** | **String**|  | |
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
 | **cursor** | **String**| Pagination cursor, returned by a previous call as &#x60;pagination.cursor&#x60;. This is the platform&#39;s own opaque paging value passed through verbatim: never construct, decode or validate it client-side. | [optional] |
-| **commentId** | **String**| (Reddit and TikTok only) Get replies to a specific comment | [optional] |
+| **commentId** | **String**| (Facebook, Instagram, Reddit and TikTok) Get replies to a specific comment. On Facebook and Instagram, the requested comment is returned in the top-level &#x60;comment&#x60; field and comments[] holds its replies. | [optional] |
 
 ### Return type
 

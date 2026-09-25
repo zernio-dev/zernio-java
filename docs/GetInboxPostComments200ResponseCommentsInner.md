@@ -16,7 +16,7 @@
 |**platform** | **String** | The platform this comment is from |  [optional] |
 |**url** | **String** | Direct link to the comment on the platform (if available) |  [optional] |
 |**replies** | **List&lt;Object&gt;** |  |  [optional] |
-|**repliesHasMore** | **Boolean** | Facebook only. True when replies[] (capped at 10) does not hold the comment&#39;s full reply thread; fetch the rest by passing the comment id as postId to GET /v1/inbox/comments/{postId}. Absent (not false) on every other platform, including Instagram, which has no equivalent signal. |  [optional] |
+|**repliesHasMore** | **Boolean** | Facebook only. True when replies[] (capped at 10) does not hold the comment&#39;s full reply thread; fetch the rest by passing the comment id as the &#x60;commentId&#x60; query parameter to GET /v1/inbox/comments/{postId} (or, for backwards compatibility, as &#x60;postId&#x60;). Absent (not false) on every other platform, including Instagram, which has no equivalent signal. |  [optional] |
 |**canReply** | **Boolean** |  |  [optional] |
 |**canDelete** | **Boolean** |  |  [optional] |
 |**canHide** | **Boolean** | Whether this comment can be hidden (Facebook, Instagram, Threads) |  [optional] |
