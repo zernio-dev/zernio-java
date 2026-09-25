@@ -82,6 +82,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onReviewUpdatedWithHttpInfo**](WebhookEventsApi.md#onReviewUpdatedWithHttpInfo) | **POST** /review.updated | Review updated event |
 | [**onSmsRegistrationActionRequired**](WebhookEventsApi.md#onSmsRegistrationActionRequired) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**onSmsRegistrationActionRequiredWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationActionRequiredWithHttpInfo) | **POST** /sms.registration.action_required | SMS registration action required event |
+| [**onSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onSmsRegistrationStatusUpdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
+| [**onSmsRegistrationStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationStatusUpdatedWithHttpInfo) | **POST** /sms.registration.status_updated | SMS registration status updated event |
 | [**onVerificationApproved**](WebhookEventsApi.md#onVerificationApproved) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationApprovedWithHttpInfo**](WebhookEventsApi.md#onVerificationApprovedWithHttpInfo) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationFailed**](WebhookEventsApi.md#onVerificationFailed) | **POST** /verification.failed | Verification failed event |
@@ -5517,7 +5519,7 @@ ApiResponse<Void>
 
 SMS registration action required event
 
-Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why: &#x60;changes_requested&#x60; (our review asked for changes; &#x60;message&#x60; is the reviewer&#39;s note, answer with POST /v1/sms/registrations/{id}/respond), &#x60;otp_required&#x60; (a sole-proprietor brand needs the code texted to its mobile, submit it with POST /v1/sms/registrations/{id}/verify-otp), &#x60;carrier_info_required&#x60; (the toll-free carrier asked for more information; the request expires after 7 days) or &#x60;rejected&#x60; (the carriers rejected it; &#x60;message&#x60; is the reason). Fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
+Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why: &#x60;changes_requested&#x60; (we need answers to some points, before submission or to fix a carrier rejection; &#x60;message&#x60; is the request, answer with POST /v1/sms/registrations/{id}/respond), &#x60;otp_required&#x60; (a sole-proprietor brand needs the code texted to its mobile, submit it with POST /v1/sms/registrations/{id}/verify-otp) or &#x60;carrier_info_required&#x60; (the toll-free carrier asked for more information; the request expires after 7 days). A carrier rejection alone does not fire it: we handle the fix, see &#x60;sms.registration.status_updated&#x60;. Fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
 
 ### Example
 
@@ -5586,7 +5588,7 @@ null (empty response body)
 
 SMS registration action required event
 
-Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why: &#x60;changes_requested&#x60; (our review asked for changes; &#x60;message&#x60; is the reviewer&#39;s note, answer with POST /v1/sms/registrations/{id}/respond), &#x60;otp_required&#x60; (a sole-proprietor brand needs the code texted to its mobile, submit it with POST /v1/sms/registrations/{id}/verify-otp), &#x60;carrier_info_required&#x60; (the toll-free carrier asked for more information; the request expires after 7 days) or &#x60;rejected&#x60; (the carriers rejected it; &#x60;message&#x60; is the reason). Fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
+Fired when an SMS registration starts waiting on its owner. &#x60;reason&#x60; says why: &#x60;changes_requested&#x60; (we need answers to some points, before submission or to fix a carrier rejection; &#x60;message&#x60; is the request, answer with POST /v1/sms/registrations/{id}/respond), &#x60;otp_required&#x60; (a sole-proprietor brand needs the code texted to its mobile, submit it with POST /v1/sms/registrations/{id}/verify-otp) or &#x60;carrier_info_required&#x60; (the toll-free carrier asked for more information; the request expires after 7 days). A carrier rejection alone does not fire it: we handle the fix, see &#x60;sms.registration.status_updated&#x60;. Fires once per new request (not on follow-up messages) and once per OTP or carrier request. 
 
 ### Example
 
@@ -5632,6 +5634,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **onSmsRegistrationActionRequiredRequest** | [**OnSmsRegistrationActionRequiredRequest**](OnSmsRegistrationActionRequiredRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onSmsRegistrationStatusUpdated
+
+> void onSmsRegistrationStatusUpdated(onSmsRegistrationStatusUpdatedRequest)
+
+SMS registration status updated event
+
+Fired on every status change of an SMS registration: &#x60;changes_requested&#x60; (we need answers, see &#x60;sms.registration.action_required&#x60;), &#x60;requested&#x60; (a new submission or resubmit, or your answers are back in our review), &#x60;pending&#x60; (with the carriers, including after we fixed and resent a rejection), &#x60;approved&#x60; (live: attach numbers and send), &#x60;rejected&#x60; (the carriers declined it; &#x60;reason&#x60; is their words and we handle the fix) and &#x60;deactivated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        OnSmsRegistrationStatusUpdatedRequest onSmsRegistrationStatusUpdatedRequest = new OnSmsRegistrationStatusUpdatedRequest(); // OnSmsRegistrationStatusUpdatedRequest | 
+        try {
+            apiInstance.onSmsRegistrationStatusUpdated(onSmsRegistrationStatusUpdatedRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSmsRegistrationStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **onSmsRegistrationStatusUpdatedRequest** | [**OnSmsRegistrationStatusUpdatedRequest**](OnSmsRegistrationStatusUpdatedRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onSmsRegistrationStatusUpdatedWithHttpInfo
+
+> ApiResponse<Void> onSmsRegistrationStatusUpdated onSmsRegistrationStatusUpdatedWithHttpInfo(onSmsRegistrationStatusUpdatedRequest)
+
+SMS registration status updated event
+
+Fired on every status change of an SMS registration: &#x60;changes_requested&#x60; (we need answers, see &#x60;sms.registration.action_required&#x60;), &#x60;requested&#x60; (a new submission or resubmit, or your answers are back in our review), &#x60;pending&#x60; (with the carriers, including after we fixed and resent a rejection), &#x60;approved&#x60; (live: attach numbers and send), &#x60;rejected&#x60; (the carriers declined it; &#x60;reason&#x60; is their words and we handle the fix) and &#x60;deactivated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        OnSmsRegistrationStatusUpdatedRequest onSmsRegistrationStatusUpdatedRequest = new OnSmsRegistrationStatusUpdatedRequest(); // OnSmsRegistrationStatusUpdatedRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.onSmsRegistrationStatusUpdatedWithHttpInfo(onSmsRegistrationStatusUpdatedRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSmsRegistrationStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **onSmsRegistrationStatusUpdatedRequest** | [**OnSmsRegistrationStatusUpdatedRequest**](OnSmsRegistrationStatusUpdatedRequest.md)|  | |
 
 ### Return type
 

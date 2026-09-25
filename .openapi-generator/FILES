@@ -1415,6 +1415,8 @@ docs/MoveWhatsAppNumberToProfile200Response.md
 docs/MoveWhatsAppNumberToProfileRequest.md
 docs/OnSmsRegistrationActionRequiredRequest.md
 docs/OnSmsRegistrationActionRequiredRequestRegistration.md
+docs/OnSmsRegistrationStatusUpdatedRequest.md
+docs/OnSmsRegistrationStatusUpdatedRequestRegistration.md
 docs/OnVerificationApprovedRequest.md
 docs/OnVerificationApprovedRequestVerification.md
 docs/OnVerificationFailedRequest.md
@@ -3736,6 +3738,8 @@ src/main/java/dev/zernio/model/MoveWhatsAppNumberToProfile200Response.java
 src/main/java/dev/zernio/model/MoveWhatsAppNumberToProfileRequest.java
 src/main/java/dev/zernio/model/OnSmsRegistrationActionRequiredRequest.java
 src/main/java/dev/zernio/model/OnSmsRegistrationActionRequiredRequestRegistration.java
+src/main/java/dev/zernio/model/OnSmsRegistrationStatusUpdatedRequest.java
+src/main/java/dev/zernio/model/OnSmsRegistrationStatusUpdatedRequestRegistration.java
 src/main/java/dev/zernio/model/OnVerificationApprovedRequest.java
 src/main/java/dev/zernio/model/OnVerificationApprovedRequestVerification.java
 src/main/java/dev/zernio/model/OnVerificationFailedRequest.java
@@ -4569,8 +4573,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/OnSmsRegistrationActionRequiredRequestRegistrationTest.java
-src/test/java/dev/zernio/model/OnSmsRegistrationActionRequiredRequestTest.java
-src/test/java/dev/zernio/model/RespondToSmsRegistrationReviewRequestAnswersInnerTest.java
-src/test/java/dev/zernio/model/SmsRegistrationReviewRequestPointsInnerTest.java
-src/test/java/dev/zernio/model/SmsRegistrationReviewRequestTest.java
+src/test/java/dev/zernio/model/OnSmsRegistrationStatusUpdatedRequestRegistrationTest.java
+src/test/java/dev/zernio/model/OnSmsRegistrationStatusUpdatedRequestTest.java

@@ -2143,7 +2143,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. When the request was written as points (&#x60;reviewRequest&#x60; on the registration), send one entry in &#x60;answers&#x60; per point. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. When the request was written as points (&#x60;reviewRequest&#x60; on the registration), send one entry in &#x60;answers&#x60; per point. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. A &#x60;rejected&#x60; registration can also be answered when we asked for changes to fix it (&#x60;reviewRequest&#x60; set); it stays &#x60;rejected&#x60;. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
 
 ### Example
 
@@ -2219,7 +2219,7 @@ public class Example {
 
 Reply to a change request
 
-Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. When the request was written as points (&#x60;reviewRequest&#x60; on the registration), send one entry in &#x60;answers&#x60; per point. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
+Replies to a reviewer change request on a registration in &#x60;changes_requested&#x60; state: a note, hosted document URLs (from &#x60;POST /v1/sms/opt-in-proof&#x60;), or both, sent together. When the request was written as points (&#x60;reviewRequest&#x60; on the registration), send one entry in &#x60;answers&#x60; per point. The registration returns to &#x60;requested&#x60; (back in review), and you do not need to resubmit the whole registration. A &#x60;rejected&#x60; registration can also be answered when we asked for changes to fix it (&#x60;reviewRequest&#x60; set); it stays &#x60;rejected&#x60;. To change the submitted brand/campaign fields themselves, resubmit via &#x60;POST /v1/sms/registrations&#x60; with &#x60;resubmitRequestId&#x60; instead. 
 
 ### Example
 

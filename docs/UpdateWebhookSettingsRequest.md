@@ -78,6 +78,7 @@
 | VERIFICATION_APPROVED | &quot;verification.approved&quot; |
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
 | SMS_REGISTRATION_ACTION_REQUIRED | &quot;sms.registration.action_required&quot; |
+| SMS_REGISTRATION_STATUS_UPDATED | &quot;sms.registration.status_updated&quot; |
 
 
 

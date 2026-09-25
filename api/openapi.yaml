@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.91.0
+  version: 1.92.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -323,7 +323,7 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
     Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -24686,7 +24686,8 @@ paths:
         was written as points (`reviewRequest` on the registration), send one
         entry in `answers` per point. The registration
         returns to `requested` (back in review), and you do not need to resubmit the
-        whole registration. To change the submitted brand/campaign fields
+        whole registration. A `rejected` registration can also be answered when
+        we asked for changes to fix it (`reviewRequest` set); it stays `rejected`. To change the submitted brand/campaign fields
         themselves, resubmit via `POST /v1/sms/registrations` with
         `resubmitRequestId` instead.
       operationId: respondToSmsRegistrationReview
@@ -53799,6 +53800,7 @@ components:
             - verification.approved
             - verification.failed
             - sms.registration.action_required
+            - sms.registration.status_updated
             type: string
           type: array
         isActive:
@@ -82020,6 +82022,7 @@ components:
             - verification.approved
             - verification.failed
             - sms.registration.action_required
+            - sms.registration.status_updated
             type: string
           minItems: 1
           type: array
@@ -82176,6 +82179,7 @@ components:
             - verification.approved
             - verification.failed
             - sms.registration.action_required
+            - sms.registration.status_updated
             type: string
           minItems: 1
           type: array
@@ -90051,15 +90055,20 @@ components:
         adminReviewNote: adminReviewNote
         displayName: displayName
         campaignId: campaignId
+        previouslyRejected: true
         brandStatus: brandStatus
         awaitingOtp: true
         phoneNumbers:
         - phoneNumbers
         - phoneNumbers
+        rejectedBeforeSubmission: true
+        lastResponseAt: 2000-01-23T04:56:07.000+00:00
         trustScore: 0.8008281904610115
         registrationType: standard_10dlc
         brandId: brandId
+        otpExpired: true
         campaignStatus: campaignStatus
+        lastRejectedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         reviewRequest: ""
         throughput:
@@ -90126,6 +90135,29 @@ components:
           description: The open change request as text (status changes_requested).
           nullable: true
           type: string
+        lastResponseAt:
+          description: When you last answered a change request.
+          format: date-time
+          nullable: true
+          type: string
+        previouslyRejected:
+          description: "Rejected by the carriers at least once. A pending registration\
+            \ with this set is our fix, back with the carriers."
+          type: boolean
+        lastRejectedAt:
+          description: When the carriers last rejected it.
+          format: date-time
+          nullable: true
+          type: string
+        rejectedBeforeSubmission:
+          description: Rejected in our review before anything was filed with the carriers
+            (not a carrier rejection; nothing to fix or appeal).
+          type: boolean
+        otpExpired:
+          description: "Sole proprietor only: the verification code was never entered\
+            \ within 30 days. Start SMS setup again; it revives the same brand with\
+            \ no second brand fee."
+          type: boolean
         reviewRequest:
           allOf:
           - $ref: "#/components/schemas/SmsRegistrationReviewRequest"
@@ -90143,15 +90175,20 @@ components:
           adminReviewNote: adminReviewNote
           displayName: displayName
           campaignId: campaignId
+          previouslyRejected: true
           brandStatus: brandStatus
           awaitingOtp: true
           phoneNumbers:
           - phoneNumbers
           - phoneNumbers
+          rejectedBeforeSubmission: true
+          lastResponseAt: 2000-01-23T04:56:07.000+00:00
           trustScore: 0.8008281904610115
           registrationType: standard_10dlc
           brandId: brandId
+          otpExpired: true
           campaignStatus: campaignStatus
+          lastRejectedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           reviewRequest: ""
           throughput:
@@ -90164,15 +90201,20 @@ components:
           adminReviewNote: adminReviewNote
           displayName: displayName
           campaignId: campaignId
+          previouslyRejected: true
           brandStatus: brandStatus
           awaitingOtp: true
           phoneNumbers:
           - phoneNumbers
           - phoneNumbers
+          rejectedBeforeSubmission: true
+          lastResponseAt: 2000-01-23T04:56:07.000+00:00
           trustScore: 0.8008281904610115
           registrationType: standard_10dlc
           brandId: brandId
+          otpExpired: true
           campaignStatus: campaignStatus
+          lastRejectedAt: 2000-01-23T04:56:07.000+00:00
           id: id
           reviewRequest: ""
           throughput:
@@ -90808,8 +90850,12 @@ components:
         status: requested
       properties:
         status:
+          description: "requested = back in our review; rejected = a registration\
+            \ the carriers rejected, where we asked for these answers to fix it (it\
+            \ stays rejected while we do)."
           enum:
           - requested
+          - rejected
           type: string
     uploadSmsOptInProofFile_request:
       properties:
@@ -118881,10 +118927,52 @@ components:
           - changes_requested
           - otp_required
           - carrier_info_required
-          - rejected
         message:
-          description: "What to do, in words: the reviewer's note or the carrier's\
-            \ decline reason. Absent for otp_required."
+          description: "What to do, in words: our request or the carrier's note. Absent\
+            \ for otp_required."
+    onSmsRegistrationStatusUpdated_request_registration:
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - standard_10dlc
+          - sole_prop_10dlc
+          - toll_free
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        status:
+          type: string
+        profileId:
+          type: string
+    onSmsRegistrationStatusUpdated_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - sms.registration.status_updated
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+        registration:
+          $ref: "#/components/schemas/onSmsRegistrationStatusUpdated_request_registration"
+        status:
+          enum:
+          - changes_requested
+          - requested
+          - pending
+          - approved
+          - rejected
+          - deactivated
+        reason:
+          description: "The carriers' decline reason, on rejected."
     SmsRegistrationReviewRequest_points_inner:
       properties:
         id:
@@ -127310,7 +127398,8 @@ x-documentation:
     - `whatsapp.number.released` - A number was released and is no longer usable (terminal); carries a `reason`
     - `verification.approved` - A managed-OTP verification was approved (the user submitted the correct code)
     - `verification.failed` - A managed-OTP verification was exhausted after too many wrong code attempts
-    - `sms.registration.action_required` - An SMS registration (10DLC or toll-free) is waiting on you: our review asked for changes, a sole-prop brand needs the code texted to its mobile, the toll-free carrier asked for more information, or the carriers rejected it. Branch on `reason`; `message` says what to do
+    - `sms.registration.action_required` - An SMS registration (10DLC or toll-free) is waiting on you: we need answers to some points (before submission, or to fix a carrier rejection), a sole-prop brand needs the code texted to its mobile, or the toll-free carrier asked for more information. Branch on `reason`; `message` says what to do
+    - `sms.registration.status_updated` - An SMS registration changed status: changes_requested, requested, pending (with the carriers), approved (ready to send), rejected (we handle the fix) or deactivated
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.

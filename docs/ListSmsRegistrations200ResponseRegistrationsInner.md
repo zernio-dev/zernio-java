@@ -20,6 +20,11 @@
 |**phoneNumbers** | **List&lt;String&gt;** |  |  [optional] |
 |**awaitingOtp** | **Boolean** | Sole-prop 10DLC only; the OTP step is still pending. |  [optional] |
 |**adminReviewNote** | **String** | The open change request as text (status changes_requested). |  [optional] |
+|**lastResponseAt** | **OffsetDateTime** | When you last answered a change request. |  [optional] |
+|**previouslyRejected** | **Boolean** | Rejected by the carriers at least once. A pending registration with this set is our fix, back with the carriers. |  [optional] |
+|**lastRejectedAt** | **OffsetDateTime** | When the carriers last rejected it. |  [optional] |
+|**rejectedBeforeSubmission** | **Boolean** | Rejected in our review before anything was filed with the carriers (not a carrier rejection; nothing to fix or appeal). |  [optional] |
+|**otpExpired** | **Boolean** | Sole proprietor only: the verification code was never entered within 30 days. Start SMS setup again; it revives the same brand with no second brand fee. |  [optional] |
 |**reviewRequest** | [**SmsRegistrationReviewRequest**](SmsRegistrationReviewRequest.md) |  |  [optional] |
 |**trustScore** | **BigDecimal** | Carrier-assigned brand trust score; drives throughput. |  [optional] |
 |**throughput** | [**ListSmsRegistrations200ResponseRegistrationsInnerThroughput**](ListSmsRegistrations200ResponseRegistrationsInnerThroughput.md) |  |  [optional] |
