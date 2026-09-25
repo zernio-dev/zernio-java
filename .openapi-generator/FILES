@@ -1443,6 +1443,7 @@ docs/PostAnalytics.md
 docs/PostCreateResponse.md
 docs/PostDeleteResponse.md
 docs/PostGetResponse.md
+docs/PostPlatformError.md
 docs/PostPublishIncompleteResponse.md
 docs/PostPublishIncompleteResponsePlatformResultsInner.md
 docs/PostRetryResponse.md
@@ -3746,6 +3747,7 @@ src/main/java/dev/zernio/model/PostAnalytics.java
 src/main/java/dev/zernio/model/PostCreateResponse.java
 src/main/java/dev/zernio/model/PostDeleteResponse.java
 src/main/java/dev/zernio/model/PostGetResponse.java
+src/main/java/dev/zernio/model/PostPlatformError.java
 src/main/java/dev/zernio/model/PostPublishIncompleteResponse.java
 src/main/java/dev/zernio/model/PostPublishIncompleteResponsePlatformResultsInner.java
 src/main/java/dev/zernio/model/PostRetryResponse.java
@@ -4535,3 +4537,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PostPlatformErrorTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.75.0
+- API version: 1.76.0
 
-- Build date: 2026-09-25T08:07:38.243766173Z[Etc/UTC]
+- Build date: 2026-09-25T08:33:24.092564277Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -56,7 +56,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.75.0</version>
+  <version>1.76.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -66,7 +66,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.75.0"
+compile "dev.zernio:zernio-sdk:1.76.0"
 ```
 
 ### Others
@@ -79,7 +79,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.75.0.jar`
+- `target/zernio-sdk-1.76.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3071,6 +3071,7 @@ Class | Method | HTTP request | Description
  - [PostCreateResponse](docs/PostCreateResponse.md)
  - [PostDeleteResponse](docs/PostDeleteResponse.md)
  - [PostGetResponse](docs/PostGetResponse.md)
+ - [PostPlatformError](docs/PostPlatformError.md)
  - [PostPublishIncompleteResponse](docs/PostPublishIncompleteResponse.md)
  - [PostPublishIncompleteResponsePlatformResultsInner](docs/PostPublishIncompleteResponsePlatformResultsInner.md)
  - [PostRetryResponse](docs/PostRetryResponse.md)

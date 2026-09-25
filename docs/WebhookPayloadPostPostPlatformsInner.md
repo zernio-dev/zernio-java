@@ -13,6 +13,7 @@
 |**platformPostId** | **String** |  |  [optional] |
 |**publishedUrl** | **String** |  |  [optional] |
 |**error** | **String** |  |  [optional] |
+|**platformError** | [**PostPlatformError**](PostPlatformError.md) |  |  [optional] |
 
 
 

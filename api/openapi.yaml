@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.75.0
+  version: 1.76.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53680,12 +53680,20 @@ components:
           status: status
           platforms:
           - accountId: accountId
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
             platformPostId: platformPostId
           - accountId: accountId
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             publishedUrl: publishedUrl
             error: error
             platform: platform
@@ -53751,12 +53759,20 @@ components:
           status: status
           platforms:
           - accountId: accountId
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             publishedUrl: publishedUrl
             error: error
             platform: platform
             status: status
             platformPostId: platformPostId
           - accountId: accountId
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             publishedUrl: publishedUrl
             error: error
             platform: platform
@@ -56536,6 +56552,10 @@ components:
         errorCategory: auth_expired
         scheduledFor: 2000-01-23T04:56:07.000+00:00
         platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+        platformError:
+          code: 6
+          subcode: 1
+          message: message
         customMedia:
         - thumbnail: https://openapi-generator.tech
           filename: filename
@@ -56679,6 +56699,34 @@ components:
           - platform
           - system
           type: string
+        platformError:
+          $ref: "#/components/schemas/PostPlatformError"
+    PostPlatformError:
+      description: "The platform's own error for this target, so you can see what\
+        \ the platform said (access tokens are redacted). Set when the last attempt\
+        \ failed with an error the platform described (currently Instagram and Facebook),\
+        \ and kept while an automatic retry of that failure is pending or running;\
+        \ cleared when the target publishes or is retried manually. errorMessage stays\
+        \ the human-readable summary; this block is for diagnostics and support tickets.\
+        \ Instagram media processing failures carry no code or subcode, only Meta's\
+        \ status text in message."
+      example:
+        code: 6
+        subcode: 1
+        message: message
+      properties:
+        code:
+          description: "Meta error code, when Meta sent one."
+          type: integer
+        subcode:
+          description: "Meta error_subcode, when Meta sent one."
+          type: integer
+        message:
+          description: The platform's raw error message or media processing status
+            text.
+          type: string
+      required:
+      - message
     Post:
       example:
         queueId: queueId
@@ -56690,13 +56738,13 @@ components:
         visibility: public
         timezone: timezone
         recycling:
-          recycleCount: 5
-          gap: 6
-          expireCount: 1
+          recycleCount: 7
+          gap: 5
+          expireCount: 5
           lastRecycledAt: 2000-01-23T04:56:07.000+00:00
           expireDate: 2000-01-23T04:56:07.000+00:00
           nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-          contentVariationIndex: 5
+          contentVariationIndex: 2
           gapFreq: week
           enabled: true
           startDate: 2000-01-23T04:56:07.000+00:00
@@ -56721,6 +56769,10 @@ components:
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           customMedia:
           - thumbnail: https://openapi-generator.tech
             filename: filename
@@ -56758,6 +56810,10 @@ components:
           errorCategory: auth_expired
           scheduledFor: 2000-01-23T04:56:07.000+00:00
           platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           customMedia:
           - thumbnail: https://openapi-generator.tech
             filename: filename
@@ -56962,13 +57018,13 @@ components:
     RecyclingState:
       description: Current recycling configuration and state on a post
       example:
-        recycleCount: 5
-        gap: 6
-        expireCount: 1
+        recycleCount: 7
+        gap: 5
+        expireCount: 5
         lastRecycledAt: 2000-01-23T04:56:07.000+00:00
         expireDate: 2000-01-23T04:56:07.000+00:00
         nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-        contentVariationIndex: 5
+        contentVariationIndex: 2
         gapFreq: week
         enabled: true
         startDate: 2000-01-23T04:56:07.000+00:00
@@ -58271,10 +58327,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 9
-        pages: 3
-        limit: 7
-        page: 2
+        total: 2
+        pages: 4
+        limit: 3
+        page: 9
       properties:
         page:
           type: integer
@@ -59671,10 +59727,10 @@ components:
     PostsListResponse:
       example:
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         posts:
         - queueId: queueId
           metadata:
@@ -59685,13 +59741,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -59716,6 +59772,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -59753,6 +59813,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -59819,13 +59883,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -59850,6 +59914,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -59887,6 +59955,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -59963,13 +60035,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -59994,6 +60066,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60031,6 +60107,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60133,13 +60213,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -60164,6 +60244,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60201,6 +60285,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60287,13 +60375,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -60318,6 +60406,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60355,6 +60447,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60440,13 +60536,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -60471,6 +60567,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60508,6 +60608,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60620,13 +60724,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -60651,6 +60755,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -60688,6 +60796,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -61395,10 +61507,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         backfillPending: true
       properties:
         ads:
@@ -61413,10 +61525,10 @@ components:
     AdTreeResponse:
       example:
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -72180,13 +72292,13 @@ components:
           visibility: public
           timezone: timezone
           recycling:
-            recycleCount: 5
-            gap: 6
-            expireCount: 1
+            recycleCount: 7
+            gap: 5
+            expireCount: 5
             lastRecycledAt: 2000-01-23T04:56:07.000+00:00
             expireDate: 2000-01-23T04:56:07.000+00:00
             nextRecycleAt: 2000-01-23T04:56:07.000+00:00
-            contentVariationIndex: 5
+            contentVariationIndex: 2
             gapFreq: week
             enabled: true
             startDate: 2000-01-23T04:56:07.000+00:00
@@ -72211,6 +72323,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -72248,6 +72364,10 @@ components:
             errorCategory: auth_expired
             scheduledFor: 2000-01-23T04:56:07.000+00:00
             platformPostUrl: https://twitter.com/acmecorp/status/1234567890123456789
+            platformError:
+              code: 6
+              subcode: 1
+              message: message
             customMedia:
             - thumbnail: https://openapi-generator.tech
               filename: filename
@@ -100190,10 +100310,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -100671,10 +100791,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -100910,10 +101030,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -102927,10 +103047,10 @@ components:
         - backfillPending
       example:
         pagination:
-          total: 9
-          pages: 3
-          limit: 7
-          page: 2
+          total: 2
+          pages: 4
+          limit: 3
+          page: 9
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -119347,6 +119467,10 @@ components:
     WebhookPayloadPost_post_platforms_inner:
       example:
         accountId: accountId
+        platformError:
+          code: 6
+          subcode: 1
+          message: message
         publishedUrl: publishedUrl
         error: error
         platform: platform
@@ -119368,6 +119492,8 @@ components:
           type: string
         error:
           type: string
+        platformError:
+          $ref: "#/components/schemas/PostPlatformError"
       required:
       - platform
       - status
@@ -119382,12 +119508,20 @@ components:
         status: status
         platforms:
         - accountId: accountId
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
           platformPostId: platformPostId
         - accountId: accountId
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           publishedUrl: publishedUrl
           error: error
           platform: platform
@@ -119425,6 +119559,10 @@ components:
     WebhookPayloadPostPlatform_post_platforms_inner:
       example:
         accountId: accountId
+        platformError:
+          code: 6
+          subcode: 1
+          message: message
         publishedUrl: publishedUrl
         error: error
         platform: platform
@@ -119445,6 +119583,8 @@ components:
           type: string
         error:
           type: string
+        platformError:
+          $ref: "#/components/schemas/PostPlatformError"
       required:
       - platform
       - status
@@ -119459,12 +119599,20 @@ components:
         status: status
         platforms:
         - accountId: accountId
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           publishedUrl: publishedUrl
           error: error
           platform: platform
           status: status
           platformPostId: platformPostId
         - accountId: accountId
+          platformError:
+            code: 6
+            subcode: 1
+            message: message
           publishedUrl: publishedUrl
           error: error
           platform: platform
