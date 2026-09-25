@@ -75,6 +75,7 @@
 | PHONE_NUMBER_STOCK_AVAILABLE | &quot;phone_number.stock_available&quot; |
 | VERIFICATION_APPROVED | &quot;verification.approved&quot; |
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
+| SMS_REGISTRATION_ACTION_REQUIRED | &quot;sms.registration.action_required&quot; |
 
 
 

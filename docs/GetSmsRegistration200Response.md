@@ -15,6 +15,8 @@
 |**declineReason** | **String** |  |  [optional] |
 |**phoneNumbers** | **List&lt;String&gt;** |  |  [optional] |
 |**awaitingOtp** | **Boolean** |  |  [optional] |
+|**adminReviewNote** | **String** | The open change request as text (status changes_requested). |  [optional] |
+|**reviewRequest** | [**SmsRegistrationReviewRequest**](SmsRegistrationReviewRequest.md) |  |  [optional] |
 |**campaignContent** | [**GetSmsRegistration200ResponseCampaignContent**](GetSmsRegistration200ResponseCampaignContent.md) |  |  [optional] |
 
 

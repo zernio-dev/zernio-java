@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.90.0
+- API version: 1.91.0
 
-- Build date: 2026-09-25T15:09:36.785408802Z[Etc/UTC]
+- Build date: 2026-09-25T16:06:06.466218093Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.90.0</version>
+  <version>1.91.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.90.0"
+compile "dev.zernio:zernio-sdk:1.91.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.90.0.jar`
+- `target/zernio-sdk-1.91.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3048,6 +3048,8 @@ Class | Method | HTTP request | Description
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
  - [MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
  - [MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
+ - [OnSmsRegistrationActionRequiredRequest](docs/OnSmsRegistrationActionRequiredRequest.md)
+ - [OnSmsRegistrationActionRequiredRequestRegistration](docs/OnSmsRegistrationActionRequiredRequestRegistration.md)
  - [OnVerificationApprovedRequest](docs/OnVerificationApprovedRequest.md)
  - [OnVerificationApprovedRequestVerification](docs/OnVerificationApprovedRequestVerification.md)
  - [OnVerificationFailedRequest](docs/OnVerificationFailedRequest.md)
@@ -3197,6 +3199,7 @@ Class | Method | HTTP request | Description
  - [RespondToPhoneNumberReviewerRequestDocumentsInner](docs/RespondToPhoneNumberReviewerRequestDocumentsInner.md)
  - [RespondToSmsRegistrationReview200Response](docs/RespondToSmsRegistrationReview200Response.md)
  - [RespondToSmsRegistrationReviewRequest](docs/RespondToSmsRegistrationReviewRequest.md)
+ - [RespondToSmsRegistrationReviewRequestAnswersInner](docs/RespondToSmsRegistrationReviewRequestAnswersInner.md)
  - [RestoreWorkflowVersion200Response](docs/RestoreWorkflowVersion200Response.md)
  - [RestoreWorkflowVersion200ResponseWorkflow](docs/RestoreWorkflowVersion200ResponseWorkflow.md)
  - [ResyncPageWebhookSubscription200Response](docs/ResyncPageWebhookSubscription200Response.md)
@@ -3377,6 +3380,8 @@ Class | Method | HTTP request | Description
  - [ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
  - [SharedAdAccount](docs/SharedAdAccount.md)
  - [SlackPlatformData](docs/SlackPlatformData.md)
+ - [SmsRegistrationReviewRequest](docs/SmsRegistrationReviewRequest.md)
+ - [SmsRegistrationReviewRequestPointsInner](docs/SmsRegistrationReviewRequestPointsInner.md)
  - [SnapchatPlatformData](docs/SnapchatPlatformData.md)
  - [SocialAccount](docs/SocialAccount.md)
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)

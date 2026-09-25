@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.90.0
+  version: 1.91.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -323,10 +323,10 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
-    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.* and verification.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
 
     Profile and account filters. A subscription can also carry `profileIds`, an allowlist of profiles, and `accountIds`, an allowlist of connected accounts with the same semantics keyed on the account; each non-empty list narrows delivery and a subscription with both must be satisfied on both. A scoped subscription is only sent events it can attribute to one of those profiles: the profile of the connected account behind the event, or for an aggregate `post.*` event the profile of every account the post targets (a post spanning two scoped endpoints' profiles reaches both). So an integrator can route the profile holding test accounts to a staging endpoint while a second subscription, scoped to the production profiles, keeps production traffic. Events that belong to no profile (`verification.*`, `phone_number.*`, and a legacy post whose accounts were deleted) reach only unscoped subscriptions. The filter runs when an event is emitted; redelivery replays a delivery already made to that endpoint and test fires ignore it. Absent or empty means every profile (or every account).
   name: Webhooks
@@ -24682,7 +24682,9 @@ paths:
       description: |
         Replies to a reviewer change request on a registration in
         `changes_requested` state: a note, hosted document URLs (from
-        `POST /v1/sms/opt-in-proof`), or both, sent together. The registration
+        `POST /v1/sms/opt-in-proof`), or both, sent together. When the request
+        was written as points (`reviewRequest` on the registration), send one
+        entry in `answers` per point. The registration
         returns to `requested` (back in review), and you do not need to resubmit the
         whole registration. To change the submitted brand/campaign fields
         themselves, resubmit via `POST /v1/sms/registrations` with
@@ -24716,7 +24718,8 @@ paths:
         "404":
           description: Registration not found
         "409":
-          description: Registration is not waiting on changes
+          description: "The registration is not waiting on changes, or `requestId`\
+            \ is no longer the open request (reload it)."
       security:
       - bearerAuth: []
       summary: Reply to a change request
@@ -50118,6 +50121,24 @@ components:
         `dashboard_url` (the enterprise contact form) to adjust the
         contract's limit.
   schemas:
+    SmsRegistrationReviewRequest:
+      description: "An open change request written as points. Answer each point with\
+        \ POST /v1/sms/registrations/{id}/respond: `answer` says what each point needs\
+        \ (text, a link, a hosted document, or a link or a document)."
+      properties:
+        id:
+          description: "Changes with every request. Send it back as `requestId` when\
+            \ answering, so a reply to a replaced request is refused (409) instead\
+            \ of filed under the new points."
+          type: string
+        intro:
+          description: "Context from the reviewer, e.g. what was already fixed on\
+            \ our side."
+          type: string
+        points:
+          items:
+            $ref: "#/components/schemas/SmsRegistrationReviewRequest_points_inner"
+          type: array
     MetaProductCatalog:
       example:
         name: name
@@ -53777,6 +53798,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - sms.registration.action_required
             type: string
           type: array
         isActive:
@@ -81997,6 +82019,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - sms.registration.action_required
             type: string
           minItems: 1
           type: array
@@ -82152,6 +82175,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - sms.registration.action_required
             type: string
           minItems: 1
           type: array
@@ -90024,6 +90048,7 @@ components:
     listSmsRegistrations_200_response_registrations_inner:
       example:
         tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
+        adminReviewNote: adminReviewNote
         displayName: displayName
         campaignId: campaignId
         brandStatus: brandStatus
@@ -90036,6 +90061,7 @@ components:
         brandId: brandId
         campaignStatus: campaignStatus
         id: id
+        reviewRequest: ""
         throughput:
           smsPerMinute: 6.027456183070403
           smsPerDay: 1.4658129805029452
@@ -90096,6 +90122,14 @@ components:
         awaitingOtp:
           description: Sole-prop 10DLC only; the OTP step is still pending.
           type: boolean
+        adminReviewNote:
+          description: The open change request as text (status changes_requested).
+          nullable: true
+          type: string
+        reviewRequest:
+          allOf:
+          - $ref: "#/components/schemas/SmsRegistrationReviewRequest"
+          nullable: true
         trustScore:
           description: Carrier-assigned brand trust score; drives throughput.
           nullable: true
@@ -90106,6 +90140,7 @@ components:
       example:
         registrations:
         - tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
+          adminReviewNote: adminReviewNote
           displayName: displayName
           campaignId: campaignId
           brandStatus: brandStatus
@@ -90118,6 +90153,7 @@ components:
           brandId: brandId
           campaignStatus: campaignStatus
           id: id
+          reviewRequest: ""
           throughput:
             smsPerMinute: 6.027456183070403
             smsPerDay: 1.4658129805029452
@@ -90125,6 +90161,7 @@ components:
           declineReason: declineReason
           status: pending
         - tfActionRequiredAt: 2000-01-23T04:56:07.000+00:00
+          adminReviewNote: adminReviewNote
           displayName: displayName
           campaignId: campaignId
           brandStatus: brandStatus
@@ -90137,6 +90174,7 @@ components:
           brandId: brandId
           campaignStatus: campaignStatus
           id: id
+          reviewRequest: ""
           throughput:
             smsPerMinute: 6.027456183070403
             smsPerDay: 1.4658129805029452
@@ -90603,10 +90641,12 @@ components:
           type: string
     getSmsRegistration_200_response:
       example:
+        adminReviewNote: adminReviewNote
         registrationType: standard_10dlc
         campaignStatus: campaignStatus
         id: id
         brandStatus: brandStatus
+        reviewRequest: ""
         awaitingOtp: true
         declineReason: declineReason
         phoneNumbers:
@@ -90650,6 +90690,14 @@ components:
           type: array
         awaitingOtp:
           type: boolean
+        adminReviewNote:
+          description: The open change request as text (status changes_requested).
+          nullable: true
+          type: string
+        reviewRequest:
+          allOf:
+          - $ref: "#/components/schemas/SmsRegistrationReviewRequest"
+          nullable: true
         campaignContent:
           $ref: "#/components/schemas/getSmsRegistration_200_response_campaignContent"
     deactivateSmsRegistration_200_response:
@@ -90709,6 +90757,27 @@ components:
           enum:
           - pending
           type: string
+    respondToSmsRegistrationReview_request_answers_inner:
+      properties:
+        pointId:
+          type: string
+        text:
+          description: For `text` points (at least 3 characters).
+          maxLength: 2000
+          type: string
+        url:
+          description: For `link` and `link_or_file` points.
+          format: uri
+          type: string
+        files:
+          description: "Hosted document URLs from POST /v1/sms/opt-in-proof, for `file`\
+            \ and `link_or_file` points."
+          items:
+            type: string
+          maxItems: 5
+          type: array
+      required:
+      - pointId
     respondToSmsRegistrationReview_request:
       properties:
         note:
@@ -90720,6 +90789,19 @@ components:
           items:
             type: string
           maxItems: 5
+          type: array
+        requestId:
+          description: The `reviewRequest.id` you are answering. When it no longer
+            matches the open request the reply is refused with 409.
+          type: string
+        answers:
+          description: "One answer per point of the open `reviewRequest`, each point\
+            \ at most once. Required (every point) when the request has points; a\
+            \ missing, repeated or unknown point is a 400 naming the point ids. At\
+            \ most 10 files per reply."
+          items:
+            $ref: "#/components/schemas/respondToSmsRegistrationReview_request_answers_inner"
+          maxItems: 20
           type: array
     respondToSmsRegistrationReview_200_response:
       example:
@@ -118760,6 +118842,71 @@ components:
         reason:
           enum:
           - max_attempts_reached
+    onSmsRegistrationActionRequired_request_registration:
+      properties:
+        id:
+          type: string
+        type:
+          enum:
+          - standard_10dlc
+          - sole_prop_10dlc
+          - toll_free
+          type: string
+        displayName:
+          nullable: true
+          type: string
+        status:
+          description: "Registration status when the event fired (changes_requested,\
+            \ pending or rejected)."
+        profileId:
+          type: string
+    onSmsRegistrationActionRequired_request:
+      properties:
+        id:
+          type: string
+        event:
+          enum:
+          - sms.registration.action_required
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+        registration:
+          $ref: "#/components/schemas/onSmsRegistrationActionRequired_request_registration"
+        reason:
+          enum:
+          - changes_requested
+          - otp_required
+          - carrier_info_required
+          - rejected
+        message:
+          description: "What to do, in words: the reviewer's note or the carrier's\
+            \ decline reason. Absent for otp_required."
+    SmsRegistrationReviewRequest_points_inner:
+      properties:
+        id:
+          description: "Point id to send back in `answers[].pointId`."
+          type: string
+        title:
+          type: string
+        detail:
+          description: What exactly is needed.
+          type: string
+        answer:
+          enum:
+          - text
+          - link
+          - file
+          - link_or_file
+          type: string
+      required:
+      - answer
+      - detail
+      - id
+      - title
     MetaProductFeed_schedule:
       example:
         dayOfWeek: dayOfWeek
@@ -127163,6 +127310,7 @@ x-documentation:
     - `whatsapp.number.released` - A number was released and is no longer usable (terminal); carries a `reason`
     - `verification.approved` - A managed-OTP verification was approved (the user submitted the correct code)
     - `verification.failed` - A managed-OTP verification was exhausted after too many wrong code attempts
+    - `sms.registration.action_required` - An SMS registration (10DLC or toll-free) is waiting on you: our review asked for changes, a sole-prop brand needs the code texted to its mobile, the toll-free carrier asked for more information, or the carriers rejected it. Branch on `reason`; `message` says what to do
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.
