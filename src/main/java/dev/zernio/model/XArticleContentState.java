@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   XArticleContentState.JSON_PROPERTY_BLOCKS,
   XArticleContentState.JSON_PROPERTY_ENTITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T07:52:10.006592745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T07:54:54.751231673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XArticleContentState {
   public static final String JSON_PROPERTY_BLOCKS = "blocks";
   @javax.annotation.Nonnull

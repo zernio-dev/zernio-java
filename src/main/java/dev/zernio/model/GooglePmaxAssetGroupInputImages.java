@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GooglePmaxAssetGroupInputImages.JSON_PROPERTY_SQUARE,
   GooglePmaxAssetGroupInputImages.JSON_PROPERTY_LOGO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T07:52:10.006592745Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T07:54:54.751231673Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GooglePmaxAssetGroupInputImages {
   public static final String JSON_PROPERTY_LANDSCAPE = "landscape";
   @javax.annotation.Nonnull
