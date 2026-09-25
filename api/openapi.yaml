@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.80.0
+  version: 1.81.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -5031,6 +5031,21 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The billing backend is rate limiting reads (code `rate_limited`).
+            Wait `Retry-After` seconds and retry. Before 1.81.0 this surfaced as a
+            500.
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying.
+              explode: false
+              schema:
+                type: integer
+              style: simple
       summary: Usage snapshot (default) or billed-spend metering (with params)
       tags:
       - Usage
@@ -5134,6 +5149,21 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The billing backend is rate limiting reads (code `rate_limited`).
+            Wait `Retry-After` seconds and retry. Before 1.81.0 this surfaced as a
+            500.
+          headers:
+            Retry-After:
+              description: Seconds to wait before retrying.
+              explode: false
+              schema:
+                type: integer
+              style: simple
       summary: "Get plan and usage snapshot (plan, limits, payment status)"
       tags:
       - Usage
@@ -74627,6 +74657,7 @@ components:
           type: string
     selectInstagramAccount_200_response:
       example:
+        adsAccountId: adsAccountId
         message: message
         redirect_url: redirect_url
         account:
@@ -74641,7 +74672,14 @@ components:
         message:
           type: string
         redirect_url:
-          description: Redirect URL if a custom redirect_url was provided
+          description: Redirect URL if a custom redirect_url was provided. On an ads
+            connect it also carries `adsAccountId`.
+          type: string
+        adsAccountId:
+          description: "Ads connect only (the redirect_url carries adsConnect=true,\
+            \ as it does after GET /v1/connect/{platform}/ads). The metaads SocialAccount\
+            \ ID to use with the /v1/ads endpoints. `account.accountId` is the Instagram\
+            \ posting account. Absent when the ads account could not be created."
           type: string
         account:
           $ref: "#/components/schemas/selectInstagramAccount_200_response_account"
