@@ -11,7 +11,7 @@
 |**tier** | [**TierEnum**](#TierEnum) | Null on a &#x60;fulfilment: request&#x60; type, whose document tier is only known once its requirements are read. |  [optional] |
 |**needsKyc** | **Boolean** |  |  [optional] |
 |**monthlyCents** | **Integer** | Price a NEW number of this type costs per month, in cents. |  [optional] |
-|**whatsappAvailable** | **Boolean** | Always false for toll_free (WhatsApp does not reliably register toll-free numbers). |  [optional] |
+|**whatsappAvailable** | **Boolean** | False for toll_free (WhatsApp does not reliably register toll-free numbers) and for pairs Meta refuses, such as Chilean local (+56 2). |  [optional] |
 |**smsAvailable** | **Boolean** |  |  [optional] |
 |**callsAvailable** | **Boolean** |  |  [optional] |
 |**inStock** | **Boolean** |  |  [optional] |
