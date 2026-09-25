@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.95.0
+- API version: 1.96.0
 
-- Build date: 2026-09-25T18:34:30.447667746Z[Etc/UTC]
+- Build date: 2026-09-25T18:43:36.532720835Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.95.0</version>
+  <version>1.96.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.95.0"
+compile "dev.zernio:zernio-sdk:1.96.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.95.0.jar`
+- `target/zernio-sdk-1.96.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2947,7 +2947,6 @@ Class | Method | HTTP request | Description
  - [ListPhoneNumberStockWatches200Response](docs/ListPhoneNumberStockWatches200Response.md)
  - [ListPhoneNumbers200Response](docs/ListPhoneNumbers200Response.md)
  - [ListPhoneNumbers200ResponseConnectedInner](docs/ListPhoneNumbers200ResponseConnectedInner.md)
- - [ListPhoneNumbers200ResponseNumbersInner](docs/ListPhoneNumbers200ResponseNumbersInner.md)
  - [ListPhoneNumbers200ResponseSandbox](docs/ListPhoneNumbers200ResponseSandbox.md)
  - [ListPhoneNumbers200ResponseSandboxTemplate](docs/ListPhoneNumbers200ResponseSandboxTemplate.md)
  - [ListPinterestBoardsForSelection200Response](docs/ListPinterestBoardsForSelection200Response.md)
@@ -3076,6 +3075,10 @@ Class | Method | HTTP request | Description
  - [OrderImessageSender202Response](docs/OrderImessageSender202Response.md)
  - [OrderImessageSenderRequest](docs/OrderImessageSenderRequest.md)
  - [OrderImessageSenderRequestContact](docs/OrderImessageSenderRequestContact.md)
+ - [OwnedPhoneNumber](docs/OwnedPhoneNumber.md)
+ - [OwnedPhoneNumberFeatures](docs/OwnedPhoneNumberFeatures.md)
+ - [OwnedPhoneNumberProfileId](docs/OwnedPhoneNumberProfileId.md)
+ - [OwnedPhoneNumberProfileIdOneOf](docs/OwnedPhoneNumberProfileIdOneOf.md)
  - [Pagination](docs/Pagination.md)
  - [PauseWorkflow200Response](docs/PauseWorkflow200Response.md)
  - [Pending](docs/Pending.md)

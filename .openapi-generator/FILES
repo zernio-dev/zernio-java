@@ -1305,7 +1305,6 @@ docs/ListPhoneNumberPortIns200ResponseOrdersInner.md
 docs/ListPhoneNumberStockWatches200Response.md
 docs/ListPhoneNumbers200Response.md
 docs/ListPhoneNumbers200ResponseConnectedInner.md
-docs/ListPhoneNumbers200ResponseNumbersInner.md
 docs/ListPhoneNumbers200ResponseSandbox.md
 docs/ListPhoneNumbers200ResponseSandboxTemplate.md
 docs/ListPinterestBoardsForSelection200Response.md
@@ -1439,6 +1438,10 @@ docs/OnboardBusinessAgent201Response.md
 docs/OrderImessageSender202Response.md
 docs/OrderImessageSenderRequest.md
 docs/OrderImessageSenderRequestContact.md
+docs/OwnedPhoneNumber.md
+docs/OwnedPhoneNumberFeatures.md
+docs/OwnedPhoneNumberProfileId.md
+docs/OwnedPhoneNumberProfileIdOneOf.md
 docs/Pagination.md
 docs/PauseWorkflow200Response.md
 docs/Pending.md
@@ -3634,7 +3637,6 @@ src/main/java/dev/zernio/model/ListPhoneNumberPortIns200ResponseOrdersInner.java
 src/main/java/dev/zernio/model/ListPhoneNumberStockWatches200Response.java
 src/main/java/dev/zernio/model/ListPhoneNumbers200Response.java
 src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseConnectedInner.java
-src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseSandbox.java
 src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseSandboxTemplate.java
 src/main/java/dev/zernio/model/ListPinterestBoardsForSelection200Response.java
@@ -3763,6 +3765,10 @@ src/main/java/dev/zernio/model/OnboardBusinessAgent201Response.java
 src/main/java/dev/zernio/model/OrderImessageSender202Response.java
 src/main/java/dev/zernio/model/OrderImessageSenderRequest.java
 src/main/java/dev/zernio/model/OrderImessageSenderRequestContact.java
+src/main/java/dev/zernio/model/OwnedPhoneNumber.java
+src/main/java/dev/zernio/model/OwnedPhoneNumberFeatures.java
+src/main/java/dev/zernio/model/OwnedPhoneNumberProfileId.java
+src/main/java/dev/zernio/model/OwnedPhoneNumberProfileIdOneOf.java
 src/main/java/dev/zernio/model/Pagination.java
 src/main/java/dev/zernio/model/PauseWorkflow200Response.java
 src/main/java/dev/zernio/model/Pending.java
@@ -4575,3 +4581,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/OwnedPhoneNumberFeaturesTest.java
+src/test/java/dev/zernio/model/OwnedPhoneNumberProfileIdOneOfTest.java
+src/test/java/dev/zernio/model/OwnedPhoneNumberProfileIdTest.java
+src/test/java/dev/zernio/model/OwnedPhoneNumberTest.java

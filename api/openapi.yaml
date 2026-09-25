@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.95.0
+  version: 1.96.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54194,6 +54194,331 @@ components:
       - event
       - id
       - timestamp
+    OwnedPhoneNumber:
+      description: "A number you bought or ported. Null fields are omitted, except\
+        \ `socialAccountId` and `ownerAccountId`. Credentials stored for the number\
+        \ (such as the SIP digest password) are never returned; `sipAuthUsername`\
+        \ is the only SIP credential field exposed."
+      example:
+        country: country
+        numberType: numberType
+        signupErrorAt: 2000-01-23T04:56:07.000+00:00
+        transcriptionLanguage: auto
+        blockedCallers:
+        - blockedCallers
+        - blockedCallers
+        sipAuthUsername: sipAuthUsername
+        callIconCountries:
+        - callIconCountries
+        - callIconCountries
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        features:
+          whatsapp: true
+          calls: true
+          smsPending: true
+        regulatoryInfoStatus: regulatoryInfoStatus
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+        smsSendApproved: true
+        voicemailGreeting: voicemailGreeting
+        smsRegistrationPending: true
+        endUserFirstName: endUserFirstName
+        onfidoOpened: true
+        ivrEnabled: true
+        suspendedAt: 2000-01-23T04:56:07.000+00:00
+        pstnForwardTo: pstnForwardTo
+        forwardTo: forwardTo
+        metaVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        registrantName: registrantName
+        signupError: signupError
+        phoneNumber: phoneNumber
+        endUserLastName: endUserLastName
+        profileId:
+          name: name
+          _id: _id
+        pstnVoiceEnabled: true
+        _id: _id
+        telnyxOrderId: telnyxOrderId
+        voicemailEnabled: true
+        status: pending_payment
+        releasedAt: 2000-01-23T04:56:07.000+00:00
+        telnyxAdvancedOrderId: telnyxAdvancedOrderId
+        regulatoryDeclineReason: regulatoryDeclineReason
+        transcriptionEnabled: true
+        provisionedAt: 2000-01-23T04:56:07.000+00:00
+        activatedAt: 2000-01-23T04:56:07.000+00:00
+        regulatoryReviewComment: regulatoryReviewComment
+        socialAccountId: socialAccountId
+        ivrPrompt: ivrPrompt
+        whatsAppRequested: true
+        businessHoursEnabled: true
+        metaPreverifiedId: metaPreverifiedId
+        connectedAt: 2000-01-23T04:56:07.000+00:00
+        onfidoVerificationUrl: onfidoVerificationUrl
+        ivrOptions:
+        - forwardTo: forwardTo
+          label: label
+          digit: digit
+        - forwardTo: forwardTo
+          label: label
+          digit: digit
+        ownerAccountId: ownerAccountId
+        forwardCallerId: business
+        businessHoursTimezone: businessHoursTimezone
+        verifyUrl: verifyUrl
+        metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
+        callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
+        callingEnabled: true
+        recordingEnabled: true
+        businessHours:
+        - day: 1
+          close: close
+          open: open
+        - day: 1
+          close: close
+          open: open
+        metaVerificationStatus: pending
+        smsRequested: true
+        monthlyCents: 0
+        signupErrorStep: signupErrorStep
+        hostedByZernio: true
+        smsCapable: true
+        smsBrandName: smsBrandName
+        mmsCapable: true
+        domesticOnly: true
+        maxCallDurationSeconds: 6
+        sipTrunkId: sipTrunkId
+      properties:
+        _id:
+          type: string
+        phoneNumber:
+          type: string
+        country:
+          type: string
+        numberType:
+          description: "For example local, mobile, national or toll_free."
+          type: string
+        status:
+          enum:
+          - pending_payment
+          - pending_regulatory
+          - regulatory_declined
+          - provisioning
+          - verifying
+          - active
+          - suspended
+          - releasing
+          - released
+          type: string
+        profileId:
+          $ref: "#/components/schemas/OwnedPhoneNumber_profileId"
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+        telnyxOrderId:
+          description: Present once the number order has been placed (i.e. the requirement
+            group was approved). Absent while still in identity review.
+          nullable: true
+          type: string
+        telnyxAdvancedOrderId:
+          description: "Present on a pre-order: the carrier request placed for a number\
+            \ with no stock yet."
+          type: string
+        registrantName:
+          description: "For regulated numbers, who it's registered for (company or\
+            \ person), set from the submitted KYC."
+          nullable: true
+          type: string
+        endUserFirstName:
+          nullable: true
+          type: string
+        endUserLastName:
+          nullable: true
+          type: string
+        regulatoryDeclineReason:
+          description: Reviewer rejection reason when status is regulatory_declined.
+          nullable: true
+          type: string
+        regulatoryReviewComment:
+          description: The latest reviewer comment on a regulated number still in
+            review.
+          type: string
+        regulatoryInfoStatus:
+          description: '`action_required` when the reviewer is waiting on you.'
+          type: string
+        onfidoVerificationUrl:
+          description: "For regulated (Tier 3/4) numbers with an Onfido ID-verification\
+            \ step: the link to forward to the end user. Set once the order is placed;\
+            \ null otherwise. Poll this field after submitting KYC."
+          nullable: true
+          type: string
+        verifyUrl:
+          description: "Stable redirect to the live Onfido session. Prefer it over\
+            \ `onfidoVerificationUrl`, since it always resolves to a fresh session."
+          nullable: true
+          type: string
+        onfidoOpened:
+          description: True once the verify link has been opened at least once.
+          type: boolean
+        metaPreverifiedId:
+          type: string
+        metaVerificationStatus:
+          enum:
+          - pending
+          - code_requested
+          - verified
+          - expired
+          type: string
+        metaVerifiedAt:
+          format: date-time
+          type: string
+        metaVerificationExpiresAt:
+          format: date-time
+          type: string
+        socialAccountId:
+          description: The WhatsApp account the number is linked to; null when WhatsApp
+            is not connected.
+          nullable: true
+          type: string
+        ownerAccountId:
+          description: The telephony account that owns Calls and SMS on the number.
+          nullable: true
+          type: string
+        sipTrunkId:
+          description: "SIP trunk the number is attached to; null when not trunked.\
+            \ While attached, enabling Calls or WhatsApp calling, requesting WhatsApp\
+            \ verification, and releasing the number all return 409."
+          nullable: true
+          type: string
+        whatsAppRequested:
+          description: False for a standalone phone bought for Calls or SMS only.
+          type: boolean
+        smsRequested:
+          type: boolean
+        provisionedAt:
+          format: date-time
+          type: string
+        activatedAt:
+          format: date-time
+          type: string
+        connectedAt:
+          format: date-time
+          type: string
+        suspendedAt:
+          format: date-time
+          type: string
+        releasedAt:
+          format: date-time
+          type: string
+        signupError:
+          description: "Meta's Embedded Signup error from the last failed connect\
+            \ attempt (raw text, often localized)."
+          type: string
+        signupErrorAt:
+          format: date-time
+          type: string
+        signupErrorStep:
+          type: string
+        monthlyCents:
+          description: "What this number bills each month, in cents. Stamped when\
+            \ the number was bought, so an existing number keeps its price when the\
+            \ rate card changes."
+          type: integer
+        hostedByZernio:
+          description: "False for numbers you brought yourself (connected via Meta\
+            \ embedded signup). They live on your own carrier, so SMS/Calls can't\
+            \ be enabled on them."
+          type: boolean
+        smsCapable:
+          description: Whether the number can send SMS. Absent while unknown.
+          type: boolean
+        mmsCapable:
+          description: Whether the number can send MMS. Absent while unknown.
+          type: boolean
+        domesticOnly:
+          description: True when the number can only text numbers in its own country.
+            Absent while unknown.
+          type: boolean
+        smsRegistrationPending:
+          description: True while a 10DLC registration covering this number is in
+            review.
+          type: boolean
+        smsSendApproved:
+          description: "True when outbound SMS is unlocked: an approved 10DLC covers\
+            \ the number, or the number is outside the US."
+          type: boolean
+        smsBrandName:
+          description: Brand of the 10DLC registration covering the number.
+          nullable: true
+          type: string
+        features:
+          $ref: "#/components/schemas/OwnedPhoneNumber_features"
+        callingEnabled:
+          description: "Whether WhatsApp Business Calling is enabled on this number\
+            \ (manage via /v1/whatsapp/phone-numbers/{id}/calling)."
+          type: boolean
+        forwardTo:
+          description: WhatsApp calling forward destination.
+          type: string
+        sipAuthUsername:
+          description: "SIP digest username for a sip: forward destination. The password\
+            \ is never returned."
+          type: string
+        callerIdVerifiedAt:
+          format: date-time
+          type: string
+        maxCallDurationSeconds:
+          type: integer
+        recordingEnabled:
+          type: boolean
+        transcriptionEnabled:
+          type: boolean
+        transcriptionLanguage:
+          enum:
+          - auto
+          - en
+          - es
+          type: string
+        callIconCountries:
+          items:
+            type: string
+          type: array
+        forwardCallerId:
+          enum:
+          - business
+          - caller
+          type: string
+        pstnVoiceEnabled:
+          description: Whether Calls (PSTN voice) is on.
+          type: boolean
+        pstnForwardTo:
+          type: string
+        voicemailEnabled:
+          type: boolean
+        voicemailGreeting:
+          type: string
+        businessHoursEnabled:
+          type: boolean
+        businessHoursTimezone:
+          type: string
+        businessHours:
+          items:
+            $ref: "#/components/schemas/enableVoiceOnNumber_200_response_businessHours_inner"
+          type: array
+        blockedCallers:
+          items:
+            type: string
+          type: array
+        ivrEnabled:
+          type: boolean
+        ivrPrompt:
+          type: string
+        ivrOptions:
+          items:
+            $ref: "#/components/schemas/enableVoiceOnNumber_200_response_ivrOptions_inner"
+          type: array
     PhoneNumberStockWatch:
       example:
         country: country
@@ -91645,104 +91970,6 @@ components:
           description: True if Meta created a new dataset on this call; false if one
             already existed
           type: boolean
-    listPhoneNumbers_200_response_numbers_inner:
-      example:
-        country: country
-        callingEnabled: true
-        endUserFirstName: endUserFirstName
-        regulatoryDeclineReason: regulatoryDeclineReason
-        provisionedAt: 2000-01-23T04:56:07.000+00:00
-        metaVerificationStatus: metaVerificationStatus
-        registrantName: registrantName
-        monthlyCents: 0
-        hostedByZernio: true
-        metaPreverifiedId: metaPreverifiedId
-        createdAt: 2000-01-23T04:56:07.000+00:00
-        phoneNumber: phoneNumber
-        endUserLastName: endUserLastName
-        profileId: "{}"
-        onfidoVerificationUrl: onfidoVerificationUrl
-        _id: _id
-        telnyxOrderId: telnyxOrderId
-        sipTrunkId: sipTrunkId
-        status: pending_payment
-      properties:
-        _id:
-          type: string
-        phoneNumber:
-          type: string
-        country:
-          type: string
-        status:
-          enum:
-          - pending_payment
-          - pending_regulatory
-          - regulatory_declined
-          - provisioning
-          - verifying
-          - active
-          - suspended
-          - releasing
-          - released
-          type: string
-        registrantName:
-          description: "For regulated numbers, who it's registered for (company or\
-            \ person), set from the submitted KYC."
-          nullable: true
-          type: string
-        telnyxOrderId:
-          description: Present once the number order has been placed (i.e. the requirement
-            group was approved). Absent while still in identity review.
-          nullable: true
-          type: string
-        monthlyCents:
-          description: "What this number bills each month, in cents. Stamped when\
-            \ the number was bought, so an existing number keeps its price when the\
-            \ rate card changes."
-          type: integer
-        hostedByZernio:
-          description: "False for numbers you brought yourself (connected via Meta\
-            \ embedded signup). They live on your own carrier, so SMS/Calls can't\
-            \ be enabled on them."
-          type: boolean
-        sipTrunkId:
-          description: "SIP trunk the number is attached to; null when not trunked.\
-            \ While attached, enabling Calls or WhatsApp calling, requesting WhatsApp\
-            \ verification, and releasing the number all return 409."
-          nullable: true
-          type: string
-        profileId:
-          type: object
-        provisionedAt:
-          format: date-time
-          type: string
-        metaPreverifiedId:
-          type: string
-        metaVerificationStatus:
-          type: string
-        onfidoVerificationUrl:
-          description: "For regulated (Tier 3/4) numbers with an Onfido ID-verification\
-            \ step: the link to forward to the end user. Set once the order is placed;\
-            \ null otherwise. Poll this field after submitting KYC."
-          nullable: true
-          type: string
-        endUserFirstName:
-          nullable: true
-          type: string
-        endUserLastName:
-          nullable: true
-          type: string
-        regulatoryDeclineReason:
-          description: Reviewer rejection reason when status is regulatory_declined.
-          nullable: true
-          type: string
-        callingEnabled:
-          description: "Whether WhatsApp Business Calling is enabled on this number\
-            \ (manage via /v1/whatsapp/phone-numbers/{id}/calling)."
-          type: boolean
-        createdAt:
-          format: date-time
-          type: string
     listPhoneNumbers_200_response_connected_inner:
       example:
         accountId: accountId
@@ -91822,43 +92049,179 @@ components:
           profileId: profileId
         numbers:
         - country: country
-          callingEnabled: true
-          endUserFirstName: endUserFirstName
-          regulatoryDeclineReason: regulatoryDeclineReason
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
-          metaVerificationStatus: metaVerificationStatus
-          registrantName: registrantName
-          monthlyCents: 0
-          hostedByZernio: true
-          metaPreverifiedId: metaPreverifiedId
+          numberType: numberType
+          signupErrorAt: 2000-01-23T04:56:07.000+00:00
+          transcriptionLanguage: auto
+          blockedCallers:
+          - blockedCallers
+          - blockedCallers
+          sipAuthUsername: sipAuthUsername
+          callIconCountries:
+          - callIconCountries
+          - callIconCountries
           createdAt: 2000-01-23T04:56:07.000+00:00
+          features:
+            whatsapp: true
+            calls: true
+            smsPending: true
+          regulatoryInfoStatus: regulatoryInfoStatus
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          smsSendApproved: true
+          voicemailGreeting: voicemailGreeting
+          smsRegistrationPending: true
+          endUserFirstName: endUserFirstName
+          onfidoOpened: true
+          ivrEnabled: true
+          suspendedAt: 2000-01-23T04:56:07.000+00:00
+          pstnForwardTo: pstnForwardTo
+          forwardTo: forwardTo
+          metaVerifiedAt: 2000-01-23T04:56:07.000+00:00
+          registrantName: registrantName
+          signupError: signupError
           phoneNumber: phoneNumber
           endUserLastName: endUserLastName
-          profileId: "{}"
-          onfidoVerificationUrl: onfidoVerificationUrl
+          profileId:
+            name: name
+            _id: _id
+          pstnVoiceEnabled: true
           _id: _id
           telnyxOrderId: telnyxOrderId
-          sipTrunkId: sipTrunkId
+          voicemailEnabled: true
           status: pending_payment
+          releasedAt: 2000-01-23T04:56:07.000+00:00
+          telnyxAdvancedOrderId: telnyxAdvancedOrderId
+          regulatoryDeclineReason: regulatoryDeclineReason
+          transcriptionEnabled: true
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          regulatoryReviewComment: regulatoryReviewComment
+          socialAccountId: socialAccountId
+          ivrPrompt: ivrPrompt
+          whatsAppRequested: true
+          businessHoursEnabled: true
+          metaPreverifiedId: metaPreverifiedId
+          connectedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
+          ivrOptions:
+          - forwardTo: forwardTo
+            label: label
+            digit: digit
+          - forwardTo: forwardTo
+            label: label
+            digit: digit
+          ownerAccountId: ownerAccountId
+          forwardCallerId: business
+          businessHoursTimezone: businessHoursTimezone
+          verifyUrl: verifyUrl
+          metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
+          callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
+          callingEnabled: true
+          recordingEnabled: true
+          businessHours:
+          - day: 1
+            close: close
+            open: open
+          - day: 1
+            close: close
+            open: open
+          metaVerificationStatus: pending
+          smsRequested: true
+          monthlyCents: 0
+          signupErrorStep: signupErrorStep
+          hostedByZernio: true
+          smsCapable: true
+          smsBrandName: smsBrandName
+          mmsCapable: true
+          domesticOnly: true
+          maxCallDurationSeconds: 6
+          sipTrunkId: sipTrunkId
         - country: country
-          callingEnabled: true
-          endUserFirstName: endUserFirstName
-          regulatoryDeclineReason: regulatoryDeclineReason
-          provisionedAt: 2000-01-23T04:56:07.000+00:00
-          metaVerificationStatus: metaVerificationStatus
-          registrantName: registrantName
-          monthlyCents: 0
-          hostedByZernio: true
-          metaPreverifiedId: metaPreverifiedId
+          numberType: numberType
+          signupErrorAt: 2000-01-23T04:56:07.000+00:00
+          transcriptionLanguage: auto
+          blockedCallers:
+          - blockedCallers
+          - blockedCallers
+          sipAuthUsername: sipAuthUsername
+          callIconCountries:
+          - callIconCountries
+          - callIconCountries
           createdAt: 2000-01-23T04:56:07.000+00:00
+          features:
+            whatsapp: true
+            calls: true
+            smsPending: true
+          regulatoryInfoStatus: regulatoryInfoStatus
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          smsSendApproved: true
+          voicemailGreeting: voicemailGreeting
+          smsRegistrationPending: true
+          endUserFirstName: endUserFirstName
+          onfidoOpened: true
+          ivrEnabled: true
+          suspendedAt: 2000-01-23T04:56:07.000+00:00
+          pstnForwardTo: pstnForwardTo
+          forwardTo: forwardTo
+          metaVerifiedAt: 2000-01-23T04:56:07.000+00:00
+          registrantName: registrantName
+          signupError: signupError
           phoneNumber: phoneNumber
           endUserLastName: endUserLastName
-          profileId: "{}"
-          onfidoVerificationUrl: onfidoVerificationUrl
+          profileId:
+            name: name
+            _id: _id
+          pstnVoiceEnabled: true
           _id: _id
           telnyxOrderId: telnyxOrderId
-          sipTrunkId: sipTrunkId
+          voicemailEnabled: true
           status: pending_payment
+          releasedAt: 2000-01-23T04:56:07.000+00:00
+          telnyxAdvancedOrderId: telnyxAdvancedOrderId
+          regulatoryDeclineReason: regulatoryDeclineReason
+          transcriptionEnabled: true
+          provisionedAt: 2000-01-23T04:56:07.000+00:00
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          regulatoryReviewComment: regulatoryReviewComment
+          socialAccountId: socialAccountId
+          ivrPrompt: ivrPrompt
+          whatsAppRequested: true
+          businessHoursEnabled: true
+          metaPreverifiedId: metaPreverifiedId
+          connectedAt: 2000-01-23T04:56:07.000+00:00
+          onfidoVerificationUrl: onfidoVerificationUrl
+          ivrOptions:
+          - forwardTo: forwardTo
+            label: label
+            digit: digit
+          - forwardTo: forwardTo
+            label: label
+            digit: digit
+          ownerAccountId: ownerAccountId
+          forwardCallerId: business
+          businessHoursTimezone: businessHoursTimezone
+          verifyUrl: verifyUrl
+          metaVerificationExpiresAt: 2000-01-23T04:56:07.000+00:00
+          callerIdVerifiedAt: 2000-01-23T04:56:07.000+00:00
+          callingEnabled: true
+          recordingEnabled: true
+          businessHours:
+          - day: 1
+            close: close
+            open: open
+          - day: 1
+            close: close
+            open: open
+          metaVerificationStatus: pending
+          smsRequested: true
+          monthlyCents: 0
+          signupErrorStep: signupErrorStep
+          hostedByZernio: true
+          smsCapable: true
+          smsBrandName: smsBrandName
+          mmsCapable: true
+          domesticOnly: true
+          maxCallDurationSeconds: 6
+          sipTrunkId: sipTrunkId
         imessage:
         - kind: phone
           displayName: displayName
@@ -91896,7 +92259,7 @@ components:
       properties:
         numbers:
           items:
-            $ref: "#/components/schemas/listPhoneNumbers_200_response_numbers_inner"
+            $ref: "#/components/schemas/OwnedPhoneNumber"
           type: array
         connected:
           description: |
@@ -94589,7 +94952,7 @@ components:
           type: array
     enableVoiceOnNumber_200_response_businessHours_inner:
       example:
-        day: 0
+        day: 1
         close: close
         open: open
       properties:
@@ -94623,10 +94986,10 @@ components:
         transcriptionEnabled: true
         pstnForwardTo: pstnForwardTo
         businessHours:
-        - day: 0
+        - day: 1
           close: close
           open: open
-        - day: 0
+        - day: 1
           close: close
           open: open
         ivrPrompt: ivrPrompt
@@ -120681,6 +121044,34 @@ components:
       - platform
       - profileId
       - username
+    OwnedPhoneNumber_profileId_oneOf:
+      example:
+        name: name
+        _id: _id
+      properties:
+        _id:
+          type: string
+        name:
+          nullable: true
+          type: string
+    OwnedPhoneNumber_profileId:
+      description: "The profile the number belongs to: `{ _id, name }` when the profile\
+        \ exists, otherwise its id."
+      oneOf:
+      - $ref: "#/components/schemas/OwnedPhoneNumber_profileId_oneOf"
+      - type: string
+    OwnedPhoneNumber_features:
+      example:
+        whatsapp: true
+        calls: true
+        smsPending: true
+      properties:
+        calls:
+          type: boolean
+        whatsapp:
+          type: boolean
+        smsPending:
+          type: boolean
     WebhookPayloadPhoneNumberStockAvailable_stock_types_inner:
       example:
         availableCount: 0
