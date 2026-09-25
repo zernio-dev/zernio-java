@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'com.diffplug.spotless'
 
 group = 'dev.zernio'
-version = '1.83.1'
+version = '1.84.0'
 
 buildscript {
     repositories {
