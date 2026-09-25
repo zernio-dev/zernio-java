@@ -869,6 +869,9 @@ docs/GetPendingOAuthData200Response.md
 docs/GetPendingOAuthData200ResponseOrganizationsInner.md
 docs/GetPhoneNumber200Response.md
 docs/GetPhoneNumber200ResponsePhoneNumber.md
+docs/GetPhoneNumberClaim200Response.md
+docs/GetPhoneNumberClaim200ResponseArea.md
+docs/GetPhoneNumberClaim200ResponseCountry.md
 docs/GetPhoneNumberKycForm200Response.md
 docs/GetPhoneNumberKycForm200ResponseFieldsInner.md
 docs/GetPhoneNumberKycForm200ResponseReusable.md
@@ -1478,6 +1481,8 @@ docs/PurchasePhoneNumber200ResponseOneOf1.md
 docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md
 docs/PurchasePhoneNumber200ResponseOneOf2.md
 docs/PurchasePhoneNumber202Response.md
+docs/PurchasePhoneNumber401Response.md
+docs/PurchasePhoneNumber401ResponseDetails.md
 docs/PurchasePhoneNumber409Response.md
 docs/PurchasePhoneNumber503Response.md
 docs/PurchasePhoneNumberRequest.md
@@ -3194,6 +3199,9 @@ src/main/java/dev/zernio/model/GetPendingOAuthData200Response.java
 src/main/java/dev/zernio/model/GetPendingOAuthData200ResponseOrganizationsInner.java
 src/main/java/dev/zernio/model/GetPhoneNumber200Response.java
 src/main/java/dev/zernio/model/GetPhoneNumber200ResponsePhoneNumber.java
+src/main/java/dev/zernio/model/GetPhoneNumberClaim200Response.java
+src/main/java/dev/zernio/model/GetPhoneNumberClaim200ResponseArea.java
+src/main/java/dev/zernio/model/GetPhoneNumberClaim200ResponseCountry.java
 src/main/java/dev/zernio/model/GetPhoneNumberKycForm200Response.java
 src/main/java/dev/zernio/model/GetPhoneNumberKycForm200ResponseFieldsInner.java
 src/main/java/dev/zernio/model/GetPhoneNumberKycForm200ResponseReusable.java
@@ -3779,6 +3787,8 @@ src/main/java/dev/zernio/model/PurchasePhoneNumber200ResponseOneOf1.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber200ResponseOneOf2.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber202Response.java
+src/main/java/dev/zernio/model/PurchasePhoneNumber401Response.java
+src/main/java/dev/zernio/model/PurchasePhoneNumber401ResponseDetails.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber409Response.java
 src/main/java/dev/zernio/model/PurchasePhoneNumber503Response.java
 src/main/java/dev/zernio/model/PurchasePhoneNumberRequest.java
@@ -4539,3 +4549,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseAreaTest.java
+src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseCountryTest.java
+src/test/java/dev/zernio/model/GetPhoneNumberClaim200ResponseTest.java
+src/test/java/dev/zernio/model/PurchasePhoneNumber401ResponseDetailsTest.java
+src/test/java/dev/zernio/model/PurchasePhoneNumber401ResponseTest.java

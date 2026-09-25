@@ -37,6 +37,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumberRequest.JSON_PROPERTY_COUNTRY,
   PurchasePhoneNumberRequest.JSON_PROPERTY_NUMBER_TYPE,
   PurchasePhoneNumberRequest.JSON_PROPERTY_AREA_CODE,
+  PurchasePhoneNumberRequest.JSON_PROPERTY_CLAIM_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_PHONE_NUMBER,
   PurchasePhoneNumberRequest.JSON_PROPERTY_CONNECT_WHATSAPP,
   PurchasePhoneNumberRequest.JSON_PROPERTY_WANTS_SMS,
@@ -44,7 +45,7 @@ import dev.zernio.ApiClient;
   PurchasePhoneNumberRequest.JSON_PROPERTY_PURCHASE_INTENT_ID,
   PurchasePhoneNumberRequest.JSON_PROPERTY_ALLOW_MULTIPLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -100,6 +101,10 @@ public class PurchasePhoneNumberRequest {
   public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
   @javax.annotation.Nullable
   private String areaCode;
+
+  public static final String JSON_PROPERTY_CLAIM_ID = "claimId";
+  @javax.annotation.Nullable
+  private String claimId;
 
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -221,6 +226,30 @@ public class PurchasePhoneNumberRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setAreaCode(@javax.annotation.Nullable String areaCode) {
     this.areaCode = areaCode;
+  }
+
+
+  public PurchasePhoneNumberRequest claimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+    return this;
+  }
+
+  /**
+   * Keyless calls only: a &#x60;claimId&#x60; from a keyless GET /v1/phone-numbers/available. The 401 then carries a &#x60;claimUrl&#x60; for that exact number. Ignored when an API key is sent. 
+   * @return claimId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimId() {
+    return claimId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
   }
 
 
@@ -384,6 +413,7 @@ public class PurchasePhoneNumberRequest {
         Objects.equals(this.country, purchasePhoneNumberRequest.country) &&
         Objects.equals(this.numberType, purchasePhoneNumberRequest.numberType) &&
         Objects.equals(this.areaCode, purchasePhoneNumberRequest.areaCode) &&
+        Objects.equals(this.claimId, purchasePhoneNumberRequest.claimId) &&
         Objects.equals(this.phoneNumber, purchasePhoneNumberRequest.phoneNumber) &&
         Objects.equals(this.connectWhatsapp, purchasePhoneNumberRequest.connectWhatsapp) &&
         Objects.equals(this.wantsSms, purchasePhoneNumberRequest.wantsSms) &&
@@ -394,7 +424,7 @@ public class PurchasePhoneNumberRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, numberType, areaCode, phoneNumber, connectWhatsapp, wantsSms, wantsWhatsapp, purchaseIntentId, allowMultiple);
+    return Objects.hash(profileId, country, numberType, areaCode, claimId, phoneNumber, connectWhatsapp, wantsSms, wantsWhatsapp, purchaseIntentId, allowMultiple);
   }
 
   @Override
@@ -405,6 +435,7 @@ public class PurchasePhoneNumberRequest {
     sb.append("    country: ").append(toIndentedString(country)).append("\n");
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
+    sb.append("    claimId: ").append(toIndentedString(claimId)).append("\n");
     sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    connectWhatsapp: ").append(toIndentedString(connectWhatsapp)).append("\n");
     sb.append("    wantsSms: ").append(toIndentedString(wantsSms)).append("\n");
@@ -476,6 +507,11 @@ public class PurchasePhoneNumberRequest {
     // add `areaCode` to the URL query string
     if (getAreaCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
+    }
+
+    // add `claimId` to the URL query string
+    if (getClaimId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimId()))));
     }
 
     // add `phoneNumber` to the URL query string

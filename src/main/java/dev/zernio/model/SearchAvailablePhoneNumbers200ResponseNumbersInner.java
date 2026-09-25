@@ -38,9 +38,13 @@ import dev.zernio.ApiClient;
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_PHONE_NUMBER,
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_FEATURES,
   SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_LOCALITY,
-  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_BEST_EFFORT
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_BEST_EFFORT,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_MASKED_NUMBER,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_NUMBER_TYPE,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CLAIM_ID,
+  SearchAvailablePhoneNumbers200ResponseNumbersInner.JSON_PROPERTY_CLAIM_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
   @javax.annotation.Nullable
@@ -57,6 +61,22 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   public static final String JSON_PROPERTY_BEST_EFFORT = "bestEffort";
   @javax.annotation.Nullable
   private Boolean bestEffort;
+
+  public static final String JSON_PROPERTY_MASKED_NUMBER = "maskedNumber";
+  @javax.annotation.Nullable
+  private String maskedNumber;
+
+  public static final String JSON_PROPERTY_NUMBER_TYPE = "numberType";
+  @javax.annotation.Nullable
+  private String numberType;
+
+  public static final String JSON_PROPERTY_CLAIM_ID = "claimId";
+  @javax.annotation.Nullable
+  private String claimId;
+
+  public static final String JSON_PROPERTY_CLAIM_URL = "claimUrl";
+  @javax.annotation.Nullable
+  private String claimUrl;
 
   public SearchAvailablePhoneNumbers200ResponseNumbersInner() { 
   }
@@ -165,6 +185,102 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
   }
 
 
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner maskedNumber(@javax.annotation.Nullable String maskedNumber) {
+    this.maskedNumber = maskedNumber;
+    return this;
+  }
+
+  /**
+   * Keyless calls only, in place of &#x60;phoneNumber&#x60;: the number with its middle digits masked, e.g. +44 20 •••• 0123.
+   * @return maskedNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MASKED_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getMaskedNumber() {
+    return maskedNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MASKED_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMaskedNumber(@javax.annotation.Nullable String maskedNumber) {
+    this.maskedNumber = maskedNumber;
+  }
+
+
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner numberType(@javax.annotation.Nullable String numberType) {
+    this.numberType = numberType;
+    return this;
+  }
+
+  /**
+   * Keyless calls only. Without a &#x60;numberType&#x60; filter a keyless search mixes every type the country sells, so each result names its own.
+   * @return numberType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getNumberType() {
+    return numberType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_NUMBER_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setNumberType(@javax.annotation.Nullable String numberType) {
+    this.numberType = numberType;
+  }
+
+
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner claimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+    return this;
+  }
+
+  /**
+   * Keyless calls only. Opaque, expires after 7 days. Pass it as &#x60;claimId&#x60; on a keyless POST /v1/phone-numbers/purchase.
+   * @return claimId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimId() {
+    return claimId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+  }
+
+
+  public SearchAvailablePhoneNumbers200ResponseNumbersInner claimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+    return this;
+  }
+
+  /**
+   * Keyless calls only. Signup link that opens the dashboard&#39;s confirm step for this number. The number is not held: if it is gone by then, the buyer picks another in the same area.
+   * @return claimUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimUrl() {
+    return claimUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+  }
+
+
   /**
    * Return true if this searchAvailablePhoneNumbers_200_response_numbers_inner object is equal to o.
    */
@@ -180,12 +296,16 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
     return Objects.equals(this.phoneNumber, searchAvailablePhoneNumbers200ResponseNumbersInner.phoneNumber) &&
         Objects.equals(this.features, searchAvailablePhoneNumbers200ResponseNumbersInner.features) &&
         Objects.equals(this.locality, searchAvailablePhoneNumbers200ResponseNumbersInner.locality) &&
-        Objects.equals(this.bestEffort, searchAvailablePhoneNumbers200ResponseNumbersInner.bestEffort);
+        Objects.equals(this.bestEffort, searchAvailablePhoneNumbers200ResponseNumbersInner.bestEffort) &&
+        Objects.equals(this.maskedNumber, searchAvailablePhoneNumbers200ResponseNumbersInner.maskedNumber) &&
+        Objects.equals(this.numberType, searchAvailablePhoneNumbers200ResponseNumbersInner.numberType) &&
+        Objects.equals(this.claimId, searchAvailablePhoneNumbers200ResponseNumbersInner.claimId) &&
+        Objects.equals(this.claimUrl, searchAvailablePhoneNumbers200ResponseNumbersInner.claimUrl);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(phoneNumber, features, locality, bestEffort);
+    return Objects.hash(phoneNumber, features, locality, bestEffort, maskedNumber, numberType, claimId, claimUrl);
   }
 
   @Override
@@ -196,6 +316,10 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
     sb.append("    features: ").append(toIndentedString(features)).append("\n");
     sb.append("    locality: ").append(toIndentedString(locality)).append("\n");
     sb.append("    bestEffort: ").append(toIndentedString(bestEffort)).append("\n");
+    sb.append("    maskedNumber: ").append(toIndentedString(maskedNumber)).append("\n");
+    sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
+    sb.append("    claimId: ").append(toIndentedString(claimId)).append("\n");
+    sb.append("    claimUrl: ").append(toIndentedString(claimUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -265,6 +389,26 @@ public class SearchAvailablePhoneNumbers200ResponseNumbersInner {
     // add `bestEffort` to the URL query string
     if (getBestEffort() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbestEffort%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBestEffort()))));
+    }
+
+    // add `maskedNumber` to the URL query string
+    if (getMaskedNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smaskedNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMaskedNumber()))));
+    }
+
+    // add `numberType` to the URL query string
+    if (getNumberType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snumberType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNumberType()))));
+    }
+
+    // add `claimId` to the URL query string
+    if (getClaimId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimId()))));
+    }
+
+    // add `claimUrl` to the URL query string
+    if (getClaimUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimUrl()))));
     }
 
     return joiner.toString();

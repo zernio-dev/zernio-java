@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetImessageGroup200ResponseGroup.JSON_PROPERTY_CHANNEL,
   GetImessageGroup200ResponseGroup.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetImessageGroup200ResponseGroup {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

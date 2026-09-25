@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.87.0
 
-- Build date: 2026-09-25T14:01:32.709755690Z[Etc/UTC]
+- Build date: 2026-09-25T14:04:32.564838722Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1127,6 +1127,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**deletePhoneNumberStockWatchWithHttpInfo**](docs/PhoneNumbersApi.md#deletePhoneNumberStockWatchWithHttpInfo) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country
 *PhoneNumbersApi* | [**getPhoneNumber**](docs/PhoneNumbersApi.md#getPhoneNumber) | **GET** /v1/phone-numbers/{id} | Get phone number
 *PhoneNumbersApi* | [**getPhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number
+*PhoneNumbersApi* | [**getPhoneNumberClaim**](docs/PhoneNumbersApi.md#getPhoneNumberClaim) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim
+*PhoneNumbersApi* | [**getPhoneNumberClaimWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberClaimWithHttpInfo) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim
 *PhoneNumbersApi* | [**getPhoneNumberKycForm**](docs/PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
 *PhoneNumbersApi* | [**getPhoneNumberKycFormWithHttpInfo**](docs/PhoneNumbersApi.md#getPhoneNumberKycFormWithHttpInfo) | **GET** /v1/phone-numbers/kyc | Get KYC form spec
 *PhoneNumbersApi* | [**getPhoneNumberPortInOrderRequirements**](docs/PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements
@@ -2521,6 +2523,9 @@ Class | Method | HTTP request | Description
  - [GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)
  - [GetPhoneNumber200Response](docs/GetPhoneNumber200Response.md)
  - [GetPhoneNumber200ResponsePhoneNumber](docs/GetPhoneNumber200ResponsePhoneNumber.md)
+ - [GetPhoneNumberClaim200Response](docs/GetPhoneNumberClaim200Response.md)
+ - [GetPhoneNumberClaim200ResponseArea](docs/GetPhoneNumberClaim200ResponseArea.md)
+ - [GetPhoneNumberClaim200ResponseCountry](docs/GetPhoneNumberClaim200ResponseCountry.md)
  - [GetPhoneNumberKycForm200Response](docs/GetPhoneNumberKycForm200Response.md)
  - [GetPhoneNumberKycForm200ResponseFieldsInner](docs/GetPhoneNumberKycForm200ResponseFieldsInner.md)
  - [GetPhoneNumberKycForm200ResponseReusable](docs/GetPhoneNumberKycForm200ResponseReusable.md)
@@ -3106,6 +3111,8 @@ Class | Method | HTTP request | Description
  - [PurchasePhoneNumber200ResponseOneOf1PhoneNumber](docs/PurchasePhoneNumber200ResponseOneOf1PhoneNumber.md)
  - [PurchasePhoneNumber200ResponseOneOf2](docs/PurchasePhoneNumber200ResponseOneOf2.md)
  - [PurchasePhoneNumber202Response](docs/PurchasePhoneNumber202Response.md)
+ - [PurchasePhoneNumber401Response](docs/PurchasePhoneNumber401Response.md)
+ - [PurchasePhoneNumber401ResponseDetails](docs/PurchasePhoneNumber401ResponseDetails.md)
  - [PurchasePhoneNumber409Response](docs/PurchasePhoneNumber409Response.md)
  - [PurchasePhoneNumber503Response](docs/PurchasePhoneNumber503Response.md)
  - [PurchasePhoneNumberRequest](docs/PurchasePhoneNumberRequest.md)

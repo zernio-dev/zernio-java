@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ConnectShopifyWithTokenRequest.JSON_PROPERTY_SHOP,
   ConnectShopifyWithTokenRequest.JSON_PROPERTY_ACCESS_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectShopifyWithTokenRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

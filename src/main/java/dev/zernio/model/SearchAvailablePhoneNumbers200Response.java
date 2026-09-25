@@ -28,6 +28,10 @@ import dev.zernio.model.SearchAvailablePhoneNumbers200ResponseNumbersInner;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -39,9 +43,13 @@ import dev.zernio.ApiClient;
   SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_COUNTRY,
   SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_NUMBER_TYPE,
   SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_REQUIRE_SMS,
-  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_NUMBERS
+  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_NUMBERS,
+  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_MASKED,
+  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_NEAR,
+  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_CLAIM_ID,
+  SearchAvailablePhoneNumbers200Response.JSON_PROPERTY_CLAIM_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAvailablePhoneNumbers200Response {
   public static final String JSON_PROPERTY_COUNTRY = "country";
   @javax.annotation.Nullable
@@ -58,6 +66,21 @@ public class SearchAvailablePhoneNumbers200Response {
   public static final String JSON_PROPERTY_NUMBERS = "numbers";
   @javax.annotation.Nullable
   private List<SearchAvailablePhoneNumbers200ResponseNumbersInner> numbers = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_MASKED = "masked";
+  @javax.annotation.Nullable
+  private Boolean masked;
+
+  public static final String JSON_PROPERTY_NEAR = "near";
+  private JsonNullable<String> near = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_CLAIM_ID = "claimId";
+  @javax.annotation.Nullable
+  private String claimId;
+
+  public static final String JSON_PROPERTY_CLAIM_URL = "claimUrl";
+  @javax.annotation.Nullable
+  private String claimUrl;
 
   public SearchAvailablePhoneNumbers200Response() { 
   }
@@ -166,6 +189,110 @@ public class SearchAvailablePhoneNumbers200Response {
   }
 
 
+  public SearchAvailablePhoneNumbers200Response masked(@javax.annotation.Nullable Boolean masked) {
+    this.masked = masked;
+    return this;
+  }
+
+  /**
+   * true on keyless calls.
+   * @return masked
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_MASKED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getMasked() {
+    return masked;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_MASKED, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setMasked(@javax.annotation.Nullable Boolean masked) {
+    this.masked = masked;
+  }
+
+
+  public SearchAvailablePhoneNumbers200Response near(@javax.annotation.Nullable String near) {
+    this.near = JsonNullable.<String>of(near);
+    return this;
+  }
+
+  /**
+   * With &#x60;country&#x3D;auto&#x60;: the caller&#39;s city the results were narrowed to, or null when there was no stock there.
+   * @return near
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public String getNear() {
+        return near.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_NEAR, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<String> getNear_JsonNullable() {
+    return near;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_NEAR)
+  public void setNear_JsonNullable(JsonNullable<String> near) {
+    this.near = near;
+  }
+
+  public void setNear(@javax.annotation.Nullable String near) {
+    this.near = JsonNullable.<String>of(near);
+  }
+
+
+  public SearchAvailablePhoneNumbers200Response claimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+    return this;
+  }
+
+  /**
+   * Keyless calls only: a claim for any number matching this search&#39;s country, type and area.
+   * @return claimId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimId() {
+    return claimId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimId(@javax.annotation.Nullable String claimId) {
+    this.claimId = claimId;
+  }
+
+
+  public SearchAvailablePhoneNumbers200Response claimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+    return this;
+  }
+
+  /**
+   * Keyless calls only: signup link for any number matching this search.
+   * @return claimUrl
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getClaimUrl() {
+    return claimUrl;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CLAIM_URL, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setClaimUrl(@javax.annotation.Nullable String claimUrl) {
+    this.claimUrl = claimUrl;
+  }
+
+
   /**
    * Return true if this searchAvailablePhoneNumbers_200_response object is equal to o.
    */
@@ -181,12 +308,27 @@ public class SearchAvailablePhoneNumbers200Response {
     return Objects.equals(this.country, searchAvailablePhoneNumbers200Response.country) &&
         Objects.equals(this.numberType, searchAvailablePhoneNumbers200Response.numberType) &&
         Objects.equals(this.requireSms, searchAvailablePhoneNumbers200Response.requireSms) &&
-        Objects.equals(this.numbers, searchAvailablePhoneNumbers200Response.numbers);
+        Objects.equals(this.numbers, searchAvailablePhoneNumbers200Response.numbers) &&
+        Objects.equals(this.masked, searchAvailablePhoneNumbers200Response.masked) &&
+        equalsNullable(this.near, searchAvailablePhoneNumbers200Response.near) &&
+        Objects.equals(this.claimId, searchAvailablePhoneNumbers200Response.claimId) &&
+        Objects.equals(this.claimUrl, searchAvailablePhoneNumbers200Response.claimUrl);
+  }
+
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(country, numberType, requireSms, numbers);
+    return Objects.hash(country, numberType, requireSms, numbers, masked, hashCodeNullable(near), claimId, claimUrl);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override
@@ -197,6 +339,10 @@ public class SearchAvailablePhoneNumbers200Response {
     sb.append("    numberType: ").append(toIndentedString(numberType)).append("\n");
     sb.append("    requireSms: ").append(toIndentedString(requireSms)).append("\n");
     sb.append("    numbers: ").append(toIndentedString(numbers)).append("\n");
+    sb.append("    masked: ").append(toIndentedString(masked)).append("\n");
+    sb.append("    near: ").append(toIndentedString(near)).append("\n");
+    sb.append("    claimId: ").append(toIndentedString(claimId)).append("\n");
+    sb.append("    claimUrl: ").append(toIndentedString(claimUrl)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -267,6 +413,26 @@ public class SearchAvailablePhoneNumbers200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `masked` to the URL query string
+    if (getMasked() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%smasked%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getMasked()))));
+    }
+
+    // add `near` to the URL query string
+    if (getNear() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%snear%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNear()))));
+    }
+
+    // add `claimId` to the URL query string
+    if (getClaimId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimId()))));
+    }
+
+    // add `claimUrl` to the URL query string
+    if (getClaimUrl() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sclaimUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getClaimUrl()))));
     }
 
     return joiner.toString();

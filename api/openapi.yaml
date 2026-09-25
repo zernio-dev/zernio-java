@@ -25955,7 +25955,12 @@ paths:
         "400":
           description: "Plan limit reached, profileId required, or country not available"
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/purchasePhoneNumber_401_response"
+          description: |
+            Missing or invalid API key. A call with no key at all gets the purchase back as a claim: `details.claimUrl` is a signup link that opens the dashboard's confirm step for the requested `country`, `numberType` and `areaCode` (or for the number behind `claimId`, from a keyless GET /v1/phone-numbers/available). Hand it to the person who will own the number.
         "403":
           description: A paid plan is required
         "409":
@@ -25994,6 +25999,45 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/phone-numbers/claims/{claimId}:
+    get:
+      description: |
+        Resolves a `claimId` from a keyless search or purchase into the
+        selection it carries (country, number type, area and exact number)
+        priced at today's rate. The dashboard calls it when a person lands
+        from a `claimUrl`. The number is not held, so buying it can still fail
+        with 409 PHONE_NUMBER_UNAVAILABLE.
+      operationId: getPhoneNumberClaim
+      parameters:
+      - explode: false
+        in: path
+        name: claimId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPhoneNumberClaim_200_response"
+          description: The claimed selection.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "The claim expired (after 7 days), is invalid, or its country\
+            \ or type is no longer sold."
+      security:
+      - bearerAuth: []
+      summary: Resolve a number claim
+      tags:
+      - Phone Numbers
+      x-resource-group: telephony
+      x-accepts:
+      - application/json
   /v1/phone-numbers/countries:
     get:
       description: |
@@ -26001,7 +26045,8 @@ paths:
         monthly price (cents), regulatory tier, whether it needs end-user KYC
         (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS,
         and WhatsApp Business Calling outbound). Drives the country picker.
-        Tier-4 countries appear only when enabled.
+        Tier-4 countries appear only when enabled. No API key needed: the
+        catalog is public so you can browse it before you have an account.
       operationId: listPhoneNumberCountries
       responses:
         "200":
@@ -26010,10 +26055,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/listPhoneNumberCountries_200_response"
           description: "Offerable countries, cheapest first."
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-      security:
-      - bearerAuth: []
+      security: []
       summary: List offerable number countries
       tags:
       - Phone Numbers
@@ -26030,9 +26072,19 @@ paths:
         can also text (SMS support is per-number, not per-country). Numbers a
         purchase would refuse are left out, and any result's `phoneNumber` can
         be bought exactly by passing it to POST /v1/phone-numbers/purchase.
+
+        Works without an API key. Keyless calls get up to 12 results with the
+        middle digits masked (`maskedNumber`), each with a `claimId` and a
+        `claimUrl`: a signup link that lands a person on the dashboard's
+        confirm step with that number picked, so an agent can search for a
+        user and hand them one link. Keyless calls are rate limited per IP and
+        results are cached for a few minutes. With an API key you get full
+        numbers and no claim fields.
       operationId: searchAvailablePhoneNumbers
       parameters:
-      - explode: true
+      - description: "ISO code, or `auto` on the keyless shape to search the caller's\
+          \ own country (from their IP) near their city, falling back to US."
+        explode: true
         in: query
         name: country
         required: false
@@ -26115,6 +26167,16 @@ paths:
           maximum: 100
           type: integer
         style: form
+      - description: "true returns the keyless shape (masked numbers with claimId\
+          \ and claimUrl) even when you send an API key, e.g. to hand a user a signup\
+          \ link for a number."
+        explode: true
+        in: query
+        name: masked
+        required: false
+        schema:
+          type: boolean
+        style: form
       responses:
         "200":
           content:
@@ -26128,7 +26190,10 @@ paths:
             \ the accepted ones; nothing is silently ignored)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "429":
+          description: Keyless rate limit reached. Retry later or send an API key.
       security:
+      - {}
       - bearerAuth: []
       summary: Search available numbers
       tags:
@@ -26148,6 +26213,10 @@ paths:
           - `addressConstraint: country` → any in-country address works.
           - `addressConstraint: none` → field-only / instant country, no address.
         Call this before starting the KYC form for regulated countries.
+
+        Without an API key it answers from cache only and returns just
+        `country`, `numberType` and `areaOptions`, for building an area
+        picker before signup.
       operationId: checkPhoneNumberAvailability
       parameters:
       - description: ISO-2 country code.
@@ -26198,6 +26267,7 @@ paths:
           description: The inventory provider was unreachable or returned an unclassified
             error.
       security:
+      - {}
       - bearerAuth: []
       summary: Check country availability
       tags:
@@ -91731,6 +91801,10 @@ components:
             Area code (national destination code, e.g. 11 for Sao Paulo) the number must be in. Hard constraint: when the area has no deliverable inventory the purchase fails with 409 code AREA_CODE_UNAVAILABLE instead of assigning a number from another area, and later replacements stay in this area too. Omit for any area. Get live options from GET /v1/phone-numbers/availability (areaOptions).
           pattern: "^\\d{1,4}$"
           type: string
+        claimId:
+          description: |
+            Keyless calls only: a `claimId` from a keyless GET /v1/phone-numbers/available. The 401 then carries a `claimUrl` for that exact number. Ignored when an API key is sent.
+          type: string
         phoneNumber:
           description: |
             One exact number to buy, in E.164, taken from GET /v1/phone-numbers/available. Hard constraint: when it is no longer available (bought by someone else, or WhatsApp's buy-time check rejects it) the purchase fails with 409 code PHONE_NUMBER_UNAVAILABLE instead of assigning another number; search again and pick another. Only for countries and types that activate instantly: a regulated one (202 kyc_required) returns 400 when phoneNumber is set.
@@ -91821,6 +91895,29 @@ components:
       - $ref: "#/components/schemas/purchasePhoneNumber_200_response_oneOf"
       - $ref: "#/components/schemas/purchasePhoneNumber_200_response_oneOf_1"
       - $ref: "#/components/schemas/purchasePhoneNumber_200_response_oneOf_2"
+    purchasePhoneNumber_401_response_details:
+      example:
+        claimUrl: claimUrl
+        claimId: claimId
+      properties:
+        claimId:
+          type: string
+        claimUrl:
+          type: string
+    purchasePhoneNumber_401_response:
+      example:
+        code: code
+        details:
+          claimUrl: claimUrl
+          claimId: claimId
+        error: error
+      properties:
+        error:
+          type: string
+        code:
+          type: string
+        details:
+          $ref: "#/components/schemas/purchasePhoneNumber_401_response_details"
     purchasePhoneNumber_409_response:
       example:
         code: PURCHASE_VELOCITY
@@ -91864,6 +91961,65 @@ components:
           description: The type that will be ordered after KYC approval.
           type: string
         kycUrl:
+          type: string
+    getPhoneNumberClaim_200_response_country:
+      example:
+        types:
+        - "{}"
+        - "{}"
+        code: code
+        monthlyCents: 0
+        needsKyc: true
+      properties:
+        code:
+          type: string
+        needsKyc:
+          type: boolean
+        monthlyCents:
+          type: integer
+        types:
+          items:
+            type: object
+          type: array
+    getPhoneNumberClaim_200_response_area:
+      example:
+        name: name
+        count: 6
+        ndc: ndc
+      properties:
+        ndc:
+          type: string
+        name:
+          type: string
+        count:
+          type: integer
+    getPhoneNumberClaim_200_response:
+      example:
+        area:
+          name: name
+          count: 6
+          ndc: ndc
+        country:
+          types:
+          - "{}"
+          - "{}"
+          code: code
+          monthlyCents: 0
+          needsKyc: true
+        phoneNumber: phoneNumber
+        type: "{}"
+      properties:
+        country:
+          $ref: "#/components/schemas/getPhoneNumberClaim_200_response_country"
+        type:
+          description: "The claimed number type, in the shape of `types[]` on GET\
+            \ /v1/phone-numbers/countries."
+          type: object
+        area:
+          $ref: "#/components/schemas/getPhoneNumberClaim_200_response_area"
+        phoneNumber:
+          description: "E.164, or null for an any-number claim."
+          nullable: true
           type: string
     listPhoneNumberCountries_200_response_countries_inner_types_inner:
       example:
@@ -92082,8 +92238,12 @@ components:
         - features
         - features
         bestEffort: true
+        maskedNumber: maskedNumber
         phoneNumber: phoneNumber
+        numberType: numberType
+        claimUrl: claimUrl
         locality: locality
+        claimId: claimId
       properties:
         phoneNumber:
           description: E.164. Pass it as `phoneNumber` on POST /v1/phone-numbers/purchase
@@ -92103,24 +92263,54 @@ components:
           description: "true when the carrier added this number because too few matched\
             \ your filters, so it may be outside the requested prefix or locality."
           type: boolean
+        maskedNumber:
+          description: "Keyless calls only, in place of `phoneNumber`: the number\
+            \ with its middle digits masked, e.g. +44 20 •••• 0123."
+          type: string
+        numberType:
+          description: "Keyless calls only. Without a `numberType` filter a keyless\
+            \ search mixes every type the country sells, so each result names its\
+            \ own."
+          type: string
+        claimId:
+          description: "Keyless calls only. Opaque, expires after 7 days. Pass it\
+            \ as `claimId` on a keyless POST /v1/phone-numbers/purchase."
+          type: string
+        claimUrl:
+          description: "Keyless calls only. Signup link that opens the dashboard's\
+            \ confirm step for this number. The number is not held: if it is gone\
+            \ by then, the buyer picks another in the same area."
+          type: string
     searchAvailablePhoneNumbers_200_response:
       example:
         requireSms: true
         country: country
         numberType: numberType
+        masked: true
+        claimUrl: claimUrl
         numbers:
         - features:
           - features
           - features
           bestEffort: true
+          maskedNumber: maskedNumber
           phoneNumber: phoneNumber
+          numberType: numberType
+          claimUrl: claimUrl
           locality: locality
+          claimId: claimId
         - features:
           - features
           - features
           bestEffort: true
+          maskedNumber: maskedNumber
           phoneNumber: phoneNumber
+          numberType: numberType
+          claimUrl: claimUrl
           locality: locality
+          claimId: claimId
+        near: near
+        claimId: claimId
       properties:
         country:
           type: string
@@ -92133,6 +92323,22 @@ components:
           items:
             $ref: "#/components/schemas/searchAvailablePhoneNumbers_200_response_numbers_inner"
           type: array
+        masked:
+          description: true on keyless calls.
+          type: boolean
+        near:
+          description: "With `country=auto`: the caller's city the results were narrowed\
+            \ to, or null when there was no stock there."
+          nullable: true
+          type: string
+        claimId:
+          description: "Keyless calls only: a claim for any number matching this search's\
+            \ country, type and area."
+          type: string
+        claimUrl:
+          description: "Keyless calls only: signup link for any number matching this\
+            \ search."
+          type: string
     checkPhoneNumberAvailability_200_response_areaOptions_inner:
       example:
         name: name

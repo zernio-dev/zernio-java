@@ -31,6 +31,7 @@ import dev.zernio.model.DeleteSmsSenderId200Response;
 import dev.zernio.model.ErrorResponse;
 import java.io.File;
 import dev.zernio.model.GetPhoneNumber200Response;
+import dev.zernio.model.GetPhoneNumberClaim200Response;
 import dev.zernio.model.GetPhoneNumberKycForm200Response;
 import dev.zernio.model.GetPhoneNumberPortInOrderRequirements200Response;
 import dev.zernio.model.GetPhoneNumberPortInRequirements200Response;
@@ -44,6 +45,7 @@ import dev.zernio.model.ListPhoneNumbers200Response;
 import dev.zernio.model.PhoneNumberStockWatch;
 import dev.zernio.model.PurchasePhoneNumber200Response;
 import dev.zernio.model.PurchasePhoneNumber202Response;
+import dev.zernio.model.PurchasePhoneNumber401Response;
 import dev.zernio.model.PurchasePhoneNumber409Response;
 import dev.zernio.model.PurchasePhoneNumber503Response;
 import dev.zernio.model.PurchasePhoneNumberRequest;
@@ -96,7 +98,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:01:32.709755690Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-25T14:04:32.564838722Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PhoneNumbersApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -333,7 +335,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
    * @param country ISO-2 country code. (required)
    * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param sms Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)
@@ -346,7 +348,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
    * @param country ISO-2 country code. (required)
    * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param sms Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)
@@ -361,7 +363,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
    * @param country ISO-2 country code. (required)
    * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param sms Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)
@@ -374,7 +376,7 @@ public class PhoneNumbersApi {
 
   /**
    * Check country availability
-   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+   * Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
    * @param country ISO-2 country code. (required)
    * @param numberType Check a specific offered type (stock and address constraints are per type). Omitted &#x3D; the country&#39;s default type. (optional)
    * @param sms Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool. (optional)
@@ -1204,6 +1206,124 @@ public class PhoneNumbersApi {
   }
 
   /**
+   * Resolve a number claim
+   * Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+   * @param claimId  (required)
+   * @return GetPhoneNumberClaim200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberClaim200Response getPhoneNumberClaim(@javax.annotation.Nonnull String claimId) throws ApiException {
+    return getPhoneNumberClaim(claimId, null);
+  }
+
+  /**
+   * Resolve a number claim
+   * Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+   * @param claimId  (required)
+   * @param headers Optional headers to include in the request
+   * @return GetPhoneNumberClaim200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetPhoneNumberClaim200Response getPhoneNumberClaim(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetPhoneNumberClaim200Response> localVarResponse = getPhoneNumberClaimWithHttpInfo(claimId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Resolve a number claim
+   * Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+   * @param claimId  (required)
+   * @return ApiResponse&lt;GetPhoneNumberClaim200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberClaim200Response> getPhoneNumberClaimWithHttpInfo(@javax.annotation.Nonnull String claimId) throws ApiException {
+    return getPhoneNumberClaimWithHttpInfo(claimId, null);
+  }
+
+  /**
+   * Resolve a number claim
+   * Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+   * @param claimId  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetPhoneNumberClaim200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetPhoneNumberClaim200Response> getPhoneNumberClaimWithHttpInfo(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getPhoneNumberClaimRequestBuilder(claimId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getPhoneNumberClaim", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetPhoneNumberClaim200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetPhoneNumberClaim200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetPhoneNumberClaim200Response>() {});
+        
+
+        return new ApiResponse<GetPhoneNumberClaim200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getPhoneNumberClaimRequestBuilder(@javax.annotation.Nonnull String claimId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'claimId' is set
+    if (claimId == null) {
+      throw new ApiException(400, "Missing the required parameter 'claimId' when calling getPhoneNumberClaim");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/phone-numbers/claims/{claimId}"
+        .replace("{claimId}", ApiClient.urlEncode(claimId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Get KYC form spec
    * For a Tier 3/4 country, the fields the end customer must provide (Telnyx regulatory requirements) before a number can be ordered: text, date, address, or file (document) per requirement. 
    * @param country  (required)
@@ -1717,7 +1837,7 @@ public class PhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
    * @return ListPhoneNumberCountries200Response
    * @throws ApiException if fails to make API call
    */
@@ -1727,7 +1847,7 @@ public class PhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
    * @param headers Optional headers to include in the request
    * @return ListPhoneNumberCountries200Response
    * @throws ApiException if fails to make API call
@@ -1739,7 +1859,7 @@ public class PhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
    * @return ApiResponse&lt;ListPhoneNumberCountries200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -1749,7 +1869,7 @@ public class PhoneNumbersApi {
 
   /**
    * List offerable number countries
-   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+   * The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;ListPhoneNumberCountries200Response&gt;
    * @throws ApiException if fails to make API call
@@ -2938,8 +3058,8 @@ public class PhoneNumbersApi {
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
-   * @param country  (optional, default to US)
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
+   * @param country ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to US)
    * @param numberType Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)
    * @param areaCode Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)
    * @param type Alias of numberType, kept for existing callers (optional)
@@ -2948,17 +3068,18 @@ public class PhoneNumbersApi {
    * @param contains Pattern to match within the number (optional)
    * @param sms true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)
    * @param limit  (optional, default to 20)
+   * @param masked true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)
    * @return SearchAvailablePhoneNumbers200Response
    * @throws ApiException if fails to make API call
    */
-  public SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, null);
+  public SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Boolean masked) throws ApiException {
+    return searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked, null);
   }
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
-   * @param country  (optional, default to US)
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
+   * @param country ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to US)
    * @param numberType Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)
    * @param areaCode Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)
    * @param type Alias of numberType, kept for existing callers (optional)
@@ -2967,19 +3088,20 @@ public class PhoneNumbersApi {
    * @param contains Pattern to match within the number (optional)
    * @param sms true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)
    * @param limit  (optional, default to 20)
+   * @param masked true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)
    * @param headers Optional headers to include in the request
    * @return SearchAvailablePhoneNumbers200Response
    * @throws ApiException if fails to make API call
    */
-  public SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, headers);
+  public SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Boolean masked, Map<String, String> headers) throws ApiException {
+    ApiResponse<SearchAvailablePhoneNumbers200Response> localVarResponse = searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked, headers);
     return localVarResponse.getData();
   }
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
-   * @param country  (optional, default to US)
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
+   * @param country ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to US)
    * @param numberType Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)
    * @param areaCode Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)
    * @param type Alias of numberType, kept for existing callers (optional)
@@ -2988,17 +3110,18 @@ public class PhoneNumbersApi {
    * @param contains Pattern to match within the number (optional)
    * @param sms true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)
    * @param limit  (optional, default to 20)
+   * @param masked true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)
    * @return ApiResponse&lt;SearchAvailablePhoneNumbers200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit) throws ApiException {
-    return searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, null);
+  public ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Boolean masked) throws ApiException {
+    return searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked, null);
   }
 
   /**
    * Search available numbers
-   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
-   * @param country  (optional, default to US)
+   * Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
+   * @param country ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. (optional, default to US)
    * @param numberType Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) (optional)
    * @param areaCode Area code or national dialing code the number must start with, e.g. 415 or 91 (optional)
    * @param type Alias of numberType, kept for existing callers (optional)
@@ -3007,12 +3130,13 @@ public class PhoneNumbersApi {
    * @param contains Pattern to match within the number (optional)
    * @param sms true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. (optional)
    * @param limit  (optional, default to 20)
+   * @param masked true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. (optional)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;SearchAvailablePhoneNumbers200Response&gt;
    * @throws ApiException if fails to make API call
    */
-  public ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
-    HttpRequest.Builder localVarRequestBuilder = searchAvailablePhoneNumbersRequestBuilder(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, headers);
+  public ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbersWithHttpInfo(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Boolean masked, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = searchAvailablePhoneNumbersRequestBuilder(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked, headers);
     try {
       HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
           localVarRequestBuilder.build(),
@@ -3059,7 +3183,7 @@ public class PhoneNumbersApi {
     }
   }
 
-  private HttpRequest.Builder searchAvailablePhoneNumbersRequestBuilder(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, Map<String, String> headers) throws ApiException {
+  private HttpRequest.Builder searchAvailablePhoneNumbersRequestBuilder(@javax.annotation.Nullable String country, @javax.annotation.Nullable String numberType, @javax.annotation.Nullable String areaCode, @javax.annotation.Nullable String type, @javax.annotation.Nullable String prefix, @javax.annotation.Nullable String locality, @javax.annotation.Nullable String contains, @javax.annotation.Nullable Boolean sms, @javax.annotation.Nullable Integer limit, @javax.annotation.Nullable Boolean masked, Map<String, String> headers) throws ApiException {
 
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
@@ -3086,6 +3210,8 @@ public class PhoneNumbersApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("sms", sms));
     localVarQueryParameterBaseName = "limit";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
+    localVarQueryParameterBaseName = "masked";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("masked", masked));
 
     if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
       StringJoiner queryJoiner = new StringJoiner("&");

@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deletePhoneNumberStockWatchWithHttpInfo**](PhoneNumbersApi.md#deletePhoneNumberStockWatchWithHttpInfo) | **DELETE** /v1/phone-numbers/stock-watches/{id} | Stop watching a country |
 | [**getPhoneNumber**](PhoneNumbersApi.md#getPhoneNumber) | **GET** /v1/phone-numbers/{id} | Get phone number |
 | [**getPhoneNumberWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberWithHttpInfo) | **GET** /v1/phone-numbers/{id} | Get phone number |
+| [**getPhoneNumberClaim**](PhoneNumbersApi.md#getPhoneNumberClaim) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim |
+| [**getPhoneNumberClaimWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberClaimWithHttpInfo) | **GET** /v1/phone-numbers/claims/{claimId} | Resolve a number claim |
 | [**getPhoneNumberKycForm**](PhoneNumbersApi.md#getPhoneNumberKycForm) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
 | [**getPhoneNumberKycFormWithHttpInfo**](PhoneNumbersApi.md#getPhoneNumberKycFormWithHttpInfo) | **GET** /v1/phone-numbers/kyc | Get KYC form spec |
 | [**getPhoneNumberPortInOrderRequirements**](PhoneNumbersApi.md#getPhoneNumberPortInOrderRequirements) | **GET** /v1/phone-numbers/port-in/{id}/requirements | A port-in order&#39;s pending requirements |
@@ -219,7 +221,7 @@ ApiResponse<[**CancelPhoneNumberPortIn200Response**](CancelPhoneNumberPortIn200R
 
 Check country availability
 
-Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
 
 ### Example
 
@@ -296,7 +298,7 @@ public class Example {
 
 Check country availability
 
-Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries.  Without an API key it answers from cache only and returns just &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaOptions&#x60;, for building an area picker before signup. 
 
 ### Example
 
@@ -1263,6 +1265,156 @@ ApiResponse<[**GetPhoneNumber200Response**](GetPhoneNumber200Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## getPhoneNumberClaim
+
+> GetPhoneNumberClaim200Response getPhoneNumberClaim(claimId)
+
+Resolve a number claim
+
+Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String claimId = "claimId_example"; // String | 
+        try {
+            GetPhoneNumberClaim200Response result = apiInstance.getPhoneNumberClaim(claimId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberClaim");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **claimId** | **String**|  | |
+
+### Return type
+
+[**GetPhoneNumberClaim200Response**](GetPhoneNumberClaim200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The claimed selection. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The claim expired (after 7 days), is invalid, or its country or type is no longer sold. |  -  |
+
+## getPhoneNumberClaimWithHttpInfo
+
+> ApiResponse<GetPhoneNumberClaim200Response> getPhoneNumberClaim getPhoneNumberClaimWithHttpInfo(claimId)
+
+Resolve a number claim
+
+Resolves a &#x60;claimId&#x60; from a keyless search or purchase into the selection it carries (country, number type, area and exact number) priced at today&#39;s rate. The dashboard calls it when a person lands from a &#x60;claimUrl&#x60;. The number is not held, so buying it can still fail with 409 PHONE_NUMBER_UNAVAILABLE. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String claimId = "claimId_example"; // String | 
+        try {
+            ApiResponse<GetPhoneNumberClaim200Response> response = apiInstance.getPhoneNumberClaimWithHttpInfo(claimId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#getPhoneNumberClaim");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **claimId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**GetPhoneNumberClaim200Response**](GetPhoneNumberClaim200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The claimed selection. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The claim expired (after 7 days), is invalid, or its country or type is no longer sold. |  -  |
+
+
 ## getPhoneNumberKycForm
 
 > GetPhoneNumberKycForm200Response getPhoneNumberKycForm(country, numberType)
@@ -1875,7 +2027,7 @@ ApiResponse<[**GetPhoneNumberRemediation200Response**](GetPhoneNumberRemediation
 
 List offerable number countries
 
-The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
 
 ### Example
 
@@ -1884,7 +2036,6 @@ The phone number countries available to purchase, each with its flat monthly pri
 import dev.zernio.ApiClient;
 import dev.zernio.ApiException;
 import dev.zernio.Configuration;
-import dev.zernio.auth.*;
 import dev.zernio.models.*;
 import dev.zernio.api.PhoneNumbersApi;
 
@@ -1892,10 +2043,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         try {
@@ -1923,7 +2070,7 @@ This endpoint does not need any parameter.
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -1934,7 +2081,6 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
-| **401** | Unauthorized |  -  |
 
 ## listPhoneNumberCountriesWithHttpInfo
 
@@ -1942,7 +2088,7 @@ This endpoint does not need any parameter.
 
 List offerable number countries
 
-The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. 
+The phone number countries available to purchase, each with its flat monthly price (cents), regulatory tier, whether it needs end-user KYC (Tier 3/4), and per-feature availability (PSTN calls, WhatsApp, SMS, and WhatsApp Business Calling outbound). Drives the country picker. Tier-4 countries appear only when enabled. No API key needed: the catalog is public so you can browse it before you have an account. 
 
 ### Example
 
@@ -1952,7 +2098,6 @@ import dev.zernio.ApiClient;
 import dev.zernio.ApiException;
 import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
-import dev.zernio.auth.*;
 import dev.zernio.models.*;
 import dev.zernio.api.PhoneNumbersApi;
 
@@ -1960,10 +2105,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         try {
@@ -1993,7 +2134,7 @@ ApiResponse<[**ListPhoneNumberCountries200Response**](ListPhoneNumberCountries20
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -2004,7 +2145,6 @@ ApiResponse<[**ListPhoneNumberCountries200Response**](ListPhoneNumberCountries20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
-| **401** | Unauthorized |  -  |
 
 
 ## listPhoneNumberPortIns
@@ -2499,7 +2639,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. A call with no key at all gets the purchase back as a claim: &#x60;details.claimUrl&#x60; is a signup link that opens the dashboard&#39;s confirm step for the requested &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaCode&#x60; (or for the number behind &#x60;claimId&#x60;, from a keyless GET /v1/phone-numbers/available). Hand it to the person who will own the number.  |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
@@ -2580,7 +2720,7 @@ ApiResponse<[**PurchasePhoneNumber200Response**](PurchasePhoneNumber200Response.
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. A call with no key at all gets the purchase back as a claim: &#x60;details.claimUrl&#x60; is a signup link that opens the dashboard&#39;s confirm step for the requested &#x60;country&#x60;, &#x60;numberType&#x60; and &#x60;areaCode&#x60; (or for the number behind &#x60;claimId&#x60;, from a keyless GET /v1/phone-numbers/available). Hand it to the person who will own the number.  |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
@@ -3357,11 +3497,11 @@ ApiResponse<[**ReviewPhoneNumberKycPacket200Response**](ReviewPhoneNumberKycPack
 
 ## searchAvailablePhoneNumbers
 
-> SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit)
+> SearchAvailablePhoneNumbers200Response searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked)
 
 Search available numbers
 
-Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
 
 ### Example
 
@@ -3384,7 +3524,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
-        String country = "US"; // String | 
+        String country = "US"; // String | ISO code, or `auto` on the keyless shape to search the caller's own country (from their IP) near their city, falling back to US.
         String numberType = "local"; // String | Number type; defaults to the country's WhatsApp-safe type (the same name as on purchase, availability and kyc)
         String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
         String type = "type_example"; // String | Alias of numberType, kept for existing callers
@@ -3393,8 +3533,9 @@ public class Example {
         String contains = "contains_example"; // String | Pattern to match within the number
         Boolean sms = true; // Boolean | true narrows the pool to SMS-capable numbers. Each result still carries its full `features` list for per-number capability badging.
         Integer limit = 20; // Integer | 
+        Boolean masked = true; // Boolean | true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number.
         try {
-            SearchAvailablePhoneNumbers200Response result = apiInstance.searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
+            SearchAvailablePhoneNumbers200Response result = apiInstance.searchAvailablePhoneNumbers(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#searchAvailablePhoneNumbers");
@@ -3412,7 +3553,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **country** | **String**|  | [optional] [default to US] |
+| **country** | **String**| ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. | [optional] [default to US] |
 | **numberType** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) | [optional] [enum: local, mobile, national, toll_free] |
 | **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
 | **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
@@ -3421,6 +3562,7 @@ public class Example {
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **sms** | **Boolean**| true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
+| **masked** | **Boolean**| true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. | [optional] |
 
 ### Return type
 
@@ -3442,14 +3584,15 @@ public class Example {
 | **200** | Available numbers. |  -  |
 | **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
 | **401** | Unauthorized |  -  |
+| **429** | Keyless rate limit reached. Retry later or send an API key. |  -  |
 
 ## searchAvailablePhoneNumbersWithHttpInfo
 
-> ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbers searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit)
+> ApiResponse<SearchAvailablePhoneNumbers200Response> searchAvailablePhoneNumbers searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked)
 
 Search available numbers
 
-Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase. 
+Search the provider&#39;s inventory for numbers available to purchase in a country (default US). Optional filters narrow the results. The country must be offerable (see GET /v1/phone-numbers/countries). Voice capability is always required; pass &#x60;sms&#x3D;true&#x60; to only see numbers that can also text (SMS support is per-number, not per-country). Numbers a purchase would refuse are left out, and any result&#39;s &#x60;phoneNumber&#x60; can be bought exactly by passing it to POST /v1/phone-numbers/purchase.  Works without an API key. Keyless calls get up to 12 results with the middle digits masked (&#x60;maskedNumber&#x60;), each with a &#x60;claimId&#x60; and a &#x60;claimUrl&#x60;: a signup link that lands a person on the dashboard&#39;s confirm step with that number picked, so an agent can search for a user and hand them one link. Keyless calls are rate limited per IP and results are cached for a few minutes. With an API key you get full numbers and no claim fields. 
 
 ### Example
 
@@ -3473,7 +3616,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
-        String country = "US"; // String | 
+        String country = "US"; // String | ISO code, or `auto` on the keyless shape to search the caller's own country (from their IP) near their city, falling back to US.
         String numberType = "local"; // String | Number type; defaults to the country's WhatsApp-safe type (the same name as on purchase, availability and kyc)
         String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
         String type = "type_example"; // String | Alias of numberType, kept for existing callers
@@ -3482,8 +3625,9 @@ public class Example {
         String contains = "contains_example"; // String | Pattern to match within the number
         Boolean sms = true; // Boolean | true narrows the pool to SMS-capable numbers. Each result still carries its full `features` list for per-number capability badging.
         Integer limit = 20; // Integer | 
+        Boolean masked = true; // Boolean | true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number.
         try {
-            ApiResponse<SearchAvailablePhoneNumbers200Response> response = apiInstance.searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit);
+            ApiResponse<SearchAvailablePhoneNumbers200Response> response = apiInstance.searchAvailablePhoneNumbersWithHttpInfo(country, numberType, areaCode, type, prefix, locality, contains, sms, limit, masked);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3503,7 +3647,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **country** | **String**|  | [optional] [default to US] |
+| **country** | **String**| ISO code, or &#x60;auto&#x60; on the keyless shape to search the caller&#39;s own country (from their IP) near their city, falling back to US. | [optional] [default to US] |
 | **numberType** | **String**| Number type; defaults to the country&#39;s WhatsApp-safe type (the same name as on purchase, availability and kyc) | [optional] [enum: local, mobile, national, toll_free] |
 | **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
 | **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
@@ -3512,6 +3656,7 @@ public class Example {
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **sms** | **Boolean**| true narrows the pool to SMS-capable numbers. Each result still carries its full &#x60;features&#x60; list for per-number capability badging. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
+| **masked** | **Boolean**| true returns the keyless shape (masked numbers with claimId and claimUrl) even when you send an API key, e.g. to hand a user a signup link for a number. | [optional] |
 
 ### Return type
 
@@ -3533,6 +3678,7 @@ ApiResponse<[**SearchAvailablePhoneNumbers200Response**](SearchAvailablePhoneNum
 | **200** | Available numbers. |  -  |
 | **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
 | **401** | Unauthorized |  -  |
+| **429** | Keyless rate limit reached. Retry later or send an API key. |  -  |
 
 
 ## submitPhoneNumberKyc
