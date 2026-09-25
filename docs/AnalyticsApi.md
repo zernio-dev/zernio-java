@@ -148,7 +148,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Analytics result |  -  |
-| **202** | Analytics are being synced from the platform (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
+| **202** | Analytics are being synced from the platform, or the post has not finished publishing on every platform yet (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message; while a platform has not published, status is the post&#39;s own status (for example scheduled or publishing) and a post with one failed platform returns 202 rather than 424 until the others finish. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
@@ -248,7 +248,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Analytics result |  -  |
-| **202** | Analytics are being synced from the platform (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
+| **202** | Analytics are being synced from the platform, or the post has not finished publishing on every platform yet (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message; while a platform has not published, status is the post&#39;s own status (for example scheduled or publishing) and a post with one failed platform returns 202 rather than 424 until the others finish. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
 | **400** | Validation error |  -  |
 | **401** | Unauthorized |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |

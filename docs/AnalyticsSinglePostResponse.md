@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**postId** | **String** |  |  [optional] |
 |**latePostId** | **String** | Original Zernio post ID if scheduled via Zernio |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | Overall post status. \&quot;partial\&quot; when some platforms published and others failed. While any platform is still pending or processing, the post&#39;s own status is returned instead (usually scheduled or publishing), even if another platform already published. |  [optional] |
 |**content** | **String** |  |  [optional] |
 |**scheduledFor** | **OffsetDateTime** |  |  [optional] |
 |**publishedAt** | **OffsetDateTime** |  |  [optional] |
@@ -37,6 +37,10 @@
 | PUBLISHED | &quot;published&quot; |
 | FAILED | &quot;failed&quot; |
 | PARTIAL | &quot;partial&quot; |
+| SCHEDULED | &quot;scheduled&quot; |
+| PUBLISHING | &quot;publishing&quot; |
+| DRAFT | &quot;draft&quot; |
+| CANCELLED | &quot;cancelled&quot; |
 
 
 
