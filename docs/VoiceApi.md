@@ -1417,7 +1417,7 @@ ApiResponse<[**EnableVoiceOnNumber200Response**](EnableVoiceOnNumber200Response.
 
 Hang up a live call
 
-Hangs up a live call on demand. Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
+Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately). Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
 
 ### Example
 
@@ -1490,7 +1490,7 @@ public class Example {
 
 Hang up a live call
 
-Hangs up a live call on demand. Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
+Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately). Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
 
 ### Example
 
