@@ -18,7 +18,7 @@ info:
     'code' and a human-readable 'error' message (see the ErrorResponse schema).
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.77.0
+  version: 1.77.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23364,7 +23364,9 @@ paths:
       description: |
         Cancels the sender at the provider and deactivates its messaging
         account. Billing stops with the current month (no proration or
-        refunds, matching phone numbers).
+        refunds, matching phone numbers). A sender still being set up
+        (status ordering or activating) cannot be canceled; contact support
+        to change the order.
       operationId: cancelImessageSender
       parameters:
       - explode: false
@@ -23387,6 +23389,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Sender not found
+        "409":
+          description: "The sender is still being set up and cannot be canceled yet\
+            \ (code: imessage_sender_setting_up)"
       security:
       - bearerAuth: []
       summary: Cancel an iMessage sender

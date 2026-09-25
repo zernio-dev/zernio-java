@@ -201,7 +201,7 @@ ApiResponse<[**AddImessageGroupParticipant200Response**](AddImessageGroupPartici
 
 Cancel an iMessage sender
 
-Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). 
+Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). A sender still being set up (status ordering or activating) cannot be canceled; contact support to change the order. 
 
 ### Example
 
@@ -267,6 +267,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Sender not found |  -  |
+| **409** | The sender is still being set up and cannot be canceled yet (code: imessage_sender_setting_up) |  -  |
 
 ## cancelImessageSenderWithHttpInfo
 
@@ -274,7 +275,7 @@ public class Example {
 
 Cancel an iMessage sender
 
-Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). 
+Cancels the sender at the provider and deactivates its messaging account. Billing stops with the current month (no proration or refunds, matching phone numbers). A sender still being set up (status ordering or activating) cannot be canceled; contact support to change the order. 
 
 ### Example
 
@@ -343,6 +344,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Sender not found |  -  |
+| **409** | The sender is still being set up and cannot be canceled yet (code: imessage_sender_setting_up) |  -  |
 
 
 ## createImessageGroup
