@@ -973,7 +973,7 @@ public class Example {
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | &#x60;validateOnly: true&#x60; outside Meta, or campaign-only creation on a platform that does not support it. Carries code &#x60;feature_not_available&#x60;. |  -  |
 
 ## createAdCampaignWithHttpInfo
 
@@ -1054,7 +1054,7 @@ ApiResponse<[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)>
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
 | **401** | Unauthorized |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | &#x60;validateOnly: true&#x60; outside Meta, or campaign-only creation on a platform that does not support it. Carries code &#x60;feature_not_available&#x60;. |  -  |
 
 
 ## createAdSet
@@ -1454,7 +1454,7 @@ public class Example {
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
-| **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
+| **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta and Google Performance Max, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502. On Meta, &#x60;details&#x60; names the failing &#x60;stage&#x60;, the &#x60;adAccountId&#x60; and every created object with its cleanup result (see &#x60;ErrorResponse.details&#x60;); an &#x60;unconfirmedWrite&#x60; there means Meta did not confirm a create and Zernio did not retry it.  |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
@@ -1540,7 +1540,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
-| **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
+| **501** | The requested option is not supported on this platform: &#x60;validateOnly&#x60; outside Meta and Google Performance Max, or a shape the adapter does not implement. Carries code &#x60;feature_not_available&#x60;.  |  -  |
 | **502** | The platform rejected the request, or failed to produce media the ad needs (e.g. Meta generated no poster for an uploaded video when no &#x60;video.thumbnailUrl&#x60; was supplied). Inspect &#x60;platformError&#x60; for the upstream payload. Failures we raise carry a &#x60;reason&#x60;; a payload forwarded verbatim from Meta may not. On the &#x60;creatives[]&#x60; shape a missing poster also carries &#x60;creativeIndex&#x60; and &#x60;videoUrl&#x60; to identify the entry. An upstream 4xx status is forwarded instead of 502. On Meta, &#x60;details&#x60; names the failing &#x60;stage&#x60;, the &#x60;adAccountId&#x60; and every created object with its cleanup result (see &#x60;ErrorResponse.details&#x60;); an &#x60;unconfirmedWrite&#x60; there means Meta did not confirm a create and Zernio did not retry it.  |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 

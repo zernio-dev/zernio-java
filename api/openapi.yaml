@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.98.0
+  version: 1.98.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -33493,7 +33493,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "501":
-          description: Only supported on Meta (facebook/instagram)
+          description: "`validateOnly: true` outside Meta, or campaign-only creation\
+            \ on a platform that does not support it. Carries code `feature_not_available`."
       security:
       - bearerAuth: []
       summary: Create a standalone campaign
@@ -41665,8 +41666,9 @@ paths:
             \ linked account"
         "501":
           description: |
-            The requested option is not supported on this platform: `validateOnly` outside Meta,
-            or a shape the adapter does not implement. Carries code `feature_not_available`.
+            The requested option is not supported on this platform: `validateOnly` outside Meta
+            and Google Performance Max, or a shape the adapter does not implement. Carries code
+            `feature_not_available`.
         "502":
           description: |
             The platform rejected the request, or failed to produce media the ad
@@ -102318,7 +102320,9 @@ components:
         validateOnly:
           description: Meta only. Runs campaign validation without creating or persisting
             a campaign; Idempotency-Key storage is bypassed. Returns HTTP 200 with
-            validateOnly true and status VALIDATED.
+            validateOnly true and status VALIDATED. `true` on any other platform returns
+            501 `feature_not_available` (same as POST /v1/ads/create); `false` is
+            ignored.
           type: boolean
         specialAdCategories:
           items:
@@ -112865,7 +112869,8 @@ components:
             \ pools, new video uploads, creatives[], adSetId and RESERVED buying return\
             \ 400. Placement validation uses existing Instagram identities only. Existing\
             \ campaign or creative nodes are marked skipped. Success returns 200 with\
-            \ per-node results; Meta rejection returns an error."
+            \ per-node results; Meta rejection returns an error. Any other platform,\
+            \ or a Google campaignType other than pmax, returns 501 `feature_not_available`."
           type: boolean
         budgetAmount:
           description: "Budget in WHOLE currency units (USD: 50 = $50.00), NOT cents.\
