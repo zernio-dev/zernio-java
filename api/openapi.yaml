@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.102.0
+  version: 1.102.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -101656,6 +101656,8 @@ components:
           nullable: true
           type: string
         email:
+          description: "Always null: Google Ads API v25 stopped returning the consumer\
+            \ email on Local Services leads."
           nullable: true
           type: string
         phoneNumber:
