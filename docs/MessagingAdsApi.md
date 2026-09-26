@@ -15,11 +15,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## createCallAd
 
-> CreateMessagingAd201Response createCallAd(createCallAdRequest)
+> CreateMessagingAd201Response createCallAd(createCallAdRequest, idempotencyKey)
 
 Create Click-to-Call ad
 
-Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -43,8 +43,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            CreateMessagingAd201Response result = apiInstance.createCallAd(createCallAdRequest);
+            CreateMessagingAd201Response result = apiInstance.createCallAd(createCallAdRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createCallAd");
@@ -63,6 +64,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createCallAdRequest** | [**CreateCallAdRequest**](CreateCallAdRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -92,11 +94,11 @@ public class Example {
 
 ## createCallAdWithHttpInfo
 
-> ApiResponse<CreateMessagingAd201Response> createCallAd createCallAdWithHttpInfo(createCallAdRequest)
+> ApiResponse<CreateMessagingAd201Response> createCallAd createCallAdWithHttpInfo(createCallAdRequest, idempotencyKey)
 
 Create Click-to-Call ad
 
-Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.
+Same shape and flow as POST /v1/ads/ctwa, but the CTA is CALL_NOW dialing &#x60;phoneNumber&#x60; via a tel: link. The ad set is destination_type PHONE_CALL optimizing QUALITY_CALL and the campaign objective defaults to OUTCOME_LEADS. Supports the same single-creative and multi-creative shapes as CTWA.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -121,8 +123,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateCallAdRequest createCallAdRequest = new CreateCallAdRequest(); // CreateCallAdRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCallAdWithHttpInfo(createCallAdRequest);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCallAdWithHttpInfo(createCallAdRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -143,6 +146,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createCallAdRequest** | [**CreateCallAdRequest**](CreateCallAdRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -173,11 +177,11 @@ ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
 ## createCtwaAd
 
-> CreateMessagingAd201Response createCtwaAd(ctwaAdRequestBody)
+> CreateMessagingAd201Response createCtwaAd(ctwaAdRequestBody, idempotencyKey)
 
 Create CTWA ad (deprecated)
 
-Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;, or a &#x60;platformPostId&#x60; / &#x60;objectStoryId&#x60; reference. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying fresh media and copy or an existing post reference). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  **Attach shape.** Send &#x60;adSetId&#x60; (with either creative shape) to add the ads to an EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase, the way to refresh a CTWA creative without resetting delivery. The ad set then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it rather than silently dropped. The target ad set&#39;s &#x60;destination_type&#x60; must match the ad&#39;s destination (a WhatsApp ad needs a &#x60;WHATSAPP&#x60; ad set), otherwise Meta would accept an ad that never delivers.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management. Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only).
+Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;, or a &#x60;platformPostId&#x60; / &#x60;objectStoryId&#x60; reference. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying fresh media and copy or an existing post reference). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  **Attach shape.** Send &#x60;adSetId&#x60; (with either creative shape) to add the ads to an EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase, the way to refresh a CTWA creative without resetting delivery. The ad set then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it rather than silently dropped. The target ad set&#39;s &#x60;destination_type&#x60; must match the ad&#39;s destination (a WhatsApp ad needs a &#x60;WHATSAPP&#x60; ad set), otherwise Meta would accept an ad that never delivers.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management. Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only).  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -201,8 +205,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            CreateMessagingAd201Response result = apiInstance.createCtwaAd(ctwaAdRequestBody);
+            CreateMessagingAd201Response result = apiInstance.createCtwaAd(ctwaAdRequestBody, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createCtwaAd");
@@ -221,6 +226,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **ctwaAdRequestBody** | [**CtwaAdRequestBody**](CtwaAdRequestBody.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -250,11 +256,11 @@ public class Example {
 
 ## createCtwaAdWithHttpInfo
 
-> ApiResponse<CreateMessagingAd201Response> createCtwaAd createCtwaAdWithHttpInfo(ctwaAdRequestBody)
+> ApiResponse<CreateMessagingAd201Response> createCtwaAd createCtwaAdWithHttpInfo(ctwaAdRequestBody, idempotencyKey)
 
 Create CTWA ad (deprecated)
 
-Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;, or a &#x60;platformPostId&#x60; / &#x60;objectStoryId&#x60; reference. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying fresh media and copy or an existing post reference). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  **Attach shape.** Send &#x60;adSetId&#x60; (with either creative shape) to add the ads to an EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase, the way to refresh a CTWA creative without resetting delivery. The ad set then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it rather than silently dropped. The target ad set&#39;s &#x60;destination_type&#x60; must match the ad&#39;s destination (a WhatsApp ad needs a &#x60;WHATSAPP&#x60; ad set), otherwise Meta would accept an ad that never delivers.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management. Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only).
+Deprecated: use POST /v1/ads/messaging with &#x60;destination: whatsapp&#x60;. This endpoint stays available for back-compat; no removal planned.  Creates one or more Click-to-WhatsApp (CTWA) ads on Meta under a single campaign and ad set. When tapped, each ad opens a WhatsApp conversation with the business attached to the supplied Facebook Page. The full hierarchy (campaign, ad set, creative(s), ad(s)) is created and activated in one call. The CTA is locked to WHATSAPP_MESSAGE and the destination is hard-coded to api.whatsapp.com/send; Meta resolves the actual WhatsApp number from the Page-to-WA pairing configured in Page settings or Business Manager.  Supports two mutually-exclusive shapes:  - **Single-creative**: supply top-level &#x60;headline&#x60;, &#x60;body&#x60;, and one of &#x60;imageUrl&#x60; / &#x60;video&#x60;, or a &#x60;platformPostId&#x60; / &#x60;objectStoryId&#x60; reference. Creates 1 campaign + 1 ad set + 1 ad.  - **Multi-creative**: supply a &#x60;creatives[]&#x60; array with N entries (each carrying fresh media and copy or an existing post reference). Creates 1 campaign + 1 ad set + N ads sharing budget and targeting so Meta A/Bs the creatives inside a single auction instead of fragmenting budget across N parallel campaigns. Recommended when launching multiple creative variants for the same campaign.  **Attach shape.** Send &#x60;adSetId&#x60; (with either creative shape) to add the ads to an EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase, the way to refresh a CTWA creative without resetting delivery. The ad set then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60; and &#x60;audienceId&#x60; are rejected with a 400 alongside it rather than silently dropped. The target ad set&#39;s &#x60;destination_type&#x60; must match the ad&#39;s destination (a WhatsApp ad needs a &#x60;WHATSAPP&#x60; ad set), otherwise Meta would accept an ad that never delivers.  Prerequisites enforced by Meta (surfaced as platform_error on failure): the Facebook Page must be paired with a verified WhatsApp Business number, the WhatsApp Business Account must be business-verified, and the Meta access token must carry ads_management. Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only).  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -279,8 +285,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CtwaAdRequestBody ctwaAdRequestBody = new CtwaAdRequestBody(); // CtwaAdRequestBody | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(ctwaAdRequestBody);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createCtwaAdWithHttpInfo(ctwaAdRequestBody, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -301,6 +308,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **ctwaAdRequestBody** | [**CtwaAdRequestBody**](CtwaAdRequestBody.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -331,11 +339,11 @@ ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
 ## createMessagingAd
 
-> CreateMessagingAd201Response createMessagingAd(createMessagingAdRequest)
+> CreateMessagingAd201Response createMessagingAd(createMessagingAdRequest, idempotencyKey)
 
 Create messaging ad
 
-Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. &#x60;destinations&#x60; puts two or three of them on one ad set and lets Meta pick the app per viewer. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;). Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only). &#x60;accountId&#x60; is a Facebook, Instagram or Meta ads (business login) connection; &#x60;pageId&#x60; picks the Page when that connection was granted several.
+Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. &#x60;destinations&#x60; puts two or three of them on one ad set and lets Meta pick the app per viewer. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;). Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only). &#x60;accountId&#x60; is a Facebook, Instagram or Meta ads (business login) connection; &#x60;pageId&#x60; picks the Page when that connection was granted several.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -359,8 +367,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            CreateMessagingAd201Response result = apiInstance.createMessagingAd(createMessagingAdRequest);
+            CreateMessagingAd201Response result = apiInstance.createMessagingAd(createMessagingAdRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createMessagingAd");
@@ -379,6 +388,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createMessagingAdRequest** | [**CreateMessagingAdRequest**](CreateMessagingAdRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -408,11 +418,11 @@ public class Example {
 
 ## createMessagingAdWithHttpInfo
 
-> ApiResponse<CreateMessagingAd201Response> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest)
+> ApiResponse<CreateMessagingAd201Response> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey)
 
 Create messaging ad
 
-Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. &#x60;destinations&#x60; puts two or three of them on one ad set and lets Meta pick the app per viewer. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;). Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only). &#x60;accountId&#x60; is a Facebook, Instagram or Meta ads (business login) connection; &#x60;pageId&#x60; picks the Page when that connection was granted several.
+Creates a click-to-message ad; &#x60;destination&#x60; selects where the tapped ad opens a conversation: WhatsApp, the Page&#39;s Messenger inbox or the linked Instagram account&#39;s Direct inbox. &#x60;destinations&#x60; puts two or three of them on one ad set and lets Meta pick the app per viewer. The ad set is created with the matching destination_type and CONVERSATIONS optimization; the campaign objective defaults to OUTCOME_ENGAGEMENT. Supports single-creative and multi-creative shapes. Supersedes POST /v1/ads/ctwa (deprecated, equivalent to &#x60;destination: whatsapp&#x60;). Existing posts and reels are supported through &#x60;platformPostId&#x60; (alias &#x60;existingPostId&#x60;) or &#x60;objectStoryId&#x60;, either per creative or at the top level. Omit fresh media and copy for that creative. Optional &#x60;whatsappPhoneNumber&#x60; selects a number already paired with the Page (WhatsApp destination only). &#x60;accountId&#x60; is a Facebook, Instagram or Meta ads (business login) connection; &#x60;pageId&#x60; picks the Page when that connection was granted several.  **Idempotency:** this endpoint is not idempotent at the platform level (a blind retry creates a second campaign/ad set/ad). Send an &#x60;Idempotency-Key&#x60; header to make retries safe: the first request with a given key creates the ad and we store the response; a retry with the same key replays that exact response (with &#x60;Idempotent-Replayed: true&#x60;) instead of creating duplicates. Reusing a key with a different body returns 422; a key whose first request is still in flight returns 409 (retry after a short backoff). Keys are scoped to your credential and expire after 24h.
 
 ### Example
 
@@ -437,8 +447,9 @@ public class Example {
 
         MessagingAdsApi apiInstance = new MessagingAdsApi(defaultClient);
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest);
+            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -459,6 +470,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createMessagingAdRequest** | [**CreateMessagingAdRequest**](CreateMessagingAdRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
