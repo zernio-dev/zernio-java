@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.101.1
+  version: 1.102.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55475,7 +55475,7 @@ components:
       - username
     WebhookPayloadReaction:
       description: "Webhook payload for reaction received events (WhatsApp, Telegram,\
-        \ Slack, Instagram, Facebook Messenger)"
+        \ Slack, Instagram, Facebook Messenger, TikTok)"
       example:
         reaction:
           emoji: emoji
@@ -121879,9 +121879,9 @@ components:
       - id
     WebhookPayloadReaction_reaction_sender:
       description: "Whoever added or removed the reaction. Usually the participant,\
-        \ but on WhatsApp, Slack, Instagram and Facebook Messenger it is the business\
-        \ own platform id when the business reacted from the native app or via the\
-        \ reactions API: compare it with conversation.participantId."
+        \ but on WhatsApp, Slack, Instagram, Facebook Messenger and TikTok it is the\
+        \ business own platform id when the business reacted from the native app or\
+        \ via the reactions API: compare it with conversation.participantId."
       example:
         phoneNumber: phoneNumber
         contactId: contactId
@@ -121926,7 +121926,8 @@ components:
         emoji:
           description: |
             The emoji reacted with. May be an empty string when `action` is
-            `removed` on WhatsApp (Meta does not report which emoji was removed).
+            `removed` on WhatsApp (Meta does not report which emoji was removed),
+            and on TikTok for an AI emoji reaction (TikTok sends no unicode for it).
           type: string
         action:
           enum:
@@ -127972,7 +127973,7 @@ x-documentation:
     - `message.delivered` - An outgoing message was delivered (WhatsApp, Messenger, SMS)
     - `message.read` - An outgoing message was read by the recipient (WhatsApp, Messenger, Instagram)
     - `message.failed` - An outgoing message failed delivery (WhatsApp, SMS; on SMS the carrier's error code rides in `error`)
-    - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
+    - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger, TikTok)
     - `referral.received` - Someone opened an existing Instagram/Messenger thread through an ig.me/m.me `ref` link or a returning Messenger ad click; carries Meta's referral object (a referral that rides an inbound message arrives on `message.received` under `metadata.referral` instead)
     - `comment.received` - New comment received on a post (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event
     - `review.new` - New review posted on a connected account (Google Business Profile)

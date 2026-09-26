@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.101.1"
+  version: "1.102.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -185,7 +185,7 @@ x-documentation:
     - `message.delivered` - An outgoing message was delivered (WhatsApp, Messenger, SMS)
     - `message.read` - An outgoing message was read by the recipient (WhatsApp, Messenger, Instagram)
     - `message.failed` - An outgoing message failed delivery (WhatsApp, SMS; on SMS the carrier's error code rides in `error`)
-    - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)
+    - `reaction.received` - A participant added or removed an emoji reaction on a message (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger, TikTok)
     - `referral.received` - Someone opened an existing Instagram/Messenger thread through an ig.me/m.me `ref` link or a returning Messenger ad click; carries Meta's referral object (a referral that rides an inbound message arrives on `message.received` under `metadata.referral` instead)
     - `comment.received` - New comment received on a post (Instagram, Facebook, Threads, YouTube, LinkedIn, Bluesky, Reddit, TikTok). X/Twitter does NOT fire this event
     - `review.new` - New review posted on a connected account (Google Business Profile)
@@ -4387,7 +4387,7 @@ components:
     # ────────────────────────────────────────────────────────────────────────
     WebhookPayloadReaction:
       type: object
-      description: 'Webhook payload for reaction received events (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger)'
+      description: 'Webhook payload for reaction received events (WhatsApp, Telegram, Slack, Instagram, Facebook Messenger, TikTok)'
       required: [id, event, reaction, conversation, account, timestamp]
       properties:
         id:
@@ -4404,7 +4404,8 @@ components:
               type: string
               description: |
                 The emoji reacted with. May be an empty string when `action` is
-                `removed` on WhatsApp (Meta does not report which emoji was removed).
+                `removed` on WhatsApp (Meta does not report which emoji was removed),
+                and on TikTok for an AI emoji reaction (TikTok sends no unicode for it).
             action:
               type: string
               enum: [added, removed]
@@ -4417,7 +4418,7 @@ components:
             sender:
               type: object
               required: [id]
-              description: 'Whoever added or removed the reaction. Usually the participant, but on WhatsApp, Slack, Instagram and Facebook Messenger it is the business own platform id when the business reacted from the native app or via the reactions API: compare it with conversation.participantId.'
+              description: 'Whoever added or removed the reaction. Usually the participant, but on WhatsApp, Slack, Instagram, Facebook Messenger and TikTok it is the business own platform id when the business reacted from the native app or via the reactions API: compare it with conversation.participantId.'
               properties:
                 id:
                   type: string
@@ -12164,9 +12165,11 @@ webhooks:
       summary: Reaction received event
       description: |
         Fired when a participant adds or removes an emoji reaction on a message.
-        Supported on WhatsApp, Telegram, Slack, Instagram and Facebook Messenger.
-        Distinct from message.received so a reaction (e.g. a thumbs-up) is not
-        mistaken for an inbound message.
+        Supported on WhatsApp, Telegram, Slack, Instagram, Facebook Messenger and
+        TikTok. Distinct from message.received so a reaction (e.g. a thumbs-up) is
+        not mistaken for an inbound message. On TikTok a like or emoji reaction on
+        a DM arrives only as this event (never as an empty message.received), with
+        `reaction.platformMessageId` set to the TikTok id of the liked message.
         The `reaction.action` field is `added` or `removed`. On WhatsApp and Meta
         removals the platform does not report which emoji was removed, so
         `reaction.emoji` may be an empty string.
