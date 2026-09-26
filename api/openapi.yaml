@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.100.0
+  version: 1.101.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7697,6 +7697,15 @@ paths:
           - discord
           - slack
           - whatsapp
+          - shopify
+          - wordpress
+          - linkedinads
+          - metaads
+          - pinterestads
+          - tiktokads
+          - xads
+          - googleads
+          - openaiads
           type: string
         style: form
       - description: Filter by health status
@@ -73613,6 +73622,9 @@ components:
           format: date-time
           type: string
         needsReconnect:
+          description: "True when the token is expired or revoked, permissions are\
+            \ missing, the account is inactive, or the platform rejected its stored\
+            \ credentials (the same flag the account listing reports as needsReconnection)."
           type: boolean
         issues:
           items:

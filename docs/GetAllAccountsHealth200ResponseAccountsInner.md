@@ -17,7 +17,7 @@
 |**canFetchAnalytics** | **Boolean** |  |  [optional] |
 |**tokenValid** | **Boolean** |  |  [optional] |
 |**tokenExpiresAt** | **OffsetDateTime** |  |  [optional] |
-|**needsReconnect** | **Boolean** |  |  [optional] |
+|**needsReconnect** | **Boolean** | True when the token is expired or revoked, permissions are missing, the account is inactive, or the platform rejected its stored credentials (the same flag the account listing reports as needsReconnection). |  [optional] |
 |**issues** | **List&lt;String&gt;** |  |  [optional] |
 |**messagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  |  [optional] |
 
