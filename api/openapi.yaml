@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.96.1
+  version: 1.97.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -34013,7 +34013,7 @@ paths:
         | `bidStrategy` | Yes | Yes | 501 |
         | `bidAmount`, `roasAverageFloor` | 400 (ad-set level) | Yes | 400 |
         | `portfolioBidStrategyId` | 400 | Yes | 400 |
-        | `budget` (CBO; ABO returns 409) | Yes | Daily only | 501 |
+        | `budget` (CBO; ABO returns 409) | Yes | Daily only | OpenAI: daily or lifetime; others 501 |
         | `name` | Yes | 501 | 501 |
         | `platformSpecificData.spendCap` | Yes | 400 | 400 |
         | `accountId` (empty campaigns) | Yes | - | - |
@@ -34033,6 +34033,10 @@ paths:
         Google budget updates read the current budget before mutation. Shared budgets return
         409 unless allowSharedBudgetUpdate=true is explicitly supplied, because the change
         affects every campaign using that budget. Unknown sharing state also returns 409.
+
+        OpenAI Ads campaigns carry exactly one spend cap: `budget.type` daily or lifetime
+        replaces whichever cap the campaign had, with a minimum of 1 in the ad account's
+        currency (422 below it).
 
         `accountId` forwards the update straight to Meta for a campaign with zero ads,
         which would otherwise 404; the response then carries `updated: 0`.
@@ -35596,7 +35600,7 @@ paths:
           campaign, pauses the old one).
         - **Pinterest / X / OpenAI Ads**: status + budget only. Sending
           `targeting` or `creative` returns 501 with code `unsupported_platform_operation`.
-          OpenAI Ads budget is lifetime-only (see `budget.type` below).
+          OpenAI Ads budget is the campaign's spend cap, daily or lifetime (see `budget.type` below).
 
         **Google location and language replacement:** locations, languages and devices are
         campaign-level criteria on Google, so these edits apply to every ad group and ad in
@@ -102753,7 +102757,8 @@ components:
           description: Raw Meta campaign; keys are the requested Graph fields.
           type: object
     updateAdCampaign_request_budget:
-      description: "Meta CBO or Google daily campaign budget, in whole currency units."
+      description: "Meta CBO, Google daily, or OpenAI Ads daily or lifetime campaign\
+        \ budget, in whole currency units."
       properties:
         amount:
           description: Budget amount in the ad account's currency
@@ -106434,7 +106439,8 @@ components:
           description: "Minimum varies by platform: TikTok=$20, Pinterest=$5, others=$1"
           type: number
         type:
-          description: OpenAI Ads accepts lifetime only; sending daily returns 422.
+          description: "OpenAI Ads accepts both and sets the campaign's single spend\
+            \ cap, replacing the previous daily or lifetime cap."
           enum:
           - daily
           - lifetime
@@ -112867,9 +112873,10 @@ components:
           type: number
         budgetType:
           description: "Required on legacy, multi-creative and Performance Max shapes.\
-            \ Inherited on attach. OpenAI Ads accepts lifetime only (no daily-budget\
-            \ concept on the platform); sending daily returns 422. OpenAI Ads lifetime\
-            \ budgets require `endDate` to give the lifetime cap a spend window."
+            \ Inherited on attach. OpenAI Ads creation accepts lifetime only; sending\
+            \ daily returns 422 (daily caps can be set afterwards with PUT /v1/ads/campaigns/{campaignId}).\
+            \ OpenAI Ads lifetime budgets require `endDate` to give the lifetime cap\
+            \ a spend window."
           enum:
           - daily
           - lifetime
