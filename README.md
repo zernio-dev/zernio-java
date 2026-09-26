@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.102.2
+- API version: 1.103.0
 
-- Build date: 2026-09-26T13:06:39.162930957Z[Etc/UTC]
+- Build date: 2026-09-26T14:12:50.928809389Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.102.2</version>
+  <version>1.103.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.102.2"
+compile "dev.zernio:zernio-sdk:1.103.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.102.2.jar`
+- `target/zernio-sdk-1.103.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2862,6 +2862,7 @@ Class | Method | HTTP request | Description
  - [ListConversionAssociations200ResponseAssociationsInner](docs/ListConversionAssociations200ResponseAssociationsInner.md)
  - [ListConversionDestinations200Response](docs/ListConversionDestinations200Response.md)
  - [ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
+ - [ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner](docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md)
  - [ListCustomConversions200Response](docs/ListCustomConversions200Response.md)
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
  - [ListCustomFields200ResponseFieldsInner](docs/ListCustomFields200ResponseFieldsInner.md)

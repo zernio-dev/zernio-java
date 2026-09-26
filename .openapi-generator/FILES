@@ -1220,6 +1220,7 @@ docs/ListConversionAssociations200Response.md
 docs/ListConversionAssociations200ResponseAssociationsInner.md
 docs/ListConversionDestinations200Response.md
 docs/ListConversionDestinations200ResponseDestinationsInner.md
+docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md
 docs/ListCustomConversions200Response.md
 docs/ListCustomFields200Response.md
 docs/ListCustomFields200ResponseFieldsInner.md
@@ -3552,6 +3553,7 @@ src/main/java/dev/zernio/model/ListConversionAssociations200Response.java
 src/main/java/dev/zernio/model/ListConversionAssociations200ResponseAssociationsInner.java
 src/main/java/dev/zernio/model/ListConversionDestinations200Response.java
 src/main/java/dev/zernio/model/ListConversionDestinations200ResponseDestinationsInner.java
+src/main/java/dev/zernio/model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.java
 src/main/java/dev/zernio/model/ListCustomConversions200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200Response.java
 src/main/java/dev/zernio/model/ListCustomFields200ResponseFieldsInner.java
@@ -4581,3 +4583,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInnerTest.java

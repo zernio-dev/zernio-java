@@ -12,7 +12,7 @@
 |**campaignName** | **String** |  |  [optional] |
 |**status** | **AdStatus** | Delivery status derived from child ad statuses. Distinct from &#x60;reviewStatus&#x60;. |  [optional] |
 |**reviewStatus** | **AdReviewStatus** |  |  [optional] |
-|**platformCampaignStatus** | **String** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;). |  [optional] |
+|**platformCampaignStatus** | **String** | Raw platform-level campaign status (Meta &#x60;effective_status&#x60;; ChatGPT (OpenAI): the campaign&#39;s own switch, active / paused / archived). |  [optional] |
 |**campaignIssuesInfo** | **List&lt;Object&gt;** | Platform-reported campaign issues (Meta &#x60;issues_info[]&#x60;). |  [optional] |
 |**adCount** | **Integer** |  |  [optional] |
 |**budget** | [**AdCampaignBudget**](AdCampaignBudget.md) |  |  [optional] |
