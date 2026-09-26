@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.97.0
+  version: 1.98.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19736,6 +19736,9 @@ paths:
         (`sortBy=date`, `sortOrder=desc`): with `sortOrder=asc`, or with `sortBy=comments`,
         the cursor filter does not match the sort order and the second page is unreliable.
 
+        `minComments` is applied to each page after pagination: a page can hold fewer than
+        `limit` posts, even none, while `hasMore` is true; keep following `nextCursor`.
+
         `nextCursor` is opaque: pass it back verbatim, never construct or parse it, its
         composition may change without notice. Because each page re-queries a live window,
         results can still shift between requests, so dedupe by `id` on the client.
@@ -19774,7 +19777,7 @@ paths:
           - metaads
           type: string
         style: form
-      - description: Minimum comment count
+      - description: "Minimum comment count, applied to each page after pagination"
         explode: true
         in: query
         name: minComments
