@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.111.0
+  version: 1.111.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41218,13 +41218,16 @@ paths:
         \ links are history and are omitted. `managerLinks` on a root lists the managers\
         \ linked to that account, including invitations it can still accept with PATCH\
         \ /v1/ads/accounts/manager-links. A directly accessible account that is also\
-        \ nested in another tree appears only once, inside that tree. Customers Google\
-        \ refuses to read (for example a cancelled account) are listed in `unavailable`\
-        \ with Google's reason instead of failing the call. Up to 50 roots and 50\
-        \ managers per root are read; `truncated` is true when more exist. Cached\
-        \ for 10 minutes per connection; the response carries `cachedAt` and `stale`.\
-        \ When the connection is scoped to specific ad accounts, client accounts outside\
-        \ that scope are hidden (managers stay visible)."
+        \ nested in another tree appears only once, inside that tree. `directCustomers`\
+        \ lists every account the Google user accesses directly (the ones this connection\
+        \ can accept or decline invitations for) with their pending invitations, including\
+        \ accounts that are also nested in a tree. Customers Google refuses to read\
+        \ (for example a cancelled account) are listed in `unavailable` with Google's\
+        \ reason instead of failing the call. Up to 50 roots and 50 managers per root\
+        \ are read; `truncated` is true when more exist. Cached for 10 minutes per\
+        \ connection; the response carries `cachedAt` and `stale`. When the connection\
+        \ is scoped to specific ad accounts, client accounts outside that scope are\
+        \ hidden (managers stay visible)."
       operationId: getAdAccountHierarchy
       parameters:
       - description: Google ads SocialAccount id.
@@ -113178,6 +113181,34 @@ components:
           items:
             $ref: "#/components/schemas/GoogleAdsHierarchyClient"
           type: array
+    getAdAccountHierarchy_200_response_directCustomers_inner_pendingInvitations_inner:
+      example:
+        managerLinkId: managerLinkId
+        managerCustomerId: managerCustomerId
+      properties:
+        managerCustomerId:
+          type: string
+        managerLinkId:
+          type: string
+    getAdAccountHierarchy_200_response_directCustomers_inner:
+      example:
+        pendingInvitations:
+        - managerLinkId: managerLinkId
+          managerCustomerId: managerCustomerId
+        - managerLinkId: managerLinkId
+          managerCustomerId: managerCustomerId
+        manager: true
+        customerId: customerId
+      properties:
+        customerId:
+          type: string
+        manager:
+          type: boolean
+        pendingInvitations:
+          description: Manager invitations this account has not answered yet.
+          items:
+            $ref: "#/components/schemas/getAdAccountHierarchy_200_response_directCustomers_inner_pendingInvitations_inner"
+          type: array
     getAdAccountHierarchy_200_response_unavailable_inner:
       example:
         reason: reason
@@ -113196,6 +113227,21 @@ components:
         - reason: reason
           customerId: customerId
         - reason: reason
+          customerId: customerId
+        directCustomers:
+        - pendingInvitations:
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+          manager: true
+          customerId: customerId
+        - pendingInvitations:
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+          manager: true
           customerId: customerId
         truncated: true
         roots:
@@ -113284,6 +113330,10 @@ components:
         roots:
           items:
             $ref: "#/components/schemas/getAdAccountHierarchy_200_response_roots_inner"
+          type: array
+        directCustomers:
+          items:
+            $ref: "#/components/schemas/getAdAccountHierarchy_200_response_directCustomers_inner"
           type: array
         unavailable:
           items:

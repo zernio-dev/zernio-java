@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.111.0
+- API version: 1.111.1
 
-- Build date: 2026-09-27T19:52:40.166596234Z[Etc/UTC]
+- Build date: 2026-09-27T19:59:30.358021162Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.111.0</version>
+  <version>1.111.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.111.0"
+compile "dev.zernio:zernio-sdk:1.111.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.111.0.jar`
+- `target/zernio-sdk-1.111.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2363,6 +2363,8 @@ Class | Method | HTTP request | Description
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
+ - [GetAdAccountHierarchy200ResponseDirectCustomersInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md)
+ - [GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md)
  - [GetAdAccountHierarchy200ResponseRootsInner](docs/GetAdAccountHierarchy200ResponseRootsInner.md)
  - [GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner](docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md)
  - [GetAdAccountHierarchy200ResponseUnavailableInner](docs/GetAdAccountHierarchy200ResponseUnavailableInner.md)

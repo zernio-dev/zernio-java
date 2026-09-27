@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** |  |  [optional] |
 |**roots** | [**List&lt;GetAdAccountHierarchy200ResponseRootsInner&gt;**](GetAdAccountHierarchy200ResponseRootsInner.md) |  |  [optional] |
+|**directCustomers** | [**List&lt;GetAdAccountHierarchy200ResponseDirectCustomersInner&gt;**](GetAdAccountHierarchy200ResponseDirectCustomersInner.md) |  |  [optional] |
 |**unavailable** | [**List&lt;GetAdAccountHierarchy200ResponseUnavailableInner&gt;**](GetAdAccountHierarchy200ResponseUnavailableInner.md) |  |  [optional] |
 |**truncated** | **Boolean** |  |  [optional] |
 |**cachedAt** | **OffsetDateTime** | When this data was fetched from Google. Null on a live read. |  [optional] |

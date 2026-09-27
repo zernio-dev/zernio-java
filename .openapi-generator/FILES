@@ -661,6 +661,8 @@ docs/GetAd200Response.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
+docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md
+docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md
 docs/GetAdAccountHierarchy200ResponseRootsInner.md
 docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md
 docs/GetAdAccountHierarchy200ResponseUnavailableInner.md
@@ -3077,6 +3079,8 @@ src/main/java/dev/zernio/model/GetAd200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInner.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInner.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseUnavailableInner.java
@@ -4721,7 +4725,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GoogleDemandGenInputAudienceAgeRangesInnerTest.java
-src/test/java/dev/zernio/model/GoogleDemandGenInputAudienceTest.java
-src/test/java/dev/zernio/model/GoogleDemandGenInputImagesTest.java
-src/test/java/dev/zernio/model/GoogleDemandGenInputTest.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerTest.java
