@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.107.0
+  version: 1.108.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -32580,6 +32580,191 @@ paths:
       - google
       x-accepts:
       - application/json
+  /v1/ads/recommendations:
+    get:
+      description: "Google's optimization recommendations for one ad account: type,\
+        \ estimated impact (base vs potential metrics, cost in account currency units),\
+        \ the campaign, ad group or budget they target, and the type-specific payload\
+        \ Google returns (`details`, in Google's own shape with micros). Filter by\
+        \ campaignId and types. Cached for 10 minutes and cleared by apply or dismiss;\
+        \ served stale when Google quota is exhausted."
+      operationId: listGoogleRecommendations
+      parameters:
+      - description: Google ads SocialAccount id.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Google customer id, digits only. Defaults to the connection's\
+          \ only customer."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for consistency with other Google\
+          \ endpoints."
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only recommendations targeting this campaign.
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: "Comma-separated Google RecommendationType values, for example\
+          \ CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA."
+        explode: true
+        in: query
+        name: types
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listGoogleRecommendations_200_response"
+          description: Recommendations.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: "No Google Ads customer on this connection, or it needs reconnecting."
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: accountId is not a Google Ads connection.
+      security:
+      - bearerAuth: []
+      summary: List Google Ads recommendations
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+  /v1/ads/recommendations/apply:
+    post:
+      description: "Apply up to 100 recommendations. This changes the account (budgets,\
+        \ bidding, keywords, assets) and is not reversible or idempotent; Google offers\
+        \ no validate-only mode for it. Items run in partial-failure mode, so one\
+        \ stale recommendation does not block the rest. `parameters` is optional and\
+        \ takes exactly one key named for the recommendation type, in Google's ApplyRecommendationOperation\
+        \ shape (for example `campaignBudget: { newBudgetAmountMicros }` or `keyword:\
+        \ { matchType, cpcBidMicros }`); omit it to apply Google's suggested values."
+      operationId: applyGoogleRecommendations
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 507f1f77bcf86cd799439011
+              adAccountId: "9122445560"
+              recommendations:
+              - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDEtMTc5MDQ3NTQyNjU5Ni0rMjM1MjA5NjcxNjctMA
+              - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yMjgtMTc5MDQyNDE5NjUwNS0rMTU3NjMyNzU3ODk
+                parameters:
+                  campaignBudget:
+                    newBudgetAmountMicros: "150000000"
+            schema:
+              $ref: "#/components/schemas/applyGoogleRecommendations_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/applyGoogleRecommendations_200_response"
+          description: Per-recommendation outcome. A failed item does not stop the
+            others.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: "No Google Ads customer on this connection, or it needs reconnecting."
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: accountId is not a Google Ads connection.
+      security:
+      - bearerAuth: []
+      summary: Apply Google Ads recommendations
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/recommendations/dismiss:
+    post:
+      description: Dismiss up to 100 recommendations so Google stops suggesting them.
+        Items run in partial-failure mode.
+      operationId: dismissGoogleRecommendations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/dismissGoogleRecommendations_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/applyGoogleRecommendations_200_response"
+          description: Per-recommendation outcome. A failed item does not stop the
+            others.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: "No Google Ads customer on this connection, or it needs reconnecting."
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: accountId is not a Google Ads connection.
+      security:
+      - bearerAuth: []
+      summary: Dismiss Google Ads recommendations
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/bid-strategies:
     get:
       description: "Bidding strategy report: type, status, campaign count, clicks,\
@@ -38779,12 +38964,18 @@ paths:
   /v1/ads/labels:
     get:
       description: |-
-        Lists the ad account's organizational labels (Meta's `/act_X/adlabels`), rows returned
-        verbatim (id, name, created/updated time).
+        Lists the organizational labels on an ad account.
+
+        - **Meta**: pass `adAccountId=act_<n>`. Rows are Meta's `/act_X/adlabels` returned verbatim
+          (id, name, created/updated time), paginated with `limit` / `after`.
+        - **Google Ads**: pass the numeric customer id as `adAccountId` (optional when the
+          connection has a single customer). Returns every non-removed label as a `GoogleAdLabel`
+          in one page (`paging.after` is always null). Reads are cached for 10 minutes; when the
+          shared Google quota is exhausted the last successful result is served with `stale: true`.
       operationId: listAdLabels
       parameters:
-      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
-          the Meta token.
+      - description: "Zernio SocialAccount id. For Meta, the posting or ads variant\
+          \ used to resolve the token."
         explode: true
         in: query
         name: accountId
@@ -38792,15 +38983,27 @@ paths:
         schema:
           type: string
         style: form
-      - description: Meta ad account id (act_<n>).
+      - description: "Meta ad account id (act_<n>), or the Google Ads customer id\
+          \ (digits only)."
         explode: true
         in: query
         name: adAccountId
-        required: true
+        required: false
         schema:
+          pattern: ^(act_)?\d+$
           type: string
         style: form
-      - description: Rows per page
+      - deprecated: true
+        description: "Google only. Alias of adAccountId, kept for existing callers."
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: Meta only. Rows per page.
         explode: true
         in: query
         name: limit
@@ -38811,7 +39014,7 @@ paths:
           minimum: 1
           type: integer
         style: form
-      - description: Cursor from paging.after of the previous page.
+      - description: Meta only. Cursor from paging.after of the previous page.
         explode: true
         in: query
         name: after
@@ -38829,21 +39032,282 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/listAdLabels_200_response"
-          description: Ad labels (raw Meta shape)
+          description: Ad labels
         "400":
-          description: "Invalid input, or Meta rejected the query"
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "501":
-          description: Only supported on Meta (facebook/instagram)
+          description: Only supported on Meta and Google Ads accounts
       security:
       - bearerAuth: []
-      summary: Ad labels
+      summary: List ad labels
       tags:
       - Ad Accounts
       x-resource-group: ads
       x-platforms:
       - meta
+      - google
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and
+        keywords with `POST /v1/ads/labels/{labelId}/assignments`. Label names are unique per
+        customer; a duplicate is a 400.
+      operationId: createAdLabel
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdLabel_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdLabel_201_response"
+          description: Label created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Create a Google Ads label
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/labels/{labelId}:
+    delete:
+      description: "Removes the label. Google drops it from every campaign, ad group,\
+        \ ad and keyword it was attached to."
+      operationId: removeAdLabel
+      parameters:
+      - description: Google label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (Google Ads)
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Google customer id. Required when the connection has multiple
+          customers.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: Alias of adAccountId
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeAdLabel_200_response"
+          description: Label removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Label not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Remove a Google Ads label
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    patch:
+      description: "Changes the name, color or description of a label. Only the fields\
+        \ sent are written."
+      operationId: updateAdLabel
+      parameters:
+      - description: Google label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdLabel_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdLabel_200_response"
+          description: Label updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Label not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Update a Google Ads label
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/labels/{labelId}/assignments:
+    delete:
+      description: Removes the label from the given targets. Idempotent; a target
+        without the label is counted in `unchanged`.
+      operationId: detachAdLabel
+      parameters:
+      - description: Google label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GoogleAdLabelAssignments"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/detachAdLabel_200_response"
+          description: Label detached
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Label not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Detach a Google Ads label
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel,
+        AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a
+        target that already carries the label is counted in `unchanged` instead of failing the
+        call. All ids are Google's own: ads and keywords use the composite id Google puts in
+        their resource names, `{adGroupId}~{adId}` and `{adGroupId}~{criterionId}` (the keyword
+        form is the tail of `resourceName` on `GET /v1/ads/keywords`).
+      operationId: attachAdLabel
+      parameters:
+      - description: Google label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/GoogleAdLabelAssignments"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/attachAdLabel_200_response"
+          description: Label attached
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Label not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Attach a Google Ads label
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/ads/high-demand-periods:
@@ -67252,6 +67716,120 @@ components:
             $ref: "#/components/schemas/GoogleListingGroupNode"
           minItems: 2
           type: array
+    GoogleRecommendationMetrics:
+      properties:
+        impressions:
+          type: number
+        clicks:
+          type: number
+        cost:
+          description: Account currency units.
+          type: number
+        conversions:
+          type: number
+        conversionsValue:
+          type: number
+        videoViews:
+          type: number
+    GoogleRecommendation:
+      example:
+        resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+        id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+        type: FORECASTING_SET_TARGET_CPA
+        dismissed: false
+        campaignId: "24191585671"
+        campaignIds:
+        - "24191585671"
+        adGroupId: null
+        campaignBudgetId: null
+        impact:
+          base:
+            impressions: 2790
+            clicks: 87
+            cost: 420
+            conversions: 3.96
+            conversionsValue: 0
+            videoViews: 0
+          potential:
+            impressions: 5909
+            clicks: 185
+            cost: 889.58
+            conversions: 8.39
+            conversionsValue: 0
+            videoViews: 0
+        details:
+          recommendedTargetCpaMicros: "105420000"
+          campaignBudget:
+            currentAmountMicros: "60000000"
+            recommendedNewAmountMicros: "140000000"
+            newStartDate: 2026-10-01
+      properties:
+        resourceName:
+          description: "customers/{customerId}/recommendations/{id}. Pass it to apply\
+            \ or dismiss."
+          type: string
+        id:
+          type: string
+        type:
+          description: "Google RecommendationType, such as CAMPAIGN_BUDGET, KEYWORD\
+            \ or SET_TARGET_CPA."
+          type: string
+        dismissed:
+          type: boolean
+        campaignId:
+          nullable: true
+          type: string
+        campaignIds:
+          description: Every campaign the recommendation targets (several for account-level
+            types).
+          items:
+            type: string
+          type: array
+        adGroupId:
+          nullable: true
+          type: string
+        campaignBudgetId:
+          nullable: true
+          type: string
+        impact:
+          $ref: "#/components/schemas/GoogleRecommendation_impact"
+        details:
+          description: "The type-specific recommendation payload exactly as Google\
+            \ returns it (camelCase, amounts in micros), for example recommendedTargetCpaMicros\
+            \ or budgetOptions."
+          nullable: true
+          type: object
+      required:
+      - adGroupId
+      - campaignBudgetId
+      - campaignId
+      - campaignIds
+      - details
+      - dismissed
+      - id
+      - impact
+      - resourceName
+      - type
+    GoogleRecommendationResult:
+      example:
+        resourceName: resourceName
+        error: error
+        status: applied
+      properties:
+        resourceName:
+          type: string
+        status:
+          enum:
+          - applied
+          - dismissed
+          - failed
+          type: string
+        error:
+          description: Google's message when status is failed.
+          type: string
+      required:
+      - resourceName
+      - status
     GoogleRsaHeadline:
       example:
         text: text
@@ -69578,6 +70156,112 @@ components:
         latestAd:
           format: date-time
           type: string
+    GoogleAdLabel:
+      example:
+        backgroundColor: backgroundColor
+        name: name
+        description: description
+        resourceName: resourceName
+        id: id
+        status: ENABLED
+      properties:
+        id:
+          description: Google label id
+          type: string
+        resourceName:
+          type: string
+        name:
+          type: string
+        status:
+          enum:
+          - ENABLED
+          - REMOVED
+          - UNKNOWN
+          type: string
+        backgroundColor:
+          description: "#RRGGBB"
+          nullable: true
+          type: string
+        description:
+          description: Null when empty.
+          nullable: true
+          type: string
+    GoogleAdLabelAssignments:
+      additionalProperties: false
+      description: At least one id across the four target lists. Up to 1000 ids per
+        list.
+      example:
+        adIds:
+        - adIds
+        - adIds
+        - adIds
+        - adIds
+        - adIds
+        accountId: accountId
+        adSetIds:
+        - adSetIds
+        - adSetIds
+        - adSetIds
+        - adSetIds
+        - adSetIds
+        adAccountId: adAccountId
+        customerId: customerId
+        campaignIds:
+        - campaignIds
+        - campaignIds
+        - campaignIds
+        - campaignIds
+        - campaignIds
+        keywordIds:
+        - keywordIds
+        - keywordIds
+        - keywordIds
+        - keywordIds
+        - keywordIds
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        campaignIds:
+          description: Google campaign ids
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 1000
+          type: array
+        adSetIds:
+          description: Google ad group ids
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 1000
+          type: array
+        adIds:
+          description: "Google ad group ad ids, {adGroupId}~{adId}"
+          items:
+            pattern: ^\d+~\d+$
+            type: string
+          maxItems: 1000
+          type: array
+        keywordIds:
+          description: "Google keyword criterion ids, {adGroupId}~{criterionId}"
+          items:
+            pattern: ^\d+~\d+$
+            type: string
+          maxItems: 1000
+          type: array
+      required:
+      - accountId
     AdKeyword:
       example:
         adSetName: adSetName
@@ -102236,6 +102920,163 @@ components:
           description: "True when Google's daily API quota was exhausted and this\
             \ is the last successful fetch, not a live read."
           type: boolean
+    listGoogleRecommendations_200_response:
+      example:
+        stale: true
+        adAccountId: adAccountId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        recommendations:
+        - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+          id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+          type: FORECASTING_SET_TARGET_CPA
+          dismissed: false
+          campaignId: "24191585671"
+          campaignIds:
+          - "24191585671"
+          adGroupId: null
+          campaignBudgetId: null
+          impact:
+            base:
+              impressions: 2790
+              clicks: 87
+              cost: 420
+              conversions: 3.96
+              conversionsValue: 0
+              videoViews: 0
+            potential:
+              impressions: 5909
+              clicks: 185
+              cost: 889.58
+              conversions: 8.39
+              conversionsValue: 0
+              videoViews: 0
+          details:
+            recommendedTargetCpaMicros: "105420000"
+            campaignBudget:
+              currentAmountMicros: "60000000"
+              recommendedNewAmountMicros: "140000000"
+              newStartDate: 2026-10-01
+        - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+          id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
+          type: FORECASTING_SET_TARGET_CPA
+          dismissed: false
+          campaignId: "24191585671"
+          campaignIds:
+          - "24191585671"
+          adGroupId: null
+          campaignBudgetId: null
+          impact:
+            base:
+              impressions: 2790
+              clicks: 87
+              cost: 420
+              conversions: 3.96
+              conversionsValue: 0
+              videoViews: 0
+            potential:
+              impressions: 5909
+              clicks: 185
+              cost: 889.58
+              conversions: 8.39
+              conversionsValue: 0
+              videoViews: 0
+          details:
+            recommendedTargetCpaMicros: "105420000"
+            campaignBudget:
+              currentAmountMicros: "60000000"
+              recommendedNewAmountMicros: "140000000"
+              newStartDate: 2026-10-01
+      properties:
+        adAccountId:
+          type: string
+        recommendations:
+          items:
+            $ref: "#/components/schemas/GoogleRecommendation"
+          type: array
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          type: boolean
+      required:
+      - adAccountId
+      - cachedAt
+      - recommendations
+      - stale
+    applyGoogleRecommendations_request_recommendations_inner:
+      properties:
+        resourceName:
+          description: "Recommendation resource name from the list, or its id."
+          type: string
+        parameters:
+          additionalProperties: {}
+          description: "One key, such as campaignBudget, keyword, textAd, targetCpaOptIn,\
+            \ targetRoasOptIn, callAsset, calloutAsset, sitelinkAsset, moveUnusedBudget,\
+            \ responsiveSearchAd, responsiveSearchAdAsset, responsiveSearchAdImproveAdStrength,\
+            \ useBroadMatchKeyword, raiseTargetCpa, lowerTargetRoas, setTargetCpa,\
+            \ setTargetRoas, forecastingSetTargetCpa, forecastingSetTargetRoas, leadFormAsset,\
+            \ raiseTargetCpaBidTooLow, raiseTargetCpaPerformanceBidTooLow, lowerTargetRoasPerformanceBidTooLow,\
+            \ calloutExtension, callExtension or sitelinkExtension."
+      required:
+      - resourceName
+    applyGoogleRecommendations_request:
+      properties:
+        accountId:
+          description: Google ads SocialAccount id.
+          type: string
+        adAccountId:
+          description: "Google customer id, digits only. Required when the connection\
+            \ has several customers."
+          type: string
+        recommendations:
+          items:
+            $ref: "#/components/schemas/applyGoogleRecommendations_request_recommendations_inner"
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - recommendations
+    applyGoogleRecommendations_200_response:
+      example:
+        adAccountId: adAccountId
+        results:
+        - resourceName: resourceName
+          error: error
+          status: applied
+        - resourceName: resourceName
+          error: error
+          status: applied
+      properties:
+        adAccountId:
+          type: string
+        results:
+          items:
+            $ref: "#/components/schemas/GoogleRecommendationResult"
+          type: array
+      required:
+      - adAccountId
+      - results
+    dismissGoogleRecommendations_request:
+      properties:
+        accountId:
+          description: Google ads SocialAccount id.
+          type: string
+        adAccountId:
+          description: "Google customer id, digits only. Required when the connection\
+            \ has several customers."
+          type: string
+        resourceNames:
+          description: "Recommendation resource names from the list, or their ids."
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - resourceNames
     listBidStrategies_200_response:
       example:
         stale: true
@@ -109970,24 +110811,196 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+    listAdLabels_200_response_data_inner:
+      oneOf:
+      - $ref: "#/components/schemas/GoogleAdLabel"
+      - description: "Raw Meta ad label row (id, name, created_time, updated_time)."
+        type: object
+    listAdLabels_200_response_paging:
+      example:
+        after: after
+      properties:
+        after:
+          description: Cursor for the next page; null when exhausted (always null
+            on Google).
+          nullable: true
+          type: string
     listAdLabels_200_response:
       example:
+        stale: true
         data:
-        - "{}"
-        - "{}"
+        - backgroundColor: backgroundColor
+          name: name
+          description: description
+          resourceName: resourceName
+          id: id
+          status: ENABLED
+        - backgroundColor: backgroundColor
+          name: name
+          description: description
+          resourceName: resourceName
+          id: id
+          status: ENABLED
         adAccountId: adAccountId
         paging:
           after: after
+        cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         adAccountId:
+          description: "Meta act_<n>, or the resolved Google customer id"
           type: string
         data:
           items:
-            description: "Raw Meta ad label row (id, name, created_time, updated_time)."
-            type: object
+            $ref: "#/components/schemas/listAdLabels_200_response_data_inner"
           type: array
         paging:
-          $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+          $ref: "#/components/schemas/listAdLabels_200_response_paging"
+        cachedAt:
+          description: Google only. When the served list was fetched from Google.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: Google only. True when Google quota was exhausted and the last
+            cached list was served.
+          type: boolean
+    createAdLabel_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        name:
+          description: Trimmed before sending.
+          maxLength: 80
+          minLength: 1
+          type: string
+        backgroundColor:
+          description: "#RRGGBB. Google picks a color when omitted."
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        description:
+          maxLength: 200
+          type: string
+      required:
+      - accountId
+      - name
+    createAdLabel_201_response:
+      example:
+        customerId: customerId
+        resourceName: resourceName
+        id: id
+      properties:
+        customerId:
+          type: string
+        id:
+          description: Google label id
+          type: string
+        resourceName:
+          description: "customers/{customerId}/labels/{id}"
+          type: string
+    removeAdLabel_200_response:
+      example:
+        labelId: labelId
+        removed: true
+        customerId: customerId
+      properties:
+        customerId:
+          type: string
+        labelId:
+          type: string
+        removed:
+          description: Always true on success
+          type: boolean
+    updateAdLabel_request:
+      additionalProperties: {}
+      minProperties: 2
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        name:
+          maxLength: 80
+          minLength: 1
+          type: string
+        backgroundColor:
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        description:
+          description: Send "" to clear it.
+          maxLength: 200
+          type: string
+      required:
+      - accountId
+    updateAdLabel_200_response:
+      example:
+        customerId: customerId
+        label:
+          backgroundColor: backgroundColor
+          name: name
+          description: description
+          resourceName: resourceName
+          id: id
+          status: ENABLED
+      properties:
+        customerId:
+          type: string
+        label:
+          $ref: "#/components/schemas/GoogleAdLabel"
+    attachAdLabel_200_response:
+      example:
+        labelId: labelId
+        customerId: customerId
+        attached: 0
+        unchanged: 6
+      properties:
+        customerId:
+          type: string
+        labelId:
+          type: string
+        attached:
+          description: Links created by this call
+          type: integer
+        unchanged:
+          description: Targets that already carried the label
+          type: integer
+    detachAdLabel_200_response:
+      example:
+        detached: 0
+        labelId: labelId
+        customerId: customerId
+        unchanged: 6
+      properties:
+        customerId:
+          type: string
+        labelId:
+          type: string
+        detached:
+          description: Links removed by this call
+          type: integer
+        unchanged:
+          description: Targets that did not carry the label
+          type: integer
     listHighDemandPeriods_200_response:
       example:
         data:
@@ -128213,6 +129226,14 @@ components:
           type: string
       required:
       - index
+    GoogleRecommendation_impact:
+      description: Google's estimate over its own window. Null when Google gives none
+        for the type.
+      properties:
+        base:
+          $ref: "#/components/schemas/GoogleRecommendationMetrics"
+        potential:
+          $ref: "#/components/schemas/GoogleRecommendationMetrics"
     Ad_budget:
       example:
         amount: 0.8008281904610115

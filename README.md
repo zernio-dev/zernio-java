@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.107.0
+- API version: 1.108.0
 
-- Build date: 2026-09-27T19:16:17.333202628Z[Etc/UTC]
+- Build date: 2026-09-27T19:23:29.529155004Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.107.0</version>
+  <version>1.108.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.107.0"
+compile "dev.zernio:zernio-sdk:1.108.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.107.0.jar`
+- `target/zernio-sdk-1.108.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -189,8 +189,12 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**addAccountSitelinksWithHttpInfo**](docs/AdAccountsApi.md#addAccountSitelinksWithHttpInfo) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks
 *AdAccountsApi* | [**addAccountStructuredSnippets**](docs/AdAccountsApi.md#addAccountStructuredSnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets
 *AdAccountsApi* | [**addAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#addAccountStructuredSnippetsWithHttpInfo) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets
+*AdAccountsApi* | [**attachAdLabel**](docs/AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
+*AdAccountsApi* | [**attachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
 *AdAccountsApi* | [**createAdAccount**](docs/AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account
 *AdAccountsApi* | [**createAdAccountWithHttpInfo**](docs/AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create Meta ad account
+*AdAccountsApi* | [**createAdLabel**](docs/AdAccountsApi.md#createAdLabel) | **POST** /v1/ads/labels | Create a Google Ads label
+*AdAccountsApi* | [**createAdLabelWithHttpInfo**](docs/AdAccountsApi.md#createAdLabelWithHttpInfo) | **POST** /v1/ads/labels | Create a Google Ads label
 *AdAccountsApi* | [**createAdNegativeKeywordList**](docs/AdAccountsApi.md#createAdNegativeKeywordList) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list
 *AdAccountsApi* | [**createAdNegativeKeywordListWithHttpInfo**](docs/AdAccountsApi.md#createAdNegativeKeywordListWithHttpInfo) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list
 *AdAccountsApi* | [**createCustomConversion**](docs/AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion
@@ -205,6 +209,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**deleteAdNegativeKeywordListWithHttpInfo**](docs/AdAccountsApi.md#deleteAdNegativeKeywordListWithHttpInfo) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list
 *AdAccountsApi* | [**deleteValueRuleSet**](docs/AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**deleteValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
+*AdAccountsApi* | [**detachAdLabel**](docs/AdAccountsApi.md#detachAdLabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
+*AdAccountsApi* | [**detachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
@@ -231,8 +237,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
 *AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**listAdAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
-*AdAccountsApi* | [**listAdLabels**](docs/AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels
-*AdAccountsApi* | [**listAdLabelsWithHttpInfo**](docs/AdAccountsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | Ad labels
+*AdAccountsApi* | [**listAdLabels**](docs/AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | List ad labels
+*AdAccountsApi* | [**listAdLabelsWithHttpInfo**](docs/AdAccountsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | List ad labels
 *AdAccountsApi* | [**listAdNegativeKeywordLists**](docs/AdAccountsApi.md#listAdNegativeKeywordLists) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists
 *AdAccountsApi* | [**listAdNegativeKeywordListsWithHttpInfo**](docs/AdAccountsApi.md#listAdNegativeKeywordListsWithHttpInfo) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists
 *AdAccountsApi* | [**listAdStudies**](docs/AdAccountsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies
@@ -261,6 +267,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**removeAccountSitelinkWithHttpInfo**](docs/AdAccountsApi.md#removeAccountSitelinkWithHttpInfo) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink
 *AdAccountsApi* | [**removeAccountStructuredSnippet**](docs/AdAccountsApi.md#removeAccountStructuredSnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet
 *AdAccountsApi* | [**removeAccountStructuredSnippetWithHttpInfo**](docs/AdAccountsApi.md#removeAccountStructuredSnippetWithHttpInfo) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet
+*AdAccountsApi* | [**removeAdLabel**](docs/AdAccountsApi.md#removeAdLabel) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label
+*AdAccountsApi* | [**removeAdLabelWithHttpInfo**](docs/AdAccountsApi.md#removeAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywords**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replyToAdComment**](docs/AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
@@ -273,6 +281,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**updateAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#updateAccountStructuredSnippetsWithHttpInfo) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets
 *AdAccountsApi* | [**updateAdAccount**](docs/AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAccountsApi* | [**updateAdAccountWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdAccountsApi* | [**updateAdLabel**](docs/AdAccountsApi.md#updateAdLabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label
+*AdAccountsApi* | [**updateAdLabelWithHttpInfo**](docs/AdAccountsApi.md#updateAdLabelWithHttpInfo) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label
 *AdAccountsApi* | [**updateAdNegativeKeywordList**](docs/AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list
 *AdAccountsApi* | [**updateAdNegativeKeywordListWithHttpInfo**](docs/AdAccountsApi.md#updateAdNegativeKeywordListWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list
 *AdAccountsApi* | [**updateValueRuleSet**](docs/AdAccountsApi.md#updateValueRuleSet) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
@@ -293,6 +303,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdCampaignsApi* | [**addAdKeywords**](docs/AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords
 *AdCampaignsApi* | [**addAdKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search ad-group keywords
+*AdCampaignsApi* | [**applyGoogleRecommendations**](docs/AdCampaignsApi.md#applyGoogleRecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations
+*AdCampaignsApi* | [**applyGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#applyGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations
 *AdCampaignsApi* | [**attachAdGroupAssets**](docs/AdCampaignsApi.md#attachAdGroupAssets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets
 *AdCampaignsApi* | [**attachAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#attachAdGroupAssetsWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets
 *AdCampaignsApi* | [**attachCampaignAssets**](docs/AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets
@@ -317,6 +329,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdSet**](docs/AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
 *AdCampaignsApi* | [**deleteAdSetWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
+*AdCampaignsApi* | [**dismissGoogleRecommendations**](docs/AdCampaignsApi.md#dismissGoogleRecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
+*AdCampaignsApi* | [**dismissGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#dismissGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
 *AdCampaignsApi* | [**duplicateAd**](docs/AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
@@ -363,6 +377,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listCampaignNegativeKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#listCampaignNegativeKeywordsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords
 *AdCampaignsApi* | [**listGoogleAssetGroups**](docs/AdCampaignsApi.md#listGoogleAssetGroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
 *AdCampaignsApi* | [**listGoogleAssetGroupsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleAssetGroupsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
+*AdCampaignsApi* | [**listGoogleRecommendations**](docs/AdCampaignsApi.md#listGoogleRecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations
+*AdCampaignsApi* | [**listGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleRecommendationsWithHttpInfo) | **GET** /v1/ads/recommendations | List Google Ads recommendations
 *AdCampaignsApi* | [**removeAdGroupAssets**](docs/AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdKeyword**](docs/AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
@@ -1788,12 +1804,16 @@ Class | Method | HTTP request | Description
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [AppealSmsRegistration200Response](docs/AppealSmsRegistration200Response.md)
  - [AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
+ - [ApplyGoogleRecommendations200Response](docs/ApplyGoogleRecommendations200Response.md)
+ - [ApplyGoogleRecommendationsRequest](docs/ApplyGoogleRecommendationsRequest.md)
+ - [ApplyGoogleRecommendationsRequestRecommendationsInner](docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md)
  - [ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
  - [AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
  - [AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
  - [AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
  - [AttachAdGroupAssets201Response](docs/AttachAdGroupAssets201Response.md)
+ - [AttachAdLabel200Response](docs/AttachAdLabel200Response.md)
  - [AttachCampaignAssets201Response](docs/AttachCampaignAssets201Response.md)
  - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
@@ -1981,6 +2001,8 @@ Class | Method | HTTP request | Description
  - [CreateAdInsightsReportRequest](docs/CreateAdInsightsReportRequest.md)
  - [CreateAdInsightsReportRequestFilteringInner](docs/CreateAdInsightsReportRequestFilteringInner.md)
  - [CreateAdInsightsReportRequestTimeIncrement](docs/CreateAdInsightsReportRequestTimeIncrement.md)
+ - [CreateAdLabel201Response](docs/CreateAdLabel201Response.md)
+ - [CreateAdLabelRequest](docs/CreateAdLabelRequest.md)
  - [CreateAdNegativeKeywordList201Response](docs/CreateAdNegativeKeywordList201Response.md)
  - [CreateAdNegativeKeywordListRequest](docs/CreateAdNegativeKeywordListRequest.md)
  - [CreateAdSet201Response](docs/CreateAdSet201Response.md)
@@ -2214,6 +2236,7 @@ Class | Method | HTTP request | Description
  - [DeleteWhatsAppTemplate200Response](docs/DeleteWhatsAppTemplate200Response.md)
  - [DeleteWhatsAppTemplateById200Response](docs/DeleteWhatsAppTemplateById200Response.md)
  - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
+ - [DetachAdLabel200Response](docs/DetachAdLabel200Response.md)
  - [DetachNumberFromSipTrunk200Response](docs/DetachNumberFromSipTrunk200Response.md)
  - [DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
@@ -2234,6 +2257,7 @@ Class | Method | HTTP request | Description
  - [DiscordRole](docs/DiscordRole.md)
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
+ - [DismissGoogleRecommendationsRequest](docs/DismissGoogleRecommendationsRequest.md)
  - [DmButton](docs/DmButton.md)
  - [DownloadTikTokVideo200Response](docs/DownloadTikTokVideo200Response.md)
  - [DownloadTikTokVideo200ResponseFormatsInner](docs/DownloadTikTokVideo200ResponseFormatsInner.md)
@@ -2685,6 +2709,8 @@ Class | Method | HTTP request | Description
  - [GetYoutubeCaptions200ResponseCuesInner](docs/GetYoutubeCaptions200ResponseCuesInner.md)
  - [GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
+ - [GoogleAdLabel](docs/GoogleAdLabel.md)
+ - [GoogleAdLabelAssignments](docs/GoogleAdLabelAssignments.md)
  - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
  - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
@@ -2718,6 +2744,10 @@ Class | Method | HTTP request | Description
  - [GooglePmaxAssetGroupInputImages](docs/GooglePmaxAssetGroupInputImages.md)
  - [GooglePmaxAssetGroupUpdate](docs/GooglePmaxAssetGroupUpdate.md)
  - [GooglePmaxAssetGroupUpdateImages](docs/GooglePmaxAssetGroupUpdateImages.md)
+ - [GoogleRecommendation](docs/GoogleRecommendation.md)
+ - [GoogleRecommendationImpact](docs/GoogleRecommendationImpact.md)
+ - [GoogleRecommendationMetrics](docs/GoogleRecommendationMetrics.md)
+ - [GoogleRecommendationResult](docs/GoogleRecommendationResult.md)
  - [GoogleRsaDescription](docs/GoogleRsaDescription.md)
  - [GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [GoogleSitelink](docs/GoogleSitelink.md)
@@ -2831,6 +2861,8 @@ Class | Method | HTTP request | Description
  - [ListAdImages200Response](docs/ListAdImages200Response.md)
  - [ListAdKeywords200Response](docs/ListAdKeywords200Response.md)
  - [ListAdLabels200Response](docs/ListAdLabels200Response.md)
+ - [ListAdLabels200ResponseDataInner](docs/ListAdLabels200ResponseDataInner.md)
+ - [ListAdLabels200ResponsePaging](docs/ListAdLabels200ResponsePaging.md)
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
  - [ListAdSets200Response](docs/ListAdSets200Response.md)
  - [ListAdSets200ResponseAdSetsInner](docs/ListAdSets200ResponseAdSetsInner.md)
@@ -2917,6 +2949,7 @@ Class | Method | HTTP request | Description
  - [ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation](docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md)
  - [ListGoogleBusinessPlaceActions200Response](docs/ListGoogleBusinessPlaceActions200Response.md)
  - [ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner](docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md)
+ - [ListGoogleRecommendations200Response](docs/ListGoogleRecommendations200Response.md)
  - [ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [ListImessageAudience200Response](docs/ListImessageAudience200Response.md)
  - [ListImessageAvailableNumbers200Response](docs/ListImessageAvailableNumbers200Response.md)
@@ -3198,6 +3231,7 @@ Class | Method | HTTP request | Description
  - [RemoveAccountCalloutRequest](docs/RemoveAccountCalloutRequest.md)
  - [RemoveAdGroupAssetsRequest](docs/RemoveAdGroupAssetsRequest.md)
  - [RemoveAdKeyword200Response](docs/RemoveAdKeyword200Response.md)
+ - [RemoveAdLabel200Response](docs/RemoveAdLabel200Response.md)
  - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveCampaignAssets200Response](docs/RemoveCampaignAssets200Response.md)
  - [RemoveCampaignAssetsRequest](docs/RemoveCampaignAssetsRequest.md)
@@ -3522,6 +3556,8 @@ Class | Method | HTTP request | Description
  - [UpdateAdCreativeRequest](docs/UpdateAdCreativeRequest.md)
  - [UpdateAdKeyword200Response](docs/UpdateAdKeyword200Response.md)
  - [UpdateAdKeywordRequest](docs/UpdateAdKeywordRequest.md)
+ - [UpdateAdLabel200Response](docs/UpdateAdLabel200Response.md)
+ - [UpdateAdLabelRequest](docs/UpdateAdLabelRequest.md)
  - [UpdateAdNegativeKeywordList200Response](docs/UpdateAdNegativeKeywordList200Response.md)
  - [UpdateAdNegativeKeywordListRequest](docs/UpdateAdNegativeKeywordListRequest.md)
  - [UpdateAdRequest](docs/UpdateAdRequest.md)

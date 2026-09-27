@@ -10,8 +10,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**addAccountSitelinksWithHttpInfo**](AdAccountsApi.md#addAccountSitelinksWithHttpInfo) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks |
 | [**addAccountStructuredSnippets**](AdAccountsApi.md#addAccountStructuredSnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
 | [**addAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#addAccountStructuredSnippetsWithHttpInfo) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
+| [**attachAdLabel**](AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
+| [**attachAdLabelWithHttpInfo**](AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
 | [**createAdAccount**](AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account |
 | [**createAdAccountWithHttpInfo**](AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create Meta ad account |
+| [**createAdLabel**](AdAccountsApi.md#createAdLabel) | **POST** /v1/ads/labels | Create a Google Ads label |
+| [**createAdLabelWithHttpInfo**](AdAccountsApi.md#createAdLabelWithHttpInfo) | **POST** /v1/ads/labels | Create a Google Ads label |
 | [**createAdNegativeKeywordList**](AdAccountsApi.md#createAdNegativeKeywordList) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
 | [**createAdNegativeKeywordListWithHttpInfo**](AdAccountsApi.md#createAdNegativeKeywordListWithHttpInfo) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
 | [**createCustomConversion**](AdAccountsApi.md#createCustomConversion) | **POST** /v1/accounts/{accountId}/custom-conversions | Create custom conversion |
@@ -26,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdNegativeKeywordListWithHttpInfo**](AdAccountsApi.md#deleteAdNegativeKeywordListWithHttpInfo) | **DELETE** /v1/ads/accounts/negative-keyword-lists/{listId} | Delete a negative keyword list |
 | [**deleteValueRuleSet**](AdAccountsApi.md#deleteValueRuleSet) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
 | [**deleteValueRuleSetWithHttpInfo**](AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set |
+| [**detachAdLabel**](AdAccountsApi.md#detachAdLabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
+| [**detachAdLabelWithHttpInfo**](AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**getAdAccountFinance**](AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdAccountFinanceWithHttpInfo**](AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdComments**](AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
@@ -52,8 +58,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
 | [**listAdAccounts**](AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
-| [**listAdLabels**](AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | Ad labels |
-| [**listAdLabelsWithHttpInfo**](AdAccountsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | Ad labels |
+| [**listAdLabels**](AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | List ad labels |
+| [**listAdLabelsWithHttpInfo**](AdAccountsApi.md#listAdLabelsWithHttpInfo) | **GET** /v1/ads/labels | List ad labels |
 | [**listAdNegativeKeywordLists**](AdAccountsApi.md#listAdNegativeKeywordLists) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists |
 | [**listAdNegativeKeywordListsWithHttpInfo**](AdAccountsApi.md#listAdNegativeKeywordListsWithHttpInfo) | **GET** /v1/ads/accounts/negative-keyword-lists | List negative keyword lists |
 | [**listAdStudies**](AdAccountsApi.md#listAdStudies) | **GET** /v1/ads/studies | A/B tests and lift studies |
@@ -82,6 +88,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeAccountSitelinkWithHttpInfo**](AdAccountsApi.md#removeAccountSitelinkWithHttpInfo) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink |
 | [**removeAccountStructuredSnippet**](AdAccountsApi.md#removeAccountStructuredSnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
 | [**removeAccountStructuredSnippetWithHttpInfo**](AdAccountsApi.md#removeAccountStructuredSnippetWithHttpInfo) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
+| [**removeAdLabel**](AdAccountsApi.md#removeAdLabel) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label |
+| [**removeAdLabelWithHttpInfo**](AdAccountsApi.md#removeAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label |
 | [**replaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replyToAdComment**](AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
@@ -94,6 +102,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#updateAccountStructuredSnippetsWithHttpInfo) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
 | [**updateAdAccount**](AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdAccountWithHttpInfo**](AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**updateAdLabel**](AdAccountsApi.md#updateAdLabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
+| [**updateAdLabelWithHttpInfo**](AdAccountsApi.md#updateAdLabelWithHttpInfo) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**updateAdNegativeKeywordList**](AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**updateAdNegativeKeywordListWithHttpInfo**](AdAccountsApi.md#updateAdNegativeKeywordListWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
 | [**updateValueRuleSet**](AdAccountsApi.md#updateValueRuleSet) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set |
@@ -575,6 +585,164 @@ ApiResponse<[**AddAccountStructuredSnippets201Response**](AddAccountStructuredSn
 | **501** | Only supported on Google Ads. |  -  |
 
 
+## attachAdLabel
+
+> AttachAdLabel200Response attachAdLabel(labelId, googleAdLabelAssignments)
+
+Attach a Google Ads label
+
+Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        try {
+            AttachAdLabel200Response result = apiInstance.attachAdLabel(labelId, googleAdLabelAssignments);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#attachAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+
+### Return type
+
+[**AttachAdLabel200Response**](AttachAdLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label attached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## attachAdLabelWithHttpInfo
+
+> ApiResponse<AttachAdLabel200Response> attachAdLabel attachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments)
+
+Attach a Google Ads label
+
+Attaches the label to campaigns, ad groups, ads and keywords (Google CampaignLabel, AdGroupLabel, AdGroupAdLabel and AdGroupCriterionLabel) in one mutate. Idempotent: a target that already carries the label is counted in &#x60;unchanged&#x60; instead of failing the call. All ids are Google&#39;s own: ads and keywords use the composite id Google puts in their resource names, &#x60;{adGroupId}~{adId}&#x60; and &#x60;{adGroupId}~{criterionId}&#x60; (the keyword form is the tail of &#x60;resourceName&#x60; on &#x60;GET /v1/ads/keywords&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        try {
+            ApiResponse<AttachAdLabel200Response> response = apiInstance.attachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#attachAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+
+### Return type
+
+ApiResponse<[**AttachAdLabel200Response**](AttachAdLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label attached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## createAdAccount
 
 > CreateAdAccount201Response createAdAccount(createAdAccountRequest)
@@ -729,6 +897,160 @@ ApiResponse<[**CreateAdAccount201Response**](CreateAdAccount201Response.md)>
 | **403** | Ads access denied or Meta permission missing. details.reason may be business_management_required, business_admin_required or business_access_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
+
+
+## createAdLabel
+
+> CreateAdLabel201Response createAdLabel(createAdLabelRequest)
+
+Create a Google Ads label
+
+Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateAdLabelRequest createAdLabelRequest = new CreateAdLabelRequest(); // CreateAdLabelRequest | 
+        try {
+            CreateAdLabel201Response result = apiInstance.createAdLabel(createAdLabelRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createAdLabelRequest** | [**CreateAdLabelRequest**](CreateAdLabelRequest.md)|  | |
+
+### Return type
+
+[**CreateAdLabel201Response**](CreateAdLabel201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Label created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## createAdLabelWithHttpInfo
+
+> ApiResponse<CreateAdLabel201Response> createAdLabel createAdLabelWithHttpInfo(createAdLabelRequest)
+
+Create a Google Ads label
+
+Creates a label on a Google Ads customer. Attach it to campaigns, ad groups, ads and keywords with &#x60;POST /v1/ads/labels/{labelId}/assignments&#x60;. Label names are unique per customer; a duplicate is a 400.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        CreateAdLabelRequest createAdLabelRequest = new CreateAdLabelRequest(); // CreateAdLabelRequest | 
+        try {
+            ApiResponse<CreateAdLabel201Response> response = apiInstance.createAdLabelWithHttpInfo(createAdLabelRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#createAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createAdLabelRequest** | [**CreateAdLabelRequest**](CreateAdLabelRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateAdLabel201Response**](CreateAdLabel201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Label created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## createAdNegativeKeywordList
@@ -1861,6 +2183,164 @@ ApiResponse<[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md
 | **400** | Invalid input, or Meta rejected the delete. A bad id comes back as GraphMethodException code 100 / subcode 33, which reads like a permission error rather than a 404. |  -  |
 | **401** | Unauthorized |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## detachAdLabel
+
+> DetachAdLabel200Response detachAdLabel(labelId, googleAdLabelAssignments)
+
+Detach a Google Ads label
+
+Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        try {
+            DetachAdLabel200Response result = apiInstance.detachAdLabel(labelId, googleAdLabelAssignments);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#detachAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+
+### Return type
+
+[**DetachAdLabel200Response**](DetachAdLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label detached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## detachAdLabelWithHttpInfo
+
+> ApiResponse<DetachAdLabel200Response> detachAdLabel detachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments)
+
+Detach a Google Ads label
+
+Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        try {
+            ApiResponse<DetachAdLabel200Response> response = apiInstance.detachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#detachAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+
+### Return type
+
+ApiResponse<[**DetachAdLabel200Response**](DetachAdLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label detached |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## getAdAccountFinance
@@ -4021,11 +4501,11 @@ ApiResponse<[**ListAdAccounts200Response**](ListAdAccounts200Response.md)>
 
 ## listAdLabels
 
-> ListAdLabels200Response listAdLabels(accountId, adAccountId, limit, after)
+> ListAdLabels200Response listAdLabels(accountId, adAccountId, customerId, limit, after)
 
-Ad labels
+List ad labels
 
-Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
 
 ### Example
 
@@ -4048,12 +4528,13 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        Integer limit = 25; // Integer | Rows per page
-        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>), or the Google Ads customer id (digits only).
+        String customerId = "customerId_example"; // String | Google only. Alias of adAccountId, kept for existing callers.
+        Integer limit = 25; // Integer | Meta only. Rows per page.
+        String after = "after_example"; // String | Meta only. Cursor from paging.after of the previous page.
         try {
-            ListAdLabels200Response result = apiInstance.listAdLabels(accountId, adAccountId, limit, after);
+            ListAdLabels200Response result = apiInstance.listAdLabels(accountId, adAccountId, customerId, limit, after);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAdLabels");
@@ -4071,10 +4552,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
-| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). | [optional] |
+| **customerId** | **String**| Google only. Alias of adAccountId, kept for existing callers. | [optional] |
+| **limit** | **Integer**| Meta only. Rows per page. | [optional] [default to 25] |
+| **after** | **String**| Meta only. Cursor from paging.after of the previous page. | [optional] |
 
 ### Return type
 
@@ -4095,18 +4577,18 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **200** | Ad labels (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query |  -  |
+| **200** | Ad labels |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta and Google Ads accounts |  -  |
 
 ## listAdLabelsWithHttpInfo
 
-> ApiResponse<ListAdLabels200Response> listAdLabels listAdLabelsWithHttpInfo(accountId, adAccountId, limit, after)
+> ApiResponse<ListAdLabels200Response> listAdLabels listAdLabelsWithHttpInfo(accountId, adAccountId, customerId, limit, after)
 
-Ad labels
+List ad labels
 
-Lists the ad account&#39;s organizational labels (Meta&#39;s &#x60;/act_X/adlabels&#x60;), rows returned verbatim (id, name, created/updated time).
+Lists the organizational labels on an ad account.  - **Meta**: pass &#x60;adAccountId&#x3D;act_&lt;n&gt;&#x60;. Rows are Meta&#39;s &#x60;/act_X/adlabels&#x60; returned verbatim   (id, name, created/updated time), paginated with &#x60;limit&#x60; / &#x60;after&#x60;. - **Google Ads**: pass the numeric customer id as &#x60;adAccountId&#x60; (optional when the   connection has a single customer). Returns every non-removed label as a &#x60;GoogleAdLabel&#x60;   in one page (&#x60;paging.after&#x60; is always null). Reads are cached for 10 minutes; when the   shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
 
 ### Example
 
@@ -4130,12 +4612,13 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        Integer limit = 25; // Integer | Rows per page
-        String after = "after_example"; // String | Cursor from paging.after of the previous page.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>), or the Google Ads customer id (digits only).
+        String customerId = "customerId_example"; // String | Google only. Alias of adAccountId, kept for existing callers.
+        Integer limit = 25; // Integer | Meta only. Rows per page.
+        String after = "after_example"; // String | Meta only. Cursor from paging.after of the previous page.
         try {
-            ApiResponse<ListAdLabels200Response> response = apiInstance.listAdLabelsWithHttpInfo(accountId, adAccountId, limit, after);
+            ApiResponse<ListAdLabels200Response> response = apiInstance.listAdLabelsWithHttpInfo(accountId, adAccountId, customerId, limit, after);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4155,10 +4638,11 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **limit** | **Integer**| Rows per page | [optional] [default to 25] |
-| **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id. For Meta, the posting or ads variant used to resolve the token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;), or the Google Ads customer id (digits only). | [optional] |
+| **customerId** | **String**| Google only. Alias of adAccountId, kept for existing callers. | [optional] |
+| **limit** | **Integer**| Meta only. Rows per page. | [optional] [default to 25] |
+| **after** | **String**| Meta only. Cursor from paging.after of the previous page. | [optional] |
 
 ### Return type
 
@@ -4179,10 +4663,10 @@ ApiResponse<[**ListAdLabels200Response**](ListAdLabels200Response.md)>
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **200** | Ad labels (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query |  -  |
+| **200** | Ad labels |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta and Google Ads accounts |  -  |
 
 
 ## listAdNegativeKeywordLists
@@ -6473,6 +6957,172 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 | **501** | Only supported on Google Ads. |  -  |
 
 
+## removeAdLabel
+
+> RemoveAdLabel200Response removeAdLabel(labelId, accountId, adAccountId, customerId)
+
+Remove a Google Ads label
+
+Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            RemoveAdLabel200Response result = apiInstance.removeAdLabel(labelId, accountId, adAccountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+[**RemoveAdLabel200Response**](RemoveAdLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## removeAdLabelWithHttpInfo
+
+> ApiResponse<RemoveAdLabel200Response> removeAdLabel removeAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId)
+
+Remove a Google Ads label
+
+Removes the label. Google drops it from every campaign, ad group, ad and keyword it was attached to.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ApiResponse<RemoveAdLabel200Response> response = apiInstance.removeAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+ApiResponse<[**RemoveAdLabel200Response**](RemoveAdLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## replaceAdNegativeKeywordListKeywords
 
 > ReplaceAdNegativeKeywordListKeywords200Response replaceAdNegativeKeywordListKeywords(listId, replaceAdNegativeKeywordListKeywordsRequest)
@@ -7435,6 +8085,164 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
+## updateAdLabel
+
+> UpdateAdLabel200Response updateAdLabel(labelId, updateAdLabelRequest)
+
+Update a Google Ads label
+
+Changes the name, color or description of a label. Only the fields sent are written.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        UpdateAdLabelRequest updateAdLabelRequest = new UpdateAdLabelRequest(); // UpdateAdLabelRequest | 
+        try {
+            UpdateAdLabel200Response result = apiInstance.updateAdLabel(labelId, updateAdLabelRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **updateAdLabelRequest** | [**UpdateAdLabelRequest**](UpdateAdLabelRequest.md)|  | |
+
+### Return type
+
+[**UpdateAdLabel200Response**](UpdateAdLabel200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## updateAdLabelWithHttpInfo
+
+> ApiResponse<UpdateAdLabel200Response> updateAdLabel updateAdLabelWithHttpInfo(labelId, updateAdLabelRequest)
+
+Update a Google Ads label
+
+Changes the name, color or description of a label. Only the fields sent are written.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String labelId = "labelId_example"; // String | Google label id
+        UpdateAdLabelRequest updateAdLabelRequest = new UpdateAdLabelRequest(); // UpdateAdLabelRequest | 
+        try {
+            ApiResponse<UpdateAdLabel200Response> response = apiInstance.updateAdLabelWithHttpInfo(labelId, updateAdLabelRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAdLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **labelId** | **String**| Google label id | |
+| **updateAdLabelRequest** | [**UpdateAdLabelRequest**](UpdateAdLabelRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAdLabel200Response**](UpdateAdLabel200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Label not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## updateAdNegativeKeywordList
