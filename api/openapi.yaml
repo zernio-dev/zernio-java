@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.112.0
+  version: 1.113.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35616,6 +35616,12 @@ paths:
           - **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset
             group. The other creative fields return 422 for this channel, and `assetGroup` returns
             422 on any other channel.
+          - **Demand Gen**: top-level `demandGen` (see GoogleDemandGenUpdate): creative, channel
+            and audience changes in one atomic Google request. The other creative fields return
+            422 for this channel. `targeting` takes locations, languages, `locationTargetingType`
+            and `devices`; locations and languages are written to the ad's ad group, which
+            Demand Gen requires (campaigns migrated from Discovery that still target on the
+            campaign keep being written there), so they apply to every ad in that ad group.
         - **LinkedIn**: status, budget, targeting (countries or regions, excludedLocations (countries),
           the B2B facets, and audience segments; applied to the LinkedIn Campaign via
           PARTIAL_UPDATE, and REPLACES the campaign's entire targetingCriteria, not a merge),
@@ -35721,6 +35727,22 @@ paths:
                     longHeadline: Schedule social content from your app with Zernio
                     imageUrl: https://example.com/new-landscape.png
                     squareImageUrl: https://example.com/new-square.png
+              googleDemandGen:
+                summary: "Change a Google Demand Gen ad's headlines and square image,\
+                  \ and swap its ad group audience."
+                value:
+                  demandGen:
+                    headlines:
+                    - Schedule posts
+                    - One social API
+                    images:
+                      square:
+                      - https://example.com/new-square.png
+                    audience:
+                      userInterests:
+                      - "92948"
+                      genders:
+                      - female
               metaCreativeFeatures:
                 summary: Opt a Meta creative out of an Advantage+ enhancement.
                 value:
@@ -42389,8 +42411,8 @@ paths:
         roasAverageFloor for target ROAS, LOWEST_COST_WITH_BID_CAP plus bidAmount for target
         CPC. The created ad carries the native `platformCampaignId`, `platformAdSetId` (ad
         group) and `platformAdId`. Activate with PUT /v1/ads/campaigns/{campaignId}/status;
-        budget, bidding and name are edited with the regular campaign endpoints. Creative and
-        targeting edits on an existing Demand Gen ad return 501 for now.
+        budget, bidding and name are edited with the regular campaign endpoints; creative,
+        channels, audience and ad group targeting with PUT /v1/ads/{adId} (`demandGen`, `targeting`).
 
         Other mutually-exclusive request shapes are selected by the body:
 
@@ -68017,7 +68039,7 @@ components:
           minItems: 1
           type: array
         audience:
-          $ref: "#/components/schemas/GoogleDemandGenInput_audience"
+          $ref: "#/components/schemas/GoogleDemandGenAudience"
         audienceId:
           description: Attach an existing Google Audience by numeric id instead of
             audience.
@@ -68028,6 +68050,129 @@ components:
       - finalUrl
       - headlines
       - images
+    GoogleDemandGenAudience:
+      additionalProperties: false
+      description: "Created as a Google Audience and attached to the ad group. Send\
+        \ at least one dimension. Ids are numeric Google ids (user lists, interest\
+        \ categories, custom audiences) from the same customer."
+      minProperties: 1
+      properties:
+        userLists:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        userInterests:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        customAudiences:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        ageRanges:
+          items:
+            $ref: "#/components/schemas/GoogleDemandGenAudience_ageRanges_inner"
+          maxItems: 6
+          minItems: 1
+          type: array
+        genders:
+          items:
+            enum:
+            - male
+            - female
+            - undetermined
+            type: string
+          maxItems: 3
+          minItems: 1
+          type: array
+    GoogleDemandGenUpdate:
+      additionalProperties: {}
+      description: |
+        Partial edit of a Google Demand Gen ad, sent in one atomic Google request. Every field
+        you send replaces that whole field; fields you omit are kept. Which creative fields
+        apply depends on the ad (read from Google): image ads take headlines, descriptions,
+        businessName, callToAction and images (landscape, square, portrait, logo); video ads
+        take headlines, longHeadlines, descriptions, businessName, youtubeVideoIds and exactly
+        one images.logo; carousel ads take exactly one headline, one description, one logo,
+        businessName and callToAction (their cards cannot be edited: create a new carousel ad).
+        A field the ad does not take returns 422. New images are uploaded as new Google assets;
+        the previous ones stay in the account's asset library.
+
+        `channels`, `audience` and `audienceId` change the ad's ad group, so they apply to every
+        ad in it. `audience` builds a new Google Audience and attaches it in place of the current
+        one (the previous audience is detached, not deleted); `audienceId` attaches an existing
+        one. Ad groups of campaigns migrated from Discovery use ungrouped audience segments,
+        and Google refuses an Audience on them.
+      minProperties: 1
+      properties:
+        finalUrl:
+          format: uri
+          type: string
+        businessName:
+          maxLength: 25
+          type: string
+        headlines:
+          items:
+            maxLength: 40
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        longHeadlines:
+          description: Video ads only.
+          items:
+            maxLength: 90
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        descriptions:
+          items:
+            maxLength: 90
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        callToAction:
+          description: Image and carousel ads only.
+          maxLength: 25
+          type: string
+        images:
+          $ref: "#/components/schemas/GoogleDemandGenUpdate_images"
+        youtubeVideoIds:
+          description: Video ads only.
+          items:
+            pattern: "^[A-Za-z0-9_-]{11}$"
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        channels:
+          description: Replaces the ad group's channel controls; only the listed channels
+            serve.
+          items:
+            enum:
+            - youtube_in_stream
+            - youtube_in_feed
+            - youtube_shorts
+            - discover
+            - gmail
+            - display
+            type: string
+          minItems: 1
+          type: array
+        audience:
+          $ref: "#/components/schemas/GoogleDemandGenAudience"
+        audienceId:
+          description: Attach an existing Google Audience by numeric id instead of
+            audience.
+          type: string
     GooglePmaxAssetGroupInput:
       additionalProperties: {}
       description: Google Performance Max creative assets. At least one description
@@ -108936,6 +109081,11 @@ components:
           - $ref: "#/components/schemas/GooglePmaxAssetGroupUpdate"
           description: Google Performance Max only. Replaces whole asset roles on
             the ad's asset group. Returns 422 on any other platform or channel.
+        demandGen:
+          allOf:
+          - $ref: "#/components/schemas/GoogleDemandGenUpdate"
+          description: Google Demand Gen only. Returns 422 on any other platform or
+            channel.
         status:
           enum:
           - active
@@ -130370,7 +130520,7 @@ components:
       required:
       - headline
       - images
-    GoogleDemandGenInput_audience_ageRanges_inner:
+    GoogleDemandGenAudience_ageRanges_inner:
       properties:
         min:
           enum:
@@ -130392,44 +130542,36 @@ components:
           type: integer
       required:
       - min
-    GoogleDemandGenInput_audience:
+    GoogleDemandGenUpdate_images:
       additionalProperties: false
-      description: "Created as a Google Audience and attached to the ad group. Send\
-        \ at least one dimension. Ids are numeric Google ids (user lists, interest\
-        \ categories, custom audiences) from the same customer."
+      minProperties: 1
       properties:
-        userLists:
+        landscape:
           items:
+            format: uri
             type: string
           maxItems: 20
           minItems: 1
           type: array
-        userInterests:
+        square:
           items:
+            format: uri
             type: string
           maxItems: 20
           minItems: 1
           type: array
-        customAudiences:
+        portrait:
           items:
+            format: uri
             type: string
           maxItems: 20
           minItems: 1
           type: array
-        ageRanges:
+        logo:
           items:
-            $ref: "#/components/schemas/GoogleDemandGenInput_audience_ageRanges_inner"
-          maxItems: 6
-          minItems: 1
-          type: array
-        genders:
-          items:
-            enum:
-            - male
-            - female
-            - undetermined
+            format: uri
             type: string
-          maxItems: 3
+          maxItems: 5
           minItems: 1
           type: array
     GooglePmaxAssetGroupInput_images:

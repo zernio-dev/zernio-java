@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.112.0
+- API version: 1.113.0
 
-- Build date: 2026-09-27T20:38:29.412150146Z[Etc/UTC]
+- Build date: 2026-09-27T20:51:33.868537432Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.112.0</version>
+  <version>1.113.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.112.0"
+compile "dev.zernio:zernio-sdk:1.113.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.112.0.jar`
+- `target/zernio-sdk-1.113.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2757,12 +2757,14 @@ Class | Method | HTTP request | Description
  - [GoogleCustomConversionGoal](docs/GoogleCustomConversionGoal.md)
  - [GoogleCustomerConversionGoal](docs/GoogleCustomerConversionGoal.md)
  - [GoogleCustomerConversionGoalConversionActionsInner](docs/GoogleCustomerConversionGoalConversionActionsInner.md)
+ - [GoogleDemandGenAudience](docs/GoogleDemandGenAudience.md)
+ - [GoogleDemandGenAudienceAgeRangesInner](docs/GoogleDemandGenAudienceAgeRangesInner.md)
  - [GoogleDemandGenInput](docs/GoogleDemandGenInput.md)
- - [GoogleDemandGenInputAudience](docs/GoogleDemandGenInputAudience.md)
- - [GoogleDemandGenInputAudienceAgeRangesInner](docs/GoogleDemandGenInputAudienceAgeRangesInner.md)
  - [GoogleDemandGenInputCarouselCardsInner](docs/GoogleDemandGenInputCarouselCardsInner.md)
  - [GoogleDemandGenInputCarouselCardsInnerImages](docs/GoogleDemandGenInputCarouselCardsInnerImages.md)
  - [GoogleDemandGenInputImages](docs/GoogleDemandGenInputImages.md)
+ - [GoogleDemandGenUpdate](docs/GoogleDemandGenUpdate.md)
+ - [GoogleDemandGenUpdateImages](docs/GoogleDemandGenUpdateImages.md)
  - [GoogleListingGroupDimension](docs/GoogleListingGroupDimension.md)
  - [GoogleListingGroupDimensionProductBrand](docs/GoogleListingGroupDimensionProductBrand.md)
  - [GoogleListingGroupDimensionProductCategory](docs/GoogleListingGroupDimensionProductCategory.md)
