@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.106.0
+  version: 1.107.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41511,6 +41511,392 @@ paths:
       x-resource-group: ads
       x-accepts:
       - application/json
+    post:
+      description: "Add an asset group to an existing Performance Max campaign. The\
+        \ group, any new assets, their links and an optional listing-group tree are\
+        \ created in one atomic request, so Google checks the asset minimums (for\
+        \ non-retail campaigns) against the whole set. Created PAUSED unless status\
+        \ is ENABLED. validateOnly: true runs Google's validation without creating\
+        \ anything."
+      operationId: createGoogleAssetGroup
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              name: Running shoes
+              finalUrls:
+              - https://example.com/shoes
+              assets:
+              - fieldType: HEADLINE
+                text: Shoes for every run
+              - fieldType: LOGO
+                asset: customers/9122445560/assets/352426364803
+            schema:
+              $ref: "#/components/schemas/createGoogleAssetGroup_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleAssetGroup_201_response"
+          description: Asset group created.
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createGoogleAssetGroup_200_response"
+          description: validateOnly request accepted by Google. Nothing was created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Create a Performance Max asset group
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}:
+    delete:
+      description: "Removes the asset group on Google (status REMOVED, not reversible).\
+        \ Pass validateOnly=true to validate without removing."
+      operationId: removeGoogleAssetGroup
+      parameters:
+      - explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: assetGroupId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: validateOnly
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeGoogleAssetGroup_200_response"
+          description: Removed (or validated).
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Remove a Performance Max asset group
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    get:
+      description: "One asset group with its linked assets, ad strength, primary status\
+        \ and listing-group tree. Uses a 10-minute cache, served stale when Google\
+        \ quota is exhausted; any write below clears it."
+      operationId: getGoogleAssetGroup
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Google asset group id.
+        explode: false
+        in: path
+        name: assetGroupId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getGoogleAssetGroup_200_response"
+          description: The asset group.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Get a Performance Max asset group
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    patch:
+      description: "Change the name, status (ENABLED or PAUSED), final URLs or display\
+        \ paths. Only the fields sent are written; null on path1 or path2 clears it.\
+        \ Change assets with the /assets endpoint and product targeting with /listing-group-filters.\
+        \ validateOnly: true validates without writing."
+      operationId: updateGoogleAssetGroup
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Google asset group id.
+        explode: false
+        in: path
+        name: assetGroupId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              status: PAUSED
+              finalUrls:
+              - https://example.com/sale
+            schema:
+              $ref: "#/components/schemas/updateGoogleAssetGroup_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateGoogleAssetGroup_200_response"
+          description: Updated (or validated).
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Update a Performance Max asset group
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets:
+    post:
+      description: "Link existing assets or new content to the asset group, and unlink\
+        \ assets, in one atomic request. Links are applied before unlinks, so swapping\
+        \ the last asset of a role does not trip Google's per-role minimum. Unlinking\
+        \ removes the link only; the asset stays in the account library. validateOnly:\
+        \ true validates without writing."
+      operationId: editGoogleAssetGroupAssets
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Google asset group id.
+        explode: false
+        in: path
+        name: assetGroupId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              link:
+              - fieldType: HEADLINE
+                text: Free shipping today
+              unlink:
+              - fieldType: HEADLINE
+                asset: customers/9122445560/assets/419573236135
+            schema:
+              $ref: "#/components/schemas/editGoogleAssetGroupAssets_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/editGoogleAssetGroupAssets_200_response"
+          description: Links applied (or validated).
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Link or unlink asset group assets
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters:
+    put:
+      description: "Replace the product (listing-group) tree of a Performance Max\
+        \ retail asset group. The current tree is removed and the new one created\
+        \ in one atomic request. Read the current tree with GET on the asset group.\
+        \ Requires a campaign linked to Merchant Center; other campaigns return 400\
+        \ LISTING_SOURCE_NOT_ALLOWED from Google. validateOnly: true validates without\
+        \ writing."
+      operationId: replaceGoogleListingGroupFilters
+      parameters:
+      - description: Google Ads campaign id.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Google asset group id.
+        explode: false
+        in: path
+        name: assetGroupId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/replaceGoogleListingGroupFilters_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/replaceGoogleListingGroupFilters_200_response"
+          description: Tree replaced (or validated).
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: Google Ads connection needs reconnecting.
+        "429":
+          description: Google quota or the Zernio Google operations burst limit is
+            exhausted.
+        "501":
+          description: Campaign is not on Google Ads.
+      security:
+      - bearerAuth: []
+      summary: Replace an asset group's listing-group tree
+      tags:
+      - Ad Campaigns
+      x-platforms:
+      - google
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/create:
     post:
       description: |
@@ -66584,6 +66970,10 @@ components:
           type: array
     GooglePmaxAssetGroup:
       example:
+        campaignId: campaignId
+        resourceName: resourceName
+        adStrength: adStrength
+        primaryStatus: primaryStatus
         assets:
         - youtubeVideoId: youtubeVideoId
           imageUrl: https://openapi-generator.tech
@@ -66597,17 +66987,29 @@ components:
           text: text
           fieldType: fieldType
           status: status
+        path1: path1
+        path2: path2
         finalUrls:
         - https://openapi-generator.tech
         - https://openapi-generator.tech
         name: name
-        resourceName: resourceName
+        primaryStatusReasons:
+        - primaryStatusReasons
+        - primaryStatusReasons
         id: id
         status: status
+        finalMobileUrls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
       properties:
         id:
+          description: Stable Google asset group id. Use it in the asset-group endpoints
+            below.
           type: string
         resourceName:
+          description: "customers/{customerId}/assetGroups/{assetGroupId}"
+          type: string
+        campaignId:
           type: string
         name:
           type: string
@@ -66620,17 +67022,236 @@ components:
             format: uri
             type: string
           type: array
+        finalMobileUrls:
+          items:
+            format: uri
+            type: string
+          type: array
+        path1:
+          nullable: true
+          type: string
+        path2:
+          nullable: true
+          type: string
+        adStrength:
+          description: "Google ad strength, such as POOR, AVERAGE, GOOD or EXCELLENT."
+          nullable: true
+          type: string
+        primaryStatus:
+          description: "Why the group is or is not serving, such as ELIGIBLE, PAUSED\
+            \ or NOT_ELIGIBLE."
+          nullable: true
+          type: string
+        primaryStatusReasons:
+          items:
+            type: string
+          type: array
         assets:
           items:
             $ref: "#/components/schemas/GooglePmaxAssetGroup_assets_inner"
           type: array
       required:
+      - adStrength
       - assets
+      - campaignId
+      - finalMobileUrls
       - finalUrls
       - id
       - name
+      - path1
+      - path2
+      - primaryStatus
+      - primaryStatusReasons
       - resourceName
       - status
+    GooglePmaxAssetGroupDetail:
+      allOf:
+      - $ref: "#/components/schemas/GooglePmaxAssetGroup"
+      - properties:
+          listingGroupFilters:
+            description: The asset group's listing-group tree as flat nodes (retail
+              campaigns). Empty when the group has none.
+            items:
+              $ref: "#/components/schemas/GoogleListingGroupFilterNode"
+            type: array
+        required:
+        - listingGroupFilters
+      example:
+        campaignId: campaignId
+        listingGroupFilters:
+        - parentResourceName: parentResourceName
+          resourceName: resourceName
+          id: id
+          type: SUBDIVISION
+          dimension: "{}"
+          listingSource: listingSource
+        - parentResourceName: parentResourceName
+          resourceName: resourceName
+          id: id
+          type: SUBDIVISION
+          dimension: "{}"
+          listingSource: listingSource
+        resourceName: resourceName
+        adStrength: adStrength
+        primaryStatus: primaryStatus
+        assets:
+        - youtubeVideoId: youtubeVideoId
+          imageUrl: https://openapi-generator.tech
+          resourceName: resourceName
+          text: text
+          fieldType: fieldType
+          status: status
+        - youtubeVideoId: youtubeVideoId
+          imageUrl: https://openapi-generator.tech
+          resourceName: resourceName
+          text: text
+          fieldType: fieldType
+          status: status
+        path1: path1
+        path2: path2
+        finalUrls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+        name: name
+        primaryStatusReasons:
+        - primaryStatusReasons
+        - primaryStatusReasons
+        id: id
+        status: status
+        finalMobileUrls:
+        - https://openapi-generator.tech
+        - https://openapi-generator.tech
+    GoogleListingGroupFilterNode:
+      example:
+        parentResourceName: parentResourceName
+        resourceName: resourceName
+        id: id
+        type: SUBDIVISION
+        dimension: "{}"
+        listingSource: listingSource
+      properties:
+        id:
+          type: string
+        resourceName:
+          description: "customers/{customerId}/assetGroupListingGroupFilters/{assetGroupId}~{filterId}"
+          type: string
+        parentResourceName:
+          description: Null for the root node.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - SUBDIVISION
+          - UNIT_INCLUDED
+          - UNIT_EXCLUDED
+          type: string
+        listingSource:
+          type: string
+        dimension:
+          description: "Google's case value for the node, such as { productBrand:\
+            \ { value: 'Acme' } }. A dimension with no value is the everything-else\
+            \ node. Null for the root."
+          nullable: true
+          type: object
+      required:
+      - dimension
+      - id
+      - listingSource
+      - parentResourceName
+      - resourceName
+      - type
+    GoogleAssetGroupAssetLink:
+      description: "Link one asset to the asset group. Send exactly one of asset (an\
+        \ existing asset), text, imageUrl or youtubeVideoId (new content, created\
+        \ in the same request)."
+      properties:
+        fieldType:
+          description: "Google AssetFieldType, such as HEADLINE, LONG_HEADLINE, DESCRIPTION,\
+            \ BUSINESS_NAME, MARKETING_IMAGE, SQUARE_MARKETING_IMAGE, PORTRAIT_MARKETING_IMAGE,\
+            \ LOGO, LANDSCAPE_LOGO or YOUTUBE_VIDEO."
+          type: string
+        asset:
+          description: "Existing asset id or resource name customers/{customerId}/assets/{assetId}.\
+            \ Must belong to the campaign's ad account."
+          type: string
+        text:
+          description: "Text assets link as HEADLINE, LONG_HEADLINE, DESCRIPTION or\
+            \ BUSINESS_NAME."
+          maxLength: 90
+          type: string
+        imageUrl:
+          description: Public http(s) image. Links as an image role or LOGO / LANDSCAPE_LOGO.
+          format: uri
+          type: string
+        youtubeVideoId:
+          description: Links as YOUTUBE_VIDEO.
+          pattern: "^[A-Za-z0-9_-]{11}$"
+          type: string
+      required:
+      - fieldType
+    GoogleAssetGroupAssetUnlink:
+      properties:
+        fieldType:
+          type: string
+        asset:
+          description: "Asset id or resource name, as returned in the asset group's\
+            \ assets."
+          type: string
+      required:
+      - asset
+      - fieldType
+    GoogleListingGroupDimension:
+      description: "Exactly one key. Omit the value (for example { productBrand: {}\
+        \ }) for the everything-else node of that level."
+      properties:
+        productBrand:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productBrand"
+        productCategory:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productCategory"
+        productType:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productType"
+        productItemId:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productBrand"
+        productCondition:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productCondition"
+        productChannel:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productChannel"
+        productCustomAttribute:
+          $ref: "#/components/schemas/GoogleListingGroupDimension_productCustomAttribute"
+    GoogleListingGroupNode:
+      properties:
+        dimension:
+          $ref: "#/components/schemas/GoogleListingGroupDimension"
+        excluded:
+          description: Leaf only. true excludes these products.
+          type: boolean
+        children:
+          description: Makes the node a subdivision. Children share one dimension
+            (and level or index) and include exactly one everything-else node.
+          items:
+            $ref: "#/components/schemas/GoogleListingGroupNode"
+          minItems: 2
+          type: array
+      required:
+      - dimension
+    GoogleListingGroupTree:
+      description: The root of a Performance Max retail listing-group tree (listing
+        source SHOPPING). No children targets all products. Requires a campaign linked
+        to Merchant Center.
+      example:
+        children:
+        - dimension:
+            productBrand:
+              value: Acme
+        - dimension:
+            productBrand: {}
+          excluded: true
+      properties:
+        children:
+          items:
+            $ref: "#/components/schemas/GoogleListingGroupNode"
+          minItems: 2
+          type: array
     GoogleRsaHeadline:
       example:
         text: text
@@ -112065,7 +112686,11 @@ components:
       example:
         stale: true
         assetGroups:
-        - assets:
+        - campaignId: campaignId
+          resourceName: resourceName
+          adStrength: adStrength
+          primaryStatus: primaryStatus
+          assets:
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
@@ -112078,14 +112703,25 @@ components:
             text: text
             fieldType: fieldType
             status: status
+          path1: path1
+          path2: path2
           finalUrls:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
           name: name
-          resourceName: resourceName
+          primaryStatusReasons:
+          - primaryStatusReasons
+          - primaryStatusReasons
           id: id
           status: status
-        - assets:
+          finalMobileUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        - campaignId: campaignId
+          resourceName: resourceName
+          adStrength: adStrength
+          primaryStatus: primaryStatus
+          assets:
           - youtubeVideoId: youtubeVideoId
             imageUrl: https://openapi-generator.tech
             resourceName: resourceName
@@ -112098,13 +112734,20 @@ components:
             text: text
             fieldType: fieldType
             status: status
+          path1: path1
+          path2: path2
           finalUrls:
           - https://openapi-generator.tech
           - https://openapi-generator.tech
           name: name
-          resourceName: resourceName
+          primaryStatusReasons:
+          - primaryStatusReasons
+          - primaryStatusReasons
           id: id
           status: status
+          finalMobileUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
         cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         assetGroups:
@@ -112121,6 +112764,271 @@ components:
       - assetGroups
       - cachedAt
       - stale
+    createGoogleAssetGroup_request:
+      properties:
+        name:
+          description: Unique within the campaign.
+          maxLength: 128
+          minLength: 1
+          type: string
+        finalUrls:
+          items:
+            format: uri
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        finalMobileUrls:
+          items:
+            format: uri
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        path1:
+          maxLength: 15
+          type: string
+        path2:
+          description: Requires path1.
+          maxLength: 15
+          type: string
+        status:
+          default: PAUSED
+          enum:
+          - ENABLED
+          - PAUSED
+          type: string
+        assets:
+          items:
+            $ref: "#/components/schemas/GoogleAssetGroupAssetLink"
+          maxItems: 100
+          type: array
+        listingGroupFilter:
+          $ref: "#/components/schemas/GoogleListingGroupTree"
+        validateOnly:
+          default: false
+          type: boolean
+      required:
+      - finalUrls
+      - name
+    createGoogleAssetGroup_201_response_assetGroup:
+      example:
+        campaignId: campaignId
+        resourceName: resourceName
+        id: id
+      properties:
+        id:
+          type: string
+        resourceName:
+          type: string
+        campaignId:
+          type: string
+      required:
+      - campaignId
+      - id
+      - resourceName
+    createGoogleAssetGroup_201_response:
+      example:
+        assetGroup:
+          campaignId: campaignId
+          resourceName: resourceName
+          id: id
+      properties:
+        assetGroup:
+          $ref: "#/components/schemas/createGoogleAssetGroup_201_response_assetGroup"
+      required:
+      - assetGroup
+    createGoogleAssetGroup_200_response:
+      example:
+        validateOnly: true
+        message: message
+      properties:
+        validateOnly:
+          type: boolean
+        message:
+          type: string
+    getGoogleAssetGroup_200_response:
+      example:
+        assetGroup:
+          campaignId: campaignId
+          listingGroupFilters:
+          - parentResourceName: parentResourceName
+            resourceName: resourceName
+            id: id
+            type: SUBDIVISION
+            dimension: "{}"
+            listingSource: listingSource
+          - parentResourceName: parentResourceName
+            resourceName: resourceName
+            id: id
+            type: SUBDIVISION
+            dimension: "{}"
+            listingSource: listingSource
+          resourceName: resourceName
+          adStrength: adStrength
+          primaryStatus: primaryStatus
+          assets:
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          - youtubeVideoId: youtubeVideoId
+            imageUrl: https://openapi-generator.tech
+            resourceName: resourceName
+            text: text
+            fieldType: fieldType
+            status: status
+          path1: path1
+          path2: path2
+          finalUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+          name: name
+          primaryStatusReasons:
+          - primaryStatusReasons
+          - primaryStatusReasons
+          id: id
+          status: status
+          finalMobileUrls:
+          - https://openapi-generator.tech
+          - https://openapi-generator.tech
+        stale: true
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        assetGroup:
+          $ref: "#/components/schemas/GooglePmaxAssetGroupDetail"
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          type: boolean
+      required:
+      - assetGroup
+      - cachedAt
+      - stale
+    removeGoogleAssetGroup_200_response:
+      example:
+        validateOnly: true
+        removed: true
+        assetGroupId: assetGroupId
+      properties:
+        assetGroupId:
+          type: string
+        removed:
+          type: boolean
+        validateOnly:
+          type: boolean
+    updateGoogleAssetGroup_request:
+      properties:
+        name:
+          maxLength: 128
+          minLength: 1
+          type: string
+        status:
+          enum:
+          - ENABLED
+          - PAUSED
+          type: string
+        finalUrls:
+          items:
+            format: uri
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        finalMobileUrls:
+          items:
+            format: uri
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        path1:
+          maxLength: 15
+          nullable: true
+          type: string
+        path2:
+          maxLength: 15
+          nullable: true
+          type: string
+        validateOnly:
+          default: false
+          type: boolean
+    updateGoogleAssetGroup_200_response:
+      example:
+        validateOnly: true
+        assetGroupId: assetGroupId
+        updated:
+        - updated
+        - updated
+      properties:
+        assetGroupId:
+          type: string
+        updated:
+          items:
+            type: string
+          type: array
+        validateOnly:
+          type: boolean
+    editGoogleAssetGroupAssets_request:
+      properties:
+        link:
+          items:
+            $ref: "#/components/schemas/GoogleAssetGroupAssetLink"
+          maxItems: 100
+          type: array
+        unlink:
+          items:
+            $ref: "#/components/schemas/GoogleAssetGroupAssetUnlink"
+          maxItems: 100
+          type: array
+        validateOnly:
+          default: false
+          type: boolean
+    editGoogleAssetGroupAssets_200_response:
+      example:
+        validateOnly: true
+        assetGroupId: assetGroupId
+        linked: 0
+        unlinked: 6
+      properties:
+        assetGroupId:
+          type: string
+        linked:
+          type: integer
+        unlinked:
+          type: integer
+        validateOnly:
+          type: boolean
+    replaceGoogleListingGroupFilters_request:
+      properties:
+        tree:
+          $ref: "#/components/schemas/GoogleListingGroupTree"
+        validateOnly:
+          default: false
+          type: boolean
+      required:
+      - tree
+    replaceGoogleListingGroupFilters_200_response:
+      example:
+        validateOnly: true
+        removed: 0
+        created: 6
+        assetGroupId: assetGroupId
+      properties:
+        assetGroupId:
+          type: string
+        removed:
+          description: Nodes removed from the previous tree.
+          type: integer
+        created:
+          description: Nodes in the new tree.
+          type: integer
+        validateOnly:
+          type: boolean
     createStandaloneAd_request_images:
       description: "Google Display (Responsive Display Ads) only. Google RDA requires\
         \ both a landscape (1.91:1) and a square (1:1) marketing image; sending only\
@@ -127243,6 +128151,68 @@ components:
       - fieldType
       - resourceName
       - status
+    GoogleListingGroupDimension_productBrand:
+      properties:
+        value:
+          type: string
+    GoogleListingGroupDimension_productCategory:
+      properties:
+        categoryId:
+          description: Google product category id.
+          type: string
+        level:
+          enum:
+          - LEVEL1
+          - LEVEL2
+          - LEVEL3
+          - LEVEL4
+          - LEVEL5
+          type: string
+      required:
+      - level
+    GoogleListingGroupDimension_productType:
+      properties:
+        value:
+          type: string
+        level:
+          enum:
+          - LEVEL1
+          - LEVEL2
+          - LEVEL3
+          - LEVEL4
+          - LEVEL5
+          type: string
+      required:
+      - level
+    GoogleListingGroupDimension_productCondition:
+      properties:
+        condition:
+          enum:
+          - NEW
+          - REFURBISHED
+          - USED
+          type: string
+    GoogleListingGroupDimension_productChannel:
+      properties:
+        channel:
+          enum:
+          - ONLINE
+          - LOCAL
+          type: string
+    GoogleListingGroupDimension_productCustomAttribute:
+      properties:
+        value:
+          type: string
+        index:
+          enum:
+          - INDEX0
+          - INDEX1
+          - INDEX2
+          - INDEX3
+          - INDEX4
+          type: string
+      required:
+      - index
     Ad_budget:
       example:
         amount: 0.8008281904610115

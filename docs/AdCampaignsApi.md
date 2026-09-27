@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createAdSetWithHttpInfo**](AdCampaignsApi.md#createAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets | Create a standalone ad group |
 | [**createBidStrategy**](AdCampaignsApi.md#createBidStrategy) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy |
 | [**createBidStrategyWithHttpInfo**](AdCampaignsApi.md#createBidStrategyWithHttpInfo) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy |
+| [**createGoogleAssetGroup**](AdCampaignsApi.md#createGoogleAssetGroup) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group |
+| [**createGoogleAssetGroupWithHttpInfo**](AdCampaignsApi.md#createGoogleAssetGroupWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group |
 | [**createStandaloneAd**](AdCampaignsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad |
 | [**createStandaloneAdWithHttpInfo**](AdCampaignsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad |
 | [**deleteAd**](AdCampaignsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad |
@@ -34,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**duplicateAdCampaignWithHttpInfo**](AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
 | [**duplicateAdSet**](AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
 | [**duplicateAdSetWithHttpInfo**](AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set |
+| [**editGoogleAssetGroupAssets**](AdCampaignsApi.md#editGoogleAssetGroupAssets) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets |
+| [**editGoogleAssetGroupAssetsWithHttpInfo**](AdCampaignsApi.md#editGoogleAssetGroupAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets |
 | [**getAd**](AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdWithHttpInfo**](AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdCampaignDetails**](AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
@@ -50,6 +54,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCampaignBiddingWithHttpInfo**](AdCampaignsApi.md#getCampaignBiddingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding |
 | [**getCampaignTargeting**](AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
 | [**getCampaignTargetingWithHttpInfo**](AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting |
+| [**getGoogleAssetGroup**](AdCampaignsApi.md#getGoogleAssetGroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
+| [**getGoogleAssetGroupWithHttpInfo**](AdCampaignsApi.md#getGoogleAssetGroupWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdGroupAssets**](AdCampaignsApi.md#listAdGroupAssets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets |
@@ -76,10 +82,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeAdKeywordWithHttpInfo**](AdCampaignsApi.md#removeAdKeywordWithHttpInfo) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
 | [**removeCampaignAssets**](AdCampaignsApi.md#removeCampaignAssets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
 | [**removeCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#removeCampaignAssetsWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets |
+| [**removeGoogleAssetGroup**](AdCampaignsApi.md#removeGoogleAssetGroup) | **DELETE** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Remove a Performance Max asset group |
+| [**removeGoogleAssetGroupWithHttpInfo**](AdCampaignsApi.md#removeGoogleAssetGroupWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Remove a Performance Max asset group |
 | [**replaceCampaignNegativeKeywordLists**](AdCampaignsApi.md#replaceCampaignNegativeKeywordLists) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists |
 | [**replaceCampaignNegativeKeywordListsWithHttpInfo**](AdCampaignsApi.md#replaceCampaignNegativeKeywordListsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists |
 | [**replaceCampaignNegativeKeywords**](AdCampaignsApi.md#replaceCampaignNegativeKeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
 | [**replaceCampaignNegativeKeywordsWithHttpInfo**](AdCampaignsApi.md#replaceCampaignNegativeKeywordsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords |
+| [**replaceGoogleListingGroupFilters**](AdCampaignsApi.md#replaceGoogleListingGroupFilters) | **PUT** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters | Replace an asset group&#39;s listing-group tree |
+| [**replaceGoogleListingGroupFiltersWithHttpInfo**](AdCampaignsApi.md#replaceGoogleListingGroupFiltersWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters | Replace an asset group&#39;s listing-group tree |
 | [**updateAd**](AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdWithHttpInfo**](AdCampaignsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad |
 | [**updateAdCampaign**](AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign |
@@ -104,6 +114,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateCampaignAssetsWithHttpInfo**](AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets |
 | [**updateCampaignTargeting**](AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
 | [**updateCampaignTargetingWithHttpInfo**](AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting |
+| [**updateGoogleAssetGroup**](AdCampaignsApi.md#updateGoogleAssetGroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group |
+| [**updateGoogleAssetGroupWithHttpInfo**](AdCampaignsApi.md#updateGoogleAssetGroupWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group |
 
 
 
@@ -1375,6 +1387,168 @@ ApiResponse<[**CreateBidStrategy201Response**](CreateBidStrategy201Response.md)>
 | **501** | Only available on Google Ads accounts |  -  |
 
 
+## createGoogleAssetGroup
+
+> CreateGoogleAssetGroup200Response createGoogleAssetGroup(campaignId, createGoogleAssetGroupRequest)
+
+Create a Performance Max asset group
+
+Add an asset group to an existing Performance Max campaign. The group, any new assets, their links and an optional listing-group tree are created in one atomic request, so Google checks the asset minimums (for non-retail campaigns) against the whole set. Created PAUSED unless status is ENABLED. validateOnly: true runs Google&#39;s validation without creating anything.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        CreateGoogleAssetGroupRequest createGoogleAssetGroupRequest = new CreateGoogleAssetGroupRequest(); // CreateGoogleAssetGroupRequest | 
+        try {
+            CreateGoogleAssetGroup200Response result = apiInstance.createGoogleAssetGroup(campaignId, createGoogleAssetGroupRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#createGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **createGoogleAssetGroupRequest** | [**CreateGoogleAssetGroupRequest**](CreateGoogleAssetGroupRequest.md)|  | |
+
+### Return type
+
+[**CreateGoogleAssetGroup200Response**](CreateGoogleAssetGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Asset group created. |  -  |
+| **200** | validateOnly request accepted by Google. Nothing was created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## createGoogleAssetGroupWithHttpInfo
+
+> ApiResponse<CreateGoogleAssetGroup200Response> createGoogleAssetGroup createGoogleAssetGroupWithHttpInfo(campaignId, createGoogleAssetGroupRequest)
+
+Create a Performance Max asset group
+
+Add an asset group to an existing Performance Max campaign. The group, any new assets, their links and an optional listing-group tree are created in one atomic request, so Google checks the asset minimums (for non-retail campaigns) against the whole set. Created PAUSED unless status is ENABLED. validateOnly: true runs Google&#39;s validation without creating anything.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        CreateGoogleAssetGroupRequest createGoogleAssetGroupRequest = new CreateGoogleAssetGroupRequest(); // CreateGoogleAssetGroupRequest | 
+        try {
+            ApiResponse<CreateGoogleAssetGroup200Response> response = apiInstance.createGoogleAssetGroupWithHttpInfo(campaignId, createGoogleAssetGroupRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#createGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **createGoogleAssetGroupRequest** | [**CreateGoogleAssetGroupRequest**](CreateGoogleAssetGroupRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateGoogleAssetGroup200Response**](CreateGoogleAssetGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Asset group created. |  -  |
+| **200** | validateOnly request accepted by Google. Nothing was created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+
 ## createStandaloneAd
 
 > CreateStandaloneAd200Response createStandaloneAd(createStandaloneAdRequest, idempotencyKey)
@@ -2485,6 +2659,170 @@ ApiResponse<[**DuplicateAdSet200Response**](DuplicateAdSet200Response.md)>
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## editGoogleAssetGroupAssets
+
+> EditGoogleAssetGroupAssets200Response editGoogleAssetGroupAssets(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest)
+
+Link or unlink asset group assets
+
+Link existing assets or new content to the asset group, and unlink assets, in one atomic request. Links are applied before unlinks, so swapping the last asset of a role does not trip Google&#39;s per-role minimum. Unlinking removes the link only; the asset stays in the account library. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        EditGoogleAssetGroupAssetsRequest editGoogleAssetGroupAssetsRequest = new EditGoogleAssetGroupAssetsRequest(); // EditGoogleAssetGroupAssetsRequest | 
+        try {
+            EditGoogleAssetGroupAssets200Response result = apiInstance.editGoogleAssetGroupAssets(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#editGoogleAssetGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **editGoogleAssetGroupAssetsRequest** | [**EditGoogleAssetGroupAssetsRequest**](EditGoogleAssetGroupAssetsRequest.md)|  | |
+
+### Return type
+
+[**EditGoogleAssetGroupAssets200Response**](EditGoogleAssetGroupAssets200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Links applied (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## editGoogleAssetGroupAssetsWithHttpInfo
+
+> ApiResponse<EditGoogleAssetGroupAssets200Response> editGoogleAssetGroupAssets editGoogleAssetGroupAssetsWithHttpInfo(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest)
+
+Link or unlink asset group assets
+
+Link existing assets or new content to the asset group, and unlink assets, in one atomic request. Links are applied before unlinks, so swapping the last asset of a role does not trip Google&#39;s per-role minimum. Unlinking removes the link only; the asset stays in the account library. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        EditGoogleAssetGroupAssetsRequest editGoogleAssetGroupAssetsRequest = new EditGoogleAssetGroupAssetsRequest(); // EditGoogleAssetGroupAssetsRequest | 
+        try {
+            ApiResponse<EditGoogleAssetGroupAssets200Response> response = apiInstance.editGoogleAssetGroupAssetsWithHttpInfo(campaignId, assetGroupId, editGoogleAssetGroupAssetsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#editGoogleAssetGroupAssets");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **editGoogleAssetGroupAssetsRequest** | [**EditGoogleAssetGroupAssetsRequest**](EditGoogleAssetGroupAssetsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**EditGoogleAssetGroupAssets200Response**](EditGoogleAssetGroupAssets200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Links applied (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 
 ## getAd
@@ -3845,6 +4183,166 @@ ApiResponse<[**GetCampaignTargeting200Response**](GetCampaignTargeting200Respons
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+
+## getGoogleAssetGroup
+
+> GetGoogleAssetGroup200Response getGoogleAssetGroup(campaignId, assetGroupId)
+
+Get a Performance Max asset group
+
+One asset group with its linked assets, ad strength, primary status and listing-group tree. Uses a 10-minute cache, served stale when Google quota is exhausted; any write below clears it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        try {
+            GetGoogleAssetGroup200Response result = apiInstance.getGoogleAssetGroup(campaignId, assetGroupId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+
+### Return type
+
+[**GetGoogleAssetGroup200Response**](GetGoogleAssetGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The asset group. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## getGoogleAssetGroupWithHttpInfo
+
+> ApiResponse<GetGoogleAssetGroup200Response> getGoogleAssetGroup getGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId)
+
+Get a Performance Max asset group
+
+One asset group with its linked assets, ad strength, primary status and listing-group tree. Uses a 10-minute cache, served stale when Google quota is exhausted; any write below clears it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        try {
+            ApiResponse<GetGoogleAssetGroup200Response> response = apiInstance.getGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+
+### Return type
+
+ApiResponse<[**GetGoogleAssetGroup200Response**](GetGoogleAssetGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The asset group. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 
 ## listAdCampaigns
@@ -6075,6 +6573,170 @@ ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Respons
 | **501** | Only supported on Google Ads. |  -  |
 
 
+## removeGoogleAssetGroup
+
+> RemoveGoogleAssetGroup200Response removeGoogleAssetGroup(campaignId, assetGroupId, validateOnly)
+
+Remove a Performance Max asset group
+
+Removes the asset group on Google (status REMOVED, not reversible). Pass validateOnly&#x3D;true to validate without removing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | 
+        String assetGroupId = "assetGroupId_example"; // String | 
+        Boolean validateOnly = false; // Boolean | 
+        try {
+            RemoveGoogleAssetGroup200Response result = apiInstance.removeGoogleAssetGroup(campaignId, assetGroupId, validateOnly);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**|  | |
+| **assetGroupId** | **String**|  | |
+| **validateOnly** | **Boolean**|  | [optional] [default to false] |
+
+### Return type
+
+[**RemoveGoogleAssetGroup200Response**](RemoveGoogleAssetGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## removeGoogleAssetGroupWithHttpInfo
+
+> ApiResponse<RemoveGoogleAssetGroup200Response> removeGoogleAssetGroup removeGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, validateOnly)
+
+Remove a Performance Max asset group
+
+Removes the asset group on Google (status REMOVED, not reversible). Pass validateOnly&#x3D;true to validate without removing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | 
+        String assetGroupId = "assetGroupId_example"; // String | 
+        Boolean validateOnly = false; // Boolean | 
+        try {
+            ApiResponse<RemoveGoogleAssetGroup200Response> response = apiInstance.removeGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, validateOnly);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#removeGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**|  | |
+| **assetGroupId** | **String**|  | |
+| **validateOnly** | **Boolean**|  | [optional] [default to false] |
+
+### Return type
+
+ApiResponse<[**RemoveGoogleAssetGroup200Response**](RemoveGoogleAssetGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+
 ## replaceCampaignNegativeKeywordLists
 
 > ReplaceAdNegativeKeywordListKeywords200Response replaceCampaignNegativeKeywordLists(campaignId, replaceCampaignNegativeKeywordListsRequest)
@@ -6395,6 +7057,170 @@ ApiResponse<[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNega
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+
+## replaceGoogleListingGroupFilters
+
+> ReplaceGoogleListingGroupFilters200Response replaceGoogleListingGroupFilters(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest)
+
+Replace an asset group&#39;s listing-group tree
+
+Replace the product (listing-group) tree of a Performance Max retail asset group. The current tree is removed and the new one created in one atomic request. Read the current tree with GET on the asset group. Requires a campaign linked to Merchant Center; other campaigns return 400 LISTING_SOURCE_NOT_ALLOWED from Google. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        ReplaceGoogleListingGroupFiltersRequest replaceGoogleListingGroupFiltersRequest = new ReplaceGoogleListingGroupFiltersRequest(); // ReplaceGoogleListingGroupFiltersRequest | 
+        try {
+            ReplaceGoogleListingGroupFilters200Response result = apiInstance.replaceGoogleListingGroupFilters(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#replaceGoogleListingGroupFilters");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **replaceGoogleListingGroupFiltersRequest** | [**ReplaceGoogleListingGroupFiltersRequest**](ReplaceGoogleListingGroupFiltersRequest.md)|  | |
+
+### Return type
+
+[**ReplaceGoogleListingGroupFilters200Response**](ReplaceGoogleListingGroupFilters200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tree replaced (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## replaceGoogleListingGroupFiltersWithHttpInfo
+
+> ApiResponse<ReplaceGoogleListingGroupFilters200Response> replaceGoogleListingGroupFilters replaceGoogleListingGroupFiltersWithHttpInfo(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest)
+
+Replace an asset group&#39;s listing-group tree
+
+Replace the product (listing-group) tree of a Performance Max retail asset group. The current tree is removed and the new one created in one atomic request. Read the current tree with GET on the asset group. Requires a campaign linked to Merchant Center; other campaigns return 400 LISTING_SOURCE_NOT_ALLOWED from Google. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        ReplaceGoogleListingGroupFiltersRequest replaceGoogleListingGroupFiltersRequest = new ReplaceGoogleListingGroupFiltersRequest(); // ReplaceGoogleListingGroupFiltersRequest | 
+        try {
+            ApiResponse<ReplaceGoogleListingGroupFilters200Response> response = apiInstance.replaceGoogleListingGroupFiltersWithHttpInfo(campaignId, assetGroupId, replaceGoogleListingGroupFiltersRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#replaceGoogleListingGroupFilters");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **replaceGoogleListingGroupFiltersRequest** | [**ReplaceGoogleListingGroupFiltersRequest**](ReplaceGoogleListingGroupFiltersRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ReplaceGoogleListingGroupFilters200Response**](ReplaceGoogleListingGroupFilters200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tree replaced (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 
 
 ## updateAd
@@ -8309,4 +9135,168 @@ ApiResponse<[**UpdateCampaignTargeting200Response**](UpdateCampaignTargeting200R
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
+
+
+## updateGoogleAssetGroup
+
+> UpdateGoogleAssetGroup200Response updateGoogleAssetGroup(campaignId, assetGroupId, updateGoogleAssetGroupRequest)
+
+Update a Performance Max asset group
+
+Change the name, status (ENABLED or PAUSED), final URLs or display paths. Only the fields sent are written; null on path1 or path2 clears it. Change assets with the /assets endpoint and product targeting with /listing-group-filters. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        UpdateGoogleAssetGroupRequest updateGoogleAssetGroupRequest = new UpdateGoogleAssetGroupRequest(); // UpdateGoogleAssetGroupRequest | 
+        try {
+            UpdateGoogleAssetGroup200Response result = apiInstance.updateGoogleAssetGroup(campaignId, assetGroupId, updateGoogleAssetGroupRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **updateGoogleAssetGroupRequest** | [**UpdateGoogleAssetGroupRequest**](UpdateGoogleAssetGroupRequest.md)|  | |
+
+### Return type
+
+[**UpdateGoogleAssetGroup200Response**](UpdateGoogleAssetGroup200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
+
+## updateGoogleAssetGroupWithHttpInfo
+
+> ApiResponse<UpdateGoogleAssetGroup200Response> updateGoogleAssetGroup updateGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, updateGoogleAssetGroupRequest)
+
+Update a Performance Max asset group
+
+Change the name, status (ENABLED or PAUSED), final URLs or display paths. Only the fields sent are written; null on path1 or path2 clears it. Change assets with the /assets endpoint and product targeting with /listing-group-filters. validateOnly: true validates without writing.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Google Ads campaign id.
+        String assetGroupId = "assetGroupId_example"; // String | Google asset group id.
+        UpdateGoogleAssetGroupRequest updateGoogleAssetGroupRequest = new UpdateGoogleAssetGroupRequest(); // UpdateGoogleAssetGroupRequest | 
+        try {
+            ApiResponse<UpdateGoogleAssetGroup200Response> response = apiInstance.updateGoogleAssetGroupWithHttpInfo(campaignId, assetGroupId, updateGoogleAssetGroupRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#updateGoogleAssetGroup");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Google Ads campaign id. | |
+| **assetGroupId** | **String**| Google asset group id. | |
+| **updateGoogleAssetGroupRequest** | [**UpdateGoogleAssetGroupRequest**](UpdateGoogleAssetGroupRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateGoogleAssetGroup200Response**](UpdateGoogleAssetGroup200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Updated (or validated). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | Google Ads connection needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | Campaign is not on Google Ads. |  -  |
 

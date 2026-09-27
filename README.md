@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.106.0
+- API version: 1.107.0
 
-- Build date: 2026-09-27T19:00:23.626708380Z[Etc/UTC]
+- Build date: 2026-09-27T19:16:17.333202628Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.106.0</version>
+  <version>1.107.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.106.0"
+compile "dev.zernio:zernio-sdk:1.107.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.106.0.jar`
+- `target/zernio-sdk-1.107.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -307,6 +307,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**createAdSetWithHttpInfo**](docs/AdCampaignsApi.md#createAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets | Create a standalone ad group
 *AdCampaignsApi* | [**createBidStrategy**](docs/AdCampaignsApi.md#createBidStrategy) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy
 *AdCampaignsApi* | [**createBidStrategyWithHttpInfo**](docs/AdCampaignsApi.md#createBidStrategyWithHttpInfo) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy
+*AdCampaignsApi* | [**createGoogleAssetGroup**](docs/AdCampaignsApi.md#createGoogleAssetGroup) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group
+*AdCampaignsApi* | [**createGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#createGoogleAssetGroupWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group
 *AdCampaignsApi* | [**createStandaloneAd**](docs/AdCampaignsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdCampaignsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**deleteAd**](docs/AdCampaignsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
@@ -321,6 +323,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**duplicateAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdCampaignWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
 *AdCampaignsApi* | [**duplicateAdSet**](docs/AdCampaignsApi.md#duplicateAdSet) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
 *AdCampaignsApi* | [**duplicateAdSetWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdSetWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/duplicate | Duplicate an ad set
+*AdCampaignsApi* | [**editGoogleAssetGroupAssets**](docs/AdCampaignsApi.md#editGoogleAssetGroupAssets) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets
+*AdCampaignsApi* | [**editGoogleAssetGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#editGoogleAssetGroupAssetsWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/assets | Link or unlink asset group assets
 *AdCampaignsApi* | [**getAd**](docs/AdCampaignsApi.md#getAd) | **GET** /v1/ads/{adId} | Get ad details
 *AdCampaignsApi* | [**getAdWithHttpInfo**](docs/AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
 *AdCampaignsApi* | [**getAdCampaignDetails**](docs/AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
@@ -337,6 +341,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getCampaignBiddingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignBiddingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding
 *AdCampaignsApi* | [**getCampaignTargeting**](docs/AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting
 *AdCampaignsApi* | [**getCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting
+*AdCampaignsApi* | [**getGoogleAssetGroup**](docs/AdCampaignsApi.md#getGoogleAssetGroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
+*AdCampaignsApi* | [**getGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#getGoogleAssetGroupWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdGroupAssets**](docs/AdCampaignsApi.md#listAdGroupAssets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets
@@ -363,10 +369,14 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**removeAdKeywordWithHttpInfo**](docs/AdCampaignsApi.md#removeAdKeywordWithHttpInfo) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
 *AdCampaignsApi* | [**removeCampaignAssets**](docs/AdCampaignsApi.md#removeCampaignAssets) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets
 *AdCampaignsApi* | [**removeCampaignAssetsWithHttpInfo**](docs/AdCampaignsApi.md#removeCampaignAssetsWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId}/assets | Remove campaign assets
+*AdCampaignsApi* | [**removeGoogleAssetGroup**](docs/AdCampaignsApi.md#removeGoogleAssetGroup) | **DELETE** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Remove a Performance Max asset group
+*AdCampaignsApi* | [**removeGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#removeGoogleAssetGroupWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Remove a Performance Max asset group
 *AdCampaignsApi* | [**replaceCampaignNegativeKeywordLists**](docs/AdCampaignsApi.md#replaceCampaignNegativeKeywordLists) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists
 *AdCampaignsApi* | [**replaceCampaignNegativeKeywordListsWithHttpInfo**](docs/AdCampaignsApi.md#replaceCampaignNegativeKeywordListsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keyword-lists | Replace campaign negative lists
 *AdCampaignsApi* | [**replaceCampaignNegativeKeywords**](docs/AdCampaignsApi.md#replaceCampaignNegativeKeywords) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords
 *AdCampaignsApi* | [**replaceCampaignNegativeKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#replaceCampaignNegativeKeywordsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/negative-keywords | Replace campaign-level negative keywords
+*AdCampaignsApi* | [**replaceGoogleListingGroupFilters**](docs/AdCampaignsApi.md#replaceGoogleListingGroupFilters) | **PUT** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters | Replace an asset group&#39;s listing-group tree
+*AdCampaignsApi* | [**replaceGoogleListingGroupFiltersWithHttpInfo**](docs/AdCampaignsApi.md#replaceGoogleListingGroupFiltersWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId}/listing-group-filters | Replace an asset group&#39;s listing-group tree
 *AdCampaignsApi* | [**updateAd**](docs/AdCampaignsApi.md#updateAd) | **PUT** /v1/ads/{adId} | Update ad
 *AdCampaignsApi* | [**updateAdWithHttpInfo**](docs/AdCampaignsApi.md#updateAdWithHttpInfo) | **PUT** /v1/ads/{adId} | Update ad
 *AdCampaignsApi* | [**updateAdCampaign**](docs/AdCampaignsApi.md#updateAdCampaign) | **PUT** /v1/ads/campaigns/{campaignId} | Update a campaign
@@ -391,6 +401,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateCampaignAssetsWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets
 *AdCampaignsApi* | [**updateCampaignTargeting**](docs/AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting
 *AdCampaignsApi* | [**updateCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting
+*AdCampaignsApi* | [**updateGoogleAssetGroup**](docs/AdCampaignsApi.md#updateGoogleAssetGroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
+*AdCampaignsApi* | [**updateGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#updateGoogleAssetGroupWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
 *AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**createAdCreativeWithHttpInfo**](docs/AdCreativesApi.md#createAdCreativeWithHttpInfo) | **POST** /v1/ads/creatives | Create a standalone creative
 *AdCreativesApi* | [**deleteAdCreative**](docs/AdCreativesApi.md#deleteAdCreative) | **DELETE** /v1/ads/creatives/{creativeId} | Delete a creative
@@ -2020,6 +2032,10 @@ Class | Method | HTTP request | Description
  - [CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
  - [CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
  - [CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
+ - [CreateGoogleAssetGroup200Response](docs/CreateGoogleAssetGroup200Response.md)
+ - [CreateGoogleAssetGroup201Response](docs/CreateGoogleAssetGroup201Response.md)
+ - [CreateGoogleAssetGroup201ResponseAssetGroup](docs/CreateGoogleAssetGroup201ResponseAssetGroup.md)
+ - [CreateGoogleAssetGroupRequest](docs/CreateGoogleAssetGroupRequest.md)
  - [CreateGoogleBusinessMedia200Response](docs/CreateGoogleBusinessMedia200Response.md)
  - [CreateGoogleBusinessMediaRequest](docs/CreateGoogleBusinessMediaRequest.md)
  - [CreateGoogleBusinessPlaceAction200Response](docs/CreateGoogleBusinessPlaceAction200Response.md)
@@ -2230,6 +2246,8 @@ Class | Method | HTTP request | Description
  - [DuplicateWorkflow201Response](docs/DuplicateWorkflow201Response.md)
  - [DuplicateWorkflow201ResponseWorkflow](docs/DuplicateWorkflow201ResponseWorkflow.md)
  - [EditDiscordGuildRoleRequest](docs/EditDiscordGuildRoleRequest.md)
+ - [EditGoogleAssetGroupAssets200Response](docs/EditGoogleAssetGroupAssets200Response.md)
+ - [EditGoogleAssetGroupAssetsRequest](docs/EditGoogleAssetGroupAssetsRequest.md)
  - [EditInboxComment200Response](docs/EditInboxComment200Response.md)
  - [EditInboxCommentRequest](docs/EditInboxCommentRequest.md)
  - [EditInboxMessage200Response](docs/EditInboxMessage200Response.md)
@@ -2401,6 +2419,7 @@ Class | Method | HTTP request | Description
  - [GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner](docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.md)
  - [GetGmbLocations200Response](docs/GetGmbLocations200Response.md)
  - [GetGmbLocations200ResponseLocationsInner](docs/GetGmbLocations200ResponseLocationsInner.md)
+ - [GetGoogleAssetGroup200Response](docs/GetGoogleAssetGroup200Response.md)
  - [GetGoogleBusinessAttributes200Response](docs/GetGoogleBusinessAttributes200Response.md)
  - [GetGoogleBusinessAttributes200ResponseAttributesInner](docs/GetGoogleBusinessAttributes200ResponseAttributesInner.md)
  - [GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue](docs/GetGoogleBusinessAttributes200ResponseAttributesInnerRepeatedEnumValue.md)
@@ -2666,6 +2685,8 @@ Class | Method | HTTP request | Description
  - [GetYoutubeCaptions200ResponseCuesInner](docs/GetYoutubeCaptions200ResponseCuesInner.md)
  - [GetYoutubePlaylists200Response](docs/GetYoutubePlaylists200Response.md)
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
+ - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
+ - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
  - [GoogleBusinessPlatformData](docs/GoogleBusinessPlatformData.md)
  - [GoogleBusinessPlatformDataCallToAction](docs/GoogleBusinessPlatformDataCallToAction.md)
@@ -2679,9 +2700,20 @@ Class | Method | HTTP request | Description
  - [GoogleBusinessReview](docs/GoogleBusinessReview.md)
  - [GoogleBusinessReviewReviewReply](docs/GoogleBusinessReviewReviewReply.md)
  - [GoogleBusinessReviewReviewer](docs/GoogleBusinessReviewReviewer.md)
+ - [GoogleListingGroupDimension](docs/GoogleListingGroupDimension.md)
+ - [GoogleListingGroupDimensionProductBrand](docs/GoogleListingGroupDimensionProductBrand.md)
+ - [GoogleListingGroupDimensionProductCategory](docs/GoogleListingGroupDimensionProductCategory.md)
+ - [GoogleListingGroupDimensionProductChannel](docs/GoogleListingGroupDimensionProductChannel.md)
+ - [GoogleListingGroupDimensionProductCondition](docs/GoogleListingGroupDimensionProductCondition.md)
+ - [GoogleListingGroupDimensionProductCustomAttribute](docs/GoogleListingGroupDimensionProductCustomAttribute.md)
+ - [GoogleListingGroupDimensionProductType](docs/GoogleListingGroupDimensionProductType.md)
+ - [GoogleListingGroupFilterNode](docs/GoogleListingGroupFilterNode.md)
+ - [GoogleListingGroupNode](docs/GoogleListingGroupNode.md)
+ - [GoogleListingGroupTree](docs/GoogleListingGroupTree.md)
  - [GoogleLocationTargetingType](docs/GoogleLocationTargetingType.md)
  - [GooglePmaxAssetGroup](docs/GooglePmaxAssetGroup.md)
  - [GooglePmaxAssetGroupAssetsInner](docs/GooglePmaxAssetGroupAssetsInner.md)
+ - [GooglePmaxAssetGroupDetail](docs/GooglePmaxAssetGroupDetail.md)
  - [GooglePmaxAssetGroupInput](docs/GooglePmaxAssetGroupInput.md)
  - [GooglePmaxAssetGroupInputImages](docs/GooglePmaxAssetGroupInputImages.md)
  - [GooglePmaxAssetGroupUpdate](docs/GooglePmaxAssetGroupUpdate.md)
@@ -3171,6 +3203,7 @@ Class | Method | HTTP request | Description
  - [RemoveCampaignAssetsRequest](docs/RemoveCampaignAssetsRequest.md)
  - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
+ - [RemoveGoogleAssetGroup200Response](docs/RemoveGoogleAssetGroup200Response.md)
  - [RemoveMessageReaction200Response](docs/RemoveMessageReaction200Response.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
@@ -3181,6 +3214,8 @@ Class | Method | HTTP request | Description
  - [ReplaceCampaignNegativeKeywordListsRequest](docs/ReplaceCampaignNegativeKeywordListsRequest.md)
  - [ReplaceCampaignNegativeKeywords200Response](docs/ReplaceCampaignNegativeKeywords200Response.md)
  - [ReplaceCampaignNegativeKeywordsRequest](docs/ReplaceCampaignNegativeKeywordsRequest.md)
+ - [ReplaceGoogleListingGroupFilters200Response](docs/ReplaceGoogleListingGroupFilters200Response.md)
+ - [ReplaceGoogleListingGroupFiltersRequest](docs/ReplaceGoogleListingGroupFiltersRequest.md)
  - [ReplyToAdComment200Response](docs/ReplyToAdComment200Response.md)
  - [ReplyToAdCommentRequest](docs/ReplyToAdCommentRequest.md)
  - [ReplyToGoogleBusinessReview200Response](docs/ReplyToGoogleBusinessReview200Response.md)
@@ -3559,6 +3594,8 @@ Class | Method | HTTP request | Description
  - [UpdateFacebookPageRequest](docs/UpdateFacebookPageRequest.md)
  - [UpdateGmbLocation200Response](docs/UpdateGmbLocation200Response.md)
  - [UpdateGmbLocationRequest](docs/UpdateGmbLocationRequest.md)
+ - [UpdateGoogleAssetGroup200Response](docs/UpdateGoogleAssetGroup200Response.md)
+ - [UpdateGoogleAssetGroupRequest](docs/UpdateGoogleAssetGroupRequest.md)
  - [UpdateGoogleBusinessAttributes200Response](docs/UpdateGoogleBusinessAttributes200Response.md)
  - [UpdateGoogleBusinessAttributesRequest](docs/UpdateGoogleBusinessAttributesRequest.md)
  - [UpdateGoogleBusinessAttributesRequestAttributesInner](docs/UpdateGoogleBusinessAttributesRequestAttributesInner.md)
