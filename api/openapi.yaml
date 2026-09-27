@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.110.0
+  version: 1.111.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42372,6 +42372,22 @@ paths:
         COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus
         roasAverageFloor for Maximize Conversion Value with target ROAS.
 
+        Google Demand Gen: set `campaignType: "demand_gen"` and supply `demandGen`. Creates a
+        daily budget, PAUSED campaign, one ad group and one ad in a single atomic request: a
+        multi-asset image ad, or a video responsive ad when `demandGen.youtubeVideoIds` is sent.
+        Geo (countries, regions, cities, zips, metros) and languages go on the ad group, as
+        Demand Gen requires. `demandGen.channels` sets the ad group's channel controls and
+        `demandGen.audience` builds a Google Audience (user lists, interests, custom audiences,
+        age ranges, genders) attached to the ad group, or `demandGen.audienceId` attaches an
+        existing one. `validateOnly: true` validates everything with Google without creating
+        resources. Supported bidding: omitted or LOWEST_COST_WITHOUT_CAP for Maximize
+        Conversions, COST_CAP plus bidAmount for target CPA, LOWEST_COST_WITH_MIN_ROAS plus
+        roasAverageFloor for target ROAS, LOWEST_COST_WITH_BID_CAP plus bidAmount for target
+        CPC. The created ad carries the native `platformCampaignId`, `platformAdSetId` (ad
+        group) and `platformAdId`. Activate with PUT /v1/ads/campaigns/{campaignId}/status;
+        budget, bidding and name are edited with the regular campaign endpoints. Creative and
+        targeting edits on an existing Demand Gen ad return 501 for now.
+
         Other mutually-exclusive request shapes are selected by the body:
 
         - Legacy single-creative shape (all platforms, the default).
@@ -42449,6 +42465,47 @@ paths:
                       - https://example.com/square.png
                       logo:
                       - https://example.com/logo.png
+              demandGen:
+                summary: Paused Demand Gen campaign with a multi-asset image ad.
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "9122445560"
+                  name: Demand Gen launch
+                  campaignType: demand_gen
+                  budgetAmount: 10
+                  budgetType: daily
+                  validateOnly: true
+                  countries:
+                  - ES
+                  languages:
+                  - es
+                  demandGen:
+                    finalUrl: https://zernio.com
+                    businessName: Zernio
+                    headlines:
+                    - Schedule posts
+                    - One social API
+                    descriptions:
+                    - Publish and manage social content through one API.
+                    callToAction: Learn more
+                    images:
+                      landscape:
+                      - https://example.com/landscape.png
+                      square:
+                      - https://example.com/square.png
+                      logo:
+                      - https://example.com/logo.png
+                    channels:
+                    - youtube_in_feed
+                    - youtube_shorts
+                    - discover
+                    - gmail
+                    audience:
+                      userInterests:
+                      - "92948"
+                      ageRanges:
+                      - min: 25
+                        max: 54
               appPromotion:
                 value:
                   accountId: 69fc524892b3d8e85f893e73
@@ -67845,6 +67902,86 @@ components:
       - presence_or_interest
       example: presence
       type: string
+    GoogleDemandGenInput:
+      additionalProperties: {}
+      description: "Creative, channel and audience settings for a Google Demand Gen\
+        \ campaign (campaignType demand_gen). Creates one ad group with one ad: a\
+        \ multi-asset image ad, or a video responsive ad when youtubeVideoIds is sent."
+      properties:
+        adGroupName:
+          description: Defaults to the ad name.
+          maxLength: 255
+          type: string
+        finalUrl:
+          format: uri
+          type: string
+        businessName:
+          maxLength: 25
+          type: string
+        headlines:
+          description: Distinct texts.
+          items:
+            maxLength: 40
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        longHeadlines:
+          description: "Video ads only, and required there."
+          items:
+            maxLength: 90
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        descriptions:
+          items:
+            maxLength: 90
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        callToAction:
+          description: Image ads only. Call to action text such as 'Learn more'; Google
+            picks one when omitted.
+          maxLength: 25
+          type: string
+        images:
+          $ref: "#/components/schemas/GoogleDemandGenInput_images"
+        youtubeVideoIds:
+          description: Makes the ad a video responsive ad.
+          items:
+            pattern: "^[A-Za-z0-9_-]{11}$"
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+        channels:
+          description: Channel controls on the ad group. Only the listed channels
+            serve; omit to serve on all of them.
+          items:
+            enum:
+            - youtube_in_stream
+            - youtube_in_feed
+            - youtube_shorts
+            - discover
+            - gmail
+            - display
+            type: string
+          minItems: 1
+          type: array
+        audience:
+          $ref: "#/components/schemas/GoogleDemandGenInput_audience"
+        audienceId:
+          description: Attach an existing Google Audience by numeric id instead of
+            audience.
+          type: string
+      required:
+      - businessName
+      - descriptions
+      - finalUrl
+      - headlines
+      - images
     GooglePmaxAssetGroupInput:
       additionalProperties: {}
       description: Google Performance Max creative assets. At least one description
@@ -115627,7 +115764,7 @@ components:
             \ event and target countries, and uploads or creates nothing. OpenAI's\
             \ own write-time checks (image fetch, currency-specific minimums, ad review)\
             \ still run only on a real create. Any other platform, or a Google campaignType\
-            \ other than pmax, returns 501 `feature_not_available`."
+            \ other than pmax or demand_gen, returns 501 `feature_not_available`."
           type: boolean
         budgetAmount:
           description: "Budget in WHOLE currency units (USD: 50 = $50.00), NOT cents.\
@@ -116283,12 +116420,13 @@ components:
           type: string
         campaignType:
           default: display
-          description: Google only. Performance Max requires assetGroup and is always
-            created PAUSED.
+          description: Google only. Performance Max requires assetGroup and Demand
+            Gen requires demandGen; both are always created PAUSED.
           enum:
           - display
           - search
           - pmax
+          - demand_gen
           type: string
         locationTargetingType:
           allOf:
@@ -116300,6 +116438,8 @@ components:
             \ locations."
         assetGroup:
           $ref: "#/components/schemas/GooglePmaxAssetGroupInput"
+        demandGen:
+          $ref: "#/components/schemas/GoogleDemandGenInput"
         keywords:
           description: "Google Search only. Keywords on the new ad group; entries\
             \ are strings (BROAD) or { text, matchType }. Editable later via PUT /v1/ads/{adId}\
@@ -130063,6 +130203,107 @@ components:
             Mirrors the inclusion customLocations shape.
           items:
             $ref: "#/components/schemas/TargetingSpec_customLocations_inner"
+          type: array
+    GoogleDemandGenInput_images:
+      additionalProperties: false
+      description: Public image URLs. An image ad needs landscape or square; a video
+        ad takes only one logo.
+      properties:
+        landscape:
+          description: "1.91:1, at least 600x314."
+          items:
+            format: uri
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        square:
+          description: "1:1, at least 300x300."
+          items:
+            format: uri
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        portrait:
+          description: "4:5, at least 480x600."
+          items:
+            format: uri
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        logo:
+          description: "1:1, at least 128x128."
+          items:
+            format: uri
+            type: string
+          maxItems: 5
+          minItems: 1
+          type: array
+      required:
+      - logo
+    GoogleDemandGenInput_audience_ageRanges_inner:
+      properties:
+        min:
+          enum:
+          - 18
+          - 25
+          - 35
+          - 45
+          - 55
+          - 65
+          type: integer
+        max:
+          description: Omit for no upper bound.
+          enum:
+          - 24
+          - 34
+          - 44
+          - 54
+          - 64
+          type: integer
+      required:
+      - min
+    GoogleDemandGenInput_audience:
+      additionalProperties: false
+      description: "Created as a Google Audience and attached to the ad group. Send\
+        \ at least one dimension. Ids are numeric Google ids (user lists, interest\
+        \ categories, custom audiences) from the same customer."
+      properties:
+        userLists:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        userInterests:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        customAudiences:
+          items:
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
+        ageRanges:
+          items:
+            $ref: "#/components/schemas/GoogleDemandGenInput_audience_ageRanges_inner"
+          maxItems: 6
+          minItems: 1
+          type: array
+        genders:
+          items:
+            enum:
+            - male
+            - female
+            - undetermined
+            type: string
+          maxItems: 3
+          minItems: 1
           type: array
     GooglePmaxAssetGroupInput_images:
       additionalProperties: false
