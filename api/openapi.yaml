@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.105.1
+  version: 1.106.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -33145,7 +33145,9 @@ paths:
         group (M.140).
       operationId: removeAdKeyword
       parameters:
-      - description: Zernio keyword ID (not the Google criterion ID)
+      - description: "Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}`\
+          \ (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion\
+          \ id is rejected because it is only unique within its ad group."
         explode: false
         in: path
         name: keywordId
@@ -33184,7 +33186,9 @@ paths:
         Negative keywords have no status on Google and cannot be paused or enabled.
       operationId: updateAdKeyword
       parameters:
-      - description: Zernio keyword ID (not the Google criterion ID)
+      - description: "Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}`\
+          \ (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion\
+          \ id is rejected because it is only unique within its ad group."
         explode: false
         in: path
         name: keywordId
@@ -68959,6 +68963,8 @@ components:
         adAccountId: adAccountId
         campaignId: campaignId
         matchType: exact
+        platformCriterionId: platformCriterionId
+        resourceName: resourceName
         platform: google
         quality:
           score: 6
@@ -68987,6 +68993,15 @@ components:
         status: active
       properties:
         id:
+          description: "Zernio keyword ID. Accepted as `keywordId` by PATCH/DELETE\
+            \ /v1/ads/keywords/{keywordId}."
+          type: string
+        platformCriterionId:
+          description: "Google ad_group_criterion.criterion_id. Unique only within\
+            \ its ad group (`adSetId`), not across the account."
+          type: string
+        resourceName:
+          description: "Google resource name, customers/{adAccountId}/adGroupCriteria/{adSetId}~{platformCriterionId}."
           type: string
         accountId:
           description: Account ID owning the sync
@@ -101978,6 +101993,8 @@ components:
           adAccountId: adAccountId
           campaignId: campaignId
           matchType: exact
+          platformCriterionId: platformCriterionId
+          resourceName: resourceName
           platform: google
           quality:
             score: 6
@@ -102008,6 +102025,8 @@ components:
           adAccountId: adAccountId
           campaignId: campaignId
           matchType: exact
+          platformCriterionId: platformCriterionId
+          resourceName: resourceName
           platform: google
           quality:
             score: 6
@@ -102089,6 +102108,8 @@ components:
           adAccountId: adAccountId
           campaignId: campaignId
           matchType: exact
+          platformCriterionId: platformCriterionId
+          resourceName: resourceName
           platform: google
           quality:
             score: 6
@@ -102119,6 +102140,8 @@ components:
           adAccountId: adAccountId
           campaignId: campaignId
           matchType: exact
+          platformCriterionId: platformCriterionId
+          resourceName: resourceName
           platform: google
           quality:
             score: 6
@@ -102154,11 +102177,28 @@ components:
       example:
         keywordId: keywordId
         removed: true
+        campaignId: campaignId
+        platformCriterionId: platformCriterionId
+        adSetId: adSetId
+        resourceName: resourceName
       properties:
         removed:
           description: Always true on success
           type: boolean
         keywordId:
+          description: Zernio keyword ID
+          type: string
+        platformCriterionId:
+          description: Google ad_group_criterion.criterion_id
+          type: string
+        resourceName:
+          description: Google resource name of the removed criterion
+          type: string
+        campaignId:
+          description: Google campaign ID
+          type: string
+        adSetId:
+          description: Google ad group ID
           type: string
     updateAdKeyword_request:
       properties:
@@ -102176,6 +102216,8 @@ components:
           adAccountId: adAccountId
           campaignId: campaignId
           matchType: exact
+          platformCriterionId: platformCriterionId
+          resourceName: resourceName
           platform: google
           quality:
             score: 6

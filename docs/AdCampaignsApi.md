@@ -5790,7 +5790,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
         try {
             RemoveAdKeyword200Response result = apiInstance.removeAdKeyword(keywordId);
             System.out.println(result);
@@ -5810,7 +5810,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **keywordId** | **String**| Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. | |
 
 ### Return type
 
@@ -5865,7 +5865,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
         try {
             ApiResponse<RemoveAdKeyword200Response> response = apiInstance.removeAdKeywordWithHttpInfo(keywordId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -5887,7 +5887,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **keywordId** | **String**| Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. | |
 
 ### Return type
 
@@ -7068,7 +7068,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
         UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
         try {
             UpdateAdKeyword200Response result = apiInstance.updateAdKeyword(keywordId, updateAdKeywordRequest);
@@ -7089,7 +7089,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **keywordId** | **String**| Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. | |
 | **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
 
 ### Return type
@@ -7146,7 +7146,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
-        String keywordId = "keywordId_example"; // String | Zernio keyword ID (not the Google criterion ID)
+        String keywordId = "keywordId_example"; // String | Zernio keyword ID (`id`), or Google's native `{adSetId}~{platformCriterionId}` (the tail of `resourceName`, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group.
         UpdateAdKeywordRequest updateAdKeywordRequest = new UpdateAdKeywordRequest(); // UpdateAdKeywordRequest | 
         try {
             ApiResponse<UpdateAdKeyword200Response> response = apiInstance.updateAdKeywordWithHttpInfo(keywordId, updateAdKeywordRequest);
@@ -7169,7 +7169,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **keywordId** | **String**| Zernio keyword ID (not the Google criterion ID) | |
+| **keywordId** | **String**| Zernio keyword ID (&#x60;id&#x60;), or Google&#39;s native &#x60;{adSetId}~{platformCriterionId}&#x60; (the tail of &#x60;resourceName&#x60;, e.g. 1234567890~987654321). A bare criterion id is rejected because it is only unique within its ad group. | |
 | **updateAdKeywordRequest** | [**UpdateAdKeywordRequest**](UpdateAdKeywordRequest.md)|  | |
 
 ### Return type
