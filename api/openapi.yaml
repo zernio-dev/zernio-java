@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.108.0
+  version: 1.109.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41391,6 +41391,183 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/accounts/hierarchy:
+    get:
+      description: "Live manager (MCC) and client tree for a Google Ads connection.\
+        \ Starts from every customer the Google user behind the connection can access\
+        \ directly and walks each tree to any depth with `customer_client`, then reads\
+        \ each manager's own client links so every client carries its direct parent,\
+        \ the `managerLinkId` and the link status. Invitations a manager sent that\
+        \ the client has not accepted yet appear as clients with `linkStatus: PENDING`\
+        \ (Google returns no name or currency for them). Refused, canceled and ended\
+        \ links are history and are omitted. `managerLinks` on a root lists the managers\
+        \ linked to that account, including invitations it can still accept with PATCH\
+        \ /v1/ads/accounts/manager-links. A directly accessible account that is also\
+        \ nested in another tree appears only once, inside that tree. Customers Google\
+        \ refuses to read (for example a cancelled account) are listed in `unavailable`\
+        \ with Google's reason instead of failing the call. Up to 50 roots and 50\
+        \ managers per root are read; `truncated` is true when more exist. Cached\
+        \ for 10 minutes per connection; the response carries `cachedAt` and `stale`.\
+        \ When the connection is scoped to specific ad accounts, client accounts outside\
+        \ that scope are hidden (managers stay visible)."
+      operationId: getAdAccountHierarchy
+      parameters:
+      - description: Google ads SocialAccount id.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Only return the tree rooted at this customer id (digits only).
+          It must be an account the Google user accesses directly. Omit to list every
+          tree.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for consistency with the other Google\
+          \ Ads account endpoints."
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdAccountHierarchy_200_response"
+          description: Manager and client hierarchy
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "429":
+          description: Google Ads operations budget or quota exhausted; retry later.
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Get manager account hierarchy
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+  /v1/ads/accounts/manager-links:
+    patch:
+      description: "Changes one manager-client link, identified by `managerCustomerId`,\
+        \ `clientCustomerId` and `managerLinkId` (all from GET /v1/ads/accounts/hierarchy).\
+        \ `accept` and `decline` answer a pending invitation as the client (CustomerManagerLinkService),\
+        \ so the connection's Google user needs direct access to the client account;\
+        \ access through a manager is not enough, because the link does not exist\
+        \ yet. `cancel` withdraws a pending invitation and `unlink` ends an active\
+        \ link, both as the manager (CustomerClientLinkService). Send `validateOnly:\
+        \ true` to have Google check the change without applying it."
+      operationId: updateAdAccountManagerLink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdAccountManagerLink_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleAdsManagerLink"
+          description: "Link updated, or validated only when validateOnly is true"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "429":
+          description: Google Ads operations budget or quota exhausted; retry later.
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: "Accept, decline, cancel or end a manager link"
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+    post:
+      description: "Sends a manager-to-client link invitation from `managerCustomerId`\
+        \ to `clientCustomerId` (Google's CustomerClientLinkService). The manager\
+        \ must be one the connection's Google user reaches, directly or under another\
+        \ manager (see GET /v1/ads/accounts/hierarchy); the client can be any Google\
+        \ Ads account. The link stays `PENDING` until someone with access to the client\
+        \ accepts it in Google Ads or through PATCH on this path. Not idempotent:\
+        \ Google refuses a second invitation while one is pending. Send `validateOnly:\
+        \ true` to have Google check the request without sending anything."
+      operationId: inviteAdAccountToManager
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/inviteAdAccountToManager_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleAdsManagerLink"
+          description: Invitation sent
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GoogleAdsManagerLink"
+          description: "Validated only (validateOnly true), nothing sent"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "429":
+          description: Google Ads operations budget or quota exhausted; retry later.
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Invite a client account to a manager
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/accounts/finance:
     get:
       description: |-
@@ -66688,6 +66865,94 @@ components:
       - COST_CAP
       - LOWEST_COST_WITH_MIN_ROAS
       type: string
+    GoogleAdsHierarchyClient:
+      description: A Google Ads account inside a manager tree.
+      example:
+        linkStatus: ACTIVE
+        parentCustomerId: parentCustomerId
+        managerLinkId: managerLinkId
+        manager: true
+        hidden: true
+        level: 0
+        testAccount: true
+        customerId: customerId
+        name: name
+        timeZone: timeZone
+        currency: currency
+        status: status
+      properties:
+        customerId:
+          description: "Native Google Ads customer id, digits only."
+          type: string
+        name:
+          description: Null for a pending invitation.
+          nullable: true
+          type: string
+        currency:
+          nullable: true
+          type: string
+        timeZone:
+          nullable: true
+          type: string
+        manager:
+          description: True for a sub-manager account.
+          type: boolean
+        testAccount:
+          type: boolean
+        hidden:
+          description: Hidden in the manager's Google Ads UI.
+          type: boolean
+        level:
+          description: Distance from the root (1 = direct client of the root).
+          type: integer
+        status:
+          description: "Google customer status: ENABLED, CANCELED, SUSPENDED or CLOSED.\
+            \ Null for a pending invitation."
+          nullable: true
+          type: string
+        parentCustomerId:
+          description: Direct manager of this account. Null only when more than 50
+            managers under the root were skipped.
+          nullable: true
+          type: string
+        managerLinkId:
+          description: "Id of the link to the parent, used by PATCH /v1/ads/accounts/manager-links."
+          nullable: true
+          type: string
+        linkStatus:
+          enum:
+          - ACTIVE
+          - PENDING
+          - null
+          nullable: true
+          type: string
+    GoogleAdsManagerLink:
+      example:
+        managerLinkId: managerLinkId
+        validateOnly: true
+        managerCustomerId: managerCustomerId
+        clientCustomerId: clientCustomerId
+        status: PENDING
+      properties:
+        managerCustomerId:
+          type: string
+        clientCustomerId:
+          type: string
+        managerLinkId:
+          description: "Null on a validateOnly invitation, where Google creates nothing."
+          nullable: true
+          type: string
+        status:
+          description: Status the link has after this call.
+          enum:
+          - PENDING
+          - ACTIVE
+          - REFUSED
+          - CANCELED
+          - INACTIVE
+          type: string
+        validateOnly:
+          type: boolean
     PortfolioBidStrategy:
       description: "A Google Ads portfolio bid strategy: a named bidding strategy\
         \ shared across campaigns, with its R.130 report metrics over the queried\
@@ -112569,6 +112834,269 @@ components:
           items:
             $ref: "#/components/schemas/addAccountStructuredSnippets_201_response_structuredSnippets_inner"
           type: array
+    getAdAccountHierarchy_200_response_roots_inner_managerLinks_inner:
+      example:
+        managerLinkId: managerLinkId
+        managerCustomerId: managerCustomerId
+        status: ACTIVE
+      properties:
+        managerCustomerId:
+          type: string
+        managerLinkId:
+          type: string
+        status:
+          enum:
+          - ACTIVE
+          - PENDING
+          type: string
+    getAdAccountHierarchy_200_response_roots_inner:
+      example:
+        managerLinks:
+        - managerLinkId: managerLinkId
+          managerCustomerId: managerCustomerId
+          status: ACTIVE
+        - managerLinkId: managerLinkId
+          managerCustomerId: managerCustomerId
+          status: ACTIVE
+        clients:
+        - linkStatus: ACTIVE
+          parentCustomerId: parentCustomerId
+          managerLinkId: managerLinkId
+          manager: true
+          hidden: true
+          level: 0
+          testAccount: true
+          customerId: customerId
+          name: name
+          timeZone: timeZone
+          currency: currency
+          status: status
+        - linkStatus: ACTIVE
+          parentCustomerId: parentCustomerId
+          managerLinkId: managerLinkId
+          manager: true
+          hidden: true
+          level: 0
+          testAccount: true
+          customerId: customerId
+          name: name
+          timeZone: timeZone
+          currency: currency
+          status: status
+        manager: true
+        testAccount: true
+        customerId: customerId
+        name: name
+        timeZone: timeZone
+        currency: currency
+        status: status
+      properties:
+        customerId:
+          description: "Native Google Ads customer id, digits only."
+          type: string
+        name:
+          nullable: true
+          type: string
+        currency:
+          description: ISO 4217 code.
+          nullable: true
+          type: string
+        timeZone:
+          description: "IANA time zone, e.g. Europe/Madrid."
+          nullable: true
+          type: string
+        manager:
+          description: True for a manager (MCC) account.
+          type: boolean
+        testAccount:
+          type: boolean
+        status:
+          description: "Google customer status: ENABLED, CANCELED, SUSPENDED or CLOSED."
+          nullable: true
+          type: string
+        managerLinks:
+          description: "Managers linked to this account, ACTIVE or PENDING."
+          items:
+            $ref: "#/components/schemas/getAdAccountHierarchy_200_response_roots_inner_managerLinks_inner"
+          type: array
+        clients:
+          description: "Every account under this root at any depth, in Google's order,\
+            \ followed by pending invitations."
+          items:
+            $ref: "#/components/schemas/GoogleAdsHierarchyClient"
+          type: array
+    getAdAccountHierarchy_200_response_unavailable_inner:
+      example:
+        reason: reason
+        customerId: customerId
+      properties:
+        customerId:
+          type: string
+        reason:
+          description: Google's error message and code.
+          type: string
+    getAdAccountHierarchy_200_response:
+      example:
+        accountId: accountId
+        stale: true
+        unavailable:
+        - reason: reason
+          customerId: customerId
+        - reason: reason
+          customerId: customerId
+        truncated: true
+        roots:
+        - managerLinks:
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+            status: ACTIVE
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+            status: ACTIVE
+          clients:
+          - linkStatus: ACTIVE
+            parentCustomerId: parentCustomerId
+            managerLinkId: managerLinkId
+            manager: true
+            hidden: true
+            level: 0
+            testAccount: true
+            customerId: customerId
+            name: name
+            timeZone: timeZone
+            currency: currency
+            status: status
+          - linkStatus: ACTIVE
+            parentCustomerId: parentCustomerId
+            managerLinkId: managerLinkId
+            manager: true
+            hidden: true
+            level: 0
+            testAccount: true
+            customerId: customerId
+            name: name
+            timeZone: timeZone
+            currency: currency
+            status: status
+          manager: true
+          testAccount: true
+          customerId: customerId
+          name: name
+          timeZone: timeZone
+          currency: currency
+          status: status
+        - managerLinks:
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+            status: ACTIVE
+          - managerLinkId: managerLinkId
+            managerCustomerId: managerCustomerId
+            status: ACTIVE
+          clients:
+          - linkStatus: ACTIVE
+            parentCustomerId: parentCustomerId
+            managerLinkId: managerLinkId
+            manager: true
+            hidden: true
+            level: 0
+            testAccount: true
+            customerId: customerId
+            name: name
+            timeZone: timeZone
+            currency: currency
+            status: status
+          - linkStatus: ACTIVE
+            parentCustomerId: parentCustomerId
+            managerLinkId: managerLinkId
+            manager: true
+            hidden: true
+            level: 0
+            testAccount: true
+            customerId: customerId
+            name: name
+            timeZone: timeZone
+            currency: currency
+            status: status
+          manager: true
+          testAccount: true
+          customerId: customerId
+          name: name
+          timeZone: timeZone
+          currency: currency
+          status: status
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        accountId:
+          type: string
+        roots:
+          items:
+            $ref: "#/components/schemas/getAdAccountHierarchy_200_response_roots_inner"
+          type: array
+        unavailable:
+          items:
+            $ref: "#/components/schemas/getAdAccountHierarchy_200_response_unavailable_inner"
+          type: array
+        truncated:
+          type: boolean
+        cachedAt:
+          description: When this data was fetched from Google. Null on a live read.
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          description: True when Google's quota was exhausted and this is the last
+            successful fetch.
+          type: boolean
+    inviteAdAccountToManager_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Google ads SocialAccount id.
+          type: string
+        managerCustomerId:
+          description: "Manager customer id, digits only."
+          type: string
+        clientCustomerId:
+          description: "Client customer id to invite, digits only."
+          type: string
+        validateOnly:
+          default: false
+          type: boolean
+      required:
+      - accountId
+      - clientCustomerId
+      - managerCustomerId
+    updateAdAccountManagerLink_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Google ads SocialAccount id.
+          type: string
+        managerCustomerId:
+          description: "Manager customer id, digits only."
+          type: string
+        clientCustomerId:
+          description: "Client customer id, digits only."
+          type: string
+        managerLinkId:
+          description: Numeric link id from GET /v1/ads/accounts/hierarchy.
+          type: string
+        action:
+          enum:
+          - accept
+          - decline
+          - cancel
+          - unlink
+          type: string
+        validateOnly:
+          default: false
+          type: boolean
+      required:
+      - accountId
+      - action
+      - clientCustomerId
+      - managerCustomerId
+      - managerLinkId
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString

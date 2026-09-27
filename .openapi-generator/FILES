@@ -662,6 +662,10 @@ docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
+docs/GetAdAccountHierarchy200Response.md
+docs/GetAdAccountHierarchy200ResponseRootsInner.md
+docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md
+docs/GetAdAccountHierarchy200ResponseUnavailableInner.md
 docs/GetAdAnalytics202Response.md
 docs/GetAdAudience200Response.md
 docs/GetAdCampaignDetails200Response.md
@@ -1035,6 +1039,8 @@ docs/GmbServicesApi.md
 docs/GmbVerificationsApi.md
 docs/GoogleAdLabel.md
 docs/GoogleAdLabelAssignments.md
+docs/GoogleAdsHierarchyClient.md
+docs/GoogleAdsManagerLink.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1121,6 +1127,7 @@ docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
+docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
 docs/LeadGenApi.md
@@ -1892,6 +1899,7 @@ docs/UpdateAccountStructuredSnippetsRequestUpdatesInner.md
 docs/UpdateAd200Response.md
 docs/UpdateAdAccount200Response.md
 docs/UpdateAdAccount200ResponseDsaDefaults.md
+docs/UpdateAdAccountManagerLinkRequest.md
 docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
 docs/UpdateAdCampaign200Response.md
@@ -3054,6 +3062,10 @@ src/main/java/dev/zernio/model/GetAccountPosts200ResponsePostsInner.java
 src/main/java/dev/zernio/model/GetAd200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInner.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.java
+src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseUnavailableInner.java
 src/main/java/dev/zernio/model/GetAdAnalytics202Response.java
 src/main/java/dev/zernio/model/GetAdAudience200Response.java
 src/main/java/dev/zernio/model/GetAdCampaignDetails200Response.java
@@ -3419,6 +3431,8 @@ src/main/java/dev/zernio/model/GetYoutubePlaylists200Response.java
 src/main/java/dev/zernio/model/GetYoutubePlaylists200ResponsePlaylistsInner.java
 src/main/java/dev/zernio/model/GoogleAdLabel.java
 src/main/java/dev/zernio/model/GoogleAdLabelAssignments.java
+src/main/java/dev/zernio/model/GoogleAdsHierarchyClient.java
+src/main/java/dev/zernio/model/GoogleAdsManagerLink.java
 src/main/java/dev/zernio/model/GoogleAssetGroupAssetLink.java
 src/main/java/dev/zernio/model/GoogleAssetGroupAssetUnlink.java
 src/main/java/dev/zernio/model/GoogleAssetUpdate.java
@@ -3502,6 +3516,7 @@ src/main/java/dev/zernio/model/InstagramPlatformData.java
 src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
+src/main/java/dev/zernio/model/InviteAdAccountToManagerRequest.java
 src/main/java/dev/zernio/model/KeywordEntry.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
 src/main/java/dev/zernio/model/LikeInboxCommentRequest.java
@@ -4250,6 +4265,7 @@ src/main/java/dev/zernio/model/UpdateAccountStructuredSnippetsRequestUpdatesInne
 src/main/java/dev/zernio/model/UpdateAd200Response.java
 src/main/java/dev/zernio/model/UpdateAdAccount200Response.java
 src/main/java/dev/zernio/model/UpdateAdAccount200ResponseDsaDefaults.java
+src/main/java/dev/zernio/model/UpdateAdAccountManagerLinkRequest.java
 src/main/java/dev/zernio/model/UpdateAdAccountRequest.java
 src/main/java/dev/zernio/model/UpdateAdAudienceRequest.java
 src/main/java/dev/zernio/model/UpdateAdCampaign200Response.java
@@ -4673,3 +4689,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseRootsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseTest.java
+src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseUnavailableInnerTest.java
+src/test/java/dev/zernio/model/GoogleAdsHierarchyClientTest.java
+src/test/java/dev/zernio/model/GoogleAdsManagerLinkTest.java
+src/test/java/dev/zernio/model/InviteAdAccountToManagerRequestTest.java
+src/test/java/dev/zernio/model/UpdateAdAccountManagerLinkRequestTest.java

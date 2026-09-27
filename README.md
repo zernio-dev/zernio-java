@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.108.0
+- API version: 1.109.0
 
-- Build date: 2026-09-27T19:26:19.190964677Z[Etc/UTC]
+- Build date: 2026-09-27T19:34:47.085303296Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.108.0</version>
+  <version>1.109.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.108.0"
+compile "dev.zernio:zernio-sdk:1.109.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.108.0.jar`
+- `target/zernio-sdk-1.109.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -213,6 +213,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**detachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
+*AdAccountsApi* | [**getAdAccountHierarchy**](docs/AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
+*AdAccountsApi* | [**getAdAccountHierarchyWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
 *AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**getAdCommentsWithHttpInfo**](docs/AdAccountsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**getAdNegativeKeywordList**](docs/AdAccountsApi.md#getAdNegativeKeywordList) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list
@@ -229,6 +231,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**getValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set
 *AdAccountsApi* | [**hideAdComment**](docs/AdAccountsApi.md#hideAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment
 *AdAccountsApi* | [**hideAdCommentWithHttpInfo**](docs/AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment
+*AdAccountsApi* | [**inviteAdAccountToManager**](docs/AdAccountsApi.md#inviteAdAccountToManager) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager
+*AdAccountsApi* | [**inviteAdAccountToManagerWithHttpInfo**](docs/AdAccountsApi.md#inviteAdAccountToManagerWithHttpInfo) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager
 *AdAccountsApi* | [**listAccountCallouts**](docs/AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account callouts
 *AdAccountsApi* | [**listAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account callouts
 *AdAccountsApi* | [**listAccountSitelinks**](docs/AdAccountsApi.md#listAccountSitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks
@@ -281,6 +285,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**updateAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#updateAccountStructuredSnippetsWithHttpInfo) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets
 *AdAccountsApi* | [**updateAdAccount**](docs/AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings
 *AdAccountsApi* | [**updateAdAccountWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings
+*AdAccountsApi* | [**updateAdAccountManagerLink**](docs/AdAccountsApi.md#updateAdAccountManagerLink) | **PATCH** /v1/ads/accounts/manager-links | Accept, decline, cancel or end a manager link
+*AdAccountsApi* | [**updateAdAccountManagerLinkWithHttpInfo**](docs/AdAccountsApi.md#updateAdAccountManagerLinkWithHttpInfo) | **PATCH** /v1/ads/accounts/manager-links | Accept, decline, cancel or end a manager link
 *AdAccountsApi* | [**updateAdLabel**](docs/AdAccountsApi.md#updateAdLabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label
 *AdAccountsApi* | [**updateAdLabelWithHttpInfo**](docs/AdAccountsApi.md#updateAdLabelWithHttpInfo) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label
 *AdAccountsApi* | [**updateAdNegativeKeywordList**](docs/AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list
@@ -2346,6 +2352,10 @@ Class | Method | HTTP request | Description
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
+ - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
+ - [GetAdAccountHierarchy200ResponseRootsInner](docs/GetAdAccountHierarchy200ResponseRootsInner.md)
+ - [GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner](docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md)
+ - [GetAdAccountHierarchy200ResponseUnavailableInner](docs/GetAdAccountHierarchy200ResponseUnavailableInner.md)
  - [GetAdAnalytics202Response](docs/GetAdAnalytics202Response.md)
  - [GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [GetAdCampaignDetails200Response](docs/GetAdCampaignDetails200Response.md)
@@ -2711,6 +2721,8 @@ Class | Method | HTTP request | Description
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [GoogleAdLabel](docs/GoogleAdLabel.md)
  - [GoogleAdLabelAssignments](docs/GoogleAdLabelAssignments.md)
+ - [GoogleAdsHierarchyClient](docs/GoogleAdsHierarchyClient.md)
+ - [GoogleAdsManagerLink](docs/GoogleAdsManagerLink.md)
  - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
  - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
@@ -2794,6 +2806,7 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
+ - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
@@ -3542,6 +3555,7 @@ Class | Method | HTTP request | Description
  - [UpdateAd200Response](docs/UpdateAd200Response.md)
  - [UpdateAdAccount200Response](docs/UpdateAdAccount200Response.md)
  - [UpdateAdAccount200ResponseDsaDefaults](docs/UpdateAdAccount200ResponseDsaDefaults.md)
+ - [UpdateAdAccountManagerLinkRequest](docs/UpdateAdAccountManagerLinkRequest.md)
  - [UpdateAdAccountRequest](docs/UpdateAdAccountRequest.md)
  - [UpdateAdAudienceRequest](docs/UpdateAdAudienceRequest.md)
  - [UpdateAdCampaign200Response](docs/UpdateAdCampaign200Response.md)

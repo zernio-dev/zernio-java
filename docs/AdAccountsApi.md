@@ -34,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**detachAdLabelWithHttpInfo**](AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label |
 | [**getAdAccountFinance**](AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdAccountFinanceWithHttpInfo**](AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances |
+| [**getAdAccountHierarchy**](AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
+| [**getAdAccountHierarchyWithHttpInfo**](AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**getAdComments**](AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdCommentsWithHttpInfo**](AdAccountsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdNegativeKeywordList**](AdAccountsApi.md#getAdNegativeKeywordList) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list |
@@ -50,6 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getValueRuleSetWithHttpInfo**](AdAccountsApi.md#getValueRuleSetWithHttpInfo) | **GET** /v1/ads/value-rule-sets/{valueRuleSetId} | Read a value rule set |
 | [**hideAdComment**](AdAccountsApi.md#hideAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
 | [**hideAdCommentWithHttpInfo**](AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment |
+| [**inviteAdAccountToManager**](AdAccountsApi.md#inviteAdAccountToManager) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager |
+| [**inviteAdAccountToManagerWithHttpInfo**](AdAccountsApi.md#inviteAdAccountToManagerWithHttpInfo) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager |
 | [**listAccountCallouts**](AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account callouts |
 | [**listAccountCalloutsWithHttpInfo**](AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account callouts |
 | [**listAccountSitelinks**](AdAccountsApi.md#listAccountSitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
@@ -102,6 +106,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#updateAccountStructuredSnippetsWithHttpInfo) | **PUT** /v1/ads/accounts/structured-snippets | Update account snippets |
 | [**updateAdAccount**](AdAccountsApi.md#updateAdAccount) | **PATCH** /v1/ads/accounts | Update ad account settings |
 | [**updateAdAccountWithHttpInfo**](AdAccountsApi.md#updateAdAccountWithHttpInfo) | **PATCH** /v1/ads/accounts | Update ad account settings |
+| [**updateAdAccountManagerLink**](AdAccountsApi.md#updateAdAccountManagerLink) | **PATCH** /v1/ads/accounts/manager-links | Accept, decline, cancel or end a manager link |
+| [**updateAdAccountManagerLinkWithHttpInfo**](AdAccountsApi.md#updateAdAccountManagerLinkWithHttpInfo) | **PATCH** /v1/ads/accounts/manager-links | Accept, decline, cancel or end a manager link |
 | [**updateAdLabel**](AdAccountsApi.md#updateAdLabel) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**updateAdLabelWithHttpInfo**](AdAccountsApi.md#updateAdLabelWithHttpInfo) | **PATCH** /v1/ads/labels/{labelId} | Update a Google Ads label |
 | [**updateAdNegativeKeywordList**](AdAccountsApi.md#updateAdNegativeKeywordList) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list |
@@ -2501,6 +2507,170 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
+## getAdAccountHierarchy
+
+> GetAdAccountHierarchy200Response getAdAccountHierarchy(accountId, adAccountId, customerId)
+
+Get manager account hierarchy
+
+Live manager (MCC) and client tree for a Google Ads connection. Starts from every customer the Google user behind the connection can access directly and walks each tree to any depth with &#x60;customer_client&#x60;, then reads each manager&#39;s own client links so every client carries its direct parent, the &#x60;managerLinkId&#x60; and the link status. Invitations a manager sent that the client has not accepted yet appear as clients with &#x60;linkStatus: PENDING&#x60; (Google returns no name or currency for them). Refused, canceled and ended links are history and are omitted. &#x60;managerLinks&#x60; on a root lists the managers linked to that account, including invitations it can still accept with PATCH /v1/ads/accounts/manager-links. A directly accessible account that is also nested in another tree appears only once, inside that tree. Customers Google refuses to read (for example a cancelled account) are listed in &#x60;unavailable&#x60; with Google&#39;s reason instead of failing the call. Up to 50 roots and 50 managers per root are read; &#x60;truncated&#x60; is true when more exist. Cached for 10 minutes per connection; the response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;. When the connection is scoped to specific ad accounts, client accounts outside that scope are hidden (managers stay visible).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String adAccountId = "adAccountId_example"; // String | Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for consistency with the other Google Ads account endpoints.
+        try {
+            GetAdAccountHierarchy200Response result = apiInstance.getAdAccountHierarchy(accountId, adAccountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountHierarchy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **adAccountId** | **String**| Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for consistency with the other Google Ads account endpoints. | [optional] |
+
+### Return type
+
+[**GetAdAccountHierarchy200Response**](GetAdAccountHierarchy200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Manager and client hierarchy |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## getAdAccountHierarchyWithHttpInfo
+
+> ApiResponse<GetAdAccountHierarchy200Response> getAdAccountHierarchy getAdAccountHierarchyWithHttpInfo(accountId, adAccountId, customerId)
+
+Get manager account hierarchy
+
+Live manager (MCC) and client tree for a Google Ads connection. Starts from every customer the Google user behind the connection can access directly and walks each tree to any depth with &#x60;customer_client&#x60;, then reads each manager&#39;s own client links so every client carries its direct parent, the &#x60;managerLinkId&#x60; and the link status. Invitations a manager sent that the client has not accepted yet appear as clients with &#x60;linkStatus: PENDING&#x60; (Google returns no name or currency for them). Refused, canceled and ended links are history and are omitted. &#x60;managerLinks&#x60; on a root lists the managers linked to that account, including invitations it can still accept with PATCH /v1/ads/accounts/manager-links. A directly accessible account that is also nested in another tree appears only once, inside that tree. Customers Google refuses to read (for example a cancelled account) are listed in &#x60;unavailable&#x60; with Google&#39;s reason instead of failing the call. Up to 50 roots and 50 managers per root are read; &#x60;truncated&#x60; is true when more exist. Cached for 10 minutes per connection; the response carries &#x60;cachedAt&#x60; and &#x60;stale&#x60;. When the connection is scoped to specific ad accounts, client accounts outside that scope are hidden (managers stay visible).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String adAccountId = "adAccountId_example"; // String | Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for consistency with the other Google Ads account endpoints.
+        try {
+            ApiResponse<GetAdAccountHierarchy200Response> response = apiInstance.getAdAccountHierarchyWithHttpInfo(accountId, adAccountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountHierarchy");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **adAccountId** | **String**| Only return the tree rooted at this customer id (digits only). It must be an account the Google user accesses directly. Omit to list every tree. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for consistency with the other Google Ads account endpoints. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdAccountHierarchy200Response**](GetAdAccountHierarchy200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Manager and client hierarchy |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## getAdComments
 
 > GetAdComments200Response getAdComments(adId, placement, limit, since, until, cursor)
@@ -3835,6 +4005,164 @@ ApiResponse<[**HideAdComment200Response**](HideAdComment200Response.md)>
 | **422** | TikTok Ads connection is unavailable. |  -  |
 | **501** | Moderation on this route supports TikTok. Use the inbox comment routes for Meta. |  -  |
 | **502** | TikTok rejected the request or was unavailable. Inspect platformError for its code and message. |  -  |
+
+
+## inviteAdAccountToManager
+
+> GoogleAdsManagerLink inviteAdAccountToManager(inviteAdAccountToManagerRequest)
+
+Invite a client account to a manager
+
+Sends a manager-to-client link invitation from &#x60;managerCustomerId&#x60; to &#x60;clientCustomerId&#x60; (Google&#39;s CustomerClientLinkService). The manager must be one the connection&#39;s Google user reaches, directly or under another manager (see GET /v1/ads/accounts/hierarchy); the client can be any Google Ads account. The link stays &#x60;PENDING&#x60; until someone with access to the client accepts it in Google Ads or through PATCH on this path. Not idempotent: Google refuses a second invitation while one is pending. Send &#x60;validateOnly: true&#x60; to have Google check the request without sending anything.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        InviteAdAccountToManagerRequest inviteAdAccountToManagerRequest = new InviteAdAccountToManagerRequest(); // InviteAdAccountToManagerRequest | 
+        try {
+            GoogleAdsManagerLink result = apiInstance.inviteAdAccountToManager(inviteAdAccountToManagerRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#inviteAdAccountToManager");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **inviteAdAccountToManagerRequest** | [**InviteAdAccountToManagerRequest**](InviteAdAccountToManagerRequest.md)|  | |
+
+### Return type
+
+[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Invitation sent |  -  |
+| **200** | Validated only (validateOnly true), nothing sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## inviteAdAccountToManagerWithHttpInfo
+
+> ApiResponse<GoogleAdsManagerLink> inviteAdAccountToManager inviteAdAccountToManagerWithHttpInfo(inviteAdAccountToManagerRequest)
+
+Invite a client account to a manager
+
+Sends a manager-to-client link invitation from &#x60;managerCustomerId&#x60; to &#x60;clientCustomerId&#x60; (Google&#39;s CustomerClientLinkService). The manager must be one the connection&#39;s Google user reaches, directly or under another manager (see GET /v1/ads/accounts/hierarchy); the client can be any Google Ads account. The link stays &#x60;PENDING&#x60; until someone with access to the client accepts it in Google Ads or through PATCH on this path. Not idempotent: Google refuses a second invitation while one is pending. Send &#x60;validateOnly: true&#x60; to have Google check the request without sending anything.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        InviteAdAccountToManagerRequest inviteAdAccountToManagerRequest = new InviteAdAccountToManagerRequest(); // InviteAdAccountToManagerRequest | 
+        try {
+            ApiResponse<GoogleAdsManagerLink> response = apiInstance.inviteAdAccountToManagerWithHttpInfo(inviteAdAccountToManagerRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#inviteAdAccountToManager");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **inviteAdAccountToManagerRequest** | [**InviteAdAccountToManagerRequest**](InviteAdAccountToManagerRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Invitation sent |  -  |
+| **200** | Validated only (validateOnly true), nothing sent |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## listAccountCallouts
@@ -8085,6 +8413,162 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
+## updateAdAccountManagerLink
+
+> GoogleAdsManagerLink updateAdAccountManagerLink(updateAdAccountManagerLinkRequest)
+
+Accept, decline, cancel or end a manager link
+
+Changes one manager-client link, identified by &#x60;managerCustomerId&#x60;, &#x60;clientCustomerId&#x60; and &#x60;managerLinkId&#x60; (all from GET /v1/ads/accounts/hierarchy). &#x60;accept&#x60; and &#x60;decline&#x60; answer a pending invitation as the client (CustomerManagerLinkService), so the connection&#39;s Google user needs direct access to the client account; access through a manager is not enough, because the link does not exist yet. &#x60;cancel&#x60; withdraws a pending invitation and &#x60;unlink&#x60; ends an active link, both as the manager (CustomerClientLinkService). Send &#x60;validateOnly: true&#x60; to have Google check the change without applying it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAdAccountManagerLinkRequest updateAdAccountManagerLinkRequest = new UpdateAdAccountManagerLinkRequest(); // UpdateAdAccountManagerLinkRequest | 
+        try {
+            GoogleAdsManagerLink result = apiInstance.updateAdAccountManagerLink(updateAdAccountManagerLinkRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAdAccountManagerLink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdAccountManagerLinkRequest** | [**UpdateAdAccountManagerLinkRequest**](UpdateAdAccountManagerLinkRequest.md)|  | |
+
+### Return type
+
+[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Link updated, or validated only when validateOnly is true |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## updateAdAccountManagerLinkWithHttpInfo
+
+> ApiResponse<GoogleAdsManagerLink> updateAdAccountManagerLink updateAdAccountManagerLinkWithHttpInfo(updateAdAccountManagerLinkRequest)
+
+Accept, decline, cancel or end a manager link
+
+Changes one manager-client link, identified by &#x60;managerCustomerId&#x60;, &#x60;clientCustomerId&#x60; and &#x60;managerLinkId&#x60; (all from GET /v1/ads/accounts/hierarchy). &#x60;accept&#x60; and &#x60;decline&#x60; answer a pending invitation as the client (CustomerManagerLinkService), so the connection&#39;s Google user needs direct access to the client account; access through a manager is not enough, because the link does not exist yet. &#x60;cancel&#x60; withdraws a pending invitation and &#x60;unlink&#x60; ends an active link, both as the manager (CustomerClientLinkService). Send &#x60;validateOnly: true&#x60; to have Google check the change without applying it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        UpdateAdAccountManagerLinkRequest updateAdAccountManagerLinkRequest = new UpdateAdAccountManagerLinkRequest(); // UpdateAdAccountManagerLinkRequest | 
+        try {
+            ApiResponse<GoogleAdsManagerLink> response = apiInstance.updateAdAccountManagerLinkWithHttpInfo(updateAdAccountManagerLinkRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#updateAdAccountManagerLink");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdAccountManagerLinkRequest** | [**UpdateAdAccountManagerLinkRequest**](UpdateAdAccountManagerLinkRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GoogleAdsManagerLink**](GoogleAdsManagerLink.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Link updated, or validated only when validateOnly is true |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## updateAdLabel
