@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createConversionActionWithHttpInfo**](ConversionsApi.md#createConversionActionWithHttpInfo) | **POST** /v1/ads/conversions/actions | Create website conversion action |
 | [**createConversionDestination**](ConversionsApi.md#createConversionDestination) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**createConversionDestinationWithHttpInfo**](ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
+| [**createCustomConversionGoal**](ConversionsApi.md#createCustomConversionGoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
+| [**createCustomConversionGoalWithHttpInfo**](ConversionsApi.md#createCustomConversionGoalWithHttpInfo) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
 | [**deleteConversionDestination**](ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**deleteConversionDestinationWithHttpInfo**](ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**getConversionDestination**](ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
@@ -20,18 +22,30 @@ All URIs are relative to *https://zernio.com/api*
 | [**getConversionMetricsWithHttpInfo**](ConversionsApi.md#getConversionMetricsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
 | [**getConversionsQuality**](ConversionsApi.md#getConversionsQuality) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
 | [**getConversionsQualityWithHttpInfo**](ConversionsApi.md#getConversionsQualityWithHttpInfo) | **GET** /v1/ads/conversions/quality | Get Event Match Quality |
+| [**listAdConversionGoals**](ConversionsApi.md#listAdConversionGoals) | **GET** /v1/ads/conversions/goals | List account conversion goals |
+| [**listAdConversionGoalsWithHttpInfo**](ConversionsApi.md#listAdConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/goals | List account conversion goals |
 | [**listConversionActions**](ConversionsApi.md#listConversionActions) | **GET** /v1/ads/conversions/actions | List conversion actions |
 | [**listConversionActionsWithHttpInfo**](ConversionsApi.md#listConversionActionsWithHttpInfo) | **GET** /v1/ads/conversions/actions | List conversion actions |
 | [**listConversionAssociations**](ConversionsApi.md#listConversionAssociations) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**listConversionAssociationsWithHttpInfo**](ConversionsApi.md#listConversionAssociationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | List associated campaigns |
 | [**listConversionDestinations**](ConversionsApi.md#listConversionDestinations) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**listConversionDestinationsWithHttpInfo**](ConversionsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
+| [**listCustomConversionGoals**](ConversionsApi.md#listCustomConversionGoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
+| [**listCustomConversionGoalsWithHttpInfo**](ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**removeConversionAssociations**](ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociationsWithHttpInfo**](ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
+| [**removeCustomConversionGoal**](ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
+| [**removeCustomConversionGoalWithHttpInfo**](ConversionsApi.md#removeCustomConversionGoalWithHttpInfo) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**sendConversions**](ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendConversionsWithHttpInfo**](ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events |
+| [**updateAdConversionGoals**](ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
+| [**updateAdConversionGoalsWithHttpInfo**](ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
+| [**updateConversionAction**](ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary |
+| [**updateConversionActionWithHttpInfo**](ConversionsApi.md#updateConversionActionWithHttpInfo) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary |
 | [**updateConversionDestination**](ConversionsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateConversionDestinationWithHttpInfo**](ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
+| [**updateCustomConversionGoal**](ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
+| [**updateCustomConversionGoalWithHttpInfo**](ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
 
 
 
@@ -673,6 +687,160 @@ ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestina
 | **405** | Platform does not support destination creation. |  -  |
 | **409** | The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. Google Ads only. A conversion action with the given name already exists but has a different category. Use a different name or use the existing destination. Error code: &#x60;IDEMPOTENCY_CONFLICT&#x60;.  |  -  |
 | **429** | Rate limit hit. Retry with backoff. |  -  |
+
+
+## createCustomConversionGoal
+
+> CreateCustomConversionGoal201Response createCustomConversionGoal(createCustomConversionGoalRequest)
+
+Create a custom conversion goal
+
+Creates a custom conversion goal from conversion action ids. Point a campaign at it with &#x60;PATCH /v1/ads/campaigns/{campaignId}/conversion-goals&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateCustomConversionGoalRequest createCustomConversionGoalRequest = new CreateCustomConversionGoalRequest(); // CreateCustomConversionGoalRequest | 
+        try {
+            CreateCustomConversionGoal201Response result = apiInstance.createCustomConversionGoal(createCustomConversionGoalRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCustomConversionGoalRequest** | [**CreateCustomConversionGoalRequest**](CreateCustomConversionGoalRequest.md)|  | |
+
+### Return type
+
+[**CreateCustomConversionGoal201Response**](CreateCustomConversionGoal201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Custom goal created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## createCustomConversionGoalWithHttpInfo
+
+> ApiResponse<CreateCustomConversionGoal201Response> createCustomConversionGoal createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest)
+
+Create a custom conversion goal
+
+Creates a custom conversion goal from conversion action ids. Point a campaign at it with &#x60;PATCH /v1/ads/campaigns/{campaignId}/conversion-goals&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateCustomConversionGoalRequest createCustomConversionGoalRequest = new CreateCustomConversionGoalRequest(); // CreateCustomConversionGoalRequest | 
+        try {
+            ApiResponse<CreateCustomConversionGoal201Response> response = apiInstance.createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createCustomConversionGoalRequest** | [**CreateCustomConversionGoalRequest**](CreateCustomConversionGoalRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateCustomConversionGoal201Response**](CreateCustomConversionGoal201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Custom goal created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## deleteConversionDestination
@@ -1341,6 +1509,168 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 | **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
 
 
+## listAdConversionGoals
+
+> ListAdConversionGoals200Response listAdConversionGoals(accountId, adAccountId, customerId)
+
+List account conversion goals
+
+Google Ads account-default conversion goals (CustomerConversionGoal), one per category and origin, with &#x60;biddable&#x60; (whether the goal is used for bidding and reported in the Conversions column) and the conversion actions that belong to it, each flagged &#x60;primaryForGoal&#x60; (primary) or not (secondary). Reads are cached for 10 minutes; when the shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ListAdConversionGoals200Response result = apiInstance.listAdConversionGoals(accountId, adAccountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listAdConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+[**ListAdConversionGoals200Response**](ListAdConversionGoals200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account conversion goals |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## listAdConversionGoalsWithHttpInfo
+
+> ApiResponse<ListAdConversionGoals200Response> listAdConversionGoals listAdConversionGoalsWithHttpInfo(accountId, adAccountId, customerId)
+
+List account conversion goals
+
+Google Ads account-default conversion goals (CustomerConversionGoal), one per category and origin, with &#x60;biddable&#x60; (whether the goal is used for bidding and reported in the Conversions column) and the conversion actions that belong to it, each flagged &#x60;primaryForGoal&#x60; (primary) or not (secondary). Reads are cached for 10 minutes; when the shared Google quota is exhausted the last successful result is served with &#x60;stale: true&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ApiResponse<ListAdConversionGoals200Response> response = apiInstance.listAdConversionGoalsWithHttpInfo(accountId, adAccountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listAdConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdConversionGoals200Response**](ListAdConversionGoals200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account conversion goals |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## listConversionActions
 
 > ListConversionActions200Response listConversionActions(accountId, adAccountId, customerId, type)
@@ -1831,6 +2161,168 @@ ApiResponse<[**ListConversionDestinations200Response**](ListConversionDestinatio
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
+## listCustomConversionGoals
+
+> ListCustomConversionGoals200Response listCustomConversionGoals(accountId, adAccountId, customerId)
+
+List custom conversion goals
+
+Google Ads custom conversion goals (a named set of conversion actions a campaign can bid on). Removed goals are excluded. Cached like the other Google reads.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ListCustomConversionGoals200Response result = apiInstance.listCustomConversionGoals(accountId, adAccountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listCustomConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+[**ListCustomConversionGoals200Response**](ListCustomConversionGoals200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom conversion goals |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## listCustomConversionGoalsWithHttpInfo
+
+> ApiResponse<ListCustomConversionGoals200Response> listCustomConversionGoals listCustomConversionGoalsWithHttpInfo(accountId, adAccountId, customerId)
+
+List custom conversion goals
+
+Google Ads custom conversion goals (a named set of conversion actions a campaign can bid on). Removed goals are excluded. Cached like the other Google reads.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ApiResponse<ListCustomConversionGoals200Response> response = apiInstance.listCustomConversionGoalsWithHttpInfo(accountId, adAccountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listCustomConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+ApiResponse<[**ListCustomConversionGoals200Response**](ListCustomConversionGoals200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom conversion goals |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## removeConversionAssociations
 
 > RemoveConversionAssociations200Response removeConversionAssociations(accountId, destinationId, adAccountId, campaignIds)
@@ -2001,6 +2493,172 @@ ApiResponse<[**RemoveConversionAssociations200Response**](RemoveConversionAssoci
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
 
 
+## removeCustomConversionGoal
+
+> RemoveCustomConversionGoal200Response removeCustomConversionGoal(goalId, accountId, adAccountId, customerId)
+
+Remove a custom conversion goal
+
+Removes the goal. Google refuses (400) while any campaign still uses it: switch those campaigns to another goal first.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String goalId = "goalId_example"; // String | Google custom conversion goal id
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            RemoveCustomConversionGoal200Response result = apiInstance.removeCustomConversionGoal(goalId, accountId, adAccountId, customerId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#removeCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **goalId** | **String**| Google custom conversion goal id | |
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+[**RemoveCustomConversionGoal200Response**](RemoveCustomConversionGoal200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom goal removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Goal not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## removeCustomConversionGoalWithHttpInfo
+
+> ApiResponse<RemoveCustomConversionGoal200Response> removeCustomConversionGoal removeCustomConversionGoalWithHttpInfo(goalId, accountId, adAccountId, customerId)
+
+Remove a custom conversion goal
+
+Removes the goal. Google refuses (400) while any campaign still uses it: switch those campaigns to another goal first.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String goalId = "goalId_example"; // String | Google custom conversion goal id
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (Google Ads)
+        String adAccountId = "adAccountId_example"; // String | Google customer id. Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId
+        try {
+            ApiResponse<RemoveCustomConversionGoal200Response> response = apiInstance.removeCustomConversionGoalWithHttpInfo(goalId, accountId, adAccountId, customerId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#removeCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **goalId** | **String**| Google custom conversion goal id | |
+| **accountId** | **String**| Zernio SocialAccount id (Google Ads) | |
+| **adAccountId** | **String**| Google customer id. Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId | [optional] |
+
+### Return type
+
+ApiResponse<[**RemoveCustomConversionGoal200Response**](RemoveCustomConversionGoal200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom goal removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Goal not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
 ## sendConversions
 
 > SendConversions200Response sendConversions(sendConversionsRequest)
@@ -2157,6 +2815,318 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | OpenAI Ads only: no tracking tag (pixel) exists yet for this account. Code &#x60;TRACKING_TAG_REQUIRED&#x60;; create one via &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; first. |  -  |
 | **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
+
+
+## updateAdConversionGoals
+
+> UpdateAdConversionGoals200Response updateAdConversionGoals(updateAdConversionGoalsRequest)
+
+Update account conversion goals
+
+Sets &#x60;biddable&#x60; on one or more account-default goals, addressed by category and origin, in one mutate. Campaigns that use account-level goals (&#x60;goalConfigLevel: CUSTOMER&#x60;) follow the change. Returns the re-read goal list.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        UpdateAdConversionGoalsRequest updateAdConversionGoalsRequest = new UpdateAdConversionGoalsRequest(); // UpdateAdConversionGoalsRequest | 
+        try {
+            UpdateAdConversionGoals200Response result = apiInstance.updateAdConversionGoals(updateAdConversionGoalsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateAdConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdConversionGoalsRequest** | [**UpdateAdConversionGoalsRequest**](UpdateAdConversionGoalsRequest.md)|  | |
+
+### Return type
+
+[**UpdateAdConversionGoals200Response**](UpdateAdConversionGoals200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Goals updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## updateAdConversionGoalsWithHttpInfo
+
+> ApiResponse<UpdateAdConversionGoals200Response> updateAdConversionGoals updateAdConversionGoalsWithHttpInfo(updateAdConversionGoalsRequest)
+
+Update account conversion goals
+
+Sets &#x60;biddable&#x60; on one or more account-default goals, addressed by category and origin, in one mutate. Campaigns that use account-level goals (&#x60;goalConfigLevel: CUSTOMER&#x60;) follow the change. Returns the re-read goal list.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        UpdateAdConversionGoalsRequest updateAdConversionGoalsRequest = new UpdateAdConversionGoalsRequest(); // UpdateAdConversionGoalsRequest | 
+        try {
+            ApiResponse<UpdateAdConversionGoals200Response> response = apiInstance.updateAdConversionGoalsWithHttpInfo(updateAdConversionGoalsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateAdConversionGoals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **updateAdConversionGoalsRequest** | [**UpdateAdConversionGoalsRequest**](UpdateAdConversionGoalsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateAdConversionGoals200Response**](UpdateAdConversionGoals200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Goals updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+
+## updateConversionAction
+
+> UpdateConversionAction200Response updateConversionAction(actionId, updateConversionActionRequest)
+
+Set a conversion action primary or secondary
+
+Sets &#x60;primary_for_goal&#x60; on a Google Ads conversion action. A primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String actionId = "actionId_example"; // String | Google conversion action id
+        UpdateConversionActionRequest updateConversionActionRequest = new UpdateConversionActionRequest(); // UpdateConversionActionRequest | 
+        try {
+            UpdateConversionAction200Response result = apiInstance.updateConversionAction(actionId, updateConversionActionRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateConversionAction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **actionId** | **String**| Google conversion action id | |
+| **updateConversionActionRequest** | [**UpdateConversionActionRequest**](UpdateConversionActionRequest.md)|  | |
+
+### Return type
+
+[**UpdateConversionAction200Response**](UpdateConversionAction200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Action updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## updateConversionActionWithHttpInfo
+
+> ApiResponse<UpdateConversionAction200Response> updateConversionAction updateConversionActionWithHttpInfo(actionId, updateConversionActionRequest)
+
+Set a conversion action primary or secondary
+
+Sets &#x60;primary_for_goal&#x60; on a Google Ads conversion action. A primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String actionId = "actionId_example"; // String | Google conversion action id
+        UpdateConversionActionRequest updateConversionActionRequest = new UpdateConversionActionRequest(); // UpdateConversionActionRequest | 
+        try {
+            ApiResponse<UpdateConversionAction200Response> response = apiInstance.updateConversionActionWithHttpInfo(actionId, updateConversionActionRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateConversionAction");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **actionId** | **String**| Google conversion action id | |
+| **updateConversionActionRequest** | [**UpdateConversionActionRequest**](UpdateConversionActionRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateConversionAction200Response**](UpdateConversionAction200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Action updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 
 
 ## updateConversionDestination
@@ -2323,4 +3293,162 @@ ApiResponse<[**GetConversionDestination200Response**](GetConversionDestination20
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support updating destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## updateCustomConversionGoal
+
+> UpdateCustomConversionGoal200Response updateCustomConversionGoal(goalId, updateCustomConversionGoalRequest)
+
+Update a custom conversion goal
+
+Renames the goal and/or replaces its conversion actions. Returns the re-read goal.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String goalId = "goalId_example"; // String | Google custom conversion goal id
+        UpdateCustomConversionGoalRequest updateCustomConversionGoalRequest = new UpdateCustomConversionGoalRequest(); // UpdateCustomConversionGoalRequest | 
+        try {
+            UpdateCustomConversionGoal200Response result = apiInstance.updateCustomConversionGoal(goalId, updateCustomConversionGoalRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **goalId** | **String**| Google custom conversion goal id | |
+| **updateCustomConversionGoalRequest** | [**UpdateCustomConversionGoalRequest**](UpdateCustomConversionGoalRequest.md)|  | |
+
+### Return type
+
+[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGoal200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom goal updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Goal not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
+
+## updateCustomConversionGoalWithHttpInfo
+
+> ApiResponse<UpdateCustomConversionGoal200Response> updateCustomConversionGoal updateCustomConversionGoalWithHttpInfo(goalId, updateCustomConversionGoalRequest)
+
+Update a custom conversion goal
+
+Renames the goal and/or replaces its conversion actions. Returns the re-read goal.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String goalId = "goalId_example"; // String | Google custom conversion goal id
+        UpdateCustomConversionGoalRequest updateCustomConversionGoalRequest = new UpdateCustomConversionGoalRequest(); // UpdateCustomConversionGoalRequest | 
+        try {
+            ApiResponse<UpdateCustomConversionGoal200Response> response = apiInstance.updateCustomConversionGoalWithHttpInfo(goalId, updateCustomConversionGoalRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#updateCustomConversionGoal");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **goalId** | **String**| Google custom conversion goal id | |
+| **updateCustomConversionGoalRequest** | [**UpdateCustomConversionGoalRequest**](UpdateCustomConversionGoalRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateCustomConversionGoal200Response**](UpdateCustomConversionGoal200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Custom goal updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Goal not found on this customer, or account unavailable |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only available on Google Ads accounts |  -  |
 

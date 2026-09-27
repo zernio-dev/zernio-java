@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.109.0
+  version: 1.110.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -32580,191 +32580,6 @@ paths:
       - google
       x-accepts:
       - application/json
-  /v1/ads/recommendations:
-    get:
-      description: "Google's optimization recommendations for one ad account: type,\
-        \ estimated impact (base vs potential metrics, cost in account currency units),\
-        \ the campaign, ad group or budget they target, and the type-specific payload\
-        \ Google returns (`details`, in Google's own shape with micros). Filter by\
-        \ campaignId and types. Cached for 10 minutes and cleared by apply or dismiss;\
-        \ served stale when Google quota is exhausted."
-      operationId: listGoogleRecommendations
-      parameters:
-      - description: Google ads SocialAccount id.
-        explode: true
-        in: query
-        name: accountId
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: "Google customer id, digits only. Defaults to the connection's\
-          \ only customer."
-        explode: true
-        in: query
-        name: adAccountId
-        required: false
-        schema:
-          type: string
-        style: form
-      - deprecated: true
-        description: "Alias of adAccountId, kept for consistency with other Google\
-          \ endpoints."
-        explode: true
-        in: query
-        name: customerId
-        required: false
-        schema:
-          type: string
-        style: form
-      - description: Only recommendations targeting this campaign.
-        explode: true
-        in: query
-        name: campaignId
-        required: false
-        schema:
-          pattern: ^\d+$
-          type: string
-        style: form
-      - description: "Comma-separated Google RecommendationType values, for example\
-          \ CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA."
-        explode: true
-        in: query
-        name: types
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/listGoogleRecommendations_200_response"
-          description: Recommendations.
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          description: "No Google Ads customer on this connection, or it needs reconnecting."
-        "429":
-          description: Google quota or the Zernio Google operations burst limit is
-            exhausted.
-        "501":
-          description: accountId is not a Google Ads connection.
-      security:
-      - bearerAuth: []
-      summary: List Google Ads recommendations
-      tags:
-      - Ad Campaigns
-      x-platforms:
-      - google
-      x-resource-group: ads
-      x-accepts:
-      - application/json
-  /v1/ads/recommendations/apply:
-    post:
-      description: "Apply up to 100 recommendations. This changes the account (budgets,\
-        \ bidding, keywords, assets) and is not reversible or idempotent; Google offers\
-        \ no validate-only mode for it. Items run in partial-failure mode, so one\
-        \ stale recommendation does not block the rest. `parameters` is optional and\
-        \ takes exactly one key named for the recommendation type, in Google's ApplyRecommendationOperation\
-        \ shape (for example `campaignBudget: { newBudgetAmountMicros }` or `keyword:\
-        \ { matchType, cpcBidMicros }`); omit it to apply Google's suggested values."
-      operationId: applyGoogleRecommendations
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 507f1f77bcf86cd799439011
-              adAccountId: "9122445560"
-              recommendations:
-              - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDEtMTc5MDQ3NTQyNjU5Ni0rMjM1MjA5NjcxNjctMA
-              - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yMjgtMTc5MDQyNDE5NjUwNS0rMTU3NjMyNzU3ODk
-                parameters:
-                  campaignBudget:
-                    newBudgetAmountMicros: "150000000"
-            schema:
-              $ref: "#/components/schemas/applyGoogleRecommendations_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/applyGoogleRecommendations_200_response"
-          description: Per-recommendation outcome. A failed item does not stop the
-            others.
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          description: "No Google Ads customer on this connection, or it needs reconnecting."
-        "429":
-          description: Google quota or the Zernio Google operations burst limit is
-            exhausted.
-        "501":
-          description: accountId is not a Google Ads connection.
-      security:
-      - bearerAuth: []
-      summary: Apply Google Ads recommendations
-      tags:
-      - Ad Campaigns
-      x-platforms:
-      - google
-      x-resource-group: ads
-      x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/ads/recommendations/dismiss:
-    post:
-      description: Dismiss up to 100 recommendations so Google stops suggesting them.
-        Items run in partial-failure mode.
-      operationId: dismissGoogleRecommendations
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/dismissGoogleRecommendations_request"
-        required: true
-      responses:
-        "200":
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/applyGoogleRecommendations_200_response"
-          description: Per-recommendation outcome. A failed item does not stop the
-            others.
-        "400":
-          $ref: "#/components/responses/BadRequest"
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "404":
-          $ref: "#/components/responses/NotFound"
-        "422":
-          description: "No Google Ads customer on this connection, or it needs reconnecting."
-        "429":
-          description: Google quota or the Zernio Google operations burst limit is
-            exhausted.
-        "501":
-          description: accountId is not a Google Ads connection.
-      security:
-      - bearerAuth: []
-      summary: Dismiss Google Ads recommendations
-      tags:
-      - Ad Campaigns
-      x-platforms:
-      - google
-      x-resource-group: ads
-      x-content-type: application/json
-      x-accepts:
-      - application/json
   /v1/ads/bid-strategies:
     get:
       description: "Bidding strategy report: type, status, campaign count, clicks,\
@@ -45830,6 +45645,480 @@ paths:
       summary: Create website conversion action
       tags:
       - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/conversions/goals:
+    get:
+      description: |-
+        Google Ads account-default conversion goals (CustomerConversionGoal), one per
+        category and origin, with `biddable` (whether the goal is used for bidding and
+        reported in the Conversions column) and the conversion actions that belong to it,
+        each flagged `primaryForGoal` (primary) or not (secondary). Reads are cached for
+        10 minutes; when the shared Google quota is exhausted the last successful result is
+        served with `stale: true`.
+      operationId: listAdConversionGoals
+      parameters:
+      - description: Zernio SocialAccount id (Google Ads)
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Google customer id. Required when the connection has multiple
+          customers.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: Alias of adAccountId
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdConversionGoals_200_response"
+          description: Account conversion goals
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: List account conversion goals
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    patch:
+      description: |-
+        Sets `biddable` on one or more account-default goals, addressed by category and
+        origin, in one mutate. Campaigns that use account-level goals
+        (`goalConfigLevel: CUSTOMER`) follow the change. Returns the re-read goal list.
+      operationId: updateAdConversionGoals
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdConversionGoals_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateAdConversionGoals_200_response"
+          description: Goals updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Update account conversion goals
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/conversions/actions/{actionId}:
+    patch:
+      description: |-
+        Sets `primary_for_goal` on a Google Ads conversion action. A primary action counts
+        toward its goal's bidding and the Conversions column; a secondary one is
+        observation-only (All conversions).
+      operationId: updateConversionAction
+      parameters:
+      - description: Google conversion action id
+        explode: false
+        in: path
+        name: actionId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateConversionAction_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateConversionAction_200_response"
+          description: Action updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Set a conversion action primary or secondary
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/conversions/custom-goals:
+    get:
+      description: Google Ads custom conversion goals (a named set of conversion actions
+        a campaign can bid on). Removed goals are excluded. Cached like the other
+        Google reads.
+      operationId: listCustomConversionGoals
+      parameters:
+      - description: Zernio SocialAccount id (Google Ads)
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Google customer id. Required when the connection has multiple
+          customers.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: Alias of adAccountId
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCustomConversionGoals_200_response"
+          description: Custom conversion goals
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: List custom conversion goals
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    post:
+      description: "Creates a custom conversion goal from conversion action ids. Point\
+        \ a campaign at it with `PATCH /v1/ads/campaigns/{campaignId}/conversion-goals`."
+      operationId: createCustomConversionGoal
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createCustomConversionGoal_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createCustomConversionGoal_201_response"
+          description: Custom goal created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Create a custom conversion goal
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/conversions/custom-goals/{goalId}:
+    delete:
+      description: "Removes the goal. Google refuses (400) while any campaign still\
+        \ uses it: switch those campaigns to another goal first."
+      operationId: removeCustomConversionGoal
+      parameters:
+      - description: Google custom conversion goal id
+        explode: false
+        in: path
+        name: goalId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      - description: Zernio SocialAccount id (Google Ads)
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Google customer id. Required when the connection has multiple
+          customers.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: Alias of adAccountId
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeCustomConversionGoal_200_response"
+          description: Custom goal removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Goal not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Remove a custom conversion goal
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    patch:
+      description: Renames the goal and/or replaces its conversion actions. Returns
+        the re-read goal.
+      operationId: updateCustomConversionGoal
+      parameters:
+      - description: Google custom conversion goal id
+        explode: false
+        in: path
+        name: goalId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateCustomConversionGoal_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCustomConversionGoal_200_response"
+          description: Custom goal updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Goal not found on this customer, or account unavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only available on Google Ads accounts
+      security:
+      - bearerAuth: []
+      summary: Update a custom conversion goal
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaigns/{campaignId}/conversion-goals:
+    get:
+      description: |-
+        A Google campaign's conversion goals (CampaignConversionGoal, `biddable` per category
+        and origin) and its goal config (ConversionGoalCampaignConfig): `goalConfigLevel`
+        CUSTOMER means the campaign follows the account-default goals, CAMPAIGN means it uses
+        its own goals or `customConversionGoalId`.
+      operationId: getCampaignConversionGoals
+      parameters:
+      - description: Google campaign id
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignConversionGoals_200_response"
+          description: Campaign conversion goals
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "409":
+          description: "Campaign matches multiple accessible accounts, or the connection\
+            \ needs reconnecting"
+        "501":
+          description: Only available on Google Ads campaigns
+      security:
+      - bearerAuth: []
+      summary: Get campaign conversion goals
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - google
+      x-accepts:
+      - application/json
+    patch:
+      description: |-
+        Sets `biddable` on campaign goals, switches `goalConfigLevel`, and/or points the
+        campaign at a custom conversion goal, in one mutate. `customConversionGoalId: null`
+        clears it; Google refuses that (400) while the campaign stays at CAMPAIGN level with
+        no biddable goals, so send `goalConfigLevel: CUSTOMER` with it to fall back to the
+        account goals. Returns the re-read campaign goals.
+      operationId: updateCampaignConversionGoals
+      parameters:
+      - description: Google campaign id
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateCampaignConversionGoals_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateCampaignConversionGoals_200_response"
+          description: Campaign goals updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Campaign not found
+        "409":
+          description: "Campaign matches multiple accessible accounts, or the connection\
+            \ needs reconnecting"
+        "501":
+          description: Only available on Google Ads campaigns
+      security:
+      - bearerAuth: []
+      summary: Update campaign conversion goals
+      tags:
+      - Ad Campaigns
       x-resource-group: ads
       x-platforms:
       - google
@@ -67981,120 +68270,6 @@ components:
             $ref: "#/components/schemas/GoogleListingGroupNode"
           minItems: 2
           type: array
-    GoogleRecommendationMetrics:
-      properties:
-        impressions:
-          type: number
-        clicks:
-          type: number
-        cost:
-          description: Account currency units.
-          type: number
-        conversions:
-          type: number
-        conversionsValue:
-          type: number
-        videoViews:
-          type: number
-    GoogleRecommendation:
-      example:
-        resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-        id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-        type: FORECASTING_SET_TARGET_CPA
-        dismissed: false
-        campaignId: "24191585671"
-        campaignIds:
-        - "24191585671"
-        adGroupId: null
-        campaignBudgetId: null
-        impact:
-          base:
-            impressions: 2790
-            clicks: 87
-            cost: 420
-            conversions: 3.96
-            conversionsValue: 0
-            videoViews: 0
-          potential:
-            impressions: 5909
-            clicks: 185
-            cost: 889.58
-            conversions: 8.39
-            conversionsValue: 0
-            videoViews: 0
-        details:
-          recommendedTargetCpaMicros: "105420000"
-          campaignBudget:
-            currentAmountMicros: "60000000"
-            recommendedNewAmountMicros: "140000000"
-            newStartDate: 2026-10-01
-      properties:
-        resourceName:
-          description: "customers/{customerId}/recommendations/{id}. Pass it to apply\
-            \ or dismiss."
-          type: string
-        id:
-          type: string
-        type:
-          description: "Google RecommendationType, such as CAMPAIGN_BUDGET, KEYWORD\
-            \ or SET_TARGET_CPA."
-          type: string
-        dismissed:
-          type: boolean
-        campaignId:
-          nullable: true
-          type: string
-        campaignIds:
-          description: Every campaign the recommendation targets (several for account-level
-            types).
-          items:
-            type: string
-          type: array
-        adGroupId:
-          nullable: true
-          type: string
-        campaignBudgetId:
-          nullable: true
-          type: string
-        impact:
-          $ref: "#/components/schemas/GoogleRecommendation_impact"
-        details:
-          description: "The type-specific recommendation payload exactly as Google\
-            \ returns it (camelCase, amounts in micros), for example recommendedTargetCpaMicros\
-            \ or budgetOptions."
-          nullable: true
-          type: object
-      required:
-      - adGroupId
-      - campaignBudgetId
-      - campaignId
-      - campaignIds
-      - details
-      - dismissed
-      - id
-      - impact
-      - resourceName
-      - type
-    GoogleRecommendationResult:
-      example:
-        resourceName: resourceName
-        error: error
-        status: applied
-      properties:
-        resourceName:
-          type: string
-        status:
-          enum:
-          - applied
-          - dismissed
-          - failed
-          type: string
-        error:
-          description: Google's message when status is failed.
-          type: string
-      required:
-      - resourceName
-      - status
     GoogleRsaHeadline:
       example:
         text: text
@@ -70527,6 +70702,94 @@ components:
           type: array
       required:
       - accountId
+    GoogleBiddableGoalInput:
+      additionalProperties: false
+      properties:
+        category:
+          description: "Google ConversionActionCategory, e.g. PURCHASE, SIGNUP, SUBMIT_LEAD_FORM"
+          pattern: "^[A-Z][A-Z0-9_]*$"
+          type: string
+        origin:
+          description: "Google ConversionOrigin, e.g. WEBSITE, APP, CALL_FROM_ADS,\
+            \ STORE, GOOGLE_HOSTED"
+          pattern: "^[A-Z][A-Z0-9_]*$"
+          type: string
+        biddable:
+          type: boolean
+      required:
+      - biddable
+      - category
+      - origin
+    GoogleCustomerConversionGoal:
+      example:
+        biddable: true
+        conversionActions:
+        - name: name
+          primaryForGoal: true
+          id: id
+          status: status
+        - name: name
+          primaryForGoal: true
+          id: id
+          status: status
+        origin: origin
+        resourceName: resourceName
+        category: category
+      properties:
+        category:
+          type: string
+        origin:
+          type: string
+        biddable:
+          description: Used for bidding and counted in the Conversions column.
+          type: boolean
+        resourceName:
+          type: string
+        conversionActions:
+          description: Non-removed conversion actions in this category and origin.
+          items:
+            $ref: "#/components/schemas/GoogleCustomerConversionGoal_conversionActions_inner"
+          type: array
+    GoogleCampaignConversionGoals:
+      properties:
+        campaignId:
+          type: string
+        goalConfigLevel:
+          enum:
+          - CUSTOMER
+          - CAMPAIGN
+          - UNSPECIFIED
+          - UNKNOWN
+          type: string
+        customConversionGoalId:
+          nullable: true
+          type: string
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleCampaignConversionGoals_goals_inner"
+          type: array
+    GoogleCustomConversionGoal:
+      example:
+        name: name
+        resourceName: resourceName
+        id: id
+        conversionActionIds:
+        - conversionActionIds
+        - conversionActionIds
+        status: status
+      properties:
+        id:
+          type: string
+        resourceName:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        conversionActionIds:
+          items:
+            type: string
+          type: array
     AdKeyword:
       example:
         adSetName: adSetName
@@ -70826,6 +71089,7 @@ components:
         `createConversionAction`. Returned by `listConversionActions` and
         `createConversionAction`.
       example:
+        origin: origin
         name: name
         tagSnippets:
         - globalSiteTag: globalSiteTag
@@ -70836,6 +71100,7 @@ components:
           eventSnippet: eventSnippet
           pageFormat: pageFormat
           type: type
+        primaryForGoal: true
         id: id
         type: type
         category: category
@@ -70856,6 +71121,14 @@ components:
           description: "Google's ConversionActionCategory, e.g. DEFAULT, PURCHASE,\
             \ LEAD."
           type: string
+        origin:
+          description: "Google's ConversionOrigin, e.g. WEBSITE, APP. Together with\
+            \ category it names the goal the action belongs to (see GET /v1/ads/conversions/goals)."
+          type: string
+        primaryForGoal:
+          description: "true = primary (counts toward bidding when its goal is biddable),\
+            \ false = secondary. Change it with PATCH /v1/ads/conversions/actions/{actionId}."
+          type: boolean
         tagSnippets:
           description: |
             The code a customer pastes onto their site. Present for types
@@ -103185,163 +103458,6 @@ components:
           description: "True when Google's daily API quota was exhausted and this\
             \ is the last successful fetch, not a live read."
           type: boolean
-    listGoogleRecommendations_200_response:
-      example:
-        stale: true
-        adAccountId: adAccountId
-        cachedAt: 2000-01-23T04:56:07.000+00:00
-        recommendations:
-        - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-          id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-          type: FORECASTING_SET_TARGET_CPA
-          dismissed: false
-          campaignId: "24191585671"
-          campaignIds:
-          - "24191585671"
-          adGroupId: null
-          campaignBudgetId: null
-          impact:
-            base:
-              impressions: 2790
-              clicks: 87
-              cost: 420
-              conversions: 3.96
-              conversionsValue: 0
-              videoViews: 0
-            potential:
-              impressions: 5909
-              clicks: 185
-              cost: 889.58
-              conversions: 8.39
-              conversionsValue: 0
-              videoViews: 0
-          details:
-            recommendedTargetCpaMicros: "105420000"
-            campaignBudget:
-              currentAmountMicros: "60000000"
-              recommendedNewAmountMicros: "140000000"
-              newStartDate: 2026-10-01
-        - resourceName: customers/9122445560/recommendations/NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-          id: NjgzMzAxODc4NS0yNDItMTc5MDQzODQxMDc1NC0rMjQxOTE1ODU2NzEtMA
-          type: FORECASTING_SET_TARGET_CPA
-          dismissed: false
-          campaignId: "24191585671"
-          campaignIds:
-          - "24191585671"
-          adGroupId: null
-          campaignBudgetId: null
-          impact:
-            base:
-              impressions: 2790
-              clicks: 87
-              cost: 420
-              conversions: 3.96
-              conversionsValue: 0
-              videoViews: 0
-            potential:
-              impressions: 5909
-              clicks: 185
-              cost: 889.58
-              conversions: 8.39
-              conversionsValue: 0
-              videoViews: 0
-          details:
-            recommendedTargetCpaMicros: "105420000"
-            campaignBudget:
-              currentAmountMicros: "60000000"
-              recommendedNewAmountMicros: "140000000"
-              newStartDate: 2026-10-01
-      properties:
-        adAccountId:
-          type: string
-        recommendations:
-          items:
-            $ref: "#/components/schemas/GoogleRecommendation"
-          type: array
-        cachedAt:
-          format: date-time
-          nullable: true
-          type: string
-        stale:
-          type: boolean
-      required:
-      - adAccountId
-      - cachedAt
-      - recommendations
-      - stale
-    applyGoogleRecommendations_request_recommendations_inner:
-      properties:
-        resourceName:
-          description: "Recommendation resource name from the list, or its id."
-          type: string
-        parameters:
-          additionalProperties: {}
-          description: "One key, such as campaignBudget, keyword, textAd, targetCpaOptIn,\
-            \ targetRoasOptIn, callAsset, calloutAsset, sitelinkAsset, moveUnusedBudget,\
-            \ responsiveSearchAd, responsiveSearchAdAsset, responsiveSearchAdImproveAdStrength,\
-            \ useBroadMatchKeyword, raiseTargetCpa, lowerTargetRoas, setTargetCpa,\
-            \ setTargetRoas, forecastingSetTargetCpa, forecastingSetTargetRoas, leadFormAsset,\
-            \ raiseTargetCpaBidTooLow, raiseTargetCpaPerformanceBidTooLow, lowerTargetRoasPerformanceBidTooLow,\
-            \ calloutExtension, callExtension or sitelinkExtension."
-      required:
-      - resourceName
-    applyGoogleRecommendations_request:
-      properties:
-        accountId:
-          description: Google ads SocialAccount id.
-          type: string
-        adAccountId:
-          description: "Google customer id, digits only. Required when the connection\
-            \ has several customers."
-          type: string
-        recommendations:
-          items:
-            $ref: "#/components/schemas/applyGoogleRecommendations_request_recommendations_inner"
-          maxItems: 100
-          minItems: 1
-          type: array
-      required:
-      - accountId
-      - recommendations
-    applyGoogleRecommendations_200_response:
-      example:
-        adAccountId: adAccountId
-        results:
-        - resourceName: resourceName
-          error: error
-          status: applied
-        - resourceName: resourceName
-          error: error
-          status: applied
-      properties:
-        adAccountId:
-          type: string
-        results:
-          items:
-            $ref: "#/components/schemas/GoogleRecommendationResult"
-          type: array
-      required:
-      - adAccountId
-      - results
-    dismissGoogleRecommendations_request:
-      properties:
-        accountId:
-          description: Google ads SocialAccount id.
-          type: string
-        adAccountId:
-          description: "Google customer id, digits only. Required when the connection\
-            \ has several customers."
-          type: string
-        resourceNames:
-          description: "Recommendation resource names from the list, or their ids."
-          items:
-            type: string
-          maxItems: 100
-          minItems: 1
-          type: array
-      required:
-      - accountId
-      - resourceNames
     listBidStrategies_200_response:
       example:
         stale: true
@@ -119206,7 +119322,8 @@ components:
         customerId: customerId
         cachedAt: 2000-01-23T04:56:07.000+00:00
         actions:
-        - name: name
+        - origin: origin
+          name: name
           tagSnippets:
           - globalSiteTag: globalSiteTag
             eventSnippet: eventSnippet
@@ -119216,11 +119333,13 @@ components:
             eventSnippet: eventSnippet
             pageFormat: pageFormat
             type: type
+          primaryForGoal: true
           id: id
           type: type
           category: category
           status: status
-        - name: name
+        - origin: origin
+          name: name
           tagSnippets:
           - globalSiteTag: globalSiteTag
             eventSnippet: eventSnippet
@@ -119230,6 +119349,7 @@ components:
             eventSnippet: eventSnippet
             pageFormat: pageFormat
             type: type
+          primaryForGoal: true
           id: id
           type: type
           category: category
@@ -119291,6 +119411,7 @@ components:
     createConversionAction_201_response:
       example:
         action:
+          origin: origin
           name: name
           tagSnippets:
           - globalSiteTag: globalSiteTag
@@ -119301,6 +119422,7 @@ components:
             eventSnippet: eventSnippet
             pageFormat: pageFormat
             type: type
+          primaryForGoal: true
           id: id
           type: type
           category: category
@@ -119308,6 +119430,358 @@ components:
       properties:
         action:
           $ref: "#/components/schemas/ConversionAction"
+    listAdConversionGoals_200_response:
+      example:
+        stale: true
+        customerId: customerId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        goals:
+        - biddable: true
+          conversionActions:
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          origin: origin
+          resourceName: resourceName
+          category: category
+        - biddable: true
+          conversionActions:
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          origin: origin
+          resourceName: resourceName
+          category: category
+      properties:
+        customerId:
+          type: string
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleCustomerConversionGoal"
+          type: array
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          type: boolean
+    updateAdConversionGoals_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleBiddableGoalInput"
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - goals
+    updateAdConversionGoals_200_response:
+      example:
+        customerId: customerId
+        goals:
+        - biddable: true
+          conversionActions:
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          origin: origin
+          resourceName: resourceName
+          category: category
+        - biddable: true
+          conversionActions:
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          - name: name
+            primaryForGoal: true
+            id: id
+            status: status
+          origin: origin
+          resourceName: resourceName
+          category: category
+      properties:
+        customerId:
+          type: string
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleCustomerConversionGoal"
+          type: array
+    updateConversionAction_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        primaryForGoal:
+          description: "true = primary, false = secondary"
+          type: boolean
+      required:
+      - accountId
+      - primaryForGoal
+    updateConversionAction_200_response_action:
+      example:
+        primaryForGoal: true
+        id: id
+      properties:
+        id:
+          type: string
+        primaryForGoal:
+          type: boolean
+    updateConversionAction_200_response:
+      example:
+        customerId: customerId
+        action:
+          primaryForGoal: true
+          id: id
+      properties:
+        customerId:
+          type: string
+        action:
+          $ref: "#/components/schemas/updateConversionAction_200_response_action"
+    listCustomConversionGoals_200_response:
+      example:
+        stale: true
+        customerId: customerId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        goals:
+        - name: name
+          resourceName: resourceName
+          id: id
+          conversionActionIds:
+          - conversionActionIds
+          - conversionActionIds
+          status: status
+        - name: name
+          resourceName: resourceName
+          id: id
+          conversionActionIds:
+          - conversionActionIds
+          - conversionActionIds
+          status: status
+      properties:
+        customerId:
+          type: string
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleCustomConversionGoal"
+          type: array
+        cachedAt:
+          format: date-time
+          nullable: true
+          type: string
+        stale:
+          type: boolean
+    createCustomConversionGoal_request:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        conversionActionIds:
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - conversionActionIds
+      - name
+    createCustomConversionGoal_201_response:
+      example:
+        customerId: customerId
+        resourceName: resourceName
+        id: id
+      properties:
+        customerId:
+          type: string
+        id:
+          type: string
+        resourceName:
+          type: string
+    removeCustomConversionGoal_200_response:
+      example:
+        goalId: goalId
+        removed: true
+        customerId: customerId
+      properties:
+        customerId:
+          type: string
+        goalId:
+          type: string
+        removed:
+          description: Always true on success
+          type: boolean
+    updateCustomConversionGoal_request:
+      additionalProperties: {}
+      minProperties: 2
+      properties:
+        accountId:
+          description: Zernio SocialAccount id (Google Ads)
+          type: string
+        adAccountId:
+          description: Google customer id. Required when the connection has multiple
+            customers.
+          pattern: ^\d+$
+          type: string
+        customerId:
+          deprecated: true
+          description: Alias of adAccountId
+          pattern: ^\d+$
+          type: string
+        name:
+          maxLength: 255
+          minLength: 1
+          type: string
+        conversionActionIds:
+          description: Replaces the whole set.
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+      required:
+      - accountId
+    updateCustomConversionGoal_200_response:
+      example:
+        goal:
+          name: name
+          resourceName: resourceName
+          id: id
+          conversionActionIds:
+          - conversionActionIds
+          - conversionActionIds
+          status: status
+        customerId: customerId
+      properties:
+        customerId:
+          type: string
+        goal:
+          $ref: "#/components/schemas/GoogleCustomConversionGoal"
+    getCampaignConversionGoals_200_response:
+      allOf:
+      - $ref: "#/components/schemas/GoogleCampaignConversionGoals"
+      - properties:
+          customerId:
+            type: string
+          cachedAt:
+            format: date-time
+            nullable: true
+            type: string
+          stale:
+            type: boolean
+      example:
+        stale: true
+        goalConfigLevel: CUSTOMER
+        campaignId: campaignId
+        customerId: customerId
+        customConversionGoalId: customConversionGoalId
+        cachedAt: 2000-01-23T04:56:07.000+00:00
+        goals:
+        - biddable: true
+          origin: origin
+          resourceName: resourceName
+          category: category
+        - biddable: true
+          origin: origin
+          resourceName: resourceName
+          category: category
+    updateCampaignConversionGoals_request:
+      additionalProperties: {}
+      minProperties: 1
+      properties:
+        goals:
+          items:
+            $ref: "#/components/schemas/GoogleBiddableGoalInput"
+          maxItems: 100
+          type: array
+        goalConfigLevel:
+          enum:
+          - CUSTOMER
+          - CAMPAIGN
+          type: string
+        customConversionGoalId:
+          description: "Custom goal to bid on, or null to clear"
+          nullable: true
+          pattern: ^\d+$
+          type: string
+    updateCampaignConversionGoals_200_response:
+      allOf:
+      - $ref: "#/components/schemas/GoogleCampaignConversionGoals"
+      - properties:
+          customerId:
+            type: string
+      example:
+        goalConfigLevel: CUSTOMER
+        campaignId: campaignId
+        customerId: customerId
+        customConversionGoalId: customConversionGoalId
+        goals:
+        - biddable: true
+          origin: origin
+          resourceName: resourceName
+          category: category
+        - biddable: true
+          origin: origin
+          resourceName: resourceName
+          category: category
     listConversionDestinations_200_response_destinations_inner_conversionEvents_inner:
       example:
         archived: true
@@ -129754,14 +130228,6 @@ components:
           type: string
       required:
       - index
-    GoogleRecommendation_impact:
-      description: Google's estimate over its own window. Null when Google gives none
-        for the type.
-      properties:
-        base:
-          $ref: "#/components/schemas/GoogleRecommendationMetrics"
-        potential:
-          $ref: "#/components/schemas/GoogleRecommendationMetrics"
     Ad_budget:
       example:
         amount: 0.8008281904610115
@@ -130154,6 +130620,37 @@ components:
         pixel_id:
           type: string
         page_id:
+          type: string
+    GoogleCustomerConversionGoal_conversionActions_inner:
+      example:
+        name: name
+        primaryForGoal: true
+        id: id
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+        primaryForGoal:
+          description: "true = primary, false = secondary"
+          type: boolean
+    GoogleCampaignConversionGoals_goals_inner:
+      example:
+        biddable: true
+        origin: origin
+        resourceName: resourceName
+        category: category
+      properties:
+        category:
+          type: string
+        origin:
+          type: string
+        biddable:
+          type: boolean
+        resourceName:
           type: string
     AdKeyword_quality:
       description: |
