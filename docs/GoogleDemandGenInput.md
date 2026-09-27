@@ -2,7 +2,7 @@
 
 # GoogleDemandGenInput
 
-Creative, channel and audience settings for a Google Demand Gen campaign (campaignType demand_gen). Creates one ad group with one ad: a multi-asset image ad, or a video responsive ad when youtubeVideoIds is sent.
+Creative, channel and audience settings for a Google Demand Gen campaign (campaignType demand_gen). Creates one ad group with one ad: a multi-asset image ad, a video responsive ad when youtubeVideoIds is sent, or a carousel ad when carouselCards is sent.
 
 ## Properties
 
@@ -11,12 +11,13 @@ Creative, channel and audience settings for a Google Demand Gen campaign (campai
 |**adGroupName** | **String** | Defaults to the ad name. |  [optional] |
 |**finalUrl** | **URI** |  |  |
 |**businessName** | **String** |  |  |
-|**headlines** | **List&lt;String&gt;** | Distinct texts. |  |
+|**headlines** | **List&lt;String&gt;** | Distinct texts. A carousel ad takes exactly one. |  |
 |**longHeadlines** | **List&lt;String&gt;** | Video ads only, and required there. |  [optional] |
-|**descriptions** | **List&lt;String&gt;** |  |  |
-|**callToAction** | **String** | Image ads only. Call to action text such as &#39;Learn more&#39;; Google picks one when omitted. |  [optional] |
+|**descriptions** | **List&lt;String&gt;** | A carousel ad takes exactly one. |  |
+|**callToAction** | **String** | Image and carousel ads only. Call to action text such as &#39;Learn more&#39;; Google picks one when omitted. |  [optional] |
 |**images** | [**GoogleDemandGenInputImages**](GoogleDemandGenInputImages.md) |  |  |
 |**youtubeVideoIds** | **List&lt;String&gt;** | Makes the ad a video responsive ad. |  [optional] |
+|**carouselCards** | [**List&lt;GoogleDemandGenInputCarouselCardsInner&gt;**](GoogleDemandGenInputCarouselCardsInner.md) | Makes the ad a carousel ad. Each card needs its own image (no two cards may share one); use the same image shape on every card. Card images are uploaded to the account&#39;s asset library before the campaign is created, validateOnly included (Google checks cards against existing images; identical images are reused, not duplicated). |  [optional] |
 |**channels** | [**List&lt;ChannelsEnum&gt;**](#List&lt;ChannelsEnum&gt;) | Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them. |  [optional] |
 |**audience** | [**GoogleDemandGenInputAudience**](GoogleDemandGenInputAudience.md) |  |  [optional] |
 |**audienceId** | **String** | Attach an existing Google Audience by numeric id instead of audience. |  [optional] |

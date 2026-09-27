@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.111.1
+- API version: 1.112.0
 
-- Build date: 2026-09-27T19:59:30.358021162Z[Etc/UTC]
+- Build date: 2026-09-27T20:38:29.412150146Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.111.1</version>
+  <version>1.112.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.111.1"
+compile "dev.zernio:zernio-sdk:1.112.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.111.1.jar`
+- `target/zernio-sdk-1.112.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2760,6 +2760,8 @@ Class | Method | HTTP request | Description
  - [GoogleDemandGenInput](docs/GoogleDemandGenInput.md)
  - [GoogleDemandGenInputAudience](docs/GoogleDemandGenInputAudience.md)
  - [GoogleDemandGenInputAudienceAgeRangesInner](docs/GoogleDemandGenInputAudienceAgeRangesInner.md)
+ - [GoogleDemandGenInputCarouselCardsInner](docs/GoogleDemandGenInputCarouselCardsInner.md)
+ - [GoogleDemandGenInputCarouselCardsInnerImages](docs/GoogleDemandGenInputCarouselCardsInnerImages.md)
  - [GoogleDemandGenInputImages](docs/GoogleDemandGenInputImages.md)
  - [GoogleListingGroupDimension](docs/GoogleListingGroupDimension.md)
  - [GoogleListingGroupDimensionProductBrand](docs/GoogleListingGroupDimensionProductBrand.md)

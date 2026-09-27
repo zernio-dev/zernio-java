@@ -2,7 +2,7 @@
 
 # GoogleDemandGenInputImages
 
-Public image URLs. An image ad needs landscape or square; a video ad takes only one logo.
+Public image URLs. An image ad needs landscape or square; video and carousel ads take only one logo (carousel images go on each card).
 
 ## Properties
 

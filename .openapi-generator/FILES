@@ -1066,6 +1066,8 @@ docs/GoogleCustomerConversionGoalConversionActionsInner.md
 docs/GoogleDemandGenInput.md
 docs/GoogleDemandGenInputAudience.md
 docs/GoogleDemandGenInputAudienceAgeRangesInner.md
+docs/GoogleDemandGenInputCarouselCardsInner.md
+docs/GoogleDemandGenInputCarouselCardsInnerImages.md
 docs/GoogleDemandGenInputImages.md
 docs/GoogleListingGroupDimension.md
 docs/GoogleListingGroupDimensionProductBrand.md
@@ -3476,6 +3478,8 @@ src/main/java/dev/zernio/model/GoogleCustomerConversionGoalConversionActionsInne
 src/main/java/dev/zernio/model/GoogleDemandGenInput.java
 src/main/java/dev/zernio/model/GoogleDemandGenInputAudience.java
 src/main/java/dev/zernio/model/GoogleDemandGenInputAudienceAgeRangesInner.java
+src/main/java/dev/zernio/model/GoogleDemandGenInputCarouselCardsInner.java
+src/main/java/dev/zernio/model/GoogleDemandGenInputCarouselCardsInnerImages.java
 src/main/java/dev/zernio/model/GoogleDemandGenInputImages.java
 src/main/java/dev/zernio/model/GoogleListingGroupDimension.java
 src/main/java/dev/zernio/model/GoogleListingGroupDimensionProductBrand.java
@@ -4725,5 +4729,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerTest.java
+src/test/java/dev/zernio/model/GoogleDemandGenInputCarouselCardsInnerImagesTest.java
+src/test/java/dev/zernio/model/GoogleDemandGenInputCarouselCardsInnerTest.java

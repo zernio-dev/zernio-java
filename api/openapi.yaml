@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.111.1
+  version: 1.112.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42377,7 +42377,8 @@ paths:
 
         Google Demand Gen: set `campaignType: "demand_gen"` and supply `demandGen`. Creates a
         daily budget, PAUSED campaign, one ad group and one ad in a single atomic request: a
-        multi-asset image ad, or a video responsive ad when `demandGen.youtubeVideoIds` is sent.
+        multi-asset image ad, a video responsive ad when `demandGen.youtubeVideoIds` is sent, or
+        a carousel ad (2 to 10 cards) when `demandGen.carouselCards` is sent.
         Geo (countries, regions, cities, zips, metros) and languages go on the ad group, as
         Demand Gen requires. `demandGen.channels` sets the ad group's channel controls and
         `demandGen.audience` builds a Google Audience (user lists, interests, custom audiences,
@@ -42509,6 +42510,35 @@ paths:
                       ageRanges:
                       - min: 25
                         max: 54
+              demandGenCarousel:
+                summary: Paused Demand Gen campaign with a carousel ad.
+                value:
+                  accountId: 69ce75d483e990e1c01ccfe4
+                  adAccountId: "9122445560"
+                  name: Demand Gen carousel
+                  campaignType: demand_gen
+                  budgetAmount: 10
+                  budgetType: daily
+                  countries:
+                  - ES
+                  demandGen:
+                    finalUrl: https://zernio.com
+                    businessName: Zernio
+                    headlines:
+                    - One social API
+                    descriptions:
+                    - Publish everywhere from one API.
+                    images:
+                      logo:
+                      - https://example.com/logo.png
+                    carouselCards:
+                    - headline: Schedule posts
+                      images:
+                        square: https://example.com/card-1.png
+                    - headline: Read analytics
+                      finalUrl: https://zernio.com/pricing
+                      images:
+                        square: https://example.com/card-2.png
               appPromotion:
                 value:
                   accountId: 69fc524892b3d8e85f893e73
@@ -67909,7 +67939,8 @@ components:
       additionalProperties: {}
       description: "Creative, channel and audience settings for a Google Demand Gen\
         \ campaign (campaignType demand_gen). Creates one ad group with one ad: a\
-        \ multi-asset image ad, or a video responsive ad when youtubeVideoIds is sent."
+        \ multi-asset image ad, a video responsive ad when youtubeVideoIds is sent,\
+        \ or a carousel ad when carouselCards is sent."
       properties:
         adGroupName:
           description: Defaults to the ad name.
@@ -67922,7 +67953,7 @@ components:
           maxLength: 25
           type: string
         headlines:
-          description: Distinct texts.
+          description: Distinct texts. A carousel ad takes exactly one.
           items:
             maxLength: 40
             type: string
@@ -67938,6 +67969,7 @@ components:
           minItems: 1
           type: array
         descriptions:
+          description: A carousel ad takes exactly one.
           items:
             maxLength: 90
             type: string
@@ -67945,8 +67977,8 @@ components:
           minItems: 1
           type: array
         callToAction:
-          description: Image ads only. Call to action text such as 'Learn more'; Google
-            picks one when omitted.
+          description: Image and carousel ads only. Call to action text such as 'Learn
+            more'; Google picks one when omitted.
           maxLength: 25
           type: string
         images:
@@ -67958,6 +67990,17 @@ components:
             type: string
           maxItems: 5
           minItems: 1
+          type: array
+        carouselCards:
+          description: "Makes the ad a carousel ad. Each card needs its own image\
+            \ (no two cards may share one); use the same image shape on every card.\
+            \ Card images are uploaded to the account's asset library before the campaign\
+            \ is created, validateOnly included (Google checks cards against existing\
+            \ images; identical images are reused, not duplicated)."
+          items:
+            $ref: "#/components/schemas/GoogleDemandGenInput_carouselCards_inner"
+          maxItems: 10
+          minItems: 2
           type: array
         channels:
           description: Channel controls on the ad group. Only the listed channels
@@ -130256,8 +130299,8 @@ components:
           type: array
     GoogleDemandGenInput_images:
       additionalProperties: false
-      description: Public image URLs. An image ad needs landscape or square; a video
-        ad takes only one logo.
+      description: Public image URLs. An image ad needs landscape or square; video
+        and carousel ads take only one logo (carousel images go on each card).
       properties:
         landscape:
           description: "1.91:1, at least 600x314."
@@ -130293,6 +130336,40 @@ components:
           type: array
       required:
       - logo
+    GoogleDemandGenInput_carouselCards_inner_images:
+      additionalProperties: false
+      minProperties: 1
+      properties:
+        landscape:
+          description: 1.91:1.
+          format: uri
+          type: string
+        square:
+          description: 1:1.
+          format: uri
+          type: string
+        portrait:
+          description: 4:5.
+          format: uri
+          type: string
+    GoogleDemandGenInput_carouselCards_inner:
+      additionalProperties: false
+      properties:
+        headline:
+          maxLength: 40
+          type: string
+        finalUrl:
+          description: Defaults to demandGen.finalUrl.
+          format: uri
+          type: string
+        callToAction:
+          maxLength: 25
+          type: string
+        images:
+          $ref: "#/components/schemas/GoogleDemandGenInput_carouselCards_inner_images"
+      required:
+      - headline
+      - images
     GoogleDemandGenInput_audience_ageRanges_inner:
       properties:
         min:
