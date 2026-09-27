@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.105.0
+  version: 1.105.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54093,7 +54093,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54190,7 +54192,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID.
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54233,7 +54237,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54636,7 +54642,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54672,7 +54680,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54724,7 +54734,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54787,7 +54799,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54858,7 +54872,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -54910,7 +54926,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55015,7 +55033,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55071,7 +55091,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55235,7 +55257,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55536,7 +55560,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55603,7 +55629,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55766,7 +55794,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -55859,7 +55889,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56009,6 +56041,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56116,6 +56151,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56219,6 +56257,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56283,7 +56324,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56343,7 +56386,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56606,7 +56651,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56674,6 +56721,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56725,6 +56775,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56771,6 +56824,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56826,7 +56882,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56878,7 +56936,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56928,7 +56988,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -56977,7 +57039,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -57009,7 +57073,9 @@ components:
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
         id:
-          description: Stable webhook event ID
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119291,6 +119357,9 @@ components:
     onWhatsAppAutomaticEvent_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119331,6 +119400,9 @@ components:
     onWhatsAppNumberActivated_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119353,6 +119425,9 @@ components:
     onWhatsAppNumberDeclined_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119383,6 +119458,9 @@ components:
     onWhatsAppNumberActionRequired_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119410,6 +119488,9 @@ components:
     onWhatsAppNumberVerificationRequired_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119428,6 +119509,9 @@ components:
     onWhatsAppNumberSuspended_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119447,6 +119531,9 @@ components:
     onWhatsAppNumberReactivated_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119463,6 +119550,9 @@ components:
     onWhatsAppNumberReleased_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119482,6 +119572,9 @@ components:
     onWhatsAppNumberKycSubmitted_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119509,6 +119602,9 @@ components:
     onVerificationApproved_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119532,6 +119628,9 @@ components:
     onVerificationFailed_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119569,6 +119668,9 @@ components:
     onSmsRegistrationActionRequired_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -119610,6 +119712,9 @@ components:
     onSmsRegistrationStatusUpdated_request:
       properties:
         id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
           type: string
         event:
           enum:
@@ -128218,6 +128323,22 @@ x-documentation:
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.
+
+    ### Finding the connected account id
+
+    The top-level `id` is the event id (the dedupe key, also sent as `X-Zernio-Event-Id`). It is never an account, post or other resource id. The connected account lives here:
+
+    | Event family | Account id |
+    | --- | --- |
+    | `account.*`, `analytics.synced` | `account.accountId` |
+    | `message.*`, `reaction.received`, `referral.received`, `conversation.*`, `comment.received`, `review.*`, `lead.received`, `call.*` | `account.accountId` (`account.id` carries the same value, kept for compatibility; `call.received`, `call.ended` and `call.failed` also carry `call.accountId`) |
+    | `post.platform.*`, `post.tiktok.url_resolved` | `account.accountId` (the target this event is about; `post.platforms[].accountId` lists every target) |
+    | `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled` | `post.platforms[].accountId`, one per target; there is no top-level account |
+    | `post.external.*` | `account.accountId` (also `post.accountId`) |
+    | `ad.status_changed`, `whatsapp.template.*`, `whatsapp.account.name_status_updated` | `account.accountId` |
+    | `whatsapp.automatic_event` | top-level `accountId` |
+    | `whatsapp.number.*`, `sms.registration.*` | none; `number.id` / `registration.id` are the number and registration ids, `number.profileId` / `registration.profileId` the profile |
+    | `verification.*`, `phone_number.stock_available`, `webhook.test` | none |
 
     ## Full Documentation
 

@@ -8,7 +8,7 @@ Webhook payload for the `call.received` event. Fires for both inbound (UIC) and 
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Stable webhook event ID |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**call** | [**WebhookPayloadCallReceivedCall**](WebhookPayloadCallReceivedCall.md) |  |  |
 |**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |

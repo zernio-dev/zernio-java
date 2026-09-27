@@ -8,7 +8,7 @@ Shared payload for message.delivered, message.read, and message.failed events. F
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  |  |
 |**statusAt** | **OffsetDateTime** | When the platform reported this status. |  |

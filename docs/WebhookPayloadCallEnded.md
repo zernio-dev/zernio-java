@@ -8,7 +8,7 @@ Webhook payload for the `call.ended` event. Fires on call hangup with the durati
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**call** | [**WebhookPayloadCallEndedCall**](WebhookPayloadCallEndedCall.md) |  |  |
 |**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |

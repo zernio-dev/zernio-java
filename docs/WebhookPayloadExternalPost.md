@@ -8,7 +8,7 @@ Webhook payload for post.external.created / post.external.updated / post.externa
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Stable webhook event ID |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**post** | [**ExternalPostWebhookPost**](ExternalPostWebhookPost.md) |  |  |
 |**account** | [**WebhookPayloadReviewNewAccount**](WebhookPayloadReviewNewAccount.md) |  |  |

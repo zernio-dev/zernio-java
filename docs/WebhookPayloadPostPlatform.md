@@ -8,7 +8,7 @@ Webhook payload for the per-platform terminal events `post.platform.published` a
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Stable webhook event ID. |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**post** | [**WebhookPayloadPostPlatformPost**](WebhookPayloadPostPlatformPost.md) |  |  |
 |**platform** | [**WebhookPayloadPostPlatformPlatform**](WebhookPayloadPostPlatformPlatform.md) |  |  |

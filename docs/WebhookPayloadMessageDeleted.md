@@ -8,7 +8,7 @@ Webhook payload for message.deleted events. Fires when the sender deletes (unsen
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  |
+|**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  |  |
 |**deletedAt** | **OffsetDateTime** |  |  |
