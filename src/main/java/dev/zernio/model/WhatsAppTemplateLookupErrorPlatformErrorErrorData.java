@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   WhatsAppTemplateLookupErrorPlatformErrorErrorData.JSON_PROPERTY_DETAILS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-27T19:23:29.529155004Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-27T19:26:19.190964677Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppTemplateLookupErrorPlatformErrorErrorData {
   public static final String JSON_PROPERTY_DETAILS = "details";
   @javax.annotation.Nullable
