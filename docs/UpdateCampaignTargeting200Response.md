@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**campaignId** | **String** |  |  [optional] |
+|**adGroupId** | **String** | Demand Gen only: the ad group that received the locations and languages. |  [optional] |
 |**updated** | [**List&lt;UpdatedEnum&gt;**](#List&lt;UpdatedEnum&gt;) | Which targeting fields were applied. |  [optional] |
 |**locationTargetingType** | [**LocationTargetingTypeEnum**](#LocationTargetingTypeEnum) | The value read back from Google after the edit. |  [optional] |
 |**devices** | [**List&lt;UpdateCampaignTargeting200ResponseDevicesInner&gt;**](UpdateCampaignTargeting200ResponseDevicesInner.md) |  |  [optional] |
