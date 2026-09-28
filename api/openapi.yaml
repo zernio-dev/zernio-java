@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.116.0
+  version: 1.117.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -408,6 +408,11 @@ tags:
     on a profile, then send and receive through the inbox conversation endpoints
     ('platform: imessage').
   name: iMessage
+- description: |
+    Report a bug, a missing feature or a docs gap straight from your integration.
+    Built for AI agents: when an agent hits something the API cannot do, it can
+    say so here in a structured way instead of failing silently.
+  name: Feedback
 paths:
   /v1/tools/validate/post-length:
     post:
@@ -8393,6 +8398,75 @@ paths:
       tags:
       - API Keys
       x-resource-group: public
+      x-accepts:
+      - application/json
+  /v1/feedback:
+    post:
+      description: |
+        Report a bug, a missing feature or a documentation gap. Every submission
+        is read by the Zernio team. Designed for AI agents: when a call fails in
+        a way that looks like our bug, or the API lacks something you need, send
+        one structured report here.
+
+        Include `endpoint` and `requestId` (the `x-request-id` response header of
+        the failing call) when you have them; they let us find the exact request.
+
+        Submitting the same `summary` again within 24 hours is idempotent: it
+        returns the original `id` with `duplicate: true` and a `200`. Each API
+        user can file at most 20 submissions per 24 hours.
+      operationId: submitFeedback
+      requestBody:
+        content:
+          application/json:
+            example:
+              type: missing_feature
+              summary: No way to set a TikTok post's cover frame timestamp
+              details: I am scheduling TikTok videos and need to pick the cover frame.
+                Nothing in platformSpecificData controls it.
+              endpoint: POST /v1/posts
+              agent:
+                name: claude-code
+                model: claude-opus-5-5
+            schema:
+              $ref: "#/components/schemas/submitFeedback_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              example:
+                id: 66f7f0c2a1b2c3d4e5f60799
+                status: received
+                duplicate: false
+              schema:
+                $ref: "#/components/schemas/FeedbackReceipt"
+          description: Feedback received
+        "200":
+          content:
+            application/json:
+              example:
+                id: 66f7f0c2a1b2c3d4e5f60799
+                status: received
+                duplicate: true
+              schema:
+                $ref: "#/components/schemas/FeedbackReceipt"
+          description: Duplicate of a submission made in the last 24 hours. Returns
+            the original id.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: More than 20 submissions in the last 24 hours.
+      summary: Submit feedback
+      tags:
+      - Feedback
+      x-resource-group: accounts
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/api-keys:
@@ -51734,6 +51808,23 @@ components:
         `dashboard_url` (the enterprise contact form) to adjust the
         contract's limit.
   schemas:
+    FeedbackReceipt:
+      example:
+        id: id
+        duplicate: true
+        status: received
+      properties:
+        id:
+          description: Feedback id. Quote it if you follow up with support.
+          type: string
+        status:
+          enum:
+          - received
+          type: string
+        duplicate:
+          description: True when this matched a submission with the same summary from
+            the last 24 hours.
+          type: boolean
     SmsRegistrationReviewRequest:
       description: "An open change request written as points. Answer each point with\
         \ POST /v1/sms/registrations/{id}/respond: `answer` says what each point needs\
@@ -76906,6 +76997,59 @@ components:
           description: "Granted OAuth scopes, space-separated. Null for API keys."
           nullable: true
           type: string
+    submitFeedback_request_agent:
+      description: Optional identification of the agent submitting the feedback.
+      properties:
+        name:
+          description: "Agent or tool name, e.g. `claude-code`."
+          maxLength: 100
+          type: string
+        model:
+          description: Model powering the agent.
+          maxLength: 100
+          type: string
+    submitFeedback_request:
+      properties:
+        type:
+          description: What kind of feedback this is.
+          enum:
+          - bug
+          - missing_feature
+          - docs
+          - other
+          type: string
+        summary:
+          description: One line describing the problem or the missing capability.
+            Also the dedup key.
+          maxLength: 200
+          minLength: 1
+          type: string
+        details:
+          description: "Longer explanation: what you were trying to do, steps to reproduce,\
+            \ the use case."
+          maxLength: 5000
+          type: string
+        endpoint:
+          description: "The endpoint involved, e.g. `POST /v1/posts`."
+          maxLength: 300
+          type: string
+        requestId:
+          description: "The `x-request-id` header of the failing response, if any."
+          maxLength: 200
+          type: string
+        expected:
+          description: What you expected to happen.
+          maxLength: 2000
+          type: string
+        actual:
+          description: "What actually happened, e.g. the error message."
+          maxLength: 2000
+          type: string
+        agent:
+          $ref: "#/components/schemas/submitFeedback_request_agent"
+      required:
+      - summary
+      - type
     listApiKeys_200_response:
       example:
         apiKeys:

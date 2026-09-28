@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.116.0
+- API version: 1.117.0
 
-- Build date: 2026-09-28T09:44:22.891008890Z[Etc/UTC]
+- Build date: 2026-09-28T09:55:55.641401987Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.116.0</version>
+  <version>1.117.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.116.0"
+compile "dev.zernio:zernio-sdk:1.117.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.116.0.jar`
+- `target/zernio-sdk-1.117.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -983,6 +983,8 @@ Class | Method | HTTP request | Description
 *DiscordApi* | [**updateDiscordScheduledEventWithHttpInfo**](docs/DiscordApi.md#updateDiscordScheduledEventWithHttpInfo) | **PATCH** /v1/discord/guilds/{guildId}/events/{eventId} | Update a Discord scheduled event
 *DiscordApi* | [**updateDiscordSettings**](docs/DiscordApi.md#updateDiscordSettings) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
 *DiscordApi* | [**updateDiscordSettingsWithHttpInfo**](docs/DiscordApi.md#updateDiscordSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/discord-settings | Update Discord settings
+*FeedbackApi* | [**submitFeedback**](docs/FeedbackApi.md#submitFeedback) | **POST** /v1/feedback | Submit feedback
+*FeedbackApi* | [**submitFeedbackWithHttpInfo**](docs/FeedbackApi.md#submitFeedbackWithHttpInfo) | **POST** /v1/feedback | Submit feedback
 *GmbAttributesApi* | [**getGmbAttributeMetadata**](docs/GmbAttributesApi.md#getGmbAttributeMetadata) | **GET** /v1/accounts/{accountId}/gmb-attribute-metadata | Get attribute metadata
 *GmbAttributesApi* | [**getGmbAttributeMetadataWithHttpInfo**](docs/GmbAttributesApi.md#getGmbAttributeMetadataWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-attribute-metadata | Get attribute metadata
 *GmbAttributesApi* | [**getGoogleBusinessAttributes**](docs/GmbAttributesApi.md#getGoogleBusinessAttributes) | **GET** /v1/accounts/{accountId}/gmb-attributes | Get attributes
@@ -2328,6 +2330,7 @@ Class | Method | HTTP request | Description
  - [FacebookPostEarningsResponseUnavailableMetricsInner](docs/FacebookPostEarningsResponseUnavailableMetricsInner.md)
  - [FacebookSettings](docs/FacebookSettings.md)
  - [FacebookSettingsCarouselCardsInner](docs/FacebookSettingsCarouselCardsInner.md)
+ - [FeedbackReceipt](docs/FeedbackReceipt.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
  - [FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
  - [FetchGoogleBusinessVerificationOptionsRequest](docs/FetchGoogleBusinessVerificationOptionsRequest.md)
@@ -3514,6 +3517,8 @@ Class | Method | HTTP request | Description
  - [StartSmsRegistrationRequestTollFree](docs/StartSmsRegistrationRequestTollFree.md)
  - [StartWhatsAppCallerIdVerification200Response](docs/StartWhatsAppCallerIdVerification200Response.md)
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
+ - [SubmitFeedbackRequest](docs/SubmitFeedbackRequest.md)
+ - [SubmitFeedbackRequestAgent](docs/SubmitFeedbackRequestAgent.md)
  - [SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
  - [SubmitPhoneNumberKyc200ResponseNumbersInner](docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md)
  - [SubmitPhoneNumberKyc200ResponsePhoneNumber](docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md)

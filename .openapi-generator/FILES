@@ -626,6 +626,8 @@ docs/FacebookPostEarningsResponseMetricsValue.md
 docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
 docs/FacebookSettings.md
 docs/FacebookSettingsCarouselCardsInner.md
+docs/FeedbackApi.md
+docs/FeedbackReceipt.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
 docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md
 docs/FetchGoogleBusinessVerificationOptionsRequest.md
@@ -1843,6 +1845,8 @@ docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
+docs/SubmitFeedbackRequest.md
+docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
 docs/SubmitPhoneNumberKyc200ResponseNumbersInner.md
 docs/SubmitPhoneNumberKyc200ResponsePhoneNumber.md
@@ -2402,6 +2406,7 @@ src/main/java/dev/zernio/api/ContactsApi.java
 src/main/java/dev/zernio/api/ConversionsApi.java
 src/main/java/dev/zernio/api/CustomFieldsApi.java
 src/main/java/dev/zernio/api/DiscordApi.java
+src/main/java/dev/zernio/api/FeedbackApi.java
 src/main/java/dev/zernio/api/GmbAttributesApi.java
 src/main/java/dev/zernio/api/GmbFoodMenusApi.java
 src/main/java/dev/zernio/api/GmbLocationDetailsApi.java
@@ -3048,6 +3053,7 @@ src/main/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValue.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInner.java
 src/main/java/dev/zernio/model/FacebookSettings.java
 src/main/java/dev/zernio/model/FacebookSettingsCarouselCardsInner.java
+src/main/java/dev/zernio/model/FeedbackReceipt.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptionsRequest.java
@@ -4234,6 +4240,8 @@ src/main/java/dev/zernio/model/StartSmsRegistrationRequestCampaign.java
 src/main/java/dev/zernio/model/StartSmsRegistrationRequestTollFree.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerification200Response.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequest.java
+src/main/java/dev/zernio/model/SubmitFeedbackRequest.java
+src/main/java/dev/zernio/model/SubmitFeedbackRequestAgent.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200Response.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200ResponseNumbersInner.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200ResponsePhoneNumber.java
@@ -4733,3 +4741,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/FeedbackApiTest.java
+src/test/java/dev/zernio/model/FeedbackReceiptTest.java
+src/test/java/dev/zernio/model/SubmitFeedbackRequestAgentTest.java
+src/test/java/dev/zernio/model/SubmitFeedbackRequestTest.java
