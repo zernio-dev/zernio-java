@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.119.0
+- API version: 1.120.0
 
-- Build date: 2026-09-28T10:45:56.236554908Z[Etc/UTC]
+- Build date: 2026-09-28T12:05:26.207892509Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.119.0</version>
+  <version>1.120.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.119.0"
+compile "dev.zernio:zernio-sdk:1.120.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.119.0.jar`
+- `target/zernio-sdk-1.120.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -577,6 +577,36 @@ Class | Method | HTTP request | Description
 *BlogsApi* | [**updateBlogWithHttpInfo**](docs/BlogsApi.md#updateBlogWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId} | Update a blog
 *BlogsApi* | [**updateBlogArticle**](docs/BlogsApi.md#updateBlogArticle) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Update a blog article
 *BlogsApi* | [**updateBlogArticleWithHttpInfo**](docs/BlogsApi.md#updateBlogArticleWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/blogs/{blogId}/articles/{articleId} | Update a blog article
+*BrandedCallingApi* | [**attachBrandedCallingNumbers**](docs/BrandedCallingApi.md#attachBrandedCallingNumbers) | **POST** /v1/branded-calling/identities/{id}/numbers | Attach numbers to a verified identity
+*BrandedCallingApi* | [**attachBrandedCallingNumbersWithHttpInfo**](docs/BrandedCallingApi.md#attachBrandedCallingNumbersWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/numbers | Attach numbers to a verified identity
+*BrandedCallingApi* | [**confirmBrandedCallingAuthorizerEmail**](docs/BrandedCallingApi.md#confirmBrandedCallingAuthorizerEmail) | **POST** /v1/branded-calling/identities/{id}/verify-email/confirm | Confirm the authorizer&#39;s code
+*BrandedCallingApi* | [**confirmBrandedCallingAuthorizerEmailWithHttpInfo**](docs/BrandedCallingApi.md#confirmBrandedCallingAuthorizerEmailWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email/confirm | Confirm the authorizer&#39;s code
+*BrandedCallingApi* | [**createBrandedCallingEnterprise**](docs/BrandedCallingApi.md#createBrandedCallingEnterprise) | **POST** /v1/branded-calling/enterprises | Register a business for Branded Calling
+*BrandedCallingApi* | [**createBrandedCallingEnterpriseWithHttpInfo**](docs/BrandedCallingApi.md#createBrandedCallingEnterpriseWithHttpInfo) | **POST** /v1/branded-calling/enterprises | Register a business for Branded Calling
+*BrandedCallingApi* | [**createBrandedCallingIdentity**](docs/BrandedCallingApi.md#createBrandedCallingIdentity) | **POST** /v1/branded-calling/identities | Create a caller identity
+*BrandedCallingApi* | [**createBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#createBrandedCallingIdentityWithHttpInfo) | **POST** /v1/branded-calling/identities | Create a caller identity
+*BrandedCallingApi* | [**deleteBrandedCallingEnterprise**](docs/BrandedCallingApi.md#deleteBrandedCallingEnterprise) | **DELETE** /v1/branded-calling/enterprises/{id} | Delete a registered business
+*BrandedCallingApi* | [**deleteBrandedCallingEnterpriseWithHttpInfo**](docs/BrandedCallingApi.md#deleteBrandedCallingEnterpriseWithHttpInfo) | **DELETE** /v1/branded-calling/enterprises/{id} | Delete a registered business
+*BrandedCallingApi* | [**deleteBrandedCallingIdentity**](docs/BrandedCallingApi.md#deleteBrandedCallingIdentity) | **DELETE** /v1/branded-calling/identities/{id} | Delete a caller identity
+*BrandedCallingApi* | [**deleteBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#deleteBrandedCallingIdentityWithHttpInfo) | **DELETE** /v1/branded-calling/identities/{id} | Delete a caller identity
+*BrandedCallingApi* | [**detachBrandedCallingNumbers**](docs/BrandedCallingApi.md#detachBrandedCallingNumbers) | **DELETE** /v1/branded-calling/identities/{id}/numbers | Detach numbers from an identity
+*BrandedCallingApi* | [**detachBrandedCallingNumbersWithHttpInfo**](docs/BrandedCallingApi.md#detachBrandedCallingNumbersWithHttpInfo) | **DELETE** /v1/branded-calling/identities/{id}/numbers | Detach numbers from an identity
+*BrandedCallingApi* | [**getBrandedCallingEnterprise**](docs/BrandedCallingApi.md#getBrandedCallingEnterprise) | **GET** /v1/branded-calling/enterprises/{id} | Get a registered business
+*BrandedCallingApi* | [**getBrandedCallingEnterpriseWithHttpInfo**](docs/BrandedCallingApi.md#getBrandedCallingEnterpriseWithHttpInfo) | **GET** /v1/branded-calling/enterprises/{id} | Get a registered business
+*BrandedCallingApi* | [**getBrandedCallingIdentity**](docs/BrandedCallingApi.md#getBrandedCallingIdentity) | **GET** /v1/branded-calling/identities/{id} | Get a caller identity
+*BrandedCallingApi* | [**getBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#getBrandedCallingIdentityWithHttpInfo) | **GET** /v1/branded-calling/identities/{id} | Get a caller identity
+*BrandedCallingApi* | [**listBrandedCallingCallReasons**](docs/BrandedCallingApi.md#listBrandedCallingCallReasons) | **GET** /v1/branded-calling/call-reasons | List pre-approved call reasons
+*BrandedCallingApi* | [**listBrandedCallingCallReasonsWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingCallReasonsWithHttpInfo) | **GET** /v1/branded-calling/call-reasons | List pre-approved call reasons
+*BrandedCallingApi* | [**listBrandedCallingEnterprises**](docs/BrandedCallingApi.md#listBrandedCallingEnterprises) | **GET** /v1/branded-calling/enterprises | List registered businesses
+*BrandedCallingApi* | [**listBrandedCallingEnterprisesWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingEnterprisesWithHttpInfo) | **GET** /v1/branded-calling/enterprises | List registered businesses
+*BrandedCallingApi* | [**listBrandedCallingIdentities**](docs/BrandedCallingApi.md#listBrandedCallingIdentities) | **GET** /v1/branded-calling/identities | List caller identities
+*BrandedCallingApi* | [**listBrandedCallingIdentitiesWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingIdentitiesWithHttpInfo) | **GET** /v1/branded-calling/identities | List caller identities
+*BrandedCallingApi* | [**listBrandedCallingIdentityNumbers**](docs/BrandedCallingApi.md#listBrandedCallingIdentityNumbers) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity
+*BrandedCallingApi* | [**listBrandedCallingIdentityNumbersWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingIdentityNumbersWithHttpInfo) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity
+*BrandedCallingApi* | [**resendBrandedCallingAuthorizerCode**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
+*BrandedCallingApi* | [**resendBrandedCallingAuthorizerCodeWithHttpInfo**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCodeWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
+*BrandedCallingApi* | [**updateBrandedCallingIdentity**](docs/BrandedCallingApi.md#updateBrandedCallingIdentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity
+*BrandedCallingApi* | [**updateBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#updateBrandedCallingIdentityWithHttpInfo) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity
 *BroadcastsApi* | [**addBroadcastRecipients**](docs/BroadcastsApi.md#addBroadcastRecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**addBroadcastRecipientsWithHttpInfo**](docs/BroadcastsApi.md#addBroadcastRecipientsWithHttpInfo) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
 *BroadcastsApi* | [**cancelBroadcast**](docs/BroadcastsApi.md#cancelBroadcast) | **POST** /v1/broadcasts/{broadcastId}/cancel | Cancel broadcast
@@ -1840,6 +1870,8 @@ Class | Method | HTTP request | Description
  - [AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
  - [AttachAdGroupAssets201Response](docs/AttachAdGroupAssets201Response.md)
  - [AttachAdLabel200Response](docs/AttachAdLabel200Response.md)
+ - [AttachBrandedCallingNumbersRequest](docs/AttachBrandedCallingNumbersRequest.md)
+ - [AttachBrandedCallingNumbersRequestSignature](docs/AttachBrandedCallingNumbersRequestSignature.md)
  - [AttachCampaignAssets201Response](docs/AttachCampaignAssets201Response.md)
  - [AttachCampaignAssetsRequest](docs/AttachCampaignAssetsRequest.md)
  - [AttachNumberToSipTrunk200Response](docs/AttachNumberToSipTrunk200Response.md)
@@ -1884,6 +1916,18 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestTargetingRegionsInner](docs/BoostPostRequestTargetingRegionsInner.md)
  - [BoostPostRequestTracking](docs/BoostPostRequestTracking.md)
  - [BoostPostRequestTrackingUrlTagsInner](docs/BoostPostRequestTrackingUrlTagsInner.md)
+ - [BrandedCallingAddress](docs/BrandedCallingAddress.md)
+ - [BrandedCallingContact](docs/BrandedCallingContact.md)
+ - [BrandedCallingEnterprise](docs/BrandedCallingEnterprise.md)
+ - [BrandedCallingIdentity](docs/BrandedCallingIdentity.md)
+ - [BrandedCallingIdentityAuthorizer](docs/BrandedCallingIdentityAuthorizer.md)
+ - [BrandedCallingIdentityNumber](docs/BrandedCallingIdentityNumber.md)
+ - [BrandedCallingIdentityNumberRejectionReason](docs/BrandedCallingIdentityNumberRejectionReason.md)
+ - [BrandedCallingIdentityRejectionReasonsInner](docs/BrandedCallingIdentityRejectionReasonsInner.md)
+ - [BrandedCallingIdentityReviewRequest](docs/BrandedCallingIdentityReviewRequest.md)
+ - [BrandedCallingIdentityReviewRequestPointsInner](docs/BrandedCallingIdentityReviewRequestPointsInner.md)
+ - [BrandedCallingReference](docs/BrandedCallingReference.md)
+ - [BrandedCallingReferences](docs/BrandedCallingReferences.md)
  - [BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
  - [BulkCreateContactsRequestContactsInner](docs/BulkCreateContactsRequestContactsInner.md)
@@ -1967,6 +2011,7 @@ Class | Method | HTTP request | Description
  - [CompleteWhatsAppPhoneSelectionRequest](docs/CompleteWhatsAppPhoneSelectionRequest.md)
  - [ConfigureTikTokAdsBrandIdentity200Response](docs/ConfigureTikTokAdsBrandIdentity200Response.md)
  - [ConfigureTikTokAdsBrandIdentityRequest](docs/ConfigureTikTokAdsBrandIdentityRequest.md)
+ - [ConfirmBrandedCallingAuthorizerEmailRequest](docs/ConfirmBrandedCallingAuthorizerEmailRequest.md)
  - [ConnectAds200Response](docs/ConnectAds200Response.md)
  - [ConnectAds200ResponseOneOf](docs/ConnectAds200ResponseOneOf.md)
  - [ConnectAds200ResponseOneOf1](docs/ConnectAds200ResponseOneOf1.md)
@@ -2044,6 +2089,9 @@ Class | Method | HTTP request | Description
  - [CreateBlogArticleRequestImage](docs/CreateBlogArticleRequestImage.md)
  - [CreateBlogArticleRequestSeo](docs/CreateBlogArticleRequestSeo.md)
  - [CreateBlogRequest](docs/CreateBlogRequest.md)
+ - [CreateBrandedCallingEnterpriseRequest](docs/CreateBrandedCallingEnterpriseRequest.md)
+ - [CreateBrandedCallingIdentityRequest](docs/CreateBrandedCallingIdentityRequest.md)
+ - [CreateBrandedCallingIdentityRequestAuthorizer](docs/CreateBrandedCallingIdentityRequestAuthorizer.md)
  - [CreateBroadcast200Response](docs/CreateBroadcast200Response.md)
  - [CreateBroadcast200ResponseBroadcast](docs/CreateBroadcast200ResponseBroadcast.md)
  - [CreateBroadcastRequest](docs/CreateBroadcastRequest.md)
@@ -2251,6 +2299,7 @@ Class | Method | HTTP request | Description
  - [DeleteAdNegativeKeywordList200Response](docs/DeleteAdNegativeKeywordList200Response.md)
  - [DeleteAdSet200Response](docs/DeleteAdSet200Response.md)
  - [DeleteAdVideo200Response](docs/DeleteAdVideo200Response.md)
+ - [DeleteBrandedCallingEnterprise200Response](docs/DeleteBrandedCallingEnterprise200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
@@ -2265,6 +2314,8 @@ Class | Method | HTTP request | Description
  - [DeleteWhatsAppTemplateById200Response](docs/DeleteWhatsAppTemplateById200Response.md)
  - [DeleteWhatsappBusinessUsernameRequest](docs/DeleteWhatsappBusinessUsernameRequest.md)
  - [DetachAdLabel200Response](docs/DetachAdLabel200Response.md)
+ - [DetachBrandedCallingNumbers200Response](docs/DetachBrandedCallingNumbers200Response.md)
+ - [DetachBrandedCallingNumbersRequest](docs/DetachBrandedCallingNumbersRequest.md)
  - [DetachNumberFromSipTrunk200Response](docs/DetachNumberFromSipTrunk200Response.md)
  - [DialVoiceWebCall200Response](docs/DialVoiceWebCall200Response.md)
  - [DialVoiceWebCallRequest](docs/DialVoiceWebCallRequest.md)
@@ -2942,6 +2993,10 @@ Class | Method | HTTP request | Description
  - [ListBidStrategies200Response](docs/ListBidStrategies200Response.md)
  - [ListBlogArticles200Response](docs/ListBlogArticles200Response.md)
  - [ListBlogs200Response](docs/ListBlogs200Response.md)
+ - [ListBrandedCallingCallReasons200Response](docs/ListBrandedCallingCallReasons200Response.md)
+ - [ListBrandedCallingEnterprises200Response](docs/ListBrandedCallingEnterprises200Response.md)
+ - [ListBrandedCallingIdentities200Response](docs/ListBrandedCallingIdentities200Response.md)
+ - [ListBrandedCallingIdentityNumbers200Response](docs/ListBrandedCallingIdentityNumbers200Response.md)
  - [ListBroadcastRecipients200Response](docs/ListBroadcastRecipients200Response.md)
  - [ListBroadcastRecipients200ResponseRecipientsInner](docs/ListBroadcastRecipients200ResponseRecipientsInner.md)
  - [ListBroadcastRecipients200ResponseSummary](docs/ListBroadcastRecipients200ResponseSummary.md)
@@ -3324,6 +3379,7 @@ Class | Method | HTTP request | Description
  - [RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
  - [RequestWhatsAppVerificationCode200Response](docs/RequestWhatsAppVerificationCode200Response.md)
  - [RequestWhatsAppVerificationCodeRequest](docs/RequestWhatsAppVerificationCodeRequest.md)
+ - [ResendBrandedCallingAuthorizerCode200Response](docs/ResendBrandedCallingAuthorizerCode200Response.md)
  - [ResendSmsRegistrationOtp200Response](docs/ResendSmsRegistrationOtp200Response.md)
  - [ReserveImessageAvailableNumber200Response](docs/ReserveImessageAvailableNumber200Response.md)
  - [ReserveRfPrediction201Response](docs/ReserveRfPrediction201Response.md)
@@ -3648,6 +3704,8 @@ Class | Method | HTTP request | Description
  - [UpdateBlogArticleRequestImage](docs/UpdateBlogArticleRequestImage.md)
  - [UpdateBlogRequest](docs/UpdateBlogRequest.md)
  - [UpdateBlueskySettingsRequest](docs/UpdateBlueskySettingsRequest.md)
+ - [UpdateBrandedCallingIdentityRequest](docs/UpdateBrandedCallingIdentityRequest.md)
+ - [UpdateBrandedCallingIdentityRequestReviewAnswersValue](docs/UpdateBrandedCallingIdentityRequestReviewAnswersValue.md)
  - [UpdateBroadcast200Response](docs/UpdateBroadcast200Response.md)
  - [UpdateBroadcast200ResponseBroadcast](docs/UpdateBroadcast200ResponseBroadcast.md)
  - [UpdateBroadcastRequest](docs/UpdateBroadcastRequest.md)
