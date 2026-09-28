@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.117.1
+  version: 1.118.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -342,7 +342,7 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
     Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -55490,6 +55490,8 @@ components:
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
+            - account.ads.sync_failed
+            - account.ads.sync_recovered
             - analytics.synced
             - message.received
             - conversation.started
@@ -56319,6 +56321,145 @@ components:
       - account
       - event
       - id
+      - timestamp
+    WebhookAdsSyncAccount:
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: platform
+        username: username
+      properties:
+        accountId:
+          description: "The ads connection's account ID (same as used in /v1/accounts/{accountId})"
+          type: string
+        profileId:
+          type: string
+        platform:
+          description: "The ads connection platform, e.g. metaads, googleads, tiktokads,\
+            \ linkedinads"
+          type: string
+        username:
+          type: string
+        displayName:
+          nullable: true
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
+    WebhookAdsSyncAdAccount:
+      example:
+        name: name
+        platformAdAccountId: platformAdAccountId
+      properties:
+        platformAdAccountId:
+          description: "The platform ad account ID, e.g. act_1489036928764209 on Meta"
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - name
+      - platformAdAccountId
+    WebhookPayloadAccountAdsSyncFailed:
+      description: |
+        Webhook payload for `account.ads.sync_failed` events. Fired once per ad account
+        when its ads stop syncing: no successful sync for 24 hours, or every live ad in it
+        at the retry cap. It does not fire again for the same ad account until
+        `account.ads.sync_recovered`. Metrics for the ad account are stale meanwhile.
+      example:
+        adAccount:
+          name: name
+          platformAdAccountId: platformAdAccountId
+        id: id
+        event: account.ads.sync_failed
+        sync:
+          errorCategory: ad_account_not_listed
+          lastSuccessfulSyncAt: 2000-01-23T04:56:07.000+00:00
+          error: error
+          failureCount: 0
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        event:
+          enum:
+          - account.ads.sync_failed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsSyncAccount"
+        adAccount:
+          $ref: "#/components/schemas/WebhookAdsSyncAdAccount"
+        sync:
+          $ref: "#/components/schemas/WebhookPayloadAccountAdsSyncFailed_sync"
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adAccount
+      - event
+      - id
+      - sync
+      - timestamp
+    WebhookPayloadAccountAdsSyncRecovered:
+      description: |
+        Webhook payload for `account.ads.sync_recovered` events. Fired once when an ad account
+        previously reported by `account.ads.sync_failed` syncs successfully again.
+      example:
+        adAccount:
+          name: name
+          platformAdAccountId: platformAdAccountId
+        id: id
+        event: account.ads.sync_recovered
+        sync:
+          lastSuccessfulSyncAt: 2000-01-23T04:56:07.000+00:00
+          failingSince: 2000-01-23T04:56:07.000+00:00
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: platform
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        event:
+          enum:
+          - account.ads.sync_recovered
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsSyncAccount"
+        adAccount:
+          $ref: "#/components/schemas/WebhookAdsSyncAdAccount"
+        sync:
+          $ref: "#/components/schemas/WebhookPayloadAccountAdsSyncRecovered_sync"
+        timestamp:
+          description: UTC time at which Zernio generated this event. Retries and
+            redeliveries keep the original value.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adAccount
+      - event
+      - id
+      - sync
       - timestamp
     WebhookPayloadAccountAdsInitialSyncCompleted:
       description: |
@@ -84949,6 +85090,8 @@ components:
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
+            - account.ads.sync_failed
+            - account.ads.sync_recovered
             - analytics.synced
             - message.received
             - conversation.started
@@ -85106,6 +85249,8 @@ components:
             - account.connected
             - account.disconnected
             - account.ads.initial_sync_completed
+            - account.ads.sync_failed
+            - account.ads.sync_recovered
             - analytics.synced
             - message.received
             - conversation.started
@@ -125134,6 +125279,54 @@ components:
       - profileId
       - reason
       - username
+    WebhookPayloadAccountAdsSyncFailed_sync:
+      example:
+        errorCategory: ad_account_not_listed
+        lastSuccessfulSyncAt: 2000-01-23T04:56:07.000+00:00
+        error: error
+        failureCount: 0
+      properties:
+        lastSuccessfulSyncAt:
+          format: date-time
+          type: string
+        failureCount:
+          description: Consecutive failed sync attempts on the ad account's ads.
+          type: integer
+        errorCategory:
+          description: |
+            ad_account_not_listed = the platform no longer returns the ad account to this
+            connection (access removed, or a platform-side change); sync_error = the platform
+            returned an error, see `error`; stale = no sync succeeded and no error was
+            recorded. New values may be added.
+          enum:
+          - ad_account_not_listed
+          - sync_error
+          - stale
+          type: string
+        error:
+          description: "Human-readable detail, for display and debugging. Branch on\
+            \ errorCategory."
+          type: string
+      required:
+      - error
+      - errorCategory
+      - failureCount
+      - lastSuccessfulSyncAt
+    WebhookPayloadAccountAdsSyncRecovered_sync:
+      example:
+        lastSuccessfulSyncAt: 2000-01-23T04:56:07.000+00:00
+        failingSince: 2000-01-23T04:56:07.000+00:00
+      properties:
+        lastSuccessfulSyncAt:
+          format: date-time
+          type: string
+        failingSince:
+          description: The last successful sync before the failure started.
+          format: date-time
+          type: string
+      required:
+      - failingSince
+      - lastSuccessfulSyncAt
     WebhookPayloadAccountAdsInitialSyncCompleted_account:
       example:
         accountId: accountId
@@ -132108,6 +132301,8 @@ x-documentation:
     - `account.connected` - Account connected
     - `account.disconnected` - Account disconnected (token expired)
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
+    - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers
+    - `account.ads.sync_recovered` - An ad account reported by `account.ads.sync_failed` is syncing again
     - `analytics.synced` - One connected account's analytics sync cycle finished. A trigger, not a transport: it carries no metrics and no cursor, so call `GET /v1/analytics/delta` with your own last `nextCursor` to read what changed across every account. Poll-driven (~hourly per account), not real-time. High volume: subscribe to it on a dedicated endpoint.
     - `message.received` - New inbound DM or SMS received (SMS arrives with `platform: "sms"`)
     - `conversation.started` - A new conversation opened between one of your accounts and a contact, in either direction (any DM platform, and SMS); fires only the first time the thread appears

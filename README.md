@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.117.1
+- API version: 1.118.0
 
-- Build date: 2026-09-28T10:06:02.094316075Z[Etc/UTC]
+- Build date: 2026-09-28T10:28:29.741427122Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.117.1</version>
+  <version>1.118.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.117.1"
+compile "dev.zernio:zernio-sdk:1.118.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.117.1.jar`
+- `target/zernio-sdk-1.118.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3857,10 +3857,16 @@ Class | Method | HTTP request | Description
  - [VerifyWhatsAppNumberRequest](docs/VerifyWhatsAppNumberRequest.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
+ - [WebhookAdsSyncAccount](docs/WebhookAdsSyncAccount.md)
+ - [WebhookAdsSyncAdAccount](docs/WebhookAdsSyncAdAccount.md)
  - [WebhookLog](docs/WebhookLog.md)
  - [WebhookPayloadAccountAdsInitialSyncCompleted](docs/WebhookPayloadAccountAdsInitialSyncCompleted.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedAccount](docs/WebhookPayloadAccountAdsInitialSyncCompletedAccount.md)
  - [WebhookPayloadAccountAdsInitialSyncCompletedSync](docs/WebhookPayloadAccountAdsInitialSyncCompletedSync.md)
+ - [WebhookPayloadAccountAdsSyncFailed](docs/WebhookPayloadAccountAdsSyncFailed.md)
+ - [WebhookPayloadAccountAdsSyncFailedSync](docs/WebhookPayloadAccountAdsSyncFailedSync.md)
+ - [WebhookPayloadAccountAdsSyncRecovered](docs/WebhookPayloadAccountAdsSyncRecovered.md)
+ - [WebhookPayloadAccountAdsSyncRecoveredSync](docs/WebhookPayloadAccountAdsSyncRecoveredSync.md)
  - [WebhookPayloadAccountConnected](docs/WebhookPayloadAccountConnected.md)
  - [WebhookPayloadAccountConnectedAccount](docs/WebhookPayloadAccountConnectedAccount.md)
  - [WebhookPayloadAccountDisconnected](docs/WebhookPayloadAccountDisconnected.md)

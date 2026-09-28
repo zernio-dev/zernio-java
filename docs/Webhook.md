@@ -43,6 +43,8 @@ Individual webhook configuration for receiving real-time notifications
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
+| ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
+| ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |
 | ANALYTICS_SYNCED | &quot;analytics.synced&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | CONVERSATION_STARTED | &quot;conversation.started&quot; |
