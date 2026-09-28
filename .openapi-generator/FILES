@@ -1874,7 +1874,8 @@ docs/SetTelegramCommandsRequestCommandsInner.md
 docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
 docs/SetWhatsappBusinessUsernameRequest.md
-docs/ShareSmsRegistration200Response.md
+docs/ShareBrandedCallingIdentityForm200Response.md
+docs/ShareBrandedCallingIdentityFormRequest.md
 docs/ShareSmsRegistrationRequest.md
 docs/SharedAdAccount.md
 docs/SlackApi.md
@@ -4333,7 +4334,8 @@ src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
 src/main/java/dev/zernio/model/SetWhatsAppFlowsEncryptionKeyRequest.java
 src/main/java/dev/zernio/model/SetWhatsappBusinessUsername200Response.java
 src/main/java/dev/zernio/model/SetWhatsappBusinessUsernameRequest.java
-src/main/java/dev/zernio/model/ShareSmsRegistration200Response.java
+src/main/java/dev/zernio/model/ShareBrandedCallingIdentityForm200Response.java
+src/main/java/dev/zernio/model/ShareBrandedCallingIdentityFormRequest.java
 src/main/java/dev/zernio/model/ShareSmsRegistrationRequest.java
 src/main/java/dev/zernio/model/SharedAdAccount.java
 src/main/java/dev/zernio/model/SlackPlatformData.java
@@ -4865,3 +4867,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ShareBrandedCallingIdentityForm200ResponseTest.java
+src/test/java/dev/zernio/model/ShareBrandedCallingIdentityFormRequestTest.java

@@ -34,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**preflightBrandedCallingIdentityWithHttpInfo**](BrandedCallingApi.md#preflightBrandedCallingIdentityWithHttpInfo) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it |
 | [**resendBrandedCallingAuthorizerCode**](BrandedCallingApi.md#resendBrandedCallingAuthorizerCode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code |
 | [**resendBrandedCallingAuthorizerCodeWithHttpInfo**](BrandedCallingApi.md#resendBrandedCallingAuthorizerCodeWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code |
+| [**shareBrandedCallingIdentityForm**](BrandedCallingApi.md#shareBrandedCallingIdentityForm) | **POST** /v1/branded-calling/share | Create a caller identity share link |
+| [**shareBrandedCallingIdentityFormWithHttpInfo**](BrandedCallingApi.md#shareBrandedCallingIdentityFormWithHttpInfo) | **POST** /v1/branded-calling/share | Create a caller identity share link |
 | [**updateBrandedCallingIdentity**](BrandedCallingApi.md#updateBrandedCallingIdentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity |
 | [**updateBrandedCallingIdentityWithHttpInfo**](BrandedCallingApi.md#updateBrandedCallingIdentityWithHttpInfo) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity |
 
@@ -2275,6 +2277,156 @@ ApiResponse<[**ResendBrandedCallingAuthorizerCode200Response**](ResendBrandedCal
 | **401** | Unauthorized |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity is not waiting for a code (code invalid_resource_state). |  -  |
+
+
+## shareBrandedCallingIdentityForm
+
+> ShareBrandedCallingIdentityForm200Response shareBrandedCallingIdentityForm(shareBrandedCallingIdentityFormRequest)
+
+Create a caller identity share link
+
+Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login: display name, logo, call reasons, the authorizer and the three references. What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires. Scope the link with &#x60;identityId&#x60; (complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;), with &#x60;enterpriseId&#x60; (a new identity for a registered business), or with neither (the business registers itself and its first identity). The person opening the link can forward a fresh one to someone else, which retires theirs. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.BrandedCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
+        ShareBrandedCallingIdentityFormRequest shareBrandedCallingIdentityFormRequest = new ShareBrandedCallingIdentityFormRequest(); // ShareBrandedCallingIdentityFormRequest | 
+        try {
+            ShareBrandedCallingIdentityForm200Response result = apiInstance.shareBrandedCallingIdentityForm(shareBrandedCallingIdentityFormRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BrandedCallingApi#shareBrandedCallingIdentityForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shareBrandedCallingIdentityFormRequest** | [**ShareBrandedCallingIdentityFormRequest**](ShareBrandedCallingIdentityFormRequest.md)|  | [optional] |
+
+### Return type
+
+[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Business or identity not found, or the identity is not in review |  -  |
+
+## shareBrandedCallingIdentityFormWithHttpInfo
+
+> ApiResponse<ShareBrandedCallingIdentityForm200Response> shareBrandedCallingIdentityForm shareBrandedCallingIdentityFormWithHttpInfo(shareBrandedCallingIdentityFormRequest)
+
+Create a caller identity share link
+
+Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login: display name, logo, call reasons, the authorizer and the three references. What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires. Scope the link with &#x60;identityId&#x60; (complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;), with &#x60;enterpriseId&#x60; (a new identity for a registered business), or with neither (the business registers itself and its first identity). The person opening the link can forward a fresh one to someone else, which retires theirs. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.BrandedCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
+        ShareBrandedCallingIdentityFormRequest shareBrandedCallingIdentityFormRequest = new ShareBrandedCallingIdentityFormRequest(); // ShareBrandedCallingIdentityFormRequest | 
+        try {
+            ApiResponse<ShareBrandedCallingIdentityForm200Response> response = apiInstance.shareBrandedCallingIdentityFormWithHttpInfo(shareBrandedCallingIdentityFormRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BrandedCallingApi#shareBrandedCallingIdentityForm");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **shareBrandedCallingIdentityFormRequest** | [**ShareBrandedCallingIdentityFormRequest**](ShareBrandedCallingIdentityFormRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Share link created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Business or identity not found, or the identity is not in review |  -  |
 
 
 ## updateBrandedCallingIdentity

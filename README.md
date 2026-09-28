@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.126.0
+- API version: 1.127.0
 
-- Build date: 2026-09-28T14:53:34.767605238Z[Etc/UTC]
+- Build date: 2026-09-28T14:56:42.302189998Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.126.0</version>
+  <version>1.127.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.126.0"
+compile "dev.zernio:zernio-sdk:1.127.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.126.0.jar`
+- `target/zernio-sdk-1.127.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -607,6 +607,8 @@ Class | Method | HTTP request | Description
 *BrandedCallingApi* | [**preflightBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#preflightBrandedCallingIdentityWithHttpInfo) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it
 *BrandedCallingApi* | [**resendBrandedCallingAuthorizerCode**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
 *BrandedCallingApi* | [**resendBrandedCallingAuthorizerCodeWithHttpInfo**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCodeWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
+*BrandedCallingApi* | [**shareBrandedCallingIdentityForm**](docs/BrandedCallingApi.md#shareBrandedCallingIdentityForm) | **POST** /v1/branded-calling/share | Create a caller identity share link
+*BrandedCallingApi* | [**shareBrandedCallingIdentityFormWithHttpInfo**](docs/BrandedCallingApi.md#shareBrandedCallingIdentityFormWithHttpInfo) | **POST** /v1/branded-calling/share | Create a caller identity share link
 *BrandedCallingApi* | [**updateBrandedCallingIdentity**](docs/BrandedCallingApi.md#updateBrandedCallingIdentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity
 *BrandedCallingApi* | [**updateBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#updateBrandedCallingIdentityWithHttpInfo) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity
 *BroadcastsApi* | [**addBroadcastRecipients**](docs/BroadcastsApi.md#addBroadcastRecipients) | **POST** /v1/broadcasts/{broadcastId}/recipients | Add recipients to a broadcast
@@ -3591,7 +3593,8 @@ Class | Method | HTTP request | Description
  - [SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
  - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
- - [ShareSmsRegistration200Response](docs/ShareSmsRegistration200Response.md)
+ - [ShareBrandedCallingIdentityForm200Response](docs/ShareBrandedCallingIdentityForm200Response.md)
+ - [ShareBrandedCallingIdentityFormRequest](docs/ShareBrandedCallingIdentityFormRequest.md)
  - [ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
  - [SharedAdAccount](docs/SharedAdAccount.md)
  - [SlackPlatformData](docs/SlackPlatformData.md)

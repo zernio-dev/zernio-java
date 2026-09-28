@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.126.0
+  version: 1.127.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24612,6 +24612,49 @@ paths:
       x-resource-group: telephony
       x-accepts:
       - application/json
+  /v1/branded-calling/share:
+    post:
+      description: |
+        Creates a single-use link (valid 7 days) where the end business fills in
+        the caller identity itself, with no Zernio login: display name, logo, call
+        reasons, the authorizer and the three references. What it submits lands
+        under your team as `requested`, the same review as an API submission, and
+        `branded_calling.identity.status_updated` fires. Scope the link with
+        `identityId` (complete an identity that is `requested` or
+        `changes_requested`), with `enterpriseId` (a new identity for a registered
+        business), or with neither (the business registers itself and its first
+        identity). The person opening the link can forward a fresh one to someone
+        else, which retires theirs.
+      operationId: shareBrandedCallingIdentityForm
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/shareBrandedCallingIdentityForm_request"
+        required: false
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/shareBrandedCallingIdentityForm_200_response"
+          description: Share link created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Business or identity not found, or the identity is not in\
+            \ review"
+      security:
+      - bearerAuth: []
+      summary: Create a caller identity share link
+      tags:
+      - Branded Calling
+      x-resource-group: telephony
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/branded-calling/call-reasons:
     get:
       description: The carrier catalogue of call reasons that pass vetting automatically.
@@ -25554,7 +25597,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/shareSmsRegistration_200_response"
+                $ref: "#/components/schemas/shareBrandedCallingIdentityForm_200_response"
           description: Share link created.
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -95159,6 +95202,24 @@ components:
           enum:
           - deleted
           type: string
+    shareBrandedCallingIdentityForm_request:
+      properties:
+        enterpriseId:
+          description: A registered business the identity belongs to.
+          type: string
+        identityId:
+          description: An identity in review to complete. Not with enterpriseId.
+          type: string
+    shareBrandedCallingIdentityForm_200_response:
+      example:
+        url: url
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        url:
+          type: string
+        expiresAt:
+          format: date-time
+          type: string
     listBrandedCallingCallReasons_200_response:
       example:
         callReasons:
@@ -96459,16 +96520,6 @@ components:
           type: string
       required:
       - numberId
-    shareSmsRegistration_200_response:
-      example:
-        url: url
-        expiresAt: 2000-01-23T04:56:07.000+00:00
-      properties:
-        url:
-          type: string
-        expiresAt:
-          format: date-time
-          type: string
     getWhatsAppLibraryTemplate_200_response_template_buttons_inner:
       example:
         text: text

@@ -2605,7 +2605,7 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 
 ## shareSmsRegistration
 
-> ShareSmsRegistration200Response shareSmsRegistration(shareSmsRegistrationRequest)
+> ShareBrandedCallingIdentityForm200Response shareSmsRegistration(shareSmsRegistrationRequest)
 
 Create a registration share link
 
@@ -2634,7 +2634,7 @@ public class Example {
         SmsApi apiInstance = new SmsApi(defaultClient);
         ShareSmsRegistrationRequest shareSmsRegistrationRequest = new ShareSmsRegistrationRequest(); // ShareSmsRegistrationRequest | 
         try {
-            ShareSmsRegistration200Response result = apiInstance.shareSmsRegistration(shareSmsRegistrationRequest);
+            ShareBrandedCallingIdentityForm200Response result = apiInstance.shareSmsRegistration(shareSmsRegistrationRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling SmsApi#shareSmsRegistration");
@@ -2656,7 +2656,7 @@ public class Example {
 
 ### Return type
 
-[**ShareSmsRegistration200Response**](ShareSmsRegistration200Response.md)
+[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)
 
 
 ### Authorization
@@ -2678,7 +2678,7 @@ public class Example {
 
 ## shareSmsRegistrationWithHttpInfo
 
-> ApiResponse<ShareSmsRegistration200Response> shareSmsRegistration shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest)
+> ApiResponse<ShareBrandedCallingIdentityForm200Response> shareSmsRegistration shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest)
 
 Create a registration share link
 
@@ -2708,7 +2708,7 @@ public class Example {
         SmsApi apiInstance = new SmsApi(defaultClient);
         ShareSmsRegistrationRequest shareSmsRegistrationRequest = new ShareSmsRegistrationRequest(); // ShareSmsRegistrationRequest | 
         try {
-            ApiResponse<ShareSmsRegistration200Response> response = apiInstance.shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest);
+            ApiResponse<ShareBrandedCallingIdentityForm200Response> response = apiInstance.shareSmsRegistrationWithHttpInfo(shareSmsRegistrationRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2732,7 +2732,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**ShareSmsRegistration200Response**](ShareSmsRegistration200Response.md)>
+ApiResponse<[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCallingIdentityForm200Response.md)>
 
 
 ### Authorization
