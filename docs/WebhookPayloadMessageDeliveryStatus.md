@@ -2,7 +2,7 @@
 
 # WebhookPayloadMessageDeliveryStatus
 
-Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered: WhatsApp, Facebook Messenger, SMS.   * message.read: WhatsApp, Facebook Messenger, Instagram. Not SMS     (carriers report delivery, never read).   * message.failed: WhatsApp and SMS (other platforms don't expose     per-message failure via webhook). On SMS, `error.code` is the     carrier's numeric code and `error.message` its reason. 
+Shared payload for message.delivered, message.read, and message.failed events. Fires when the platform reports a new delivery state for an outgoing message.  Platform support:   * message.delivered: WhatsApp, Facebook Messenger, SMS, RCS.   * message.read: WhatsApp, Facebook Messenger, Instagram, RCS. Not SMS     (carriers report delivery, never read).   * message.failed: WhatsApp, SMS and RCS (other platforms don't expose     per-message failure via webhook). On SMS, `error.code` is the     carrier's numeric code and `error.message` its reason. 
 
 ## Properties
 

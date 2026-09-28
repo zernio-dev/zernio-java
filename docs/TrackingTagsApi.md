@@ -8,6 +8,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**addTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
 | [**createTrackingTag**](TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
 | [**createTrackingTagWithHttpInfo**](TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
+| [**createTrackingTagEvent**](TrackingTagsApi.md#createTrackingTagEvent) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event |
+| [**createTrackingTagEventWithHttpInfo**](TrackingTagsApi.md#createTrackingTagEventWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event |
+| [**deleteTrackingTagEvent**](TrackingTagsApi.md#deleteTrackingTagEvent) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Delete a conversion event |
+| [**deleteTrackingTagEventWithHttpInfo**](TrackingTagsApi.md#deleteTrackingTagEventWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Delete a conversion event |
 | [**getAdTrackingTags**](TrackingTagsApi.md#getAdTrackingTags) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getTrackingTag**](TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
@@ -18,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTrackingTagStoreInstallWithHttpInfo**](TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
 | [**installTrackingTagOnStore**](TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
 | [**installTrackingTagOnStoreWithHttpInfo**](TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
+| [**listTrackingTagEvents**](TrackingTagsApi.md#listTrackingTagEvents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
+| [**listTrackingTagEventsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagEventsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
 | [**listTrackingTagSharedAccounts**](TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**listTrackingTagSharedAccountsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**listTrackingTags**](TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
@@ -30,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**updateAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateTrackingTag**](TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
 | [**updateTrackingTagWithHttpInfo**](TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
+| [**updateTrackingTagEvent**](TrackingTagsApi.md#updateTrackingTagEvent) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event |
+| [**updateTrackingTagEventWithHttpInfo**](TrackingTagsApi.md#updateTrackingTagEventWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event |
 
 
 
@@ -361,6 +369,338 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **422** | OpenAI Ads only: the ad account is not enabled for pixel management. Contact your OpenAI partner representative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Creating a pixel is NOT idempotent, so before retrying confirm with GET /v1/accounts/{accountId}/tracking-tags that no pixel was created. |  -  |
+
+
+## createTrackingTagEvent
+
+> CreateTrackingTagEvent201Response createTrackingTagEvent(accountId, tagId, createTrackingTagEventRequest)
+
+Create a conversion event
+
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        CreateTrackingTagEventRequest createTrackingTagEventRequest = new CreateTrackingTagEventRequest(); // CreateTrackingTagEventRequest | 
+        try {
+            CreateTrackingTagEvent201Response result = apiInstance.createTrackingTagEvent(accountId, tagId, createTrackingTagEventRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#createTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **createTrackingTagEventRequest** | [**CreateTrackingTagEventRequest**](CreateTrackingTagEventRequest.md)|  | |
+
+### Return type
+
+[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Conversion event created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot create conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## createTrackingTagEventWithHttpInfo
+
+> ApiResponse<CreateTrackingTagEvent201Response> createTrackingTagEvent createTrackingTagEventWithHttpInfo(accountId, tagId, createTrackingTagEventRequest)
+
+Create a conversion event
+
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        CreateTrackingTagEventRequest createTrackingTagEventRequest = new CreateTrackingTagEventRequest(); // CreateTrackingTagEventRequest | 
+        try {
+            ApiResponse<CreateTrackingTagEvent201Response> response = apiInstance.createTrackingTagEventWithHttpInfo(accountId, tagId, createTrackingTagEventRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#createTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **createTrackingTagEventRequest** | [**CreateTrackingTagEventRequest**](CreateTrackingTagEventRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Conversion event created |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot create conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
+
+
+## deleteTrackingTagEvent
+
+> DeleteTrackingTagEvent200Response deleteTrackingTagEvent(accountId, tagId, eventId, adAccountId)
+
+Delete a conversion event
+
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String eventId = "eventId_example"; // String | Event id (`TrackingTagEvent.id`).
+        String adAccountId = "adAccountId_example"; // String | Scopes the lookup on platforms whose tag ids live inside an ad account.
+        try {
+            DeleteTrackingTagEvent200Response result = apiInstance.deleteTrackingTagEvent(accountId, tagId, eventId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#deleteTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **eventId** | **String**| Event id (&#x60;TrackingTagEvent.id&#x60;). | |
+| **adAccountId** | **String**| Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional] |
+
+### Return type
+
+[**DeleteTrackingTagEvent200Response**](DeleteTrackingTagEvent200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## deleteTrackingTagEventWithHttpInfo
+
+> ApiResponse<DeleteTrackingTagEvent200Response> deleteTrackingTagEvent deleteTrackingTagEventWithHttpInfo(accountId, tagId, eventId, adAccountId)
+
+Delete a conversion event
+
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String eventId = "eventId_example"; // String | Event id (`TrackingTagEvent.id`).
+        String adAccountId = "adAccountId_example"; // String | Scopes the lookup on platforms whose tag ids live inside an ad account.
+        try {
+            ApiResponse<DeleteTrackingTagEvent200Response> response = apiInstance.deleteTrackingTagEventWithHttpInfo(accountId, tagId, eventId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#deleteTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **eventId** | **String**| Event id (&#x60;TrackingTagEvent.id&#x60;). | |
+| **adAccountId** | **String**| Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional] |
+
+### Return type
+
+ApiResponse<[**DeleteTrackingTagEvent200Response**](DeleteTrackingTagEvent200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
 
 
 ## getAdTrackingTags
@@ -1191,6 +1531,170 @@ ApiResponse<[**InstallTrackingTagOnStore200Response**](InstallTrackingTagOnStore
 | **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
 | **422** | WordPress only: the site cannot run the pixel and nothing was left on it. Code &#x60;tracking_tag_install_blocked&#x60;; the reason is in &#x60;details.reason&#x60;. |  -  |
 | **502** | Meta, Shopify or the WordPress site was unreachable or returned an unclassified error. On WordPress a write may have completed; call GET before retrying. |  -  |
+
+
+## listTrackingTagEvents
+
+> ListTrackingTagEvents200Response listTrackingTagEvents(accountId, tagId, adAccountId)
+
+List conversion events
+
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        String adAccountId = "adAccountId_example"; // String | Scopes the lookup on platforms whose tag ids live inside an ad account.
+        try {
+            ListTrackingTagEvents200Response result = apiInstance.listTrackingTagEvents(accountId, tagId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **adAccountId** | **String**| Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional] |
+
+### Return type
+
+[**ListTrackingTagEvents200Response**](ListTrackingTagEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion events listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no conversion-event objects (code &#x60;platform_not_supported&#x60;); the message names the alternative. |  -  |
+
+## listTrackingTagEventsWithHttpInfo
+
+> ApiResponse<ListTrackingTagEvents200Response> listTrackingTagEvents listTrackingTagEventsWithHttpInfo(accountId, tagId, adAccountId)
+
+List conversion events
+
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        String adAccountId = "adAccountId_example"; // String | Scopes the lookup on platforms whose tag ids live inside an ad account.
+        try {
+            ApiResponse<ListTrackingTagEvents200Response> response = apiInstance.listTrackingTagEventsWithHttpInfo(accountId, tagId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **adAccountId** | **String**| Scopes the lookup on platforms whose tag ids live inside an ad account. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListTrackingTagEvents200Response**](ListTrackingTagEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion events listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no conversion-event objects (code &#x60;platform_not_supported&#x60;); the message names the alternative. |  -  |
 
 
 ## listTrackingTagSharedAccounts
@@ -2173,4 +2677,172 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## updateTrackingTagEvent
+
+> CreateTrackingTagEvent201Response updateTrackingTagEvent(accountId, tagId, eventId, trackingTagEventInput)
+
+Update a conversion event
+
+Partial update; at least one field. A field the platform does not store answers 400.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String eventId = "eventId_example"; // String | Event id (`TrackingTagEvent.id`).
+        TrackingTagEventInput trackingTagEventInput = new TrackingTagEventInput(); // TrackingTagEventInput | 
+        try {
+            CreateTrackingTagEvent201Response result = apiInstance.updateTrackingTagEvent(accountId, tagId, eventId, trackingTagEventInput);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#updateTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **eventId** | **String**| Event id (&#x60;TrackingTagEvent.id&#x60;). | |
+| **trackingTagEventInput** | [**TrackingTagEventInput**](TrackingTagEventInput.md)|  | |
+
+### Return type
+
+[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot update conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## updateTrackingTagEventWithHttpInfo
+
+> ApiResponse<CreateTrackingTagEvent201Response> updateTrackingTagEvent updateTrackingTagEventWithHttpInfo(accountId, tagId, eventId, trackingTagEventInput)
+
+Update a conversion event
+
+Partial update; at least one field. A field the platform does not store answers 400.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String eventId = "eventId_example"; // String | Event id (`TrackingTagEvent.id`).
+        TrackingTagEventInput trackingTagEventInput = new TrackingTagEventInput(); // TrackingTagEventInput | 
+        try {
+            ApiResponse<CreateTrackingTagEvent201Response> response = apiInstance.updateTrackingTagEventWithHttpInfo(accountId, tagId, eventId, trackingTagEventInput);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#updateTrackingTagEvent");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **eventId** | **String**| Event id (&#x60;TrackingTagEvent.id&#x60;). | |
+| **trackingTagEventInput** | [**TrackingTagEventInput**](TrackingTagEventInput.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversion event updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot update conversion events through its API (code &#x60;platform_not_supported&#x60;). |  -  |
 

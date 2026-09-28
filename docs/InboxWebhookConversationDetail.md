@@ -32,6 +32,7 @@ The conversation object included in conversation lifecycle webhook payloads (con
 | REDDIT | &quot;reddit&quot; |
 | BLUESKY | &quot;bluesky&quot; |
 | SMS | &quot;sms&quot; |
+| RCS | &quot;rcs&quot; |
 | SLACK | &quot;slack&quot; |
 | TIKTOK | &quot;tiktok&quot; |
 | IMESSAGE | &quot;imessage&quot; |

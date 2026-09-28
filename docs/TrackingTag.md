@@ -10,7 +10,7 @@ A platform measurement tag: the thing you create, install on a website, send eve
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Platform-native tag id, the &#x60;{tagId}&#x60; of the per-tag routes. Meta: numeric pixel id, as a string. OpenAI: the pixel resource id. |  |
 |**siteTagId** | **String** | The id the on-site code carries. Equals &#x60;id&#x60; on Meta; differs on platforms with separate API and site ids (OpenAI &#x60;pixel_id&#x60;). |  [optional] |
-|**events** | [**List&lt;TrackingTagEventsInner&gt;**](TrackingTagEventsInner.md) | Platforms where each conversion is its own object: the tag&#39;s conversion events, with the id a site sends for each. |  [optional] |
+|**events** | [**List&lt;TrackingTagEvent&gt;**](TrackingTagEvent.md) | Platforms where each conversion is its own object: the tag&#39;s conversion events, with the id a site sends for each. |  [optional] |
 |**name** | **String** |  |  |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  |
 |**kind** | [**KindEnum**](#KindEnum) | Platform-native flavor of the tag (Meta: &#x60;pixel&#x60;). |  |
@@ -33,6 +33,7 @@ A platform measurement tag: the thing you create, install on a website, send eve
 | OPENAIADS | &quot;openaiads&quot; |
 | TIKTOKADS | &quot;tiktokads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
+| XADS | &quot;xads&quot; |
 
 
 

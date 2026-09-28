@@ -82,6 +82,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onPostScheduledWithHttpInfo**](WebhookEventsApi.md#onPostScheduledWithHttpInfo) | **POST** /post.scheduled | Post scheduled event |
 | [**onPostTikTokUrlResolved**](WebhookEventsApi.md#onPostTikTokUrlResolved) | **POST** /post.tiktok.url_resolved | TikTok post URL resolved event |
 | [**onPostTikTokUrlResolvedWithHttpInfo**](WebhookEventsApi.md#onPostTikTokUrlResolvedWithHttpInfo) | **POST** /post.tiktok.url_resolved | TikTok post URL resolved event |
+| [**onRcsAgentStatusUpdated**](WebhookEventsApi.md#onRcsAgentStatusUpdated) | **POST** /rcs.agent.status_updated | RCS agent status updated event |
+| [**onRcsAgentStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onRcsAgentStatusUpdatedWithHttpInfo) | **POST** /rcs.agent.status_updated | RCS agent status updated event |
 | [**onReactionReceived**](WebhookEventsApi.md#onReactionReceived) | **POST** /reaction.received | Reaction received event |
 | [**onReactionReceivedWithHttpInfo**](WebhookEventsApi.md#onReactionReceivedWithHttpInfo) | **POST** /reaction.received | Reaction received event |
 | [**onReferralReceived**](WebhookEventsApi.md#onReferralReceived) | **POST** /referral.received | Referral received event |
@@ -3257,7 +3259,7 @@ ApiResponse<Void>
 
 Message read event
 
-Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, Instagram, and RCS. 
 
 ### Example
 
@@ -3326,7 +3328,7 @@ null (empty response body)
 
 Message read event
 
-Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, and Instagram. 
+Fired when an outgoing message is read by the recipient. Supported on WhatsApp, Facebook Messenger, Instagram, and RCS. 
 
 ### Example
 
@@ -5644,6 +5646,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadPostPlatform** | [**WebhookPayloadPostPlatform**](WebhookPayloadPostPlatform.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onRcsAgentStatusUpdated
+
+> void onRcsAgentStatusUpdated(onRcsAgentStatusUpdatedRequest)
+
+RCS agent status updated event
+
+Fired on every customer-visible status change of an RCS agent: &#x60;changes_requested&#x60; (we need changes before filing, &#x60;reason&#x60; is our note), &#x60;brand_vetting&#x60;, &#x60;agent_review&#x60;, &#x60;testing&#x60; (add test phones, then send the launch filing; with a &#x60;reason&#x60; the launch filing bounced), &#x60;launch_review&#x60;, &#x60;launching&#x60;, &#x60;live&#x60; (the agent can message any RCS-capable phone), &#x60;rejected&#x60; (&#x60;reason&#x60; says why) and &#x60;deactivated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        OnRcsAgentStatusUpdatedRequest onRcsAgentStatusUpdatedRequest = new OnRcsAgentStatusUpdatedRequest(); // OnRcsAgentStatusUpdatedRequest | 
+        try {
+            apiInstance.onRcsAgentStatusUpdated(onRcsAgentStatusUpdatedRequest);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onRcsAgentStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **onRcsAgentStatusUpdatedRequest** | [**OnRcsAgentStatusUpdatedRequest**](OnRcsAgentStatusUpdatedRequest.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onRcsAgentStatusUpdatedWithHttpInfo
+
+> ApiResponse<Void> onRcsAgentStatusUpdated onRcsAgentStatusUpdatedWithHttpInfo(onRcsAgentStatusUpdatedRequest)
+
+RCS agent status updated event
+
+Fired on every customer-visible status change of an RCS agent: &#x60;changes_requested&#x60; (we need changes before filing, &#x60;reason&#x60; is our note), &#x60;brand_vetting&#x60;, &#x60;agent_review&#x60;, &#x60;testing&#x60; (add test phones, then send the launch filing; with a &#x60;reason&#x60; the launch filing bounced), &#x60;launch_review&#x60;, &#x60;launching&#x60;, &#x60;live&#x60; (the agent can message any RCS-capable phone), &#x60;rejected&#x60; (&#x60;reason&#x60; says why) and &#x60;deactivated&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        OnRcsAgentStatusUpdatedRequest onRcsAgentStatusUpdatedRequest = new OnRcsAgentStatusUpdatedRequest(); // OnRcsAgentStatusUpdatedRequest | 
+        try {
+            ApiResponse<Void> response = apiInstance.onRcsAgentStatusUpdatedWithHttpInfo(onRcsAgentStatusUpdatedRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onRcsAgentStatusUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **onRcsAgentStatusUpdatedRequest** | [**OnRcsAgentStatusUpdatedRequest**](OnRcsAgentStatusUpdatedRequest.md)|  | |
 
 ### Return type
 

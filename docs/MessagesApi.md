@@ -1717,7 +1717,7 @@ public class Example {
 | **query** | **String**| Text to search for, in message content and in the contact&#39;s name, username, or phone number | |
 | **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. | [optional] [enum: incoming, outgoing] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack, imessage] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, rcs, slack, imessage] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
 | **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |
@@ -1805,7 +1805,7 @@ public class Example {
 | **query** | **String**| Text to search for, in message content and in the contact&#39;s name, username, or phone number | |
 | **direction** | **String**| Only match messages sent to you (incoming) or by you (outgoing). Contact-identity matching is not applied when this is set. | [optional] [enum: incoming, outgoing] |
 | **profileId** | **String**| Filter by profile ID | [optional] |
-| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, slack, imessage] |
+| **platform** | **String**| Filter by platform (searchable platforms only) | [optional] [enum: facebook, instagram, telegram, whatsapp, sms, rcs, slack, imessage] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 20] |
 | **cursor** | **String**| Opaque pagination cursor. Pass back pagination.nextCursor verbatim; do not construct one. | [optional] |

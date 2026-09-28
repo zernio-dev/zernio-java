@@ -86,6 +86,7 @@ Individual webhook configuration for receiving real-time notifications
 | BRANDED_CALLING_IDENTITY_STATUS_UPDATED | &quot;branded_calling.identity.status_updated&quot; |
 | BRANDED_CALLING_IDENTITY_ACTION_REQUIRED | &quot;branded_calling.identity.action_required&quot; |
 | BRANDED_CALLING_NUMBER_STATUS_UPDATED | &quot;branded_calling.number.status_updated&quot; |
+| RCS_AGENT_STATUS_UPDATED | &quot;rcs.agent.status_updated&quot; |
 
 
 
