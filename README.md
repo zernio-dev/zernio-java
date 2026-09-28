@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.118.0
+- API version: 1.119.0
 
-- Build date: 2026-09-28T10:28:29.741427122Z[Etc/UTC]
+- Build date: 2026-09-28T10:45:56.236554908Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.118.0</version>
+  <version>1.119.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.118.0"
+compile "dev.zernio:zernio-sdk:1.119.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.118.0.jar`
+- `target/zernio-sdk-1.119.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -309,6 +309,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdCampaignsApi* | [**addAdKeywords**](docs/AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords
 *AdCampaignsApi* | [**addAdKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search ad-group keywords
+*AdCampaignsApi* | [**applyGoogleRecommendations**](docs/AdCampaignsApi.md#applyGoogleRecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations
+*AdCampaignsApi* | [**applyGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#applyGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations
 *AdCampaignsApi* | [**attachAdGroupAssets**](docs/AdCampaignsApi.md#attachAdGroupAssets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets
 *AdCampaignsApi* | [**attachAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#attachAdGroupAssetsWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets
 *AdCampaignsApi* | [**attachCampaignAssets**](docs/AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets
@@ -333,6 +335,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdSet**](docs/AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
 *AdCampaignsApi* | [**deleteAdSetWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
+*AdCampaignsApi* | [**dismissGoogleRecommendations**](docs/AdCampaignsApi.md#dismissGoogleRecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
+*AdCampaignsApi* | [**dismissGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#dismissGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
 *AdCampaignsApi* | [**duplicateAd**](docs/AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdWithHttpInfo**](docs/AdCampaignsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
 *AdCampaignsApi* | [**duplicateAdCampaign**](docs/AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign
@@ -381,6 +385,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listCampaignNegativeKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#listCampaignNegativeKeywordsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords
 *AdCampaignsApi* | [**listGoogleAssetGroups**](docs/AdCampaignsApi.md#listGoogleAssetGroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
 *AdCampaignsApi* | [**listGoogleAssetGroupsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleAssetGroupsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
+*AdCampaignsApi* | [**listGoogleRecommendations**](docs/AdCampaignsApi.md#listGoogleRecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations
+*AdCampaignsApi* | [**listGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleRecommendationsWithHttpInfo) | **GET** /v1/ads/recommendations | List Google Ads recommendations
 *AdCampaignsApi* | [**removeAdGroupAssets**](docs/AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdKeyword**](docs/AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
@@ -1824,6 +1830,9 @@ Class | Method | HTTP request | Description
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
  - [AppealSmsRegistration200Response](docs/AppealSmsRegistration200Response.md)
  - [AppealSmsRegistrationRequest](docs/AppealSmsRegistrationRequest.md)
+ - [ApplyGoogleRecommendations200Response](docs/ApplyGoogleRecommendations200Response.md)
+ - [ApplyGoogleRecommendationsRequest](docs/ApplyGoogleRecommendationsRequest.md)
+ - [ApplyGoogleRecommendationsRequestRecommendationsInner](docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md)
  - [ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
  - [AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
@@ -2276,6 +2285,7 @@ Class | Method | HTTP request | Description
  - [DiscordRole](docs/DiscordRole.md)
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
+ - [DismissGoogleRecommendationsRequest](docs/DismissGoogleRecommendationsRequest.md)
  - [DmButton](docs/DmButton.md)
  - [DownloadTikTokVideo200Response](docs/DownloadTikTokVideo200Response.md)
  - [DownloadTikTokVideo200ResponseFormatsInner](docs/DownloadTikTokVideo200ResponseFormatsInner.md)
@@ -2786,6 +2796,10 @@ Class | Method | HTTP request | Description
  - [GooglePmaxAssetGroupInputImages](docs/GooglePmaxAssetGroupInputImages.md)
  - [GooglePmaxAssetGroupUpdate](docs/GooglePmaxAssetGroupUpdate.md)
  - [GooglePmaxAssetGroupUpdateImages](docs/GooglePmaxAssetGroupUpdateImages.md)
+ - [GoogleRecommendation](docs/GoogleRecommendation.md)
+ - [GoogleRecommendationImpact](docs/GoogleRecommendationImpact.md)
+ - [GoogleRecommendationMetrics](docs/GoogleRecommendationMetrics.md)
+ - [GoogleRecommendationResult](docs/GoogleRecommendationResult.md)
  - [GoogleRsaDescription](docs/GoogleRsaDescription.md)
  - [GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [GoogleSitelink](docs/GoogleSitelink.md)
@@ -2990,6 +3004,7 @@ Class | Method | HTTP request | Description
  - [ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation](docs/ListGoogleBusinessMedia200ResponseMediaItemsInnerLocationAssociation.md)
  - [ListGoogleBusinessPlaceActions200Response](docs/ListGoogleBusinessPlaceActions200Response.md)
  - [ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner](docs/ListGoogleBusinessPlaceActions200ResponsePlaceActionLinksInner.md)
+ - [ListGoogleRecommendations200Response](docs/ListGoogleRecommendations200Response.md)
  - [ListHighDemandPeriods200Response](docs/ListHighDemandPeriods200Response.md)
  - [ListImessageAudience200Response](docs/ListImessageAudience200Response.md)
  - [ListImessageAvailableNumbers200Response](docs/ListImessageAvailableNumbers200Response.md)

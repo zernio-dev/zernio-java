@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addAdKeywords**](AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
 | [**addAdKeywordsWithHttpInfo**](AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search ad-group keywords |
+| [**applyGoogleRecommendations**](AdCampaignsApi.md#applyGoogleRecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations |
+| [**applyGoogleRecommendationsWithHttpInfo**](AdCampaignsApi.md#applyGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations |
 | [**attachAdGroupAssets**](AdCampaignsApi.md#attachAdGroupAssets) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
 | [**attachAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#attachAdGroupAssetsWithHttpInfo) | **POST** /v1/ads/ad-sets/{adSetId}/assets | Attach ad-group assets |
 | [**attachCampaignAssets**](AdCampaignsApi.md#attachCampaignAssets) | **POST** /v1/ads/campaigns/{campaignId}/assets | Attach campaign assets |
@@ -30,6 +32,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdCampaignWithHttpInfo**](AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
 | [**deleteAdSet**](AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
 | [**deleteAdSetWithHttpInfo**](AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
+| [**dismissGoogleRecommendations**](AdCampaignsApi.md#dismissGoogleRecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
+| [**dismissGoogleRecommendationsWithHttpInfo**](AdCampaignsApi.md#dismissGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
 | [**duplicateAd**](AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**duplicateAdWithHttpInfo**](AdCampaignsApi.md#duplicateAdWithHttpInfo) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
 | [**duplicateAdCampaign**](AdCampaignsApi.md#duplicateAdCampaign) | **POST** /v1/ads/campaigns/{campaignId}/duplicate | Duplicate a campaign |
@@ -78,6 +82,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCampaignNegativeKeywordsWithHttpInfo**](AdCampaignsApi.md#listCampaignNegativeKeywordsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/negative-keywords | List campaign-level negative keywords |
 | [**listGoogleAssetGroups**](AdCampaignsApi.md#listGoogleAssetGroups) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
 | [**listGoogleAssetGroupsWithHttpInfo**](AdCampaignsApi.md#listGoogleAssetGroupsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups |
+| [**listGoogleRecommendations**](AdCampaignsApi.md#listGoogleRecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations |
+| [**listGoogleRecommendationsWithHttpInfo**](AdCampaignsApi.md#listGoogleRecommendationsWithHttpInfo) | **GET** /v1/ads/recommendations | List Google Ads recommendations |
 | [**removeAdGroupAssets**](AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**removeAdGroupAssetsWithHttpInfo**](AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets |
 | [**removeAdKeyword**](AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword |
@@ -275,6 +281,162 @@ ApiResponse<[**AddAdKeywords201Response**](AddAdKeywords201Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## applyGoogleRecommendations
+
+> ApplyGoogleRecommendations200Response applyGoogleRecommendations(applyGoogleRecommendationsRequest)
+
+Apply Google Ads recommendations
+
+Apply up to 100 recommendations. This changes the account (budgets, bidding, keywords, assets) and is not reversible or idempotent; Google offers no validate-only mode for it. Items run in partial-failure mode, so one stale recommendation does not block the rest. &#x60;parameters&#x60; is optional and takes exactly one key named for the recommendation type, in Google&#39;s ApplyRecommendationOperation shape (for example &#x60;campaignBudget: { newBudgetAmountMicros }&#x60; or &#x60;keyword: { matchType, cpcBidMicros }&#x60;); omit it to apply Google&#39;s suggested values.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        ApplyGoogleRecommendationsRequest applyGoogleRecommendationsRequest = new ApplyGoogleRecommendationsRequest(); // ApplyGoogleRecommendationsRequest | 
+        try {
+            ApplyGoogleRecommendations200Response result = apiInstance.applyGoogleRecommendations(applyGoogleRecommendationsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#applyGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applyGoogleRecommendationsRequest** | [**ApplyGoogleRecommendationsRequest**](ApplyGoogleRecommendationsRequest.md)|  | |
+
+### Return type
+
+[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
+
+## applyGoogleRecommendationsWithHttpInfo
+
+> ApiResponse<ApplyGoogleRecommendations200Response> applyGoogleRecommendations applyGoogleRecommendationsWithHttpInfo(applyGoogleRecommendationsRequest)
+
+Apply Google Ads recommendations
+
+Apply up to 100 recommendations. This changes the account (budgets, bidding, keywords, assets) and is not reversible or idempotent; Google offers no validate-only mode for it. Items run in partial-failure mode, so one stale recommendation does not block the rest. &#x60;parameters&#x60; is optional and takes exactly one key named for the recommendation type, in Google&#39;s ApplyRecommendationOperation shape (for example &#x60;campaignBudget: { newBudgetAmountMicros }&#x60; or &#x60;keyword: { matchType, cpcBidMicros }&#x60;); omit it to apply Google&#39;s suggested values.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        ApplyGoogleRecommendationsRequest applyGoogleRecommendationsRequest = new ApplyGoogleRecommendationsRequest(); // ApplyGoogleRecommendationsRequest | 
+        try {
+            ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.applyGoogleRecommendationsWithHttpInfo(applyGoogleRecommendationsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#applyGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **applyGoogleRecommendationsRequest** | [**ApplyGoogleRecommendationsRequest**](ApplyGoogleRecommendationsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 
 ## attachAdGroupAssets
@@ -2177,6 +2339,162 @@ ApiResponse<[**DeleteAdSet200Response**](DeleteAdSet200Response.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Ad set not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
+
+
+## dismissGoogleRecommendations
+
+> ApplyGoogleRecommendations200Response dismissGoogleRecommendations(dismissGoogleRecommendationsRequest)
+
+Dismiss Google Ads recommendations
+
+Dismiss up to 100 recommendations so Google stops suggesting them. Items run in partial-failure mode.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        DismissGoogleRecommendationsRequest dismissGoogleRecommendationsRequest = new DismissGoogleRecommendationsRequest(); // DismissGoogleRecommendationsRequest | 
+        try {
+            ApplyGoogleRecommendations200Response result = apiInstance.dismissGoogleRecommendations(dismissGoogleRecommendationsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#dismissGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dismissGoogleRecommendationsRequest** | [**DismissGoogleRecommendationsRequest**](DismissGoogleRecommendationsRequest.md)|  | |
+
+### Return type
+
+[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
+
+## dismissGoogleRecommendationsWithHttpInfo
+
+> ApiResponse<ApplyGoogleRecommendations200Response> dismissGoogleRecommendations dismissGoogleRecommendationsWithHttpInfo(dismissGoogleRecommendationsRequest)
+
+Dismiss Google Ads recommendations
+
+Dismiss up to 100 recommendations so Google stops suggesting them. Items run in partial-failure mode.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        DismissGoogleRecommendationsRequest dismissGoogleRecommendationsRequest = new DismissGoogleRecommendationsRequest(); // DismissGoogleRecommendationsRequest | 
+        try {
+            ApiResponse<ApplyGoogleRecommendations200Response> response = apiInstance.dismissGoogleRecommendationsWithHttpInfo(dismissGoogleRecommendationsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#dismissGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **dismissGoogleRecommendationsRequest** | [**DismissGoogleRecommendationsRequest**](DismissGoogleRecommendationsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 
 ## duplicateAd
@@ -6257,6 +6575,178 @@ ApiResponse<[**ListGoogleAssetGroups200Response**](ListGoogleAssetGroups200Respo
 | **404** | Resource not found |  -  |
 | **429** | Google quota or operation budget exhausted with no cached response. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
+
+
+## listGoogleRecommendations
+
+> ListGoogleRecommendations200Response listGoogleRecommendations(accountId, adAccountId, customerId, campaignId, types)
+
+List Google Ads recommendations
+
+Google&#39;s optimization recommendations for one ad account: type, estimated impact (base vs potential metrics, cost in account currency units), the campaign, ad group or budget they target, and the type-specific payload Google returns (&#x60;details&#x60;, in Google&#39;s own shape with micros). Filter by campaignId and types. Cached for 10 minutes and cleared by apply or dismiss; served stale when Google quota is exhausted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String adAccountId = "adAccountId_example"; // String | Google customer id, digits only. Defaults to the connection's only customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for consistency with other Google endpoints.
+        String campaignId = "campaignId_example"; // String | Only recommendations targeting this campaign.
+        String types = "types_example"; // String | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA.
+        try {
+            ListGoogleRecommendations200Response result = apiInstance.listGoogleRecommendations(accountId, adAccountId, customerId, campaignId, types);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **adAccountId** | **String**| Google customer id, digits only. Defaults to the connection&#39;s only customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for consistency with other Google endpoints. | [optional] |
+| **campaignId** | **String**| Only recommendations targeting this campaign. | [optional] |
+| **types** | **String**| Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. | [optional] |
+
+### Return type
+
+[**ListGoogleRecommendations200Response**](ListGoogleRecommendations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recommendations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
+
+## listGoogleRecommendationsWithHttpInfo
+
+> ApiResponse<ListGoogleRecommendations200Response> listGoogleRecommendations listGoogleRecommendationsWithHttpInfo(accountId, adAccountId, customerId, campaignId, types)
+
+List Google Ads recommendations
+
+Google&#39;s optimization recommendations for one ad account: type, estimated impact (base vs potential metrics, cost in account currency units), the campaign, ad group or budget they target, and the type-specific payload Google returns (&#x60;details&#x60;, in Google&#39;s own shape with micros). Filter by campaignId and types. Cached for 10 minutes and cleared by apply or dismiss; served stale when Google quota is exhausted.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Google ads SocialAccount id.
+        String adAccountId = "adAccountId_example"; // String | Google customer id, digits only. Defaults to the connection's only customer.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for consistency with other Google endpoints.
+        String campaignId = "campaignId_example"; // String | Only recommendations targeting this campaign.
+        String types = "types_example"; // String | Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA.
+        try {
+            ApiResponse<ListGoogleRecommendations200Response> response = apiInstance.listGoogleRecommendationsWithHttpInfo(accountId, adAccountId, customerId, campaignId, types);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listGoogleRecommendations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Google ads SocialAccount id. | |
+| **adAccountId** | **String**| Google customer id, digits only. Defaults to the connection&#39;s only customer. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for consistency with other Google endpoints. | [optional] |
+| **campaignId** | **String**| Only recommendations targeting this campaign. | [optional] |
+| **types** | **String**| Comma-separated Google RecommendationType values, for example CAMPAIGN_BUDGET,KEYWORD,SET_TARGET_CPA. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListGoogleRecommendations200Response**](ListGoogleRecommendations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Recommendations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
+| **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
+| **501** | accountId is not a Google Ads connection. |  -  |
 
 
 ## removeAdGroupAssets
