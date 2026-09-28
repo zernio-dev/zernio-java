@@ -83,6 +83,9 @@ Individual webhook configuration for receiving real-time notifications
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
 | SMS_REGISTRATION_ACTION_REQUIRED | &quot;sms.registration.action_required&quot; |
 | SMS_REGISTRATION_STATUS_UPDATED | &quot;sms.registration.status_updated&quot; |
+| BRANDED_CALLING_IDENTITY_STATUS_UPDATED | &quot;branded_calling.identity.status_updated&quot; |
+| BRANDED_CALLING_IDENTITY_ACTION_REQUIRED | &quot;branded_calling.identity.action_required&quot; |
+| BRANDED_CALLING_NUMBER_STATUS_UPDATED | &quot;branded_calling.number.status_updated&quot; |
 
 
 
