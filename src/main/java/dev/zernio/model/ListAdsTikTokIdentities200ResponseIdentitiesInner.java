@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListAdsTikTokIdentities200ResponseIdentitiesInner.JSON_PROPERTY_PROFILE_IMAGE,
   ListAdsTikTokIdentities200ResponseIdentitiesInner.JSON_PROPERTY_IDENTITY_AUTHORIZED_BC_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:00:59.941399790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:04:22.470909437Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdsTikTokIdentities200ResponseIdentitiesInner {
   public static final String JSON_PROPERTY_IDENTITY_ID = "identityId";
   @javax.annotation.Nullable

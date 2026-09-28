@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   RemoveAdGroupAssetsRequest.JSON_PROPERTY_ASSET_RESOURCE_NAMES,
   RemoveAdGroupAssetsRequest.JSON_PROPERTY_AD_GROUP_ASSET_RESOURCE_NAMES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:00:59.941399790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:04:22.470909437Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemoveAdGroupAssetsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

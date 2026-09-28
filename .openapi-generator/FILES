@@ -4847,8 +4847,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateMessagingAd200ResponseResultsInnerTest.java
-src/test/java/dev/zernio/model/CreateMessagingAd200ResponseTest.java
-src/test/java/dev/zernio/model/MetaPlacementAssetsRulesInnerPlacementsTest.java
-src/test/java/dev/zernio/model/MetaPlacementAssetsRulesInnerTest.java
-src/test/java/dev/zernio/model/MetaPlacementAssetsTest.java

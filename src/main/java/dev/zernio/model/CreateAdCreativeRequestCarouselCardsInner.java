@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequestCarouselCardsInner.JSON_PROPERTY_DESCRIPTION,
   CreateAdCreativeRequestCarouselCardsInner.JSON_PROPERTY_CALL_TO_ACTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:00:59.941399790Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T13:04:22.470909437Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequestCarouselCardsInner {
   public static final String JSON_PROPERTY_IMAGE_URL = "imageUrl";
   @javax.annotation.Nonnull
