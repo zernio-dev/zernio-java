@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.117.0
+  version: 1.117.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -156,8 +156,18 @@ tags:
     Manage Google Business Profile place action links (booking, ordering, reservations, etc.).
   name: GMB Place Actions
 - description: |
+    Read and replace the services a Google Business Profile location offers.
+  name: GMB Services
+- description: |
+    Verify a Google Business Profile location: read its verification state, fetch the available
+    methods, start a verification and complete it with the code Google sends.
+  name: GMB Verifications
+- description: |
     Discord-specific endpoints for managing webhook identity (display name and avatar), switching channels, and listing guild channels.
   name: Discord
+- description: |
+    Slack-specific endpoints for a connected Slack workspace, such as listing its members.
+  name: Slack
 - description: |
     Resolve LinkedIn organization and person mentions for use in posts.
   name: LinkedIn Mentions
@@ -173,6 +183,10 @@ tags:
     Post and account analytics across platforms (insights, demographics, follower history,
     best time to post, content decay, and aggregated metrics).
   name: Analytics
+- description: |
+    Inbox messaging analytics: message volume, a day by hour heatmap, source breakdown, response
+    times, top accounts and per-conversation stats. Requires Inbox addon.
+  name: Inbox Analytics
 - description: |
     Check and manage inbox feature access.
   name: Inbox Access
@@ -303,6 +317,11 @@ tags:
     it with ad accounts, and read aggregated event stats. Currently Meta-only.
     Requires the Ads add-on.
   name: Tracking Tags
+- description: |
+    Manage the Meta Commerce catalogs behind catalog (dynamic product) ads: catalogs, products, batch
+    product writes, feeds and feed uploads, and product sets.
+    Requires the Ads add-on.
+  name: Product Catalogs
 - description: |
     Provision and operate Meta Business Agent, Meta's own AI agent, on a connected WhatsApp number
     without the merchant opening Business Manager. Check eligibility and setup state, create the agent,
