@@ -377,7 +377,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 
 Create a conversion event
 
-Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly. 
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal. 
 
 ### Example
 
@@ -457,7 +457,7 @@ public class Example {
 
 Create a conversion event
 
-Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly. 
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal. 
 
 ### Example
 
@@ -541,7 +541,7 @@ ApiResponse<[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Res
 
 Delete a conversion event
 
-Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;). 
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager. 
 
 ### Example
 
@@ -623,7 +623,7 @@ public class Example {
 
 Delete a conversion event
 
-Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;). 
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager. 
 
 ### Example
 
@@ -1539,7 +1539,7 @@ ApiResponse<[**InstallTrackingTagOnStore200Response**](InstallTrackingTagOnStore
 
 List conversion events
 
-The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501. 
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window. 
 
 ### Example
 
@@ -1619,7 +1619,7 @@ public class Example {
 
 List conversion events
 
-The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501. 
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window. 
 
 ### Example
 
@@ -2685,7 +2685,7 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 
 Update a conversion event
 
-Partial update; at least one field. A field the platform does not store answers 400.
+Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead. 
 
 ### Example
 
@@ -2767,7 +2767,7 @@ public class Example {
 
 Update a conversion event
 
-Partial update; at least one field. A field the platform does not store answers 400.
+Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead. 
 
 ### Example
 
