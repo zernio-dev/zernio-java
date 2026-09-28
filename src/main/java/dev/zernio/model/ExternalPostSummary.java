@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   ExternalPostSummary.JSON_PROPERTY_MEDIA_AUDIO_TYPE,
   ExternalPostSummary.JSON_PROPERTY_ANALYTICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:52:34.045368221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:56:08.398964456Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ExternalPostSummary {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

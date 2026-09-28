@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.129.1
 
-- Build date: 2026-09-28T15:52:34.045368221Z[Etc/UTC]
+- Build date: 2026-09-28T15:56:08.398964456Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2894,6 +2894,8 @@ Class | Method | HTTP request | Description
  - [GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [GoogleSitelink](docs/GoogleSitelink.md)
  - [GoogleStructuredSnippet](docs/GoogleStructuredSnippet.md)
+ - [GrantBusinessPartner200Response](docs/GrantBusinessPartner200Response.md)
+ - [GrantBusinessPartner200ResponsePartner](docs/GrantBusinessPartner200ResponsePartner.md)
  - [GrantBusinessPartner201Response](docs/GrantBusinessPartner201Response.md)
  - [GrantBusinessPartner201ResponsePartner](docs/GrantBusinessPartner201ResponsePartner.md)
  - [GrantBusinessPartnerRequest](docs/GrantBusinessPartnerRequest.md)

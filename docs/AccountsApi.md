@@ -1435,11 +1435,11 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 
 ## grantBusinessPartner
 
-> GrantBusinessPartner201Response grantBusinessPartner(accountId, grantBusinessPartnerRequest)
+> GrantBusinessPartner200Response grantBusinessPartner(accountId, grantBusinessPartnerRequest)
 
 Share the Page with a partner business
 
-Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Granting to a portfolio that already has access replaces its task set, so the call is safe to repeat.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
+Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Meta refuses a second grant to a portfolio that already has access instead of replacing its tasks, so that case answers &#x60;200&#x60; with &#x60;alreadyShared: true&#x60; and the tasks the partner currently holds. To change a partner&#39;s tasks, revoke and grant again.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
 
 ### Example
 
@@ -1465,7 +1465,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
         GrantBusinessPartnerRequest grantBusinessPartnerRequest = new GrantBusinessPartnerRequest(); // GrantBusinessPartnerRequest | 
         try {
-            GrantBusinessPartner201Response result = apiInstance.grantBusinessPartner(accountId, grantBusinessPartnerRequest);
+            GrantBusinessPartner200Response result = apiInstance.grantBusinessPartner(accountId, grantBusinessPartnerRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#grantBusinessPartner");
@@ -1488,7 +1488,7 @@ public class Example {
 
 ### Return type
 
-[**GrantBusinessPartner201Response**](GrantBusinessPartner201Response.md)
+[**GrantBusinessPartner200Response**](GrantBusinessPartner200Response.md)
 
 
 ### Authorization
@@ -1504,6 +1504,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Page shared |  -  |
+| **200** | The portfolio already had access; nothing changed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
@@ -1513,11 +1514,11 @@ public class Example {
 
 ## grantBusinessPartnerWithHttpInfo
 
-> ApiResponse<GrantBusinessPartner201Response> grantBusinessPartner grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest)
+> ApiResponse<GrantBusinessPartner200Response> grantBusinessPartner grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest)
 
 Share the Page with a partner business
 
-Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Granting to a portfolio that already has access replaces its task set, so the call is safe to repeat.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
+Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Meta refuses a second grant to a portfolio that already has access instead of replacing its tasks, so that case answers &#x60;200&#x60; with &#x60;alreadyShared: true&#x60; and the tasks the partner currently holds. To change a partner&#39;s tasks, revoke and grant again.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
 
 ### Example
 
@@ -1544,7 +1545,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
         GrantBusinessPartnerRequest grantBusinessPartnerRequest = new GrantBusinessPartnerRequest(); // GrantBusinessPartnerRequest | 
         try {
-            ApiResponse<GrantBusinessPartner201Response> response = apiInstance.grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest);
+            ApiResponse<GrantBusinessPartner200Response> response = apiInstance.grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1569,7 +1570,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GrantBusinessPartner201Response**](GrantBusinessPartner201Response.md)>
+ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Response.md)>
 
 
 ### Authorization
@@ -1585,6 +1586,7 @@ ApiResponse<[**GrantBusinessPartner201Response**](GrantBusinessPartner201Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Page shared |  -  |
+| **200** | The portfolio already had access; nothing changed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |

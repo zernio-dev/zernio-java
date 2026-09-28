@@ -55,7 +55,7 @@ import dev.zernio.ApiClient;
   DiscordScheduledEvent.JSON_PROPERTY_USER_COUNT,
   DiscordScheduledEvent.JSON_PROPERTY_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:52:34.045368221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:56:08.398964456Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordScheduledEvent {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

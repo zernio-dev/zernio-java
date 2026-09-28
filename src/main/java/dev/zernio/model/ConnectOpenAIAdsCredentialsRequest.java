@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ConnectOpenAIAdsCredentialsRequest.JSON_PROPERTY_REDIRECT_URL,
   ConnectOpenAIAdsCredentialsRequest.JSON_PROPERTY_REDIRECT_URI
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:52:34.045368221Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T15:56:08.398964456Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectOpenAIAdsCredentialsRequest {
   public static final String JSON_PROPERTY_API_KEY = "apiKey";
   @javax.annotation.Nonnull

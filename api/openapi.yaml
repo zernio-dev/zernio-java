@@ -13659,8 +13659,10 @@ paths:
 
         Meta only lets a user token share a Page that a business portfolio owns. A Page
         outside any portfolio must first be claimed into one at business.facebook.com; this
-        endpoint answers `422` until that is done. Granting to a portfolio that already has
-        access replaces its task set, so the call is safe to repeat.
+        endpoint answers `422` until that is done. Meta refuses a second grant to a portfolio
+        that already has access instead of replacing its tasks, so that case answers `200`
+        with `alreadyShared: true` and the tasks the partner currently holds. To change a
+        partner's tasks, revoke and grant again.
 
         After the grant, the partner assigns its own people to the Page with
         `POST /v1/ads/page-users`; Meta does not assign partner admins automatically.
@@ -13695,6 +13697,12 @@ paths:
               schema:
                 $ref: "#/components/schemas/grantBusinessPartner_201_response"
           description: Page shared
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/grantBusinessPartner_200_response"
+          description: The portfolio already had access; nothing changed
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -56028,6 +56036,11 @@ components:
         name:
           type: string
         permittedTasks:
+          description: "Tasks the partner holds, in the bare spelling the grant takes\
+            \ (ADVERTISE, ANALYZE, MANAGE, ...). Meta reads them back with a PROFILE_PLUS_\
+            \ prefix, which is stripped here; partners granted in Business Settings\
+            \ may hold tasks beyond the six the grant accepts, such as MANAGE_LEADS\
+            \ or REVENUE."
           items:
             type: string
           type: array
@@ -85198,6 +85211,45 @@ components:
           $ref: "#/components/schemas/MetaPageOwnership"
         partner:
           $ref: "#/components/schemas/grantBusinessPartner_201_response_partner"
+    grantBusinessPartner_200_response_partner:
+      example:
+        permittedTasks:
+        - permittedTasks
+        - permittedTasks
+        businessId: businessId
+      properties:
+        businessId:
+          type: string
+        permittedTasks:
+          description: Tasks the partner currently holds.
+          items:
+            type: string
+          type: array
+    grantBusinessPartner_200_response:
+      example:
+        partner:
+          permittedTasks:
+          - permittedTasks
+          - permittedTasks
+          businessId: businessId
+        alreadyShared: true
+        page:
+          instagramBusinessAccount:
+            id: id
+            username: username
+          business:
+            name: name
+            id: id
+          name: name
+          id: id
+      properties:
+        page:
+          $ref: "#/components/schemas/MetaPageOwnership"
+        partner:
+          $ref: "#/components/schemas/grantBusinessPartner_200_response_partner"
+        alreadyShared:
+          description: Always true on this response.
+          type: boolean
     revokeBusinessPartner_200_response:
       example:
         businessId: businessId
