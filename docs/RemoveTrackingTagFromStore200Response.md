@@ -21,6 +21,7 @@
 | GOOGLEADS | &quot;googleads&quot; |
 | XADS | &quot;xads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
+| LINKEDINADS | &quot;linkedinads&quot; |
 
 
 

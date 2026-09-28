@@ -34,6 +34,7 @@ A platform measurement tag: the thing you create, install on a website, send eve
 | TIKTOKADS | &quot;tiktokads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
 | XADS | &quot;xads&quot; |
+| LINKEDINADS | &quot;linkedinads&quot; |
 
 
 
