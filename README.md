@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.122.1
+- API version: 1.123.0
 
-- Build date: 2026-09-28T12:48:55.315429649Z[Etc/UTC]
+- Build date: 2026-09-28T13:00:59.941399790Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.122.1</version>
+  <version>1.123.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.122.1"
+compile "dev.zernio:zernio-sdk:1.123.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.122.1.jar`
+- `target/zernio-sdk-1.123.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2170,6 +2170,8 @@ Class | Method | HTTP request | Description
  - [CreateLeadFormRequest](docs/CreateLeadFormRequest.md)
  - [CreateLeadFormRequestPlatformSpecificData](docs/CreateLeadFormRequestPlatformSpecificData.md)
  - [CreateLeadFormRequestQuestionsInner](docs/CreateLeadFormRequestQuestionsInner.md)
+ - [CreateMessagingAd200Response](docs/CreateMessagingAd200Response.md)
+ - [CreateMessagingAd200ResponseResultsInner](docs/CreateMessagingAd200ResponseResultsInner.md)
  - [CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
@@ -2226,9 +2228,6 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestCustomLocationsInner](docs/CreateStandaloneAdRequestCustomLocationsInner.md)
  - [CreateStandaloneAdRequestDynamicCreative](docs/CreateStandaloneAdRequestDynamicCreative.md)
  - [CreateStandaloneAdRequestImages](docs/CreateStandaloneAdRequestImages.md)
- - [CreateStandaloneAdRequestPlacementAssets](docs/CreateStandaloneAdRequestPlacementAssets.md)
- - [CreateStandaloneAdRequestPlacementAssetsRulesInner](docs/CreateStandaloneAdRequestPlacementAssetsRulesInner.md)
- - [CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements](docs/CreateStandaloneAdRequestPlacementAssetsRulesInnerPlacements.md)
  - [CreateStandaloneAdRequestPlacements](docs/CreateStandaloneAdRequestPlacements.md)
  - [CreateStandaloneAdRequestPlatformSpecificData](docs/CreateStandaloneAdRequestPlatformSpecificData.md)
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
@@ -3216,6 +3215,9 @@ Class | Method | HTTP request | Description
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [MetaLeadFormQuestionsInner](docs/MetaLeadFormQuestionsInner.md)
  - [MetaLeadFormThankYouPage](docs/MetaLeadFormThankYouPage.md)
+ - [MetaPlacementAssets](docs/MetaPlacementAssets.md)
+ - [MetaPlacementAssetsRulesInner](docs/MetaPlacementAssetsRulesInner.md)
+ - [MetaPlacementAssetsRulesInnerPlacements](docs/MetaPlacementAssetsRulesInnerPlacements.md)
  - [MetaProductCatalog](docs/MetaProductCatalog.md)
  - [MetaProductFeed](docs/MetaProductFeed.md)
  - [MetaProductFeedSchedule](docs/MetaProductFeedSchedule.md)

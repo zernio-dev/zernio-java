@@ -2,7 +2,7 @@
 
 # CtwaAdRequestBody
 
-In addition to the `required` list, the request must use EXACTLY ONE of the two shapes:  - Single-creative: `headline`, `body`, and one of `imageUrl` / `video`,   OR `platformPostId` / `objectStoryId` to reuse an organic post. - Multi-creative: a non-empty `creatives[]` array. Top-level   creative fields must NOT be set on this shape.  Existing post references work on messaging and CTWA only (not call ads). They cannot be combined with each other or with headline, body, imageUrl, video, or welcomeMessage. No media is uploaded and the organic post is retained. Fresh creatives still require headline, body, and image or video.  The route enforces this at the Zod boundary; OpenAPI's `required` cannot express the OR cleanly. 
+In addition to the `required` list, the request must use EXACTLY ONE of the two shapes:  - Single-creative: `headline`, `body`, and one of `imageUrl` / `video`,   OR `platformPostId` / `objectStoryId` to reuse an organic post.   On POST /v1/ads/messaging, `placementAssets` can replace `imageUrl` / `video`. - Multi-creative: a non-empty `creatives[]` array. Top-level   creative fields must NOT be set on this shape.  Existing post references work on messaging and CTWA only (not call ads). They cannot be combined with each other or with headline, body, imageUrl, video, or welcomeMessage. No media is uploaded and the organic post is retained. Fresh creatives still require headline, body, and image or video.  The route enforces this at the Zod boundary; OpenAPI's `required` cannot express the OR cleanly. 
 
 ## Properties
 

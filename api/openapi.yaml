@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.122.1
+  version: 1.123.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47943,22 +47943,58 @@ paths:
       requestBody:
         content:
           application/json:
-            example:
-              accountId: 69ca62446cb7b8cf4cb13603
-              adAccountId: act_757082720485182
-              name: WhatsApp existing post
-              destination: whatsapp
-              creatives:
-              - objectStoryId: 811889972008357_123456789
-              budgetAmount: 2.61
-              budgetType: daily
-              status: PAUSED
+            examples:
+              existingPost:
+                summary: WhatsApp ad from an existing post
+                value:
+                  accountId: 69ca62446cb7b8cf4cb13603
+                  adAccountId: act_757082720485182
+                  name: WhatsApp existing post
+                  destination: whatsapp
+                  creatives:
+                  - objectStoryId: 811889972008357_123456789
+                  budgetAmount: 2.61
+                  budgetType: daily
+                  status: PAUSED
+              placementAssets:
+                summary: Instagram Direct ad with a 9:16 image on Stories and Reels
+                value:
+                  accountId: 69ca62446cb7b8cf4cb13603
+                  adAccountId: act_757082720485182
+                  name: Chat with us
+                  destination: instagram_direct
+                  headline: Chat with us
+                  body: Tap to send us a message.
+                  placementAssets:
+                    defaultImageUrl: https://example.com/feed-4x5.jpg
+                    rules:
+                    - imageUrl: https://example.com/story-9x16.jpg
+                      placements:
+                        publisherPlatforms:
+                        - facebook
+                        - instagram
+                        facebookPositions:
+                        - story
+                        - facebook_reels
+                        instagramPositions:
+                        - story
+                        - reels
+                  budgetAmount: 10
+                  budgetType: daily
+                  status: PAUSED
             schema:
               $ref: "#/components/schemas/createMessagingAd_request"
         required: true
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createMessagingAd_200_response"
+          description: "`validateOnly: true` only. Meta accepted every node; nothing\
+            \ was created."
         "201":
           content:
             application/json:
@@ -53975,6 +54011,7 @@ components:
 
         - Single-creative: `headline`, `body`, and one of `imageUrl` / `video`,
           OR `platformPostId` / `objectStoryId` to reuse an organic post.
+          On POST /v1/ads/messaging, `placementAssets` can replace `imageUrl` / `video`.
         - Multi-creative: a non-empty `creatives[]` array. Top-level
           creative fields must NOT be set on this shape.
 
@@ -69363,6 +69400,72 @@ components:
           items:
             type: string
           type: array
+    MetaPlacementAssets:
+      description: |
+        Meta placement asset customization: pin a SPECIFIC asset (image OR video) to each
+        placement group on a SINGLE ad (e.g. a 4:5 image on Feed and a 9:16 image on
+        Stories/Reels), the same thing Meta Ads Manager produces with "different creative per
+        placement". Mapped to the creative's `asset_feed_spec` (`optimization_type: PLACEMENT`)
+        + `asset_customization_rules`. Each rule can pin one `headline`, `body` and `description`;
+        omitted fields and unmatched placements use the request's top-level copy. Each rule's
+        `placements` accepts the same fields as the top-level `placements` object; Meta enforces
+        co-selection rules and returns an actionable error.
+
+        A block is all-image OR all-video, never mixed (Meta's asset_feed_spec carries one ad
+        format). Image mode: `defaultImageUrl` + `rules[].imageUrl`. Video mode:
+        `defaultVideoUrl` + `rules[].videoUrl` (optional `thumbnailUrl`/`defaultThumbnailUrl`
+        posters; Meta auto-generates when omitted). Exactly one catch-all default is required.
+
+        Meta controls text rendering by placement and format. Validation accepts these fields
+        but does not prove that every field appears in delivery. Preview the ad; put copy that
+        must always be visible into the image or video itself.
+      example:
+        defaultImageUrl: https://example.com/feed-4x5.jpg
+        rules:
+        - imageUrl: https://example.com/feed-4x5.jpg
+          headline: Build with Zernio
+          body: Schedule social posts from your app.
+          description: One API for your social content.
+          placements:
+            publisherPlatforms:
+            - facebook
+            facebookPositions:
+            - feed
+        - imageUrl: https://example.com/story-9x16.jpg
+          headline: Your next story
+          body: Bring your social workflow to Zernio.
+          placements:
+            publisherPlatforms:
+            - facebook
+            facebookPositions:
+            - story
+            - facebook_reels
+      properties:
+        defaultImageUrl:
+          description: Image mode. Catch-all image for any placement no rule matches.
+            Required in image mode (Meta mandates a default rule).
+          format: uri
+          type: string
+        defaultVideoUrl:
+          description: Video mode. Catch-all video for any placement no rule matches.
+            Required in video mode.
+          format: uri
+          type: string
+        defaultThumbnailUrl:
+          description: Video mode (optional). Poster image for the default video;
+            Meta auto-generates one when omitted.
+          format: uri
+          type: string
+        rules:
+          description: One entry per placement group you want to pin a specific asset
+            to.
+          items:
+            $ref: "#/components/schemas/MetaPlacementAssets_rules_inner"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - rules
     MetaCreativeFeatures:
       additionalProperties:
         enum:
@@ -117955,196 +118058,6 @@ components:
       - description
       - headline
       - locale
-    createStandaloneAd_request_placementAssets_rules_inner_placements:
-      description: Placements this asset is pinned to. At least one field must be
-        set (an empty rule is invalid; that role is served by the default asset).
-        Same enums as the top-level `placements` object.
-      properties:
-        publisherPlatforms:
-          items:
-            enum:
-            - facebook
-            - instagram
-            - threads
-            - messenger
-            - audience_network
-            - whatsapp
-            type: string
-          type: array
-        facebookPositions:
-          items:
-            enum:
-            - feed
-            - right_hand_column
-            - marketplace
-            - video_feeds
-            - story
-            - search
-            - instream_video
-            - facebook_reels
-            - facebook_reels_overlay
-            - profile_feed
-            - notification
-            type: string
-          type: array
-        instagramPositions:
-          items:
-            enum:
-            - stream
-            - story
-            - explore
-            - explore_home
-            - reels
-            - profile_feed
-            - ig_search
-            - profile_reels
-            type: string
-          type: array
-        messengerPositions:
-          items:
-            enum:
-            - messenger_home
-            - sponsored_messages
-            - story
-            type: string
-          type: array
-        audienceNetworkPositions:
-          items:
-            enum:
-            - classic
-            - rewarded_video
-            type: string
-          type: array
-        threadsPositions:
-          items:
-            enum:
-            - threads_stream
-            type: string
-          type: array
-        whatsappPositions:
-          items:
-            enum:
-            - status
-            type: string
-          type: array
-        devicePlatforms:
-          items:
-            enum:
-            - mobile
-            - desktop
-            type: string
-          type: array
-    createStandaloneAd_request_placementAssets_rules_inner:
-      properties:
-        imageUrl:
-          description: Image mode. The image to deliver for this rule's placements.
-          format: uri
-          type: string
-        videoUrl:
-          description: Video mode. The video to deliver for this rule's placements.
-          format: uri
-          type: string
-        thumbnailUrl:
-          description: Video mode (optional). Poster image for this rule's video;
-            auto-generated when omitted.
-          format: uri
-          type: string
-        headline:
-          description: One headline pinned to this rule. Omit to inherit the top-level
-            headline.
-          maxLength: 255
-          minLength: 1
-          type: string
-        body:
-          description: One primary text pinned to this rule. Omit to inherit the top-level
-            body.
-          minLength: 1
-          type: string
-        description:
-          description: One link description pinned to this rule. Omit to inherit the
-            top-level description.
-          maxLength: 255
-          minLength: 1
-          type: string
-        placements:
-          $ref: "#/components/schemas/createStandaloneAd_request_placementAssets_rules_inner_placements"
-      required:
-      - placements
-    createStandaloneAd_request_placementAssets:
-      description: |
-        Meta only. Placement asset customization: pin a SPECIFIC asset (image OR video) to
-        each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed).
-        The same thing Meta Ads Manager produces with "different creative per placement",
-        mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. Deterministic
-        pinning, NOT the auto-optimizing pool of `dynamicCreative` (mutually exclusive). Works
-        on the legacy single shape AND the attach shape (`adSetId` + placementAssets adds one
-        placement-customized ad to an existing ad set, the way to build N per-placement ads
-        sharing one ad set: create the first normally, attach the rest). Cannot be combined
-        with `creatives[]` or top-level `bodies`/`headlines`/`descriptions` arrays. Each rule
-        can override `headline`, `body` and `description` with one string per field. Omitted
-        fields and unmatched placements use the top-level copy; `linkUrl` and `callToAction`
-        remain shared. Zernio emits labelled text with `optimization_type: PLACEMENT`.
-        Multiple text options rotating within a placement are not supported by this input. Each rule's `placements` accepts the same fields as the top-level
-        `placements` object; Meta enforces co-selection rules and returns an actionable error.
-
-        Meta controls text rendering by placement and format. Validation accepts these fields
-        but does not prove that every field appears in delivery. Preview the ad; put copy that
-        must always be visible into the image or video itself.
-
-        `validateOnly: true` supports all-image placementAssets without uploading or creating
-        anything. Video placement validation remains unsupported because it requires uploads.
-
-        A block is all-image OR all-video, never mixed (Meta's asset_feed_spec carries one ad
-        format). Image mode: `defaultImageUrl` + `rules[].imageUrl`. Video mode:
-        `defaultVideoUrl` + `rules[].videoUrl` (optional `thumbnailUrl`/`defaultThumbnailUrl`
-        posters; Meta auto-generates when omitted). Exactly one catch-all default is required.
-      example:
-        defaultImageUrl: https://example.com/feed-4x5.jpg
-        rules:
-        - imageUrl: https://example.com/feed-4x5.jpg
-          headline: Build with Zernio
-          body: Schedule social posts from your app.
-          description: One API for your social content.
-          placements:
-            publisherPlatforms:
-            - facebook
-            facebookPositions:
-            - feed
-        - imageUrl: https://example.com/story-9x16.jpg
-          headline: Your next story
-          body: Bring your social workflow to Zernio.
-          placements:
-            publisherPlatforms:
-            - facebook
-            facebookPositions:
-            - story
-            - facebook_reels
-      properties:
-        defaultImageUrl:
-          description: Image mode. Catch-all image for any placement no rule matches.
-            Required in image mode (Meta mandates a default rule).
-          format: uri
-          type: string
-        defaultVideoUrl:
-          description: Video mode. Catch-all video for any placement no rule matches.
-            Required in video mode.
-          format: uri
-          type: string
-        defaultThumbnailUrl:
-          description: Video mode (optional). Poster image for the default video;
-            Meta auto-generates one when omitted.
-          format: uri
-          type: string
-        rules:
-          description: One entry per placement group you want to pin a specific asset
-            to.
-          items:
-            $ref: "#/components/schemas/createStandaloneAd_request_placementAssets_rules_inner"
-          maxItems: 10
-          minItems: 1
-          type: array
-      required:
-      - rules
     createStandaloneAd_request_additionalHeadlines_inner:
       oneOf:
       - type: string
@@ -119066,7 +118979,35 @@ components:
           minItems: 1
           type: array
         placementAssets:
-          $ref: "#/components/schemas/createStandaloneAd_request_placementAssets"
+          allOf:
+          - $ref: "#/components/schemas/MetaPlacementAssets"
+          description: |
+            Meta only. Placement asset customization: pin a SPECIFIC asset (image OR video) to
+            each placement group on a SINGLE ad (e.g. a 9:16 on Stories/Reels and a 4:5 on Feed).
+            The same thing Meta Ads Manager produces with "different creative per placement",
+            mapped to the creative's `asset_feed_spec` + `asset_customization_rules`. Deterministic
+            pinning, NOT the auto-optimizing pool of `dynamicCreative` (mutually exclusive). Works
+            on the legacy single shape AND the attach shape (`adSetId` + placementAssets adds one
+            placement-customized ad to an existing ad set, the way to build N per-placement ads
+            sharing one ad set: create the first normally, attach the rest). Cannot be combined
+            with `creatives[]` or top-level `bodies`/`headlines`/`descriptions` arrays. Each rule
+            can override `headline`, `body` and `description` with one string per field. Omitted
+            fields and unmatched placements use the top-level copy; `linkUrl` and `callToAction`
+            remain shared. Zernio emits labelled text with `optimization_type: PLACEMENT`.
+            Multiple text options rotating within a placement are not supported by this input. Each rule's `placements` accepts the same fields as the top-level
+            `placements` object; Meta enforces co-selection rules and returns an actionable error.
+
+            Meta controls text rendering by placement and format. Validation accepts these fields
+            but does not prove that every field appears in delivery. Preview the ad; put copy that
+            must always be visible into the image or video itself.
+
+            `validateOnly: true` supports all-image placementAssets without uploading or creating
+            anything. Video placement validation remains unsupported because it requires uploads.
+
+            A block is all-image OR all-video, never mixed (Meta's asset_feed_spec carries one ad
+            format). Image mode: `defaultImageUrl` + `rules[].imageUrl`. Video mode:
+            `defaultVideoUrl` + `rules[].videoUrl` (optional `thumbnailUrl`/`defaultThumbnailUrl`
+            posters; Meta auto-generates when omitted). Exactly one catch-all default is required.
         audienceId:
           description: Custom audience ID for targeting
           type: string
@@ -123300,6 +123241,79 @@ components:
             maxItems: 3
             minItems: 2
             type: array
+          placementAssets:
+            allOf:
+            - $ref: "#/components/schemas/MetaPlacementAssets"
+            description: |
+              A different image or video per placement on one messaging ad, e.g. a 4:5 image on
+              Feed and a 9:16 image on Stories/Reels. Replaces top-level `imageUrl` / `video`
+              (sending either alongside is a 400); `headline` and `body` stay required as the
+              default copy. The CTA, `welcomeMessage` and `whatsappPhoneNumber` apply to every
+              placement. Works on the single-creative shape and on attach (`adSetId`).
+
+              Single `destination` only: Meta cannot combine per-placement media with
+              `destinations` (it drops the placement rules from a multi-destination creative, or
+              refuses more than one call to action per placement rule with error 1885878), so
+              that combination is a 400. Also a 400 with `creatives[]`, `platformPostId`,
+              `existingPostId` or `objectStoryId`, and on POST /v1/ads/call.
+          validateOnly:
+            description: "Dry-runs the ad on Meta with execution_options validate_only\
+              \ as ONE inline campaign + ad set + creative + ad (or creative + ad\
+              \ on the existing ad set with `adSetId`). Nothing is uploaded or created\
+              \ and nothing is stored; media is checked by URL. Supports one creative\
+              \ with `imageUrl`, image `placementAssets`, an existing `video.id`,\
+              \ or an existing post. Several creatives, a new `video.url` and video\
+              \ `placementAssets` need uploads first and return 400. Success returns\
+              \ 200 with per-node results; a Meta rejection returns the Meta error."
+            type: boolean
+    createMessagingAd_200_response_results_inner:
+      example:
+        node: campaign
+        reason: reason
+        status: validated
+      properties:
+        node:
+          enum:
+          - campaign
+          - adSet
+          - creative
+          - ad
+          type: string
+        status:
+          enum:
+          - validated
+          - skipped
+          type: string
+        reason:
+          type: string
+      required:
+      - node
+      - status
+    createMessagingAd_200_response:
+      example:
+        validateOnly: true
+        message: message
+        results:
+        - node: campaign
+          reason: reason
+          status: validated
+        - node: campaign
+          reason: reason
+          status: validated
+      properties:
+        validateOnly:
+          description: Always true.
+          type: boolean
+        results:
+          items:
+            $ref: "#/components/schemas/createMessagingAd_200_response_results_inner"
+          type: array
+        message:
+          type: string
+      required:
+      - message
+      - results
+      - validateOnly
     createMessagingAd_201_response:
       discriminator:
         mapping:
@@ -133110,6 +133124,121 @@ components:
           items:
             $ref: "#/components/schemas/TargetingSpec_customLocations_inner"
           type: array
+    MetaPlacementAssets_rules_inner_placements:
+      description: Placements this asset is pinned to. At least one field must be
+        set (an empty rule is invalid; that role is served by the default asset).
+        Same enums as the top-level `placements` object.
+      properties:
+        publisherPlatforms:
+          items:
+            enum:
+            - facebook
+            - instagram
+            - threads
+            - messenger
+            - audience_network
+            - whatsapp
+            type: string
+          type: array
+        facebookPositions:
+          items:
+            enum:
+            - feed
+            - right_hand_column
+            - marketplace
+            - video_feeds
+            - story
+            - search
+            - instream_video
+            - facebook_reels
+            - facebook_reels_overlay
+            - profile_feed
+            - notification
+            type: string
+          type: array
+        instagramPositions:
+          items:
+            enum:
+            - stream
+            - story
+            - explore
+            - explore_home
+            - reels
+            - profile_feed
+            - ig_search
+            - profile_reels
+            type: string
+          type: array
+        messengerPositions:
+          items:
+            enum:
+            - messenger_home
+            - sponsored_messages
+            - story
+            type: string
+          type: array
+        audienceNetworkPositions:
+          items:
+            enum:
+            - classic
+            - rewarded_video
+            type: string
+          type: array
+        threadsPositions:
+          items:
+            enum:
+            - threads_stream
+            type: string
+          type: array
+        whatsappPositions:
+          items:
+            enum:
+            - status
+            type: string
+          type: array
+        devicePlatforms:
+          items:
+            enum:
+            - mobile
+            - desktop
+            type: string
+          type: array
+    MetaPlacementAssets_rules_inner:
+      properties:
+        imageUrl:
+          description: Image mode. The image to deliver for this rule's placements.
+          format: uri
+          type: string
+        videoUrl:
+          description: Video mode. The video to deliver for this rule's placements.
+          format: uri
+          type: string
+        thumbnailUrl:
+          description: Video mode (optional). Poster image for this rule's video;
+            auto-generated when omitted.
+          format: uri
+          type: string
+        headline:
+          description: One headline pinned to this rule. Omit to inherit the top-level
+            headline.
+          maxLength: 255
+          minLength: 1
+          type: string
+        body:
+          description: One primary text pinned to this rule. Omit to inherit the top-level
+            body.
+          minLength: 1
+          type: string
+        description:
+          description: One link description pinned to this rule. Omit to inherit the
+            top-level description.
+          maxLength: 255
+          minLength: 1
+          type: string
+        placements:
+          $ref: "#/components/schemas/MetaPlacementAssets_rules_inner_placements"
+      required:
+      - placements
     GoogleDemandGenInput_images:
       additionalProperties: false
       description: Public image URLs. An image ad needs landscape or square; video

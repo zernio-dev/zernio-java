@@ -339,7 +339,7 @@ ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 
 ## createMessagingAd
 
-> CreateMessagingAd201Response createMessagingAd(createMessagingAdRequest, idempotencyKey)
+> CreateMessagingAd200Response createMessagingAd(createMessagingAdRequest, idempotencyKey)
 
 Create messaging ad
 
@@ -369,7 +369,7 @@ public class Example {
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            CreateMessagingAd201Response result = apiInstance.createMessagingAd(createMessagingAdRequest, idempotencyKey);
+            CreateMessagingAd200Response result = apiInstance.createMessagingAd(createMessagingAdRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagingAdsApi#createMessagingAd");
@@ -392,7 +392,7 @@ public class Example {
 
 ### Return type
 
-[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)
+[**CreateMessagingAd200Response**](CreateMessagingAd200Response.md)
 
 
 ### Authorization
@@ -408,6 +408,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | &#x60;validateOnly: true&#x60; only. Meta accepted every node; nothing was created. |  -  |
 | **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
@@ -418,7 +419,7 @@ public class Example {
 
 ## createMessagingAdWithHttpInfo
 
-> ApiResponse<CreateMessagingAd201Response> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey)
+> ApiResponse<CreateMessagingAd200Response> createMessagingAd createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey)
 
 Create messaging ad
 
@@ -449,7 +450,7 @@ public class Example {
         CreateMessagingAdRequest createMessagingAdRequest = new CreateMessagingAdRequest(); // CreateMessagingAdRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<CreateMessagingAd201Response> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey);
+            ApiResponse<CreateMessagingAd200Response> response = apiInstance.createMessagingAdWithHttpInfo(createMessagingAdRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -474,7 +475,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
+ApiResponse<[**CreateMessagingAd200Response**](CreateMessagingAd200Response.md)>
 
 
 ### Authorization
@@ -490,6 +491,7 @@ ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **200** | &#x60;validateOnly: true&#x60; only. Meta accepted every node; nothing was created. |  -  |
 | **201** | Ad(s) created and submitted for review. The route shares its handler with &#x60;POST /v1/ads/ctwa&#x60;, so the body is the same tagged union discriminated by &#x60;adType&#x60;: &#x60;single&#x60; carries &#x60;{ adType, ad, message }&#x60;, and &#x60;multi&#x60; carries &#x60;{ adType, ads, platformCampaignId, platformAdSetId, message }&#x60;.  |  -  |
 | **400** | Invalid input |  -  |
 | **401** | Unauthorized |  -  |
