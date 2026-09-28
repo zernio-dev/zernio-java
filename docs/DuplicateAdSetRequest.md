@@ -11,8 +11,8 @@
 |**campaignId** | **String** | Destination platform campaign id (defaults to the source&#39;s campaign) |  [optional] |
 |**deepCopy** | **Boolean** | Copy child ads + creatives |  [optional] |
 |**statusOption** | [**StatusOptionEnum**](#StatusOptionEnum) |  |  [optional] |
-|**startTime** | **OffsetDateTime** | Reschedule the copy&#39;s start time |  [optional] |
-|**endTime** | **OffsetDateTime** |  |  [optional] |
+|**startTime** | **OffsetDateTime** | Reschedule the copy&#39;s start (ISO 8601). A value without an offset (&#x60;YYYY-MM-DD&#x60;, &#x60;YYYY-MM-DD HH:MM:SS&#x60; or &#x60;YYYY-MM-DDTHH:MM:SS&#x60;) is read in the ad account timezone. |  [optional] |
+|**endTime** | **OffsetDateTime** | Reschedule the copy&#39;s end, read like &#x60;startTime&#x60;; a date-only end runs to 23:59:59 local. |  [optional] |
 |**renameStrategy** | [**RenameStrategyEnum**](#RenameStrategyEnum) |  |  [optional] |
 |**renamePrefix** | **String** |  |  [optional] |
 |**renameSuffix** | **String** |  |  [optional] |
