@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.138.0
+  version: 1.138.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -120193,11 +120193,12 @@ components:
           type: string
         selectable:
           description: Meta and X only. Whether the account can create/run ads now.
-            Absent (treat as true) on other platforms.
+            Always present on every Meta and X account. Absent (treat as true) on
+            other platforms.
           type: boolean
         unusableReason:
-          description: Meta and X only. Human-readable reason when selectable is false;
-            null when selectable.
+          description: Meta and X only. Always present on every Meta and X account.
+            Human-readable reason when selectable is false; null when selectable.
           nullable: true
           type: string
     listAdAccounts_200_response:
@@ -120251,8 +120252,8 @@ components:
             $ref: "#/components/schemas/listAdAccounts_200_response_accounts_inner"
           type: array
         cachedAt:
-          description: "Google only. When this list was fetched from Google. Null\
-            \ when it was never served from cache, or on other platforms."
+          description: Google only. When this list was fetched from Google. Null when
+            it was never served from cache. Absent on other platforms.
           format: date-time
           nullable: true
           type: string
