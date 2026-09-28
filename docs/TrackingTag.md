@@ -31,6 +31,7 @@ A platform measurement tag: the thing you create, install on a website, send eve
 |---- | -----|
 | METAADS | &quot;metaads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
+| TIKTOKADS | &quot;tiktokads&quot; |
 
 
 

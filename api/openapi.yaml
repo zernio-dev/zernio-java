@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.130.0
+  version: 1.131.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51139,6 +51139,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-accepts:
       - application/json
     post:
@@ -51226,6 +51227,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -51296,6 +51298,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-accepts:
       - application/json
     patch:
@@ -51366,6 +51369,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -51629,6 +51633,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       - shopify
       - wordpress
       x-accepts:
@@ -51708,6 +51713,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       - shopify
       - wordpress
       x-accepts:
@@ -51815,6 +51821,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       - shopify
       - wordpress
       x-content-type: application/json
@@ -51929,6 +51936,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - tiktok
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/blogs:
@@ -75726,6 +75734,7 @@ components:
           enum:
           - metaads
           - openaiads
+          - tiktokads
           type: string
         kind:
           description: "Platform-native flavor of the tag (Meta: `pixel`)."
@@ -125912,6 +125921,7 @@ components:
           enum:
           - metaads
           - openaiads
+          - tiktokads
           type: string
         tags:
           items:
@@ -125982,6 +125992,7 @@ components:
           enum:
           - metaads
           - openaiads
+          - tiktokads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -126017,6 +126028,7 @@ components:
         platform:
           enum:
           - metaads
+          - tiktokads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -126206,6 +126218,7 @@ components:
         platform:
           enum:
           - metaads
+          - tiktokads
           type: string
         install:
           $ref: "#/components/schemas/getTrackingTagStoreInstall_200_response_install"
@@ -126317,6 +126330,7 @@ components:
         platform:
           enum:
           - metaads
+          - tiktokads
           type: string
         install:
           $ref: "#/components/schemas/installTrackingTagOnStore_200_response_install"
@@ -126406,6 +126420,7 @@ components:
         platform:
           enum:
           - metaads
+          - tiktokads
           type: string
         install:
           $ref: "#/components/schemas/removeTrackingTagFromStore_200_response_install"
@@ -126443,6 +126458,7 @@ components:
         platform:
           enum:
           - metaads
+          - tiktokads
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"

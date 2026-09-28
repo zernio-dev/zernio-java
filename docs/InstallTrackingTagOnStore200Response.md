@@ -17,6 +17,7 @@
 | Name | Value |
 |---- | -----|
 | METAADS | &quot;metaads&quot; |
+| TIKTOKADS | &quot;tiktokads&quot; |
 
 
 
