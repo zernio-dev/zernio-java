@@ -58,7 +58,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_INSTAGRAM_PROFILE,
   ListInboxConversations200ResponseDataInner.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:08:01.141471782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:11:13.542612949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

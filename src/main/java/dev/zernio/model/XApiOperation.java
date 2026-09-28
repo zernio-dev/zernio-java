@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   XApiOperation.JSON_PROPERTY_TIER,
   XApiOperation.JSON_PROPERTY_TRIGGERED_BY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:08:01.141471782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:11:13.542612949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class XApiOperation {
   public static final String JSON_PROPERTY_OPERATION = "operation";
   @javax.annotation.Nullable

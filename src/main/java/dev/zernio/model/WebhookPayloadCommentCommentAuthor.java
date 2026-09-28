@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_IS_OWN_ACCOUNT,
   WebhookPayloadCommentCommentAuthor.JSON_PROPERTY_INSTAGRAM_PROFILE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:08:01.141471782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:11:13.542612949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAuthor {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

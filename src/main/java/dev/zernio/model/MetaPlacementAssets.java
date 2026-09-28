@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   MetaPlacementAssets.JSON_PROPERTY_DEFAULT_THUMBNAIL_URL,
   MetaPlacementAssets.JSON_PROPERTY_RULES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:08:01.141471782Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:11:13.542612949Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaPlacementAssets {
   public static final String JSON_PROPERTY_DEFAULT_IMAGE_URL = "defaultImageUrl";
   @javax.annotation.Nullable
