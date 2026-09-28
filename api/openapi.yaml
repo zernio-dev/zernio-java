@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.129.1
+  version: 1.129.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -85164,7 +85164,11 @@ components:
           description: Meta business portfolio id of the partner (numeric string).
           type: string
         permittedTasks:
-          description: Tasks granted on the Page. Defaults to ADVERTISE and ANALYZE.
+          description: "Tasks granted on the Page, Meta's permitted_tasks vocabulary.\
+            \ Defaults to ADVERTISE and ANALYZE. The bare names are what Business\
+            \ Settings shows; the PROFILE_PLUS_ names are the New Pages Experience\
+            \ tasks and the only way to grant FACEBOOK_ACCESS or REVENUE. Granting\
+            \ MANAGE also yields MANAGE_LEADS."
           items:
             enum:
             - MANAGE
@@ -85173,6 +85177,29 @@ components:
             - MESSAGING
             - ADVERTISE
             - ANALYZE
+            - MODERATE_COMMUNITY
+            - MANAGE_JOBS
+            - PAGES_MESSAGING
+            - PAGES_MESSAGING_SUBSCRIPTIONS
+            - READ_PAGE_MAILBOXES
+            - VIEW_MONETIZATION_INSIGHTS
+            - MANAGE_LEADS
+            - CASHIER_ROLE
+            - GLOBAL_STRUCTURE_MANAGEMENT
+            - PROFILE_PLUS_FULL_CONTROL
+            - PROFILE_PLUS_MANAGE
+            - PROFILE_PLUS_FACEBOOK_ACCESS
+            - PROFILE_PLUS_CREATE_CONTENT
+            - PROFILE_PLUS_MODERATE
+            - PROFILE_PLUS_MODERATE_DELEGATE_COMMUNITY
+            - PROFILE_PLUS_MESSAGING
+            - PROFILE_PLUS_ADVERTISE
+            - PROFILE_PLUS_ANALYZE
+            - PROFILE_PLUS_REVENUE
+            - PROFILE_PLUS_MANAGE_LEADS
+            - PROFILE_PLUS_CREATIVE_MANAGEMENT
+            - PROFILE_PLUS_CREATOR_MANAGEMENT
+            - PROFILE_PLUS_GLOBAL_STRUCTURE_MANAGEMENT
             type: string
           type: array
       required:
