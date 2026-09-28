@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.115.2
+  version: 1.116.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35221,6 +35221,20 @@ paths:
         name: campaignId
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Case-insensitive substring match on campaign, ad set and ad\
+          \ names (`_`, `%` and spaces match literally), or an exact platform campaign,\
+          \ ad set or ad id. A campaign whose name matches returns with all its ad\
+          \ sets and ads; a match on an ad set or ad name returns only the matching\
+          \ branch. Filters the campaign set itself, so `pagination.total` counts\
+          \ only matching campaigns."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          maxLength: 500
           type: string
         style: form
       - description: "Start of the METRICS date range (YYYY-MM-DD). On its own it\
