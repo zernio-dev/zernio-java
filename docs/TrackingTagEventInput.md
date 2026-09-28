@@ -17,6 +17,7 @@ Conversion event fields. Each platform stores a subset; a field it does not stor
 |**currency** | **String** | ISO 4217 code. |  [optional] |
 |**clickWindowDays** | **Integer** |  |  [optional] |
 |**viewWindowDays** | **Integer** |  |  [optional] |
+|**urlContains** | **String** | Fire only on pages whose URL contains this text (case-insensitive). |  [optional] |
 
 
 

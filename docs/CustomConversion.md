@@ -13,6 +13,7 @@
 |**customEventType** | **String** |  |  [optional] |
 |**pixelId** | **String** | Meta&#39;s event_source_id, the pixel the rule reads from. |  [optional] |
 |**isArchived** | **Boolean** |  |  [optional] |
+|**defaultConversionValue** | **BigDecimal** | Value Meta assigns a conversion that carries none, in the ad account&#39;s currency. |  [optional] |
 
 
 

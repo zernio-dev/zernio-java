@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.137.0
+- API version: 1.138.0
 
-- Build date: 2026-09-28T17:36:11.379420236Z[Etc/UTC]
+- Build date: 2026-09-28T17:54:13.901483269Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.137.0</version>
+  <version>1.138.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.137.0"
+compile "dev.zernio:zernio-sdk:1.138.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.137.0.jar`
+- `target/zernio-sdk-1.138.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1489,6 +1489,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**getAdTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags
 *TrackingTagsApi* | [**getTrackingTag**](docs/TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
 *TrackingTagsApi* | [**getTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
+*TrackingTagsApi* | [**getTrackingTagDiagnostics**](docs/TrackingTagsApi.md#getTrackingTagDiagnostics) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics | Get tag diagnostics
+*TrackingTagsApi* | [**getTrackingTagDiagnosticsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagDiagnosticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics | Get tag diagnostics
 *TrackingTagsApi* | [**getTrackingTagStats**](docs/TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStoreInstall**](docs/TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
@@ -2796,6 +2798,7 @@ Class | Method | HTTP request | Description
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
+ - [GetTrackingTagDiagnostics200Response](docs/GetTrackingTagDiagnostics200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [GetTrackingTagStoreInstall200Response](docs/GetTrackingTagStoreInstall200Response.md)
@@ -3780,6 +3783,7 @@ Class | Method | HTTP request | Description
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
  - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
  - [TrackingTag](docs/TrackingTag.md)
+ - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)
  - [TrackingTagEvent](docs/TrackingTagEvent.md)
  - [TrackingTagEventInput](docs/TrackingTagEventInput.md)
  - [TrackingTagInstallBlockedReason](docs/TrackingTagInstallBlockedReason.md)

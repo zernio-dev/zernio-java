@@ -994,6 +994,7 @@ docs/GetTikTokSmartPlusMaterialReport200Response.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md
 docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
 docs/GetTrackingTag200Response.md
+docs/GetTrackingTagDiagnostics200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
 docs/GetTrackingTagStoreInstall200Response.md
@@ -2011,6 +2012,7 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
+docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
 docs/TrackingTagEventInput.md
 docs/TrackingTagInstallBlockedReason.md
@@ -3570,6 +3572,7 @@ src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200Response.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.java
 src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.java
 src/main/java/dev/zernio/model/GetTrackingTag200Response.java
+src/main/java/dev/zernio/model/GetTrackingTagDiagnostics200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
 src/main/java/dev/zernio/model/GetTrackingTagStoreInstall200Response.java
@@ -4554,6 +4557,7 @@ src/main/java/dev/zernio/model/TikTokDryRunVerdictTiktokInner.java
 src/main/java/dev/zernio/model/TikTokPlatformData.java
 src/main/java/dev/zernio/model/TikTokPlatformDataMusicSoundInfo.java
 src/main/java/dev/zernio/model/TrackingTag.java
+src/main/java/dev/zernio/model/TrackingTagDiagnostic.java
 src/main/java/dev/zernio/model/TrackingTagEvent.java
 src/main/java/dev/zernio/model/TrackingTagEventInput.java
 src/main/java/dev/zernio/model/TrackingTagInstallBlockedReason.java
@@ -5039,3 +5043,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetTrackingTagDiagnostics200ResponseTest.java
+src/test/java/dev/zernio/model/TrackingTagDiagnosticTest.java

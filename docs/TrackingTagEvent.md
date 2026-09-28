@@ -18,6 +18,7 @@ A conversion event tied to a tracking tag (Google conversion action, LinkedIn co
 |**currency** | **String** |  |  [optional] |
 |**clickWindowDays** | **Integer** |  |  [optional] |
 |**viewWindowDays** | **Integer** |  |  [optional] |
+|**urlContains** | **String** | Fires only on pages whose URL contains this text (case-insensitive). |  [optional] |
 
 
 

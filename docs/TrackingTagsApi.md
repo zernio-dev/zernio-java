@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#getAdTrackingTagsWithHttpInfo) | **GET** /v1/ads/{adId}/tracking-tags | Get ad tracking tags |
 | [**getTrackingTag**](TrackingTagsApi.md#getTrackingTag) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**getTrackingTagWithHttpInfo**](TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
+| [**getTrackingTagDiagnostics**](TrackingTagsApi.md#getTrackingTagDiagnostics) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics | Get tag diagnostics |
+| [**getTrackingTagDiagnosticsWithHttpInfo**](TrackingTagsApi.md#getTrackingTagDiagnosticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics | Get tag diagnostics |
 | [**getTrackingTagStats**](TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**getTrackingTagStatsWithHttpInfo**](TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**getTrackingTagStoreInstall**](TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
@@ -377,7 +379,7 @@ ApiResponse<[**CreateTrackingTag201Response**](CreateTrackingTag201Response.md)>
 
 Create a conversion event
 
-Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal.  LinkedIn (&#x60;linkedinads&#x60;): creates an event-specific Insight Tag conversion rule (no URL match rules), the kind a page or the Shopify pixel fires by id. &#x60;type&#x60; is a LinkedIn conversion type (e.g. &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;LEAD&#x60;); &#x60;siteEvent&#x60; maps to &#x60;KEY_PAGE_VIEW&#x60;, &#x60;VIEW_CONTENT&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;SEARCH&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;ADD_BILLING_INFO&#x60; or &#x60;PURCHASE&#x60;. &#x60;defaultValue&#x60; needs &#x60;currency&#x60; (the ad account currency) and is a fallback: a value sent with the event wins. Click and view windows are in days (LinkedIn validates them: the docs list 1, 7 and 30, and rules with 90 exist). Stores name, type, siteEvent, enabled, defaultValue, currency, clickWindowDays, viewWindowDays. Not idempotent. 
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal.  LinkedIn (&#x60;linkedinads&#x60;): creates an event-specific Insight Tag conversion rule (no URL match rules), the kind a page or the Shopify pixel fires by id. &#x60;type&#x60; is a LinkedIn conversion type (e.g. &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;LEAD&#x60;); &#x60;siteEvent&#x60; maps to &#x60;KEY_PAGE_VIEW&#x60;, &#x60;VIEW_CONTENT&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;SEARCH&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;ADD_BILLING_INFO&#x60; or &#x60;PURCHASE&#x60;. &#x60;defaultValue&#x60; needs &#x60;currency&#x60; (the ad account currency) and is a fallback: a value sent with the event wins. Click and view windows are in days (LinkedIn validates them: the docs list 1, 7 and 30, and rules with 90 exist). Stores name, type, siteEvent, enabled, defaultValue, currency, clickWindowDays, viewWindowDays. Not idempotent.  Meta: creates a custom conversion on &#x60;adAccountId&#x60; (default: the pixel&#39;s owner ad account). Accepts &#x60;name&#x60;, &#x60;type&#x60; (Meta &#x60;custom_event_type&#x60;: &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;OTHER&#x60;...), &#x60;siteEvent&#x60;, &#x60;urlContains&#x60; and &#x60;defaultValue&#x60; (in the ad account currency). The rule matches the standard event of &#x60;siteEvent&#x60; (or of &#x60;type&#x60;), plus &#x60;urlContains&#x60; when given; &#x60;urlContains&#x60; alone matches page views on that URL. &#x60;type: OTHER&#x60; needs &#x60;siteEvent&#x60; or &#x60;urlContains&#x60;. Idempotent by name: an active conversion with the same name on this pixel is returned instead of a duplicate. Meta caps custom conversions per ad account; the cap answers 400. 
 
 ### Example
 
@@ -457,7 +459,7 @@ public class Example {
 
 Create a conversion event
 
-Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal.  LinkedIn (&#x60;linkedinads&#x60;): creates an event-specific Insight Tag conversion rule (no URL match rules), the kind a page or the Shopify pixel fires by id. &#x60;type&#x60; is a LinkedIn conversion type (e.g. &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;LEAD&#x60;); &#x60;siteEvent&#x60; maps to &#x60;KEY_PAGE_VIEW&#x60;, &#x60;VIEW_CONTENT&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;SEARCH&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;ADD_BILLING_INFO&#x60; or &#x60;PURCHASE&#x60;. &#x60;defaultValue&#x60; needs &#x60;currency&#x60; (the ad account currency) and is a fallback: a value sent with the event wins. Click and view windows are in days (LinkedIn validates them: the docs list 1, 7 and 30, and rules with 90 exist). Stores name, type, siteEvent, enabled, defaultValue, currency, clickWindowDays, viewWindowDays. Not idempotent. 
+Creates a conversion event tied to the tag. Pass the platform&#39;s own event type in &#x60;type&#x60; (e.g. Google &#x60;PURCHASE&#x60;, LinkedIn &#x60;ADD_TO_CART&#x60;, X &#x60;CHECKOUT_INITIATED&#x60;) or a neutral &#x60;siteEvent&#x60; the platform maps to its closest type. Each platform stores a subset of the optional fields; sending one it does not store answers 400 naming the supported fields. NOT idempotent unless noted per platform: do not retry blindly.  OpenAI Ads: creates a conversion event setting on the pixel (&#x60;POST /conversions/event_settings&#x60;, source &#x3D; the pixel). Accepts &#x60;name&#x60;, &#x60;type&#x60; and &#x60;siteEvent&#x60; only. &#x60;type&#x60; is a standard event (&#x60;order_created&#x60;, &#x60;lead_created&#x60;, &#x60;items_added&#x60;, &#x60;contents_viewed&#x60;, &#x60;checkout_started&#x60;, &#x60;registration_completed&#x60;, &#x60;subscription_created&#x60;, &#x60;trial_started&#x60;, &#x60;appointment_scheduled&#x60;, &#x60;page_viewed&#x60;, &#x60;app_installed&#x60;, &#x60;app_opened&#x60;) or, for anything else, the custom event name itself (1 to 64 letters, digits, underscores or dashes; stored lowercase). &#x60;siteEvent&#x60; maps &#x60;search&#x60; and &#x60;add_payment_info&#x60; to the custom events &#x60;search&#x60; and &#x60;addpaymentinfo&#x60;, the names Zernio&#39;s Shopify pixel sends. The click attribution window is 30 days, the only value OpenAI documents. Only standard events can be a conversions campaign&#39;s optimization goal.  LinkedIn (&#x60;linkedinads&#x60;): creates an event-specific Insight Tag conversion rule (no URL match rules), the kind a page or the Shopify pixel fires by id. &#x60;type&#x60; is a LinkedIn conversion type (e.g. &#x60;PURCHASE&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;LEAD&#x60;); &#x60;siteEvent&#x60; maps to &#x60;KEY_PAGE_VIEW&#x60;, &#x60;VIEW_CONTENT&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;SEARCH&#x60;, &#x60;START_CHECKOUT&#x60;, &#x60;ADD_BILLING_INFO&#x60; or &#x60;PURCHASE&#x60;. &#x60;defaultValue&#x60; needs &#x60;currency&#x60; (the ad account currency) and is a fallback: a value sent with the event wins. Click and view windows are in days (LinkedIn validates them: the docs list 1, 7 and 30, and rules with 90 exist). Stores name, type, siteEvent, enabled, defaultValue, currency, clickWindowDays, viewWindowDays. Not idempotent.  Meta: creates a custom conversion on &#x60;adAccountId&#x60; (default: the pixel&#39;s owner ad account). Accepts &#x60;name&#x60;, &#x60;type&#x60; (Meta &#x60;custom_event_type&#x60;: &#x60;PURCHASE&#x60;, &#x60;LEAD&#x60;, &#x60;ADD_TO_CART&#x60;, &#x60;COMPLETE_REGISTRATION&#x60;, &#x60;OTHER&#x60;...), &#x60;siteEvent&#x60;, &#x60;urlContains&#x60; and &#x60;defaultValue&#x60; (in the ad account currency). The rule matches the standard event of &#x60;siteEvent&#x60; (or of &#x60;type&#x60;), plus &#x60;urlContains&#x60; when given; &#x60;urlContains&#x60; alone matches page views on that URL. &#x60;type: OTHER&#x60; needs &#x60;siteEvent&#x60; or &#x60;urlContains&#x60;. Idempotent by name: an active conversion with the same name on this pixel is returned instead of a duplicate. Meta caps custom conversions per ad account; the cap answers 400. 
 
 ### Example
 
@@ -541,7 +543,7 @@ ApiResponse<[**CreateTrackingTagEvent201Response**](CreateTrackingTagEvent201Res
 
 Delete a conversion event
 
-Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager.  LinkedIn (&#x60;linkedinads&#x60;): LinkedIn has no delete for conversion rules (not in the conversion-tracking API, and &#x60;DELETE /rest/conversions/{id}&#x60; has no route), so the rule is disabled (&#x60;enabled: false&#x60;) and &#x60;state&#x60; is &#x60;disabled&#x60;. Re-enable it with &#x60;enabled: true&#x60;. 
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager.  LinkedIn (&#x60;linkedinads&#x60;): LinkedIn has no delete for conversion rules (not in the conversion-tracking API, and &#x60;DELETE /rest/conversions/{id}&#x60; has no route), so the rule is disabled (&#x60;enabled: false&#x60;) and &#x60;state&#x60; is &#x60;disabled&#x60;. Re-enable it with &#x60;enabled: true&#x60;.  Meta: &#x60;archived&#x60;. Meta&#39;s delete archives the custom conversion (it stays readable with &#x60;status: archived&#x60;) and there is no hard delete; deleting an archived one is a no-op. 
 
 ### Example
 
@@ -623,7 +625,7 @@ public class Example {
 
 Delete a conversion event
 
-Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager.  LinkedIn (&#x60;linkedinads&#x60;): LinkedIn has no delete for conversion rules (not in the conversion-tracking API, and &#x60;DELETE /rest/conversions/{id}&#x60; has no route), so the rule is disabled (&#x60;enabled: false&#x60;) and &#x60;state&#x60; is &#x60;disabled&#x60;. Re-enable it with &#x60;enabled: true&#x60;. 
+Removes the conversion event. Platforms without a hard delete archive or disable it instead; &#x60;state&#x60; in the response says which (&#x60;deleted&#x60;, &#x60;archived&#x60;, &#x60;disabled&#x60;).  OpenAI Ads answers 501: there is no delete or archive route for event settings (&#x60;DELETE /v1/conversions/event_settings/{id}&#x60; and &#x60;POST .../{id}/archive&#x60; answer 404 \&quot;Invalid URL\&quot;). Archive the event in OpenAI Ads Manager.  LinkedIn (&#x60;linkedinads&#x60;): LinkedIn has no delete for conversion rules (not in the conversion-tracking API, and &#x60;DELETE /rest/conversions/{id}&#x60; has no route), so the rule is disabled (&#x60;enabled: false&#x60;) and &#x60;state&#x60; is &#x60;disabled&#x60;. Re-enable it with &#x60;enabled: true&#x60;.  Meta: &#x60;archived&#x60;. Meta&#39;s delete archives the custom conversion (it stays readable with &#x60;status: archived&#x60;) and there is no hard delete; deleting an archived one is a no-op. 
 
 ### Example
 
@@ -1017,6 +1019,168 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## getTrackingTagDiagnostics
+
+> GetTrackingTagDiagnostics200Response getTrackingTagDiagnostics(accountId, tagId)
+
+Get tag diagnostics
+
+The platform&#39;s health checks for the tag. Platforms without tag diagnostics answer 501.  Meta: the pixel&#39;s checks from Events Manager (&#x60;da_checks&#x60;), e.g. whether events miss parameters or their content ids do not match the pixel&#39;s catalogs. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            GetTrackingTagDiagnostics200Response result = apiInstance.getTrackingTagDiagnostics(accountId, tagId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getTrackingTagDiagnostics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+[**GetTrackingTagDiagnostics200Response**](GetTrackingTagDiagnostics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Diagnostics fetched |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag diagnostics (code &#x60;platform_not_supported&#x60;). |  -  |
+| **502** | The platform was unreachable or returned an unclassified error (type: platform_error). Retryable. |  -  |
+
+## getTrackingTagDiagnosticsWithHttpInfo
+
+> ApiResponse<GetTrackingTagDiagnostics200Response> getTrackingTagDiagnostics getTrackingTagDiagnosticsWithHttpInfo(accountId, tagId)
+
+Get tag diagnostics
+
+The platform&#39;s health checks for the tag. Platforms without tag diagnostics answer 501.  Meta: the pixel&#39;s checks from Events Manager (&#x60;da_checks&#x60;), e.g. whether events miss parameters or their content ids do not match the pixel&#39;s catalogs. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            ApiResponse<GetTrackingTagDiagnostics200Response> response = apiInstance.getTrackingTagDiagnosticsWithHttpInfo(accountId, tagId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getTrackingTagDiagnostics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+ApiResponse<[**GetTrackingTagDiagnostics200Response**](GetTrackingTagDiagnostics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Diagnostics fetched |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag diagnostics (code &#x60;platform_not_supported&#x60;). |  -  |
+| **502** | The platform was unreachable or returned an unclassified error (type: platform_error). Retryable. |  -  |
 
 
 ## getTrackingTagStats
@@ -1539,7 +1703,7 @@ ApiResponse<[**InstallTrackingTagOnStore200Response**](InstallTrackingTagOnStore
 
 List conversion events
 
-The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window.  LinkedIn (&#x60;linkedinads&#x60;): the conversion rules of the ad account (&#x60;adAccountId&#x60;, default the account that created the tag), including Conversions API and URL-match rules. &#x60;siteEventId&#x60; (the rule id a page fires) is set only on event-specific Insight Tag rules; &#x60;defaultValue&#x60;/&#x60;currency&#x60; come from the rule value, &#x60;clickWindowDays&#x60;/&#x60;viewWindowDays&#x60; from its post-click and view-through windows. 
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window.  LinkedIn (&#x60;linkedinads&#x60;): the conversion rules of the ad account (&#x60;adAccountId&#x60;, default the account that created the tag), including Conversions API and URL-match rules. &#x60;siteEventId&#x60; (the rule id a page fires) is set only on event-specific Insight Tag rules; &#x60;defaultValue&#x60;/&#x60;currency&#x60; come from the rule value, &#x60;clickWindowDays&#x60;/&#x60;viewWindowDays&#x60; from its post-click and view-through windows.  Meta: the pixel&#39;s custom conversions. Meta keeps them per AD ACCOUNT (a pixel has no custom conversions edge), so the list reads &#x60;adAccountId&#x60; (default: the pixel&#39;s owner ad account) and keeps the conversions whose pixel is this one. Archived conversions are included with &#x60;status: archived&#x60;. &#x60;urlContains&#x60; and &#x60;siteEvent&#x60; are parsed from Meta&#39;s rule. 
 
 ### Example
 
@@ -1619,7 +1783,7 @@ public class Example {
 
 List conversion events
 
-The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window.  LinkedIn (&#x60;linkedinads&#x60;): the conversion rules of the ad account (&#x60;adAccountId&#x60;, default the account that created the tag), including Conversions API and URL-match rules. &#x60;siteEventId&#x60; (the rule id a page fires) is set only on event-specific Insight Tag rules; &#x60;defaultValue&#x60;/&#x60;currency&#x60; come from the rule value, &#x60;clickWindowDays&#x60;/&#x60;viewWindowDays&#x60; from its post-click and view-through windows. 
+The tag&#39;s conversion events, on platforms where each conversion is its own object: Google conversion actions, LinkedIn conversion rules, X web event tags, OpenAI event settings, TikTok pixel events, Meta custom conversions. Platforms where events are just names the site sends (Pinterest) answer 501.  OpenAI Ads: the account&#39;s conversion event settings whose source is this pixel. &#x60;siteEventId&#x60; is the event name the site sends (a standard event such as &#x60;order_created&#x60;, or the lowercase custom event name); &#x60;clickWindowDays&#x60; is the attribution window.  LinkedIn (&#x60;linkedinads&#x60;): the conversion rules of the ad account (&#x60;adAccountId&#x60;, default the account that created the tag), including Conversions API and URL-match rules. &#x60;siteEventId&#x60; (the rule id a page fires) is set only on event-specific Insight Tag rules; &#x60;defaultValue&#x60;/&#x60;currency&#x60; come from the rule value, &#x60;clickWindowDays&#x60;/&#x60;viewWindowDays&#x60; from its post-click and view-through windows.  Meta: the pixel&#39;s custom conversions. Meta keeps them per AD ACCOUNT (a pixel has no custom conversions edge), so the list reads &#x60;adAccountId&#x60; (default: the pixel&#39;s owner ad account) and keeps the conversions whose pixel is this one. Archived conversions are included with &#x60;status: archived&#x60;. &#x60;urlContains&#x60; and &#x60;siteEvent&#x60; are parsed from Meta&#39;s rule. 
 
 ### Example
 
@@ -2685,7 +2849,7 @@ ApiResponse<[**GetTrackingTag200Response**](GetTrackingTag200Response.md)>
 
 Update a conversion event
 
-Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead.  LinkedIn (&#x60;linkedinads&#x60;): partial update of the conversion rule; same fields as create. Pass &#x60;adAccountId&#x60; when the rule lives in another ad account than the one that created the tag. 
+Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead.  LinkedIn (&#x60;linkedinads&#x60;): partial update of the conversion rule; same fields as create. Pass &#x60;adAccountId&#x60; when the rule lives in another ad account than the one that created the tag.  Meta: only &#x60;name&#x60; and &#x60;defaultValue&#x60; can change (Meta&#39;s custom conversion update takes nothing else); &#x60;type&#x60;, &#x60;siteEvent&#x60; and &#x60;urlContains&#x60; answer 400, create a new event instead. 
 
 ### Example
 
@@ -2767,7 +2931,7 @@ public class Example {
 
 Update a conversion event
 
-Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead.  LinkedIn (&#x60;linkedinads&#x60;): partial update of the conversion rule; same fields as create. Pass &#x60;adAccountId&#x60; when the rule lives in another ad account than the one that created the tag. 
+Partial update; at least one field. A field the platform does not store answers 400.  OpenAI Ads answers 501: OpenAI documents only list and create for event settings, and &#x60;POST&#x60;/&#x60;PATCH&#x60;/&#x60;PUT /v1/conversions/event_settings/{id}&#x60; answer 404 \&quot;Invalid URL\&quot;. Create a new event instead.  LinkedIn (&#x60;linkedinads&#x60;): partial update of the conversion rule; same fields as create. Pass &#x60;adAccountId&#x60; when the rule lives in another ad account than the one that created the tag.  Meta: only &#x60;name&#x60; and &#x60;defaultValue&#x60; can change (Meta&#39;s custom conversion update takes nothing else); &#x60;type&#x60;, &#x60;siteEvent&#x60; and &#x60;urlContains&#x60; answer 400, create a new event instead. 
 
 ### Example
 
