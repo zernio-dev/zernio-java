@@ -5057,10 +5057,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AssignTrackingTagUser200ResponseTest.java
-src/test/java/dev/zernio/model/AssignTrackingTagUserRequestTest.java
-src/test/java/dev/zernio/model/ListTrackingTagPartners200ResponseTest.java
-src/test/java/dev/zernio/model/ListTrackingTagUsers200ResponseTest.java
-src/test/java/dev/zernio/model/RemoveTrackingTagUser200ResponseTest.java
-src/test/java/dev/zernio/model/TrackingTagPartnerTest.java
-src/test/java/dev/zernio/model/TrackingTagUserTest.java

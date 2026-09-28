@@ -1357,7 +1357,7 @@ ApiResponse<[**GetConversionMetrics200Response**](GetConversionMetrics200Respons
 
 Get Event Match Quality
 
-Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Other platforms return 405, except Pinterest. Requires the Ads add-on.  Pinterest (&#x60;pinterestads&#x60;): &#x60;destinationId&#x60; is the numeric ad account id. Rows come from Pinterest&#39;s Event Quality Score for Conversions API web events over the last 14 days, one per event name, with each identifier&#39;s coverage in &#x60;matchKeys&#x60; and &#x60;eventCoveragePercentage&#x60; set to the tag/API &#x60;event_id&#x60; overlap. No &#x60;compositeScore&#x60;. 
 
 ### Example
 
@@ -1380,8 +1380,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount _id (must be a metaads account).
-        String destinationId = "destinationId_example"; // String | Meta pixel/dataset ID.
+        String accountId = "accountId_example"; // String | SocialAccount _id (a metaads or pinterestads account).
+        String destinationId = "destinationId_example"; // String | Meta pixel/dataset ID, or the numeric Pinterest ad account id.
         try {
             GetConversionsQuality200Response result = apiInstance.getConversionsQuality(accountId, destinationId);
             System.out.println(result);
@@ -1401,8 +1401,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount _id (must be a metaads account). | |
-| **destinationId** | **String**| Meta pixel/dataset ID. | |
+| **accountId** | **String**| SocialAccount _id (a metaads or pinterestads account). | |
+| **destinationId** | **String**| Meta pixel/dataset ID, or the numeric Pinterest ad account id. | |
 
 ### Return type
 
@@ -1426,7 +1426,7 @@ public class Example {
 | **200** | Match-quality rows, one per event name. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
+| **405** | Platform does not expose Event Match Quality (neither Meta nor Pinterest). |  -  |
 
 ## getConversionsQualityWithHttpInfo
 
@@ -1434,7 +1434,7 @@ public class Example {
 
 Get Event Match Quality
 
-Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Meta-only; other platforms return 405. Requires the Ads add-on. 
+Reads Meta Event Match Quality (EMQ) and pixel↔CAPI event coverage for a pixel/dataset, live from Meta&#39;s Dataset Quality API. Web events only (a Meta limitation). Other platforms return 405, except Pinterest. Requires the Ads add-on.  Pinterest (&#x60;pinterestads&#x60;): &#x60;destinationId&#x60; is the numeric ad account id. Rows come from Pinterest&#39;s Event Quality Score for Conversions API web events over the last 14 days, one per event name, with each identifier&#39;s coverage in &#x60;matchKeys&#x60; and &#x60;eventCoveragePercentage&#x60; set to the tag/API &#x60;event_id&#x60; overlap. No &#x60;compositeScore&#x60;. 
 
 ### Example
 
@@ -1458,8 +1458,8 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount _id (must be a metaads account).
-        String destinationId = "destinationId_example"; // String | Meta pixel/dataset ID.
+        String accountId = "accountId_example"; // String | SocialAccount _id (a metaads or pinterestads account).
+        String destinationId = "destinationId_example"; // String | Meta pixel/dataset ID, or the numeric Pinterest ad account id.
         try {
             ApiResponse<GetConversionsQuality200Response> response = apiInstance.getConversionsQualityWithHttpInfo(accountId, destinationId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1481,8 +1481,8 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount _id (must be a metaads account). | |
-| **destinationId** | **String**| Meta pixel/dataset ID. | |
+| **accountId** | **String**| SocialAccount _id (a metaads or pinterestads account). | |
+| **destinationId** | **String**| Meta pixel/dataset ID, or the numeric Pinterest ad account id. | |
 
 ### Return type
 
@@ -1506,7 +1506,7 @@ ApiResponse<[**GetConversionsQuality200Response**](GetConversionsQuality200Respo
 | **200** | Match-quality rows, one per event name. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **405** | Platform does not expose Event Match Quality (non-Meta). |  -  |
+| **405** | Platform does not expose Event Match Quality (neither Meta nor Pinterest). |  -  |
 
 
 ## listAdConversionGoals
@@ -2011,7 +2011,7 @@ ApiResponse<[**ListConversionAssociations200Response**](ListConversionAssociatio
 
 List conversion destinations
 
-Returns the list of pixels (Meta), conversion actions (Google), conversion rules (LinkedIn), or pixels (OpenAI Ads) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.), and the event type is locked to the destination. For Meta and OpenAI Ads, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+Returns the list of pixels (Meta), conversion actions (Google), conversion rules (LinkedIn), pixels (OpenAI Ads) or ad accounts (Pinterest) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.), and the event type is locked to the destination. For Meta and OpenAI Ads, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
 
 ### Example
 
@@ -2034,7 +2034,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, or openaiads).
+        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, openaiads, or pinterestads).
         try {
             ListConversionDestinations200Response result = apiInstance.listConversionDestinations(accountId);
             System.out.println(result);
@@ -2054,7 +2054,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (metaads, googleads, linkedinads, tiktokads, or openaiads). | |
+| **accountId** | **String**| SocialAccount ID (metaads, googleads, linkedinads, tiktokads, openaiads, or pinterestads). | |
 
 ### Return type
 
@@ -2087,7 +2087,7 @@ public class Example {
 
 List conversion destinations
 
-Returns the list of pixels (Meta), conversion actions (Google), conversion rules (LinkedIn), or pixels (OpenAI Ads) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.), and the event type is locked to the destination. For Meta and OpenAI Ads, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
+Returns the list of pixels (Meta), conversion actions (Google), conversion rules (LinkedIn), pixels (OpenAI Ads) or ad accounts (Pinterest) accessible to the connected ads account. Use the returned &#x60;id&#x60; as &#x60;destinationId&#x60; when posting to &#x60;POST /v1/ads/conversions&#x60;.  For Google and LinkedIn, each destination&#39;s &#x60;type&#x60; reflects the conversion type (PURCHASE, LEAD, SIGN_UP, etc.), and the event type is locked to the destination. For Meta and OpenAI Ads, &#x60;type&#x60; is absent: pixels accept any event name per request.  For LinkedIn, destinations are returned across every sponsored ad account the connected token can access; the &#x60;adAccountId&#x60; field on each destination identifies the parent ad account and is required for subsequent CRUD calls (update, delete, associations, metrics). 
 
 ### Example
 
@@ -2111,7 +2111,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
-        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, or openaiads).
+        String accountId = "accountId_example"; // String | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, openaiads, or pinterestads).
         try {
             ApiResponse<ListConversionDestinations200Response> response = apiInstance.listConversionDestinationsWithHttpInfo(accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2133,7 +2133,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| SocialAccount ID (metaads, googleads, linkedinads, tiktokads, or openaiads). | |
+| **accountId** | **String**| SocialAccount ID (metaads, googleads, linkedinads, tiktokads, openaiads, or pinterestads). | |
 
 ### Return type
 
@@ -2665,7 +2665,7 @@ ApiResponse<[**RemoveCustomConversionGoal200Response**](RemoveCustomConversionGo
 
 Send conversion events
 
-Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; (OFFLINE conversions only) - OpenAI Ads (&#x60;openaiads&#x60;) via its Conversions API (a separate host, &#x60;bzr.openai.com&#x60;)  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60; - OpenAI Ads: pixel wire id (numeric &#x60;pixel_id&#x60;, distinct from the internal pixel id), as returned by &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  OpenAI Ads notes: requires a tracking tag (pixel) to already exist on the account. Returns 422 with code &#x60;TRACKING_TAG_REQUIRED&#x60; if &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; hasn&#39;t been called yet.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. OpenAI Ads caps at 1000 per request; larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. - OpenAI Ads: a fixed subset of standard names (Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule) maps 1:1 onto OpenAI&#39;s own event-type enum; any other standard name or custom string is sent as &#x60;type: custom&#x60; with the name preserved. 
+Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; (OFFLINE conversions only) - OpenAI Ads (&#x60;openaiads&#x60;) via its Conversions API (a separate host, &#x60;bzr.openai.com&#x60;) - Pinterest (&#x60;pinterestads&#x60;) via &#x60;POST /v5/ad_accounts/{id}/events&#x60;  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60; - OpenAI Ads: pixel wire id (numeric &#x60;pixel_id&#x60;, distinct from the internal pixel id), as returned by &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60; - Pinterest: numeric ad account id, e.g. &#x60;549755885175&#x60; (Pinterest attributes to the ad account, not to a tag)  Pinterest notes: each event needs an &#x60;email&#x60;, or &#x60;ipAddress&#x60; plus &#x60;userAgent&#x60;; others are listed in &#x60;failures&#x60; with code &#x60;INVALID_EVENT&#x60; and the rest are still sent. &#x60;clickIds.epik&#x60; (the &#x60;_epik&#x60; cookie) is sent as &#x60;click_id&#x60;. &#x60;actionSource&#x60; &#x60;web&#x60; stays &#x60;web&#x60;, offline sources become &#x60;offline&#x60;, and app events need &#x60;platformData.action_source&#x60; &#x60;app_android&#x60; or &#x60;app_ios&#x60;. Pinterest answers per event, so one bad event does not fail its chunk (failures carry code &#x60;PINTEREST_EVENT_FAILED&#x60;). &#x60;consent.adUserData: DENIED&#x60; sets &#x60;opt_out&#x60;. The connected user needs a Business Access role on the ad account (403 otherwise).  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  OpenAI Ads notes: requires a tracking tag (pixel) to already exist on the account. Returns 422 with code &#x60;TRACKING_TAG_REQUIRED&#x60; if &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; hasn&#39;t been called yet.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. OpenAI Ads caps at 1000 per request; larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. - OpenAI Ads: a fixed subset of standard names (Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule) maps 1:1 onto OpenAI&#39;s own event-type enum; any other standard name or custom string is sent as &#x60;type: custom&#x60; with the name preserved. - Pinterest: standard names map onto Pinterest&#39;s (Purchase &#x3D; &#x60;checkout&#x60;, AddToCart &#x3D; &#x60;add_to_cart&#x60;, InitiateCheckout &#x3D; &#x60;initiate_checkout&#x60;, AddPaymentInfo &#x3D; &#x60;add_payment_info&#x60;, Lead &#x3D; &#x60;lead&#x60;, CompleteRegistration &#x3D; &#x60;signup&#x60;, Subscribe &#x3D; &#x60;subscribe&#x60;, ViewContent &#x3D; &#x60;view_content&#x60;, Search &#x3D; &#x60;search&#x60;, PageView &#x3D; &#x60;page_visit&#x60;); any other string is sent as is, so it matches an advertiser defined event of that name. 
 
 ### Example
 
@@ -2742,7 +2742,7 @@ public class Example {
 
 Send conversion events
 
-Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; (OFFLINE conversions only) - OpenAI Ads (&#x60;openaiads&#x60;) via its Conversions API (a separate host, &#x60;bzr.openai.com&#x60;)  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60; - OpenAI Ads: pixel wire id (numeric &#x60;pixel_id&#x60;, distinct from the internal pixel id), as returned by &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  OpenAI Ads notes: requires a tracking tag (pixel) to already exist on the account. Returns 422 with code &#x60;TRACKING_TAG_REQUIRED&#x60; if &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; hasn&#39;t been called yet.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. OpenAI Ads caps at 1000 per request; larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. - OpenAI Ads: a fixed subset of standard names (Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule) maps 1:1 onto OpenAI&#39;s own event-type enum; any other standard name or custom string is sent as &#x60;type: custom&#x60; with the name preserved. 
+Relay one or more conversion events to the target ad platform&#39;s native Conversions API. Platform is inferred from the provided &#x60;accountId&#x60;. Requires the Ads add-on.  Supported platforms:  - Meta (&#x60;metaads&#x60;) via Graph API - Google Ads (&#x60;googleads&#x60;) via Data Manager API &#x60;ingestEvents&#x60; - LinkedIn (&#x60;linkedinads&#x60;) via &#x60;/rest/conversionEvents&#x60; - TikTok (&#x60;tiktokads&#x60;) via the Offline Events API &#x60;/offline/batch/&#x60; (OFFLINE conversions only) - OpenAI Ads (&#x60;openaiads&#x60;) via its Conversions API (a separate host, &#x60;bzr.openai.com&#x60;) - Pinterest (&#x60;pinterestads&#x60;) via &#x60;POST /v5/ad_accounts/{id}/events&#x60;  &#x60;destinationId&#x60; semantics differ per platform:  - Meta: pixel (dataset) ID, e.g. &#x60;123456789012345&#x60; - Google: conversion action resource name, e.g. &#x60;customers/1234567890/conversionActions/987654321&#x60; - LinkedIn: conversion rule ID or URN, e.g. &#x60;104012&#x60; or &#x60;urn:lla:llaPartnerConversion:104012&#x60; - TikTok: Offline Event Set ID, e.g. &#x60;7057103914977558530&#x60; - OpenAI Ads: pixel wire id (numeric &#x60;pixel_id&#x60;, distinct from the internal pixel id), as returned by &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60; - Pinterest: numeric ad account id, e.g. &#x60;549755885175&#x60; (Pinterest attributes to the ad account, not to a tag)  Pinterest notes: each event needs an &#x60;email&#x60;, or &#x60;ipAddress&#x60; plus &#x60;userAgent&#x60;; others are listed in &#x60;failures&#x60; with code &#x60;INVALID_EVENT&#x60; and the rest are still sent. &#x60;clickIds.epik&#x60; (the &#x60;_epik&#x60; cookie) is sent as &#x60;click_id&#x60;. &#x60;actionSource&#x60; &#x60;web&#x60; stays &#x60;web&#x60;, offline sources become &#x60;offline&#x60;, and app events need &#x60;platformData.action_source&#x60; &#x60;app_android&#x60; or &#x60;app_ios&#x60;. Pinterest answers per event, so one bad event does not fail its chunk (failures carry code &#x60;PINTEREST_EVENT_FAILED&#x60;). &#x60;consent.adUserData: DENIED&#x60; sets &#x60;opt_out&#x60;. The connected user needs a Business Access role on the ad account (403 otherwise).  TikTok notes: this path sends OFFLINE conversions (in-store / CRM / call-center), not web-pixel events. Each event must carry an email or phone (TikTok requires at least one). The connected TikTok ads account must have granted the Offline Events permission; older grants must reconnect.  OpenAI Ads notes: requires a tracking tag (pixel) to already exist on the account. Returns 422 with code &#x60;TRACKING_TAG_REQUIRED&#x60; if &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; hasn&#39;t been called yet.  Callers can list valid destinations via &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;.  All PII (email, phone, names, external IDs) is hashed with SHA-256 server-side per each platform&#39;s normalization spec, including Google&#39;s Gmail-specific dot/plus-suffix stripping. Send plaintext. LinkedIn &#x60;externalIds&#x60; are passed through as plaintext per LinkedIn&#39;s spec; only emails and phones are hashed.  For LinkedIn, the connected account must have been authorized after the Conversions API rollout (i.e. the OAuth grant must include &#x60;rw_conversions&#x60;). Older accounts must reconnect.  Batching is handled automatically. Meta caps at 1000 events per request and rejects the entire batch if any event is malformed. Google caps at 2000. LinkedIn caps at 5000 and is also all-or-nothing per chunk. OpenAI Ads caps at 1000 per request; larger submissions are split into 1000-event chunks, each all-or-nothing (a malformed event fails every event in that chunk, not the whole request).  Dedup: pass a stable &#x60;eventId&#x60; on every event. Meta and LinkedIn use it to dedupe against browser-side pixel/Insight Tag events; Google maps it to &#x60;transactionId&#x60;.  Per-platform &#x60;eventName&#x60; semantics:  - Meta: free-form. Standard names (Purchase, Lead, ...) match Meta&#39;s built-in events; custom strings are accepted. - Google: ignored. The conversion action&#39;s category determines the event type. Send the standard name closest to your action for documentation, but the platform will not branch on it. - LinkedIn: ignored. The conversion rule&#39;s &#x60;type&#x60; (LEAD, PURCHASE, etc.) is locked to the destination at rule-creation time. Send the standard name for documentation; LinkedIn does not branch on it. - OpenAI Ads: a fixed subset of standard names (Purchase, Lead, AddToCart, ViewContent, InitiateCheckout, CompleteRegistration, Subscribe, StartTrial, Schedule) maps 1:1 onto OpenAI&#39;s own event-type enum; any other standard name or custom string is sent as &#x60;type: custom&#x60; with the name preserved. - Pinterest: standard names map onto Pinterest&#39;s (Purchase &#x3D; &#x60;checkout&#x60;, AddToCart &#x3D; &#x60;add_to_cart&#x60;, InitiateCheckout &#x3D; &#x60;initiate_checkout&#x60;, AddPaymentInfo &#x3D; &#x60;add_payment_info&#x60;, Lead &#x3D; &#x60;lead&#x60;, CompleteRegistration &#x3D; &#x60;signup&#x60;, Subscribe &#x3D; &#x60;subscribe&#x60;, ViewContent &#x3D; &#x60;view_content&#x60;, Search &#x3D; &#x60;search&#x60;, PageView &#x3D; &#x60;page_visit&#x60;); any other string is sent as is, so it matches an advertiser defined event of that name. 
 
 ### Example
 

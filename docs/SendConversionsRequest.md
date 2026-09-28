@@ -7,10 +7,10 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**accountId** | **String** | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, or openaiads). |  |
-|**destinationId** | **String** | Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN. For OpenAI Ads, the pixel wire id.  |  |
+|**accountId** | **String** | SocialAccount ID (metaads, googleads, linkedinads, tiktokads, openaiads, or pinterestads). |  |
+|**destinationId** | **String** | Platform destination identifier. For Meta, the pixel/dataset ID. For Google, the conversion action resource name. For LinkedIn, the conversion rule ID or full &#x60;urn:lla:llaPartnerConversion:{id}&#x60; URN. For OpenAI Ads, the pixel wire id. For Pinterest, the numeric ad account id.  |  |
 |**events** | [**List&lt;ConversionEvent&gt;**](ConversionEvent.md) |  |  |
-|**testCode** | **String** | Meta &#x60;test_event_code&#x60; passthrough. Ignored by Google, LinkedIn, and OpenAI Ads. |  [optional] |
+|**testCode** | **String** | Meta &#x60;test_event_code&#x60; passthrough. On Pinterest any value sends the batch with &#x60;test&#x3D;true&#x60; (validated, not recorded). Ignored by Google, LinkedIn, and OpenAI Ads. |  [optional] |
 |**consent** | [**SendConversionsRequestConsent**](SendConversionsRequestConsent.md) |  |  [optional] |
 
 

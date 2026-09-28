@@ -14,6 +14,7 @@ Platform click identifiers captured from the originating ad click.
 |**gbraid** | **String** | Google iOS 14.5+ app attribution ID. |  [optional] |
 |**wbraid** | **String** | Google iOS 14.5+ web-to-app attribution ID. |  [optional] |
 |**liFatId** | **String** | LinkedIn first-party ad tracking click ID. Captured by parsing &#x60;li_fat_id&#x60; from landing-page URLs after the advertiser enables enhanced conversion tracking on the LinkedIn Insight Tag. Sent to LinkedIn as the LINKEDIN_FIRST_PARTY_ADS_TRACKING_UUID userId. Opaque token, not hashed.  |  [optional] |
+|**epik** | **String** | Pinterest click ID (the &#x60;epik&#x60; URL param or &#x60;_epik&#x60; cookie). Sent to Pinterest as &#x60;click_id&#x60;, not hashed. |  [optional] |
 
 
 
