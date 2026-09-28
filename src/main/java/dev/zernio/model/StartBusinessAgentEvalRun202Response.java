@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   StartBusinessAgentEvalRun202Response.JSON_PROPERTY_JOB_ID,
   StartBusinessAgentEvalRun202Response.JSON_PROPERTY_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartBusinessAgentEvalRun202Response {
   public static final String JSON_PROPERTY_JOB_ID = "job_id";
   @javax.annotation.Nonnull

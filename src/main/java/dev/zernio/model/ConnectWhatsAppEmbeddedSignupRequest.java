@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_REDIRECT_URL,
   ConnectWhatsAppEmbeddedSignupRequest.JSON_PROPERTY_ECHO_CONNECT_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWhatsAppEmbeddedSignupRequest {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nonnull

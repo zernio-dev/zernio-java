@@ -123,6 +123,8 @@ docs/AssignGoogleBusinessLocationRequest.md
 docs/AssignPageUser201Response.md
 docs/AssignPageUser201ResponseUser.md
 docs/AssignPageUserRequest.md
+docs/AssignTrackingTagUser200Response.md
+docs/AssignTrackingTagUserRequest.md
 docs/AttachAdGroupAssets201Response.md
 docs/AttachAdLabel200Response.md
 docs/AttachBrandedCallingNumbersRequest.md
@@ -1469,7 +1471,9 @@ docs/ListTikTokCommercialMusic200Response.md
 docs/ListTikTokCommercialMusic200ResponseTracksInner.md
 docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
 docs/ListTrackingTagEvents200Response.md
+docs/ListTrackingTagPartners200Response.md
 docs/ListTrackingTagSharedAccounts200Response.md
+docs/ListTrackingTagUsers200Response.md
 docs/ListTrackingTags200Response.md
 docs/ListUsers200Response.md
 docs/ListUsers200ResponseUsersInner.md
@@ -1732,6 +1736,7 @@ docs/RemoveMessageReaction200Response.md
 docs/RemovePageUser200Response.md
 docs/RemoveTrackingTagFromStore200Response.md
 docs/RemoveTrackingTagFromStore200ResponseInstall.md
+docs/RemoveTrackingTagUser200Response.md
 docs/RemoveWhatsAppGroupParticipantsRequest.md
 docs/ReplaceAdAudienceCompanies200Response.md
 docs/ReplaceAdAudienceCompaniesRequest.md
@@ -2016,6 +2021,8 @@ docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
 docs/TrackingTagEventInput.md
 docs/TrackingTagInstallBlockedReason.md
+docs/TrackingTagPartner.md
+docs/TrackingTagUser.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
 docs/TransferVoiceCallRequest.md
@@ -2715,6 +2722,8 @@ src/main/java/dev/zernio/model/AssignGoogleBusinessLocationRequest.java
 src/main/java/dev/zernio/model/AssignPageUser201Response.java
 src/main/java/dev/zernio/model/AssignPageUser201ResponseUser.java
 src/main/java/dev/zernio/model/AssignPageUserRequest.java
+src/main/java/dev/zernio/model/AssignTrackingTagUser200Response.java
+src/main/java/dev/zernio/model/AssignTrackingTagUserRequest.java
 src/main/java/dev/zernio/model/AttachAdGroupAssets201Response.java
 src/main/java/dev/zernio/model/AttachAdLabel200Response.java
 src/main/java/dev/zernio/model/AttachBrandedCallingNumbersRequest.java
@@ -4033,7 +4042,9 @@ src/main/java/dev/zernio/model/ListTikTokCommercialMusic200Response.java
 src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInner.java
 src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInnerClip.java
 src/main/java/dev/zernio/model/ListTrackingTagEvents200Response.java
+src/main/java/dev/zernio/model/ListTrackingTagPartners200Response.java
 src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
+src/main/java/dev/zernio/model/ListTrackingTagUsers200Response.java
 src/main/java/dev/zernio/model/ListTrackingTags200Response.java
 src/main/java/dev/zernio/model/ListUsers200Response.java
 src/main/java/dev/zernio/model/ListUsers200ResponseUsersInner.java
@@ -4282,6 +4293,7 @@ src/main/java/dev/zernio/model/RemoveMessageReaction200Response.java
 src/main/java/dev/zernio/model/RemovePageUser200Response.java
 src/main/java/dev/zernio/model/RemoveTrackingTagFromStore200Response.java
 src/main/java/dev/zernio/model/RemoveTrackingTagFromStore200ResponseInstall.java
+src/main/java/dev/zernio/model/RemoveTrackingTagUser200Response.java
 src/main/java/dev/zernio/model/RemoveWhatsAppGroupParticipantsRequest.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompanies200Response.java
 src/main/java/dev/zernio/model/ReplaceAdAudienceCompaniesRequest.java
@@ -4561,6 +4573,8 @@ src/main/java/dev/zernio/model/TrackingTagDiagnostic.java
 src/main/java/dev/zernio/model/TrackingTagEvent.java
 src/main/java/dev/zernio/model/TrackingTagEventInput.java
 src/main/java/dev/zernio/model/TrackingTagInstallBlockedReason.java
+src/main/java/dev/zernio/model/TrackingTagPartner.java
+src/main/java/dev/zernio/model/TrackingTagUser.java
 src/main/java/dev/zernio/model/TransferVoiceCall200Response.java
 src/main/java/dev/zernio/model/TransferVoiceCallRequest.java
 src/main/java/dev/zernio/model/TriggerWorkflow200Response.java
@@ -5043,3 +5057,10 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AssignTrackingTagUser200ResponseTest.java
+src/test/java/dev/zernio/model/AssignTrackingTagUserRequestTest.java
+src/test/java/dev/zernio/model/ListTrackingTagPartners200ResponseTest.java
+src/test/java/dev/zernio/model/ListTrackingTagUsers200ResponseTest.java
+src/test/java/dev/zernio/model/RemoveTrackingTagUser200ResponseTest.java
+src/test/java/dev/zernio/model/TrackingTagPartnerTest.java
+src/test/java/dev/zernio/model/TrackingTagUserTest.java

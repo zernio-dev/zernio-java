@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addTrackingTagSharedAccount**](TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
 | [**addTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account |
+| [**assignTrackingTagUser**](TrackingTagsApi.md#assignTrackingTagUser) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag |
+| [**assignTrackingTagUserWithHttpInfo**](TrackingTagsApi.md#assignTrackingTagUserWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag |
 | [**createTrackingTag**](TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
 | [**createTrackingTagWithHttpInfo**](TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag |
 | [**createTrackingTagEvent**](TrackingTagsApi.md#createTrackingTagEvent) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event |
@@ -26,14 +28,20 @@ All URIs are relative to *https://zernio.com/api*
 | [**installTrackingTagOnStoreWithHttpInfo**](TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site |
 | [**listTrackingTagEvents**](TrackingTagsApi.md#listTrackingTagEvents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
 | [**listTrackingTagEventsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagEventsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events |
+| [**listTrackingTagPartners**](TrackingTagsApi.md#listTrackingTagPartners) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag |
+| [**listTrackingTagPartnersWithHttpInfo**](TrackingTagsApi.md#listTrackingTagPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag |
 | [**listTrackingTagSharedAccounts**](TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**listTrackingTagSharedAccountsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
+| [**listTrackingTagUsers**](TrackingTagsApi.md#listTrackingTagUsers) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users |
+| [**listTrackingTagUsersWithHttpInfo**](TrackingTagsApi.md#listTrackingTagUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users |
 | [**listTrackingTags**](TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**listTrackingTagsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**removeTrackingTagFromStore**](TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site |
 | [**removeTrackingTagFromStoreWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site |
 | [**removeTrackingTagSharedAccount**](TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**removeTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
+| [**removeTrackingTagUser**](TrackingTagsApi.md#removeTrackingTagUser) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag |
+| [**removeTrackingTagUserWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagUserWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag |
 | [**updateAdTrackingTags**](TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateAdTrackingTagsWithHttpInfo**](TrackingTagsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
 | [**updateTrackingTag**](TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag |
@@ -207,6 +215,170 @@ ApiResponse<[**AddTrackingTagSharedAccount201Response**](AddTrackingTagSharedAcc
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## assignTrackingTagUser
+
+> AssignTrackingTagUser200Response assignTrackingTagUser(accountId, tagId, assignTrackingTagUserRequest)
+
+Assign a user to a tag
+
+Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        AssignTrackingTagUserRequest assignTrackingTagUserRequest = new AssignTrackingTagUserRequest(); // AssignTrackingTagUserRequest | 
+        try {
+            AssignTrackingTagUser200Response result = apiInstance.assignTrackingTagUser(accountId, tagId, assignTrackingTagUserRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#assignTrackingTagUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **assignTrackingTagUserRequest** | [**AssignTrackingTagUserRequest**](AssignTrackingTagUserRequest.md)|  | |
+
+### Return type
+
+[**AssignTrackingTagUser200Response**](AssignTrackingTagUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User assigned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## assignTrackingTagUserWithHttpInfo
+
+> ApiResponse<AssignTrackingTagUser200Response> assignTrackingTagUser assignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest)
+
+Assign a user to a tag
+
+Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        AssignTrackingTagUserRequest assignTrackingTagUserRequest = new AssignTrackingTagUserRequest(); // AssignTrackingTagUserRequest | 
+        try {
+            ApiResponse<AssignTrackingTagUser200Response> response = apiInstance.assignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#assignTrackingTagUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+| **assignTrackingTagUserRequest** | [**AssignTrackingTagUserRequest**](AssignTrackingTagUserRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AssignTrackingTagUser200Response**](AssignTrackingTagUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User assigned |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
 
 
 ## createTrackingTag
@@ -1861,6 +2033,166 @@ ApiResponse<[**ListTrackingTagEvents200Response**](ListTrackingTagEvents200Respo
 | **501** | The platform has no conversion-event objects (code &#x60;platform_not_supported&#x60;); the message names the alternative. |  -  |
 
 
+## listTrackingTagPartners
+
+> ListTrackingTagPartners200Response listTrackingTagPartners(accountId, tagId)
+
+List partner businesses of a tag
+
+Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            ListTrackingTagPartners200Response result = apiInstance.listTrackingTagPartners(accountId, tagId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagPartners");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+[**ListTrackingTagPartners200Response**](ListTrackingTagPartners200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partners listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no partner sharing (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## listTrackingTagPartnersWithHttpInfo
+
+> ApiResponse<ListTrackingTagPartners200Response> listTrackingTagPartners listTrackingTagPartnersWithHttpInfo(accountId, tagId)
+
+List partner businesses of a tag
+
+Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            ApiResponse<ListTrackingTagPartners200Response> response = apiInstance.listTrackingTagPartnersWithHttpInfo(accountId, tagId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagPartners");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+ApiResponse<[**ListTrackingTagPartners200Response**](ListTrackingTagPartners200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Partners listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no partner sharing (code &#x60;platform_not_supported&#x60;). |  -  |
+
+
 ## listTrackingTagSharedAccounts
 
 > ListTrackingTagSharedAccounts200Response listTrackingTagSharedAccounts(accountId, tagId)
@@ -2021,6 +2353,166 @@ ApiResponse<[**ListTrackingTagSharedAccounts200Response**](ListTrackingTagShared
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## listTrackingTagUsers
+
+> ListTrackingTagUsers200Response listTrackingTagUsers(accountId, tagId)
+
+List tag users
+
+People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            ListTrackingTagUsers200Response result = apiInstance.listTrackingTagUsers(accountId, tagId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+[**ListTrackingTagUsers200Response**](ListTrackingTagUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag users listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
+
+## listTrackingTagUsersWithHttpInfo
+
+> ApiResponse<ListTrackingTagUsers200Response> listTrackingTagUsers listTrackingTagUsersWithHttpInfo(accountId, tagId)
+
+List tag users
+
+People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Tag id (`TrackingTag.id`).
+        try {
+            ApiResponse<ListTrackingTagUsers200Response> response = apiInstance.listTrackingTagUsersWithHttpInfo(accountId, tagId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#listTrackingTagUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Tag id (&#x60;TrackingTag.id&#x60;). | |
+
+### Return type
+
+ApiResponse<[**ListTrackingTagUsers200Response**](ListTrackingTagUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tag users listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform has no tag user assignment (code &#x60;platform_not_supported&#x60;). |  -  |
 
 
 ## listTrackingTags
@@ -2515,6 +3007,170 @@ ApiResponse<Void>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | The platform does not offer this operation (code &#x60;platform_not_supported&#x60;); the message names the reason and the alternative. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## removeTrackingTagUser
+
+> RemoveTrackingTagUser200Response removeTrackingTagUser(accountId, tagId, userId)
+
+Remove a user from a tag
+
+Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String userId = "userId_example"; // String | User id (`TrackingTagUser.id`).
+        try {
+            RemoveTrackingTagUser200Response result = apiInstance.removeTrackingTagUser(accountId, tagId, userId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#removeTrackingTagUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **userId** | **String**| User id (&#x60;TrackingTagUser.id&#x60;). | |
+
+### Return type
+
+[**RemoveTrackingTagUser200Response**](RemoveTrackingTagUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove tag users through its API (code &#x60;platform_not_supported&#x60;); the message says where to do it. |  -  |
+
+## removeTrackingTagUserWithHttpInfo
+
+> ApiResponse<RemoveTrackingTagUser200Response> removeTrackingTagUser removeTrackingTagUserWithHttpInfo(accountId, tagId, userId)
+
+Remove a user from a tag
+
+Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | 
+        String userId = "userId_example"; // String | User id (`TrackingTagUser.id`).
+        try {
+            ApiResponse<RemoveTrackingTagUser200Response> response = apiInstance.removeTrackingTagUserWithHttpInfo(accountId, tagId, userId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#removeTrackingTagUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**|  | |
+| **userId** | **String**| User id (&#x60;TrackingTagUser.id&#x60;). | |
+
+### Return type
+
+ApiResponse<[**RemoveTrackingTagUser200Response**](RemoveTrackingTagUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | User removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required, or the platform token lacks the permission (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | The platform cannot remove tag users through its API (code &#x60;platform_not_supported&#x60;); the message says where to do it. |  -  |
 
 
 ## updateAdTrackingTags

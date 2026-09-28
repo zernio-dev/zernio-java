@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateBlogArticleRequestImage.JSON_PROPERTY_URL,
   CreateBlogArticleRequestImage.JSON_PROPERTY_ALT_TEXT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBlogArticleRequestImage {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

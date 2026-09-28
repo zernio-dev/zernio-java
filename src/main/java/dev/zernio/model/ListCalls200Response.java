@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListCalls200Response.JSON_PROPERTY_CALLS,
   ListCalls200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCalls200Response {
   public static final String JSON_PROPERTY_CALLS = "calls";
   @javax.annotation.Nullable

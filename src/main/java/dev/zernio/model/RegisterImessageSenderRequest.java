@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   RegisterImessageSenderRequest.JSON_PROPERTY_DISPLAY_NAME,
   RegisterImessageSenderRequest.JSON_PROPERTY_PROVIDER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RegisterImessageSenderRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

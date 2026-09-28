@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   StartBusinessAgentEvalRunRequest.JSON_PROPERTY_EVAL_CASE_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StartBusinessAgentEvalRunRequest {
   public static final String JSON_PROPERTY_EVAL_CASE_IDS = "evalCaseIds";
   @javax.annotation.Nonnull

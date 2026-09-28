@@ -52900,6 +52900,243 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/users:
+    get:
+      description: |
+        People and system users of the owning business with access to the tag. Platforms without
+        tag user assignment answer 501.
+
+        Meta: the pixel's assigned users in its owning Business Manager. A pixel on a personal ad
+        account has no business and returns an empty list. Needs the `business_management`
+        permission on the connecting Meta user (an admin of the owning business); without it the
+        call answers 403 asking to reconnect.
+      operationId: listTrackingTagUsers
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Tag id (`TrackingTag.id`).
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingTagUsers_200_response"
+          description: Tag users listed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the platform token lacks the permission\
+            \ (reconnect required)."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: The platform has no tag user assignment (code `platform_not_supported`).
+      security:
+      - bearerAuth: []
+      summary: List tag users
+      tags:
+      - Tracking Tags
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Gives a user of the owning business access to the tag. Assigning an already assigned user
+        replaces their task set.
+
+        Meta: `tasks` are `AA_ANALYZE`, `ADVERTISE`, `ANALYZE`, `EDIT`, `UPLOAD`; `userId` is the
+        business-scoped id from `GET /v1/ads/businesses/users`. A pixel on a personal ad account
+        answers 400. Needs `business_management` like the list.
+      operationId: assignTrackingTagUser
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Tag id (`TrackingTag.id`).
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/assignTrackingTagUser_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/assignTrackingTagUser_200_response"
+          description: User assigned
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the platform token lacks the permission\
+            \ (reconnect required)."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: The platform has no tag user assignment (code `platform_not_supported`).
+      security:
+      - bearerAuth: []
+      summary: Assign a user to a tag
+      tags:
+      - Tracking Tags
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId}:
+    delete:
+      description: |
+        Removes a user's access to the tag, on platforms whose API allows it.
+
+        Meta answers 501: the Business SDK has no delete on the pixel's assigned users, `DELETE
+        /{pixel}/assigned_users` answers "Unsupported delete request" (code 100, subcode 33) and
+        re-assigning with no tasks is refused. Remove the user in Business Settings.
+      operationId: removeTrackingTagUser
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: User id (`TrackingTagUser.id`).
+        explode: false
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeTrackingTagUser_200_response"
+          description: User removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the platform token lacks the permission\
+            \ (reconnect required)."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: The platform cannot remove tag users through its API (code
+            `platform_not_supported`); the message says where to do it.
+      security:
+      - bearerAuth: []
+      summary: Remove a user from a tag
+      tags:
+      - Tracking Tags
+      x-resource-group: ads
+      x-platforms: []
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/tracking-tags/{tagId}/partners:
+    get:
+      description: |
+        Other businesses the tag is shared with. Read-only. Platforms without partner sharing
+        answer 501.
+
+        Meta: the pixel's shared agencies. Sharing a pixel with a new partner is not available:
+        `/{pixel}/agencies` answers "(#3) Application does not have the capability to make this
+        API call" for our app.
+      operationId: listTrackingTagPartners
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Tag id (`TrackingTag.id`).
+        explode: false
+        in: path
+        name: tagId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listTrackingTagPartners_200_response"
+          description: Partners listed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Ads access required, or the platform token lacks the permission\
+            \ (reconnect required)."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: The platform has no partner sharing (code `platform_not_supported`).
+      security:
+      - bearerAuth: []
+      summary: List partner businesses of a tag
+      tags:
+      - Tracking Tags
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
   /v1/accounts/{accountId}/tracking-tags/{tagId}/diagnostics:
     get:
       description: |
@@ -77615,6 +77852,43 @@ components:
           maxLength: 500
           minLength: 1
           type: string
+    TrackingTagUser:
+      description: A person or system user of the owning business with access to a
+        tracking tag.
+      example:
+        name: name
+        id: id
+        tasks:
+        - tasks
+        - tasks
+      properties:
+        id:
+          description: Business-scoped user id (as listed by GET /v1/ads/businesses/users).
+          type: string
+        name:
+          type: string
+        tasks:
+          description: "Platform permission names (Meta: `AA_ANALYZE`, `ADVERTISE`,\
+            \ `ANALYZE`, `EDIT`, `UPLOAD`)."
+          items:
+            type: string
+          type: array
+      required:
+      - id
+      - tasks
+    TrackingTagPartner:
+      description: Another business a tracking tag is shared with.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Partner business id.
+          type: string
+        name:
+          type: string
+      required:
+      - id
     TrackingTagDiagnostic:
       description: One health check the platform runs on a tracking tag.
       example:
@@ -128886,6 +129160,85 @@ components:
           - archived
           - disabled
           type: string
+    listTrackingTagUsers_200_response:
+      example:
+        platform: platform
+        users:
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+      properties:
+        platform:
+          type: string
+        users:
+          items:
+            $ref: "#/components/schemas/TrackingTagUser"
+          type: array
+    assignTrackingTagUser_request:
+      additionalProperties: {}
+      properties:
+        userId:
+          pattern: "^[1-9][0-9]{0,24}$"
+          type: string
+        tasks:
+          items:
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - tasks
+      - userId
+    assignTrackingTagUser_200_response:
+      example:
+        userId: userId
+        platform: platform
+        tasks:
+        - tasks
+        - tasks
+      properties:
+        platform:
+          type: string
+        userId:
+          type: string
+        tasks:
+          items:
+            type: string
+          type: array
+    removeTrackingTagUser_200_response:
+      example:
+        removed: true
+        userId: userId
+        platform: platform
+      properties:
+        platform:
+          type: string
+        userId:
+          type: string
+        removed:
+          type: boolean
+    listTrackingTagPartners_200_response:
+      example:
+        partners:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        platform: platform
+      properties:
+        platform:
+          type: string
+        partners:
+          items:
+            $ref: "#/components/schemas/TrackingTagPartner"
+          type: array
     getTrackingTagDiagnostics_200_response:
       example:
         checks:

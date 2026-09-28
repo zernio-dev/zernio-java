@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.139.0
 
-- Build date: 2026-09-28T18:15:05.721746849Z[Etc/UTC]
+- Build date: 2026-09-28T18:23:34.522370447Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1479,6 +1479,8 @@ Class | Method | HTTP request | Description
 *ToolsApi* | [**downloadTikTokVideoWithHttpInfo**](docs/ToolsApi.md#downloadTikTokVideoWithHttpInfo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
+*TrackingTagsApi* | [**assignTrackingTagUser**](docs/TrackingTagsApi.md#assignTrackingTagUser) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag
+*TrackingTagsApi* | [**assignTrackingTagUserWithHttpInfo**](docs/TrackingTagsApi.md#assignTrackingTagUserWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag
 *TrackingTagsApi* | [**createTrackingTag**](docs/TrackingTagsApi.md#createTrackingTag) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
 *TrackingTagsApi* | [**createTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#createTrackingTagWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags | Create a tracking tag
 *TrackingTagsApi* | [**createTrackingTagEvent**](docs/TrackingTagsApi.md#createTrackingTagEvent) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | Create a conversion event
@@ -1499,14 +1501,20 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site
 *TrackingTagsApi* | [**listTrackingTagEvents**](docs/TrackingTagsApi.md#listTrackingTagEvents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
 *TrackingTagsApi* | [**listTrackingTagEventsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagEventsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
+*TrackingTagsApi* | [**listTrackingTagPartners**](docs/TrackingTagsApi.md#listTrackingTagPartners) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag
+*TrackingTagsApi* | [**listTrackingTagPartnersWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag
 *TrackingTagsApi* | [**listTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**listTrackingTagSharedAccountsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
+*TrackingTagsApi* | [**listTrackingTagUsers**](docs/TrackingTagsApi.md#listTrackingTagUsers) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users
+*TrackingTagsApi* | [**listTrackingTagUsersWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users
 *TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
 *TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
+*TrackingTagsApi* | [**removeTrackingTagUser**](docs/TrackingTagsApi.md#removeTrackingTagUser) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag
+*TrackingTagsApi* | [**removeTrackingTagUserWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagUserWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag
 *TrackingTagsApi* | [**updateAdTrackingTags**](docs/TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *TrackingTagsApi* | [**updateAdTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#updateAdTrackingTagsWithHttpInfo) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
 *TrackingTagsApi* | [**updateTrackingTag**](docs/TrackingTagsApi.md#updateTrackingTag) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
@@ -1941,6 +1949,8 @@ Class | Method | HTTP request | Description
  - [AssignPageUser201Response](docs/AssignPageUser201Response.md)
  - [AssignPageUser201ResponseUser](docs/AssignPageUser201ResponseUser.md)
  - [AssignPageUserRequest](docs/AssignPageUserRequest.md)
+ - [AssignTrackingTagUser200Response](docs/AssignTrackingTagUser200Response.md)
+ - [AssignTrackingTagUserRequest](docs/AssignTrackingTagUserRequest.md)
  - [AttachAdGroupAssets201Response](docs/AttachAdGroupAssets201Response.md)
  - [AttachAdLabel200Response](docs/AttachAdLabel200Response.md)
  - [AttachBrandedCallingNumbersRequest](docs/AttachBrandedCallingNumbersRequest.md)
@@ -3259,7 +3269,9 @@ Class | Method | HTTP request | Description
  - [ListTikTokCommercialMusic200ResponseTracksInner](docs/ListTikTokCommercialMusic200ResponseTracksInner.md)
  - [ListTikTokCommercialMusic200ResponseTracksInnerClip](docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
+ - [ListTrackingTagPartners200Response](docs/ListTrackingTagPartners200Response.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
+ - [ListTrackingTagUsers200Response](docs/ListTrackingTagUsers200Response.md)
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
@@ -3508,6 +3520,7 @@ Class | Method | HTTP request | Description
  - [RemovePageUser200Response](docs/RemovePageUser200Response.md)
  - [RemoveTrackingTagFromStore200Response](docs/RemoveTrackingTagFromStore200Response.md)
  - [RemoveTrackingTagFromStore200ResponseInstall](docs/RemoveTrackingTagFromStore200ResponseInstall.md)
+ - [RemoveTrackingTagUser200Response](docs/RemoveTrackingTagUser200Response.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
  - [ReplaceAdAudienceCompaniesRequest](docs/ReplaceAdAudienceCompaniesRequest.md)
@@ -3787,6 +3800,8 @@ Class | Method | HTTP request | Description
  - [TrackingTagEvent](docs/TrackingTagEvent.md)
  - [TrackingTagEventInput](docs/TrackingTagEventInput.md)
  - [TrackingTagInstallBlockedReason](docs/TrackingTagInstallBlockedReason.md)
+ - [TrackingTagPartner](docs/TrackingTagPartner.md)
+ - [TrackingTagUser](docs/TrackingTagUser.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)
  - [TriggerWorkflow200Response](docs/TriggerWorkflow200Response.md)

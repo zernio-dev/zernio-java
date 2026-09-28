@@ -20,6 +20,8 @@ import dev.zernio.Pair;
 
 import dev.zernio.model.AddTrackingTagSharedAccount201Response;
 import dev.zernio.model.AddTrackingTagSharedAccountRequest;
+import dev.zernio.model.AssignTrackingTagUser200Response;
+import dev.zernio.model.AssignTrackingTagUserRequest;
 import dev.zernio.model.CreateTrackingTag201Response;
 import dev.zernio.model.CreateTrackingTagEvent201Response;
 import dev.zernio.model.CreateTrackingTagEventRequest;
@@ -36,9 +38,12 @@ import dev.zernio.model.InstallTrackingTagOnStore200Response;
 import dev.zernio.model.InstallTrackingTagOnStore422Response;
 import dev.zernio.model.InstallTrackingTagOnStoreRequest;
 import dev.zernio.model.ListTrackingTagEvents200Response;
+import dev.zernio.model.ListTrackingTagPartners200Response;
 import dev.zernio.model.ListTrackingTagSharedAccounts200Response;
+import dev.zernio.model.ListTrackingTagUsers200Response;
 import dev.zernio.model.ListTrackingTags200Response;
 import dev.zernio.model.RemoveTrackingTagFromStore200Response;
+import dev.zernio.model.RemoveTrackingTagUser200Response;
 import dev.zernio.model.TrackingTagEventInput;
 import dev.zernio.model.UpdateAdTrackingTags200Response;
 import dev.zernio.model.UpdateAdTrackingTagsRequest;
@@ -75,7 +80,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:15:05.721746849Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T18:23:34.522370447Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TrackingTagsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -318,6 +323,147 @@ public class TrackingTagsApi {
 
     try {
       byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(addTrackingTagSharedAccountRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Assign a user to a tag
+   * Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param assignTrackingTagUserRequest  (required)
+   * @return AssignTrackingTagUser200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AssignTrackingTagUser200Response assignTrackingTagUser(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull AssignTrackingTagUserRequest assignTrackingTagUserRequest) throws ApiException {
+    return assignTrackingTagUser(accountId, tagId, assignTrackingTagUserRequest, null);
+  }
+
+  /**
+   * Assign a user to a tag
+   * Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param assignTrackingTagUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return AssignTrackingTagUser200Response
+   * @throws ApiException if fails to make API call
+   */
+  public AssignTrackingTagUser200Response assignTrackingTagUser(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull AssignTrackingTagUserRequest assignTrackingTagUserRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<AssignTrackingTagUser200Response> localVarResponse = assignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Assign a user to a tag
+   * Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param assignTrackingTagUserRequest  (required)
+   * @return ApiResponse&lt;AssignTrackingTagUser200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AssignTrackingTagUser200Response> assignTrackingTagUserWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull AssignTrackingTagUserRequest assignTrackingTagUserRequest) throws ApiException {
+    return assignTrackingTagUserWithHttpInfo(accountId, tagId, assignTrackingTagUserRequest, null);
+  }
+
+  /**
+   * Assign a user to a tag
+   * Gives a user of the owning business access to the tag. Assigning an already assigned user replaces their task set.  Meta: &#x60;tasks&#x60; are &#x60;AA_ANALYZE&#x60;, &#x60;ADVERTISE&#x60;, &#x60;ANALYZE&#x60;, &#x60;EDIT&#x60;, &#x60;UPLOAD&#x60;; &#x60;userId&#x60; is the business-scoped id from &#x60;GET /v1/ads/businesses/users&#x60;. A pixel on a personal ad account answers 400. Needs &#x60;business_management&#x60; like the list. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param assignTrackingTagUserRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;AssignTrackingTagUser200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<AssignTrackingTagUser200Response> assignTrackingTagUserWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull AssignTrackingTagUserRequest assignTrackingTagUserRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = assignTrackingTagUserRequestBuilder(accountId, tagId, assignTrackingTagUserRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("assignTrackingTagUser", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<AssignTrackingTagUser200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        AssignTrackingTagUser200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<AssignTrackingTagUser200Response>() {});
+        
+
+        return new ApiResponse<AssignTrackingTagUser200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder assignTrackingTagUserRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull AssignTrackingTagUserRequest assignTrackingTagUserRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling assignTrackingTagUser");
+    }
+    // verify the required parameter 'tagId' is set
+    if (tagId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tagId' when calling assignTrackingTagUser");
+    }
+    // verify the required parameter 'assignTrackingTagUserRequest' is set
+    if (assignTrackingTagUserRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'assignTrackingTagUserRequest' when calling assignTrackingTagUser");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tracking-tags/{tagId}/users"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{tagId}", ApiClient.urlEncode(tagId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(assignTrackingTagUserRequest);
       localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
     } catch (IOException e) {
       throw new ApiException(e);
@@ -1760,6 +1906,133 @@ public class TrackingTagsApi {
   }
 
   /**
+   * List partner businesses of a tag
+   * Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @return ListTrackingTagPartners200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTrackingTagPartners200Response listTrackingTagPartners(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+    return listTrackingTagPartners(accountId, tagId, null);
+  }
+
+  /**
+   * List partner businesses of a tag
+   * Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ListTrackingTagPartners200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTrackingTagPartners200Response listTrackingTagPartners(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListTrackingTagPartners200Response> localVarResponse = listTrackingTagPartnersWithHttpInfo(accountId, tagId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List partner businesses of a tag
+   * Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @return ApiResponse&lt;ListTrackingTagPartners200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTrackingTagPartners200Response> listTrackingTagPartnersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+    return listTrackingTagPartnersWithHttpInfo(accountId, tagId, null);
+  }
+
+  /**
+   * List partner businesses of a tag
+   * Other businesses the tag is shared with. Read-only. Platforms without partner sharing answer 501.  Meta: the pixel&#39;s shared agencies. Sharing a pixel with a new partner is not available: &#x60;/{pixel}/agencies&#x60; answers \&quot;(#3) Application does not have the capability to make this API call\&quot; for our app. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListTrackingTagPartners200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTrackingTagPartners200Response> listTrackingTagPartnersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listTrackingTagPartnersRequestBuilder(accountId, tagId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listTrackingTagPartners", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListTrackingTagPartners200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListTrackingTagPartners200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListTrackingTagPartners200Response>() {});
+        
+
+        return new ApiResponse<ListTrackingTagPartners200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listTrackingTagPartnersRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listTrackingTagPartners");
+    }
+    // verify the required parameter 'tagId' is set
+    if (tagId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tagId' when calling listTrackingTagPartners");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tracking-tags/{tagId}/partners"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{tagId}", ApiClient.urlEncode(tagId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * List accounts it is shared with
    * Meta (&#x60;metaads&#x60;) and LinkedIn (&#x60;linkedinads&#x60;); other platforms return 501.  LinkedIn (&#x60;linkedinads&#x60;): the ad accounts this connection can see that hold access to the Insight Tag; the role (&#x60;FULL&#x60; or &#x60;USE_ONLY&#x60;) is appended to &#x60;name&#x60;. LinkedIn exposes permissions per ad account only, so accounts the connection cannot see are not listed. 
    * @param accountId  (required)
@@ -1867,6 +2140,133 @@ public class TrackingTagsApi {
     HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
 
     String localVarPath = "/v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{tagId}", ApiClient.urlEncode(tagId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List tag users
+   * People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @return ListTrackingTagUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTrackingTagUsers200Response listTrackingTagUsers(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+    return listTrackingTagUsers(accountId, tagId, null);
+  }
+
+  /**
+   * List tag users
+   * People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ListTrackingTagUsers200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListTrackingTagUsers200Response listTrackingTagUsers(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListTrackingTagUsers200Response> localVarResponse = listTrackingTagUsersWithHttpInfo(accountId, tagId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List tag users
+   * People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @return ApiResponse&lt;ListTrackingTagUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTrackingTagUsers200Response> listTrackingTagUsersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId) throws ApiException {
+    return listTrackingTagUsersWithHttpInfo(accountId, tagId, null);
+  }
+
+  /**
+   * List tag users
+   * People and system users of the owning business with access to the tag. Platforms without tag user assignment answer 501.  Meta: the pixel&#39;s assigned users in its owning Business Manager. A pixel on a personal ad account has no business and returns an empty list. Needs the &#x60;business_management&#x60; permission on the connecting Meta user (an admin of the owning business); without it the call answers 403 asking to reconnect. 
+   * @param accountId  (required)
+   * @param tagId Tag id (&#x60;TrackingTag.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListTrackingTagUsers200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListTrackingTagUsers200Response> listTrackingTagUsersWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listTrackingTagUsersRequestBuilder(accountId, tagId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listTrackingTagUsers", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListTrackingTagUsers200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListTrackingTagUsers200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListTrackingTagUsers200Response>() {});
+        
+
+        return new ApiResponse<ListTrackingTagUsers200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listTrackingTagUsersRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listTrackingTagUsers");
+    }
+    // verify the required parameter 'tagId' is set
+    if (tagId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tagId' when calling listTrackingTagUsers");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tracking-tags/{tagId}/users"
         .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
         .replace("{tagId}", ApiClient.urlEncode(tagId.toString()));
 
@@ -2296,6 +2696,142 @@ public class TrackingTagsApi {
     } else {
       localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
     }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Remove a user from a tag
+   * Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+   * @param accountId  (required)
+   * @param tagId  (required)
+   * @param userId User id (&#x60;TrackingTagUser.id&#x60;). (required)
+   * @return RemoveTrackingTagUser200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveTrackingTagUser200Response removeTrackingTagUser(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull String userId) throws ApiException {
+    return removeTrackingTagUser(accountId, tagId, userId, null);
+  }
+
+  /**
+   * Remove a user from a tag
+   * Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+   * @param accountId  (required)
+   * @param tagId  (required)
+   * @param userId User id (&#x60;TrackingTagUser.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return RemoveTrackingTagUser200Response
+   * @throws ApiException if fails to make API call
+   */
+  public RemoveTrackingTagUser200Response removeTrackingTagUser(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    ApiResponse<RemoveTrackingTagUser200Response> localVarResponse = removeTrackingTagUserWithHttpInfo(accountId, tagId, userId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Remove a user from a tag
+   * Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+   * @param accountId  (required)
+   * @param tagId  (required)
+   * @param userId User id (&#x60;TrackingTagUser.id&#x60;). (required)
+   * @return ApiResponse&lt;RemoveTrackingTagUser200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveTrackingTagUser200Response> removeTrackingTagUserWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull String userId) throws ApiException {
+    return removeTrackingTagUserWithHttpInfo(accountId, tagId, userId, null);
+  }
+
+  /**
+   * Remove a user from a tag
+   * Removes a user&#39;s access to the tag, on platforms whose API allows it.  Meta answers 501: the Business SDK has no delete on the pixel&#39;s assigned users, &#x60;DELETE /{pixel}/assigned_users&#x60; answers \&quot;Unsupported delete request\&quot; (code 100, subcode 33) and re-assigning with no tasks is refused. Remove the user in Business Settings. 
+   * @param accountId  (required)
+   * @param tagId  (required)
+   * @param userId User id (&#x60;TrackingTagUser.id&#x60;). (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;RemoveTrackingTagUser200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<RemoveTrackingTagUser200Response> removeTrackingTagUserWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = removeTrackingTagUserRequestBuilder(accountId, tagId, userId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("removeTrackingTagUser", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<RemoveTrackingTagUser200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        RemoveTrackingTagUser200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<RemoveTrackingTagUser200Response>() {});
+        
+
+        return new ApiResponse<RemoveTrackingTagUser200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder removeTrackingTagUserRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nonnull String tagId, @javax.annotation.Nonnull String userId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling removeTrackingTagUser");
+    }
+    // verify the required parameter 'tagId' is set
+    if (tagId == null) {
+      throw new ApiException(400, "Missing the required parameter 'tagId' when calling removeTrackingTagUser");
+    }
+    // verify the required parameter 'userId' is set
+    if (userId == null) {
+      throw new ApiException(400, "Missing the required parameter 'userId' when calling removeTrackingTagUser");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId}"
+        .replace("{accountId}", ApiClient.urlEncode(accountId.toString()))
+        .replace("{tagId}", ApiClient.urlEncode(tagId.toString()))
+        .replace("{userId}", ApiClient.urlEncode(userId.toString()));
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
 
     localVarRequestBuilder.header("Accept", "application/json");
 
