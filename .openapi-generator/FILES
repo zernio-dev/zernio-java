@@ -981,6 +981,7 @@ docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md
 docs/GetTrackingTag200Response.md
 docs/GetTrackingTagStats200Response.md
 docs/GetTrackingTagStats200ResponseStats.md
+docs/GetTrackingTagStoreInstall200Response.md
 docs/GetTweet200Response.md
 docs/GetTweet200ResponseTweet.md
 docs/GetUsage200Response.md
@@ -1169,6 +1170,9 @@ docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
+docs/InstallTrackingTagOnStore200Response.md
+docs/InstallTrackingTagOnStore200ResponseInstall.md
+docs/InstallTrackingTagOnStoreRequest.md
 docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
@@ -1894,6 +1898,7 @@ docs/StartSmsRegistrationRequestCampaign.md
 docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
+docs/StorePixelInstall.md
 docs/SubmitFeedbackRequest.md
 docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
@@ -3464,6 +3469,7 @@ src/main/java/dev/zernio/model/GetTikTokSmartPlusMaterialReport200ResponseRowsIn
 src/main/java/dev/zernio/model/GetTrackingTag200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200Response.java
 src/main/java/dev/zernio/model/GetTrackingTagStats200ResponseStats.java
+src/main/java/dev/zernio/model/GetTrackingTagStoreInstall200Response.java
 src/main/java/dev/zernio/model/GetTweet200Response.java
 src/main/java/dev/zernio/model/GetTweet200ResponseTweet.java
 src/main/java/dev/zernio/model/GetUsage200Response.java
@@ -3641,6 +3647,9 @@ src/main/java/dev/zernio/model/InstagramPlatformData.java
 src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
+src/main/java/dev/zernio/model/InstallTrackingTagOnStore200Response.java
+src/main/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseInstall.java
+src/main/java/dev/zernio/model/InstallTrackingTagOnStoreRequest.java
 src/main/java/dev/zernio/model/InviteAdAccountToManagerRequest.java
 src/main/java/dev/zernio/model/KeywordEntry.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
@@ -4346,6 +4355,7 @@ src/main/java/dev/zernio/model/StartSmsRegistrationRequestCampaign.java
 src/main/java/dev/zernio/model/StartSmsRegistrationRequestTollFree.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerification200Response.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequest.java
+src/main/java/dev/zernio/model/StorePixelInstall.java
 src/main/java/dev/zernio/model/SubmitFeedbackRequest.java
 src/main/java/dev/zernio/model/SubmitFeedbackRequestAgent.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200Response.java
@@ -4855,7 +4865,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseFindingsInnerTest.java
-src/test/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseTest.java
-src/test/java/dev/zernio/model/PreflightBrandedCallingIdentityRequestAuthorizerTest.java
-src/test/java/dev/zernio/model/PreflightBrandedCallingIdentityRequestTest.java
+src/test/java/dev/zernio/model/GetTrackingTagStoreInstall200ResponseTest.java
+src/test/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseInstallTest.java
+src/test/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseTest.java
+src/test/java/dev/zernio/model/InstallTrackingTagOnStoreRequestTest.java
+src/test/java/dev/zernio/model/StorePixelInstallTest.java

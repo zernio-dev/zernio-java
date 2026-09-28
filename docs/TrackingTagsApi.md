@@ -14,10 +14,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**getTrackingTagWithHttpInfo**](TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag |
 | [**getTrackingTagStats**](TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
 | [**getTrackingTagStatsWithHttpInfo**](TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats |
+| [**getTrackingTagStoreInstall**](TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
+| [**getTrackingTagStoreInstallWithHttpInfo**](TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status |
+| [**installTrackingTagOnStore**](TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store |
+| [**installTrackingTagOnStoreWithHttpInfo**](TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store |
 | [**listTrackingTagSharedAccounts**](TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**listTrackingTagSharedAccountsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with |
 | [**listTrackingTags**](TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
 | [**listTrackingTagsWithHttpInfo**](TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags |
+| [**removeTrackingTagFromStore**](TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store |
+| [**removeTrackingTagFromStoreWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store |
 | [**removeTrackingTagSharedAccount**](TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**removeTrackingTagSharedAccountWithHttpInfo**](TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account |
 | [**updateAdTrackingTags**](TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags |
@@ -843,6 +849,336 @@ ApiResponse<[**GetTrackingTagStats200Response**](GetTrackingTagStats200Response.
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
 
 
+## getTrackingTagStoreInstall
+
+> GetTrackingTagStoreInstall200Response getTrackingTagStoreInstall(accountId, tagId, storeAccountId)
+
+Get store install status
+
+Whether this pixel is the one the Shopify store fires. &#x60;installedTagId&#x60; names the pixel the store currently fires, which can be a different tag. Meta only (platform &#x60;metaads&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        String storeAccountId = "storeAccountId_example"; // String | The connected Shopify account id.
+        try {
+            GetTrackingTagStoreInstall200Response result = apiInstance.getTrackingTagStoreInstall(accountId, tagId, storeAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getTrackingTagStoreInstall");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **storeAccountId** | **String**| The connected Shopify account id. | |
+
+### Return type
+
+[**GetTrackingTagStoreInstall200Response**](GetTrackingTagStoreInstall200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Install status |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
+
+## getTrackingTagStoreInstallWithHttpInfo
+
+> ApiResponse<GetTrackingTagStoreInstall200Response> getTrackingTagStoreInstall getTrackingTagStoreInstallWithHttpInfo(accountId, tagId, storeAccountId)
+
+Get store install status
+
+Whether this pixel is the one the Shopify store fires. &#x60;installedTagId&#x60; names the pixel the store currently fires, which can be a different tag. Meta only (platform &#x60;metaads&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        String storeAccountId = "storeAccountId_example"; // String | The connected Shopify account id.
+        try {
+            ApiResponse<GetTrackingTagStoreInstall200Response> response = apiInstance.getTrackingTagStoreInstallWithHttpInfo(accountId, tagId, storeAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#getTrackingTagStoreInstall");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **storeAccountId** | **String**| The connected Shopify account id. | |
+
+### Return type
+
+ApiResponse<[**GetTrackingTagStoreInstall200Response**](GetTrackingTagStoreInstall200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Install status |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
+
+
+## installTrackingTagOnStore
+
+> InstallTrackingTagOnStore200Response installTrackingTagOnStore(accountId, tagId, installTrackingTagOnStoreRequest)
+
+Install on a Shopify store
+
+Puts the Meta pixel on a connected Shopify store&#39;s storefront and checkout through Zernio&#39;s Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses &#x60;shopify_order_{orderId}&#x60; as its event id, so a Conversions API Purchase you send for the same order with that &#x60;eventId&#x60; is deduplicated by Meta.  Idempotent: a store runs one Zernio pixel, so calling it again updates the install and installing a different tag replaces the previous one (reported in &#x60;replacedTagId&#x60;). Events respect the store&#39;s customer privacy settings (marketing consent).  &#x60;accountId&#x60; is the Meta ads account that owns the pixel (&#x60;tagId&#x60;); &#x60;storeAccountId&#x60; is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 &#x60;reconnect_required&#x60; with &#x60;details.authUrl&#x60; to send the merchant to (the Shopify account id stays the same). Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        InstallTrackingTagOnStoreRequest installTrackingTagOnStoreRequest = new InstallTrackingTagOnStoreRequest(); // InstallTrackingTagOnStoreRequest | 
+        try {
+            InstallTrackingTagOnStore200Response result = apiInstance.installTrackingTagOnStore(accountId, tagId, installTrackingTagOnStoreRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#installTrackingTagOnStore");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **installTrackingTagOnStoreRequest** | [**InstallTrackingTagOnStoreRequest**](InstallTrackingTagOnStoreRequest.md)|  | |
+
+### Return type
+
+[**InstallTrackingTagOnStore200Response**](InstallTrackingTagOnStore200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pixel installed on the store |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
+| **502** | Meta or Shopify was unreachable or returned an unclassified error. Retryable. |  -  |
+
+## installTrackingTagOnStoreWithHttpInfo
+
+> ApiResponse<InstallTrackingTagOnStore200Response> installTrackingTagOnStore installTrackingTagOnStoreWithHttpInfo(accountId, tagId, installTrackingTagOnStoreRequest)
+
+Install on a Shopify store
+
+Puts the Meta pixel on a connected Shopify store&#39;s storefront and checkout through Zernio&#39;s Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends PageView, ViewContent, AddToCart, Search, InitiateCheckout, AddPaymentInfo and Purchase (with value, currency, content_ids and contents) to the pixel, each with an event id. Purchase uses &#x60;shopify_order_{orderId}&#x60; as its event id, so a Conversions API Purchase you send for the same order with that &#x60;eventId&#x60; is deduplicated by Meta.  Idempotent: a store runs one Zernio pixel, so calling it again updates the install and installing a different tag replaces the previous one (reported in &#x60;replacedTagId&#x60;). Events respect the store&#39;s customer privacy settings (marketing consent).  &#x60;accountId&#x60; is the Meta ads account that owns the pixel (&#x60;tagId&#x60;); &#x60;storeAccountId&#x60; is the Shopify account. Stores connected before pixel support must re-approve the Zernio app: the call then answers 409 &#x60;reconnect_required&#x60; with &#x60;details.authUrl&#x60; to send the merchant to (the Shopify account id stays the same). Meta only (platform &#x60;metaads&#x60;); other platforms return 405. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        InstallTrackingTagOnStoreRequest installTrackingTagOnStoreRequest = new InstallTrackingTagOnStoreRequest(); // InstallTrackingTagOnStoreRequest | 
+        try {
+            ApiResponse<InstallTrackingTagOnStore200Response> response = apiInstance.installTrackingTagOnStoreWithHttpInfo(accountId, tagId, installTrackingTagOnStoreRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#installTrackingTagOnStore");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **installTrackingTagOnStoreRequest** | [**InstallTrackingTagOnStoreRequest**](InstallTrackingTagOnStoreRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**InstallTrackingTagOnStore200Response**](InstallTrackingTagOnStore200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pixel installed on the store |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store must re-approve the Zernio Shopify app to grant pixel access (code &#x60;reconnect_required&#x60;). Send the merchant to &#x60;details.authUrl&#x60;; the Shopify account id stays the same. Also returned while the store account itself needs reconnection (code &#x60;ads_connection_required&#x60;). |  -  |
+| **502** | Meta or Shopify was unreachable or returned an unclassified error. Retryable. |  -  |
+
+
 ## listTrackingTagSharedAccounts
 
 > ListTrackingTagSharedAccounts200Response listTrackingTagSharedAccounts(accountId, tagId)
@@ -1165,6 +1501,170 @@ ApiResponse<[**ListTrackingTags200Response**](ListTrackingTags200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support listing tracking tags. |  -  |
 | **502** | Meta was unreachable or returned an unclassified error (type: platform_error; the raw Meta payload is in platformError). Retryable. |  -  |
+
+
+## removeTrackingTagFromStore
+
+> GetTrackingTagStoreInstall200Response removeTrackingTagFromStore(accountId, tagId, storeAccountId)
+
+Remove from a Shopify store
+
+Removes the pixel from the store. Idempotent: nothing installed returns 200 with &#x60;installed: false&#x60;. If the store fires a different pixel, nothing is removed and the call answers 409 &#x60;invalid_resource_state&#x60;. Meta only (platform &#x60;metaads&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        String storeAccountId = "storeAccountId_example"; // String | The connected Shopify account id.
+        try {
+            GetTrackingTagStoreInstall200Response result = apiInstance.removeTrackingTagFromStore(accountId, tagId, storeAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#removeTrackingTagFromStore");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **storeAccountId** | **String**| The connected Shopify account id. | |
+
+### Return type
+
+[**GetTrackingTagStoreInstall200Response**](GetTrackingTagStoreInstall200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pixel removed (or was not installed) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store fires a different pixel (code &#x60;invalid_resource_state&#x60;), or the store must re-approve the Zernio app (code &#x60;reconnect_required&#x60;, see &#x60;details.authUrl&#x60;). |  -  |
+
+## removeTrackingTagFromStoreWithHttpInfo
+
+> ApiResponse<GetTrackingTagStoreInstall200Response> removeTrackingTagFromStore removeTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId)
+
+Remove from a Shopify store
+
+Removes the pixel from the store. Idempotent: nothing installed returns 200 with &#x60;installed: false&#x60;. If the store fires a different pixel, nothing is removed and the call answers 409 &#x60;invalid_resource_state&#x60;. Meta only (platform &#x60;metaads&#x60;). 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.TrackingTagsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        TrackingTagsApi apiInstance = new TrackingTagsApi(defaultClient);
+        String accountId = "accountId_example"; // String | 
+        String tagId = "tagId_example"; // String | Meta pixel id.
+        String storeAccountId = "storeAccountId_example"; // String | The connected Shopify account id.
+        try {
+            ApiResponse<GetTrackingTagStoreInstall200Response> response = apiInstance.removeTrackingTagFromStoreWithHttpInfo(accountId, tagId, storeAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling TrackingTagsApi#removeTrackingTagFromStore");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**|  | |
+| **tagId** | **String**| Meta pixel id. | |
+| **storeAccountId** | **String**| The connected Shopify account id. | |
+
+### Return type
+
+ApiResponse<[**GetTrackingTagStoreInstall200Response**](GetTrackingTagStoreInstall200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pixel removed (or was not installed) |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **405** | Platform does not support store installs. |  -  |
+| **409** | The store fires a different pixel (code &#x60;invalid_resource_state&#x60;), or the store must re-approve the Zernio app (code &#x60;reconnect_required&#x60;, see &#x60;details.authUrl&#x60;). |  -  |
 
 
 ## removeTrackingTagSharedAccount

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.124.0
+- API version: 1.125.0
 
-- Build date: 2026-09-28T14:23:50.880491068Z[Etc/UTC]
+- Build date: 2026-09-28T14:44:22.100472769Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.124.0</version>
+  <version>1.125.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.124.0"
+compile "dev.zernio:zernio-sdk:1.125.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.124.0.jar`
+- `target/zernio-sdk-1.125.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1439,10 +1439,16 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**getTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId} | Get a tracking tag
 *TrackingTagsApi* | [**getTrackingTagStats**](docs/TrackingTagsApi.md#getTrackingTagStats) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
+*TrackingTagsApi* | [**getTrackingTagStoreInstall**](docs/TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
+*TrackingTagsApi* | [**getTrackingTagStoreInstallWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
+*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store
+*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store
 *TrackingTagsApi* | [**listTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**listTrackingTagSharedAccountsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
+*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store
+*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**updateAdTrackingTags**](docs/TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
@@ -2721,6 +2727,7 @@ Class | Method | HTTP request | Description
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
+ - [GetTrackingTagStoreInstall200Response](docs/GetTrackingTagStoreInstall200Response.md)
  - [GetTweet200Response](docs/GetTweet200Response.md)
  - [GetTweet200ResponseTweet](docs/GetTweet200ResponseTweet.md)
  - [GetUsage200Response](docs/GetUsage200Response.md)
@@ -2898,6 +2905,9 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
+ - [InstallTrackingTagOnStore200Response](docs/InstallTrackingTagOnStore200Response.md)
+ - [InstallTrackingTagOnStore200ResponseInstall](docs/InstallTrackingTagOnStore200ResponseInstall.md)
+ - [InstallTrackingTagOnStoreRequest](docs/InstallTrackingTagOnStoreRequest.md)
  - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
@@ -3603,6 +3613,7 @@ Class | Method | HTTP request | Description
  - [StartSmsRegistrationRequestTollFree](docs/StartSmsRegistrationRequestTollFree.md)
  - [StartWhatsAppCallerIdVerification200Response](docs/StartWhatsAppCallerIdVerification200Response.md)
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
+ - [StorePixelInstall](docs/StorePixelInstall.md)
  - [SubmitFeedbackRequest](docs/SubmitFeedbackRequest.md)
  - [SubmitFeedbackRequestAgent](docs/SubmitFeedbackRequestAgent.md)
  - [SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
