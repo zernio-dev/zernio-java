@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CreateTrackingTag201Response.JSON_PROPERTY_PLATFORM,
   CreateTrackingTag201Response.JSON_PROPERTY_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:54:13.901483269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:57:14.929330663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateTrackingTag201Response {
   /**
    * Gets or Sets platform
@@ -53,7 +53,9 @@ public class CreateTrackingTag201Response {
     
     XADS(String.valueOf("xads")),
     
-    LINKEDINADS(String.valueOf("linkedinads"));
+    LINKEDINADS(String.valueOf("linkedinads")),
+    
+    PINTERESTADS(String.valueOf("pinterestads"));
 
     private String value;
 

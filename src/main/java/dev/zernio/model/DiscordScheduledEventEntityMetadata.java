@@ -35,7 +35,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   DiscordScheduledEventEntityMetadata.JSON_PROPERTY_LOCATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:54:13.901483269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:57:14.929330663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DiscordScheduledEventEntityMetadata {
   public static final String JSON_PROPERTY_LOCATION = "location";
   @javax.annotation.Nullable

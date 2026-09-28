@@ -51641,6 +51641,11 @@ paths:
         numeric ad account id or `urn:li:sponsoredAccount:{id}`; omit it to scan every active ad
         account the connection can see. The tag `id` IS the partner id the site embeds, so
         `siteTagId` equals `id`. LinkedIn tags have no name; it is shown as `Insight Tag {id}`.
+
+        Pinterest (platform `pinterestads`): lists Pinterest tags (conversion tags). `adAccountId`
+        is the numeric Pinterest ad account id (no prefix); omit it to walk every ad account the
+        connection can read (an ad account the user has no Business Access role on is skipped).
+        `id` equals `siteTagId`, the id the site loads with `pintrk('load', id)`.
       operationId: listTrackingTags
       parameters:
       - description: Ads SocialAccount id (platform `metaads` or `openaiads`).
@@ -51698,6 +51703,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       x-accepts:
       - application/json
     post:
@@ -51735,6 +51741,11 @@ paths:
         Idempotent: an ad account holds at most one Insight Tag, so when it already has one that
         tag is returned and nothing is created. `name` is ignored (LinkedIn tags have no name) and
         there is no API to delete an Insight Tag.
+
+        Pinterest (platform `pinterestads`): creates a Pinterest tag on the numeric ad account
+        `adAccountId` (`POST /v5/ad_accounts/{id}/conversion_tags`). Returns the tag with
+        Pinterest's `code` snippet. NOT idempotent and Pinterest has no dry-run and no delete for
+        tags, so never retry blindly: list first.
       operationId: createTrackingTag
       parameters:
       - description: Ads SocialAccount id (platform `metaads` or `openaiads`).
@@ -51795,6 +51806,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -51819,6 +51831,10 @@ paths:
         only on rules a page can fire (event-specific Insight Tag rules: not Conversions API
         rules, no URL match rules). `adAccountId` picks which ad account's rules to read; it
         defaults to the account that created the tag.
+
+        Pinterest (platform `pinterestads`): returns the tag with Pinterest's own `code` snippet
+        and `lastFiredTime`. Without `adAccountId` Zernio finds the ad account that owns the tag
+        (404 when no readable ad account holds it).
       operationId: getTrackingTag
       parameters:
       - explode: false
@@ -51883,6 +51899,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       x-accepts:
       - application/json
     patch:
@@ -51905,6 +51922,10 @@ paths:
         LinkedIn (`linkedinads`): only `firstPartyCookieStatus` (`first_party_cookie_enabled` or
         `first_party_cookie_disabled`), which sets the tag's first-party tracking. It applies to
         every ad account using the tag. `empty` answers 400: LinkedIn has no unset state.
+
+        Pinterest (platform `pinterestads`): 501. Pinterest API v5 only creates, lists and reads
+        tags (no update endpoint); rename a tag or change its enhanced match settings in Pinterest
+        Ads Manager.
       operationId: updateTrackingTag
       parameters:
       - explode: false
@@ -51966,6 +51987,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -52251,6 +52273,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       - shopify
       - wordpress
       x-accepts:
@@ -52335,6 +52358,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       - shopify
       - wordpress
       x-accepts:
@@ -52400,6 +52424,14 @@ paths:
         is created for you. The `li_fat_id` click id is read from the landing URL and kept in a
         first-party cookie for 30 days. WordPress gets LinkedIn's base code, which records page
         views.
+
+        **Pinterest (platform `pinterestads`)**: Shopify sends `pagevisit`, `viewcontent`,
+        `addtocart`, `search`, `initiatecheckout`, `addpaymentinfo` and `checkout` to the tag,
+        each with `event_id` (Purchase: `shopify_order_{orderId}`, for dedup with the Pinterest
+        Conversions API), value, currency, order quantity and line items, plus the `epik` click id
+        kept in the `_epik` cookie. WordPress gets Pinterest's base code (core.js, `load`, `page`)
+        with a `pagevisit` event; the manual fallback is the official Pinterest for WooCommerce
+        plugin (WooCommerce stores).
       operationId: installTrackingTagOnStore
       parameters:
       - explode: false
@@ -52470,6 +52502,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       - shopify
       - wordpress
       x-content-type: application/json
@@ -52558,6 +52591,7 @@ paths:
       - linkedin
       - x
       - openai
+      - pinterest
       x-accepts:
       - application/json
     post:
@@ -52655,6 +52689,7 @@ paths:
       - linkedin
       - x
       - openai
+      - pinterest
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -52741,6 +52776,7 @@ paths:
       - linkedin
       - x
       - openai
+      - pinterest
       x-accepts:
       - application/json
     patch:
@@ -52821,6 +52857,7 @@ paths:
       - linkedin
       - x
       - openai
+      - pinterest
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -52902,6 +52939,14 @@ paths:
         `lastFiredTime`, `creationTime`, `blocked`) and one per conversion rule (`kind:
         conversion_rule`, `id`, `name`, `type`, `conversionMethod`, `status`, `lastFiredTime`).
         Times are unix seconds; `startTime`/`endTime` are ignored.
+
+        Pinterest (platform `pinterestads`): rows typed by `type`: one `tag` row (`lastFiredTime`,
+        `status`, `enhancedMatchStatus`), `event` rows for the conversion events Pinterest has
+        seen on the tag (`source` is `page_visit` or `ocpm_eligible`, the latter meaning the event
+        can be optimized for, with the neutral `siteEvent` where one maps), and `event_quality`
+        rows with the ad account's Event Quality Score for tag events over the last `1d` and `14d`
+        (ad-account level, not per tag; an account Pinterest cannot score yet carries `error`
+        instead). Pinterest has no time-bounded counts, so `startTime`/`endTime` answer 400.
       operationId: getTrackingTagStats
       parameters:
       - explode: false
@@ -53009,6 +53054,7 @@ paths:
       - x
       - openai
       - linkedin
+      - pinterest
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/blogs:
@@ -77301,6 +77347,7 @@ components:
           - googleads
           - xads
           - linkedinads
+          - pinterestads
           type: string
         kind:
           description: "Platform-native flavor of the tag (Meta: `pixel`)."
@@ -128037,6 +128084,7 @@ components:
           - googleads
           - xads
           - linkedinads
+          - pinterestads
           type: string
         tags:
           items:
@@ -128123,6 +128171,7 @@ components:
           - googleads
           - xads
           - linkedinads
+          - pinterestads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -128175,6 +128224,7 @@ components:
           - xads
           - openaiads
           - linkedinads
+          - pinterestads
           type: string
         tag:
           $ref: "#/components/schemas/TrackingTag"
@@ -128371,6 +128421,7 @@ components:
           - xads
           - openaiads
           - linkedinads
+          - pinterestads
           type: string
         install:
           $ref: "#/components/schemas/getTrackingTagStoreInstall_200_response_install"
@@ -128487,6 +128538,7 @@ components:
           - xads
           - openaiads
           - linkedinads
+          - pinterestads
           type: string
         install:
           $ref: "#/components/schemas/installTrackingTagOnStore_200_response_install"
@@ -128581,6 +128633,7 @@ components:
           - xads
           - openaiads
           - linkedinads
+          - pinterestads
           type: string
         install:
           $ref: "#/components/schemas/removeTrackingTagFromStore_200_response_install"
@@ -128719,6 +128772,7 @@ components:
           - xads
           - openaiads
           - linkedinads
+          - pinterestads
           type: string
         stats:
           $ref: "#/components/schemas/getTrackingTagStats_200_response_stats"

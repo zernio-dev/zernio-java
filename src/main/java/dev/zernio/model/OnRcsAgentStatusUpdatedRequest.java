@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   OnRcsAgentStatusUpdatedRequest.JSON_PROPERTY_STATUS,
   OnRcsAgentStatusUpdatedRequest.JSON_PROPERTY_REASON
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:54:13.901483269Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-28T17:57:14.929330663Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnRcsAgentStatusUpdatedRequest {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

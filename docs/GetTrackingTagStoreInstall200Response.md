@@ -22,6 +22,7 @@
 | XADS | &quot;xads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
+| PINTERESTADS | &quot;pinterestads&quot; |
 
 
 

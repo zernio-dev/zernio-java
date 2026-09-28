@@ -22,6 +22,7 @@
 | GOOGLEADS | &quot;googleads&quot; |
 | XADS | &quot;xads&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
+| PINTERESTADS | &quot;pinterestads&quot; |
 
 
 
