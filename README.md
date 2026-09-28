@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.129.2
+- API version: 1.130.0
 
-- Build date: 2026-09-28T16:13:12.323549874Z[Etc/UTC]
+- Build date: 2026-09-28T16:20:11.884922106Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.129.2</version>
+  <version>1.130.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.129.2"
+compile "dev.zernio:zernio-sdk:1.130.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.129.2.jar`
+- `target/zernio-sdk-1.130.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3668,6 +3668,7 @@ Class | Method | HTTP request | Description
  - [StartWhatsAppCallerIdVerification200Response](docs/StartWhatsAppCallerIdVerification200Response.md)
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [StorePixelInstall](docs/StorePixelInstall.md)
+ - [StorePixelInstallTagsInner](docs/StorePixelInstallTagsInner.md)
  - [SubmitFeedbackRequest](docs/SubmitFeedbackRequest.md)
  - [SubmitFeedbackRequestAgent](docs/SubmitFeedbackRequestAgent.md)
  - [SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
@@ -3699,6 +3700,7 @@ Class | Method | HTTP request | Description
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
  - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
  - [TrackingTag](docs/TrackingTag.md)
+ - [TrackingTagEventsInner](docs/TrackingTagEventsInner.md)
  - [TrackingTagInstallBlockedReason](docs/TrackingTagInstallBlockedReason.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)

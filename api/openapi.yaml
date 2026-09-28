@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.129.2
+  version: 1.130.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51082,7 +51082,7 @@ paths:
         only; OpenAI Ads has no get-by-id endpoint).
 
         Meta (platform `metaads`) and OpenAI Ads (platform `openaiads`); other
-        platforms return 405. The `accountId` must be the ads SocialAccount
+        platforms return 501. The `accountId` must be the ads SocialAccount
         created by the Ads add-on connect flow (Meta) or the OpenAI Ads
         connect flow, not a Facebook/Instagram posting account. Get your Meta
         `act_...` ids from `GET /v1/ads/accounts`; `adAccountId` is ignored for
@@ -51125,8 +51125,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support listing tracking tags.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51169,7 +51170,7 @@ paths:
         for OpenAI, a new Conversions API key plus, with `defaultEventType`, a
         new conversion event setting). Do not retry blindly on
         timeout. Meta (platform `metaads`) and OpenAI Ads (platform
-        `openaiads`); other platforms return 405.
+        `openaiads`); other platforms return 501.
       operationId: createTrackingTag
       parameters:
       - description: Ads SocialAccount id (platform `metaads` or `openaiads`).
@@ -51206,8 +51207,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support creating tracking tags.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "422":
           description: "OpenAI Ads only: the ad account is not enabled for pixel management.\
             \ Contact your OpenAI partner representative."
@@ -51232,8 +51234,8 @@ paths:
       description: |
         Returns the full tag record including the base-code `code` snippet,
         `lastFiredTime`, `ownerBusinessId`, `isUnavailable`, etc. Meta only
-        (platform `metaads`); other platforms return 405. OpenAI Ads has no
-        get-by-id endpoint, so it 405s here too. Use
+        (platform `metaads`); other platforms return 501. OpenAI Ads has no
+        get-by-id endpoint, so it answers 501 here too. Use
         `GET /v1/accounts/{accountId}/tracking-tags` (list) instead.
       operationId: getTrackingTag
       parameters:
@@ -51244,7 +51246,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Pixel id.
+      - description: Tag id (`TrackingTag.id`).
         explode: false
         in: path
         name: tagId
@@ -51252,6 +51254,15 @@ paths:
         schema:
           type: string
         style: simple
+      - description: Scopes the lookup on platforms whose tag ids live inside an ad
+          account. Ignored elsewhere.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -51271,8 +51282,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support fetching a tracking tag.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51292,7 +51304,7 @@ paths:
         `enableAutomaticMatching`, `automaticMatchingFields`,
         `firstPartyCookieStatus`, `dataUseSetting`. At least one is required.
         Returns the re-fetched canonical tag. Meta only (platform `metaads`);
-        other platforms return 405.
+        other platforms return 501.
 
         There is no DELETE: Meta has no API to delete a pixel. To stop using
         one, unshare it from your ad accounts (`DELETE
@@ -51340,8 +51352,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support updating tracking tags.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51361,7 +51374,7 @@ paths:
       description: |
         `adAccountId` may be passed as a query parameter (recommended) or as a
         JSON body field for clients that can send DELETE bodies. Meta only
-        (platform `metaads`); other platforms return 405.
+        (platform `metaads`); other platforms return 501.
       operationId: removeTrackingTagSharedAccount
       parameters:
       - explode: false
@@ -51404,8 +51417,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support shared accounts.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51420,7 +51434,7 @@ paths:
       x-accepts:
       - application/json
     get:
-      description: Meta only (platform `metaads`); other platforms return 405.
+      description: Meta only (platform `metaads`); other platforms return 501.
       operationId: listTrackingTagSharedAccounts
       parameters:
       - explode: false
@@ -51457,8 +51471,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support shared accounts.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51478,7 +51493,7 @@ paths:
         account can use it. Requires that you administer both the pixel's owning
         Business Manager and the target ad account; a pixel on a personal
         (non-BM) ad account can't be shared (Meta will reject the call). Meta
-        only (platform `metaads`); other platforms return 405.
+        only (platform `metaads`); other platforms return 501.
       operationId: addTrackingTagSharedAccount
       parameters:
       - explode: false
@@ -51522,8 +51537,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support shared accounts.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -51541,9 +51557,10 @@ paths:
   /v1/accounts/{accountId}/tracking-tags/{tagId}/install:
     delete:
       description: |
-        Removes the pixel from the store. Idempotent: nothing installed returns 200 with
-        `installed: false`. If the store fires a different pixel, nothing is removed and the
-        call answers 409 `invalid_resource_state`. Meta only (platform `metaads`).
+        Removes the tag from the store. Idempotent: nothing installed returns 200 with
+        `installed: false`. If the store fires a different tag of the same platform, nothing is
+        removed and the call answers 409 `invalid_resource_state`. Shopify: other platforms'
+        tags stay; the web pixel itself is deleted once no tag remains.
 
         WordPress: deletes every widget Zernio created for this pixel and reports how many in
         `removed` (0 when nothing was installed). Pixel code added by hand is left alone.
@@ -51556,7 +51573,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Meta pixel id.
+      - description: Tag id (`TrackingTag.id`).
         explode: false
         in: path
         name: tagId
@@ -51569,6 +51586,15 @@ paths:
         in: query
         name: storeAccountId
         required: true
+        schema:
+          type: string
+        style: form
+      - description: Scopes the tag lookup on platforms whose tag ids live inside
+          an ad account.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
         schema:
           type: string
         style: form
@@ -51588,8 +51614,9 @@ paths:
             \ on usage-based plans)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support store installs.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "409":
           description: "The store fires a different pixel (code `invalid_resource_state`),\
             \ or the store must re-approve the Zernio app (code `reconnect_required`,\
@@ -51608,14 +51635,16 @@ paths:
       - application/json
     get:
       description: |
-        Whether this pixel is the one the Shopify store fires. `installedTagId` names the pixel
-        the store currently fires, which can be a different tag. Meta only (platform `metaads`).
+        Whether this tag is the one the Shopify store fires for its platform. `installedTagId`
+        names the tag of that platform the store currently fires, which can be a different tag,
+        and `tags` lists every Zernio tag on the store (all platforms).
 
         WordPress: whether the Zernio widget for this pixel is live (in an active widget area,
         script intact), plus a read-only `preflight` with the theme's widget areas and, when an
         install would be blocked, the `reason` POST would return. The preflight reads
         capabilities only, so `ready: true` is not a guarantee: `DISALLOW_UNFILTERED_HTML` or a
         multisite admin who is not a Super Admin still strips the script, which POST detects.
+        `tags` lists every Zernio widget on the site (all platforms, with `active`).
       operationId: getTrackingTagStoreInstall
       parameters:
       - explode: false
@@ -51625,7 +51654,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Meta pixel id.
+      - description: Tag id (`TrackingTag.id`).
         explode: false
         in: path
         name: tagId
@@ -51638,6 +51667,15 @@ paths:
         in: query
         name: storeAccountId
         required: true
+        schema:
+          type: string
+        style: form
+      - description: Scopes the tag lookup on platforms whose tag ids live inside
+          an ad account.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
         schema:
           type: string
         style: form
@@ -51657,8 +51695,9 @@ paths:
             \ on usage-based plans)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support store installs.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "409":
           $ref: "#/components/responses/StoreReconnectRequired"
       security:
@@ -51682,15 +51721,16 @@ paths:
         Purchase uses `shopify_order_{orderId}` as its event id, so a Conversions API Purchase
         you send for the same order with that `eventId` is deduplicated by Meta.
 
-        Idempotent: a store runs one Zernio pixel, so calling it again updates the install and
-        installing a different tag replaces the previous one (reported in `replacedTagId`).
+        Idempotent: a store runs one Zernio web pixel holding one tag per platform, so calling
+        it again updates the install, installing a different tag of the same platform replaces
+        the previous one (reported in `replacedTagId`), and other platforms' tags are kept.
         Events respect the store's customer privacy settings (marketing consent).
 
         `accountId` is the Meta ads account that owns the pixel (`tagId`); `storeAccountId` is the
         Shopify account. Stores connected before pixel support must re-approve the Zernio app:
         the call then answers 409 `reconnect_required` with `details.authUrl` to send the
         merchant to (the Shopify account id stays the same). Meta only (platform `metaads`);
-        other platforms return 405.
+        other platforms return 501.
 
         **WordPress** (`storeAccountId` is a connected WordPress.com or self-hosted site): Zernio
         adds a Custom HTML widget with the Meta pixel base code (fbevents.js, `init`, `PageView`)
@@ -51719,7 +51759,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Meta pixel id.
+      - description: Tag id (`TrackingTag.id`).
         explode: false
         in: path
         name: tagId
@@ -51750,8 +51790,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support store installs.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "409":
           $ref: "#/components/responses/StoreReconnectRequired"
         "422":
@@ -51782,10 +51823,10 @@ paths:
   /v1/accounts/{accountId}/tracking-tags/{tagId}/stats:
     get:
       description: |
-        Returns aggregated event counts for the pixel (`GET /{pixel_id}/stats`).
-        Rows are passed through from Meta as-is; their shape depends on the
-        `aggregation` requested. Meta only (platform `metaads`); other platforms
-        return 405.
+        Returns event counts / health for the tag, where the platform exposes
+        them. Meta: aggregated counts (`GET /{pixel_id}/stats`), rows passed
+        through as-is; their shape depends on the `aggregation` requested.
+        Platforms without a stats API answer 501.
       operationId: getTrackingTagStats
       parameters:
       - explode: false
@@ -51795,7 +51836,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Pixel id.
+      - description: Tag id (`TrackingTag.id`).
         explode: false
         in: path
         name: tagId
@@ -51803,7 +51844,17 @@ paths:
         schema:
           type: string
         style: simple
-      - description: Aggregation dimension. Defaults to `event`.
+      - description: Scopes the lookup on platforms whose tag ids live inside an ad
+          account. Ignored elsewhere.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Meta only (400 on other platforms): aggregation dimension. Defaults\
+          \ to `event`."
         explode: true
         in: query
         name: aggregation
@@ -51864,8 +51915,9 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
-        "405":
-          description: Platform does not support tracking-tag stats.
+        "501":
+          description: The platform does not offer this operation (code `platform_not_supported`);
+            the message names the reason and the alternative.
         "502":
           description: "Meta was unreachable or returned an unclassified error (type:\
             \ platform_error; the raw Meta payload is in platformError). Retryable."
@@ -75559,24 +75611,37 @@ components:
         storeAccountId:
           type: string
         platform:
+          description: The store platform.
           enum:
           - shopify
           - wordpress
           type: string
+        tagPlatform:
+          description: Platform of the tag this install is about (e.g. `metaads`).
+          type: string
+        siteTagId:
+          description: The id the tag carries on the site (see `TrackingTag.siteTagId`).
+          type: string
         installed:
-          description: "Shopify: this tag is the pixel the store fires. WordPress:\
-            \ the Zernio widget for this tag is in an active widget area with its\
-            \ script intact."
+          description: "Shopify: this tag is the one the store fires for its platform.\
+            \ WordPress: the Zernio widget for this tag is in an active widget area\
+            \ with its script intact."
           type: boolean
         shopDomain:
           description: Shopify only.
           example: acme.myshopify.com
           type: string
         installedTagId:
-          description: "Shopify only: the Meta pixel the store fires now (may be a\
-            \ different tag), or null."
+          description: "Shopify only: the tag of the same platform the store fires\
+            \ now (may be a different tag), or null."
           nullable: true
           type: string
+        tags:
+          description: "GET only on WordPress, always on Shopify: every Zernio tag\
+            \ on the store, all platforms."
+          items:
+            $ref: "#/components/schemas/StorePixelInstall_tags_inner"
+          type: array
         webPixelId:
           description: "Shopify only: web pixel id, or null when nothing is installed."
           nullable: true
@@ -75616,27 +75681,51 @@ components:
         a platform has no equivalent. Returned by `listTrackingTags`,
         `createTrackingTag`, `getTrackingTag`, and `updateTrackingTag`.
       example:
-        lastFiredTime: 0
         installed: true
-        ownerBusinessId: ownerBusinessId
         code: code
         creationTime: 6
         kind: pixel
+        isUnavailable: true
+        platform: metaads
+        lastFiredTime: 0
+        ownerBusinessId: ownerBusinessId
         ownerAdAccountId: ownerAdAccountId
         name: name
         id: id
-        isUnavailable: true
-        platform: metaads
+        siteTagId: siteTagId
+        events:
+        - name: name
+          siteEvent: siteEvent
+          id: id
+          type: type
+          status: status
+        - name: name
+          siteEvent: siteEvent
+          id: id
+          type: type
+          status: status
         status: active
       properties:
         id:
-          description: "Platform-native tag id. Meta: numeric pixel id, as a string."
+          description: "Platform-native tag id, the `{tagId}` of the per-tag routes.\
+            \ Meta: numeric pixel id, as a string. OpenAI: the pixel resource id."
           type: string
+        siteTagId:
+          description: The id the on-site code carries. Equals `id` on Meta; differs
+            on platforms with separate API and site ids (OpenAI `pixel_id`).
+          type: string
+        events:
+          description: "Platforms where each conversion is its own object: the tag's\
+            \ conversion events, with the id a site sends for each."
+          items:
+            $ref: "#/components/schemas/TrackingTag_events_inner"
+          type: array
         name:
           type: string
         platform:
           enum:
           - metaads
+          - openaiads
           type: string
         kind:
           description: "Platform-native flavor of the tag (Meta: `pixel`)."
@@ -75653,8 +75742,9 @@ components:
           type: string
         code:
           description: |
-            The base-code `<script>` snippet to install on the site. Meta only;
-            populated by `getTrackingTag`, omitted from the list view.
+            The base-code `<script>` snippet to install on the site, including
+            the page-view call. Populated by `getTrackingTag`, omitted from the
+            list view.
           type: string
         lastFiredTime:
           description: |
@@ -125769,29 +125859,53 @@ components:
       example:
         platform: metaads
         tags:
-        - lastFiredTime: 0
-          installed: true
-          ownerBusinessId: ownerBusinessId
+        - installed: true
           code: code
           creationTime: 6
           kind: pixel
+          isUnavailable: true
+          platform: metaads
+          lastFiredTime: 0
+          ownerBusinessId: ownerBusinessId
           ownerAdAccountId: ownerAdAccountId
           name: name
           id: id
-          isUnavailable: true
-          platform: metaads
+          siteTagId: siteTagId
+          events:
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
           status: active
-        - lastFiredTime: 0
-          installed: true
-          ownerBusinessId: ownerBusinessId
+        - installed: true
           code: code
           creationTime: 6
           kind: pixel
+          isUnavailable: true
+          platform: metaads
+          lastFiredTime: 0
+          ownerBusinessId: ownerBusinessId
           ownerAdAccountId: ownerAdAccountId
           name: name
           id: id
-          isUnavailable: true
-          platform: metaads
+          siteTagId: siteTagId
+          events:
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
           status: active
       properties:
         platform:
@@ -125838,17 +125952,29 @@ components:
     createTrackingTag_201_response:
       example:
         tag:
-          lastFiredTime: 0
           installed: true
-          ownerBusinessId: ownerBusinessId
           code: code
           creationTime: 6
           kind: pixel
+          isUnavailable: true
+          platform: metaads
+          lastFiredTime: 0
+          ownerBusinessId: ownerBusinessId
           ownerAdAccountId: ownerAdAccountId
           name: name
           id: id
-          isUnavailable: true
-          platform: metaads
+          siteTagId: siteTagId
+          events:
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
           status: active
         platform: metaads
       properties:
@@ -125862,17 +125988,29 @@ components:
     getTrackingTag_200_response:
       example:
         tag:
-          lastFiredTime: 0
           installed: true
-          ownerBusinessId: ownerBusinessId
           code: code
           creationTime: 6
           kind: pixel
+          isUnavailable: true
+          platform: metaads
+          lastFiredTime: 0
+          ownerBusinessId: ownerBusinessId
           ownerAdAccountId: ownerAdAccountId
           name: name
           id: id
-          isUnavailable: true
-          platform: metaads
+          siteTagId: siteTagId
+          events:
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
+          - name: name
+            siteEvent: siteEvent
+            id: id
+            type: type
+            status: status
           status: active
         platform: metaads
       properties:
@@ -125883,9 +126021,13 @@ components:
         tag:
           $ref: "#/components/schemas/TrackingTag"
     updateTrackingTag_request:
-      description: At least one field is required; the route returns 400 if the body
-        is empty.
+      description: At least one updatable field is required; the route returns 400
+        if the body is empty or names a field the tag's platform cannot update.
       properties:
+        adAccountId:
+          description: Scopes the lookup on platforms whose tag ids live inside an
+            ad account. Ignored elsewhere.
+          type: string
         name:
           maxLength: 200
           minLength: 1
@@ -125994,14 +126136,12 @@ components:
           preflight:
             $ref: "#/components/schemas/getTrackingTagStoreInstall_200_response_install_allOf_preflight"
       example:
-        installedTagId: installedTagId
         installed: true
         storeAccountId: storeAccountId
         siteUrl: siteUrl
         sidebarId: sidebarId
         method: wordpress_widget
         widgetId: widgetId
-        shopDomain: acme.myshopify.com
         webPixelId: webPixelId
         platform: shopify
         preflight:
@@ -126012,17 +126152,30 @@ components:
             id: id
           reason: reason
           ready: true
+        tags:
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
+        installedTagId: installedTagId
+        tagPlatform: tagPlatform
+        shopDomain: acme.myshopify.com
+        siteTagId: siteTagId
     getTrackingTagStoreInstall_200_response:
       example:
         install:
-          installedTagId: installedTagId
           installed: true
           storeAccountId: storeAccountId
           siteUrl: siteUrl
           sidebarId: sidebarId
           method: wordpress_widget
           widgetId: widgetId
-          shopDomain: acme.myshopify.com
           webPixelId: webPixelId
           platform: shopify
           preflight:
@@ -126033,6 +126186,21 @@ components:
               id: id
             reason: reason
             ready: true
+          tags:
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
+          installedTagId: installedTagId
+          tagPlatform: tagPlatform
+          shopDomain: acme.myshopify.com
+          siteTagId: siteTagId
         platform: metaads
       properties:
         platform:
@@ -126046,6 +126214,10 @@ components:
         storeAccountId:
           description: The connected Shopify (`shopify`) or WordPress (`wordpress`)
             account id.
+          type: string
+        adAccountId:
+          description: Scopes the tag lookup on platforms whose tag ids live inside
+            an ad account. Ignored elsewhere.
           type: string
         sidebarId:
           description: "WordPress only: widget area to use (see `install.preflight.sidebars`\
@@ -126095,8 +126267,21 @@ components:
         replacedTagId: replacedTagId
         webPixelId: webPixelId
         platform: shopify
+        tags:
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
         installedTagId: installedTagId
+        tagPlatform: tagPlatform
         shopDomain: acme.myshopify.com
+        siteTagId: siteTagId
     installTrackingTagOnStore_200_response:
       example:
         install:
@@ -126112,8 +126297,21 @@ components:
           replacedTagId: replacedTagId
           webPixelId: webPixelId
           platform: shopify
+          tags:
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
           installedTagId: installedTagId
+          tagPlatform: tagPlatform
           shopDomain: acme.myshopify.com
+          siteTagId: siteTagId
         platform: metaads
       properties:
         platform:
@@ -126152,31 +126350,57 @@ components:
             description: "WordPress only: number of Zernio widgets deleted."
             type: integer
       example:
-        installedTagId: installedTagId
         installed: true
         storeAccountId: storeAccountId
         siteUrl: siteUrl
         sidebarId: sidebarId
         method: wordpress_widget
-        removed: 0
         widgetId: widgetId
-        shopDomain: acme.myshopify.com
         webPixelId: webPixelId
         platform: shopify
+        tags:
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
+        - sidebarId: sidebarId
+          widgetId: widgetId
+          active: true
+          siteTagId: siteTagId
+          platform: platform
+        installedTagId: installedTagId
+        removed: 0
+        tagPlatform: tagPlatform
+        shopDomain: acme.myshopify.com
+        siteTagId: siteTagId
     removeTrackingTagFromStore_200_response:
       example:
         install:
-          installedTagId: installedTagId
           installed: true
           storeAccountId: storeAccountId
           siteUrl: siteUrl
           sidebarId: sidebarId
           method: wordpress_widget
-          removed: 0
           widgetId: widgetId
-          shopDomain: acme.myshopify.com
           webPixelId: webPixelId
           platform: shopify
+          tags:
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
+          - sidebarId: sidebarId
+            widgetId: widgetId
+            active: true
+            siteTagId: siteTagId
+            platform: platform
+          installedTagId: installedTagId
+          removed: 0
+          tagPlatform: tagPlatform
+          shopDomain: acme.myshopify.com
+          siteTagId: siteTagId
         platform: metaads
       properties:
         platform:
@@ -136407,6 +136631,51 @@ components:
           type: string
         error_message:
           type: string
+    StorePixelInstall_tags_inner:
+      example:
+        sidebarId: sidebarId
+        widgetId: widgetId
+        active: true
+        siteTagId: siteTagId
+        platform: platform
+      properties:
+        platform:
+          type: string
+        siteTagId:
+          type: string
+        widgetId:
+          description: WordPress only.
+          type: string
+        sidebarId:
+          description: WordPress only.
+          type: string
+        active:
+          description: "WordPress only: false when the widget sits outside an active\
+            \ widget area."
+          type: boolean
+    TrackingTag_events_inner:
+      example:
+        name: name
+        siteEvent: siteEvent
+        id: id
+        type: type
+        status: status
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          description: Platform category of the event.
+          type: string
+        siteEvent:
+          description: The value the site sends to fire this event.
+          type: string
+        status:
+          type: string
+      required:
+      - id
+      - name
     inline_object:
       example:
         success: true

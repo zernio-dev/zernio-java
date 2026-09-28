@@ -1931,6 +1931,7 @@ docs/StartSmsRegistrationRequestTollFree.md
 docs/StartWhatsAppCallerIdVerification200Response.md
 docs/StartWhatsAppCallerIdVerificationRequest.md
 docs/StorePixelInstall.md
+docs/StorePixelInstallTagsInner.md
 docs/SubmitFeedbackRequest.md
 docs/SubmitFeedbackRequestAgent.md
 docs/SubmitPhoneNumberKyc200Response.md
@@ -1963,6 +1964,7 @@ docs/TikTokPlatformData.md
 docs/TikTokPlatformDataMusicSoundInfo.md
 docs/ToolsApi.md
 docs/TrackingTag.md
+docs/TrackingTagEventsInner.md
 docs/TrackingTagInstallBlockedReason.md
 docs/TrackingTagsApi.md
 docs/TransferVoiceCall200Response.md
@@ -4423,6 +4425,7 @@ src/main/java/dev/zernio/model/StartSmsRegistrationRequestTollFree.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerification200Response.java
 src/main/java/dev/zernio/model/StartWhatsAppCallerIdVerificationRequest.java
 src/main/java/dev/zernio/model/StorePixelInstall.java
+src/main/java/dev/zernio/model/StorePixelInstallTagsInner.java
 src/main/java/dev/zernio/model/SubmitFeedbackRequest.java
 src/main/java/dev/zernio/model/SubmitFeedbackRequestAgent.java
 src/main/java/dev/zernio/model/SubmitPhoneNumberKyc200Response.java
@@ -4454,6 +4457,7 @@ src/main/java/dev/zernio/model/TikTokDryRunVerdictTiktokInner.java
 src/main/java/dev/zernio/model/TikTokPlatformData.java
 src/main/java/dev/zernio/model/TikTokPlatformDataMusicSoundInfo.java
 src/main/java/dev/zernio/model/TrackingTag.java
+src/main/java/dev/zernio/model/TrackingTagEventsInner.java
 src/main/java/dev/zernio/model/TrackingTagInstallBlockedReason.java
 src/main/java/dev/zernio/model/TransferVoiceCall200Response.java
 src/main/java/dev/zernio/model/TransferVoiceCallRequest.java
@@ -4935,3 +4939,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/StorePixelInstallTagsInnerTest.java
+src/test/java/dev/zernio/model/TrackingTagEventsInnerTest.java
