@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.125.0
+  version: 1.126.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37710,10 +37710,27 @@ paths:
         `YYYY-MM-DD`. In WHERE, `=`, `<`, `<=`, `>`, `>=`, `BETWEEN` and `IS [NOT] NULL` against a
         `'YYYY-MM-DD'` literal are translated; any other form returns Google's 400. New code should
         select the `_date_time` fields directly.
+
+        **TikTok (tiktok/tiktokads)**: passthrough of TikTok's synchronous report
+        (`/report/integrated/get/`). Send `adAccountId`, `dataLevel`, `dimensions`, `metrics`,
+        `fromDate`/`toDate` (TikTok caps the span at 365 days) and optionally `filtering` in the same
+        `[{"field", "operator", "value"}]` shape as Meta (operator is TikTok's `filter_type`, e.g. `IN`;
+        array values are JSON-encoded for TikTok). Rows come back verbatim as
+        `{ dimensions, metrics }` with page-number paging.
+
+        *De-duplicated reach across a set of campaigns, ad groups or ads*: filter the set and group by
+        `country_code` instead of the entity id. TikTok then counts each person once across the whole
+        set and range, per country. Example, two campaigns for a month:
+        `dataLevel=AUCTION_CAMPAIGN&dimensions=country_code&metrics=reach,impressions,frequency&fromDate=2026-09-01&toDate=2026-09-30&filtering=[{"field":"campaign_ids","operator":"IN","value":["1876574798182050","1876575504573650"]}]`.
+        For a set of ads use `dataLevel=AUCTION_AD` with `ad_ids`. A filter on a finer entity than
+        `dataLevel` (e.g. `ad_ids` at `AUCTION_CAMPAIGN`) returns 400: TikTok would otherwise widen it to
+        every parent entity containing those ids. When the set delivers in several countries, reach is
+        per country; summing the rows counts a person reached in two countries twice.
+        `AUCTION_ADVERTISER` rejects entity filters.
       operationId: queryAdInsights
       parameters:
-      - description: Zernio SocialAccount id (posting or ads variant); its platform
-          selects the Meta or Google contract.
+      - description: "Zernio SocialAccount id (posting or ads variant); its platform\
+          \ selects the Meta, Google or TikTok contract."
         explode: true
         in: query
         name: accountId
@@ -37739,14 +37756,79 @@ paths:
           maxLength: 10000
           type: string
         style: form
-      - description: "Google only: platform ad account ID (Google customer ID, digits\
-          \ only) when the connection has several Google Ads accounts."
+      - description: "Google: platform ad account ID (Google customer ID, digits only)\
+          \ when the connection has several Google Ads accounts. TikTok (required\
+          \ there): the advertiser id."
         explode: true
         in: query
         name: adAccountId
         required: false
         schema:
           type: string
+        style: form
+      - description: "TikTok only: report_type."
+        explode: true
+        in: query
+        name: reportType
+        required: false
+        schema:
+          default: BASIC
+          enum:
+          - BASIC
+          - AUDIENCE
+          type: string
+        style: form
+      - description: "TikTok only (required there): data_level."
+        explode: true
+        in: query
+        name: dataLevel
+        required: false
+        schema:
+          enum:
+          - AUCTION_ADVERTISER
+          - AUCTION_CAMPAIGN
+          - AUCTION_ADGROUP
+          - AUCTION_AD
+          type: string
+        style: form
+      - description: "TikTok only (required there): 1-4 comma-separated TikTok dimensions\
+          \ (e.g. country_code, campaign_id, stat_time_day)."
+        explode: true
+        in: query
+        name: dimensions
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "TikTok only (required there): comma-separated TikTok metrics\
+          \ (e.g. reach,impressions,frequency,spend)."
+        explode: true
+        in: query
+        name: metrics
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "TikTok only: page number."
+        explode: true
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          minimum: 1
+          type: integer
+        style: form
+      - description: "TikTok only: rows per page."
+        explode: true
+        in: query
+        name: pageSize
+        required: false
+        schema:
+          default: 100
+          maximum: 1000
+          minimum: 1
+          type: integer
         style: form
       - deprecated: true
         description: "Alias of adAccountId, kept for existing callers"
@@ -37832,8 +37914,9 @@ paths:
         schema:
           type: boolean
         style: form
-      - description: "JSON array of Meta filter objects: [{\"field\", \"operator\"\
-          , \"value\"}]. Applied server-side by Meta."
+      - description: "JSON array of filter objects: [{\"field\", \"operator\", \"\
+          value\"}]. Applied server-side by Meta or TikTok (TikTok fields e.g. campaign_ids,\
+          \ adgroup_ids, ad_ids)."
         explode: true
         in: query
         name: filtering
@@ -37850,7 +37933,7 @@ paths:
         schema:
           type: string
         style: form
-      - description: Start of range (YYYY-MM-DD); requires toDate.
+      - description: Start of range (YYYY-MM-DD); requires toDate. Required on TikTok.
         explode: true
         in: query
         name: fromDate
@@ -37912,12 +37995,15 @@ paths:
             \ the platform's error"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "TikTok only: the connection cannot read that advertiser."
         "429":
           description: Platform rate limit reached. For Google this is the per-user
             operations budget or the shared quota; the message says which and when
             it resets.
         "501":
-          description: Only supported on Meta (facebook/instagram) and Google Ads
+          description: "Only supported on Meta (facebook/instagram), Google Ads and\
+            \ TikTok"
       security:
       - bearerAuth: []
       summary: Flexible live insights query
@@ -37927,6 +38013,7 @@ paths:
       x-platforms:
       - meta
       - google
+      - tiktok
       x-accepts:
       - application/json
   /v1/ads/insights/reports:
@@ -113085,7 +113172,11 @@ components:
     queryAdInsights_200_response_paging:
       example:
         nextPageToken: nextPageToken
+        totalPages: 5
+        pageSize: 6
         after: after
+        page: 0
+        totalRows: 1
       properties:
         after:
           description: Meta cursor for the next page; null when exhausted.
@@ -113095,20 +113186,40 @@ components:
           description: Google cursor for the next page; null when exhausted.
           nullable: true
           type: string
+        page:
+          description: "TikTok only: current page."
+          type: integer
+        pageSize:
+          description: TikTok only.
+          type: integer
+        totalRows:
+          description: TikTok only.
+          type: integer
+        totalPages:
+          description: TikTok only.
+          type: integer
     queryAdInsights_200_response:
       example:
         fieldMask: fieldMask
         data:
         - "{}"
         - "{}"
+        adAccountId: adAccountId
         customerId: customerId
         paging:
           nextPageToken: nextPageToken
+          totalPages: 5
+          pageSize: 6
           after: after
+          page: 0
+          totalRows: 1
         objectId: objectId
       properties:
         objectId:
           description: Meta responses only.
+          type: string
+        adAccountId:
+          description: "TikTok responses only: the advertiser queried."
           type: string
         customerId:
           description: "Google responses only: the customer the query ran against."
@@ -113121,7 +113232,8 @@ components:
           items:
             description: "Raw platform row. Meta: keys are the requested Graph fields\
               \ plus date_start/date_stop. Google: nested GAQL resources in camelCase,\
-              \ int64 counters as strings."
+              \ int64 counters as strings. TikTok: { dimensions, metrics } with metric\
+              \ values as strings."
             type: object
           type: array
         paging:

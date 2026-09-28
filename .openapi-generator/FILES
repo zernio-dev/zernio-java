@@ -4865,8 +4865,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetTrackingTagStoreInstall200ResponseTest.java
-src/test/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseInstallTest.java
-src/test/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseTest.java
-src/test/java/dev/zernio/model/InstallTrackingTagOnStoreRequestTest.java
-src/test/java/dev/zernio/model/StorePixelInstallTest.java
