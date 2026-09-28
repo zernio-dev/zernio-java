@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.143.0
+  version: 1.143.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -139613,7 +139613,7 @@ components:
     Ad_schedule:
       description: "Delivery window as UTC instants. For ads created through Zernio\
         \ this is the start and end the platform stored (on TikTok, read back from\
-        \ the ad group and converted from the ad account timezone); `startDate` is\
+        \ the ad group, whose schedule times TikTok keeps in UTC); `startDate` is\
         \ the creation time only when no start was requested."
       example:
         endDate: 2000-01-23T04:56:07.000+00:00
