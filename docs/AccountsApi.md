@@ -22,12 +22,18 @@ All URIs are relative to *https://zernio.com/api*
 | [**getSlackSettingsWithHttpInfo**](AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings |
 | [**getTikTokCreatorInfo**](AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
 | [**getTikTokCreatorInfoWithHttpInfo**](AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info |
+| [**grantBusinessPartner**](AccountsApi.md#grantBusinessPartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business |
+| [**grantBusinessPartnerWithHttpInfo**](AccountsApi.md#grantBusinessPartnerWithHttpInfo) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business |
 | [**listAccounts**](AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts |
 | [**listAccountsWithHttpInfo**](AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts |
+| [**listBusinessPartners**](AccountsApi.md#listBusinessPartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
+| [**listBusinessPartnersWithHttpInfo**](AccountsApi.md#listBusinessPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page |
 | [**listTikTokCommercialMusic**](AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**listTikTokCommercialMusicWithHttpInfo**](AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music |
 | [**moveAccountToProfile**](AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
 | [**moveAccountToProfileWithHttpInfo**](AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile |
+| [**revokeBusinessPartner**](AccountsApi.md#revokeBusinessPartner) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page |
+| [**revokeBusinessPartnerWithHttpInfo**](AccountsApi.md#revokeBusinessPartnerWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page |
 | [**searchTikTokLocations**](AccountsApi.md#searchTikTokLocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**searchTikTokLocationsWithHttpInfo**](AccountsApi.md#searchTikTokLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags |
 | [**updateAccount**](AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account |
@@ -1427,6 +1433,166 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 | **429** | Creator has reached TikTok daily posting limit |  -  |
 
 
+## grantBusinessPartner
+
+> GrantBusinessPartner201Response grantBusinessPartner(accountId, grantBusinessPartnerRequest)
+
+Share the Page with a partner business
+
+Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Granting to a portfolio that already has access replaces its task set, so the call is safe to repeat.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        GrantBusinessPartnerRequest grantBusinessPartnerRequest = new GrantBusinessPartnerRequest(); // GrantBusinessPartnerRequest | 
+        try {
+            GrantBusinessPartner201Response result = apiInstance.grantBusinessPartner(accountId, grantBusinessPartnerRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#grantBusinessPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+| **grantBusinessPartnerRequest** | [**GrantBusinessPartnerRequest**](GrantBusinessPartnerRequest.md)|  | |
+
+### Return type
+
+[**GrantBusinessPartner201Response**](GrantBusinessPartner201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Page shared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
+| **404** | Account not found, or Meta could not load the partner business. |  -  |
+| **422** | The Page is not owned by a business portfolio, or no Page is linked to the account. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+## grantBusinessPartnerWithHttpInfo
+
+> ApiResponse<GrantBusinessPartner201Response> grantBusinessPartner grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest)
+
+Share the Page with a partner business
+
+Grants a partner business portfolio tasks on the Facebook Page behind this account. With &#x60;ADVERTISE&#x60;, the partner can run ads for the Page from ad accounts in its own portfolio, which is how an integrator advertises for an end user without touching the end user&#39;s ad accounts.  Meta only lets a user token share a Page that a business portfolio owns. A Page outside any portfolio must first be claimed into one at business.facebook.com; this endpoint answers &#x60;422&#x60; until that is done. Granting to a portfolio that already has access replaces its task set, so the call is safe to repeat.  After the grant, the partner assigns its own people to the Page with &#x60;POST /v1/ads/page-users&#x60;; Meta does not assign partner admins automatically. The Instagram professional account linked to the Page is returned in &#x60;page&#x60; so the partner can reference it; Meta exposes no API to share Instagram accounts, that is done in Business Settings. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        GrantBusinessPartnerRequest grantBusinessPartnerRequest = new GrantBusinessPartnerRequest(); // GrantBusinessPartnerRequest | 
+        try {
+            ApiResponse<GrantBusinessPartner201Response> response = apiInstance.grantBusinessPartnerWithHttpInfo(accountId, grantBusinessPartnerRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#grantBusinessPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+| **grantBusinessPartnerRequest** | [**GrantBusinessPartnerRequest**](GrantBusinessPartnerRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**GrantBusinessPartner201Response**](GrantBusinessPartner201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Page shared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
+| **404** | Account not found, or Meta could not load the partner business. |  -  |
+| **422** | The Page is not owned by a business portfolio, or no Page is linked to the account. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+
 ## listAccounts
 
 > AccountsListResponse listAccounts(profileId, platform, status, includeOverLimit, page, limit)
@@ -1595,6 +1761,162 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
+
+
+## listBusinessPartners
+
+> ListBusinessPartners200Response listBusinessPartners(accountId)
+
+List partner businesses of the Page
+
+The business portfolios (Meta Business Managers) that may act on the Facebook Page behind this account, plus the Page&#39;s owning portfolio and linked Instagram professional account. Works on Facebook accounts and on Instagram accounts connected through Facebook Login. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        try {
+            ListBusinessPartners200Response result = apiInstance.listBusinessPartners(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listBusinessPartners");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+
+### Return type
+
+[**ListBusinessPartners200Response**](ListBusinessPartners200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Page ownership and partners |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | No Facebook Page is linked (Instagram Login account, or no Page selected). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+## listBusinessPartnersWithHttpInfo
+
+> ApiResponse<ListBusinessPartners200Response> listBusinessPartners listBusinessPartnersWithHttpInfo(accountId)
+
+List partner businesses of the Page
+
+The business portfolios (Meta Business Managers) that may act on the Facebook Page behind this account, plus the Page&#39;s owning portfolio and linked Instagram professional account. Works on Facebook accounts and on Instagram accounts connected through Facebook Login. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        try {
+            ApiResponse<ListBusinessPartners200Response> response = apiInstance.listBusinessPartnersWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#listBusinessPartners");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+
+### Return type
+
+ApiResponse<[**ListBusinessPartners200Response**](ListBusinessPartners200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Page ownership and partners |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | No Facebook Page is linked (Instagram Login account, or no Page selected). |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 
 ## listTikTokCommercialMusic
@@ -1903,6 +2225,166 @@ ApiResponse<[**MoveAccountToProfile200Response**](MoveAccountToProfile200Respons
 | **401** | Unauthorized |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
+
+
+## revokeBusinessPartner
+
+> RevokeBusinessPartner200Response revokeBusinessPartner(accountId, businessId)
+
+Revoke a partner business from the Page
+
+Removes every task the partner business portfolio held on the Page.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        String businessId = "businessId_example"; // String | Meta business portfolio id of the partner (numeric string).
+        try {
+            RevokeBusinessPartner200Response result = apiInstance.revokeBusinessPartner(accountId, businessId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#revokeBusinessPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+| **businessId** | **String**| Meta business portfolio id of the partner (numeric string). | |
+
+### Return type
+
+[**RevokeBusinessPartner200Response**](RevokeBusinessPartner200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Access revoked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | No Facebook Page is linked to the account. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+
+## revokeBusinessPartnerWithHttpInfo
+
+> ApiResponse<RevokeBusinessPartner200Response> revokeBusinessPartner revokeBusinessPartnerWithHttpInfo(accountId, businessId)
+
+Revoke a partner business from the Page
+
+Removes every task the partner business portfolio held on the Page.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountsApi apiInstance = new AccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id of the Facebook or Instagram account.
+        String businessId = "businessId_example"; // String | Meta business portfolio id of the partner (numeric string).
+        try {
+            ApiResponse<RevokeBusinessPartner200Response> response = apiInstance.revokeBusinessPartnerWithHttpInfo(accountId, businessId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountsApi#revokeBusinessPartner");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id of the Facebook or Instagram account. | |
+| **businessId** | **String**| Meta business portfolio id of the partner (numeric string). | |
+
+### Return type
+
+ApiResponse<[**RevokeBusinessPartner200Response**](RevokeBusinessPartner200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Access revoked |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **422** | No Facebook Page is linked to the account. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 
 ## searchTikTokLocations

@@ -9,8 +9,11 @@
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Account ID (metaads, or a facebook/instagram posting account) |  |
 |**adAccountId** | **String** | Meta ad account ID (act_...) |  |
-|**defaultDsaBeneficiary** | **String** | Legal entity benefiting from ads on this ad account |  |
-|**defaultDsaPayor** | **String** | Legal entity paying for ads on this ad account. Defaults to defaultDsaBeneficiary when omitted. |  [optional] |
+|**name** | **String** | New ad account name. |  [optional] |
+|**spendCap** | **BigDecimal** | Account spend cap in whole currency units; null removes it. |  [optional] |
+|**resetAmountSpent** | **Boolean** | Restart the amount counted against the cap from zero. Cannot be combined with spendCap null. |  [optional] |
+|**defaultDsaBeneficiary** | **String** | Legal entity benefiting from ads on this ad account |  [optional] |
+|**defaultDsaPayor** | **String** | Legal entity paying for ads on this ad account. Defaults to defaultDsaBeneficiary when omitted. Requires defaultDsaBeneficiary. |  [optional] |
 
 
 

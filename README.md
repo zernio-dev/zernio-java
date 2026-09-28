@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.128.0
+- API version: 1.129.0
 
-- Build date: 2026-09-28T15:13:25.480412296Z[Etc/UTC]
+- Build date: 2026-09-28T15:39:41.340654390Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.128.0</version>
+  <version>1.129.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.128.0"
+compile "dev.zernio:zernio-sdk:1.129.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.128.0.jar`
+- `target/zernio-sdk-1.129.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -169,12 +169,18 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getSlackSettingsWithHttpInfo**](docs/AccountsApi.md#getSlackSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
 *AccountsApi* | [**getTikTokCreatorInfo**](docs/AccountsApi.md#getTikTokCreatorInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
 *AccountsApi* | [**getTikTokCreatorInfoWithHttpInfo**](docs/AccountsApi.md#getTikTokCreatorInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/creator-info | Get TikTok creator info
+*AccountsApi* | [**grantBusinessPartner**](docs/AccountsApi.md#grantBusinessPartner) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business
+*AccountsApi* | [**grantBusinessPartnerWithHttpInfo**](docs/AccountsApi.md#grantBusinessPartnerWithHttpInfo) | **POST** /v1/accounts/{accountId}/business-partners | Share the Page with a partner business
 *AccountsApi* | [**listAccounts**](docs/AccountsApi.md#listAccounts) | **GET** /v1/accounts | List accounts
 *AccountsApi* | [**listAccountsWithHttpInfo**](docs/AccountsApi.md#listAccountsWithHttpInfo) | **GET** /v1/accounts | List accounts
+*AccountsApi* | [**listBusinessPartners**](docs/AccountsApi.md#listBusinessPartners) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page
+*AccountsApi* | [**listBusinessPartnersWithHttpInfo**](docs/AccountsApi.md#listBusinessPartnersWithHttpInfo) | **GET** /v1/accounts/{accountId}/business-partners | List partner businesses of the Page
 *AccountsApi* | [**listTikTokCommercialMusic**](docs/AccountsApi.md#listTikTokCommercialMusic) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**listTikTokCommercialMusicWithHttpInfo**](docs/AccountsApi.md#listTikTokCommercialMusicWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/commercial-music | List trending commercial music
 *AccountsApi* | [**moveAccountToProfile**](docs/AccountsApi.md#moveAccountToProfile) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
 *AccountsApi* | [**moveAccountToProfileWithHttpInfo**](docs/AccountsApi.md#moveAccountToProfileWithHttpInfo) | **PATCH** /v1/accounts/{accountId} | Move account to another profile
+*AccountsApi* | [**revokeBusinessPartner**](docs/AccountsApi.md#revokeBusinessPartner) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page
+*AccountsApi* | [**revokeBusinessPartnerWithHttpInfo**](docs/AccountsApi.md#revokeBusinessPartnerWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/business-partners | Revoke a partner business from the Page
 *AccountsApi* | [**searchTikTokLocations**](docs/AccountsApi.md#searchTikTokLocations) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags
 *AccountsApi* | [**searchTikTokLocationsWithHttpInfo**](docs/AccountsApi.md#searchTikTokLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tiktok/locations | Search TikTok location tags
 *AccountsApi* | [**updateAccount**](docs/AccountsApi.md#updateAccount) | **PUT** /v1/accounts/{accountId} | Update account
@@ -189,6 +195,10 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**addAccountSitelinksWithHttpInfo**](docs/AdAccountsApi.md#addAccountSitelinksWithHttpInfo) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks
 *AdAccountsApi* | [**addAccountStructuredSnippets**](docs/AdAccountsApi.md#addAccountStructuredSnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets
 *AdAccountsApi* | [**addAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#addAccountStructuredSnippetsWithHttpInfo) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets
+*AdAccountsApi* | [**assignAdAccountUser**](docs/AdAccountsApi.md#assignAdAccountUser) | **POST** /v1/ads/accounts/users | Assign a user to an ad account
+*AdAccountsApi* | [**assignAdAccountUserWithHttpInfo**](docs/AdAccountsApi.md#assignAdAccountUserWithHttpInfo) | **POST** /v1/ads/accounts/users | Assign a user to an ad account
+*AdAccountsApi* | [**assignPageUser**](docs/AdAccountsApi.md#assignPageUser) | **POST** /v1/ads/page-users | Assign a user to a Page
+*AdAccountsApi* | [**assignPageUserWithHttpInfo**](docs/AdAccountsApi.md#assignPageUserWithHttpInfo) | **POST** /v1/ads/page-users | Assign a user to a Page
 *AdAccountsApi* | [**attachAdLabel**](docs/AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
 *AdAccountsApi* | [**attachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
 *AdAccountsApi* | [**createAdAccount**](docs/AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account
@@ -239,6 +249,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAccountSitelinksWithHttpInfo**](docs/AdAccountsApi.md#listAccountSitelinksWithHttpInfo) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks
 *AdAccountsApi* | [**listAccountStructuredSnippets**](docs/AdAccountsApi.md#listAccountStructuredSnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
 *AdAccountsApi* | [**listAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
+*AdAccountsApi* | [**listAdAccountUsers**](docs/AdAccountsApi.md#listAdAccountUsers) | **GET** /v1/ads/accounts/users | Ad account users
+*AdAccountsApi* | [**listAdAccountUsersWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountUsersWithHttpInfo) | **GET** /v1/ads/accounts/users | Ad account users
 *AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**listAdAccountsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts
 *AdAccountsApi* | [**listAdLabels**](docs/AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | List ad labels
@@ -259,8 +271,12 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listCustomConversionsWithHttpInfo**](docs/AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions
 *AdAccountsApi* | [**listHighDemandPeriods**](docs/AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | List high-demand periods
 *AdAccountsApi* | [**listHighDemandPeriodsWithHttpInfo**](docs/AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | List high-demand periods
+*AdAccountsApi* | [**listMetaBusinessUsers**](docs/AdAccountsApi.md#listMetaBusinessUsers) | **GET** /v1/ads/businesses/users | Business users
+*AdAccountsApi* | [**listMetaBusinessUsersWithHttpInfo**](docs/AdAccountsApi.md#listMetaBusinessUsersWithHttpInfo) | **GET** /v1/ads/businesses/users | Business users
 *AdAccountsApi* | [**listMetaBusinesses**](docs/AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list
 *AdAccountsApi* | [**listMetaBusinessesWithHttpInfo**](docs/AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list
+*AdAccountsApi* | [**listPageUsers**](docs/AdAccountsApi.md#listPageUsers) | **GET** /v1/ads/page-users | Page users of a business
+*AdAccountsApi* | [**listPageUsersWithHttpInfo**](docs/AdAccountsApi.md#listPageUsersWithHttpInfo) | **GET** /v1/ads/page-users | Page users of a business
 *AdAccountsApi* | [**listTikTokAdPixels**](docs/AdAccountsApi.md#listTikTokAdPixels) | **GET** /v1/ads/pixels | List TikTok ad pixels
 *AdAccountsApi* | [**listTikTokAdPixelsWithHttpInfo**](docs/AdAccountsApi.md#listTikTokAdPixelsWithHttpInfo) | **GET** /v1/ads/pixels | List TikTok ad pixels
 *AdAccountsApi* | [**listValueRuleSets**](docs/AdAccountsApi.md#listValueRuleSets) | **GET** /v1/ads/value-rule-sets | List value rule sets
@@ -271,8 +287,12 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**removeAccountSitelinkWithHttpInfo**](docs/AdAccountsApi.md#removeAccountSitelinkWithHttpInfo) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink
 *AdAccountsApi* | [**removeAccountStructuredSnippet**](docs/AdAccountsApi.md#removeAccountStructuredSnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet
 *AdAccountsApi* | [**removeAccountStructuredSnippetWithHttpInfo**](docs/AdAccountsApi.md#removeAccountStructuredSnippetWithHttpInfo) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet
+*AdAccountsApi* | [**removeAdAccountUser**](docs/AdAccountsApi.md#removeAdAccountUser) | **DELETE** /v1/ads/accounts/users | Remove a user from an ad account
+*AdAccountsApi* | [**removeAdAccountUserWithHttpInfo**](docs/AdAccountsApi.md#removeAdAccountUserWithHttpInfo) | **DELETE** /v1/ads/accounts/users | Remove a user from an ad account
 *AdAccountsApi* | [**removeAdLabel**](docs/AdAccountsApi.md#removeAdLabel) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label
 *AdAccountsApi* | [**removeAdLabelWithHttpInfo**](docs/AdAccountsApi.md#removeAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label
+*AdAccountsApi* | [**removePageUser**](docs/AdAccountsApi.md#removePageUser) | **DELETE** /v1/ads/page-users | Remove a user from a Page
+*AdAccountsApi* | [**removePageUserWithHttpInfo**](docs/AdAccountsApi.md#removePageUserWithHttpInfo) | **DELETE** /v1/ads/page-users | Remove a user from a Page
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywords**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replyToAdComment**](docs/AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
@@ -1875,9 +1895,14 @@ Class | Method | HTTP request | Description
  - [ApplyGoogleRecommendationsRequestRecommendationsInner](docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md)
  - [ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
+ - [AssignAdAccountUser201Response](docs/AssignAdAccountUser201Response.md)
+ - [AssignAdAccountUserRequest](docs/AssignAdAccountUserRequest.md)
  - [AssignGoogleBusinessLocation200Response](docs/AssignGoogleBusinessLocation200Response.md)
  - [AssignGoogleBusinessLocation200ResponseAccount](docs/AssignGoogleBusinessLocation200ResponseAccount.md)
  - [AssignGoogleBusinessLocationRequest](docs/AssignGoogleBusinessLocationRequest.md)
+ - [AssignPageUser201Response](docs/AssignPageUser201Response.md)
+ - [AssignPageUser201ResponseUser](docs/AssignPageUser201ResponseUser.md)
+ - [AssignPageUserRequest](docs/AssignPageUserRequest.md)
  - [AttachAdGroupAssets201Response](docs/AttachAdGroupAssets201Response.md)
  - [AttachAdLabel200Response](docs/AttachAdLabel200Response.md)
  - [AttachBrandedCallingNumbersRequest](docs/AttachBrandedCallingNumbersRequest.md)
@@ -2528,6 +2553,8 @@ Class | Method | HTTP request | Description
  - [GetDiscordGuildMember200Response](docs/GetDiscordGuildMember200Response.md)
  - [GetDiscordSettings200Response](docs/GetDiscordSettings200Response.md)
  - [GetDiscordSettings200ResponseAccount](docs/GetDiscordSettings200ResponseAccount.md)
+ - [GetDsaDefaults200Response](docs/GetDsaDefaults200Response.md)
+ - [GetDsaDefaults200ResponseDsaDefaults](docs/GetDsaDefaults200ResponseDsaDefaults.md)
  - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
@@ -2867,6 +2894,9 @@ Class | Method | HTTP request | Description
  - [GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [GoogleSitelink](docs/GoogleSitelink.md)
  - [GoogleStructuredSnippet](docs/GoogleStructuredSnippet.md)
+ - [GrantBusinessPartner201Response](docs/GrantBusinessPartner201Response.md)
+ - [GrantBusinessPartner201ResponsePartner](docs/GrantBusinessPartner201ResponsePartner.md)
+ - [GrantBusinessPartnerRequest](docs/GrantBusinessPartnerRequest.md)
  - [HandleOAuthCallbackRequest](docs/HandleOAuthCallbackRequest.md)
  - [HideAdComment200Response](docs/HideAdComment200Response.md)
  - [HideAdCommentRequest](docs/HideAdCommentRequest.md)
@@ -2962,6 +2992,7 @@ Class | Method | HTTP request | Description
  - [ListAccountSitelinks200ResponseSitelinksInner](docs/ListAccountSitelinks200ResponseSitelinksInner.md)
  - [ListAccountStructuredSnippets200Response](docs/ListAccountStructuredSnippets200Response.md)
  - [ListAccountStructuredSnippets200ResponseStructuredSnippetsInner](docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md)
+ - [ListAdAccountUsers200Response](docs/ListAdAccountUsers200Response.md)
  - [ListAdAccounts200Response](docs/ListAdAccounts200Response.md)
  - [ListAdAccounts200ResponseAccountsInner](docs/ListAdAccounts200ResponseAccountsInner.md)
  - [ListAdAccounts200ResponseAccountsInnerFundingSourceDetails](docs/ListAdAccounts200ResponseAccountsInnerFundingSourceDetails.md)
@@ -3028,6 +3059,7 @@ Class | Method | HTTP request | Description
  - [ListBusinessAgentSkills200Response](docs/ListBusinessAgentSkills200Response.md)
  - [ListBusinessAgentUiSkills200Response](docs/ListBusinessAgentUiSkills200Response.md)
  - [ListBusinessAgentWebsites200Response](docs/ListBusinessAgentWebsites200Response.md)
+ - [ListBusinessPartners200Response](docs/ListBusinessPartners200Response.md)
  - [ListCalls200Response](docs/ListCalls200Response.md)
  - [ListCalls200ResponseCallsInner](docs/ListCalls200ResponseCallsInner.md)
  - [ListCampaignAssets200Response](docs/ListCampaignAssets200Response.md)
@@ -3127,7 +3159,9 @@ Class | Method | HTTP request | Description
  - [ListLogs200Response](docs/ListLogs200Response.md)
  - [ListLogs200ResponseLogsInner](docs/ListLogs200ResponseLogsInner.md)
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
+ - [ListMetaBusinessUsers200Response](docs/ListMetaBusinessUsers200Response.md)
  - [ListMetaBusinesses200Response](docs/ListMetaBusinesses200Response.md)
+ - [ListPageUsers200Response](docs/ListPageUsers200Response.md)
  - [ListPartnershipAdContent200Response](docs/ListPartnershipAdContent200Response.md)
  - [ListPartnershipAdContent200ResponseMediaInner](docs/ListPartnershipAdContent200ResponseMediaInner.md)
  - [ListPartnershipAdPermissions200Response](docs/ListPartnershipAdPermissions200Response.md)
@@ -3221,6 +3255,8 @@ Class | Method | HTTP request | Description
  - [MediaItem](docs/MediaItem.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
+ - [MetaAssignedUser](docs/MetaAssignedUser.md)
+ - [MetaBusinessUser](docs/MetaBusinessUser.md)
  - [MetaCatalogProduct](docs/MetaCatalogProduct.md)
  - [MetaCatalogProductInput](docs/MetaCatalogProductInput.md)
  - [MetaFeedUpload](docs/MetaFeedUpload.md)
@@ -3233,6 +3269,10 @@ Class | Method | HTTP request | Description
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
  - [MetaLeadFormQuestionsInner](docs/MetaLeadFormQuestionsInner.md)
  - [MetaLeadFormThankYouPage](docs/MetaLeadFormThankYouPage.md)
+ - [MetaPageOwnership](docs/MetaPageOwnership.md)
+ - [MetaPageOwnershipBusiness](docs/MetaPageOwnershipBusiness.md)
+ - [MetaPageOwnershipInstagramBusinessAccount](docs/MetaPageOwnershipInstagramBusinessAccount.md)
+ - [MetaPagePartner](docs/MetaPagePartner.md)
  - [MetaPlacementAssets](docs/MetaPlacementAssets.md)
  - [MetaPlacementAssetsRulesInner](docs/MetaPlacementAssetsRulesInner.md)
  - [MetaPlacementAssetsRulesInnerPlacements](docs/MetaPlacementAssetsRulesInnerPlacements.md)
@@ -3370,6 +3410,7 @@ Class | Method | HTTP request | Description
  - [RemediatePhoneNumberRequestDocumentsInnerOneOf](docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md)
  - [RemoveAccountCallout200Response](docs/RemoveAccountCallout200Response.md)
  - [RemoveAccountCalloutRequest](docs/RemoveAccountCalloutRequest.md)
+ - [RemoveAdAccountUser200Response](docs/RemoveAdAccountUser200Response.md)
  - [RemoveAdGroupAssetsRequest](docs/RemoveAdGroupAssetsRequest.md)
  - [RemoveAdKeyword200Response](docs/RemoveAdKeyword200Response.md)
  - [RemoveAdLabel200Response](docs/RemoveAdLabel200Response.md)
@@ -3381,6 +3422,7 @@ Class | Method | HTTP request | Description
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
  - [RemoveGoogleAssetGroup200Response](docs/RemoveGoogleAssetGroup200Response.md)
  - [RemoveMessageReaction200Response](docs/RemoveMessageReaction200Response.md)
+ - [RemovePageUser200Response](docs/RemovePageUser200Response.md)
  - [RemoveTrackingTagFromStore200Response](docs/RemoveTrackingTagFromStore200Response.md)
  - [RemoveTrackingTagFromStore200ResponseInstall](docs/RemoveTrackingTagFromStore200ResponseInstall.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
@@ -3436,6 +3478,7 @@ Class | Method | HTTP request | Description
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [RevokeBusinessPartner200Response](docs/RevokeBusinessPartner200Response.md)
  - [RevokeConnectedApp200Response](docs/RevokeConnectedApp200Response.md)
  - [RfPrediction](docs/RfPrediction.md)
  - [RotateSipTrunkCredentials200Response](docs/RotateSipTrunkCredentials200Response.md)
@@ -3692,6 +3735,8 @@ Class | Method | HTTP request | Description
  - [UpdateAd200Response](docs/UpdateAd200Response.md)
  - [UpdateAdAccount200Response](docs/UpdateAdAccount200Response.md)
  - [UpdateAdAccount200ResponseDsaDefaults](docs/UpdateAdAccount200ResponseDsaDefaults.md)
+ - [UpdateAdAccount200ResponseSettings](docs/UpdateAdAccount200ResponseSettings.md)
+ - [UpdateAdAccount200ResponseSettingsFundingSource](docs/UpdateAdAccount200ResponseSettingsFundingSource.md)
  - [UpdateAdAccountManagerLinkRequest](docs/UpdateAdAccountManagerLinkRequest.md)
  - [UpdateAdAccountRequest](docs/UpdateAdAccountRequest.md)
  - [UpdateAdAudienceRequest](docs/UpdateAdAudienceRequest.md)

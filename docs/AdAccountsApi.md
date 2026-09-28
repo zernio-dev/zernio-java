@@ -10,6 +10,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**addAccountSitelinksWithHttpInfo**](AdAccountsApi.md#addAccountSitelinksWithHttpInfo) | **POST** /v1/ads/accounts/sitelinks | Add account sitelinks |
 | [**addAccountStructuredSnippets**](AdAccountsApi.md#addAccountStructuredSnippets) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
 | [**addAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#addAccountStructuredSnippetsWithHttpInfo) | **POST** /v1/ads/accounts/structured-snippets | Add account snippets |
+| [**assignAdAccountUser**](AdAccountsApi.md#assignAdAccountUser) | **POST** /v1/ads/accounts/users | Assign a user to an ad account |
+| [**assignAdAccountUserWithHttpInfo**](AdAccountsApi.md#assignAdAccountUserWithHttpInfo) | **POST** /v1/ads/accounts/users | Assign a user to an ad account |
+| [**assignPageUser**](AdAccountsApi.md#assignPageUser) | **POST** /v1/ads/page-users | Assign a user to a Page |
+| [**assignPageUserWithHttpInfo**](AdAccountsApi.md#assignPageUserWithHttpInfo) | **POST** /v1/ads/page-users | Assign a user to a Page |
 | [**attachAdLabel**](AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
 | [**attachAdLabelWithHttpInfo**](AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
 | [**createAdAccount**](AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account |
@@ -60,6 +64,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAccountSitelinksWithHttpInfo**](AdAccountsApi.md#listAccountSitelinksWithHttpInfo) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks |
 | [**listAccountStructuredSnippets**](AdAccountsApi.md#listAccountStructuredSnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
 | [**listAccountStructuredSnippetsWithHttpInfo**](AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets |
+| [**listAdAccountUsers**](AdAccountsApi.md#listAdAccountUsers) | **GET** /v1/ads/accounts/users | Ad account users |
+| [**listAdAccountUsersWithHttpInfo**](AdAccountsApi.md#listAdAccountUsersWithHttpInfo) | **GET** /v1/ads/accounts/users | Ad account users |
 | [**listAdAccounts**](AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdAccountsWithHttpInfo**](AdAccountsApi.md#listAdAccountsWithHttpInfo) | **GET** /v1/ads/accounts | List ad accounts |
 | [**listAdLabels**](AdAccountsApi.md#listAdLabels) | **GET** /v1/ads/labels | List ad labels |
@@ -80,8 +86,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCustomConversionsWithHttpInfo**](AdAccountsApi.md#listCustomConversionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/custom-conversions | List custom conversions |
 | [**listHighDemandPeriods**](AdAccountsApi.md#listHighDemandPeriods) | **GET** /v1/ads/high-demand-periods | List high-demand periods |
 | [**listHighDemandPeriodsWithHttpInfo**](AdAccountsApi.md#listHighDemandPeriodsWithHttpInfo) | **GET** /v1/ads/high-demand-periods | List high-demand periods |
+| [**listMetaBusinessUsers**](AdAccountsApi.md#listMetaBusinessUsers) | **GET** /v1/ads/businesses/users | Business users |
+| [**listMetaBusinessUsersWithHttpInfo**](AdAccountsApi.md#listMetaBusinessUsersWithHttpInfo) | **GET** /v1/ads/businesses/users | Business users |
 | [**listMetaBusinesses**](AdAccountsApi.md#listMetaBusinesses) | **GET** /v1/ads/businesses | Businesses list |
 | [**listMetaBusinessesWithHttpInfo**](AdAccountsApi.md#listMetaBusinessesWithHttpInfo) | **GET** /v1/ads/businesses | Businesses list |
+| [**listPageUsers**](AdAccountsApi.md#listPageUsers) | **GET** /v1/ads/page-users | Page users of a business |
+| [**listPageUsersWithHttpInfo**](AdAccountsApi.md#listPageUsersWithHttpInfo) | **GET** /v1/ads/page-users | Page users of a business |
 | [**listTikTokAdPixels**](AdAccountsApi.md#listTikTokAdPixels) | **GET** /v1/ads/pixels | List TikTok ad pixels |
 | [**listTikTokAdPixelsWithHttpInfo**](AdAccountsApi.md#listTikTokAdPixelsWithHttpInfo) | **GET** /v1/ads/pixels | List TikTok ad pixels |
 | [**listValueRuleSets**](AdAccountsApi.md#listValueRuleSets) | **GET** /v1/ads/value-rule-sets | List value rule sets |
@@ -92,8 +102,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeAccountSitelinkWithHttpInfo**](AdAccountsApi.md#removeAccountSitelinkWithHttpInfo) | **DELETE** /v1/ads/accounts/sitelinks | Remove account sitelink |
 | [**removeAccountStructuredSnippet**](AdAccountsApi.md#removeAccountStructuredSnippet) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
 | [**removeAccountStructuredSnippetWithHttpInfo**](AdAccountsApi.md#removeAccountStructuredSnippetWithHttpInfo) | **DELETE** /v1/ads/accounts/structured-snippets | Remove account snippet |
+| [**removeAdAccountUser**](AdAccountsApi.md#removeAdAccountUser) | **DELETE** /v1/ads/accounts/users | Remove a user from an ad account |
+| [**removeAdAccountUserWithHttpInfo**](AdAccountsApi.md#removeAdAccountUserWithHttpInfo) | **DELETE** /v1/ads/accounts/users | Remove a user from an ad account |
 | [**removeAdLabel**](AdAccountsApi.md#removeAdLabel) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label |
 | [**removeAdLabelWithHttpInfo**](AdAccountsApi.md#removeAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId} | Remove a Google Ads label |
+| [**removePageUser**](AdAccountsApi.md#removePageUser) | **DELETE** /v1/ads/page-users | Remove a user from a Page |
+| [**removePageUserWithHttpInfo**](AdAccountsApi.md#removePageUserWithHttpInfo) | **DELETE** /v1/ads/page-users | Remove a user from a Page |
 | [**replaceAdNegativeKeywordListKeywords**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywords) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords |
 | [**replyToAdComment**](AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment |
@@ -589,6 +603,322 @@ ApiResponse<[**AddAccountStructuredSnippets201Response**](AddAccountStructuredSn
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Only supported on Google Ads. |  -  |
+
+
+## assignAdAccountUser
+
+> AssignAdAccountUser201Response assignAdAccountUser(assignAdAccountUserRequest)
+
+Assign a user to an ad account
+
+Gives a person of the portfolio tasks on the ad account. &#x60;MANAGE&#x60; is admin, &#x60;ADVERTISE&#x60; creates and edits ads, &#x60;ANALYZE&#x60; reads reports, &#x60;DRAFT&#x60; edits drafts only. Assigning an already assigned user replaces their task set.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AssignAdAccountUserRequest assignAdAccountUserRequest = new AssignAdAccountUserRequest(); // AssignAdAccountUserRequest | 
+        try {
+            AssignAdAccountUser201Response result = apiInstance.assignAdAccountUser(assignAdAccountUserRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#assignAdAccountUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **assignAdAccountUserRequest** | [**AssignAdAccountUserRequest**](AssignAdAccountUserRequest.md)|  | |
+
+### Return type
+
+[**AssignAdAccountUser201Response**](AssignAdAccountUser201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or ad account. |  -  |
+| **201** | User assigned |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## assignAdAccountUserWithHttpInfo
+
+> ApiResponse<AssignAdAccountUser201Response> assignAdAccountUser assignAdAccountUserWithHttpInfo(assignAdAccountUserRequest)
+
+Assign a user to an ad account
+
+Gives a person of the portfolio tasks on the ad account. &#x60;MANAGE&#x60; is admin, &#x60;ADVERTISE&#x60; creates and edits ads, &#x60;ANALYZE&#x60; reads reports, &#x60;DRAFT&#x60; edits drafts only. Assigning an already assigned user replaces their task set.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AssignAdAccountUserRequest assignAdAccountUserRequest = new AssignAdAccountUserRequest(); // AssignAdAccountUserRequest | 
+        try {
+            ApiResponse<AssignAdAccountUser201Response> response = apiInstance.assignAdAccountUserWithHttpInfo(assignAdAccountUserRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#assignAdAccountUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **assignAdAccountUserRequest** | [**AssignAdAccountUserRequest**](AssignAdAccountUserRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AssignAdAccountUser201Response**](AssignAdAccountUser201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or ad account. |  -  |
+| **201** | User assigned |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## assignPageUser
+
+> AssignPageUser201Response assignPageUser(assignPageUserRequest)
+
+Assign a user to a Page
+
+Gives a person of the portfolio tasks on a Page the portfolio owns or was granted as a partner. Meta does not assign partner admins automatically, so after an owner shares a Page the partner calls this for the people whose tokens will advertise for it. &#x60;ADVERTISE&#x60; is what ad creation needs. Assigning an already assigned user replaces their task set.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AssignPageUserRequest assignPageUserRequest = new AssignPageUserRequest(); // AssignPageUserRequest | 
+        try {
+            AssignPageUser201Response result = apiInstance.assignPageUser(assignPageUserRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#assignPageUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **assignPageUserRequest** | [**AssignPageUserRequest**](AssignPageUserRequest.md)|  | |
+
+### Return type
+
+[**AssignPageUser201Response**](AssignPageUser201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or Page. |  -  |
+| **201** | User assigned |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## assignPageUserWithHttpInfo
+
+> ApiResponse<AssignPageUser201Response> assignPageUser assignPageUserWithHttpInfo(assignPageUserRequest)
+
+Assign a user to a Page
+
+Gives a person of the portfolio tasks on a Page the portfolio owns or was granted as a partner. Meta does not assign partner admins automatically, so after an owner shares a Page the partner calls this for the people whose tokens will advertise for it. &#x60;ADVERTISE&#x60; is what ad creation needs. Assigning an already assigned user replaces their task set.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        AssignPageUserRequest assignPageUserRequest = new AssignPageUserRequest(); // AssignPageUserRequest | 
+        try {
+            ApiResponse<AssignPageUser201Response> response = apiInstance.assignPageUserWithHttpInfo(assignPageUserRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#assignPageUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **assignPageUserRequest** | [**AssignPageUserRequest**](AssignPageUserRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AssignPageUser201Response**](AssignPageUser201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or Page. |  -  |
+| **201** | User assigned |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## attachAdLabel
@@ -3201,7 +3531,7 @@ ApiResponse<[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)>
 
 ## getDsaDefaults
 
-> UpdateAdAccount200Response getDsaDefaults(accountId, adAccountId)
+> GetDsaDefaults200Response getDsaDefaults(accountId, adAccountId)
 
 Get ad account DSA defaults
 
@@ -3231,7 +3561,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
-            UpdateAdAccount200Response result = apiInstance.getDsaDefaults(accountId, adAccountId);
+            GetDsaDefaults200Response result = apiInstance.getDsaDefaults(accountId, adAccountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#getDsaDefaults");
@@ -3254,7 +3584,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)
+[**GetDsaDefaults200Response**](GetDsaDefaults200Response.md)
 
 
 ### Authorization
@@ -3277,7 +3607,7 @@ public class Example {
 
 ## getDsaDefaultsWithHttpInfo
 
-> ApiResponse<UpdateAdAccount200Response> getDsaDefaults getDsaDefaultsWithHttpInfo(accountId, adAccountId)
+> ApiResponse<GetDsaDefaults200Response> getDsaDefaults getDsaDefaultsWithHttpInfo(accountId, adAccountId)
 
 Get ad account DSA defaults
 
@@ -3308,7 +3638,7 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID (metaads, or a facebook/instagram posting account)
         String adAccountId = "adAccountId_example"; // String | Meta ad account ID (act_...)
         try {
-            ApiResponse<UpdateAdAccount200Response> response = apiInstance.getDsaDefaultsWithHttpInfo(accountId, adAccountId);
+            ApiResponse<GetDsaDefaults200Response> response = apiInstance.getDsaDefaultsWithHttpInfo(accountId, adAccountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3333,7 +3663,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
+ApiResponse<[**GetDsaDefaults200Response**](GetDsaDefaults200Response.md)>
 
 
 ### Authorization
@@ -4661,6 +4991,172 @@ ApiResponse<[**ListAccountStructuredSnippets200Response**](ListAccountStructured
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
 | **501** | Only supported on Google Ads. |  -  |
+
+
+## listAdAccountUsers
+
+> ListAdAccountUsers200Response listAdAccountUsers(accountId, adAccountId, businessId)
+
+Ad account users
+
+People of a business portfolio assigned to a Meta ad account, with their tasks. Ids are business-scoped user ids (see &#x60;GET /v1/ads/businesses/users&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String businessId = "businessId_example"; // String | Business portfolio whose people to list.
+        try {
+            ListAdAccountUsers200Response result = apiInstance.listAdAccountUsers(accountId, adAccountId, businessId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdAccountUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **businessId** | **String**| Business portfolio whose people to list. | |
+
+### Return type
+
+[**ListAdAccountUsers200Response**](ListAdAccountUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Assigned users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## listAdAccountUsersWithHttpInfo
+
+> ApiResponse<ListAdAccountUsers200Response> listAdAccountUsers listAdAccountUsersWithHttpInfo(accountId, adAccountId, businessId)
+
+Ad account users
+
+People of a business portfolio assigned to a Meta ad account, with their tasks. Ids are business-scoped user ids (see &#x60;GET /v1/ads/businesses/users&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String businessId = "businessId_example"; // String | Business portfolio whose people to list.
+        try {
+            ApiResponse<ListAdAccountUsers200Response> response = apiInstance.listAdAccountUsersWithHttpInfo(accountId, adAccountId, businessId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listAdAccountUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **businessId** | **String**| Business portfolio whose people to list. | |
+
+### Return type
+
+ApiResponse<[**ListAdAccountUsers200Response**](ListAdAccountUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Assigned users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## listAdAccounts
@@ -6315,6 +6811,168 @@ ApiResponse<[**ListHighDemandPeriods200Response**](ListHighDemandPeriods200Respo
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
+## listMetaBusinessUsers
+
+> ListMetaBusinessUsers200Response listMetaBusinessUsers(accountId, businessId)
+
+Business users
+
+People and system users of a Meta business portfolio, with the business-scoped ids that &#x60;POST /v1/ads/accounts/users&#x60; and &#x60;POST /v1/ads/page-users&#x60; take. The connected Meta user must be an admin of the portfolio.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String businessId = "businessId_example"; // String | Meta business portfolio id.
+        try {
+            ListMetaBusinessUsers200Response result = apiInstance.listMetaBusinessUsers(accountId, businessId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listMetaBusinessUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **businessId** | **String**| Meta business portfolio id. | |
+
+### Return type
+
+[**ListMetaBusinessUsers200Response**](ListMetaBusinessUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Business users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## listMetaBusinessUsersWithHttpInfo
+
+> ApiResponse<ListMetaBusinessUsers200Response> listMetaBusinessUsers listMetaBusinessUsersWithHttpInfo(accountId, businessId)
+
+Business users
+
+People and system users of a Meta business portfolio, with the business-scoped ids that &#x60;POST /v1/ads/accounts/users&#x60; and &#x60;POST /v1/ads/page-users&#x60; take. The connected Meta user must be an admin of the portfolio.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String businessId = "businessId_example"; // String | Meta business portfolio id.
+        try {
+            ApiResponse<ListMetaBusinessUsers200Response> response = apiInstance.listMetaBusinessUsersWithHttpInfo(accountId, businessId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listMetaBusinessUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **businessId** | **String**| Meta business portfolio id. | |
+
+### Return type
+
+ApiResponse<[**ListMetaBusinessUsers200Response**](ListMetaBusinessUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Business users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## listMetaBusinesses
 
 > ListMetaBusinesses200Response listMetaBusinesses(accountId, limit, after)
@@ -6474,6 +7132,172 @@ ApiResponse<[**ListMetaBusinesses200Response**](ListMetaBusinesses200Response.md
 | **200** | Businesses (raw Meta shape) |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Unauthorized |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## listPageUsers
+
+> ListPageUsers200Response listPageUsers(accountId, pageId, businessId)
+
+Page users of a business
+
+People of a business portfolio assigned to a Facebook Page the portfolio owns or was granted as a partner (&#x60;POST /v1/accounts/{accountId}/business-partners&#x60; on the owner side).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String pageId = "pageId_example"; // String | Facebook Page id.
+        String businessId = "businessId_example"; // String | Business portfolio whose people to list.
+        try {
+            ListPageUsers200Response result = apiInstance.listPageUsers(accountId, pageId, businessId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listPageUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **pageId** | **String**| Facebook Page id. | |
+| **businessId** | **String**| Business portfolio whose people to list. | |
+
+### Return type
+
+[**ListPageUsers200Response**](ListPageUsers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Assigned users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## listPageUsersWithHttpInfo
+
+> ApiResponse<ListPageUsers200Response> listPageUsers listPageUsersWithHttpInfo(accountId, pageId, businessId)
+
+Page users of a business
+
+People of a business portfolio assigned to a Facebook Page the portfolio owns or was granted as a partner (&#x60;POST /v1/accounts/{accountId}/business-partners&#x60; on the owner side).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String pageId = "pageId_example"; // String | Facebook Page id.
+        String businessId = "businessId_example"; // String | Business portfolio whose people to list.
+        try {
+            ApiResponse<ListPageUsers200Response> response = apiInstance.listPageUsersWithHttpInfo(accountId, pageId, businessId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#listPageUsers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **pageId** | **String**| Facebook Page id. | |
+| **businessId** | **String**| Business portfolio whose people to list. | |
+
+### Return type
+
+ApiResponse<[**ListPageUsers200Response**](ListPageUsers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Assigned users |  -  |
+| **400** | Invalid input, or Meta rejected the query |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -7285,6 +8109,168 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 | **501** | Only supported on Google Ads. |  -  |
 
 
+## removeAdAccountUser
+
+> RemoveAdAccountUser200Response removeAdAccountUser(accountId, adAccountId, userId)
+
+Remove a user from an ad account
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String userId = "userId_example"; // String | Business-scoped user id.
+        try {
+            RemoveAdAccountUser200Response result = apiInstance.removeAdAccountUser(accountId, adAccountId, userId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAdAccountUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **userId** | **String**| Business-scoped user id. | |
+
+### Return type
+
+[**RemoveAdAccountUser200Response**](RemoveAdAccountUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or ad account. |  -  |
+| **200** | User removed |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## removeAdAccountUserWithHttpInfo
+
+> ApiResponse<RemoveAdAccountUser200Response> removeAdAccountUser removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId)
+
+Remove a user from an ad account
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String userId = "userId_example"; // String | Business-scoped user id.
+        try {
+            ApiResponse<RemoveAdAccountUser200Response> response = apiInstance.removeAdAccountUserWithHttpInfo(accountId, adAccountId, userId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removeAdAccountUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **userId** | **String**| Business-scoped user id. | |
+
+### Return type
+
+ApiResponse<[**RemoveAdAccountUser200Response**](RemoveAdAccountUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or ad account. |  -  |
+| **200** | User removed |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
 ## removeAdLabel
 
 > RemoveAdLabel200Response removeAdLabel(labelId, accountId, adAccountId, customerId)
@@ -7449,6 +8435,168 @@ ApiResponse<[**RemoveAdLabel200Response**](RemoveAdLabel200Response.md)>
 | **404** | Label not found on this customer, or account unavailable |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## removePageUser
+
+> RemovePageUser200Response removePageUser(accountId, pageId, userId)
+
+Remove a user from a Page
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
+        String pageId = "pageId_example"; // String | Facebook Page id.
+        String userId = "userId_example"; // String | Business-scoped user id.
+        try {
+            RemovePageUser200Response result = apiInstance.removePageUser(accountId, pageId, userId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removePageUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
+| **pageId** | **String**| Facebook Page id. | |
+| **userId** | **String**| Business-scoped user id. | |
+
+### Return type
+
+[**RemovePageUser200Response**](RemovePageUser200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or Page. |  -  |
+| **200** | User removed |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## removePageUserWithHttpInfo
+
+> ApiResponse<RemovePageUser200Response> removePageUser removePageUserWithHttpInfo(accountId, pageId, userId)
+
+Remove a user from a Page
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id used to resolve the Meta token.
+        String pageId = "pageId_example"; // String | Facebook Page id.
+        String userId = "userId_example"; // String | Business-scoped user id.
+        try {
+            ApiResponse<RemovePageUser200Response> response = apiInstance.removePageUserWithHttpInfo(accountId, pageId, userId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#removePageUser");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id used to resolve the Meta token. | |
+| **pageId** | **String**| Facebook Page id. | |
+| **userId** | **String**| Business-scoped user id. | |
+
+### Return type
+
+ApiResponse<[**RemovePageUser200Response**](RemovePageUser200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | Account not found, or Meta could not load the user or Page. |  -  |
+| **200** | User removed |  -  |
+| **400** | Invalid input, or Meta rejected the request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token lacks business_management or business admin access. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
 ## replaceAdNegativeKeywordListKeywords
@@ -8269,7 +9417,7 @@ ApiResponse<[**UpdateAccountCallouts200Response**](UpdateAccountCallouts200Respo
 
 Update ad account settings
 
-Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+Updates a Meta ad account in place: its name, its account-level spend cap, and its default DSA beneficiary and payor. Pass any combination of fields.  **Spend cap.** &#x60;spendCap&#x60; is the total the account may spend before Meta pauses every campaign in it, in whole units of the account currency. &#x60;spendCap: null&#x60; removes the cap and &#x60;resetAmountSpent: true&#x60; restarts the amount counted against it from zero. When &#x60;name&#x60;, &#x60;spendCap&#x60; or &#x60;resetAmountSpent&#x60; is passed, the response carries &#x60;settings&#x60;, the account&#39;s finances re-read after the write (same shape as &#x60;GET /v1/ads/accounts/finance&#x60;), so the effective cap can be confirmed in one call.  **DSA defaults.** Sets the default DSA beneficiary and payor on the ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
 
 ### Example
 
@@ -8332,10 +9480,12 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
-| **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
+| **200** | Settings updated (each block re-read from Meta after the write) |  -  |
+| **400** | Unsupported platform (non-Meta account), invalid adAccountId, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token cannot manage this ad account. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 ## updateAdAccountWithHttpInfo
 
@@ -8343,7 +9493,7 @@ public class Example {
 
 Update ad account settings
 
-Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
+Updates a Meta ad account in place: its name, its account-level spend cap, and its default DSA beneficiary and payor. Pass any combination of fields.  **Spend cap.** &#x60;spendCap&#x60; is the total the account may spend before Meta pauses every campaign in it, in whole units of the account currency. &#x60;spendCap: null&#x60; removes the cap and &#x60;resetAmountSpent: true&#x60; restarts the amount counted against it from zero. When &#x60;name&#x60;, &#x60;spendCap&#x60; or &#x60;resetAmountSpent&#x60; is passed, the response carries &#x60;settings&#x60;, the account&#39;s finances re-read after the write (same shape as &#x60;GET /v1/ads/accounts/finance&#x60;), so the effective cap can be confirmed in one call.  **DSA defaults.** Sets the default DSA beneficiary and payor on the ad account (EU DSA, Article 26). Set them once and every EU-targeted call to &#x60;/v1/ads/create&#x60;, &#x60;/v1/ads/boost&#x60; and &#x60;/v1/ads/ctwa&#x60; on that ad account can omit &#x60;dsaBeneficiary&#x60;/&#x60;dsaPayor&#x60;: Meta applies the defaults automatically.  The values are written to the ad account on Meta, the same setting Ads Manager edits. Nothing is stored in Zernio, and defaults already set in Ads Manager work identically. Zernio never guesses these values for you. Beneficiary and payor are legal disclosures shown to EU users, so you must provide the entity names explicitly. Use &#x60;GET /v1/ads/dsa-recommendations&#x60; to offer suggestions in your UI.  If &#x60;defaultDsaPayor&#x60; is omitted, the beneficiary is also set as the payor, which covers the common case where the same entity benefits from and pays for the ads. Read the current values back with &#x60;GET /v1/ads/dsa-defaults&#x60;.  Currently supported for Meta accounts only; other platforms return 400. 
 
 ### Example
 
@@ -8409,10 +9559,12 @@ ApiResponse<[**UpdateAdAccount200Response**](UpdateAdAccount200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **200** | DSA defaults updated (re-read from Meta after the write) |  -  |
-| **400** | Unsupported platform (non-Meta account) or invalid adAccountId |  -  |
+| **200** | Settings updated (each block re-read from Meta after the write) |  -  |
+| **400** | Unsupported platform (non-Meta account), invalid adAccountId, or Meta rejected the update |  -  |
 | **401** | Unauthorized |  -  |
+| **403** | Meta refused: the token cannot manage this ad account. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 
 ## updateAdAccountManagerLink

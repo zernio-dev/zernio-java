@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.128.0
+  version: 1.129.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -13547,6 +13547,177 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/business-partners:
+    delete:
+      description: Removes every task the partner business portfolio held on the Page.
+      operationId: revokeBusinessPartner
+      parameters:
+      - description: Zernio SocialAccount id of the Facebook or Instagram account.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Meta business portfolio id of the partner (numeric string).
+        explode: true
+        in: query
+        name: businessId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/revokeBusinessPartner_200_response"
+          description: Access revoked
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the connecting user lacks business_management\
+            \ or is not an admin of the owning portfolio."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: No Facebook Page is linked to the account.
+        "429":
+          $ref: "#/components/responses/RateLimited"
+      security:
+      - bearerAuth: []
+      summary: Revoke a partner business from the Page
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        The business portfolios (Meta Business Managers) that may act on the Facebook Page
+        behind this account, plus the Page's owning portfolio and linked Instagram
+        professional account. Works on Facebook accounts and on Instagram accounts connected
+        through Facebook Login.
+      operationId: listBusinessPartners
+      parameters:
+      - description: Zernio SocialAccount id of the Facebook or Instagram account.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listBusinessPartners_200_response"
+          description: Page ownership and partners
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the connecting user lacks business_management\
+            \ or is not an admin of the owning portfolio. Reconnect the account."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "No Facebook Page is linked (Instagram Login account, or no\
+            \ Page selected)."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+      security:
+      - bearerAuth: []
+      summary: List partner businesses of the Page
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Grants a partner business portfolio tasks on the Facebook Page behind this account.
+        With `ADVERTISE`, the partner can run ads for the Page from ad accounts in its own
+        portfolio, which is how an integrator advertises for an end user without touching
+        the end user's ad accounts.
+
+        Meta only lets a user token share a Page that a business portfolio owns. A Page
+        outside any portfolio must first be claimed into one at business.facebook.com; this
+        endpoint answers `422` until that is done. Granting to a portfolio that already has
+        access replaces its task set, so the call is safe to repeat.
+
+        After the grant, the partner assigns its own people to the Page with
+        `POST /v1/ads/page-users`; Meta does not assign partner admins automatically.
+        The Instagram professional account linked to the Page is returned in `page` so the
+        partner can reference it; Meta exposes no API to share Instagram accounts, that is
+        done in Business Settings.
+      operationId: grantBusinessPartner
+      parameters:
+      - description: Zernio SocialAccount id of the Facebook or Instagram account.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              businessId: "1234567890123"
+              permittedTasks:
+              - ADVERTISE
+              - ANALYZE
+            schema:
+              $ref: "#/components/schemas/grantBusinessPartner_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/grantBusinessPartner_201_response"
+          description: Page shared
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the connecting user lacks business_management\
+            \ or is not an admin of the owning portfolio. Reconnect the account."
+        "404":
+          description: "Account not found, or Meta could not load the partner business."
+        "422":
+          description: "The Page is not owned by a business portfolio, or no Page\
+            \ is linked to the account."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+      security:
+      - bearerAuth: []
+      summary: Share the Page with a partner business
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-platforms:
+      - facebook
+      - instagram
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/facebook-page:
@@ -39837,6 +40008,241 @@ paths:
       - meta
       x-accepts:
       - application/json
+  /v1/ads/businesses/users:
+    get:
+      description: |-
+        People and system users of a Meta business portfolio, with the business-scoped ids that
+        `POST /v1/ads/accounts/users` and `POST /v1/ads/page-users` take. The connected Meta
+        user must be an admin of the portfolio.
+      operationId: listMetaBusinessUsers
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta business portfolio id.
+        explode: true
+        in: query
+        name: businessId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listMetaBusinessUsers_200_response"
+          description: Business users
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Business users
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+  /v1/ads/page-users:
+    delete:
+      operationId: removePageUser
+      parameters:
+      - description: Zernio SocialAccount id used to resolve the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Facebook Page id.
+        explode: true
+        in: query
+        name: pageId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Business-scoped user id.
+        explode: true
+        in: query
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          description: "Account not found, or Meta could not load the user or Page."
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removePageUser_200_response"
+          description: User removed
+        "400":
+          description: "Invalid input, or Meta rejected the request"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Remove a user from a Page
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    get:
+      description: |-
+        People of a business portfolio assigned to a Facebook Page the portfolio owns or was
+        granted as a partner (`POST /v1/accounts/{accountId}/business-partners` on the owner side).
+      operationId: listPageUsers
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Facebook Page id.
+        explode: true
+        in: query
+        name: pageId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Business portfolio whose people to list.
+        explode: true
+        in: query
+        name: businessId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listPageUsers_200_response"
+          description: Assigned users
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Page users of a business
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Gives a person of the portfolio tasks on a Page the portfolio owns or was granted as a
+        partner. Meta does not assign partner admins automatically, so after an owner shares a
+        Page the partner calls this for the people whose tokens will advertise for it.
+        `ADVERTISE` is what ad creation needs. Assigning an already assigned user replaces
+        their task set.
+      operationId: assignPageUser
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              pageId: "123456789012345"
+              businessId: "1234567890123"
+              userId: "1122334455"
+              tasks:
+              - ADVERTISE
+              - ANALYZE
+            schema:
+              $ref: "#/components/schemas/assignPageUser_request"
+        required: true
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          description: "Account not found, or Meta could not load the user or Page."
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/assignPageUser_201_response"
+          description: User assigned
+        "400":
+          description: "Invalid input, or Meta rejected the request"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Assign a user to a Page
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/labels:
     get:
       description: |-
@@ -42447,6 +42853,181 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/accounts/users:
+    delete:
+      operationId: removeAdAccountUser
+      parameters:
+      - description: Zernio SocialAccount id used to resolve the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Business-scoped user id.
+        explode: true
+        in: query
+        name: userId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          description: "Account not found, or Meta could not load the user or ad account."
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeAdAccountUser_200_response"
+          description: User removed
+        "400":
+          description: "Invalid input, or Meta rejected the request"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Remove a user from an ad account
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    get:
+      description: |-
+        People of a business portfolio assigned to a Meta ad account, with their tasks.
+        Ids are business-scoped user ids (see `GET /v1/ads/businesses/users`).
+      operationId: listAdAccountUsers
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Business portfolio whose people to list.
+        explode: true
+        in: query
+        name: businessId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdAccountUsers_200_response"
+          description: Assigned users
+        "400":
+          description: "Invalid input, or Meta rejected the query"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Ad account users
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
+    post:
+      description: |-
+        Gives a person of the portfolio tasks on the ad account. `MANAGE` is admin, `ADVERTISE`
+        creates and edits ads, `ANALYZE` reads reports, `DRAFT` edits drafts only. Assigning an
+        already assigned user replaces their task set.
+      operationId: assignAdAccountUser
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              adAccountId: act_123456789
+              userId: "1122334455"
+              tasks:
+              - ADVERTISE
+              - ANALYZE
+            schema:
+              $ref: "#/components/schemas/assignAdAccountUser_request"
+        required: true
+      responses:
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "404":
+          description: "Account not found, or Meta could not load the user or ad account."
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/assignAdAccountUser_201_response"
+          description: User assigned
+        "400":
+          description: "Invalid input, or Meta rejected the request"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token lacks business_management or business\
+            \ admin access."
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Assign a user to an ad account
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
   /v1/ads/accounts/finance:
     get:
       description: |-
@@ -42583,7 +43164,17 @@ paths:
       - application/json
     patch:
       description: |
-        Sets the default DSA beneficiary and payor on a Meta ad account (EU DSA, Article 26).
+        Updates a Meta ad account in place: its name, its account-level spend cap, and its
+        default DSA beneficiary and payor. Pass any combination of fields.
+
+        **Spend cap.** `spendCap` is the total the account may spend before Meta pauses every
+        campaign in it, in whole units of the account currency. `spendCap: null` removes the
+        cap and `resetAmountSpent: true` restarts the amount counted against it from zero.
+        When `name`, `spendCap` or `resetAmountSpent` is passed, the response carries
+        `settings`, the account's finances re-read after the write (same shape as
+        `GET /v1/ads/accounts/finance`), so the effective cap can be confirmed in one call.
+
+        **DSA defaults.** Sets the default DSA beneficiary and payor on the ad account (EU DSA, Article 26).
         Set them once and every EU-targeted call to `/v1/ads/create`, `/v1/ads/boost` and
         `/v1/ads/ctwa` on that ad account can omit `dsaBeneficiary`/`dsaPayor`: Meta applies
         the defaults automatically.
@@ -42603,6 +43194,10 @@ paths:
       requestBody:
         content:
           application/json:
+            example:
+              accountId: 64b1f0c8a1b2c3d4e5f60718
+              adAccountId: act_123456789
+              spendCap: 500
             schema:
               $ref: "#/components/schemas/updateAdAccount_request"
         required: true
@@ -42614,13 +43209,18 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/updateAdAccount_200_response"
-          description: DSA defaults updated (re-read from Meta after the write)
+          description: Settings updated (each block re-read from Meta after the write)
         "400":
-          description: Unsupported platform (non-Meta account) or invalid adAccountId
+          description: "Unsupported platform (non-Meta account), invalid adAccountId,\
+            \ or Meta rejected the update"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: "Meta refused: the token cannot manage this ad account."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
       security:
       - bearerAuth: []
       summary: Update ad account settings
@@ -42782,7 +43382,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateAdAccount_200_response"
+                $ref: "#/components/schemas/getDsaDefaults_200_response"
           description: Current DSA defaults (empty object when none are set)
         "400":
           description: Non-Meta adAccountId
@@ -55394,6 +55994,76 @@ components:
           type: string
         analytics:
           $ref: "#/components/schemas/ExternalPostSummary_analytics"
+    MetaPageOwnership:
+      example:
+        instagramBusinessAccount:
+          id: id
+          username: username
+        business:
+          name: name
+          id: id
+        name: name
+        id: id
+      properties:
+        id:
+          description: Facebook Page id.
+          type: string
+        name:
+          type: string
+        business:
+          $ref: "#/components/schemas/MetaPageOwnership_business"
+        instagramBusinessAccount:
+          $ref: "#/components/schemas/MetaPageOwnership_instagramBusinessAccount"
+    MetaPagePartner:
+      example:
+        permittedTasks:
+        - permittedTasks
+        - permittedTasks
+        businessId: businessId
+        name: name
+      properties:
+        businessId:
+          type: string
+        name:
+          type: string
+        permittedTasks:
+          items:
+            type: string
+          type: array
+    MetaAssignedUser:
+      example:
+        name: name
+        id: id
+        tasks:
+        - tasks
+        - tasks
+      properties:
+        id:
+          description: Business-scoped user id.
+          type: string
+        name:
+          type: string
+        tasks:
+          items:
+            type: string
+          type: array
+    MetaBusinessUser:
+      example:
+        role: role
+        name: name
+        id: id
+        email: email
+      properties:
+        id:
+          description: Business-scoped user id.
+          type: string
+        name:
+          type: string
+        email:
+          type: string
+        role:
+          description: "Meta role in the portfolio, e.g. ADMIN or EMPLOYEE."
+          type: string
     ErrorResponse:
       description: |
         Canonical error envelope. `error` is the human-readable message; `type`,
@@ -84445,6 +85115,100 @@ components:
         warning:
           nullable: true
           type: string
+    listBusinessPartners_200_response:
+      example:
+        partners:
+        - permittedTasks:
+          - permittedTasks
+          - permittedTasks
+          businessId: businessId
+          name: name
+        - permittedTasks:
+          - permittedTasks
+          - permittedTasks
+          businessId: businessId
+          name: name
+        page:
+          instagramBusinessAccount:
+            id: id
+            username: username
+          business:
+            name: name
+            id: id
+          name: name
+          id: id
+      properties:
+        page:
+          $ref: "#/components/schemas/MetaPageOwnership"
+        partners:
+          items:
+            $ref: "#/components/schemas/MetaPagePartner"
+          type: array
+    grantBusinessPartner_request:
+      properties:
+        businessId:
+          description: Meta business portfolio id of the partner (numeric string).
+          type: string
+        permittedTasks:
+          description: Tasks granted on the Page. Defaults to ADVERTISE and ANALYZE.
+          items:
+            enum:
+            - MANAGE
+            - CREATE_CONTENT
+            - MODERATE
+            - MESSAGING
+            - ADVERTISE
+            - ANALYZE
+            type: string
+          type: array
+      required:
+      - businessId
+    grantBusinessPartner_201_response_partner:
+      example:
+        permittedTasks:
+        - permittedTasks
+        - permittedTasks
+        businessId: businessId
+      properties:
+        businessId:
+          type: string
+        permittedTasks:
+          items:
+            type: string
+          type: array
+    grantBusinessPartner_201_response:
+      example:
+        partner:
+          permittedTasks:
+          - permittedTasks
+          - permittedTasks
+          businessId: businessId
+        page:
+          instagramBusinessAccount:
+            id: id
+            username: username
+          business:
+            name: name
+            id: id
+          name: name
+          id: id
+      properties:
+        page:
+          $ref: "#/components/schemas/MetaPageOwnership"
+        partner:
+          $ref: "#/components/schemas/grantBusinessPartner_201_response_partner"
+    revokeBusinessPartner_200_response:
+      example:
+        businessId: businessId
+        pageId: pageId
+        revoked: true
+      properties:
+        pageId:
+          type: string
+        businessId:
+          type: string
+        revoked:
+          type: boolean
     getFacebookPages_200_response_pages_inner:
       example:
         fan_count: 0
@@ -114682,6 +115446,135 @@ components:
           type: array
         paging:
           $ref: "#/components/schemas/getAdsActivityLog_200_response_paging"
+    listMetaBusinessUsers_200_response:
+      example:
+        businessId: businessId
+        systemUsers:
+        - role: role
+          name: name
+          id: id
+          email: email
+        - role: role
+          name: name
+          id: id
+          email: email
+        users:
+        - role: role
+          name: name
+          id: id
+          email: email
+        - role: role
+          name: name
+          id: id
+          email: email
+      properties:
+        businessId:
+          type: string
+        users:
+          items:
+            $ref: "#/components/schemas/MetaBusinessUser"
+          type: array
+        systemUsers:
+          items:
+            $ref: "#/components/schemas/MetaBusinessUser"
+          type: array
+    listPageUsers_200_response:
+      example:
+        businessId: businessId
+        pageId: pageId
+        users:
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+      properties:
+        pageId:
+          type: string
+        businessId:
+          type: string
+        users:
+          items:
+            $ref: "#/components/schemas/MetaAssignedUser"
+          type: array
+    assignPageUser_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id used to resolve the Meta token.
+          type: string
+        pageId:
+          description: Facebook Page id.
+          type: string
+        businessId:
+          description: Business portfolio the user belongs to.
+          type: string
+        userId:
+          description: Business-scoped user id from GET /v1/ads/businesses/users.
+          type: string
+        tasks:
+          items:
+            enum:
+            - MANAGE
+            - CREATE_CONTENT
+            - MODERATE
+            - MESSAGING
+            - ADVERTISE
+            - ANALYZE
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - businessId
+      - pageId
+      - tasks
+      - userId
+    assignPageUser_201_response_user:
+      example:
+        id: id
+        tasks:
+        - tasks
+        - tasks
+      properties:
+        id:
+          type: string
+        tasks:
+          items:
+            type: string
+          type: array
+    assignPageUser_201_response:
+      example:
+        businessId: businessId
+        pageId: pageId
+        user:
+          id: id
+          tasks:
+          - tasks
+          - tasks
+      properties:
+        pageId:
+          type: string
+        businessId:
+          type: string
+        user:
+          $ref: "#/components/schemas/assignPageUser_201_response_user"
+    removePageUser_200_response:
+      example:
+        removed: true
+        pageId: pageId
+        userId: userId
+      properties:
+        pageId:
+          type: string
+        userId:
+          type: string
+        removed:
+          type: boolean
     listAdLabels_200_response_data_inner:
       oneOf:
       - $ref: "#/components/schemas/GoogleAdLabel"
@@ -116750,6 +117643,81 @@ components:
       - clientCustomerId
       - managerCustomerId
       - managerLinkId
+    listAdAccountUsers_200_response:
+      example:
+        adAccountId: adAccountId
+        businessId: businessId
+        users:
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+        - name: name
+          id: id
+          tasks:
+          - tasks
+          - tasks
+      properties:
+        adAccountId:
+          type: string
+        businessId:
+          type: string
+        users:
+          items:
+            $ref: "#/components/schemas/MetaAssignedUser"
+          type: array
+    assignAdAccountUser_request:
+      properties:
+        accountId:
+          description: Zernio SocialAccount id used to resolve the Meta token.
+          type: string
+        adAccountId:
+          description: Meta ad account id (act_<n>).
+          type: string
+        userId:
+          description: Business-scoped user id from GET /v1/ads/businesses/users.
+          type: string
+        tasks:
+          items:
+            enum:
+            - MANAGE
+            - ADVERTISE
+            - ANALYZE
+            - DRAFT
+            type: string
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - adAccountId
+      - tasks
+      - userId
+    assignAdAccountUser_201_response:
+      example:
+        adAccountId: adAccountId
+        user:
+          id: id
+          tasks:
+          - tasks
+          - tasks
+      properties:
+        adAccountId:
+          type: string
+        user:
+          $ref: "#/components/schemas/assignPageUser_201_response_user"
+    removeAdAccountUser_200_response:
+      example:
+        removed: true
+        adAccountId: adAccountId
+        userId: userId
+      properties:
+        adAccountId:
+          type: string
+        userId:
+          type: string
+        removed:
+          type: boolean
     getAdAccountFinance_200_response_fundingSource:
       example:
         displayString: displayString
@@ -117113,20 +118081,32 @@ components:
         adAccountId:
           description: Meta ad account ID (act_...)
           type: string
+        name:
+          description: New ad account name.
+          maxLength: 255
+          type: string
+        spendCap:
+          description: Account spend cap in whole currency units; null removes it.
+          nullable: true
+          type: number
+        resetAmountSpent:
+          description: Restart the amount counted against the cap from zero. Cannot
+            be combined with spendCap null.
+          type: boolean
         defaultDsaBeneficiary:
           description: Legal entity benefiting from ads on this ad account
           maxLength: 100
           type: string
         defaultDsaPayor:
           description: Legal entity paying for ads on this ad account. Defaults to
-            defaultDsaBeneficiary when omitted.
+            defaultDsaBeneficiary when omitted. Requires defaultDsaBeneficiary.
           maxLength: 100
           type: string
       required:
       - accountId
       - adAccountId
-      - defaultDsaBeneficiary
     updateAdAccount_200_response_dsaDefaults:
+      description: Present when defaultDsaBeneficiary was passed.
       example:
         payor: payor
         beneficiary: beneficiary
@@ -117135,8 +118115,51 @@ components:
           type: string
         payor:
           type: string
+    updateAdAccount_200_response_settings_fundingSource:
+      example:
+        displayString: displayString
+        type: 5
+      properties:
+        displayString:
+          type: string
+        type:
+          type: integer
+    updateAdAccount_200_response_settings:
+      description: "Present when name, spendCap or resetAmountSpent was passed."
+      example:
+        spendCap: 1.4658129805029452
+        balance: 0.8008281904610115
+        name: name
+        currency: currency
+        fundingSource:
+          displayString: displayString
+          type: 5
+        amountSpent: 6.027456183070403
+      properties:
+        name:
+          type: string
+        currency:
+          type: string
+        balance:
+          type: number
+        amountSpent:
+          type: number
+        spendCap:
+          nullable: true
+          type: number
+        fundingSource:
+          $ref: "#/components/schemas/updateAdAccount_200_response_settings_fundingSource"
     updateAdAccount_200_response:
       example:
+        settings:
+          spendCap: 1.4658129805029452
+          balance: 0.8008281904610115
+          name: name
+          currency: currency
+          fundingSource:
+            displayString: displayString
+            type: 5
+          amountSpent: 6.027456183070403
         adAccountId: adAccountId
         dsaDefaults:
           payor: payor
@@ -117146,6 +118169,28 @@ components:
           type: string
         dsaDefaults:
           $ref: "#/components/schemas/updateAdAccount_200_response_dsaDefaults"
+        settings:
+          $ref: "#/components/schemas/updateAdAccount_200_response_settings"
+    getDsaDefaults_200_response_dsaDefaults:
+      example:
+        payor: payor
+        beneficiary: beneficiary
+      properties:
+        beneficiary:
+          type: string
+        payor:
+          type: string
+    getDsaDefaults_200_response:
+      example:
+        adAccountId: adAccountId
+        dsaDefaults:
+          payor: payor
+          beneficiary: beneficiary
+      properties:
+        adAccountId:
+          type: string
+        dsaDefaults:
+          $ref: "#/components/schemas/getDsaDefaults_200_response_dsaDefaults"
     getDsaRecommendations_200_response:
       example:
         adAccountId: adAccountId
@@ -127330,6 +128375,28 @@ components:
         lastUpdated:
           description: When these metrics were last refreshed
           format: date-time
+          type: string
+    MetaPageOwnership_business:
+      description: Business portfolio that owns the Page; null when the Page is outside
+        any portfolio.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+    MetaPageOwnership_instagramBusinessAccount:
+      description: Instagram professional account linked to the Page; null when none
+        is linked.
+      example:
+        id: id
+        username: username
+      properties:
+        id:
+          type: string
+        username:
           type: string
     ErrorResponse_details_createdObjects_inner:
       example:
