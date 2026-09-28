@@ -14,6 +14,7 @@ At least one updatable field is required; the route returns 400 if the body is e
 |**automaticMatchingFields** | [**List&lt;AutomaticMatchingFieldsEnum&gt;**](#List&lt;AutomaticMatchingFieldsEnum&gt;) | Which user fields Advanced Matching may collect. Meta&#39;s terse codes: em&#x3D;email, ph&#x3D;phone, fn&#x3D;first name, ln&#x3D;last name, ge&#x3D;gender, db&#x3D;date of birth, ct&#x3D;city, st&#x3D;state, zp&#x3D;zip.  |  [optional] |
 |**firstPartyCookieStatus** | [**FirstPartyCookieStatusEnum**](#FirstPartyCookieStatusEnum) |  |  [optional] |
 |**dataUseSetting** | [**DataUseSettingEnum**](#DataUseSettingEnum) |  |  [optional] |
+|**autoTagging** | **Boolean** | Google Ads: turn gclid auto-tagging on or off for the ad account. |  [optional] |
 
 
 

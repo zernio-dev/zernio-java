@@ -19,6 +19,9 @@ A conversion event tied to a tracking tag (Google conversion action, LinkedIn co
 |**clickWindowDays** | **Integer** |  |  [optional] |
 |**viewWindowDays** | **Integer** |  |  [optional] |
 |**urlContains** | **String** | Fires only on pages whose URL contains this text (case-insensitive). |  [optional] |
+|**alwaysUseDefaultValue** | **Boolean** | &#x60;defaultValue&#x60; is recorded even when the conversion sends its own value. |  [optional] |
+|**primary** | **Boolean** | Primary conversions count toward bidding and the Conversions column; secondary ones are observation only (Google &#x60;primary_for_goal&#x60;). |  [optional] |
+|**countingType** | [**CountingTypeEnum**](#CountingTypeEnum) | &#x60;one&#x60; counts at most one conversion per ad interaction (leads), &#x60;every&#x60; counts each (purchases). |  [optional] |
 
 
 
@@ -33,6 +36,15 @@ A conversion event tied to a tracking tag (Google conversion action, LinkedIn co
 | INITIATE_CHECKOUT | &quot;initiate_checkout&quot; |
 | ADD_PAYMENT_INFO | &quot;add_payment_info&quot; |
 | PURCHASE | &quot;purchase&quot; |
+
+
+
+## Enum: CountingTypeEnum
+
+| Name | Value |
+|---- | -----|
+| ONE | &quot;one&quot; |
+| EVERY | &quot;every&quot; |
 
 
 
