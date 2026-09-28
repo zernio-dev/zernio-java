@@ -4843,10 +4843,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/OnBrandedCallingIdentityActionRequiredRequestIdentityTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingIdentityActionRequiredRequestTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingIdentityStatusUpdatedRequestIdentityTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingIdentityStatusUpdatedRequestTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingNumberStatusUpdatedRequestIdentityTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingNumberStatusUpdatedRequestNumberTest.java
-src/test/java/dev/zernio/model/OnBrandedCallingNumberStatusUpdatedRequestTest.java

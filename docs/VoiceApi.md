@@ -1857,7 +1857,7 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 
 ## getVoiceCallEstimate
 
-> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, minutes, recording, transcription)
+> GetVoiceCallEstimate200Response getVoiceCallEstimate(to, from, minutes, recording, transcription)
 
 Estimate call cost
 
@@ -1885,11 +1885,12 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
+        String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
         Integer minutes = 1; // Integer | 
         Boolean recording = true; // Boolean | 
         Boolean transcription = true; // Boolean | 
         try {
-            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, minutes, recording, transcription);
+            GetVoiceCallEstimate200Response result = apiInstance.getVoiceCallEstimate(to, from, minutes, recording, transcription);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling VoiceApi#getVoiceCallEstimate");
@@ -1908,6 +1909,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
+| **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
 | **recording** | **Boolean**|  | [optional] |
 | **transcription** | **Boolean**|  | [optional] |
@@ -1934,7 +1936,7 @@ public class Example {
 
 ## getVoiceCallEstimateWithHttpInfo
 
-> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, minutes, recording, transcription)
+> ApiResponse<GetVoiceCallEstimate200Response> getVoiceCallEstimate getVoiceCallEstimateWithHttpInfo(to, from, minutes, recording, transcription)
 
 Estimate call cost
 
@@ -1963,11 +1965,12 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         String to = "to_example"; // String | Destination number, E.164 (leading + optional).
+        String from = "from_example"; // String | The number the call would dial from, E.164. When it is verified on a Branded Calling identity and `to` is a US number, the estimate includes the per-call Branded Calling surcharge.
         Integer minutes = 1; // Integer | 
         Boolean recording = true; // Boolean | 
         Boolean transcription = true; // Boolean | 
         try {
-            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, minutes, recording, transcription);
+            ApiResponse<GetVoiceCallEstimate200Response> response = apiInstance.getVoiceCallEstimateWithHttpInfo(to, from, minutes, recording, transcription);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1988,6 +1991,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **to** | **String**| Destination number, E.164 (leading + optional). | |
+| **from** | **String**| The number the call would dial from, E.164. When it is verified on a Branded Calling identity and &#x60;to&#x60; is a US number, the estimate includes the per-call Branded Calling surcharge. | [optional] |
 | **minutes** | **Integer**|  | [optional] [default to 1] |
 | **recording** | **Boolean**|  | [optional] |
 | **transcription** | **Boolean**|  | [optional] |
