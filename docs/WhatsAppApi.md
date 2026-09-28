@@ -2312,7 +2312,7 @@ public class Example {
 | **200** | Commerce settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## getWhatsAppCommerceSettingsWithHttpInfo
@@ -2391,7 +2391,7 @@ ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSett
 | **200** | Commerce settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
@@ -3850,7 +3850,7 @@ public class Example {
 | **201** | Linked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## linkWhatsAppCatalogWithHttpInfo
@@ -3927,7 +3927,7 @@ ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Respons
 | **201** | Linked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
@@ -4158,7 +4158,7 @@ public class Example {
 | **200** | Linked catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## listWhatsAppCatalogsWithHttpInfo
@@ -4237,7 +4237,7 @@ ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Respons
 | **200** | Linked catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
@@ -5854,7 +5854,7 @@ public class Example {
 | **200** | Unlinked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## unlinkWhatsAppCatalogWithHttpInfo
@@ -5933,7 +5933,7 @@ ApiResponse<[**UnlinkWhatsAppCatalog200Response**](UnlinkWhatsAppCatalog200Respo
 | **200** | Unlinked |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
@@ -6156,7 +6156,7 @@ public class Example {
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## updateWhatsAppCommerceSettingsWithHttpInfo
@@ -6231,7 +6231,7 @@ ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSett
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 

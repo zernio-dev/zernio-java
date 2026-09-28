@@ -118,7 +118,7 @@ public class Example {
 | **202** | Accepted by Meta |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## batchAdCatalogProductsWithHttpInfo
@@ -197,7 +197,7 @@ ApiResponse<[**BatchAdCatalogProducts202Response**](BatchAdCatalogProducts202Res
 | **202** | Accepted by Meta |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -272,7 +272,7 @@ public class Example {
 | **201** | Catalog created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
@@ -350,7 +350,7 @@ ApiResponse<[**CreateAdCatalog201Response**](CreateAdCatalog201Response.md)>
 | **201** | Catalog created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
@@ -428,7 +428,7 @@ public class Example {
 | **201** | Feed created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## createAdCatalogFeedWithHttpInfo
@@ -507,7 +507,7 @@ ApiResponse<[**CreateAdCatalogFeed201Response**](CreateAdCatalogFeed201Response.
 | **201** | Feed created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -586,7 +586,7 @@ public class Example {
 | **202** | Fetch started |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## createAdCatalogFeedUploadWithHttpInfo
@@ -667,7 +667,7 @@ ApiResponse<[**CreateAdCatalogFeedUpload202Response**](CreateAdCatalogFeedUpload
 | **202** | Fetch started |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -744,7 +744,7 @@ public class Example {
 | **201** | Product created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## createAdCatalogProductWithHttpInfo
@@ -823,7 +823,7 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 | **201** | Product created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -900,7 +900,7 @@ public class Example {
 | **201** | Product set created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## createAdCatalogProductSetWithHttpInfo
@@ -979,7 +979,7 @@ ApiResponse<[**CreateAdCatalogProductSet201Response**](CreateAdCatalogProductSet
 | **201** | Product set created |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1058,7 +1058,7 @@ public class Example {
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAdCatalogWithHttpInfo
@@ -1139,7 +1139,7 @@ ApiResponse<[**DeleteAdCatalog200Response**](DeleteAdCatalog200Response.md)>
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1218,7 +1218,7 @@ public class Example {
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAdCatalogProductWithHttpInfo
@@ -1299,7 +1299,7 @@ ApiResponse<[**DeleteAdCatalogProduct200Response**](DeleteAdCatalogProduct200Res
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1378,7 +1378,7 @@ public class Example {
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAdCatalogProductSetWithHttpInfo
@@ -1459,7 +1459,7 @@ ApiResponse<[**DeleteAdCatalogProductSet200Response**](DeleteAdCatalogProductSet
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1536,7 +1536,7 @@ public class Example {
 | **200** | Catalog |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdCatalogWithHttpInfo
@@ -1615,7 +1615,7 @@ ApiResponse<[**CreateAdCatalog201Response**](CreateAdCatalog201Response.md)>
 | **200** | Catalog |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1694,7 +1694,7 @@ public class Example {
 | **200** | Batch status |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdCatalogBatchWithHttpInfo
@@ -1775,7 +1775,7 @@ ApiResponse<[**GetAdCatalogBatch200Response**](GetAdCatalogBatch200Response.md)>
 | **200** | Batch status |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1854,7 +1854,7 @@ public class Example {
 | **200** | Product |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdCatalogProductWithHttpInfo
@@ -1935,7 +1935,7 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 | **200** | Product |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2014,7 +2014,7 @@ public class Example {
 | **200** | Uploads, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listAdCatalogFeedUploadsWithHttpInfo
@@ -2095,7 +2095,7 @@ ApiResponse<[**ListAdCatalogFeedUploads200Response**](ListAdCatalogFeedUploads20
 | **200** | Uploads, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2172,7 +2172,7 @@ public class Example {
 | **200** | Feeds |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listAdCatalogFeedsWithHttpInfo
@@ -2251,7 +2251,7 @@ ApiResponse<[**ListAdCatalogFeeds200Response**](ListAdCatalogFeeds200Response.md
 | **200** | Feeds |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2330,7 +2330,7 @@ public class Example {
 | **200** | Product sets |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listAdCatalogProductSetsWithHttpInfo
@@ -2411,7 +2411,7 @@ ApiResponse<[**ListAdCatalogProductSets200Response**](ListAdCatalogProductSets20
 | **200** | Product sets |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2496,7 +2496,7 @@ public class Example {
 | **200** | Products |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listAdCatalogProductsWithHttpInfo
@@ -2583,7 +2583,7 @@ ApiResponse<[**ListAdCatalogProducts200Response**](ListAdCatalogProducts200Respo
 | **200** | Products |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2666,7 +2666,7 @@ public class Example {
 | **200** | Catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 
 ## listAdCatalogsWithHttpInfo
 
@@ -2750,7 +2750,7 @@ ApiResponse<[**ListAdCatalogs200Response**](ListAdCatalogs200Response.md)>
 | **200** | Catalogs |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 
 
 ## updateAdCatalogProduct
@@ -2828,7 +2828,7 @@ public class Example {
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateAdCatalogProductWithHttpInfo
@@ -2909,7 +2909,7 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2986,7 +2986,7 @@ public class Example {
 | **200** | Product set updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateAdCatalogProductSetWithHttpInfo
@@ -3065,6 +3065,6 @@ ApiResponse<[**CreateAdCatalogProductSet201Response**](CreateAdCatalogProductSet
 | **200** | Product set updated |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). Reconnect granting it, or pass catalogAccountId. |  -  |
+| **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | Resource not found |  -  |
 

@@ -116,7 +116,7 @@ public class Example {
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
@@ -197,7 +197,7 @@ ApiResponse<[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Res
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so it cannot be trunked. |  -  |
@@ -274,7 +274,7 @@ public class Example {
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
 
@@ -352,7 +352,7 @@ ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **403** | SIP trunking is not enabled for this team, or the team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). |  -  |
+| **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
 

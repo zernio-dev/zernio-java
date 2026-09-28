@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.122.0
+  version: 1.122.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -406,7 +406,6 @@ tags:
     regular phone (PSTN) calls in one list, newest first, without fanning out one
     request per number. Each row carries `channel` and `accountId` so you can fetch
     details and recordings from the matching channel-specific endpoint.
-    Private beta: returns 403 unless your account is enrolled.
   name: Calls
 - description: |
     Regular phone (PSTN) calling on your numbers. Enable voice on a number and route
@@ -426,7 +425,7 @@ tags:
     SMS/MMS on your numbers: enable SMS on a number, send messages, validate recipient
     numbers, export STOP opt-outs, and complete the US carrier registration (10DLC or
     toll-free) required before US traffic delivers.
-    Private beta: returns 404 unless your account is enrolled.
+    Enabling SMS on a number, carrier registration and sender IDs require usage-based billing.
   name: SMS
 - description: |
     Two-way iMessage on provider-provisioned senders. Order or register a sender
@@ -28808,9 +28807,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "SIP trunking is not enabled for this team, or the team is\
-            \ on legacy (non-usage-based) billing, which cannot invoice trunk call\
-            \ costs (code feature_not_available)."
+          description: "The team is on legacy (non-usage-based) billing, which cannot\
+            \ invoice trunk call costs (code feature_not_available). Move to usage-based\
+            \ billing to use SIP trunking."
         "409":
           description: The team trunk limit was reached (code invalid_resource_state).
         "422":
@@ -28999,9 +28998,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "SIP trunking is not enabled for this team, or the team is\
-            \ on legacy (non-usage-based) billing, which cannot invoice trunk call\
-            \ costs (code feature_not_available)."
+          description: "The team is on legacy (non-usage-based) billing, which cannot\
+            \ invoice trunk call costs (code feature_not_available). Move to usage-based\
+            \ billing to use SIP trunking."
         "404":
           description: Number or trunk not found
         "409":
@@ -52304,7 +52303,10 @@ components:
           schema:
             $ref: "#/components/schemas/ErrorResponse"
       description: "The Meta login behind the account lacks catalog_management (code\
-        \ insufficient_permissions). Reconnect granting it, or pass catalogAccountId."
+        \ insufficient_permissions). The permission is pending Meta App Review and\
+        \ is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId\
+        \ naming a facebook, instagram or metaads connection whose Meta login already\
+        \ holds it."
     AccountUnavailable:
       content:
         application/json:
