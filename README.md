@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.127.0
+- API version: 1.128.0
 
-- Build date: 2026-09-28T14:56:42.302189998Z[Etc/UTC]
+- Build date: 2026-09-28T15:13:25.480412296Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.127.0</version>
+  <version>1.128.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.127.0"
+compile "dev.zernio:zernio-sdk:1.128.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.127.0.jar`
+- `target/zernio-sdk-1.128.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1443,14 +1443,14 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStoreInstall**](docs/TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
 *TrackingTagsApi* | [**getTrackingTagStoreInstallWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
-*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store
-*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store
+*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site
+*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site
 *TrackingTagsApi* | [**listTrackingTagSharedAccounts**](docs/TrackingTagsApi.md#listTrackingTagSharedAccounts) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**listTrackingTagSharedAccountsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagSharedAccountsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | List accounts it is shared with
 *TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
-*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store
-*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store
+*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
+*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**updateAdTrackingTags**](docs/TrackingTagsApi.md#updateAdTrackingTags) | **PATCH** /v1/ads/{adId}/tracking-tags | Set ad tracking tags
@@ -2730,6 +2730,8 @@ Class | Method | HTTP request | Description
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
  - [GetTrackingTagStats200ResponseStats](docs/GetTrackingTagStats200ResponseStats.md)
  - [GetTrackingTagStoreInstall200Response](docs/GetTrackingTagStoreInstall200Response.md)
+ - [GetTrackingTagStoreInstall200ResponseInstall](docs/GetTrackingTagStoreInstall200ResponseInstall.md)
+ - [GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight](docs/GetTrackingTagStoreInstall200ResponseInstallAllOfPreflight.md)
  - [GetTweet200Response](docs/GetTweet200Response.md)
  - [GetTweet200ResponseTweet](docs/GetTweet200ResponseTweet.md)
  - [GetUsage200Response](docs/GetUsage200Response.md)
@@ -2909,6 +2911,8 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [InstallTrackingTagOnStore200Response](docs/InstallTrackingTagOnStore200Response.md)
  - [InstallTrackingTagOnStore200ResponseInstall](docs/InstallTrackingTagOnStore200ResponseInstall.md)
+ - [InstallTrackingTagOnStore422Response](docs/InstallTrackingTagOnStore422Response.md)
+ - [InstallTrackingTagOnStore422ResponseDetails](docs/InstallTrackingTagOnStore422ResponseDetails.md)
  - [InstallTrackingTagOnStoreRequest](docs/InstallTrackingTagOnStoreRequest.md)
  - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
@@ -3377,6 +3381,8 @@ Class | Method | HTTP request | Description
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)
  - [RemoveGoogleAssetGroup200Response](docs/RemoveGoogleAssetGroup200Response.md)
  - [RemoveMessageReaction200Response](docs/RemoveMessageReaction200Response.md)
+ - [RemoveTrackingTagFromStore200Response](docs/RemoveTrackingTagFromStore200Response.md)
+ - [RemoveTrackingTagFromStore200ResponseInstall](docs/RemoveTrackingTagFromStore200ResponseInstall.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReplaceAdAudienceCompanies200Response](docs/ReplaceAdAudienceCompanies200Response.md)
  - [ReplaceAdAudienceCompaniesRequest](docs/ReplaceAdAudienceCompaniesRequest.md)
@@ -3648,6 +3654,7 @@ Class | Method | HTTP request | Description
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
  - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
  - [TrackingTag](docs/TrackingTag.md)
+ - [TrackingTagInstallBlockedReason](docs/TrackingTagInstallBlockedReason.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)
  - [TriggerWorkflow200Response](docs/TriggerWorkflow200Response.md)

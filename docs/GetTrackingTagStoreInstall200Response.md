@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
-|**install** | [**StorePixelInstall**](StorePixelInstall.md) |  |  [optional] |
+|**install** | [**GetTrackingTagStoreInstall200ResponseInstall**](GetTrackingTagStoreInstall200ResponseInstall.md) |  |  [optional] |
 
 
 
