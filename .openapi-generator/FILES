@@ -1571,6 +1571,10 @@ docs/PostUpdateResponse.md
 docs/PostUserId.md
 docs/PostsApi.md
 docs/PostsListResponse.md
+docs/PreflightBrandedCallingIdentity200Response.md
+docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md
+docs/PreflightBrandedCallingIdentityRequest.md
+docs/PreflightBrandedCallingIdentityRequestAuthorizer.md
 docs/PreflightSmsRegistration200Response.md
 docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
@@ -4029,6 +4033,10 @@ src/main/java/dev/zernio/model/PostRetryResponse.java
 src/main/java/dev/zernio/model/PostUpdateResponse.java
 src/main/java/dev/zernio/model/PostUserId.java
 src/main/java/dev/zernio/model/PostsListResponse.java
+src/main/java/dev/zernio/model/PreflightBrandedCallingIdentity200Response.java
+src/main/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseFindingsInner.java
+src/main/java/dev/zernio/model/PreflightBrandedCallingIdentityRequest.java
+src/main/java/dev/zernio/model/PreflightBrandedCallingIdentityRequestAuthorizer.java
 src/main/java/dev/zernio/model/PreflightSmsRegistration200Response.java
 src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseAdvisoriesInner.java
 src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposed.java
@@ -4847,3 +4855,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseFindingsInnerTest.java
+src/test/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseTest.java
+src/test/java/dev/zernio/model/PreflightBrandedCallingIdentityRequestAuthorizerTest.java
+src/test/java/dev/zernio/model/PreflightBrandedCallingIdentityRequestTest.java

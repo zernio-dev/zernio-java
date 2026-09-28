@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.123.1
+- API version: 1.124.0
 
-- Build date: 2026-09-28T14:05:05.084175325Z[Etc/UTC]
+- Build date: 2026-09-28T14:23:50.880491068Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.123.1</version>
+  <version>1.124.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.123.1"
+compile "dev.zernio:zernio-sdk:1.124.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.123.1.jar`
+- `target/zernio-sdk-1.124.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -603,6 +603,8 @@ Class | Method | HTTP request | Description
 *BrandedCallingApi* | [**listBrandedCallingIdentitiesWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingIdentitiesWithHttpInfo) | **GET** /v1/branded-calling/identities | List caller identities
 *BrandedCallingApi* | [**listBrandedCallingIdentityNumbers**](docs/BrandedCallingApi.md#listBrandedCallingIdentityNumbers) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity
 *BrandedCallingApi* | [**listBrandedCallingIdentityNumbersWithHttpInfo**](docs/BrandedCallingApi.md#listBrandedCallingIdentityNumbersWithHttpInfo) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity
+*BrandedCallingApi* | [**preflightBrandedCallingIdentity**](docs/BrandedCallingApi.md#preflightBrandedCallingIdentity) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it
+*BrandedCallingApi* | [**preflightBrandedCallingIdentityWithHttpInfo**](docs/BrandedCallingApi.md#preflightBrandedCallingIdentityWithHttpInfo) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it
 *BrandedCallingApi* | [**resendBrandedCallingAuthorizerCode**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
 *BrandedCallingApi* | [**resendBrandedCallingAuthorizerCodeWithHttpInfo**](docs/BrandedCallingApi.md#resendBrandedCallingAuthorizerCodeWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code
 *BrandedCallingApi* | [**updateBrandedCallingIdentity**](docs/BrandedCallingApi.md#updateBrandedCallingIdentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity
@@ -3288,6 +3290,10 @@ Class | Method | HTTP request | Description
  - [PostUpdateResponse](docs/PostUpdateResponse.md)
  - [PostUserId](docs/PostUserId.md)
  - [PostsListResponse](docs/PostsListResponse.md)
+ - [PreflightBrandedCallingIdentity200Response](docs/PreflightBrandedCallingIdentity200Response.md)
+ - [PreflightBrandedCallingIdentity200ResponseFindingsInner](docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md)
+ - [PreflightBrandedCallingIdentityRequest](docs/PreflightBrandedCallingIdentityRequest.md)
+ - [PreflightBrandedCallingIdentityRequestAuthorizer](docs/PreflightBrandedCallingIdentityRequestAuthorizer.md)
  - [PreflightSmsRegistration200Response](docs/PreflightSmsRegistration200Response.md)
  - [PreflightSmsRegistration200ResponseAdvisoriesInner](docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md)
  - [PreflightSmsRegistration200ResponseComposed](docs/PreflightSmsRegistration200ResponseComposed.md)

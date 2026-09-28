@@ -13,6 +13,8 @@
 |**minutes** | **BigDecimal** |  |  [optional] |
 |**billableUSD** | **BigDecimal** |  |  [optional] |
 |**metaUSD** | **BigDecimal** |  |  [optional] |
+|**brandedCalls** | **Integer** |  |  [optional] |
+|**brandedCallUSD** | **BigDecimal** |  |  [optional] |
 
 
 

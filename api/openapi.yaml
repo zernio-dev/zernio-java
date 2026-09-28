@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.123.1
+  version: 1.124.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24509,8 +24509,11 @@ paths:
         Stores the legal entity behind your caller identities. Nothing is filed with the
         carrier until the business's first identity passes review. Only businesses
         registered in the US or Canada qualify (a FEIN or Canadian equivalent is
-        required); any other country returns `422`.
+        required); any other country returns `422`. Send an `Idempotency-Key` so a
+        retry replays the original response instead of registering the business twice.
       operationId: createBrandedCallingEnterprise
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -24528,8 +24531,11 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
-          description: The business is not registered in the US or Canada (code feature_not_available).
+          description: "The business is not registered in the US or Canada (code feature_not_available),\
+            \ or the Idempotency-Key was reused with a different body (code idempotency_key_reused)."
       security:
       - bearerAuth: []
       summary: Register a business for Branded Calling
@@ -24664,7 +24670,13 @@ paths:
         (whether or not the callee's carrier displayed the branding); the surcharge
         shows as `brandedCallUSD` on the call's billing and in
         `GET /v1/voice/calls/estimate` when you pass `from`.
+
+        Run `POST /v1/branded-calling/identities/preflight` with the same body first to
+        catch what the review would bounce. Send an `Idempotency-Key` so a retry replays
+        the original response instead of creating a second identity.
       operationId: createBrandedCallingIdentity
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
       requestBody:
         content:
           application/json:
@@ -24686,11 +24698,54 @@ paths:
           description: Usage-based billing is required (code usage_billing_required).
         "404":
           description: Business not found
+        "409":
+          $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
-          description: The logo could not be downloaded or is not an image.
+          description: "The logo could not be downloaded or is not an image, or the\
+            \ Idempotency-Key was reused with a different body (code idempotency_key_reused)."
       security:
       - bearerAuth: []
       summary: Create a caller identity
+      tags:
+      - Branded Calling
+      x-resource-group: telephony
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/branded-calling/identities/preflight:
+    post:
+      description: |
+        Validates the exact body `POST /v1/branded-calling/identities` takes and runs
+        the same deterministic lints the review runs on it without creating anything,
+        with the same codes and fields the queued identity's findings carry. A `block`
+        finding is what the review would bounce (two references sharing a phone, a
+        reference inside the business, an invalid timezone); a `warn` finding slows
+        vetting (a display name that does not read as the business, a call reason
+        outside the carrier catalogue, a public-mailbox authorizer, a logo that does
+        not answer). `ok` is true when there is no `block`.
+      operationId: preflightBrandedCallingIdentity
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/preflightBrandedCallingIdentity_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/preflightBrandedCallingIdentity_200_response"
+          description: The findings; nothing was created.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Business not found
+      security:
+      - bearerAuth: []
+      summary: Dry-run a caller identity before creating it
       tags:
       - Branded Calling
       x-resource-group: telephony
@@ -24801,6 +24856,10 @@ paths:
           description: Identity not found
         "409":
           description: The identity cannot be edited in its current status (code invalid_resource_state).
+        "422":
+          description: "reviewAnswers names a point id that is not on the open change\
+            \ request, or there is no open request (code invalid_field_value, param\
+            \ reviewAnswers)."
       security:
       - bearerAuth: []
       summary: Edit or resubmit a caller identity
@@ -76419,6 +76478,8 @@ components:
         calls: 0
         minutes: 1.4658129805029452
         billableUSD: 5.962133916683182
+        brandedCallUSD: 7.061401241503109
+        brandedCalls: 2
       properties:
         calls:
           type: integer
@@ -76433,14 +76494,23 @@ components:
           description: "WhatsApp only: Meta's per-minute charge, billed by Meta directly\
             \ to your WABA. Display only."
           type: number
+        brandedCalls:
+          description: Outbound calls that carried a Branded Calling surcharge.
+          type: integer
+        brandedCallUSD:
+          description: "The Branded Calling surcharge on those calls, already inside\
+            \ billableUSD."
+          type: number
     getCallsUsage_200_response_groups_inner:
       example:
-        metaUSD: 2.027123023002322
-        answered: 7
-        calls: 2
-        minutes: 9.301444243932576
-        billableUSD: 3.616076749251911
+        metaUSD: 7.386281948385884
+        answered: 3
+        calls: 9
+        minutes: 2.027123023002322
+        billableUSD: 4.145608029883936
+        brandedCallUSD: 1.0246457001441578
         key: key
+        brandedCalls: 1
       properties:
         key:
           description: "The group key: a `YYYY-MM-DD` UTC day, one of your numbers,\
@@ -76456,21 +76526,29 @@ components:
           type: number
         metaUSD:
           type: number
+        brandedCalls:
+          type: integer
+        brandedCallUSD:
+          type: number
     getCallsUsage_200_response:
       example:
         groups:
-        - metaUSD: 2.027123023002322
-          answered: 7
-          calls: 2
-          minutes: 9.301444243932576
-          billableUSD: 3.616076749251911
+        - metaUSD: 7.386281948385884
+          answered: 3
+          calls: 9
+          minutes: 2.027123023002322
+          billableUSD: 4.145608029883936
+          brandedCallUSD: 1.0246457001441578
           key: key
-        - metaUSD: 2.027123023002322
-          answered: 7
-          calls: 2
-          minutes: 9.301444243932576
-          billableUSD: 3.616076749251911
+          brandedCalls: 1
+        - metaUSD: 7.386281948385884
+          answered: 3
+          calls: 9
+          minutes: 2.027123023002322
+          billableUSD: 4.145608029883936
+          brandedCallUSD: 1.0246457001441578
           key: key
+          brandedCalls: 1
         until: 2000-01-23T04:56:07.000+00:00
         groupBy: day
         totals:
@@ -76479,6 +76557,8 @@ components:
           calls: 0
           minutes: 1.4658129805029452
           billableUSD: 5.962133916683182
+          brandedCallUSD: 7.061401241503109
+          brandedCalls: 2
         since: 2000-01-23T04:56:07.000+00:00
       properties:
         since:
@@ -94973,11 +95053,100 @@ components:
       - displayName
       - enterpriseId
       - references
+    preflightBrandedCallingIdentity_request_authorizer:
+      properties:
+        name:
+          maxLength: 255
+          type: string
+        email:
+          format: email
+          type: string
+      required:
+      - email
+      - name
+    preflightBrandedCallingIdentity_request:
+      description: Same body as createBrandedCallingIdentity.
+      properties:
+        enterpriseId:
+          type: string
+        displayName:
+          maxLength: 35
+          minLength: 1
+          type: string
+        callReasons:
+          items:
+            maxLength: 64
+            type: string
+          maxItems: 10
+          minItems: 1
+          type: array
+        logoUrl:
+          type: string
+        authorizer:
+          $ref: "#/components/schemas/preflightBrandedCallingIdentity_request_authorizer"
+        references:
+          $ref: "#/components/schemas/BrandedCallingReferences"
+      required:
+      - authorizer
+      - callReasons
+      - displayName
+      - enterpriseId
+      - references
+    preflightBrandedCallingIdentity_200_response_findings_inner:
+      example:
+        severity: block
+        code: display-name-mismatch
+        field: field
+        message: message
+      properties:
+        code:
+          enum:
+          - display-name-mismatch
+          - call-reasons-manual
+          - authorizer-free-mail
+          - authorizer-domain-mismatch
+          - reference-phone-duplicate
+          - reference-internal
+          - reference-financial-free-mail
+          - reference-timezone-invalid
+          - logo-unreachable
+          type: string
+        severity:
+          enum:
+          - block
+          - warn
+          type: string
+        field:
+          description: "The body field the finding is about, e.g. references.financial.email."
+          type: string
+        message:
+          type: string
+    preflightBrandedCallingIdentity_200_response:
+      example:
+        findings:
+        - severity: block
+          code: display-name-mismatch
+          field: field
+          message: message
+        - severity: block
+          code: display-name-mismatch
+          field: field
+          message: message
+        ok: true
+      properties:
+        ok:
+          description: True when no finding is a block.
+          type: boolean
+        findings:
+          items:
+            $ref: "#/components/schemas/preflightBrandedCallingIdentity_200_response_findings_inner"
+          type: array
     updateBrandedCallingIdentity_request_reviewAnswers_value:
       properties:
         text:
           type: string
         url:
+          description: "A live page, or the URL of an uploaded file for file points."
           format: uri
           type: string
     updateBrandedCallingIdentity_request:
@@ -95007,7 +95176,10 @@ components:
         reviewAnswers:
           additionalProperties:
             $ref: "#/components/schemas/updateBrandedCallingIdentity_request_reviewAnswers_value"
-          description: One entry per point id of the open reviewRequest.
+          description: One entry per point id of the open reviewRequest. A text point
+            takes text; a link point takes url; file and link_or_file points take
+            url set to the URL of a file you uploaded first (POST /v1/media/upload).
+            A point id that is not on the open request is a 422.
         reviewNote:
           maxLength: 4000
           type: string

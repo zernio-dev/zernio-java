@@ -30,6 +30,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listBrandedCallingIdentitiesWithHttpInfo**](BrandedCallingApi.md#listBrandedCallingIdentitiesWithHttpInfo) | **GET** /v1/branded-calling/identities | List caller identities |
 | [**listBrandedCallingIdentityNumbers**](BrandedCallingApi.md#listBrandedCallingIdentityNumbers) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity |
 | [**listBrandedCallingIdentityNumbersWithHttpInfo**](BrandedCallingApi.md#listBrandedCallingIdentityNumbersWithHttpInfo) | **GET** /v1/branded-calling/identities/{id}/numbers | List the numbers on a caller identity |
+| [**preflightBrandedCallingIdentity**](BrandedCallingApi.md#preflightBrandedCallingIdentity) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it |
+| [**preflightBrandedCallingIdentityWithHttpInfo**](BrandedCallingApi.md#preflightBrandedCallingIdentityWithHttpInfo) | **POST** /v1/branded-calling/identities/preflight | Dry-run a caller identity before creating it |
 | [**resendBrandedCallingAuthorizerCode**](BrandedCallingApi.md#resendBrandedCallingAuthorizerCode) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code |
 | [**resendBrandedCallingAuthorizerCodeWithHttpInfo**](BrandedCallingApi.md#resendBrandedCallingAuthorizerCodeWithHttpInfo) | **POST** /v1/branded-calling/identities/{id}/verify-email | Resend the authorizer&#39;s code |
 | [**updateBrandedCallingIdentity**](BrandedCallingApi.md#updateBrandedCallingIdentity) | **PATCH** /v1/branded-calling/identities/{id} | Edit or resubmit a caller identity |
@@ -353,11 +355,11 @@ ApiResponse<[**BrandedCallingIdentity**](BrandedCallingIdentity.md)>
 
 ## createBrandedCallingEnterprise
 
-> BrandedCallingEnterprise createBrandedCallingEnterprise(createBrandedCallingEnterpriseRequest)
+> BrandedCallingEnterprise createBrandedCallingEnterprise(createBrandedCallingEnterpriseRequest, idempotencyKey)
 
 Register a business for Branded Calling
 
-Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. 
+Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
 
 ### Example
 
@@ -381,8 +383,9 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingEnterpriseRequest createBrandedCallingEnterpriseRequest = new CreateBrandedCallingEnterpriseRequest(); // CreateBrandedCallingEnterpriseRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            BrandedCallingEnterprise result = apiInstance.createBrandedCallingEnterprise(createBrandedCallingEnterpriseRequest);
+            BrandedCallingEnterprise result = apiInstance.createBrandedCallingEnterprise(createBrandedCallingEnterpriseRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BrandedCallingApi#createBrandedCallingEnterprise");
@@ -401,6 +404,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingEnterpriseRequest** | [**CreateBrandedCallingEnterpriseRequest**](CreateBrandedCallingEnterpriseRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -422,15 +426,16 @@ public class Example {
 | **201** | Business stored. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **422** | The business is not registered in the US or Canada (code feature_not_available). |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | The business is not registered in the US or Canada (code feature_not_available), or the Idempotency-Key was reused with a different body (code idempotency_key_reused). |  -  |
 
 ## createBrandedCallingEnterpriseWithHttpInfo
 
-> ApiResponse<BrandedCallingEnterprise> createBrandedCallingEnterprise createBrandedCallingEnterpriseWithHttpInfo(createBrandedCallingEnterpriseRequest)
+> ApiResponse<BrandedCallingEnterprise> createBrandedCallingEnterprise createBrandedCallingEnterpriseWithHttpInfo(createBrandedCallingEnterpriseRequest, idempotencyKey)
 
 Register a business for Branded Calling
 
-Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. 
+Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
 
 ### Example
 
@@ -455,8 +460,9 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingEnterpriseRequest createBrandedCallingEnterpriseRequest = new CreateBrandedCallingEnterpriseRequest(); // CreateBrandedCallingEnterpriseRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<BrandedCallingEnterprise> response = apiInstance.createBrandedCallingEnterpriseWithHttpInfo(createBrandedCallingEnterpriseRequest);
+            ApiResponse<BrandedCallingEnterprise> response = apiInstance.createBrandedCallingEnterpriseWithHttpInfo(createBrandedCallingEnterpriseRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -477,6 +483,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingEnterpriseRequest** | [**CreateBrandedCallingEnterpriseRequest**](CreateBrandedCallingEnterpriseRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -498,16 +505,17 @@ ApiResponse<[**BrandedCallingEnterprise**](BrandedCallingEnterprise.md)>
 | **201** | Business stored. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
-| **422** | The business is not registered in the US or Canada (code feature_not_available). |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | The business is not registered in the US or Canada (code feature_not_available), or the Idempotency-Key was reused with a different body (code idempotency_key_reused). |  -  |
 
 
 ## createBrandedCallingIdentity
 
-> BrandedCallingIdentity createBrandedCallingIdentity(createBrandedCallingIdentityRequest)
+> BrandedCallingIdentity createBrandedCallingIdentity(createBrandedCallingIdentityRequest, idempotencyKey)
 
 Create a caller identity
 
-A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month, the first month charged when the identity is filed with the carrier and not refunded if the carrier rejects it, then monthly while the identity exists. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;. 
+A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month, the first month charged when the identity is filed with the carrier and not refunded if the carrier rejects it, then monthly while the identity exists. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
 
 ### Example
 
@@ -531,8 +539,9 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingIdentityRequest createBrandedCallingIdentityRequest = new CreateBrandedCallingIdentityRequest(); // CreateBrandedCallingIdentityRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            BrandedCallingIdentity result = apiInstance.createBrandedCallingIdentity(createBrandedCallingIdentityRequest);
+            BrandedCallingIdentity result = apiInstance.createBrandedCallingIdentity(createBrandedCallingIdentityRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling BrandedCallingApi#createBrandedCallingIdentity");
@@ -551,6 +560,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingIdentityRequest** | [**CreateBrandedCallingIdentityRequest**](CreateBrandedCallingIdentityRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -574,15 +584,16 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **403** | Usage-based billing is required (code usage_billing_required). |  -  |
 | **404** | Business not found |  -  |
-| **422** | The logo could not be downloaded or is not an image. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | The logo could not be downloaded or is not an image, or the Idempotency-Key was reused with a different body (code idempotency_key_reused). |  -  |
 
 ## createBrandedCallingIdentityWithHttpInfo
 
-> ApiResponse<BrandedCallingIdentity> createBrandedCallingIdentity createBrandedCallingIdentityWithHttpInfo(createBrandedCallingIdentityRequest)
+> ApiResponse<BrandedCallingIdentity> createBrandedCallingIdentity createBrandedCallingIdentityWithHttpInfo(createBrandedCallingIdentityRequest, idempotencyKey)
 
 Create a caller identity
 
-A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month, the first month charged when the identity is filed with the carrier and not refunded if the carrier rejects it, then monthly while the identity exists. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;. 
+A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month, the first month charged when the identity is filed with the carrier and not refunded if the carrier rejects it, then monthly while the identity exists. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
 
 ### Example
 
@@ -607,8 +618,9 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingIdentityRequest createBrandedCallingIdentityRequest = new CreateBrandedCallingIdentityRequest(); // CreateBrandedCallingIdentityRequest | 
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
         try {
-            ApiResponse<BrandedCallingIdentity> response = apiInstance.createBrandedCallingIdentityWithHttpInfo(createBrandedCallingIdentityRequest);
+            ApiResponse<BrandedCallingIdentity> response = apiInstance.createBrandedCallingIdentityWithHttpInfo(createBrandedCallingIdentityRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -629,6 +641,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingIdentityRequest** | [**CreateBrandedCallingIdentityRequest**](CreateBrandedCallingIdentityRequest.md)|  | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
 
 ### Return type
 
@@ -652,7 +665,8 @@ ApiResponse<[**BrandedCallingIdentity**](BrandedCallingIdentity.md)>
 | **401** | Unauthorized |  -  |
 | **403** | Usage-based billing is required (code usage_billing_required). |  -  |
 | **404** | Business not found |  -  |
-| **422** | The logo could not be downloaded or is not an image. |  -  |
+| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **422** | The logo could not be downloaded or is not an image, or the Idempotency-Key was reused with a different body (code idempotency_key_reused). |  -  |
 
 
 ## deleteBrandedCallingEnterprise
@@ -1961,6 +1975,156 @@ ApiResponse<[**ListBrandedCallingIdentityNumbers200Response**](ListBrandedCallin
 | **404** | Identity not found |  -  |
 
 
+## preflightBrandedCallingIdentity
+
+> PreflightBrandedCallingIdentity200Response preflightBrandedCallingIdentity(preflightBrandedCallingIdentityRequest)
+
+Dry-run a caller identity before creating it
+
+Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it without creating anything, with the same codes and fields the queued identity&#39;s findings carry. A &#x60;block&#x60; finding is what the review would bounce (two references sharing a phone, a reference inside the business, an invalid timezone); a &#x60;warn&#x60; finding slows vetting (a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer). &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.BrandedCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
+        PreflightBrandedCallingIdentityRequest preflightBrandedCallingIdentityRequest = new PreflightBrandedCallingIdentityRequest(); // PreflightBrandedCallingIdentityRequest | 
+        try {
+            PreflightBrandedCallingIdentity200Response result = apiInstance.preflightBrandedCallingIdentity(preflightBrandedCallingIdentityRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BrandedCallingApi#preflightBrandedCallingIdentity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **preflightBrandedCallingIdentityRequest** | [**PreflightBrandedCallingIdentityRequest**](PreflightBrandedCallingIdentityRequest.md)|  | |
+
+### Return type
+
+[**PreflightBrandedCallingIdentity200Response**](PreflightBrandedCallingIdentity200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The findings; nothing was created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Business not found |  -  |
+
+## preflightBrandedCallingIdentityWithHttpInfo
+
+> ApiResponse<PreflightBrandedCallingIdentity200Response> preflightBrandedCallingIdentity preflightBrandedCallingIdentityWithHttpInfo(preflightBrandedCallingIdentityRequest)
+
+Dry-run a caller identity before creating it
+
+Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it without creating anything, with the same codes and fields the queued identity&#39;s findings carry. A &#x60;block&#x60; finding is what the review would bounce (two references sharing a phone, a reference inside the business, an invalid timezone); a &#x60;warn&#x60; finding slows vetting (a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer). &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.BrandedCallingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
+        PreflightBrandedCallingIdentityRequest preflightBrandedCallingIdentityRequest = new PreflightBrandedCallingIdentityRequest(); // PreflightBrandedCallingIdentityRequest | 
+        try {
+            ApiResponse<PreflightBrandedCallingIdentity200Response> response = apiInstance.preflightBrandedCallingIdentityWithHttpInfo(preflightBrandedCallingIdentityRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling BrandedCallingApi#preflightBrandedCallingIdentity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **preflightBrandedCallingIdentityRequest** | [**PreflightBrandedCallingIdentityRequest**](PreflightBrandedCallingIdentityRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PreflightBrandedCallingIdentity200Response**](PreflightBrandedCallingIdentity200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The findings; nothing was created. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Business not found |  -  |
+
+
 ## resendBrandedCallingAuthorizerCode
 
 > ResendBrandedCallingAuthorizerCode200Response resendBrandedCallingAuthorizerCode(id)
@@ -2188,6 +2352,7 @@ public class Example {
 | **401** | Unauthorized |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity cannot be edited in its current status (code invalid_resource_state). |  -  |
+| **422** | reviewAnswers names a point id that is not on the open change request, or there is no open request (code invalid_field_value, param reviewAnswers). |  -  |
 
 ## updateBrandedCallingIdentityWithHttpInfo
 
@@ -2267,4 +2432,5 @@ ApiResponse<[**BrandedCallingIdentity**](BrandedCallingIdentity.md)>
 | **401** | Unauthorized |  -  |
 | **404** | Identity not found |  -  |
 | **409** | The identity cannot be edited in its current status (code invalid_resource_state). |  -  |
+| **422** | reviewAnswers names a point id that is not on the open change request, or there is no open request (code invalid_field_value, param reviewAnswers). |  -  |
 

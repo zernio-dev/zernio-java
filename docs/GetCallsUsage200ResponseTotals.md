@@ -12,6 +12,8 @@
 |**minutes** | **BigDecimal** |  |  [optional] |
 |**billableUSD** | **BigDecimal** | What Zernio bills for these calls. |  [optional] |
 |**metaUSD** | **BigDecimal** | WhatsApp only: Meta&#39;s per-minute charge, billed by Meta directly to your WABA. Display only. |  [optional] |
+|**brandedCalls** | **Integer** | Outbound calls that carried a Branded Calling surcharge. |  [optional] |
+|**brandedCallUSD** | **BigDecimal** | The Branded Calling surcharge on those calls, already inside billableUSD. |  [optional] |
 
 
 
