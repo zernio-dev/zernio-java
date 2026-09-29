@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   TikTokPlatformDataMusicSoundInfo.JSON_PROPERTY_MUSIC_SOUND_START,
   TikTokPlatformDataMusicSoundInfo.JSON_PROPERTY_MUSIC_SOUND_END
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:56:42.088090679Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:59:52.337672880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokPlatformDataMusicSoundInfo {
   public static final String JSON_PROPERTY_MUSIC_SOUND_ID = "musicSoundId";
   @javax.annotation.Nonnull

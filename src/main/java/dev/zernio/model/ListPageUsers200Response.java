@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListPageUsers200Response.JSON_PROPERTY_BUSINESS_ID,
   ListPageUsers200Response.JSON_PROPERTY_USERS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:56:42.088090679Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:59:52.337672880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPageUsers200Response {
   public static final String JSON_PROPERTY_PAGE_ID = "pageId";
   @javax.annotation.Nullable

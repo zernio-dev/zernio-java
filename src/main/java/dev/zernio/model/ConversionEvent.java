@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ConversionEvent.JSON_PROPERTY_ACTION_SOURCE,
   ConversionEvent.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:56:42.088090679Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:59:52.337672880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEvent {
   public static final String JSON_PROPERTY_EVENT_NAME = "eventName";
   @javax.annotation.Nonnull

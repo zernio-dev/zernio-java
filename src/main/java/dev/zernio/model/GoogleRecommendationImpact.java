@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleRecommendationImpact.JSON_PROPERTY_BASE,
   GoogleRecommendationImpact.JSON_PROPERTY_POTENTIAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:56:42.088090679Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:59:52.337672880Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleRecommendationImpact {
   public static final String JSON_PROPERTY_BASE = "base";
   @javax.annotation.Nullable
