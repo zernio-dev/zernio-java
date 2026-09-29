@@ -21,15 +21,19 @@
 |**whatsappPhoneNumber** | **String** | WhatsApp only. Optional E.164 number already paired with the Facebook Page. Omit to let Meta select the paired number. Sent to the creative CTA and, when creating a new ad set, its promoted_object. Attach requests do not change the existing ad set. Stored as creative.whatsappPhoneNumber on every created ad. |  [optional] |
 |**headline** | **String** | Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;.  |  [optional] |
 |**body** | **String** | Primary text shown above the image / video. Single-creative shape only. Mutually exclusive with &#x60;creatives[]&#x60;.  |  [optional] |
+|**description** | **String** | Link description, independent of &#x60;headline&#x60; and &#x60;body&#x60; (Meta&#39;s &#x60;link_data.description&#x60;, &#x60;video_data.link_description&#x60; on video, and the shared description of a &#x60;placementAssets&#x60; feed). Meta shows it mainly on Facebook Feed placements, under the headline, when there is room; Instagram, Stories, Reels and Messenger placements do not display it. Also accepted per entry in &#x60;creatives[]&#x60;. Not allowed with an existing post creative.  |  [optional] |
 |**imageUrl** | **URI** | Image asset for single-creative shape. Mutually exclusive with &#x60;video&#x60; and with &#x60;creatives[]&#x60;. Required on the single-creative shape if neither &#x60;video&#x60; nor an existing post reference is supplied.  |  [optional] |
 |**video** | [**CtwaAdRequestBodyVideo**](CtwaAdRequestBodyVideo.md) |  |  [optional] |
 |**welcomeMessage** | [**CtwaAdRequestBodyWelcomeMessage**](CtwaAdRequestBodyWelcomeMessage.md) |  |  [optional] |
 |**creatives** | [**List&lt;CtwaAdRequestBodyCreativesInner&gt;**](CtwaAdRequestBodyCreativesInner.md) | Multi-creative shape: N CTWA ads under one campaign + one ad set, sharing budget and targeting. Mutually exclusive with the top-level single-creative fields (&#x60;headline&#x60; / &#x60;body&#x60; / &#x60;imageUrl&#x60; / &#x60;video&#x60;): setting both is a 400, unlike &#x60;POST /v1/ads/create&#x60; where the top-level fields are silently ignored in multi-creative mode. Each entry supplies headline, body, and image/video, or a platformPostId or objectStoryId reference. Fresh and existing creatives can be mixed.  |  [optional] |
-|**adSetId** | **String** | Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;countries&#x60;, &#x60;interests&#x60;, &#x60;audienceId&#x60; and &#x60;campaignStatus&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination.  |  [optional] |
-|**budgetAmount** | **BigDecimal** | Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set, where the ad set owns it.  |  [optional] |
-|**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) | Required unless &#x60;adSetId&#x60; is set. |  [optional] |
+|**adSetId** | **String** | Attach the creatives to this EXISTING messaging ad set instead of building a campaign, so the ad set keeps its learning phase. It then owns budget, targeting and schedule, so &#x60;budgetAmount&#x60;, &#x60;budgetType&#x60;, &#x60;budgetLevel&#x60;, &#x60;startDate&#x60;, &#x60;endDate&#x60;, &#x60;objective&#x60;, &#x60;campaignStatus&#x60;, &#x60;existingCampaignId&#x60;, the special ad category fields and every targeting field except &#x60;ageMin&#x60;, &#x60;ageMax&#x60;, &#x60;placements&#x60; and &#x60;advantageAudience&#x60; are rejected with a 400 alongside it. Its &#x60;destination_type&#x60; must match the ad&#39;s destination.  |  [optional] |
+|**existingCampaignId** | **String** | Create the new messaging ad set (and its ads) under this EXISTING Meta campaign instead of a new one, e.g. several audience ad sets under one campaign. The campaign&#39;s objective must be OUTCOME_ENGAGEMENT, OUTCOME_SALES or OUTCOME_LEADS (400 otherwise). If the campaign has a campaign budget, omit &#x60;budgetAmount&#x60; and &#x60;budgetType&#x60; (400 if sent); otherwise they are required and land on the new ad set. &#x60;objective&#x60;, &#x60;campaignName&#x60;, &#x60;campaignStatus&#x60;, &#x60;budgetLevel&#x60;, &#x60;specialAdCategories&#x60;, &#x60;specialAdCategoryCountry&#x60; and &#x60;adSetId&#x60; are rejected alongside it. To add ads to an existing ad set instead, use &#x60;adSetId&#x60;.  |  [optional] |
+|**budgetLevel** | [**BudgetLevelEnum**](#BudgetLevelEnum) | Where the budget lives. &#x60;adset&#x60; (default) puts it on the new ad set. &#x60;campaign&#x60; creates an Advantage campaign budget (CBO): the budget and bid strategy sit on the campaign and the ad set inherits them, same as POST /v1/ads/create. Not allowed with &#x60;adSetId&#x60; or &#x60;existingCampaignId&#x60;.  |  [optional] |
+|**budgetAmount** | **BigDecimal** | Budget amount in the ad account&#39;s currency major units (e.g. dollars for USD, not cents). Must be &gt; 0. Required unless &#x60;adSetId&#x60; is set (the ad set owns it) or &#x60;existingCampaignId&#x60; names a campaign with a campaign budget.  |  [optional] |
+|**budgetType** | [**BudgetTypeEnum**](#BudgetTypeEnum) | Required unless &#x60;adSetId&#x60; is set or &#x60;existingCampaignId&#x60; names a campaign with a campaign budget. &#x60;lifetime&#x60; requires &#x60;endDate&#x60;. |  [optional] |
 |**currency** | **String** | ISO 4217 currency code matching the ad account&#39;s currency (e.g. &#x60;USD&#x60;). Optional: Zernio resolves it from the ad account when omitted. The value selects the minor-unit exponent Zernio converts budget/bid amounts by before calling Meta (most currencies are cents; zero-decimal currencies like JPY/KRW are sent as-is).  |  [optional] |
-|**endDate** | **OffsetDateTime** | ISO 8601 datetime. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;.  |  [optional] |
+|**startDate** | **String** | When the ad set starts delivering. ISO 8601 date or date-time. A value with an offset (&#x60;2027-01-15T10:00:00+01:00&#x60;, &#x60;...Z&#x60;) is used as is; one without an offset (&#x60;2027-01-15T10:00:00&#x60;) is read in the ad account&#39;s timezone, and a date-only value starts at 00:00 local. Defaults to now.  |  [optional] |
+|**endDate** | **String** | ISO 8601 date or date-time, read like &#x60;startDate&#x60;; a date-only value ends at 23:59:59 local. Required when &#x60;budgetType&#x60; is &#x60;lifetime&#x60;.  |  [optional] |
 |**countries** | **List&lt;String&gt;** | ISO 3166-1 alpha-2 country codes. Defaults to &#x60;[\&quot;US\&quot;]&#x60; only when no other geo (&#x60;cities&#x60;, &#x60;regions&#x60;, &#x60;zips&#x60;, &#x60;metros&#x60;, &#x60;customLocations&#x60;) is supplied.  |  [optional] |
 |**cities** | [**List&lt;CtwaAdRequestBodyCitiesInner&gt;**](CtwaAdRequestBodyCitiesInner.md) | City-level geo targeting for local CTWA campaigns. Each entry maps to Meta&#39;s TargetingGeoLocationCity. &#x60;key&#x60; is Meta&#39;s city ID. &#x60;radius&#x60; and &#x60;distance_unit&#x60; are coupled: set both or neither. Meta enforces a minimum city radius (~17 km / 10 mi); smaller values resolve to a 0-size audience and the ad fails at launch. For a tighter catchment use customLocations (lat/lng).  |  [optional] |
 |**regions** | [**List&lt;CtwaAdRequestBodyRegionsInner&gt;**](CtwaAdRequestBodyRegionsInner.md) | Region / state-level geo targeting. &#x60;key&#x60; is Meta&#39;s region ID (lookupable via GET /v1/ads/targeting/search?type&#x3D;region).  |  [optional] |
@@ -42,6 +46,25 @@
 |**interests** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
 |**audienceId** | **String** | Custom audience ID to target. |  [optional] |
 |**placements** | [**CtwaAdRequestBodyPlacements**](CtwaAdRequestBodyPlacements.md) |  |  [optional] |
+|**gender** | [**GenderEnum**](#GenderEnum) | Restrict the audience by gender (Meta &#x60;genders&#x60;). Stored on the ad and read back in &#x60;targeting.gender&#x60;. |  [optional] |
+|**languages** | **List&lt;String&gt;** | Audience languages (Meta &#x60;locales&#x60;). A bare ISO 639-1 code targets all regional variants (\&quot;en\&quot; &#x3D; all English), a region-qualified code a specific one (\&quot;en_GB\&quot;, \&quot;pt_BR\&quot;); unknown codes are rejected. |  [optional] |
+|**places** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta place keys (from GET /v1/ads/targeting/search). |  [optional] |
+|**neighborhoods** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta neighborhood keys (from GET /v1/ads/targeting/search). |  [optional] |
+|**excludedLocations** | **Map&lt;String, Object&gt;** | Geo to exclude, same shape as POST /v1/ads/create (countries, countryGroups, regions, cities, zips, places, neighborhoods, customLocations). |  [optional] |
+|**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Meta behavior ids. Each dimension is its own flexible_spec entry: OR within, AND across. |  [optional] |
+|**workPositions** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
+|**workEmployers** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
+|**workIndustries** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
+|**incomeTier** | [**IncomeTierEnum**](#IncomeTierEnum) | Normalized household-income tier, same as POST /v1/ads/create. Incompatible with housing, employment and credit specialAdCategories. |  [optional] |
+|**userOs** | **List&lt;String&gt;** | Meta &#x60;user_os&#x60;, e.g. [\&quot;iOS_ver_14.0_and_above\&quot;]. |  [optional] |
+|**userDevice** | **List&lt;String&gt;** | Meta &#x60;user_device&#x60;. |  [optional] |
+|**audienceInclude** | **List&lt;String&gt;** | Custom or lookalike audience ids to include. |  [optional] |
+|**audienceExclude** | **List&lt;String&gt;** | Custom or lookalike audience ids to exclude. |  [optional] |
+|**savedTargetingId** | **String** | ID of a saved_targeting audience (POST /v1/ads/audiences), expanded as the base targeting. Precedence: savedTargetingId, then &#x60;targeting&#x60;, then the flat fields. |  [optional] |
+|**targeting** | [**TargetingSpec**](TargetingSpec.md) | Nested targeting object, same contract as POST /v1/ads/create and boost. Flat fields win per key. |  [optional] |
+|**rawTargeting** | **Map&lt;String, Object&gt;** | Meta targeting spec sent as the BASE layer of the ad set&#39;s &#x60;targeting&#x60;, exactly as POST /v1/ads/create does: use it for anything the flat fields cannot express, such as a layered &#x60;flexible_spec&#x60; (entries AND together, ids inside one entry OR). Flat fields you also send are layered on top and win per key. With rawTargeting present the US geo and &#x60;advantage_audience: 0&#x60; defaults are not injected, so include &#x60;targeting_automation&#x60; in it (or send &#x60;advantageAudience&#x60;), as Meta requires it on create.  |  [optional] |
+|**specialAdCategories** | [**List&lt;SpecialAdCategoriesEnum&gt;**](#List&lt;SpecialAdCategoriesEnum&gt;) | Meta special ad categories on the new campaign. |  [optional] |
+|**specialAdCategoryCountry** | **List&lt;String&gt;** | Countries the special ad category applies to. Requires specialAdCategories. |  [optional] |
 |**advantageAudience** | [**AdvantageAudienceEnum**](#AdvantageAudienceEnum) | Meta&#39;s Advantage+ audience expansion. &#x60;0&#x60; (default) keeps targeting strict; &#x60;1&#x60; lets Meta expand beyond the supplied targeting when its delivery system finds better matches. Always sent on CREATE (Meta requires it).  |  [optional] |
 |**objective** | [**ObjectiveEnum**](#ObjectiveEnum) | Defaults to &#x60;OUTCOME_ENGAGEMENT&#x60;. &#x60;OUTCOME_SALES&#x60; and &#x60;OUTCOME_LEADS&#x60; require additional account configuration (Dataset linked to the WABA for sales) and may be rejected by Meta if missing.  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Defaults to &#x60;ACTIVE&#x60;. &#x60;PAUSED&#x60; pauses only the top-most object this call creates: the new campaign (ad set and ads switched on), or, with &#x60;adSetId&#x60;, the new ads themselves.  |  [optional] |
@@ -66,6 +89,15 @@
 |---- | -----|
 | OPT_IN | &quot;OPT_IN&quot; |
 | OPT_OUT | &quot;OPT_OUT&quot; |
+
+
+
+## Enum: BudgetLevelEnum
+
+| Name | Value |
+|---- | -----|
+| ADSET | &quot;adset&quot; |
+| CAMPAIGN | &quot;campaign&quot; |
 
 
 
@@ -102,6 +134,40 @@
 | ITUNES_APP_STORE | &quot;itunes_app_store&quot; |
 | ANDROID_FREE_STORE | &quot;android_free_store&quot; |
 | ANDROID_PAID_STORE | &quot;android_paid_store&quot; |
+
+
+
+## Enum: GenderEnum
+
+| Name | Value |
+|---- | -----|
+| ALL | &quot;all&quot; |
+| MALE | &quot;male&quot; |
+| FEMALE | &quot;female&quot; |
+
+
+
+## Enum: IncomeTierEnum
+
+| Name | Value |
+|---- | -----|
+| TOP_5 | &quot;top_5&quot; |
+| TOP_10 | &quot;top_10&quot; |
+| TOP_10_25 | &quot;top_10_25&quot; |
+| TOP_25_50 | &quot;top_25_50&quot; |
+
+
+
+## Enum: List&lt;SpecialAdCategoriesEnum&gt;
+
+| Name | Value |
+|---- | -----|
+| HOUSING | &quot;HOUSING&quot; |
+| EMPLOYMENT | &quot;EMPLOYMENT&quot; |
+| CREDIT | &quot;CREDIT&quot; |
+| ISSUES_ELECTIONS_POLITICS | &quot;ISSUES_ELECTIONS_POLITICS&quot; |
+| FINANCIAL_PRODUCTS_SERVICES | &quot;FINANCIAL_PRODUCTS_SERVICES&quot; |
+| ONLINE_GAMBLING_AND_GAMING | &quot;ONLINE_GAMBLING_AND_GAMING&quot; |
 
 
 

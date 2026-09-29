@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.156.1
+  version: 1.157.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -61463,16 +61463,18 @@ components:
 
         The route enforces this at the Zod boundary; OpenAPI's
         `required` cannot express the OR cleanly.
+
+        Campaign, ad set and targeting fields match POST /v1/ads/create on
+        Meta and run through the same builders: the full targeting set
+        (including `rawTargeting`, `languages`, `gender`, exclusions and
+        `savedTargetingId`), `budgetLevel` (campaign budget), `startDate` /
+        `endDate` in the ad account timezone, and `existingCampaignId` to add
+        a new ad set to a campaign you already have.
       example:
-        budgetType: daily
-        bidStrategy: LOWEST_COST_WITHOUT_CAP
         adSetName: adSetName
-        regions:
-        - key: key
-        - key: key
         dsaPayor: dsaPayor
         whatsappPhoneNumber: whatsappPhoneNumber
-        endDate: 2000-01-23T04:56:07.000+00:00
+        endDate: endDate
         ageMax: 49
         creatives:
         - existingPostId: existingPostId
@@ -61506,6 +61508,88 @@ components:
         countryGroups:
         - africa
         - africa
+        savedTargetingId: savedTargetingId
+        body: body
+        tracking:
+          pixelId: pixelId
+          urlTags:
+          - value: value
+            key: key
+          - value: value
+            key: key
+        incomeTier: top_5
+        objective: OUTCOME_ENGAGEMENT
+        adSetId: adSetId
+        campaignStatus: ACTIVE
+        workIndustries:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        regionalRegulationIdentities:
+          key: 4
+        audienceInclude:
+        - audienceInclude
+        - audienceInclude
+        neighborhoods:
+        - key: key
+        - key: key
+        excludedLocations:
+          key: ""
+        workEmployers:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        cities:
+        - radius: 6.027456183070403
+          distance_unit: mile
+          key: key
+        - radius: 6.027456183070403
+          distance_unit: mile
+          key: key
+        userOs:
+        - userOs
+        - userOs
+        regionalRegulatedCategories:
+        - regionalRegulatedCategories
+        - regionalRegulatedCategories
+        adAccountId: adAccountId
+        behaviors:
+        - name: name
+          id: id
+        - name: name
+          id: id
+        budgetLevel: adset
+        bidAmount: 3.616076749251911
+        countries:
+        - countries
+        - countries
+        audienceId: audienceId
+        pageId: pageId
+        audienceExclude:
+        - audienceExclude
+        - audienceExclude
+        accountId: accountId
+        ageMin: 24
+        name: name
+        specialAdCategoryCountry:
+        - specialAdCategoryCountry
+        - specialAdCategoryCountry
+        startDate: startDate
+        metros:
+        - name: name
+          key: key
+        - name: name
+          key: key
+        status: ACTIVE
+        budgetType: daily
+        bidStrategy: LOWEST_COST_WITHOUT_CAP
+        regions:
+        - key: key
+        - key: key
+        gender: all
+        description: description
         placements:
           whatsappPositions:
           - status
@@ -61541,36 +61625,22 @@ components:
           key: key
         - name: name
           key: key
-        body: body
-        tracking:
-          pixelId: pixelId
-          urlTags:
-          - value: value
-            key: key
-          - value: value
-            key: key
-        objective: OUTCOME_ENGAGEMENT
         existingPostId: existingPostId
+        existingCampaignId: existingCampaignId
+        targeting: ""
         objectStoryId: objectStoryId
+        rawTargeting:
+          key: ""
         imageUrl: https://openapi-generator.tech
-        adSetId: adSetId
-        campaignStatus: ACTIVE
         currency: currency
+        specialAdCategories:
+        - HOUSING
+        - HOUSING
         dsaBeneficiary: dsaBeneficiary
         headline: headline
-        regionalRegulationIdentities:
-          key: 4
-        cities:
-        - radius: 6.027456183070403
-          distance_unit: mile
-          key: key
-        - radius: 6.027456183070403
-          distance_unit: mile
-          key: key
-        regionalRegulatedCategories:
-        - regionalRegulatedCategories
-        - regionalRegulatedCategories
-        adAccountId: adAccountId
+        languages:
+        - languages
+        - languages
         welcomeMessage:
           quickReplies:
           - payload: payload
@@ -61585,17 +61655,16 @@ components:
             title: title
           text: text
           prefillText: prefillText
-        bidAmount: 3.616076749251911
-        countries:
-        - countries
-        - countries
-        audienceId: audienceId
-        pageId: pageId
         roasAverageFloor: 2.027123023002322
-        accountId: accountId
-        ageMin: 24
+        places:
+        - key: key
+        - key: key
+        workPositions:
+        - name: name
+          id: id
+        - name: name
+          id: id
         budgetAmount: 0.8008281904610115
-        name: name
         customLocations:
         - distanceUnit: mile
           address: address
@@ -61609,6 +61678,9 @@ components:
           name: name
           radius: 5.637376656633329
           longitude: 34.63682100059455
+        userDevice:
+        - userDevice
+        - userDevice
         interests:
         - name: name
           id: id
@@ -61617,12 +61689,6 @@ components:
         creativeFeatures: ""
         campaignName: campaignName
         platformPostId: platformPostId
-        metros:
-        - name: name
-          key: key
-        - name: name
-          key: key
-        status: ACTIVE
       properties:
         creativeFeatures:
           allOf:
@@ -61707,6 +61773,18 @@ components:
             shape only. Mutually exclusive with `creatives[]`.
           minLength: 1
           type: string
+        description:
+          description: |
+            Link description, independent of `headline` and `body` (Meta's
+            `link_data.description`, `video_data.link_description` on video,
+            and the shared description of a `placementAssets` feed). Meta
+            shows it mainly on Facebook Feed placements, under the headline,
+            when there is room; Instagram, Stories, Reels and Messenger
+            placements do not display it. Also accepted per entry in
+            `creatives[]`. Not allowed with an existing post creative.
+          maxLength: 255
+          minLength: 1
+          type: string
         imageUrl:
           description: |
             Image asset for single-creative shape. Mutually exclusive
@@ -61737,18 +61815,47 @@ components:
             Attach the creatives to this EXISTING messaging ad set instead of
             building a campaign, so the ad set keeps its learning phase. It then
             owns budget, targeting and schedule, so `budgetAmount`, `budgetType`,
-            `endDate`, `objective`, `countries`, `interests`, `audienceId` and
-            `campaignStatus` are rejected with a 400 alongside it. Its
+            `budgetLevel`, `startDate`, `endDate`, `objective`, `campaignStatus`,
+            `existingCampaignId`, the special ad category fields and every
+            targeting field except `ageMin`, `ageMax`, `placements` and
+            `advantageAudience` are rejected with a 400 alongside it. Its
             `destination_type` must match the ad's destination.
+          type: string
+        existingCampaignId:
+          description: |
+            Create the new messaging ad set (and its ads) under this EXISTING
+            Meta campaign instead of a new one, e.g. several audience ad sets
+            under one campaign. The campaign's objective must be
+            OUTCOME_ENGAGEMENT, OUTCOME_SALES or OUTCOME_LEADS (400 otherwise).
+            If the campaign has a campaign budget, omit `budgetAmount` and
+            `budgetType` (400 if sent); otherwise they are required and land
+            on the new ad set. `objective`, `campaignName`, `campaignStatus`,
+            `budgetLevel`, `specialAdCategories`, `specialAdCategoryCountry`
+            and `adSetId` are rejected alongside it. To add ads to an existing
+            ad set instead, use `adSetId`.
+          pattern: ^\d+$
+          type: string
+        budgetLevel:
+          description: |
+            Where the budget lives. `adset` (default) puts it on the new ad
+            set. `campaign` creates an Advantage campaign budget (CBO): the
+            budget and bid strategy sit on the campaign and the ad set
+            inherits them, same as POST /v1/ads/create. Not allowed with
+            `adSetId` or `existingCampaignId`.
+          enum:
+          - adset
+          - campaign
           type: string
         budgetAmount:
           description: |
             Budget amount in the ad account's currency major units
             (e.g. dollars for USD, not cents). Must be > 0.
-            Required unless `adSetId` is set, where the ad set owns it.
+            Required unless `adSetId` is set (the ad set owns it) or
+            `existingCampaignId` names a campaign with a campaign budget.
           type: number
         budgetType:
-          description: Required unless `adSetId` is set.
+          description: Required unless `adSetId` is set or `existingCampaignId` names
+            a campaign with a campaign budget. `lifetime` requires `endDate`.
           enum:
           - daily
           - lifetime
@@ -61764,10 +61871,19 @@ components:
           maxLength: 3
           minLength: 3
           type: string
+        startDate:
+          description: |
+            When the ad set starts delivering. ISO 8601 date or date-time. A
+            value with an offset (`2027-01-15T10:00:00+01:00`, `...Z`) is used
+            as is; one without an offset (`2027-01-15T10:00:00`) is read in the
+            ad account's timezone, and a date-only value starts at 00:00 local.
+            Defaults to now.
+          type: string
         endDate:
           description: |
-            ISO 8601 datetime. Required when `budgetType` is `lifetime`.
-          format: date-time
+            ISO 8601 date or date-time, read like `startDate`; a date-only
+            value ends at 23:59:59 local. Required when `budgetType` is
+            `lifetime`.
           type: string
         countries:
           description: |
@@ -61868,6 +61984,127 @@ components:
           type: string
         placements:
           $ref: "#/components/schemas/CtwaAdRequestBody_placements"
+        gender:
+          default: all
+          description: Restrict the audience by gender (Meta `genders`). Stored on
+            the ad and read back in `targeting.gender`.
+          enum:
+          - all
+          - male
+          - female
+          type: string
+        languages:
+          description: "Audience languages (Meta `locales`). A bare ISO 639-1 code\
+            \ targets all regional variants (\"en\" = all English), a region-qualified\
+            \ code a specific one (\"en_GB\", \"pt_BR\"); unknown codes are rejected."
+          items:
+            type: string
+          type: array
+        places:
+          description: Meta place keys (from GET /v1/ads/targeting/search).
+          items:
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
+          type: array
+        neighborhoods:
+          description: Meta neighborhood keys (from GET /v1/ads/targeting/search).
+          items:
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
+          type: array
+        excludedLocations:
+          additionalProperties: true
+          description: "Geo to exclude, same shape as POST /v1/ads/create (countries,\
+            \ countryGroups, regions, cities, zips, places, neighborhoods, customLocations)."
+          type: object
+        behaviors:
+          description: "Meta behavior ids. Each dimension is its own flexible_spec\
+            \ entry: OR within, AND across."
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workPositions:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workEmployers:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        workIndustries:
+          items:
+            $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
+          type: array
+        incomeTier:
+          description: "Normalized household-income tier, same as POST /v1/ads/create.\
+            \ Incompatible with housing, employment and credit specialAdCategories."
+          enum:
+          - top_5
+          - top_10
+          - top_10_25
+          - top_25_50
+          type: string
+        userOs:
+          description: "Meta `user_os`, e.g. [\"iOS_ver_14.0_and_above\"]."
+          items:
+            type: string
+          minItems: 1
+          type: array
+        userDevice:
+          description: Meta `user_device`.
+          items:
+            type: string
+          minItems: 1
+          type: array
+        audienceInclude:
+          description: Custom or lookalike audience ids to include.
+          items:
+            type: string
+          minItems: 1
+          type: array
+        audienceExclude:
+          description: Custom or lookalike audience ids to exclude.
+          items:
+            type: string
+          minItems: 1
+          type: array
+        savedTargetingId:
+          description: "ID of a saved_targeting audience (POST /v1/ads/audiences),\
+            \ expanded as the base targeting. Precedence: savedTargetingId, then `targeting`,\
+            \ then the flat fields."
+          type: string
+        targeting:
+          allOf:
+          - $ref: "#/components/schemas/TargetingSpec"
+          description: "Nested targeting object, same contract as POST /v1/ads/create\
+            \ and boost. Flat fields win per key."
+        rawTargeting:
+          additionalProperties: true
+          description: |
+            Meta targeting spec sent as the BASE layer of the ad set's
+            `targeting`, exactly as POST /v1/ads/create does: use it for
+            anything the flat fields cannot express, such as a layered
+            `flexible_spec` (entries AND together, ids inside one entry OR).
+            Flat fields you also send are layered on top and win per key.
+            With rawTargeting present the US geo and `advantage_audience: 0`
+            defaults are not injected, so include `targeting_automation` in
+            it (or send `advantageAudience`), as Meta requires it on create.
+          type: object
+        specialAdCategories:
+          description: Meta special ad categories on the new campaign.
+          items:
+            enum:
+            - HOUSING
+            - EMPLOYMENT
+            - CREDIT
+            - ISSUES_ELECTIONS_POLITICS
+            - FINANCIAL_PRODUCTS_SERVICES
+            - ONLINE_GAMBLING_AND_GAMING
+            type: string
+          type: array
+        specialAdCategoryCountry:
+          description: Countries the special ad category applies to. Requires specialAdCategories.
+          items:
+            type: string
+          type: array
         advantageAudience:
           description: |
             Meta's Advantage+ audience expansion. `0` (default) keeps
@@ -139707,6 +139944,14 @@ components:
             - desktop
             type: string
           type: array
+    CtwaAdRequestBody_places_inner:
+      example:
+        key: key
+      properties:
+        key:
+          type: string
+      required:
+      - key
     WorkflowNode_position:
       description: Canvas coordinates (ignored by the executor; used by the visual
         builder).
@@ -146433,12 +146678,6 @@ components:
           type: string
       required:
       - key
-    TargetingSpec_excludedLocations_places_inner:
-      properties:
-        key:
-          type: string
-      required:
-      - key
     TargetingSpec_excludedLocations:
       description: "Geo to exclude from the audience. Mirrors the inclusion geo shape:\
         \ excluded cities can carry a radius catchment and excluded custom (lat/lng)\
@@ -146492,12 +146731,12 @@ components:
         places:
           description: Named points of interest to exclude. `key` from /v1/ads/targeting/search.
           items:
-            $ref: "#/components/schemas/TargetingSpec_excludedLocations_places_inner"
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
           type: array
         neighborhoods:
           description: Named neighbourhood areas to exclude. `key` from /v1/ads/targeting/search.
           items:
-            $ref: "#/components/schemas/TargetingSpec_excludedLocations_places_inner"
+            $ref: "#/components/schemas/CtwaAdRequestBody_places_inner"
           type: array
         customLocations:
           description: Point-radius (lat/lng) pins to exclude (Meta excluded_geo_locations.custom_locations).

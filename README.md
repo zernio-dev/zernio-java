@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.156.1
+- API version: 1.157.0
 
-- Build date: 2026-09-29T12:35:30.037676879Z[Etc/UTC]
+- Build date: 2026-09-29T12:49:56.613906269Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.156.1</version>
+  <version>1.157.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.156.1"
+compile "dev.zernio:zernio-sdk:1.157.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.156.1.jar`
+- `target/zernio-sdk-1.157.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2603,6 +2603,7 @@ Class | Method | HTTP request | Description
  - [CtwaAdRequestBodyCreativesInnerVideo](docs/CtwaAdRequestBodyCreativesInnerVideo.md)
  - [CtwaAdRequestBodyCreativesInnerWelcomeMessage](docs/CtwaAdRequestBodyCreativesInnerWelcomeMessage.md)
  - [CtwaAdRequestBodyPlacements](docs/CtwaAdRequestBodyPlacements.md)
+ - [CtwaAdRequestBodyPlacesInner](docs/CtwaAdRequestBodyPlacesInner.md)
  - [CtwaAdRequestBodyRegionsInner](docs/CtwaAdRequestBodyRegionsInner.md)
  - [CtwaAdRequestBodyVideo](docs/CtwaAdRequestBodyVideo.md)
  - [CtwaAdRequestBodyWelcomeMessage](docs/CtwaAdRequestBodyWelcomeMessage.md)
@@ -4066,7 +4067,6 @@ Class | Method | HTTP request | Description
  - [TargetingSpecCustomLocationsInner](docs/TargetingSpecCustomLocationsInner.md)
  - [TargetingSpecExcludedLocations](docs/TargetingSpecExcludedLocations.md)
  - [TargetingSpecExcludedLocationsCitiesInner](docs/TargetingSpecExcludedLocationsCitiesInner.md)
- - [TargetingSpecExcludedLocationsPlacesInner](docs/TargetingSpecExcludedLocationsPlacesInner.md)
  - [TelegramPlatformData](docs/TelegramPlatformData.md)
  - [TestWebhookRequest](docs/TestWebhookRequest.md)
  - [ThreadsPlatformData](docs/ThreadsPlatformData.md)
