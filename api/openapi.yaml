@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.162.1
+  version: 1.162.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -93376,6 +93376,9 @@ components:
         selectedPageId:
           type: string
         cached:
+          description: "false when this response was just read from Meta (cold cache\
+            \ or a refresh that ran), true when served from the stored list (including\
+            \ a debounced refresh or an empty Meta answer)"
           type: boolean
     updateFacebookPage_request:
       properties:
