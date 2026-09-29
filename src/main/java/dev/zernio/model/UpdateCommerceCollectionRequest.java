@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   UpdateCommerceCollectionRequest.JSON_PROPERTY_SEO,
   UpdateCommerceCollectionRequest.JSON_PROPERTY_IMAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T15:17:48.284979912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T15:24:01.984420667Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCommerceCollectionRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

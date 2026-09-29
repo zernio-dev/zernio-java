@@ -64,7 +64,7 @@ import dev.zernio.ApiClient;
   MetaLeadForm.JSON_PROPERTY_THANK_YOU_PAGE,
   MetaLeadForm.JSON_PROPERTY_QUESTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T15:17:48.284979912Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T15:24:01.984420667Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadForm {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
