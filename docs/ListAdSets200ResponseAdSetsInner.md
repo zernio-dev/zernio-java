@@ -22,6 +22,7 @@
 |**targeting** | [**ListAdSets200ResponseAdSetsInnerTargeting**](ListAdSets200ResponseAdSetsInnerTargeting.md) |  |  [optional] |
 |**isExternal** | **Boolean** |  |  [optional] |
 |**platformCreatedAt** | **OffsetDateTime** |  |  [optional] |
+|**statusReadAt** | **OffsetDateTime** | Only with &#x60;live&#x3D;true&#x60;. When &#x60;platformAdSetStatus&#x60; was read from the platform; null when this row was not read live. |  [optional] |
 
 
 
