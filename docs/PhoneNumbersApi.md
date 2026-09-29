@@ -827,7 +827,7 @@ ApiResponse<[**CreatePhoneNumberPortIn201Response**](CreatePhoneNumberPortIn201R
 
 ## createPhoneNumberStockWatch
 
-> PhoneNumberStockWatch createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest)
+> CreatePhoneNumberStockWatch200Response createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest)
 
 Watch an out-of-stock country
 
@@ -856,7 +856,7 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = new CreatePhoneNumberStockWatchRequest(); // CreatePhoneNumberStockWatchRequest | 
         try {
-            PhoneNumberStockWatch result = apiInstance.createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
+            CreatePhoneNumberStockWatch200Response result = apiInstance.createPhoneNumberStockWatch(createPhoneNumberStockWatchRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PhoneNumbersApi#createPhoneNumberStockWatch");
@@ -878,7 +878,7 @@ public class Example {
 
 ### Return type
 
-[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)
+[**CreatePhoneNumberStockWatch200Response**](CreatePhoneNumberStockWatch200Response.md)
 
 
 ### Authorization
@@ -901,7 +901,7 @@ public class Example {
 
 ## createPhoneNumberStockWatchWithHttpInfo
 
-> ApiResponse<PhoneNumberStockWatch> createPhoneNumberStockWatch createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest)
+> ApiResponse<CreatePhoneNumberStockWatch200Response> createPhoneNumberStockWatch createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest)
 
 Watch an out-of-stock country
 
@@ -931,7 +931,7 @@ public class Example {
         PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
         CreatePhoneNumberStockWatchRequest createPhoneNumberStockWatchRequest = new CreatePhoneNumberStockWatchRequest(); // CreatePhoneNumberStockWatchRequest | 
         try {
-            ApiResponse<PhoneNumberStockWatch> response = apiInstance.createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
+            ApiResponse<CreatePhoneNumberStockWatch200Response> response = apiInstance.createPhoneNumberStockWatchWithHttpInfo(createPhoneNumberStockWatchRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -955,7 +955,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**PhoneNumberStockWatch**](PhoneNumberStockWatch.md)>
+ApiResponse<[**CreatePhoneNumberStockWatch200Response**](CreatePhoneNumberStockWatch200Response.md)>
 
 
 ### Authorization

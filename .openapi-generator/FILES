@@ -273,6 +273,10 @@ docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
 docs/CheckPhoneNumberAvailability200Response.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner.md
+docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.md
 docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md
 docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md
 docs/CheckPhoneNumberPortability200Response.md
@@ -529,6 +533,8 @@ docs/CreatePhoneNumberPortIn201ResponseOrdersInner.md
 docs/CreatePhoneNumberPortInRequest.md
 docs/CreatePhoneNumberPortInRequestEndUser.md
 docs/CreatePhoneNumberPortInRequestRequirementsInner.md
+docs/CreatePhoneNumberStockWatch200Response.md
+docs/CreatePhoneNumberStockWatch201Response.md
 docs/CreatePhoneNumberStockWatchRequest.md
 docs/CreatePinterestBoard201Response.md
 docs/CreatePinterestBoard201ResponseBoard.md
@@ -3006,6 +3012,10 @@ src/main/java/dev/zernio/model/ChannelPicker.java
 src/main/java/dev/zernio/model/ChannelPickerChannelsInner.java
 src/main/java/dev/zernio/model/ChannelPickerTeam.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200Response.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailability.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner.java
+src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.java
 src/main/java/dev/zernio/model/CheckPhoneNumberPortability200Response.java
@@ -3255,6 +3265,8 @@ src/main/java/dev/zernio/model/CreatePhoneNumberPortIn201ResponseOrdersInner.jav
 src/main/java/dev/zernio/model/CreatePhoneNumberPortInRequest.java
 src/main/java/dev/zernio/model/CreatePhoneNumberPortInRequestEndUser.java
 src/main/java/dev/zernio/model/CreatePhoneNumberPortInRequestRequirementsInner.java
+src/main/java/dev/zernio/model/CreatePhoneNumberStockWatch200Response.java
+src/main/java/dev/zernio/model/CreatePhoneNumberStockWatch201Response.java
 src/main/java/dev/zernio/model/CreatePhoneNumberStockWatchRequest.java
 src/main/java/dev/zernio/model/CreatePinterestBoard201Response.java
 src/main/java/dev/zernio/model/CreatePinterestBoard201ResponseBoard.java
@@ -5333,3 +5345,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInnerTest.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInnerTest.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInnerTest.java
+src/test/java/dev/zernio/model/CheckPhoneNumberAvailability200ResponseAreaAvailabilityTest.java
+src/test/java/dev/zernio/model/CreatePhoneNumberStockWatch200ResponseTest.java
+src/test/java/dev/zernio/model/CreatePhoneNumberStockWatch201ResponseTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.157.1
+- API version: 1.158.0
 
-- Build date: 2026-09-29T13:40:09.781137370Z[Etc/UTC]
+- Build date: 2026-09-29T15:17:48.284979912Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.157.1</version>
+  <version>1.158.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.157.1"
+compile "dev.zernio:zernio-sdk:1.158.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.157.1.jar`
+- `target/zernio-sdk-1.158.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2254,6 +2254,10 @@ Class | Method | HTTP request | Description
  - [ChannelPickerChannelsInner](docs/ChannelPickerChannelsInner.md)
  - [ChannelPickerTeam](docs/ChannelPickerTeam.md)
  - [CheckPhoneNumberAvailability200Response](docs/CheckPhoneNumberAvailability200Response.md)
+ - [CheckPhoneNumberAvailability200ResponseAreaAvailability](docs/CheckPhoneNumberAvailability200ResponseAreaAvailability.md)
+ - [CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner](docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityInStockInner.md)
+ - [CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner](docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityOutOfStockInner.md)
+ - [CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner](docs/CheckPhoneNumberAvailability200ResponseAreaAvailabilityPreOrderInner.md)
  - [CheckPhoneNumberAvailability200ResponseAreaOptionsInner](docs/CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md)
  - [CheckPhoneNumberAvailability200ResponseSoldOutAreasInner](docs/CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md)
  - [CheckPhoneNumberPortability200Response](docs/CheckPhoneNumberPortability200Response.md)
@@ -2503,6 +2507,8 @@ Class | Method | HTTP request | Description
  - [CreatePhoneNumberPortInRequest](docs/CreatePhoneNumberPortInRequest.md)
  - [CreatePhoneNumberPortInRequestEndUser](docs/CreatePhoneNumberPortInRequestEndUser.md)
  - [CreatePhoneNumberPortInRequestRequirementsInner](docs/CreatePhoneNumberPortInRequestRequirementsInner.md)
+ - [CreatePhoneNumberStockWatch200Response](docs/CreatePhoneNumberStockWatch200Response.md)
+ - [CreatePhoneNumberStockWatch201Response](docs/CreatePhoneNumberStockWatch201Response.md)
  - [CreatePhoneNumberStockWatchRequest](docs/CreatePhoneNumberStockWatchRequest.md)
  - [CreatePinterestBoard201Response](docs/CreatePinterestBoard201Response.md)
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)

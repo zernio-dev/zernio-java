@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.157.1
+  version: 1.158.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -29824,13 +29824,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PhoneNumberStockWatch"
+                $ref: "#/components/schemas/createPhoneNumberStockWatch_201_response"
           description: Watch created.
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/PhoneNumberStockWatch"
+                $ref: "#/components/schemas/createPhoneNumberStockWatch_200_response"
           description: A watch for this country and type already existed; returned
             unchanged.
         "400":
@@ -107572,6 +107572,87 @@ components:
           description: "Whether this area can be pre-ordered: the carrier sources\
             \ a number in it (usually 2 to 4 weeks, never guaranteed)."
           type: boolean
+    checkPhoneNumberAvailability_200_response_areaAvailability_inStock_inner:
+      example:
+        name: name
+        count: 6
+        ndc: ndc
+      properties:
+        ndc:
+          type: string
+        name:
+          type: string
+        count:
+          description: "Numbers we can sell there: the carrier count minus the numbers\
+            \ we hold back (WhatsApp refused them or another order holds them)."
+          type: integer
+    checkPhoneNumberAvailability_200_response_areaAvailability_preOrder_inner:
+      example:
+        name: name
+        ndc: ndc
+      properties:
+        ndc:
+          type: string
+        name:
+          type: string
+    checkPhoneNumberAvailability_200_response_areaAvailability_outOfStock_inner:
+      example:
+        listed: 1
+        name: name
+        ndc: ndc
+      properties:
+        ndc:
+          type: string
+        name:
+          type: string
+        listed:
+          type: integer
+    checkPhoneNumberAvailability_200_response_areaAvailability:
+      description: |
+        Every area of the country's numbering plan (Google libphonenumber geocoding, one row per city: Madrid covers 910 to 919), in one of three states, refreshed every 6 hours from the carrier's own inventory counts. The same answer the dashboard picker and the public country pages show. Empty lists mean the pair has no cached coverage yet, not that the country has no areas.
+      example:
+        outOfStock:
+        - listed: 1
+          name: name
+          ndc: ndc
+        - listed: 1
+          name: name
+          ndc: ndc
+        preOrder:
+        - name: name
+          ndc: ndc
+        - name: name
+          ndc: ndc
+        inStock:
+        - name: name
+          count: 6
+          ndc: ndc
+        - name: name
+          count: 6
+          ndc: ndc
+      properties:
+        inStock:
+          description: "Deliverable numbers now, deepest first. Pass `ndc` as `areaCode`\
+            \ to hold the order to it."
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaAvailability_inStock_inner"
+          type: array
+        preOrder:
+          description: "The carrier lists nothing there and the number type is a document\
+            \ tier: submit KYC with `areaCode` and `preOrder: true`, the carrier sources\
+            \ one (usually 2 to 4 weeks, never guaranteed), nothing is billed until\
+            \ it is active."
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaAvailability_preOrder_inner"
+          type: array
+        outOfStock:
+          description: "Nothing deliverable and no pre-order: `listed` > 0 is stock\
+            \ the carrier shows that WhatsApp refused recently (held back until it\
+            \ clears), 0 is a dry area of an instant tier. A stock watch (POST /v1/phone-numbers/stock-watches\
+            \ with `areaCode`) is the way to hear when it is back."
+          items:
+            $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaAvailability_outOfStock_inner"
+          type: array
     checkPhoneNumberAvailability_200_response:
       example:
         country: country
@@ -107583,6 +107664,26 @@ components:
         - name: name
           ndc: ndc
           preOrderable: true
+        areaAvailability:
+          outOfStock:
+          - listed: 1
+            name: name
+            ndc: ndc
+          - listed: 1
+            name: name
+            ndc: ndc
+          preOrder:
+          - name: name
+            ndc: ndc
+          - name: name
+            ndc: ndc
+          inStock:
+          - name: name
+            count: 6
+            ndc: ndc
+          - name: name
+            count: 6
+            ndc: ndc
         addressConstraint: geo
         available: true
         areas:
@@ -107624,16 +107725,18 @@ components:
           type: array
         areaOptions:
           description: |
-            Live inventory grouped by area code. For US and CA this is the full country inventory (every area code with stock, recognizable metros listed first, then alphabetical); other countries are ordered largest stock first; they list the areas in the latest inventory page (up to 500 numbers, which for most countries is the entire pool). Empty when out of stock (or the area lookup failed). Pass a chosen `ndc` as `areaCode` on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area.
+            Live inventory grouped by area code. For US and CA this is the full country inventory (every area code with stock, recognizable metros listed first, then alphabetical); other countries are ordered largest stock first; they list the areas in the latest inventory page (up to 500 numbers, which for most countries is the entire pool). Empty when out of stock (or the area lookup failed). Pass a chosen `ndc` as `areaCode` on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area. Equal to `areaAvailability.inStock`.
           items:
             $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaOptions_inner"
           type: array
         soldOutAreas:
           description: |
-            Areas that had stock in the last 90 days and have none now. Pass one as `areaCode` with `preOrder: true` on the KYC submit when `preOrderable` is true, or watch it with POST /v1/phone-numbers/stock-watches.
+            Every area of the country's numbering plan with nothing deliverable now: `areaAvailability.preOrder` plus `areaAvailability.outOfStock`, kept for older clients. Pass one as `areaCode` with `preOrder: true` on the KYC submit when `preOrderable` is true, or watch it with POST /v1/phone-numbers/stock-watches.
           items:
             $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_soldOutAreas_inner"
           type: array
+        areaAvailability:
+          $ref: "#/components/schemas/checkPhoneNumberAvailability_200_response_areaAvailability"
     purchaseWhatsAppPhoneNumber_request:
       properties:
         profileId:
@@ -109705,6 +109808,40 @@ components:
           type: string
       required:
       - country
+    createPhoneNumberStockWatch_201_response:
+      allOf:
+      - $ref: "#/components/schemas/PhoneNumberStockWatch"
+      - properties:
+          preOrderable:
+            description: "True when the watched area can be bought today as a pre-order\
+              \ (the carrier lists nothing there and the type is a document tier):\
+              \ submit KYC with `areaCode` and `preOrder: true` instead of waiting,\
+              \ usually 2 to 4 weeks, nothing billed until active. The watch is armed\
+              \ either way."
+            type: boolean
+      example:
+        country: country
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        areaCode: areaCode
+        numberType: local
+        id: id
+        countryName: countryName
+        preOrderable: true
+    createPhoneNumberStockWatch_200_response:
+      allOf:
+      - $ref: "#/components/schemas/PhoneNumberStockWatch"
+      - properties:
+          preOrderable:
+            description: See the 201 response.
+            type: boolean
+      example:
+        country: country
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        areaCode: areaCode
+        numberType: local
+        id: id
+        countryName: countryName
+        preOrderable: true
     listSipTrunks_200_response_trunks_inner_termination:
       example:
         uri: uri
