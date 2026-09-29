@@ -1895,7 +1895,7 @@ public class Example {
         String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
         String type = "type_example"; // String | Alias of numberType, kept for existing callers
         String prefix = "prefix_example"; // String | Alias of areaCode, kept for existing callers
-        String locality = "locality_example"; // String | City
+        String locality = "locality_example"; // String | A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city's area codes; a name no city of the plan matches returns no numbers. `areaCode` takes a city name too.
         String contains = "contains_example"; // String | Pattern to match within the number
         Integer limit = 20; // Integer | 
         try {
@@ -1922,7 +1922,7 @@ public class Example {
 | **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
 | **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
 | **prefix** | **String**| Alias of areaCode, kept for existing callers | [optional] |
-| **locality** | **String**| City | [optional] |
+| **locality** | **String**| A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city&#39;s area codes; a name no city of the plan matches returns no numbers. &#x60;areaCode&#x60; takes a city name too. | [optional] |
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 
@@ -1982,7 +1982,7 @@ public class Example {
         String areaCode = "areaCode_example"; // String | Area code or national dialing code the number must start with, e.g. 415 or 91
         String type = "type_example"; // String | Alias of numberType, kept for existing callers
         String prefix = "prefix_example"; // String | Alias of areaCode, kept for existing callers
-        String locality = "locality_example"; // String | City
+        String locality = "locality_example"; // String | A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city's area codes; a name no city of the plan matches returns no numbers. `areaCode` takes a city name too.
         String contains = "contains_example"; // String | Pattern to match within the number
         Integer limit = 20; // Integer | 
         try {
@@ -2011,7 +2011,7 @@ public class Example {
 | **areaCode** | **String**| Area code or national dialing code the number must start with, e.g. 415 or 91 | [optional] |
 | **type** | **String**| Alias of numberType, kept for existing callers | [optional] |
 | **prefix** | **String**| Alias of areaCode, kept for existing callers | [optional] |
-| **locality** | **String**| City | [optional] |
+| **locality** | **String**| A city name, matched against the numbering plan (accents and common aliases allowed) and searched by that city&#39;s area codes; a name no city of the plan matches returns no numbers. &#x60;areaCode&#x60; takes a city name too. | [optional] |
 | **contains** | **String**| Pattern to match within the number | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
 
