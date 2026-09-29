@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.146.0
+  version: 1.146.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37517,7 +37517,10 @@ paths:
         effective story/media IDs). `platform` is inferred from the ad, so it's
         not required in the body. Ads in terminal statuses (rejected, completed,
         cancelled) are skipped, and so is a request whose target already matches
-        the ad's own switch. The rolled-up `status` never decides a skip.
+        the ad's own switch as read LIVE from the platform (a stored value is
+        never trusted alone, since the switch may have been changed in the
+        platform's own UI). A skip also returns that live read. The rolled-up
+        `status` never decides a skip.
       operationId: updateAdStatus
       parameters:
       - description: "Zernio `_id` (hex), Meta `platformAdId` (numeric), or one of\
@@ -73723,9 +73726,14 @@ components:
             \ still reads ACTIVE here while `status` reads `paused`. Sources: Meta\
             \ `configured_status`, TikTok ad `operation_status` (ENABLE -> ACTIVE,\
             \ DISABLE -> PAUSED), ChatGPT (OpenAI) ad `status` (ACTIVE / PAUSED, plus\
-            \ ARCHIVED on OpenAI). Distinct from `status`, which is the ancestor-cascaded\
-            \ delivery status. Only present for Meta, TikTok and OpenAI ads created\
-            \ or synced after the field was added for that platform; null otherwise."
+            \ ARCHIVED on OpenAI). On create it is read back from the platform, not\
+            \ copied from the request, so it can read ACTIVE for a `PAUSED` create\
+            \ where the platform holds the pause at the campaign (some Meta create\
+            \ flows). A TikTok ad created `PAUSED` is switched off at the ad, ad group\
+            \ and campaign and reads PAUSED. Distinct from `status`, which is the\
+            \ ancestor-cascaded delivery status. Only present for Meta, TikTok and\
+            \ OpenAI ads created or synced after the field was added for that platform;\
+            \ null otherwise."
           example: ACTIVE
           nullable: true
           type: string
