@@ -643,7 +643,7 @@ ApiResponse<[**ProfilesListResponse**](ProfilesListResponse.md)>
 
 Update profile
 
-Updates a profile&#39;s name, description, color, or default status.
+Updates a profile&#39;s name, description, color, default timezone, or default status.
 
 ### Example
 
@@ -708,7 +708,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request, including a body that carries none of name, description, color or isDefault (code: missing_required_field). |  -  |
+| **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone or isDefault (code: missing_required_field). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |
@@ -719,7 +719,7 @@ public class Example {
 
 Update profile
 
-Updates a profile&#39;s name, description, color, or default status.
+Updates a profile&#39;s name, description, color, default timezone, or default status.
 
 ### Example
 
@@ -787,7 +787,7 @@ ApiResponse<[**ProfileUpdateResponse**](ProfileUpdateResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
-| **400** | Invalid request, including a body that carries none of name, description, color or isDefault (code: missing_required_field). |  -  |
+| **400** | Invalid request, including an unknown timezone or a body that carries none of name, description, color, timezone or isDefault (code: missing_required_field). |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A profile with this name already exists (code: profile_name_conflict). |  -  |

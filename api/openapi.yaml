@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.160.0
+  version: 1.161.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6592,6 +6592,7 @@ paths:
           - `mediaUrls` aliases `media_urls`
         - Per-platform overrides use three dynamic column prefixes, one column per platform (e.g. `schedule_time_instagram`, `custom_content_tiktok`, `custom_media_youtube`): `schedule_time_<platform>`, `custom_content_<platform>`, `custom_media_<platform>`.
         - Any other column is not read. It does not error, but it is reported in the response's `warnings` array as `unknown_columns:<a,b,c>` (see BulkUploadResult), so a misnamed or unsupported column is never silently dropped.
+        - Timezone: `tz` sets the zone `schedule_time` is read in. A row without `tz` uses its profile's `timezone` (when all its target profiles share one), else UTC.
         - Row limits: 5000 rows is a hard cap that returns 400 above it. 500 rows is only an advisory threshold, it adds `rows_exceed_advisory_limit:500` to `warnings` and the request still processes.
 
         Example row (header + one data row):
@@ -7235,6 +7236,7 @@ paths:
               name: Marketing Team
               description: Profile for marketing campaigns
               color: "#4CAF50"
+              timezone: Europe/Istanbul
             schema:
               $ref: "#/components/schemas/createProfile_request"
         required: true
@@ -7353,7 +7355,8 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: "Updates a profile's name, description, color, or default status."
+      description: "Updates a profile's name, description, color, default timezone,\
+        \ or default status."
       operationId: updateProfile
       parameters:
       - explode: false
@@ -7391,8 +7394,9 @@ paths:
                 $ref: "#/components/schemas/ProfileUpdateResponse"
           description: Updated
         "400":
-          description: "Invalid request, including a body that carries none of name,\
-            \ description, color or isDefault (code: missing_required_field)."
+          description: "Invalid request, including an unknown timezone or a body that\
+            \ carries none of name, description, color, timezone or isDefault (code:\
+            \ missing_required_field)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -69944,6 +69948,7 @@ components:
         createdAt: 2000-01-23T04:56:07.000+00:00
         isDefault: true
         color: color
+        timezone: timezone
         name: name
         description: description
         _id: _id
@@ -69959,6 +69964,11 @@ components:
         description:
           type: string
         color:
+          type: string
+        timezone:
+          description: IANA timezone new posts on this profile use when the request
+            names no `timezone`. Null means UTC.
+          nullable: true
           type: string
         isDefault:
           type: boolean
@@ -72477,6 +72487,7 @@ components:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
           color: color
+          timezone: timezone
           name: name
           description: description
           _id: _id
@@ -72485,6 +72496,7 @@ components:
         - createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
           color: color
+          timezone: timezone
           name: name
           description: description
           _id: _id
@@ -72513,6 +72525,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
           color: color
+          timezone: timezone
           name: name
           description: description
           _id: _id
@@ -72530,6 +72543,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
           color: color
+          timezone: timezone
           name: name
           description: description
           _id: _id
@@ -72544,6 +72558,7 @@ components:
           createdAt: 2000-01-23T04:56:07.000+00:00
           isDefault: true
           color: color
+          timezone: timezone
           name: name
           description: description
           _id: _id
@@ -85909,11 +85924,13 @@ components:
             \ is well-formed rather than gating it."
           type: boolean
         timezone:
-          default: UTC
           description: "IANA timezone (`Europe/Madrid`, `America/New_York`) used to\
             \ interpret a `scheduledFor` (root or per-platform) that carries no `Z`\
-            \ or offset. Has no effect on values that already carry one. An unknown\
-            \ name returns 400 when `scheduledFor` is set."
+            \ or offset, and stored on the post. Has no effect on values that already\
+            \ carry one. When omitted, the post takes its profile's `timezone` (the\
+            \ queue's profile for a queued post, else the profile its accounts share),\
+            \ and UTC when there is none or the accounts sit on profiles with different\
+            \ timezones. An unknown name returns 400 when `scheduledFor` is set."
           type: string
         tags:
           description: "Tags/keywords. YouTube constraints: each tag max 100 chars,\
@@ -86685,6 +86702,11 @@ components:
         color:
           example: "#ffeda0"
           type: string
+        timezone:
+          description: IANA timezone new posts on this profile use when they name
+            no `timezone`. Omit to keep UTC. An unknown name returns 400.
+          example: Europe/Istanbul
+          type: string
       required:
       - name
     updateProfile_request:
@@ -86698,6 +86720,13 @@ components:
           nullable: true
           type: string
         color:
+          type: string
+        timezone:
+          description: IANA timezone new posts on this profile use when they name
+            no `timezone`. Set to null to go back to UTC. An unknown name returns
+            400.
+          example: Europe/Istanbul
+          nullable: true
           type: string
         isDefault:
           type: boolean
