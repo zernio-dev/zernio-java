@@ -256,19 +256,19 @@ docs/CampaignBiddingBidSpec.md
 docs/CampaignBiddingPortfolio.md
 docs/CancelBroadcast200Response.md
 docs/CancelPhoneNumberPortIn200Response.md
-docs/ChangeCollectionChannels200Response.md
+docs/ChangeCommerceCollectionChannels200Response.md
 docs/ChangeCommerceCollectionProducts200Response.md
 docs/ChangeCommerceCollectionProductsRequest.md
 docs/ChangeCommerceInventoryRequest.md
 docs/ChangeCommerceInventoryRequestChangesInner.md
+docs/ChangeCommerceProductChannels200Response.md
+docs/ChangeCommerceProductChannelsRequest.md
 docs/ChangeCommerceProductState200Response.md
 docs/ChangeCommerceProductState200ResponseFailedInner.md
 docs/ChangeCommerceProductStateRequest.md
 docs/ChangeCommerceProductTags200Response.md
 docs/ChangeCommerceProductTags200ResponseFailedInner.md
 docs/ChangeCommerceProductTagsRequest.md
-docs/ChangeProductChannels200Response.md
-docs/ChangeProductChannelsRequest.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
@@ -659,6 +659,7 @@ docs/DeleteCommerceMenu200Response.md
 docs/DeleteCommerceMetaobject200Response.md
 docs/DeleteCommercePage200Response.md
 docs/DeleteCommercePriceListPrices200Response.md
+docs/DeleteCommerceProductMetafields200Response.md
 docs/DeleteCommerceRedirect200Response.md
 docs/DeleteDiscordScheduledEvent200Response.md
 docs/DeleteGoogleBusinessMedia200Response.md
@@ -667,7 +668,6 @@ docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
-docs/DeleteProductMetafields200Response.md
 docs/DeleteSmsSenderId200Response.md
 docs/DeleteTestLead200Response.md
 docs/DeleteTrackingTagEvent200Response.md
@@ -1439,6 +1439,7 @@ docs/ListCommerceMetaobjectDefinitions200Response.md
 docs/ListCommerceMetaobjects200Response.md
 docs/ListCommercePages200Response.md
 docs/ListCommercePriceLists200Response.md
+docs/ListCommerceProductMetafields200Response.md
 docs/ListCommerceProducts200Response.md
 docs/ListCommerceRedirects200Response.md
 docs/ListConnectedApps200Response.md
@@ -1547,7 +1548,6 @@ docs/ListPhoneNumbers200ResponseSandbox.md
 docs/ListPhoneNumbers200ResponseSandboxTemplate.md
 docs/ListPinterestBoardsForSelection200Response.md
 docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md
-docs/ListProductMetafields200Response.md
 docs/ListProducts200Response.md
 docs/ListQueueSlots200Response.md
 docs/ListQueueSlots200ResponseOneOf.md
@@ -2059,6 +2059,7 @@ docs/SetCommerceDiscountActiveRequest.md
 docs/SetCommercePriceListPrices200Response.md
 docs/SetCommercePriceListPricesRequest.md
 docs/SetCommercePriceListPricesRequestPricesInner.md
+docs/SetCommerceProductMetafieldsRequest.md
 docs/SetContactFieldValueRequest.md
 docs/SetConversationThreadControl200Response.md
 docs/SetConversationThreadControl200ResponseControl.md
@@ -2071,7 +2072,6 @@ docs/SetMessengerGetStartedRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
-docs/SetProductMetafieldsRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
@@ -2989,19 +2989,19 @@ src/main/java/dev/zernio/model/CampaignBiddingBidSpec.java
 src/main/java/dev/zernio/model/CampaignBiddingPortfolio.java
 src/main/java/dev/zernio/model/CancelBroadcast200Response.java
 src/main/java/dev/zernio/model/CancelPhoneNumberPortIn200Response.java
-src/main/java/dev/zernio/model/ChangeCollectionChannels200Response.java
+src/main/java/dev/zernio/model/ChangeCommerceCollectionChannels200Response.java
 src/main/java/dev/zernio/model/ChangeCommerceCollectionProducts200Response.java
 src/main/java/dev/zernio/model/ChangeCommerceCollectionProductsRequest.java
 src/main/java/dev/zernio/model/ChangeCommerceInventoryRequest.java
 src/main/java/dev/zernio/model/ChangeCommerceInventoryRequestChangesInner.java
+src/main/java/dev/zernio/model/ChangeCommerceProductChannels200Response.java
+src/main/java/dev/zernio/model/ChangeCommerceProductChannelsRequest.java
 src/main/java/dev/zernio/model/ChangeCommerceProductState200Response.java
 src/main/java/dev/zernio/model/ChangeCommerceProductState200ResponseFailedInner.java
 src/main/java/dev/zernio/model/ChangeCommerceProductStateRequest.java
 src/main/java/dev/zernio/model/ChangeCommerceProductTags200Response.java
 src/main/java/dev/zernio/model/ChangeCommerceProductTags200ResponseFailedInner.java
 src/main/java/dev/zernio/model/ChangeCommerceProductTagsRequest.java
-src/main/java/dev/zernio/model/ChangeProductChannels200Response.java
-src/main/java/dev/zernio/model/ChangeProductChannelsRequest.java
 src/main/java/dev/zernio/model/ChannelPicker.java
 src/main/java/dev/zernio/model/ChannelPickerChannelsInner.java
 src/main/java/dev/zernio/model/ChannelPickerTeam.java
@@ -3384,6 +3384,7 @@ src/main/java/dev/zernio/model/DeleteCommerceMenu200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceMetaobject200Response.java
 src/main/java/dev/zernio/model/DeleteCommercePage200Response.java
 src/main/java/dev/zernio/model/DeleteCommercePriceListPrices200Response.java
+src/main/java/dev/zernio/model/DeleteCommerceProductMetafields200Response.java
 src/main/java/dev/zernio/model/DeleteCommerceRedirect200Response.java
 src/main/java/dev/zernio/model/DeleteDiscordScheduledEvent200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessMedia200Response.java
@@ -3392,7 +3393,6 @@ src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxComment200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
-src/main/java/dev/zernio/model/DeleteProductMetafields200Response.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
 src/main/java/dev/zernio/model/DeleteTestLead200Response.java
 src/main/java/dev/zernio/model/DeleteTrackingTagEvent200Response.java
@@ -4148,6 +4148,7 @@ src/main/java/dev/zernio/model/ListCommerceMetaobjectDefinitions200Response.java
 src/main/java/dev/zernio/model/ListCommerceMetaobjects200Response.java
 src/main/java/dev/zernio/model/ListCommercePages200Response.java
 src/main/java/dev/zernio/model/ListCommercePriceLists200Response.java
+src/main/java/dev/zernio/model/ListCommerceProductMetafields200Response.java
 src/main/java/dev/zernio/model/ListCommerceProducts200Response.java
 src/main/java/dev/zernio/model/ListCommerceRedirects200Response.java
 src/main/java/dev/zernio/model/ListConnectedApps200Response.java
@@ -4256,7 +4257,6 @@ src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseSandbox.java
 src/main/java/dev/zernio/model/ListPhoneNumbers200ResponseSandboxTemplate.java
 src/main/java/dev/zernio/model/ListPinterestBoardsForSelection200Response.java
 src/main/java/dev/zernio/model/ListPinterestBoardsForSelection200ResponseBoardsInner.java
-src/main/java/dev/zernio/model/ListProductMetafields200Response.java
 src/main/java/dev/zernio/model/ListProducts200Response.java
 src/main/java/dev/zernio/model/ListQueueSlots200Response.java
 src/main/java/dev/zernio/model/ListQueueSlots200ResponseOneOf.java
@@ -4752,6 +4752,7 @@ src/main/java/dev/zernio/model/SetCommerceDiscountActiveRequest.java
 src/main/java/dev/zernio/model/SetCommercePriceListPrices200Response.java
 src/main/java/dev/zernio/model/SetCommercePriceListPricesRequest.java
 src/main/java/dev/zernio/model/SetCommercePriceListPricesRequestPricesInner.java
+src/main/java/dev/zernio/model/SetCommerceProductMetafieldsRequest.java
 src/main/java/dev/zernio/model/SetContactFieldValueRequest.java
 src/main/java/dev/zernio/model/SetConversationThreadControl200Response.java
 src/main/java/dev/zernio/model/SetConversationThreadControl200ResponseControl.java
@@ -4764,7 +4765,6 @@ src/main/java/dev/zernio/model/SetMessengerGetStartedRequest.java
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermission200Response.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermissionRequest.java
-src/main/java/dev/zernio/model/SetProductMetafieldsRequest.java
 src/main/java/dev/zernio/model/SetRedditPostFlairRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
@@ -5333,3 +5333,9 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ChangeCommerceCollectionChannels200ResponseTest.java
+src/test/java/dev/zernio/model/ChangeCommerceProductChannels200ResponseTest.java
+src/test/java/dev/zernio/model/ChangeCommerceProductChannelsRequestTest.java
+src/test/java/dev/zernio/model/DeleteCommerceProductMetafields200ResponseTest.java
+src/test/java/dev/zernio/model/ListCommerceProductMetafields200ResponseTest.java
+src/test/java/dev/zernio/model/SetCommerceProductMetafieldsRequestTest.java

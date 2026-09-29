@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.152.0
+- API version: 1.153.0
 
-- Build date: 2026-09-29T11:16:04.188495670Z[Etc/UTC]
+- Build date: 2026-09-29T11:32:45.757360907Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.152.0</version>
+  <version>1.153.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.152.0"
+compile "dev.zernio:zernio-sdk:1.153.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.152.0.jar`
+- `target/zernio-sdk-1.153.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -821,18 +821,18 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**addCommerceMarketingEngagementWithHttpInfo**](docs/CommerceApi.md#addCommerceMarketingEngagementWithHttpInfo) | **POST** /v1/commerce/marketing-activities/{remoteId}/engagements | Report daily engagement
 *CommerceApi* | [**addCommerceProductImages**](docs/CommerceApi.md#addCommerceProductImages) | **POST** /v1/commerce/products/{productId}/images | Add images
 *CommerceApi* | [**addCommerceProductImagesWithHttpInfo**](docs/CommerceApi.md#addCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images | Add images
-*CommerceApi* | [**changeCollectionChannels**](docs/CommerceApi.md#changeCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
-*CommerceApi* | [**changeCollectionChannelsWithHttpInfo**](docs/CommerceApi.md#changeCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
+*CommerceApi* | [**changeCommerceCollectionChannels**](docs/CommerceApi.md#changeCommerceCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
+*CommerceApi* | [**changeCommerceCollectionChannelsWithHttpInfo**](docs/CommerceApi.md#changeCommerceCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection
 *CommerceApi* | [**changeCommerceCollectionProducts**](docs/CommerceApi.md#changeCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection
 *CommerceApi* | [**changeCommerceCollectionProductsWithHttpInfo**](docs/CommerceApi.md#changeCommerceCollectionProductsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection
 *CommerceApi* | [**changeCommerceInventory**](docs/CommerceApi.md#changeCommerceInventory) | **POST** /v1/commerce/products/{productId}/inventory | Set or adjust stock
 *CommerceApi* | [**changeCommerceInventoryWithHttpInfo**](docs/CommerceApi.md#changeCommerceInventoryWithHttpInfo) | **POST** /v1/commerce/products/{productId}/inventory | Set or adjust stock
+*CommerceApi* | [**changeCommerceProductChannels**](docs/CommerceApi.md#changeCommerceProductChannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product
+*CommerceApi* | [**changeCommerceProductChannelsWithHttpInfo**](docs/CommerceApi.md#changeCommerceProductChannelsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product
 *CommerceApi* | [**changeCommerceProductState**](docs/CommerceApi.md#changeCommerceProductState) | **POST** /v1/commerce/products/state | Activate, deactivate, archive or delete products
 *CommerceApi* | [**changeCommerceProductStateWithHttpInfo**](docs/CommerceApi.md#changeCommerceProductStateWithHttpInfo) | **POST** /v1/commerce/products/state | Activate, deactivate, archive or delete products
 *CommerceApi* | [**changeCommerceProductTags**](docs/CommerceApi.md#changeCommerceProductTags) | **POST** /v1/commerce/products/tags | Add or remove tags in bulk
 *CommerceApi* | [**changeCommerceProductTagsWithHttpInfo**](docs/CommerceApi.md#changeCommerceProductTagsWithHttpInfo) | **POST** /v1/commerce/products/tags | Add or remove tags in bulk
-*CommerceApi* | [**changeProductChannels**](docs/CommerceApi.md#changeProductChannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product
-*CommerceApi* | [**changeProductChannelsWithHttpInfo**](docs/CommerceApi.md#changeProductChannelsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product
 *CommerceApi* | [**createCommerceCatalogSync**](docs/CommerceApi.md#createCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog
 *CommerceApi* | [**createCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#createCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog
 *CommerceApi* | [**createCommerceCollection**](docs/CommerceApi.md#createCommerceCollection) | **POST** /v1/commerce/collections | Create a collection
@@ -853,12 +853,12 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**createCommerceProductVariantsWithHttpInfo**](docs/CommerceApi.md#createCommerceProductVariantsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/variants | Add variants
 *CommerceApi* | [**createCommerceRedirect**](docs/CommerceApi.md#createCommerceRedirect) | **POST** /v1/commerce/redirects | Create a URL redirect
 *CommerceApi* | [**createCommerceRedirectWithHttpInfo**](docs/CommerceApi.md#createCommerceRedirectWithHttpInfo) | **POST** /v1/commerce/redirects | Create a URL redirect
-*CommerceApi* | [**deleteCollectionMetafields**](docs/CommerceApi.md#deleteCollectionMetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields
-*CommerceApi* | [**deleteCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#deleteCollectionMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields
 *CommerceApi* | [**deleteCommerceCatalogSync**](docs/CommerceApi.md#deleteCommerceCatalogSync) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync
 *CommerceApi* | [**deleteCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#deleteCommerceCatalogSyncWithHttpInfo) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync
 *CommerceApi* | [**deleteCommerceCollection**](docs/CommerceApi.md#deleteCommerceCollection) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection
 *CommerceApi* | [**deleteCommerceCollectionWithHttpInfo**](docs/CommerceApi.md#deleteCommerceCollectionWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection
+*CommerceApi* | [**deleteCommerceCollectionMetafields**](docs/CommerceApi.md#deleteCommerceCollectionMetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields
+*CommerceApi* | [**deleteCommerceCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#deleteCommerceCollectionMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields
 *CommerceApi* | [**deleteCommerceDiscount**](docs/CommerceApi.md#deleteCommerceDiscount) | **DELETE** /v1/commerce/discounts/{discountId} | Delete a discount
 *CommerceApi* | [**deleteCommerceDiscountWithHttpInfo**](docs/CommerceApi.md#deleteCommerceDiscountWithHttpInfo) | **DELETE** /v1/commerce/discounts/{discountId} | Delete a discount
 *CommerceApi* | [**deleteCommerceMarketingActivity**](docs/CommerceApi.md#deleteCommerceMarketingActivity) | **DELETE** /v1/commerce/marketing-activities/{remoteId} | Delete a marketing activity
@@ -871,14 +871,14 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**deleteCommercePageWithHttpInfo**](docs/CommerceApi.md#deleteCommercePageWithHttpInfo) | **DELETE** /v1/commerce/pages/{pageId} | Delete a page
 *CommerceApi* | [**deleteCommercePriceListPrices**](docs/CommerceApi.md#deleteCommercePriceListPrices) | **DELETE** /v1/commerce/price-lists/{priceListId}/prices | Remove fixed prices
 *CommerceApi* | [**deleteCommercePriceListPricesWithHttpInfo**](docs/CommerceApi.md#deleteCommercePriceListPricesWithHttpInfo) | **DELETE** /v1/commerce/price-lists/{priceListId}/prices | Remove fixed prices
+*CommerceApi* | [**deleteCommerceProductMetafields**](docs/CommerceApi.md#deleteCommerceProductMetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields
+*CommerceApi* | [**deleteCommerceProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#deleteCommerceProductMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields
 *CommerceApi* | [**deleteCommerceProductOptions**](docs/CommerceApi.md#deleteCommerceProductOptions) | **DELETE** /v1/commerce/products/{productId}/options | Delete options
 *CommerceApi* | [**deleteCommerceProductOptionsWithHttpInfo**](docs/CommerceApi.md#deleteCommerceProductOptionsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/options | Delete options
 *CommerceApi* | [**deleteCommerceProductVariants**](docs/CommerceApi.md#deleteCommerceProductVariants) | **DELETE** /v1/commerce/products/{productId}/variants | Delete variants
 *CommerceApi* | [**deleteCommerceProductVariantsWithHttpInfo**](docs/CommerceApi.md#deleteCommerceProductVariantsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/variants | Delete variants
 *CommerceApi* | [**deleteCommerceRedirect**](docs/CommerceApi.md#deleteCommerceRedirect) | **DELETE** /v1/commerce/redirects/{redirectId} | Delete a URL redirect
 *CommerceApi* | [**deleteCommerceRedirectWithHttpInfo**](docs/CommerceApi.md#deleteCommerceRedirectWithHttpInfo) | **DELETE** /v1/commerce/redirects/{redirectId} | Delete a URL redirect
-*CommerceApi* | [**deleteProductMetafields**](docs/CommerceApi.md#deleteProductMetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields
-*CommerceApi* | [**deleteProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#deleteProductMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields
 *CommerceApi* | [**duplicateCommerceProduct**](docs/CommerceApi.md#duplicateCommerceProduct) | **POST** /v1/commerce/products/{productId}/duplicate | Duplicate a product
 *CommerceApi* | [**duplicateCommerceProductWithHttpInfo**](docs/CommerceApi.md#duplicateCommerceProductWithHttpInfo) | **POST** /v1/commerce/products/{productId}/duplicate | Duplicate a product
 *CommerceApi* | [**getCommerceCatalogSync**](docs/CommerceApi.md#getCommerceCatalogSync) | **GET** /v1/commerce/catalog-syncs/{syncId} | Get a catalog sync
@@ -897,12 +897,12 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**getCommerceProductWithHttpInfo**](docs/CommerceApi.md#getCommerceProductWithHttpInfo) | **GET** /v1/commerce/products/{productId} | Get a product
 *CommerceApi* | [**getCommerceStore**](docs/CommerceApi.md#getCommerceStore) | **GET** /v1/commerce/store | Get a store
 *CommerceApi* | [**getCommerceStoreWithHttpInfo**](docs/CommerceApi.md#getCommerceStoreWithHttpInfo) | **GET** /v1/commerce/store | Get a store
-*CommerceApi* | [**listCollectionMetafields**](docs/CommerceApi.md#listCollectionMetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields
-*CommerceApi* | [**listCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#listCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields
 *CommerceApi* | [**listCommerceCatalogSyncs**](docs/CommerceApi.md#listCommerceCatalogSyncs) | **GET** /v1/commerce/catalog-syncs | List catalog syncs
 *CommerceApi* | [**listCommerceCatalogSyncsWithHttpInfo**](docs/CommerceApi.md#listCommerceCatalogSyncsWithHttpInfo) | **GET** /v1/commerce/catalog-syncs | List catalog syncs
 *CommerceApi* | [**listCommerceChannels**](docs/CommerceApi.md#listCommerceChannels) | **GET** /v1/commerce/channels | List sales channels
 *CommerceApi* | [**listCommerceChannelsWithHttpInfo**](docs/CommerceApi.md#listCommerceChannelsWithHttpInfo) | **GET** /v1/commerce/channels | List sales channels
+*CommerceApi* | [**listCommerceCollectionMetafields**](docs/CommerceApi.md#listCommerceCollectionMetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields
+*CommerceApi* | [**listCommerceCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#listCommerceCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields
 *CommerceApi* | [**listCommerceCollections**](docs/CommerceApi.md#listCommerceCollections) | **GET** /v1/commerce/collections | List collections
 *CommerceApi* | [**listCommerceCollectionsWithHttpInfo**](docs/CommerceApi.md#listCommerceCollectionsWithHttpInfo) | **GET** /v1/commerce/collections | List collections
 *CommerceApi* | [**listCommerceDiscounts**](docs/CommerceApi.md#listCommerceDiscounts) | **GET** /v1/commerce/discounts | List discounts
@@ -923,12 +923,12 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**listCommercePagesWithHttpInfo**](docs/CommerceApi.md#listCommercePagesWithHttpInfo) | **GET** /v1/commerce/pages | List pages
 *CommerceApi* | [**listCommercePriceLists**](docs/CommerceApi.md#listCommercePriceLists) | **GET** /v1/commerce/price-lists | List price lists
 *CommerceApi* | [**listCommercePriceListsWithHttpInfo**](docs/CommerceApi.md#listCommercePriceListsWithHttpInfo) | **GET** /v1/commerce/price-lists | List price lists
+*CommerceApi* | [**listCommerceProductMetafields**](docs/CommerceApi.md#listCommerceProductMetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields
+*CommerceApi* | [**listCommerceProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#listCommerceProductMetafieldsWithHttpInfo) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields
 *CommerceApi* | [**listCommerceProducts**](docs/CommerceApi.md#listCommerceProducts) | **GET** /v1/commerce/products | List products
 *CommerceApi* | [**listCommerceProductsWithHttpInfo**](docs/CommerceApi.md#listCommerceProductsWithHttpInfo) | **GET** /v1/commerce/products | List products
 *CommerceApi* | [**listCommerceRedirects**](docs/CommerceApi.md#listCommerceRedirects) | **GET** /v1/commerce/redirects | List URL redirects
 *CommerceApi* | [**listCommerceRedirectsWithHttpInfo**](docs/CommerceApi.md#listCommerceRedirectsWithHttpInfo) | **GET** /v1/commerce/redirects | List URL redirects
-*CommerceApi* | [**listProductMetafields**](docs/CommerceApi.md#listProductMetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields
-*CommerceApi* | [**listProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#listProductMetafieldsWithHttpInfo) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields
 *CommerceApi* | [**removeCommerceProductImages**](docs/CommerceApi.md#removeCommerceProductImages) | **DELETE** /v1/commerce/products/{productId}/images | Remove images
 *CommerceApi* | [**removeCommerceProductImagesWithHttpInfo**](docs/CommerceApi.md#removeCommerceProductImagesWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/images | Remove images
 *CommerceApi* | [**reorderCommerceCollectionProducts**](docs/CommerceApi.md#reorderCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/reorder | Reorder products in a collection
@@ -937,14 +937,14 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**reorderCommerceProductImagesWithHttpInfo**](docs/CommerceApi.md#reorderCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images
 *CommerceApi* | [**runCommerceCatalogSync**](docs/CommerceApi.md#runCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now
 *CommerceApi* | [**runCommerceCatalogSyncWithHttpInfo**](docs/CommerceApi.md#runCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now
-*CommerceApi* | [**setCollectionMetafields**](docs/CommerceApi.md#setCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
-*CommerceApi* | [**setCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#setCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
+*CommerceApi* | [**setCommerceCollectionMetafields**](docs/CommerceApi.md#setCommerceCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
+*CommerceApi* | [**setCommerceCollectionMetafieldsWithHttpInfo**](docs/CommerceApi.md#setCommerceCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields
 *CommerceApi* | [**setCommerceDiscountActive**](docs/CommerceApi.md#setCommerceDiscountActive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount
 *CommerceApi* | [**setCommerceDiscountActiveWithHttpInfo**](docs/CommerceApi.md#setCommerceDiscountActiveWithHttpInfo) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount
 *CommerceApi* | [**setCommercePriceListPrices**](docs/CommerceApi.md#setCommercePriceListPrices) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices
 *CommerceApi* | [**setCommercePriceListPricesWithHttpInfo**](docs/CommerceApi.md#setCommercePriceListPricesWithHttpInfo) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices
-*CommerceApi* | [**setProductMetafields**](docs/CommerceApi.md#setProductMetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields
-*CommerceApi* | [**setProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#setProductMetafieldsWithHttpInfo) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields
+*CommerceApi* | [**setCommerceProductMetafields**](docs/CommerceApi.md#setCommerceProductMetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields
+*CommerceApi* | [**setCommerceProductMetafieldsWithHttpInfo**](docs/CommerceApi.md#setCommerceProductMetafieldsWithHttpInfo) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields
 *CommerceApi* | [**updateCommerceCollection**](docs/CommerceApi.md#updateCommerceCollection) | **PATCH** /v1/commerce/collections/{collectionId} | Update a collection
 *CommerceApi* | [**updateCommerceCollectionWithHttpInfo**](docs/CommerceApi.md#updateCommerceCollectionWithHttpInfo) | **PATCH** /v1/commerce/collections/{collectionId} | Update a collection
 *CommerceApi* | [**updateCommerceDiscount**](docs/CommerceApi.md#updateCommerceDiscount) | **PATCH** /v1/commerce/discounts/{discountId} | Update a discount
@@ -2237,19 +2237,19 @@ Class | Method | HTTP request | Description
  - [CampaignBiddingPortfolio](docs/CampaignBiddingPortfolio.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
- - [ChangeCollectionChannels200Response](docs/ChangeCollectionChannels200Response.md)
+ - [ChangeCommerceCollectionChannels200Response](docs/ChangeCommerceCollectionChannels200Response.md)
  - [ChangeCommerceCollectionProducts200Response](docs/ChangeCommerceCollectionProducts200Response.md)
  - [ChangeCommerceCollectionProductsRequest](docs/ChangeCommerceCollectionProductsRequest.md)
  - [ChangeCommerceInventoryRequest](docs/ChangeCommerceInventoryRequest.md)
  - [ChangeCommerceInventoryRequestChangesInner](docs/ChangeCommerceInventoryRequestChangesInner.md)
+ - [ChangeCommerceProductChannels200Response](docs/ChangeCommerceProductChannels200Response.md)
+ - [ChangeCommerceProductChannelsRequest](docs/ChangeCommerceProductChannelsRequest.md)
  - [ChangeCommerceProductState200Response](docs/ChangeCommerceProductState200Response.md)
  - [ChangeCommerceProductState200ResponseFailedInner](docs/ChangeCommerceProductState200ResponseFailedInner.md)
  - [ChangeCommerceProductStateRequest](docs/ChangeCommerceProductStateRequest.md)
  - [ChangeCommerceProductTags200Response](docs/ChangeCommerceProductTags200Response.md)
  - [ChangeCommerceProductTags200ResponseFailedInner](docs/ChangeCommerceProductTags200ResponseFailedInner.md)
  - [ChangeCommerceProductTagsRequest](docs/ChangeCommerceProductTagsRequest.md)
- - [ChangeProductChannels200Response](docs/ChangeProductChannels200Response.md)
- - [ChangeProductChannelsRequest](docs/ChangeProductChannelsRequest.md)
  - [ChannelPicker](docs/ChannelPicker.md)
  - [ChannelPickerChannelsInner](docs/ChannelPickerChannelsInner.md)
  - [ChannelPickerTeam](docs/ChannelPickerTeam.md)
@@ -2632,6 +2632,7 @@ Class | Method | HTTP request | Description
  - [DeleteCommerceMetaobject200Response](docs/DeleteCommerceMetaobject200Response.md)
  - [DeleteCommercePage200Response](docs/DeleteCommercePage200Response.md)
  - [DeleteCommercePriceListPrices200Response](docs/DeleteCommercePriceListPrices200Response.md)
+ - [DeleteCommerceProductMetafields200Response](docs/DeleteCommerceProductMetafields200Response.md)
  - [DeleteCommerceRedirect200Response](docs/DeleteCommerceRedirect200Response.md)
  - [DeleteDiscordScheduledEvent200Response](docs/DeleteDiscordScheduledEvent200Response.md)
  - [DeleteGoogleBusinessMedia200Response](docs/DeleteGoogleBusinessMedia200Response.md)
@@ -2640,7 +2641,6 @@ Class | Method | HTTP request | Description
  - [DeleteInboxComment200Response](docs/DeleteInboxComment200Response.md)
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
- - [DeleteProductMetafields200Response](docs/DeleteProductMetafields200Response.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [DeleteTestLead200Response](docs/DeleteTestLead200Response.md)
  - [DeleteTrackingTagEvent200Response](docs/DeleteTrackingTagEvent200Response.md)
@@ -3396,6 +3396,7 @@ Class | Method | HTTP request | Description
  - [ListCommerceMetaobjects200Response](docs/ListCommerceMetaobjects200Response.md)
  - [ListCommercePages200Response](docs/ListCommercePages200Response.md)
  - [ListCommercePriceLists200Response](docs/ListCommercePriceLists200Response.md)
+ - [ListCommerceProductMetafields200Response](docs/ListCommerceProductMetafields200Response.md)
  - [ListCommerceProducts200Response](docs/ListCommerceProducts200Response.md)
  - [ListCommerceRedirects200Response](docs/ListCommerceRedirects200Response.md)
  - [ListConnectedApps200Response](docs/ListConnectedApps200Response.md)
@@ -3504,7 +3505,6 @@ Class | Method | HTTP request | Description
  - [ListPhoneNumbers200ResponseSandboxTemplate](docs/ListPhoneNumbers200ResponseSandboxTemplate.md)
  - [ListPinterestBoardsForSelection200Response](docs/ListPinterestBoardsForSelection200Response.md)
  - [ListPinterestBoardsForSelection200ResponseBoardsInner](docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md)
- - [ListProductMetafields200Response](docs/ListProductMetafields200Response.md)
  - [ListProducts200Response](docs/ListProducts200Response.md)
  - [ListQueueSlots200Response](docs/ListQueueSlots200Response.md)
  - [ListQueueSlots200ResponseOneOf](docs/ListQueueSlots200ResponseOneOf.md)
@@ -4000,6 +4000,7 @@ Class | Method | HTTP request | Description
  - [SetCommercePriceListPrices200Response](docs/SetCommercePriceListPrices200Response.md)
  - [SetCommercePriceListPricesRequest](docs/SetCommercePriceListPricesRequest.md)
  - [SetCommercePriceListPricesRequestPricesInner](docs/SetCommercePriceListPricesRequestPricesInner.md)
+ - [SetCommerceProductMetafieldsRequest](docs/SetCommerceProductMetafieldsRequest.md)
  - [SetContactFieldValueRequest](docs/SetContactFieldValueRequest.md)
  - [SetConversationThreadControl200Response](docs/SetConversationThreadControl200Response.md)
  - [SetConversationThreadControl200ResponseControl](docs/SetConversationThreadControl200ResponseControl.md)
@@ -4012,7 +4013,6 @@ Class | Method | HTTP request | Description
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [SetPartnershipAdPermission200Response](docs/SetPartnershipAdPermission200Response.md)
  - [SetPartnershipAdPermissionRequest](docs/SetPartnershipAdPermissionRequest.md)
- - [SetProductMetafieldsRequest](docs/SetProductMetafieldsRequest.md)
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)

@@ -25,6 +25,8 @@
 
 * `COLLECTIONS_WRITE` (value: `"collections.write"`)
 
+* `COLLECTIONS_METAFIELDS` (value: `"collections.metafields"`)
+
 * `METAFIELDS_READ` (value: `"metafields.read"`)
 
 * `METAFIELDS_WRITE` (value: `"metafields.write"`)
@@ -44,6 +46,8 @@
 * `DISCOUNTS_READ` (value: `"discounts.read"`)
 
 * `DISCOUNTS_WRITE` (value: `"discounts.write"`)
+
+* `DISCOUNTS_CODES` (value: `"discounts.codes"`)
 
 * `NAVIGATION_READ` (value: `"navigation.read"`)
 

@@ -10,18 +10,18 @@ All URIs are relative to *https://zernio.com/api*
 | [**addCommerceMarketingEngagementWithHttpInfo**](CommerceApi.md#addCommerceMarketingEngagementWithHttpInfo) | **POST** /v1/commerce/marketing-activities/{remoteId}/engagements | Report daily engagement |
 | [**addCommerceProductImages**](CommerceApi.md#addCommerceProductImages) | **POST** /v1/commerce/products/{productId}/images | Add images |
 | [**addCommerceProductImagesWithHttpInfo**](CommerceApi.md#addCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images | Add images |
-| [**changeCollectionChannels**](CommerceApi.md#changeCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
-| [**changeCollectionChannelsWithHttpInfo**](CommerceApi.md#changeCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
+| [**changeCommerceCollectionChannels**](CommerceApi.md#changeCommerceCollectionChannels) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
+| [**changeCommerceCollectionChannelsWithHttpInfo**](CommerceApi.md#changeCommerceCollectionChannelsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/channels | Publish or unpublish a collection |
 | [**changeCommerceCollectionProducts**](CommerceApi.md#changeCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection |
 | [**changeCommerceCollectionProductsWithHttpInfo**](CommerceApi.md#changeCommerceCollectionProductsWithHttpInfo) | **POST** /v1/commerce/collections/{collectionId}/products | Add or remove products in a collection |
 | [**changeCommerceInventory**](CommerceApi.md#changeCommerceInventory) | **POST** /v1/commerce/products/{productId}/inventory | Set or adjust stock |
 | [**changeCommerceInventoryWithHttpInfo**](CommerceApi.md#changeCommerceInventoryWithHttpInfo) | **POST** /v1/commerce/products/{productId}/inventory | Set or adjust stock |
+| [**changeCommerceProductChannels**](CommerceApi.md#changeCommerceProductChannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
+| [**changeCommerceProductChannelsWithHttpInfo**](CommerceApi.md#changeCommerceProductChannelsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
 | [**changeCommerceProductState**](CommerceApi.md#changeCommerceProductState) | **POST** /v1/commerce/products/state | Activate, deactivate, archive or delete products |
 | [**changeCommerceProductStateWithHttpInfo**](CommerceApi.md#changeCommerceProductStateWithHttpInfo) | **POST** /v1/commerce/products/state | Activate, deactivate, archive or delete products |
 | [**changeCommerceProductTags**](CommerceApi.md#changeCommerceProductTags) | **POST** /v1/commerce/products/tags | Add or remove tags in bulk |
 | [**changeCommerceProductTagsWithHttpInfo**](CommerceApi.md#changeCommerceProductTagsWithHttpInfo) | **POST** /v1/commerce/products/tags | Add or remove tags in bulk |
-| [**changeProductChannels**](CommerceApi.md#changeProductChannels) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
-| [**changeProductChannelsWithHttpInfo**](CommerceApi.md#changeProductChannelsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/channels | Publish or unpublish a product |
 | [**createCommerceCatalogSync**](CommerceApi.md#createCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog |
 | [**createCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#createCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs | Sync a store into a Meta catalog |
 | [**createCommerceCollection**](CommerceApi.md#createCommerceCollection) | **POST** /v1/commerce/collections | Create a collection |
@@ -42,12 +42,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**createCommerceProductVariantsWithHttpInfo**](CommerceApi.md#createCommerceProductVariantsWithHttpInfo) | **POST** /v1/commerce/products/{productId}/variants | Add variants |
 | [**createCommerceRedirect**](CommerceApi.md#createCommerceRedirect) | **POST** /v1/commerce/redirects | Create a URL redirect |
 | [**createCommerceRedirectWithHttpInfo**](CommerceApi.md#createCommerceRedirectWithHttpInfo) | **POST** /v1/commerce/redirects | Create a URL redirect |
-| [**deleteCollectionMetafields**](CommerceApi.md#deleteCollectionMetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
-| [**deleteCollectionMetafieldsWithHttpInfo**](CommerceApi.md#deleteCollectionMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
 | [**deleteCommerceCatalogSync**](CommerceApi.md#deleteCommerceCatalogSync) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync |
 | [**deleteCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#deleteCommerceCatalogSyncWithHttpInfo) | **DELETE** /v1/commerce/catalog-syncs/{syncId} | Stop a catalog sync |
 | [**deleteCommerceCollection**](CommerceApi.md#deleteCommerceCollection) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection |
 | [**deleteCommerceCollectionWithHttpInfo**](CommerceApi.md#deleteCommerceCollectionWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId} | Delete a collection |
+| [**deleteCommerceCollectionMetafields**](CommerceApi.md#deleteCommerceCollectionMetafields) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
+| [**deleteCommerceCollectionMetafieldsWithHttpInfo**](CommerceApi.md#deleteCommerceCollectionMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/collections/{collectionId}/metafields | Delete collection metafields |
 | [**deleteCommerceDiscount**](CommerceApi.md#deleteCommerceDiscount) | **DELETE** /v1/commerce/discounts/{discountId} | Delete a discount |
 | [**deleteCommerceDiscountWithHttpInfo**](CommerceApi.md#deleteCommerceDiscountWithHttpInfo) | **DELETE** /v1/commerce/discounts/{discountId} | Delete a discount |
 | [**deleteCommerceMarketingActivity**](CommerceApi.md#deleteCommerceMarketingActivity) | **DELETE** /v1/commerce/marketing-activities/{remoteId} | Delete a marketing activity |
@@ -60,14 +60,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteCommercePageWithHttpInfo**](CommerceApi.md#deleteCommercePageWithHttpInfo) | **DELETE** /v1/commerce/pages/{pageId} | Delete a page |
 | [**deleteCommercePriceListPrices**](CommerceApi.md#deleteCommercePriceListPrices) | **DELETE** /v1/commerce/price-lists/{priceListId}/prices | Remove fixed prices |
 | [**deleteCommercePriceListPricesWithHttpInfo**](CommerceApi.md#deleteCommercePriceListPricesWithHttpInfo) | **DELETE** /v1/commerce/price-lists/{priceListId}/prices | Remove fixed prices |
+| [**deleteCommerceProductMetafields**](CommerceApi.md#deleteCommerceProductMetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
+| [**deleteCommerceProductMetafieldsWithHttpInfo**](CommerceApi.md#deleteCommerceProductMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
 | [**deleteCommerceProductOptions**](CommerceApi.md#deleteCommerceProductOptions) | **DELETE** /v1/commerce/products/{productId}/options | Delete options |
 | [**deleteCommerceProductOptionsWithHttpInfo**](CommerceApi.md#deleteCommerceProductOptionsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/options | Delete options |
 | [**deleteCommerceProductVariants**](CommerceApi.md#deleteCommerceProductVariants) | **DELETE** /v1/commerce/products/{productId}/variants | Delete variants |
 | [**deleteCommerceProductVariantsWithHttpInfo**](CommerceApi.md#deleteCommerceProductVariantsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/variants | Delete variants |
 | [**deleteCommerceRedirect**](CommerceApi.md#deleteCommerceRedirect) | **DELETE** /v1/commerce/redirects/{redirectId} | Delete a URL redirect |
 | [**deleteCommerceRedirectWithHttpInfo**](CommerceApi.md#deleteCommerceRedirectWithHttpInfo) | **DELETE** /v1/commerce/redirects/{redirectId} | Delete a URL redirect |
-| [**deleteProductMetafields**](CommerceApi.md#deleteProductMetafields) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
-| [**deleteProductMetafieldsWithHttpInfo**](CommerceApi.md#deleteProductMetafieldsWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/metafields | Delete product metafields |
 | [**duplicateCommerceProduct**](CommerceApi.md#duplicateCommerceProduct) | **POST** /v1/commerce/products/{productId}/duplicate | Duplicate a product |
 | [**duplicateCommerceProductWithHttpInfo**](CommerceApi.md#duplicateCommerceProductWithHttpInfo) | **POST** /v1/commerce/products/{productId}/duplicate | Duplicate a product |
 | [**getCommerceCatalogSync**](CommerceApi.md#getCommerceCatalogSync) | **GET** /v1/commerce/catalog-syncs/{syncId} | Get a catalog sync |
@@ -86,12 +86,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCommerceProductWithHttpInfo**](CommerceApi.md#getCommerceProductWithHttpInfo) | **GET** /v1/commerce/products/{productId} | Get a product |
 | [**getCommerceStore**](CommerceApi.md#getCommerceStore) | **GET** /v1/commerce/store | Get a store |
 | [**getCommerceStoreWithHttpInfo**](CommerceApi.md#getCommerceStoreWithHttpInfo) | **GET** /v1/commerce/store | Get a store |
-| [**listCollectionMetafields**](CommerceApi.md#listCollectionMetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
-| [**listCollectionMetafieldsWithHttpInfo**](CommerceApi.md#listCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
 | [**listCommerceCatalogSyncs**](CommerceApi.md#listCommerceCatalogSyncs) | **GET** /v1/commerce/catalog-syncs | List catalog syncs |
 | [**listCommerceCatalogSyncsWithHttpInfo**](CommerceApi.md#listCommerceCatalogSyncsWithHttpInfo) | **GET** /v1/commerce/catalog-syncs | List catalog syncs |
 | [**listCommerceChannels**](CommerceApi.md#listCommerceChannels) | **GET** /v1/commerce/channels | List sales channels |
 | [**listCommerceChannelsWithHttpInfo**](CommerceApi.md#listCommerceChannelsWithHttpInfo) | **GET** /v1/commerce/channels | List sales channels |
+| [**listCommerceCollectionMetafields**](CommerceApi.md#listCommerceCollectionMetafields) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
+| [**listCommerceCollectionMetafieldsWithHttpInfo**](CommerceApi.md#listCommerceCollectionMetafieldsWithHttpInfo) | **GET** /v1/commerce/collections/{collectionId}/metafields | List collection metafields |
 | [**listCommerceCollections**](CommerceApi.md#listCommerceCollections) | **GET** /v1/commerce/collections | List collections |
 | [**listCommerceCollectionsWithHttpInfo**](CommerceApi.md#listCommerceCollectionsWithHttpInfo) | **GET** /v1/commerce/collections | List collections |
 | [**listCommerceDiscounts**](CommerceApi.md#listCommerceDiscounts) | **GET** /v1/commerce/discounts | List discounts |
@@ -112,12 +112,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCommercePagesWithHttpInfo**](CommerceApi.md#listCommercePagesWithHttpInfo) | **GET** /v1/commerce/pages | List pages |
 | [**listCommercePriceLists**](CommerceApi.md#listCommercePriceLists) | **GET** /v1/commerce/price-lists | List price lists |
 | [**listCommercePriceListsWithHttpInfo**](CommerceApi.md#listCommercePriceListsWithHttpInfo) | **GET** /v1/commerce/price-lists | List price lists |
+| [**listCommerceProductMetafields**](CommerceApi.md#listCommerceProductMetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
+| [**listCommerceProductMetafieldsWithHttpInfo**](CommerceApi.md#listCommerceProductMetafieldsWithHttpInfo) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
 | [**listCommerceProducts**](CommerceApi.md#listCommerceProducts) | **GET** /v1/commerce/products | List products |
 | [**listCommerceProductsWithHttpInfo**](CommerceApi.md#listCommerceProductsWithHttpInfo) | **GET** /v1/commerce/products | List products |
 | [**listCommerceRedirects**](CommerceApi.md#listCommerceRedirects) | **GET** /v1/commerce/redirects | List URL redirects |
 | [**listCommerceRedirectsWithHttpInfo**](CommerceApi.md#listCommerceRedirectsWithHttpInfo) | **GET** /v1/commerce/redirects | List URL redirects |
-| [**listProductMetafields**](CommerceApi.md#listProductMetafields) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
-| [**listProductMetafieldsWithHttpInfo**](CommerceApi.md#listProductMetafieldsWithHttpInfo) | **GET** /v1/commerce/products/{productId}/metafields | List product metafields |
 | [**removeCommerceProductImages**](CommerceApi.md#removeCommerceProductImages) | **DELETE** /v1/commerce/products/{productId}/images | Remove images |
 | [**removeCommerceProductImagesWithHttpInfo**](CommerceApi.md#removeCommerceProductImagesWithHttpInfo) | **DELETE** /v1/commerce/products/{productId}/images | Remove images |
 | [**reorderCommerceCollectionProducts**](CommerceApi.md#reorderCommerceCollectionProducts) | **POST** /v1/commerce/collections/{collectionId}/reorder | Reorder products in a collection |
@@ -126,14 +126,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**reorderCommerceProductImagesWithHttpInfo**](CommerceApi.md#reorderCommerceProductImagesWithHttpInfo) | **POST** /v1/commerce/products/{productId}/images/reorder | Reorder images |
 | [**runCommerceCatalogSync**](CommerceApi.md#runCommerceCatalogSync) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
 | [**runCommerceCatalogSyncWithHttpInfo**](CommerceApi.md#runCommerceCatalogSyncWithHttpInfo) | **POST** /v1/commerce/catalog-syncs/{syncId}/run | Run a catalog sync now |
-| [**setCollectionMetafields**](CommerceApi.md#setCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
-| [**setCollectionMetafieldsWithHttpInfo**](CommerceApi.md#setCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
+| [**setCommerceCollectionMetafields**](CommerceApi.md#setCommerceCollectionMetafields) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
+| [**setCommerceCollectionMetafieldsWithHttpInfo**](CommerceApi.md#setCommerceCollectionMetafieldsWithHttpInfo) | **PUT** /v1/commerce/collections/{collectionId}/metafields | Set collection metafields |
 | [**setCommerceDiscountActive**](CommerceApi.md#setCommerceDiscountActive) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount |
 | [**setCommerceDiscountActiveWithHttpInfo**](CommerceApi.md#setCommerceDiscountActiveWithHttpInfo) | **POST** /v1/commerce/discounts/{discountId}/state | Activate or deactivate a discount |
 | [**setCommercePriceListPrices**](CommerceApi.md#setCommercePriceListPrices) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices |
 | [**setCommercePriceListPricesWithHttpInfo**](CommerceApi.md#setCommercePriceListPricesWithHttpInfo) | **PUT** /v1/commerce/price-lists/{priceListId}/prices | Set fixed prices |
-| [**setProductMetafields**](CommerceApi.md#setProductMetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
-| [**setProductMetafieldsWithHttpInfo**](CommerceApi.md#setProductMetafieldsWithHttpInfo) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
+| [**setCommerceProductMetafields**](CommerceApi.md#setCommerceProductMetafields) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
+| [**setCommerceProductMetafieldsWithHttpInfo**](CommerceApi.md#setCommerceProductMetafieldsWithHttpInfo) | **PUT** /v1/commerce/products/{productId}/metafields | Set product metafields |
 | [**updateCommerceCollection**](CommerceApi.md#updateCommerceCollection) | **PATCH** /v1/commerce/collections/{collectionId} | Update a collection |
 | [**updateCommerceCollectionWithHttpInfo**](CommerceApi.md#updateCommerceCollectionWithHttpInfo) | **PATCH** /v1/commerce/collections/{collectionId} | Update a collection |
 | [**updateCommerceDiscount**](CommerceApi.md#updateCommerceDiscount) | **PATCH** /v1/commerce/discounts/{discountId} | Update a discount |
@@ -161,7 +161,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Add codes to a discount
 
-Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. 
+Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. Needs discounts.codes, which WooCommerce stores do not have. 
 
 ### Example
 
@@ -238,7 +238,7 @@ public class Example {
 
 Add codes to a discount
 
-Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. 
+Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. Needs discounts.codes, which WooCommerce stores do not have. 
 
 ### Example
 
@@ -629,9 +629,9 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
-## changeCollectionChannels
+## changeCommerceCollectionChannels
 
-> ChangeCollectionChannels200Response changeCollectionChannels(collectionId, changeProductChannelsRequest)
+> ChangeCommerceCollectionChannels200Response changeCommerceCollectionChannels(collectionId, changeCommerceProductChannelsRequest)
 
 Publish or unpublish a collection
 
@@ -659,12 +659,12 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String collectionId = "collectionId_example"; // String | Platform-native id.
-        ChangeProductChannelsRequest changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
+        ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
         try {
-            ChangeCollectionChannels200Response result = apiInstance.changeCollectionChannels(collectionId, changeProductChannelsRequest);
+            ChangeCommerceCollectionChannels200Response result = apiInstance.changeCommerceCollectionChannels(collectionId, changeCommerceProductChannelsRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#changeCollectionChannels");
+            System.err.println("Exception when calling CommerceApi#changeCommerceCollectionChannels");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -680,11 +680,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| Platform-native id. | |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md)|  | |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md)|  | |
 
 ### Return type
 
-[**ChangeCollectionChannels200Response**](ChangeCollectionChannels200Response.md)
+[**ChangeCommerceCollectionChannels200Response**](ChangeCommerceCollectionChannels200Response.md)
 
 
 ### Authorization
@@ -706,9 +706,9 @@ public class Example {
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
-## changeCollectionChannelsWithHttpInfo
+## changeCommerceCollectionChannelsWithHttpInfo
 
-> ApiResponse<ChangeCollectionChannels200Response> changeCollectionChannels changeCollectionChannelsWithHttpInfo(collectionId, changeProductChannelsRequest)
+> ApiResponse<ChangeCommerceCollectionChannels200Response> changeCommerceCollectionChannels changeCommerceCollectionChannelsWithHttpInfo(collectionId, changeCommerceProductChannelsRequest)
 
 Publish or unpublish a collection
 
@@ -737,14 +737,14 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String collectionId = "collectionId_example"; // String | Platform-native id.
-        ChangeProductChannelsRequest changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
+        ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
         try {
-            ApiResponse<ChangeCollectionChannels200Response> response = apiInstance.changeCollectionChannelsWithHttpInfo(collectionId, changeProductChannelsRequest);
+            ApiResponse<ChangeCommerceCollectionChannels200Response> response = apiInstance.changeCommerceCollectionChannelsWithHttpInfo(collectionId, changeCommerceProductChannelsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#changeCollectionChannels");
+            System.err.println("Exception when calling CommerceApi#changeCommerceCollectionChannels");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -760,11 +760,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| Platform-native id. | |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md)|  | |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md)|  | |
 
 ### Return type
 
-ApiResponse<[**ChangeCollectionChannels200Response**](ChangeCollectionChannels200Response.md)>
+ApiResponse<[**ChangeCommerceCollectionChannels200Response**](ChangeCommerceCollectionChannels200Response.md)>
 
 
 ### Authorization
@@ -1103,6 +1103,164 @@ ApiResponse<[**ListCommerceInventory200Response**](ListCommerceInventory200Respo
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## changeCommerceProductChannels
+
+> ChangeCommerceProductChannels200Response changeCommerceProductChannels(productId, changeCommerceProductChannelsRequest)
+
+Publish or unpublish a product
+
+Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
+        try {
+            ChangeCommerceProductChannels200Response result = apiInstance.changeCommerceProductChannels(productId, changeCommerceProductChannelsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#changeCommerceProductChannels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md)|  | |
+
+### Return type
+
+[**ChangeCommerceProductChannels200Response**](ChangeCommerceProductChannels200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Publication changed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## changeCommerceProductChannelsWithHttpInfo
+
+> ApiResponse<ChangeCommerceProductChannels200Response> changeCommerceProductChannels changeCommerceProductChannelsWithHttpInfo(productId, changeCommerceProductChannelsRequest)
+
+Publish or unpublish a product
+
+Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        ChangeCommerceProductChannelsRequest changeCommerceProductChannelsRequest = new ChangeCommerceProductChannelsRequest(); // ChangeCommerceProductChannelsRequest | 
+        try {
+            ApiResponse<ChangeCommerceProductChannels200Response> response = apiInstance.changeCommerceProductChannelsWithHttpInfo(productId, changeCommerceProductChannelsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#changeCommerceProductChannels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **changeCommerceProductChannelsRequest** | [**ChangeCommerceProductChannelsRequest**](ChangeCommerceProductChannelsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**ChangeCommerceProductChannels200Response**](ChangeCommerceProductChannels200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Publication changed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## changeCommerceProductState
 
 > ChangeCommerceProductState200Response changeCommerceProductState(changeCommerceProductStateRequest)
@@ -1402,164 +1560,6 @@ ApiResponse<[**ChangeCommerceProductTags200Response**](ChangeCommerceProductTags
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Tags changed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-
-## changeProductChannels
-
-> ChangeProductChannels200Response changeProductChannels(productId, changeProductChannelsRequest)
-
-Publish or unpublish a product
-
-Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        ChangeProductChannelsRequest changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
-        try {
-            ChangeProductChannels200Response result = apiInstance.changeProductChannels(productId, changeProductChannelsRequest);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#changeProductChannels");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md)|  | |
-
-### Return type
-
-[**ChangeProductChannels200Response**](ChangeProductChannels200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Publication changed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-## changeProductChannelsWithHttpInfo
-
-> ApiResponse<ChangeProductChannels200Response> changeProductChannels changeProductChannelsWithHttpInfo(productId, changeProductChannelsRequest)
-
-Publish or unpublish a product
-
-Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels. 
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        ChangeProductChannelsRequest changeProductChannelsRequest = new ChangeProductChannelsRequest(); // ChangeProductChannelsRequest | 
-        try {
-            ApiResponse<ChangeProductChannels200Response> response = apiInstance.changeProductChannelsWithHttpInfo(productId, changeProductChannelsRequest);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#changeProductChannels");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **changeProductChannelsRequest** | [**ChangeProductChannelsRequest**](ChangeProductChannelsRequest.md)|  | |
-
-### Return type
-
-ApiResponse<[**ChangeProductChannels200Response**](ChangeProductChannels200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Publication changed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -2035,6 +2035,8 @@ ApiResponse<[**CreateCommerceDiscount201Response**](CreateCommerceDiscount201Res
 
 Create a navigation menu
 
+Creates a navigation menu from &#x60;title&#x60;, &#x60;handle&#x60; and up to 100 &#x60;items&#x60;, and returns it with status 201. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -2107,6 +2109,8 @@ public class Example {
 > ApiResponse<CreateCommerceMenu201Response> createCommerceMenu createCommerceMenuWithHttpInfo(createCommerceMenuRequest)
 
 Create a navigation menu
+
+Creates a navigation menu from &#x60;title&#x60;, &#x60;handle&#x60; and up to 100 &#x60;items&#x60;, and returns it with status 201. Shopify only. Needs navigation.write.
 
 ### Example
 
@@ -2185,6 +2189,8 @@ ApiResponse<[**CreateCommerceMenu201Response**](CreateCommerceMenu201Response.md
 
 Create a metaobject
 
+Creates a metaobject of &#x60;type&#x60; with its &#x60;fields&#x60; (key and string value, up to 100) and an optional &#x60;handle&#x60;, and returns it with status 201. Shopify only. Needs metaobjects.write.
+
 ### Example
 
 ```java
@@ -2257,6 +2263,8 @@ public class Example {
 > ApiResponse<CreateCommerceMetaobject201Response> createCommerceMetaobject createCommerceMetaobjectWithHttpInfo(createCommerceMetaobjectRequest)
 
 Create a metaobject
+
+Creates a metaobject of &#x60;type&#x60; with its &#x60;fields&#x60; (key and string value, up to 100) and an optional &#x60;handle&#x60;, and returns it with status 201. Shopify only. Needs metaobjects.write.
 
 ### Example
 
@@ -2335,6 +2343,8 @@ ApiResponse<[**CreateCommerceMetaobject201Response**](CreateCommerceMetaobject20
 
 Create a page
 
+Creates a content page from &#x60;title&#x60;, optional &#x60;handle&#x60;, &#x60;bodyHtml&#x60; and &#x60;isPublished&#x60;, and returns it with status 201. Needs pages.write.
+
 ### Example
 
 ```java
@@ -2407,6 +2417,8 @@ public class Example {
 > ApiResponse<CreateCommercePage201Response> createCommercePage createCommercePageWithHttpInfo(createCommercePageRequest)
 
 Create a page
+
+Creates a content page from &#x60;title&#x60;, optional &#x60;handle&#x60;, &#x60;bodyHtml&#x60; and &#x60;isPublished&#x60;, and returns it with status 201. Needs pages.write.
 
 ### Example
 
@@ -2955,6 +2967,8 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Create a URL redirect
 
+Creates a redirect from &#x60;path&#x60; (starting with &#x60;/&#x60;) to &#x60;target&#x60; (a path or a full URL) and returns it with status 201. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -3028,6 +3042,8 @@ public class Example {
 
 Create a URL redirect
 
+Creates a redirect from &#x60;path&#x60; (starting with &#x60;/&#x60;) to &#x60;target&#x60; (a path or a full URL) and returns it with status 201. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -3092,164 +3108,6 @@ ApiResponse<[**CreateCommerceRedirect201Response**](CreateCommerceRedirect201Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **201** | Redirect created |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-
-## deleteCollectionMetafields
-
-> DeleteProductMetafields200Response deleteCollectionMetafields(collectionId, accountId, keys)
-
-Delete collection metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String collectionId = "collectionId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
-        try {
-            DeleteProductMetafields200Response result = apiInstance.deleteCollectionMetafields(collectionId, accountId, keys);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#deleteCollectionMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **collectionId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-| **keys** | **String**| Comma-separated namespace.key pairs. | |
-
-### Return type
-
-[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-## deleteCollectionMetafieldsWithHttpInfo
-
-> ApiResponse<DeleteProductMetafields200Response> deleteCollectionMetafields deleteCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys)
-
-Delete collection metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String collectionId = "collectionId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
-        try {
-            ApiResponse<DeleteProductMetafields200Response> response = apiInstance.deleteCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#deleteCollectionMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **collectionId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-| **keys** | **String**| Comma-separated namespace.key pairs. | |
-
-### Return type
-
-ApiResponse<[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -3565,11 +3423,175 @@ ApiResponse<[**DeleteCommerceCollection200Response**](DeleteCommerceCollection20
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## deleteCommerceCollectionMetafields
+
+> DeleteCommerceProductMetafields200Response deleteCommerceCollectionMetafields(collectionId, accountId, keys)
+
+Delete collection metafields
+
+Deletes the collection metafields named in &#x60;keys&#x60; (comma-separated &#x60;namespace.key&#x60;, up to 25). Needs collections.metafields: WooCommerce answers 400 platform_not_supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String collectionId = "collectionId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
+        try {
+            DeleteCommerceProductMetafields200Response result = apiInstance.deleteCommerceCollectionMetafields(collectionId, accountId, keys);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#deleteCommerceCollectionMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **keys** | **String**| Comma-separated namespace.key pairs. | |
+
+### Return type
+
+[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## deleteCommerceCollectionMetafieldsWithHttpInfo
+
+> ApiResponse<DeleteCommerceProductMetafields200Response> deleteCommerceCollectionMetafields deleteCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys)
+
+Delete collection metafields
+
+Deletes the collection metafields named in &#x60;keys&#x60; (comma-separated &#x60;namespace.key&#x60;, up to 25). Needs collections.metafields: WooCommerce answers 400 platform_not_supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String collectionId = "collectionId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
+        try {
+            ApiResponse<DeleteCommerceProductMetafields200Response> response = apiInstance.deleteCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId, keys);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#deleteCommerceCollectionMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **keys** | **String**| Comma-separated namespace.key pairs. | |
+
+### Return type
+
+ApiResponse<[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## deleteCommerceDiscount
 
 > DeleteCommerceDiscount200Response deleteCommerceDiscount(discountId, accountId)
 
 Delete a discount
+
+Deletes the discount; its codes stop working at checkout. This cannot be undone. Needs discounts.write.
 
 ### Example
 
@@ -3645,6 +3667,8 @@ public class Example {
 > ApiResponse<DeleteCommerceDiscount200Response> deleteCommerceDiscount deleteCommerceDiscountWithHttpInfo(discountId, accountId)
 
 Delete a discount
+
+Deletes the discount; its codes stop working at checkout. This cannot be undone. Needs discounts.write.
 
 ### Example
 
@@ -3725,6 +3749,8 @@ ApiResponse<[**DeleteCommerceDiscount200Response**](DeleteCommerceDiscount200Res
 
 Delete a marketing activity
 
+Deletes the marketing activity you created with PUT /v1/commerce/marketing-activities, identified by the &#x60;remoteId&#x60; you gave it. Shopify only. Needs marketing.write.
+
 ### Example
 
 ```java
@@ -3799,6 +3825,8 @@ public class Example {
 > ApiResponse<DeleteCommerceMarketingActivity200Response> deleteCommerceMarketingActivity deleteCommerceMarketingActivityWithHttpInfo(remoteId, accountId)
 
 Delete a marketing activity
+
+Deletes the marketing activity you created with PUT /v1/commerce/marketing-activities, identified by the &#x60;remoteId&#x60; you gave it. Shopify only. Needs marketing.write.
 
 ### Example
 
@@ -3879,6 +3907,8 @@ ApiResponse<[**DeleteCommerceMarketingActivity200Response**](DeleteCommerceMarke
 
 Delete a navigation menu
 
+Deletes the navigation menu. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -3953,6 +3983,8 @@ public class Example {
 > ApiResponse<DeleteCommerceMenu200Response> deleteCommerceMenu deleteCommerceMenuWithHttpInfo(menuId, accountId)
 
 Delete a navigation menu
+
+Deletes the navigation menu. Shopify only. Needs navigation.write.
 
 ### Example
 
@@ -4033,6 +4065,8 @@ ApiResponse<[**DeleteCommerceMenu200Response**](DeleteCommerceMenu200Response.md
 
 Delete a metaobject
 
+Deletes the metaobject. References to it from metafields stop resolving. Shopify only. Needs metaobjects.write.
+
 ### Example
 
 ```java
@@ -4107,6 +4141,8 @@ public class Example {
 > ApiResponse<DeleteCommerceMetaobject200Response> deleteCommerceMetaobject deleteCommerceMetaobjectWithHttpInfo(metaobjectId, accountId)
 
 Delete a metaobject
+
+Deletes the metaobject. References to it from metafields stop resolving. Shopify only. Needs metaobjects.write.
 
 ### Example
 
@@ -4187,6 +4223,8 @@ ApiResponse<[**DeleteCommerceMetaobject200Response**](DeleteCommerceMetaobject20
 
 Delete a page
 
+Deletes the page from the store. This cannot be undone. Needs pages.write.
+
 ### Example
 
 ```java
@@ -4261,6 +4299,8 @@ public class Example {
 > ApiResponse<DeleteCommercePage200Response> deleteCommercePage deleteCommercePageWithHttpInfo(pageId, accountId)
 
 Delete a page
+
+Deletes the page from the store. This cannot be undone. Needs pages.write.
 
 ### Example
 
@@ -4497,6 +4537,168 @@ ApiResponse<[**DeleteCommercePriceListPrices200Response**](DeleteCommercePriceLi
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## deleteCommerceProductMetafields
+
+> DeleteCommerceProductMetafields200Response deleteCommerceProductMetafields(productId, accountId, keys)
+
+Delete product metafields
+
+Deletes the product custom fields named in &#x60;keys&#x60; (comma-separated &#x60;namespace.key&#x60;, up to 25) and returns how many were deleted. Needs metafields.write.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
+        try {
+            DeleteCommerceProductMetafields200Response result = apiInstance.deleteCommerceProductMetafields(productId, accountId, keys);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#deleteCommerceProductMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **keys** | **String**| Comma-separated namespace.key pairs. | |
+
+### Return type
+
+[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## deleteCommerceProductMetafieldsWithHttpInfo
+
+> ApiResponse<DeleteCommerceProductMetafields200Response> deleteCommerceProductMetafields deleteCommerceProductMetafieldsWithHttpInfo(productId, accountId, keys)
+
+Delete product metafields
+
+Deletes the product custom fields named in &#x60;keys&#x60; (comma-separated &#x60;namespace.key&#x60;, up to 25) and returns how many were deleted. Needs metafields.write.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
+        try {
+            ApiResponse<DeleteCommerceProductMetafields200Response> response = apiInstance.deleteCommerceProductMetafieldsWithHttpInfo(productId, accountId, keys);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#deleteCommerceProductMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+| **keys** | **String**| Comma-separated namespace.key pairs. | |
+
+### Return type
+
+ApiResponse<[**DeleteCommerceProductMetafields200Response**](DeleteCommerceProductMetafields200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## deleteCommerceProductOptions
 
 > CreateCommerceProduct201Response deleteCommerceProductOptions(productId, accountId, names)
@@ -4665,6 +4867,8 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Delete variants
 
+Deletes the variants in &#x60;variantIds&#x60; (comma-separated, up to 100) and returns the updated product. A product keeps at least one variant, so deleting every variant is refused by the platform. Needs products.variants.
+
 ### Example
 
 ```java
@@ -4741,6 +4945,8 @@ public class Example {
 > ApiResponse<CreateCommerceProduct201Response> deleteCommerceProductVariants deleteCommerceProductVariantsWithHttpInfo(productId, accountId, variantIds)
 
 Delete variants
+
+Deletes the variants in &#x60;variantIds&#x60; (comma-separated, up to 100) and returns the updated product. A product keeps at least one variant, so deleting every variant is refused by the platform. Needs products.variants.
 
 ### Example
 
@@ -4823,6 +5029,8 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Delete a URL redirect
 
+Deletes the redirect; the old path answers 404 again. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -4898,6 +5106,8 @@ public class Example {
 
 Delete a URL redirect
 
+Deletes the redirect; the old path answers 404 again. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -4964,164 +5174,6 @@ ApiResponse<[**DeleteCommerceRedirect200Response**](DeleteCommerceRedirect200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Redirect deleted |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-
-## deleteProductMetafields
-
-> DeleteProductMetafields200Response deleteProductMetafields(productId, accountId, keys)
-
-Delete product metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
-        try {
-            DeleteProductMetafields200Response result = apiInstance.deleteProductMetafields(productId, accountId, keys);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#deleteProductMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-| **keys** | **String**| Comma-separated namespace.key pairs. | |
-
-### Return type
-
-[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-## deleteProductMetafieldsWithHttpInfo
-
-> ApiResponse<DeleteProductMetafields200Response> deleteProductMetafields deleteProductMetafieldsWithHttpInfo(productId, accountId, keys)
-
-Delete product metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        String keys = "keys_example"; // String | Comma-separated namespace.key pairs.
-        try {
-            ApiResponse<DeleteProductMetafields200Response> response = apiInstance.deleteProductMetafieldsWithHttpInfo(productId, accountId, keys);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#deleteProductMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-| **keys** | **String**| Comma-separated namespace.key pairs. | |
-
-### Return type
-
-ApiResponse<[**DeleteProductMetafields200Response**](DeleteProductMetafields200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -5293,6 +5345,8 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Get a catalog sync
 
+One catalog sync with the status and counts of its last run (&#x60;itemsSent&#x60;, &#x60;itemsSkipped&#x60;, &#x60;itemsDeleted&#x60;, &#x60;lastError&#x60;). Poll it after POST /v1/commerce/catalog-syncs/{syncId}/run to follow a run.
+
 ### Example
 
 ```java
@@ -5363,6 +5417,8 @@ public class Example {
 > ApiResponse<CreateCommerceCatalogSync202Response> getCommerceCatalogSync getCommerceCatalogSyncWithHttpInfo(syncId)
 
 Get a catalog sync
+
+One catalog sync with the status and counts of its last run (&#x60;itemsSent&#x60;, &#x60;itemsSkipped&#x60;, &#x60;itemsDeleted&#x60;, &#x60;lastError&#x60;). Poll it after POST /v1/commerce/catalog-syncs/{syncId}/run to follow a run.
 
 ### Example
 
@@ -5439,6 +5495,8 @@ ApiResponse<[**CreateCommerceCatalogSync202Response**](CreateCommerceCatalogSync
 
 Get a collection
 
+One collection (a category on WooCommerce) with its image, sort order and product count. List its products with GET /v1/commerce/products?collectionId&#x3D;. Needs collections.read.
+
 ### Example
 
 ```java
@@ -5513,6 +5571,8 @@ public class Example {
 > ApiResponse<CreateCommerceCollection201Response> getCommerceCollection getCommerceCollectionWithHttpInfo(collectionId, accountId)
 
 Get a collection
+
+One collection (a category on WooCommerce) with its image, sort order and product count. List its products with GET /v1/commerce/products?collectionId&#x3D;. Needs collections.read.
 
 ### Example
 
@@ -5593,6 +5653,8 @@ ApiResponse<[**CreateCommerceCollection201Response**](CreateCommerceCollection20
 
 Get a discount
 
+One discount with its value, targets, minimum, usage and schedule. Needs discounts.read.
+
 ### Example
 
 ```java
@@ -5667,6 +5729,8 @@ public class Example {
 > ApiResponse<CreateCommerceDiscount201Response> getCommerceDiscount getCommerceDiscountWithHttpInfo(discountId, accountId)
 
 Get a discount
+
+One discount with its value, targets, minimum, usage and schedule. Needs discounts.read.
 
 ### Example
 
@@ -5747,6 +5811,8 @@ ApiResponse<[**CreateCommerceDiscount201Response**](CreateCommerceDiscount201Res
 
 Get a navigation menu
 
+One navigation menu with its nested items. Shopify only. Needs navigation.read.
+
 ### Example
 
 ```java
@@ -5821,6 +5887,8 @@ public class Example {
 > ApiResponse<CreateCommerceMenu201Response> getCommerceMenu getCommerceMenuWithHttpInfo(menuId, accountId)
 
 Get a navigation menu
+
+One navigation menu with its nested items. Shopify only. Needs navigation.read.
 
 ### Example
 
@@ -5901,6 +5969,8 @@ ApiResponse<[**CreateCommerceMenu201Response**](CreateCommerceMenu201Response.md
 
 Get a metaobject
 
+One metaobject with its fields. Shopify only. Needs metaobjects.read.
+
 ### Example
 
 ```java
@@ -5975,6 +6045,8 @@ public class Example {
 > ApiResponse<CreateCommerceMetaobject201Response> getCommerceMetaobject getCommerceMetaobjectWithHttpInfo(metaobjectId, accountId)
 
 Get a metaobject
+
+One metaobject with its fields. Shopify only. Needs metaobjects.read.
 
 ### Example
 
@@ -6055,6 +6127,8 @@ ApiResponse<[**CreateCommerceMetaobject201Response**](CreateCommerceMetaobject20
 
 Get a page
 
+One content page with its body. Needs pages.read.
+
 ### Example
 
 ```java
@@ -6129,6 +6203,8 @@ public class Example {
 > ApiResponse<CreateCommercePage201Response> getCommercePage getCommercePageWithHttpInfo(pageId, accountId)
 
 Get a page
+
+One content page with its body. Needs pages.read.
 
 ### Example
 
@@ -6209,6 +6285,8 @@ ApiResponse<[**CreateCommercePage201Response**](CreateCommercePage201Response.md
 
 Get a product
 
+One product with all its variants, options and images. Needs products.read. 404 product_not_found when the id does not exist in the store.
+
 ### Example
 
 ```java
@@ -6282,6 +6360,8 @@ public class Example {
 > ApiResponse<CreateCommerceProduct201Response> getCommerceProduct getCommerceProductWithHttpInfo(productId, accountId)
 
 Get a product
+
+One product with all its variants, options and images. Needs products.read. 404 product_not_found when the id does not exist in the store.
 
 ### Example
 
@@ -6506,160 +6586,6 @@ ApiResponse<[**GetCommerceStore200Response**](GetCommerceStore200Response.md)>
 | **401** | Unauthorized |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). Reconnect the store. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-
-## listCollectionMetafields
-
-> ListProductMetafields200Response listCollectionMetafields(collectionId, accountId)
-
-List collection metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String collectionId = "collectionId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        try {
-            ListProductMetafields200Response result = apiInstance.listCollectionMetafields(collectionId, accountId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#listCollectionMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **collectionId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-
-### Return type
-
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-## listCollectionMetafieldsWithHttpInfo
-
-> ApiResponse<ListProductMetafields200Response> listCollectionMetafields listCollectionMetafieldsWithHttpInfo(collectionId, accountId)
-
-List collection metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String collectionId = "collectionId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        try {
-            ApiResponse<ListProductMetafields200Response> response = apiInstance.listCollectionMetafieldsWithHttpInfo(collectionId, accountId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#listCollectionMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **collectionId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-
-### Return type
-
-ApiResponse<[**ListProductMetafields200Response**](ListProductMetafields200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
@@ -6967,6 +6893,164 @@ ApiResponse<[**ListCommerceChannels200Response**](ListCommerceChannels200Respons
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## listCommerceCollectionMetafields
+
+> ListCommerceProductMetafields200Response listCommerceCollectionMetafields(collectionId, accountId)
+
+List collection metafields
+
+The collection&#39;s metafields as namespace, key, type and value. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String collectionId = "collectionId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ListCommerceProductMetafields200Response result = apiInstance.listCommerceCollectionMetafields(collectionId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceCollectionMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## listCommerceCollectionMetafieldsWithHttpInfo
+
+> ApiResponse<ListCommerceProductMetafields200Response> listCommerceCollectionMetafields listCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId)
+
+List collection metafields
+
+The collection&#39;s metafields as namespace, key, type and value. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String collectionId = "collectionId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.listCommerceCollectionMetafieldsWithHttpInfo(collectionId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceCollectionMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **collectionId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+ApiResponse<[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## listCommerceCollections
 
 > ListCommerceCollections200Response listCommerceCollections(accountId, limit, cursor, query)
@@ -7139,6 +7223,8 @@ ApiResponse<[**ListCommerceCollections200Response**](ListCommerceCollections200R
 
 List discounts
 
+The store&#39;s discounts (Shopify code and automatic discounts, WooCommerce coupons), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60;. Each discount lists its first 10 codes; &#x60;codeCount&#x60; has the total. Needs discounts.read.
+
 ### Example
 
 ```java
@@ -7217,6 +7303,8 @@ public class Example {
 > ApiResponse<ListCommerceDiscounts200Response> listCommerceDiscounts listCommerceDiscountsWithHttpInfo(accountId, limit, cursor, query)
 
 List discounts
+
+The store&#39;s discounts (Shopify code and automatic discounts, WooCommerce coupons), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60;. Each discount lists its first 10 codes; &#x60;codeCount&#x60; has the total. Needs discounts.read.
 
 ### Example
 
@@ -7767,6 +7855,8 @@ ApiResponse<[**ListCommerceMarkets200Response**](ListCommerceMarkets200Response.
 
 List navigation menus
 
+The store&#39;s navigation menus with their items. Shopify only. Needs navigation.read.
+
 ### Example
 
 ```java
@@ -7839,6 +7929,8 @@ public class Example {
 > ApiResponse<ListCommerceMenus200Response> listCommerceMenus listCommerceMenusWithHttpInfo(accountId)
 
 List navigation menus
+
+The store&#39;s navigation menus with their items. Shopify only. Needs navigation.read.
 
 ### Example
 
@@ -8071,6 +8163,8 @@ ApiResponse<[**ListCommerceMetaobjectDefinitions200Response**](ListCommerceMetao
 
 List metaobjects of a type
 
+The metaobjects of one &#x60;type&#x60; (a definition handle from GET /v1/commerce/metaobject-definitions), cursor-paginated with &#x60;limit&#x60; and &#x60;cursor&#x60;. Shopify only. Needs metaobjects.read.
+
 ### Example
 
 ```java
@@ -8149,6 +8243,8 @@ public class Example {
 > ApiResponse<ListCommerceMetaobjects200Response> listCommerceMetaobjects listCommerceMetaobjectsWithHttpInfo(accountId, type, limit, cursor)
 
 List metaobjects of a type
+
+The metaobjects of one &#x60;type&#x60; (a definition handle from GET /v1/commerce/metaobject-definitions), cursor-paginated with &#x60;limit&#x60; and &#x60;cursor&#x60;. Shopify only. Needs metaobjects.read.
 
 ### Example
 
@@ -8233,6 +8329,8 @@ ApiResponse<[**ListCommerceMetaobjects200Response**](ListCommerceMetaobjects200R
 
 List pages
 
+The store&#39;s content pages (Shopify online store pages, WordPress pages), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60;. Needs pages.read.
+
 ### Example
 
 ```java
@@ -8311,6 +8409,8 @@ public class Example {
 > ApiResponse<ListCommercePages200Response> listCommercePages listCommercePagesWithHttpInfo(accountId, limit, cursor, query)
 
 List pages
+
+The store&#39;s content pages (Shopify online store pages, WordPress pages), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60;. Needs pages.read.
 
 ### Example
 
@@ -8543,6 +8643,164 @@ ApiResponse<[**ListCommercePriceLists200Response**](ListCommercePriceLists200Res
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
+## listCommerceProductMetafields
+
+> ListCommerceProductMetafields200Response listCommerceProductMetafields(productId, accountId)
+
+List product metafields
+
+The product&#39;s custom fields (metafields on Shopify, public meta on WooCommerce) as namespace, key, type and value. Needs metafields.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ListCommerceProductMetafields200Response result = apiInstance.listCommerceProductMetafields(productId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceProductMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+## listCommerceProductMetafieldsWithHttpInfo
+
+> ApiResponse<ListCommerceProductMetafields200Response> listCommerceProductMetafields listCommerceProductMetafieldsWithHttpInfo(productId, accountId)
+
+List product metafields
+
+The product&#39;s custom fields (metafields on Shopify, public meta on WooCommerce) as namespace, key, type and value. Needs metafields.read.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CommerceApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CommerceApi apiInstance = new CommerceApi(defaultClient);
+        String productId = "productId_example"; // String | Platform-native id.
+        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
+        try {
+            ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.listCommerceProductMetafieldsWithHttpInfo(productId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CommerceApi#listCommerceProductMetafields");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **productId** | **String**| Platform-native id. | |
+| **accountId** | **String**| Connected store SocialAccount id. | |
+
+### Return type
+
+ApiResponse<[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Metafields listed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
+| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
+| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
+
+
 ## listCommerceProducts
 
 > ListCommerceProducts200Response listCommerceProducts(accountId, limit, cursor, status, query, collectionId)
@@ -8723,6 +8981,8 @@ ApiResponse<[**ListCommerceProducts200Response**](ListCommerceProducts200Respons
 
 List URL redirects
 
+The store&#39;s URL redirects (old path to new target), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60; on the path. Shopify only. Needs navigation.read.
+
 ### Example
 
 ```java
@@ -8802,6 +9062,8 @@ public class Example {
 
 List URL redirects
 
+The store&#39;s URL redirects (old path to new target), cursor-paginated with &#x60;limit&#x60;, &#x60;cursor&#x60; and an optional &#x60;query&#x60; on the path. Shopify only. Needs navigation.read.
+
 ### Example
 
 ```java
@@ -8872,160 +9134,6 @@ ApiResponse<[**ListCommerceRedirects200Response**](ListCommerceRedirects200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Redirects listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-
-## listProductMetafields
-
-> ListProductMetafields200Response listProductMetafields(productId, accountId)
-
-List product metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        try {
-            ListProductMetafields200Response result = apiInstance.listProductMetafields(productId, accountId);
-            System.out.println(result);
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#listProductMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Reason: " + e.getResponseBody());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-
-### Return type
-
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
-| **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
-| **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
-| **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
-| **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
-
-## listProductMetafieldsWithHttpInfo
-
-> ApiResponse<ListProductMetafields200Response> listProductMetafields listProductMetafieldsWithHttpInfo(productId, accountId)
-
-List product metafields
-
-### Example
-
-```java
-// Import classes:
-import dev.zernio.ApiClient;
-import dev.zernio.ApiException;
-import dev.zernio.ApiResponse;
-import dev.zernio.Configuration;
-import dev.zernio.auth.*;
-import dev.zernio.models.*;
-import dev.zernio.api.CommerceApi;
-
-public class Example {
-    public static void main(String[] args) {
-        ApiClient defaultClient = Configuration.getDefaultApiClient();
-        defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
-
-        CommerceApi apiInstance = new CommerceApi(defaultClient);
-        String productId = "productId_example"; // String | Platform-native id.
-        String accountId = "accountId_example"; // String | Connected store SocialAccount id.
-        try {
-            ApiResponse<ListProductMetafields200Response> response = apiInstance.listProductMetafieldsWithHttpInfo(productId, accountId);
-            System.out.println("Status code: " + response.getStatusCode());
-            System.out.println("Response headers: " + response.getHeaders());
-            System.out.println("Response body: " + response.getData());
-        } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#listProductMetafields");
-            System.err.println("Status code: " + e.getCode());
-            System.err.println("Response headers: " + e.getResponseHeaders());
-            System.err.println("Reason: " + e.getResponseBody());
-            e.printStackTrace();
-        }
-    }
-}
-```
-
-### Parameters
-
-
-| Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **productId** | **String**| Platform-native id. | |
-| **accountId** | **String**| Connected store SocialAccount id. | |
-
-### Return type
-
-ApiResponse<[**ListProductMetafields200Response**](ListProductMetafields200Response.md)>
-
-
-### Authorization
-
-[bearerAuth](../README.md#bearerAuth)
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
-### HTTP response details
-| Status code | Description | Response headers |
-|-------------|-------------|------------------|
-| **200** | Metafields listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | The store has not granted this permission, or the token was revoked (code insufficient_permissions). Reconnect the store to grant the latest permissions; GET /v1/commerce/store lists what the current grant allows. |  -  |
@@ -9663,13 +9771,13 @@ ApiResponse<[**CreateCommerceCatalogSync202Response**](CreateCommerceCatalogSync
 | **409** | A run is already in progress (code catalog_sync_conflict). |  -  |
 
 
-## setCollectionMetafields
+## setCommerceCollectionMetafields
 
-> ListProductMetafields200Response setCollectionMetafields(collectionId, setProductMetafieldsRequest)
+> ListCommerceProductMetafields200Response setCommerceCollectionMetafields(collectionId, setCommerceProductMetafieldsRequest)
 
 Set collection metafields
 
-Creates or updates custom fields by namespace and key. 
+Creates or updates custom fields by namespace and key. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported. 
 
 ### Example
 
@@ -9693,12 +9801,12 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String collectionId = "collectionId_example"; // String | Platform-native id.
-        SetProductMetafieldsRequest setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+        SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
         try {
-            ListProductMetafields200Response result = apiInstance.setCollectionMetafields(collectionId, setProductMetafieldsRequest);
+            ListCommerceProductMetafields200Response result = apiInstance.setCommerceCollectionMetafields(collectionId, setCommerceProductMetafieldsRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#setCollectionMetafields");
+            System.err.println("Exception when calling CommerceApi#setCommerceCollectionMetafields");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -9714,11 +9822,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| Platform-native id. | |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md)|  | |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md)|  | |
 
 ### Return type
 
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
 
 
 ### Authorization
@@ -9740,13 +9848,13 @@ public class Example {
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
-## setCollectionMetafieldsWithHttpInfo
+## setCommerceCollectionMetafieldsWithHttpInfo
 
-> ApiResponse<ListProductMetafields200Response> setCollectionMetafields setCollectionMetafieldsWithHttpInfo(collectionId, setProductMetafieldsRequest)
+> ApiResponse<ListCommerceProductMetafields200Response> setCommerceCollectionMetafields setCommerceCollectionMetafieldsWithHttpInfo(collectionId, setCommerceProductMetafieldsRequest)
 
 Set collection metafields
 
-Creates or updates custom fields by namespace and key. 
+Creates or updates custom fields by namespace and key. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported. 
 
 ### Example
 
@@ -9771,14 +9879,14 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String collectionId = "collectionId_example"; // String | Platform-native id.
-        SetProductMetafieldsRequest setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+        SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
         try {
-            ApiResponse<ListProductMetafields200Response> response = apiInstance.setCollectionMetafieldsWithHttpInfo(collectionId, setProductMetafieldsRequest);
+            ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.setCommerceCollectionMetafieldsWithHttpInfo(collectionId, setCommerceProductMetafieldsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#setCollectionMetafields");
+            System.err.println("Exception when calling CommerceApi#setCommerceCollectionMetafields");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -9794,11 +9902,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **collectionId** | **String**| Platform-native id. | |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md)|  | |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md)|  | |
 
 ### Return type
 
-ApiResponse<[**ListProductMetafields200Response**](ListProductMetafields200Response.md)>
+ApiResponse<[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)>
 
 
 ### Authorization
@@ -10137,9 +10245,9 @@ ApiResponse<[**SetCommercePriceListPrices200Response**](SetCommercePriceListPric
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
 
-## setProductMetafields
+## setCommerceProductMetafields
 
-> ListProductMetafields200Response setProductMetafields(productId, setProductMetafieldsRequest)
+> ListCommerceProductMetafields200Response setCommerceProductMetafields(productId, setCommerceProductMetafieldsRequest)
 
 Set product metafields
 
@@ -10167,12 +10275,12 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String productId = "productId_example"; // String | Platform-native id.
-        SetProductMetafieldsRequest setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+        SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
         try {
-            ListProductMetafields200Response result = apiInstance.setProductMetafields(productId, setProductMetafieldsRequest);
+            ListCommerceProductMetafields200Response result = apiInstance.setCommerceProductMetafields(productId, setCommerceProductMetafieldsRequest);
             System.out.println(result);
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#setProductMetafields");
+            System.err.println("Exception when calling CommerceApi#setCommerceProductMetafields");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Reason: " + e.getResponseBody());
             System.err.println("Response headers: " + e.getResponseHeaders());
@@ -10188,11 +10296,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**| Platform-native id. | |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md)|  | |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md)|  | |
 
 ### Return type
 
-[**ListProductMetafields200Response**](ListProductMetafields200Response.md)
+[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)
 
 
 ### Authorization
@@ -10214,9 +10322,9 @@ public class Example {
 | **404** | Account not found (code account_not_found) or the resource was not found (code product_not_found or resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
-## setProductMetafieldsWithHttpInfo
+## setCommerceProductMetafieldsWithHttpInfo
 
-> ApiResponse<ListProductMetafields200Response> setProductMetafields setProductMetafieldsWithHttpInfo(productId, setProductMetafieldsRequest)
+> ApiResponse<ListCommerceProductMetafields200Response> setCommerceProductMetafields setCommerceProductMetafieldsWithHttpInfo(productId, setCommerceProductMetafieldsRequest)
 
 Set product metafields
 
@@ -10245,14 +10353,14 @@ public class Example {
 
         CommerceApi apiInstance = new CommerceApi(defaultClient);
         String productId = "productId_example"; // String | Platform-native id.
-        SetProductMetafieldsRequest setProductMetafieldsRequest = new SetProductMetafieldsRequest(); // SetProductMetafieldsRequest | 
+        SetCommerceProductMetafieldsRequest setCommerceProductMetafieldsRequest = new SetCommerceProductMetafieldsRequest(); // SetCommerceProductMetafieldsRequest | 
         try {
-            ApiResponse<ListProductMetafields200Response> response = apiInstance.setProductMetafieldsWithHttpInfo(productId, setProductMetafieldsRequest);
+            ApiResponse<ListCommerceProductMetafields200Response> response = apiInstance.setCommerceProductMetafieldsWithHttpInfo(productId, setCommerceProductMetafieldsRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
         } catch (ApiException e) {
-            System.err.println("Exception when calling CommerceApi#setProductMetafields");
+            System.err.println("Exception when calling CommerceApi#setCommerceProductMetafields");
             System.err.println("Status code: " + e.getCode());
             System.err.println("Response headers: " + e.getResponseHeaders());
             System.err.println("Reason: " + e.getResponseBody());
@@ -10268,11 +10376,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **productId** | **String**| Platform-native id. | |
-| **setProductMetafieldsRequest** | [**SetProductMetafieldsRequest**](SetProductMetafieldsRequest.md)|  | |
+| **setCommerceProductMetafieldsRequest** | [**SetCommerceProductMetafieldsRequest**](SetCommerceProductMetafieldsRequest.md)|  | |
 
 ### Return type
 
-ApiResponse<[**ListProductMetafields200Response**](ListProductMetafields200Response.md)>
+ApiResponse<[**ListCommerceProductMetafields200Response**](ListCommerceProductMetafields200Response.md)>
 
 
 ### Authorization
@@ -10933,6 +11041,8 @@ ApiResponse<[**CreateCommerceMetaobject201Response**](CreateCommerceMetaobject20
 
 Update a page
 
+Updates the fields you pass (&#x60;title&#x60;, &#x60;handle&#x60;, &#x60;bodyHtml&#x60;, &#x60;isPublished&#x60;) and returns the page. Needs pages.write.
+
 ### Example
 
 ```java
@@ -11007,6 +11117,8 @@ public class Example {
 > ApiResponse<CreateCommercePage201Response> updateCommercePage updateCommercePageWithHttpInfo(pageId, updateCommercePageRequest)
 
 Update a page
+
+Updates the fields you pass (&#x60;title&#x60;, &#x60;handle&#x60;, &#x60;bodyHtml&#x60;, &#x60;isPublished&#x60;) and returns the page. Needs pages.write.
 
 ### Example
 
@@ -11399,6 +11511,8 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Update a URL redirect
 
+Changes the redirect&#39;s &#x60;path&#x60; and/or &#x60;target&#x60;. Shopify only. Needs navigation.write.
+
 ### Example
 
 ```java
@@ -11473,6 +11587,8 @@ public class Example {
 > ApiResponse<CreateCommerceRedirect201Response> updateCommerceRedirect updateCommerceRedirectWithHttpInfo(redirectId, updateCommerceRedirectRequest)
 
 Update a URL redirect
+
+Changes the redirect&#39;s &#x60;path&#x60; and/or &#x60;target&#x60;. Shopify only. Needs navigation.write.
 
 ### Example
 

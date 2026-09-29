@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.152.0
+  version: 1.153.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54989,6 +54989,8 @@ paths:
       - application/json
   /v1/commerce/products/{productId}:
     get:
+      description: "One product with all its variants, options and images. Needs products.read.\
+        \ 404 product_not_found when the id does not exist in the store."
       operationId: getCommerceProduct
       parameters:
       - description: Platform-native product id.
@@ -55301,6 +55303,9 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: "One collection (a category on WooCommerce) with its image, sort\
+        \ order and product count. List its products with GET /v1/commerce/products?collectionId=.\
+        \ Needs collections.read."
       operationId: getCommerceCollection
       parameters:
       - description: Platform-native collection id.
@@ -55455,6 +55460,9 @@ paths:
       - application/json
   /v1/commerce/products/{productId}/variants:
     delete:
+      description: "Deletes the variants in `variantIds` (comma-separated, up to 100)\
+        \ and returns the updated product. A product keeps at least one variant, so\
+        \ deleting every variant is refused by the platform. Needs products.variants."
       operationId: deleteCommerceProductVariants
       parameters:
       - description: Platform-native id.
@@ -55901,7 +55909,9 @@ paths:
       - application/json
   /v1/commerce/products/{productId}/metafields:
     delete:
-      operationId: deleteProductMetafields
+      description: "Deletes the product custom fields named in `keys` (comma-separated\
+        \ `namespace.key`, up to 25) and returns how many were deleted. Needs metafields.write."
+      operationId: deleteCommerceProductMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -55932,7 +55942,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/deleteProductMetafields_200_response"
+                $ref: "#/components/schemas/deleteCommerceProductMetafields_200_response"
           description: Metafields deleted
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -55960,7 +55970,9 @@ paths:
       x-accepts:
       - application/json
     get:
-      operationId: listProductMetafields
+      description: "The product's custom fields (metafields on Shopify, public meta\
+        \ on WooCommerce) as namespace, key, type and value. Needs metafields.read."
+      operationId: listCommerceProductMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -55983,7 +55995,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listProductMetafields_200_response"
+                $ref: "#/components/schemas/listCommerceProductMetafields_200_response"
           description: Metafields listed
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56013,7 +56025,7 @@ paths:
     put:
       description: |
         Creates or updates custom fields by namespace and key.
-      operationId: setProductMetafields
+      operationId: setCommerceProductMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56027,14 +56039,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/setProductMetafields_request"
+              $ref: "#/components/schemas/setCommerceProductMetafields_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listProductMetafields_200_response"
+                $ref: "#/components/schemas/listCommerceProductMetafields_200_response"
           description: Metafields set
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56066,7 +56078,7 @@ paths:
     post:
       description: |
         Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels.
-      operationId: changeProductChannels
+      operationId: changeCommerceProductChannels
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56080,14 +56092,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/changeProductChannels_request"
+              $ref: "#/components/schemas/changeCommerceProductChannels_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/changeProductChannels_200_response"
+                $ref: "#/components/schemas/changeCommerceProductChannels_200_response"
           description: Publication changed
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56116,7 +56128,10 @@ paths:
       - application/json
   /v1/commerce/collections/{collectionId}/metafields:
     delete:
-      operationId: deleteCollectionMetafields
+      description: "Deletes the collection metafields named in `keys` (comma-separated\
+        \ `namespace.key`, up to 25). Needs collections.metafields: WooCommerce answers\
+        \ 400 platform_not_supported."
+      operationId: deleteCommerceCollectionMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56147,7 +56162,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/deleteProductMetafields_200_response"
+                $ref: "#/components/schemas/deleteCommerceProductMetafields_200_response"
           description: Metafields deleted
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56174,7 +56189,10 @@ paths:
       x-accepts:
       - application/json
     get:
-      operationId: listCollectionMetafields
+      description: "The collection's metafields as namespace, key, type and value.\
+        \ Needs collections.metafields: WooCommerce keeps custom fields on products\
+        \ only and answers 400 platform_not_supported."
+      operationId: listCommerceCollectionMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56197,7 +56215,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listProductMetafields_200_response"
+                $ref: "#/components/schemas/listCommerceProductMetafields_200_response"
           description: Metafields listed
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56225,8 +56243,8 @@ paths:
       - application/json
     put:
       description: |
-        Creates or updates custom fields by namespace and key.
-      operationId: setCollectionMetafields
+        Creates or updates custom fields by namespace and key. Needs collections.metafields: WooCommerce keeps custom fields on products only and answers 400 platform_not_supported.
+      operationId: setCommerceCollectionMetafields
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56240,14 +56258,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/setProductMetafields_request"
+              $ref: "#/components/schemas/setCommerceProductMetafields_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/listProductMetafields_200_response"
+                $ref: "#/components/schemas/listCommerceProductMetafields_200_response"
           description: Metafields set
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56278,7 +56296,7 @@ paths:
     post:
       description: |
         Publishes to and/or unpublishes from sales channels (the online store, Shop, POS and others). List channels with GET /v1/commerce/channels.
-      operationId: changeCollectionChannels
+      operationId: changeCommerceCollectionChannels
       parameters:
       - description: Platform-native id.
         explode: false
@@ -56292,14 +56310,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/changeProductChannels_request"
+              $ref: "#/components/schemas/changeCommerceProductChannels_request"
         required: true
       responses:
         "200":
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/changeCollectionChannels_200_response"
+                $ref: "#/components/schemas/changeCommerceCollectionChannels_200_response"
           description: Publication changed
         "400":
           $ref: "#/components/responses/BadRequest"
@@ -56424,6 +56442,9 @@ paths:
       - application/json
   /v1/commerce/pages:
     get:
+      description: "The store's content pages (Shopify online store pages, WordPress\
+        \ pages), cursor-paginated with `limit`, `cursor` and an optional `query`.\
+        \ Needs pages.read."
       operationId: listCommercePages
       parameters:
       - description: Connected store SocialAccount id.
@@ -56493,6 +56514,8 @@ paths:
       x-accepts:
       - application/json
     post:
+      description: "Creates a content page from `title`, optional `handle`, `bodyHtml`\
+        \ and `isPublished`, and returns it with status 201. Needs pages.write."
       operationId: createCommercePage
       requestBody:
         content:
@@ -56535,6 +56558,7 @@ paths:
       - application/json
   /v1/commerce/pages/{pageId}:
     delete:
+      description: Deletes the page from the store. This cannot be undone. Needs pages.write.
       operationId: deleteCommercePage
       parameters:
       - description: Platform-native id.
@@ -56586,6 +56610,7 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: One content page with its body. Needs pages.read.
       operationId: getCommercePage
       parameters:
       - description: Platform-native id.
@@ -56637,6 +56662,8 @@ paths:
       x-accepts:
       - application/json
     patch:
+      description: "Updates the fields you pass (`title`, `handle`, `bodyHtml`, `isPublished`)\
+        \ and returns the page. Needs pages.write."
       operationId: updateCommercePage
       parameters:
       - description: Platform-native id.
@@ -56885,6 +56912,10 @@ paths:
       - application/json
   /v1/commerce/discounts:
     get:
+      description: "The store's discounts (Shopify code and automatic discounts, WooCommerce\
+        \ coupons), cursor-paginated with `limit`, `cursor` and an optional `query`.\
+        \ Each discount lists its first 10 codes; `codeCount` has the total. Needs\
+        \ discounts.read."
       operationId: listCommerceDiscounts
       parameters:
       - description: Connected store SocialAccount id.
@@ -56998,6 +57029,8 @@ paths:
       - application/json
   /v1/commerce/discounts/{discountId}:
     delete:
+      description: Deletes the discount; its codes stop working at checkout. This
+        cannot be undone. Needs discounts.write.
       operationId: deleteCommerceDiscount
       parameters:
       - description: Platform-native id.
@@ -57049,6 +57082,8 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: "One discount with its value, targets, minimum, usage and schedule.\
+        \ Needs discounts.read."
       operationId: getCommerceDiscount
       parameters:
       - description: Platform-native id.
@@ -57207,7 +57242,7 @@ paths:
   /v1/commerce/discounts/{discountId}/codes:
     post:
       description: |
-        Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background.
+        Adds up to 250 more codes to a code discount, for example one per influencer. The platform adds them in the background. Needs discounts.codes, which WooCommerce stores do not have.
       operationId: addCommerceDiscountCodes
       parameters:
       - description: Platform-native id.
@@ -57258,6 +57293,9 @@ paths:
       - application/json
   /v1/commerce/redirects:
     get:
+      description: "The store's URL redirects (old path to new target), cursor-paginated\
+        \ with `limit`, `cursor` and an optional `query` on the path. Shopify only.\
+        \ Needs navigation.read."
       operationId: listCommerceRedirects
       parameters:
       - description: Connected store SocialAccount id.
@@ -57326,6 +57364,9 @@ paths:
       x-accepts:
       - application/json
     post:
+      description: Creates a redirect from `path` (starting with `/`) to `target`
+        (a path or a full URL) and returns it with status 201. Shopify only. Needs
+        navigation.write.
       operationId: createCommerceRedirect
       requestBody:
         content:
@@ -57367,6 +57408,8 @@ paths:
       - application/json
   /v1/commerce/redirects/{redirectId}:
     delete:
+      description: Deletes the redirect; the old path answers 404 again. Shopify only.
+        Needs navigation.write.
       operationId: deleteCommerceRedirect
       parameters:
       - description: Platform-native id.
@@ -57417,6 +57460,8 @@ paths:
       x-accepts:
       - application/json
     patch:
+      description: Changes the redirect's `path` and/or `target`. Shopify only. Needs
+        navigation.write.
       operationId: updateCommerceRedirect
       parameters:
       - description: Platform-native id.
@@ -57467,6 +57512,8 @@ paths:
       - application/json
   /v1/commerce/menus:
     get:
+      description: The store's navigation menus with their items. Shopify only. Needs
+        navigation.read.
       operationId: listCommerceMenus
       parameters:
       - description: Connected store SocialAccount id.
@@ -57509,6 +57556,8 @@ paths:
       x-accepts:
       - application/json
     post:
+      description: "Creates a navigation menu from `title`, `handle` and up to 100\
+        \ `items`, and returns it with status 201. Shopify only. Needs navigation.write."
       operationId: createCommerceMenu
       requestBody:
         content:
@@ -57550,6 +57599,7 @@ paths:
       - application/json
   /v1/commerce/menus/{menuId}:
     delete:
+      description: Deletes the navigation menu. Shopify only. Needs navigation.write.
       operationId: deleteCommerceMenu
       parameters:
       - description: Platform-native id.
@@ -57600,6 +57650,8 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: One navigation menu with its nested items. Shopify only. Needs
+        navigation.read.
       operationId: getCommerceMenu
       parameters:
       - description: Platform-native id.
@@ -57747,6 +57799,8 @@ paths:
       - application/json
   /v1/commerce/metaobjects:
     get:
+      description: "The metaobjects of one `type` (a definition handle from GET /v1/commerce/metaobject-definitions),\
+        \ cursor-paginated with `limit` and `cursor`. Shopify only. Needs metaobjects.read."
       operationId: listCommerceMetaobjects
       parameters:
       - description: Connected store SocialAccount id.
@@ -57814,6 +57868,9 @@ paths:
       x-accepts:
       - application/json
     post:
+      description: "Creates a metaobject of `type` with its `fields` (key and string\
+        \ value, up to 100) and an optional `handle`, and returns it with status 201.\
+        \ Shopify only. Needs metaobjects.write."
       operationId: createCommerceMetaobject
       requestBody:
         content:
@@ -57855,6 +57912,8 @@ paths:
       - application/json
   /v1/commerce/metaobjects/{metaobjectId}:
     delete:
+      description: Deletes the metaobject. References to it from metafields stop resolving.
+        Shopify only. Needs metaobjects.write.
       operationId: deleteCommerceMetaobject
       parameters:
       - description: Platform-native id.
@@ -57905,6 +57964,7 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: One metaobject with its fields. Shopify only. Needs metaobjects.read.
       operationId: getCommerceMetaobject
       parameters:
       - description: Platform-native id.
@@ -58252,6 +58312,8 @@ paths:
       - application/json
   /v1/commerce/marketing-activities/{remoteId}:
     delete:
+      description: "Deletes the marketing activity you created with PUT /v1/commerce/marketing-activities,\
+        \ identified by the `remoteId` you gave it. Shopify only. Needs marketing.write."
       operationId: deleteCommerceMarketingActivity
       parameters:
       - description: The remoteId given when recording it.
@@ -58479,6 +58541,9 @@ paths:
       x-accepts:
       - application/json
     get:
+      description: "One catalog sync with the status and counts of its last run (`itemsSent`,\
+        \ `itemsSkipped`, `itemsDeleted`, `lastError`). Poll it after POST /v1/commerce/catalog-syncs/{syncId}/run\
+        \ to follow a run."
       operationId: getCommerceCatalogSync
       parameters:
       - explode: false
@@ -81150,6 +81215,7 @@ components:
       - products.images_remove
       - collections.read
       - collections.write
+      - collections.metafields
       - metafields.read
       - metafields.write
       - pages.read
@@ -81160,6 +81226,7 @@ components:
       - channels.write
       - discounts.read
       - discounts.write
+      - discounts.codes
       - navigation.read
       - navigation.write
       - metaobjects.read
@@ -136304,7 +136371,7 @@ components:
       required:
       - accountId
       - title
-    listProductMetafields_200_response:
+    listCommerceProductMetafields_200_response:
       example:
         metafields:
         - namespace: namespace
@@ -136320,7 +136387,7 @@ components:
           items:
             $ref: "#/components/schemas/CommerceMetafield"
           type: array
-    setProductMetafields_request:
+    setCommerceProductMetafields_request:
       properties:
         accountId:
           type: string
@@ -136333,13 +136400,13 @@ components:
       required:
       - accountId
       - metafields
-    deleteProductMetafields_200_response:
+    deleteCommerceProductMetafields_200_response:
       example:
         deleted: 0
       properties:
         deleted:
           type: integer
-    changeProductChannels_request:
+    changeCommerceProductChannels_request:
       properties:
         accountId:
           type: string
@@ -136356,7 +136423,7 @@ components:
           type: array
       required:
       - accountId
-    changeProductChannels_200_response:
+    changeCommerceProductChannels_200_response:
       example:
         productId: productId
         published:
@@ -136376,7 +136443,7 @@ components:
           items:
             type: string
           type: array
-    changeCollectionChannels_200_response:
+    changeCommerceCollectionChannels_200_response:
       example:
         published:
         - published
