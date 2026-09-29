@@ -929,6 +929,8 @@ docs/GetLinkedInSupplyForecastRequestCompetingBid.md
 docs/GetMediaPresignedUrl200Response.md
 docs/GetMediaPresignedUrlRequest.md
 docs/GetMessageAttachment200Response.md
+docs/GetMessengerGetStarted200Response.md
+docs/GetMessengerGetStarted200ResponseData.md
 docs/GetMessengerMenu200Response.md
 docs/GetPageWebhookSubscription200Response.md
 docs/GetPendingOAuthData200Response.md
@@ -1949,6 +1951,7 @@ docs/SetImessageSubscription200Response.md
 docs/SetImessageSubscriptionRequest.md
 docs/SetInstagramIceBreakersRequest.md
 docs/SetInstagramIceBreakersRequestIceBreakersInner.md
+docs/SetMessengerGetStartedRequest.md
 docs/SetMessengerMenuRequest.md
 docs/SetPartnershipAdPermission200Response.md
 docs/SetPartnershipAdPermissionRequest.md
@@ -3514,6 +3517,8 @@ src/main/java/dev/zernio/model/GetLinkedInSupplyForecastRequestCompetingBid.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrl200Response.java
 src/main/java/dev/zernio/model/GetMediaPresignedUrlRequest.java
 src/main/java/dev/zernio/model/GetMessageAttachment200Response.java
+src/main/java/dev/zernio/model/GetMessengerGetStarted200Response.java
+src/main/java/dev/zernio/model/GetMessengerGetStarted200ResponseData.java
 src/main/java/dev/zernio/model/GetMessengerMenu200Response.java
 src/main/java/dev/zernio/model/GetPageWebhookSubscription200Response.java
 src/main/java/dev/zernio/model/GetPendingOAuthData200Response.java
@@ -4504,6 +4509,7 @@ src/main/java/dev/zernio/model/SetImessageSubscription200Response.java
 src/main/java/dev/zernio/model/SetImessageSubscriptionRequest.java
 src/main/java/dev/zernio/model/SetInstagramIceBreakersRequest.java
 src/main/java/dev/zernio/model/SetInstagramIceBreakersRequestIceBreakersInner.java
+src/main/java/dev/zernio/model/SetMessengerGetStartedRequest.java
 src/main/java/dev/zernio/model/SetMessengerMenuRequest.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermission200Response.java
 src/main/java/dev/zernio/model/SetPartnershipAdPermissionRequest.java
@@ -5057,3 +5063,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetMessengerGetStarted200ResponseDataTest.java
+src/test/java/dev/zernio/model/GetMessengerGetStarted200ResponseTest.java
+src/test/java/dev/zernio/model/SetMessengerGetStartedRequestTest.java

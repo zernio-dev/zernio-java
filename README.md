@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.147.1
+- API version: 1.148.0
 
-- Build date: 2026-09-29T07:58:04.439810657Z[Etc/UTC]
+- Build date: 2026-09-29T08:16:43.256453349Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.147.1</version>
+  <version>1.148.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.147.1"
+compile "dev.zernio:zernio-sdk:1.148.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.147.1.jar`
+- `target/zernio-sdk-1.148.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -135,18 +135,24 @@ Class | Method | HTTP request | Description
 *AccountGroupsApi* | [**updateAccountGroupWithHttpInfo**](docs/AccountGroupsApi.md#updateAccountGroupWithHttpInfo) | **PUT** /v1/account-groups/{groupId} | Update group
 *AccountSettingsApi* | [**deleteInstagramIceBreakers**](docs/AccountSettingsApi.md#deleteInstagramIceBreakers) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers
 *AccountSettingsApi* | [**deleteInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#deleteInstagramIceBreakersWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers
+*AccountSettingsApi* | [**deleteMessengerGetStarted**](docs/AccountSettingsApi.md#deleteMessengerGetStarted) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button
+*AccountSettingsApi* | [**deleteMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerGetStartedWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button
 *AccountSettingsApi* | [**deleteMessengerMenu**](docs/AccountSettingsApi.md#deleteMessengerMenu) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete FB persistent menu
 *AccountSettingsApi* | [**deleteMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerMenuWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete FB persistent menu
 *AccountSettingsApi* | [**deleteTelegramCommands**](docs/AccountSettingsApi.md#deleteTelegramCommands) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
 *AccountSettingsApi* | [**deleteTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#deleteTelegramCommandsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
 *AccountSettingsApi* | [**getInstagramIceBreakers**](docs/AccountSettingsApi.md#getInstagramIceBreakers) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
 *AccountSettingsApi* | [**getInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#getInstagramIceBreakersWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
+*AccountSettingsApi* | [**getMessengerGetStarted**](docs/AccountSettingsApi.md#getMessengerGetStarted) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button
+*AccountSettingsApi* | [**getMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerGetStartedWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button
 *AccountSettingsApi* | [**getMessengerMenu**](docs/AccountSettingsApi.md#getMessengerMenu) | **GET** /v1/accounts/{accountId}/messenger-menu | Get FB persistent menu
 *AccountSettingsApi* | [**getMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerMenuWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-menu | Get FB persistent menu
 *AccountSettingsApi* | [**getTelegramCommands**](docs/AccountSettingsApi.md#getTelegramCommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**getTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**setInstagramIceBreakers**](docs/AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
+*AccountSettingsApi* | [**setMessengerGetStarted**](docs/AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
+*AccountSettingsApi* | [**setMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerGetStartedWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
 *AccountSettingsApi* | [**setMessengerMenu**](docs/AccountSettingsApi.md#setMessengerMenu) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set FB persistent menu
 *AccountSettingsApi* | [**setMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set FB persistent menu
 *AccountSettingsApi* | [**setTelegramCommands**](docs/AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
@@ -2741,6 +2747,8 @@ Class | Method | HTTP request | Description
  - [GetMediaPresignedUrl200Response](docs/GetMediaPresignedUrl200Response.md)
  - [GetMediaPresignedUrlRequest](docs/GetMediaPresignedUrlRequest.md)
  - [GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
+ - [GetMessengerGetStarted200Response](docs/GetMessengerGetStarted200Response.md)
+ - [GetMessengerGetStarted200ResponseData](docs/GetMessengerGetStarted200ResponseData.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
  - [GetPageWebhookSubscription200Response](docs/GetPageWebhookSubscription200Response.md)
  - [GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
@@ -3731,6 +3739,7 @@ Class | Method | HTTP request | Description
  - [SetImessageSubscriptionRequest](docs/SetImessageSubscriptionRequest.md)
  - [SetInstagramIceBreakersRequest](docs/SetInstagramIceBreakersRequest.md)
  - [SetInstagramIceBreakersRequestIceBreakersInner](docs/SetInstagramIceBreakersRequestIceBreakersInner.md)
+ - [SetMessengerGetStartedRequest](docs/SetMessengerGetStartedRequest.md)
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [SetPartnershipAdPermission200Response](docs/SetPartnershipAdPermission200Response.md)
  - [SetPartnershipAdPermissionRequest](docs/SetPartnershipAdPermissionRequest.md)

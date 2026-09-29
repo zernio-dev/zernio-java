@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.147.1
+  version: 1.148.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19695,7 +19695,11 @@ paths:
       - application/json
     put:
       description: "Set the persistent menu for a Facebook Messenger account. Max\
-        \ 3 top-level items, max 5 nested items."
+        \ 3 top-level items, max 5 nested items. Meta only shows a persistent menu\
+        \ on a page that has a Get Started button, so set one first with PUT /v1/accounts/{accountId}/messenger-get-started.\
+        \ A postback button whose payload is `zernio:workflow:<workflowId>` starts\
+        \ that workflow when tapped; the workflow must be active on this account and\
+        \ profile."
       operationId: setMessengerMenu
       parameters:
       - explode: false
@@ -19718,9 +19722,128 @@ paths:
           description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          description: "The page has no Get Started button. Set one with PUT /v1/accounts/{accountId}/messenger-get-started\
+            \ and retry."
       security:
       - bearerAuth: []
       summary: Set FB persistent menu
+      tags:
+      - Account Settings
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/messenger-get-started:
+    delete:
+      description: "Remove the Get Started button. Meta refuses while a persistent\
+        \ menu is set, so delete the menu first."
+      operationId: deleteMessengerGetStarted
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Get Started button deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: "A persistent menu is still set. Delete it with DELETE /v1/accounts/{accountId}/messenger-menu\
+            \ first."
+      security:
+      - bearerAuth: []
+      summary: Delete FB Get Started button
+      tags:
+      - Account Settings
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    get:
+      description: Get the Get Started button payload for a Facebook Messenger account.
+        `data` is null when the page has none.
+      operationId: getMessengerGetStarted
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getMessengerGetStarted_200_response"
+          description: Get Started button configuration
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get FB Get Started button
+      tags:
+      - Account Settings
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    put:
+      description: "Set the Get Started button shown on a Facebook page's Messenger\
+        \ welcome screen. Meta requires it before a persistent menu can be set. Tapping\
+        \ it sends a postback with `payload`, which arrives as a `message.received`\
+        \ webhook carrying it in `metadata.postbackPayload`. Use `zernio:workflow:<workflowId>`\
+        \ to start a workflow on the tap; the workflow must be active on this account\
+        \ and profile."
+      operationId: setMessengerGetStarted
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              payload: zernio:workflow:5190ac0343606395fce014b0
+            schema:
+              $ref: "#/components/schemas/setMessengerGetStarted_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Get Started button set
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Set FB Get Started button
       tags:
       - Account Settings
       x-resource-group: accounts
@@ -94233,6 +94356,30 @@ components:
           type: array
       required:
       - persistent_menu
+    getMessengerGetStarted_200_response_data:
+      example:
+        payload: payload
+      properties:
+        payload:
+          description: Postback payload sent when a person taps Get Started
+          type: string
+    getMessengerGetStarted_200_response:
+      example:
+        data:
+          payload: payload
+      properties:
+        data:
+          $ref: "#/components/schemas/getMessengerGetStarted_200_response_data"
+    setMessengerGetStarted_request:
+      properties:
+        payload:
+          description: "Postback payload sent when a person taps Get Started, e.g.\
+            \ `GET_STARTED` or `zernio:workflow:<workflowId>`."
+          maxLength: 1000
+          minLength: 1
+          type: string
+      required:
+      - payload
     setInstagramIceBreakers_request_ice_breakers_inner:
       properties:
         question:
