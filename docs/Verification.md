@@ -40,6 +40,7 @@ A managed OTP verification. The code itself is never returned or stored (hash on
 | Name | Value |
 |---- | -----|
 | SMS | &quot;sms&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 

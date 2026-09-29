@@ -173,7 +173,7 @@ ApiResponse<[**CheckVerification200Response**](CheckVerification200Response.md)>
 
 Send a verification code
 
-Generate a one-time code, deliver it to the recipient, and store only its hash. Check the user-typed code with POST /v1/verify/verifications/{verificationId}/check.  Re-POSTing for the same (channel, to) while a verification is active RESENDS a fresh code on the existing verification (200 with &#x60;resend: true&#x60;) instead of creating a new one; resends are limited to one per 60 seconds (429 with &#x60;retryAfterSeconds&#x60; inside the cooldown). The stored brandName/codeLength/ttlMinutes win on a resend.  Codes deliver by SMS from a phone number on your account (&#x60;from&#x60; optional when you own exactly one SMS-enabled number) and the message uses a fixed template. Each accepted send bills one verification fee plus the standard message rate. 
+Generate a one-time code, deliver it to the recipient, and store only its hash. Check the user-typed code with POST /v1/verify/verifications/{verificationId}/check.  Re-POSTing for the same (channel, to) while a verification is active RESENDS a fresh code on the existing verification (200 with &#x60;resend: true&#x60;) instead of creating a new one; resends are limited to one per 60 seconds (429 with &#x60;retryAfterSeconds&#x60; inside the cooldown). The stored brandName/codeLength/ttlMinutes win on a resend.  Codes deliver from a number on your account (&#x60;from&#x60; optional when you own exactly one number on the channel), always with a fixed template:  - &#x60;sms&#x60;: from an SMS-enabled number. Each accepted send bills one   verification fee plus the standard message rate. - &#x60;whatsapp&#x60;: from a connected WhatsApp number, as a Meta   AUTHENTICATION template with a copy-code button. The first   WhatsApp verification on a WhatsApp Business Account creates the   &#x60;zernio_verify_code&#x60; template there and answers 422   &#x60;template_pending&#x60; until Meta approves it (usually minutes; retry   after &#x60;retryAfterSeconds&#x60;). Meta fixes the message text, so   &#x60;brandName&#x60; is not shown and the code&#39;s validity is not stated in   the message (&#x60;ttlMinutes&#x60; is still enforced). Each accepted send   bills one verification fee; Meta bills its authentication rate to   your WhatsApp Business Account. 
 
 ### Example
 
@@ -240,9 +240,9 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Verifications require usage-based billing. |  -  |
-| **404** | The &#39;from&#39; number is not an SMS-enabled number on this account. |  -  |
+| **404** | The &#39;from&#39; number is not an SMS-enabled (sms) or connected WhatsApp (whatsapp) number on this account. |  -  |
 | **409** | The recipient has opted out of messages from your number. |  -  |
-| **422** | Verifications need an SMS-enabled number on your account; add one first. |  -  |
+| **422** | No number on your account for the channel (code linked_account_required), or, on whatsapp, the verification template is still in Meta review (code template_pending, retry after &#x60;retryAfterSeconds&#x60;) or was rejected, paused or disabled by Meta (code template_rejected, &#x60;details.status&#x60; and &#x60;details.reason&#x60; say why), or the WhatsApp number needs reconnection (code invalid_resource_state). |  -  |
 | **429** | Resend cooldown or a send cap was hit; &#x60;retryAfterSeconds&#x60; says when to retry. |  -  |
 
 ## createVerificationWithHttpInfo
@@ -251,7 +251,7 @@ public class Example {
 
 Send a verification code
 
-Generate a one-time code, deliver it to the recipient, and store only its hash. Check the user-typed code with POST /v1/verify/verifications/{verificationId}/check.  Re-POSTing for the same (channel, to) while a verification is active RESENDS a fresh code on the existing verification (200 with &#x60;resend: true&#x60;) instead of creating a new one; resends are limited to one per 60 seconds (429 with &#x60;retryAfterSeconds&#x60; inside the cooldown). The stored brandName/codeLength/ttlMinutes win on a resend.  Codes deliver by SMS from a phone number on your account (&#x60;from&#x60; optional when you own exactly one SMS-enabled number) and the message uses a fixed template. Each accepted send bills one verification fee plus the standard message rate. 
+Generate a one-time code, deliver it to the recipient, and store only its hash. Check the user-typed code with POST /v1/verify/verifications/{verificationId}/check.  Re-POSTing for the same (channel, to) while a verification is active RESENDS a fresh code on the existing verification (200 with &#x60;resend: true&#x60;) instead of creating a new one; resends are limited to one per 60 seconds (429 with &#x60;retryAfterSeconds&#x60; inside the cooldown). The stored brandName/codeLength/ttlMinutes win on a resend.  Codes deliver from a number on your account (&#x60;from&#x60; optional when you own exactly one number on the channel), always with a fixed template:  - &#x60;sms&#x60;: from an SMS-enabled number. Each accepted send bills one   verification fee plus the standard message rate. - &#x60;whatsapp&#x60;: from a connected WhatsApp number, as a Meta   AUTHENTICATION template with a copy-code button. The first   WhatsApp verification on a WhatsApp Business Account creates the   &#x60;zernio_verify_code&#x60; template there and answers 422   &#x60;template_pending&#x60; until Meta approves it (usually minutes; retry   after &#x60;retryAfterSeconds&#x60;). Meta fixes the message text, so   &#x60;brandName&#x60; is not shown and the code&#39;s validity is not stated in   the message (&#x60;ttlMinutes&#x60; is still enforced). Each accepted send   bills one verification fee; Meta bills its authentication rate to   your WhatsApp Business Account. 
 
 ### Example
 
@@ -321,9 +321,9 @@ ApiResponse<[**Verification**](Verification.md)>
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Verifications require usage-based billing. |  -  |
-| **404** | The &#39;from&#39; number is not an SMS-enabled number on this account. |  -  |
+| **404** | The &#39;from&#39; number is not an SMS-enabled (sms) or connected WhatsApp (whatsapp) number on this account. |  -  |
 | **409** | The recipient has opted out of messages from your number. |  -  |
-| **422** | Verifications need an SMS-enabled number on your account; add one first. |  -  |
+| **422** | No number on your account for the channel (code linked_account_required), or, on whatsapp, the verification template is still in Meta review (code template_pending, retry after &#x60;retryAfterSeconds&#x60;) or was rejected, paused or disabled by Meta (code template_rejected, &#x60;details.status&#x60; and &#x60;details.reason&#x60; say why), or the WhatsApp number needs reconnection (code invalid_resource_state). |  -  |
 | **429** | Resend cooldown or a send cap was hit; &#x60;retryAfterSeconds&#x60; says when to retry. |  -  |
 
 

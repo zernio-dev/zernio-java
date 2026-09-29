@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.154.0
+  version: 1.155.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58641,10 +58641,22 @@ paths:
         one per 60 seconds (429 with `retryAfterSeconds` inside the cooldown).
         The stored brandName/codeLength/ttlMinutes win on a resend.
 
-        Codes deliver by SMS from a phone number on your account (`from`
-        optional when you own exactly one SMS-enabled number) and the message
-        uses a fixed template. Each accepted send bills one verification fee
-        plus the standard message rate.
+        Codes deliver from a number on your account (`from` optional when
+        you own exactly one number on the channel), always with a fixed
+        template:
+
+        - `sms`: from an SMS-enabled number. Each accepted send bills one
+          verification fee plus the standard message rate.
+        - `whatsapp`: from a connected WhatsApp number, as a Meta
+          AUTHENTICATION template with a copy-code button. The first
+          WhatsApp verification on a WhatsApp Business Account creates the
+          `zernio_verify_code` template there and answers 422
+          `template_pending` until Meta approves it (usually minutes; retry
+          after `retryAfterSeconds`). Meta fixes the message text, so
+          `brandName` is not shown and the code's validity is not stated in
+          the message (`ttlMinutes` is still enforced). Each accepted send
+          bills one verification fee; Meta bills its authentication rate to
+          your WhatsApp Business Account.
       operationId: createVerification
       requestBody:
         content:
@@ -58673,12 +58685,17 @@ paths:
         "403":
           description: Verifications require usage-based billing.
         "404":
-          description: The 'from' number is not an SMS-enabled number on this account.
+          description: The 'from' number is not an SMS-enabled (sms) or connected
+            WhatsApp (whatsapp) number on this account.
         "409":
           description: The recipient has opted out of messages from your number.
         "422":
-          description: Verifications need an SMS-enabled number on your account; add
-            one first.
+          description: "No number on your account for the channel (code linked_account_required),\
+            \ or, on whatsapp, the verification template is still in Meta review (code\
+            \ template_pending, retry after `retryAfterSeconds`) or was rejected,\
+            \ paused or disabled by Meta (code template_rejected, `details.status`\
+            \ and `details.reason` say why), or the WhatsApp number needs reconnection\
+            \ (code invalid_resource_state)."
         "429":
           description: Resend cooldown or a send cap was hit; `retryAfterSeconds`
             says when to retry.
@@ -61146,6 +61163,7 @@ components:
         channel:
           enum:
           - sms
+          - whatsapp
           type: string
         to:
           type: string
@@ -137654,20 +137672,24 @@ components:
     createVerification_request:
       properties:
         channel:
-          description: SMS-only for now.
           enum:
           - sms
+          - whatsapp
           type: string
         to:
-          description: E.164 phone number.
+          description: "E.164 phone number. WhatsApp only delivers to a phone number,\
+            \ never to a username."
           type: string
         from:
-          description: The SMS-enabled number on your account to send from. Defaults
-            to your only SMS number.
+          description: "The number on your account to send from: an SMS-enabled number\
+            \ for `sms`, a connected WhatsApp number for `whatsapp`. Defaults to your\
+            \ only number on that channel."
           type: string
         brandName:
-          description: "Your app or business name, rendered in the message. Defaults\
-            \ to your account name. Letters, numbers, and basic punctuation only."
+          description: "Your app or business name, rendered in the SMS message. Defaults\
+            \ to your account name. Not shown on WhatsApp, where Meta fixes the message\
+            \ and shows your WhatsApp display name. Letters, numbers, and basic punctuation\
+            \ only."
           maxLength: 30
           type: string
         codeLength:
@@ -138231,6 +138253,7 @@ components:
         channel:
           enum:
           - sms
+          - whatsapp
         to:
           type: string
     onVerificationApproved_request:
@@ -138258,6 +138281,7 @@ components:
         channel:
           enum:
           - sms
+          - whatsapp
         to: {}
     onVerificationFailed_request:
       properties:

@@ -18,6 +18,7 @@
 | Name | Value |
 |---- | -----|
 | SMS | &quot;sms&quot; |
+| WHATSAPP | &quot;whatsapp&quot; |
 
 
 
