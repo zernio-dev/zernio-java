@@ -1435,7 +1435,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Stats fetched |  -  |
-| **400** | Invalid query parameter. |  -  |
+| **400** | Invalid query parameter, or (Meta) the startTime/endTime window is too large for Meta to answer: narrow it, e.g. into 7-day ranges. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -1525,7 +1525,7 @@ ApiResponse<[**GetTrackingTagStats200Response**](GetTrackingTagStats200Response.
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Stats fetched |  -  |
-| **400** | Invalid query parameter. |  -  |
+| **400** | Invalid query parameter, or (Meta) the startTime/endTime window is too large for Meta to answer: narrow it, e.g. into 7-day ranges. |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or the Meta token lacks ads permissions (reconnect required). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |

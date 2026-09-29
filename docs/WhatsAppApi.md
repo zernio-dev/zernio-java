@@ -1083,6 +1083,7 @@ public class Example {
 | **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 ## createWhatsAppTemplateWithHttpInfo
 
@@ -1159,6 +1160,7 @@ ApiResponse<[**CreateWhatsAppTemplate200Response**](CreateWhatsAppTemplate200Res
 | **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | WhatsApp account not found |  -  |
+| **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
 
 ## deleteWhatsAppGroupChat

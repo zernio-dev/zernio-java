@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.148.0
+  version: 1.148.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22274,6 +22274,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: WhatsApp account not found
+        "502":
+          description: Meta rejected the request or was unreachable. Meta 4xx statuses
+            are forwarded as-is.
       security:
       - bearerAuth: []
       summary: Create template
@@ -53688,7 +53691,8 @@ paths:
                 $ref: "#/components/schemas/getTrackingTagStats_200_response"
           description: Stats fetched
         "400":
-          description: Invalid query parameter.
+          description: "Invalid query parameter, or (Meta) the startTime/endTime window\
+            \ is too large for Meta to answer: narrow it, e.g. into 7-day ranges."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
