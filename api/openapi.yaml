@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.158.0
+  version: 1.159.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12534,6 +12534,14 @@ paths:
           description: Missing required fields
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The sign-in behind tempToken was already used by an earlier
+            selection or has expired (code oauth_sign_in_consumed); start a new sign-in
+            or send refreshToken
         "500":
           description: Failed to connect LinkedIn account
       summary: Select LinkedIn org
@@ -107619,6 +107627,12 @@ components:
           type: boolean
     checkPhoneNumberAvailability_200_response_areaAvailability_inStock_inner:
       example:
+        aliases:
+        - aliases
+        - aliases
+        ndcs:
+        - ndcs
+        - ndcs
         name: name
         count: 6
         ndc: ndc
@@ -107631,8 +107645,26 @@ components:
           description: "Numbers we can sell there: the carrier count minus the numbers\
             \ we hold back (WhatsApp refused them or another order holds them)."
           type: integer
+        ndcs:
+          description: "Every area code of the city, deepest first (Madrid: 915, 911,\
+            \ 910, ...). `ndc` is the one an order is placed against."
+          items:
+            type: string
+          type: array
+        aliases:
+          description: "Other names the area answers to, present only when it has\
+            \ some (Milano for Milan, Sevilla for Seville)."
+          items:
+            type: string
+          type: array
     checkPhoneNumberAvailability_200_response_areaAvailability_preOrder_inner:
       example:
+        aliases:
+        - aliases
+        - aliases
+        ndcs:
+        - ndcs
+        - ndcs
         name: name
         ndc: ndc
       properties:
@@ -107640,9 +107672,27 @@ components:
           type: string
         name:
           type: string
+        ndcs:
+          description: "Every area code of the city, deepest first (Madrid: 915, 911,\
+            \ 910, ...). `ndc` is the one an order is placed against."
+          items:
+            type: string
+          type: array
+        aliases:
+          description: "Other names the area answers to, present only when it has\
+            \ some (Milano for Milan, Sevilla for Seville)."
+          items:
+            type: string
+          type: array
     checkPhoneNumberAvailability_200_response_areaAvailability_outOfStock_inner:
       example:
+        aliases:
+        - aliases
+        - aliases
         listed: 1
+        ndcs:
+        - ndcs
+        - ndcs
         name: name
         ndc: ndc
       properties:
@@ -107652,27 +107702,75 @@ components:
           type: string
         listed:
           type: integer
+        ndcs:
+          description: "Every area code of the city, deepest first (Madrid: 915, 911,\
+            \ 910, ...). `ndc` is the one an order is placed against."
+          items:
+            type: string
+          type: array
+        aliases:
+          description: "Other names the area answers to, present only when it has\
+            \ some (Milano for Milan, Sevilla for Seville)."
+          items:
+            type: string
+          type: array
     checkPhoneNumberAvailability_200_response_areaAvailability:
       description: |
         Every area of the country's numbering plan (Google libphonenumber geocoding, one row per city: Madrid covers 910 to 919), in one of three states, refreshed every 6 hours from the carrier's own inventory counts. The same answer the dashboard picker and the public country pages show. Empty lists mean the pair has no cached coverage yet, not that the country has no areas.
       example:
         outOfStock:
-        - listed: 1
+        - aliases:
+          - aliases
+          - aliases
+          listed: 1
+          ndcs:
+          - ndcs
+          - ndcs
           name: name
           ndc: ndc
-        - listed: 1
+        - aliases:
+          - aliases
+          - aliases
+          listed: 1
+          ndcs:
+          - ndcs
+          - ndcs
           name: name
           ndc: ndc
         preOrder:
-        - name: name
+        - aliases:
+          - aliases
+          - aliases
+          ndcs:
+          - ndcs
+          - ndcs
+          name: name
           ndc: ndc
-        - name: name
+        - aliases:
+          - aliases
+          - aliases
+          ndcs:
+          - ndcs
+          - ndcs
+          name: name
           ndc: ndc
         inStock:
-        - name: name
+        - aliases:
+          - aliases
+          - aliases
+          ndcs:
+          - ndcs
+          - ndcs
+          name: name
           count: 6
           ndc: ndc
-        - name: name
+        - aliases:
+          - aliases
+          - aliases
+          ndcs:
+          - ndcs
+          - ndcs
+          name: name
           count: 6
           ndc: ndc
       properties:
@@ -107711,22 +107809,58 @@ components:
           preOrderable: true
         areaAvailability:
           outOfStock:
-          - listed: 1
+          - aliases:
+            - aliases
+            - aliases
+            listed: 1
+            ndcs:
+            - ndcs
+            - ndcs
             name: name
             ndc: ndc
-          - listed: 1
+          - aliases:
+            - aliases
+            - aliases
+            listed: 1
+            ndcs:
+            - ndcs
+            - ndcs
             name: name
             ndc: ndc
           preOrder:
-          - name: name
+          - aliases:
+            - aliases
+            - aliases
+            ndcs:
+            - ndcs
+            - ndcs
+            name: name
             ndc: ndc
-          - name: name
+          - aliases:
+            - aliases
+            - aliases
+            ndcs:
+            - ndcs
+            - ndcs
+            name: name
             ndc: ndc
           inStock:
-          - name: name
+          - aliases:
+            - aliases
+            - aliases
+            ndcs:
+            - ndcs
+            - ndcs
+            name: name
             count: 6
             ndc: ndc
-          - name: name
+          - aliases:
+            - aliases
+            - aliases
+            ndcs:
+            - ndcs
+            - ndcs
+            name: name
             count: 6
             ndc: ndc
         addressConstraint: geo

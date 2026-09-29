@@ -7508,6 +7508,7 @@ public class Example {
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
+| **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
 
 ## selectLinkedInOrganizationWithHttpInfo
@@ -7584,6 +7585,7 @@ ApiResponse<[**SelectLinkedInOrganization200Response**](SelectLinkedInOrganizati
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
+| **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
 
 
