@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**addImessageGroupParticipant**](IMessageApi.md#addImessageGroupParticipant) | **POST** /v1/imessage/groups/{conversationId}/participants | Add a participant to an iMessage group |
 | [**addImessageGroupParticipantWithHttpInfo**](IMessageApi.md#addImessageGroupParticipantWithHttpInfo) | **POST** /v1/imessage/groups/{conversationId}/participants | Add a participant to an iMessage group |
+| [**addImessageSandboxContact**](IMessageApi.md#addImessageSandboxContact) | **POST** /v1/imessage/sandbox/contacts | Add an iMessage sandbox contact |
+| [**addImessageSandboxContactWithHttpInfo**](IMessageApi.md#addImessageSandboxContactWithHttpInfo) | **POST** /v1/imessage/sandbox/contacts | Add an iMessage sandbox contact |
 | [**cancelImessageSender**](IMessageApi.md#cancelImessageSender) | **DELETE** /v1/imessage/senders/{senderId} | Cancel an iMessage sender |
 | [**cancelImessageSenderWithHttpInfo**](IMessageApi.md#cancelImessageSenderWithHttpInfo) | **DELETE** /v1/imessage/senders/{senderId} | Cancel an iMessage sender |
 | [**createImessageGroup**](IMessageApi.md#createImessageGroup) | **POST** /v1/imessage/groups | Start an iMessage group chat |
@@ -20,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listImessageAudienceWithHttpInfo**](IMessageApi.md#listImessageAudienceWithHttpInfo) | **GET** /v1/imessage/audience | List iMessage audience |
 | [**listImessageAvailableNumbers**](IMessageApi.md#listImessageAvailableNumbers) | **GET** /v1/imessage/senders/available-numbers | List instantly available iMessage numbers |
 | [**listImessageAvailableNumbersWithHttpInfo**](IMessageApi.md#listImessageAvailableNumbersWithHttpInfo) | **GET** /v1/imessage/senders/available-numbers | List instantly available iMessage numbers |
+| [**listImessageSandboxContacts**](IMessageApi.md#listImessageSandboxContacts) | **GET** /v1/imessage/sandbox/contacts | List iMessage sandbox contacts |
+| [**listImessageSandboxContactsWithHttpInfo**](IMessageApi.md#listImessageSandboxContactsWithHttpInfo) | **GET** /v1/imessage/sandbox/contacts | List iMessage sandbox contacts |
 | [**listImessageSenderOrders**](IMessageApi.md#listImessageSenderOrders) | **GET** /v1/imessage/senders/order | List iMessage sender orders |
 | [**listImessageSenderOrdersWithHttpInfo**](IMessageApi.md#listImessageSenderOrdersWithHttpInfo) | **GET** /v1/imessage/senders/order | List iMessage sender orders |
 | [**listImessageSenders**](IMessageApi.md#listImessageSenders) | **GET** /v1/imessage/senders | List iMessage senders |
@@ -30,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**registerImessageSenderWithHttpInfo**](IMessageApi.md#registerImessageSenderWithHttpInfo) | **POST** /v1/imessage/senders | Register an iMessage sender |
 | [**removeImessageGroupParticipant**](IMessageApi.md#removeImessageGroupParticipant) | **DELETE** /v1/imessage/groups/{conversationId}/participants | Remove a participant from an iMessage group |
 | [**removeImessageGroupParticipantWithHttpInfo**](IMessageApi.md#removeImessageGroupParticipantWithHttpInfo) | **DELETE** /v1/imessage/groups/{conversationId}/participants | Remove a participant from an iMessage group |
+| [**removeImessageSandboxContact**](IMessageApi.md#removeImessageSandboxContact) | **DELETE** /v1/imessage/sandbox/contacts/{contactId} | Remove an iMessage sandbox contact |
+| [**removeImessageSandboxContactWithHttpInfo**](IMessageApi.md#removeImessageSandboxContactWithHttpInfo) | **DELETE** /v1/imessage/sandbox/contacts/{contactId} | Remove an iMessage sandbox contact |
 | [**reserveImessageAvailableNumber**](IMessageApi.md#reserveImessageAvailableNumber) | **POST** /v1/imessage/senders/available-numbers/{numberId}/reserve | Reserve an available iMessage number |
 | [**reserveImessageAvailableNumberWithHttpInfo**](IMessageApi.md#reserveImessageAvailableNumberWithHttpInfo) | **POST** /v1/imessage/senders/available-numbers/{numberId}/reserve | Reserve an available iMessage number |
 | [**setImessageSubscription**](IMessageApi.md#setImessageSubscription) | **POST** /v1/imessage/audience/subscription | Subscribe or opt out an iMessage contact |
@@ -193,6 +199,160 @@ ApiResponse<[**AddImessageGroupParticipant200Response**](AddImessageGroupPartici
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account or conversation not found |  -  |
+
+
+## addImessageSandboxContact
+
+> AddImessageSandboxContact201Response addImessageSandboxContact(addImessageSandboxContactRequest)
+
+Add an iMessage sandbox contact
+
+Adds your own phone (E.164) or Apple ID email. The contact starts as pending; it becomes active when its joinText arrives at the sandbox line from that handle (joinLink opens Messages with it prefilled). Adding a handle that is already on your list returns it unchanged.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        AddImessageSandboxContactRequest addImessageSandboxContactRequest = new AddImessageSandboxContactRequest(); // AddImessageSandboxContactRequest | 
+        try {
+            AddImessageSandboxContact201Response result = apiInstance.addImessageSandboxContact(addImessageSandboxContactRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#addImessageSandboxContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addImessageSandboxContactRequest** | [**AddImessageSandboxContactRequest**](AddImessageSandboxContactRequest.md)|  | |
+
+### Return type
+
+[**AddImessageSandboxContact201Response**](AddImessageSandboxContact201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Contact added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+| **409** | Contact limit reached, or the handle is on someone else&#39;s sandbox list |  -  |
+
+## addImessageSandboxContactWithHttpInfo
+
+> ApiResponse<AddImessageSandboxContact201Response> addImessageSandboxContact addImessageSandboxContactWithHttpInfo(addImessageSandboxContactRequest)
+
+Add an iMessage sandbox contact
+
+Adds your own phone (E.164) or Apple ID email. The contact starts as pending; it becomes active when its joinText arrives at the sandbox line from that handle (joinLink opens Messages with it prefilled). Adding a handle that is already on your list returns it unchanged.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        AddImessageSandboxContactRequest addImessageSandboxContactRequest = new AddImessageSandboxContactRequest(); // AddImessageSandboxContactRequest | 
+        try {
+            ApiResponse<AddImessageSandboxContact201Response> response = apiInstance.addImessageSandboxContactWithHttpInfo(addImessageSandboxContactRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#addImessageSandboxContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **addImessageSandboxContactRequest** | [**AddImessageSandboxContactRequest**](AddImessageSandboxContactRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AddImessageSandboxContact201Response**](AddImessageSandboxContact201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Contact added |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+| **409** | Contact limit reached, or the handle is on someone else&#39;s sandbox list |  -  |
 
 
 ## cancelImessageSender
@@ -1273,6 +1433,148 @@ ApiResponse<[**ListImessageAvailableNumbers200Response**](ListImessageAvailableN
 | **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 
+## listImessageSandboxContacts
+
+> ListImessageSandboxContacts200Response listImessageSandboxContacts()
+
+List iMessage sandbox contacts
+
+The shared sandbox line and your sandbox contacts. The sandbox lets you test iMessage without ordering a sender: add your own phone or Apple ID email, send its join code to the sandbox line from that phone, and your messages reach your inbox and webhooks. Replies are allowed for 24 hours after each message from the contact. Group chats and starting conversations are not supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        try {
+            ListImessageSandboxContacts200Response result = apiInstance.listImessageSandboxContacts();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#listImessageSandboxContacts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListImessageSandboxContacts200Response**](ListImessageSandboxContacts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sandbox line and contacts |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+
+## listImessageSandboxContactsWithHttpInfo
+
+> ApiResponse<ListImessageSandboxContacts200Response> listImessageSandboxContacts listImessageSandboxContactsWithHttpInfo()
+
+List iMessage sandbox contacts
+
+The shared sandbox line and your sandbox contacts. The sandbox lets you test iMessage without ordering a sender: add your own phone or Apple ID email, send its join code to the sandbox line from that phone, and your messages reach your inbox and webhooks. Replies are allowed for 24 hours after each message from the contact. Group chats and starting conversations are not supported.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        try {
+            ApiResponse<ListImessageSandboxContacts200Response> response = apiInstance.listImessageSandboxContactsWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#listImessageSandboxContacts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListImessageSandboxContacts200Response**](ListImessageSandboxContacts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Sandbox line and contacts |  -  |
+| **401** | Unauthorized |  -  |
+| **403** | Your plan does not include the inbox |  -  |
+| **404** | The sandbox is not available right now |  -  |
+
+
 ## listImessageSenderOrders
 
 > ListImessageSenderOrders200Response listImessageSenderOrders(includeCanceled)
@@ -2029,6 +2331,156 @@ ApiResponse<[**AddImessageGroupParticipant200Response**](AddImessageGroupPartici
 | **400** | Bad request, or the conversation is not a group thread |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account or conversation not found |  -  |
+
+
+## removeImessageSandboxContact
+
+> UpdateYoutubeDefaultPlaylist200Response removeImessageSandboxContact(contactId)
+
+Remove an iMessage sandbox contact
+
+Removes the contact and its sandbox conversation. Messages from that handle to the sandbox line are no longer delivered to you.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        String contactId = "contactId_example"; // String | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.removeImessageSandboxContact(contactId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#removeImessageSandboxContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **contactId** | **String**|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sandbox contact not found |  -  |
+
+## removeImessageSandboxContactWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeImessageSandboxContact removeImessageSandboxContactWithHttpInfo(contactId)
+
+Remove an iMessage sandbox contact
+
+Removes the contact and its sandbox conversation. Messages from that handle to the sandbox line are no longer delivered to you.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.IMessageApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        IMessageApi apiInstance = new IMessageApi(defaultClient);
+        String contactId = "contactId_example"; // String | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.removeImessageSandboxContactWithHttpInfo(contactId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling IMessageApi#removeImessageSandboxContact");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **contactId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Removed |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Sandbox contact not found |  -  |
 
 
 ## reserveImessageAvailableNumber

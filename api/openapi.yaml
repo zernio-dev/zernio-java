@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.149.0
+  version: 1.150.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24163,6 +24163,106 @@ paths:
       security:
       - bearerAuth: []
       summary: List iMessage audience
+      tags:
+      - iMessage
+      x-accepts:
+      - application/json
+  /v1/imessage/sandbox/contacts:
+    get:
+      description: "The shared sandbox line and your sandbox contacts. The sandbox\
+        \ lets you test iMessage without ordering a sender: add your own phone or\
+        \ Apple ID email, send its join code to the sandbox line from that phone,\
+        \ and your messages reach your inbox and webhooks. Replies are allowed for\
+        \ 24 hours after each message from the contact. Group chats and starting conversations\
+        \ are not supported."
+      operationId: listImessageSandboxContacts
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listImessageSandboxContacts_200_response"
+          description: Sandbox line and contacts
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Your plan does not include the inbox
+        "404":
+          description: The sandbox is not available right now
+      security:
+      - bearerAuth: []
+      summary: List iMessage sandbox contacts
+      tags:
+      - iMessage
+      x-accepts:
+      - application/json
+    post:
+      description: Adds your own phone (E.164) or Apple ID email. The contact starts
+        as pending; it becomes active when its joinText arrives at the sandbox line
+        from that handle (joinLink opens Messages with it prefilled). Adding a handle
+        that is already on your list returns it unchanged.
+      operationId: addImessageSandboxContact
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/addImessageSandboxContact_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/addImessageSandboxContact_201_response"
+          description: Contact added
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Your plan does not include the inbox
+        "404":
+          description: The sandbox is not available right now
+        "409":
+          description: "Contact limit reached, or the handle is on someone else's\
+            \ sandbox list"
+      security:
+      - bearerAuth: []
+      summary: Add an iMessage sandbox contact
+      tags:
+      - iMessage
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/imessage/sandbox/contacts/{contactId}:
+    delete:
+      description: Removes the contact and its sandbox conversation. Messages from
+        that handle to the sandbox line are no longer delivered to you.
+      operationId: removeImessageSandboxContact
+      parameters:
+      - explode: false
+        in: path
+        name: contactId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Sandbox contact not found
+      security:
+      - bearerAuth: []
+      summary: Remove an iMessage sandbox contact
       tags:
       - iMessage
       x-accepts:
@@ -61045,6 +61145,45 @@ components:
           type: string
         accountId:
           description: The messaging account created at activation
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+    ImessageSandboxContact:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        joinText: joinText
+        activatedAt: 2000-01-23T04:56:07.000+00:00
+        lastInboundAt: 2000-01-23T04:56:07.000+00:00
+        handle: handle
+        id: id
+        joinLink: joinLink
+        status: pending
+      properties:
+        id:
+          type: string
+        handle:
+          description: Phone (E.164) or lowercase Apple ID email
+          type: string
+        status:
+          enum:
+          - pending
+          - active
+          type: string
+        joinText:
+          description: Send this from the handle to the sandbox line to activate it
+          type: string
+        joinLink:
+          description: Opens Messages on the sandbox line with joinText prefilled
+          type: string
+        activatedAt:
+          format: date-time
+          nullable: true
+          type: string
+        lastInboundAt:
+          description: Replies are allowed for 24 hours after this
+          format: date-time
           nullable: true
           type: string
         createdAt:
@@ -102923,6 +103062,72 @@ components:
           type: integer
         skip:
           type: integer
+    listImessageSandboxContacts_200_response_sandbox:
+      example:
+        accountId: accountId
+        contactLimit: 0
+        handle: handle
+      properties:
+        accountId:
+          description: Use as accountId to reply from the sandbox line
+          type: string
+        handle:
+          description: The sandbox line to message
+          type: string
+        contactLimit:
+          type: integer
+    listImessageSandboxContacts_200_response:
+      example:
+        sandbox:
+          accountId: accountId
+          contactLimit: 0
+          handle: handle
+        contacts:
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          joinText: joinText
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          lastInboundAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          id: id
+          joinLink: joinLink
+          status: pending
+        - createdAt: 2000-01-23T04:56:07.000+00:00
+          joinText: joinText
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          lastInboundAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          id: id
+          joinLink: joinLink
+          status: pending
+      properties:
+        sandbox:
+          $ref: "#/components/schemas/listImessageSandboxContacts_200_response_sandbox"
+        contacts:
+          items:
+            $ref: "#/components/schemas/ImessageSandboxContact"
+          type: array
+    addImessageSandboxContact_request:
+      properties:
+        handle:
+          description: Phone in international format (+15551234567) or an Apple ID
+            email
+          type: string
+      required:
+      - handle
+    addImessageSandboxContact_201_response:
+      example:
+        contact:
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          joinText: joinText
+          activatedAt: 2000-01-23T04:56:07.000+00:00
+          lastInboundAt: 2000-01-23T04:56:07.000+00:00
+          handle: handle
+          id: id
+          joinLink: joinLink
+          status: pending
+      properties:
+        contact:
+          $ref: "#/components/schemas/ImessageSandboxContact"
     setImessageSubscription_request:
       properties:
         accountId:

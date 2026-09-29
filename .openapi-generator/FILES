@@ -79,6 +79,8 @@ docs/AddConversionAssociationsRequest.md
 docs/AddDiscordMemberRole200Response.md
 docs/AddImessageGroupParticipant200Response.md
 docs/AddImessageGroupParticipantRequest.md
+docs/AddImessageSandboxContact201Response.md
+docs/AddImessageSandboxContactRequest.md
 docs/AddMessageReaction200Response.md
 docs/AddMessageReactionRequest.md
 docs/AddRcsTestDevice201Response.md
@@ -1249,6 +1251,7 @@ docs/HideInboxCommentRequest.md
 docs/IMessageApi.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
+docs/ImessageSandboxContact.md
 docs/ImessageSender.md
 docs/ImessageSenderLifecycle.md
 docs/InboxAnalyticsApi.md
@@ -1477,6 +1480,8 @@ docs/ListHighDemandPeriods200Response.md
 docs/ListImessageAudience200Response.md
 docs/ListImessageAvailableNumbers200Response.md
 docs/ListImessageAvailableNumbers200ResponseNumbersInner.md
+docs/ListImessageSandboxContacts200Response.md
+docs/ListImessageSandboxContacts200ResponseSandbox.md
 docs/ListImessageSenderOrders200Response.md
 docs/ListImessageSenders200Response.md
 docs/ListInboxComments200Response.md
@@ -2814,6 +2819,8 @@ src/main/java/dev/zernio/model/AddConversionAssociationsRequest.java
 src/main/java/dev/zernio/model/AddDiscordMemberRole200Response.java
 src/main/java/dev/zernio/model/AddImessageGroupParticipant200Response.java
 src/main/java/dev/zernio/model/AddImessageGroupParticipantRequest.java
+src/main/java/dev/zernio/model/AddImessageSandboxContact201Response.java
+src/main/java/dev/zernio/model/AddImessageSandboxContactRequest.java
 src/main/java/dev/zernio/model/AddMessageReaction200Response.java
 src/main/java/dev/zernio/model/AddMessageReactionRequest.java
 src/main/java/dev/zernio/model/AddRcsTestDevice201Response.java
@@ -3958,6 +3965,7 @@ src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
 src/main/java/dev/zernio/model/ImessageAudienceContact.java
 src/main/java/dev/zernio/model/ImessageAudienceContactOptIn.java
+src/main/java/dev/zernio/model/ImessageSandboxContact.java
 src/main/java/dev/zernio/model/ImessageSender.java
 src/main/java/dev/zernio/model/ImessageSenderLifecycle.java
 src/main/java/dev/zernio/model/InboxMessageEditAttachment.java
@@ -4181,6 +4189,8 @@ src/main/java/dev/zernio/model/ListHighDemandPeriods200Response.java
 src/main/java/dev/zernio/model/ListImessageAudience200Response.java
 src/main/java/dev/zernio/model/ListImessageAvailableNumbers200Response.java
 src/main/java/dev/zernio/model/ListImessageAvailableNumbers200ResponseNumbersInner.java
+src/main/java/dev/zernio/model/ListImessageSandboxContacts200Response.java
+src/main/java/dev/zernio/model/ListImessageSandboxContacts200ResponseSandbox.java
 src/main/java/dev/zernio/model/ListImessageSenderOrders200Response.java
 src/main/java/dev/zernio/model/ListImessageSenders200Response.java
 src/main/java/dev/zernio/model/ListInboxComments200Response.java
@@ -5323,3 +5333,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AddImessageSandboxContact201ResponseTest.java
+src/test/java/dev/zernio/model/AddImessageSandboxContactRequestTest.java
+src/test/java/dev/zernio/model/ImessageSandboxContactTest.java
+src/test/java/dev/zernio/model/ListImessageSandboxContacts200ResponseSandboxTest.java
+src/test/java/dev/zernio/model/ListImessageSandboxContacts200ResponseTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.149.0
+- API version: 1.150.0
 
-- Build date: 2026-09-29T08:59:52.337672880Z[Etc/UTC]
+- Build date: 2026-09-29T09:08:46.879516059Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.149.0</version>
+  <version>1.150.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.149.0"
+compile "dev.zernio:zernio-sdk:1.150.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.149.0.jar`
+- `target/zernio-sdk-1.150.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1251,6 +1251,8 @@ Class | Method | HTTP request | Description
 *GmbVerificationsApi* | [**startGoogleBusinessVerificationWithHttpInfo**](docs/GmbVerificationsApi.md#startGoogleBusinessVerificationWithHttpInfo) | **POST** /v1/accounts/{accountId}/gmb-verifications | Start a verification
 *IMessageApi* | [**addImessageGroupParticipant**](docs/IMessageApi.md#addImessageGroupParticipant) | **POST** /v1/imessage/groups/{conversationId}/participants | Add a participant to an iMessage group
 *IMessageApi* | [**addImessageGroupParticipantWithHttpInfo**](docs/IMessageApi.md#addImessageGroupParticipantWithHttpInfo) | **POST** /v1/imessage/groups/{conversationId}/participants | Add a participant to an iMessage group
+*IMessageApi* | [**addImessageSandboxContact**](docs/IMessageApi.md#addImessageSandboxContact) | **POST** /v1/imessage/sandbox/contacts | Add an iMessage sandbox contact
+*IMessageApi* | [**addImessageSandboxContactWithHttpInfo**](docs/IMessageApi.md#addImessageSandboxContactWithHttpInfo) | **POST** /v1/imessage/sandbox/contacts | Add an iMessage sandbox contact
 *IMessageApi* | [**cancelImessageSender**](docs/IMessageApi.md#cancelImessageSender) | **DELETE** /v1/imessage/senders/{senderId} | Cancel an iMessage sender
 *IMessageApi* | [**cancelImessageSenderWithHttpInfo**](docs/IMessageApi.md#cancelImessageSenderWithHttpInfo) | **DELETE** /v1/imessage/senders/{senderId} | Cancel an iMessage sender
 *IMessageApi* | [**createImessageGroup**](docs/IMessageApi.md#createImessageGroup) | **POST** /v1/imessage/groups | Start an iMessage group chat
@@ -1265,6 +1267,8 @@ Class | Method | HTTP request | Description
 *IMessageApi* | [**listImessageAudienceWithHttpInfo**](docs/IMessageApi.md#listImessageAudienceWithHttpInfo) | **GET** /v1/imessage/audience | List iMessage audience
 *IMessageApi* | [**listImessageAvailableNumbers**](docs/IMessageApi.md#listImessageAvailableNumbers) | **GET** /v1/imessage/senders/available-numbers | List instantly available iMessage numbers
 *IMessageApi* | [**listImessageAvailableNumbersWithHttpInfo**](docs/IMessageApi.md#listImessageAvailableNumbersWithHttpInfo) | **GET** /v1/imessage/senders/available-numbers | List instantly available iMessage numbers
+*IMessageApi* | [**listImessageSandboxContacts**](docs/IMessageApi.md#listImessageSandboxContacts) | **GET** /v1/imessage/sandbox/contacts | List iMessage sandbox contacts
+*IMessageApi* | [**listImessageSandboxContactsWithHttpInfo**](docs/IMessageApi.md#listImessageSandboxContactsWithHttpInfo) | **GET** /v1/imessage/sandbox/contacts | List iMessage sandbox contacts
 *IMessageApi* | [**listImessageSenderOrders**](docs/IMessageApi.md#listImessageSenderOrders) | **GET** /v1/imessage/senders/order | List iMessage sender orders
 *IMessageApi* | [**listImessageSenderOrdersWithHttpInfo**](docs/IMessageApi.md#listImessageSenderOrdersWithHttpInfo) | **GET** /v1/imessage/senders/order | List iMessage sender orders
 *IMessageApi* | [**listImessageSenders**](docs/IMessageApi.md#listImessageSenders) | **GET** /v1/imessage/senders | List iMessage senders
@@ -1275,6 +1279,8 @@ Class | Method | HTTP request | Description
 *IMessageApi* | [**registerImessageSenderWithHttpInfo**](docs/IMessageApi.md#registerImessageSenderWithHttpInfo) | **POST** /v1/imessage/senders | Register an iMessage sender
 *IMessageApi* | [**removeImessageGroupParticipant**](docs/IMessageApi.md#removeImessageGroupParticipant) | **DELETE** /v1/imessage/groups/{conversationId}/participants | Remove a participant from an iMessage group
 *IMessageApi* | [**removeImessageGroupParticipantWithHttpInfo**](docs/IMessageApi.md#removeImessageGroupParticipantWithHttpInfo) | **DELETE** /v1/imessage/groups/{conversationId}/participants | Remove a participant from an iMessage group
+*IMessageApi* | [**removeImessageSandboxContact**](docs/IMessageApi.md#removeImessageSandboxContact) | **DELETE** /v1/imessage/sandbox/contacts/{contactId} | Remove an iMessage sandbox contact
+*IMessageApi* | [**removeImessageSandboxContactWithHttpInfo**](docs/IMessageApi.md#removeImessageSandboxContactWithHttpInfo) | **DELETE** /v1/imessage/sandbox/contacts/{contactId} | Remove an iMessage sandbox contact
 *IMessageApi* | [**reserveImessageAvailableNumber**](docs/IMessageApi.md#reserveImessageAvailableNumber) | **POST** /v1/imessage/senders/available-numbers/{numberId}/reserve | Reserve an available iMessage number
 *IMessageApi* | [**reserveImessageAvailableNumberWithHttpInfo**](docs/IMessageApi.md#reserveImessageAvailableNumberWithHttpInfo) | **POST** /v1/imessage/senders/available-numbers/{numberId}/reserve | Reserve an available iMessage number
 *IMessageApi* | [**setImessageSubscription**](docs/IMessageApi.md#setImessageSubscription) | **POST** /v1/imessage/audience/subscription | Subscribe or opt out an iMessage contact
@@ -2061,6 +2067,8 @@ Class | Method | HTTP request | Description
  - [AddDiscordMemberRole200Response](docs/AddDiscordMemberRole200Response.md)
  - [AddImessageGroupParticipant200Response](docs/AddImessageGroupParticipant200Response.md)
  - [AddImessageGroupParticipantRequest](docs/AddImessageGroupParticipantRequest.md)
+ - [AddImessageSandboxContact201Response](docs/AddImessageSandboxContact201Response.md)
+ - [AddImessageSandboxContactRequest](docs/AddImessageSandboxContactRequest.md)
  - [AddMessageReaction200Response](docs/AddMessageReaction200Response.md)
  - [AddMessageReactionRequest](docs/AddMessageReactionRequest.md)
  - [AddRcsTestDevice201Response](docs/AddRcsTestDevice201Response.md)
@@ -3205,6 +3213,7 @@ Class | Method | HTTP request | Description
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
  - [ImessageAudienceContact](docs/ImessageAudienceContact.md)
  - [ImessageAudienceContactOptIn](docs/ImessageAudienceContactOptIn.md)
+ - [ImessageSandboxContact](docs/ImessageSandboxContact.md)
  - [ImessageSender](docs/ImessageSender.md)
  - [ImessageSenderLifecycle](docs/ImessageSenderLifecycle.md)
  - [InboxMessageEditAttachment](docs/InboxMessageEditAttachment.md)
@@ -3428,6 +3437,8 @@ Class | Method | HTTP request | Description
  - [ListImessageAudience200Response](docs/ListImessageAudience200Response.md)
  - [ListImessageAvailableNumbers200Response](docs/ListImessageAvailableNumbers200Response.md)
  - [ListImessageAvailableNumbers200ResponseNumbersInner](docs/ListImessageAvailableNumbers200ResponseNumbersInner.md)
+ - [ListImessageSandboxContacts200Response](docs/ListImessageSandboxContacts200Response.md)
+ - [ListImessageSandboxContacts200ResponseSandbox](docs/ListImessageSandboxContacts200ResponseSandbox.md)
  - [ListImessageSenderOrders200Response](docs/ListImessageSenderOrders200Response.md)
  - [ListImessageSenders200Response](docs/ListImessageSenders200Response.md)
  - [ListInboxComments200Response](docs/ListInboxComments200Response.md)
