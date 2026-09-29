@@ -5333,9 +5333,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ChangeCommerceCollectionChannels200ResponseTest.java
-src/test/java/dev/zernio/model/ChangeCommerceProductChannels200ResponseTest.java
-src/test/java/dev/zernio/model/ChangeCommerceProductChannelsRequestTest.java
-src/test/java/dev/zernio/model/DeleteCommerceProductMetafields200ResponseTest.java
-src/test/java/dev/zernio/model/ListCommerceProductMetafields200ResponseTest.java
-src/test/java/dev/zernio/model/SetCommerceProductMetafieldsRequestTest.java
