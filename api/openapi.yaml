@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.157.0
+  version: 1.157.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27652,8 +27652,10 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: The number is attached to a SIP trunk; detach it first (code
-            invalid_resource_state).
+          description: "The number is attached to a SIP trunk (detach it first), or\
+            \ it changed state while a pending order was being cancelled (code invalid_resource_state)."
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Release phone number
@@ -30575,8 +30577,10 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: The number is attached to a SIP trunk; detach it first (code
-            invalid_resource_state).
+          description: "The number is attached to a SIP trunk (detach it first), or\
+            \ it changed state while a pending order was being cancelled (code invalid_resource_state)."
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Release phone number

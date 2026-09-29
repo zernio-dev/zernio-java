@@ -1625,7 +1625,8 @@ public class Example {
 | **400** | Phone number is already released or being released |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
+| **409** | The number is attached to a SIP trunk (detach it first), or it changed state while a pending order was being cancelled (code invalid_resource_state). |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## releaseWhatsAppPhoneNumberWithHttpInfo
 
@@ -1702,7 +1703,8 @@ ApiResponse<[**ReleasePhoneNumber200Response**](ReleasePhoneNumber200Response.md
 | **400** | Phone number is already released or being released |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
+| **409** | The number is attached to a SIP trunk (detach it first), or it changed state while a pending order was being cancelled (code invalid_resource_state). |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## remediateWhatsAppNumber
