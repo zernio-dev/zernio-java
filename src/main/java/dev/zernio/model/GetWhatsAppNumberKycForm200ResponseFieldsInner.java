@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_LOCAL_TO,
   GetWhatsAppNumberKycForm200ResponseFieldsInner.JSON_PROPERTY_AUDIENCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:16:43.256453349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:21:40.413774396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberKycForm200ResponseFieldsInner {
   public static final String JSON_PROPERTY_REQUIREMENT_ID = "requirementId";
   @javax.annotation.Nullable

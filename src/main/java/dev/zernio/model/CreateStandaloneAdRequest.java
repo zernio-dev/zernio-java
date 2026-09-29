@@ -184,7 +184,7 @@ import dev.zernio.ApiClient;
   CreateStandaloneAdRequest.JSON_PROPERTY_CAMPAIGN_ATTRIBUTION,
   CreateStandaloneAdRequest.JSON_PROPERTY_PROMOTED_OBJECT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:16:43.256453349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:21:40.413774396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateStandaloneAdRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -2822,7 +2822,7 @@ public class CreateStandaloneAdRequest {
   }
 
   /**
-   * Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok. Each must include id.
+   * Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400). Each must include id.
    * @return behaviors
    */
   @javax.annotation.Nullable

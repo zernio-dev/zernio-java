@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   CreateGoogleAssetGroupRequest.JSON_PROPERTY_LISTING_GROUP_FILTER,
   CreateGoogleAssetGroupRequest.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:16:43.256453349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:21:40.413774396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateGoogleAssetGroupRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nonnull

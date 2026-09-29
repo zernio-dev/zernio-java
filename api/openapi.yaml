@@ -46014,15 +46014,27 @@ paths:
 
         - `geo`: locations, further scoped by `geoType`
         - `interest`
-        - `behavior`
-        - `income`
+        - `behavior`: Meta-only, matched by name against Meta's fixed behaviors catalog
+          (e.g. `Small business owners`, `Frequent Travelers`); ids feed `TargetingSpec.behaviors`
+        - `income`: the household-income tiers the platform can target (Meta, TikTok, Google).
+          The id is the normalized tier (`top_5`, `top_10`, `top_10_25`, `top_25_50`) to pass as
+          `TargetingSpec.incomeTier`, never a platform segment id. Meta's tiers are US-only
+          ZIP-code percentiles (label and `audienceSize` come live from Meta), TikTok expresses all
+          four and Google only `top_10`. `q` is matched against the label, so `top` or `income`
+          lists every tier
         - `language`: Google-only
         - `workPosition`, `workEmployer`, `workIndustry`: the Meta-only work demographics, whose
           ids feed `TargetingSpec.workPositions`/`workEmployers`/`workIndustries`
         - `industry`, `jobFunction`, `seniority`, `companySize`: the LinkedIn-only B2B facets, whose
           URNs feed `TargetingSpec.industries`/`jobFunctions`/`seniorities`/`companySizes`
 
-        Availability of each dimension varies by platform (e.g. behaviours are Meta/TikTok only).
+        Availability of each dimension varies by platform. A dimension a platform cannot search
+        returns a 400 naming `dimension`; it never falls back to another dimension, and every
+        result's `type` is the requested dimension (or the geo level for `geo`).
+
+        TikTok `interest` searches TikTok's interest category catalog (about 700 categories over
+        four levels, `path` holds the parent categories), matched by name in Zernio. The ids are
+        what `TargetingSpec.interests` sends to TikTok as `interest_category_ids`.
         Work industries are a fixed ~30-entry Meta catalog with no server-side query,
         so `workIndustry` matching, ranking and `limit` happen in Zernio. `language`
         is likewise a fixed, checked-in table of Google's targetable
@@ -46113,9 +46125,9 @@ paths:
           type: string
         style: form
       - description: "What to search. `geo` resolves locations (scope further with\
-          \ `geoType`), `interest`/`behavior` resolve audience entities, `income`\
-          \ resolves income-tier options, `language` resolves Google's targetable\
-          \ language_constant table (Google only), `workPosition`/`workEmployer`/`workIndustry`\
+          \ `geoType`), `interest`/`behavior` resolve audience entities (`behavior`\
+          \ is Meta only), `income` resolves the normalized income tiers, `language`\
+          \ resolves Google's targetable language_constant table (Google only), `workPosition`/`workEmployer`/`workIndustry`\
           \ resolve Meta work demographics, `industry`/`jobFunction`/`seniority`/`companySize`\
           \ resolve LinkedIn B2B facets (LinkedIn only). Defaults to `interest` for\
           \ backward compatibility with the deprecated /v1/ads/interests alias."
@@ -72803,7 +72815,7 @@ components:
           type: array
         behaviors:
           description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
-            Supported on Meta and TikTok.
+            Supported on Meta only (TikTok behaviours are rejected with a 400).
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
@@ -123677,7 +123689,8 @@ components:
           type: array
         behaviors:
           description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
-            Supported on Meta and TikTok. Each must include id.
+            Supported on Meta only (TikTok behaviours are rejected with a 400). Each
+            must include id.
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
@@ -125249,9 +125262,10 @@ components:
           description: Human-readable label.
           type: string
         type:
-          description: "What the result is (e.g. city, region, country, zip, metro,\
-            \ location, interest, behavior, income, industry, jobFunction, seniority,\
-            \ companySize)."
+          description: "What the result is. Equals the requested dimension (interest,\
+            \ behavior, income, language, workPosition, workEmployer, workIndustry,\
+            \ industry, jobFunction, seniority, companySize), or the location level\
+            \ for geo (country, region, city, zip, metro, ...)."
           type: string
         path:
           description: "Optional breadcrumb of parent labels (e.g. ['United States',\

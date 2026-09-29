@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_AUDIENCE_SIZE,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:16:43.256453349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:21:40.413774396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull
@@ -128,7 +128,7 @@ public class SearchAdTargeting200ResponseResultsInner {
   }
 
   /**
-   * What the result is (e.g. city, region, country, zip, metro, location, interest, behavior, income, industry, jobFunction, seniority, companySize).
+   * What the result is. Equals the requested dimension (interest, behavior, income, language, workPosition, workEmployer, workIndustry, industry, jobFunction, seniority, companySize), or the location level for geo (country, region, city, zip, metro, ...).
    * @return type
    */
   @javax.annotation.Nonnull

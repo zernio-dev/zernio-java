@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   TargetingSpec.JSON_PROPERTY_AUDIENCE_INCLUDE,
   TargetingSpec.JSON_PROPERTY_AUDIENCE_EXCLUDE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:16:43.256453349Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-29T08:21:40.413774396Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpec {
   public static final String JSON_PROPERTY_USER_OS = "userOs";
   @javax.annotation.Nullable
@@ -814,7 +814,7 @@ public class TargetingSpec {
   }
 
   /**
-   * Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta and TikTok.
+   * Behaviour entities from /v1/ads/targeting/search?dimension&#x3D;behavior. Supported on Meta only (TikTok behaviours are rejected with a 400).
    * @return behaviors
    */
   @javax.annotation.Nullable
