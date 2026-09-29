@@ -34,6 +34,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCallReceivedWithHttpInfo**](WebhookEventsApi.md#onCallReceivedWithHttpInfo) | **POST** /call.received | Call received event |
 | [**onCommentReceived**](WebhookEventsApi.md#onCommentReceived) | **POST** /comment.received | Comment received event |
 | [**onCommentReceivedWithHttpInfo**](WebhookEventsApi.md#onCommentReceivedWithHttpInfo) | **POST** /comment.received | Comment received event |
+| [**onCommerceProductCreated**](WebhookEventsApi.md#onCommerceProductCreated) | **POST** /commerce.product.created | Commerce product created event |
+| [**onCommerceProductCreatedWithHttpInfo**](WebhookEventsApi.md#onCommerceProductCreatedWithHttpInfo) | **POST** /commerce.product.created | Commerce product created event |
+| [**onCommerceProductDeleted**](WebhookEventsApi.md#onCommerceProductDeleted) | **POST** /commerce.product.deleted | Commerce product deleted event |
+| [**onCommerceProductDeletedWithHttpInfo**](WebhookEventsApi.md#onCommerceProductDeletedWithHttpInfo) | **POST** /commerce.product.deleted | Commerce product deleted event |
+| [**onCommerceProductUpdated**](WebhookEventsApi.md#onCommerceProductUpdated) | **POST** /commerce.product.updated | Commerce product updated event |
+| [**onCommerceProductUpdatedWithHttpInfo**](WebhookEventsApi.md#onCommerceProductUpdatedWithHttpInfo) | **POST** /commerce.product.updated | Commerce product updated event |
 | [**onConversationControlChanged**](WebhookEventsApi.md#onConversationControlChanged) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**onConversationControlChangedWithHttpInfo**](WebhookEventsApi.md#onConversationControlChangedWithHttpInfo) | **POST** /conversation.control_changed | Conversation control changed event |
 | [**onConversationStarted**](WebhookEventsApi.md#onConversationStarted) | **POST** /conversation.started | Conversation started event |
@@ -2238,6 +2244,432 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadComment** | [**WebhookPayloadComment**](WebhookPayloadComment.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceProductCreated
+
+> void onCommerceProductCreated(webhookPayloadCommerceProduct)
+
+Commerce product created event
+
+Fired when a product is created on a connected store. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            apiInstance.onCommerceProductCreated(webhookPayloadCommerceProduct);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceProductCreatedWithHttpInfo
+
+> ApiResponse<Void> onCommerceProductCreated onCommerceProductCreatedWithHttpInfo(webhookPayloadCommerceProduct)
+
+Commerce product created event
+
+Fired when a product is created on a connected store. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceProductCreatedWithHttpInfo(webhookPayloadCommerceProduct);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceProductDeleted
+
+> void onCommerceProductDeleted(webhookPayloadCommerceProduct)
+
+Commerce product deleted event
+
+Fired when a product is deleted from a connected store. &#x60;status&#x60; and &#x60;platformStatus&#x60; are null. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            apiInstance.onCommerceProductDeleted(webhookPayloadCommerceProduct);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductDeleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceProductDeletedWithHttpInfo
+
+> ApiResponse<Void> onCommerceProductDeleted onCommerceProductDeletedWithHttpInfo(webhookPayloadCommerceProduct)
+
+Commerce product deleted event
+
+Fired when a product is deleted from a connected store. &#x60;status&#x60; and &#x60;platformStatus&#x60; are null. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceProductDeletedWithHttpInfo(webhookPayloadCommerceProduct);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductDeleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceProductUpdated
+
+> void onCommerceProductUpdated(webhookPayloadCommerceProduct)
+
+Commerce product updated event
+
+Fired when a product on a connected store changes: its fields, status, variants or prices. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            apiInstance.onCommerceProductUpdated(webhookPayloadCommerceProduct);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceProductUpdatedWithHttpInfo
+
+> ApiResponse<Void> onCommerceProductUpdated onCommerceProductUpdatedWithHttpInfo(webhookPayloadCommerceProduct)
+
+Commerce product updated event
+
+Fired when a product on a connected store changes: its fields, status, variants or prices. The payload carries identifiers only; read the product with &#x60;GET /v1/commerce/products/{productId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceProduct webhookPayloadCommerceProduct = new WebhookPayloadCommerceProduct(); // WebhookPayloadCommerceProduct | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceProductUpdatedWithHttpInfo(webhookPayloadCommerceProduct);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceProductUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceProduct** | [**WebhookPayloadCommerceProduct**](WebhookPayloadCommerceProduct.md)|  | |
 
 ### Return type
 

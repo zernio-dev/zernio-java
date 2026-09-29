@@ -16,7 +16,7 @@ A purchasable variant of a product (one per option combination).
 |**compareAtPrice** | **String** | Strike-through price; null when the variant is not on sale. |  [optional] |
 |**inventoryQuantity** | **Integer** | Units on hand across locations; null when inventory is not tracked. |  [optional] |
 |**availableForSale** | **Boolean** |  |  [optional] |
-|**selectedOptions** | [**List&lt;ProductVariantSelectedOptionsInner&gt;**](ProductVariantSelectedOptionsInner.md) |  |  [optional] |
+|**selectedOptions** | [**List&lt;CreateCommerceProductVariantsRequestVariantsInnerOptionsInner&gt;**](CreateCommerceProductVariantsRequestVariantsInnerOptionsInner.md) |  |  [optional] |
 
 
 

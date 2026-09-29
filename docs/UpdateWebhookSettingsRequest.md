@@ -85,6 +85,9 @@
 | BRANDED_CALLING_IDENTITY_ACTION_REQUIRED | &quot;branded_calling.identity.action_required&quot; |
 | BRANDED_CALLING_NUMBER_STATUS_UPDATED | &quot;branded_calling.number.status_updated&quot; |
 | RCS_AGENT_STATUS_UPDATED | &quot;rcs.agent.status_updated&quot; |
+| COMMERCE_PRODUCT_CREATED | &quot;commerce.product.created&quot; |
+| COMMERCE_PRODUCT_UPDATED | &quot;commerce.product.updated&quot; |
+| COMMERCE_PRODUCT_DELETED | &quot;commerce.product.deleted&quot; |
 
 
 
