@@ -18,6 +18,7 @@ Click attribution forwarded verbatim from Meta. Populated only on the FIRST inbo
 |**imageUrl** | **String** |  |  [optional] |
 |**videoUrl** | **String** |  |  [optional] |
 |**thumbnailUrl** | **String** |  |  [optional] |
+|**welcomeMessage** | [**WebhookPayloadMessageMetadataReferralWelcomeMessage**](WebhookPayloadMessageMetadataReferralWelcomeMessage.md) |  |  [optional] |
 |**adId** | **String** | Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the user clicked to start the conversation.  |  [optional] |
 |**ref** | **String** | The &#x60;ref&#x60; parameter passed through from the Meta ad creative or from an ig.me / m.me link. Instagram / Facebook Messenger only.  |  [optional] |
 |**source** | **String** | Meta-supplied source identifier (&#x60;ADS&#x60; for ad clicks; &#x60;SHORTLINK&#x60;, &#x60;SHORTLINKS&#x60; or &#x60;IGME-SOURCE-LINK&#x60; for ref links). Instagram / Facebook Messenger only.  |  [optional] |

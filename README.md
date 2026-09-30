@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.173.0
+- API version: 1.174.0
 
-- Build date: 2026-09-30T17:12:09.531080284Z[Etc/UTC]
+- Build date: 2026-09-30T17:46:31.590184523Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.173.0</version>
+  <version>1.174.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.173.0"
+compile "dev.zernio:zernio-sdk:1.174.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.173.0.jar`
+- `target/zernio-sdk-1.174.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3234,6 +3234,7 @@ Class | Method | HTTP request | Description
  - [InboxWebhookConversationDetail](docs/InboxWebhookConversationDetail.md)
  - [InboxWebhookMessage](docs/InboxWebhookMessage.md)
  - [InboxWebhookMessageAttachmentsInner](docs/InboxWebhookMessageAttachmentsInner.md)
+ - [InboxWebhookMessageAttachmentsInnerPayload](docs/InboxWebhookMessageAttachmentsInnerPayload.md)
  - [InboxWebhookMessageSender](docs/InboxWebhookMessageSender.md)
  - [InboxWebhookMessageSenderInstagramProfile](docs/InboxWebhookMessageSenderInstagramProfile.md)
  - [InitiateTelegramConnect200Response](docs/InitiateTelegramConnect200Response.md)
@@ -4487,6 +4488,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadMessageMetadataQuotedMessage](docs/WebhookPayloadMessageMetadataQuotedMessage.md)
  - [WebhookPayloadMessageMetadataReferral](docs/WebhookPayloadMessageMetadataReferral.md)
  - [WebhookPayloadMessageMetadataReferralAdsContextData](docs/WebhookPayloadMessageMetadataReferralAdsContextData.md)
+ - [WebhookPayloadMessageMetadataReferralWelcomeMessage](docs/WebhookPayloadMessageMetadataReferralWelcomeMessage.md)
  - [WebhookPayloadMessageMetadataReferredProduct](docs/WebhookPayloadMessageMetadataReferredProduct.md)
  - [WebhookPayloadMessageMetadataStoryReply](docs/WebhookPayloadMessageMetadataStoryReply.md)
  - [WebhookPayloadMessageMetadataUnsupported](docs/WebhookPayloadMessageMetadataUnsupported.md)

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.173.0
+  version: 1.174.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -66346,10 +66346,12 @@ components:
       description: The message object included in inbox webhook payloads.
       example:
         attachments:
-        - payload: "{}"
+        - payload:
+            voice: true
           type: type
           url: url
-        - payload: "{}"
+        - payload:
+            voice: true
           type: type
           url: url
         sender:
@@ -66725,24 +66727,51 @@ components:
         metadata:
           quickReplyPayload: quickReplyPayload
           postbackTitle: postbackTitle
+          standby: true
+          flowResponseJson: flowResponseJson
+          contactsOrigin: contact_request
+          postbackPayload: postbackPayload
+          frequentlyForwarded: true
+          interactiveType: button_reply
+          unsupported:
+            code: 2
+            details: details
+            title: title
+          isStoryMention: true
+          referredProduct:
+            catalog_id: catalog_id
+            product_retailer_id: product_retailer_id
+          callbackData: callbackData
+          flowResponseData:
+            key: ""
+          order:
+            catalog_id: catalog_id
+            product_items:
+            - quantity: 6
+              product_retailer_id: product_retailer_id
+              item_price: 1.4658129805029452
+              currency: currency
+            - quantity: 6
+              product_retailer_id: product_retailer_id
+              item_price: 1.4658129805029452
+              currency: currency
+            text: text
           storyReply:
             storyId: storyId
             storyUrl: storyUrl
-          standby: true
-          flowResponseJson: flowResponseJson
           noRenderableContent: true
-          contactsOrigin: contact_request
-          postbackPayload: postbackPayload
+          forwarded: true
           quotedMessage:
             messageId: messageId
             platformMessageId: platformMessageId
           interactiveId: interactiveId
           nfmReplyName: nfmReplyName
-          interactiveType: button_reply
           referral:
             referer_uri: referer_uri
             image_url: image_url
             source_type: source_type
+            welcome_message:
+              text: text
             source: source
             body: body
             thumbnail_url: thumbnail_url
@@ -66762,18 +66791,7 @@ components:
             source_id: source_id
             ctwa_clid: ctwa_clid
             headline: headline
-          unsupported:
-            code: 2
-            details: details
-            title: title
-          isStoryMention: true
-          referredProduct:
-            catalog_id: catalog_id
-            product_retailer_id: product_retailer_id
           quotedMessageId: quotedMessageId
-          callbackData: callbackData
-          flowResponseData:
-            key: ""
           tiktokMessageType: tiktokMessageType
           location:
             address: address
@@ -66784,29 +66802,19 @@ components:
           - key: ""
           - key: ""
           buttonPayload: buttonPayload
-          order:
-            catalog_id: catalog_id
-            product_items:
-            - quantity: 6
-              product_retailer_id: product_retailer_id
-              item_price: 1.4658129805029452
-              currency: currency
-            - quantity: 6
-              product_retailer_id: product_retailer_id
-              item_price: 1.4658129805029452
-              currency: currency
-            text: text
         id: id
         event: message.received
         message:
           attachments:
           - originalType: originalType
-            payload: "{}"
+            payload:
+              voice: true
             mimeType: mimeType
             type: type
             url: url
           - originalType: originalType
-            payload: "{}"
+            payload:
+              voice: true
             mimeType: mimeType
             type: type
             url: url
@@ -67064,10 +67072,12 @@ components:
         event: message.edited
         message:
           attachments:
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
           sender:
@@ -67175,10 +67185,12 @@ components:
         event: message.deleted
         message:
           attachments:
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
           sender:
@@ -67277,10 +67289,12 @@ components:
         event: message.delivered
         message:
           attachments:
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
-          - payload: "{}"
+          - payload:
+              voice: true
             type: type
             url: url
           sender:
@@ -142915,9 +142929,19 @@ components:
       - id
       - platform
       - username
+    InboxWebhookMessage_attachments_inner_payload:
+      description: Additional attachment metadata
+      example:
+        voice: true
+      properties:
+        voice:
+          description: "WhatsApp audio only. True for a voice note recorded in the\
+            \ WhatsApp client, false for an audio file."
+          type: boolean
     InboxWebhookMessage_attachments_inner:
       example:
-        payload: "{}"
+        payload:
+          voice: true
         type: type
         url: url
       properties:
@@ -142934,8 +142958,7 @@ components:
             platform CDN links that need no authentication.
           type: string
         payload:
-          description: Additional attachment metadata
-          type: object
+          $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner_payload"
       required:
       - type
       - url
@@ -143185,7 +143208,8 @@ components:
     WebhookPayloadMessage_message_attachments_inner:
       example:
         originalType: originalType
-        payload: "{}"
+        payload:
+          voice: true
         mimeType: mimeType
         type: type
         url: url
@@ -143254,8 +143278,7 @@ components:
             attachment's zero-based position in this array.
           type: string
         payload:
-          description: Additional attachment metadata
-          type: object
+          $ref: "#/components/schemas/InboxWebhookMessage_attachments_inner_payload"
       required:
       - type
       - url
@@ -143356,12 +143379,14 @@ components:
       example:
         attachments:
         - originalType: originalType
-          payload: "{}"
+          payload:
+            voice: true
           mimeType: mimeType
           type: type
           url: url
         - originalType: originalType
-          payload: "{}"
+          payload:
+            voice: true
           mimeType: mimeType
           type: type
           url: url
@@ -143588,6 +143613,13 @@ components:
           type: string
       required:
       - storyId
+    WebhookPayloadMessage_metadata_referral_welcome_message:
+      description: WhatsApp CTWA only. The greeting Meta showed the user in the ad.
+      example:
+        text: text
+      properties:
+        text:
+          type: string
     WebhookPayloadMessage_metadata_referral_ads_context_data:
       description: |
         Snapshot of the ad's public context at click time. Facebook
@@ -143639,6 +143671,8 @@ components:
         referer_uri: referer_uri
         image_url: image_url
         source_type: source_type
+        welcome_message:
+          text: text
         source: source
         body: body
         thumbnail_url: thumbnail_url
@@ -143680,6 +143714,8 @@ components:
           type: string
         thumbnail_url:
           type: string
+        welcome_message:
+          $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referral_welcome_message"
         ad_id:
           description: |
             Facebook Messenger CTM / Instagram CTD only. The Meta ad ID the
@@ -143739,24 +143775,51 @@ components:
       example:
         quickReplyPayload: quickReplyPayload
         postbackTitle: postbackTitle
+        standby: true
+        flowResponseJson: flowResponseJson
+        contactsOrigin: contact_request
+        postbackPayload: postbackPayload
+        frequentlyForwarded: true
+        interactiveType: button_reply
+        unsupported:
+          code: 2
+          details: details
+          title: title
+        isStoryMention: true
+        referredProduct:
+          catalog_id: catalog_id
+          product_retailer_id: product_retailer_id
+        callbackData: callbackData
+        flowResponseData:
+          key: ""
+        order:
+          catalog_id: catalog_id
+          product_items:
+          - quantity: 6
+            product_retailer_id: product_retailer_id
+            item_price: 1.4658129805029452
+            currency: currency
+          - quantity: 6
+            product_retailer_id: product_retailer_id
+            item_price: 1.4658129805029452
+            currency: currency
+          text: text
         storyReply:
           storyId: storyId
           storyUrl: storyUrl
-        standby: true
-        flowResponseJson: flowResponseJson
         noRenderableContent: true
-        contactsOrigin: contact_request
-        postbackPayload: postbackPayload
+        forwarded: true
         quotedMessage:
           messageId: messageId
           platformMessageId: platformMessageId
         interactiveId: interactiveId
         nfmReplyName: nfmReplyName
-        interactiveType: button_reply
         referral:
           referer_uri: referer_uri
           image_url: image_url
           source_type: source_type
+          welcome_message:
+            text: text
           source: source
           body: body
           thumbnail_url: thumbnail_url
@@ -143776,18 +143839,7 @@ components:
           source_id: source_id
           ctwa_clid: ctwa_clid
           headline: headline
-        unsupported:
-          code: 2
-          details: details
-          title: title
-        isStoryMention: true
-        referredProduct:
-          catalog_id: catalog_id
-          product_retailer_id: product_retailer_id
         quotedMessageId: quotedMessageId
-        callbackData: callbackData
-        flowResponseData:
-          key: ""
         tiktokMessageType: tiktokMessageType
         location:
           address: address
@@ -143798,18 +143850,6 @@ components:
         - key: ""
         - key: ""
         buttonPayload: buttonPayload
-        order:
-          catalog_id: catalog_id
-          product_items:
-          - quantity: 6
-            product_retailer_id: product_retailer_id
-            item_price: 1.4658129805029452
-            currency: currency
-          - quantity: 6
-            product_retailer_id: product_retailer_id
-            item_price: 1.4658129805029452
-            currency: currency
-          text: text
       properties:
         standby:
           description: "WhatsApp only. true when this inbound arrived while Meta Business\
@@ -143889,6 +143929,14 @@ components:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_order"
         referredProduct:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_referredProduct"
+        forwarded:
+          description: WhatsApp only. True when the user forwarded this message (5
+            times or fewer). Absent when not forwarded.
+          type: boolean
+        frequentlyForwarded:
+          description: WhatsApp only. True when the message was forwarded more than
+            5 times; Meta then omits forwarded.
+          type: boolean
         location:
           $ref: "#/components/schemas/WebhookPayloadMessage_metadata_location"
         contacts:
