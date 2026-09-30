@@ -2,7 +2,7 @@
 
 # WebhookPayloadAdStatusChanged
 
-Webhook payload for the `ad.status_changed` event. Currently emitted only for Meta (`metaads`).  Sourced from two Meta `ad_account` webhook fields:   - `in_process_ad_objects` - the ad object finished processing and     exited `IN_PROCESS`. `status.raw` carries Meta's `status_name`.   - `with_issues_ad_objects` - the ad object entered `WITH_ISSUES`.     `status.raw` is `WITH_ISSUES` and the `error` block is populated     from Meta's `error_code` / `error_summary` / `error_message`. 
+Webhook payload for the `ad.status_changed` event. Currently emitted only for Meta (`metaads`).  Sourced from two Meta `ad_account` webhook fields:   - `in_process_ad_objects` - the ad object finished processing and     exited `IN_PROCESS`. `status.raw` carries Meta's `status_name`.   - `with_issues_ad_objects` - the ad object entered `WITH_ISSUES`.     `status.raw` is `WITH_ISSUES` and the `error` block is populated     from Meta's `error_code` / `error_summary` / `error_message`.  Review outcomes (an ad leaving `PENDING_REVIEW` for `ACTIVE`, `DISAPPROVED` and so on) are also emitted from Zernio's own ad sync, so they arrive even when Meta skips the webhook. `status.raw` is Meta's `effective_status`. An ad-level outcome is delivered once per status: whichever source sees it first sends it. 
 
 ## Properties
 
