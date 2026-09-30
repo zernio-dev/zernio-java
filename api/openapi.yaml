@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.174.0
+  version: 1.175.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -98032,7 +98032,9 @@ components:
         lastMessage: lastMessage
         id: id
         participantName: participantName
+        whatsappUsername: whatsappUsername
         participantUsername: participantUsername
+        businessScopedUserId: businessScopedUserId
         platform: platform
         status: active
       properties:
@@ -98051,6 +98053,16 @@ components:
           type: string
         participantPicture:
           nullable: true
+          type: string
+        businessScopedUserId:
+          description: "WhatsApp only. Meta business-scoped user ID (BSUID), the stable\
+            \ identity anchor; present when Meta has sent it for this participant."
+          type: string
+        whatsappUsername:
+          description: "WhatsApp only. The participant's WhatsApp username (e.g. `jane.shop`,\
+            \ no leading @). Not a stable identifier, because users can change it:\
+            \ useful for display, not recommended as an identity anchor. Captured\
+            \ from inbound messages, so older threads fill in on their next inbound."
           type: string
         status:
           enum:
@@ -98104,7 +98116,9 @@ components:
           lastMessage: lastMessage
           id: id
           participantName: participantName
+          whatsappUsername: whatsappUsername
           participantUsername: participantUsername
+          businessScopedUserId: businessScopedUserId
           platform: platform
           status: active
       properties:
@@ -98197,7 +98211,9 @@ components:
             lastMessage: lastMessage
             id: id
             participantName: participantName
+            whatsappUsername: whatsappUsername
             participantUsername: participantUsername
+            businessScopedUserId: businessScopedUserId
             platform: platform
             status: active
         - matchCount: 0
@@ -98217,7 +98233,9 @@ components:
             lastMessage: lastMessage
             id: id
             participantName: participantName
+            whatsappUsername: whatsappUsername
             participantUsername: participantUsername
+            businessScopedUserId: businessScopedUserId
             platform: platform
             status: active
         meta:
