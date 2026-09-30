@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.172.0
+  version: 1.173.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -97303,6 +97303,7 @@ components:
         participantPicture: participantPicture
         lastMessage: lastMessage
         unreadCount: 0
+        whatsappUsername: whatsappUsername
         platform: platform
         url: url
         instagramProfile:
@@ -97318,6 +97319,7 @@ components:
         id: id
         participantName: participantName
         isGroup: true
+        businessScopedUserId: businessScopedUserId
         threadControl: app
         status: active
       properties:
@@ -97347,6 +97349,16 @@ components:
           - business
           - none
           nullable: true
+          type: string
+        businessScopedUserId:
+          description: "WhatsApp only. Meta business-scoped user ID (BSUID), the stable\
+            \ identity anchor; present when Meta has sent it for this participant."
+          type: string
+        whatsappUsername:
+          description: "WhatsApp only. The participant's WhatsApp username (e.g. `jane.shop`,\
+            \ no leading @). Not a stable identifier, because users can change it:\
+            \ useful for display, not recommended as an identity anchor. Captured\
+            \ from inbound messages, so older threads fill in on their next inbound."
           type: string
         lastMessage:
           type: string
@@ -97498,6 +97510,7 @@ components:
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
+          whatsappUsername: whatsappUsername
           platform: platform
           url: url
           instagramProfile:
@@ -97513,6 +97526,7 @@ components:
           id: id
           participantName: participantName
           isGroup: true
+          businessScopedUserId: businessScopedUserId
           threadControl: app
           status: active
         - updatedTime: 2000-01-23T04:56:07.000+00:00
@@ -97537,6 +97551,7 @@ components:
           participantPicture: participantPicture
           lastMessage: lastMessage
           unreadCount: 0
+          whatsappUsername: whatsappUsername
           platform: platform
           url: url
           instagramProfile:
@@ -97552,6 +97567,7 @@ components:
           id: id
           participantName: participantName
           isGroup: true
+          businessScopedUserId: businessScopedUserId
           threadControl: app
           status: active
         meta:
@@ -98309,6 +98325,7 @@ components:
           meta_ad_product_id: meta_ad_product_id
           meta_ad_post_id: meta_ad_post_id
         lastMessage: lastMessage
+        whatsappUsername: whatsappUsername
         platform: platform
         instagramProfile:
           isFollowing: true
@@ -98323,6 +98340,7 @@ components:
         accountUsername: accountUsername
         id: id
         participantName: participantName
+        businessScopedUserId: businessScopedUserId
         status: active
         participants:
         - name: name
@@ -98355,6 +98373,16 @@ components:
           - business
           - none
           nullable: true
+          type: string
+        businessScopedUserId:
+          description: "WhatsApp only. Meta business-scoped user ID (BSUID), the stable\
+            \ identity anchor; present when Meta has sent it for this participant."
+          type: string
+        whatsappUsername:
+          description: "WhatsApp only. The participant's WhatsApp username (e.g. `jane.shop`,\
+            \ no leading @). Not a stable identifier, because users can change it:\
+            \ useful for display, not recommended as an identity anchor. Captured\
+            \ from inbound messages, so older threads fill in on their next inbound."
           type: string
         lastMessage:
           type: string
@@ -98389,6 +98417,7 @@ components:
             meta_ad_product_id: meta_ad_product_id
             meta_ad_post_id: meta_ad_post_id
           lastMessage: lastMessage
+          whatsappUsername: whatsappUsername
           platform: platform
           instagramProfile:
             isFollowing: true
@@ -98403,6 +98432,7 @@ components:
           accountUsername: accountUsername
           id: id
           participantName: participantName
+          businessScopedUserId: businessScopedUserId
           status: active
           participants:
           - name: name
@@ -142992,7 +143022,7 @@ components:
           type: string
         whatsappUsername:
           description: |
-            WhatsApp only. User's WhatsApp username (e.g. `@jane`). Not a
+            WhatsApp only. User's WhatsApp username (e.g. `jane.shop`). Not a
             stable identifier, because users can change it. Useful for display, not
             recommended as an identity anchor.
           type: string
@@ -143314,7 +143344,7 @@ components:
           type: string
         whatsappUsername:
           description: |
-            WhatsApp only. User's WhatsApp username (e.g. `@jane`). Not a
+            WhatsApp only. User's WhatsApp username (e.g. `jane.shop`). Not a
             stable identifier, because users can change it. Useful for display,
             not recommended as an identity anchor.
           type: string
