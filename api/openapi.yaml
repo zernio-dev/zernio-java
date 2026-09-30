@@ -13958,6 +13958,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Account not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Another account on this profile is already connected to that
+            destination (profile_platform_conflict).
       summary: Update Facebook page
       tags:
       - Connect
@@ -14481,6 +14488,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Account not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Another account on this profile is already connected to that
+            destination (profile_platform_conflict).
       summary: Switch LinkedIn account type
       tags:
       - Connect
@@ -15436,6 +15450,13 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           description: Account not found
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Another account on this profile is already connected to that
+            destination (profile_platform_conflict).
       summary: Update Google Business Profile location
       tags:
       - Connect

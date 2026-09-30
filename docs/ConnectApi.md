@@ -8127,6 +8127,7 @@ public class Example {
 | **400** | Page not in available pages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 ## updateFacebookPageWithHttpInfo
 
@@ -8205,6 +8206,7 @@ ApiResponse<[**UpdateFacebookPage200Response**](UpdateFacebookPage200Response.md
 | **400** | Page not in available pages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 
 ## updateGmbLocation
@@ -8281,6 +8283,7 @@ public class Example {
 | **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 ## updateGmbLocationWithHttpInfo
 
@@ -8359,6 +8362,7 @@ ApiResponse<[**UpdateGmbLocation200Response**](UpdateGmbLocation200Response.md)>
 | **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 
 ## updateLinkedInOrganization
@@ -8435,6 +8439,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 ## updateLinkedInOrganizationWithHttpInfo
 
@@ -8513,6 +8518,7 @@ ApiResponse<[**UpdateLinkedInOrganization200Response**](UpdateLinkedInOrganizati
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
 | **404** | Account not found |  -  |
+| **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
 
 ## updatePinterestBoards

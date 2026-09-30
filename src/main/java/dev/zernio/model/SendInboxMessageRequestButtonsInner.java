@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestButtonsInner.JSON_PROPERTY_PAYLOAD,
   SendInboxMessageRequestButtonsInner.JSON_PROPERTY_PHONE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T14:48:37.731910978Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T14:51:56.027929730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestButtonsInner {
   /**
    * Button type. phone is Facebook only. Ignored on WhatsApp (buttons always render as reply buttons).
