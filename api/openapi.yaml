@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.163.1
+  version: 1.163.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -62055,9 +62055,9 @@ components:
         placements:
           $ref: "#/components/schemas/CtwaAdRequestBody_placements"
         gender:
-          default: all
-          description: Restrict the audience by gender (Meta `genders`). Stored on
-            the ad and read back in `targeting.gender`.
+          description: Restrict the audience by gender (Meta `genders`). Omit or send
+            all for everyone; all is ignored in adSetId attach mode. Stored on the
+            ad and read back in `targeting.gender`.
           enum:
           - all
           - male
