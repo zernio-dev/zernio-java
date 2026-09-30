@@ -1647,6 +1647,7 @@ docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
 docs/MetaCatalogProduct.md
 docs/MetaCatalogProductInput.md
+docs/MetaCustomerLifecycle.md
 docs/MetaFeedUpload.md
 docs/MetaInstagramIdentityRef.md
 docs/MetaLeadForm.md
@@ -4357,6 +4358,7 @@ src/main/java/dev/zernio/model/MetaAssignedUser.java
 src/main/java/dev/zernio/model/MetaBusinessUser.java
 src/main/java/dev/zernio/model/MetaCatalogProduct.java
 src/main/java/dev/zernio/model/MetaCatalogProductInput.java
+src/main/java/dev/zernio/model/MetaCustomerLifecycle.java
 src/main/java/dev/zernio/model/MetaFeedUpload.java
 src/main/java/dev/zernio/model/MetaInstagramIdentityRef.java
 src/main/java/dev/zernio/model/MetaLeadForm.java
@@ -5345,3 +5347,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/MetaCustomerLifecycleTest.java

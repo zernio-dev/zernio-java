@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.162.2
+  version: 1.163.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -69267,6 +69267,40 @@ components:
             \ of dailyMinSpendTarget, in whole currency units. Same rules and same\
             \ rejections."
           type: number
+        customerLifecycle:
+          $ref: "#/components/schemas/MetaCustomerLifecycle"
+    MetaCustomerLifecycle:
+      additionalProperties: false
+      description: |
+        Meta's Customer Lifecycle Strategy on a Sales ad set (Meta `ad_set_goal`). Rejected with 400
+        in adSetId attach mode: use PUT /v1/ads/ad-sets/{adSetId} for an ad set that already exists.
+        Read it back with `GET /v1/ads/ad-sets/{adSetId}?fields=ad_set_goal` (type 0 all customers,
+        1 new excluding engaged, 2 new customers).
+      properties:
+        strategy:
+          description: |
+            `all_customers` is "Maximize conversions from all customers". `new_customers` is "Acquire new
+            customers" (excludes existing customers). `new_customers_excluding_engaged` also excludes
+            people who engaged with you but have not bought yet.
+          enum:
+          - all_customers
+          - new_customers
+          - new_customers_excluding_engaged
+          type: string
+        existingCustomerAudienceIds:
+          description: Custom audience ids that define your existing customers. Omit
+            to use the definition saved on the ad account. Only with a new_customers
+            strategy.
+          items:
+            type: string
+          type: array
+        engagedAudienceIds:
+          description: Custom audience ids that define engaged people. Only with new_customers_excluding_engaged.
+          items:
+            type: string
+          type: array
+      required:
+      - strategy
     LinkedInAdsPlatformData:
       additionalProperties: {}
       description: |
@@ -119122,6 +119156,8 @@ components:
             `dailyMinSpendTarget`, in whole currency units. Send this one when the campaign
             budget is a lifetime budget. Same rules and same rejections.
           type: number
+        customerLifecycle:
+          $ref: "#/components/schemas/MetaCustomerLifecycle"
         promotedObject:
           $ref: "#/components/schemas/updateAdSet_request_platformSpecificData_promotedObject"
     updateAdSet_request:
