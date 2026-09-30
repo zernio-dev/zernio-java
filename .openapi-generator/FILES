@@ -2586,6 +2586,8 @@ docs/WebhookPayloadReviewUpdated.md
 docs/WebhookPayloadTest.md
 docs/WebhookPayloadWhatsAppAccountNameStatusUpdated.md
 docs/WebhookPayloadWhatsAppAccountNameStatusUpdatedName.md
+docs/WebhookPayloadWhatsAppContactIdentityChanged.md
+docs/WebhookPayloadWhatsAppContactIdentityChangedAccount.md
 docs/WebhookPayloadWhatsAppTemplateCategoryUpdated.md
 docs/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md
@@ -2602,6 +2604,7 @@ docs/WhatsAppCarouselCardComponent.md
 docs/WhatsAppCarouselComponent.md
 docs/WhatsAppCarouselComponentCardsInner.md
 docs/WhatsAppCommerceSettings.md
+docs/WhatsAppContactIdentity.md
 docs/WhatsAppFlowsApi.md
 docs/WhatsAppFooterComponent.md
 docs/WhatsAppHeaderComponent.md
@@ -5277,6 +5280,8 @@ src/main/java/dev/zernio/model/WebhookPayloadReviewUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadTest.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppAccountNameStatusUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppAccountNameStatusUpdatedName.java
+src/main/java/dev/zernio/model/WebhookPayloadWhatsAppContactIdentityChanged.java
+src/main/java/dev/zernio/model/WebhookPayloadWhatsAppContactIdentityChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdated.java
@@ -5290,6 +5295,7 @@ src/main/java/dev/zernio/model/WhatsAppCarouselCardComponent.java
 src/main/java/dev/zernio/model/WhatsAppCarouselComponent.java
 src/main/java/dev/zernio/model/WhatsAppCarouselComponentCardsInner.java
 src/main/java/dev/zernio/model/WhatsAppCommerceSettings.java
+src/main/java/dev/zernio/model/WhatsAppContactIdentity.java
 src/main/java/dev/zernio/model/WhatsAppFooterComponent.java
 src/main/java/dev/zernio/model/WhatsAppHeaderComponent.java
 src/main/java/dev/zernio/model/WhatsAppHeaderComponentExample.java
@@ -5351,5 +5357,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WhatsAppBillingConversationTest.java
-src/test/java/dev/zernio/model/WhatsAppMessagePricingTest.java
+src/test/java/dev/zernio/model/WebhookPayloadWhatsAppContactIdentityChangedAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadWhatsAppContactIdentityChangedTest.java
+src/test/java/dev/zernio/model/WhatsAppContactIdentityTest.java

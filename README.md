@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.167.0
+- API version: 1.168.0
 
-- Build date: 2026-09-30T15:18:39.517215464Z[Etc/UTC]
+- Build date: 2026-09-30T15:26:45.197057324Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.167.0</version>
+  <version>1.168.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.167.0"
+compile "dev.zernio:zernio-sdk:1.168.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.167.0.jar`
+- `target/zernio-sdk-1.168.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4516,6 +4516,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
  - [WebhookPayloadWhatsAppAccountNameStatusUpdated](docs/WebhookPayloadWhatsAppAccountNameStatusUpdated.md)
  - [WebhookPayloadWhatsAppAccountNameStatusUpdatedName](docs/WebhookPayloadWhatsAppAccountNameStatusUpdatedName.md)
+ - [WebhookPayloadWhatsAppContactIdentityChanged](docs/WebhookPayloadWhatsAppContactIdentityChanged.md)
+ - [WebhookPayloadWhatsAppContactIdentityChangedAccount](docs/WebhookPayloadWhatsAppContactIdentityChangedAccount.md)
  - [WebhookPayloadWhatsAppTemplateCategoryUpdated](docs/WebhookPayloadWhatsAppTemplateCategoryUpdated.md)
  - [WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate](docs/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemplate.md)
  - [WebhookPayloadWhatsAppTemplateStatusUpdated](docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md)
@@ -4529,6 +4531,7 @@ Class | Method | HTTP request | Description
  - [WhatsAppCarouselComponent](docs/WhatsAppCarouselComponent.md)
  - [WhatsAppCarouselComponentCardsInner](docs/WhatsAppCarouselComponentCardsInner.md)
  - [WhatsAppCommerceSettings](docs/WhatsAppCommerceSettings.md)
+ - [WhatsAppContactIdentity](docs/WhatsAppContactIdentity.md)
  - [WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)

@@ -69,6 +69,7 @@ Individual webhook configuration for receiving real-time notifications
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
 | WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED | &quot;whatsapp.account.name_status_updated&quot; |
+| WHATSAPP_CONTACT_IDENTITY_CHANGED | &quot;whatsapp.contact.identity_changed&quot; |
 | WHATSAPP_AUTOMATIC_EVENT | &quot;whatsapp.automatic_event&quot; |
 | WHATSAPP_NUMBER_ACTIVATED | &quot;whatsapp.number.activated&quot; |
 | WHATSAPP_NUMBER_DECLINED | &quot;whatsapp.number.declined&quot; |
