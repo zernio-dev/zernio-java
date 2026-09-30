@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.166.1
+  version: 1.167.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -66733,6 +66733,10 @@ components:
       description: "Webhook payload for message sent events (fired when a message\
         \ is sent via the API, or from the WhatsApp Business app on Coexistence numbers)"
       example:
+        billingConversation:
+          originType: utility
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
         metadata:
           metaInteractive:
             key: ""
@@ -66775,6 +66779,11 @@ components:
           platformMessageId: platformMessageId
           platform: instagram
           direction: incoming
+        pricing:
+          pricingModel: PMP
+          category: marketing
+          type: regular
+          billable: true
         conversation:
           participantId: participantId
           contactId: contactId
@@ -66804,6 +66813,10 @@ components:
           type: string
         message:
           $ref: "#/components/schemas/WebhookPayloadMessageSent_message"
+        pricing:
+          $ref: "#/components/schemas/WhatsAppMessagePricing"
+        billingConversation:
+          $ref: "#/components/schemas/WhatsAppBillingConversation"
         conversation:
           $ref: "#/components/schemas/InboxWebhookConversation"
         account:
@@ -67102,6 +67115,10 @@ components:
             per-message failure via webhook). On SMS, `error.code` is the
             carrier's numeric code and `error.message` its reason.
       example:
+        billingConversation:
+          originType: utility
+          id: id
+          expiresAt: 2000-01-23T04:56:07.000+00:00
         id: id
         event: message.delivered
         message:
@@ -67143,6 +67160,11 @@ components:
           title: title
           message: message
           explanation: explanation
+        pricing:
+          pricingModel: PMP
+          category: marketing
+          type: regular
+          billable: true
         conversation:
           participantId: participantId
           contactId: contactId
@@ -67180,6 +67202,10 @@ components:
           type: string
         error:
           $ref: "#/components/schemas/WebhookPayloadMessageDeliveryStatus_error"
+        pricing:
+          $ref: "#/components/schemas/WhatsAppMessagePricing"
+        billingConversation:
+          $ref: "#/components/schemas/WhatsAppBillingConversation"
         conversation:
           $ref: "#/components/schemas/InboxWebhookConversation"
         account:
@@ -67199,6 +67225,76 @@ components:
       - message
       - statusAt
       - timestamp
+    WhatsAppMessagePricing:
+      description: |
+        WhatsApp only. Meta's `pricing` object from the status webhook, camelCased.
+        Present (possibly null) on every WhatsApp `message.sent`, `message.delivered`,
+        `message.read` and `message.failed`; absent on other platforms. Meta includes it
+        on `sent` and on one of `delivered` or `read`, so it is null on the others and
+        usually on `failed`.
+      example:
+        pricingModel: PMP
+        category: marketing
+        type: regular
+        billable: true
+      properties:
+        billable:
+          description: Whether Meta bills this message. Meta has announced it will
+            deprecate this field.
+          nullable: true
+          type: boolean
+        pricingModel:
+          description: "`PMP` (per-message pricing) or `CBP` (conversation-based,\
+            \ messages before 2025-07-01)."
+          example: PMP
+          nullable: true
+          type: string
+        category:
+          description: "Pricing category as Meta sends it, for example `marketing`,\
+            \ `marketing_lite`, `utility`, `authentication`, `authentication-international`,\
+            \ `service`, `referral_conversion`."
+          example: marketing
+          nullable: true
+          type: string
+        type:
+          description: "`regular` (billable), `free_customer_service` or `free_entry_point`."
+          example: regular
+          nullable: true
+          type: string
+      required:
+      - billable
+      - category
+      - pricingModel
+      - type
+    WhatsAppBillingConversation:
+      description: |
+        WhatsApp only. Meta's `conversation` object from the status webhook (the billing
+        window, not the Zernio inbox `conversation`). Same presence rules as `pricing`;
+        from Graph API v24 Meta sends it only inside an open free entry point window.
+      example:
+        originType: utility
+        id: id
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: Meta's conversation id.
+          nullable: true
+          type: string
+        expiresAt:
+          description: When the window expires. Meta sends it only on the `sent` status.
+          format: date-time
+          nullable: true
+          type: string
+        originType:
+          description: "Meta `origin.type`, for example `marketing`, `utility`, `service`,\
+            \ `referral_conversion`."
+          example: utility
+          nullable: true
+          type: string
+      required:
+      - expiresAt
+      - id
+      - originType
     WebhookPayloadConversationStarted:
       description: |
         Fired once when a new conversation begins, in either direction. A conversation

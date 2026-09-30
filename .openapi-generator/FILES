@@ -2593,6 +2593,7 @@ docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md
 docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
+docs/WhatsAppBillingConversation.md
 docs/WhatsAppBodyComponent.md
 docs/WhatsAppBodyComponentExample.md
 docs/WhatsAppButtonsComponent.md
@@ -2607,6 +2608,7 @@ docs/WhatsAppHeaderComponent.md
 docs/WhatsAppHeaderComponentExample.md
 docs/WhatsAppLimitedTimeOfferComponent.md
 docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md
+docs/WhatsAppMessagePricing.md
 docs/WhatsAppNamedParamExample.md
 docs/WhatsAppPhoneNumbersApi.md
 docs/WhatsAppSandboxApi.md
@@ -5280,6 +5282,7 @@ src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateCategoryUpdatedTemp
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdated.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.java
+src/main/java/dev/zernio/model/WhatsAppBillingConversation.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponent.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponentExample.java
 src/main/java/dev/zernio/model/WhatsAppButtonsComponent.java
@@ -5292,6 +5295,7 @@ src/main/java/dev/zernio/model/WhatsAppHeaderComponent.java
 src/main/java/dev/zernio/model/WhatsAppHeaderComponentExample.java
 src/main/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponent.java
 src/main/java/dev/zernio/model/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.java
+src/main/java/dev/zernio/model/WhatsAppMessagePricing.java
 src/main/java/dev/zernio/model/WhatsAppNamedParamExample.java
 src/main/java/dev/zernio/model/WhatsAppSandboxSession.java
 src/main/java/dev/zernio/model/WhatsAppTemplateButton.java
@@ -5347,3 +5351,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WhatsAppBillingConversationTest.java
+src/test/java/dev/zernio/model/WhatsAppMessagePricingTest.java

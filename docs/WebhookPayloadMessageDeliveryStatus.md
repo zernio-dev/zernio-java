@@ -13,6 +13,8 @@ Shared payload for message.delivered, message.read, and message.failed events. F
 |**message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  |  |
 |**statusAt** | **OffsetDateTime** | When the platform reported this status. |  |
 |**error** | [**WebhookPayloadMessageDeliveryStatusError**](WebhookPayloadMessageDeliveryStatusError.md) |  |  [optional] |
+|**pricing** | [**WhatsAppMessagePricing**](WhatsAppMessagePricing.md) |  |  [optional] |
+|**billingConversation** | [**WhatsAppBillingConversation**](WhatsAppBillingConversation.md) |  |  [optional] |
 |**conversation** | [**InboxWebhookConversation**](InboxWebhookConversation.md) |  |  |
 |**account** | [**InboxWebhookAccount**](InboxWebhookAccount.md) |  |  |
 |**timestamp** | **OffsetDateTime** | UTC time at which Zernio generated this event (set once when the event payload is built, before delivery is queued). Retries and redeliveries keep the original value, so it reflects the event, not the delivery attempt. |  |

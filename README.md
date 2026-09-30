@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.166.1
+- API version: 1.167.0
 
-- Build date: 2026-09-30T15:05:29.735357821Z[Etc/UTC]
+- Build date: 2026-09-30T15:18:39.517215464Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.166.1</version>
+  <version>1.167.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.166.1"
+compile "dev.zernio:zernio-sdk:1.167.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.166.1.jar`
+- `target/zernio-sdk-1.167.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4521,6 +4521,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadWhatsAppTemplateStatusUpdated](docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md)
  - [WebhookPayloadWhatsAppTemplateStatusUpdatedAccount](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md)
  - [WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md)
+ - [WhatsAppBillingConversation](docs/WhatsAppBillingConversation.md)
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)
  - [WhatsAppButtonsComponent](docs/WhatsAppButtonsComponent.md)
@@ -4533,6 +4534,7 @@ Class | Method | HTTP request | Description
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)
  - [WhatsAppLimitedTimeOfferComponent](docs/WhatsAppLimitedTimeOfferComponent.md)
  - [WhatsAppLimitedTimeOfferComponentLimitedTimeOffer](docs/WhatsAppLimitedTimeOfferComponentLimitedTimeOffer.md)
+ - [WhatsAppMessagePricing](docs/WhatsAppMessagePricing.md)
  - [WhatsAppNamedParamExample](docs/WhatsAppNamedParamExample.md)
  - [WhatsAppSandboxSession](docs/WhatsAppSandboxSession.md)
  - [WhatsAppTemplateButton](docs/WhatsAppTemplateButton.md)

@@ -3265,7 +3265,7 @@ ApiResponse<Void>
 
 Message delivered event
 
-Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message (also on &#x60;message.sent&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;). 
 
 ### Example
 
@@ -3334,7 +3334,7 @@ null (empty response body)
 
 Message delivered event
 
-Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. 
+Fired when an outgoing message is delivered to the recipient. Supported on WhatsApp and Facebook Messenger. On WhatsApp, &#x60;pricing&#x60; and &#x60;billingConversation&#x60; carry Meta&#39;s billing context for the message (also on &#x60;message.sent&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;). 
 
 ### Example
 
