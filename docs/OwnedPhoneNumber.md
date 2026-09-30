@@ -31,6 +31,7 @@ A number you bought or ported. Null fields are omitted, except `socialAccountId`
 |**metaVerificationStatus** | [**MetaVerificationStatusEnum**](#MetaVerificationStatusEnum) |  |  [optional] |
 |**metaVerifiedAt** | **OffsetDateTime** |  |  [optional] |
 |**metaVerificationExpiresAt** | **OffsetDateTime** |  |  [optional] |
+|**metaPoolAddRejectedAt** | **OffsetDateTime** | Set when WhatsApp reported the number as registered to another WhatsApp account while connecting it. The number keeps working for Calls and SMS; remove it from the other account and connect again, or replace it with POST /v1/whatsapp/phone-numbers/{id}/replace. Absent once WhatsApp accepts the number. |  [optional] |
 |**socialAccountId** | **String** | The WhatsApp account the number is linked to; null when WhatsApp is not connected. |  [optional] |
 |**ownerAccountId** | **String** | The telephony account that owns Calls and SMS on the number. |  [optional] |
 |**sipTrunkId** | **String** | SIP trunk the number is attached to; null when not trunked. While attached, enabling Calls or WhatsApp calling, requesting WhatsApp verification, and releasing the number all return 409. |  [optional] |
