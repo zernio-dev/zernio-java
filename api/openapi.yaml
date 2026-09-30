@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.163.0
+  version: 1.163.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -69288,14 +69288,16 @@ components:
           - new_customers_excluding_engaged
           type: string
         existingCustomerAudienceIds:
-          description: Custom audience ids that define your existing customers. Omit
-            to use the definition saved on the ad account. Only with a new_customers
-            strategy.
+          description: Custom audience ids that define your existing customers. Required
+            with both new_customers strategies (Meta answers 400 subcode 1870251 without
+            them); not allowed with all_customers.
           items:
             type: string
           type: array
         engagedAudienceIds:
-          description: Custom audience ids that define engaged people. Only with new_customers_excluding_engaged.
+          description: "Custom audience ids of people who engaged but have not bought.\
+            \ Required with new_customers_excluding_engaged, not allowed with the\
+            \ other strategies."
           items:
             type: string
           type: array
