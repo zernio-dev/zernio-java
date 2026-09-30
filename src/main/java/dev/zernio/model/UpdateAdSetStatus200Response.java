@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED,
   UpdateAdSetStatus200Response.JSON_PROPERTY_SKIPPED_REASONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T08:26:57.168632253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T08:29:56.891306834Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdSetStatus200Response {
   /**
    * The ad set&#39;s delivery status derived from the switches read back: &#x60;paused&#x60; when its own switch or its campaign&#39;s switch is off. Echoes the request when the platform could not be read.

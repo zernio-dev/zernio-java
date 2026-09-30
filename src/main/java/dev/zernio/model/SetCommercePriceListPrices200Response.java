@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SetCommercePriceListPrices200Response.JSON_PROPERTY_PRICE_LIST_ID,
   SetCommercePriceListPrices200Response.JSON_PROPERTY_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T08:26:57.168632253Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-09-30T08:29:56.891306834Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetCommercePriceListPrices200Response {
   public static final String JSON_PROPERTY_PRICE_LIST_ID = "priceListId";
   @javax.annotation.Nullable
