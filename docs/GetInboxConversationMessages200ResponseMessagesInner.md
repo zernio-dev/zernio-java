@@ -66,6 +66,7 @@
 | SENT | &quot;sent&quot; |
 | DELIVERED | &quot;delivered&quot; |
 | READ | &quot;read&quot; |
+| PLAYED | &quot;played&quot; |
 | FAILED | &quot;failed&quot; |
 | DELETED | &quot;deleted&quot; |
 

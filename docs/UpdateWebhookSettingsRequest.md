@@ -56,6 +56,7 @@
 | MESSAGE_DELETED | &quot;message.deleted&quot; |
 | MESSAGE_DELIVERED | &quot;message.delivered&quot; |
 | MESSAGE_READ | &quot;message.read&quot; |
+| MESSAGE_PLAYED | &quot;message.played&quot; |
 | MESSAGE_FAILED | &quot;message.failed&quot; |
 | REACTION_RECEIVED | &quot;reaction.received&quot; |
 | REFERRAL_RECEIVED | &quot;referral.received&quot; |
