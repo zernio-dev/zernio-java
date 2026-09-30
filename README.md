@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.170.0
+- API version: 1.171.0
 
-- Build date: 2026-09-30T15:43:28.403239487Z[Etc/UTC]
+- Build date: 2026-09-30T15:57:46.492982935Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.170.0</version>
+  <version>1.171.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.170.0"
+compile "dev.zernio:zernio-sdk:1.171.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.170.0.jar`
+- `target/zernio-sdk-1.171.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1945,6 +1945,8 @@ Class | Method | HTTP request | Description
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumberWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbers**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
 *WhatsAppPhoneNumbersApi* | [**getWhatsAppPhoneNumbersWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers | List phone numbers
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppPricingAnalytics**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPricingAnalytics) | **GET** /v1/whatsapp/pricing-analytics | Get pricing analytics
+*WhatsAppPhoneNumbersApi* | [**getWhatsAppPricingAnalyticsWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#getWhatsAppPricingAnalyticsWithHttpInfo) | **GET** /v1/whatsapp/pricing-analytics | Get pricing analytics
 *WhatsAppPhoneNumbersApi* | [**listWhatsAppNumberCountries**](docs/WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
 *WhatsAppPhoneNumbersApi* | [**listWhatsAppNumberCountriesWithHttpInfo**](docs/WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountriesWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries
 *WhatsAppPhoneNumbersApi* | [**moveWhatsAppNumberToProfile**](docs/WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile
@@ -3123,6 +3125,8 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppNumberKycForm200Response](docs/GetWhatsAppNumberKycForm200Response.md)
  - [GetWhatsAppNumberKycForm200ResponseFieldsInner](docs/GetWhatsAppNumberKycForm200ResponseFieldsInner.md)
  - [GetWhatsAppNumberRemediation200Response](docs/GetWhatsAppNumberRemediation200Response.md)
+ - [GetWhatsAppPricingAnalytics200Response](docs/GetWhatsAppPricingAnalytics200Response.md)
+ - [GetWhatsAppPricingAnalytics200ResponseDataPointsInner](docs/GetWhatsAppPricingAnalytics200ResponseDataPointsInner.md)
  - [GetWhatsAppSdkConfig200Response](docs/GetWhatsAppSdkConfig200Response.md)
  - [GetWhatsAppSdkConfig200ResponseBranding](docs/GetWhatsAppSdkConfig200ResponseBranding.md)
  - [GetWhatsAppTemplate200Response](docs/GetWhatsAppTemplate200Response.md)

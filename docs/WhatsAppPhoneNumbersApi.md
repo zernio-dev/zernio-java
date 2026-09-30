@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppPhoneNumberWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumberWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/{phoneNumberId} | Get phone number |
 | [**getWhatsAppPhoneNumbers**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbers) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
 | [**getWhatsAppPhoneNumbersWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPhoneNumbersWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers | List phone numbers |
+| [**getWhatsAppPricingAnalytics**](WhatsAppPhoneNumbersApi.md#getWhatsAppPricingAnalytics) | **GET** /v1/whatsapp/pricing-analytics | Get pricing analytics |
+| [**getWhatsAppPricingAnalyticsWithHttpInfo**](WhatsAppPhoneNumbersApi.md#getWhatsAppPricingAnalyticsWithHttpInfo) | **GET** /v1/whatsapp/pricing-analytics | Get pricing analytics |
 | [**listWhatsAppNumberCountries**](WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountries) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
 | [**listWhatsAppNumberCountriesWithHttpInfo**](WhatsAppPhoneNumbersApi.md#listWhatsAppNumberCountriesWithHttpInfo) | **GET** /v1/whatsapp/phone-numbers/countries | List offerable number countries |
 | [**moveWhatsAppNumberToProfile**](WhatsAppPhoneNumbersApi.md#moveWhatsAppNumberToProfile) | **PATCH** /v1/whatsapp/phone-numbers/{id}/profile | Move a number to another profile |
@@ -1095,6 +1097,188 @@ ApiResponse<[**ListPhoneNumbers200Response**](ListPhoneNumbers200Response.md)>
 | **200** | Phone numbers retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Unauthorized |  -  |
+
+
+## getWhatsAppPricingAnalytics
+
+> GetWhatsAppPricingAnalytics200Response getWhatsAppPricingAnalytics(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes)
+
+Get pricing analytics
+
+Message volume and approximate cost for one connected WhatsApp number, read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number. Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice. Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges) and answers out-of-range requests with an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
+        OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
+        String granularity = "HALF_HOUR"; // String | 
+        String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
+        String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
+        String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
+        String pricingCategories = "MARKETING,UTILITY"; // String | Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION.
+        String countryCodes = "ES,MX"; // String | Comma-separated ISO 3166-1 alpha-2 country codes to filter on.
+        try {
+            GetWhatsAppPricingAnalytics200Response result = apiInstance.getWhatsAppPricingAnalytics(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppPricingAnalytics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
+| **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
+| **granularity** | **String**|  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
+| **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
+| **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
+| **pricingCategories** | **String**| Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION. | [optional] |
+| **countryCodes** | **String**| Comma-separated ISO 3166-1 alpha-2 country codes to filter on. | [optional] |
+
+### Return type
+
+[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnalytics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing data points for the range |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+
+## getWhatsAppPricingAnalyticsWithHttpInfo
+
+> ApiResponse<GetWhatsAppPricingAnalytics200Response> getWhatsAppPricingAnalytics getWhatsAppPricingAnalyticsWithHttpInfo(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes)
+
+Get pricing analytics
+
+Message volume and approximate cost for one connected WhatsApp number, read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number. Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice. Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges) and answers out-of-range requests with an error. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppPhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
+        OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
+        String granularity = "HALF_HOUR"; // String | 
+        String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
+        String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
+        String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
+        String pricingCategories = "MARKETING,UTILITY"; // String | Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION.
+        String countryCodes = "ES,MX"; // String | Comma-separated ISO 3166-1 alpha-2 country codes to filter on.
+        try {
+            ApiResponse<GetWhatsAppPricingAnalytics200Response> response = apiInstance.getWhatsAppPricingAnalyticsWithHttpInfo(accountId, start, end, granularity, dimensions, metricTypes, pricingTypes, pricingCategories, countryCodes);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppPhoneNumbersApi#getWhatsAppPricingAnalytics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+| **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
+| **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
+| **granularity** | **String**|  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
+| **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
+| **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
+| **pricingCategories** | **String**| Comma-separated filter of Meta pricing categories, for example MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL, SERVICE, REFERRAL_CONVERSION. | [optional] |
+| **countryCodes** | **String**| Comma-separated ISO 3166-1 alpha-2 country codes to filter on. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnalytics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pricing data points for the range |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## listWhatsAppNumberCountries

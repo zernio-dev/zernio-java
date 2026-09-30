@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.170.0
+  version: 1.171.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27356,6 +27356,139 @@ paths:
       tags:
       - WhatsApp Phone Numbers
       x-resource-group: contacts
+      x-accepts:
+      - application/json
+  /v1/whatsapp/pricing-analytics:
+    get:
+      description: |
+        Message volume and approximate cost for one connected WhatsApp number, read live
+        from Meta's `pricing_analytics` on the WhatsApp Business Account and scoped to
+        that account's phone number. Meta's figures are approximate and can lag; Meta
+        bills from its own invoice. Meta limits how far back and how fine the data goes
+        (for example HALF_HOUR only over short ranges) and answers out-of-range requests
+        with an error.
+      operationId: getWhatsAppPricingAnalytics
+      parameters:
+      - description: WhatsApp account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: "Range start, ISO 8601 date or date-time."
+        explode: true
+        in: query
+        name: start
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Range end, ISO 8601 date or date-time. Must be after start."
+        explode: true
+        in: query
+        name: end
+        required: true
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: granularity
+        required: true
+        schema:
+          enum:
+          - HALF_HOUR
+          - DAILY
+          - MONTHLY
+          type: string
+        style: form
+      - description: "Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY,\
+          \ PRICING_TYPE, TIER. Without it each data point is a total for the interval."
+        explode: true
+        in: query
+        name: dimensions
+        required: false
+        schema:
+          example: "PRICING_CATEGORY,COUNTRY"
+          type: string
+        style: form
+      - description: "Comma-separated: COST, VOLUME. Defaults to both."
+        explode: true
+        in: query
+        name: metricTypes
+        required: false
+        schema:
+          example: "COST,VOLUME"
+          type: string
+        style: form
+      - description: "Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT."
+        explode: true
+        in: query
+        name: pricingTypes
+        required: false
+        schema:
+          example: REGULAR
+          type: string
+        style: form
+      - description: "Comma-separated filter of Meta pricing categories, for example\
+          \ MARKETING, MARKETING_LITE, UTILITY, AUTHENTICATION, AUTHENTICATION_INTERNATIONAL,\
+          \ SERVICE, REFERRAL_CONVERSION."
+        explode: true
+        in: query
+        name: pricingCategories
+        required: false
+        schema:
+          example: "MARKETING,UTILITY"
+          type: string
+        style: form
+      - description: Comma-separated ISO 3166-1 alpha-2 country codes to filter on.
+        explode: true
+        in: query
+        name: countryCodes
+        required: false
+        schema:
+          example: "ES,MX"
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                accountId: 66e000000000000000000001
+                phoneNumber: "34600000000"
+                granularity: DAILY
+                start: 2026-09-01T00:00:00.000Z
+                end: 2026-09-30T00:00:00.000Z
+                dataPoints:
+                - start: 2026-09-01T00:00:00.000Z
+                  end: 2026-09-02T00:00:00.000Z
+                  phoneNumber: null
+                  country: ES
+                  tier: null
+                  pricingType: null
+                  pricingCategory: MARKETING
+                  volume: 12
+                  cost: 0.73
+              schema:
+                $ref: "#/components/schemas/getWhatsAppPricingAnalytics_200_response"
+          description: Pricing data points for the range
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get pricing analytics
+      tags:
+      - WhatsApp Phone Numbers
+      x-resource-group: analytics
       x-accepts:
       - application/json
   /v1/whatsapp/block-users/status:
@@ -106957,6 +107090,118 @@ components:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_phone"
         waba:
           $ref: "#/components/schemas/getWhatsAppNumberInfo_200_response_waba"
+    getWhatsAppPricingAnalytics_200_response_dataPoints_inner:
+      example:
+        pricingCategory: pricingCategory
+        volume: 0
+        country: country
+        phoneNumber: phoneNumber
+        cost: 6.027456183070403
+        tier: tier
+        start: 2000-01-23T04:56:07.000+00:00
+        end: 2000-01-23T04:56:07.000+00:00
+        pricingType: pricingType
+      properties:
+        start:
+          format: date-time
+          type: string
+        end:
+          format: date-time
+          type: string
+        phoneNumber:
+          description: Set when dimensions includes PHONE.
+          nullable: true
+          type: string
+        country:
+          description: Set when dimensions includes COUNTRY.
+          nullable: true
+          type: string
+        tier:
+          description: Volume pricing tier. Set when dimensions includes TIER.
+          nullable: true
+          type: string
+        pricingType:
+          description: Set when dimensions includes PRICING_TYPE.
+          nullable: true
+          type: string
+        pricingCategory:
+          description: Set when dimensions includes PRICING_CATEGORY.
+          nullable: true
+          type: string
+        volume:
+          description: Messages delivered.
+          nullable: true
+          type: integer
+        cost:
+          description: "Approximate charge, in the currency of the WABA's payment\
+            \ method."
+          nullable: true
+          type: number
+      required:
+      - cost
+      - country
+      - end
+      - phoneNumber
+      - pricingCategory
+      - pricingType
+      - start
+      - tier
+      - volume
+    getWhatsAppPricingAnalytics_200_response:
+      example:
+        accountId: accountId
+        phoneNumber: phoneNumber
+        granularity: HALF_HOUR
+        start: 2000-01-23T04:56:07.000+00:00
+        dataPoints:
+        - pricingCategory: pricingCategory
+          volume: 0
+          country: country
+          phoneNumber: phoneNumber
+          cost: 6.027456183070403
+          tier: tier
+          start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+          pricingType: pricingType
+        - pricingCategory: pricingCategory
+          volume: 0
+          country: country
+          phoneNumber: phoneNumber
+          cost: 6.027456183070403
+          tier: tier
+          start: 2000-01-23T04:56:07.000+00:00
+          end: 2000-01-23T04:56:07.000+00:00
+          pricingType: pricingType
+        end: 2000-01-23T04:56:07.000+00:00
+      properties:
+        accountId:
+          type: string
+        phoneNumber:
+          description: "The number the data is scoped to, digits only."
+          type: string
+        granularity:
+          enum:
+          - HALF_HOUR
+          - DAILY
+          - MONTHLY
+          type: string
+        start:
+          format: date-time
+          type: string
+        end:
+          format: date-time
+          type: string
+        dataPoints:
+          items:
+            $ref: "#/components/schemas/getWhatsAppPricingAnalytics_200_response_dataPoints_inner"
+          type: array
+      required:
+      - accountId
+      - dataPoints
+      - end
+      - granularity
+      - phoneNumber
+      - start
     getWhatsAppBlockStatus_200_response:
       example:
         blocked: true
