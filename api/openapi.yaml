@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.177.0
+  version: 1.178.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -46426,8 +46426,11 @@ paths:
 
         - `geo`: locations, further scoped by `geoType`
         - `interest`
-        - `behavior`: Meta-only, matched by name against Meta's fixed behaviors catalog
-          (e.g. `Small business owners`, `Frequent Travelers`); ids feed `TargetingSpec.behaviors`
+        - `behavior`: Meta and TikTok, matched by name; ids feed `TargetingSpec.behaviors`.
+          Meta: its fixed behaviors catalog (e.g. `Small business owners`, `Frequent Travelers`).
+          TikTok: video and creator interaction categories (e.g. `Software & Apps`), with ids like
+          `video:1913101` or `creator:24001` and `path` starting with `Video interactions` or
+          `Creator interactions`
         - `income`: the household-income tiers the platform can target (Meta, TikTok, Google).
           The id is the normalized tier (`top_5`, `top_10`, `top_10_25`, `top_25_50`) to pass as
           `TargetingSpec.incomeTier`, never a platform segment id. Meta's tiers are US-only
@@ -62315,8 +62318,10 @@ components:
             \ countryGroups, regions, cities, zips, places, neighborhoods, customLocations)."
           type: object
         behaviors:
-          description: "Meta behavior ids. Each dimension is its own flexible_spec\
-            \ entry: OR within, AND across."
+          description: "Behavior ids from /v1/ads/targeting/search?dimension=behavior.\
+            \ Meta: each dimension is its own flexible_spec entry (OR within, AND\
+            \ across). TikTok: video/creator interaction categories, sent as the ad\
+            \ group's actions."
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
@@ -77856,8 +77861,11 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
         behaviors:
-          description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
-            Supported on Meta only (TikTok behaviours are rejected with a 400).
+          description: "Behaviour entities from /v1/ads/targeting/search?dimension=behavior\
+            \ (Meta and TikTok). On TikTok they target people who interacted with\
+            \ videos (watched to the end, liked, commented or shared, last 15 days)\
+            \ or creators (followed or viewed the profile) in the picked categories,\
+            \ and the ad group uses the TikTok placement only."
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
@@ -130343,9 +130351,11 @@ components:
             $ref: "#/components/schemas/createStandaloneAd_request_customLocations_inner"
           type: array
         behaviors:
-          description: Behaviour entities from /v1/ads/targeting/search?dimension=behavior.
-            Supported on Meta only (TikTok behaviours are rejected with a 400). Each
-            must include id.
+          description: "Behaviour entities from /v1/ads/targeting/search?dimension=behavior\
+            \ (Meta and TikTok). On TikTok they target people who interacted with\
+            \ videos (watched to the end, liked, commented or shared, last 15 days)\
+            \ or creators (followed or viewed the profile) in the picked categories,\
+            \ and the ad group uses the TikTok placement only. Each must include id."
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array

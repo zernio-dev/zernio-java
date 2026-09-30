@@ -52,7 +52,7 @@ In addition to the `required` list, the request must use EXACTLY ONE of the two 
 |**places** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta place keys (from GET /v1/ads/targeting/search). |  [optional] |
 |**neighborhoods** | [**List&lt;CtwaAdRequestBodyPlacesInner&gt;**](CtwaAdRequestBodyPlacesInner.md) | Meta neighborhood keys (from GET /v1/ads/targeting/search). |  [optional] |
 |**excludedLocations** | **Map&lt;String, Object&gt;** | Geo to exclude, same shape as POST /v1/ads/create (countries, countryGroups, regions, cities, zips, places, neighborhoods, customLocations). |  [optional] |
-|**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Meta behavior ids. Each dimension is its own flexible_spec entry: OR within, AND across. |  [optional] |
+|**behaviors** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) | Behavior ids from /v1/ads/targeting/search?dimension&#x3D;behavior. Meta: each dimension is its own flexible_spec entry (OR within, AND across). TikTok: video/creator interaction categories, sent as the ad group&#39;s actions. |  [optional] |
 |**workPositions** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
 |**workEmployers** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
 |**workIndustries** | [**List&lt;CreateStandaloneAdRequestBehaviorsInner&gt;**](CreateStandaloneAdRequestBehaviorsInner.md) |  |  [optional] |
