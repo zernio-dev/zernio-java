@@ -5371,11 +5371,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountAlertReceivedAlertTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountAlertReceivedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountQualityUpdatedAccountTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountQualityUpdatedQualityTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountQualityUpdatedTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountStatusUpdatedStatusRestrictionsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountStatusUpdatedStatusTest.java
-src/test/java/dev/zernio/model/WebhookPayloadWhatsAppAccountStatusUpdatedTest.java

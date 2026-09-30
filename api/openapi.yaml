@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.169.0
+  version: 1.170.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -87352,18 +87352,30 @@ components:
           description: Number of accounts needing reconnection
           type: integer
     getAllAccountsHealth_200_response_accounts_inner_messagingRestriction:
-      description: "Observed from Meta's own error subcodes on our own sends (2534122,\
-        \ 1893063, 2534029), not a live probe. Set on the first refused send and cleared\
-        \ when a later send succeeds, so it lags reality by one send in each direction."
+      description: "Observed from Meta's own errors on our own sends, not a live probe.\
+        \ Facebook/Instagram: error subcodes 2534122, 1893063, 2534029, set on the\
+        \ first refused send and cleared when a later send succeeds. WhatsApp: Cloud\
+        \ API error codes 131042 (payment or eligibility issue), 131031 (Business\
+        \ Account locked) and 368 (policy block), set when a send or a delivery status\
+        \ fails with one and cleared when a later message is delivered. It lags reality\
+        \ by one message in each direction."
       example:
         lastSeenAt: 2000-01-23T04:56:07.000+00:00
-        subcode: 2
+        code: 2
+        subcode: 7
         message: message
         firstSeenAt: 2000-01-23T04:56:07.000+00:00
       properties:
+        code:
+          description: WhatsApp Cloud API error code. Null on Facebook and Instagram.
+          nullable: true
+          type: integer
         subcode:
+          description: Meta error subcode (Facebook and Instagram). Null on WhatsApp.
+          nullable: true
           type: integer
         message:
+          nullable: true
           type: string
         firstSeenAt:
           format: date-time
@@ -87378,7 +87390,8 @@ components:
         tokenValid: true
         messagingRestriction:
           lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          subcode: 2
+          code: 2
+          subcode: 7
           message: message
           firstSeenAt: 2000-01-23T04:56:07.000+00:00
         issues:
@@ -87443,7 +87456,8 @@ components:
           tokenValid: true
           messagingRestriction:
             lastSeenAt: 2000-01-23T04:56:07.000+00:00
-            subcode: 2
+            code: 2
+            subcode: 7
             message: message
             firstSeenAt: 2000-01-23T04:56:07.000+00:00
           issues:
@@ -87462,7 +87476,8 @@ components:
           tokenValid: true
           messagingRestriction:
             lastSeenAt: 2000-01-23T04:56:07.000+00:00
-            subcode: 2
+            code: 2
+            subcode: 7
             message: message
             firstSeenAt: 2000-01-23T04:56:07.000+00:00
           issues:
@@ -87733,7 +87748,8 @@ components:
           canFetchAnalytics: true
         messagingRestriction:
           lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          subcode: 2
+          code: 2
+          subcode: 7
           message: message
           firstSeenAt: 2000-01-23T04:56:07.000+00:00
         integrationLane: business
