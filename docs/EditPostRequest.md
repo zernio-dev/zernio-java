@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**platform** | [**PlatformEnum**](#PlatformEnum) | The platform to edit the post on. |  |
 |**content** | **String** | The new post text content |  |
-|**accountId** | **String** | Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first.  |  [optional] |
+|**accountId** | **String** | Which account&#39;s copy of the post to edit when the post was published to several accounts on the same platform. Required in that case.  |  [optional] |
 
 
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.164.1
+  version: 1.165.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6821,8 +6821,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request: platform not supported for deletion, post\
-            \ not on that platform, not published, no platform post ID, or no access\
-            \ token."
+            \ not on that platform (or not for the given accountId), not published,\
+            \ no platform post ID, or no access token."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -6833,6 +6833,13 @@ paths:
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several accounts on this platform
+            and no accountId was sent (ambiguous_account).
         "500":
           description: Platform API deletion failed
       summary: Unpublish post
@@ -6848,8 +6855,8 @@ paths:
         Edit the text of an already-published post. Supported on X, Discord,
         Facebook, Reddit, LinkedIn, Telegram, Pinterest, Google Business Profile, YouTube,
         and Slack. When a post was published to several accounts on the same platform,
-        pass `accountId` to pick which account's copy to edit (the first entry is edited
-        otherwise). Each platform enforces its own rules:
+        pass `accountId` to pick which account's copy to edit (without it the request
+        returns 409). Each platform enforces its own rules:
 
         **X**
         - Connected X account must have an active X Premium subscription
@@ -6958,6 +6965,13 @@ paths:
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several accounts on this platform
+            and no accountId was sent (ambiguous_account).
         "500":
           description: Platform API edit failed for a reason the platform did not
             classify.
@@ -7056,6 +7070,13 @@ paths:
           description: Forbidden
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several accounts on this platform
+            and no accountId was sent (ambiguous_account).
         "500":
           description: Platform API update failed
       summary: Update post metadata
@@ -86519,6 +86540,10 @@ components:
           - googlebusiness
           - telegram
           type: string
+        accountId:
+          description: Which account's copy to delete when the post was published
+            to several accounts on this platform. Required in that case.
+          type: string
       required:
       - platform
     unpublishPost_200_response:
@@ -86551,7 +86576,7 @@ components:
           type: string
         accountId:
           description: |
-            Which account's copy of the post to edit when the post was published to several accounts on the same platform; defaults to the first.
+            Which account's copy of the post to edit when the post was published to several accounts on the same platform. Required in that case.
           type: string
       required:
       - content
@@ -86587,8 +86612,9 @@ components:
             \ mode)"
           type: string
         accountId:
-          description: "Zernio account ID (required for direct mode, ignored for post-based\
-            \ mode)"
+          description: "Zernio account ID. Required for direct mode. In post-based\
+            \ mode, picks which account's copy to update when the post was published\
+            \ to several accounts on this platform (required in that case)."
           type: string
         title:
           description: New video title (max 100 characters for YouTube)

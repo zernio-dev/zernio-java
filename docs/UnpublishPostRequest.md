@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**platform** | [**PlatformEnum**](#PlatformEnum) | The platform to delete the post from |  |
+|**accountId** | **String** | Which account&#39;s copy to delete when the post was published to several accounts on this platform. Required in that case. |  [optional] |
 
 
 
