@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.164.0
+  version: 1.164.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -34990,12 +34990,11 @@ paths:
       description: |
         Returns the Google Search keyword criteria (positive and negative) synced from
         connected Google Ads accounts, one row per ad-group keyword. Refreshed about
-        once a week per Google Ads customer (the keyword sweep rides the ads discovery
-        pass on a slower slot, to stay inside Google's shared daily API quota), so
-        keywords added on Google can take several days to appear. A customer synced
-        for the first time is populated on the next discovery pass rather than
-        waiting for its weekly slot, and connecting an account or triggering a
-        manual sync refreshes it immediately.
+        once a day per Google Ads customer (the keyword sweep rides the ads discovery
+        pass on a slower slot), so keywords added on Google can take up to a day to
+        appear. A customer synced for the first time is populated on the next discovery
+        pass rather than waiting for its daily slot, and connecting an account or
+        triggering a manual sync refreshes it immediately.
         Campaign-level negative keywords are not included; only ad-group-level
         criteria are.
       operationId: listAdKeywords
@@ -38825,8 +38824,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Per-user Google Ads operations budget or the shared Google
-            quota reached; the message says which and when it resets.
+          description: Per-user Google Ads burst limit (15 requests per minute) or
+            a Google rate limit reached; the message says which and when to retry.
         "501":
           description: Only supported on Google Ads
       security:
@@ -38871,8 +38870,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Per-user Google Ads operations budget or the shared Google
-            quota reached; the message says which and when it resets.
+          description: Per-user Google Ads burst limit (15 requests per minute) or
+            a Google rate limit reached; the message says which and when to retry.
         "501":
           description: Only supported on Google Ads
       security:
@@ -39201,8 +39200,8 @@ paths:
           description: "TikTok only: the connection cannot read that advertiser."
         "429":
           description: Platform rate limit reached. For Google this is the per-user
-            operations budget or the shared quota; the message says which and when
-            it resets.
+            burst limit or a Google rate limit; the message says which and when to
+            retry.
         "501":
           description: "Only supported on Meta (facebook/instagram), Google Ads and\
             \ TikTok"
@@ -140642,12 +140641,11 @@ components:
           - ACCOUNT
           type: string
         budgetScope:
-          description: Zernio Google Ads operations-budget 429 only (never set alongside
-            `quotaExhausted`). `user` is your own burst/daily allowance; `platform`
-            is the fleet-wide daily budget shared across customers.
+          description: Zernio Google Ads burst-limit 429 only (never set alongside
+            `quotaExhausted`). `user` is your own per-minute allowance on user-driven
+            Google Ads calls; it clears within a minute.
           enum:
           - user
-          - platform
           type: string
     CommentAutomationTemplateElement_buttons_inner:
       example:
@@ -148068,7 +148066,7 @@ components:
           type: string
     AdKeyword_metrics:
       description: Trailing 30-day window. Null on rows synced before the metrics
-        columns existed (re-synced on the keyword's next weekly sweep).
+        columns existed (re-synced on the keyword's next daily sweep).
       example:
         conversions: 7.061401241503109
         cost: 2.3021358869347655

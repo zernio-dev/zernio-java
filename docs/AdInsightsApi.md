@@ -258,7 +258,7 @@ public class Example {
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## generateKeywordHistoricalMetricsWithHttpInfo
@@ -337,7 +337,7 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
@@ -414,7 +414,7 @@ public class Example {
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## generateKeywordIdeasWithHttpInfo
@@ -493,7 +493,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
-| **429** | Per-user Google Ads operations budget or the shared Google quota reached; the message says which and when it resets. |  -  |
+| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
@@ -1859,7 +1859,7 @@ public class Example {
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
-| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 
 ## queryAdInsightsWithHttpInfo
@@ -1989,6 +1989,6 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Unauthorized |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
-| **429** | Platform rate limit reached. For Google this is the per-user operations budget or the shared quota; the message says which and when it resets. |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 

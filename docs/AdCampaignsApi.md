@@ -5215,7 +5215,7 @@ ApiResponse<[**ListAdGroupAssets200Response**](ListAdGroupAssets200Response.md)>
 
 List Search keywords
 
-Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a day per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot), so keywords added on Google can take up to a day to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its daily slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
 
 ### Example
 
@@ -5308,7 +5308,7 @@ public class Example {
 
 List Search keywords
 
-Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a week per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot, to stay inside Google&#39;s shared daily API quota), so keywords added on Google can take several days to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its weekly slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
+Returns the Google Search keyword criteria (positive and negative) synced from connected Google Ads accounts, one row per ad-group keyword. Refreshed about once a day per Google Ads customer (the keyword sweep rides the ads discovery pass on a slower slot), so keywords added on Google can take up to a day to appear. A customer synced for the first time is populated on the next discovery pass rather than waiting for its daily slot, and connecting an account or triggering a manual sync refreshes it immediately. Campaign-level negative keywords are not included; only ad-group-level criteria are. 
 
 ### Example
 
