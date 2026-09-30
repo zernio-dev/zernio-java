@@ -67,6 +67,9 @@
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
 | WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED | &quot;whatsapp.account.name_status_updated&quot; |
+| WHATSAPP_ACCOUNT_QUALITY_UPDATED | &quot;whatsapp.account.quality_updated&quot; |
+| WHATSAPP_ACCOUNT_STATUS_UPDATED | &quot;whatsapp.account.status_updated&quot; |
+| WHATSAPP_ACCOUNT_ALERT_RECEIVED | &quot;whatsapp.account.alert_received&quot; |
 | WHATSAPP_CONTACT_IDENTITY_CHANGED | &quot;whatsapp.contact.identity_changed&quot; |
 | WHATSAPP_AUTOMATIC_EVENT | &quot;whatsapp.automatic_event&quot; |
 | WHATSAPP_NUMBER_ACTIVATED | &quot;whatsapp.number.activated&quot; |

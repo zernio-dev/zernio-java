@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.168.0
+  version: 1.169.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -383,7 +383,7 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
     Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -64645,6 +64645,9 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
+            - whatsapp.account.quality_updated
+            - whatsapp.account.status_updated
+            - whatsapp.account.alert_received
             - whatsapp.contact.identity_changed
             - whatsapp.automatic_event
             - whatsapp.number.activated
@@ -68072,6 +68075,159 @@ components:
       - id
       - name
       - timestamp
+    WebhookPayloadWhatsAppAccountQualityUpdated:
+      description: |
+        Webhook payload for `whatsapp.account.quality_updated`. Fired when a connected
+        number's quality rating or messaging limit tier differs from the value Zernio held.
+        Tier changes that Meta applies to the whole portfolio fire once per connected number.
+      example:
+        id: id
+        event: whatsapp.account.quality_updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: whatsapp
+          username: username
+        quality:
+          previousQualityRating: previousQualityRating
+          metaEvent: metaEvent
+          previousMessagingLimitTier: previousMessagingLimitTier
+          messagingLimitTier: messagingLimitTier
+          source: phone_number_quality_update
+          qualityRating: qualityRating
+          displayPhoneNumber: displayPhoneNumber
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        event:
+          enum:
+          - whatsapp.account.quality_updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountQualityUpdated_account"
+        quality:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountQualityUpdated_quality"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - quality
+      - timestamp
+    WebhookPayloadWhatsAppAccountStatusUpdated:
+      description: |
+        Webhook payload for `whatsapp.account.status_updated`. Fired when Meta restricts,
+        flags a violation on, disables, deletes or reinstates the WhatsApp Business Account.
+        The same status is also exposed on the account as `platformStatus`.
+      example:
+        id: id
+        event: whatsapp.account.status_updated
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: whatsapp
+          username: username
+        status:
+          reason: reason
+          metaEvent: metaEvent
+          violationType: violationType
+          restrictions:
+          - type: type
+            expiresAt: expiresAt
+          - type: type
+            expiresAt: expiresAt
+          banDate: banDate
+          banState: banState
+          status: restricted
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        event:
+          enum:
+          - whatsapp.account.status_updated
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountQualityUpdated_account"
+        status:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountStatusUpdated_status"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - status
+      - timestamp
+    WebhookPayloadWhatsAppAccountAlertReceived:
+      description: |
+        Webhook payload for `whatsapp.account.alert_received`, forwarded from Meta's
+        `account_alerts` webhook. Alerts about a specific number go to that number's
+        account; business-level alerts go to every connected number on the WABA.
+      example:
+        alert:
+          severity: severity
+          entityType: entityType
+          description: description
+          entityId: entityId
+          type: type
+          status: status
+        id: id
+        event: whatsapp.account.alert_received
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: whatsapp
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        event:
+          enum:
+          - whatsapp.account.alert_received
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountQualityUpdated_account"
+        alert:
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountAlertReceived_alert"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - account
+      - alert
+      - event
+      - id
+      - timestamp
     WhatsAppContactIdentity:
       properties:
         phoneNumber:
@@ -68140,7 +68296,7 @@ components:
           - whatsapp.contact.identity_changed
           type: string
         account:
-          $ref: "#/components/schemas/WebhookPayloadWhatsAppContactIdentityChanged_account"
+          $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountQualityUpdated_account"
         reason:
           description: "Which Meta signal reported the change. `user_changed_number`:\
             \ new phone number. `user_changed_user_id` and `user_id_update`: new BSUID."
@@ -96294,6 +96450,9 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
+            - whatsapp.account.quality_updated
+            - whatsapp.account.status_updated
+            - whatsapp.account.alert_received
             - whatsapp.contact.identity_changed
             - whatsapp.automatic_event
             - whatsapp.number.activated
@@ -96461,6 +96620,9 @@ components:
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
+            - whatsapp.account.quality_updated
+            - whatsapp.account.status_updated
+            - whatsapp.account.alert_received
             - whatsapp.contact.identity_changed
             - whatsapp.automatic_event
             - whatsapp.number.activated
@@ -144404,7 +144566,13 @@ components:
       - rejectionReason
       - requestedName
       - status
-    WebhookPayloadWhatsAppContactIdentityChanged_account:
+    WebhookPayloadWhatsAppAccountQualityUpdated_account:
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: whatsapp
+        username: username
       properties:
         accountId:
           type: string
@@ -144424,6 +144592,166 @@ components:
       - platform
       - profileId
       - username
+    WebhookPayloadWhatsAppAccountQualityUpdated_quality:
+      example:
+        previousQualityRating: previousQualityRating
+        metaEvent: metaEvent
+        previousMessagingLimitTier: previousMessagingLimitTier
+        messagingLimitTier: messagingLimitTier
+        source: phone_number_quality_update
+        qualityRating: qualityRating
+        displayPhoneNumber: displayPhoneNumber
+      properties:
+        source:
+          description: The Meta webhook field that reported the change.
+          enum:
+          - phone_number_quality_update
+          - business_capability_update
+          type: string
+        metaEvent:
+          description: "Meta's `event` on phone_number_quality_update (for example\
+            \ FLAGGED, UNFLAGGED, UPGRADE, DOWNGRADE, ONBOARDING, THROUGHPUT_UPGRADE).\
+            \ Null on business_capability_update."
+          nullable: true
+          type: string
+        qualityRating:
+          description: "Current quality rating (GREEN, YELLOW, RED, UNKNOWN), read\
+            \ live from Meta on FLAGGED/UNFLAGGED."
+          nullable: true
+          type: string
+        previousQualityRating:
+          nullable: true
+          type: string
+        messagingLimitTier:
+          description: "Current messaging limit tier, for example TIER_250, TIER_2K,\
+            \ TIER_10K, TIER_100K, TIER_UNLIMITED."
+          nullable: true
+          type: string
+        previousMessagingLimitTier:
+          nullable: true
+          type: string
+        displayPhoneNumber:
+          nullable: true
+          type: string
+      required:
+      - displayPhoneNumber
+      - messagingLimitTier
+      - metaEvent
+      - previousMessagingLimitTier
+      - previousQualityRating
+      - qualityRating
+      - source
+    WebhookPayloadWhatsAppAccountStatusUpdated_status_restrictions_inner:
+      example:
+        type: type
+        expiresAt: expiresAt
+      properties:
+        type:
+          description: "For example RESTRICTED_BIZ_INITIATED_MESSAGING, RESTRICTED_CUSTOMER_INITIATED_MESSAGING,\
+            \ RESTRICTED_ADD_PHONE_NUMBER_ACTION."
+          type: string
+        expiresAt:
+          description: "When the restriction lifts, as Meta sent it (for example 2026-10-30T13:38:04+0000)."
+          nullable: true
+          type: string
+      required:
+      - expiresAt
+      - type
+    WebhookPayloadWhatsAppAccountStatusUpdated_status:
+      example:
+        reason: reason
+        metaEvent: metaEvent
+        violationType: violationType
+        restrictions:
+        - type: type
+          expiresAt: expiresAt
+        - type: type
+          expiresAt: expiresAt
+        banDate: banDate
+        banState: banState
+        status: restricted
+      properties:
+        status:
+          description: '`active` only on a reinstatement (DISABLED_UPDATE with ban
+            state REINSTATE).'
+          enum:
+          - restricted
+          - active
+          type: string
+        metaEvent:
+          description: "Meta `account_update` event: ACCOUNT_RESTRICTION, ACCOUNT_VIOLATION,\
+            \ ACCOUNT_DELETED or DISABLED_UPDATE."
+          type: string
+        reason:
+          description: Human-readable summary. Null on reinstatement.
+          nullable: true
+          type: string
+        violationType:
+          description: "ACCOUNT_VIOLATION only, for example SCAM, ADULT."
+          nullable: true
+          type: string
+        restrictions:
+          description: ACCOUNT_RESTRICTION only. Empty otherwise.
+          items:
+            $ref: "#/components/schemas/WebhookPayloadWhatsAppAccountStatusUpdated_status_restrictions_inner"
+          type: array
+        banState:
+          description: "DISABLED_UPDATE only (for example DISABLE, REINSTATE)."
+          nullable: true
+          type: string
+        banDate:
+          description: "DISABLED_UPDATE only, as Meta sent it (for example \"September\
+            \ 23, 2026\")."
+          nullable: true
+          type: string
+      required:
+      - banDate
+      - banState
+      - metaEvent
+      - reason
+      - restrictions
+      - status
+      - violationType
+    WebhookPayloadWhatsAppAccountAlertReceived_alert:
+      example:
+        severity: severity
+        entityType: entityType
+        description: description
+        entityId: entityId
+        type: type
+        status: status
+      properties:
+        entityType:
+          description: "BUSINESS, PHONE_NUMBER or CURRENT_STATUS_ID."
+          nullable: true
+          type: string
+        entityId:
+          nullable: true
+          type: string
+        severity:
+          description: "CRITICAL, WARNING or INFORMATIONAL."
+          nullable: true
+          type: string
+        status:
+          description: ACTIVE or NONE.
+          nullable: true
+          type: string
+        type:
+          description: "For example INCREASED_CAPABILITIES_ELIGIBILITY_DEFERRED, INCREASED_CAPABILITIES_ELIGIBILITY_FAILED,\
+            \ INCREASED_CAPABILITIES_ELIGIBILITY_NEED_MORE_INFO, OBA_APPROVED, OBA_REJECTED,\
+            \ PROFILE_PICTURE_LOST."
+          nullable: true
+          type: string
+        description:
+          nullable: true
+          type: string
+      required:
+      - description
+      - entityId
+      - entityType
+      - severity
+      - status
+      - type
     DiscordGuildMember_user:
       example:
         global_name: global_name
@@ -149245,6 +149573,9 @@ x-documentation:
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
     - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.
+    - `whatsapp.account.quality_updated` - A WhatsApp number's quality rating or messaging limit tier changed (Meta `phone_number_quality_update` or `business_capability_update`). Carries the previous and new value of both.
+    - `whatsapp.account.status_updated` - Meta restricted, banned, disabled or reinstated the WhatsApp Business Account (Meta `account_update`). Fires once per connected number on the WABA; `status.restrictions` lists what was restricted and until when.
+    - `whatsapp.account.alert_received` - Meta sent an account alert (Meta `account_alerts`), for example a messaging-limit increase deferred or an Official Business Account decision.
     - `whatsapp.contact.identity_changed` - A WhatsApp user's identifier changed (new phone number, a regenerated business-scoped user id, or a username adoption). `previous` and `current` carry the phone number, BSUID, parent BSUID and username so you can re-key your records; Zernio already moved the inbox conversation and contact.
     - `call.received` - An inbound call (phone/PSTN or WhatsApp) reached one of your numbers and was routed to its destination
     - `call.ended` - A call ended; carries duration, end reason, cost breakdown, and the recording when enabled
