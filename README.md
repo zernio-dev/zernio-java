@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.188.0
+- API version: 1.189.0
 
-- Build date: 2026-10-01T09:59:01.652569226Z[Etc/UTC]
+- Build date: 2026-10-01T10:34:28.748869484Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.188.0</version>
+  <version>1.189.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.188.0"
+compile "dev.zernio:zernio-sdk:1.189.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.188.0.jar`
+- `target/zernio-sdk-1.189.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -525,6 +525,8 @@ Class | Method | HTTP request | Description
 *AdTargetingApi* | [**searchAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics
+*AnalyticsApi* | [**getAnalyticsDashboard**](docs/AnalyticsApi.md#getAnalyticsDashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard
+*AnalyticsApi* | [**getAnalyticsDashboardWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsDashboardWithHttpInfo) | **GET** /v1/analytics/dashboard | Get an analytics dashboard
 *AnalyticsApi* | [**getAnalyticsDelta**](docs/AnalyticsApi.md#getAnalyticsDelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor
 *AnalyticsApi* | [**getAnalyticsDeltaWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsDeltaWithHttpInfo) | **GET** /v1/analytics/delta | Analytics changed since a cursor
 *AnalyticsApi* | [**getBestTimeToPost**](docs/AnalyticsApi.md#getBestTimeToPost) | **GET** /v1/analytics/best-time | Get best times to post
@@ -2089,6 +2091,11 @@ Class | Method | HTTP request | Description
  - [AdsListResponse](docs/AdsListResponse.md)
  - [AdsTimelineResponse](docs/AdsTimelineResponse.md)
  - [AdsTimelineResponseRowsInner](docs/AdsTimelineResponseRowsInner.md)
+ - [AnalyticsDashboardFollowers](docs/AnalyticsDashboardFollowers.md)
+ - [AnalyticsDashboardFollowersByAccountInner](docs/AnalyticsDashboardFollowersByAccountInner.md)
+ - [AnalyticsDashboardPost](docs/AnalyticsDashboardPost.md)
+ - [AnalyticsDashboardPostMetrics](docs/AnalyticsDashboardPostMetrics.md)
+ - [AnalyticsDashboardTotals](docs/AnalyticsDashboardTotals.md)
  - [AnalyticsDeltaEntry](docs/AnalyticsDeltaEntry.md)
  - [AnalyticsDeltaEntryMetrics](docs/AnalyticsDeltaEntryMetrics.md)
  - [AnalyticsDeltaResponse](docs/AnalyticsDeltaResponse.md)
@@ -2810,6 +2817,9 @@ Class | Method | HTTP request | Description
  - [GetAnalytics200Response](docs/GetAnalytics200Response.md)
  - [GetAnalytics400Response](docs/GetAnalytics400Response.md)
  - [GetAnalytics402Response](docs/GetAnalytics402Response.md)
+ - [GetAnalyticsDashboard200Response](docs/GetAnalyticsDashboard200Response.md)
+ - [GetAnalyticsDashboard200ResponseDailyInner](docs/GetAnalyticsDashboard200ResponseDailyInner.md)
+ - [GetAnalyticsDashboard200ResponseDateRange](docs/GetAnalyticsDashboard200ResponseDateRange.md)
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)
  - [GetBestTimeToPost403Response](docs/GetBestTimeToPost403Response.md)

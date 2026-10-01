@@ -100,6 +100,11 @@ docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
+docs/AnalyticsDashboardFollowers.md
+docs/AnalyticsDashboardFollowersByAccountInner.md
+docs/AnalyticsDashboardPost.md
+docs/AnalyticsDashboardPostMetrics.md
+docs/AnalyticsDashboardTotals.md
 docs/AnalyticsDeltaEntry.md
 docs/AnalyticsDeltaEntryMetrics.md
 docs/AnalyticsDeltaResponse.md
@@ -837,6 +842,9 @@ docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
 docs/GetAnalytics400Response.md
 docs/GetAnalytics402Response.md
+docs/GetAnalyticsDashboard200Response.md
+docs/GetAnalyticsDashboard200ResponseDailyInner.md
+docs/GetAnalyticsDashboard200ResponseDateRange.md
 docs/GetBestTimeToPost200Response.md
 docs/GetBestTimeToPost200ResponseSlotsInner.md
 docs/GetBestTimeToPost403Response.md
@@ -2862,6 +2870,11 @@ src/main/java/dev/zernio/model/AdjustConversionsRequestAdjustmentsInnerUser.java
 src/main/java/dev/zernio/model/AdsListResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponseRowsInner.java
+src/main/java/dev/zernio/model/AnalyticsDashboardFollowers.java
+src/main/java/dev/zernio/model/AnalyticsDashboardFollowersByAccountInner.java
+src/main/java/dev/zernio/model/AnalyticsDashboardPost.java
+src/main/java/dev/zernio/model/AnalyticsDashboardPostMetrics.java
+src/main/java/dev/zernio/model/AnalyticsDashboardTotals.java
 src/main/java/dev/zernio/model/AnalyticsDeltaEntry.java
 src/main/java/dev/zernio/model/AnalyticsDeltaEntryMetrics.java
 src/main/java/dev/zernio/model/AnalyticsDeltaResponse.java
@@ -3583,6 +3596,9 @@ src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseSummary.java
 src/main/java/dev/zernio/model/GetAnalytics200Response.java
 src/main/java/dev/zernio/model/GetAnalytics400Response.java
 src/main/java/dev/zernio/model/GetAnalytics402Response.java
+src/main/java/dev/zernio/model/GetAnalyticsDashboard200Response.java
+src/main/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDailyInner.java
+src/main/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDateRange.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200Response.java
 src/main/java/dev/zernio/model/GetBestTimeToPost200ResponseSlotsInner.java
 src/main/java/dev/zernio/model/GetBestTimeToPost403Response.java
@@ -5379,3 +5395,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AnalyticsDashboardFollowersByAccountInnerTest.java
+src/test/java/dev/zernio/model/AnalyticsDashboardFollowersTest.java
+src/test/java/dev/zernio/model/AnalyticsDashboardPostMetricsTest.java
+src/test/java/dev/zernio/model/AnalyticsDashboardPostTest.java
+src/test/java/dev/zernio/model/AnalyticsDashboardTotalsTest.java
+src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDailyInnerTest.java
+src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDateRangeTest.java
+src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseTest.java

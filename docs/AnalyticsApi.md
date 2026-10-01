@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**getAnalytics**](AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics |
 | [**getAnalyticsWithHttpInfo**](AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics |
+| [**getAnalyticsDashboard**](AnalyticsApi.md#getAnalyticsDashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard |
+| [**getAnalyticsDashboardWithHttpInfo**](AnalyticsApi.md#getAnalyticsDashboardWithHttpInfo) | **GET** /v1/analytics/dashboard | Get an analytics dashboard |
 | [**getAnalyticsDelta**](AnalyticsApi.md#getAnalyticsDelta) | **GET** /v1/analytics/delta | Analytics changed since a cursor |
 | [**getAnalyticsDeltaWithHttpInfo**](AnalyticsApi.md#getAnalyticsDeltaWithHttpInfo) | **GET** /v1/analytics/delta | Analytics changed since a cursor |
 | [**getBestTimeToPost**](AnalyticsApi.md#getBestTimeToPost) | **GET** /v1/analytics/best-time | Get best times to post |
@@ -255,6 +257,184 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
 | **500** | Internal server error |  -  |
+
+
+## getAnalyticsDashboard
+
+> GetAnalyticsDashboard200Response getAnalyticsDashboard(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts)
+
+Get an analytics dashboard
+
+Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        LocalDate fromDate = LocalDate.parse("2026-09-01"); // LocalDate | First day of the window (YYYY-MM-DD, inclusive).
+        LocalDate toDate = LocalDate.parse("2026-09-30"); // LocalDate | Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days.
+        String profileId = "all"; // String | Profile ID, or \"all\" for every profile you can access.
+        String platform = "all"; // String | Platform to cover (e.g. \"instagram\"), or \"all\".
+        String compare = "previous_period"; // String | Set to \"previous_period\" to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate.
+        Integer topPosts = 5; // Integer | How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement).
+        Integer recentPosts = 10; // Integer | How many of the most recently published posts to return.
+        try {
+            GetAnalyticsDashboard200Response result = apiInstance.getAnalyticsDashboard(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getAnalyticsDashboard");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day of the window (YYYY-MM-DD, inclusive). | |
+| **toDate** | **LocalDate**| Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days. | |
+| **profileId** | **String**| Profile ID, or \&quot;all\&quot; for every profile you can access. | [optional] [default to all] |
+| **platform** | **String**| Platform to cover (e.g. \&quot;instagram\&quot;), or \&quot;all\&quot;. | [optional] [default to all] |
+| **compare** | **String**| Set to \&quot;previous_period\&quot; to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate. | [optional] [enum: previous_period] |
+| **topPosts** | **Integer**| How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement). | [optional] [default to 5] |
+| **recentPosts** | **Integer**| How many of the most recently published posts to return. | [optional] [default to 10] |
+
+### Return type
+
+[**GetAnalyticsDashboard200Response**](GetAnalyticsDashboard200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dashboard for the window |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
+| **404** | Profile not found or not accessible with this API key. |  -  |
+
+## getAnalyticsDashboardWithHttpInfo
+
+> ApiResponse<GetAnalyticsDashboard200Response> getAnalyticsDashboard getAnalyticsDashboardWithHttpInfo(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts)
+
+Get an analytics dashboard
+
+Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        LocalDate fromDate = LocalDate.parse("2026-09-01"); // LocalDate | First day of the window (YYYY-MM-DD, inclusive).
+        LocalDate toDate = LocalDate.parse("2026-09-30"); // LocalDate | Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days.
+        String profileId = "all"; // String | Profile ID, or \"all\" for every profile you can access.
+        String platform = "all"; // String | Platform to cover (e.g. \"instagram\"), or \"all\".
+        String compare = "previous_period"; // String | Set to \"previous_period\" to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate.
+        Integer topPosts = 5; // Integer | How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement).
+        Integer recentPosts = 10; // Integer | How many of the most recently published posts to return.
+        try {
+            ApiResponse<GetAnalyticsDashboard200Response> response = apiInstance.getAnalyticsDashboardWithHttpInfo(fromDate, toDate, profileId, platform, compare, topPosts, recentPosts);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getAnalyticsDashboard");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**| First day of the window (YYYY-MM-DD, inclusive). | |
+| **toDate** | **LocalDate**| Last day of the window (YYYY-MM-DD, inclusive). May equal fromDate. The window covers at most 366 days. | |
+| **profileId** | **String**| Profile ID, or \&quot;all\&quot; for every profile you can access. | [optional] [default to all] |
+| **platform** | **String**| Platform to cover (e.g. \&quot;instagram\&quot;), or \&quot;all\&quot;. | [optional] [default to all] |
+| **compare** | **String**| Set to \&quot;previous_period\&quot; to also return previousTotals and previousFollowers for the window of the same length that ends the day before fromDate. | [optional] [enum: previous_period] |
+| **topPosts** | **Integer**| How many top posts to return, ranked by engagement (likes, comments, shares and saves, the same sum as daily engagement). | [optional] [default to 5] |
+| **recentPosts** | **Integer**| How many of the most recently published posts to return. | [optional] [default to 10] |
+
+### Return type
+
+ApiResponse<[**GetAnalyticsDashboard200Response**](GetAnalyticsDashboard200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dashboard for the window |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
+| **404** | Profile not found or not accessible with this API key. |  -  |
 
 
 ## getAnalyticsDelta
