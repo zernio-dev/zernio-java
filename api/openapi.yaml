@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.189.1
+  version: 1.190.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -130643,12 +130643,15 @@ components:
             \ ads unless `video` is set. Not required for Google Search campaigns.\
             \ For TikTok, this field carries the VIDEO URL (the TikTok ads endpoint\
             \ is video-only; the field retains the `imageUrl` name for cross-platform\
-            \ consistency). Ignored for X. For Google Display, treated as the landscape\
-            \ image (alias of `images.landscape`); supply `images.square` alongside\
-            \ or the request is rejected. For LinkedIn the image is uploaded to LinkedIn\
-            \ under the authoring Company Page (see `organizationId`); recommended\
-            \ ratio 1.91:1 (e.g. 1200×627). Required for OpenAI Ads (uploaded as the\
-            \ chat card's image; OpenAI has no video ad format)."
+            \ consistency). Rejected with 400 on X (an X ad is a post from body +\
+            \ linkUrl; promote a post that carries the image with POST /v1/ads/boost),\
+            \ as are headline, description, video and callToAction. For Google Display,\
+            \ treated as the landscape image (alias of `images.landscape`); supply\
+            \ `images.square` alongside or the request is rejected. For LinkedIn the\
+            \ image is uploaded to LinkedIn under the authoring Company Page (see\
+            \ `organizationId`); recommended ratio 1.91:1 (e.g. 1200×627). Required\
+            \ for OpenAI Ads (uploaded as the chat card's image; OpenAI has no video\
+            \ ad format)."
           format: uri
           type: string
         images:
