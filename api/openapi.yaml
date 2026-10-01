@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.190.0
+  version: 1.191.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10298,6 +10298,13 @@ paths:
           description: User does not have access to the specified profile
         "404":
           description: Selected page not found in available pages
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: pageIds only. None of the Pages could be connected; `details.failed`
+            lists each one with its reason.
         "409":
           content:
             application/json:
@@ -10429,6 +10436,13 @@ paths:
           description: User does not have access to the specified profile
         "404":
           description: Selected page not found among the pages this token can manage
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: pageIds only. None of the accounts could be connected; `details.failed`
+            lists each Page with its reason.
       security:
       - bearerAuth: []
       - connectToken: []
@@ -89614,8 +89628,21 @@ components:
           description: Profile ID from your classic connection flow.
           type: string
         pageId:
-          description: The Facebook Page ID selected by the user.
+          description: "The Facebook Page ID selected by the user. Send this or pageIds,\
+            \ not both."
           type: string
+        pageIds:
+          description: "Several Page IDs to connect from one sign-in, each as its\
+            \ own account. With two or more distinct IDs the response lists `accounts`\
+            \ and `failed` instead of `account`, and the request is refused with 400\
+            \ while a profile holds one Facebook account and on a reconnect or an\
+            \ ads connect, which pick exactly one Page. A single distinct ID behaves\
+            \ exactly like pageId."
+          items:
+            type: string
+          maxItems: 25
+          minItems: 1
+          type: array
         tempToken:
           description: Temporary Facebook access token from OAuth.
           type: string
@@ -89626,7 +89653,6 @@ components:
           format: uri
           type: string
       required:
-      - pageId
       - profileId
       - tempToken
       - userProfile
@@ -89676,9 +89702,32 @@ components:
           type: boolean
         selectedPageName:
           type: string
+    selectFacebookPage_200_response_failed_inner:
+      example:
+        code: code
+        id: id
+        message: message
+      properties:
+        id:
+          description: The Page ID.
+          type: string
+        code:
+          type: string
+        message:
+          type: string
     selectFacebookPage_200_response:
       example:
         adsAccountId: adsAccountId
+        accounts:
+        - "{}"
+        - "{}"
+        failed:
+        - code: code
+          id: id
+          message: message
+        - code: code
+          id: id
+          message: message
         message: message
         redirect_url: redirect_url
         account:
@@ -89704,6 +89753,19 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/selectFacebookPage_200_response_account"
+        accounts:
+          description: "pageIds only. The connected accounts, same shape as `account`.\
+            \ The redirect_url then carries `accountIds` (comma-separated) and `accountId`\
+            \ of the first."
+          items:
+            type: object
+          type: array
+        failed:
+          description: pageIds only. The Pages that could not be connected while the
+            others were.
+          items:
+            $ref: "#/components/schemas/selectFacebookPage_200_response_failed_inner"
+          type: array
     listInstagramPages_200_response_pages_inner_instagram_business_account:
       description: The Instagram professional account linked to this Page
       example:
@@ -89767,8 +89829,21 @@ components:
           description: Profile ID from your connection flow
           type: string
         pageId:
-          description: "The Facebook Page ID selected by the user, from GET /v1/connect/instagram/select-account"
+          description: "The Facebook Page ID selected by the user, from GET /v1/connect/instagram/select-account.\
+            \ Send this or pageIds, not both."
           type: string
+        pageIds:
+          description: "Several Page IDs whose linked Instagram accounts to connect\
+            \ from one sign-in, each as its own account. With two or more distinct\
+            \ IDs the response lists `accounts` and `failed` instead of `account`,\
+            \ and the request is refused with 400 while a profile holds one Instagram\
+            \ account and on a reconnect or an ads connect. A single distinct ID behaves\
+            \ exactly like pageId."
+          items:
+            type: string
+          maxItems: 25
+          minItems: 1
+          type: array
         tempToken:
           description: Long-lived Facebook user access token from the OAuth callback
             redirect
@@ -89778,7 +89853,6 @@ components:
           format: uri
           type: string
       required:
-      - pageId
       - profileId
       - tempToken
     selectInstagramAccount_200_response_account:
@@ -89814,6 +89888,16 @@ components:
     selectInstagramAccount_200_response:
       example:
         adsAccountId: adsAccountId
+        accounts:
+        - "{}"
+        - "{}"
+        failed:
+        - code: code
+          id: id
+          message: message
+        - code: code
+          id: id
+          message: message
         message: message
         redirect_url: redirect_url
         account:
@@ -89839,6 +89923,19 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/selectInstagramAccount_200_response_account"
+        accounts:
+          description: "pageIds only. The connected accounts, same shape as `account`.\
+            \ The redirect_url then carries `accountIds` (comma-separated) and `accountId`\
+            \ of the first."
+          items:
+            type: object
+          type: array
+        failed:
+          description: pageIds only. The Pages whose Instagram account could not be
+            connected while the others were.
+          items:
+            $ref: "#/components/schemas/selectFacebookPage_200_response_failed_inner"
+          type: array
     listGoogleBusinessLocations_200_response_locations_inner:
       example:
         accountId: accountId

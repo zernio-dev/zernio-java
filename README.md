@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.190.0
+- API version: 1.191.0
 
-- Build date: 2026-10-01T11:01:21.507048628Z[Etc/UTC]
+- Build date: 2026-10-01T11:15:39.784602433Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.190.0</version>
+  <version>1.191.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.190.0"
+compile "dev.zernio:zernio-sdk:1.191.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.190.0.jar`
+- `target/zernio-sdk-1.191.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3908,6 +3908,7 @@ Class | Method | HTTP request | Description
  - [SearchTweets200ResponseTweetsInnerAuthor](docs/SearchTweets200ResponseTweetsInnerAuthor.md)
  - [SelectFacebookPage200Response](docs/SelectFacebookPage200Response.md)
  - [SelectFacebookPage200ResponseAccount](docs/SelectFacebookPage200ResponseAccount.md)
+ - [SelectFacebookPage200ResponseFailedInner](docs/SelectFacebookPage200ResponseFailedInner.md)
  - [SelectFacebookPageRequest](docs/SelectFacebookPageRequest.md)
  - [SelectFacebookPageRequestOneOf](docs/SelectFacebookPageRequestOneOf.md)
  - [SelectFacebookPageRequestOneOf1](docs/SelectFacebookPageRequestOneOf1.md)

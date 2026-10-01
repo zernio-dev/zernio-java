@@ -1962,6 +1962,7 @@ docs/SearchTweets200ResponseTweetsInner.md
 docs/SearchTweets200ResponseTweetsInnerAuthor.md
 docs/SelectFacebookPage200Response.md
 docs/SelectFacebookPage200ResponseAccount.md
+docs/SelectFacebookPage200ResponseFailedInner.md
 docs/SelectFacebookPageRequest.md
 docs/SelectFacebookPageRequestOneOf.md
 docs/SelectFacebookPageRequestOneOf1.md
@@ -4687,6 +4688,7 @@ src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInner.java
 src/main/java/dev/zernio/model/SearchTweets200ResponseTweetsInnerAuthor.java
 src/main/java/dev/zernio/model/SelectFacebookPage200Response.java
 src/main/java/dev/zernio/model/SelectFacebookPage200ResponseAccount.java
+src/main/java/dev/zernio/model/SelectFacebookPage200ResponseFailedInner.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequest.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOf.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOf1.java
@@ -5395,3 +5397,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SelectFacebookPage200ResponseFailedInnerTest.java
