@@ -86,6 +86,7 @@ Individual webhook configuration for receiving real-time notifications
 | PHONE_NUMBER_STOCK_AVAILABLE | &quot;phone_number.stock_available&quot; |
 | VERIFICATION_APPROVED | &quot;verification.approved&quot; |
 | VERIFICATION_FAILED | &quot;verification.failed&quot; |
+| API_CHANGELOG_PUBLISHED | &quot;api.changelog.published&quot; |
 | SMS_REGISTRATION_ACTION_REQUIRED | &quot;sms.registration.action_required&quot; |
 | SMS_REGISTRATION_STATUS_UPDATED | &quot;sms.registration.status_updated&quot; |
 | BRANDED_CALLING_IDENTITY_STATUS_UPDATED | &quot;branded_calling.identity.status_updated&quot; |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.192.0
+  version: 1.193.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -383,16 +383,19 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
-    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* to contacts, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
 
     Profile and account filters. A subscription can also carry `profileIds`, an allowlist of profiles, and `accountIds`, an allowlist of connected accounts with the same semantics keyed on the account; each non-empty list narrows delivery and a subscription with both must be satisfied on both. A scoped subscription is only sent events it can attribute to one of those profiles: the profile of the connected account behind the event, or for an aggregate `post.*` event the profile of every account the post targets (a post spanning two scoped endpoints' profiles reaches both). So an integrator can route the profile holding test accounts to a staging endpoint while a second subscription, scoped to the production profiles, keeps production traffic. Events that belong to no profile (`verification.*`, `phone_number.*`, and a legacy post whose accounts were deleted) reach only unscoped subscriptions. The filter runs when an event is emitted; redelivery replays a delivery already made to that endpoint and test fires ignore it. Absent or empty means every profile (or every account).
   name: Webhooks
 - description: |
     Incoming webhook deliveries sent by Zernio to your configured endpoint URL.
   name: Webhook Events
+- description: |
+    The API changelog (https://docs.zernio.com/changelog) as data: the entries the `api.changelog.published` webhook announces, newest first, for agents that automate against API changes and need to back-fill what they missed.
+  name: Changelog
 - description: |
     Publishing logs for transparency and debugging. Each log includes the platform API endpoint, HTTP status code, request/response bodies, duration, and retry attempts. Logs are automatically deleted after 7 days.
   name: Logs
@@ -8349,7 +8352,7 @@ paths:
       summary: List posts published on the platform
       tags:
       - Accounts
-      x-resource-group: accounts
+      x-resource-group: publishing
       x-platforms:
       - facebook
       - instagram
@@ -8444,6 +8447,7 @@ paths:
       summary: Check whether an Instagram user follows the account
       tags:
       - Accounts
+      x-resource-group: accounts
       x-platforms:
       - instagram
       x-accepts:
@@ -9863,9 +9867,9 @@ paths:
       summary: Complete Meta business login
       tags:
       - Connect
+      x-resource-group: public
       x-platforms:
       - meta
-      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/connect/shopify:
@@ -10389,6 +10393,7 @@ paths:
       summary: List Pages with a linked Instagram account
       tags:
       - Connect
+      x-resource-group: accounts
       x-accepts:
       - application/json
     post:
@@ -10449,6 +10454,7 @@ paths:
       summary: Select the Page whose Instagram account to connect
       tags:
       - Connect
+      x-resource-group: accounts
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -21421,6 +21427,7 @@ paths:
       summary: Unlike post
       tags:
       - Comments
+      x-resource-group: messages
       x-accepts:
       - application/json
     post:
@@ -21500,6 +21507,7 @@ paths:
       summary: Like post
       tags:
       - Comments
+      x-resource-group: messages
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27012,7 +27020,7 @@ paths:
       summary: Unlink a catalog from a WhatsApp number
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-accepts:
       - application/json
     get:
@@ -27055,7 +27063,7 @@ paths:
       summary: List the catalogs linked to a WhatsApp number
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-accepts:
       - application/json
     post:
@@ -27090,7 +27098,7 @@ paths:
       summary: Link a catalog to a WhatsApp number
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27129,7 +27137,7 @@ paths:
       summary: Get a number's commerce settings
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-accepts:
       - application/json
     put:
@@ -27160,7 +27168,7 @@ paths:
       summary: Update a number's commerce settings
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -27910,7 +27918,7 @@ paths:
       summary: List account notifications
       tags:
       - WhatsApp
-      x-resource-group: accounts
+      x-resource-group: messages
       x-accepts:
       - application/json
   /v1/whatsapp/dataset:
@@ -34874,9 +34882,9 @@ paths:
       summary: List Google Ads recommendations
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-accepts:
       - application/json
   /v1/ads/recommendations/apply:
@@ -34930,9 +34938,9 @@ paths:
       summary: Apply Google Ads recommendations
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -34973,9 +34981,9 @@ paths:
       summary: Dismiss Google Ads recommendations
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -45008,9 +45016,9 @@ paths:
       summary: List Performance Max asset groups
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-accepts:
       - application/json
     post:
@@ -45077,9 +45085,9 @@ paths:
       summary: Create a Performance Max asset group
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -45138,9 +45146,9 @@ paths:
       summary: Remove a Performance Max asset group
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-accepts:
       - application/json
     get:
@@ -45192,9 +45200,9 @@ paths:
       summary: Get a Performance Max asset group
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-accepts:
       - application/json
     patch:
@@ -45257,9 +45265,9 @@ paths:
       summary: Update a Performance Max asset group
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -45328,9 +45336,9 @@ paths:
       summary: Link or unlink asset group assets
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -45393,9 +45401,9 @@ paths:
       summary: Replace an asset group's listing-group tree
       tags:
       - Ad Campaigns
+      x-resource-group: ads
       x-platforms:
       - google
-      x-resource-group: ads
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59594,8 +59602,77 @@ paths:
       summary: Download a TikTok video
       tags:
       - Tools
+      x-resource-group: publishing
       x-platforms:
       - tiktok
+      x-accepts:
+      - application/json
+  /v1/changelog:
+    get:
+      description: |
+        The API changelog, newest first. Each entry is what the `api.changelog.published` webhook delivered: the announcement in `message`, and in `changes` the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with `before` set to the previous page's `nextCursor`.
+      operationId: listChangelog
+      parameters:
+      - description: Only entries of this type.
+        explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - new_feature
+          - breaking_change
+          - improvement
+          - deprecation
+          - minor
+          type: string
+        style: form
+      - description: Only entries tagged with this platform or area slug (see `platforms`
+          on the entry). One slug per request.
+        example: whatsapp
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          pattern: "^[a-z0-9-]+$"
+          type: string
+        style: form
+      - description: Only entries published strictly before this instant. Pass the
+          previous page's `nextCursor`.
+        explode: true
+        in: query
+        name: before
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listChangelog_200_response"
+          description: Changelog entries
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      summary: List API changelog entries
+      tags:
+      - Changelog
+      x-resource-group: public
       x-accepts:
       - application/json
 components:
@@ -65102,6 +65179,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - api.changelog.published
             - sms.registration.action_required
             - sms.registration.status_updated
             - branded_calling.identity.status_updated
@@ -68799,6 +68877,193 @@ components:
       - id
       - previous
       - reason
+      - timestamp
+    ApiChangelogOperationRef:
+      example:
+        path: /v1/ads/create
+        method: POST
+        operationId: createAd
+      properties:
+        method:
+          example: POST
+          type: string
+        path:
+          example: /v1/ads/create
+          type: string
+        operationId:
+          example: createAd
+          type: string
+      required:
+      - method
+      - path
+    ApiChangelogEntry:
+      description: "One API changelog entry, as shown on https://docs.zernio.com/changelog."
+      example:
+        specVersion: specVersion
+        publishedAt: 2000-01-23T04:56:07.000+00:00
+        changes:
+          endpoints:
+            removed:
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+            added:
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+            modified:
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+            - path: /v1/ads/create
+              method: POST
+              operationId: createAd
+          schemas:
+            removed:
+            - removed
+            - removed
+            added:
+            - added
+            - added
+            modified:
+            - modified
+            - modified
+        id: id
+        type: new_feature
+        message: message
+        url: https://openapi-generator.tech
+        platforms:
+        - whatsapp
+        - inbox
+      properties:
+        id:
+          description: Stable entry id; the same entry is never published twice.
+          type: string
+        type:
+          enum:
+          - new_feature
+          - breaking_change
+          - improvement
+          - deprecation
+          - minor
+          type: string
+        platforms:
+          description: "Platform and area slugs the entry is about: a platform (`instagram`,\
+            \ `facebook`, `threads`, `tiktok`, `x`, `linkedin`, `youtube`, `pinterest`,\
+            \ `reddit`, `bluesky`, `telegram`, `snapchat`, `whatsapp`, `discord`,\
+            \ `slack`, `google-business`, `imessage`), an ads platform (`meta-ads`,\
+            \ `google-ads`, `tiktok-ads`, `linkedin-ads`, `pinterest-ads`, `x-ads`)\
+            \ or an area (`ads`, `publishing`, `inbox`, `telephony`, `commerce`, `analytics`,\
+            \ `webhooks`, `general`). Filter with the `platform` query parameter."
+          example:
+          - whatsapp
+          - inbox
+          items:
+            type: string
+          type: array
+        message:
+          description: "The announcement, in Markdown."
+          type: string
+        publishedAt:
+          format: date-time
+          type: string
+        specVersion:
+          description: "The `info.version` of the OpenAPI spec the entry describes,\
+            \ when known."
+          nullable: true
+          type: string
+        url:
+          description: The entry on the docs changelog.
+          format: uri
+          type: string
+        changes:
+          $ref: "#/components/schemas/ApiChangelogEntry_changes"
+      required:
+      - changes
+      - id
+      - message
+      - platforms
+      - publishedAt
+      - specVersion
+      - type
+      - url
+    WebhookPayloadApiChangelogPublished:
+      example:
+        entry:
+          specVersion: specVersion
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          changes:
+            endpoints:
+              removed:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              added:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              modified:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+            schemas:
+              removed:
+              - removed
+              - removed
+              added:
+              - added
+              - added
+              modified:
+              - modified
+              - modified
+          id: id
+          type: new_feature
+          message: message
+          url: https://openapi-generator.tech
+          platforms:
+          - whatsapp
+          - inbox
+        id: id
+        event: api.changelog.published
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
+            \ It identifies the event only, never an account or other resource."
+          type: string
+        event:
+          enum:
+          - api.changelog.published
+          type: string
+        entry:
+          $ref: "#/components/schemas/ApiChangelogEntry"
+        timestamp:
+          description: "UTC time at which Zernio generated this event (set once when\
+            \ the event payload is built, before delivery is queued). Retries and\
+            \ redeliveries keep the original value, so it reflects the event, not\
+            \ the delivery attempt."
+          format: date-time
+          type: string
+      required:
+      - entry
+      - event
+      - id
       - timestamp
     WebhookPayloadTest:
       description: Webhook payload for test deliveries
@@ -97306,6 +97571,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - api.changelog.published
             - sms.registration.action_required
             - sms.registration.status_updated
             - branded_calling.identity.status_updated
@@ -97477,6 +97743,7 @@ components:
             - phone_number.stock_available
             - verification.approved
             - verification.failed
+            - api.changelog.published
             - sms.registration.action_required
             - sms.registration.status_updated
             - branded_calling.identity.status_updated
@@ -140162,6 +140429,108 @@ components:
       required:
       - success
       - title
+    listChangelog_200_response:
+      example:
+        nextCursor: 2000-01-23T04:56:07.000+00:00
+        entries:
+        - specVersion: specVersion
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          changes:
+            endpoints:
+              removed:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              added:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              modified:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+            schemas:
+              removed:
+              - removed
+              - removed
+              added:
+              - added
+              - added
+              modified:
+              - modified
+              - modified
+          id: id
+          type: new_feature
+          message: message
+          url: https://openapi-generator.tech
+          platforms:
+          - whatsapp
+          - inbox
+        - specVersion: specVersion
+          publishedAt: 2000-01-23T04:56:07.000+00:00
+          changes:
+            endpoints:
+              removed:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              added:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              modified:
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+              - path: /v1/ads/create
+                method: POST
+                operationId: createAd
+            schemas:
+              removed:
+              - removed
+              - removed
+              added:
+              - added
+              - added
+              modified:
+              - modified
+              - modified
+          id: id
+          type: new_feature
+          message: message
+          url: https://openapi-generator.tech
+          platforms:
+          - whatsapp
+          - inbox
+      properties:
+        entries:
+          items:
+            $ref: "#/components/schemas/ApiChangelogEntry"
+          type: array
+        nextCursor:
+          description: "`before` value for the next page, or null when this page was\
+            \ not full."
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - entries
+      - nextCursor
     onWhatsAppAutomaticEvent_request_customData:
       description: Purchase events may carry the detected amount.
       properties:
@@ -145882,6 +146251,119 @@ components:
       - severity
       - status
       - type
+    ApiChangelogEntry_changes_endpoints:
+      example:
+        removed:
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+        added:
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+        modified:
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+        - path: /v1/ads/create
+          method: POST
+          operationId: createAd
+      properties:
+        added:
+          items:
+            $ref: "#/components/schemas/ApiChangelogOperationRef"
+          type: array
+        removed:
+          items:
+            $ref: "#/components/schemas/ApiChangelogOperationRef"
+          type: array
+        modified:
+          items:
+            $ref: "#/components/schemas/ApiChangelogOperationRef"
+          type: array
+      required:
+      - added
+      - modified
+      - removed
+    ApiChangelogEntry_changes_schemas:
+      example:
+        removed:
+        - removed
+        - removed
+        added:
+        - added
+        - added
+        modified:
+        - modified
+        - modified
+      properties:
+        added:
+          description: Component schema names.
+          items:
+            type: string
+          type: array
+        removed:
+          items:
+            type: string
+          type: array
+        modified:
+          items:
+            type: string
+          type: array
+      required:
+      - added
+      - modified
+      - removed
+    ApiChangelogEntry_changes:
+      description: Deterministic diff of the OpenAPI spec behind the entry. Empty
+        lists when nothing of that kind changed.
+      example:
+        endpoints:
+          removed:
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+          added:
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+          modified:
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+          - path: /v1/ads/create
+            method: POST
+            operationId: createAd
+        schemas:
+          removed:
+          - removed
+          - removed
+          added:
+          - added
+          - added
+          modified:
+          - modified
+          - modified
+      properties:
+        endpoints:
+          $ref: "#/components/schemas/ApiChangelogEntry_changes_endpoints"
+        schemas:
+          $ref: "#/components/schemas/ApiChangelogEntry_changes_schemas"
+      required:
+      - endpoints
+      - schemas
     DiscordGuildMember_user:
       example:
         global_name: global_name
@@ -150732,6 +151214,7 @@ x-documentation:
     - `branded_calling.identity.action_required` - A caller identity waits on you: answer a change request, enter the authorizer's code, fix a carrier rejection, respond to an infringement claim or renew an expired verification
     - `branded_calling.number.status_updated` - A number attached to a caller identity changed vetting status (verified = the identity now shows on its calls)
     - `rcs.agent.status_updated` - An RCS agent changed status: changes_requested, brand_vetting, agent_review, testing, launch_review, launching, live, rejected or deactivated
+    - `api.changelog.published` - An entry was published to the API changelog (https://docs.zernio.com/changelog). Carries the entry (`type`, `platforms`, markdown `message`, docs `url`) and the deterministic OpenAPI diff behind it (`changes`: operations and schemas added, removed and modified). Tenant-free: one broadcast reaches every subscription that opted in. Back-fill with GET /v1/changelog.
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.
@@ -150750,7 +151233,7 @@ x-documentation:
     | `ad.status_changed`, `whatsapp.template.*`, `whatsapp.account.*`, `whatsapp.contact.identity_changed` | `account.accountId` |
     | `whatsapp.automatic_event` | top-level `accountId` |
     | `whatsapp.number.*`, `sms.registration.*` | none; `number.id` / `registration.id` are the number and registration ids, `number.profileId` / `registration.profileId` the profile |
-    | `verification.*`, `phone_number.stock_available`, `webhook.test` | none |
+    | `verification.*`, `phone_number.stock_available`, `api.changelog.published`, `webhook.test` | none |
 
     ## Full Documentation
 

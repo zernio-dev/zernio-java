@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.192.0
+- API version: 1.193.0
 
-- Build date: 2026-10-01T11:55:04.179347085Z[Etc/UTC]
+- Build date: 2026-10-01T12:10:09.958550801Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.192.0</version>
+  <version>1.193.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.192.0"
+compile "dev.zernio:zernio-sdk:1.193.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.192.0.jar`
+- `target/zernio-sdk-1.193.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -775,6 +775,8 @@ Class | Method | HTTP request | Description
 *CallsApi* | [**getCallRecordingWithHttpInfo**](docs/CallsApi.md#getCallRecordingWithHttpInfo) | **GET** /v1/calls/{id}/recording | Get a call recording
 *CallsApi* | [**listCalls**](docs/CallsApi.md#listCalls) | **GET** /v1/calls | List all calls (unified history)
 *CallsApi* | [**listCallsWithHttpInfo**](docs/CallsApi.md#listCallsWithHttpInfo) | **GET** /v1/calls | List all calls (unified history)
+*ChangelogApi* | [**listChangelog**](docs/ChangelogApi.md#listChangelog) | **GET** /v1/changelog | List API changelog entries
+*ChangelogApi* | [**listChangelogWithHttpInfo**](docs/ChangelogApi.md#listChangelogWithHttpInfo) | **GET** /v1/changelog | List API changelog entries
 *CommentAutomationsApi* | [**createCommentAutomation**](docs/CommentAutomationsApi.md#createCommentAutomation) | **POST** /v1/comment-automations | Create comment-to-DM automation
 *CommentAutomationsApi* | [**createCommentAutomationWithHttpInfo**](docs/CommentAutomationsApi.md#createCommentAutomationWithHttpInfo) | **POST** /v1/comment-automations | Create comment-to-DM automation
 *CommentAutomationsApi* | [**deleteCommentAutomation**](docs/CommentAutomationsApi.md#deleteCommentAutomation) | **DELETE** /v1/comment-automations/{automationId} | Delete automation
@@ -2106,6 +2108,11 @@ Class | Method | HTTP request | Description
  - [AnalyticsOverviewDataStaleness](docs/AnalyticsOverviewDataStaleness.md)
  - [AnalyticsSinglePostResponse](docs/AnalyticsSinglePostResponse.md)
  - [AnalyticsSinglePostResponseMediaItemsInner](docs/AnalyticsSinglePostResponseMediaItemsInner.md)
+ - [ApiChangelogEntry](docs/ApiChangelogEntry.md)
+ - [ApiChangelogEntryChanges](docs/ApiChangelogEntryChanges.md)
+ - [ApiChangelogEntryChangesEndpoints](docs/ApiChangelogEntryChangesEndpoints.md)
+ - [ApiChangelogEntryChangesSchemas](docs/ApiChangelogEntryChangesSchemas.md)
+ - [ApiChangelogOperationRef](docs/ApiChangelogOperationRef.md)
  - [ApiKey](docs/ApiKey.md)
  - [ApiKeyCreatedBy](docs/ApiKeyCreatedBy.md)
  - [ApiKeyProfileIdsInner](docs/ApiKeyProfileIdsInner.md)
@@ -3400,6 +3407,7 @@ Class | Method | HTTP request | Description
  - [ListCampaignAssets200ResponseStructuredSnippetsInner](docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md)
  - [ListCampaignNegativeKeywords200Response](docs/ListCampaignNegativeKeywords200Response.md)
  - [ListCampaignNegativeKeywords200ResponseKeywordsInner](docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md)
+ - [ListChangelog200Response](docs/ListChangelog200Response.md)
  - [ListCommentAutomationLogs200Response](docs/ListCommentAutomationLogs200Response.md)
  - [ListCommentAutomationLogs200ResponseMisses](docs/ListCommentAutomationLogs200ResponseMisses.md)
  - [ListCommentAutomationLogs200ResponseMissesSamplesInner](docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md)
@@ -4458,6 +4466,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAnalyticsSynced](docs/WebhookPayloadAnalyticsSynced.md)
  - [WebhookPayloadAnalyticsSyncedAccount](docs/WebhookPayloadAnalyticsSyncedAccount.md)
  - [WebhookPayloadAnalyticsSyncedSync](docs/WebhookPayloadAnalyticsSyncedSync.md)
+ - [WebhookPayloadApiChangelogPublished](docs/WebhookPayloadApiChangelogPublished.md)
  - [WebhookPayloadCallEnded](docs/WebhookPayloadCallEnded.md)
  - [WebhookPayloadCallEndedCall](docs/WebhookPayloadCallEndedCall.md)
  - [WebhookPayloadCallEndedCallBilling](docs/WebhookPayloadCallEndedCallBilling.md)

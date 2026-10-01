@@ -115,6 +115,11 @@ docs/AnalyticsOverview.md
 docs/AnalyticsOverviewDataStaleness.md
 docs/AnalyticsSinglePostResponse.md
 docs/AnalyticsSinglePostResponseMediaItemsInner.md
+docs/ApiChangelogEntry.md
+docs/ApiChangelogEntryChanges.md
+docs/ApiChangelogEntryChangesEndpoints.md
+docs/ApiChangelogEntryChangesSchemas.md
+docs/ApiChangelogOperationRef.md
 docs/ApiKey.md
 docs/ApiKeyCreatedBy.md
 docs/ApiKeyProfileIdsInner.md
@@ -274,6 +279,7 @@ docs/ChangeCommerceProductStateRequest.md
 docs/ChangeCommerceProductTags200Response.md
 docs/ChangeCommerceProductTags200ResponseFailedInner.md
 docs/ChangeCommerceProductTagsRequest.md
+docs/ChangelogApi.md
 docs/ChannelPicker.md
 docs/ChannelPickerChannelsInner.md
 docs/ChannelPickerTeam.md
@@ -1439,6 +1445,7 @@ docs/ListCampaignAssets200ResponseSitelinksInner.md
 docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md
 docs/ListCampaignNegativeKeywords200Response.md
 docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
+docs/ListChangelog200Response.md
 docs/ListCommentAutomationLogs200Response.md
 docs/ListCommentAutomationLogs200ResponseMisses.md
 docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md
@@ -2524,6 +2531,7 @@ docs/WebhookPayloadAdStatusChangedStatus.md
 docs/WebhookPayloadAnalyticsSynced.md
 docs/WebhookPayloadAnalyticsSyncedAccount.md
 docs/WebhookPayloadAnalyticsSyncedSync.md
+docs/WebhookPayloadApiChangelogPublished.md
 docs/WebhookPayloadCallEnded.md
 docs/WebhookPayloadCallEndedCall.md
 docs/WebhookPayloadCallEndedCallBilling.md
@@ -2729,6 +2737,7 @@ src/main/java/dev/zernio/api/BrandedCallingApi.java
 src/main/java/dev/zernio/api/BroadcastsApi.java
 src/main/java/dev/zernio/api/BusinessAgentApi.java
 src/main/java/dev/zernio/api/CallsApi.java
+src/main/java/dev/zernio/api/ChangelogApi.java
 src/main/java/dev/zernio/api/CommentAutomationsApi.java
 src/main/java/dev/zernio/api/CommentsApi.java
 src/main/java/dev/zernio/api/CommerceApi.java
@@ -2888,6 +2897,11 @@ src/main/java/dev/zernio/model/AnalyticsOverview.java
 src/main/java/dev/zernio/model/AnalyticsOverviewDataStaleness.java
 src/main/java/dev/zernio/model/AnalyticsSinglePostResponse.java
 src/main/java/dev/zernio/model/AnalyticsSinglePostResponseMediaItemsInner.java
+src/main/java/dev/zernio/model/ApiChangelogEntry.java
+src/main/java/dev/zernio/model/ApiChangelogEntryChanges.java
+src/main/java/dev/zernio/model/ApiChangelogEntryChangesEndpoints.java
+src/main/java/dev/zernio/model/ApiChangelogEntryChangesSchemas.java
+src/main/java/dev/zernio/model/ApiChangelogOperationRef.java
 src/main/java/dev/zernio/model/ApiKey.java
 src/main/java/dev/zernio/model/ApiKeyCreatedBy.java
 src/main/java/dev/zernio/model/ApiKeyProfileIdsInner.java
@@ -4182,6 +4196,7 @@ src/main/java/dev/zernio/model/ListCampaignAssets200ResponseSitelinksInner.java
 src/main/java/dev/zernio/model/ListCampaignAssets200ResponseStructuredSnippetsInner.java
 src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200Response.java
 src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseKeywordsInner.java
+src/main/java/dev/zernio/model/ListChangelog200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMisses.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200ResponseMissesSamplesInner.java
@@ -5240,6 +5255,7 @@ src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedStatus.java
 src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSynced.java
 src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAnalyticsSyncedSync.java
+src/main/java/dev/zernio/model/WebhookPayloadApiChangelogPublished.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEnded.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEndedCall.java
 src/main/java/dev/zernio/model/WebhookPayloadCallEndedCallBilling.java
@@ -5401,3 +5417,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/ChangelogApiTest.java
+src/test/java/dev/zernio/model/ApiChangelogEntryChangesEndpointsTest.java
+src/test/java/dev/zernio/model/ApiChangelogEntryChangesSchemasTest.java
+src/test/java/dev/zernio/model/ApiChangelogEntryChangesTest.java
+src/test/java/dev/zernio/model/ApiChangelogEntryTest.java
+src/test/java/dev/zernio/model/ApiChangelogOperationRefTest.java
+src/test/java/dev/zernio/model/ListChangelog200ResponseTest.java
+src/test/java/dev/zernio/model/WebhookPayloadApiChangelogPublishedTest.java
