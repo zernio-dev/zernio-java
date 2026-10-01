@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.181.0
+  version: 1.182.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -127679,7 +127679,7 @@ components:
       example:
         displayString: displayString
         id: id
-        type: 5
+        type: 7
       properties:
         id:
           description: Meta's ID for the funding instrument. Matches `fundingSource`.
@@ -127701,11 +127701,14 @@ components:
         selectable: true
         businessId: businessId
         businessName: businessName
-        minimumDailyBudget: 1.4658129805029452
+        minimumDailyBudget: 2.3021358869347655
         billingStatus: ok
         unusableReason: unusableReason
         accountStatus: ""
-        timezoneOffsetHoursUtc: 6.027456183070403
+        timezoneOffsetHoursUtc: 5.637376656633329
+        balance: 6.027456183070403
+        grantBalance: 5.962133916683182
+        cashBalance: 1.4658129805029452
         name: name
         timezoneName: timezoneName
         currency: currency
@@ -127714,7 +127717,7 @@ components:
         fundingSourceDetails:
           displayString: displayString
           id: id
-          type: 5
+          type: 7
         status: status
       properties:
         id:
@@ -127753,6 +127756,24 @@ components:
             \ Absent when Meta reports no reason, or when the connected token cannot\
             \ read the field."
           type: integer
+        balance:
+          description: "TikTok only. Total balance the advertiser can spend (cash\
+            \ plus grant), in whole units of `currency`. Read from the Business Center\
+            \ balance when the connection has a finance role there, which is the only\
+            \ TikTok source that counts cash held in a shared payment portfolio; otherwise\
+            \ TikTok's advertiser-level balance, which can read 0 for a cash-funded\
+            \ advertiser."
+          type: number
+        cashBalance:
+          description: "TikTok only. Cash part of `balance`, in whole units of `currency`.\
+            \ Absent when the connection has no finance role in the advertiser's Business\
+            \ Center."
+          type: number
+        grantBalance:
+          description: "TikTok only. Grant (ad credit) part of `balance`, in whole\
+            \ units of `currency`. Absent when the connection has no finance role\
+            \ in the advertiser's Business Center."
+          type: number
         timezoneName:
           description: IANA timezone of the ad account (Meta only). Drives daily-budget
             reset and Insights day boundaries.
@@ -127811,11 +127832,14 @@ components:
           selectable: true
           businessId: businessId
           businessName: businessName
-          minimumDailyBudget: 1.4658129805029452
+          minimumDailyBudget: 2.3021358869347655
           billingStatus: ok
           unusableReason: unusableReason
           accountStatus: ""
-          timezoneOffsetHoursUtc: 6.027456183070403
+          timezoneOffsetHoursUtc: 5.637376656633329
+          balance: 6.027456183070403
+          grantBalance: 5.962133916683182
+          cashBalance: 1.4658129805029452
           name: name
           timezoneName: timezoneName
           currency: currency
@@ -127824,18 +127848,21 @@ components:
           fundingSourceDetails:
             displayString: displayString
             id: id
-            type: 5
+            type: 7
           status: status
         - approvalStatus: approvalStatus
           disableReason: 0
           selectable: true
           businessId: businessId
           businessName: businessName
-          minimumDailyBudget: 1.4658129805029452
+          minimumDailyBudget: 2.3021358869347655
           billingStatus: ok
           unusableReason: unusableReason
           accountStatus: ""
-          timezoneOffsetHoursUtc: 6.027456183070403
+          timezoneOffsetHoursUtc: 5.637376656633329
+          balance: 6.027456183070403
+          grantBalance: 5.962133916683182
+          cashBalance: 1.4658129805029452
           name: name
           timezoneName: timezoneName
           currency: currency
@@ -127844,7 +127871,7 @@ components:
           fundingSourceDetails:
             displayString: displayString
             id: id
-            type: 5
+            type: 7
           status: status
         cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
