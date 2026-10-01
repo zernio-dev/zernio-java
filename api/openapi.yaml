@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.186.0
+  version: 1.187.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -77873,8 +77873,8 @@ components:
           type: string
         languages:
           description: "Language codes restricting the audience by language. Applied\
-            \ on Meta, Google, TikTok, LinkedIn and X; rejected with 400 on Pinterest\
-            \ and OpenAI. A code the platform cannot target returns 400 listing the\
+            \ on Meta, Google, TikTok, LinkedIn, X and Pinterest; rejected with 400\
+            \ on OpenAI. A code the platform cannot target returns 400 listing the\
             \ ones it can. On Meta, ISO 639-1 codes (e.g. ['en']); a bare code targets\
             \ all regional variants (\"en\" = all English), or use a region-qualified\
             \ code (\"en_GB\", \"pt_BR\") for a specific one. Unknown codes are rejected."
