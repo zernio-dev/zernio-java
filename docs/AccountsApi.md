@@ -1597,7 +1597,7 @@ ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Respons
 
 ## listAccounts
 
-> AccountsListResponse listAccounts(profileId, platform, status, includeOverLimit, page, limit)
+> AccountsListResponse listAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1630,8 +1630,10 @@ public class Example {
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
+        String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
+        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit);
+            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -1655,6 +1657,8 @@ public class Example {
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
+| **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
+| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. | [optional] |
 
 ### Return type
 
@@ -1680,7 +1684,7 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit)
+> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1714,8 +1718,10 @@ public class Example {
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
+        String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
+        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit);
+            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1741,6 +1747,8 @@ public class Example {
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
+| **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
+| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. | [optional] |
 
 ### Return type
 
