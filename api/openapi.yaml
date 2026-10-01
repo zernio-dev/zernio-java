@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.183.0
+  version: 1.184.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -77733,8 +77733,9 @@ components:
         resolved via `GET /v1/ads/targeting/search`. A spec is therefore meaningful only
         for the platform it was built against, except the portable fields (`countries`,
         `ageMin`/`ageMax`, `gender`, `incomeTier`, `languages`) which carry across
-        platforms. Fields a platform cannot honour are rejected at create time with
-        `INVALID_FIELD_VALUE` naming the offending field (not silently dropped).
+        platforms. Fields a platform cannot honour are rejected on create, boost and
+        targeting update with `INVALID_FIELD_VALUE` naming the offending field (never
+        silently dropped).
       properties:
         userOs:
           description: "Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above\
@@ -77828,11 +77829,11 @@ components:
         excludedLocations:
           $ref: "#/components/schemas/TargetingSpec_excludedLocations"
         ageMin:
-          description: "Minimum age. Applied on Meta, TikTok and Pinterest; ignored\
-            \ on Google, LinkedIn and X. Each platform clamps to its own range: Meta\
-            \ and Pinterest effectively cap at 65 (65 = 65+), TikTok maps up to 100.\
-            \ Pinterest has no under-18 bucket, so an ageMin below 18 starts at 18\
-            \ there."
+          description: "Minimum age. Applied on Meta, TikTok and Pinterest; rejected\
+            \ with 400 on Google, LinkedIn, X and OpenAI. Each platform clamps to\
+            \ its own range: Meta and Pinterest effectively cap at 65 (65 = 65+),\
+            \ TikTok maps up to 100. Pinterest has no under-18 bucket, so an ageMin\
+            \ below 18 starts at 18 there."
           maximum: 100
           minimum: 13
           type: integer
@@ -77844,7 +77845,8 @@ components:
           type: integer
         gender:
           description: "Restrict by gender. 'all' (default) targets everyone. Applied\
-            \ on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X."
+            \ on Meta, TikTok and Pinterest; rejected with 400 on Google, LinkedIn,\
+            \ X and OpenAI."
           enum:
           - all
           - male
@@ -77864,16 +77866,18 @@ components:
           - top_25_50
           type: string
         languages:
-          description: "Language codes restricting the audience by language. On Meta,\
-            \ ISO 639-1 codes (e.g. ['en']); a bare code targets all regional variants\
-            \ (\"en\" = all English), or use a region-qualified code (\"en_GB\", \"\
-            pt_BR\") for a specific one. Unknown codes are rejected."
+          description: "Language codes restricting the audience by language. Applied\
+            \ on Meta and Google; rejected with 400 on TikTok, LinkedIn, Pinterest,\
+            \ X and OpenAI. On Meta, ISO 639-1 codes (e.g. ['en']); a bare code targets\
+            \ all regional variants (\"en\" = all English), or use a region-qualified\
+            \ code (\"en_GB\", \"pt_BR\") for a specific one. Unknown codes are rejected."
           items:
             type: string
           type: array
         interests:
           description: Interest entities from /v1/ads/targeting/search?dimension=interest.
-            Each carries the platform's opaque id.
+            Each carries the platform's opaque id. Rejected with 400 on Google (use
+            Demand Gen audience userInterests there) and OpenAI.
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
