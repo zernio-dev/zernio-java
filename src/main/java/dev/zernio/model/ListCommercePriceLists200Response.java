@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListCommercePriceLists200Response.JSON_PROPERTY_PRICE_LISTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-01T11:26:10.714541990Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-01T11:55:04.179347085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommercePriceLists200Response {
   public static final String JSON_PROPERTY_PRICE_LISTS = "priceLists";
   @javax.annotation.Nullable

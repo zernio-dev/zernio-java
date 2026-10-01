@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ConversionEventUserClickIds.JSON_PROPERTY_LI_FAT_ID,
   ConversionEventUserClickIds.JSON_PROPERTY_EPIK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-01T11:26:10.714541990Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-01T11:55:04.179347085Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConversionEventUserClickIds {
   public static final String JSON_PROPERTY_FBC = "fbc";
   @javax.annotation.Nullable
