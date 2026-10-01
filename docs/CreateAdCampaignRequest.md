@@ -42,6 +42,7 @@
 | APP_PROMOTION | &quot;app_promotion&quot; |
 | CATALOG_SALES | &quot;catalog_sales&quot; |
 | PAGE_LIKES | &quot;page_likes&quot; |
+| PAGE_VISITS | &quot;page_visits&quot; |
 
 
 
