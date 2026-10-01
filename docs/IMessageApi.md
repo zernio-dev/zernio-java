@@ -1935,7 +1935,7 @@ public class Example {
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | This profile already has a live iMessage sender (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
+| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
 | **502** | The provider rejected the order; nothing was charged |  -  |
 
@@ -2016,7 +2016,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | This profile already has a live iMessage sender (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
+| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
 | **502** | The provider rejected the order; nothing was charged |  -  |
 
@@ -2027,7 +2027,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 
 Register an iMessage sender
 
-Registers a provider-provisioned iMessage sender (a phone number or an email handle) that YOU already own on a profile, creating an &#x60;imessage&#x60; account that sends and receives through the inbox conversation endpoints. To have Zernio order a new sender for you, use POST /v1/imessage/senders/order instead. Registration attaches the monthly sender fee (billed while active) and requires a payment method (402 without one). One sender per profile: re-registering the SAME handle refreshes it; a different handle returns 409 until the existing sender is canceled. 
+Registers a provider-provisioned iMessage sender (a phone number or an email handle) that YOU already own on a profile, creating an &#x60;imessage&#x60; account that sends and receives through the inbox conversation endpoints. To have Zernio order a new sender for you, use POST /v1/imessage/senders/order instead. Registration attaches the monthly sender fee (billed while active) and requires a payment method (402 without one). Re-registering the SAME handle refreshes its account; a different handle is added as another sender, and a profile can hold several. 
 
 ### Example
 
@@ -2102,7 +2102,7 @@ public class Example {
 
 Register an iMessage sender
 
-Registers a provider-provisioned iMessage sender (a phone number or an email handle) that YOU already own on a profile, creating an &#x60;imessage&#x60; account that sends and receives through the inbox conversation endpoints. To have Zernio order a new sender for you, use POST /v1/imessage/senders/order instead. Registration attaches the monthly sender fee (billed while active) and requires a payment method (402 without one). One sender per profile: re-registering the SAME handle refreshes it; a different handle returns 409 until the existing sender is canceled. 
+Registers a provider-provisioned iMessage sender (a phone number or an email handle) that YOU already own on a profile, creating an &#x60;imessage&#x60; account that sends and receives through the inbox conversation endpoints. To have Zernio order a new sender for you, use POST /v1/imessage/senders/order instead. Registration attaches the monthly sender fee (billed while active) and requires a payment method (402 without one). Re-registering the SAME handle refreshes its account; a different handle is added as another sender, and a profile can hold several. 
 
 ### Example
 

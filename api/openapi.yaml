@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.195.0
+  version: 1.196.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9048,12 +9048,12 @@ paths:
         Initiate an OAuth connection flow. Returns an authUrl to redirect the user to.
         Standard flow: Zernio hosts the selection UI, then redirects to your redirect_url. Headless mode (headless=true): user is redirected to your redirect_url with OAuth data for custom UI. Use the platform-specific selection endpoints to complete.
 
-        TikTok: every connection now goes through the TikTok for Business app. One TikTok account per
-        profile, so connecting on a profile that already holds one replaces it. Reconnecting the SAME
-        account keeps it and all of its history; authorizing a DIFFERENT TikTok account takes the slot
-        over and permanently deletes the previous account's analytics, inbox and DM history. The two
-        are told apart by the `@handle` stored at the last connect, so an account whose handle has
-        been renamed on TikTok since then reads as a different account. An authorization that leaves
+        A profile can hold several accounts of the same platform: connecting a different account adds
+        it as a new account, and reconnecting the SAME account keeps it and all of its history. Ads
+        connections stay one per profile. On a legacy plan limited to N profiles, a new account is
+        refused with 403 `platform_account_limit` once N accounts of its platform are connected.
+
+        TikTok: every connection now goes through the TikTok for Business app. An authorization that leaves
         out a permission the connected account needs changes nothing at all and comes back as
         `missing_tiktok_permissions`; connect again and accept every permission on TikTok's screen.
       operationId: getConnectUrl
@@ -9100,11 +9100,10 @@ paths:
           \ endpoints (select-page, select-organization, select-board, select-location,\
           \ Instagram and Snapchat selection) refuse, with `reconnect_account_mismatch`,\
           \ a login that would write to a different account of the platform on this\
-          \ profile instead of this one. While a profile holds one account per platform\
-          \ the login still replaces this account as before. In headless mode the\
-          \ marker travels in the redirect_url we hand you, so pass that URL back\
-          \ unchanged to the selection endpoint. On X it counts toward the OAuth state\
-          \ limit described under redirect_url."
+          \ profile instead of this one. In headless mode the marker travels in the\
+          \ redirect_url we hand you, so pass that URL back unchanged to the selection\
+          \ endpoint. On X it counts toward the OAuth state limit described under\
+          \ redirect_url."
         explode: true
         in: query
         name: reconnectAccountId
@@ -10421,7 +10420,7 @@ paths:
       description: |
         Saves the selected Page as an Instagram account connected via Facebook Login. The Page access token becomes the account's access token, so every Instagram call for it runs against the Facebook Graph host.
 
-        One Instagram account per profile: if the profile already has an Instagram account, this replaces it, and picking a different Instagram identity purges the previous account's conversations, external posts and stats.
+        A different Instagram account is added next to any already connected on the profile; picking one already connected refreshes it.
       operationId: selectInstagramAccount
       requestBody:
         content:
@@ -13399,11 +13398,8 @@ paths:
                 $ref: "#/components/schemas/ErrorResponse"
           description: Selected phone number not found in the specified WABA
         "409":
-          description: "Conflict with an existing connection. One of: the target profile\
-            \ already has a WhatsApp number connected (code ONE_WHATSAPP_PER_PROFILE,\
-            \ each profile holds exactly one WhatsApp number, so connect this number\
-            \ to a different or new profile); the phone number is a Zernio-provisioned\
-            \ number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE,\
+          description: "Conflict with an existing connection. One of: the phone number\
+            \ is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE,\
             \ connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile);\
             \ or the number is already actively connected on another profile or team\
             \ (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first).\
@@ -15696,7 +15692,7 @@ paths:
   /v1/accounts/{accountId}/gmb-locations/assign:
     post:
       description: |
-        Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client's profile via this endpoint. The path `accountId` is a SOURCE connected Google Business Profile account (the token holder); the body `profileId` is the TARGET profile. Returns 409 if the target profile already has a Google Business Profile connection (switch its location with PUT gmb-locations instead).
+        Connect a Google Business Profile location onto a DIFFERENT profile by reusing the OAuth grant from an already-connected Google Business Profile account, with no browser and no re-authorization. Built for agencies whose single Google account has manager access to many client locations and who run one profile per client: connect one location the normal way (browser OAuth), then bulk-assign the rest onto each client's profile via this endpoint. The path `accountId` is a SOURCE connected Google Business Profile account (the token holder); the body `profileId` is the TARGET profile, which may already hold other locations; assigning a location it already holds refreshes that account.
       operationId: assignGoogleBusinessLocation
       parameters:
       - description: A source connected Google Business Profile account whose OAuth
@@ -15746,8 +15742,7 @@ paths:
         "404":
           description: Source Google Business Profile account not found
         "409":
-          description: Target profile already has a Google Business Profile connection
-            (use PUT gmb-locations to switch its location)
+          description: Conflict with an existing connection
       summary: Assign Google Business Profile location to another profile
       tags:
       - Connect
@@ -24202,9 +24197,9 @@ paths:
         conversation endpoints. To have Zernio order a new sender for you, use
         POST /v1/imessage/senders/order instead. Registration attaches the
         monthly sender fee (billed while active) and requires a payment method
-        (402 without one). One sender per profile: re-registering the SAME
-        handle refreshes it; a different handle returns 409 until the existing
-        sender is canceled.
+        (402 without one). Re-registering the SAME handle refreshes its account;
+        a different handle is added as another sender, and a profile can hold
+        several.
       operationId: registerImessageSender
       requestBody:
         content:
@@ -24309,8 +24304,8 @@ paths:
         "404":
           description: Profile not found or access denied
         "409":
-          description: "This profile already has a live iMessage sender (code: imessage_sender_conflict),\
-            \ or billing setup is incomplete and support must finish it (code: billing_setup_incomplete)"
+          description: "Billing setup is incomplete and support must finish it (code:\
+            \ billing_setup_incomplete)"
         "422":
           description: "Workspace is not on usage-based billing (code: usage_billing_required)"
         "502":
@@ -25102,7 +25097,7 @@ paths:
       description: |
         Requests a new agent for a profile, with a new company (`brand`) or an existing one
         (`brandId`, skips vetting when it is already verified). The request lands in our review:
-        nothing is filed with the carriers or billed until we submit it. One open agent per profile.
+        nothing is filed with the carriers or billed until we submit it. A profile can hold several agents.
         Requires usage-based billing and a card on file. Send an `Idempotency-Key` header to make
         retries safe.
       operationId: createRcsAgent
@@ -25133,8 +25128,8 @@ paths:
         "404":
           description: Profile or brand not found
         "409":
-          description: "The profile already has an open agent, the brand was rejected,\
-            \ or the Idempotency-Key is still in flight"
+          description: "The brand was rejected, or the Idempotency-Key is still in\
+            \ flight"
         "422":
           description: "Usage-based billing is not enabled for the workspace (USAGE_BILLING_REQUIRED),\
             \ or the Idempotency-Key was reused with a different body"
@@ -30024,8 +30019,7 @@ paths:
 
         `id` is the number record id from `GET /v1/phone-numbers`, not an account id.
 
-        A profile holds at most one account per platform, so the destination must be
-        free of every platform this number occupies.
+        The destination profile may already hold other numbers.
       operationId: moveWhatsAppNumberToProfile
       parameters:
       - description: WhatsAppPhoneNumber id.
@@ -30059,8 +30053,8 @@ paths:
         "404":
           description: "Number not found, or the destination profile does not exist."
         "409":
-          description: The destination profile already holds an account on one of
-            the platforms this number occupies.
+          description: "The number cannot move, for example because the same number\
+            \ is already connected on the destination profile."
       security:
       - bearerAuth: []
       summary: Move a number to another profile
@@ -89949,9 +89943,8 @@ components:
           description: "Several Page IDs to connect from one sign-in, each as its\
             \ own account. With two or more distinct IDs the response lists `accounts`\
             \ and `failed` instead of `account`, and the request is refused with 400\
-            \ while a profile holds one Facebook account and on a reconnect or an\
-            \ ads connect, which pick exactly one Page. A single distinct ID behaves\
-            \ exactly like pageId."
+            \ on a reconnect or an ads connect, which pick exactly one Page. A single\
+            \ distinct ID behaves exactly like pageId."
           items:
             type: string
           maxItems: 25
@@ -90150,9 +90143,8 @@ components:
           description: "Several Page IDs whose linked Instagram accounts to connect\
             \ from one sign-in, each as its own account. With two or more distinct\
             \ IDs the response lists `accounts` and `failed` instead of `account`,\
-            \ and the request is refused with 400 while a profile holds one Instagram\
-            \ account and on a reconnect or an ads connect. A single distinct ID behaves\
-            \ exactly like pageId."
+            \ and the request is refused with 400 on a reconnect or an ads connect.\
+            \ A single distinct ID behaves exactly like pageId."
           items:
             type: string
           maxItems: 25
@@ -93713,9 +93705,8 @@ components:
           description: "Several accounts to connect from one sign-in (yourself and/or\
             \ organizations), each as its own account. With two or more entries the\
             \ response lists `accounts` and `failed` instead of `account`, and the\
-            \ request is refused with 400 while a profile holds one LinkedIn account\
-            \ and on a reconnect or an ads connect. A single entry behaves exactly\
-            \ like accountType."
+            \ request is refused with 400 on a reconnect or an ads connect. A single\
+            \ entry behaves exactly like accountType."
           items:
             $ref: "#/components/schemas/selectLinkedInOrganization_request_selections_inner"
           maxItems: 25
@@ -108896,7 +108887,7 @@ components:
       properties:
         profileId:
           description: |
-            Preferred profile for the number. One number = one profile, so when the requested profile already holds a number the API assigns the next free profile instead (or creates one) and returns the actual assignment in `profileId` on the response.
+            Profile for the number, which may already hold other numbers. Without it the number goes to the default profile. The response's `profileId` carries the assignment.
           type: string
         country:
           default: US

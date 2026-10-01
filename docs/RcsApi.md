@@ -197,7 +197,7 @@ ApiResponse<[**AddRcsTestDevice201Response**](AddRcsTestDevice201Response.md)>
 
 Request an RCS agent
 
-Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. One open agent per profile. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. A profile can hold several agents. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
 
 ### Example
 
@@ -267,7 +267,7 @@ public class Example {
 | **402** | No payment method on file (payment_method_required). Add a card and retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
-| **409** | The profile already has an open agent, the brand was rejected, or the Idempotency-Key is still in flight |  -  |
+| **409** | The brand was rejected, or the Idempotency-Key is still in flight |  -  |
 | **422** | Usage-based billing is not enabled for the workspace (USAGE_BILLING_REQUIRED), or the Idempotency-Key was reused with a different body |  -  |
 
 ## createRcsAgentWithHttpInfo
@@ -276,7 +276,7 @@ public class Example {
 
 Request an RCS agent
 
-Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. One open agent per profile. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. A profile can hold several agents. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
 
 ### Example
 
@@ -349,7 +349,7 @@ ApiResponse<[**CreateRcsAgent201Response**](CreateRcsAgent201Response.md)>
 | **402** | No payment method on file (payment_method_required). Add a card and retry. |  -  |
 | **403** | Your plan does not include the inbox, which RCS requires. |  -  |
 | **404** | Profile or brand not found |  -  |
-| **409** | The profile already has an open agent, the brand was rejected, or the Idempotency-Key is still in flight |  -  |
+| **409** | The brand was rejected, or the Idempotency-Key is still in flight |  -  |
 | **422** | Usage-based billing is not enabled for the workspace (USAGE_BILLING_REQUIRED), or the Idempotency-Key was reused with a different body |  -  |
 
 
