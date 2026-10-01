@@ -5417,11 +5417,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/ChangelogApiTest.java
-src/test/java/dev/zernio/model/ApiChangelogEntryChangesEndpointsTest.java
-src/test/java/dev/zernio/model/ApiChangelogEntryChangesSchemasTest.java
-src/test/java/dev/zernio/model/ApiChangelogEntryChangesTest.java
-src/test/java/dev/zernio/model/ApiChangelogEntryTest.java
-src/test/java/dev/zernio/model/ApiChangelogOperationRefTest.java
-src/test/java/dev/zernio/model/ListChangelog200ResponseTest.java
-src/test/java/dev/zernio/model/WebhookPayloadApiChangelogPublishedTest.java

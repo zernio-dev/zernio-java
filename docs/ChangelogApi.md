@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 
 List API changelog entries
 
-The API changelog, newest first. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
+The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
 
 ### Example
 
@@ -24,7 +24,6 @@ The API changelog, newest first. Each entry is what the &#x60;api.changelog.publ
 import dev.zernio.ApiClient;
 import dev.zernio.ApiException;
 import dev.zernio.Configuration;
-import dev.zernio.auth.*;
 import dev.zernio.models.*;
 import dev.zernio.api.ChangelogApi;
 
@@ -32,10 +31,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
 
         ChangelogApi apiInstance = new ChangelogApi(defaultClient);
         String type = "new_feature"; // String | Only entries of this type.
@@ -73,7 +68,7 @@ public class Example {
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -85,7 +80,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Changelog entries |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
 ## listChangelogWithHttpInfo
 
@@ -93,7 +88,7 @@ public class Example {
 
 List API changelog entries
 
-The API changelog, newest first. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
+The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
 
 ### Example
 
@@ -103,7 +98,6 @@ import dev.zernio.ApiClient;
 import dev.zernio.ApiException;
 import dev.zernio.ApiResponse;
 import dev.zernio.Configuration;
-import dev.zernio.auth.*;
 import dev.zernio.models.*;
 import dev.zernio.api.ChangelogApi;
 
@@ -111,10 +105,6 @@ public class Example {
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
         defaultClient.setBasePath("https://zernio.com/api");
-        
-        // Configure HTTP bearer authorization: bearerAuth
-        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
-        bearerAuth.setBearerToken("BEARER TOKEN");
 
         ChangelogApi apiInstance = new ChangelogApi(defaultClient);
         String type = "new_feature"; // String | Only entries of this type.
@@ -154,7 +144,7 @@ ApiResponse<[**ListChangelog200Response**](ListChangelog200Response.md)>
 
 ### Authorization
 
-[bearerAuth](../README.md#bearerAuth)
+No authorization required
 
 ### HTTP request headers
 
@@ -166,5 +156,5 @@ ApiResponse<[**ListChangelog200Response**](ListChangelog200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Changelog entries |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 
