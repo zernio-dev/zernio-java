@@ -5395,11 +5395,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AnalyticsDashboardFollowersByAccountInnerTest.java
-src/test/java/dev/zernio/model/AnalyticsDashboardFollowersTest.java
-src/test/java/dev/zernio/model/AnalyticsDashboardPostMetricsTest.java
-src/test/java/dev/zernio/model/AnalyticsDashboardPostTest.java
-src/test/java/dev/zernio/model/AnalyticsDashboardTotalsTest.java
-src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDailyInnerTest.java
-src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseDateRangeTest.java
-src/test/java/dev/zernio/model/GetAnalyticsDashboard200ResponseTest.java

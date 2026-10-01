@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.189.0
+  version: 1.189.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -3167,7 +3167,7 @@ paths:
                       saves: 25
                       clicks: 60
                       views: 2200
-                      engagementRate: 5.59
+                      engagementRate: 7.48
                     followers:
                       current: 12840
                       gained: 96
@@ -3202,7 +3202,7 @@ paths:
                         saves: 14
                         clicks: 30
                         views: 1500
-                        engagementRate: 8.19
+                        engagementRate: 8.23
                     recentPosts: []
                     dataAsOf: 2026-09-02T23:10:00.000Z
               schema:
