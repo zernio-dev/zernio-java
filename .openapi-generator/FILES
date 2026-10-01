@@ -1977,8 +1977,10 @@ docs/SelectInstagramAccountRequest.md
 docs/SelectLinkedInOrganization200Response.md
 docs/SelectLinkedInOrganization200ResponseAccount.md
 docs/SelectLinkedInOrganization200ResponseBulkRefresh.md
+docs/SelectLinkedInOrganization200ResponseFailedInner.md
 docs/SelectLinkedInOrganizationRequest.md
 docs/SelectLinkedInOrganizationRequestSelectedOrganization.md
+docs/SelectLinkedInOrganizationRequestSelectionsInner.md
 docs/SelectPinterestBoard200Response.md
 docs/SelectPinterestBoard200ResponseAccount.md
 docs/SelectPinterestBoardRequest.md
@@ -4703,8 +4705,10 @@ src/main/java/dev/zernio/model/SelectInstagramAccountRequest.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200Response.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseBulkRefresh.java
+src/main/java/dev/zernio/model/SelectLinkedInOrganization200ResponseFailedInner.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganizationRequest.java
 src/main/java/dev/zernio/model/SelectLinkedInOrganizationRequestSelectedOrganization.java
+src/main/java/dev/zernio/model/SelectLinkedInOrganizationRequestSelectionsInner.java
 src/main/java/dev/zernio/model/SelectPinterestBoard200Response.java
 src/main/java/dev/zernio/model/SelectPinterestBoard200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectPinterestBoardRequest.java
@@ -5397,4 +5401,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/SelectFacebookPage200ResponseFailedInnerTest.java
+src/test/java/dev/zernio/model/SelectLinkedInOrganization200ResponseFailedInnerTest.java
+src/test/java/dev/zernio/model/SelectLinkedInOrganizationRequestSelectionsInnerTest.java

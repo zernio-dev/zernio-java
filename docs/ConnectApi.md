@@ -7516,6 +7516,7 @@ public class Example {
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
+| **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
 
@@ -7593,6 +7594,7 @@ ApiResponse<[**SelectLinkedInOrganization200Response**](SelectLinkedInOrganizati
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Unauthorized |  -  |
+| **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
 

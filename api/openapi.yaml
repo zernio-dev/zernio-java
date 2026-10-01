@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.191.0
+  version: 1.192.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -12757,6 +12757,13 @@ paths:
           description: Missing required fields
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: selections only. None of the accounts could be connected; `details.failed`
+            lists each one with its reason.
         "409":
           content:
             application/json:
@@ -93348,6 +93355,18 @@ components:
           items:
             $ref: "#/components/schemas/listLinkedInOrganizations_200_response_organizations_inner"
           type: array
+    selectLinkedInOrganization_request_selections_inner:
+      properties:
+        accountType:
+          enum:
+          - personal
+          - organization
+          type: string
+        selectedOrganization:
+          description: Same shape as selectedOrganization.
+          type: object
+      required:
+      - accountType
     selectLinkedInOrganization_request_selectedOrganization:
       properties:
         id:
@@ -93377,17 +93396,30 @@ components:
         userProfile:
           type: object
         accountType:
+          description: "Send this (with selectedOrganization for an organization)\
+            \ or selections, not both."
           enum:
           - personal
           - organization
           type: string
+        selections:
+          description: "Several accounts to connect from one sign-in (yourself and/or\
+            \ organizations), each as its own account. With two or more entries the\
+            \ response lists `accounts` and `failed` instead of `account`, and the\
+            \ request is refused with 400 while a profile holds one LinkedIn account\
+            \ and on a reconnect or an ads connect. A single entry behaves exactly\
+            \ like accountType."
+          items:
+            $ref: "#/components/schemas/selectLinkedInOrganization_request_selections_inner"
+          maxItems: 25
+          minItems: 1
+          type: array
         selectedOrganization:
           $ref: "#/components/schemas/selectLinkedInOrganization_request_selectedOrganization"
         redirect_url:
           format: uri
           type: string
       required:
-      - accountType
       - profileId
       - tempToken
       - userProfile
@@ -93421,6 +93453,18 @@ components:
           - personal
           - organization
           type: string
+    selectLinkedInOrganization_200_response_failed_inner:
+      example:
+        code: code
+        id: id
+        message: message
+      properties:
+        id:
+          type: string
+        code:
+          type: string
+        message:
+          type: string
     selectLinkedInOrganization_200_response_bulkRefresh:
       example:
         updatedCount: 0
@@ -93432,6 +93476,16 @@ components:
           type: integer
     selectLinkedInOrganization_200_response:
       example:
+        accounts:
+        - "{}"
+        - "{}"
+        failed:
+        - code: code
+          id: id
+          message: message
+        - code: code
+          id: id
+          message: message
         message: message
         bulkRefresh:
           updatedCount: 0
@@ -93454,6 +93508,20 @@ components:
           type: string
         account:
           $ref: "#/components/schemas/selectLinkedInOrganization_200_response_account"
+        accounts:
+          description: "selections only. The connected accounts, same shape as `account`.\
+            \ The redirect_url then carries `accountIds` (comma-separated) and `accountId`\
+            \ of the first."
+          items:
+            type: object
+          type: array
+        failed:
+          description: "selections only. The accounts that could not be connected\
+            \ while the others were. `id` is the organization URN or the member id,\
+            \ or `selections[i]` for an entry naming neither."
+          items:
+            $ref: "#/components/schemas/selectLinkedInOrganization_200_response_failed_inner"
+          type: array
         bulkRefresh:
           $ref: "#/components/schemas/selectLinkedInOrganization_200_response_bulkRefresh"
     listPinterestBoardsForSelection_200_response_boards_inner:

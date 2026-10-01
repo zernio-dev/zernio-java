@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.191.0
+- API version: 1.192.0
 
-- Build date: 2026-10-01T11:15:39.784602433Z[Etc/UTC]
+- Build date: 2026-10-01T11:26:10.714541990Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.191.0</version>
+  <version>1.192.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.191.0"
+compile "dev.zernio:zernio-sdk:1.192.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.191.0.jar`
+- `target/zernio-sdk-1.192.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3923,8 +3923,10 @@ Class | Method | HTTP request | Description
  - [SelectLinkedInOrganization200Response](docs/SelectLinkedInOrganization200Response.md)
  - [SelectLinkedInOrganization200ResponseAccount](docs/SelectLinkedInOrganization200ResponseAccount.md)
  - [SelectLinkedInOrganization200ResponseBulkRefresh](docs/SelectLinkedInOrganization200ResponseBulkRefresh.md)
+ - [SelectLinkedInOrganization200ResponseFailedInner](docs/SelectLinkedInOrganization200ResponseFailedInner.md)
  - [SelectLinkedInOrganizationRequest](docs/SelectLinkedInOrganizationRequest.md)
  - [SelectLinkedInOrganizationRequestSelectedOrganization](docs/SelectLinkedInOrganizationRequestSelectedOrganization.md)
+ - [SelectLinkedInOrganizationRequestSelectionsInner](docs/SelectLinkedInOrganizationRequestSelectionsInner.md)
  - [SelectPinterestBoard200Response](docs/SelectPinterestBoard200Response.md)
  - [SelectPinterestBoard200ResponseAccount](docs/SelectPinterestBoard200ResponseAccount.md)
  - [SelectPinterestBoardRequest](docs/SelectPinterestBoardRequest.md)
