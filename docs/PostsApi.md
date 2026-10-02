@@ -100,7 +100,7 @@ public class Example {
 | **200** | Bulk upload results. Returned when every row succeeded (or every row failed). A mix of successes and failures returns &#x60;207&#x60; instead, with the same body shape.  |  -  |
 | **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required: the account owner has a failed payment. Not returned on dry-run. |  -  |
 | **404** | Authenticated user not found |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
@@ -181,7 +181,7 @@ ApiResponse<[**BulkUploadResult**](BulkUploadResult.md)>
 | **200** | Bulk upload results. Returned when every row succeeded (or every row failed). A mix of successes and failures returns &#x60;207&#x60; instead, with the same body shape.  |  -  |
 | **207** | Partial success: some rows were created and some failed. Body is identical in shape to the &#x60;200&#x60; response. Inspect each entry in &#x60;results&#x60; (&#x60;ok&#x60; plus &#x60;errors&#x60;) to see which rows failed and why.  |  -  |
 | **400** | Invalid CSV or validation errors |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required: the account owner has a failed payment. Not returned on dry-run. |  -  |
 | **404** | Authenticated user not found |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute) or account cooldown (one or more accounts for platforms specified in the CSV are temporarily rate-limited).  |  -  |
@@ -263,7 +263,7 @@ public class Example {
 | **201** | Post created |  -  |
 | **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
 | **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (25 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
@@ -347,7 +347,7 @@ ApiResponse<[**CreatePost200Response**](CreatePost200Response.md)>
 | **201** | Post created |  -  |
 | **207** | The post was created, but the inline publish (&#x60;publishNow: true&#x60;, or a &#x60;scheduledFor&#x60; that is already due) did not fully succeed.  **207 is a 2xx status.** &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios&#39; default &#x60;validateStatus&#x60; resolves, so a client that only checks for success will read this as a published post. Branch on the status code explicitly.  Tell the outcomes apart with &#x60;post.status&#x60;: - &#x60;partial&#x60; - at least one platform published and at least one failed. Per-platform detail is in &#x60;platformResults&#x60; and in &#x60;post.platforms[]&#x60;. - &#x60;failed&#x60; - no platform published. Terminal; nothing will be retried. Read &#x60;platforms[].errorMessage&#x60;, &#x60;platforms[].errorCategory&#x60; and &#x60;platforms[].errorSource&#x60; to decide whether the caller, the platform or Zernio must act. - &#x60;scheduled&#x60; - every platform hit a transient error and was reset to &#x60;pending&#x60;. Zernio retries automatically. This is **not** a failure and must not be surfaced to an end user as one.  A publish attempt that aborted before it started (for example the post was already being processed) reports none of the three: &#x60;post.status&#x60; is whatever it already was and &#x60;platformResults&#x60; is absent. Read &#x60;error&#x60; and &#x60;post.platforms[]&#x60;, which is always present.  |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_DISCONNECTED&#x60;: a target account exists but its platform connection is no longer active (token expired or revoked, or the account was disconnected). Reconnect the account, then refresh account IDs from &#x60;GET /v1/accounts&#x60; (accounts report their connection state via &#x60;isActive&#x60;). The disconnect itself is also emitted as the &#x60;account.disconnected&#x60; webhook event. - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account (it then counts as a connected account), then refresh account IDs from &#x60;GET /v1/accounts&#x60;. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - No &#x60;code&#x60;: a target &#x60;accountId&#x60; does not belong to the authenticated user (or is outside the API key&#39;s profile scope).  |  -  |
 | **409** | Duplicate content detected. Returned when the requested post matches an existing one on &#x60;(platform, accountId, content-hash)&#x60; within the last 24 hours, AND the request was NOT an &#x60;x-request-id&#x60; retry. Distinct from same-&#x60;x-request-id&#x60; retries (which return HTTP 200 with the original post; see operation description for the idempotency contract).  Also returned with &#x60;code: idempotency_conflict&#x60; and a &#x60;Retry-After&#x60; header when a request with the same &#x60;Idempotency-Key&#x60; is still being processed. Retry after the delay to get the original post.  Body fields: - &#x60;error&#x60;: human-readable message - &#x60;details.accountId&#x60;: the account that already has this content - &#x60;details.platform&#x60;: the platform that already has this content - &#x60;details.existingPostId&#x60;: Zernio &#x60;_id&#x60; of the original post  To intentionally re-post identical content within 24h, vary the content fingerprint (change the caption, swap a media item, or use a different account). To avoid 409s caused by retry loops, set a unique &#x60;x-request-id&#x60; per logical request. See &#x60;parameters.x-request-id&#x60; above.  |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit, velocity limit (25 posts/hour per account), account cooldown, or daily platform limits. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  * X-RateLimit-Limit - The rate limit ceiling <br>  * X-RateLimit-Remaining - Requests remaining in current window <br>  * X-RateLimit-Reset - Unix timestamp (seconds since epoch) when the next slot frees up in the sliding window <br>  |
@@ -423,7 +423,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Cannot delete published posts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 
@@ -500,7 +500,7 @@ ApiResponse<[**PostDeleteResponse**](PostDeleteResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Cannot delete published posts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 
@@ -577,7 +577,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Post edited successfully |  -  |
 | **400** | Invalid request: platform not supported, post not published, edit window expired, not X Premium, or missing content. Also returned when the platform rejects the edit with a 4xx, which covers a Reddit link post (no editable body), a Facebook post that was not created by this app, content over a platform&#39;s length limit (LinkedIn 3,000, Telegram 4096 text / 1024 caption, Pinterest 800, Slack 4,000), a Telegram edit with unchanged content, and a Pinterest app not yet allowlisted for the pin-update beta.  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
@@ -658,7 +658,7 @@ ApiResponse<[**EditPost200Response**](EditPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Post edited successfully |  -  |
 | **400** | Invalid request: platform not supported, post not published, edit window expired, not X Premium, or missing content. Also returned when the platform rejects the edit with a 4xx, which covers a Reddit link post (no editable body), a Facebook post that was not created by this app, content over a platform&#39;s length limit (LinkedIn 3,000, Telegram 4096 text / 1024 caption, Pinterest 800, Slack 4,000), a Telegram edit with unchanged content, and a Pinterest app not yet allowlisted for the pin-update beta.  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
@@ -735,7 +735,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Post |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 
@@ -812,7 +812,7 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Post |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 
@@ -917,7 +917,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Paginated posts |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listPostsWithHttpInfo
 
@@ -1022,7 +1022,7 @@ ApiResponse<[**PostsListResponse**](PostsListResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Paginated posts |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## retryPost
@@ -1096,7 +1096,7 @@ public class Example {
 | **200** | Retry successful |  -  |
 | **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
 | **400** | Invalid state |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required: the account owner has a failed payment. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account, then retry. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - &#x60;insufficient_permissions&#x60;: the post is not accessible to the caller.  |  -  |
 | **404** | Resource not found |  -  |
@@ -1177,7 +1177,7 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 | **200** | Retry successful |  -  |
 | **207** | The retry ran, but publishing did not fully succeed. Covers both a partial publish and a retry in which no platform published.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  This response carries no &#x60;platformResults&#x60;. Read &#x60;post.status&#x60; (&#x60;partial&#x60;, &#x60;failed&#x60;, or &#x60;scheduled&#x60; when transient errors will be retried automatically) and &#x60;post.platforms[]&#x60; for per-platform detail.  |  -  |
 | **400** | Invalid state |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment required: the account owner has a failed payment. |  -  |
 | **403** | Forbidden. Distinguish by the &#x60;code&#x60; field: - &#x60;ACCOUNT_NOT_ENABLED_FOR_POSTING&#x60;: a target account was connected for ads only (&#x60;enabled: false&#x60;) and cannot be posted to. Connect it as a posting account, then retry. - &#x60;PROFILE_OVER_LIMIT&#x60;: a target account belongs to a profile beyond the plan&#39;s profile limit. - &#x60;insufficient_permissions&#x60;: the post is not accessible to the caller.  |  -  |
 | **404** | Resource not found |  -  |
@@ -1257,7 +1257,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Post deleted from platform |  -  |
 | **400** | Invalid request: platform not supported for deletion, post not on that platform (or not for the given accountId), not published, no platform post ID, or no access token. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
@@ -1338,7 +1338,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Post deleted from platform |  -  |
 | **400** | Invalid request: platform not supported for deletion, post not on that platform (or not for the given accountId), not published, no platform post ID, or no access token. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
@@ -1418,7 +1418,7 @@ public class Example {
 | **200** | Post updated |  -  |
 | **207** | The post was updated, but the inline publish that followed did not fully succeed.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  Read &#x60;post.status&#x60;: &#x60;partial&#x60; (some platforms published), &#x60;failed&#x60; (none published, terminal), or &#x60;scheduled&#x60; (transient errors, platforms reset to &#x60;pending&#x60;, Zernio retries automatically and this is not a failure). &#x60;platformResults&#x60; is omitted when the attempt aborted before producing per-platform results; &#x60;post.platforms[]&#x60; is always present.  |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. |  -  |
@@ -1499,7 +1499,7 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 | **200** | Post updated |  -  |
 | **207** | The post was updated, but the inline publish that followed did not fully succeed.  **207 is a 2xx status**, so &#x60;fetch(...).ok&#x60; is &#x60;true&#x60; and axios resolves. Branch on the status code explicitly.  Read &#x60;post.status&#x60;: &#x60;partial&#x60; (some platforms published), &#x60;failed&#x60; (none published, terminal), or &#x60;scheduled&#x60; (transient errors, platforms reset to &#x60;pending&#x60;, Zernio retries automatically and this is not a failure). &#x60;platformResults&#x60; is omitted when the attempt aborted before producing per-platform results; &#x60;post.platforms[]&#x60; is always present.  |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. |  -  |
@@ -1577,7 +1577,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
 | **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |
@@ -1658,7 +1658,7 @@ ApiResponse<[**UpdatePostMetadata200Response**](UpdatePostMetadata200Response.md
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
 | **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post was published to several accounts on this platform and no accountId was sent (ambiguous_account). |  -  |

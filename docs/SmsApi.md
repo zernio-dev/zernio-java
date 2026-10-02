@@ -123,7 +123,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Appeal submitted; the registration is pending again. |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 ## appealSmsRegistrationWithHttpInfo
@@ -201,7 +201,7 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 |-------------|-------------|------------------|
 | **200** | Appeal submitted; the registration is pending again. |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -275,7 +275,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
 | **403** | The team is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
 | **409** | Billing setup is incomplete for this team (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
@@ -354,7 +354,7 @@ ApiResponse<[**CreateSmsSenderId200Response**](CreateSmsSenderId200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sender ID created (or re-activated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | No payment method on file (code &#x60;payment_required&#x60;). Sender-ID sends incur carrier fees, so the billing owner needs a card before one can be created. |  -  |
 | **403** | The team is not on usage-based billing, or already holds the maximum of 1,000 active sender IDs (code &#x60;sender_id_limit_reached&#x60;; raisable via support). |  -  |
 | **409** | Billing setup is incomplete for this team (code &#x60;billing_setup_incomplete&#x60;); contact support. |  -  |
@@ -431,7 +431,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Registration deactivated. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 ## deactivateSmsRegistrationWithHttpInfo
@@ -507,7 +507,7 @@ ApiResponse<[**DeactivateSmsRegistration200Response**](DeactivateSmsRegistration
 |-------------|-------------|------------------|
 | **200** | Registration deactivated. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -581,7 +581,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender ID deactivated. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender ID not found. |  -  |
 
 ## deleteSmsSenderIdWithHttpInfo
@@ -657,7 +657,7 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sender ID deactivated. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender ID not found. |  -  |
 
 
@@ -730,7 +730,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | SMS disabled. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## disableSmsOnNumberWithHttpInfo
@@ -805,7 +805,7 @@ ApiResponse<[**DisableSmsOnNumber200Response**](DisableSmsOnNumber200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | SMS disabled. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -878,7 +878,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Result. Check &#x60;enabled&#x60;: a 200 with &#x60;enabled: false&#x60; means the number can&#39;t do SMS (&#x60;smsCapable: false&#x60;) or isn&#39;t ready yet (&#x60;notReady: true&#x60;). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
@@ -954,7 +954,7 @@ ApiResponse<[**EnableSmsOnNumber200Response**](EnableSmsOnNumber200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Result. Check &#x60;enabled&#x60;: a 200 with &#x60;enabled: false&#x60; means the number can&#39;t do SMS (&#x60;smsCapable: false&#x60;) or isn&#39;t ready yet (&#x60;notReady: true&#x60;). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
@@ -1029,7 +1029,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Registration |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 ## getSmsRegistrationWithHttpInfo
@@ -1105,7 +1105,7 @@ ApiResponse<[**GetSmsRegistration200Response**](GetSmsRegistration200Response.md
 |-------------|-------------|------------------|
 | **200** | Registration |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -1180,7 +1180,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Opt-out list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listSmsOptOutsWithHttpInfo
 
@@ -1256,7 +1256,7 @@ ApiResponse<[**ListSmsOptOuts200Response**](ListSmsOptOuts200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Opt-out list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listSmsRegistrations
@@ -1327,7 +1327,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Registrations, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listSmsRegistrationsWithHttpInfo
 
@@ -1400,7 +1400,7 @@ ApiResponse<[**ListSmsRegistrations200Response**](ListSmsRegistrations200Respons
 |-------------|-------------|------------------|
 | **200** | Registrations, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listSmsSenderIds
@@ -1466,7 +1466,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The team&#39;s sender IDs, newest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listSmsSenderIdsWithHttpInfo
 
@@ -1534,7 +1534,7 @@ ApiResponse<[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The team&#39;s sender IDs, newest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## lookupSmsNumber
@@ -1606,7 +1606,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | Lookup provider failed |  -  |
 
 ## lookupSmsNumberWithHttpInfo
@@ -1681,7 +1681,7 @@ ApiResponse<[**LookupSmsNumber200Response**](LookupSmsNumber200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Lookup result. An unknown/invalid number returns lineType &#x60;unknown&#x60; with &#x60;smsReachable&#x60; false rather than an error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | Lookup provider failed |  -  |
 
 
@@ -1755,7 +1755,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Composed payloads + findings. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## preflightSmsRegistrationWithHttpInfo
 
@@ -1830,7 +1830,7 @@ ApiResponse<[**PreflightSmsRegistration200Response**](PreflightSmsRegistration20
 |-------------|-------------|------------------|
 | **200** | Composed payloads + findings. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## requestSmsSenderIdLimitIncrease
@@ -1903,7 +1903,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Request submitted for review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | A cap-raise request is already awaiting review (code &#x60;sender_id_raise_pending&#x60;); one at a time. |  -  |
 | **503** | Request could not be submitted; retry or contact support. |  -  |
 
@@ -1980,7 +1980,7 @@ ApiResponse<[**RequestSmsSenderIdLimitIncrease200Response**](RequestSmsSenderIdL
 |-------------|-------------|------------------|
 | **200** | Request submitted for review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | A cap-raise request is already awaiting review (code &#x60;sender_id_raise_pending&#x60;); one at a time. |  -  |
 | **503** | Request could not be submitted; retry or contact support. |  -  |
 
@@ -2055,7 +2055,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | A new code was sent |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
@@ -2132,7 +2132,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 |-------------|-------------|------------------|
 | **200** | A new code was sent |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
@@ -2209,7 +2209,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reply recorded; the registration is back in review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
@@ -2288,7 +2288,7 @@ ApiResponse<[**RespondToSmsRegistrationReview200Response**](RespondToSmsRegistra
 |-------------|-------------|------------------|
 | **200** | Reply recorded; the registration is back in review. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
@@ -2362,7 +2362,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Number added to the existing registration. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **409** | No existing SMS registration to reuse for this number |  -  |
 
@@ -2438,7 +2438,7 @@ ApiResponse<[**ReuseSmsRegistrationForNumber200Response**](ReuseSmsRegistrationF
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Number added to the existing registration. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **409** | No existing SMS registration to reuse for this number |  -  |
 
@@ -2515,7 +2515,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -2596,7 +2596,7 @@ ApiResponse<[**SendSms200Response**](SendSms200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Message accepted for delivery. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No SMS-enabled number matches &#x60;from&#x60; |  -  |
 | **409** | Recipient has opted out (replied STOP), or the same Idempotency-Key is still in flight |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -2673,7 +2673,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## shareSmsRegistrationWithHttpInfo
@@ -2749,7 +2749,7 @@ ApiResponse<[**ShareBrandedCallingIdentityForm200Response**](ShareBrandedCalling
 |-------------|-------------|------------------|
 | **200** | Share link created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -2823,7 +2823,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
@@ -2900,7 +2900,7 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 |-------------|-------------|------------------|
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
@@ -2976,7 +2976,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File hosted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **422** | Unsupported file type or file too large |  -  |
 
@@ -3054,7 +3054,7 @@ ApiResponse<[**UploadSmsOptInProofFile200Response**](UploadSmsOptInProofFile200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File hosted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 | **422** | Unsupported file type or file too large |  -  |
 
@@ -3128,7 +3128,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File hosted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Unsupported file type or file too large |  -  |
 
 ## uploadSmsOptInProofFileWithHttpInfo
@@ -3203,7 +3203,7 @@ ApiResponse<[**UploadSmsOptInProofFile200Response**](UploadSmsOptInProofFile200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | File hosted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Unsupported file type or file too large |  -  |
 
 
@@ -3279,7 +3279,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OTP result |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 
 ## verifySmsRegistrationOtpWithHttpInfo
@@ -3357,6 +3357,6 @@ ApiResponse<[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp20
 |-------------|-------------|------------------|
 | **200** | OTP result |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Registration not found |  -  |
 

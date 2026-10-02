@@ -193,7 +193,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Location assigned to the target profile |  -  |
 | **400** | Invalid body, selected location not found under the Google account, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business Profile account not found |  -  |
 | **409** | Conflict with an existing connection |  -  |
@@ -273,7 +273,7 @@ ApiResponse<[**AssignGoogleBusinessLocation200Response**](AssignGoogleBusinessLo
 |-------------|-------------|------------------|
 | **200** | Location assigned to the target profile |  -  |
 | **400** | Invalid body, selected location not found under the Google account, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Payment required, or target profile exceeds plan limit |  -  |
 | **404** | Source Google Business Profile account not found |  -  |
 | **409** | Conflict with an existing connection |  -  |
@@ -497,7 +497,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connection status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Code not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -574,7 +574,7 @@ ApiResponse<[**CompleteTelegramConnect200Response**](CompleteTelegramConnect200R
 |-------------|-------------|------------------|
 | **200** | Connection status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Code not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -651,7 +651,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Phone number connected successfully |  -  |
 | **400** | Missing required fields (profileId, phoneNumberId, wabaId, or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
 | **409** | Conflict with an existing connection. One of: the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile); or the number is already actively connected on another profile or team (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. Or, for a number connected from the WhatsApp Business app (coexistence), the phone never registered the number on the Cloud API, so Meta reported it as platform_type ON_PREMISE and refused the contacts/history sync with error 133010 (code WHATSAPP_COEXISTENCE_NOT_REGISTERED). No account is created in that case: the customer opens WhatsApp Business on the phone, keeps it open and updated, and runs the same Embedded Signup again, which succeeds on the second attempt in practice. |  -  |
@@ -732,7 +732,7 @@ ApiResponse<[**CompleteWhatsAppPhoneSelection200Response**](CompleteWhatsAppPhon
 |-------------|-------------|------------------|
 | **200** | Phone number connected successfully |  -  |
 | **400** | Missing required fields (profileId, phoneNumberId, wabaId, or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Profile limit exceeded for the user&#39;s plan (PROFILE_LIMIT_EXCEEDED) |  -  |
 | **404** | Selected phone number not found in the specified WABA |  -  |
 | **409** | Conflict with an existing connection. One of: the phone number is a Zernio-provisioned number pinned to a different profile (code WHATSAPP_NUMBER_PINNED_TO_PROFILE, connect it from that profile or move it first with PATCH /v1/whatsapp/phone-numbers/{id}/profile); or the number is already actively connected on another profile or team (code WHATSAPP_NUMBER_ALREADY_CONNECTED, disconnect it there first). A number can only be live on one profile. Or, for a number connected from the WhatsApp Business app (coexistence), the phone never registered the number on the Cloud API, so Meta reported it as platform_type ON_PREMISE and refused the contacts/history sync with error 133010 (code WHATSAPP_COEXISTENCE_NOT_REGISTERED). No account is created in that case: the customer opens WhatsApp Business on the phone, keeps it open and updated, and runs the same Embedded Signup again, which succeeds on the second attempt in practice. |  -  |
@@ -809,7 +809,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Brand identity configured (or updated) |  -  |
 | **400** | Missing fields, invalid JSON body, invalid accountId format, invalid lengths, or no advertiser found on the account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | TikTok Ads account not found |  -  |
 | **500** | Unexpected server error while caching the identity |  -  |
 | **502** | TikTok rejected the image upload or the identity creation (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
@@ -887,7 +887,7 @@ ApiResponse<[**ConfigureTikTokAdsBrandIdentity200Response**](ConfigureTikTokAdsB
 |-------------|-------------|------------------|
 | **200** | Brand identity configured (or updated) |  -  |
 | **400** | Missing fields, invalid JSON body, invalid accountId format, invalid lengths, or no advertiser found on the account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | TikTok Ads account not found |  -  |
 | **500** | Unexpected server error while caching the identity |  -  |
 | **502** | TikTok rejected the image upload or the identity creation (type: platform_error; an upstream 4xx status is forwarded instead of 502) |  -  |
@@ -983,7 +983,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Either an OAuth URL to redirect to, or confirmation that ads are already connected |  -  |
 | **400** | Platform doesn&#39;t support ads, missing accountId for X Ads, or a non-absolute redirect_url |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
 | **409** | The Business Login connection needs reconnecting (reconnect it with loginMode&#x3D;business, or pass force&#x3D;true or disconnect it first to switch to the standard login), or the profile holds several active accounts of the platform and no accountId names one (ambiguous_account). |  -  |
@@ -1082,7 +1082,7 @@ ApiResponse<[**ConnectAds200Response**](ConnectAds200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Either an OAuth URL to redirect to, or confirmation that ads are already connected |  -  |
 | **400** | Platform doesn&#39;t support ads, missing accountId for X Ads, or a non-absolute redirect_url |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), or no access to profile |  -  |
 | **404** | Profile or posting account not found |  -  |
 | **409** | The Business Login connection needs reconnecting (reconnect it with loginMode&#x3D;business, or pass force&#x3D;true or disconnect it first to switch to the standard login), or the profile holds several active accounts of the platform and no accountId names one (ambiguous_account). |  -  |
@@ -1159,7 +1159,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Bluesky connected successfully |  -  |
 | **400** | Invalid request - missing fields or invalid state format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal error |  -  |
 
 ## connectBlueskyCredentialsWithHttpInfo
@@ -1235,7 +1235,7 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 |-------------|-------------|------------------|
 | **200** | Bluesky connected successfully |  -  |
 | **400** | Invalid request - missing fields or invalid state format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal error |  -  |
 
 
@@ -1308,7 +1308,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Channel connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **404** | Profile not found |  -  |
 
@@ -1384,7 +1384,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Channel connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **404** | Profile not found |  -  |
 
@@ -1611,7 +1611,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Store connected as a platform account |  -  |
 | **400** | Invalid &#x60;profileId&#x60; format, &#x60;shop&#x60; is not a myshopify.com store domain, or Shopify rejected the access token for that store. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 
@@ -1688,7 +1688,7 @@ ApiResponse<[**ConnectShopifyWithToken200Response**](ConnectShopifyWithToken200R
 |-------------|-------------|------------------|
 | **200** | Store connected as a platform account |  -  |
 | **400** | Invalid &#x60;profileId&#x60; format, &#x60;shop&#x60; is not a myshopify.com store domain, or Shopify rejected the access token for that store. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 
@@ -1762,7 +1762,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Channel connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Slack connections are temporarily unavailable |  -  |
 | **404** | Profile not found |  -  |
@@ -1839,7 +1839,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Channel connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | Slack connections are temporarily unavailable |  -  |
 | **404** | Profile not found |  -  |
@@ -2069,7 +2069,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **409** | The number is already connected on another profile or team |  -  |
 
@@ -2148,7 +2148,7 @@ ApiResponse<[**ConnectWhatsAppEmbeddedSignup200Response**](ConnectWhatsAppEmbedd
 |-------------|-------------|------------------|
 | **200** | Number connected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **409** | The number is already connected on another profile or team |  -  |
 
@@ -2395,7 +2395,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Board created |  -  |
 | **400** | Invalid request or not a Pinterest account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Pinterest rejected the request (e.g. duplicate board name) |  -  |
 
@@ -2474,7 +2474,7 @@ ApiResponse<[**CreatePinterestBoard201Response**](CreatePinterestBoard201Respons
 |-------------|-------------|------------------|
 | **201** | Board created |  -  |
 | **400** | Invalid request or not a Pinterest account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Pinterest rejected the request (e.g. duplicate board name) |  -  |
 
@@ -2551,7 +2551,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Playlist created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key lacks access to the account or YouTube denied permission. |  -  |
 | **404** | Account not found or inaccessible. |  -  |
 | **429** | YouTube rate limit exceeded. |  -  |
@@ -2632,7 +2632,7 @@ ApiResponse<[**CreateYoutubePlaylist201Response**](CreateYoutubePlaylist201Respo
 |-------------|-------------|------------------|
 | **201** | Playlist created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key lacks access to the account or YouTube denied permission. |  -  |
 | **404** | Account not found or inaccessible. |  -  |
 | **429** | YouTube rate limit exceeded. |  -  |
@@ -2731,7 +2731,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL to redirect user to |  -  |
 | **400** | Missing/invalid parameters (e.g., invalid profileId format, a non-absolute redirect_url, or a redirect_url too long for X&#39;s 500-character state) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | No access to profile, BYOK required for AppSumo X, or Snapchat closed beta (code PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Profile not found |  -  |
@@ -2831,7 +2831,7 @@ ApiResponse<[**GetConnectUrl200Response**](GetConnectUrl200Response.md)>
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL to redirect user to |  -  |
 | **400** | Missing/invalid parameters (e.g., invalid profileId format, a non-absolute redirect_url, or a redirect_url too long for X&#39;s 500-character state) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | No access to profile, BYOK required for AppSumo X, or Snapchat closed beta (code PLATFORM_BETA_RESTRICTED) |  -  |
 | **404** | Profile not found |  -  |
@@ -2908,7 +2908,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pages list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getFacebookPagesWithHttpInfo
@@ -2985,7 +2985,7 @@ ApiResponse<[**GetFacebookPages200Response**](GetFacebookPages200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pages list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -3065,7 +3065,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Locations list |  -  |
 | **400** | Invalid query parameter (e.g. limit out of range) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getGmbLocationsWithHttpInfo
@@ -3147,7 +3147,7 @@ ApiResponse<[**GetGmbLocations200Response**](GetGmbLocations200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Locations list |  -  |
 | **400** | Invalid query parameter (e.g. limit out of range) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -3220,7 +3220,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Organizations list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getLinkedInOrganizationsWithHttpInfo
@@ -3295,7 +3295,7 @@ ApiResponse<[**GetLinkedInOrganizations200Response**](GetLinkedInOrganizations20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Organizations list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -3667,7 +3667,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Boards list |  -  |
 | **400** | Not a Pinterest account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getPinterestBoardsWithHttpInfo
@@ -3743,7 +3743,7 @@ ApiResponse<[**GetPinterestBoards200Response**](GetPinterestBoards200Response.md
 |-------------|-------------|------------------|
 | **200** | Boards list |  -  |
 | **400** | Not a Pinterest account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -3819,7 +3819,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flairs list |  -  |
 | **400** | Not a Reddit account or missing subreddit parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getRedditFlairsWithHttpInfo
@@ -3897,7 +3897,7 @@ ApiResponse<[**GetRedditFlairs200Response**](GetRedditFlairs200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Flairs list |  -  |
 | **400** | Not a Reddit account or missing subreddit parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -3971,7 +3971,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Subreddits list |  -  |
 | **400** | Not a Reddit account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getRedditSubredditsWithHttpInfo
@@ -4047,7 +4047,7 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 |-------------|-------------|------------------|
 | **200** | Subreddits list |  -  |
 | **400** | Not a Reddit account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -4125,7 +4125,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL to redirect the merchant to |  -  |
 | **400** | Invalid &#x60;profileId&#x60; format, &#x60;shop&#x60; is not a myshopify.com store domain, or &#x60;redirect_url&#x60; is not an absolute http(s) URL or custom app scheme. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
@@ -4208,7 +4208,7 @@ ApiResponse<[**GetConnectUrl200Response**](GetConnectUrl200Response.md)>
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL to redirect the merchant to |  -  |
 | **400** | Invalid &#x60;profileId&#x60; format, &#x60;shop&#x60; is not a myshopify.com store domain, or &#x60;redirect_url&#x60; is not an absolute http(s) URL or custom app scheme. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
@@ -4287,7 +4287,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Subreddit and site rules |  -  |
 | **400** | Not a Reddit account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or subreddit not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 
@@ -4366,7 +4366,7 @@ ApiResponse<[**GetSubredditRules200Response**](GetSubredditRules200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Subreddit and site rules |  -  |
 | **400** | Not a Reddit account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or subreddit not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 
@@ -4441,7 +4441,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Access code generated |  -  |
 | **400** | Profile ID required or invalid format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
@@ -4519,7 +4519,7 @@ ApiResponse<[**GetTelegramConnectStatus200Response**](GetTelegramConnectStatus20
 |-------------|-------------|------------------|
 | **200** | Access code generated |  -  |
 | **400** | Profile ID required or invalid format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
@@ -4594,7 +4594,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Meta app configuration for Embedded Signup |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getWhatsAppSdkConfigWithHttpInfo
 
@@ -4668,7 +4668,7 @@ ApiResponse<[**GetWhatsAppSdkConfig200Response**](GetWhatsAppSdkConfig200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Meta app configuration for Embedded Signup |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getWordPressAuthUrl
@@ -4749,7 +4749,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL and authenticated state |  -  |
 | **400** | Invalid &#x60;profileId&#x60; or &#x60;redirect_url&#x60;. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
@@ -4836,7 +4836,7 @@ ApiResponse<[**GetWordPressAuthUrl200Response**](GetWordPressAuthUrl200Response.
 |-------------|-------------|------------------|
 | **200** | OAuth authorization URL and authenticated state |  -  |
 | **400** | Invalid &#x60;profileId&#x60; or &#x60;redirect_url&#x60;. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | API key does not have access to this profile. |  -  |
 | **404** | Profile not found or access denied. |  -  |
@@ -4921,7 +4921,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The transcript. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, the video does not belong to this channel (&#x60;video_not_found&#x60;), or the video has no caption track in the requested language (&#x60;captions_not_found&#x60;). |  -  |
 
 ## getYoutubeCaptionsWithHttpInfo
@@ -5005,7 +5005,7 @@ ApiResponse<[**GetYoutubeCaptions200Response**](GetYoutubeCaptions200Response.md
 |-------------|-------------|------------------|
 | **200** | The transcript. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, the video does not belong to this channel (&#x60;video_not_found&#x60;), or the video has no caption track in the requested language (&#x60;captions_not_found&#x60;). |  -  |
 
 
@@ -5079,7 +5079,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Playlists list |  -  |
 | **400** | Not a YouTube account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getYoutubePlaylistsWithHttpInfo
@@ -5155,7 +5155,7 @@ ApiResponse<[**GetYoutubePlaylists200Response**](GetYoutubePlaylists200Response.
 |-------------|-------------|------------------|
 | **200** | Playlists list |  -  |
 | **400** | Not a YouTube account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -5230,7 +5230,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Account connected |  -  |
 | **400** | Invalid params, or the platform requires choosing a destination (code: platform_requires_destination) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | No access to the profile, or BYOK required for AppSumo X |  -  |
 | **404** | Profile not found |  -  |
@@ -5312,7 +5312,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Account connected |  -  |
 | **400** | Invalid params, or the platform requires choosing a destination (code: platform_requires_destination) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | No access to the profile, or BYOK required for AppSumo X |  -  |
 | **404** | Profile not found |  -  |
@@ -5391,7 +5391,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Telegram channel connected successfully |  -  |
 | **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
@@ -5469,7 +5469,7 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 |-------------|-------------|------------------|
 | **200** | Telegram channel connected successfully |  -  |
 | **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to this profile |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
@@ -5556,7 +5556,7 @@ public class Example {
 | **200** | List of Facebook Pages available for connection |  -  |
 | **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
 | **403** | The caller is not the initiating user or no longer has profile access. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 ## listFacebookPagesWithHttpInfo
@@ -5643,7 +5643,7 @@ ApiResponse<[**ListFacebookPages200Response**](ListFacebookPages200Response.md)>
 | **200** | List of Facebook Pages available for connection |  -  |
 | **400** | Invalid or expired selectionToken, no granted Pages, or missing classic profileId and tempToken. |  -  |
 | **403** | The caller is not the initiating user or no longer has profile access. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 
@@ -5731,7 +5731,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of Google Business Profile locations available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch locations (e.g., invalid token, insufficient permissions) |  -  |
 
 ## listGoogleBusinessLocationsWithHttpInfo
@@ -5821,7 +5821,7 @@ ApiResponse<[**ListGoogleBusinessLocations200Response**](ListGoogleBusinessLocat
 |-------------|-------------|------------------|
 | **200** | List of Google Business Profile locations available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch locations (e.g., invalid token, insufficient permissions) |  -  |
 
 
@@ -5903,7 +5903,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Facebook Pages that have a linked Instagram professional account |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 
 ## listInstagramPagesWithHttpInfo
@@ -5987,7 +5987,7 @@ ApiResponse<[**ListInstagramPages200Response**](ListInstagramPages200Response.md
 |-------------|-------------|------------------|
 | **200** | Facebook Pages that have a linked Instagram professional account |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 
 
@@ -6217,7 +6217,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of Pinterest Boards available for connection |  -  |
 | **400** | Missing required parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile |  -  |
 | **500** | Failed to fetch boards |  -  |
 
@@ -6298,7 +6298,7 @@ ApiResponse<[**ListPinterestBoardsForSelection200Response**](ListPinterestBoards
 |-------------|-------------|------------------|
 | **200** | List of Pinterest Boards available for connection |  -  |
 | **400** | Missing required parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile |  -  |
 | **500** | Failed to fetch boards |  -  |
 
@@ -6381,7 +6381,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
 | **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
 | **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
 
@@ -6466,7 +6466,7 @@ ApiResponse<[**ListSlackChannels200Response**](ListSlackChannels200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
 | **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
 | **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
 
@@ -6545,7 +6545,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of Snapchat Public Profiles available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile |  -  |
 | **500** | Failed to fetch public profiles |  -  |
 
@@ -6626,7 +6626,7 @@ ApiResponse<[**ListSnapchatProfiles200Response**](ListSnapchatProfiles200Respons
 |-------------|-------------|------------------|
 | **200** | List of Snapchat Public Profiles available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile |  -  |
 | **500** | Failed to fetch public profiles |  -  |
 
@@ -6705,7 +6705,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Phone numbers fetched successfully |  -  |
 | **400** | Missing profileId or tempToken |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
 ## listWhatsAppPhoneNumbersWithHttpInfo
@@ -6785,7 +6785,7 @@ ApiResponse<[**ListWhatsAppPhoneNumbers200Response**](ListWhatsAppPhoneNumbers20
 |-------------|-------------|------------------|
 | **200** | Phone numbers fetched successfully |  -  |
 | **400** | Missing profileId or tempToken |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Failed to fetch phone numbers (Meta API error, expired token, or insufficient permissions) |  -  |
 
 
@@ -7017,7 +7017,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Facebook Page connected or business-login redirect returned. |  -  |
 | **400** | Invalid or expired selectionToken, invalid Page choice, forbidden grant overrides, or missing classic connection fields. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |
 | **422** | pageIds only. None of the Pages could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
@@ -7103,7 +7103,7 @@ ApiResponse<[**SelectFacebookPage200Response**](SelectFacebookPage200Response.md
 |-------------|-------------|------------------|
 | **200** | Facebook Page connected or business-login redirect returned. |  -  |
 | **400** | Invalid or expired selectionToken, invalid Page choice, forbidden grant overrides, or missing classic connection fields. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found in available pages |  -  |
 | **422** | pageIds only. None of the Pages could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
@@ -7187,7 +7187,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Google Business Profile location connected successfully |  -  |
 | **400** | Missing required fields (profileId, locationId, or tempToken), or the provided accountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected location not found in available locations |  -  |
 | **500** | Failed to save Google Business Profile connection |  -  |
@@ -7271,7 +7271,7 @@ ApiResponse<[**SelectGoogleBusinessLocation200Response**](SelectGoogleBusinessLo
 |-------------|-------------|------------------|
 | **200** | Google Business Profile location connected successfully |  -  |
 | **400** | Missing required fields (profileId, locationId, or tempToken), or the provided accountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected location not found in available locations |  -  |
 | **500** | Failed to save Google Business Profile connection |  -  |
@@ -7353,7 +7353,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Instagram account connected |  -  |
 | **400** | Missing required fields, or the selected Page has no linked Instagram professional account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found among the pages this token can manage |  -  |
@@ -7438,7 +7438,7 @@ ApiResponse<[**SelectInstagramAccount200Response**](SelectInstagramAccount200Res
 |-------------|-------------|------------------|
 | **200** | Instagram account connected |  -  |
 | **400** | Missing required fields, or the selected Page has no linked Instagram professional account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required. The authenticated account hit a billing gate before the connection could proceed. Three reasons:    - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts     than the free tier allows. Add a payment method on the     dashboard to continue (the user will be billed per     additional connected account).    - &#x60;twitter_passthrough&#x60;: connecting an X account     requires a card on file from day one because X API calls     incur real per-call pass-through costs. Applies to the 1st     X account, not only the 3rd+.    - &#x60;enterprise_required&#x60;: the team is on an enterprise     contract with a negotiated connected-account cap and has     reached it. Self-service teams have NO connected-account cap (the     $1/account rate continues at any scale), so this reason can     only fire for teams whose contract sets an explicit limit.     &#x60;dashboard_url&#x60; deep-links to the enterprise contact page     rather than the billing tab. The end-user already has a     card on file; this gate is about contract terms, not card     collection.    - &#x60;card_verification_required&#x60;: the card on file was flagged     at add time (prepaid, or issued in a different country than     the billing address) and a one-time verification charge of     &#x60;details.verification_amount_cents&#x60; (USD) is pending. The     charge is credited to the team&#39;s usage balance, not a fee.     &#x60;dashboard_url&#x60; opens the billing page on the verification     step; the request succeeds once it is paid.  SDK consumers should switch on &#x60;reason&#x60; to render the right prompt. For &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60; and &#x60;card_verification_required&#x60;, redirect the end-user to &#x60;dashboard_url&#x60;: it opens the add-payment-method drawer on the Zernio billing page, and the request succeeds once the card is on file (or verified). For &#x60;enterprise_required&#x60;, redirect to &#x60;dashboard_url&#x60; (the enterprise contact form) to adjust the contract&#39;s limit.  |  -  |
 | **403** | User does not have access to the specified profile |  -  |
 | **404** | Selected page not found among the pages this token can manage |  -  |
@@ -7515,7 +7515,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
@@ -7593,7 +7593,7 @@ ApiResponse<[**SelectLinkedInOrganization200Response**](SelectLinkedInOrganizati
 |-------------|-------------|------------------|
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
@@ -7669,7 +7669,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Pinterest Board connected successfully |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile or profile limit exceeded |  -  |
 | **500** | Failed to save Pinterest connection |  -  |
 
@@ -7746,7 +7746,7 @@ ApiResponse<[**SelectPinterestBoard200Response**](SelectPinterestBoard200Respons
 |-------------|-------------|------------------|
 | **200** | Pinterest Board connected successfully |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile or profile limit exceeded |  -  |
 | **500** | Failed to save Pinterest connection |  -  |
 
@@ -7823,7 +7823,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Snapchat Public Profile connected successfully |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile or profile limit exceeded |  -  |
 | **500** | Failed to connect Snapchat account |  -  |
 
@@ -7902,7 +7902,7 @@ ApiResponse<[**SelectSnapchatProfile200Response**](SelectSnapchatProfile200Respo
 |-------------|-------------|------------------|
 | **200** | Snapchat Public Profile connected successfully |  -  |
 | **400** | Missing required fields |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to profile or profile limit exceeded |  -  |
 | **500** | Failed to connect Snapchat account |  -  |
 
@@ -7979,7 +7979,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flair applied |  -  |
 | **400** | Not a Reddit account, or missing subreddit/postId/flairTemplateId |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
 
@@ -8058,7 +8058,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Flair applied |  -  |
 | **400** | Not a Reddit account, or missing subreddit/postId/flairTemplateId |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
 
@@ -8135,7 +8135,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Page updated |  -  |
 | **400** | Page not in available pages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8214,7 +8214,7 @@ ApiResponse<[**UpdateFacebookPage200Response**](UpdateFacebookPage200Response.md
 |-------------|-------------|------------------|
 | **200** | Page updated |  -  |
 | **400** | Page not in available pages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8291,7 +8291,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Location updated |  -  |
 | **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8370,7 +8370,7 @@ ApiResponse<[**UpdateGmbLocation200Response**](UpdateGmbLocation200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Location updated |  -  |
 | **400** | Location not in available locations, or the provided googleAccountId is not one of the accounts this connection manages |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8447,7 +8447,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8526,7 +8526,7 @@ ApiResponse<[**UpdateLinkedInOrganization200Response**](UpdateLinkedInOrganizati
 |-------------|-------------|------------------|
 | **200** | Account updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | Another account on this profile is already connected to that destination (profile_platform_conflict). |  -  |
 
@@ -8603,7 +8603,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Default board set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## updatePinterestBoardsWithHttpInfo
@@ -8681,7 +8681,7 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 |-------------|-------------|------------------|
 | **200** | Default board set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -8757,7 +8757,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Default subreddit set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## updateRedditSubredditsWithHttpInfo
@@ -8835,7 +8835,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Default subreddit set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -8911,7 +8911,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Default playlist set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## updateYoutubeDefaultPlaylistWithHttpInfo
@@ -8989,7 +8989,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Default playlist set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -9065,7 +9065,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Vote registered |  -  |
 | **400** | Not a Reddit account, or invalid thingId/direction |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 
@@ -9144,7 +9144,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Vote registered |  -  |
 | **400** | Not a Reddit account, or invalid thingId/direction |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
 

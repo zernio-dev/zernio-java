@@ -101,7 +101,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -180,7 +180,7 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -257,7 +257,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -336,7 +336,7 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -413,7 +413,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -492,7 +492,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
@@ -574,7 +574,7 @@ public class Example {
 | **200** | Ad analytics |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -658,7 +658,7 @@ ApiResponse<[**AdAnalyticsResponse**](AdAnalyticsResponse.md)>
 | **200** | Ad analytics |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -741,7 +741,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -826,7 +826,7 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta rate limit reached |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
@@ -919,7 +919,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Search terms |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1014,7 +1014,7 @@ ApiResponse<[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Search terms |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1098,7 +1098,7 @@ public class Example {
 | **200** | Campaign analytics |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Google operations budget or quota exhausted without a cached impression-share result. |  -  |
@@ -1185,7 +1185,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 | **200** | Campaign analytics |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Google operations budget or quota exhausted without a cached impression-share result. |  -  |
@@ -1277,7 +1277,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Material rows |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
@@ -1370,7 +1370,7 @@ ApiResponse<[**GetTikTokSmartPlusMaterialReport200Response**](GetTikTokSmartPlus
 |-------------|-------------|------------------|
 | **200** | Material rows |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
@@ -1455,7 +1455,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Lead conversations |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1542,7 +1542,7 @@ ApiResponse<[**ListLocalServicesLeadConversations200Response**](ListLocalService
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Lead conversations |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1635,7 +1635,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Local Services leads |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1730,7 +1730,7 @@ ApiResponse<[**ListLocalServicesLeads200Response**](ListLocalServicesLeads200Res
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Local Services leads |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -1857,7 +1857,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
@@ -1987,7 +1987,7 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Insight rows (raw platform shape) |  -  |
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
 | **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |

@@ -189,7 +189,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Entry added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -268,7 +268,7 @@ ApiResponse<[**BusinessAgentAllowlistEntry**](BusinessAgentAllowlistEntry.md)>
 |-------------|-------------|------------------|
 | **201** | Entry added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -345,7 +345,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Website added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -424,7 +424,7 @@ ApiResponse<[**BusinessAgentWebsite**](BusinessAgentWebsite.md)>
 |-------------|-------------|------------------|
 | **201** | Website added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -501,7 +501,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Connector created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | A connector with that name already exists (code business_agent_conflict). |  -  |
@@ -581,7 +581,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 |-------------|-------------|------------------|
 | **201** | Connector created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | A connector with that name already exists (code business_agent_conflict). |  -  |
@@ -661,7 +661,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Tool created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -742,7 +742,7 @@ ApiResponse<[**BusinessAgentConnectorTool**](BusinessAgentConnectorTool.md)>
 |-------------|-------------|------------------|
 | **201** | Tool created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -819,7 +819,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | FAQ created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | Meta rejected the entry (code business_agent_conflict). |  -  |
@@ -899,7 +899,7 @@ ApiResponse<[**BusinessAgentFaq**](BusinessAgentFaq.md)>
 |-------------|-------------|------------------|
 | **201** | FAQ created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | Meta rejected the entry (code business_agent_conflict). |  -  |
@@ -977,7 +977,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Skill created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1056,7 +1056,7 @@ ApiResponse<[**BusinessAgentSkill**](BusinessAgentSkill.md)>
 |-------------|-------------|------------------|
 | **201** | Skill created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1133,7 +1133,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | UI skill created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1212,7 +1212,7 @@ ApiResponse<[**BusinessAgentUiSkill**](BusinessAgentUiSkill.md)>
 |-------------|-------------|------------------|
 | **201** | UI skill created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1287,7 +1287,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1364,7 +1364,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1441,7 +1441,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1520,7 +1520,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1595,7 +1595,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1672,7 +1672,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1747,7 +1747,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1824,7 +1824,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1899,7 +1899,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -1976,7 +1976,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2051,7 +2051,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2128,7 +2128,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2203,7 +2203,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2280,7 +2280,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2355,7 +2355,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Budgets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2432,7 +2432,7 @@ ApiResponse<[**GetBusinessAgentBudget200Response**](GetBusinessAgentBudget200Res
 |-------------|-------------|------------------|
 | **200** | Budgets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2507,7 +2507,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Business information |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2584,7 +2584,7 @@ ApiResponse<[**BusinessAgentBusinessInformation**](BusinessAgentBusinessInformat
 |-------------|-------------|------------------|
 | **200** | Business information |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2659,7 +2659,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connector |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2736,7 +2736,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 |-------------|-------------|------------------|
 | **200** | Connector |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2827,7 +2827,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Logs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2920,7 +2920,7 @@ ApiResponse<[**GetBusinessAgentConnectorLogs200Response**](GetBusinessAgentConne
 |-------------|-------------|------------------|
 | **200** | Logs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -2997,7 +2997,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tool |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3076,7 +3076,7 @@ ApiResponse<[**BusinessAgentConnectorTool**](BusinessAgentConnectorTool.md)>
 |-------------|-------------|------------------|
 | **200** | Tool |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3151,7 +3151,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Event status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3228,7 +3228,7 @@ ApiResponse<[**BusinessAgentEventStatus**](BusinessAgentEventStatus.md)>
 |-------------|-------------|------------------|
 | **200** | Event status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3303,7 +3303,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | FAQ |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3380,7 +3380,7 @@ ApiResponse<[**BusinessAgentFaq**](BusinessAgentFaq.md)>
 |-------------|-------------|------------------|
 | **200** | FAQ |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3455,7 +3455,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3532,7 +3532,7 @@ ApiResponse<[**BusinessAgentKnowledgeFile**](BusinessAgentKnowledgeFile.md)>
 |-------------|-------------|------------------|
 | **200** | File |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3607,7 +3607,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Skill |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3684,7 +3684,7 @@ ApiResponse<[**BusinessAgentSkill**](BusinessAgentSkill.md)>
 |-------------|-------------|------------------|
 | **200** | Skill |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3759,7 +3759,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Setup status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3836,7 +3836,7 @@ ApiResponse<[**BusinessAgentStatus**](BusinessAgentStatus.md)>
 |-------------|-------------|------------------|
 | **200** | Setup status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3911,7 +3911,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | UI skill |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -3988,7 +3988,7 @@ ApiResponse<[**BusinessAgentUiSkill**](BusinessAgentUiSkill.md)>
 |-------------|-------------|------------------|
 | **200** | UI skill |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4063,7 +4063,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Website |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4140,7 +4140,7 @@ ApiResponse<[**BusinessAgentWebsite**](BusinessAgentWebsite.md)>
 |-------------|-------------|------------------|
 | **200** | Website |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4215,7 +4215,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Allowlist |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4292,7 +4292,7 @@ ApiResponse<[**ListBusinessAgentAllowlist200Response**](ListBusinessAgentAllowli
 |-------------|-------------|------------------|
 | **200** | Allowlist |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4367,7 +4367,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tools |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4444,7 +4444,7 @@ ApiResponse<[**ListBusinessAgentConnectorTools200Response**](ListBusinessAgentCo
 |-------------|-------------|------------------|
 | **200** | Tools |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4519,7 +4519,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connectors |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4596,7 +4596,7 @@ ApiResponse<[**ListBusinessAgentConnectors200Response**](ListBusinessAgentConnec
 |-------------|-------------|------------------|
 | **200** | Connectors |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4669,7 +4669,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | FAQs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4744,7 +4744,7 @@ ApiResponse<[**ListBusinessAgentFaqs200Response**](ListBusinessAgentFaqs200Respo
 |-------------|-------------|------------------|
 | **200** | FAQs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4817,7 +4817,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Files |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4892,7 +4892,7 @@ ApiResponse<[**ListBusinessAgentFiles200Response**](ListBusinessAgentFiles200Res
 |-------------|-------------|------------------|
 | **200** | Files |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -4969,7 +4969,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5048,7 +5048,7 @@ ApiResponse<[**ListBusinessAgentSettings200Response**](ListBusinessAgentSettings
 |-------------|-------------|------------------|
 | **200** | Settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5121,7 +5121,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Skills |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5196,7 +5196,7 @@ ApiResponse<[**ListBusinessAgentSkills200Response**](ListBusinessAgentSkills200R
 |-------------|-------------|------------------|
 | **200** | Skills |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5277,7 +5277,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | UI skills |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5360,7 +5360,7 @@ ApiResponse<[**ListBusinessAgentUiSkills200Response**](ListBusinessAgentUiSkills
 |-------------|-------------|------------------|
 | **200** | UI skills |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5433,7 +5433,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Websites |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5508,7 +5508,7 @@ ApiResponse<[**ListBusinessAgentWebsites200Response**](ListBusinessAgentWebsites
 |-------------|-------------|------------------|
 | **200** | Websites |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5583,7 +5583,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Agent created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | Meta rejected the state change (code business_agent_conflict). |  -  |
@@ -5661,7 +5661,7 @@ ApiResponse<[**OnboardBusinessAgent201Response**](OnboardBusinessAgent201Respons
 |-------------|-------------|------------------|
 | **201** | Agent created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **409** | Meta rejected the state change (code business_agent_conflict). |  -  |
@@ -5743,7 +5743,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Evaluation data as Meta returns it for the selected read |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5826,7 +5826,7 @@ ApiResponse<**Map&lt;String, Object&gt;**>
 |-------------|-------------|------------------|
 | **200** | Evaluation data as Meta returns it for the selected read |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5903,7 +5903,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connector with updated tool sync metadata |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -5982,7 +5982,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 |-------------|-------------|------------------|
 | **200** | Connector with updated tool sync metadata |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6057,7 +6057,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6134,7 +6134,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6211,7 +6211,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Budgets after the update |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6290,7 +6290,7 @@ ApiResponse<[**GetBusinessAgentBudget200Response**](GetBusinessAgentBudget200Res
 |-------------|-------------|------------------|
 | **200** | Budgets after the update |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6367,7 +6367,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Stored business information |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6446,7 +6446,7 @@ ApiResponse<[**BusinessAgentBusinessInformation**](BusinessAgentBusinessInformat
 |-------------|-------------|------------------|
 | **200** | Stored business information |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6519,7 +6519,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6594,7 +6594,7 @@ ApiResponse<[**InlineObject**](InlineObject.md)>
 |-------------|-------------|------------------|
 | **200** | Deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6675,7 +6675,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tool result |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6758,7 +6758,7 @@ ApiResponse<[**RunBusinessAgentConnectorTool200Response**](RunBusinessAgentConne
 |-------------|-------------|------------------|
 | **200** | Tool result |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6835,7 +6835,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **202** | Event accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6914,7 +6914,7 @@ ApiResponse<[**SendBusinessAgentEvent202Response**](SendBusinessAgentEvent202Res
 |-------------|-------------|------------------|
 | **202** | Event accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -6991,7 +6991,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Agent reply |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **429** | Meta hourly test-message limit reached (code rate_limited, Retry-After when known). |  -  |
@@ -7071,7 +7071,7 @@ ApiResponse<[**BusinessAgentTestMessageResponse**](BusinessAgentTestMessageRespo
 |-------------|-------------|------------------|
 | **200** | Agent reply |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **429** | Meta hourly test-message limit reached (code rate_limited, Retry-After when known). |  -  |
@@ -7151,7 +7151,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connector with the new credential metadata |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7232,7 +7232,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 |-------------|-------------|------------------|
 | **200** | Connector with the new credential metadata |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7309,7 +7309,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **202** | Run started |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7388,7 +7388,7 @@ ApiResponse<[**StartBusinessAgentEvalRun202Response**](StartBusinessAgentEvalRun
 |-------------|-------------|------------------|
 | **202** | Run started |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7465,7 +7465,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Connector updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7544,7 +7544,7 @@ ApiResponse<[**BusinessAgentConnector**](BusinessAgentConnector.md)>
 |-------------|-------------|------------------|
 | **200** | Connector updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7623,7 +7623,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tool updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7704,7 +7704,7 @@ ApiResponse<[**BusinessAgentConnectorTool**](BusinessAgentConnectorTool.md)>
 |-------------|-------------|------------------|
 | **200** | Tool updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7781,7 +7781,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | FAQ updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7860,7 +7860,7 @@ ApiResponse<[**BusinessAgentFaq**](BusinessAgentFaq.md)>
 |-------------|-------------|------------------|
 | **200** | FAQ updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -7939,7 +7939,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8020,7 +8020,7 @@ ApiResponse<[**BusinessAgentSettings**](BusinessAgentSettings.md)>
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8097,7 +8097,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Skill updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8176,7 +8176,7 @@ ApiResponse<[**BusinessAgentSkill**](BusinessAgentSkill.md)>
 |-------------|-------------|------------------|
 | **200** | Skill updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8253,7 +8253,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | UI skill updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8332,7 +8332,7 @@ ApiResponse<[**BusinessAgentUiSkill**](BusinessAgentUiSkill.md)>
 |-------------|-------------|------------------|
 | **200** | UI skill updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8409,7 +8409,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Website updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8488,7 +8488,7 @@ ApiResponse<[**BusinessAgentWebsite**](BusinessAgentWebsite.md)>
 |-------------|-------------|------------------|
 | **200** | Website updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 
@@ -8565,7 +8565,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | File uploaded |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **413** | File larger than 100 MB (code payload_too_large). A multipart body above the request limit is rejected by the host before the route runs. |  -  |
@@ -8645,7 +8645,7 @@ ApiResponse<[**BusinessAgentKnowledgeFile**](BusinessAgentKnowledgeFile.md)>
 |-------------|-------------|------------------|
 | **201** | File uploaded |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox add-on required, the WhatsApp token lacks the Business Agent permissions (code reconnect_required), or the merchant has not accepted the Meta Business Agent terms in WhatsApp Manager (code business_agent_terms_not_accepted). |  -  |
 | **404** | Account not found, or no agent exists on the number yet or the referenced item does not exist (code business_agent_not_found). |  -  |
 | **413** | File larger than 100 MB (code payload_too_large). A multipart body above the request limit is rejected by the host before the route runs. |  -  |

@@ -115,7 +115,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
@@ -196,7 +196,7 @@ ApiResponse<[**AttachNumberToSipTrunk200Response**](AttachNumberToSipTrunk200Res
 |-------------|-------------|------------------|
 | **200** | Number attached (idempotent for the same trunk). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **404** | Number or trunk not found |  -  |
 | **409** | The number still has Calls or WhatsApp calling enabled, is mid WhatsApp verification, is not active, or is attached to another trunk (code invalid_resource_state). |  -  |
@@ -273,7 +273,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
@@ -351,7 +351,7 @@ ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
 |-------------|-------------|------------------|
 | **201** | Trunk created. The digest password is shown only here and on rotate. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The team is on legacy (non-usage-based) billing, which cannot invoice trunk call costs (code feature_not_available). Move to usage-based billing to use SIP trunking. |  -  |
 | **409** | The team trunk limit was reached (code invalid_resource_state). |  -  |
 | **422** | The host cannot be used as a trunk destination (e.g. a Zernio or carrier host). |  -  |
@@ -428,7 +428,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
@@ -507,7 +507,7 @@ ApiResponse<[**CreateVoiceCall200Response**](CreateVoiceCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call originated; lifecycle continues asynchronously. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | No voice-enabled number matches &#x60;fromNumber&#x60;, or no forward destination configured (set the number&#39;s forward or pass &#x60;forwardTo&#x60;). |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed; the call has been marked failed. |  -  |
@@ -578,7 +578,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | WebRTC session minted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | Failed to mint the WebRTC session |  -  |
 
 ## createVoiceWebSessionWithHttpInfo
@@ -649,7 +649,7 @@ ApiResponse<[**CreateVoiceWebSession200Response**](CreateVoiceWebSession200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | WebRTC session minted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | Failed to mint the WebRTC session |  -  |
 
 
@@ -723,7 +723,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Trunk deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 | **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
 
@@ -800,7 +800,7 @@ ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Trunk deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 | **409** | Numbers are still attached to this trunk (code invalid_resource_state). |  -  |
 
@@ -875,7 +875,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number detached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## detachNumberFromSipTrunkWithHttpInfo
@@ -951,7 +951,7 @@ ApiResponse<[**DetachNumberFromSipTrunk200Response**](DetachNumberFromSipTrunk20
 |-------------|-------------|------------------|
 | **200** | Number detached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -1024,7 +1024,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call originated; answer/bridge continue asynchronously. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Invalid or unknown WebRTC credential, or no voice-enabled number matches &#x60;fromNumber&#x60; |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed |  -  |
@@ -1101,7 +1101,7 @@ ApiResponse<[**DialVoiceWebCall200Response**](DialVoiceWebCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call originated; answer/bridge continue asynchronously. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **422** | Invalid or unknown WebRTC credential, or no voice-enabled number matches &#x60;fromNumber&#x60; |  -  |
 | **429** | Outbound call limit reached (per rolling hour). |  -  |
 | **502** | Carrier-side originate failed |  -  |
@@ -1176,7 +1176,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Voice disabled. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## disableVoiceOnNumberWithHttpInfo
@@ -1251,7 +1251,7 @@ ApiResponse<[**DisableVoiceOnNumber200Response**](DisableVoiceOnNumber200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Voice disabled. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -1326,7 +1326,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
@@ -1405,7 +1405,7 @@ ApiResponse<[**EnableVoiceOnNumber200Response**](EnableVoiceOnNumber200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Voice enabled; the full effective voice config is echoed back. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 | **409** | This number is attached to a SIP trunk; detach it first (code invalid_resource_state). |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so calls can&#39;t be enabled on it. |  -  |
@@ -1480,7 +1480,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Hangup issued (or the call was already over). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **502** | Carrier-side hangup failed |  -  |
 
@@ -1556,7 +1556,7 @@ ApiResponse<[**EndVoiceCall200Response**](EndVoiceCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Hangup issued (or the call was already over). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **502** | Carrier-side hangup failed |  -  |
 
@@ -1629,7 +1629,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Trunk detail, including the attached numbers. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 
 ## getSipTrunkWithHttpInfo
@@ -1703,7 +1703,7 @@ ApiResponse<[**GetSipTrunk200Response**](GetSipTrunk200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Trunk detail, including the attached numbers. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 
 
@@ -1776,7 +1776,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 
 ## getVoiceCallWithHttpInfo
@@ -1851,7 +1851,7 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Call |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 
 
@@ -1932,7 +1932,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Estimate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getVoiceCallEstimateWithHttpInfo
 
@@ -2014,7 +2014,7 @@ ApiResponse<[**GetVoiceCallEstimate200Response**](GetVoiceCallEstimate200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Estimate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getVoiceCallRecording
@@ -2089,7 +2089,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
@@ -2168,7 +2168,7 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 |-------------|-------------|------------------|
 | **302** | Redirect to a freshly-signed recording URL. |  -  |
 | **200** | Recording URL (&#x60;as&#x3D;json&#x60; only). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found, or no recording is available for this call |  -  |
 | **502** | Recording provider lookup failed |  -  |
 
@@ -2236,7 +2236,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The team&#39;s trunks. Passwords are never included. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listSipTrunksWithHttpInfo
 
@@ -2304,7 +2304,7 @@ ApiResponse<[**ListSipTrunks200Response**](ListSipTrunks200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | The team&#39;s trunks. Passwords are never included. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listVoiceCalls
@@ -2384,7 +2384,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listVoiceCallsWithHttpInfo
 
@@ -2466,7 +2466,7 @@ ApiResponse<[**ListVoiceCalls200Response**](ListVoiceCalls200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Calls, newest first |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## rotateSipTrunkCredentials
@@ -2539,7 +2539,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | New credentials. The password is shown only here. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 
 ## rotateSipTrunkCredentialsWithHttpInfo
@@ -2615,7 +2615,7 @@ ApiResponse<[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials
 |-------------|-------------|------------------|
 | **200** | New credentials. The password is shown only here. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | SIP trunk not found |  -  |
 
 
@@ -2690,7 +2690,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfer issued. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **409** | Call is not connected yet, or has already ended |  -  |
 
@@ -2768,7 +2768,7 @@ ApiResponse<[**TransferVoiceCall200Response**](TransferVoiceCall200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Transfer issued. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Call not found |  -  |
 | **409** | Call is not connected yet, or has already ended |  -  |
 

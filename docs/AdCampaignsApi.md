@@ -200,7 +200,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Keywords added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -278,7 +278,7 @@ ApiResponse<[**AddAdKeywords201Response**](AddAdKeywords201Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Keywords added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
 
@@ -353,7 +353,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -432,7 +432,7 @@ ApiResponse<[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendatio
 |-------------|-------------|------------------|
 | **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -512,7 +512,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -594,7 +594,7 @@ ApiResponse<[**AttachAdGroupAssets201Response**](AttachAdGroupAssets201Response.
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -674,7 +674,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -756,7 +756,7 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Assets created and attached. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -836,7 +836,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **409** | The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
@@ -918,7 +918,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **409** | The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. An identical boost request is already in progress (with or without an Idempotency-Key). Wait for it to finish instead of retrying.  |  -  |
@@ -995,7 +995,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Per-campaign results |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 
 ## bulkUpdateAdCampaignStatusWithHttpInfo
@@ -1071,7 +1071,7 @@ ApiResponse<[**BulkUpdateAdCampaignStatus200Response**](BulkUpdateAdCampaignStat
 |-------------|-------------|------------------|
 | **200** | Per-campaign results |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 
 
@@ -1150,7 +1150,7 @@ public class Example {
 | **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | &#x60;validateOnly: true&#x60; outside Meta, or campaign-only creation on a platform that does not support it. Carries code &#x60;feature_not_available&#x60;. |  -  |
 
 ## createAdCampaignWithHttpInfo
@@ -1231,7 +1231,7 @@ ApiResponse<[**CreateAdCampaign200Response**](CreateAdCampaign200Response.md)>
 | **200** | Campaign validation passed without creating a campaign. |  -  |
 | **201** | Campaign created |  -  |
 | **400** | Invalid input, or Meta rejected the create |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | &#x60;validateOnly: true&#x60; outside Meta, or campaign-only creation on a platform that does not support it. Carries code &#x60;feature_not_available&#x60;. |  -  |
 
 
@@ -1308,7 +1308,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Ad group created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -1389,7 +1389,7 @@ ApiResponse<[**CreateAdSet201Response**](CreateAdSet201Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Ad group created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Only supported on Google Ads |  -  |
@@ -1466,7 +1466,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Bid strategy created |  -  |
 | **400** | Invalid input, or Google rejected the strategy (e.g. shared-budget alignment). The message carries Google&#39;s error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
@@ -1546,7 +1546,7 @@ ApiResponse<[**CreateBidStrategy201Response**](CreateBidStrategy201Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **201** | Bid strategy created |  -  |
 | **400** | Invalid input, or Google rejected the strategy (e.g. shared-budget alignment). The message carries Google&#39;s error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Google Ads customer accounts on this connection. Reconnect Google Ads. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
@@ -1626,7 +1626,7 @@ public class Example {
 | **201** | Asset group created. |  -  |
 | **200** | validateOnly request accepted by Google. Nothing was created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -1708,7 +1708,7 @@ ApiResponse<[**CreateGoogleAssetGroup200Response**](CreateGoogleAssetGroup200Res
 | **201** | Asset group created. |  -  |
 | **200** | validateOnly request accepted by Google. Nothing was created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -1790,7 +1790,7 @@ public class Example {
 | **200** | validateOnly dry-run passed, nothing was created |  -  |
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
@@ -1876,7 +1876,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 | **200** | validateOnly dry-run passed, nothing was created |  -  |
 | **201** | Ad(s) created |  -  |
 | **400** | Missing required fields, invalid values, non-Meta platform used with creatives[] / adSetId, or a Meta validateOnly validation failure (verbatim) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **422** | Platform ads connection required (TikTok Ads, X Ads) or missing linked account |  -  |
@@ -1954,7 +1954,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad cancelled |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAdWithHttpInfo
@@ -2029,7 +2029,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad cancelled |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2106,7 +2106,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **400** | Invalid request |  -  |
 | **200** | Campaign deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -2186,7 +2186,7 @@ ApiResponse<[**DeleteAdCampaign200Response**](DeleteAdCampaign200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **400** | Invalid request |  -  |
 | **200** | Campaign deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -2260,7 +2260,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad set deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad set not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -2336,7 +2336,7 @@ ApiResponse<[**DeleteAdSet200Response**](DeleteAdSet200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad set deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad set not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
 
@@ -2411,7 +2411,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -2490,7 +2490,7 @@ ApiResponse<[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendatio
 |-------------|-------------|------------------|
 | **200** | Per-recommendation outcome. A failed item does not stop the others. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -2571,7 +2571,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -2653,7 +2653,7 @@ ApiResponse<[**DuplicateAd200Response**](DuplicateAd200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -2733,7 +2733,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source campaign not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
@@ -2815,7 +2815,7 @@ ApiResponse<[**DuplicateAdCampaign200Response**](DuplicateAdCampaign200Response.
 |-------------|-------------|------------------|
 | **200** | Campaign duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source campaign not found |  -  |
 | **501** | Operation not supported on this platform |  -  |
@@ -2895,7 +2895,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad set duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -2977,7 +2977,7 @@ ApiResponse<[**DuplicateAdSet200Response**](DuplicateAdSet200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad set duplicated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Source ad set not found |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -3057,7 +3057,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Links applied (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -3140,7 +3140,7 @@ ApiResponse<[**EditGoogleAssetGroupAssets200Response**](EditGoogleAssetGroupAsse
 |-------------|-------------|------------------|
 | **200** | Links applied (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -3219,7 +3219,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad details |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAdWithHttpInfo
@@ -3297,7 +3297,7 @@ ApiResponse<[**GetAd200Response**](GetAd200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad details |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -3377,7 +3377,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The campaign as returned by Meta |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## getAdCampaignDetailsWithHttpInfo
@@ -3459,7 +3459,7 @@ ApiResponse<[**GetAdCampaignDetails200Response**](GetAdCampaignDetails200Respons
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The campaign as returned by Meta |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -3539,7 +3539,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The ad set as returned by Meta |  -  |
 | **400** | Invalid input, or Meta rejected the query; the message carries Meta&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## getAdSetDetailsWithHttpInfo
@@ -3621,7 +3621,7 @@ ApiResponse<[**GetAdSetDetails200Response**](GetAdSetDetails200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | The ad set as returned by Meta |  -  |
 | **400** | Invalid input, or Meta rejected the query; the message carries Meta&#39;s error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -3731,7 +3731,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## getAdTreeWithHttpInfo
@@ -3843,7 +3843,7 @@ ApiResponse<[**AdTreeResponse**](AdTreeResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
@@ -3926,7 +3926,7 @@ public class Example {
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## getAdsTimelineWithHttpInfo
@@ -4011,7 +4011,7 @@ ApiResponse<[**AdsTimelineResponse**](AdsTimelineResponse.md)>
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
@@ -4095,7 +4095,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The campaign&#39;s ad schedule |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
@@ -4183,7 +4183,7 @@ ApiResponse<[**GetCampaignAdSchedule200Response**](GetCampaignAdSchedule200Respo
 |-------------|-------------|------------------|
 | **200** | The campaign&#39;s ad schedule |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads campaign: ad schedules are a Google criterion. |  -  |
@@ -4268,7 +4268,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
 | **400** | Invalid input (accountId, adAccountId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads account: the connection behind accountId resolves to another platform. |  -  |
@@ -4355,7 +4355,7 @@ ApiResponse<[**GetCampaignBidding200Response**](GetCampaignBidding200Response.md
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Campaign bidding |  -  |
 | **400** | Invalid input (accountId, adAccountId, or a non-numeric campaignId), or a platform other than \&quot;google\&quot; |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **501** | Not a Google Ads account: the connection behind accountId resolves to another platform. |  -  |
@@ -4431,7 +4431,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign conversion goals |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -4509,7 +4509,7 @@ ApiResponse<[**GetCampaignConversionGoals200Response**](GetCampaignConversionGoa
 |-------------|-------------|------------------|
 | **200** | Campaign conversion goals |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -4587,7 +4587,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Current campaign targeting |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -4667,7 +4667,7 @@ ApiResponse<[**GetCampaignTargeting200Response**](GetCampaignTargeting200Respons
 |-------------|-------------|------------------|
 | **200** | Current campaign targeting |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -4745,7 +4745,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The asset group. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -4826,7 +4826,7 @@ ApiResponse<[**GetGoogleAssetGroup200Response**](GetGoogleAssetGroup200Response.
 |-------------|-------------|------------------|
 | **200** | The asset group. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -4933,7 +4933,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Paginated campaigns |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdCampaignsWithHttpInfo
@@ -5039,7 +5039,7 @@ ApiResponse<[**ListAdCampaigns200Response**](ListAdCampaigns200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Paginated campaigns |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
@@ -5120,7 +5120,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -5206,7 +5206,7 @@ ApiResponse<[**ListAdGroupAssets200Response**](ListAdGroupAssets200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -5303,7 +5303,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Paginated keywords |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdKeywordsWithHttpInfo
@@ -5399,7 +5399,7 @@ ApiResponse<[**ListAdKeywords200Response**](ListAdKeywords200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Paginated keywords |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
@@ -5481,7 +5481,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad sets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 
 ## listAdSetsWithHttpInfo
@@ -5565,7 +5565,7 @@ ApiResponse<[**ListAdSets200Response**](ListAdSets200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad sets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 
 
@@ -5670,7 +5670,7 @@ public class Example {
 | **200** | Paginated ads |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 ## listAdsWithHttpInfo
@@ -5777,7 +5777,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 | **200** | Paginated ads |  -  |
 | **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
 
@@ -5860,7 +5860,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Portfolio bid strategies |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -5947,7 +5947,7 @@ ApiResponse<[**ListBidStrategies200Response**](ListBidStrategies200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Portfolio bid strategies |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -6030,7 +6030,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -6116,7 +6116,7 @@ ApiResponse<[**ListCampaignAssets200Response**](ListCampaignAssets200Response.md
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -6195,7 +6195,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Successful response. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -6278,7 +6278,7 @@ ApiResponse<[**ListAdNegativeKeywordLists200Response**](ListAdNegativeKeywordLis
 |-------------|-------------|------------------|
 | **200** | Successful response. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -6358,7 +6358,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign-level negative keywords |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -6437,7 +6437,7 @@ ApiResponse<[**ListCampaignNegativeKeywords200Response**](ListCampaignNegativeKe
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign-level negative keywords |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -6513,7 +6513,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Asset groups and linked assets. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Google quota or operation budget exhausted with no cached response. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
@@ -6591,7 +6591,7 @@ ApiResponse<[**ListGoogleAssetGroups200Response**](ListGoogleAssetGroups200Respo
 |-------------|-------------|------------------|
 | **200** | Asset groups and linked assets. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Google quota or operation budget exhausted with no cached response. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
@@ -6675,7 +6675,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Recommendations. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -6762,7 +6762,7 @@ ApiResponse<[**ListGoogleRecommendations200Response**](ListGoogleRecommendations
 |-------------|-------------|------------------|
 | **200** | Recommendations. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | No Google Ads customer on this connection, or it needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -6842,7 +6842,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -6924,7 +6924,7 @@ ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Respons
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -7002,7 +7002,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 ## removeAdKeywordWithHttpInfo
@@ -7079,7 +7079,7 @@ ApiResponse<[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
 
@@ -7156,7 +7156,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -7238,7 +7238,7 @@ ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Respons
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -7319,7 +7319,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Removed (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -7402,7 +7402,7 @@ ApiResponse<[**RemoveGoogleAssetGroup200Response**](RemoveGoogleAssetGroup200Res
 |-------------|-------------|------------------|
 | **200** | Removed (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -7481,7 +7481,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Successful response. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -7564,7 +7564,7 @@ ApiResponse<[**ReplaceAdNegativeKeywordListKeywords200Response**](ReplaceAdNegat
 |-------------|-------------|------------------|
 | **200** | Successful response. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access and permission to the selected account are required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Ambiguous campaign or account selection. Use a profile-scoped key. A list still attached to a campaign may also be rejected by Google. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -7645,7 +7645,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign-level negative keywords replaced |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -7725,7 +7725,7 @@ ApiResponse<[**ReplaceCampaignNegativeKeywords200Response**](ReplaceCampaignNega
 |-------------|-------------|------------------|
 | **200** | Campaign-level negative keywords replaced |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **429** | Google Ads operations budget exhausted; retry later |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -7805,7 +7805,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tree replaced (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -7888,7 +7888,7 @@ ApiResponse<[**ReplaceGoogleListingGroupFilters200Response**](ReplaceGoogleListi
 |-------------|-------------|------------------|
 | **200** | Tree replaced (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -7967,7 +7967,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
 | **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, a LinkedIn targeting update without countries or regions, or a Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds. |  -  |
@@ -8050,7 +8050,7 @@ ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad updated |  -  |
 | **400** | Invalid status transition, budget below minimum, a LinkedIn creative update without imageUrl or videoUrl, a LinkedIn targeting update without countries or regions, or a Google targeting update that is unsupported, empty, mixes locations with the top-level geo fields, or names an unknown country or language code |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Meta admits one write per 30 seconds to a metered object, ad creatives above all. Zernio waits out two of those windows and replays the call before surfacing this, so it only appears when the object is being edited faster than that. Retry in 30 seconds. |  -  |
@@ -8131,7 +8131,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -8212,7 +8212,7 @@ ApiResponse<[**UpdateAdCampaign200Response**](UpdateAdCampaign200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Campaign updated |  -  |
 | **400** | Invalid input, or a field the resolved platform does not support at the campaign level (see the support table) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | Meta campaign is ABO, or the Google budget is shared without allowSharedBudgetUpdate&#x3D;true, or sharing state cannot be verified. The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying. |  -  |
@@ -8291,7 +8291,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input or campaign spans multiple accounts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | No ads found for this campaign |  -  |
 
@@ -8370,7 +8370,7 @@ ApiResponse<[**UpdateAdCampaignStatus200Response**](UpdateAdCampaignStatus200Res
 |-------------|-------------|------------------|
 | **200** | Campaign status updated |  -  |
 | **400** | Invalid input or campaign spans multiple accounts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | No ads found for this campaign |  -  |
 
@@ -8448,7 +8448,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -8530,7 +8530,7 @@ ApiResponse<[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Respons
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -8610,7 +8610,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
 
@@ -8690,7 +8690,7 @@ ApiResponse<[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Keyword updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | Negative keywords have no status on Google; they cannot be paused or enabled. |  -  |
 
@@ -8767,7 +8767,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO. Route to /v1/ads/campaigns/{campaignId} instead |  -  |
@@ -8849,7 +8849,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad set updated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 | **409** | Campaign is CBO. Route to /v1/ads/campaigns/{campaignId} instead |  -  |
@@ -8929,7 +8929,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 
@@ -9008,7 +9008,7 @@ ApiResponse<[**UpdateAdSetStatus200Response**](UpdateAdSetStatus200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad set status updated |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad set not found |  -  |
 
@@ -9085,7 +9085,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 
@@ -9164,7 +9164,7 @@ ApiResponse<[**UpdateAdStatus200Response**](UpdateAdStatus200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ad status updated (or skipped when no change was needed) |  -  |
 | **400** | Invalid input |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Ad not found |  -  |
 
@@ -9242,7 +9242,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Bid strategy updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -9323,7 +9323,7 @@ ApiResponse<[**UpdateBidStrategy200Response**](UpdateBidStrategy200Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Bid strategy updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
@@ -9401,7 +9401,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The schedule as Google stored it |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | The schedule breaks a Google rule: too many windows on a day, an overlap, a window that ends before it starts, minutes on hour 24, or a bid modifier outside 0.1-10.0. |  -  |
@@ -9482,7 +9482,7 @@ ApiResponse<[**UpdateCampaignAdSchedule200Response**](UpdateCampaignAdSchedule20
 |-------------|-------------|------------------|
 | **200** | The schedule as Google stored it |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | The schedule breaks a Google rule: too many windows on a day, an overlap, a window that ends before it starts, minutes on hour 24, or a bid modifier outside 0.1-10.0. |  -  |
@@ -9562,7 +9562,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -9644,7 +9644,7 @@ ApiResponse<[**UpdateCampaignAssets200Response**](UpdateCampaignAssets200Respons
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Assets returned. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access is required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **429** | Google Ads operations budget or platform quota exhausted. |  -  |
@@ -9723,7 +9723,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Campaign goals updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -9803,7 +9803,7 @@ ApiResponse<[**UpdateCampaignConversionGoals200Response**](UpdateCampaignConvers
 |-------------|-------------|------------------|
 | **200** | Campaign goals updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Campaign not found |  -  |
 | **409** | Campaign matches multiple accessible accounts, or the connection needs reconnecting |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -9881,7 +9881,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Targeting updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -9961,7 +9961,7 @@ ApiResponse<[**UpdateCampaignTargeting200Response**](UpdateCampaignTargeting200R
 |-------------|-------------|------------------|
 | **200** | Targeting updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | Campaign not found |  -  |
 | **501** | Only available on Google Ads campaigns |  -  |
@@ -10041,7 +10041,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Updated (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
@@ -10124,7 +10124,7 @@ ApiResponse<[**UpdateGoogleAssetGroup200Response**](UpdateGoogleAssetGroup200Res
 |-------------|-------------|------------------|
 | **200** | Updated (or validated). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |

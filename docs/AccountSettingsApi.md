@@ -100,7 +100,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Ice breakers deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## deleteInstagramIceBreakersWithHttpInfo
 
@@ -174,7 +174,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Ice breakers deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteMessengerGetStarted
@@ -247,7 +247,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Get Started button deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A persistent menu is still set. Delete it with DELETE /v1/accounts/{accountId}/messenger-menu first. |  -  |
 
@@ -324,7 +324,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Get Started button deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | A persistent menu is still set. Delete it with DELETE /v1/accounts/{accountId}/messenger-menu first. |  -  |
 
@@ -398,7 +398,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Menu deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## deleteMessengerMenuWithHttpInfo
 
@@ -472,7 +472,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Menu deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteTelegramCommands
@@ -544,7 +544,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Commands deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## deleteTelegramCommandsWithHttpInfo
 
@@ -618,7 +618,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Commands deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getInstagramIceBreakers
@@ -691,7 +691,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ice breaker configuration |  -  |
 | **400** | Not an Instagram account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getInstagramIceBreakersWithHttpInfo
 
@@ -766,7 +766,7 @@ ApiResponse<[**GetMessengerMenu200Response**](GetMessengerMenu200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ice breaker configuration |  -  |
 | **400** | Not an Instagram account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getMessengerGetStarted
@@ -839,7 +839,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Get Started button configuration |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getMessengerGetStartedWithHttpInfo
@@ -915,7 +915,7 @@ ApiResponse<[**GetMessengerGetStarted200Response**](GetMessengerGetStarted200Res
 |-------------|-------------|------------------|
 | **200** | Get Started button configuration |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -989,7 +989,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Persistent menu configuration |  -  |
 | **400** | Not a Facebook account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getMessengerMenuWithHttpInfo
 
@@ -1064,7 +1064,7 @@ ApiResponse<[**GetMessengerMenu200Response**](GetMessengerMenu200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Persistent menu configuration |  -  |
 | **400** | Not a Facebook account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getTelegramCommands
@@ -1137,7 +1137,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Bot commands list |  -  |
 | **400** | Not a Telegram account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getTelegramCommandsWithHttpInfo
 
@@ -1212,7 +1212,7 @@ ApiResponse<[**GetTelegramCommands200Response**](GetTelegramCommands200Response.
 |-------------|-------------|------------------|
 | **200** | Bot commands list |  -  |
 | **400** | Not a Telegram account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## setInstagramIceBreakers
@@ -1286,7 +1286,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Ice breakers set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## setInstagramIceBreakersWithHttpInfo
 
@@ -1362,7 +1362,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Ice breakers set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## setMessengerGetStarted
@@ -1437,7 +1437,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Get Started button set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## setMessengerGetStartedWithHttpInfo
@@ -1515,7 +1515,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Get Started button set |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1590,7 +1590,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Menu set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | The page has no Get Started button. Set one with PUT /v1/accounts/{accountId}/messenger-get-started and retry. |  -  |
 
 ## setMessengerMenuWithHttpInfo
@@ -1667,7 +1667,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Menu set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | The page has no Get Started button. Set one with PUT /v1/accounts/{accountId}/messenger-get-started and retry. |  -  |
 
 
@@ -1742,7 +1742,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Commands set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## setTelegramCommandsWithHttpInfo
 
@@ -1818,5 +1818,5 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Commands set successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

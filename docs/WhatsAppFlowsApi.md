@@ -107,7 +107,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow created |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## createWhatsAppFlowWithHttpInfo
@@ -183,7 +183,7 @@ ApiResponse<[**CreateWhatsAppFlow200Response**](CreateWhatsAppFlow200Response.md
 |-------------|-------------|------------------|
 | **200** | Flow created |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -259,7 +259,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow deleted |  -  |
 | **400** | Flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 
 ## deleteWhatsAppFlowWithHttpInfo
@@ -337,7 +337,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Flow deleted |  -  |
 | **400** | Flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 
 
@@ -413,7 +413,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow deprecated |  -  |
 | **400** | Flow is not in PUBLISHED status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## deprecateWhatsAppFlowWithHttpInfo
@@ -491,7 +491,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Flow deprecated |  -  |
 | **400** | Flow is not in PUBLISHED status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -568,7 +568,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 ## getWhatsAppFlowWithHttpInfo
@@ -647,7 +647,7 @@ ApiResponse<[**GetWhatsAppFlow200Response**](GetWhatsAppFlow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 
@@ -722,7 +722,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow JSON asset |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppFlowJsonWithHttpInfo
@@ -799,7 +799,7 @@ ApiResponse<[**GetWhatsAppFlowJson200Response**](GetWhatsAppFlowJson200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow JSON asset |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -876,7 +876,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Preview URL |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 ## getWhatsAppFlowPreviewWithHttpInfo
@@ -955,7 +955,7 @@ ApiResponse<[**GetWhatsAppFlowPreview200Response**](GetWhatsAppFlowPreview200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Preview URL |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 
@@ -1029,7 +1029,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Encryption key status retrieved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request |  -  |
@@ -1107,7 +1107,7 @@ ApiResponse<[**GetWhatsAppFlowsEncryptionKey200Response**](GetWhatsAppFlowsEncry
 |-------------|-------------|------------------|
 | **200** | Encryption key status retrieved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request |  -  |
@@ -1186,7 +1186,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow responses |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## listWhatsAppFlowResponsesWithHttpInfo
@@ -1265,7 +1265,7 @@ ApiResponse<[**ListWhatsAppFlowResponses200Response**](ListWhatsAppFlowResponses
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Flow responses |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -1340,7 +1340,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version history |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 ## listWhatsAppFlowVersionsWithHttpInfo
@@ -1417,7 +1417,7 @@ ApiResponse<[**ListWhatsAppFlowVersions200Response**](ListWhatsAppFlowVersions20
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Version history |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Flow or account not found |  -  |
 
 
@@ -1491,7 +1491,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flows retrieved |  -  |
 | **400** | WABA ID not found on account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## listWhatsAppFlowsWithHttpInfo
@@ -1567,7 +1567,7 @@ ApiResponse<[**ListWhatsAppFlows200Response**](ListWhatsAppFlows200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Flows retrieved |  -  |
 | **400** | WABA ID not found on account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -1643,7 +1643,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow published |  -  |
 | **400** | Flow is not in DRAFT status or has validation errors |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## publishWhatsAppFlowWithHttpInfo
@@ -1721,7 +1721,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Flow published |  -  |
 | **400** | Flow is not in DRAFT status or has validation errors |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -1795,7 +1795,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow message sent |  -  |
 | **400** | Validation error or missing phone number ID |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## sendWhatsAppFlowMessageWithHttpInfo
@@ -1871,7 +1871,7 @@ ApiResponse<[**SendWhatsAppFlowMessage200Response**](SendWhatsAppFlowMessage200R
 |-------------|-------------|------------------|
 | **200** | Flow message sent |  -  |
 | **400** | Validation error or missing phone number ID |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -1945,7 +1945,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Encryption key registered |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request |  -  |
@@ -2023,7 +2023,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Encryption key registered |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request |  -  |
@@ -2101,7 +2101,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow updated |  -  |
 | **400** | At least one of name, categories or endpointUri is required, or flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 
 ## updateWhatsAppFlowWithHttpInfo
@@ -2179,7 +2179,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Flow updated |  -  |
 | **400** | At least one of name, categories or endpointUri is required, or flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account or flow not found |  -  |
 
 
@@ -2255,7 +2255,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Flow JSON uploaded |  -  |
 | **400** | Invalid JSON or flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## uploadWhatsAppFlowJsonWithHttpInfo
@@ -2333,6 +2333,6 @@ ApiResponse<[**UploadWhatsAppFlowJson200Response**](UploadWhatsAppFlowJson200Res
 |-------------|-------------|------------------|
 | **200** | Flow JSON uploaded |  -  |
 | **400** | Invalid JSON or flow is not in DRAFT status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 

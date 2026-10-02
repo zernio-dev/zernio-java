@@ -93,7 +93,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tweet bookmarked |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -170,7 +170,7 @@ ApiResponse<[**BookmarkPost200Response**](BookmarkPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Tweet bookmarked |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -245,7 +245,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | User followed or follow request sent |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -322,7 +322,7 @@ ApiResponse<[**FollowUser200Response**](FollowUser200Response.md)>
 |-------------|-------------|------------------|
 | **200** | User followed or follow request sent |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -401,7 +401,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The resolved tweet |  -  |
 | **400** | Missing or malformed tweetId or accountId, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
 | **404** | Account not found, or the tweet was deleted or never existed |  -  |
@@ -484,7 +484,7 @@ ApiResponse<[**GetTweet200Response**](GetTweet200Response.md)>
 |-------------|-------------|------------------|
 | **200** | The resolved tweet |  -  |
 | **400** | Missing or malformed tweetId or accountId, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED), or the tweet author is protected or suspended |  -  |
 | **404** | Account not found, or the tweet was deleted or never existed |  -  |
@@ -563,7 +563,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Bookmark removed |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -642,7 +642,7 @@ ApiResponse<[**RemoveBookmark200Response**](RemoveBookmark200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Bookmark removed |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -717,7 +717,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Tweet retweeted |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -794,7 +794,7 @@ ApiResponse<[**RetweetPost200Response**](RetweetPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Tweet retweeted |  -  |
 | **400** | Bad request or platform limitation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -885,7 +885,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Matching tweets |  -  |
 | **400** | Bad request (invalid params, or X rejected the query as malformed) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Account not found |  -  |
@@ -980,7 +980,7 @@ ApiResponse<[**SearchTweets200Response**](SearchTweets200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Matching tweets |  -  |
 | **400** | Bad request (invalid params, or X rejected the query as malformed) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | X API spend cap reached for this billing period |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Account not found |  -  |
@@ -1059,7 +1059,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Retweet undone |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -1138,7 +1138,7 @@ ApiResponse<[**UndoRetweet200Response**](UndoRetweet200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Retweet undone |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -1215,7 +1215,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | User unfollowed |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 
@@ -1294,7 +1294,7 @@ ApiResponse<[**UnfollowUser200Response**](UnfollowUser200Response.md)>
 |-------------|-------------|------------------|
 | **200** | User unfollowed |  -  |
 | **400** | Bad request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X rejected the request (e.g. suspended account, missing OAuth scope) |  -  |
 | **404** | Account not found |  -  |
 

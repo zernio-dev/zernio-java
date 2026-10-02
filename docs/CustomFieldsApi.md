@@ -89,7 +89,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Field value cleared |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## clearContactFieldValueWithHttpInfo
@@ -165,7 +165,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Field value cleared |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -239,7 +239,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Custom field created |  -  |
 | **400** | Invalid request body |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | Duplicate slug |  -  |
 
 ## createCustomFieldWithHttpInfo
@@ -315,7 +315,7 @@ ApiResponse<[**CreateCustomField200Response**](CreateCustomField200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Custom field created |  -  |
 | **400** | Invalid request body |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | Duplicate slug |  -  |
 
 
@@ -388,7 +388,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Custom field deleted |  -  |
 | **400** | Invalid fieldId format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteCustomFieldWithHttpInfo
@@ -463,7 +463,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Custom field deleted |  -  |
 | **400** | Invalid fieldId format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -537,7 +537,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of custom field definitions |  -  |
 | **400** | Invalid profileId format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listCustomFieldsWithHttpInfo
 
@@ -612,7 +612,7 @@ ApiResponse<[**ListCustomFields200Response**](ListCustomFields200Response.md)>
 |-------------|-------------|------------------|
 | **200** | List of custom field definitions |  -  |
 | **400** | Invalid profileId format |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## setContactFieldValue
@@ -687,7 +687,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Field value set |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## setContactFieldValueWithHttpInfo
@@ -765,7 +765,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Field value set |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -841,7 +841,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Custom field updated |  -  |
 | **400** | Invalid fieldId or request body |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateCustomFieldWithHttpInfo
@@ -919,6 +919,6 @@ ApiResponse<[**UpdateCustomField200Response**](UpdateCustomField200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Custom field updated |  -  |
 | **400** | Invalid fieldId or request body |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

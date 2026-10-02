@@ -85,7 +85,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Product fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
@@ -165,7 +165,7 @@ ApiResponse<[**GetProduct200Response**](GetProduct200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Product fetched |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
@@ -249,7 +249,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Products listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
@@ -335,7 +335,7 @@ ApiResponse<[**ListProducts200Response**](ListProducts200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Products listed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
@@ -415,7 +415,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |
@@ -497,7 +497,7 @@ ApiResponse<[**GetProduct200Response**](GetProduct200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Product updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The platform rejected the request (code insufficient_permissions). The store lacks the product scopes or the token was revoked; reconnect the Shopify account. |  -  |
 | **404** | Account not found or not accessible (code account_not_found), or product not found (code product_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by Shopify. Retry later. |  -  |

@@ -114,7 +114,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Disconnected |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteAccountWithHttpInfo
@@ -189,7 +189,7 @@ ApiResponse<[**DeleteAccountGroup200Response**](DeleteAccountGroup200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Disconnected |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -263,7 +263,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account health details |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getAccountHealthWithHttpInfo
@@ -339,7 +339,7 @@ ApiResponse<[**GetAccountHealth200Response**](GetAccountHealth200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Account health details |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -413,7 +413,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Posts list |  -  |
 | **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -492,7 +492,7 @@ ApiResponse<[**GetAccountPosts200Response**](GetAccountPosts200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Posts list |  -  |
 | **400** | Invalid accountId, platform does not support posts listing, or the account has no access token |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | X analytics capability not enabled for this account (code X_ANALYTICS_NOT_ENABLED) |  -  |
 | **404** | Resource not found |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -573,7 +573,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account health summary |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getAllAccountsHealthWithHttpInfo
 
@@ -652,7 +652,7 @@ ApiResponse<[**GetAllAccountsHealth200Response**](GetAllAccountsHealth200Respons
 |-------------|-------------|------------------|
 | **200** | Account health summary |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getBlueskySettings
@@ -725,7 +725,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Bluesky account settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getBlueskySettingsWithHttpInfo
@@ -801,7 +801,7 @@ ApiResponse<[**GetBlueskySettings200Response**](GetBlueskySettings200Response.md
 |-------------|-------------|------------------|
 | **200** | Bluesky account settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -882,7 +882,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getFollowerStatsWithHttpInfo
@@ -965,7 +965,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -1043,7 +1043,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Follow status (fields are null when Meta would not resolve it) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getInstagramFollowStatusWithHttpInfo
@@ -1123,7 +1123,7 @@ ApiResponse<[**GetInstagramFollowStatus200Response**](GetInstagramFollowStatus20
 |-------------|-------------|------------------|
 | **200** | Follow status (fields are null when Meta would not resolve it) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1197,7 +1197,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Slack account settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getSlackSettingsWithHttpInfo
@@ -1273,7 +1273,7 @@ ApiResponse<[**GetSlackSettings200Response**](GetSlackSettings200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Slack account settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -1349,7 +1349,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | TikTok creator info and posting options |  -  |
 | **400** | Account is not a TikTok account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Creator has reached TikTok daily posting limit |  -  |
 
@@ -1428,7 +1428,7 @@ ApiResponse<[**GetTikTokCreatorInfo200Response**](GetTikTokCreatorInfo200Respons
 |-------------|-------------|------------------|
 | **200** | TikTok creator info and posting options |  -  |
 | **400** | Account is not a TikTok account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **429** | Creator has reached TikTok daily posting limit |  -  |
 
@@ -1506,7 +1506,7 @@ public class Example {
 | **201** | Page shared |  -  |
 | **200** | The portfolio already had access; nothing changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
 | **404** | Account not found, or Meta could not load the partner business. |  -  |
 | **422** | The Page is not owned by a business portfolio, or no Page is linked to the account. |  -  |
@@ -1588,7 +1588,7 @@ ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Respons
 | **201** | Page shared |  -  |
 | **200** | The portfolio already had access; nothing changed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
 | **404** | Account not found, or Meta could not load the partner business. |  -  |
 | **422** | The Page is not owned by a business portfolio, or no Page is linked to the account. |  -  |
@@ -1679,7 +1679,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## listAccountsWithHttpInfo
@@ -1769,7 +1769,7 @@ ApiResponse<[**AccountsListResponse**](AccountsListResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Accounts (with optional pagination) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
@@ -1843,7 +1843,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Page ownership and partners |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Facebook Page is linked (Instagram Login account, or no Page selected). |  -  |
@@ -1922,7 +1922,7 @@ ApiResponse<[**ListBusinessPartners200Response**](ListBusinessPartners200Respons
 |-------------|-------------|------------------|
 | **200** | Page ownership and partners |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. Reconnect the account. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Facebook Page is linked (Instagram Login account, or no Page selected). |  -  |
@@ -2153,7 +2153,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account moved |  -  |
 | **400** | Missing or invalid profileId |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
 
@@ -2232,7 +2232,7 @@ ApiResponse<[**MoveAccountToProfile200Response**](MoveAccountToProfile200Respons
 |-------------|-------------|------------------|
 | **200** | Account moved |  -  |
 | **400** | Missing or invalid profileId |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | API key does not have access to the source account or target profile |  -  |
 | **404** | Account or target profile not found |  -  |
 
@@ -2309,7 +2309,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Access revoked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Facebook Page is linked to the account. |  -  |
@@ -2390,7 +2390,7 @@ ApiResponse<[**RevokeBusinessPartner200Response**](RevokeBusinessPartner200Respo
 |-------------|-------------|------------------|
 | **200** | Access revoked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Meta refused: the connecting user lacks business_management or is not an admin of the owning portfolio. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | No Facebook Page is linked to the account. |  -  |
@@ -2621,7 +2621,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateAccountWithHttpInfo
@@ -2699,7 +2699,7 @@ ApiResponse<[**UpdateAccount200Response**](UpdateAccount200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request (e.g. xCapabilities on a non-X account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2774,7 +2774,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## updateBlueskySettingsWithHttpInfo
@@ -2851,7 +2851,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -2926,7 +2926,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## updateSlackSettingsWithHttpInfo
@@ -3003,6 +3003,6 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 

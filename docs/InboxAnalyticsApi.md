@@ -95,7 +95,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Per-conversation analytics |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found or not owned by the caller&#39;s team |  -  |
 | **500** | Internal server error |  -  |
 
@@ -176,7 +176,7 @@ ApiResponse<[**GetInboxConversationAnalytics200Response**](GetInboxConversationA
 |-------------|-------------|------------------|
 | **200** | Per-conversation analytics |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found or not owned by the caller&#39;s team |  -  |
 | **500** | Internal server error |  -  |
 
@@ -263,7 +263,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Heatmap buckets |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## getInboxHeatmapWithHttpInfo
@@ -351,7 +351,7 @@ ApiResponse<[**GetInboxHeatmap200Response**](GetInboxHeatmap200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Heatmap buckets |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 
@@ -433,7 +433,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Response-time summary + histogram |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## getInboxResponseTimeWithHttpInfo
@@ -517,7 +517,7 @@ ApiResponse<[**GetInboxResponseTime200Response**](GetInboxResponseTime200Respons
 |-------------|-------------|------------------|
 | **200** | Response-time summary + histogram |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 
@@ -599,7 +599,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Source breakdown |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## getInboxSourceBreakdownWithHttpInfo
@@ -683,7 +683,7 @@ ApiResponse<[**GetInboxSourceBreakdown200Response**](GetInboxSourceBreakdown200R
 |-------------|-------------|------------------|
 | **200** | Source breakdown |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 
@@ -767,7 +767,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Top accounts leaderboard |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## getInboxTopAccountsWithHttpInfo
@@ -853,7 +853,7 @@ ApiResponse<[**GetInboxTopAccounts200Response**](GetInboxTopAccounts200Response.
 |-------------|-------------|------------------|
 | **200** | Top accounts leaderboard |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 
@@ -937,7 +937,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Volume breakdown |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## getInboxVolumeWithHttpInfo
@@ -1023,7 +1023,7 @@ ApiResponse<[**GetInboxVolume200Response**](GetInboxVolume200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Volume breakdown |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 
@@ -1115,7 +1115,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Paginated conversation analytics list |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 
 ## listInboxConversationAnalyticsWithHttpInfo
@@ -1209,6 +1209,6 @@ ApiResponse<[**ListInboxConversationAnalytics200Response**](ListInboxConversatio
 |-------------|-------------|------------------|
 | **200** | Paginated conversation analytics list |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **500** | Internal server error |  -  |
 

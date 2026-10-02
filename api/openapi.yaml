@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.198.0
+  version: 1.199.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -60005,20 +60005,27 @@ components:
     Unauthorized:
       content:
         application/json:
+          example:
+            error: "Missing API key. Send it as Authorization: Bearer <your API key>."
+            type: authentication_error
+            code: missing_credentials
+            docUrl: https://docs.zernio.com
           schema:
-            $ref: "#/components/schemas/inline_object_1"
-      description: Unauthorized
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "Missing or invalid API key. `code` is `missing_credentials` when\
+        \ no Authorization header was sent and `invalid_credentials` when the key\
+        \ is unknown, revoked or expired."
     NotFound:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_2"
+            $ref: "#/components/schemas/inline_object_1"
       description: Resource not found
     ResourceGroupForbidden:
       content:
         application/json:
           schema:
-            $ref: "#/components/schemas/inline_object_3"
+            $ref: "#/components/schemas/inline_object_2"
       description: "The API key is a restricted key (zrk_ prefix) and may not perform\
         \ this operation. Three cases. (1) The operation's resource group (see the\
         \ operation's x-resource-group) is disabled on the key: fix it by creating\
@@ -60124,7 +60131,7 @@ components:
                   effective_account_limit: 2000
                   current_account_count: 2000
           schema:
-            $ref: "#/components/schemas/inline_object_4"
+            $ref: "#/components/schemas/inline_object_3"
       description: |
         Payment method or enterprise contract required. The authenticated
         account hit a billing gate before the connection could proceed.
@@ -63453,6 +63460,7 @@ components:
         param: param
         platformError:
           key: ""
+        docUrl: docUrl
         details:
           quotaScope: DEVELOPER
           stage: media
@@ -63492,6 +63500,9 @@ components:
           type: string
         param:
           description: "The request field that caused the error, when applicable."
+          type: string
+        docUrl:
+          description: "Documentation page for resolving the error, when one applies."
           type: string
         platform:
           description: "Upstream platform (e.g. meta, google, tiktok), present when\
@@ -151150,19 +151161,12 @@ components:
       - success
     inline_object_1:
       example:
-        error: Unauthorized
-      properties:
-        error:
-          example: Unauthorized
-          type: string
-    inline_object_2:
-      example:
         error: Not found
       properties:
         error:
           example: Not found
           type: string
-    inline_object_3:
+    inline_object_2:
       example:
         code: insufficient_permissions
         error: This API key has the 'messages' resource group disabled. GET /api/v1/inbox/conversations
@@ -151195,7 +151199,7 @@ components:
           - billing
           - webhooks
           type: string
-    inline_object_4_details:
+    inline_object_3_details:
       description: Structured context for SDK clients that want to render their own
         UX. Keys vary by `reason`.
       example:
@@ -151231,7 +151235,7 @@ components:
             set when reason=enterprise_required.
           example: 2000
           type: integer
-    inline_object_4:
+    inline_object_3:
       example:
         reason: free_tier_exceeded
         code: PAYMENT_REQUIRED
@@ -151280,7 +151284,7 @@ components:
           format: uri
           type: string
         details:
-          $ref: "#/components/schemas/inline_object_4_details"
+          $ref: "#/components/schemas/inline_object_3_details"
       required:
       - code
       - error

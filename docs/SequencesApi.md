@@ -97,7 +97,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequence activated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## activateSequenceWithHttpInfo
@@ -173,7 +173,7 @@ ApiResponse<[**ActivateSequence200Response**](ActivateSequence200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequence activated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -247,7 +247,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequence created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createSequenceWithHttpInfo
 
@@ -322,7 +322,7 @@ ApiResponse<[**CreateSequence200Response**](CreateSequence200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequence created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteSequence
@@ -394,7 +394,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Sequence deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteSequenceWithHttpInfo
@@ -469,7 +469,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Sequence deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -545,7 +545,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Enrollment results |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## enrollContactsWithHttpInfo
@@ -623,7 +623,7 @@ ApiResponse<[**EnrollContacts200Response**](EnrollContacts200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Enrollment results |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -697,7 +697,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequence details with steps |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getSequenceWithHttpInfo
@@ -773,7 +773,7 @@ ApiResponse<[**GetSequence200Response**](GetSequence200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequence details with steps |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -853,7 +853,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Enrollments list with progress |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listSequenceEnrollmentsWithHttpInfo
@@ -935,7 +935,7 @@ ApiResponse<[**ListSequenceEnrollments200Response**](ListSequenceEnrollments200R
 |-------------|-------------|------------------|
 | **200** | Enrollments list with progress |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1015,7 +1015,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequences list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listSequencesWithHttpInfo
 
@@ -1096,7 +1096,7 @@ ApiResponse<[**ListSequences200Response**](ListSequences200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequences list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## pauseSequence
@@ -1169,7 +1169,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequence paused |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## pauseSequenceWithHttpInfo
@@ -1245,7 +1245,7 @@ ApiResponse<[**ActivateSequence200Response**](ActivateSequence200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequence paused |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1320,7 +1320,7 @@ null (empty response body)
 |-------------|-------------|------------------|
 | **200** | Contact unenrolled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## unenrollContactWithHttpInfo
@@ -1397,7 +1397,7 @@ ApiResponse<Void>
 |-------------|-------------|------------------|
 | **200** | Contact unenrolled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1473,7 +1473,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sequence updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateSequenceWithHttpInfo
@@ -1551,6 +1551,6 @@ ApiResponse<[**UpdateSequence200Response**](UpdateSequence200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sequence updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

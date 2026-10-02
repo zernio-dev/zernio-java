@@ -85,7 +85,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Check result: the verification plus &#x60;valid&#x60;. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Verification not found (or already reaped). |  -  |
 
 ## checkVerificationWithHttpInfo
@@ -163,7 +163,7 @@ ApiResponse<[**CheckVerification200Response**](CheckVerification200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Check result: the verification plus &#x60;valid&#x60;. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Verification not found (or already reaped). |  -  |
 
 
@@ -238,7 +238,7 @@ public class Example {
 | **201** | Verification created and the code sent. |  -  |
 | **200** | Active verification found: a fresh code was resent (&#x60;resend: true&#x60;). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Verifications require usage-based billing. |  -  |
 | **404** | The &#39;from&#39; number is not an SMS-enabled (sms) or connected WhatsApp (whatsapp) number on this account. |  -  |
 | **409** | The recipient has opted out of messages from your number. |  -  |
@@ -319,7 +319,7 @@ ApiResponse<[**Verification**](Verification.md)>
 | **201** | Verification created and the code sent. |  -  |
 | **200** | Active verification found: a fresh code was resent (&#x60;resend: true&#x60;). |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Verifications require usage-based billing. |  -  |
 | **404** | The &#39;from&#39; number is not an SMS-enabled (sms) or connected WhatsApp (whatsapp) number on this account. |  -  |
 | **409** | The recipient has opted out of messages from your number. |  -  |
@@ -397,7 +397,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The verification. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Verification not found (or already reaped). |  -  |
 
 ## getVerificationWithHttpInfo
@@ -473,6 +473,6 @@ ApiResponse<[**Verification**](Verification.md)>
 |-------------|-------------|------------------|
 | **200** | The verification. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Verification not found (or already reaped). |  -  |
 

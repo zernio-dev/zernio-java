@@ -173,7 +173,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Participants added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## addWhatsAppGroupParticipantsWithHttpInfo
 
@@ -252,7 +252,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Participants added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## approveWhatsAppGroupJoinRequests
@@ -329,7 +329,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Requests approved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## approveWhatsAppGroupJoinRequestsWithHttpInfo
 
@@ -408,7 +408,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Requests approved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## blockWhatsAppUsers
@@ -480,7 +480,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-user results |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## blockWhatsAppUsersWithHttpInfo
@@ -555,7 +555,7 @@ ApiResponse<[**BlockWhatsAppUsers200Response**](BlockWhatsAppUsers200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-user results |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -628,7 +628,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Dataset provisioned (or already present) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60;. Reconnect required |  -  |
 | **502** | Upstream Meta failure during provisioning |  -  |
@@ -705,7 +705,7 @@ ApiResponse<[**CreateWhatsAppDataset200Response**](CreateWhatsAppDataset200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Dataset provisioned (or already present) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Account is missing &#x60;whatsapp_business_manage_events&#x60;. Reconnect required |  -  |
 | **502** | Upstream Meta failure during provisioning |  -  |
@@ -781,7 +781,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Group created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createWhatsAppGroupChatWithHttpInfo
 
@@ -856,7 +856,7 @@ ApiResponse<[**CreateWhatsAppGroupChat201Response**](CreateWhatsAppGroupChat201R
 |-------------|-------------|------------------|
 | **201** | Group created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## createWhatsAppGroupInviteLink
@@ -931,7 +931,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Invite link created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createWhatsAppGroupInviteLinkWithHttpInfo
 
@@ -1008,7 +1008,7 @@ ApiResponse<[**CreateWhatsAppGroupInviteLink200Response**](CreateWhatsAppGroupIn
 |-------------|-------------|------------------|
 | **200** | Invite link created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## createWhatsAppTemplate
@@ -1081,7 +1081,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template created (pre-approved for library templates, pending review for custom) |  -  |
 | **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -1158,7 +1158,7 @@ ApiResponse<[**CreateWhatsAppTemplate200Response**](CreateWhatsAppTemplate200Res
 |-------------|-------------|------------------|
 | **200** | Template created (pre-approved for library templates, pending review for custom) |  -  |
 | **400** | Validation error (invalid name format, missing fields, invalid category) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -1235,7 +1235,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Group deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteWhatsAppGroupChatWithHttpInfo
@@ -1313,7 +1313,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Group deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1391,7 +1391,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template deleted successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
 | **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -1473,7 +1473,7 @@ ApiResponse<[**DeleteWhatsAppTemplate200Response**](DeleteWhatsAppTemplate200Res
 |-------------|-------------|------------------|
 | **200** | Template deleted successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or (with language) no such variant (code template_not_found). |  -  |
 | **409** | Only with language: a bare code (es) matched several regional variants (es_ES, es_MX), so nothing was deleted (code ambiguous_template). Without language there is no 409: the whole family is deleted. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -1551,7 +1551,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Variant deleted successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -1630,7 +1630,7 @@ ApiResponse<[**DeleteWhatsAppTemplateById200Response**](DeleteWhatsAppTemplateBy
 |-------------|-------------|------------------|
 | **200** | Variant deleted successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -1704,7 +1704,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username deleted successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## deleteWhatsappBusinessUsernameWithHttpInfo
@@ -1779,7 +1779,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username deleted successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -1854,7 +1854,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Blocked state |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppBlockStatusWithHttpInfo
@@ -1931,7 +1931,7 @@ ApiResponse<[**GetWhatsAppBlockStatus200Response**](GetWhatsAppBlockStatus200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Blocked state |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -2008,7 +2008,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Blocked users |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppBlockedUsersWithHttpInfo
@@ -2087,7 +2087,7 @@ ApiResponse<[**GetWhatsAppBlockedUsers200Response**](GetWhatsAppBlockedUsers200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Blocked users |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -2161,7 +2161,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Business profile retrieved successfully |  -  |
 | **400** | accountId is required or phone number ID not found |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppBusinessProfileWithHttpInfo
@@ -2237,7 +2237,7 @@ ApiResponse<[**GetWhatsAppBusinessProfile200Response**](GetWhatsAppBusinessProfi
 |-------------|-------------|------------------|
 | **200** | Business profile retrieved successfully |  -  |
 | **400** | accountId is required or phone number ID not found |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -2313,7 +2313,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Commerce settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -2392,7 +2392,7 @@ ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSett
 |-------------|-------------|------------------|
 | **200** | Commerce settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -2466,7 +2466,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Dataset lookup |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppDatasetWithHttpInfo
@@ -2541,7 +2541,7 @@ ApiResponse<[**GetWhatsAppDataset200Response**](GetWhatsAppDataset200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Dataset lookup |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -2615,7 +2615,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Display name info retrieved |  -  |
 | **400** | accountId is required |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found or accountId is not a valid ObjectId |  -  |
 
 ## getWhatsAppDisplayNameWithHttpInfo
@@ -2691,7 +2691,7 @@ ApiResponse<[**GetWhatsAppDisplayName200Response**](GetWhatsAppDisplayName200Res
 |-------------|-------------|------------------|
 | **200** | Display name info retrieved |  -  |
 | **400** | accountId is required |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found or accountId is not a valid ObjectId |  -  |
 
 
@@ -2767,7 +2767,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Group info |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getWhatsAppGroupChatWithHttpInfo
@@ -2845,7 +2845,7 @@ ApiResponse<[**GetWhatsAppGroupChat200Response**](GetWhatsAppGroupChat200Respons
 |-------------|-------------|------------------|
 | **200** | Group info |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2921,7 +2921,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The media binary, streamed with its original content type. |  -  |
 | **400** | Media is no longer available on WhatsApp servers (expired or deleted by Meta). Permanent, do not retry. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, not accessible to the caller, or the media does not belong to it. |  -  |
 | **502** | Meta could not be reached or returned an unexpected error. |  -  |
 
@@ -3000,7 +3000,7 @@ ApiResponse<[**File**](File.md)>
 |-------------|-------------|------------------|
 | **200** | The media binary, streamed with its original content type. |  -  |
 | **400** | Media is no longer available on WhatsApp servers (expired or deleted by Meta). Permanent, do not retry. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, not accessible to the caller, or the media does not belong to it. |  -  |
 | **502** | Meta could not be reached or returned an unexpected error. |  -  |
 
@@ -3079,7 +3079,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or no template with that name (and language, when given). details.languages lists the family&#39;s languages when the name exists (code template_not_found). |  -  |
 | **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -3161,7 +3161,7 @@ ApiResponse<[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or no template with that name (and language, when given). details.languages lists the family&#39;s languages when the name exists (code template_not_found). |  -  |
 | **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -3239,7 +3239,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -3318,7 +3318,7 @@ ApiResponse<[**GetWhatsAppTemplate200Response**](GetWhatsAppTemplate200Response.
 |-------------|-------------|------------------|
 | **200** | Template retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the request (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -3399,7 +3399,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Templates retrieved successfully |  -  |
 | **400** | accountId is required or WABA ID not found |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppTemplatesWithHttpInfo
@@ -3481,7 +3481,7 @@ ApiResponse<[**GetWhatsAppTemplates200Response**](GetWhatsAppTemplates200Respons
 |-------------|-------------|------------------|
 | **200** | Templates retrieved successfully |  -  |
 | **400** | accountId is required or WABA ID not found |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -3554,7 +3554,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business username retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsappBusinessUsernameWithHttpInfo
@@ -3629,7 +3629,7 @@ ApiResponse<[**GetWhatsappBusinessUsername200Response**](GetWhatsappBusinessUser
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Business username retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -3702,7 +3702,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username suggestions retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsappBusinessUsernameSuggestionsWithHttpInfo
@@ -3777,7 +3777,7 @@ ApiResponse<[**GetWhatsappBusinessUsernameSuggestions200Response**](GetWhatsappB
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Username suggestions retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -3851,7 +3851,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Linked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -3928,7 +3928,7 @@ ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Respons
 |-------------|-------------|------------------|
 | **201** | Linked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -4005,7 +4005,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Recorded events, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## listWhatsAppAccountEventsWithHttpInfo
@@ -4083,7 +4083,7 @@ ApiResponse<[**ListWhatsAppAccountEvents200Response**](ListWhatsAppAccountEvents
 |-------------|-------------|------------------|
 | **200** | Recorded events, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -4159,7 +4159,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Linked catalogs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -4238,7 +4238,7 @@ ApiResponse<[**ListWhatsAppCatalogs200Response**](ListWhatsAppCatalogs200Respons
 |-------------|-------------|------------------|
 | **200** | Linked catalogs |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -4314,7 +4314,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recent conversion events |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## listWhatsAppConversionsWithHttpInfo
@@ -4391,7 +4391,7 @@ ApiResponse<[**ListWhatsAppConversions200Response**](ListWhatsAppConversions200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Recent conversion events |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -4469,7 +4469,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of active groups |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listWhatsAppGroupChatsWithHttpInfo
 
@@ -4548,7 +4548,7 @@ ApiResponse<[**ListWhatsAppGroupChats200Response**](ListWhatsAppGroupChats200Res
 |-------------|-------------|------------------|
 | **200** | List of active groups |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listWhatsAppGroupJoinRequests
@@ -4623,7 +4623,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Join requests |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listWhatsAppGroupJoinRequestsWithHttpInfo
 
@@ -4700,7 +4700,7 @@ ApiResponse<[**ListWhatsAppGroupJoinRequests200Response**](ListWhatsAppGroupJoin
 |-------------|-------------|------------------|
 | **200** | Join requests |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## registerWhatsAppNumber
@@ -4933,7 +4933,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Requests rejected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## rejectWhatsAppGroupJoinRequestsWithHttpInfo
 
@@ -5012,7 +5012,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Requests rejected |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## removeWhatsAppGroupParticipants
@@ -5089,7 +5089,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Participants removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## removeWhatsAppGroupParticipantsWithHttpInfo
 
@@ -5168,7 +5168,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Participants removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## requestWhatsAppVerificationCode
@@ -5243,7 +5243,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
 | **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
@@ -5325,7 +5325,7 @@ ApiResponse<[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVeri
 |-------------|-------------|------------------|
 | **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | Meta already reports this number as VERIFIED. Call POST /v1/accounts/{accountId}/whatsapp/register instead. |  -  |
 | **422** | The account has no phone number bound yet, it runs in coexistence with the WhatsApp Business app, or Meta rejected the code request. |  -  |
@@ -5403,7 +5403,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  |  -  |
 | **400** | Invalid body. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
 
@@ -5480,7 +5480,7 @@ ApiResponse<[**SendWhatsAppConversion200Response**](SendWhatsAppConversion200Res
 |-------------|-------------|------------------|
 | **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  |  -  |
 | **400** | Invalid body. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
 
@@ -5555,7 +5555,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Username claimed successfully |  -  |
 | **400** | Validation error or username unavailable (see error code in response) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## setWhatsappBusinessUsernameWithHttpInfo
@@ -5631,7 +5631,7 @@ ApiResponse<[**SetWhatsappBusinessUsername200Response**](SetWhatsappBusinessUser
 |-------------|-------------|------------------|
 | **200** | Username claimed successfully |  -  |
 | **400** | Validation error or username unavailable (see error code in response) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -5704,7 +5704,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-user results |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## unblockWhatsAppUsersWithHttpInfo
@@ -5779,7 +5779,7 @@ ApiResponse<[**UnblockWhatsAppUsers200Response**](UnblockWhatsAppUsers200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Per-user results |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -5855,7 +5855,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Unlinked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -5934,7 +5934,7 @@ ApiResponse<[**UnlinkWhatsAppCatalog200Response**](UnlinkWhatsAppCatalog200Respo
 |-------------|-------------|------------------|
 | **200** | Unlinked |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -6009,7 +6009,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Business profile updated successfully |  -  |
 | **400** | Validation error (field too long, too many websites, etc.) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## updateWhatsAppBusinessProfileWithHttpInfo
@@ -6085,7 +6085,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Business profile updated successfully |  -  |
 | **400** | Validation error (field too long, too many websites, etc.) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -6157,7 +6157,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -6232,7 +6232,7 @@ ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSett
 |-------------|-------------|------------------|
 | **200** | Updated settings |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 
@@ -6307,7 +6307,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Display name change submitted for review |  -  |
 | **400** | Invalid display name (too short, too long, or missing) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## updateWhatsAppDisplayNameWithHttpInfo
@@ -6383,7 +6383,7 @@ ApiResponse<[**UpdateWhatsAppDisplayName200Response**](UpdateWhatsAppDisplayName
 |-------------|-------------|------------------|
 | **200** | Display name change submitted for review |  -  |
 | **400** | Invalid display name (too short, too long, or missing) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -6461,7 +6461,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Group updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateWhatsAppGroupChatWithHttpInfo
@@ -6541,7 +6541,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Group updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -6617,7 +6617,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
 | **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -6697,7 +6697,7 @@ ApiResponse<[**UpdateWhatsAppTemplate200Response**](UpdateWhatsAppTemplate200Res
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found, or no template with that name (and language, when given) (code template_not_found). |  -  |
 | **409** | The template name exists in several languages and no language was given (code ambiguous_template). details.languages lists them. |  -  |
 | **502** | Meta rejected the update or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
@@ -6775,7 +6775,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -6854,7 +6854,7 @@ ApiResponse<[**UpdateWhatsAppTemplateById200Response**](UpdateWhatsAppTemplateBy
 |-------------|-------------|------------------|
 | **200** | Template updated successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found. |  -  |
 | **502** | Meta rejected the update (including an id the account cannot access) or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
 
@@ -6931,7 +6931,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
 | **400** | Invalid file type/URL, file too large, or missing parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
 
@@ -7010,7 +7010,7 @@ ApiResponse<[**UnpublishPost200Response**](UnpublishPost200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Profile picture updated successfully |  -  |
 | **400** | Invalid file type/URL, file too large, or missing parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **422** | Profile photo is locked for WhatsApp coexistence numbers (manage it in the WhatsApp Business app) |  -  |
 
@@ -7087,7 +7087,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number verified with Meta |  -  |
 | **400** | The code is malformed, or Meta rejected it as wrong or expired. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | The account has no phone number bound to it yet. |  -  |
 
@@ -7166,7 +7166,7 @@ ApiResponse<[**VerifyWhatsAppNumber200Response**](VerifyWhatsAppNumber200Respons
 |-------------|-------------|------------------|
 | **200** | Number verified with Meta |  -  |
 | **400** | The code is malformed, or Meta rejected it as wrong or expired. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **422** | The account has no phone number bound to it yet. |  -  |
 

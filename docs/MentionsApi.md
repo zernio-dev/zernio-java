@@ -88,7 +88,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated list of mentions |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## listInboxMentionsWithHttpInfo
@@ -171,7 +171,7 @@ ApiResponse<[**ListInboxMentions200Response**](ListInboxMentions200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated list of mentions |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -245,7 +245,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Platform does not support replying to mentions (code: platform_not_supported), or missing mediaId/message. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 | **502** | Instagram was unreachable or returned an unclassified error. Instagram 4xx statuses are forwarded as-is. |  -  |
@@ -323,7 +323,7 @@ ApiResponse<[**ReplyToMention200Response**](ReplyToMention200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Platform does not support replying to mentions (code: platform_not_supported), or missing mediaId/message. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
 | **502** | Instagram was unreachable or returned an unclassified error. Instagram 4xx statuses are forwarded as-is. |  -  |

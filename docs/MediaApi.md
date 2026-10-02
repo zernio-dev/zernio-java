@@ -79,7 +79,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Presigned URL generated successfully |  -  |
 | **400** | Invalid request (missing filename, unsupported contentType, or size out of range) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getMediaPresignedUrlWithHttpInfo
 
@@ -154,5 +154,5 @@ ApiResponse<[**GetMediaPresignedUrl200Response**](GetMediaPresignedUrl200Respons
 |-------------|-------------|------------------|
 | **200** | Presigned URL generated successfully |  -  |
 | **400** | Invalid request (missing filename, unsupported contentType, or size out of range) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

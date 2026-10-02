@@ -105,7 +105,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Workflow activated |  -  |
 | **400** | Incomplete or invalid graph |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## activateWorkflowWithHttpInfo
@@ -181,7 +181,7 @@ ApiResponse<[**ActivateWorkflow200Response**](ActivateWorkflow200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Workflow activated |  -  |
 | **400** | Incomplete or invalid graph |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -255,7 +255,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
 | **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, a WhatsApp-only node on another platform, or a WhatsApp interactive list node whose sections carry no rows) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createWorkflowWithHttpInfo
 
@@ -330,7 +330,7 @@ ApiResponse<[**CreateWorkflow200Response**](CreateWorkflow200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Workflow created |  -  |
 | **400** | Invalid graph (duplicate node ids, edges referencing missing nodes, a WhatsApp-only node on another platform, or a WhatsApp interactive list node whose sections carry no rows) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteWorkflow
@@ -401,7 +401,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteWorkflowWithHttpInfo
@@ -475,7 +475,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -549,7 +549,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Workflow duplicated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## duplicateWorkflowWithHttpInfo
@@ -625,7 +625,7 @@ ApiResponse<[**DuplicateWorkflow201Response**](DuplicateWorkflow201Response.md)>
 |-------------|-------------|------------------|
 | **201** | Workflow duplicated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -698,7 +698,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getWorkflowWithHttpInfo
@@ -773,7 +773,7 @@ ApiResponse<[**GetWorkflow200Response**](GetWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -849,7 +849,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Version snapshot |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getWorkflowVersionWithHttpInfo
@@ -927,7 +927,7 @@ ApiResponse<[**GetWorkflowVersion200Response**](GetWorkflowVersion200Response.md
 |-------------|-------------|------------------|
 | **200** | Version snapshot |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1003,7 +1003,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Timeline events for the execution |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listWorkflowExecutionEventsWithHttpInfo
@@ -1081,7 +1081,7 @@ ApiResponse<[**ListWorkflowExecutionEvents200Response**](ListWorkflowExecutionEv
 |-------------|-------------|------------------|
 | **200** | Timeline events for the execution |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1161,7 +1161,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Executions list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listWorkflowExecutionsWithHttpInfo
@@ -1243,7 +1243,7 @@ ApiResponse<[**ListWorkflowExecutions200Response**](ListWorkflowExecutions200Res
 |-------------|-------------|------------------|
 | **200** | Executions list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1317,7 +1317,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Versions list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listWorkflowVersionsWithHttpInfo
@@ -1393,7 +1393,7 @@ ApiResponse<[**ListWorkflowVersions200Response**](ListWorkflowVersions200Respons
 |-------------|-------------|------------------|
 | **200** | Versions list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1472,7 +1472,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflows list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listWorkflowsWithHttpInfo
 
@@ -1552,7 +1552,7 @@ ApiResponse<[**ListWorkflows200Response**](ListWorkflows200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflows list |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## pauseWorkflow
@@ -1625,7 +1625,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Workflow paused |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## pauseWorkflowWithHttpInfo
@@ -1701,7 +1701,7 @@ ApiResponse<[**PauseWorkflow200Response**](PauseWorkflow200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Workflow paused |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1777,7 +1777,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## restoreWorkflowVersionWithHttpInfo
@@ -1855,7 +1855,7 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1931,7 +1931,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Run started |  -  |
 | **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## triggerWorkflowWithHttpInfo
@@ -2009,7 +2009,7 @@ ApiResponse<[**TriggerWorkflow200Response**](TriggerWorkflow200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Run started |  -  |
 | **400** | Missing target, invalid graph, or &#x60;to&#x60; used on a non-WhatsApp workflow |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -2085,7 +2085,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
 | **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateWorkflowWithHttpInfo
@@ -2163,6 +2163,6 @@ ApiResponse<[**UpdateWorkflow200Response**](UpdateWorkflow200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
 | **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

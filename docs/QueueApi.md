@@ -89,7 +89,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Queue created |  -  |
 | **400** | Invalid request or validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 
 ## createQueueSlotWithHttpInfo
@@ -165,7 +165,7 @@ ApiResponse<[**CreateQueueSlot201Response**](CreateQueueSlot201Response.md)>
 |-------------|-------------|------------------|
 | **201** | Queue created |  -  |
 | **400** | Invalid request or validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 
 
@@ -241,7 +241,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Queue schedule deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue not found |  -  |
 
 ## deleteQueueSlotWithHttpInfo
@@ -319,7 +319,7 @@ ApiResponse<[**QueueDeleteResponse**](QueueDeleteResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Queue schedule deleted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue not found |  -  |
 
 
@@ -395,7 +395,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Next available slot |  -  |
 | **400** | Invalid parameters or inactive queue |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue schedule not found, or no available slots |  -  |
 
 ## getNextQueueSlotWithHttpInfo
@@ -473,7 +473,7 @@ ApiResponse<[**QueueNextSlotResponse**](QueueNextSlotResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Next available slot |  -  |
 | **400** | Invalid parameters or inactive queue |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue schedule not found, or no available slots |  -  |
 
 
@@ -551,7 +551,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Queue schedule(s) retrieved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 
 ## listQueueSlotsWithHttpInfo
@@ -631,7 +631,7 @@ ApiResponse<[**ListQueueSlots200Response**](ListQueueSlots200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Queue schedule(s) retrieved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 
 
@@ -709,7 +709,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Queue slots preview |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue schedule not found |  -  |
 
 ## previewQueueWithHttpInfo
@@ -789,7 +789,7 @@ ApiResponse<[**QueuePreviewResponse**](QueuePreviewResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Queue slots preview |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile or queue schedule not found |  -  |
 
 
@@ -863,7 +863,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Queue schedule updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 
 ## updateQueueSlotWithHttpInfo
@@ -939,6 +939,6 @@ ApiResponse<[**QueueUpdateResponse**](QueueUpdateResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Queue schedule updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Profile not found |  -  |
 

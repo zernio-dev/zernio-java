@@ -83,7 +83,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | URN resolved successfully |  -  |
 | **400** | Invalid request or no organization found (for person mentions) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The account holds no organization role that can resolve person mentions |  -  |
 | **404** | Person or organization not found |  -  |
 
@@ -164,7 +164,7 @@ ApiResponse<[**GetLinkedInMentions200Response**](GetLinkedInMentions200Response.
 |-------------|-------------|------------------|
 | **200** | URN resolved successfully |  -  |
 | **400** | Invalid request or no organization found (for person mentions) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The account holds no organization role that can resolve person mentions |  -  |
 | **404** | Person or organization not found |  -  |
 

@@ -84,7 +84,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## deleteInboxReviewReplyWithHttpInfo
@@ -161,7 +161,7 @@ ApiResponse<[**DeleteInboxReviewReply200Response**](DeleteInboxReviewReply200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Reply deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -252,7 +252,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated reviews |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## listInboxReviewsWithHttpInfo
@@ -345,7 +345,7 @@ ApiResponse<[**ListInboxReviews200Response**](ListInboxReviews200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated reviews |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -423,7 +423,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Facebook refused the reply for this review (code platform_api_error, platform facebook, Meta error 12 echoed in platformError). Permanent for that review: Graph cannot address its underlying post, and it usually already carries a reply from the Page, which the review listing reports under hasReply. Do not retry. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -505,7 +505,7 @@ ApiResponse<[**ReplyToInboxReview200Response**](ReplyToInboxReview200Response.md
 |-------------|-------------|------------------|
 | **200** | Reply posted |  -  |
 | **400** | Facebook refused the reply for this review (code platform_api_error, platform facebook, Meta error 12 echoed in platformError). Permanent for that review: Graph cannot address its underlying post, and it usually already carries a reply from the Page, which the review listing reports under hasReply. Do not retry. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |

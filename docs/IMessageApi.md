@@ -119,7 +119,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 ## addImessageGroupParticipantWithHttpInfo
@@ -197,7 +197,7 @@ ApiResponse<[**AddImessageGroupParticipant200Response**](AddImessageGroupPartici
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 
@@ -271,7 +271,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Contact added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox |  -  |
 | **404** | The sandbox is not available right now |  -  |
 | **409** | Contact limit reached, or the handle is on someone else&#39;s sandbox list |  -  |
@@ -349,7 +349,7 @@ ApiResponse<[**AddImessageSandboxContact201Response**](AddImessageSandboxContact
 |-------------|-------------|------------------|
 | **201** | Contact added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox |  -  |
 | **404** | The sandbox is not available right now |  -  |
 | **409** | Contact limit reached, or the handle is on someone else&#39;s sandbox list |  -  |
@@ -425,7 +425,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender canceled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 | **409** | The sender is still being set up and cannot be canceled yet (code: imessage_sender_setting_up) |  -  |
 
@@ -502,7 +502,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 |-------------|-------------|------------------|
 | **200** | Sender canceled |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 | **409** | The sender is still being set up and cannot be canceled yet (code: imessage_sender_setting_up) |  -  |
 
@@ -577,7 +577,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **202** | Group creation accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | The sender cannot start conversations (code: recipient_must_message_first) |  -  |
 
@@ -654,7 +654,7 @@ ApiResponse<[**CreateImessageGroup202Response**](CreateImessageGroup202Response.
 |-------------|-------------|------------------|
 | **202** | Group creation accepted |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **409** | The sender cannot start conversations (code: recipient_must_message_first) |  -  |
 
@@ -731,7 +731,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Opt-in link created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 | **409** | The sender is not active yet |  -  |
 
@@ -810,7 +810,7 @@ ApiResponse<[**CreateImessageOptInLink200Response**](CreateImessageOptInLink200R
 |-------------|-------------|------------------|
 | **200** | Opt-in link created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 | **409** | The sender is not active yet |  -  |
 
@@ -887,7 +887,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Group details |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 ## getImessageGroupWithHttpInfo
@@ -965,7 +965,7 @@ ApiResponse<[**GetImessageGroup200Response**](GetImessageGroup200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Group details |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 
@@ -1039,7 +1039,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender lifecycle |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 
 ## getImessageSenderWithHttpInfo
@@ -1115,7 +1115,7 @@ ApiResponse<[**GetImessageSender200Response**](GetImessageSender200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Sender lifecycle |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 
 
@@ -1197,7 +1197,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audience page |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listImessageAudienceWithHttpInfo
 
@@ -1280,7 +1280,7 @@ ApiResponse<[**ListImessageAudience200Response**](ListImessageAudience200Respons
 |-------------|-------------|------------------|
 | **200** | Audience page |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listImessageAvailableNumbers
@@ -1353,7 +1353,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Available numbers |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 ## listImessageAvailableNumbersWithHttpInfo
@@ -1429,7 +1429,7 @@ ApiResponse<[**ListImessageAvailableNumbers200Response**](ListImessageAvailableN
 |-------------|-------------|------------------|
 | **200** | Available numbers |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | The provider could not list numbers; ordering without availableNumberId still works |  -  |
 
 
@@ -1498,7 +1498,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Sandbox line and contacts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox |  -  |
 | **404** | The sandbox is not available right now |  -  |
 
@@ -1570,7 +1570,7 @@ ApiResponse<[**ListImessageSandboxContacts200Response**](ListImessageSandboxCont
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Sandbox line and contacts |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Your plan does not include the inbox |  -  |
 | **404** | The sandbox is not available right now |  -  |
 
@@ -1645,7 +1645,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender lifecycle docs, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listImessageSenderOrdersWithHttpInfo
 
@@ -1720,7 +1720,7 @@ ApiResponse<[**ListImessageSenderOrders200Response**](ListImessageSenderOrders20
 |-------------|-------------|------------------|
 | **200** | Sender lifecycle docs, newest first |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listImessageSenders
@@ -1788,7 +1788,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registered iMessage senders |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listImessageSendersWithHttpInfo
 
@@ -1858,7 +1858,7 @@ ApiResponse<[**ListImessageSenders200Response**](ListImessageSenders200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Registered iMessage senders |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## orderImessageSender
@@ -1931,7 +1931,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **202** | Order accepted; activation continues asynchronously |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
@@ -2012,7 +2012,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 |-------------|-------------|------------------|
 | **202** | Order accepted; activation continues asynchronously |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
@@ -2091,7 +2091,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender registered |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
@@ -2169,7 +2169,7 @@ ApiResponse<[**RegisterImessageSender200Response**](RegisterImessageSender200Res
 |-------------|-------------|------------------|
 | **200** | Sender registered |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
@@ -2249,7 +2249,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 ## removeImessageGroupParticipantWithHttpInfo
@@ -2329,7 +2329,7 @@ ApiResponse<[**AddImessageGroupParticipant200Response**](AddImessageGroupPartici
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 
@@ -2403,7 +2403,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sandbox contact not found |  -  |
 
 ## removeImessageSandboxContactWithHttpInfo
@@ -2479,7 +2479,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Removed |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sandbox contact not found |  -  |
 
 
@@ -2553,7 +2553,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number reserved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | The number could not be reserved (already taken) |  -  |
 
 ## reserveImessageAvailableNumberWithHttpInfo
@@ -2629,7 +2629,7 @@ ApiResponse<[**ReserveImessageAvailableNumber200Response**](ReserveImessageAvail
 |-------------|-------------|------------------|
 | **200** | Number reserved |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **409** | The number could not be reserved (already taken) |  -  |
 
 
@@ -2703,7 +2703,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 ## setImessageSubscriptionWithHttpInfo
@@ -2779,7 +2779,7 @@ ApiResponse<[**SetImessageSubscription200Response**](SetImessageSubscription200R
 |-------------|-------------|------------------|
 | **200** | Updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 
@@ -2855,7 +2855,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 ## updateImessageGroupWithHttpInfo
@@ -2933,7 +2933,7 @@ ApiResponse<[**UpdateImessageGroup200Response**](UpdateImessageGroup200Response.
 |-------------|-------------|------------------|
 | **200** | Change accepted |  -  |
 | **400** | Bad request, or the conversation is not a group thread |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or conversation not found |  -  |
 
 
@@ -3009,7 +3009,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Sender updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 
 ## updateImessageSenderWithHttpInfo
@@ -3087,6 +3087,6 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 |-------------|-------------|------------------|
 | **200** | Sender updated |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Sender not found |  -  |
 

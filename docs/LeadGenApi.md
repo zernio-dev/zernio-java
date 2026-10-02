@@ -95,7 +95,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Archived. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
 
 ## archiveLeadFormWithHttpInfo
@@ -173,7 +173,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Archived. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
 
 
@@ -247,7 +247,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Created form. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 | **422** | Meta rejected the lead form. Code 3 is Meta&#39;s generic app-capability error and does not name a field; when the request set isPhoneSmsVerifyEnabled, the response names that field as the one to drop first. |  -  |
 
@@ -324,7 +324,7 @@ ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Created form. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 | **422** | Meta rejected the lead form. Code 3 is Meta&#39;s generic app-capability error and does not name a field; when the request set isPhoneSmsVerifyEnabled, the response names that field as the one to drop first. |  -  |
 
@@ -401,7 +401,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Test lead created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createTestLeadWithHttpInfo
 
@@ -478,7 +478,7 @@ ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Test lead created. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteTestLead
@@ -555,7 +555,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Test lead deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The form has no test lead. |  -  |
 
 ## deleteTestLeadWithHttpInfo
@@ -635,7 +635,7 @@ ApiResponse<[**DeleteTestLead200Response**](DeleteTestLead200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Test lead deleted. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The form has no test lead. |  -  |
 
 
@@ -713,7 +713,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Form metadata. Meta forms follow MetaLeadForm; LinkedIn forms return LinkedIn&#39;s own adForm shape. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
 
 ## getLeadFormWithHttpInfo
@@ -793,7 +793,7 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Form metadata. Meta forms follow MetaLeadForm; LinkedIn forms return LinkedIn&#39;s own adForm shape. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
 
 
@@ -877,7 +877,7 @@ public class Example {
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Leads for the form. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listFormLeadsWithHttpInfo
 
@@ -962,7 +962,7 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **200** | Leads for the form. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listLeadForms
@@ -1041,7 +1041,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Forms list. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 
 ## listLeadFormsWithHttpInfo
@@ -1123,7 +1123,7 @@ ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Forms list. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 
 
@@ -1207,7 +1207,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Lead list. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
@@ -1295,7 +1295,7 @@ ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Lead list. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads add-on required. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |

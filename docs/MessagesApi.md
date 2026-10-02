@@ -113,7 +113,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The platform accepted the reaction request. This does not guarantee the reaction was placed: the platform never confirms what it acted on. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
@@ -194,7 +194,7 @@ ApiResponse<[**AddMessageReaction200Response**](AddMessageReaction200Response.md
 |-------------|-------------|------------------|
 | **200** | The platform accepted the reaction request. This does not guarantee the reaction was placed: the platform never confirms what it acted on. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
@@ -269,7 +269,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Conversation created successfully |  -  |
 | **400** | Validation error, platform not supported, an attachment the platform does not accept (PLATFORM_LIMITATION), template required to start a WhatsApp conversation (TEMPLATE_REQUIRED), template variables that do not match the approved definition (INVALID_TEMPLATE_PARAMS, INVALID_TEMPLATE_BUTTON_PARAM), a missing or incompatible required template header (INVALID_TEMPLATE_HEADER), templateCards that do not match the approved carousel definition (INVALID_TEMPLATE_CARD_PARAM), category combined with templateName or used on a non-WhatsApp account, the WhatsApp Business Account is not eligible for Direct Send: DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED require Meta to grant or restore Direct Send access, while DIRECT_SEND_LIMITED is temporary and lifts on its own, or an iMessage first message to a new contact that breaks the content rule (invalid_content) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
 | **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
 | **409** | iMessage only. The contact opted out of this sender (recipient_opted_out); or this contact has never written to the sender and either the sender lacks the add-on for new contacts or three messages already went out and the contact has not replied (recipient_must_message_first). |  -  |
@@ -351,7 +351,7 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 |-------------|-------------|------------------|
 | **201** | Conversation created successfully |  -  |
 | **400** | Validation error, platform not supported, an attachment the platform does not accept (PLATFORM_LIMITATION), template required to start a WhatsApp conversation (TEMPLATE_REQUIRED), template variables that do not match the approved definition (INVALID_TEMPLATE_PARAMS, INVALID_TEMPLATE_BUTTON_PARAM), a missing or incompatible required template header (INVALID_TEMPLATE_HEADER), templateCards that do not match the approved carousel definition (INVALID_TEMPLATE_CARD_PARAM), category combined with templateName or used on a non-WhatsApp account, the WhatsApp Business Account is not eligible for Direct Send: DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED require Meta to grant or restore Direct Send access, while DIRECT_SEND_LIMITED is temporary and lifts on its own, or an iMessage first message to a new contact that breaks the content rule (invalid_content) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required or profile limit reached |  -  |
 | **404** | Account or recipient user not found (Reddit: PARTICIPANT_NOT_FOUND when the u/username does not exist) |  -  |
 | **409** | iMessage only. The contact opted out of this sender (recipient_opted_out); or this contact has never written to the sender and either the sender lacks the add-on for new contacts or three messages already went out and the contact has not replied (recipient_must_message_first). |  -  |
@@ -435,7 +435,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message deleted |  -  |
 | **400** | Platform does not support deletion or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -516,7 +516,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Message deleted |  -  |
 | **400** | Platform does not support deletion or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -595,7 +595,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message edited |  -  |
 | **400** | Not supported or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## editInboxMessageWithHttpInfo
@@ -675,7 +675,7 @@ ApiResponse<[**EditInboxMessage200Response**](EditInboxMessage200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Message edited |  -  |
 | **400** | Not supported or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -750,7 +750,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Conversation not found |  -  |
 
@@ -828,7 +828,7 @@ ApiResponse<[**GetInboxConversation200Response**](GetInboxConversation200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation details |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Conversation not found |  -  |
 
@@ -911,7 +911,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Messages in conversation |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
@@ -997,7 +997,7 @@ ApiResponse<[**GetInboxConversationMessages200Response**](GetInboxConversationMe
 |-------------|-------------|------------------|
 | **200** | Messages in conversation |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
@@ -1082,7 +1082,7 @@ public class Example {
 | **200** | Resolved url (only when format&#x3D;json) |  -  |
 | **302** | Redirect to the live media url |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
 
@@ -1168,7 +1168,7 @@ ApiResponse<[**GetMessageAttachment200Response**](GetMessageAttachment200Respons
 | **200** | Resolved url (only when format&#x3D;json) |  -  |
 | **302** | Redirect to the live media url |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
 
@@ -1254,7 +1254,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated conversations |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## listInboxConversationsWithHttpInfo
@@ -1341,7 +1341,7 @@ ApiResponse<[**ListInboxConversations200Response**](ListInboxConversations200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated conversations |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -1416,7 +1416,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation marked read |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -1494,7 +1494,7 @@ ApiResponse<[**MarkConversationRead200Response**](MarkConversationRead200Respons
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation marked read |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -1573,7 +1573,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The platform accepted the removal request. This does not guarantee a reaction was removed: the platform never confirms what it acted on, and a reaction placed by the other participant cannot be removed (platform rule). Check &#x60;fromMe&#x60; on GET /messages to know who placed a reaction. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
@@ -1654,7 +1654,7 @@ ApiResponse<[**RemoveMessageReaction200Response**](RemoveMessageReaction200Respo
 |-------------|-------------|------------------|
 | **200** | The platform accepted the removal request. This does not guarantee a reaction was removed: the platform never confirms what it acted on, and a reaction placed by the other participant cannot be removed (platform rule). Check &#x60;fromMe&#x60; on GET /messages to know who placed a reaction. |  -  |
 | **400** | Platform does not support reactions or invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account, conversation or message not found (message_not_found when messageId does not resolve to a message in this conversation) |  -  |
 
@@ -1741,7 +1741,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Conversations containing the query, most recent match first |  -  |
 | **400** | Invalid query, unsupported platform, or malformed cursor |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## searchInboxConversationsWithHttpInfo
@@ -1829,7 +1829,7 @@ ApiResponse<[**SearchInboxConversations200Response**](SearchInboxConversations20
 |-------------|-------------|------------------|
 | **200** | Conversations containing the query, most recent match first |  -  |
 | **400** | Invalid query, unsupported platform, or malformed cursor |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 
@@ -1908,7 +1908,7 @@ public class Example {
 | **200** | Message sent |  -  |
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
 | **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -1995,7 +1995,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **200** | Message sent |  -  |
 | **400** | Bad request (e.g., attachment not supported for platform, validation error, category combined with a template or attachment, category used on a non-WhatsApp account, or the WhatsApp Business Account is not eligible for Direct Send). Meta rejections (e.g. sending outside the messaging window) arrive with code platform_api_error, type platform_error, and platform + platformError set. |  -  |
 | **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
 | **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
@@ -2077,7 +2077,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Typing indicator sent (or no-op on unsupported platforms) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -2156,7 +2156,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Typing indicator sent (or no-op on unsupported platforms) |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -2233,7 +2233,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Control transferred |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -2312,7 +2312,7 @@ ApiResponse<[**SetConversationThreadControl200Response**](SetConversationThreadC
 |-------------|-------------|------------------|
 | **200** | Control transferred |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
 
@@ -2388,7 +2388,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation updated |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Conversation not found (WhatsApp only; other platforms upsert) |  -  |
 
@@ -2466,7 +2466,7 @@ ApiResponse<[**UpdateInboxConversation200Response**](UpdateInboxConversation200R
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Conversation updated |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Conversation not found (WhatsApp only; other platforms upsert) |  -  |
 
@@ -2543,7 +2543,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | File uploaded successfully |  -  |
 | **400** | No file provided or file too large |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## uploadMediaDirectWithHttpInfo
 
@@ -2620,5 +2620,5 @@ ApiResponse<[**UploadMediaDirect200Response**](UploadMediaDirect200Response.md)>
 |-------------|-------------|------------------|
 | **200** | File uploaded successfully |  -  |
 | **400** | No file provided or file too large |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

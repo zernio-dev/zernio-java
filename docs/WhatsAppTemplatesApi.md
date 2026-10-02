@@ -83,7 +83,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Library template (or null if no exact match) |  -  |
 | **400** | Missing or invalid query params |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppLibraryTemplateWithHttpInfo
@@ -163,6 +163,6 @@ ApiResponse<[**GetWhatsAppLibraryTemplate200Response**](GetWhatsAppLibraryTempla
 |-------------|-------------|------------------|
 | **200** | Library template (or null if no exact match) |  -  |
 | **400** | Missing or invalid query params |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 

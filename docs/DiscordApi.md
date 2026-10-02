@@ -131,7 +131,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Role assigned (or already present, idempotent). |  -  |
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -215,7 +215,7 @@ ApiResponse<[**AddDiscordMemberRole200Response**](AddDiscordMemberRole200Respons
 |-------------|-------------|------------------|
 | **200** | Role assigned (or already present, idempotent). |  -  |
 | **400** | Validation error (malformed snowflake) or @everyone manipulation attempt. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request: bot lacks MANAGE_ROLES, or target role is at or above the bot&#39;s highest role. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -295,7 +295,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **201** | Role created. |  -  |
 | **400** | Invalid accountId, guildId, or role body. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -377,7 +377,7 @@ ApiResponse<[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Res
 |-------------|-------------|------------------|
 | **201** | Role created. |  -  |
 | **400** | Invalid accountId, guildId, or role body. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the new role would sit at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -455,7 +455,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Event created. |  -  |
 | **400** | Validation error (missing required fields for the chosen entity type, malformed snowflake, past startsAt, etc.). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
 
@@ -534,7 +534,7 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 |-------------|-------------|------------------|
 | **200** | Event created. |  -  |
 | **400** | Validation error (missing required fields for the chosen entity type, malformed snowflake, past startsAt, etc.). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
 
@@ -613,7 +613,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Thread created. |  -  |
 | **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -695,7 +695,7 @@ ApiResponse<[**CreateDiscordThread200Response**](CreateDiscordThread200Response.
 |-------------|-------------|------------------|
 | **200** | Thread created. |  -  |
 | **400** | Invalid accountId, channelId, messageId, name, or autoArchiveDuration. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Create Public Threads). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -775,7 +775,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message crossposted. |  -  |
 | **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks the required permission). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -857,7 +857,7 @@ ApiResponse<[**CrosspostDiscordMessage200Response**](CrosspostDiscordMessage200R
 |-------------|-------------|------------------|
 | **200** | Message crossposted. |  -  |
 | **400** | Invalid ids, or the channel is not an announcement channel. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks the required permission). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -937,7 +937,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Role deleted. |  -  |
 | **400** | Invalid accountId, guildId, or roleId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1019,7 +1019,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Role deleted. |  -  |
 | **400** | Invalid accountId, guildId, or roleId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1099,7 +1099,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message deleted. |  -  |
 | **400** | Invalid accountId, channelId, or messageId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1181,7 +1181,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 |-------------|-------------|------------------|
 | **200** | Message deleted. |  -  |
 | **400** | Invalid accountId, channelId, or messageId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this channel&#39;s guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Messages). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1260,7 +1260,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event deleted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
 
@@ -1340,7 +1340,7 @@ ApiResponse<[**DeleteDiscordScheduledEvent200Response**](DeleteDiscordScheduledE
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event deleted. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_EVENTS in the guild. |  -  |
 
@@ -1421,7 +1421,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Role updated. |  -  |
 | **400** | Invalid ids, or no fields supplied to edit. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1505,7 +1505,7 @@ ApiResponse<[**CreateDiscordGuildRole201Response**](CreateDiscordGuildRole201Res
 |-------------|-------------|------------------|
 | **200** | Role updated. |  -  |
 | **400** | Invalid ids, or no fields supplied to edit. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the action (bot lacks Manage Roles, or the target role sits at or above the bot&#39;s highest role). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -1581,7 +1581,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Channel list |  -  |
 | **400** | Not a Discord account or missing guild info |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getDiscordChannelsWithHttpInfo
@@ -1657,7 +1657,7 @@ ApiResponse<[**GetDiscordChannels200Response**](GetDiscordChannels200Response.md
 |-------------|-------------|------------------|
 | **200** | Channel list |  -  |
 | **400** | Not a Discord account or missing guild info |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -1735,7 +1735,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The guild member. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, or the user is not a member of this guild. |  -  |
 
 ## getDiscordGuildMemberWithHttpInfo
@@ -1815,7 +1815,7 @@ ApiResponse<[**GetDiscordGuildMember200Response**](GetDiscordGuildMember200Respo
 |-------------|-------------|------------------|
 | **200** | The guild member. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, or the user is not a member of this guild. |  -  |
 
 
@@ -1890,7 +1890,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Event or Discord account not found. |  -  |
 
 ## getDiscordScheduledEventWithHttpInfo
@@ -1967,7 +1967,7 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Event or Discord account not found. |  -  |
 
 
@@ -2041,7 +2041,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Discord account settings |  -  |
 | **400** | Not a Discord account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 ## getDiscordSettingsWithHttpInfo
@@ -2117,7 +2117,7 @@ ApiResponse<[**GetDiscordSettings200Response**](GetDiscordSettings200Response.md
 |-------------|-------------|------------------|
 | **200** | Discord account settings |  -  |
 | **400** | Not a Discord account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 
 
@@ -2197,7 +2197,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Discord denied access to the guild members (the bot is no longer in the guild). |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
@@ -2280,7 +2280,7 @@ ApiResponse<[**ListDiscordGuildMembers200Response**](ListDiscordGuildMembers200R
 |-------------|-------------|------------------|
 | **200** | List of guild members. |  -  |
 | **400** | Invalid query params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Discord denied access to the guild members (the bot is no longer in the guild). |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
@@ -2357,7 +2357,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -2437,7 +2437,7 @@ ApiResponse<[**ListDiscordGuildRoles200Response**](ListDiscordGuildRoles200Respo
 |-------------|-------------|------------------|
 | **200** | List of guild roles. |  -  |
 | **400** | Invalid accountId or guildId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found, not accessible, or not bound to this guild. |  -  |
 | **403** | Discord refused the request (bot lacks View Channels permission in the guild). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -2515,7 +2515,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Pinned messages. |  -  |
 | **400** | Invalid channelId or accountId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not accessible. |  -  |
 | **502** | Bot lacks access to the channel. |  -  |
 
@@ -2594,7 +2594,7 @@ ApiResponse<[**ListDiscordPinnedMessages200Response**](ListDiscordPinnedMessages
 |-------------|-------------|------------------|
 | **200** | Pinned messages. |  -  |
 | **400** | Invalid channelId or accountId format. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not accessible. |  -  |
 | **502** | Bot lacks access to the channel. |  -  |
 
@@ -2673,7 +2673,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | List of scheduled events. |  -  |
 | **400** | Invalid params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **502** | Bot lacks access to the guild&#39;s events. |  -  |
 
@@ -2754,7 +2754,7 @@ ApiResponse<[**ListDiscordScheduledEvents200Response**](ListDiscordScheduledEven
 |-------------|-------------|------------------|
 | **200** | List of scheduled events. |  -  |
 | **400** | Invalid params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **502** | Bot lacks access to the guild&#39;s events. |  -  |
 
@@ -2833,7 +2833,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message pinned (or was already pinned, idempotent). |  -  |
 | **400** | Validation error or pin cap (50) reached. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_MESSAGES in the channel. |  -  |
 
@@ -2914,7 +2914,7 @@ ApiResponse<[**PinDiscordMessage200Response**](PinDiscordMessage200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Message pinned (or was already pinned, idempotent). |  -  |
 | **400** | Validation error or pin cap (50) reached. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_MESSAGES in the channel. |  -  |
 
@@ -2995,7 +2995,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Role removed (or was already absent, idempotent). |  -  |
 | **400** | Validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request (permission or hierarchy issue). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3079,7 +3079,7 @@ ApiResponse<[**RemoveDiscordMemberRole200Response**](RemoveDiscordMemberRole200R
 |-------------|-------------|------------------|
 | **200** | Role removed (or was already absent, idempotent). |  -  |
 | **400** | Validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 | **403** | Discord refused the request (permission or hierarchy issue). |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3161,7 +3161,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Matching guild members. |  -  |
 | **400** | Invalid query params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 ## searchDiscordGuildMembersWithHttpInfo
@@ -3243,7 +3243,7 @@ ApiResponse<[**SearchDiscordGuildMembers200Response**](SearchDiscordGuildMembers
 |-------------|-------------|------------------|
 | **200** | Matching guild members. |  -  |
 | **400** | Invalid query params. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not in this guild. |  -  |
 
 
@@ -3317,7 +3317,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | DM sent successfully. |  -  |
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not accessible to this user. |  -  |
 | **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3395,7 +3395,7 @@ ApiResponse<[**SendDiscordDirectMessage200Response**](SendDiscordDirectMessage20
 |-------------|-------------|------------------|
 | **200** | DM sent successfully. |  -  |
 | **400** | Validation error (missing required fields, content &gt; 2000 chars, malformed snowflake, or all of content/embeds/attachments missing). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found or not accessible to this user. |  -  |
 | **403** | Discord refused the message (most commonly: bot doesn&#39;t share a guild with the recipient, OR the recipient has DMs disabled). Error body contains Discord&#39;s response. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3475,7 +3475,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Message unpinned (or was not pinned, idempotent). |  -  |
 | **400** | Validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_MESSAGES in the channel. |  -  |
 
@@ -3556,7 +3556,7 @@ ApiResponse<[**UnpinDiscordMessage200Response**](UnpinDiscordMessage200Response.
 |-------------|-------------|------------------|
 | **200** | Message unpinned (or was not pinned, idempotent). |  -  |
 | **400** | Validation error. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found. |  -  |
 | **502** | Bot lacks MANAGE_MESSAGES in the channel. |  -  |
 
@@ -3635,7 +3635,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Event updated. |  -  |
 | **400** | Validation error, no updatable fields beyond accountId provided, or Discord rejected the update (invalid status transition). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Discord refused the update (bot permissions). |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3717,7 +3717,7 @@ ApiResponse<[**CreateDiscordScheduledEvent200Response**](CreateDiscordScheduledE
 |-------------|-------------|------------------|
 | **200** | Event updated. |  -  |
 | **400** | Validation error, no updatable fields beyond accountId provided, or Discord rejected the update (invalid status transition). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Discord refused the update (bot permissions). |  -  |
 | **404** | Event or Discord account not found. |  -  |
 | **502** | Discord was unreachable or returned an unclassified error. |  -  |
@@ -3795,7 +3795,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Settings updated |  -  |
 | **400** | Invalid request (no changes, invalid channel type, or bot cannot access channel) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found |  -  |
 
 ## updateDiscordSettingsWithHttpInfo
@@ -3873,6 +3873,6 @@ ApiResponse<[**UpdateDiscordSettings200Response**](UpdateDiscordSettings200Respo
 |-------------|-------------|------------------|
 | **200** | Settings updated |  -  |
 | **400** | Invalid request (no changes, invalid channel type, or bot cannot access channel) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Discord account not found |  -  |
 

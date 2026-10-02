@@ -115,7 +115,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
 | **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 ## checkWhatsAppNumberAvailabilityWithHttpInfo
@@ -195,7 +195,7 @@ ApiResponse<[**CheckPhoneNumberAvailability200Response**](CheckPhoneNumberAvaila
 |-------------|-------------|------------------|
 | **200** | Availability + address constraint. |  -  |
 | **400** | Country not offerable, or the inventory provider rejected the lookup (its 4xx status is forwarded as-is). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **502** | The inventory provider was unreachable or returned an unclassified error. |  -  |
 
 
@@ -269,7 +269,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Hosted KYC link created. |  -  |
 | **400** | Country does not require KYC (not a regulated country). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createWhatsAppNumberKycLinkWithHttpInfo
 
@@ -344,7 +344,7 @@ ApiResponse<[**CreatePhoneNumberKycLink200Response**](CreatePhoneNumberKycLink20
 |-------------|-------------|------------------|
 | **200** | Hosted KYC link created. |  -  |
 | **400** | Country does not require KYC (not a regulated country). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getWhatsAppNumberInfo
@@ -417,7 +417,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number + WABA status |  -  |
 | **400** | Phone number ID not found on account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 ## getWhatsAppNumberInfoWithHttpInfo
@@ -493,7 +493,7 @@ ApiResponse<[**GetWhatsAppNumberInfo200Response**](GetWhatsAppNumberInfo200Respo
 |-------------|-------------|------------------|
 | **200** | Number + WABA status |  -  |
 | **400** | Phone number ID not found on account |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 
 
@@ -569,7 +569,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
 | **400** | Country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getWhatsAppNumberKycFormWithHttpInfo
 
@@ -646,7 +646,7 @@ ApiResponse<[**GetWhatsAppNumberKycForm200Response**](GetWhatsAppNumberKycForm20
 |-------------|-------------|------------------|
 | **200** | The KYC form spec. |  -  |
 | **400** | Country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getWhatsAppNumberRemediation
@@ -719,7 +719,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The declined requirements to fix. |  -  |
 | **400** | Number is not awaiting remediation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## getWhatsAppNumberRemediationWithHttpInfo
@@ -795,7 +795,7 @@ ApiResponse<[**GetWhatsAppNumberRemediation200Response**](GetWhatsAppNumberRemed
 |-------------|-------------|------------------|
 | **200** | The declined requirements to fix. |  -  |
 | **400** | Number is not awaiting remediation |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -868,7 +868,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getWhatsAppPhoneNumberWithHttpInfo
@@ -943,7 +943,7 @@ ApiResponse<[**GetPhoneNumber200Response**](GetPhoneNumber200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Phone number retrieved successfully |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1019,7 +1019,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Phone numbers retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## getWhatsAppPhoneNumbersWithHttpInfo
 
@@ -1096,7 +1096,7 @@ ApiResponse<[**ListPhoneNumbers200Response**](ListPhoneNumbers200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Phone numbers retrieved successfully |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getWhatsAppPricingAnalytics
@@ -1185,7 +1185,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getWhatsAppPricingAnalyticsWithHttpInfo
@@ -1277,7 +1277,7 @@ ApiResponse<[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnaly
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1346,7 +1346,7 @@ This endpoint does not need any parameter.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listWhatsAppNumberCountriesWithHttpInfo
 
@@ -1416,7 +1416,7 @@ ApiResponse<[**ListWhatsAppNumberCountries200Response**](ListWhatsAppNumberCount
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Offerable countries, cheapest first. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## moveWhatsAppNumberToProfile
@@ -1491,7 +1491,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number moved, or already on that profile. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
 | **404** | Number not found, or the destination profile does not exist. |  -  |
 | **409** | The number cannot move, for example because the same number is already connected on the destination profile. |  -  |
@@ -1571,7 +1571,7 @@ ApiResponse<[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToPro
 |-------------|-------------|------------------|
 | **200** | Number moved, or already on that profile. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | No access to the source or destination profile, or the Inbox add-on is not active. |  -  |
 | **404** | Number not found, or the destination profile does not exist. |  -  |
 | **409** | The number cannot move, for example because the same number is already connected on the destination profile. |  -  |
@@ -1647,7 +1647,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
@@ -1728,7 +1728,7 @@ ApiResponse<[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNu
 |-------------|-------------|------------------|
 | **200** | Either a checkout URL (first number) or the provisioned phone number (subsequent numbers).  |  -  |
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | A paid plan is required |  -  |
 | **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
@@ -1807,7 +1807,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Phone number released successfully |  -  |
 | **400** | Phone number is already released or being released |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The number is attached to a SIP trunk (detach it first), or it changed state while a pending order was being cancelled (code invalid_resource_state). |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -1885,7 +1885,7 @@ ApiResponse<[**ReleasePhoneNumber200Response**](ReleasePhoneNumber200Response.md
 |-------------|-------------|------------------|
 | **200** | Phone number released successfully |  -  |
 | **400** | Phone number is already released or being released |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The number is attached to a SIP trunk (detach it first), or it changed state while a pending order was being cancelled (code invalid_resource_state). |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -1963,7 +1963,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Re-submitted for approval. |  -  |
 | **400** | Number is not awaiting remediation / nothing to remediate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 ## remediateWhatsAppNumberWithHttpInfo
@@ -2041,7 +2041,7 @@ ApiResponse<[**RemediatePhoneNumber200Response**](RemediatePhoneNumber200Respons
 |-------------|-------------|------------------|
 | **200** | Re-submitted for approval. |  -  |
 | **400** | Number is not awaiting remediation / nothing to remediate |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -2129,7 +2129,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
 | **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## searchAvailableWhatsAppNumbersWithHttpInfo
 
@@ -2218,7 +2218,7 @@ ApiResponse<[**SearchAvailableWhatsAppNumbers200Response**](SearchAvailableWhats
 |-------------|-------------|------------------|
 | **200** | Available numbers. |  -  |
 | **400** | Country not offerable, numberType outside the four offered, or a query parameter this endpoint does not know (the message lists the accepted ones; nothing is silently ignored). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## submitWhatsAppNumberKyc
@@ -2292,7 +2292,7 @@ public class Example {
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
 | **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## submitWhatsAppNumberKycWithHttpInfo
 
@@ -2368,7 +2368,7 @@ ApiResponse<[**SubmitPhoneNumberKyc200Response**](SubmitPhoneNumberKyc200Respons
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
 | **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## uploadWhatsAppNumberKycDocument
@@ -2443,7 +2443,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## uploadWhatsAppNumberKycDocumentWithHttpInfo
 
@@ -2520,7 +2520,7 @@ ApiResponse<[**UploadPhoneNumberKycDocument200Response**](UploadPhoneNumberKycDo
 |-------------|-------------|------------------|
 | **200** | Document uploaded. |  -  |
 | **400** | Missing X-Filename, empty body, or file too large (over 20MB). |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## validateWhatsAppNumberKycAddress
@@ -2593,7 +2593,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
 | **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## validateWhatsAppNumberKycAddressWithHttpInfo
 
@@ -2668,5 +2668,5 @@ ApiResponse<[**ValidatePhoneNumberKycAddress200Response**](ValidatePhoneNumberKy
 |-------------|-------------|------------------|
 | **200** | Address is deliverable, or the pre-check was skipped (no region supplied). |  -  |
 | **400** | The country isn&#39;t offered, or the address could not be verified. When the provider returned usable corrections, &#x60;details.addressSuggestions&#x60; carries them per field for a one-click \&quot;apply suggestion\&quot; card. (Flat error envelope: &#x60;error&#x60; is the human message; &#x60;code&#x60;/&#x60;param&#x60;/&#x60;details&#x60; are top-level siblings.)  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 

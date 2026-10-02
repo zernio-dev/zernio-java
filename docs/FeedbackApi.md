@@ -80,7 +80,7 @@ public class Example {
 | **201** | Feedback received |  -  |
 | **200** | Duplicate of a submission made in the last 24 hours. Returns the original id. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | More than 20 submissions in the last 24 hours. |  -  |
 
 ## submitFeedbackWithHttpInfo
@@ -157,6 +157,6 @@ ApiResponse<[**FeedbackReceipt**](FeedbackReceipt.md)>
 | **201** | Feedback received |  -  |
 | **200** | Duplicate of a submission made in the last 24 hours. Returns the original id. |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | More than 20 submissions in the last 24 hours. |  -  |
 

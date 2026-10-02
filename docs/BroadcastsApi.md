@@ -99,7 +99,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Recipients added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## addBroadcastRecipientsWithHttpInfo
@@ -177,7 +177,7 @@ ApiResponse<[**AddBroadcastRecipients200Response**](AddBroadcastRecipients200Res
 |-------------|-------------|------------------|
 | **200** | Recipients added |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -251,7 +251,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Broadcast cancelled |  -  |
 | **400** | Cannot cancel in current status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## cancelBroadcastWithHttpInfo
@@ -327,7 +327,7 @@ ApiResponse<[**CancelBroadcast200Response**](CancelBroadcast200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Broadcast cancelled |  -  |
 | **400** | Cannot cancel in current status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -401,7 +401,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Broadcast created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## createBroadcastWithHttpInfo
 
@@ -476,7 +476,7 @@ ApiResponse<[**CreateBroadcast200Response**](CreateBroadcast200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Broadcast created |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## deleteBroadcast
@@ -547,7 +547,7 @@ null (empty response body)
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## deleteBroadcastWithHttpInfo
@@ -621,7 +621,7 @@ ApiResponse<Void>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast deleted |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -694,7 +694,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast details with stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## getBroadcastWithHttpInfo
@@ -769,7 +769,7 @@ ApiResponse<[**GetBroadcast200Response**](GetBroadcast200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast details with stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -849,7 +849,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Recipients list with delivery status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## listBroadcastRecipientsWithHttpInfo
@@ -931,7 +931,7 @@ ApiResponse<[**ListBroadcastRecipients200Response**](ListBroadcastRecipients200R
 |-------------|-------------|------------------|
 | **200** | Recipients list with delivery status |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1013,7 +1013,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Broadcasts list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## listBroadcastsWithHttpInfo
 
@@ -1096,7 +1096,7 @@ ApiResponse<[**ListBroadcasts200Response**](ListBroadcasts200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Broadcasts list |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## scheduleBroadcast
@@ -1171,7 +1171,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Broadcast scheduled |  -  |
 | **400** | Invalid date or status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## scheduleBroadcastWithHttpInfo
@@ -1249,7 +1249,7 @@ ApiResponse<[**ScheduleBroadcast200Response**](ScheduleBroadcast200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Broadcast scheduled |  -  |
 | **400** | Invalid date or status |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1323,7 +1323,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Broadcast sending started |  -  |
 | **400** | Invalid status or no recipients |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## sendBroadcastWithHttpInfo
@@ -1399,7 +1399,7 @@ ApiResponse<[**SendBroadcast200Response**](SendBroadcast200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Broadcast sending started |  -  |
 | **400** | Invalid status or no recipients |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 
@@ -1474,7 +1474,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast updated |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
 ## updateBroadcastWithHttpInfo
@@ -1551,6 +1551,6 @@ ApiResponse<[**UpdateBroadcast200Response**](UpdateBroadcast200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Broadcast updated |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

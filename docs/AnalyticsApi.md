@@ -152,7 +152,7 @@ public class Example {
 | **200** | Analytics result |  -  |
 | **202** | Analytics are being synced from the platform, or the post has not finished publishing on every platform yet (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message; while a platform has not published, status is the post&#39;s own status (for example scheduled or publishing) and a post with one failed platform returns 202 rather than 424 until the others finish. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
@@ -252,7 +252,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 | **200** | Analytics result |  -  |
 | **202** | Analytics are being synced from the platform, or the post has not finished publishing on every platform yet (single post lookup only). The response body matches AnalyticsSinglePostResponse with syncStatus \&quot;pending\&quot; and a message; while a platform has not published, status is the post&#39;s own status (for example scheduled or publishing) and a post with one failed platform returns 202 rather than 424 until the others finish. Pending platforms whose account failed its last analytics sync carry that error in platformAnalytics[].errorMessage, and the message says so. |  -  |
 | **400** | Validation error |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
 | **424** | Post failed to publish on all platforms. Analytics are unavailable. (single post lookup only) |  -  |
@@ -341,7 +341,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Dashboard for the window |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
 | **404** | Profile not found or not accessible with this API key. |  -  |
@@ -431,7 +431,7 @@ ApiResponse<[**GetAnalyticsDashboard200Response**](GetAnalyticsDashboard200Respo
 |-------------|-------------|------------------|
 | **200** | Dashboard for the window |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The profile is not accessible, or is beyond your plan&#39;s profile limit (PROFILE_OVER_LIMIT). |  -  |
 | **404** | Profile not found or not accessible with this API key. |  -  |
@@ -513,7 +513,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | One page of changed analytics |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The caller cannot read the requested profile, the API key is scoped to other profiles, or the profile sits outside the plan&#39;s profile limit (&#x60;code&#x60; &#x60;PROFILE_OVER_LIMIT&#x60;).  |  -  |
 | **404** | Resource not found |  -  |
@@ -599,7 +599,7 @@ ApiResponse<[**AnalyticsDeltaResponse**](AnalyticsDeltaResponse.md)>
 |-------------|-------------|------------------|
 | **200** | One page of changed analytics |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | The caller cannot read the requested profile, the API key is scoped to other profiles, or the profile sits outside the plan&#39;s profile limit (&#x60;code&#x60; &#x60;PROFILE_OVER_LIMIT&#x60;).  |  -  |
 | **404** | Resource not found |  -  |
@@ -682,7 +682,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Best time slots |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getBestTimeToPostWithHttpInfo
@@ -763,7 +763,7 @@ ApiResponse<[**GetBestTimeToPost200Response**](GetBestTimeToPost200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Best time slots |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -843,7 +843,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getContentDecayWithHttpInfo
@@ -925,7 +925,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Content decay buckets |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -1010,7 +1010,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Daily metrics and platform breakdown |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getDailyMetricsWithHttpInfo
@@ -1097,7 +1097,7 @@ ApiResponse<[**GetDailyMetrics200Response**](GetDailyMetrics200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Daily metrics and platform breakdown |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -1183,7 +1183,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Page insights data |  -  |
 | **400** | Bad request. Common cases:   - Requested a deprecated metric (page_impressions, page_fans, page_fan_adds, page_fan_removes) - use current names instead   - Account has no Page selected (metadata.pageAccessToken missing)   - Invalid accountId / metrics / metricType / date range   - Account is not a Facebook account  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -1272,7 +1272,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Page insights data |  -  |
 | **400** | Bad request. Common cases:   - Requested a deprecated metric (page_impressions, page_fans, page_fan_adds, page_fan_removes) - use current names instead   - Account has no Page selected (metadata.pageAccessToken missing)   - Invalid accountId / metrics / metricType / date range   - Account is not a Facebook account  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -1351,7 +1351,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Lifetime per-post monetization earnings |  -  |
 | **400** | Bad request. Common cases:   - Invalid accountId format, or a metric name that is not a monetization metric   - A \&quot;breakdown\&quot; param was supplied (breakdown dimensions are not exposed)   - A \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, or \&quot;metricType\&quot; param was supplied (this endpoint returns a lifetime total and takes no date range)   - Account has no Page access token (metadata.pageAccessToken missing)   - Account is not a Facebook account  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -1432,7 +1432,7 @@ ApiResponse<[**FacebookPostEarningsResponse**](FacebookPostEarningsResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Lifetime per-post monetization earnings |  -  |
 | **400** | Bad request. Common cases:   - Invalid accountId format, or a metric name that is not a monetization metric   - A \&quot;breakdown\&quot; param was supplied (breakdown dimensions are not exposed)   - A \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, or \&quot;metricType\&quot; param was supplied (this endpoint returns a lifetime total and takes no date range)   - Account has no Page access token (metadata.pageAccessToken missing)   - Account is not a Facebook account  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -1509,7 +1509,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reaction breakdown for the post |  -  |
 | **400** | Invalid accountId format, not a Facebook account, or missing postId parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Facebook rejected the request |  -  |
 
@@ -1588,7 +1588,7 @@ ApiResponse<[**GetFacebookPostReactions200Response**](GetFacebookPostReactions20
 |-------------|-------------|------------------|
 | **200** | Reaction breakdown for the post |  -  |
 | **400** | Invalid accountId format, not a Facebook account, or missing postId parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Facebook rejected the request |  -  |
 
@@ -1670,7 +1670,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getFollowerStatsWithHttpInfo
@@ -1753,7 +1753,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -1837,7 +1837,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Performance metrics with daily time series |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -1926,7 +1926,7 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 |-------------|-------------|------------------|
 | **200** | Performance metrics with daily time series |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -2007,7 +2007,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Search keywords with impression counts |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -2090,7 +2090,7 @@ ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSe
 |-------------|-------------|------------------|
 | **200** | Search keywords with impression counts |  -  |
 | **400** | Invalid parameters |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -2181,7 +2181,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
@@ -2273,7 +2273,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
@@ -2355,7 +2355,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
@@ -2439,7 +2439,7 @@ ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md
 |-------------|-------------|------------------|
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found |  -  |
@@ -2527,7 +2527,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Follower history data |  -  |
 | **400** | Bad request (invalid accountId / metrics / date range, or account is not an Instagram account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -2616,7 +2616,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Follower history data |  -  |
 | **400** | Bad request (invalid accountId / metrics / date range, or account is not an Instagram account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 
@@ -2703,7 +2703,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Aggregate analytics data |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
@@ -2793,7 +2793,7 @@ ApiResponse<[**GetLinkedInAggregateAnalytics200Response**](GetLinkedInAggregateA
 |-------------|-------------|------------------|
 | **200** | Aggregate analytics data |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
@@ -2881,7 +2881,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Organization analytics data |  -  |
 | **400** | Bad request. Common cases:   - Account is a personal LinkedIn account, not organization (code personal_account_not_supported, use /v1/accounts/{id}/linkedin-aggregate-analytics instead)   - Invalid metric name, metricType, or date range  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Platform error. The authenticated member lacks the required ADMINISTRATOR role on the organization. LinkedIn enforces admin-only access for all three org statistics endpoints. The error envelope is type platform_error, and the raw LinkedIn error is echoed in the platformError field.  |  -  |
 | **404** | Account not found |  -  |
@@ -2972,7 +2972,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Organization analytics data |  -  |
 | **400** | Bad request. Common cases:   - Account is a personal LinkedIn account, not organization (code personal_account_not_supported, use /v1/accounts/{id}/linkedin-aggregate-analytics instead)   - Invalid metric name, metricType, or date range  |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Platform error. The authenticated member lacks the required ADMINISTRATOR role on the organization. LinkedIn enforces admin-only access for all three org statistics endpoints. The error envelope is type platform_error, and the raw LinkedIn error is echoed in the platformError field.  |  -  |
 | **404** | Account not found |  -  |
@@ -3051,7 +3051,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Post analytics data |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
@@ -3133,7 +3133,7 @@ ApiResponse<[**GetLinkedInPostAnalytics200Response**](GetLinkedInPostAnalytics20
 |-------------|-------------|------------------|
 | **200** | Post analytics data |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
@@ -3217,7 +3217,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Reactions with reactor profiles |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
@@ -3301,7 +3301,7 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 |-------------|-------------|------------------|
 | **200** | Reactions with reactor profiles |  -  |
 | **400** | Invalid request |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account or post not found |  -  |
@@ -3381,7 +3381,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Daily analytics timeline |  -  |
 | **400** | Missing required postId parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
 | **404** | Post not found |  -  |
@@ -3463,7 +3463,7 @@ ApiResponse<[**GetPostTimeline200Response**](GetPostTimeline200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Daily analytics timeline |  -  |
 | **400** | Missing required postId parameter |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Forbidden (post belongs to another user or API key scope violation) |  -  |
 | **404** | Post not found |  -  |
@@ -3544,7 +3544,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Posting frequency data |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getPostingFrequencyWithHttpInfo
@@ -3625,7 +3625,7 @@ ApiResponse<[**GetPostingFrequency200Response**](GetPostingFrequency200Response.
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Posting frequency data |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 
@@ -3711,7 +3711,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a TikTok account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
@@ -3801,7 +3801,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Account insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a TikTok account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
@@ -3889,7 +3889,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Channel insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a YouTube account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
@@ -3981,7 +3981,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 |-------------|-------------|------------------|
 | **200** | Channel insights data |  -  |
 | **400** | Bad request (invalid accountId / metrics / metricType / date range, or account is not a YouTube account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
@@ -4069,7 +4069,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Daily views breakdown |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
@@ -4158,7 +4158,7 @@ ApiResponse<[**YouTubeDailyViewsResponse**](YouTubeDailyViewsResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Daily views breakdown |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **412** | Missing YouTube Analytics scope |  -  |
@@ -4247,7 +4247,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
@@ -4340,7 +4340,7 @@ ApiResponse<[**YouTubeDemographicsResponse**](YouTubeDemographicsResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Demographic insights data |  -  |
 | **400** | Bad request (invalid parameters or not a YouTube account) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Account not found, or the video does not exist / does not belong to this YouTube channel |  -  |
@@ -4429,7 +4429,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Audience retention curve |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Video not found, or it does not belong to this YouTube channel |  -  |
@@ -4519,7 +4519,7 @@ ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md
 |-------------|-------------|------------------|
 | **200** | Audience retention curve |  -  |
 | **400** | Bad request (missing or invalid parameters) |  -  |
-| **401** | Unauthorized |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Access denied to this account |  -  |
 | **404** | Video not found, or it does not belong to this YouTube channel |  -  |
