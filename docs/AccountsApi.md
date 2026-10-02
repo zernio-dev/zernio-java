@@ -1597,7 +1597,7 @@ ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Respons
 
 ## listAccounts
 
-> AccountsListResponse listAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile)
+> AccountsListResponse listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1627,13 +1627,17 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter accounts by profile ID. Must be a valid ObjectId.
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
+        String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches.
+        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, social = every other platform.
+        String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
+        String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
         Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
+            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -1654,6 +1658,10 @@ public class Example {
 | **profileId** | **String**| Filter accounts by profile ID. Must be a valid ObjectId. | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
+| **search** | **String**| Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional] |
+| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs] |
+| **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
+| **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
@@ -1684,7 +1692,7 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile)
+> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1715,13 +1723,17 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter accounts by profile ID. Must be a valid ObjectId.
         String platform = "platform_example"; // String | Filter accounts by platform (e.g. \"instagram\", \"twitter\").
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
+        String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches.
+        String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, social = every other platform.
+        String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
+        String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
         Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, includeOverLimit, page, limit, profileIds, perProfile);
+            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1744,6 +1756,10 @@ public class Example {
 | **profileId** | **String**| Filter accounts by profile ID. Must be a valid ObjectId. | [optional] |
 | **platform** | **String**| Filter accounts by platform (e.g. \&quot;instagram\&quot;, \&quot;twitter\&quot;). | [optional] |
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
+| **search** | **String**| Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional] |
+| **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs] |
+| **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
+| **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |

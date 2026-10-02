@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.200.0
+  version: 1.201.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7629,6 +7629,63 @@ paths:
           enum:
           - connected
           - disconnected
+          type: string
+        style: form
+      - description: "Case-insensitive match on the account username, display name\
+          \ or platform user id, or an exact account id. Combine with page/limit to\
+          \ paginate the matches."
+        explode: true
+        in: query
+        name: search
+        required: false
+        schema:
+          maxLength: 100
+          minLength: 1
+          type: string
+        style: form
+      - description: "Only accounts of this kind. ads = ad accounts (Meta, Google,\
+          \ LinkedIn, Pinterest, TikTok, X, OpenAI), communication = WhatsApp, Telegram,\
+          \ Discord, Slack and iMessage, blogs = Shopify and WordPress, social = every\
+          \ other platform."
+        explode: true
+        in: query
+        name: category
+        required: false
+        schema:
+          enum:
+          - social
+          - ads
+          - communication
+          - blogs
+          type: string
+        style: form
+      - description: "Sort a paginated listing (page/limit) by account name, platform,\
+          \ profile name, status (accounts needing a reconnect first when ascending)\
+          \ or connection date. Ties keep the default order: platform, then newest\
+          \ first."
+        explode: true
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - account
+          - platform
+          - profile
+          - status
+          - connected
+          type: string
+        style: form
+      - description: Direction for `sort`.
+        explode: true
+        in: query
+        name: order
+        required: false
+        schema:
+          default: asc
+          enum:
+          - asc
+          - desc
           type: string
         style: form
       - description: "When true, includes accounts from over-limit profiles."
