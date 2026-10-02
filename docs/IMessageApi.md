@@ -1932,7 +1932,7 @@ public class Example {
 | **202** | Order accepted; activation continues asynchronously |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required) |  -  |
+| **402** | A valid payment method is required (code: payment_method_required), or the last payment failed and is still unpaid (code: payment_required). Pay the open invoice or update the card in Billing, then retry. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
@@ -2013,7 +2013,7 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 | **202** | Order accepted; activation continues asynchronously |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required) |  -  |
+| **402** | A valid payment method is required (code: payment_method_required), or the last payment failed and is still unpaid (code: payment_required). Pay the open invoice or update the card in Billing, then retry. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
@@ -2092,7 +2092,7 @@ public class Example {
 | **200** | Sender registered |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required) |  -  |
+| **402** | A valid payment method is required (code: payment_method_required), or the last payment failed and is still unpaid (code: payment_required). Pay the open invoice or update the card in Billing, then retry. |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 
@@ -2170,7 +2170,7 @@ ApiResponse<[**RegisterImessageSender200Response**](RegisterImessageSender200Res
 | **200** | Sender registered |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | A valid payment method is required (code: payment_method_required) |  -  |
+| **402** | A valid payment method is required (code: payment_method_required), or the last payment failed and is still unpaid (code: payment_required). Pay the open invoice or update the card in Billing, then retry. |  -  |
 | **404** | Profile not found or access denied |  -  |
 | **409** | Sender already registered to another profile (code: imessage_sender_conflict), or billing setup is incomplete and support must finish it (code: billing_setup_incomplete) |  -  |
 

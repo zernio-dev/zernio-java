@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.199.0
+  version: 1.199.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24220,7 +24220,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: "A valid payment method is required (code: payment_method_required)"
+          description: "A valid payment method is required (code: payment_method_required),\
+            \ or the last payment failed and is still unpaid (code: payment_required).\
+            \ Pay the open invoice or update the card in Billing, then retry."
         "404":
           description: Profile not found or access denied
         "409":
@@ -24299,7 +24301,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "402":
-          description: "A valid payment method is required (code: payment_method_required)"
+          description: "A valid payment method is required (code: payment_method_required),\
+            \ or the last payment failed and is still unpaid (code: payment_required).\
+            \ Pay the open invoice or update the card in Billing, then retry."
         "403":
           description: "Sender limit reached (code: imessage_sender_limit)"
         "404":
