@@ -1978,7 +1978,9 @@ docs/SelectFacebookPageRequestOneOfNot.md
 docs/SelectFacebookPageRequestOneOfUserProfile.md
 docs/SelectGoogleBusinessLocation200Response.md
 docs/SelectGoogleBusinessLocation200ResponseAccount.md
+docs/SelectGoogleBusinessLocation200ResponseFailedInner.md
 docs/SelectGoogleBusinessLocationRequest.md
+docs/SelectGoogleBusinessLocationRequestLocationsInner.md
 docs/SelectInstagramAccount200Response.md
 docs/SelectInstagramAccount200ResponseAccount.md
 docs/SelectInstagramAccountRequest.md
@@ -4715,7 +4717,9 @@ src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOfNot.java
 src/main/java/dev/zernio/model/SelectFacebookPageRequestOneOfUserProfile.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200Response.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200ResponseAccount.java
+src/main/java/dev/zernio/model/SelectGoogleBusinessLocation200ResponseFailedInner.java
 src/main/java/dev/zernio/model/SelectGoogleBusinessLocationRequest.java
+src/main/java/dev/zernio/model/SelectGoogleBusinessLocationRequestLocationsInner.java
 src/main/java/dev/zernio/model/SelectInstagramAccount200Response.java
 src/main/java/dev/zernio/model/SelectInstagramAccount200ResponseAccount.java
 src/main/java/dev/zernio/model/SelectInstagramAccountRequest.java
@@ -5419,3 +5423,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SelectGoogleBusinessLocation200ResponseFailedInnerTest.java
+src/test/java/dev/zernio/model/SelectGoogleBusinessLocationRequestLocationsInnerTest.java
