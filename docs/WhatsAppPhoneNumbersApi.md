@@ -1131,7 +1131,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp account ID
         OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
         OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
-        String granularity = "HALF_HOUR"; // String | 
+        String granularity = "HALF_HOUR"; // String | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with `param: granularity` and Meta's reason in `error`. Use DAILY for short or month-to-date ranges. 
         String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
         String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
         String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
@@ -1159,7 +1159,7 @@ public class Example {
 | **accountId** | **String**| WhatsApp account ID | |
 | **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
 | **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
-| **granularity** | **String**|  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **granularity** | **String**| Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;. Use DAILY for short or month-to-date ranges.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
 | **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
 | **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
 | **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
@@ -1184,7 +1184,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid query, or Meta refused it. When Meta refuses, &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner), &#x60;code&#x60; is &#x60;invalid_field_value&#x60;, &#x60;platformError&#x60; holds Meta&#39;s raw error, and &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY. Retrying the same query fails the same way.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1221,7 +1221,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp account ID
         OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
         OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
-        String granularity = "HALF_HOUR"; // String | 
+        String granularity = "HALF_HOUR"; // String | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with `param: granularity` and Meta's reason in `error`. Use DAILY for short or month-to-date ranges. 
         String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
         String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
         String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
@@ -1251,7 +1251,7 @@ public class Example {
 | **accountId** | **String**| WhatsApp account ID | |
 | **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
 | **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
-| **granularity** | **String**|  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **granularity** | **String**| Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;. Use DAILY for short or month-to-date ranges.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
 | **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
 | **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
 | **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
@@ -1276,7 +1276,7 @@ ApiResponse<[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnaly
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid query, or Meta refused it. When Meta refuses, &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner), &#x60;code&#x60; is &#x60;invalid_field_value&#x60;, &#x60;platformError&#x60; holds Meta&#39;s raw error, and &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY. Retrying the same query fails the same way.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

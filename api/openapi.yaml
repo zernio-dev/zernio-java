@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.199.1
+  version: 1.200.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -27628,7 +27628,12 @@ paths:
           format: date-time
           type: string
         style: form
-      - explode: true
+      - description: |
+          Size of each data point. Meta refuses MONTHLY when the range is too short for a
+          monthly bucket (for example a range that starts at the beginning of the current
+          month and ends today); that is a 400 with `param: granularity` and Meta's reason
+          in `error`. Use DAILY for short or month-to-date ranges.
+        explode: true
         in: query
         name: granularity
         required: true
@@ -27711,7 +27716,17 @@ paths:
                 $ref: "#/components/schemas/getWhatsAppPricingAnalytics_200_response"
           description: Pricing data points for the range
         "400":
-          $ref: "#/components/responses/BadRequest"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: |
+            Invalid query, or Meta refused it. When Meta refuses, `error` carries Meta's own
+            reason (for example "Too small time window to get monthly granularity data." or
+            that COST is not shown for businesses billed through a partner), `code` is
+            `invalid_field_value`, `platformError` holds Meta's raw error, and `param` is
+            `granularity` when the range is too short for MONTHLY. Retrying the same query
+            fails the same way.
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
