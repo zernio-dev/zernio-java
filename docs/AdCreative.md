@@ -32,6 +32,7 @@ Platform-specific creative data. Fields vary by platform.
 |**body** | **String** | Ad copy/text |  [optional] |
 |**googleHeadline** | **String** | Google Ads headline |  [optional] |
 |**googleDescription** | **String** | Google Ads description |  [optional] |
+|**youtubeVideoIds** | **List&lt;String&gt;** | Google only. YouTube video ids behind a Video campaign ad (video and responsive video ads) or a Demand Gen video ad, same id as &#x60;youtubeVideoId&#x60; on Performance Max asset groups. When the ad has no image, &#x60;thumbnailUrl&#x60; is the first video&#39;s YouTube thumbnail. Absent on ads without a video. |  [optional] |
 |**linkUrl** | **String** | Destination URL |  [optional] |
 |**whatsappPhoneNumber** | **String** | Explicit E.164 WhatsApp number supplied when creating a Meta boost or messaging ad. Absent when omitted by the caller or on older records. |  [optional] |
 |**pinterestImageUrl** | **String** |  |  [optional] |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.196.2
+  version: 1.197.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -74250,6 +74250,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -74349,6 +74352,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -74646,6 +74652,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -74745,6 +74754,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -75069,6 +75081,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -75168,6 +75183,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -75724,6 +75742,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -75823,6 +75844,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -76147,6 +76171,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -76246,6 +76273,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -79552,6 +79582,9 @@ components:
           imageUrl: imageUrl
           linkUrl: linkUrl
           googleHeadline: googleHeadline
+          youtubeVideoIds:
+          - youtubeVideoIds
+          - youtubeVideoIds
           thumbnailUrl: thumbnailUrl
           pinterestImageUrl: pinterestImageUrl
           instagramPermalinkUrl: instagramPermalinkUrl
@@ -79921,6 +79954,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -80020,6 +80056,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -80598,6 +80637,9 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              youtubeVideoIds:
+              - youtubeVideoIds
+              - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
@@ -80697,6 +80739,9 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              youtubeVideoIds:
+              - youtubeVideoIds
+              - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
@@ -81021,6 +81066,9 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              youtubeVideoIds:
+              - youtubeVideoIds
+              - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
@@ -81120,6 +81168,9 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              youtubeVideoIds:
+              - youtubeVideoIds
+              - youtubeVideoIds
               thumbnailUrl: thumbnailUrl
               pinterestImageUrl: pinterestImageUrl
               instagramPermalinkUrl: instagramPermalinkUrl
@@ -117968,6 +118019,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -118067,6 +118121,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -121412,6 +121469,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -121511,6 +121571,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -121835,6 +121898,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -121934,6 +122000,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -122490,6 +122559,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -122589,6 +122661,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -122913,6 +122988,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -123012,6 +123090,9 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                youtubeVideoIds:
+                - youtubeVideoIds
+                - youtubeVideoIds
                 thumbnailUrl: thumbnailUrl
                 pinterestImageUrl: pinterestImageUrl
                 instagramPermalinkUrl: instagramPermalinkUrl
@@ -123447,6 +123528,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -123876,6 +123960,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -132018,6 +132105,9 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
             thumbnailUrl: thumbnailUrl
             pinterestImageUrl: pinterestImageUrl
             instagramPermalinkUrl: instagramPermalinkUrl
@@ -149956,6 +150046,9 @@ components:
         imageUrl: imageUrl
         linkUrl: linkUrl
         googleHeadline: googleHeadline
+        youtubeVideoIds:
+        - youtubeVideoIds
+        - youtubeVideoIds
         thumbnailUrl: thumbnailUrl
         pinterestImageUrl: pinterestImageUrl
         instagramPermalinkUrl: instagramPermalinkUrl
@@ -150125,6 +150218,15 @@ components:
         googleDescription:
           description: Google Ads description
           type: string
+        youtubeVideoIds:
+          description: "Google only. YouTube video ids behind a Video campaign ad\
+            \ (video and responsive video ads) or a Demand Gen video ad, same id as\
+            \ `youtubeVideoId` on Performance Max asset groups. When the ad has no\
+            \ image, `thumbnailUrl` is the first video's YouTube thumbnail. Absent\
+            \ on ads without a video."
+          items:
+            type: string
+          type: array
         linkUrl:
           description: Destination URL
           type: string
