@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.204.0
+  version: 1.205.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39339,6 +39339,53 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      x-accepts:
+      - application/json
+  /v1/ads/{adId}/review:
+    get:
+      description: |-
+        Reads the ad's review verdict from the platform now: whether it was approved, where it may
+        not deliver, and every rejection reason with TikTok's suggestion and the piece of content it
+        refers to. Read-only, so it works on a paused ad without re-enabling it.
+
+        TikTok only (`/ad/review_info/`); every other platform returns 501. Use it alongside the ad's
+        `platformStatus`: TikTok reports `AD_STATUS_AUDIT` while the ad is in review and
+        `AD_STATUS_AD_PRE_ONLINE` once it passed and is about to deliver (both map to
+        `status: pending_review`); `AD_STATUS_AUDIT_DENY` maps to `rejected`.
+      operationId: getAdReview
+      parameters:
+      - description: Zernio ad id (24-char hex) or the platform ad id.
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdReview_200_response"
+          description: The review verdict
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Ad not found, it has no TikTok ad id yet, or TikTok has no\
+            \ review record for it"
+        "501":
+          description: Only supported on TikTok
+      security:
+      - bearerAuth: []
+      summary: Read the platform's review verdict for an ad
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - tiktok
       x-accepts:
       - application/json
   /v1/ads/{adId}/media:
@@ -125085,6 +125132,237 @@ components:
           items:
             $ref: "#/components/schemas/generateAdPreviews_200_response_previews_inner"
           type: array
+    getAdReview_200_response_review_rejections_inner_content:
+      description: The content TikTok reviewed.
+      example:
+        imageId: imageId
+        musicId: musicId
+        videoId: videoId
+        text: text
+        type: type
+      properties:
+        type:
+          description: "MODE_STRING, MODE_IMAGE, MODE_VIDEO or MODE_CAROUSEL_MUSIC."
+          nullable: true
+          type: string
+        text:
+          nullable: true
+          type: string
+        imageId:
+          nullable: true
+          type: string
+        videoId:
+          nullable: true
+          type: string
+        musicId:
+          nullable: true
+          type: string
+    getAdReview_200_response_review_rejections_inner:
+      example:
+        forbiddenAges:
+        - forbiddenAges
+        - forbiddenAges
+        forbiddenLocations:
+        - forbiddenLocations
+        - forbiddenLocations
+        reasons:
+        - reasons
+        - reasons
+        suggestion: suggestion
+        forbiddenPlacements:
+        - forbiddenPlacements
+        - forbiddenPlacements
+        content:
+          imageId: imageId
+          musicId: musicId
+          videoId: videoId
+          text: text
+          type: type
+      properties:
+        reasons:
+          items:
+            type: string
+          type: array
+        suggestion:
+          description: TikTok's advice for fixing the rejection.
+          nullable: true
+          type: string
+        forbiddenPlacements:
+          items:
+            type: string
+          type: array
+        forbiddenAges:
+          items:
+            type: string
+          type: array
+        forbiddenLocations:
+          items:
+            type: string
+          type: array
+        content:
+          $ref: "#/components/schemas/getAdReview_200_response_review_rejections_inner_content"
+    getAdReview_200_response_review:
+      example:
+        forbiddenAges:
+        - forbiddenAges
+        - forbiddenAges
+        forbiddenLocations:
+        - forbiddenLocations
+        - forbiddenLocations
+        approved: true
+        rejections:
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        forbiddenOperatingSystems:
+        - forbiddenOperatingSystems
+        - forbiddenOperatingSystems
+        forbiddenPlacements:
+        - forbiddenPlacements
+        - forbiddenPlacements
+        reviewStatus: reviewStatus
+        readAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        approved:
+          description: TikTok `is_approved`.
+          nullable: true
+          type: boolean
+        reviewStatus:
+          description: "TikTok `review_status`, verbatim: ALL_AVAILABLE (approved\
+            \ everywhere), PART_AVAILABLE (approved for part of the targeting), UNAVAILABLE\
+            \ (rejected)."
+          nullable: true
+          type: string
+        forbiddenPlacements:
+          items:
+            type: string
+          type: array
+        forbiddenAges:
+          items:
+            type: string
+          type: array
+        forbiddenLocations:
+          items:
+            type: string
+          type: array
+        forbiddenOperatingSystems:
+          items:
+            type: string
+          type: array
+        rejections:
+          description: One entry per rejected piece of content (TikTok `reject_info`).
+            Empty when the ad was approved.
+          items:
+            $ref: "#/components/schemas/getAdReview_200_response_review_rejections_inner"
+          type: array
+        readAt:
+          description: When the verdict was read from TikTok.
+          format: date-time
+          type: string
+    getAdReview_200_response:
+      example:
+        adId: adId
+        review:
+          forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          approved: true
+          rejections:
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          forbiddenOperatingSystems:
+          - forbiddenOperatingSystems
+          - forbiddenOperatingSystems
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          reviewStatus: reviewStatus
+          readAt: 2000-01-23T04:56:07.000+00:00
+        platformAdId: platformAdId
+        platform: platform
+      properties:
+        adId:
+          type: string
+        platform:
+          type: string
+        platformAdId:
+          type: string
+        review:
+          $ref: "#/components/schemas/getAdReview_200_response_review"
     getAdMedia_200_response_media_inner:
       example:
         length: 0.8008281904610115

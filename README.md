@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.204.0
+- API version: 1.205.0
 
-- Build date: 2026-10-02T20:09:43.149644709Z[Etc/UTC]
+- Build date: 2026-10-02T23:08:51.141919657Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.204.0</version>
+  <version>1.205.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.204.0"
+compile "dev.zernio:zernio-sdk:1.205.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.204.0.jar`
+- `target/zernio-sdk-1.205.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -375,6 +375,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getAdWithHttpInfo**](docs/AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details
 *AdCampaignsApi* | [**getAdCampaignDetails**](docs/AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
 *AdCampaignsApi* | [**getAdCampaignDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdCampaignDetailsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details
+*AdCampaignsApi* | [**getAdReview**](docs/AdCampaignsApi.md#getAdReview) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad
+*AdCampaignsApi* | [**getAdReviewWithHttpInfo**](docs/AdCampaignsApi.md#getAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad
 *AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
@@ -2810,6 +2812,10 @@ Class | Method | HTTP request | Description
  - [GetAdNegativeKeywordList200Response](docs/GetAdNegativeKeywordList200Response.md)
  - [GetAdNegativeKeywordList200ResponseList](docs/GetAdNegativeKeywordList200ResponseList.md)
  - [GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
+ - [GetAdReview200Response](docs/GetAdReview200Response.md)
+ - [GetAdReview200ResponseReview](docs/GetAdReview200ResponseReview.md)
+ - [GetAdReview200ResponseReviewRejectionsInner](docs/GetAdReview200ResponseReviewRejectionsInner.md)
+ - [GetAdReview200ResponseReviewRejectionsInnerContent](docs/GetAdReview200ResponseReviewRejectionsInnerContent.md)
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [GetAdTree202Response](docs/GetAdTree202Response.md)

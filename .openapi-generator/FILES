@@ -832,6 +832,10 @@ docs/GetAdMedia200ResponseMediaInner.md
 docs/GetAdNegativeKeywordList200Response.md
 docs/GetAdNegativeKeywordList200ResponseList.md
 docs/GetAdPreviews200Response.md
+docs/GetAdReview200Response.md
+docs/GetAdReview200ResponseReview.md
+docs/GetAdReview200ResponseReviewRejectionsInner.md
+docs/GetAdReview200ResponseReviewRejectionsInnerContent.md
 docs/GetAdSetDetails200Response.md
 docs/GetAdTrackingTags200Response.md
 docs/GetAdTree202Response.md
@@ -3600,6 +3604,10 @@ src/main/java/dev/zernio/model/GetAdMedia200ResponseMediaInner.java
 src/main/java/dev/zernio/model/GetAdNegativeKeywordList200Response.java
 src/main/java/dev/zernio/model/GetAdNegativeKeywordList200ResponseList.java
 src/main/java/dev/zernio/model/GetAdPreviews200Response.java
+src/main/java/dev/zernio/model/GetAdReview200Response.java
+src/main/java/dev/zernio/model/GetAdReview200ResponseReview.java
+src/main/java/dev/zernio/model/GetAdReview200ResponseReviewRejectionsInner.java
+src/main/java/dev/zernio/model/GetAdReview200ResponseReviewRejectionsInnerContent.java
 src/main/java/dev/zernio/model/GetAdSetDetails200Response.java
 src/main/java/dev/zernio/model/GetAdTrackingTags200Response.java
 src/main/java/dev/zernio/model/GetAdTree202Response.java
@@ -5423,3 +5431,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAdReview200ResponseReviewRejectionsInnerContentTest.java
+src/test/java/dev/zernio/model/GetAdReview200ResponseReviewRejectionsInnerTest.java
+src/test/java/dev/zernio/model/GetAdReview200ResponseReviewTest.java
+src/test/java/dev/zernio/model/GetAdReview200ResponseTest.java

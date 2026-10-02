@@ -46,6 +46,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdWithHttpInfo**](AdCampaignsApi.md#getAdWithHttpInfo) | **GET** /v1/ads/{adId} | Get ad details |
 | [**getAdCampaignDetails**](AdCampaignsApi.md#getAdCampaignDetails) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
 | [**getAdCampaignDetailsWithHttpInfo**](AdCampaignsApi.md#getAdCampaignDetailsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId} | Get live campaign details |
+| [**getAdReview**](AdCampaignsApi.md#getAdReview) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad |
+| [**getAdReviewWithHttpInfo**](AdCampaignsApi.md#getAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad |
 | [**getAdSetDetails**](AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdSetDetailsWithHttpInfo**](AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
@@ -3461,6 +3463,158 @@ ApiResponse<[**GetAdCampaignDetails200Response**](GetAdCampaignDetails200Respons
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdReview
+
+> GetAdReview200Response getAdReview(adId)
+
+Read the platform&#39;s review verdict for an ad
+
+Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  TikTok only (&#x60;/ad/review_info/&#x60;); every other platform returns 501. Use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex) or the platform ad id.
+        try {
+            GetAdReview200Response result = apiInstance.getAdReview(adId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex) or the platform ad id. | |
+
+### Return type
+
+[**GetAdReview200Response**](GetAdReview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The review verdict |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad not found, it has no TikTok ad id yet, or TikTok has no review record for it |  -  |
+| **501** | Only supported on TikTok |  -  |
+
+## getAdReviewWithHttpInfo
+
+> ApiResponse<GetAdReview200Response> getAdReview getAdReviewWithHttpInfo(adId)
+
+Read the platform&#39;s review verdict for an ad
+
+Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  TikTok only (&#x60;/ad/review_info/&#x60;); every other platform returns 501. Use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex) or the platform ad id.
+        try {
+            ApiResponse<GetAdReview200Response> response = apiInstance.getAdReviewWithHttpInfo(adId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex) or the platform ad id. | |
+
+### Return type
+
+ApiResponse<[**GetAdReview200Response**](GetAdReview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The review verdict |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad not found, it has no TikTok ad id yet, or TikTok has no review record for it |  -  |
+| **501** | Only supported on TikTok |  -  |
 
 
 ## getAdSetDetails
