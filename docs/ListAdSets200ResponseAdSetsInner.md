@@ -23,6 +23,8 @@
 |**isExternal** | **Boolean** |  |  [optional] |
 |**platformCreatedAt** | **OffsetDateTime** |  |  [optional] |
 |**statusReadAt** | **OffsetDateTime** | Only with &#x60;live&#x3D;true&#x60;. When &#x60;platformAdSetStatus&#x60; was read from the platform; null when this row was not read live. |  [optional] |
+|**optimizationGoal** | **String** | TikTok only, only with &#x60;live&#x3D;true&#x60; and only on rows read live. The ad group&#39;s &#x60;optimization_goal&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example ENGAGED_VIEW, ENGAGED_VIEW_FIFTEEN, CLICK, CONVERT). Absent on rows not read live and on other platforms. |  [optional] |
+|**billingEvent** | **String** | TikTok only, only with &#x60;live&#x3D;true&#x60; and only on rows read live. The ad group&#39;s &#x60;billing_event&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example CPV, CPC, OCPM). |  [optional] |
 
 
 
