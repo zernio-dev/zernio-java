@@ -48,6 +48,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**remediatePhoneNumberWithHttpInfo**](PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number |
 | [**replyToPhoneNumberReviewer**](PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
 | [**replyToPhoneNumberReviewerWithHttpInfo**](PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer |
+| [**requestPhoneNumberWhatsAppCode**](PhoneNumbersApi.md#requestPhoneNumberWhatsAppCode) | **POST** /v1/phone-numbers/{id}/whatsapp/request-code | Request the WhatsApp verification code for a number |
+| [**requestPhoneNumberWhatsAppCodeWithHttpInfo**](PhoneNumbersApi.md#requestPhoneNumberWhatsAppCodeWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/request-code | Request the WhatsApp verification code for a number |
 | [**respondToPhoneNumberReviewer**](PhoneNumbersApi.md#respondToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
 | [**respondToPhoneNumberReviewerWithHttpInfo**](PhoneNumbersApi.md#respondToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections) |
 | [**reviewPhoneNumberKycPacket**](PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet |
@@ -3347,6 +3349,166 @@ ApiResponse<[**ReplyToPhoneNumberReviewer200Response**](ReplyToPhoneNumberReview
 | **401** | Unauthorized |  -  |
 | **404** | Number not found |  -  |
 | **502** | Couldn&#39;t deliver the reply to the reviewer; retry. |  -  |
+
+
+## requestPhoneNumberWhatsAppCode
+
+> RequestPhoneNumberWhatsAppCode200Response requestPhoneNumberWhatsAppCode(id, requestPhoneNumberWhatsAppCodeRequest)
+
+Request the WhatsApp verification code for a number
+
+Starts (or restarts) WhatsApp verification of a Zernio-hosted number: adds it to Meta&#39;s pre-verified pool when needed and asks Meta to send the verification code, which Zernio captures on the number itself. Used to connect WhatsApp on a number bought for calls or SMS. &#x60;/v1/whatsapp/phone-numbers/{id}/request-code&#x60; is a deprecated alias with the same contract.  When Meta refuses the number for WhatsApp (Meta error 136021): a number that is already live (&#x60;active&#x60; or &#x60;suspended&#x60;) is left untouched and keeps working for calls and SMS, and the call answers 409 &#x60;number_not_whatsapp_eligible&#x60;; buy a new number with WhatsApp enabled instead. A number that was never live (still verifying) is replaced at no extra cost with a WhatsApp-eligible number on the same record, answered as 200 with &#x60;replaced: true&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        RequestPhoneNumberWhatsAppCodeRequest requestPhoneNumberWhatsAppCodeRequest = new RequestPhoneNumberWhatsAppCodeRequest(); // RequestPhoneNumberWhatsAppCodeRequest | 
+        try {
+            RequestPhoneNumberWhatsAppCode200Response result = apiInstance.requestPhoneNumberWhatsAppCode(id, requestPhoneNumberWhatsAppCodeRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#requestPhoneNumberWhatsAppCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **requestPhoneNumberWhatsAppCodeRequest** | [**RequestPhoneNumberWhatsAppCodeRequest**](RequestPhoneNumberWhatsAppCodeRequest.md)|  | [optional] |
+
+### Return type
+
+[**RequestPhoneNumberWhatsAppCode200Response**](RequestPhoneNumberWhatsAppCode200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already verified, or a never-live number was replaced. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The number cannot be verified for WhatsApp right now. &#x60;code&#x60; says why: - &#x60;number_not_whatsapp_eligible&#x60;: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp. - &#x60;whatsapp_number_in_use&#x60;: Meta reports the number is registered to another WhatsApp account. - &#x60;META_INVALID_NUMBER&#x60;: Meta refused a never-live number and no replacement could be sourced. - &#x60;PENDING_REGULATORY&#x60;: the number is still in carrier regulatory review.  |  -  |
+| **429** | Meta paused verification for this number. &#x60;retryAt&#x60; says when it lifts. |  -  |
+| **503** | The number is not ready for verification yet, retry shortly. |  -  |
+
+## requestPhoneNumberWhatsAppCodeWithHttpInfo
+
+> ApiResponse<RequestPhoneNumberWhatsAppCode200Response> requestPhoneNumberWhatsAppCode requestPhoneNumberWhatsAppCodeWithHttpInfo(id, requestPhoneNumberWhatsAppCodeRequest)
+
+Request the WhatsApp verification code for a number
+
+Starts (or restarts) WhatsApp verification of a Zernio-hosted number: adds it to Meta&#39;s pre-verified pool when needed and asks Meta to send the verification code, which Zernio captures on the number itself. Used to connect WhatsApp on a number bought for calls or SMS. &#x60;/v1/whatsapp/phone-numbers/{id}/request-code&#x60; is a deprecated alias with the same contract.  When Meta refuses the number for WhatsApp (Meta error 136021): a number that is already live (&#x60;active&#x60; or &#x60;suspended&#x60;) is left untouched and keeps working for calls and SMS, and the call answers 409 &#x60;number_not_whatsapp_eligible&#x60;; buy a new number with WhatsApp enabled instead. A number that was never live (still verifying) is replaced at no extra cost with a WhatsApp-eligible number on the same record, answered as 200 with &#x60;replaced: true&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PhoneNumbersApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PhoneNumbersApi apiInstance = new PhoneNumbersApi(defaultClient);
+        String id = "id_example"; // String | Phone number record ID (from GET /v1/phone-numbers).
+        RequestPhoneNumberWhatsAppCodeRequest requestPhoneNumberWhatsAppCodeRequest = new RequestPhoneNumberWhatsAppCodeRequest(); // RequestPhoneNumberWhatsAppCodeRequest | 
+        try {
+            ApiResponse<RequestPhoneNumberWhatsAppCode200Response> response = apiInstance.requestPhoneNumberWhatsAppCodeWithHttpInfo(id, requestPhoneNumberWhatsAppCodeRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PhoneNumbersApi#requestPhoneNumberWhatsAppCode");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Phone number record ID (from GET /v1/phone-numbers). | |
+| **requestPhoneNumberWhatsAppCodeRequest** | [**RequestPhoneNumberWhatsAppCodeRequest**](RequestPhoneNumberWhatsAppCodeRequest.md)|  | [optional] |
+
+### Return type
+
+ApiResponse<[**RequestPhoneNumberWhatsAppCode200Response**](RequestPhoneNumberWhatsAppCode200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Code requested, or the number was already verified, or a never-live number was replaced. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Unauthorized |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The number cannot be verified for WhatsApp right now. &#x60;code&#x60; says why: - &#x60;number_not_whatsapp_eligible&#x60;: Meta does not allow this already-live number on WhatsApp. It keeps working for calls and SMS and is not replaced. Buy a new number for WhatsApp. - &#x60;whatsapp_number_in_use&#x60;: Meta reports the number is registered to another WhatsApp account. - &#x60;META_INVALID_NUMBER&#x60;: Meta refused a never-live number and no replacement could be sourced. - &#x60;PENDING_REGULATORY&#x60;: the number is still in carrier regulatory review.  |  -  |
+| **429** | Meta paused verification for this number. &#x60;retryAt&#x60; says when it lifts. |  -  |
+| **503** | The number is not ready for verification yet, retry shortly. |  -  |
 
 
 ## respondToPhoneNumberReviewer

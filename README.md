@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.197.0
+- API version: 1.198.0
 
-- Build date: 2026-10-02T06:10:52.586916522Z[Etc/UTC]
+- Build date: 2026-10-02T08:06:36.814490888Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.197.0</version>
+  <version>1.198.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.197.0"
+compile "dev.zernio:zernio-sdk:1.198.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.197.0.jar`
+- `target/zernio-sdk-1.198.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1427,6 +1427,8 @@ Class | Method | HTTP request | Description
 *PhoneNumbersApi* | [**remediatePhoneNumberWithHttpInfo**](docs/PhoneNumbersApi.md#remediatePhoneNumberWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate | Resubmit a declined number
 *PhoneNumbersApi* | [**replyToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
 *PhoneNumbersApi* | [**replyToPhoneNumberReviewerWithHttpInfo**](docs/PhoneNumbersApi.md#replyToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/reply | Reply to the regulatory reviewer
+*PhoneNumbersApi* | [**requestPhoneNumberWhatsAppCode**](docs/PhoneNumbersApi.md#requestPhoneNumberWhatsAppCode) | **POST** /v1/phone-numbers/{id}/whatsapp/request-code | Request the WhatsApp verification code for a number
+*PhoneNumbersApi* | [**requestPhoneNumberWhatsAppCodeWithHttpInfo**](docs/PhoneNumbersApi.md#requestPhoneNumberWhatsAppCodeWithHttpInfo) | **POST** /v1/phone-numbers/{id}/whatsapp/request-code | Request the WhatsApp verification code for a number
 *PhoneNumbersApi* | [**respondToPhoneNumberReviewer**](docs/PhoneNumbersApi.md#respondToPhoneNumberReviewer) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections)
 *PhoneNumbersApi* | [**respondToPhoneNumberReviewerWithHttpInfo**](docs/PhoneNumbersApi.md#respondToPhoneNumberReviewerWithHttpInfo) | **POST** /v1/phone-numbers/{id}/remediate/respond | Respond to the regulatory reviewer (message + corrections)
 *PhoneNumbersApi* | [**reviewPhoneNumberKycPacket**](docs/PhoneNumbersApi.md#reviewPhoneNumberKycPacket) | **POST** /v1/phone-numbers/kyc/review-packet | Pre-review a KYC packet
@@ -3850,6 +3852,8 @@ Class | Method | HTTP request | Description
  - [ReplyToPhoneNumberReviewer200Response](docs/ReplyToPhoneNumberReviewer200Response.md)
  - [ReplyToPhoneNumberReviewerRequest](docs/ReplyToPhoneNumberReviewerRequest.md)
  - [ReplyToPhoneNumberReviewerRequestAttachmentsInner](docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md)
+ - [RequestPhoneNumberWhatsAppCode200Response](docs/RequestPhoneNumberWhatsAppCode200Response.md)
+ - [RequestPhoneNumberWhatsAppCodeRequest](docs/RequestPhoneNumberWhatsAppCodeRequest.md)
  - [RequestSmsSenderIdLimitIncrease200Response](docs/RequestSmsSenderIdLimitIncrease200Response.md)
  - [RequestSmsSenderIdLimitIncreaseRequest](docs/RequestSmsSenderIdLimitIncreaseRequest.md)
  - [RequestWhatsAppVerificationCode200Response](docs/RequestWhatsAppVerificationCode200Response.md)

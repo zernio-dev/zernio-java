@@ -1902,6 +1902,8 @@ docs/ReplyToMentionRequest.md
 docs/ReplyToPhoneNumberReviewer200Response.md
 docs/ReplyToPhoneNumberReviewerRequest.md
 docs/ReplyToPhoneNumberReviewerRequestAttachmentsInner.md
+docs/RequestPhoneNumberWhatsAppCode200Response.md
+docs/RequestPhoneNumberWhatsAppCodeRequest.md
 docs/RequestSmsSenderIdLimitIncrease200Response.md
 docs/RequestSmsSenderIdLimitIncreaseRequest.md
 docs/RequestWhatsAppVerificationCode200Response.md
@@ -4639,6 +4641,8 @@ src/main/java/dev/zernio/model/ReplyToMentionRequest.java
 src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewer200Response.java
 src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequest.java
 src/main/java/dev/zernio/model/ReplyToPhoneNumberReviewerRequestAttachmentsInner.java
+src/main/java/dev/zernio/model/RequestPhoneNumberWhatsAppCode200Response.java
+src/main/java/dev/zernio/model/RequestPhoneNumberWhatsAppCodeRequest.java
 src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncrease200Response.java
 src/main/java/dev/zernio/model/RequestSmsSenderIdLimitIncreaseRequest.java
 src/main/java/dev/zernio/model/RequestWhatsAppVerificationCode200Response.java
@@ -5417,3 +5421,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/RequestPhoneNumberWhatsAppCode200ResponseTest.java
+src/test/java/dev/zernio/model/RequestPhoneNumberWhatsAppCodeRequestTest.java
