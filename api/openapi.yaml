@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.210.1
+  version: 1.211.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72192,13 +72192,16 @@ components:
           nullable: true
           type: integer
         igReelsAvgWatchTime:
-          description: "Instagram Reels only: average watch time per play, in milliseconds.\
-            \ 0 for non-Reels media and other platforms."
+          description: "Average watch time per play, in milliseconds, for Instagram\
+            \ Reels, Facebook Reels and TikTok videos (business accounts). On Facebook\
+            \ it includes replays within a play, so it can exceed the Reel length.\
+            \ 0 for other media and platforms, including regular Facebook videos."
           example: 0
           type: integer
         igReelsVideoViewTotalTime:
-          description: "Instagram Reels only: total watch time including replays,\
-            \ in milliseconds. 0 for non-Reels media and other platforms."
+          description: "Total watch time including replays, in milliseconds, for Instagram\
+            \ Reels, Facebook Reels and TikTok videos (business accounts). 0 for other\
+            \ media and platforms, including regular Facebook videos."
           example: 0
           type: integer
         reelsSkipRate:
@@ -149140,10 +149143,12 @@ components:
           description: Follows attributed to this post (Instagram)
           type: integer
         igReelsAvgWatchTime:
-          description: "Instagram Reels average watch time, in milliseconds"
+          description: "Average watch time per play, in milliseconds (Instagram Reels,\
+            \ Facebook Reels, TikTok business videos)"
           type: integer
         igReelsVideoViewTotalTime:
-          description: "Instagram Reels total watch time, in milliseconds"
+          description: "Total watch time including replays, in milliseconds (Instagram\
+            \ Reels, Facebook Reels, TikTok business videos)"
           type: integer
         reposts:
           type: integer

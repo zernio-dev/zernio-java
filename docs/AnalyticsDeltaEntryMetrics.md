@@ -18,8 +18,8 @@ Metrics a platform does not report are 0, not absent.
 |**clicks** | **Integer** |  |  |
 |**views** | **Integer** |  |  |
 |**follows** | **Integer** | Follows attributed to this post (Instagram) |  |
-|**igReelsAvgWatchTime** | **Integer** | Instagram Reels average watch time, in milliseconds |  |
-|**igReelsVideoViewTotalTime** | **Integer** | Instagram Reels total watch time, in milliseconds |  |
+|**igReelsAvgWatchTime** | **Integer** | Average watch time per play, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) |  |
+|**igReelsVideoViewTotalTime** | **Integer** | Total watch time including replays, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) |  |
 |**reposts** | **Integer** |  |  |
 |**reelsSkipRate** | **BigDecimal** | Instagram Reels skip rate, 0 to 1 |  |
 |**completionRate** | **BigDecimal** | TikTok business lane: share of viewers who watched to the end, 0 to 1 |  |
