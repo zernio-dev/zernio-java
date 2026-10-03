@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.206.0
+  version: 1.206.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37168,7 +37168,8 @@ paths:
         It also returns `nativeSettings`: TikTok's own adgroup/get record for the ad group, verbatim and
         read in that same call (budget, budget_mode, schedule, placements, locations, ages, gender,
         languages, interests, actions, audiences and exclusions), plus the advertiser's currency and
-        timezone (TikTok's schedule times are in that timezone). `configReadAt` says when it was read; it
+        timezone. TikTok's `schedule_start_time` / `schedule_end_time` are UTC wall clocks
+        ("YYYY-MM-DD HH:MM:SS", no offset); Ads Manager displays them in `advertiser_timezone`. `configReadAt` says when it was read; it
         is null on every row whose native settings were not read now, so never treat a null as a match.
         These are read, not retained create payloads, and are not stored.
       operationId: listAdSets
@@ -121093,8 +121094,12 @@ components:
             \ placements, location_ids, age_groups, gender, languages, interest_category_ids,\
             \ interest_keyword_ids, actions, audience_ids, excluded_audience_ids,\
             \ operating_systems, frequency, frequency_schedule, smart_audience_enabled,\
-            \ smart_interest_behavior_enabled. Plus advertiser_currency and advertiser_timezone\
-            \ from TikTok's advertiser/info. A field TikTok does not return is absent."
+            \ smart_interest_behavior_enabled. schedule_start_time and schedule_end_time\
+            \ are UTC wall clocks (YYYY-MM-DD HH:MM:SS). location_ids holds TikTok's\
+            \ native location ids (GeoNames ids for countries); GET /v1/ads/targeting/search?dimension=geo\
+            \ returns them as `platformId` on country results. Plus advertiser_currency\
+            \ and advertiser_timezone from TikTok's advertiser/info. A field TikTok\
+            \ does not return is absent."
         configReadAt:
           description: "Only with `live=true`. When `nativeSettings` was read from\
             \ the platform. Null on every row whose native settings were not read\
@@ -133659,6 +133664,7 @@ components:
         countryCode: countryCode
         name: name
         id: id
+        platformId: platformId
         type: type
       properties:
         id:
@@ -133693,6 +133699,14 @@ components:
             \ Useful to know whether a location falls under the EU DSA disclosure\
             \ rules before creating the ad."
           type: string
+        platformId:
+          description: "Only on `country` results: the platform's own id for the country,\
+            \ which `id` replaced with the ISO code (TikTok's native location_id,\
+            \ a GeoNames id such as 2635167 for GB; Meta's country key; Google's geo\
+            \ target constant id; X's targeting value; LinkedIn's geo URN). Use it\
+            \ to match a country against what the platform reports back, e.g. `location_ids`\
+            \ in a TikTok `nativeSettings` read."
+          type: string
       required:
       - id
       - name
@@ -133707,6 +133721,7 @@ components:
           countryCode: countryCode
           name: name
           id: id
+          platformId: platformId
           type: type
         - path:
           - path
@@ -133715,6 +133730,7 @@ components:
           countryCode: countryCode
           name: name
           id: id
+          platformId: platformId
           type: type
       properties:
         results:

@@ -13,6 +13,7 @@
 |**path** | **List&lt;String&gt;** | Optional breadcrumb of parent labels (e.g. [&#39;United States&#39;, &#39;California&#39;, &#39;Los Angeles&#39;]). Disambiguates same-named results. |  [optional] |
 |**audienceSize** | **Integer** | Optional estimated reachable users for this option, when the platform returns it. |  [optional] |
 |**countryCode** | **String** | ISO-3166 alpha-2 of the country a sub-country geo result (city, region, zip, metro) belongs to, when the platform reports it (Meta does). Useful to know whether a location falls under the EU DSA disclosure rules before creating the ad. |  [optional] |
+|**platformId** | **String** | Only on &#x60;country&#x60; results: the platform&#39;s own id for the country, which &#x60;id&#x60; replaced with the ISO code (TikTok&#39;s native location_id, a GeoNames id such as 2635167 for GB; Meta&#39;s country key; Google&#39;s geo target constant id; X&#39;s targeting value; LinkedIn&#39;s geo URN). Use it to match a country against what the platform reports back, e.g. &#x60;location_ids&#x60; in a TikTok &#x60;nativeSettings&#x60; read. |  [optional] |
 
 
 
