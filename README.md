@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.206.2
+- API version: 1.207.0
 
-- Build date: 2026-10-03T06:13:24.058218506Z[Etc/UTC]
+- Build date: 2026-10-03T06:37:05.028584013Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.206.2</version>
+  <version>1.207.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.206.2"
+compile "dev.zernio:zernio-sdk:1.207.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.206.2.jar`
+- `target/zernio-sdk-1.207.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2178,6 +2178,7 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestPromoCodesInner](docs/BoostPostRequestPromoCodesInner.md)
  - [BoostPostRequestPromotedObject](docs/BoostPostRequestPromotedObject.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
+ - [BoostPostRequestSmartTargeting](docs/BoostPostRequestSmartTargeting.md)
  - [BoostPostRequestSparkPostsInner](docs/BoostPostRequestSparkPostsInner.md)
  - [BoostPostRequestTargeting](docs/BoostPostRequestTargeting.md)
  - [BoostPostRequestTargetingCitiesInner](docs/BoostPostRequestTargetingCitiesInner.md)
@@ -4199,6 +4200,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)
  - [UpdateAdSetRequestPlatformSpecificData](docs/UpdateAdSetRequestPlatformSpecificData.md)
  - [UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
+ - [UpdateAdSetRequestSmartTargeting](docs/UpdateAdSetRequestSmartTargeting.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
  - [UpdateAdTrackingTags200Response](docs/UpdateAdTrackingTags200Response.md)

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.206.2
+  version: 1.207.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -121384,6 +121384,22 @@ components:
           - daily
           - lifetime
           type: string
+    updateAdSet_request_smartTargeting:
+      description: |
+        TikTok only (a 400 elsewhere). TikTok Smart Targeting on the ad group: `audience` is
+        TikTok's `smart_audience_enabled`, `interestsBehaviors` its `smart_interest_behavior_enabled`.
+        When on, TikTok may deliver beyond the selected audiences or interests. Available on
+        Video views, Traffic, Lead generation, App install, Web conversion and Community interaction.
+        Only the flags you send are written; an unwritten flag reads back null in
+        `nativeSettings`, so send `false` explicitly to be able to verify it is off.
+        Applied with TikTok's adgroup/update; read it back with GET /v1/ads/ad-sets?adSetId=...&live=true.
+      properties:
+        audience:
+          description: TikTok smart_audience_enabled.
+          type: boolean
+        interestsBehaviors:
+          description: TikTok smart_interest_behavior_enabled.
+          type: boolean
     updateAdSet_request_platformSpecificData_promotedObject:
       additionalProperties: {}
       description: "Meta ad-set promoted_object, forwarded verbatim (same shape as\
@@ -121498,6 +121514,8 @@ components:
             LOWEST_COST_WITH_MIN_ROAS is rejected with 422 (OpenAI has no ROAS-based
             bidding). Other platforms (linkedin, pinterest, google, twitter) return 501
             Not Implemented when bidStrategy is set.
+        smartTargeting:
+          $ref: "#/components/schemas/updateAdSet_request_smartTargeting"
         bidAmount:
           description: |
             Bid cap in WHOLE currency units (USD: 5 = $5.00; JPY: 100 = ¥100). Required when
@@ -130128,6 +130146,22 @@ components:
       required:
       - eventType
       - windowDays
+    boostPost_request_smartTargeting:
+      description: |
+        TikTok only (a 400 elsewhere). TikTok Smart Targeting on the ad group: `audience` is
+        TikTok's `smart_audience_enabled`, `interestsBehaviors` its `smart_interest_behavior_enabled`.
+        When on, TikTok may deliver beyond the selected audiences or interests. Available on
+        Video views, Traffic, Lead generation, App install, Web conversion and Community interaction.
+        Only the flags you send are written; an unwritten flag reads back null in
+        `nativeSettings`, so send `false` explicitly to be able to verify it is off.
+        Not available with smartPlus or when attaching to an existing ad set (adSetId).
+      properties:
+        audience:
+          description: TikTok smart_audience_enabled.
+          type: boolean
+        interestsBehaviors:
+          description: TikTok smart_interest_behavior_enabled.
+          type: boolean
     boostPost_request:
       properties:
         creativeFeatures:
@@ -130536,6 +130570,8 @@ components:
           maxItems: 5
           minItems: 1
           type: array
+        smartTargeting:
+          $ref: "#/components/schemas/boostPost_request_smartTargeting"
         optimizationGoal:
           description: |
             Meta, or TikTok with `goal: video_views`. TikTok: ENGAGED_VIEW (6-second
@@ -131569,6 +131605,8 @@ components:
           - page_visits
           - job_applicants
           type: string
+        smartTargeting:
+          $ref: "#/components/schemas/boostPost_request_smartTargeting"
         optimizationGoal:
           description: "Meta, or TikTok with goal video_views (ENGAGED_VIEW, the 6-second\
             \ default, or ENGAGED_VIEW_FIFTEEN; both bill per view). Meta: Explicit\

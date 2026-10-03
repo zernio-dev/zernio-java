@@ -183,6 +183,7 @@ docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestPromoCodesInner.md
 docs/BoostPostRequestPromotedObject.md
 docs/BoostPostRequestSchedule.md
+docs/BoostPostRequestSmartTargeting.md
 docs/BoostPostRequestSparkPostsInner.md
 docs/BoostPostRequestTargeting.md
 docs/BoostPostRequestTargetingCitiesInner.md
@@ -2254,6 +2255,7 @@ docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
 docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
+docs/UpdateAdSetRequestSmartTargeting.md
 docs/UpdateAdSetStatus200Response.md
 docs/UpdateAdStatus200Response.md
 docs/UpdateAdTrackingTags200Response.md
@@ -2970,6 +2972,7 @@ src/main/java/dev/zernio/model/BoostPostRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/BoostPostRequestPromoCodesInner.java
 src/main/java/dev/zernio/model/BoostPostRequestPromotedObject.java
 src/main/java/dev/zernio/model/BoostPostRequestSchedule.java
+src/main/java/dev/zernio/model/BoostPostRequestSmartTargeting.java
 src/main/java/dev/zernio/model/BoostPostRequestSparkPostsInner.java
 src/main/java/dev/zernio/model/BoostPostRequestTargeting.java
 src/main/java/dev/zernio/model/BoostPostRequestTargetingCitiesInner.java
@@ -4991,6 +4994,7 @@ src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.java
+src/main/java/dev/zernio/model/UpdateAdSetRequestSmartTargeting.java
 src/main/java/dev/zernio/model/UpdateAdSetStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdStatus200Response.java
 src/main/java/dev/zernio/model/UpdateAdTrackingTags200Response.java
@@ -5431,3 +5435,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPostRequestSmartTargetingTest.java
+src/test/java/dev/zernio/model/UpdateAdSetRequestSmartTargetingTest.java
