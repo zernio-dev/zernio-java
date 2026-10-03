@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.207.0
+  version: 1.208.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -78737,9 +78737,13 @@ components:
             type: string
           type: array
         interests:
-          description: Interest entities from /v1/ads/targeting/search?dimension=interest.
-            Each carries the platform's opaque id. Rejected with 400 on Google (use
-            Demand Gen audience userInterests there) and OpenAI.
+          description: "Interest entities from /v1/ads/targeting/search?dimension=interest.\
+            \ Each carries the platform's opaque id. On Google, applied as ad-group\
+            \ interest criteria (affinity and in-market categories) on Display and\
+            \ Search ad groups the request creates; rejected with 400 on Performance\
+            \ Max, on Demand Gen (use the Demand Gen audience `userInterests` there),\
+            \ when attaching to an existing ad group (`adSetId`), and on OpenAI. On\
+            \ Google, interests are create-only."
           items:
             $ref: "#/components/schemas/createStandaloneAd_request_behaviors_inner"
           type: array
