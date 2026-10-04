@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   BusinessAgentSettings.JSON_PROPERTY_AI_AUDIENCE,
   BusinessAgentSettings.JSON_PROPERTY_NEVER_SAY_PHRASES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T12:08:00.806995239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentSettings {
   public static final String JSON_PROPERTY_AGENT_ID = "agent_id";
   @javax.annotation.Nonnull

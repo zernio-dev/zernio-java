@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetWordPressAuthUrl200Response.JSON_PROPERTY_AUTH_URL,
   GetWordPressAuthUrl200Response.JSON_PROPERTY_STATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T12:08:00.806995239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWordPressAuthUrl200Response {
   public static final String JSON_PROPERTY_AUTH_URL = "authUrl";
   @javax.annotation.Nonnull

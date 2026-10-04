@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AddBroadcastRecipientsRequest.JSON_PROPERTY_PHONES,
   AddBroadcastRecipientsRequest.JSON_PROPERTY_USE_SEGMENT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T12:08:00.806995239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddBroadcastRecipientsRequest {
   public static final String JSON_PROPERTY_CONTACT_IDS = "contactIds";
   @javax.annotation.Nullable

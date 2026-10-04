@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   UpdateAccountRequest.JSON_PROPERTY_DISPLAY_NAME,
   UpdateAccountRequest.JSON_PROPERTY_X_CAPABILITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T12:08:00.806995239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountRequest {
   public static final String JSON_PROPERTY_USERNAME = "username";
   @javax.annotation.Nullable

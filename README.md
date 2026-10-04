@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.212.0
 
-- Build date: 2026-10-04T11:12:29.988530660Z[Etc/UTC]
+- Build date: 2026-10-04T12:08:00.806995239Z[Etc/UTC]
 
 - Generator version: 7.19.0
 

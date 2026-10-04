@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UpdateAccountCalloutsRequestUpdatesInner.JSON_PROPERTY_ASSET_RESOURCE_NAME,
   UpdateAccountCalloutsRequestUpdatesInner.JSON_PROPERTY_CALLOUT_ASSET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T12:08:00.806995239Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAccountCalloutsRequestUpdatesInner {
   public static final String JSON_PROPERTY_ASSET_RESOURCE_NAME = "assetResourceName";
   @javax.annotation.Nonnull
