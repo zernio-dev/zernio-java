@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.211.0
+  version: 1.211.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20981,7 +20981,9 @@ paths:
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
-          $ref: "#/components/responses/IdempotencyKeyReused"
+          description: "Idempotency-Key reused with a different request, or the platform\
+            \ rejected the comment (for example a locked thread, a deleted parent\
+            \ or a post too old for comments; code platform_api_error)"
         "429":
           $ref: "#/components/responses/RateLimited"
         "502":
