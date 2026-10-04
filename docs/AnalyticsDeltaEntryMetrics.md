@@ -28,6 +28,8 @@ Metrics a platform does not report are 0, not absent.
 |**impressionSources** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: share of views by surface (forYou, follow, search, personalProfile, sound, directMessage, other), fractions 0 to 1. Empty object elsewhere. |  |
 |**audienceTypes** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: follower / nonFollower and newViewer / returnViewer shares, fractions 0 to 1. Empty object elsewhere. |  |
 |**audienceCountries** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: viewer-country shares keyed by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in &#x60;other&#x60;. Empty object elsewhere. |  |
+|**replays** | **Integer** | Facebook Reels only: plays that were replays. 0 elsewhere. |  [optional] |
+|**retentionCurve** | **Map&lt;String, BigDecimal&gt;** | Facebook Reels only: share of plays still watching at each second, keyed by the second, fractions 0 to 1. Empty object elsewhere. |  [optional] |
 
 
 

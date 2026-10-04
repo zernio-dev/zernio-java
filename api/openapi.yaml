@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.211.1
+  version: 1.212.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -48425,8 +48425,28 @@ paths:
       - application/json
     post:
       description: |
-        Create a custom audience. `customer_list` is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest;
-        `website` and `lookalike` are Meta-only; `company_list`, `engagement` and `website_retargeting` are LinkedIn-only.
+        Create a custom audience. `customer_list` is supported on Meta, Google, X, LinkedIn, TikTok, and Pinterest.
+        `website` (pixel/tag visitors) and `lookalike` are supported on Meta, TikTok, Pinterest and Google.
+        `meta_engagement` is Meta-only, `tiktok_engagement` TikTok-only, `pinterest_engagement` Pinterest-only;
+        `company_list`, `engagement` and `website_retargeting` are LinkedIn-only. A type sent to a platform
+        that does not support it is a 422 `FEATURE_NOT_AVAILABLE`.
+
+        Per-platform rules for `website`:
+
+        - Meta: `pixelId` required, `retentionDays` 1-180, optional `urlContains` or raw `rule`. `event` is not accepted.
+        - TikTok: `pixelId` required, `retentionDays` one of 7, 14, 30, 60, 90, 180. `event` is a TikTok pixel event
+          (default `PAGE BROWSE`; also `CLICK BUTTON`, `PIXEL SUBMIT FORM`, `CONTACT`, `DOWNLOAD`,
+          `PIXEL ADD PAYMENT INFO`, `COMPLETE PAYMENT`, `INITIATE CHECKOUT`, `COMPLETE REGISTRATION`,
+          `PRODUCT DETAIL PAGE BROWSE`, `PIXEL SEARCH`, `PIXEL ADD TO CART`, `PLACE AN ORDER`,
+          `PIXEL ADD TO WISHLIST`, `PIXEL SUBSCRIBE`), optional `urlContains`.
+        - Pinterest: `pixelId` is the Pinterest tag id, `retentionDays` 1-540, optional `event` (e.g. `checkout`, `addtocart`).
+          Pinterest matches URLs exactly, so `urlContains` is a 400 there.
+        - Google: no `pixelId` (the account's Google tag is used), `retentionDays` 1-540, `urlContains`
+          defaults to `/` (all visitors). Built as a rule-based user list with prepopulation requested.
+
+        Per-platform rules for `lookalike`: Meta takes `ratio` (0.01-0.20); Pinterest takes `ratio` in whole
+        percents (0.01-0.10) and `country` US, CA or GB; TikTok and Google take `size` (narrow, balanced, broad)
+        instead of `ratio`. TikTok needs a seed with at least 1,000 matched people.
         `saved_targeting` stores a reusable TargetingSpec (no member upload, no adAccountId) that you reference later via
         `savedTargetingId` on `POST /v1/ads/create`.
 
@@ -48437,7 +48457,8 @@ paths:
         - `company_list` is filled AT CREATION from the `companies` array below, which is required. To change the list
           afterwards send the new full list to `POST /v1/ads/audiences/{audienceId}/companies` (a replace, not a merge).
           The `/users` endpoint rejects these audiences with a 422.
-        - `website`, `website_retargeting`, `engagement`, `meta_engagement` and `lookalike` fill themselves from the pixel,
+        - `website`, `website_retargeting`, `engagement`, `meta_engagement`, `tiktok_engagement`, `pinterest_engagement`
+          and `lookalike` fill themselves from the pixel,
           engagement source or seed audience you point them at. They take no member upload at all.
 
         Create is not idempotent, never auto-retry.
@@ -72144,6 +72165,7 @@ components:
         completionRate: 0
         videoDurationSeconds: 30
         shares: 0
+        replays: 1208
         engagementRate: 6.59
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         audienceTypes:
@@ -72154,6 +72176,12 @@ components:
         saves: 0
         igReelsAvgWatchTime: 0
         clicks: 0
+        retentionCurve:
+          "0": 0.9923
+          "1": 0.9937
+          "4": 0.8637
+          "8": 0.5313
+          "12": 0.3605
         views: 0
         reposts: 0
         likes: 0
@@ -72284,6 +72312,24 @@ components:
             CA: 0.07
             DE: 0.05
             other: 0.15
+        replays:
+          description: "Facebook Reels only: plays that were replays (Meta fb_reels_replay_count).\
+            \ Summed across accounts. 0 for other media and platforms."
+          example: 1208
+          type: integer
+        retentionCurve:
+          additionalProperties:
+            type: number
+          description: "Facebook Reels only: share of plays still watching at each\
+            \ second of the Reel, keyed by the second from \"0\", fractions 0 to 1\
+            \ (Meta post_video_retention_graph). Empty object for other media and\
+            \ platforms. Views-weighted across accounts like impressionSources."
+          example:
+            "0": 0.9923
+            "1": 0.9937
+            "4": 0.8637
+            "8": 0.5313
+            "12": 0.3605
         reposts:
           description: "Instagram accounts connected with Facebook Login only: reposts\
             \ of the media by other users, minus deleted reposts, on feed posts, reels\
@@ -72440,6 +72486,7 @@ components:
           completionRate: 0
           videoDurationSeconds: 30
           shares: 0
+          replays: 1208
           engagementRate: 6.59
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           audienceTypes:
@@ -72450,6 +72497,12 @@ components:
           saves: 0
           igReelsAvgWatchTime: 0
           clicks: 0
+          retentionCurve:
+            "0": 0.9923
+            "1": 0.9937
+            "4": 0.8637
+            "8": 0.5313
+            "12": 0.3605
           views: 0
           reposts: 0
           likes: 0
@@ -72621,11 +72674,14 @@ components:
           completionRate: 1.4894159098541704
           sends: 7
           shares: 5
+          replays: 9
           audienceTypes:
             key: 4.965218492984954
           saves: 2
           igReelsAvgWatchTime: 4
           clicks: 9
+          retentionCurve:
+            key: 9.369310271410669
           views: 3
           reposts: 1
           likes: 1
@@ -72702,11 +72758,14 @@ components:
             completionRate: 1.4894159098541704
             sends: 7
             shares: 5
+            replays: 9
             audienceTypes:
               key: 4.965218492984954
             saves: 2
             igReelsAvgWatchTime: 4
             clicks: 9
+            retentionCurve:
+              key: 9.369310271410669
             views: 3
             reposts: 1
             likes: 1
@@ -72734,11 +72793,14 @@ components:
             completionRate: 1.4894159098541704
             sends: 7
             shares: 5
+            replays: 9
             audienceTypes:
               key: 4.965218492984954
             saves: 2
             igReelsAvgWatchTime: 4
             clicks: 9
+            retentionCurve:
+              key: 9.369310271410669
             views: 3
             reposts: 1
             likes: 1
@@ -86266,10 +86328,13 @@ components:
         completionRate: 2.027123023002322
         platform: platform
         shares: 5
+        replays: 6
         audienceTypes:
           key: 1.0246457001441578
         saves: 2
         clicks: 7
+        retentionCurve:
+          key: 7.457744773683766
         views: 9
         platformPostId: platformPostId
         likes: 1
@@ -86341,6 +86406,16 @@ components:
           description: "TikTok business lane: viewer-country shares on this date keyed\
             \ by ISO-3166 alpha-2, fractions 0 to 1, top 20 with the tail in `other`;\
             \ empty object elsewhere"
+        replays:
+          description: "Facebook Reels only: plays that were replays, as of this date;\
+            \ 0 elsewhere"
+          type: integer
+        retentionCurve:
+          additionalProperties:
+            type: number
+          description: "Facebook Reels only: share of plays still watching at each\
+            \ second as of this date, keyed by the second, fractions 0 to 1; empty\
+            \ object elsewhere"
     getPostTimeline_200_response:
       example:
         timeline:
@@ -86358,10 +86433,13 @@ components:
           completionRate: 2.027123023002322
           platform: platform
           shares: 5
+          replays: 6
           audienceTypes:
             key: 1.0246457001441578
           saves: 2
           clicks: 7
+          retentionCurve:
+            key: 7.457744773683766
           views: 9
           platformPostId: platformPostId
           likes: 1
@@ -86379,10 +86457,13 @@ components:
           completionRate: 2.027123023002322
           platform: platform
           shares: 5
+          replays: 6
           audienceTypes:
             key: 1.0246457001441578
           saves: 2
           clicks: 7
+          retentionCurve:
+            key: 7.457744773683766
           views: 9
           platformPostId: platformPostId
           likes: 1
@@ -134821,6 +134902,8 @@ components:
           - company_list
           - engagement
           - meta_engagement
+          - tiktok_engagement
+          - pinterest_engagement
           - website
           - website_retargeting
           - lookalike
@@ -134894,8 +134977,8 @@ components:
         linkedinPageUrl:
           type: string
     UploadedOrDerivedAudience:
-      description: "customer_list, website, or lookalike audience (uploaded or derived\
-        \ from a source)."
+      description: "customer_list, website, lookalike or engagement audience (uploaded\
+        \ or derived from a source)."
       properties:
         accountId:
           type: string
@@ -134915,6 +134998,8 @@ components:
           - company_list
           - engagement
           - meta_engagement
+          - tiktok_engagement
+          - pinterest_engagement
           - website
           - website_retargeting
           - lookalike
@@ -134988,12 +135073,15 @@ components:
           minItems: 1
           type: array
         pixelId:
-          description: Required for website audiences
+          description: "website: the Meta pixel, TikTok pixel or Pinterest tag id.\
+            \ Required on those three, rejected on Google."
           type: string
         retentionDays:
-          description: Required for website (max 180) and meta_engagement (max 365)
-            audiences.
-          maximum: 365
+          description: "Required for website (Meta max 180, TikTok 7/14/30/60/90/180,\
+            \ Pinterest and Google max 540), meta_engagement (max 365) and tiktok_engagement\
+            \ (7/14/30/60/90/180; organic and live video and most business-account\
+            \ events only 7/14/30)."
+          maximum: 540
           minimum: 1
           type: integer
         engagementSource:
@@ -135012,9 +135100,26 @@ components:
           type: string
         event:
           description: |
-            meta_engagement only. The engagement event; defaults per source
+            meta_engagement: the engagement event; defaults per source
             (page → page_engaged, instagram → ig_business_profile_all,
             video → video_watched). Ignored when `rule` is provided.
+
+            website on TikTok: the pixel event (default `PAGE BROWSE`). website
+            on Pinterest: the tag event (`pagevisit`, `signup`, `checkout`, `viewcategory`, `search`, `addtocart`, `watchvideo`, `lead`, `custom` or a partner-defined event).
+
+            tiktok_engagement (required): the TikTok engagement event, validated
+            per `source` (TikTok's filter values, spaces included):
+            - ads: `CLICK`, `IMPRESSION`, `PLAY 2S`, `PLAY 6S`, `PLAY 25`, `PLAY 50`, `PLAY 75`,
+              `PLAY OVER`, and the `ENGAGEMENT APP PROFILE` / `ENGAGEMENT TIKTOK INSTANT` /
+              `ENGAGEMENT COLLECTION ADS` `CLICK` and `IMPRESSION` events.
+            - organic_video: `ORGANIC VIDEO PLAY 2S`, `ORGANIC VIDEO PLAY 6S`,
+              `ORGANIC VIDEO PLAY OVER`, `ORGANIC VIDEO ENGAGEMENT`.
+            - live_video: `LIVE VIDEO VIEW`, `LIVE VIDEO ENGAGEMENT`.
+            - business_account: `BUSINESS ACCOUNT PROFILE FOLLOW`, `BUSINESS ACCOUNT PROFILE VISIT`,
+              `BUSINESS ACCOUNT ENGAGEMENT`, `BUSINESS ACCOUNT PLAY 2S`, `BUSINESS ACCOUNT PLAY 6S`,
+              `BUSINESS ACCOUNT PLAY OVER` and the rest of TikTok's business-account events.
+            An unknown value is a 400 that lists the valid ones.
+          maxLength: 100
           type: string
         sourceAudienceId:
           description: Required for lookalike audiences
@@ -135023,18 +135128,101 @@ components:
           description: "2-letter code, required for lookalike audiences"
           type: string
         ratio:
-          description: Required for lookalike audiences
+          description: "lookalike on Meta (0.01-0.20) and Pinterest (0.01-0.10, whole\
+            \ percents). Rejected on TikTok and Google."
           maximum: 0.2
           minimum: 0.01
           type: number
+        size:
+          description: "lookalike on TikTok and Google: audience breadth. Rejected\
+            \ on Meta and Pinterest."
+          enum:
+          - narrow
+          - balanced
+          - broad
+          type: string
+        source:
+          description: "Required for tiktok_engagement: what people engaged with."
+          enum:
+          - ads
+          - organic_video
+          - live_video
+          - business_account
+          type: string
+        sourceIds:
+          description: "tiktok_engagement: ad group / campaign ids for `ads`, video\
+            \ ids for `organic_video` and `live_video` (max 10). Required except for\
+            \ `business_account`."
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+        identityId:
+          description: "tiktok_engagement: the TikTok identity that owns the videos\
+            \ or business account. Required for organic_video, live_video and business_account."
+          type: string
+        identityType:
+          description: "tiktok_engagement: type of `identityId`."
+          enum:
+          - TT_USER
+          - BC_AUTH_TT
+          type: string
+        identityAuthorizedBcId:
+          description: "tiktok_engagement: required when identityType is BC_AUTH_TT."
+          type: string
+        engagerType:
+          description: "pinterest_engagement: Pinterest's `engager_type`, passed through\
+            \ when set."
+          enum:
+          - 1
+          - 2
+          type: integer
+        engagementType:
+          description: "pinterest_engagement: limit to one engagement action."
+          enum:
+          - click
+          - save
+          - closeup
+          - comment
+          - like
+          type: string
+        engagementDomains:
+          description: "pinterest_engagement: people who engaged with Pins from these\
+            \ domains. The domain must be claimed on the Pinterest account or Pinterest\
+            \ rejects it."
+          items:
+            type: string
+          type: array
+        campaignIds:
+          description: "pinterest_engagement: people who engaged with these campaigns'\
+            \ ads."
+          items:
+            pattern: ^\d+$
+            type: string
+          type: array
+        adIds:
+          description: "pinterest_engagement: people who engaged with these ads."
+          items:
+            pattern: ^\d+$
+            type: string
+          type: array
+        pinIds:
+          description: "pinterest_engagement: people who engaged with these Pins.\
+            \ At least one of engagementDomains, campaignIds, adIds or pinIds is required."
+          items:
+            pattern: ^\d+$
+            type: string
+          type: array
         urlContains:
           description: |
-            website only. Narrows the audience from all visitors to visitors of
-            URLs containing this substring. Ignored when `rule` is supplied.
+            website on Meta, TikTok and Google. Narrows the audience from all visitors
+            to visitors of URLs containing this substring. Ignored when `rule` is
+            supplied. A 400 on Pinterest, which only matches exact URLs.
           type: string
         rule:
           description: |
-            Optional raw Meta rule, replacing the one we build. Omit it for all
+            Meta only (a 400 elsewhere). Optional raw Meta rule, replacing the one we build. Omit it for all
             visitors of `pixelId`, or use `urlContains` for the common page-match
             case.
 
@@ -149114,11 +149302,14 @@ components:
         completionRate: 1.4894159098541704
         sends: 7
         shares: 5
+        replays: 9
         audienceTypes:
           key: 4.965218492984954
         saves: 2
         igReelsAvgWatchTime: 4
         clicks: 9
+        retentionCurve:
+          key: 9.369310271410669
         views: 3
         reposts: 1
         likes: 1
@@ -149185,6 +149376,14 @@ components:
           description: "TikTok business lane: viewer-country shares keyed by ISO-3166\
             \ alpha-2, fractions 0 to 1, top 20 with the tail in `other`. Empty object\
             \ elsewhere."
+        replays:
+          description: "Facebook Reels only: plays that were replays. 0 elsewhere."
+          type: integer
+        retentionCurve:
+          additionalProperties:
+            type: number
+          description: "Facebook Reels only: share of plays still watching at each\
+            \ second, keyed by the second, fractions 0 to 1. Empty object elsewhere."
       required:
       - audienceCountries
       - audienceTypes

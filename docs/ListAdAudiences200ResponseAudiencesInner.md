@@ -28,6 +28,8 @@
 | COMPANY_LIST | &quot;company_list&quot; |
 | ENGAGEMENT | &quot;engagement&quot; |
 | META_ENGAGEMENT | &quot;meta_engagement&quot; |
+| TIKTOK_ENGAGEMENT | &quot;tiktok_engagement&quot; |
+| PINTEREST_ENGAGEMENT | &quot;pinterest_engagement&quot; |
 | WEBSITE | &quot;website&quot; |
 | WEBSITE_RETARGETING | &quot;website_retargeting&quot; |
 | LOOKALIKE | &quot;lookalike&quot; |
