@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getContentDecayWithHttpInfo**](AnalyticsApi.md#getContentDecayWithHttpInfo) | **GET** /v1/analytics/content-decay | Get content performance decay |
 | [**getDailyMetrics**](AnalyticsApi.md#getDailyMetrics) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
 | [**getDailyMetricsWithHttpInfo**](AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics |
+| [**getFacebookDemographics**](AnalyticsApi.md#getFacebookDemographics) | **GET** /v1/analytics/facebook/demographics | Get Facebook Page demographics |
+| [**getFacebookDemographicsWithHttpInfo**](AnalyticsApi.md#getFacebookDemographicsWithHttpInfo) | **GET** /v1/analytics/facebook/demographics | Get Facebook Page demographics |
 | [**getFacebookPageInsights**](AnalyticsApi.md#getFacebookPageInsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights |
 | [**getFacebookPageInsightsWithHttpInfo**](AnalyticsApi.md#getFacebookPageInsightsWithHttpInfo) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights |
 | [**getFacebookPostEarnings**](AnalyticsApi.md#getFacebookPostEarnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings |
@@ -1099,6 +1101,162 @@ ApiResponse<[**GetDailyMetrics200Response**](GetDailyMetrics200Response.md)>
 | **200** | Daily metrics and platform breakdown |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+
+
+## getFacebookDemographics
+
+> GetFacebookDemographics200Response getFacebookDemographics(accountId, breakdown)
+
+Get Facebook Page demographics
+
+Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Facebook account
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted. 
+        try {
+            GetFacebookDemographics200Response result = apiInstance.getFacebookDemographics(accountId, breakdown);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getFacebookDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Facebook account | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted.  | [optional] |
+
+### Return type
+
+[**GetFacebookDemographics200Response**](GetFacebookDemographics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the Page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+
+## getFacebookDemographicsWithHttpInfo
+
+> ApiResponse<GetFacebookDemographics200Response> getFacebookDemographics getFacebookDemographicsWithHttpInfo(accountId, breakdown)
+
+Get Facebook Page demographics
+
+Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Facebook account
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted. 
+        try {
+            ApiResponse<GetFacebookDemographics200Response> response = apiInstance.getFacebookDemographicsWithHttpInfo(accountId, breakdown);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getFacebookDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Facebook account | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: country, city. Defaults to both if omitted.  | [optional] |
+
+### Return type
+
+ApiResponse<[**GetFacebookDemographics200Response**](GetFacebookDemographics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the Page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getFacebookPageInsights

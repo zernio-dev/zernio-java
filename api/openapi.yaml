@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.212.0
+  version: 1.213.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -2603,6 +2603,81 @@ paths:
         "404":
           description: Account not found
       summary: Get Instagram follower history
+      tags:
+      - Analytics
+      x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/analytics/facebook/demographics:
+    get:
+      description: |
+        Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta's latest daily snapshot.
+        Country keys are ISO 3166-1 alpha-2 codes; city keys are "City, Region, Country" strings as Meta returns them.
+        Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available.
+        Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on.
+      operationId: getFacebookDemographics
+      parameters:
+      - description: The Zernio SocialAccount ID for the Facebook account
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: |
+          Comma-separated list of demographic dimensions: country, city.
+          Defaults to both if omitted.
+        explode: true
+        in: query
+        name: breakdown
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              examples:
+                bothBreakdowns:
+                  summary: Country and city
+                  value:
+                    success: true
+                    accountId: 64e1a2b3c4d5e6f7a8b9c0d1
+                    platform: facebook
+                    metric: follower_demographics
+                    snapshotDate: 2026-10-03
+                    demographics:
+                      country:
+                      - dimension: MA
+                        value: 145
+                      - dimension: IN
+                        value: 105
+                      city:
+                      - dimension: "Casablanca, Morocco"
+                        value: 21
+                      - dimension: "Johannesburg, South Africa"
+                        value: 3
+                    note: Followers by country and city from Meta's latest daily snapshot.
+                      Meta removed age and gender for Pages in November 2025.
+              schema:
+                $ref: "#/components/schemas/getFacebookDemographics_200_response"
+          description: Follower demographics for the Page
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAnalytics_402_response"
+          description: Analytics access required. Legacy plans need the Analytics
+            add-on; included by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Get Facebook Page demographics
       tags:
       - Analytics
       x-resource-group: analytics
@@ -48505,9 +48580,15 @@ paths:
       - application/json
   /v1/ads/audiences/{audienceId}:
     delete:
-      description: "Deletes the audience from both the platform and the local database.\
-        \ `saved_targeting` audiences exist only on Zernio, so only the local record\
-        \ is removed."
+      description: |
+        Removes the audience on its ad platform, then deletes the Zernio record. Meta, Google, TikTok,
+        LinkedIn list and engagement segments, and X are deleted; Pinterest audiences and LinkedIn
+        `website_retargeting` segments are archived, which is how those platforms remove them.
+        `saved_targeting` audiences exist only on Zernio, so only the local record is removed.
+
+        If the platform refuses, the error is returned and the Zernio record is kept, so a retry is
+        safe. An audience the platform no longer has counts as removed. Google Ads does not allow
+        removing lookalike lists through its API, so those return 422 `FEATURE_NOT_AVAILABLE`.
       operationId: deleteAdAudience
       parameters:
       - explode: false
@@ -48531,6 +48612,9 @@ paths:
             by default on usage-based plans.
         "404":
           $ref: "#/components/responses/NotFound"
+        "422":
+          description: "The platform does not allow removing this audience through\
+            \ its API (Google lookalike lists), or refused the removal."
       security:
       - bearerAuth: []
       summary: Delete custom audience
@@ -85806,6 +85890,81 @@ components:
       properties:
         error:
           example: Account not found
+          type: string
+    getFacebookDemographics_200_response_demographics_country_inner:
+      example:
+        dimension: dimension
+        value: 0
+      properties:
+        dimension:
+          type: string
+        value:
+          description: Followers
+          type: integer
+    getFacebookDemographics_200_response_demographics:
+      description: "Only the requested breakdowns are present. Entries are sorted\
+        \ by value, largest first."
+      example:
+        country:
+        - dimension: dimension
+          value: 0
+        - dimension: dimension
+          value: 0
+        city:
+        - dimension: dimension
+          value: 0
+        - dimension: dimension
+          value: 0
+      properties:
+        country:
+          items:
+            $ref: "#/components/schemas/getFacebookDemographics_200_response_demographics_country_inner"
+          type: array
+        city:
+          items:
+            $ref: "#/components/schemas/getFacebookDemographics_200_response_demographics_country_inner"
+          type: array
+    getFacebookDemographics_200_response:
+      example:
+        snapshotDate: 2000-01-23
+        accountId: accountId
+        note: note
+        metric: follower_demographics
+        success: true
+        platform: facebook
+        demographics:
+          country:
+          - dimension: dimension
+            value: 0
+          - dimension: dimension
+            value: 0
+          city:
+          - dimension: dimension
+            value: 0
+          - dimension: dimension
+            value: 0
+      properties:
+        success:
+          type: boolean
+        accountId:
+          type: string
+        platform:
+          enum:
+          - facebook
+          type: string
+        metric:
+          enum:
+          - follower_demographics
+          type: string
+        snapshotDate:
+          description: "Date of Meta's snapshot (YYYY-MM-DD), or null when Meta has\
+            \ no snapshot yet."
+          format: date
+          nullable: true
+          type: string
+        demographics:
+          $ref: "#/components/schemas/getFacebookDemographics_200_response_demographics"
+        note:
           type: string
     getYouTubeDemographics_412_response_scopeStatus:
       example:

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.212.0
+- API version: 1.213.0
 
-- Build date: 2026-10-04T12:08:00.806995239Z[Etc/UTC]
+- Build date: 2026-10-04T15:00:41.844205360Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.212.0</version>
+  <version>1.213.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.212.0"
+compile "dev.zernio:zernio-sdk:1.213.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.212.0.jar`
+- `target/zernio-sdk-1.213.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -537,6 +537,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getContentDecayWithHttpInfo**](docs/AnalyticsApi.md#getContentDecayWithHttpInfo) | **GET** /v1/analytics/content-decay | Get content performance decay
 *AnalyticsApi* | [**getDailyMetrics**](docs/AnalyticsApi.md#getDailyMetrics) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
 *AnalyticsApi* | [**getDailyMetricsWithHttpInfo**](docs/AnalyticsApi.md#getDailyMetricsWithHttpInfo) | **GET** /v1/analytics/daily-metrics | Get daily aggregated metrics
+*AnalyticsApi* | [**getFacebookDemographics**](docs/AnalyticsApi.md#getFacebookDemographics) | **GET** /v1/analytics/facebook/demographics | Get Facebook Page demographics
+*AnalyticsApi* | [**getFacebookDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookDemographicsWithHttpInfo) | **GET** /v1/analytics/facebook/demographics | Get Facebook Page demographics
 *AnalyticsApi* | [**getFacebookPageInsights**](docs/AnalyticsApi.md#getFacebookPageInsights) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
 *AnalyticsApi* | [**getFacebookPageInsightsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPageInsightsWithHttpInfo) | **GET** /v1/analytics/facebook/page-insights | Get Facebook Page insights
 *AnalyticsApi* | [**getFacebookPostEarnings**](docs/AnalyticsApi.md#getFacebookPostEarnings) | **GET** /v1/analytics/facebook/post-earnings | Get Facebook post monetization earnings
@@ -2894,6 +2896,9 @@ Class | Method | HTTP request | Description
  - [GetDsaDefaults200Response](docs/GetDsaDefaults200Response.md)
  - [GetDsaDefaults200ResponseDsaDefaults](docs/GetDsaDefaults200ResponseDsaDefaults.md)
  - [GetDsaRecommendations200Response](docs/GetDsaRecommendations200Response.md)
+ - [GetFacebookDemographics200Response](docs/GetFacebookDemographics200Response.md)
+ - [GetFacebookDemographics200ResponseDemographics](docs/GetFacebookDemographics200ResponseDemographics.md)
+ - [GetFacebookDemographics200ResponseDemographicsCountryInner](docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
  - [GetFacebookPostReactions200Response](docs/GetFacebookPostReactions200Response.md)

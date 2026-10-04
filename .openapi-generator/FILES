@@ -914,6 +914,9 @@ docs/GetDiscordSettings200ResponseAccount.md
 docs/GetDsaDefaults200Response.md
 docs/GetDsaDefaults200ResponseDsaDefaults.md
 docs/GetDsaRecommendations200Response.md
+docs/GetFacebookDemographics200Response.md
+docs/GetFacebookDemographics200ResponseDemographics.md
+docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
 docs/GetFacebookPostReactions200Response.md
@@ -3688,6 +3691,9 @@ src/main/java/dev/zernio/model/GetDiscordSettings200ResponseAccount.java
 src/main/java/dev/zernio/model/GetDsaDefaults200Response.java
 src/main/java/dev/zernio/model/GetDsaDefaults200ResponseDsaDefaults.java
 src/main/java/dev/zernio/model/GetDsaRecommendations200Response.java
+src/main/java/dev/zernio/model/GetFacebookDemographics200Response.java
+src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.java
+src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsCountryInner.java
 src/main/java/dev/zernio/model/GetFacebookPages200Response.java
 src/main/java/dev/zernio/model/GetFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/GetFacebookPostReactions200Response.java
@@ -5435,3 +5441,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsCountryInnerTest.java
+src/test/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsTest.java
+src/test/java/dev/zernio/model/GetFacebookDemographics200ResponseTest.java
