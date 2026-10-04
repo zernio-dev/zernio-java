@@ -77,7 +77,7 @@ import dev.zernio.ApiClient;
   CallRecord.JSON_PROPERTY_CREATED_AT,
   CallRecord.JSON_PROPERTY_UPDATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:09:44.191376900Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-04T11:12:29.988530660Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CallRecord {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nullable
