@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.215.1"
+  version: "1.215.0"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -3922,7 +3922,7 @@ components:
         lastFiredAt:
           type: string
           format: date-time
-          description: 'Timestamp of the last successful webhook delivery. On a healthy endpoint it is refreshed at most once every 10 minutes, so it can trail the most recent delivery by up to 10 minutes.'
+          description: Timestamp of last successful webhook delivery
         failureCount:
           type: integer
           description: >-

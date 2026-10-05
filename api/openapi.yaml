@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.215.1
+  version: 1.215.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -65726,9 +65726,7 @@ components:
           description: Whether webhook delivery is enabled
           type: boolean
         lastFiredAt:
-          description: "Timestamp of the last successful webhook delivery. On a healthy\
-            \ endpoint it is refreshed at most once every 10 minutes, so it can trail\
-            \ the most recent delivery by up to 10 minutes."
+          description: Timestamp of last successful webhook delivery
           format: date-time
           type: string
         failureCount:
