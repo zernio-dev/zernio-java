@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.216.0
+- API version: 1.217.0
 
-- Build date: 2026-10-05T13:09:23.706311694Z[Etc/UTC]
+- Build date: 2026-10-05T13:30:32.662650680Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.216.0</version>
+  <version>1.217.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.216.0"
+compile "dev.zernio:zernio-sdk:1.217.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.216.0.jar`
+- `target/zernio-sdk-1.217.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -231,6 +231,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountHierarchy**](docs/AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
 *AdAccountsApi* | [**getAdAccountHierarchyWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
+*AdAccountsApi* | [**getAdAccountLiveEntities**](docs/AdAccountsApi.md#getAdAccountLiveEntities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live
+*AdAccountsApi* | [**getAdAccountLiveEntitiesWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountLiveEntitiesWithHttpInfo) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live
 *AdAccountsApi* | [**getAdComments**](docs/AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**getAdCommentsWithHttpInfo**](docs/AdAccountsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad
 *AdAccountsApi* | [**getAdNegativeKeywordList**](docs/AdAccountsApi.md#getAdNegativeKeywordList) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list
@@ -2803,6 +2805,13 @@ Class | Method | HTTP request | Description
  - [GetAdAccountHierarchy200ResponseRootsInner](docs/GetAdAccountHierarchy200ResponseRootsInner.md)
  - [GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner](docs/GetAdAccountHierarchy200ResponseRootsInnerManagerLinksInner.md)
  - [GetAdAccountHierarchy200ResponseUnavailableInner](docs/GetAdAccountHierarchy200ResponseUnavailableInner.md)
+ - [GetAdAccountLiveEntities200Response](docs/GetAdAccountLiveEntities200Response.md)
+ - [GetAdAccountLiveEntities200ResponseAdSetsInner](docs/GetAdAccountLiveEntities200ResponseAdSetsInner.md)
+ - [GetAdAccountLiveEntities200ResponseAdSetsInnerBudget](docs/GetAdAccountLiveEntities200ResponseAdSetsInnerBudget.md)
+ - [GetAdAccountLiveEntities200ResponseAdSetsInnerSchedule](docs/GetAdAccountLiveEntities200ResponseAdSetsInnerSchedule.md)
+ - [GetAdAccountLiveEntities200ResponseCampaignsInner](docs/GetAdAccountLiveEntities200ResponseCampaignsInner.md)
+ - [GetAdAccountLiveEntities200ResponseCampaignsInnerBudget](docs/GetAdAccountLiveEntities200ResponseCampaignsInnerBudget.md)
+ - [GetAdAccountLiveEntities200ResponsePaging](docs/GetAdAccountLiveEntities200ResponsePaging.md)
  - [GetAdAnalytics202Response](docs/GetAdAnalytics202Response.md)
  - [GetAdAudience200Response](docs/GetAdAudience200Response.md)
  - [GetAdCampaignDetails200Response](docs/GetAdCampaignDetails200Response.md)

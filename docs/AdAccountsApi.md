@@ -40,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAccountFinanceWithHttpInfo**](AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdAccountHierarchy**](AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**getAdAccountHierarchyWithHttpInfo**](AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
+| [**getAdAccountLiveEntities**](AdAccountsApi.md#getAdAccountLiveEntities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live |
+| [**getAdAccountLiveEntitiesWithHttpInfo**](AdAccountsApi.md#getAdAccountLiveEntitiesWithHttpInfo) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live |
 | [**getAdComments**](AdAccountsApi.md#getAdComments) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdCommentsWithHttpInfo**](AdAccountsApi.md#getAdCommentsWithHttpInfo) | **GET** /v1/ads/{adId}/comments | List comments on an ad |
 | [**getAdNegativeKeywordList**](AdAccountsApi.md#getAdNegativeKeywordList) | **GET** /v1/ads/accounts/negative-keyword-lists/{listId} | Get a negative keyword list |
@@ -2999,6 +3001,186 @@ ApiResponse<[**GetAdAccountHierarchy200Response**](GetAdAccountHierarchy200Respo
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **429** | Google Ads operations budget or quota exhausted; retry later. |  -  |
 | **501** | Only available on Google Ads accounts |  -  |
+
+
+## getAdAccountLiveEntities
+
+> GetAdAccountLiveEntities200Response getAdAccountLiveEntities(accountId, adAccountId, status, level, limit, after)
+
+Read an ad account&#39;s campaigns and ad sets live
+
+Reads the campaigns and ad sets of one Meta ad account **live from Meta**, in a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;), so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current &#x60;daily_budget&#x60; / &#x60;lifetime_budget&#x60; rather than the synced copy.  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;, the same units as the synced rows. A campaign with a campaign budget (Advantage+ campaign budget) carries &#x60;budget&#x60; and its ad sets have &#x60;budget: null&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. Other platforms answer 501 rather than serving synced data.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400.
+        String level = "campaign"; // String | Read only one level. Required with `after`. Both levels are read when omitted.
+        Integer limit = 200; // Integer | Maximum rows per level in this response.
+        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level`.
+        try {
+            GetAdAccountLiveEntities200Response result = apiInstance.getAdAccountLiveEntities(accountId, adAccountId, status, level, limit, after);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountLiveEntities");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. | [optional] |
+| **level** | **String**| Read only one level. Required with &#x60;after&#x60;. Both levels are read when omitted. | [optional] [enum: campaign, adSet] |
+| **limit** | **Integer**| Maximum rows per level in this response. | [optional] [default to 200] |
+| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60;. | [optional] |
+
+### Return type
+
+[**GetAdAccountLiveEntities200Response**](GetAdAccountLiveEntities200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Live campaigns and ad sets |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Meta rate limit reached; retry after the indicated delay. |  -  |
+| **501** | The platform has no bulk live read (only Meta today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
+| **502** | Meta did not return the ad account (for example a deleted ad account). |  -  |
+
+## getAdAccountLiveEntitiesWithHttpInfo
+
+> ApiResponse<GetAdAccountLiveEntities200Response> getAdAccountLiveEntities getAdAccountLiveEntitiesWithHttpInfo(accountId, adAccountId, status, level, limit, after)
+
+Read an ad account&#39;s campaigns and ad sets live
+
+Reads the campaigns and ad sets of one Meta ad account **live from Meta**, in a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;), so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current &#x60;daily_budget&#x60; / &#x60;lifetime_budget&#x60; rather than the synced copy.  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;, the same units as the synced rows. A campaign with a campaign budget (Advantage+ campaign budget) carries &#x60;budget&#x60; and its ad sets have &#x60;budget: null&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. Other platforms answer 501 rather than serving synced data.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
+        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400.
+        String level = "campaign"; // String | Read only one level. Required with `after`. Both levels are read when omitted.
+        Integer limit = 200; // Integer | Maximum rows per level in this response.
+        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level`.
+        try {
+            ApiResponse<GetAdAccountLiveEntities200Response> response = apiInstance.getAdAccountLiveEntitiesWithHttpInfo(accountId, adAccountId, status, level, limit, after);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountLiveEntities");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. | [optional] |
+| **level** | **String**| Read only one level. Required with &#x60;after&#x60;. Both levels are read when omitted. | [optional] [enum: campaign, adSet] |
+| **limit** | **Integer**| Maximum rows per level in this response. | [optional] [default to 200] |
+| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60;. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetAdAccountLiveEntities200Response**](GetAdAccountLiveEntities200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Live campaigns and ad sets |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **429** | Meta rate limit reached; retry after the indicated delay. |  -  |
+| **501** | The platform has no bulk live read (only Meta today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
+| **502** | Meta did not return the ad account (for example a deleted ad account). |  -  |
 
 
 ## getAdComments

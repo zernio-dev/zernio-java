@@ -2,7 +2,7 @@
 
 # ListAdSets200ResponseAdSetsInnerTargeting
 
-The audience this ad set delivers to, as the platform reports it. LinkedIn only today; null for every other platform and for LinkedIn ad sets not yet re-synced.  `include` and `exclude` are the campaign's `targetingCriteria` verbatim, so they can be read, edited and sent back without reconstructing them from our normalized targeting spec. Exclusions were previously not readable at all. 
+The audience this ad set delivers to, as the platform reports it at the last sync. LinkedIn and Meta; null for every other platform and for ad sets not yet re-synced.  On Meta it is the ad set's `targeting` verbatim (snake_case: geo_locations, age_min, custom_audiences, flexible_spec, ...), so it can be read, edited and sent back as is. On LinkedIn `include` and `exclude` (below) are the campaign's `targetingCriteria` verbatim, without reconstructing them from our normalized targeting spec. 
 
 ## Properties
 
