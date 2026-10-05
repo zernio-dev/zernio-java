@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   ListLocalServicesLeadConversations200ResponseDataInner.JSON_PROPERTY_PHONE_CALL,
   ListLocalServicesLeadConversations200ResponseDataInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLocalServicesLeadConversations200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();

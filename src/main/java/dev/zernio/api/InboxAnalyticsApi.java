@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxAnalyticsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -174,8 +174,8 @@ public class InboxAnalyticsApi {
 
   /**
    * Get conversation analytics
-   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
-   * @param conversationId Mongo _id or platformConversationId. (required)
+   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+   * @param conversationId Zernio conversation id or platformConversationId. (required)
    * @param fromDate  (required)
    * @param toDate  (optional)
    * @return GetInboxConversationAnalytics200Response
@@ -187,8 +187,8 @@ public class InboxAnalyticsApi {
 
   /**
    * Get conversation analytics
-   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
-   * @param conversationId Mongo _id or platformConversationId. (required)
+   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+   * @param conversationId Zernio conversation id or platformConversationId. (required)
    * @param fromDate  (required)
    * @param toDate  (optional)
    * @param headers Optional headers to include in the request
@@ -202,8 +202,8 @@ public class InboxAnalyticsApi {
 
   /**
    * Get conversation analytics
-   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
-   * @param conversationId Mongo _id or platformConversationId. (required)
+   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+   * @param conversationId Zernio conversation id or platformConversationId. (required)
    * @param fromDate  (required)
    * @param toDate  (optional)
    * @return ApiResponse&lt;GetInboxConversationAnalytics200Response&gt;
@@ -215,8 +215,8 @@ public class InboxAnalyticsApi {
 
   /**
    * Get conversation analytics
-   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Mongo &#x60;_id&#x60; of the Conversation document OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified in MongoDB against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
-   * @param conversationId Mongo _id or platformConversationId. (required)
+   * Per-conversation inbox analytics. The inbox analog of /v1/analytics/post-timeline: one conversation, daily totals, source mix.  The {conversationId} path param accepts EITHER the Zernio conversation id OR its &#x60;platformConversationId&#x60; (the same identity used by metadata.conversationId at ingest time). Ownership is verified against the caller&#39;s team before the Tinybird query fires.  Max date range is 365 days. 
+   * @param conversationId Zernio conversation id or platformConversationId. (required)
    * @param fromDate  (required)
    * @param toDate  (optional)
    * @param headers Optional headers to include in the request
@@ -807,7 +807,7 @@ public class InboxAnalyticsApi {
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param source  (optional)
-   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)
+   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)
    * @return GetInboxTopAccounts200Response
    * @throws ApiException if fails to make API call
    */
@@ -823,7 +823,7 @@ public class InboxAnalyticsApi {
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param source  (optional)
-   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)
+   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)
    * @param headers Optional headers to include in the request
    * @return GetInboxTopAccounts200Response
    * @throws ApiException if fails to make API call
@@ -841,7 +841,7 @@ public class InboxAnalyticsApi {
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param source  (optional)
-   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)
+   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)
    * @return ApiResponse&lt;GetInboxTopAccounts200Response&gt;
    * @throws ApiException if fails to make API call
    */
@@ -857,7 +857,7 @@ public class InboxAnalyticsApi {
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param source  (optional)
-   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a SocialAccount Mongo lookup. (optional, default to 10)
+   * @param limit Cap on returned rows. Lower than the posting listing&#39;s 100 because each row triggers a social account lookup. (optional, default to 10)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;GetInboxTopAccounts200Response&gt;
    * @throws ApiException if fails to make API call

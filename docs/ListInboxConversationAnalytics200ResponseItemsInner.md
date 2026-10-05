@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**conversationId** | **String** | The platformConversationId (the same identity used by metadata.conversationId) |  [optional] |
-|**mongoId** | **String** | The Conversation document _id, when a matching doc exists |  [optional] |
+|**mongoId** | **String** | The Zernio conversation id, when a matching conversation exists |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
 |**participantName** | **String** |  |  [optional] |

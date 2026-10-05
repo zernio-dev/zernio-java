@@ -4374,7 +4374,7 @@ paths:
           type: string
         style: form
       - description: Cap on returned rows. Lower than the posting listing's 100 because
-          each row triggers a SocialAccount Mongo lookup.
+          each row triggers a social account lookup.
         explode: true
         in: query
         name: limit
@@ -4555,16 +4555,16 @@ paths:
         /v1/analytics/post-timeline: one conversation, daily totals,
         source mix.
 
-        The {conversationId} path param accepts EITHER the Mongo `_id` of
-        the Conversation document OR its `platformConversationId` (the
-        same identity used by metadata.conversationId at ingest time).
-        Ownership is verified in MongoDB against the caller's team
-        before the Tinybird query fires.
+        The {conversationId} path param accepts EITHER the Zernio
+        conversation id OR its `platformConversationId` (the same
+        identity used by metadata.conversationId at ingest time).
+        Ownership is verified against the caller's team before the
+        Tinybird query fires.
 
         Max date range is 365 days.
       operationId: getInboxConversationAnalytics
       parameters:
-      - description: Mongo _id or platformConversationId.
+      - description: Zernio conversation id or platformConversationId.
         explode: false
         in: path
         name: conversationId
@@ -23391,7 +23391,7 @@ paths:
         customer's forward-to destination.
       operationId: enableWhatsAppCallingLegacy
       parameters:
-      - description: WhatsAppPhoneNumber Mongo ID
+      - description: WhatsApp phone number id
         explode: false
         in: path
         name: id
@@ -87365,7 +87365,7 @@ components:
           description: The platformConversationId (the same identity used by metadata.conversationId)
           type: string
         mongoId:
-          description: "The Conversation document _id, when a matching doc exists"
+          description: "The Zernio conversation id, when a matching conversation exists"
           nullable: true
           type: string
         accountId:

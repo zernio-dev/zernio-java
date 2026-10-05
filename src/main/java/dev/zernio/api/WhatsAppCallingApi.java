@@ -68,7 +68,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCallingApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -582,7 +582,7 @@ public class WhatsAppCallingApi {
   /**
    * Enable calling on a number
    * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param id WhatsApp phone number id (required)
    * @param enableWhatsAppCallingLegacyRequest  (required)
    * @return EnableWhatsAppCallingLegacy200Response
    * @throws ApiException if fails to make API call
@@ -596,7 +596,7 @@ public class WhatsAppCallingApi {
   /**
    * Enable calling on a number
    * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param id WhatsApp phone number id (required)
    * @param enableWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
    * @return EnableWhatsAppCallingLegacy200Response
@@ -612,7 +612,7 @@ public class WhatsAppCallingApi {
   /**
    * Enable calling on a number
    * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param id WhatsApp phone number id (required)
    * @param enableWhatsAppCallingLegacyRequest  (required)
    * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;
    * @throws ApiException if fails to make API call
@@ -626,7 +626,7 @@ public class WhatsAppCallingApi {
   /**
    * Enable calling on a number
    * Deprecated alias of &#x60;/v1/phone-numbers/{id}/whatsapp/calling&#x60;; same contract. New integrations should use that path.  Enable WhatsApp Business Calling on a connected number. Configures Meta calling.status&#x3D;ENABLED with our Telnyx SIP endpoint, fetches and stores the Meta-issued SIP password (encrypted), and snapshots the customer&#39;s forward-to destination. 
-   * @param id WhatsAppPhoneNumber Mongo ID (required)
+   * @param id WhatsApp phone number id (required)
    * @param enableWhatsAppCallingLegacyRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;EnableWhatsAppCallingLegacy200Response&gt;

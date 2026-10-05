@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   QueryAdInsights200ResponsePaging.JSON_PROPERTY_TOTAL_ROWS,
   QueryAdInsights200ResponsePaging.JSON_PROPERTY_TOTAL_PAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class QueryAdInsights200ResponsePaging {
   public static final String JSON_PROPERTY_AFTER = "after";
   private JsonNullable<String> after = JsonNullable.<String>undefined();

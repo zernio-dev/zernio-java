@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   ListSmsSenderIds200ResponseBudgetPendingRequest.JSON_PROPERTY_LEVEL,
   ListSmsSenderIds200ResponseBudgetPendingRequest.JSON_PROPERTY_REQUESTED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSmsSenderIds200ResponseBudgetPendingRequest {
   public static final String JSON_PROPERTY_REQUESTED_CAP = "requestedCap";
   @javax.annotation.Nullable

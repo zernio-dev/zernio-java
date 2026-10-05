@@ -530,7 +530,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
+        String id = "id_example"; // String | WhatsApp phone number id
         EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
         try {
             EnableWhatsAppCallingLegacy200Response result = apiInstance.enableWhatsAppCallingLegacy(id, enableWhatsAppCallingLegacyRequest);
@@ -551,7 +551,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
+| **id** | **String**| WhatsApp phone number id | |
 | **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type
@@ -607,7 +607,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
-        String id = "id_example"; // String | WhatsAppPhoneNumber Mongo ID
+        String id = "id_example"; // String | WhatsApp phone number id
         EnableWhatsAppCallingLegacyRequest enableWhatsAppCallingLegacyRequest = new EnableWhatsAppCallingLegacyRequest(); // EnableWhatsAppCallingLegacyRequest | 
         try {
             ApiResponse<EnableWhatsAppCallingLegacy200Response> response = apiInstance.enableWhatsAppCallingLegacyWithHttpInfo(id, enableWhatsAppCallingLegacyRequest);
@@ -630,7 +630,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **id** | **String**| WhatsAppPhoneNumber Mongo ID | |
+| **id** | **String**| WhatsApp phone number id | |
 | **enableWhatsAppCallingLegacyRequest** | [**EnableWhatsAppCallingLegacyRequest**](EnableWhatsAppCallingLegacyRequest.md)|  | |
 
 ### Return type

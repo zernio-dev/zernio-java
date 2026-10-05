@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationAnalytics200ResponseBySourceInner.JSON_PROPERTY_SOURCE,
   GetInboxConversationAnalytics200ResponseBySourceInner.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationAnalytics200ResponseBySourceInner {
   public static final String JSON_PROPERTY_SOURCE = "source";
   @javax.annotation.Nullable

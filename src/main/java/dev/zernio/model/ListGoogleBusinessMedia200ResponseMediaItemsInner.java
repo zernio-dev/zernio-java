@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListGoogleBusinessMedia200ResponseMediaItemsInner.JSON_PROPERTY_CREATE_TIME,
   ListGoogleBusinessMedia200ResponseMediaItemsInner.JSON_PROPERTY_LOCATION_ASSOCIATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T08:53:06.918219932Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T10:11:45.546455128Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListGoogleBusinessMedia200ResponseMediaItemsInner {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
