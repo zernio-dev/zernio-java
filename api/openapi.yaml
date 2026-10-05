@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.213.1
+  version: 1.214.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15245,6 +15245,80 @@ paths:
       tags:
       - Instagram
       x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/business-discovery:
+    get:
+      description: |
+        Returns the public profile and most recent media of any Instagram
+        Business or Creator account, looked up by username through one of your
+        connected Instagram accounts. Useful for competitor and market research.
+        Personal accounts and private accounts cannot be looked up.
+
+        Requires an Instagram account connected via **Facebook Login**. Meta
+        serves business discovery on graph.facebook.com only, so accounts
+        connected with classic Instagram Login receive a 400
+        (`instagram_business_discovery_requires_facebook_login`) and must be
+        reconnected choosing the Facebook option. Any one such account can look
+        up any public Business or Creator handle.
+
+        `likeCount` is null when the owner hides like counts.
+      operationId: getInstagramBusinessDiscovery
+      parameters:
+      - description: The ID of a connected Instagram account (Facebook Login).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Instagram handle to look up, with or without the leading @.\
+          \ Case-insensitive."
+        explode: true
+        in: query
+        name: username
+        required: true
+        schema:
+          example: nike
+          maxLength: 31
+          type: string
+        style: form
+      - description: How many of the most recent media to return.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 12
+          maximum: 25
+          minimum: 1
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstagramBusinessDiscovery"
+          description: Public profile and recent media
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account is not reachable by the caller (`account_not_found`),\
+            \ or no public Business or Creator account has that username (`instagram_profile_not_found`)."
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      summary: Look up a public Instagram Business account
+      tags:
+      - Instagram
+      x-resource-group: analytics
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
@@ -70675,6 +70749,46 @@ components:
           example: "105890561436614"
           pattern: "^[0-9]+$"
           type: string
+    InstagramBusinessDiscovery:
+      example:
+        profile:
+          profilePictureUrl: profilePictureUrl
+          website: website
+          name: name
+          followsCount: 6
+          mediaCount: 1
+          id: id
+          biography: biography
+          followersCount: 0
+          username: username
+        media:
+        - commentsCount: 5
+          mediaProductType: mediaProductType
+          caption: caption
+          mediaType: mediaType
+          likeCount: 5
+          id: id
+          permalink: permalink
+          timestamp: 2000-01-23T04:56:07.000+00:00
+        - commentsCount: 5
+          mediaProductType: mediaProductType
+          caption: caption
+          mediaType: mediaType
+          likeCount: 5
+          id: id
+          permalink: permalink
+          timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        profile:
+          $ref: "#/components/schemas/InstagramBusinessDiscovery_profile"
+        media:
+          description: "Most recent media first, up to `limit`."
+          items:
+            $ref: "#/components/schemas/InstagramBusinessDiscovery_media_inner"
+          type: array
+      required:
+      - media
+      - profile
     InstagramAudioAsset:
       description: "One asset from the Instagram audio catalog. Licensed music carries\
         \ artist/artwork fields; original sounds carry creator fields instead, so\
@@ -148023,6 +148137,86 @@ components:
           type: integer
       required:
       - audioId
+    InstagramBusinessDiscovery_profile:
+      example:
+        profilePictureUrl: profilePictureUrl
+        website: website
+        name: name
+        followsCount: 6
+        mediaCount: 1
+        id: id
+        biography: biography
+        followersCount: 0
+        username: username
+      properties:
+        id:
+          description: Instagram user ID of the looked-up account
+          type: string
+        username:
+          type: string
+        name:
+          nullable: true
+          type: string
+        biography:
+          nullable: true
+          type: string
+        website:
+          nullable: true
+          type: string
+        profilePictureUrl:
+          description: Temporary CDN URL; download it rather than storing the link.
+          nullable: true
+          type: string
+        followersCount:
+          nullable: true
+          type: integer
+        followsCount:
+          nullable: true
+          type: integer
+        mediaCount:
+          nullable: true
+          type: integer
+      required:
+      - id
+      - username
+    InstagramBusinessDiscovery_media_inner:
+      example:
+        commentsCount: 5
+        mediaProductType: mediaProductType
+        caption: caption
+        mediaType: mediaType
+        likeCount: 5
+        id: id
+        permalink: permalink
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        caption:
+          nullable: true
+          type: string
+        mediaType:
+          description: "IMAGE, VIDEO or CAROUSEL_ALBUM"
+          nullable: true
+          type: string
+        mediaProductType:
+          description: FEED or REELS
+          nullable: true
+          type: string
+        timestamp:
+          format: date-time
+          nullable: true
+          type: string
+        permalink:
+          nullable: true
+          type: string
+        likeCount:
+          description: Null when the owner hides like counts
+          nullable: true
+          type: integer
+        commentsCount:
+          nullable: true
+          type: integer
     LinkedInPlatformData_audience_interfaceLocales_inner:
       properties:
         language:

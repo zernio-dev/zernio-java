@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.213.1
+- API version: 1.214.0
 
-- Build date: 2026-10-04T15:54:28.696549622Z[Etc/UTC]
+- Build date: 2026-10-05T08:53:06.918219932Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.213.1</version>
+  <version>1.214.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.213.1"
+compile "dev.zernio:zernio-sdk:1.214.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.213.1.jar`
+- `target/zernio-sdk-1.214.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1313,6 +1313,8 @@ Class | Method | HTTP request | Description
 *InboxAnalyticsApi* | [**listInboxConversationAnalyticsWithHttpInfo**](docs/InboxAnalyticsApi.md#listInboxConversationAnalyticsWithHttpInfo) | **GET** /v1/analytics/inbox/conversations | List conversation analytics
 *InstagramApi* | [**getInstagramAudio**](docs/InstagramApi.md#getInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
 *InstagramApi* | [**getInstagramAudioWithHttpInfo**](docs/InstagramApi.md#getInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
+*InstagramApi* | [**getInstagramBusinessDiscovery**](docs/InstagramApi.md#getInstagramBusinessDiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account
+*InstagramApi* | [**getInstagramBusinessDiscoveryWithHttpInfo**](docs/InstagramApi.md#getInstagramBusinessDiscoveryWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account
 *InstagramApi* | [**getInstagramPublishingLimit**](docs/InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramPublishingLimitWithHttpInfo**](docs/InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
@@ -3285,6 +3287,9 @@ Class | Method | HTTP request | Description
  - [InstagramAccountInsightsResponseMetricsValueValuesInner](docs/InstagramAccountInsightsResponseMetricsValueValuesInner.md)
  - [InstagramAccountInsightsResponseUnavailableMetricsInner](docs/InstagramAccountInsightsResponseUnavailableMetricsInner.md)
  - [InstagramAudioAsset](docs/InstagramAudioAsset.md)
+ - [InstagramBusinessDiscovery](docs/InstagramBusinessDiscovery.md)
+ - [InstagramBusinessDiscoveryMediaInner](docs/InstagramBusinessDiscoveryMediaInner.md)
+ - [InstagramBusinessDiscoveryProfile](docs/InstagramBusinessDiscoveryProfile.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
