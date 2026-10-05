@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.214.0
+  version: 1.214.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39433,7 +39433,7 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Meta rate limit reached
+          $ref: "#/components/responses/MetaRateLimited"
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -39486,7 +39486,7 @@ paths:
         "404":
           description: Ad not found
         "429":
-          description: Meta rate limit reached
+          $ref: "#/components/responses/MetaRateLimited"
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -40002,9 +40002,23 @@ paths:
         "403":
           description: "TikTok only: the connection cannot read that advertiser."
         "429":
-          description: Platform rate limit reached. For Google this is the per-user
-            burst limit or a Google rate limit; the message says which and when to
-            retry.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Platform rate limit reached. For Google this is the per-user\
+            \ burst limit or a Google rate limit; the message says which and when\
+            \ to retry. For Meta every throttle (codes 4, 17, 32, 613, 80000-80014)\
+            \ returns 429 `rate_limited` with `Retry-After`, even when Meta answers\
+            \ HTTP 400."
+          headers:
+            Retry-After:
+              description: "Seconds to wait before retrying, when the platform gives\
+                \ an estimate."
+              explode: false
+              schema:
+                type: integer
+              style: simple
         "501":
           description: "Only supported on Meta (facebook/instagram), Google Ads and\
             \ TikTok"
@@ -40050,7 +40064,7 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Meta rate limit reached
+          $ref: "#/components/responses/MetaRateLimited"
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -40122,7 +40136,7 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Meta rate limit reached
+          $ref: "#/components/responses/MetaRateLimited"
         "501":
           description: Only supported on Meta (facebook/instagram)
       security:
@@ -60413,6 +60427,13 @@ components:
         is your own ad account's quota), `details.resetsAt` (ISO instant when
         Google accepts requests again) and `Retry-After` counting down to it.
         Retrying earlier cannot succeed.
+
+        Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the
+        business-use-case codes 80000-80014) returns 429 `rate_limited`, even
+        when Meta itself answers HTTP 400. `Retry-After` comes from Meta's
+        `x-business-use-case-usage` estimate when Meta sends one, otherwise it
+        is Meta's documented 60-second minimum (30 seconds for the one-write-per-30-seconds
+        limit on a single object).
       headers:
         Retry-After:
           description: Seconds remaining until the upstream quota resets.
@@ -60439,6 +60460,29 @@ components:
       headers:
         Retry-After:
           description: Seconds to wait before retrying a create on this ad account.
+          explode: false
+          schema:
+            type: integer
+          style: simple
+    MetaRateLimited:
+      content:
+        application/json:
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: |
+        Meta throttled the request (code `rate_limited`, `platform: meta`).
+        Every Meta throttle returns 429 here, even when Meta itself answers
+        HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613
+        (per-object call limits) and 80000-80014 (business-use-case limits per
+        ad account or business, e.g. 80000 ads insights, 80003 custom
+        audiences, 80004 ads management, 80014 catalog batch). Wait
+        `Retry-After` seconds before retrying: it is Meta's
+        `x-business-use-case-usage` estimate when Meta sends one, otherwise
+        Meta's documented 60-second minimum. Business-use-case limits are
+        scoped to one ad account, so other ad accounts are not affected.
+      headers:
+        Retry-After:
+          description: Seconds to wait before retrying.
           explode: false
           schema:
             type: integer

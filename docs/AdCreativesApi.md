@@ -592,7 +592,7 @@ public class Example {
 | **200** | Rendered previews |  -  |
 | **400** | Invalid input, or Meta rejected the creative spec / ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## generateAdPreviewsWithHttpInfo
@@ -671,7 +671,7 @@ ApiResponse<[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md
 | **200** | Rendered previews |  -  |
 | **400** | Invalid input, or Meta rejected the creative spec / ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -1065,7 +1065,7 @@ public class Example {
 | **400** | Invalid input, or Meta rejected the ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## getAdPreviewsWithHttpInfo
@@ -1145,7 +1145,7 @@ ApiResponse<[**GetAdPreviews200Response**](GetAdPreviews200Response.md)>
 | **400** | Invalid input, or Meta rejected the ad_format; the message carries Meta&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 

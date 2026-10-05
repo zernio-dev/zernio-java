@@ -102,7 +102,7 @@ public class Example {
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## createAdInsightsReportWithHttpInfo
@@ -181,7 +181,7 @@ ApiResponse<[**CreateAdInsightsReport202Response**](CreateAdInsightsReport202Res
 | **202** | Report run submitted |  -  |
 | **400** | Invalid input, or Meta rejected the report parameters |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -742,7 +742,7 @@ public class Example {
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 ## getAdInsightsReportWithHttpInfo
@@ -827,7 +827,7 @@ ApiResponse<[**GetAdInsightsReport200Response**](GetAdInsightsReport200Response.
 | **200** | Report run status (plus results when completed) |  -  |
 | **400** | Invalid input, or the report run is not readable with this account&#39;s token |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Meta rate limit reached |  -  |
+| **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -1859,7 +1859,7 @@ public class Example {
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
-| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. For Meta every throttle (codes 4, 17, 32, 613, 80000-80014) returns 429 &#x60;rate_limited&#x60; with &#x60;Retry-After&#x60;, even when Meta answers HTTP 400. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 
 ## queryAdInsightsWithHttpInfo
@@ -1989,6 +1989,6 @@ ApiResponse<[**QueryAdInsights200Response**](QueryAdInsights200Response.md)>
 | **400** | Invalid input, or the platform rejected the query (unknown field, invalid breakdown combo, malformed GAQL); the message carries the platform&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | TikTok only: the connection cannot read that advertiser. |  -  |
-| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. |  -  |
+| **429** | Platform rate limit reached. For Google this is the per-user burst limit or a Google rate limit; the message says which and when to retry. For Meta every throttle (codes 4, 17, 32, 613, 80000-80014) returns 429 &#x60;rate_limited&#x60; with &#x60;Retry-After&#x60;, even when Meta answers HTTP 400. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **501** | Only supported on Meta (facebook/instagram), Google Ads and TikTok |  -  |
 
