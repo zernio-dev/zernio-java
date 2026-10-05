@@ -30,14 +30,15 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id and value.media.ad_title. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
+ * Ad context. Present only when the comment was made on paid content. Instagram: populated from the webhook payload&#39;s value.media.ad_id, value.media.ad_title and value.media.original_media_id, each only when Meta includes it. Facebook: populated via a Graph API lookup of the parent post&#39;s promotion_status. Absent for comments on organic posts that are not currently promoted. 
  */
 @JsonPropertyOrder({
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_ID,
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_TITLE,
+  WebhookPayloadCommentCommentAd.JSON_PROPERTY_ORIGINAL_MEDIA_ID,
   WebhookPayloadCommentCommentAd.JSON_PROPERTY_PROMOTION_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T21:30:34.208536553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T22:43:01.110278507Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCommentCommentAd {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -46,6 +47,10 @@ public class WebhookPayloadCommentCommentAd {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable
   private String title;
+
+  public static final String JSON_PROPERTY_ORIGINAL_MEDIA_ID = "originalMediaId";
+  @javax.annotation.Nullable
+  private String originalMediaId;
 
   public static final String JSON_PROPERTY_PROMOTION_STATUS = "promotionStatus";
   @javax.annotation.Nullable
@@ -102,6 +107,30 @@ public class WebhookPayloadCommentCommentAd {
   }
 
 
+  public WebhookPayloadCommentCommentAd originalMediaId(@javax.annotation.Nullable String originalMediaId) {
+    this.originalMediaId = originalMediaId;
+    return this;
+  }
+
+  /**
+   * Original media ID that Meta reports for the ad (Instagram only).
+   * @return originalMediaId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_MEDIA_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getOriginalMediaId() {
+    return originalMediaId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ORIGINAL_MEDIA_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setOriginalMediaId(@javax.annotation.Nullable String originalMediaId) {
+    this.originalMediaId = originalMediaId;
+  }
+
+
   public WebhookPayloadCommentCommentAd promotionStatus(@javax.annotation.Nullable String promotionStatus) {
     this.promotionStatus = promotionStatus;
     return this;
@@ -140,12 +169,13 @@ public class WebhookPayloadCommentCommentAd {
     WebhookPayloadCommentCommentAd webhookPayloadCommentCommentAd = (WebhookPayloadCommentCommentAd) o;
     return Objects.equals(this.id, webhookPayloadCommentCommentAd.id) &&
         Objects.equals(this.title, webhookPayloadCommentCommentAd.title) &&
+        Objects.equals(this.originalMediaId, webhookPayloadCommentCommentAd.originalMediaId) &&
         Objects.equals(this.promotionStatus, webhookPayloadCommentCommentAd.promotionStatus);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, title, promotionStatus);
+    return Objects.hash(id, title, originalMediaId, promotionStatus);
   }
 
   @Override
@@ -154,6 +184,7 @@ public class WebhookPayloadCommentCommentAd {
     sb.append("class WebhookPayloadCommentCommentAd {\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    originalMediaId: ").append(toIndentedString(originalMediaId)).append("\n");
     sb.append("    promotionStatus: ").append(toIndentedString(promotionStatus)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -210,6 +241,11 @@ public class WebhookPayloadCommentCommentAd {
     // add `title` to the URL query string
     if (getTitle() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%stitle%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTitle()))));
+    }
+
+    // add `originalMediaId` to the URL query string
+    if (getOriginalMediaId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%soriginalMediaId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getOriginalMediaId()))));
     }
 
     // add `promotionStatus` to the URL query string

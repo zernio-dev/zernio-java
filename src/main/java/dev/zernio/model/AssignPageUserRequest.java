@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AssignPageUserRequest.JSON_PROPERTY_USER_ID,
   AssignPageUserRequest.JSON_PROPERTY_TASKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T21:30:34.208536553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T22:43:01.110278507Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AssignPageUserRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

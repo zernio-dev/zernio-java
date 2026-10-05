@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   WhatsAppCommerceSettings.JSON_PROPERTY_IS_CART_ENABLED,
   WhatsAppCommerceSettings.JSON_PROPERTY_IS_CATALOG_VISIBLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T21:30:34.208536553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T22:43:01.110278507Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WhatsAppCommerceSettings {
   public static final String JSON_PROPERTY_IS_CART_ENABLED = "isCartEnabled";
   @javax.annotation.Nullable

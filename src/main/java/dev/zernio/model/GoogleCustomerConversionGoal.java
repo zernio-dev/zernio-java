@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GoogleCustomerConversionGoal.JSON_PROPERTY_RESOURCE_NAME,
   GoogleCustomerConversionGoal.JSON_PROPERTY_CONVERSION_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T21:30:34.208536553Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T22:43:01.110278507Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleCustomerConversionGoal {
   public static final String JSON_PROPERTY_CATEGORY = "category";
   @javax.annotation.Nullable
