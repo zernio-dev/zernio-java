@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.217.1
+  version: 1.218.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39675,8 +39675,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Per-user Google Ads burst limit (15 requests per minute) or
-            a Google rate limit reached; the message says which and when to retry.
+          description: "Zernio Google Ads burst limit (15 requests per minute per\
+            \ connected account, 120 per minute per user) or a Google rate limit reached;\
+            \ the message says which and when to retry."
         "501":
           description: Only supported on Google Ads
       security:
@@ -39721,8 +39722,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
-          description: Per-user Google Ads burst limit (15 requests per minute) or
-            a Google rate limit reached; the message says which and when to retry.
+          description: "Zernio Google Ads burst limit (15 requests per minute per\
+            \ connected account, 120 per minute per user) or a Google rate limit reached;\
+            \ the message says which and when to retry."
         "501":
           description: Only supported on Google Ads
       security:
@@ -64133,7 +64135,7 @@ components:
             parentId: parentId
           adAccountId: adAccountId
           quotaExhausted: true
-          budgetScope: user
+          budgetScope: account
           createdObjects:
           - cleanup: deleted
             id: id
@@ -144724,12 +144726,12 @@ components:
         (every Google account is affected and there is nothing to change on your side),
         `ACCOUNT` means your own ad account. A Meta 429 carries neither field.
 
-        A Zernio Google Ads budget 429 carries `budgetScope` instead, and never
+        A Zernio Google Ads burst-limit 429 carries `budgetScope` instead, and never
         `quotaExhausted`: these are Zernio's own limits, applied before the call
-        reaches Google. `user` is your own burst or daily allowance, so the work is
-        yours to reschedule; `platform` is the fleet-wide daily budget shared with
-        every other customer, so only waiting for the reset clears it. The two
-        scopes are separate axes from `quotaScope`, not the same pool named twice.
+        reaches Google, and both clear within a minute. `account` is the limit of 15
+        requests per minute per connected Google Ads account; `user` is the ceiling of
+        120 requests per minute per Zernio user across all their Google Ads accounts.
+        Both are separate axes from `quotaScope`, not the same pool named twice.
 
         A failed Meta ad create (`POST /v1/ads/create`, `POST /v1/ads/boost`,
         `POST /v1/ads/ctwa`) carries `stage`, `adAccountId` and `createdObjects`: where
@@ -144747,7 +144749,7 @@ components:
           parentId: parentId
         adAccountId: adAccountId
         quotaExhausted: true
-        budgetScope: user
+        budgetScope: account
         createdObjects:
         - cleanup: deleted
           id: id
@@ -144797,9 +144799,12 @@ components:
           type: string
         budgetScope:
           description: Zernio Google Ads burst-limit 429 only (never set alongside
-            `quotaExhausted`). `user` is your own per-minute allowance on user-driven
-            Google Ads calls; it clears within a minute.
+            `quotaExhausted`). `account` is the limit of 15 requests per minute per
+            connected Google Ads account; `user` is the ceiling of 120 requests per
+            minute per Zernio user across all their Google Ads accounts. Both clear
+            within a minute.
           enum:
+          - account
           - user
           type: string
     CommentAutomationTemplateElement_buttons_inner:

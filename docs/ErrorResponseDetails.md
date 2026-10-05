@@ -2,7 +2,7 @@
 
 # ErrorResponseDetails
 
-Additional structured context (e.g. field-level validation errors), for example `privateReplyConsumed` on the private-reply endpoint's 400 when the comment's single reply is already spent.  On a Google Ads 429 it carries `quotaExhausted: true`, which marks the failure as Google's own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries `quotaScope`: `DEVELOPER` means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), `ACCOUNT` means your own ad account. A Meta 429 carries neither field.  A Zernio Google Ads budget 429 carries `budgetScope` instead, and never `quotaExhausted`: these are Zernio's own limits, applied before the call reaches Google. `user` is your own burst or daily allowance, so the work is yours to reschedule; `platform` is the fleet-wide daily budget shared with every other customer, so only waiting for the reset clears it. The two scopes are separate axes from `quotaScope`, not the same pool named twice.  A failed Meta ad create (`POST /v1/ads/create`, `POST /v1/ads/boost`, `POST /v1/ads/ctwa`) carries `stage`, `adAccountId` and `createdObjects`: where it failed, on which ad account, and every object this request had already created with what cleanup did to it. `left_behind` objects still exist on the ad account (Meta refused the delete, typically on a held account), so delete them yourself or reuse them. `unconfirmedWrite` is set when Meta answered a create with a 5xx or dropped the connection and Zernio could not confirm whether the object exists: check that parent before creating it again. 
+Additional structured context (e.g. field-level validation errors), for example `privateReplyConsumed` on the private-reply endpoint's 400 when the comment's single reply is already spent.  On a Google Ads 429 it carries `quotaExhausted: true`, which marks the failure as Google's own ads quota rather than a Zernio rate limit, so you can keep calling other platforms instead of backing off everywhere. When Google names the scope it also carries `quotaScope`: `DEVELOPER` means the shared developer-token budget (every Google account is affected and there is nothing to change on your side), `ACCOUNT` means your own ad account. A Meta 429 carries neither field.  A Zernio Google Ads burst-limit 429 carries `budgetScope` instead, and never `quotaExhausted`: these are Zernio's own limits, applied before the call reaches Google, and both clear within a minute. `account` is the limit of 15 requests per minute per connected Google Ads account; `user` is the ceiling of 120 requests per minute per Zernio user across all their Google Ads accounts. Both are separate axes from `quotaScope`, not the same pool named twice.  A failed Meta ad create (`POST /v1/ads/create`, `POST /v1/ads/boost`, `POST /v1/ads/ctwa`) carries `stage`, `adAccountId` and `createdObjects`: where it failed, on which ad account, and every object this request had already created with what cleanup did to it. `left_behind` objects still exist on the ad account (Meta refused the delete, typically on a held account), so delete them yourself or reuse them. `unconfirmedWrite` is set when Meta answered a create with a 5xx or dropped the connection and Zernio could not confirm whether the object exists: check that parent before creating it again. 
 
 ## Properties
 
@@ -14,7 +14,7 @@ Additional structured context (e.g. field-level validation errors), for example 
 |**unconfirmedWrite** | [**ErrorResponseDetailsUnconfirmedWrite**](ErrorResponseDetailsUnconfirmedWrite.md) |  |  [optional] |
 |**quotaExhausted** | **Boolean** | Google Ads 429 only. True when the upstream Google Ads quota is spent rather than a Zernio limit. |  [optional] |
 |**quotaScope** | [**QuotaScopeEnum**](#QuotaScopeEnum) | Google Ads 429 only, when Google names the scope. DEVELOPER is the shared developer-token budget; ACCOUNT is your ad account. |  [optional] |
-|**budgetScope** | [**BudgetScopeEnum**](#BudgetScopeEnum) | Zernio Google Ads burst-limit 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;user&#x60; is your own per-minute allowance on user-driven Google Ads calls; it clears within a minute. |  [optional] |
+|**budgetScope** | [**BudgetScopeEnum**](#BudgetScopeEnum) | Zernio Google Ads burst-limit 429 only (never set alongside &#x60;quotaExhausted&#x60;). &#x60;account&#x60; is the limit of 15 requests per minute per connected Google Ads account; &#x60;user&#x60; is the ceiling of 120 requests per minute per Zernio user across all their Google Ads accounts. Both clear within a minute. |  [optional] |
 
 
 
@@ -45,6 +45,7 @@ Additional structured context (e.g. field-level validation errors), for example 
 
 | Name | Value |
 |---- | -----|
+| ACCOUNT | &quot;account&quot; |
 | USER | &quot;user&quot; |
 
 

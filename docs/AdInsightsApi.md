@@ -258,7 +258,7 @@ public class Example {
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
+| **429** | Zernio Google Ads burst limit (15 requests per minute per connected account, 120 per minute per user) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## generateKeywordHistoricalMetricsWithHttpInfo
@@ -337,7 +337,7 @@ ApiResponse<[**GenerateKeywordHistoricalMetrics200Response**](GenerateKeywordHis
 | **200** | Historical metric rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
+| **429** | Zernio Google Ads burst limit (15 requests per minute per connected account, 120 per minute per user) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
@@ -414,7 +414,7 @@ public class Example {
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
+| **429** | Zernio Google Ads burst limit (15 requests per minute per connected account, 120 per minute per user) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 ## generateKeywordIdeasWithHttpInfo
@@ -493,7 +493,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 | **200** | Keyword idea rows (raw Keyword Planner shape) |  -  |
 | **400** | Invalid input, or Google rejected the request; the message carries Google&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **429** | Per-user Google Ads burst limit (15 requests per minute) or a Google rate limit reached; the message says which and when to retry. |  -  |
+| **429** | Zernio Google Ads burst limit (15 requests per minute per connected account, 120 per minute per user) or a Google rate limit reached; the message says which and when to retry. |  -  |
 | **501** | Only supported on Google Ads |  -  |
 
 
