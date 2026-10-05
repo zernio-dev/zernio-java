@@ -29,6 +29,10 @@ import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
+import org.openapitools.jackson.nullable.JsonNullable;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.openapitools.jackson.nullable.JsonNullable;
+import java.util.NoSuchElementException;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 
@@ -58,7 +62,7 @@ import dev.zernio.ApiClient;
   GetPostTimeline200ResponseTimelineInner.JSON_PROPERTY_REPLAYS,
   GetPostTimeline200ResponseTimelineInner.JSON_PROPERTY_RETENTION_CURVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetPostTimeline200ResponseTimelineInner {
   public static final String JSON_PROPERTY_DATE = "date";
   @javax.annotation.Nullable
@@ -105,8 +109,7 @@ public class GetPostTimeline200ResponseTimelineInner {
   private Integer views;
 
   public static final String JSON_PROPERTY_FOLLOWS = "follows";
-  @javax.annotation.Nullable
-  private Integer follows;
+  private JsonNullable<Integer> follows = JsonNullable.<Integer>undefined();
 
   public static final String JSON_PROPERTY_COMPLETION_RATE = "completionRate";
   @javax.annotation.Nullable
@@ -408,26 +411,34 @@ public class GetPostTimeline200ResponseTimelineInner {
 
 
   public GetPostTimeline200ResponseTimelineInner follows(@javax.annotation.Nullable Integer follows) {
-    this.follows = follows;
+    this.follows = JsonNullable.<Integer>of(follows);
     return this;
   }
 
   /**
-   * Follows attributed to the post on this date (Instagram feed and stories, TikTok business lane); 0 elsewhere
+   * Follows attributed to the post on this date (Instagram feed and stories, Facebook Reels, TikTok business lane). Null on Instagram Reels and video and on Facebook posts that are not Reels, where Meta has no follows metric; 0 on other platforms.
    * @return follows
    */
   @javax.annotation.Nullable
-  @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
-  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  @JsonIgnore
   public Integer getFollows() {
-    return follows;
+        return follows.orElse(null);
   }
 
-
   @JsonProperty(value = JSON_PROPERTY_FOLLOWS, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setFollows(@javax.annotation.Nullable Integer follows) {
+
+  public JsonNullable<Integer> getFollows_JsonNullable() {
+    return follows;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_FOLLOWS)
+  public void setFollows_JsonNullable(JsonNullable<Integer> follows) {
     this.follows = follows;
+  }
+
+  public void setFollows(@javax.annotation.Nullable Integer follows) {
+    this.follows = JsonNullable.<Integer>of(follows);
   }
 
 
@@ -678,7 +689,7 @@ public class GetPostTimeline200ResponseTimelineInner {
         Objects.equals(this.saves, getPostTimeline200ResponseTimelineInner.saves) &&
         Objects.equals(this.clicks, getPostTimeline200ResponseTimelineInner.clicks) &&
         Objects.equals(this.views, getPostTimeline200ResponseTimelineInner.views) &&
-        Objects.equals(this.follows, getPostTimeline200ResponseTimelineInner.follows) &&
+        equalsNullable(this.follows, getPostTimeline200ResponseTimelineInner.follows) &&
         Objects.equals(this.completionRate, getPostTimeline200ResponseTimelineInner.completionRate) &&
         Objects.equals(this.profileViews, getPostTimeline200ResponseTimelineInner.profileViews) &&
         Objects.equals(this.websiteClicks, getPostTimeline200ResponseTimelineInner.websiteClicks) &&
@@ -689,9 +700,20 @@ public class GetPostTimeline200ResponseTimelineInner {
         Objects.equals(this.retentionCurve, getPostTimeline200ResponseTimelineInner.retentionCurve);
   }
 
+  private static <T> boolean equalsNullable(JsonNullable<T> a, JsonNullable<T> b) {
+    return a == b || (a != null && b != null && a.isPresent() && b.isPresent() && Objects.deepEquals(a.get(), b.get()));
+  }
+
   @Override
   public int hashCode() {
-    return Objects.hash(date, platform, platformPostId, impressions, reach, likes, comments, shares, saves, clicks, views, follows, completionRate, profileViews, websiteClicks, impressionSources, audienceTypes, audienceCountries, replays, retentionCurve);
+    return Objects.hash(date, platform, platformPostId, impressions, reach, likes, comments, shares, saves, clicks, views, hashCodeNullable(follows), completionRate, profileViews, websiteClicks, impressionSources, audienceTypes, audienceCountries, replays, retentionCurve);
+  }
+
+  private static <T> int hashCodeNullable(JsonNullable<T> a) {
+    if (a == null) {
+      return 1;
+    }
+    return a.isPresent() ? Arrays.deepHashCode(new Object[]{a.get()}) : 31;
   }
 
   @Override

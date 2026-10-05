@@ -58,7 +58,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = SelectFacebookPageRequest.SelectFacebookPageRequestDeserializer.class)
 @JsonSerialize(using = SelectFacebookPageRequest.SelectFacebookPageRequestSerializer.class)
 public class SelectFacebookPageRequest extends AbstractOpenApiSchema {

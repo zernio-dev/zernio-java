@@ -66,7 +66,7 @@ import dev.zernio.ApiClient;
   PostAnalytics.JSON_PROPERTY_ENGAGEMENT_RATE,
   PostAnalytics.JSON_PROPERTY_LAST_UPDATED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostAnalytics {
   public static final String JSON_PROPERTY_IMPRESSIONS = "impressions";
   @javax.annotation.Nullable
@@ -363,7 +363,7 @@ public class PostAnalytics {
   }
 
   /**
-   * Instagram feed posts and stories only: organic accounts that started following from this post. Null on Instagram Reels and non-Reels video, where Meta does not expose this metric for the media. 0 for other platforms.
+   * Accounts that started following from this post. Instagram feed posts and stories (organic follows), Facebook Reels (Meta post_video_followers) and the TikTok business lane. Null on Instagram Reels and non-Reels video and on Facebook posts that are not Reels, where Meta does not expose this metric for the media. 0 for other platforms.
    * @return follows
    */
   @javax.annotation.Nullable

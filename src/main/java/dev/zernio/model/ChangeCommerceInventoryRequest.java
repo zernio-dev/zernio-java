@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ChangeCommerceInventoryRequest.JSON_PROPERTY_MODE,
   ChangeCommerceInventoryRequest.JSON_PROPERTY_CHANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ChangeCommerceInventoryRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

@@ -5479,10 +5479,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseAdSetsInnerBudgetTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseAdSetsInnerScheduleTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseAdSetsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseCampaignsInnerBudgetTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseCampaignsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponsePagingTest.java
-src/test/java/dev/zernio/model/GetAdAccountLiveEntities200ResponseTest.java

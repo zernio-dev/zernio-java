@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   UpdateValueRuleSet200Response.JSON_PROPERTY_RULES,
   UpdateValueRuleSet200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateValueRuleSet200Response {
   public static final String JSON_PROPERTY_VALUE_RULE_SET_ID = "valueRuleSetId";
   @javax.annotation.Nullable

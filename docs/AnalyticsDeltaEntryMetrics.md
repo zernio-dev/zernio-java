@@ -17,7 +17,7 @@ Metrics a platform does not report are 0, not absent.
 |**sends** | **Integer** |  |  |
 |**clicks** | **Integer** |  |  |
 |**views** | **Integer** |  |  |
-|**follows** | **Integer** | Follows attributed to this post (Instagram) |  |
+|**follows** | **Integer** | Follows attributed to this post (Instagram feed and stories, Facebook Reels, TikTok business lane) |  |
 |**igReelsAvgWatchTime** | **Integer** | Average watch time per play, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) |  |
 |**igReelsVideoViewTotalTime** | **Integer** | Total watch time including replays, in milliseconds (Instagram Reels, Facebook Reels, TikTok business videos) |  |
 |**reposts** | **Integer** |  |  |

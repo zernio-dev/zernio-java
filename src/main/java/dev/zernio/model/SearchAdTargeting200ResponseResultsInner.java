@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_COUNTRY_CODE,
   SearchAdTargeting200ResponseResultsInner.JSON_PROPERTY_PLATFORM_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SearchAdTargeting200ResponseResultsInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

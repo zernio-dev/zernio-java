@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GetInboxConversationMessages200ResponseMessagesInnerStoryReply.JSON_PROPERTY_STORY_ID,
   GetInboxConversationMessages200ResponseMessagesInnerStoryReply.JSON_PROPERTY_STORY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxConversationMessages200ResponseMessagesInnerStoryReply {
   public static final String JSON_PROPERTY_STORY_ID = "storyId";
   @javax.annotation.Nullable

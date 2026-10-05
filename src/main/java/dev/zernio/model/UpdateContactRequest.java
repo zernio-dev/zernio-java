@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateContactRequest.JSON_PROPERTY_IS_BLOCKED,
   UpdateContactRequest.JSON_PROPERTY_NOTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:30:32.662650680Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-05T13:36:35.213320709Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateContactRequest {
   public static final String JSON_PROPERTY_NAME = "name";
   @javax.annotation.Nullable
