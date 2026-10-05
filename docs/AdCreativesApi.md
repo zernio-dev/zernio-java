@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdMediaWithHttpInfo**](AdCreativesApi.md#getAdMediaWithHttpInfo) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad |
 | [**getAdPreviews**](AdCreativesApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad |
 | [**getAdPreviewsWithHttpInfo**](AdCreativesApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad |
+| [**getAdVideoStatus**](AdCreativesApi.md#getAdVideoStatus) | **GET** /v1/ads/videos/{videoId} | Get ad video processing status |
+| [**getAdVideoStatusWithHttpInfo**](AdCreativesApi.md#getAdVideoStatusWithHttpInfo) | **GET** /v1/ads/videos/{videoId} | Get ad video processing status |
 | [**listAdCreatives**](AdCreativesApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library |
 | [**listAdCreativesWithHttpInfo**](AdCreativesApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library |
 | [**listAdImages**](AdCreativesApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library |
@@ -1146,6 +1148,168 @@ ApiResponse<[**GetAdPreviews200Response**](GetAdPreviews200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Ad not found |  -  |
 | **429** | Meta throttled the request (code &#x60;rate_limited&#x60;, &#x60;platform: meta&#x60;). Every Meta throttle returns 429 here, even when Meta itself answers HTTP 400: codes 4, 17 and 32 (app, user and page request limits), 613 (per-object call limits) and 80000-80014 (business-use-case limits per ad account or business, e.g. 80000 ads insights, 80003 custom audiences, 80004 ads management, 80014 catalog batch). Wait &#x60;Retry-After&#x60; seconds before retrying: it is Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise Meta&#39;s documented 60-second minimum. Business-use-case limits are scoped to one ad account, so other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdVideoStatus
+
+> GetAdVideoStatus200Response getAdVideoStatus(videoId, accountId, adAccountId)
+
+Get ad video processing status
+
+Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String videoId = "videoId_example"; // String | Meta ad video id (numeric).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) the video was uploaded to.
+        try {
+            GetAdVideoStatus200Response result = apiInstance.getAdVideoStatus(videoId, accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#getAdVideoStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| Meta ad video id (numeric). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) the video was uploaded to. | |
+
+### Return type
+
+[**GetAdVideoStatus200Response**](GetAdVideoStatus200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Processing status |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdVideoStatusWithHttpInfo
+
+> ApiResponse<GetAdVideoStatus200Response> getAdVideoStatus getAdVideoStatusWithHttpInfo(videoId, accountId, adAccountId)
+
+Get ad video processing status
+
+Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCreativesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCreativesApi apiInstance = new AdCreativesApi(defaultClient);
+        String videoId = "videoId_example"; // String | Meta ad video id (numeric).
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) the video was uploaded to.
+        try {
+            ApiResponse<GetAdVideoStatus200Response> response = apiInstance.getAdVideoStatusWithHttpInfo(videoId, accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCreativesApi#getAdVideoStatus");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **videoId** | **String**| Meta ad video id (numeric). | |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) the video was uploaded to. | |
+
+### Return type
+
+ApiResponse<[**GetAdVideoStatus200Response**](GetAdVideoStatus200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | Processing status |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 
@@ -2621,7 +2785,7 @@ ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
 
 Upload an ad video
 
-Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
 
 ### Example
 
@@ -2686,6 +2850,7 @@ public class Example {
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Video uploaded and ready |  -  |
+| **202** | async: true. Meta accepted the upload and is processing it |  -  |
 | **400** | Invalid input, or Meta rejected the upload |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
@@ -2697,7 +2862,7 @@ public class Example {
 
 Upload an ad video
 
-Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. The endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s).
+Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
 
 ### Example
 
@@ -2765,6 +2930,7 @@ ApiResponse<[**UploadAdVideo201Response**](UploadAdVideo201Response.md)>
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **201** | Video uploaded and ready |  -  |
+| **202** | async: true. Meta accepted the upload and is processing it |  -  |
 | **400** | Invalid input, or Meta rejected the upload |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |

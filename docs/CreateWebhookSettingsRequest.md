@@ -63,6 +63,7 @@
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
+| AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
 | WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED | &quot;whatsapp.account.name_status_updated&quot; |

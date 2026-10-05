@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAccountDisconnectedWithHttpInfo**](WebhookEventsApi.md#onAccountDisconnectedWithHttpInfo) | **POST** /account.disconnected | Account disconnected event |
 | [**onAdStatusChanged**](WebhookEventsApi.md#onAdStatusChanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdStatusChangedWithHttpInfo) | **POST** /ad.status_changed | Ad status changed event |
+| [**onAdVideoProcessed**](WebhookEventsApi.md#onAdVideoProcessed) | **POST** /ad.video.processed | Ad video processed event |
+| [**onAdVideoProcessedWithHttpInfo**](WebhookEventsApi.md#onAdVideoProcessedWithHttpInfo) | **POST** /ad.video.processed | Ad video processed event |
 | [**onAnalyticsSynced**](WebhookEventsApi.md#onAnalyticsSynced) | **POST** /analytics.synced | Analytics synced event |
 | [**onAnalyticsSyncedWithHttpInfo**](WebhookEventsApi.md#onAnalyticsSyncedWithHttpInfo) | **POST** /analytics.synced | Analytics synced event |
 | [**onApiChangelogPublished**](WebhookEventsApi.md#onApiChangelogPublished) | **POST** /api.changelog.published | API changelog entry published event |
@@ -978,6 +980,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAdStatusChanged** | [**WebhookPayloadAdStatusChanged**](WebhookPayloadAdStatusChanged.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAdVideoProcessed
+
+> void onAdVideoProcessed(webhookPayloadAdVideoProcessed)
+
+Ad video processed event
+
+Fired once per &#x60;POST /v1/ads/videos&#x60; call made with &#x60;async: true&#x60;, when Meta finishes processing the uploaded video. &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60; (Meta could not process it; &#x60;video.error&#x60; carries the reason).  Zernio watches the video for up to about 13 minutes after the upload request. A video still processing after that sends no event, so keep &#x60;GET /v1/ads/videos/{videoId}&#x60; as the source of truth for long videos. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdVideoProcessed webhookPayloadAdVideoProcessed = new WebhookPayloadAdVideoProcessed(); // WebhookPayloadAdVideoProcessed | 
+        try {
+            apiInstance.onAdVideoProcessed(webhookPayloadAdVideoProcessed);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdVideoProcessed");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdVideoProcessed** | [**WebhookPayloadAdVideoProcessed**](WebhookPayloadAdVideoProcessed.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdVideoProcessedWithHttpInfo
+
+> ApiResponse<Void> onAdVideoProcessed onAdVideoProcessedWithHttpInfo(webhookPayloadAdVideoProcessed)
+
+Ad video processed event
+
+Fired once per &#x60;POST /v1/ads/videos&#x60; call made with &#x60;async: true&#x60;, when Meta finishes processing the uploaded video. &#x60;video.status&#x60; is &#x60;ready&#x60; (reference it as &#x60;video.id&#x60; on the create endpoints) or &#x60;error&#x60; (Meta could not process it; &#x60;video.error&#x60; carries the reason).  Zernio watches the video for up to about 13 minutes after the upload request. A video still processing after that sends no event, so keep &#x60;GET /v1/ads/videos/{videoId}&#x60; as the source of truth for long videos. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdVideoProcessed webhookPayloadAdVideoProcessed = new WebhookPayloadAdVideoProcessed(); // WebhookPayloadAdVideoProcessed | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdVideoProcessedWithHttpInfo(webhookPayloadAdVideoProcessed);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdVideoProcessed");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdVideoProcessed** | [**WebhookPayloadAdVideoProcessed**](WebhookPayloadAdVideoProcessed.md)|  | |
 
 ### Return type
 

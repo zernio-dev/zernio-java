@@ -12,6 +12,7 @@
 |**videoUrl** | **String** | Public https URL of the video; downloaded server-side (SSRF-guarded) before chunked upload. Provide exactly one of videoUrl or videoBase64. |  [optional] |
 |**videoBase64** | **String** | Raw base64 video bytes, or a full data URL (the data:video/...;base64, prefix is stripped). Capped by Vercel&#39;s body limit (~4.5 MB payload). Provide exactly one of videoUrl or videoBase64. |  [optional] |
 |**filename** | **String** | Optional filename shown alongside the upload session. Applied only when uploading via videoBase64. |  [optional] |
+|**async** | **Boolean** | true: answer 202 once Meta accepts the upload instead of waiting for processing. Poll GET /v1/ads/videos/{videoId} or subscribe to ad.video.processed. |  [optional] |
 
 
 

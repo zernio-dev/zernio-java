@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.215.4
+- API version: 1.216.0
 
-- Build date: 2026-10-05T13:02:41.447913380Z[Etc/UTC]
+- Build date: 2026-10-05T13:09:23.706311694Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.215.4</version>
+  <version>1.216.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.215.4"
+compile "dev.zernio:zernio-sdk:1.216.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.215.4.jar`
+- `target/zernio-sdk-1.216.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -471,6 +471,8 @@ Class | Method | HTTP request | Description
 *AdCreativesApi* | [**getAdMediaWithHttpInfo**](docs/AdCreativesApi.md#getAdMediaWithHttpInfo) | **GET** /v1/ads/{adId}/media | Direct video and image URLs for an ad
 *AdCreativesApi* | [**getAdPreviews**](docs/AdCreativesApi.md#getAdPreviews) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
 *AdCreativesApi* | [**getAdPreviewsWithHttpInfo**](docs/AdCreativesApi.md#getAdPreviewsWithHttpInfo) | **GET** /v1/ads/{adId}/preview | Render previews of an existing ad
+*AdCreativesApi* | [**getAdVideoStatus**](docs/AdCreativesApi.md#getAdVideoStatus) | **GET** /v1/ads/videos/{videoId} | Get ad video processing status
+*AdCreativesApi* | [**getAdVideoStatusWithHttpInfo**](docs/AdCreativesApi.md#getAdVideoStatusWithHttpInfo) | **GET** /v1/ads/videos/{videoId} | Get ad video processing status
 *AdCreativesApi* | [**listAdCreatives**](docs/AdCreativesApi.md#listAdCreatives) | **GET** /v1/ads/creatives | Creative library
 *AdCreativesApi* | [**listAdCreativesWithHttpInfo**](docs/AdCreativesApi.md#listAdCreativesWithHttpInfo) | **GET** /v1/ads/creatives | Creative library
 *AdCreativesApi* | [**listAdImages**](docs/AdCreativesApi.md#listAdImages) | **GET** /v1/ads/images | Ad image library
@@ -2825,6 +2827,8 @@ Class | Method | HTTP request | Description
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [GetAdTree202Response](docs/GetAdTree202Response.md)
+ - [GetAdVideoStatus200Response](docs/GetAdVideoStatus200Response.md)
+ - [GetAdVideoStatus200ResponseVideo](docs/GetAdVideoStatus200ResponseVideo.md)
  - [GetAdsActivityLog200Response](docs/GetAdsActivityLog200Response.md)
  - [GetAdsActivityLog200ResponsePaging](docs/GetAdsActivityLog200ResponsePaging.md)
  - [GetAdsSearchTerms200Response](docs/GetAdsSearchTerms200Response.md)
@@ -4384,6 +4388,8 @@ Class | Method | HTTP request | Description
  - [UploadAdImageRequest](docs/UploadAdImageRequest.md)
  - [UploadAdVideo201Response](docs/UploadAdVideo201Response.md)
  - [UploadAdVideo201ResponseVideo](docs/UploadAdVideo201ResponseVideo.md)
+ - [UploadAdVideo202Response](docs/UploadAdVideo202Response.md)
+ - [UploadAdVideo202ResponseVideo](docs/UploadAdVideo202ResponseVideo.md)
  - [UploadAdVideoRequest](docs/UploadAdVideoRequest.md)
  - [UploadBusinessAgentFileRequest](docs/UploadBusinessAgentFileRequest.md)
  - [UploadBusinessAgentFileRequest1](docs/UploadBusinessAgentFileRequest1.md)
@@ -4488,6 +4494,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)
  - [WebhookPayloadAdStatusChangedError](docs/WebhookPayloadAdStatusChangedError.md)
  - [WebhookPayloadAdStatusChangedStatus](docs/WebhookPayloadAdStatusChangedStatus.md)
+ - [WebhookPayloadAdVideoProcessed](docs/WebhookPayloadAdVideoProcessed.md)
+ - [WebhookPayloadAdVideoProcessedAccount](docs/WebhookPayloadAdVideoProcessedAccount.md)
+ - [WebhookPayloadAdVideoProcessedVideo](docs/WebhookPayloadAdVideoProcessedVideo.md)
  - [WebhookPayloadAnalyticsSynced](docs/WebhookPayloadAnalyticsSynced.md)
  - [WebhookPayloadAnalyticsSyncedAccount](docs/WebhookPayloadAnalyticsSyncedAccount.md)
  - [WebhookPayloadAnalyticsSyncedSync](docs/WebhookPayloadAnalyticsSyncedSync.md)
