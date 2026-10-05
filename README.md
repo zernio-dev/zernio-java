@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.214.1
+- API version: 1.215.0
 
-- Build date: 2026-10-05T10:32:03.866231915Z[Etc/UTC]
+- Build date: 2026-10-05T10:47:00.582737214Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.214.1</version>
+  <version>1.215.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.214.1"
+compile "dev.zernio:zernio-sdk:1.215.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.214.1.jar`
+- `target/zernio-sdk-1.215.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2903,6 +2903,7 @@ Class | Method | HTTP request | Description
  - [GetFacebookDemographics200ResponseDemographicsCountryInner](docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md)
  - [GetFacebookPages200Response](docs/GetFacebookPages200Response.md)
  - [GetFacebookPages200ResponsePagesInner](docs/GetFacebookPages200ResponsePagesInner.md)
+ - [GetFacebookPages200ResponsePagesInnerInstagramAccount](docs/GetFacebookPages200ResponsePagesInnerInstagramAccount.md)
  - [GetFacebookPostReactions200Response](docs/GetFacebookPostReactions200Response.md)
  - [GetFacebookPostReactions200ResponseBreakdown](docs/GetFacebookPostReactions200ResponseBreakdown.md)
  - [GetFollowerStats403Response](docs/GetFollowerStats403Response.md)

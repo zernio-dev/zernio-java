@@ -919,6 +919,7 @@ docs/GetFacebookDemographics200ResponseDemographics.md
 docs/GetFacebookDemographics200ResponseDemographicsCountryInner.md
 docs/GetFacebookPages200Response.md
 docs/GetFacebookPages200ResponsePagesInner.md
+docs/GetFacebookPages200ResponsePagesInnerInstagramAccount.md
 docs/GetFacebookPostReactions200Response.md
 docs/GetFacebookPostReactions200ResponseBreakdown.md
 docs/GetFollowerStats403Response.md
@@ -3699,6 +3700,7 @@ src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographics.ja
 src/main/java/dev/zernio/model/GetFacebookDemographics200ResponseDemographicsCountryInner.java
 src/main/java/dev/zernio/model/GetFacebookPages200Response.java
 src/main/java/dev/zernio/model/GetFacebookPages200ResponsePagesInner.java
+src/main/java/dev/zernio/model/GetFacebookPages200ResponsePagesInnerInstagramAccount.java
 src/main/java/dev/zernio/model/GetFacebookPostReactions200Response.java
 src/main/java/dev/zernio/model/GetFacebookPostReactions200ResponseBreakdown.java
 src/main/java/dev/zernio/model/GetFollowerStats403Response.java
@@ -5447,3 +5449,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetFacebookPages200ResponsePagesInnerInstagramAccountTest.java

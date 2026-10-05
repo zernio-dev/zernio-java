@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.214.1
+  version: 1.215.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -14249,8 +14249,8 @@ paths:
       - application/json
   /v1/accounts/{accountId}/facebook-page:
     get:
-      description: "Returns all Facebook pages the connected account has access to,\
-        \ including the currently selected page."
+      description: |
+        Returns all Facebook Pages the connected account has access to, including the currently selected Page and the Instagram professional account linked to each Page. Works on `facebook` accounts and on `metaads` accounts (classic and Facebook Login for Business connections). On a business-login `metaads` connection `selectedPageId` is the default Page ads run as, and every listed Page can be passed as `pageId` on POST /v1/ads/create. A classic `metaads` connection has no default Page, so `selectedPageId` is null there.
       operationId: getFacebookPages
       parameters:
       - explode: false
@@ -14280,20 +14280,26 @@ paths:
                   username: mybrand
                   category: Brand
                   fan_count: 5000
+                  instagramAccount:
+                    id: "17841400000000000"
+                    username: mybrand
                 - id: "234567890123456"
                   name: My Other Page
                   username: myotherpage
                   category: Business
                   fan_count: 1200
+                  instagramAccount: null
                 selectedPageId: "123456789012345"
                 cached: true
               schema:
                 $ref: "#/components/schemas/getFacebookPages_200_response"
           description: Pages list
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: Account not found
+          description: "Account not found, or not a facebook or metaads account"
       summary: List Facebook pages
       tags:
       - Connect
@@ -14301,7 +14307,8 @@ paths:
       x-accepts:
       - application/json
     put:
-      description: Switch which Facebook Page is active for a connected account.
+      description: |
+        Switch which Facebook Page is active for a connected account. On a `facebook` account this changes the Page posts publish to. On a Facebook Login for Business `metaads` connection it changes the default Page ads run as (and the Page whose leads are ingested). A classic `metaads` connection has no default Page and answers 400; pass `pageId` per ad on POST /v1/ads/create instead. The Page must be in the list returned by GET (use refresh=true to pick up newly granted Pages).
       operationId: updateFacebookPage
       parameters:
       - explode: false
@@ -14332,18 +14339,20 @@ paths:
                 $ref: "#/components/schemas/updateFacebookPage_200_response"
           description: Page updated
         "400":
-          description: Page not in available pages
+          description: "Page not in available pages, missing selectedPageId, or a\
+            \ classic metaads connection (no default Page)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
-          description: Account not found
+          description: "Account not found, or not a facebook or metaads account"
         "409":
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Another account on this profile is already connected to that
-            destination (profile_platform_conflict).
+          description: "Another account on this profile is already connected to that\
+            \ destination (profile_platform_conflict), or the Page has no stored access\
+            \ token (reconnect_required)."
       summary: Update Facebook page
       tags:
       - Connect
@@ -95802,9 +95811,27 @@ components:
           type: string
         revoked:
           type: boolean
+    getFacebookPages_200_response_pages_inner_instagramAccount:
+      description: "The Instagram professional account linked to the Page (Meta instagram_business_account),\
+        \ or null when none is linked or the list was served from a cache stored before\
+        \ this field existed (pass refresh=true to re-read it)."
+      example:
+        id: id
+        username: username
+      properties:
+        id:
+          description: "Instagram professional account id, usable as instagramAccountId\
+            \ on POST /v1/ads/create"
+          type: string
+        username:
+          nullable: true
+          type: string
     getFacebookPages_200_response_pages_inner:
       example:
         fan_count: 0
+        instagramAccount:
+          id: id
+          username: username
         name: name
         id: id
         category: category
@@ -95820,15 +95847,23 @@ components:
           type: string
         fan_count:
           type: integer
+        instagramAccount:
+          $ref: "#/components/schemas/getFacebookPages_200_response_pages_inner_instagramAccount"
     getFacebookPages_200_response:
       example:
         pages:
         - fan_count: 0
+          instagramAccount:
+            id: id
+            username: username
           name: name
           id: id
           category: category
           username: username
         - fan_count: 0
+          instagramAccount:
+            id: id
+            username: username
           name: name
           id: id
           category: category
@@ -95841,6 +95876,7 @@ components:
             $ref: "#/components/schemas/getFacebookPages_200_response_pages_inner"
           type: array
         selectedPageId:
+          nullable: true
           type: string
         cached:
           description: "false when this response was just read from Meta (cold cache\

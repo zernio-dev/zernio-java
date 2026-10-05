@@ -12,6 +12,7 @@
 |**username** | **String** |  |  [optional] |
 |**category** | **String** |  |  [optional] |
 |**fanCount** | **Integer** |  |  [optional] |
+|**instagramAccount** | [**GetFacebookPages200ResponsePagesInnerInstagramAccount**](GetFacebookPages200ResponsePagesInnerInstagramAccount.md) |  |  [optional] |
 
 
 
