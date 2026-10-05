@@ -16,6 +16,7 @@ docs/ActivateWorkflow200Response.md
 docs/ActivateWorkflow200ResponseWorkflow.md
 docs/Ad.md
 docs/AdAccountsApi.md
+docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
 docs/AdAnalyticsResponseAd.md
 docs/AdAnalyticsResponseAnalytics.md
@@ -2821,6 +2822,7 @@ src/main/java/dev/zernio/model/ActivateSequence200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200ResponseWorkflow.java
 src/main/java/dev/zernio/model/Ad.java
+src/main/java/dev/zernio/model/AdActivationStatus.java
 src/main/java/dev/zernio/model/AdAnalyticsResponse.java
 src/main/java/dev/zernio/model/AdAnalyticsResponseAd.java
 src/main/java/dev/zernio/model/AdAnalyticsResponseAnalytics.java
@@ -5449,3 +5451,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdActivationStatusTest.java

@@ -1,7 +1,7 @@
 openapi: 3.1.0
 info:
   title: Zernio API
-  version: "1.215.2"
+  version: "1.215.3"
   description: |
     API reference for Zernio. Authenticate with a Bearer API key.
     Base URL: https://zernio.com/api
@@ -2469,8 +2469,7 @@ components:
             only when none of them is PAUSED. Rejected with a 400 alongside
             `adSetId` (that ad set already exists).
         adStatus:
-          type: string
-          enum: [ACTIVE, PAUSED]
+          $ref: '#/components/schemas/AdActivationStatus'
           description: |
             Ad-level status, same semantics as `POST /v1/ads/create`. Sets the
             new ads' switch and overrides `status` for them, also with
@@ -10953,6 +10952,10 @@ components:
     AdStatus:
       type: string
       enum: [active, paused, pending_review, rejected, completed, cancelled, error]
+    AdActivationStatus:
+      type: string
+      enum: [ACTIVE, PAUSED]
+      description: "Request-side publish switch for `adStatus` on ad creation endpoints only (`status`, `campaignStatus` and `adSetStatus` carry their own inline ACTIVE/PAUSED enum there; the status-update endpoints are a separate lowercase `active`/`paused` enum). Distinct from `AdStatus` (the platform-reported delivery status returned on reads)."
     AdReviewStatus:
       type: string
       enum: [in_review, approved, rejected, with_issues]
@@ -61306,8 +61309,7 @@ paths:
 
                     Rejected with a 400 alongside `adSetId` (that ad set already exists; change it with PUT /v1/ads/ad-sets/{adSetId}/status). Performance Max and Demand Gen accept PAUSED only.
                 adStatus:
-                  type: string
-                  enum: [ACTIVE, PAUSED]
+                  $ref: '#/components/schemas/AdActivationStatus'
                   description: |
                     Sets the switch of the new ad alone, also when attaching to an existing ad set with `adSetId`, and overrides `status` for it. Same precedence as `adSetStatus`. Omitted, it follows `status`.
 

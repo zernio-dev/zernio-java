@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.215.2
+  version: 1.215.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -62635,7 +62635,7 @@ components:
         whatsappPhoneNumber: whatsappPhoneNumber
         endDate: endDate
         ageMax: 49
-        adStatus: ACTIVE
+        adStatus: ""
         creatives:
         - existingPostId: existingPostId
           objectStoryId: objectStoryId
@@ -63323,15 +63323,13 @@ components:
           - PAUSED
           type: string
         adStatus:
+          allOf:
+          - $ref: "#/components/schemas/AdActivationStatus"
           description: |
             Ad-level status, same semantics as `POST /v1/ads/create`. Sets the
             new ads' switch and overrides `status` for them, also with
             `adSetId`. Send `campaignStatus`, `adSetStatus` and `adStatus` all
             PAUSED to create every object paused.
-          enum:
-          - ACTIVE
-          - PAUSED
-          type: string
         bidStrategy:
           description: |
             Meta bid strategy applied to the shared ad set. Defaults to
@@ -78239,6 +78237,16 @@ components:
       - completed
       - cancelled
       - error
+      type: string
+    AdActivationStatus:
+      description: "Request-side publish switch for `adStatus` on ad creation endpoints\
+        \ only (`status`, `campaignStatus` and `adSetStatus` carry their own inline\
+        \ ACTIVE/PAUSED enum there; the status-update endpoints are a separate lowercase\
+        \ `active`/`paused` enum). Distinct from `AdStatus` (the platform-reported\
+        \ delivery status returned on reads)."
+      enum:
+      - ACTIVE
+      - PAUSED
       type: string
     AdReviewStatus:
       description: "Platform-side review state, independent of the delivery `status`\
@@ -132240,14 +132248,12 @@ components:
           - PAUSED
           type: string
         adStatus:
+          allOf:
+          - $ref: "#/components/schemas/AdActivationStatus"
           description: |
             Sets the switch of the new ad alone, also when attaching to an existing ad set with `adSetId`, and overrides `status` for it. Same precedence as `adSetStatus`. Omitted, it follows `status`.
 
             X returns a 400: a promoted post has no switch of its own, so hold the line item with `adSetStatus`. `PAUSED` with `buyingType: RESERVED` returns a 400 (Meta creates the first Reach and Frequency ad ACTIVE). Performance Max and Demand Gen accept PAUSED only.
-          enum:
-          - ACTIVE
-          - PAUSED
-          type: string
         budgetLevel:
           default: adset
           description: |

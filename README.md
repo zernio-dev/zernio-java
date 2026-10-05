@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.215.2
+- API version: 1.215.3
 
-- Build date: 2026-10-05T11:47:31.871501112Z[Etc/UTC]
+- Build date: 2026-10-05T12:54:54.289512980Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.215.2</version>
+  <version>1.215.3</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.215.2"
+compile "dev.zernio:zernio-sdk:1.215.3"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.215.2.jar`
+- `target/zernio-sdk-1.215.3.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2024,6 +2024,7 @@ Class | Method | HTTP request | Description
  - [ActivateWorkflow200Response](docs/ActivateWorkflow200Response.md)
  - [ActivateWorkflow200ResponseWorkflow](docs/ActivateWorkflow200ResponseWorkflow.md)
  - [Ad](docs/Ad.md)
+ - [AdActivationStatus](docs/AdActivationStatus.md)
  - [AdAnalyticsResponse](docs/AdAnalyticsResponse.md)
  - [AdAnalyticsResponseAd](docs/AdAnalyticsResponseAd.md)
  - [AdAnalyticsResponseAnalytics](docs/AdAnalyticsResponseAnalytics.md)
