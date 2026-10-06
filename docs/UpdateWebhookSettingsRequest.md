@@ -95,6 +95,14 @@
 | COMMERCE_PRODUCT_CREATED | &quot;commerce.product.created&quot; |
 | COMMERCE_PRODUCT_UPDATED | &quot;commerce.product.updated&quot; |
 | COMMERCE_PRODUCT_DELETED | &quot;commerce.product.deleted&quot; |
+| CONTACT_TAG_ADDED | &quot;contact.tag_added&quot; |
+| CONTACT_TAG_REMOVED | &quot;contact.tag_removed&quot; |
+| CONTACT_FIELD_CHANGED | &quot;contact.field_changed&quot; |
+| SEQUENCE_ENROLLED | &quot;sequence.enrolled&quot; |
+| SEQUENCE_EXITED | &quot;sequence.exited&quot; |
+| WORKFLOW_RUN_STARTED | &quot;workflow.run.started&quot; |
+| WORKFLOW_RUN_COMPLETED | &quot;workflow.run.completed&quot; |
+| WORKFLOW_RUN_FAILED | &quot;workflow.run.failed&quot; |
 
 
 

@@ -28,6 +28,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**pauseWorkflowWithHttpInfo**](WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow |
 | [**restoreWorkflowVersion**](WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
 | [**restoreWorkflowVersionWithHttpInfo**](WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version |
+| [**triggerApiCallWorkflow**](WorkflowsApi.md#triggerApiCallWorkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
+| [**triggerApiCallWorkflowWithHttpInfo**](WorkflowsApi.md#triggerApiCallWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow |
 | [**triggerWorkflow**](WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**triggerWorkflowWithHttpInfo**](WorkflowsApi.md#triggerWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run |
 | [**updateWorkflow**](WorkflowsApi.md#updateWorkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow |
@@ -1855,6 +1857,160 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
 | **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## triggerApiCallWorkflow
+
+> TriggerApiCallWorkflow201Response triggerApiCallWorkflow(workflowId, triggerApiCallWorkflowRequest)
+
+Start an API-triggered workflow
+
+Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;. Pass exactly one target: &#x60;conversationId&#x60; (a conversation on the workflow&#39;s account), &#x60;contactId&#x60; (resolved to that contact&#39;s conversation on the workflow&#39;s account), or &#x60;to&#x60; (WhatsApp workflows only: a phone number, whose conversation is found or created). &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WorkflowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WorkflowsApi apiInstance = new WorkflowsApi(defaultClient);
+        String workflowId = "workflowId_example"; // String | 
+        TriggerApiCallWorkflowRequest triggerApiCallWorkflowRequest = new TriggerApiCallWorkflowRequest(); // TriggerApiCallWorkflowRequest | 
+        try {
+            TriggerApiCallWorkflow201Response result = apiInstance.triggerApiCallWorkflow(workflowId, triggerApiCallWorkflowRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WorkflowsApi#triggerApiCallWorkflow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**|  | |
+| **triggerApiCallWorkflowRequest** | [**TriggerApiCallWorkflowRequest**](TriggerApiCallWorkflowRequest.md)|  | |
+
+### Return type
+
+[**TriggerApiCallWorkflow201Response**](TriggerApiCallWorkflow201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Run started |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## triggerApiCallWorkflowWithHttpInfo
+
+> ApiResponse<TriggerApiCallWorkflow201Response> triggerApiCallWorkflow triggerApiCallWorkflowWithHttpInfo(workflowId, triggerApiCallWorkflowRequest)
+
+Start an API-triggered workflow
+
+Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;. Pass exactly one target: &#x60;conversationId&#x60; (a conversation on the workflow&#39;s account), &#x60;contactId&#x60; (resolved to that contact&#39;s conversation on the workflow&#39;s account), or &#x60;to&#x60; (WhatsApp workflows only: a phone number, whose conversation is found or created). &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WorkflowsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WorkflowsApi apiInstance = new WorkflowsApi(defaultClient);
+        String workflowId = "workflowId_example"; // String | 
+        TriggerApiCallWorkflowRequest triggerApiCallWorkflowRequest = new TriggerApiCallWorkflowRequest(); // TriggerApiCallWorkflowRequest | 
+        try {
+            ApiResponse<TriggerApiCallWorkflow201Response> response = apiInstance.triggerApiCallWorkflowWithHttpInfo(workflowId, triggerApiCallWorkflowRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WorkflowsApi#triggerApiCallWorkflow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**|  | |
+| **triggerApiCallWorkflowRequest** | [**TriggerApiCallWorkflowRequest**](TriggerApiCallWorkflowRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**TriggerApiCallWorkflow201Response**](TriggerApiCallWorkflow201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Run started |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

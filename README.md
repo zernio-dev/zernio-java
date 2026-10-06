@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.222.0
+- API version: 1.223.0
 
-- Build date: 2026-10-06T15:24:17.993310951Z[Etc/UTC]
+- Build date: 2026-10-06T15:42:25.294240430Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.222.0</version>
+  <version>1.223.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.222.0"
+compile "dev.zernio:zernio-sdk:1.223.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.222.0.jar`
+- `target/zernio-sdk-1.223.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -137,24 +137,36 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**deleteInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#deleteInstagramIceBreakersWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/instagram-ice-breakers | Delete IG ice breakers
 *AccountSettingsApi* | [**deleteMessengerGetStarted**](docs/AccountSettingsApi.md#deleteMessengerGetStarted) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button
 *AccountSettingsApi* | [**deleteMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerGetStartedWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-get-started | Delete FB Get Started button
-*AccountSettingsApi* | [**deleteMessengerMenu**](docs/AccountSettingsApi.md#deleteMessengerMenu) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete FB persistent menu
-*AccountSettingsApi* | [**deleteMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerMenuWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete FB persistent menu
+*AccountSettingsApi* | [**deleteMessengerGreeting**](docs/AccountSettingsApi.md#deleteMessengerGreeting) | **DELETE** /v1/accounts/{accountId}/messenger-greeting | Delete FB greeting text
+*AccountSettingsApi* | [**deleteMessengerGreetingWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerGreetingWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-greeting | Delete FB greeting text
+*AccountSettingsApi* | [**deleteMessengerIceBreakers**](docs/AccountSettingsApi.md#deleteMessengerIceBreakers) | **DELETE** /v1/accounts/{accountId}/messenger-ice-breakers | Delete FB ice breakers
+*AccountSettingsApi* | [**deleteMessengerIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerIceBreakersWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-ice-breakers | Delete FB ice breakers
+*AccountSettingsApi* | [**deleteMessengerMenu**](docs/AccountSettingsApi.md#deleteMessengerMenu) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete persistent menu
+*AccountSettingsApi* | [**deleteMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerMenuWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete persistent menu
 *AccountSettingsApi* | [**deleteTelegramCommands**](docs/AccountSettingsApi.md#deleteTelegramCommands) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
 *AccountSettingsApi* | [**deleteTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#deleteTelegramCommandsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
 *AccountSettingsApi* | [**getInstagramIceBreakers**](docs/AccountSettingsApi.md#getInstagramIceBreakers) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
 *AccountSettingsApi* | [**getInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#getInstagramIceBreakersWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
 *AccountSettingsApi* | [**getMessengerGetStarted**](docs/AccountSettingsApi.md#getMessengerGetStarted) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button
 *AccountSettingsApi* | [**getMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerGetStartedWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button
-*AccountSettingsApi* | [**getMessengerMenu**](docs/AccountSettingsApi.md#getMessengerMenu) | **GET** /v1/accounts/{accountId}/messenger-menu | Get FB persistent menu
-*AccountSettingsApi* | [**getMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerMenuWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-menu | Get FB persistent menu
+*AccountSettingsApi* | [**getMessengerGreeting**](docs/AccountSettingsApi.md#getMessengerGreeting) | **GET** /v1/accounts/{accountId}/messenger-greeting | Get FB greeting text
+*AccountSettingsApi* | [**getMessengerGreetingWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerGreetingWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-greeting | Get FB greeting text
+*AccountSettingsApi* | [**getMessengerIceBreakers**](docs/AccountSettingsApi.md#getMessengerIceBreakers) | **GET** /v1/accounts/{accountId}/messenger-ice-breakers | Get FB ice breakers
+*AccountSettingsApi* | [**getMessengerIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerIceBreakersWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-ice-breakers | Get FB ice breakers
+*AccountSettingsApi* | [**getMessengerMenu**](docs/AccountSettingsApi.md#getMessengerMenu) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu
+*AccountSettingsApi* | [**getMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#getMessengerMenuWithHttpInfo) | **GET** /v1/accounts/{accountId}/messenger-menu | Get persistent menu
 *AccountSettingsApi* | [**getTelegramCommands**](docs/AccountSettingsApi.md#getTelegramCommands) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**getTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#getTelegramCommandsWithHttpInfo) | **GET** /v1/accounts/{accountId}/telegram-commands | Get TG bot commands
 *AccountSettingsApi* | [**setInstagramIceBreakers**](docs/AccountSettingsApi.md#setInstagramIceBreakers) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#setInstagramIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/instagram-ice-breakers | Set IG ice breakers
 *AccountSettingsApi* | [**setMessengerGetStarted**](docs/AccountSettingsApi.md#setMessengerGetStarted) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
 *AccountSettingsApi* | [**setMessengerGetStartedWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerGetStartedWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-get-started | Set FB Get Started button
-*AccountSettingsApi* | [**setMessengerMenu**](docs/AccountSettingsApi.md#setMessengerMenu) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set FB persistent menu
-*AccountSettingsApi* | [**setMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set FB persistent menu
+*AccountSettingsApi* | [**setMessengerGreeting**](docs/AccountSettingsApi.md#setMessengerGreeting) | **PUT** /v1/accounts/{accountId}/messenger-greeting | Set FB greeting text
+*AccountSettingsApi* | [**setMessengerGreetingWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerGreetingWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-greeting | Set FB greeting text
+*AccountSettingsApi* | [**setMessengerIceBreakers**](docs/AccountSettingsApi.md#setMessengerIceBreakers) | **PUT** /v1/accounts/{accountId}/messenger-ice-breakers | Set FB ice breakers
+*AccountSettingsApi* | [**setMessengerIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerIceBreakersWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-ice-breakers | Set FB ice breakers
+*AccountSettingsApi* | [**setMessengerMenu**](docs/AccountSettingsApi.md#setMessengerMenu) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu
+*AccountSettingsApi* | [**setMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu
 *AccountSettingsApi* | [**setTelegramCommands**](docs/AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountSettingsApi* | [**setTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
@@ -1003,6 +1015,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
 *ConnectApi* | [**connectWhatsAppEmbeddedSignupWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignupWithHttpInfo) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
+*ConnectApi* | [**connectWhopAdsCredentials**](docs/ConnectApi.md#connectWhopAdsCredentials) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account
+*ConnectApi* | [**connectWhopAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhopAdsCredentialsWithHttpInfo) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account
 *ConnectApi* | [**connectWordPressWithApplicationPassword**](docs/ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**connectWordPressWithApplicationPasswordWithHttpInfo**](docs/ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
@@ -1357,6 +1371,8 @@ Class | Method | HTTP request | Description
 *MentionsApi* | [**listInboxMentionsWithHttpInfo**](docs/MentionsApi.md#listInboxMentionsWithHttpInfo) | **GET** /v1/inbox/mentions | List mentions
 *MentionsApi* | [**replyToMention**](docs/MentionsApi.md#replyToMention) | **POST** /v1/inbox/mentions/reply | Reply to a mention
 *MentionsApi* | [**replyToMentionWithHttpInfo**](docs/MentionsApi.md#replyToMentionWithHttpInfo) | **POST** /v1/inbox/mentions/reply | Reply to a mention
+*MessagesApi* | [**acceptConversationRequest**](docs/MessagesApi.md#acceptConversationRequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request
+*MessagesApi* | [**acceptConversationRequestWithHttpInfo**](docs/MessagesApi.md#acceptConversationRequestWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
@@ -1383,8 +1399,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**sendInboxMessageWithHttpInfo**](docs/MessagesApi.md#sendInboxMessageWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message
 *MessagesApi* | [**sendTypingIndicator**](docs/MessagesApi.md#sendTypingIndicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
 *MessagesApi* | [**sendTypingIndicatorWithHttpInfo**](docs/MessagesApi.md#sendTypingIndicatorWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator
-*MessagesApi* | [**setConversationThreadControl**](docs/MessagesApi.md#setConversationThreadControl) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent
-*MessagesApi* | [**setConversationThreadControlWithHttpInfo**](docs/MessagesApi.md#setConversationThreadControlWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent
+*MessagesApi* | [**setConversationThreadControl**](docs/MessagesApi.md#setConversationThreadControl) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Change who answers a conversation (handover)
+*MessagesApi* | [**setConversationThreadControlWithHttpInfo**](docs/MessagesApi.md#setConversationThreadControlWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Change who answers a conversation (handover)
 *MessagesApi* | [**updateInboxConversation**](docs/MessagesApi.md#updateInboxConversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**updateInboxConversationWithHttpInfo**](docs/MessagesApi.md#updateInboxConversationWithHttpInfo) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status
 *MessagesApi* | [**uploadMediaDirect**](docs/MessagesApi.md#uploadMediaDirect) | **POST** /v1/media/upload-direct | Upload media file
@@ -1809,6 +1825,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**createWhatsAppGroupInviteLinkWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppGroupInviteLinkWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link
 *WhatsAppApi* | [**createWhatsAppTemplate**](docs/WhatsAppApi.md#createWhatsAppTemplate) | **POST** /v1/whatsapp/templates | Create template
 *WhatsAppApi* | [**createWhatsAppTemplateWithHttpInfo**](docs/WhatsAppApi.md#createWhatsAppTemplateWithHttpInfo) | **POST** /v1/whatsapp/templates | Create template
+*WhatsAppApi* | [**deleteWhatsAppConversationalAutomation**](docs/WhatsAppApi.md#deleteWhatsAppConversationalAutomation) | **DELETE** /v1/whatsapp/conversational-automation | Clear ice breakers and commands
+*WhatsAppApi* | [**deleteWhatsAppConversationalAutomationWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppConversationalAutomationWithHttpInfo) | **DELETE** /v1/whatsapp/conversational-automation | Clear ice breakers and commands
 *WhatsAppApi* | [**deleteWhatsAppGroupChat**](docs/WhatsAppApi.md#deleteWhatsAppGroupChat) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**deleteWhatsAppGroupChatWithHttpInfo**](docs/WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group
 *WhatsAppApi* | [**deleteWhatsAppTemplate**](docs/WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template
@@ -1825,6 +1843,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**getWhatsAppBusinessProfileWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppBusinessProfileWithHttpInfo) | **GET** /v1/whatsapp/business-profile | Get business profile
 *WhatsAppApi* | [**getWhatsAppCommerceSettings**](docs/WhatsAppApi.md#getWhatsAppCommerceSettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings
 *WhatsAppApi* | [**getWhatsAppCommerceSettingsWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppCommerceSettingsWithHttpInfo) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings
+*WhatsAppApi* | [**getWhatsAppConversationalAutomation**](docs/WhatsAppApi.md#getWhatsAppConversationalAutomation) | **GET** /v1/whatsapp/conversational-automation | Get ice breakers and commands
+*WhatsAppApi* | [**getWhatsAppConversationalAutomationWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppConversationalAutomationWithHttpInfo) | **GET** /v1/whatsapp/conversational-automation | Get ice breakers and commands
 *WhatsAppApi* | [**getWhatsAppDataset**](docs/WhatsAppApi.md#getWhatsAppDataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**getWhatsAppDatasetWithHttpInfo**](docs/WhatsAppApi.md#getWhatsAppDatasetWithHttpInfo) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset
 *WhatsAppApi* | [**getWhatsAppDisplayName**](docs/WhatsAppApi.md#getWhatsAppDisplayName) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status
@@ -1865,6 +1885,8 @@ Class | Method | HTTP request | Description
 *WhatsAppApi* | [**requestWhatsAppVerificationCodeWithHttpInfo**](docs/WhatsAppApi.md#requestWhatsAppVerificationCodeWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number
 *WhatsAppApi* | [**sendWhatsAppConversion**](docs/WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
 *WhatsAppApi* | [**sendWhatsAppConversionWithHttpInfo**](docs/WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event
+*WhatsAppApi* | [**setWhatsAppConversationalAutomation**](docs/WhatsAppApi.md#setWhatsAppConversationalAutomation) | **POST** /v1/whatsapp/conversational-automation | Set ice breakers and commands
+*WhatsAppApi* | [**setWhatsAppConversationalAutomationWithHttpInfo**](docs/WhatsAppApi.md#setWhatsAppConversationalAutomationWithHttpInfo) | **POST** /v1/whatsapp/conversational-automation | Set ice breakers and commands
 *WhatsAppApi* | [**setWhatsappBusinessUsername**](docs/WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username
 *WhatsAppApi* | [**setWhatsappBusinessUsernameWithHttpInfo**](docs/WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username
 *WhatsAppApi* | [**unblockWhatsAppUsers**](docs/WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users
@@ -2015,6 +2037,8 @@ Class | Method | HTTP request | Description
 *WorkflowsApi* | [**pauseWorkflowWithHttpInfo**](docs/WorkflowsApi.md#pauseWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/pause | Pause workflow
 *WorkflowsApi* | [**restoreWorkflowVersion**](docs/WorkflowsApi.md#restoreWorkflowVersion) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
 *WorkflowsApi* | [**restoreWorkflowVersionWithHttpInfo**](docs/WorkflowsApi.md#restoreWorkflowVersionWithHttpInfo) | **POST** /v1/workflows/{workflowId}/versions/{version}/restore | Restore a workflow version
+*WorkflowsApi* | [**triggerApiCallWorkflow**](docs/WorkflowsApi.md#triggerApiCallWorkflow) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow
+*WorkflowsApi* | [**triggerApiCallWorkflowWithHttpInfo**](docs/WorkflowsApi.md#triggerApiCallWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/trigger | Start an API-triggered workflow
 *WorkflowsApi* | [**triggerWorkflow**](docs/WorkflowsApi.md#triggerWorkflow) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
 *WorkflowsApi* | [**triggerWorkflowWithHttpInfo**](docs/WorkflowsApi.md#triggerWorkflowWithHttpInfo) | **POST** /v1/workflows/{workflowId}/executions | Manually start a workflow run
 *WorkflowsApi* | [**updateWorkflow**](docs/WorkflowsApi.md#updateWorkflow) | **PATCH** /v1/workflows/{workflowId} | Update workflow
@@ -2023,6 +2047,9 @@ Class | Method | HTTP request | Description
 
 ## Documentation for Models
 
+ - [AcceptConversationRequest200Response](docs/AcceptConversationRequest200Response.md)
+ - [AcceptConversationRequest200ResponseData](docs/AcceptConversationRequest200ResponseData.md)
+ - [AcceptConversationRequestRequest](docs/AcceptConversationRequestRequest.md)
  - [AccountWithFollowerStats](docs/AccountWithFollowerStats.md)
  - [AccountWithFollowerStatsAllOfAccountStats](docs/AccountWithFollowerStatsAllOfAccountStats.md)
  - [AccountsListResponse](docs/AccountsListResponse.md)
@@ -2297,8 +2324,15 @@ Class | Method | HTTP request | Description
  - [CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
  - [CheckVerification200Response](docs/CheckVerification200Response.md)
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
+ - [CommentAutomationActions](docs/CommentAutomationActions.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
+ - [CommentAutomationDmMedia](docs/CommentAutomationDmMedia.md)
  - [CommentAutomationFollowGate](docs/CommentAutomationFollowGate.md)
+ - [CommentAutomationLog](docs/CommentAutomationLog.md)
+ - [CommentAutomationLogPlatformError](docs/CommentAutomationLogPlatformError.md)
+ - [CommentAutomationQuickReply](docs/CommentAutomationQuickReply.md)
+ - [CommentAutomationRepeatPolicy](docs/CommentAutomationRepeatPolicy.md)
+ - [CommentAutomationStats](docs/CommentAutomationStats.md)
  - [CommentAutomationTemplate](docs/CommentAutomationTemplate.md)
  - [CommentAutomationTemplateElement](docs/CommentAutomationTemplateElement.md)
  - [CommentAutomationTemplateElementButtonsInner](docs/CommentAutomationTemplateElementButtonsInner.md)
@@ -2360,6 +2394,8 @@ Class | Method | HTTP request | Description
  - [ConnectWhatsAppEmbeddedSignup200Response](docs/ConnectWhatsAppEmbeddedSignup200Response.md)
  - [ConnectWhatsAppEmbeddedSignup200ResponseAccount](docs/ConnectWhatsAppEmbeddedSignup200ResponseAccount.md)
  - [ConnectWhatsAppEmbeddedSignupRequest](docs/ConnectWhatsAppEmbeddedSignupRequest.md)
+ - [ConnectWhopAdsCredentials200Response](docs/ConnectWhopAdsCredentials200Response.md)
+ - [ConnectWhopAdsCredentialsRequest](docs/ConnectWhopAdsCredentialsRequest.md)
  - [ConnectWordPressWithApplicationPassword200Response](docs/ConnectWordPressWithApplicationPassword200Response.md)
  - [ConnectWordPressWithApplicationPassword200ResponseAccount](docs/ConnectWordPressWithApplicationPassword200ResponseAccount.md)
  - [ConnectWordPressWithApplicationPasswordRequest](docs/ConnectWordPressWithApplicationPasswordRequest.md)
@@ -2433,7 +2469,6 @@ Class | Method | HTTP request | Description
  - [CreateCallAdRequest](docs/CreateCallAdRequest.md)
  - [CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
- - [CreateCommentAutomation200ResponseAutomationStats](docs/CreateCommentAutomation200ResponseAutomationStats.md)
  - [CreateCommentAutomationRequest](docs/CreateCommentAutomationRequest.md)
  - [CreateCommerceCatalogSync202Response](docs/CreateCommerceCatalogSync202Response.md)
  - [CreateCommerceCatalogSyncRequest](docs/CreateCommerceCatalogSyncRequest.md)
@@ -2864,6 +2899,7 @@ Class | Method | HTTP request | Description
  - [GetBroadcast200Response](docs/GetBroadcast200Response.md)
  - [GetBroadcast200ResponseBroadcast](docs/GetBroadcast200ResponseBroadcast.md)
  - [GetBroadcast200ResponseBroadcastMessage](docs/GetBroadcast200ResponseBroadcastMessage.md)
+ - [GetBroadcast200ResponseBroadcastSegmentFilters](docs/GetBroadcast200ResponseBroadcastSegmentFilters.md)
  - [GetBroadcast200ResponseBroadcastTemplate](docs/GetBroadcast200ResponseBroadcastTemplate.md)
  - [GetBusinessAgentBudget200Response](docs/GetBusinessAgentBudget200Response.md)
  - [GetBusinessAgentConnectorLogs200Response](docs/GetBusinessAgentConnectorLogs200Response.md)
@@ -2884,8 +2920,6 @@ Class | Method | HTTP request | Description
  - [GetCampaignTargeting200ResponseLocationsInner](docs/GetCampaignTargeting200ResponseLocationsInner.md)
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
- - [GetCommentAutomation200ResponseLogsInner](docs/GetCommentAutomation200ResponseLogsInner.md)
- - [GetCommentAutomation200ResponseLogsInnerPlatformError](docs/GetCommentAutomation200ResponseLogsInnerPlatformError.md)
  - [GetCommerceStore200Response](docs/GetCommerceStore200Response.md)
  - [GetConnectUrl200Response](docs/GetConnectUrl200Response.md)
  - [GetContact200Response](docs/GetContact200Response.md)
@@ -3054,6 +3088,8 @@ Class | Method | HTTP request | Description
  - [GetMessageAttachment200Response](docs/GetMessageAttachment200Response.md)
  - [GetMessengerGetStarted200Response](docs/GetMessengerGetStarted200Response.md)
  - [GetMessengerGetStarted200ResponseData](docs/GetMessengerGetStarted200ResponseData.md)
+ - [GetMessengerGreeting200Response](docs/GetMessengerGreeting200Response.md)
+ - [GetMessengerIceBreakers200Response](docs/GetMessengerIceBreakers200Response.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
  - [GetPageWebhookSubscription200Response](docs/GetPageWebhookSubscription200Response.md)
  - [GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
@@ -3154,6 +3190,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppCalling200Response](docs/GetWhatsAppCalling200Response.md)
  - [GetWhatsAppCallingConfig200Response](docs/GetWhatsAppCallingConfig200Response.md)
  - [GetWhatsAppCommerceSettings200Response](docs/GetWhatsAppCommerceSettings200Response.md)
+ - [GetWhatsAppConversationalAutomation200Response](docs/GetWhatsAppConversationalAutomation200Response.md)
  - [GetWhatsAppDataset200Response](docs/GetWhatsAppDataset200Response.md)
  - [GetWhatsAppDisplayName200Response](docs/GetWhatsAppDisplayName200Response.md)
  - [GetWhatsAppDisplayName200ResponseDisplayName](docs/GetWhatsAppDisplayName200ResponseDisplayName.md)
@@ -3450,7 +3487,6 @@ Class | Method | HTTP request | Description
  - [ListCommentAutomationLogs200ResponseMissesSamplesInner](docs/ListCommentAutomationLogs200ResponseMissesSamplesInner.md)
  - [ListCommentAutomations200Response](docs/ListCommentAutomations200Response.md)
  - [ListCommentAutomations200ResponseAutomationsInner](docs/ListCommentAutomations200ResponseAutomationsInner.md)
- - [ListCommentAutomations200ResponseAutomationsInnerStats](docs/ListCommentAutomations200ResponseAutomationsInnerStats.md)
  - [ListCommerceCatalogSyncs200Response](docs/ListCommerceCatalogSyncs200Response.md)
  - [ListCommerceChannels200Response](docs/ListCommerceChannels200Response.md)
  - [ListCommerceCollections200Response](docs/ListCommerceCollections200Response.md)
@@ -3656,6 +3692,9 @@ Class | Method | HTTP request | Description
  - [MediaSubtitle](docs/MediaSubtitle.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MessagingCarouselCard](docs/MessagingCarouselCard.md)
+ - [MessengerGreeting](docs/MessengerGreeting.md)
+ - [MessengerIceBreakerLocale](docs/MessengerIceBreakerLocale.md)
+ - [MessengerIceBreakerLocaleCallToActionsInner](docs/MessengerIceBreakerLocaleCallToActionsInner.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
  - [MetaAssignedUser](docs/MetaAssignedUser.md)
  - [MetaBusinessUser](docs/MetaBusinessUser.md)
@@ -4087,12 +4126,15 @@ Class | Method | HTTP request | Description
  - [SetInstagramIceBreakersRequest](docs/SetInstagramIceBreakersRequest.md)
  - [SetInstagramIceBreakersRequestIceBreakersInner](docs/SetInstagramIceBreakersRequestIceBreakersInner.md)
  - [SetMessengerGetStartedRequest](docs/SetMessengerGetStartedRequest.md)
+ - [SetMessengerGreetingRequest](docs/SetMessengerGreetingRequest.md)
+ - [SetMessengerIceBreakersRequest](docs/SetMessengerIceBreakersRequest.md)
  - [SetMessengerMenuRequest](docs/SetMessengerMenuRequest.md)
  - [SetPartnershipAdPermission200Response](docs/SetPartnershipAdPermission200Response.md)
  - [SetPartnershipAdPermissionRequest](docs/SetPartnershipAdPermissionRequest.md)
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [SetWhatsAppConversationalAutomationRequest](docs/SetWhatsAppConversationalAutomationRequest.md)
  - [SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
  - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
@@ -4159,6 +4201,8 @@ Class | Method | HTTP request | Description
  - [TrackingTagUser](docs/TrackingTagUser.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)
+ - [TriggerApiCallWorkflow201Response](docs/TriggerApiCallWorkflow201Response.md)
+ - [TriggerApiCallWorkflowRequest](docs/TriggerApiCallWorkflowRequest.md)
  - [TriggerWorkflow200Response](docs/TriggerWorkflow200Response.md)
  - [TriggerWorkflow200ResponseExecution](docs/TriggerWorkflow200ResponseExecution.md)
  - [TriggerWorkflowRequest](docs/TriggerWorkflowRequest.md)
@@ -4536,6 +4580,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommerceProduct](docs/WebhookPayloadCommerceProduct.md)
  - [WebhookPayloadCommerceProductResource](docs/WebhookPayloadCommerceProductResource.md)
  - [WebhookPayloadCommerceProductStore](docs/WebhookPayloadCommerceProductStore.md)
+ - [WebhookPayloadContactFieldChanged](docs/WebhookPayloadContactFieldChanged.md)
+ - [WebhookPayloadContactTag](docs/WebhookPayloadContactTag.md)
+ - [WebhookPayloadContactTagContact](docs/WebhookPayloadContactTagContact.md)
  - [WebhookPayloadConversationControlChanged](docs/WebhookPayloadConversationControlChanged.md)
  - [WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
@@ -4590,6 +4637,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadReviewNew](docs/WebhookPayloadReviewNew.md)
  - [WebhookPayloadReviewNewAccount](docs/WebhookPayloadReviewNewAccount.md)
  - [WebhookPayloadReviewUpdated](docs/WebhookPayloadReviewUpdated.md)
+ - [WebhookPayloadSequenceEnrollment](docs/WebhookPayloadSequenceEnrollment.md)
  - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
  - [WebhookPayloadWhatsAppAccountAlertReceived](docs/WebhookPayloadWhatsAppAccountAlertReceived.md)
  - [WebhookPayloadWhatsAppAccountAlertReceivedAlert](docs/WebhookPayloadWhatsAppAccountAlertReceivedAlert.md)
@@ -4607,6 +4655,11 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadWhatsAppTemplateStatusUpdated](docs/WebhookPayloadWhatsAppTemplateStatusUpdated.md)
  - [WebhookPayloadWhatsAppTemplateStatusUpdatedAccount](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedAccount.md)
  - [WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate](docs/WebhookPayloadWhatsAppTemplateStatusUpdatedTemplate.md)
+ - [WebhookPayloadWorkflowRun](docs/WebhookPayloadWorkflowRun.md)
+ - [WebhookPayloadWorkflowRunConversation](docs/WebhookPayloadWorkflowRunConversation.md)
+ - [WebhookPayloadWorkflowRunExecution](docs/WebhookPayloadWorkflowRunExecution.md)
+ - [WebhookPayloadWorkflowRunTrigger](docs/WebhookPayloadWorkflowRunTrigger.md)
+ - [WebhookPayloadWorkflowRunWorkflow](docs/WebhookPayloadWorkflowRunWorkflow.md)
  - [WhatsAppBillingConversation](docs/WhatsAppBillingConversation.md)
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)
@@ -4616,6 +4669,8 @@ Class | Method | HTTP request | Description
  - [WhatsAppCarouselComponentCardsInner](docs/WhatsAppCarouselComponentCardsInner.md)
  - [WhatsAppCommerceSettings](docs/WhatsAppCommerceSettings.md)
  - [WhatsAppContactIdentity](docs/WhatsAppContactIdentity.md)
+ - [WhatsAppConversationalAutomation](docs/WhatsAppConversationalAutomation.md)
+ - [WhatsAppConversationalAutomationCommandsInner](docs/WhatsAppConversationalAutomationCommandsInner.md)
  - [WhatsAppFooterComponent](docs/WhatsAppFooterComponent.md)
  - [WhatsAppHeaderComponent](docs/WhatsAppHeaderComponent.md)
  - [WhatsAppHeaderComponentExample](docs/WhatsAppHeaderComponentExample.md)

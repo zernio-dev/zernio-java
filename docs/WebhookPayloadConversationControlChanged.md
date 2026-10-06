@@ -2,7 +2,7 @@
 
 # WebhookPayloadConversationControlChanged
 
-WhatsApp only. Who answers a conversation changed: Meta Business Agent took it over, handed it to you, or another partner app took it. 
+Who answers a conversation changed under Meta's handover protocol. WhatsApp: Meta Business Agent took it over, handed it to you, or another partner app took it. Facebook and Instagram: another app passed the thread to you, or took or received it. 
 
 ## Properties
 

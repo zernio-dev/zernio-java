@@ -13,7 +13,7 @@
 |**waitingFor** | [**ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor**](ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.md) |  |  [optional] |
 |**variables** | **Map&lt;String, Object&gt;** |  |  [optional] |
 |**platformIdentifier** | **String** |  |  [optional] |
-|**conversationId** | **String** |  |  [optional] |
+|**conversationId** | **String** | Null only while a comment-triggered run has not sent its private reply yet. |  [optional] |
 |**stepCount** | **Integer** |  |  [optional] |
 |**lastError** | **String** |  |  [optional] |
 |**resumeAt** | **OffsetDateTime** |  |  [optional] |

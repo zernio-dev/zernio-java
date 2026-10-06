@@ -14,6 +14,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**platformPostId** | **String** |  |  [optional] |
 |**postTitle** | **String** |  |  [optional] |
+|**postId** | **String** |  |  [optional] |
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
 |**matchMode** | [**MatchModeEnum**](#MatchModeEnum) | How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword. |  [optional] |
 |**excludeKeywords** | **List&lt;String&gt;** | Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode. |  [optional] |
@@ -29,8 +30,16 @@
 |**dmDelaySeconds** | **Integer** | Seconds waited after the trigger before the DM is sent. Absent when the DM goes out immediately. |  [optional] |
 |**commentReplyDelaySeconds** | **Integer** | Seconds waited before the public reply is posted. Absent when it follows the DM immediately. |  [optional] |
 |**alsoMatchInDms** | **Boolean** | Whether these keywords also fire on a plain inbound DM. |  [optional] |
+|**repeatPolicy** | [**CommentAutomationRepeatPolicy**](CommentAutomationRepeatPolicy.md) |  |  [optional] |
+|**dedupeSameTextHours** | **Integer** | Same-text dedupe window in hours. Omitted when off. |  [optional] |
+|**publicReplyPolicy** | [**PublicReplyPolicyEnum**](#PublicReplyPolicyEnum) |  |  [optional] |
+|**actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  |  [optional] |
+|**quickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) |  |  [optional] |
+|**dmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  |  [optional] |
+|**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
+|**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
-|**stats** | [**ListCommentAutomations200ResponseAutomationsInnerStats**](ListCommentAutomations200ResponseAutomationsInnerStats.md) |  |  [optional] |
+|**stats** | [**CommentAutomationStats**](CommentAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
 
 
@@ -41,6 +50,10 @@
 |---- | -----|
 | INSTAGRAM | &quot;instagram&quot; |
 | FACEBOOK | &quot;facebook&quot; |
+| TIKTOK | &quot;tiktok&quot; |
+| THREADS | &quot;threads&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
+| YOUTUBE | &quot;youtube&quot; |
 
 
 
@@ -49,7 +62,9 @@
 | Name | Value |
 |---- | -----|
 | COMMENT | &quot;comment&quot; |
+| LIVE_COMMENT | &quot;live_comment&quot; |
 | STORY_REPLY | &quot;story_reply&quot; |
+| STORY_MENTION | &quot;story_mention&quot; |
 
 
 
@@ -60,6 +75,15 @@
 | EXACT | &quot;exact&quot; |
 | CONTAINS | &quot;contains&quot; |
 | WORD | &quot;word&quot; |
+
+
+
+## Enum: PublicReplyPolicyEnum
+
+| Name | Value |
+|---- | -----|
+| AFTER_DM | &quot;after_dm&quot; |
+| ALWAYS | &quot;always&quot; |
 
 
 

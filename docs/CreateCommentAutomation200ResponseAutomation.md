@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  [optional] |
 |**name** | **String** |  |  [optional] |
-|**platform** | **String** |  |  [optional] |
+|**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**trigger** | [**TriggerEnum**](#TriggerEnum) |  |  [optional] |
 |**platformPostId** | **String** |  |  [optional] |
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
@@ -29,9 +29,28 @@
 |**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
 |**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**alsoMatchInDms** | **Boolean** | Whether these keywords also fire on a plain inbound DM. |  [optional] |
+|**repeatPolicy** | [**CommentAutomationRepeatPolicy**](CommentAutomationRepeatPolicy.md) |  |  [optional] |
+|**dedupeSameTextHours** | **Integer** | Same-text dedupe window in hours. Omitted when off. |  [optional] |
+|**publicReplyPolicy** | [**PublicReplyPolicyEnum**](#PublicReplyPolicyEnum) |  |  [optional] |
+|**actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  |  [optional] |
+|**quickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) |  |  [optional] |
+|**dmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
-|**stats** | [**CreateCommentAutomation200ResponseAutomationStats**](CreateCommentAutomation200ResponseAutomationStats.md) |  |  [optional] |
+|**stats** | [**CommentAutomationStats**](CommentAutomationStats.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
+
+
+
+## Enum: PlatformEnum
+
+| Name | Value |
+|---- | -----|
+| INSTAGRAM | &quot;instagram&quot; |
+| FACEBOOK | &quot;facebook&quot; |
+| TIKTOK | &quot;tiktok&quot; |
+| THREADS | &quot;threads&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
+| YOUTUBE | &quot;youtube&quot; |
 
 
 
@@ -40,7 +59,9 @@
 | Name | Value |
 |---- | -----|
 | COMMENT | &quot;comment&quot; |
+| LIVE_COMMENT | &quot;live_comment&quot; |
 | STORY_REPLY | &quot;story_reply&quot; |
+| STORY_MENTION | &quot;story_mention&quot; |
 
 
 
@@ -51,6 +72,15 @@
 | EXACT | &quot;exact&quot; |
 | CONTAINS | &quot;contains&quot; |
 | WORD | &quot;word&quot; |
+
+
+
+## Enum: PublicReplyPolicyEnum
+
+| Name | Value |
+|---- | -----|
+| AFTER_DM | &quot;after_dm&quot; |
+| ALWAYS | &quot;always&quot; |
 
 
 

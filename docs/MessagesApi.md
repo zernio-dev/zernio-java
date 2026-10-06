@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**acceptConversationRequest**](MessagesApi.md#acceptConversationRequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
+| [**acceptConversationRequestWithHttpInfo**](MessagesApi.md#acceptConversationRequestWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
 | [**addMessageReaction**](MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**addMessageReactionWithHttpInfo**](MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**createInboxConversation**](MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation |
@@ -30,13 +32,171 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendInboxMessageWithHttpInfo**](MessagesApi.md#sendInboxMessageWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages | Send message |
 | [**sendTypingIndicator**](MessagesApi.md#sendTypingIndicator) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
 | [**sendTypingIndicatorWithHttpInfo**](MessagesApi.md#sendTypingIndicatorWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/typing | Send typing indicator |
-| [**setConversationThreadControl**](MessagesApi.md#setConversationThreadControl) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent |
-| [**setConversationThreadControlWithHttpInfo**](MessagesApi.md#setConversationThreadControlWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Hand a conversation to or from Meta Business Agent |
+| [**setConversationThreadControl**](MessagesApi.md#setConversationThreadControl) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Change who answers a conversation (handover) |
+| [**setConversationThreadControlWithHttpInfo**](MessagesApi.md#setConversationThreadControlWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/thread-control | Change who answers a conversation (handover) |
 | [**updateInboxConversation**](MessagesApi.md#updateInboxConversation) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status |
 | [**updateInboxConversationWithHttpInfo**](MessagesApi.md#updateInboxConversationWithHttpInfo) | **PUT** /v1/inbox/conversations/{conversationId} | Update conversation status |
 | [**uploadMediaDirect**](MessagesApi.md#uploadMediaDirect) | **POST** /v1/media/upload-direct | Upload media file |
 | [**uploadMediaDirectWithHttpInfo**](MessagesApi.md#uploadMediaDirectWithHttpInfo) | **POST** /v1/media/upload-direct | Upload media file |
 
+
+
+## acceptConversationRequest
+
+> AcceptConversationRequest200Response acceptConversationRequest(conversationId, acceptConversationRequestRequest)
+
+Accept a message request
+
+Accept a Facebook or Instagram Message Request (listed with &#x60;GET /v1/inbox/conversations?folder&#x3D;requests&#x60;) by replying to it. Meta has no separate accept call: the first reply is what moves the thread into the inbox, so this sends &#x60;message&#x60; through the same path, checks and webhooks as &#x60;POST /v1/inbox/conversations/{conversationId}/messages&#x60;, and answers the same way. Supports the &#x60;Idempotency-Key&#x60; header. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The `id` of the request item from the requests folder.
+        AcceptConversationRequestRequest acceptConversationRequestRequest = new AcceptConversationRequestRequest(); // AcceptConversationRequestRequest | 
+        try {
+            AcceptConversationRequest200Response result = apiInstance.acceptConversationRequest(conversationId, acceptConversationRequestRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#acceptConversationRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The &#x60;id&#x60; of the request item from the requests folder. | |
+| **acceptConversationRequestRequest** | [**AcceptConversationRequestRequest**](AcceptConversationRequestRequest.md)|  | |
+
+### Return type
+
+[**AcceptConversationRequest200Response**](AcceptConversationRequest200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply sent, the request is accepted |  -  |
+| **400** | Invalid body, or an account that is not Facebook or Instagram (PLATFORM_NOT_SUPPORTED) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required or plan limit reached |  -  |
+| **404** | Account or conversation not found |  -  |
+| **409** | The same Idempotency-Key is still processing, or another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, &#x60;details.ownerAppId&#x60; names it when Meta says). Take control with thread-control first. |  -  |
+
+## acceptConversationRequestWithHttpInfo
+
+> ApiResponse<AcceptConversationRequest200Response> acceptConversationRequest acceptConversationRequestWithHttpInfo(conversationId, acceptConversationRequestRequest)
+
+Accept a message request
+
+Accept a Facebook or Instagram Message Request (listed with &#x60;GET /v1/inbox/conversations?folder&#x3D;requests&#x60;) by replying to it. Meta has no separate accept call: the first reply is what moves the thread into the inbox, so this sends &#x60;message&#x60; through the same path, checks and webhooks as &#x60;POST /v1/inbox/conversations/{conversationId}/messages&#x60;, and answers the same way. Supports the &#x60;Idempotency-Key&#x60; header. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | The `id` of the request item from the requests folder.
+        AcceptConversationRequestRequest acceptConversationRequestRequest = new AcceptConversationRequestRequest(); // AcceptConversationRequestRequest | 
+        try {
+            ApiResponse<AcceptConversationRequest200Response> response = apiInstance.acceptConversationRequestWithHttpInfo(conversationId, acceptConversationRequestRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#acceptConversationRequest");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| The &#x60;id&#x60; of the request item from the requests folder. | |
+| **acceptConversationRequestRequest** | [**AcceptConversationRequestRequest**](AcceptConversationRequestRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**AcceptConversationRequest200Response**](AcceptConversationRequest200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Reply sent, the request is accepted |  -  |
+| **400** | Invalid body, or an account that is not Facebook or Instagram (PLATFORM_NOT_SUPPORTED) |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required or plan limit reached |  -  |
+| **404** | Account or conversation not found |  -  |
+| **409** | The same Idempotency-Key is still processing, or another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, &#x60;details.ownerAppId&#x60; names it when Meta says). Take control with thread-control first. |  -  |
 
 
 ## addMessageReaction
@@ -1175,7 +1335,7 @@ ApiResponse<[**GetMessageAttachment200Response**](GetMessageAttachment200Respons
 
 ## listInboxConversations
 
-> ListInboxConversations200Response listInboxConversations(profileId, platform, status, sortOrder, limit, cursor, accountId)
+> ListInboxConversations200Response listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId)
 
 List conversations
 
@@ -1205,12 +1365,13 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile ID
         String platform = "facebook"; // String | Filter by platform
         String status = "active"; // String | Filter by conversation status
+        String folder = "inbox"; // String | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with `folder: requests`. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (`accountId`), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts.
         String sortOrder = "asc"; // String | Sort order by updated time
         Integer limit = 50; // Integer | Maximum number of conversations to return
         String cursor = "cursor_example"; // String | Pagination cursor for next page
         String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
-            ListInboxConversations200Response result = apiInstance.listInboxConversations(profileId, platform, status, sortOrder, limit, cursor, accountId);
+            ListInboxConversations200Response result = apiInstance.listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#listInboxConversations");
@@ -1231,6 +1392,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile ID | [optional] |
 | **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp, imessage] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
+| **folder** | **String**| requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. | [optional] [default to inbox] [enum: inbox, requests] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |
 | **cursor** | **String**| Pagination cursor for next page | [optional] |
@@ -1254,12 +1416,13 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated conversations |  -  |
+| **400** | Invalid query, a platform without direct messages (PLATFORM_NOT_SUPPORTED), or folder&#x3D;requests on one account Meta will not list the folder for (PLATFORM_LIMITATION). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
 ## listInboxConversationsWithHttpInfo
 
-> ApiResponse<ListInboxConversations200Response> listInboxConversations listInboxConversationsWithHttpInfo(profileId, platform, status, sortOrder, limit, cursor, accountId)
+> ApiResponse<ListInboxConversations200Response> listInboxConversations listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId)
 
 List conversations
 
@@ -1290,12 +1453,13 @@ public class Example {
         String profileId = "profileId_example"; // String | Filter by profile ID
         String platform = "facebook"; // String | Filter by platform
         String status = "active"; // String | Filter by conversation status
+        String folder = "inbox"; // String | requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with `folder: requests`. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (`accountId`), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts.
         String sortOrder = "asc"; // String | Sort order by updated time
         Integer limit = 50; // Integer | Maximum number of conversations to return
         String cursor = "cursor_example"; // String | Pagination cursor for next page
         String accountId = "accountId_example"; // String | Filter by specific account ID
         try {
-            ApiResponse<ListInboxConversations200Response> response = apiInstance.listInboxConversationsWithHttpInfo(profileId, platform, status, sortOrder, limit, cursor, accountId);
+            ApiResponse<ListInboxConversations200Response> response = apiInstance.listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1318,6 +1482,7 @@ public class Example {
 | **profileId** | **String**| Filter by profile ID | [optional] |
 | **platform** | **String**| Filter by platform | [optional] [enum: facebook, instagram, twitter, bluesky, reddit, telegram, whatsapp, imessage] |
 | **status** | **String**| Filter by conversation status | [optional] [enum: active, archived] |
+| **folder** | **String**| requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. | [optional] [default to inbox] [enum: inbox, requests] |
 | **sortOrder** | **String**| Sort order by updated time | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**| Maximum number of conversations to return | [optional] [default to 50] |
 | **cursor** | **String**| Pagination cursor for next page | [optional] |
@@ -1341,6 +1506,7 @@ ApiResponse<[**ListInboxConversations200Response**](ListInboxConversations200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated conversations |  -  |
+| **400** | Invalid query, a platform without direct messages (PLATFORM_NOT_SUPPORTED), or folder&#x3D;requests on one account Meta will not list the folder for (PLATFORM_LIMITATION). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1910,7 +2076,7 @@ public class Example {
 | **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
-| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **409** | The same Idempotency-Key is still processing (retry after a short backoff), or, on Facebook and Instagram, another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, Meta subcode 2534037 in platformError, &#x60;details.ownerAppId&#x60; names the owner when Meta reports it). Take control with POST /v1/inbox/conversations/{conversationId}/thread-control, then resend. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -1997,7 +2163,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **500** | The platform rejected or failed the send. Zernio does NOT retry a send internally: a message send is not idempotent, and an opaque upstream failure (for example WhatsApp 131000) does not say whether the message was delivered. Retrying this request may deliver the message twice. Retry only if your use case tolerates a duplicate. Meta 5xx failures also arrive as a platform_error envelope (code platform_api_error, with platform and platformError set). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required, or Meta rejected the send outside the messaging window (type platform_error, code platform_api_error, platform, platformError with code/subcode/fbtraceId/type) |  -  |
-| **409** | Same Idempotency-Key still processing; retry after a short backoff |  -  |
+| **409** | The same Idempotency-Key is still processing (retry after a short backoff), or, on Facebook and Instagram, another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, Meta subcode 2534037 in platformError, &#x60;details.ownerAppId&#x60; names the owner when Meta reports it). Take control with POST /v1/inbox/conversations/{conversationId}/thread-control, then resend. |  -  |
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
@@ -2165,9 +2331,9 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 > SetConversationThreadControl200Response setConversationThreadControl(conversationId, setConversationThreadControlRequest)
 
-Hand a conversation to or from Meta Business Agent
+Change who answers a conversation (handover)
 
-WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+Meta&#39;s handover protocol on WhatsApp, Facebook and Instagram.  **WhatsApp**, on numbers with Meta Business Agent enabled: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  **Facebook and Instagram** (Messenger Platform handover between the apps on the Page, such as Page Inbox): - &#x60;pass&#x60; with &#x60;targetAppId&#x60;: give the thread to another app (&#x60;pass_thread_control&#x60;). Page Inbox is 263902037430900. - &#x60;take&#x60;: take the thread back (&#x60;take_thread_control&#x60;); Meta allows it only to the Page&#39;s primary receiver. - &#x60;request&#x60;: ask the current owner to pass the thread (&#x60;request_thread_control&#x60;); nothing changes until it does. - &#x60;release&#x60;: give the thread back to the primary receiver (&#x60;release_thread_control&#x60;).  While another app owns a Facebook or Instagram thread, inbound arrive with &#x60;metadata.standby: true&#x60; and a send answers 409 &#x60;not_thread_owner&#x60;. The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
 
 ### Example
 
@@ -2231,7 +2397,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Control transferred |  -  |
+| **200** | Control transferred (or, for request, asked for) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
@@ -2241,9 +2407,9 @@ public class Example {
 
 > ApiResponse<SetConversationThreadControl200Response> setConversationThreadControl setConversationThreadControlWithHttpInfo(conversationId, setConversationThreadControlRequest)
 
-Hand a conversation to or from Meta Business Agent
+Change who answers a conversation (handover)
 
-WhatsApp only, on numbers with Meta Business Agent enabled. Wraps Meta&#39;s thread control: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
+Meta&#39;s handover protocol on WhatsApp, Facebook and Instagram.  **WhatsApp**, on numbers with Meta Business Agent enabled: - &#x60;release&#x60;: hand the conversation back to the agent so it resumes answering. You must currently hold control (sending any message takes it implicitly). - &#x60;take&#x60;: take control before sending anything, so the agent stops replying while an operator reads the thread. Meta accepts this only from the business configured as the number&#39;s escalation partner; other apps take control by sending a message. - &#x60;pass&#x60;: transfer control to the number&#39;s configured escalation partner, or to the agent with &#x60;target: ai_agent&#x60;. Meta&#39;s Cloud API currently rejects it (\&quot;Pass action is not supported\&quot;, verified 2026-09-08); use &#x60;release&#x60; to hand a thread back to the agent.  **Facebook and Instagram** (Messenger Platform handover between the apps on the Page, such as Page Inbox): - &#x60;pass&#x60; with &#x60;targetAppId&#x60;: give the thread to another app (&#x60;pass_thread_control&#x60;). Page Inbox is 263902037430900. - &#x60;take&#x60;: take the thread back (&#x60;take_thread_control&#x60;); Meta allows it only to the Page&#39;s primary receiver. - &#x60;request&#x60;: ask the current owner to pass the thread (&#x60;request_thread_control&#x60;); nothing changes until it does. - &#x60;release&#x60;: give the thread back to the primary receiver (&#x60;release_thread_control&#x60;).  While another app owns a Facebook or Instagram thread, inbound arrive with &#x60;metadata.standby: true&#x60; and a send answers 409 &#x60;not_thread_owner&#x60;. The conversation&#39;s &#x60;threadControl&#x60; follows the result; a &#x60;conversation.control_changed&#x60; webhook fires when Meta later reports the change. 
 
 ### Example
 
@@ -2310,7 +2476,7 @@ ApiResponse<[**SetConversationThreadControl200Response**](SetConversationThreadC
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Control transferred |  -  |
+| **200** | Control transferred (or, for request, asked for) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |

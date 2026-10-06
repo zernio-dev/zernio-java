@@ -14,7 +14,7 @@
 |**accountId** | **String** |  |  [optional] |
 |**message** | [**GetBroadcast200ResponseBroadcastMessage**](GetBroadcast200ResponseBroadcastMessage.md) |  |  [optional] |
 |**template** | [**GetBroadcast200ResponseBroadcastTemplate**](GetBroadcast200ResponseBroadcastTemplate.md) |  |  [optional] |
-|**segmentFilters** | [**ListContacts200ResponseFilters**](ListContacts200ResponseFilters.md) |  |  [optional] |
+|**segmentFilters** | [**GetBroadcast200ResponseBroadcastSegmentFilters**](GetBroadcast200ResponseBroadcastSegmentFilters.md) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**scheduledAt** | **OffsetDateTime** |  |  [optional] |
 |**startedAt** | **OffsetDateTime** |  |  [optional] |

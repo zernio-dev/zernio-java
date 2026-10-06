@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createWhatsAppGroupInviteLinkWithHttpInfo**](WhatsAppApi.md#createWhatsAppGroupInviteLinkWithHttpInfo) | **POST** /v1/whatsapp/wa-groups/{groupId}/invite-link | Create invite link |
 | [**createWhatsAppTemplate**](WhatsAppApi.md#createWhatsAppTemplate) | **POST** /v1/whatsapp/templates | Create template |
 | [**createWhatsAppTemplateWithHttpInfo**](WhatsAppApi.md#createWhatsAppTemplateWithHttpInfo) | **POST** /v1/whatsapp/templates | Create template |
+| [**deleteWhatsAppConversationalAutomation**](WhatsAppApi.md#deleteWhatsAppConversationalAutomation) | **DELETE** /v1/whatsapp/conversational-automation | Clear ice breakers and commands |
+| [**deleteWhatsAppConversationalAutomationWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppConversationalAutomationWithHttpInfo) | **DELETE** /v1/whatsapp/conversational-automation | Clear ice breakers and commands |
 | [**deleteWhatsAppGroupChat**](WhatsAppApi.md#deleteWhatsAppGroupChat) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**deleteWhatsAppGroupChatWithHttpInfo**](WhatsAppApi.md#deleteWhatsAppGroupChatWithHttpInfo) | **DELETE** /v1/whatsapp/wa-groups/{groupId} | Delete group |
 | [**deleteWhatsAppTemplate**](WhatsAppApi.md#deleteWhatsAppTemplate) | **DELETE** /v1/whatsapp/templates/{templateName} | Delete template |
@@ -34,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getWhatsAppBusinessProfileWithHttpInfo**](WhatsAppApi.md#getWhatsAppBusinessProfileWithHttpInfo) | **GET** /v1/whatsapp/business-profile | Get business profile |
 | [**getWhatsAppCommerceSettings**](WhatsAppApi.md#getWhatsAppCommerceSettings) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
 | [**getWhatsAppCommerceSettingsWithHttpInfo**](WhatsAppApi.md#getWhatsAppCommerceSettingsWithHttpInfo) | **GET** /v1/whatsapp/commerce-settings | Get a number&#39;s commerce settings |
+| [**getWhatsAppConversationalAutomation**](WhatsAppApi.md#getWhatsAppConversationalAutomation) | **GET** /v1/whatsapp/conversational-automation | Get ice breakers and commands |
+| [**getWhatsAppConversationalAutomationWithHttpInfo**](WhatsAppApi.md#getWhatsAppConversationalAutomationWithHttpInfo) | **GET** /v1/whatsapp/conversational-automation | Get ice breakers and commands |
 | [**getWhatsAppDataset**](WhatsAppApi.md#getWhatsAppDataset) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**getWhatsAppDatasetWithHttpInfo**](WhatsAppApi.md#getWhatsAppDatasetWithHttpInfo) | **GET** /v1/whatsapp/dataset | Get CTWA conversions dataset |
 | [**getWhatsAppDisplayName**](WhatsAppApi.md#getWhatsAppDisplayName) | **GET** /v1/whatsapp/business-profile/display-name | Get display name status |
@@ -74,6 +78,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**requestWhatsAppVerificationCodeWithHttpInfo**](WhatsAppApi.md#requestWhatsAppVerificationCodeWithHttpInfo) | **POST** /v1/accounts/{accountId}/whatsapp/request-code | Request a Meta re-verification code for a BYO WhatsApp number |
 | [**sendWhatsAppConversion**](WhatsAppApi.md#sendWhatsAppConversion) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
 | [**sendWhatsAppConversionWithHttpInfo**](WhatsAppApi.md#sendWhatsAppConversionWithHttpInfo) | **POST** /v1/whatsapp/conversions | Send WhatsApp conversion event |
+| [**setWhatsAppConversationalAutomation**](WhatsAppApi.md#setWhatsAppConversationalAutomation) | **POST** /v1/whatsapp/conversational-automation | Set ice breakers and commands |
+| [**setWhatsAppConversationalAutomationWithHttpInfo**](WhatsAppApi.md#setWhatsAppConversationalAutomationWithHttpInfo) | **POST** /v1/whatsapp/conversational-automation | Set ice breakers and commands |
 | [**setWhatsappBusinessUsername**](WhatsAppApi.md#setWhatsappBusinessUsername) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**setWhatsappBusinessUsernameWithHttpInfo**](WhatsAppApi.md#setWhatsappBusinessUsernameWithHttpInfo) | **POST** /v1/whatsapp/business-profile/username | Set business username |
 | [**unblockWhatsAppUsers**](WhatsAppApi.md#unblockWhatsAppUsers) | **DELETE** /v1/whatsapp/block-users | Unblock users |
@@ -1161,6 +1167,156 @@ ApiResponse<[**CreateWhatsAppTemplate200Response**](CreateWhatsAppTemplate200Res
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | WhatsApp account not found |  -  |
 | **502** | Meta rejected the request or was unreachable. Meta 4xx statuses are forwarded as-is. |  -  |
+
+
+## deleteWhatsAppConversationalAutomation
+
+> UpdateYoutubeDefaultPlaylist200Response deleteWhatsAppConversationalAutomation(accountId)
+
+Clear ice breakers and commands
+
+Remove every prompt and command and turn the welcome message off.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.deleteWhatsAppConversationalAutomation(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration cleared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## deleteWhatsAppConversationalAutomationWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteWhatsAppConversationalAutomation deleteWhatsAppConversationalAutomationWithHttpInfo(accountId)
+
+Clear ice breakers and commands
+
+Remove every prompt and command and turn the welcome message off.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.deleteWhatsAppConversationalAutomationWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#deleteWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration cleared |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## deleteWhatsAppGroupChat
@@ -2395,6 +2551,156 @@ ApiResponse<[**GetWhatsAppCommerceSettings200Response**](GetWhatsAppCommerceSett
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The Meta login behind the account lacks catalog_management (code insufficient_permissions). The permission is pending Meta App Review and is not requested on connect yet, so reconnecting does not add it. Pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
+## getWhatsAppConversationalAutomation
+
+> GetWhatsAppConversationalAutomation200Response getWhatsAppConversationalAutomation(accountId)
+
+Get ice breakers and commands
+
+Read the number&#39;s conversational automation (Meta&#39;s &#x60;conversational_automation&#x60;): ice breaker prompts, slash commands and the welcome-message flag. A number with none set returns the empty configuration.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        try {
+            GetWhatsAppConversationalAutomation200Response result = apiInstance.getWhatsAppConversationalAutomation(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+
+### Return type
+
+[**GetWhatsAppConversationalAutomation200Response**](GetWhatsAppConversationalAutomation200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## getWhatsAppConversationalAutomationWithHttpInfo
+
+> ApiResponse<GetWhatsAppConversationalAutomation200Response> getWhatsAppConversationalAutomation getWhatsAppConversationalAutomationWithHttpInfo(accountId)
+
+Get ice breakers and commands
+
+Read the number&#39;s conversational automation (Meta&#39;s &#x60;conversational_automation&#x60;): ice breaker prompts, slash commands and the welcome-message flag. A number with none set returns the empty configuration.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        String accountId = "accountId_example"; // String | WhatsApp account ID
+        try {
+            ApiResponse<GetWhatsAppConversationalAutomation200Response> response = apiInstance.getWhatsAppConversationalAutomationWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#getWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| WhatsApp account ID | |
+
+### Return type
+
+ApiResponse<[**GetWhatsAppConversationalAutomation200Response**](GetWhatsAppConversationalAutomation200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current configuration |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getWhatsAppDataset
@@ -5483,6 +5789,156 @@ ApiResponse<[**SendWhatsAppConversion200Response**](SendWhatsAppConversion200Res
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
+
+
+## setWhatsAppConversationalAutomation
+
+> UpdateYoutubeDefaultPlaylist200Response setWhatsAppConversationalAutomation(setWhatsAppConversationalAutomationRequest)
+
+Set ice breakers and commands
+
+Set ice breaker prompts (up to 3, 80 characters each), slash commands (up to 30) and the welcome-message flag on the number. Only the fields you send are changed. A tapped prompt arrives as a normal &#x60;message.received&#x60; carrying its text.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        SetWhatsAppConversationalAutomationRequest setWhatsAppConversationalAutomationRequest = new SetWhatsAppConversationalAutomationRequest(); // SetWhatsAppConversationalAutomationRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.setWhatsAppConversationalAutomation(setWhatsAppConversationalAutomationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#setWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsAppConversationalAutomationRequest** | [**SetWhatsAppConversationalAutomationRequest**](SetWhatsAppConversationalAutomationRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## setWhatsAppConversationalAutomationWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> setWhatsAppConversationalAutomation setWhatsAppConversationalAutomationWithHttpInfo(setWhatsAppConversationalAutomationRequest)
+
+Set ice breakers and commands
+
+Set ice breaker prompts (up to 3, 80 characters each), slash commands (up to 30) and the welcome-message flag on the number. Only the fields you send are changed. A tapped prompt arrives as a normal &#x60;message.received&#x60; carrying its text.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WhatsAppApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WhatsAppApi apiInstance = new WhatsAppApi(defaultClient);
+        SetWhatsAppConversationalAutomationRequest setWhatsAppConversationalAutomationRequest = new SetWhatsAppConversationalAutomationRequest(); // SetWhatsAppConversationalAutomationRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.setWhatsAppConversationalAutomationWithHttpInfo(setWhatsAppConversationalAutomationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WhatsAppApi#setWhatsAppConversationalAutomation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **setWhatsAppConversationalAutomationRequest** | [**SetWhatsAppConversationalAutomationRequest**](SetWhatsAppConversationalAutomationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Configuration updated |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## setWhatsappBusinessUsername

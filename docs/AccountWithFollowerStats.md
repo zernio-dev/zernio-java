@@ -62,6 +62,7 @@
 | SMS | &quot;sms&quot; |
 | PHONE | &quot;phone&quot; |
 | RCS | &quot;rcs&quot; |
+| WHOPADS | &quot;whopads&quot; |
 
 
 

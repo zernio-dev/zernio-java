@@ -22,7 +22,14 @@
 |**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
 |**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**alsoMatchInDms** | **Boolean** | Whether these keywords also fire on a plain inbound DM. |  [optional] |
+|**repeatPolicy** | [**CommentAutomationRepeatPolicy**](CommentAutomationRepeatPolicy.md) |  |  [optional] |
+|**dedupeSameTextHours** | **Integer** | Same-text dedupe window in hours. Omitted when off. |  [optional] |
+|**publicReplyPolicy** | [**PublicReplyPolicyEnum**](#PublicReplyPolicyEnum) |  |  [optional] |
+|**actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  |  [optional] |
+|**quickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) |  |  [optional] |
+|**dmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
+|**stats** | [**CommentAutomationStats**](CommentAutomationStats.md) |  |  [optional] |
 |**updatedAt** | **OffsetDateTime** |  |  [optional] |
 
 
@@ -34,6 +41,15 @@
 | EXACT | &quot;exact&quot; |
 | CONTAINS | &quot;contains&quot; |
 | WORD | &quot;word&quot; |
+
+
+
+## Enum: PublicReplyPolicyEnum
+
+| Name | Value |
+|---- | -----|
+| AFTER_DM | &quot;after_dm&quot; |
+| ALWAYS | &quot;always&quot; |
 
 
 

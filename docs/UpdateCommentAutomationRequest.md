@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**name** | **String** |  |  [optional] |
-|**trigger** | [**TriggerEnum**](#TriggerEnum) | What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. &#39;story_reply&#39; is Instagram only. |  [optional] |
+|**trigger** | [**TriggerEnum**](#TriggerEnum) | What fires the automation. Changing it detaches the automation from its bound post or story (a post id and a story id are different objects), unless this same request sets a new binding. Every trigger but &#39;comment&#39; is Instagram only; &#39;story_mention&#39; also requires no keywords and no binding. |  [optional] |
 |**keywords** | **List&lt;String&gt;** |  |  [optional] |
 |**matchMode** | [**MatchModeEnum**](#MatchModeEnum) | How a keyword is compared with the comment. &#39;contains&#39; (default) matches anywhere, even inside another word (keyword &#39;app&#39; fires on &#39;happy&#39;). &#39;word&#39; matches the keyword only as a standalone word. &#39;exact&#39; requires the whole comment to be exactly the keyword. |  [optional] |
 |**excludeKeywords** | **List&lt;String&gt;** | Comments containing one of these never trigger the automation, even when a trigger keyword also matches. Compared using the same matchMode. |  [optional] |
@@ -27,6 +27,12 @@
 |**audience** | [**CommentAutomationAudience**](CommentAutomationAudience.md) |  |  [optional] |
 |**followGate** | [**CommentAutomationFollowGate**](CommentAutomationFollowGate.md) |  |  [optional] |
 |**isActive** | **Boolean** |  |  [optional] |
+|**repeatPolicy** | [**CommentAutomationRepeatPolicy**](CommentAutomationRepeatPolicy.md) |  |  [optional] |
+|**dedupeSameTextHours** | **Integer** | Skip the DM when this recipient already received identical DM text (after personalisation) from this account, from any automation, within this many hours. The skip is logged with status skipped. Send null to clear. |  [optional] |
+|**publicReplyPolicy** | [**PublicReplyPolicyEnum**](#PublicReplyPolicyEnum) | &#39;after_dm&#39; posts commentReply only after a successful DM. &#39;always&#39; posts it whatever the audience rule, dedupe or DM outcome: the moment a comment matches, or after commentReplyDelaySeconds when set (raised to dmDelaySeconds, so it never precedes the DM attempt). |  [optional] |
+|**actions** | [**CommentAutomationActions**](CommentAutomationActions.md) |  |  [optional] |
+|**quickReplies** | [**List&lt;CommentAutomationQuickReply&gt;**](CommentAutomationQuickReply.md) | Opt-in quick-reply chips on the DM (up to 13). Chips do not render in Message Requests, where a first DM to a cold commenter lands, so prefer buttons for first contact. Mutually exclusive with buttons and template (400). Send null to clear. |  [optional] |
+|**dmMedia** | [**CommentAutomationDmMedia**](CommentAutomationDmMedia.md) |  |  [optional] |
 
 
 
@@ -35,7 +41,9 @@
 | Name | Value |
 |---- | -----|
 | COMMENT | &quot;comment&quot; |
+| LIVE_COMMENT | &quot;live_comment&quot; |
 | STORY_REPLY | &quot;story_reply&quot; |
+| STORY_MENTION | &quot;story_mention&quot; |
 
 
 
@@ -46,6 +54,15 @@
 | EXACT | &quot;exact&quot; |
 | CONTAINS | &quot;contains&quot; |
 | WORD | &quot;word&quot; |
+
+
+
+## Enum: PublicReplyPolicyEnum
+
+| Name | Value |
+|---- | -----|
+| AFTER_DM | &quot;after_dm&quot; |
+| ALWAYS | &quot;always&quot; |
 
 
 

@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**owner** | [**OwnerEnum**](#OwnerEnum) |  |  [optional] |
+|**ownerAppId** | **String** | The app that received the thread, on a Facebook or Instagram pass. |  [optional] |
 
 
 

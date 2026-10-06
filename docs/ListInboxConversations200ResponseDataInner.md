@@ -21,7 +21,8 @@
 |**updatedTime** | **OffsetDateTime** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**unreadCount** | **Integer** | Number of unread messages |  [optional] |
-|**threadControl** | [**ThreadControlEnum**](#ThreadControlEnum) | WhatsApp only, present once Meta Business Agent has touched the thread. ai_agent: the agent answers and new inbound arrive flagged metadata.standby; app: you hold control; other: another partner app does. Change it with POST /v1/inbox/conversations/{conversationId}/thread-control. |  [optional] |
+|**threadControl** | [**ThreadControlEnum**](#ThreadControlEnum) | Present once a handover has touched the thread (WhatsApp, Facebook, Instagram). ai_agent: Meta Business Agent answers (WhatsApp) and new inbound arrive flagged metadata.standby; app: you hold control; other: another app does (a WhatsApp partner, or a Messenger / Instagram receiver such as Page Inbox). Change it with POST /v1/inbox/conversations/{conversationId}/thread-control. |  [optional] |
+|**folder** | [**FolderEnum**](#FolderEnum) | Present only on items listed with folder&#x3D;requests: a Message Request the account has not accepted yet. |  [optional] |
 |**isGroup** | **Boolean** | iMessage only, true for a group thread. Manage it through the /v1/imessage/groups/{conversationId} endpoints. |  [optional] |
 |**url** | **String** | Direct link to open the conversation on the platform (if available) |  [optional] |
 |**instagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  |  [optional] |
@@ -56,6 +57,14 @@
 | APP | &quot;app&quot; |
 | AI_AGENT | &quot;ai_agent&quot; |
 | OTHER | &quot;other&quot; |
+
+
+
+## Enum: FolderEnum
+
+| Name | Value |
+|---- | -----|
+| REQUESTS | &quot;requests&quot; |
 
 
 
