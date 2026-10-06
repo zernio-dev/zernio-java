@@ -1681,6 +1681,7 @@ docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
 docs/MessagingAdsApi.md
+docs/MessagingCarouselCard.md
 docs/MetaAdsPlatformData.md
 docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
@@ -4458,6 +4459,7 @@ src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaContentType.java
 src/main/java/dev/zernio/model/MediaItem.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
+src/main/java/dev/zernio/model/MessagingCarouselCard.java
 src/main/java/dev/zernio/model/MetaAdsPlatformData.java
 src/main/java/dev/zernio/model/MetaAssignedUser.java
 src/main/java/dev/zernio/model/MetaBusinessUser.java
@@ -5479,3 +5481,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/MessagingCarouselCardTest.java
