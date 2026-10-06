@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.223.0
+- API version: 1.224.0
 
-- Build date: 2026-10-06T15:45:52.987746702Z[Etc/UTC]
+- Build date: 2026-10-06T16:27:02.518348678Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.223.0</version>
+  <version>1.224.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.223.0"
+compile "dev.zernio:zernio-sdk:1.224.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.223.0.jar`
+- `target/zernio-sdk-1.224.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2065,6 +2065,7 @@ Class | Method | HTTP request | Description
  - [AdCampaign](docs/AdCampaign.md)
  - [AdCampaignBudget](docs/AdCampaignBudget.md)
  - [AdCreative](docs/AdCreative.md)
+ - [AdCreativeCarouselCardsInner](docs/AdCreativeCarouselCardsInner.md)
  - [AdDailyMetrics](docs/AdDailyMetrics.md)
  - [AdEngagementCounts](docs/AdEngagementCounts.md)
  - [AdFunnelCounts](docs/AdFunnelCounts.md)
