@@ -783,7 +783,7 @@ ApiResponse<[**ListCommentAutomations200Response**](ListCommentAutomations200Res
 
 Update automation settings
 
-Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (&#x60;code&#x60; invalid_field_value, &#x60;param&#x60; the field), and &#x60;commentReply&#x60; cannot be cleared. 
+Update an automation&#39;s keywords, DM message, inline buttons, comment reply, post binding, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (&#x60;code&#x60; invalid_field_value, &#x60;param&#x60; the field), and &#x60;commentReply&#x60; cannot be cleared. 
 
 ### Example
 
@@ -851,6 +851,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | An active automation already exists for the post this request re-binds to |  -  |
 
 ## updateCommentAutomationWithHttpInfo
 
@@ -858,7 +859,7 @@ public class Example {
 
 Update automation settings
 
-Update an automation&#39;s keywords, DM message, inline buttons, comment reply, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (&#x60;code&#x60; invalid_field_value, &#x60;param&#x60; the field), and &#x60;commentReply&#x60; cannot be cleared. 
+Update an automation&#39;s keywords, DM message, inline buttons, comment reply, post binding, or active status. Pass &#x60;buttons: []&#x60; to clear all buttons. When &#x60;buttons&#x60; is non-empty, &#x60;dmMessage&#x60; (the new one if you&#39;re changing it, otherwise the stored one) must be 640 characters or less. On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields are rejected with a 400 naming the field (&#x60;code&#x60; invalid_field_value, &#x60;param&#x60; the field), and &#x60;commentReply&#x60; cannot be cleared. 
 
 ### Example
 
@@ -929,4 +930,5 @@ ApiResponse<[**UpdateCommentAutomation200Response**](UpdateCommentAutomation200R
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
+| **409** | An active automation already exists for the post this request re-binds to |  -  |
 

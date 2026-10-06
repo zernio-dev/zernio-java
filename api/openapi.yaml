@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.224.0
+  version: 1.224.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35514,7 +35514,7 @@ paths:
       - application/json
     patch:
       description: |
-        Update an automation's keywords, DM message, inline buttons, comment reply, or active status.
+        Update an automation's keywords, DM message, inline buttons, comment reply, post binding, or active status.
         Pass `buttons: []` to clear all buttons. When `buttons` is non-empty, `dmMessage` (the new
         one if you're changing it, otherwise the stored one) must be 640 characters or less.
         On a TikTok, Threads, LinkedIn or YouTube automation (public reply only) the DM fields
@@ -35547,6 +35547,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
+        "409":
+          description: An active automation already exists for the post this request
+            re-binds to
       security:
       - bearerAuth: []
       summary: Update automation settings
@@ -120544,6 +120547,11 @@ components:
             \ shorter than 4 characters are never fuzzy-matched."
           type: boolean
         dmMessage:
+          description: "Instagram and Facebook only. On reply-only platforms (tiktok,\
+            \ threads, linkedin, youtube) every DM-leg field is omitted: dmMessage,\
+            \ dmMessageVariations, buttons, template, quickReplies, dmMedia, publicReplyPolicy,\
+            \ dedupeSameTextHours, actions, audience, followGate, dmDelaySeconds and\
+            \ alsoMatchInDms."
           type: string
         buttons:
           description: Inline DM buttons (up to 3). Omitted when none are set.
@@ -121283,6 +121291,8 @@ components:
             \ shorter than 4 characters are never fuzzy-matched."
           type: boolean
         dmMessage:
+          description: "Omitted on reply-only platforms (tiktok, threads, linkedin,\
+            \ youtube), together with every other DM-leg field."
           type: string
         buttons:
           description: Inline DM buttons (up to 3). Omitted when none are set.
@@ -121581,6 +121591,8 @@ components:
             \ shorter than 4 characters are never fuzzy-matched."
           type: boolean
         dmMessage:
+          description: "Omitted on reply-only platforms (tiktok, threads, linkedin,\
+            \ youtube), together with every other DM-leg field."
           type: string
         buttons:
           description: Inline DM buttons (up to 3). Omitted when none are set.
@@ -121849,6 +121861,30 @@ components:
             \ of a keyword (one edit for 4-7 character keywords, two from 8 up). Keywords\
             \ shorter than 4 characters are never fuzzy-matched."
           type: boolean
+        platformPostId:
+          description: "Re-binds the automation to another post: the platform media/post\
+            \ ID (or story media id when trigger=story_reply). postId, platformPostId\
+            \ and postTitle move as a unit: sending any of them replaces all three,\
+            \ and an omitted one is cleared. Send all three as null (or empty) to\
+            \ make it account-wide (any post / any story). Omit all three to keep\
+            \ the current binding. 409 when another active automation already owns\
+            \ the new post."
+          nullable: true
+          type: string
+        postId:
+          description: "Zernio post ID (24 hexadecimal characters); platform IDs return\
+            \ 400. Use it INSTEAD of platformPostId to bind to a not-yet-published\
+            \ Zernio post: the automation stays pending and arms itself when that\
+            \ post publishes. Moves as a unit with platformPostId and postTitle (see\
+            \ platformPostId)."
+          nullable: true
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        postTitle:
+          description: Post content snippet for display. Moves as a unit with platformPostId
+            and postId (see platformPostId).
+          nullable: true
+          type: string
         dmMessage:
           type: string
         buttons:
@@ -122049,6 +122085,8 @@ components:
             \ shorter than 4 characters are never fuzzy-matched."
           type: boolean
         dmMessage:
+          description: "Omitted on reply-only platforms (tiktok, threads, linkedin,\
+            \ youtube), together with every other DM-leg field."
           type: string
         buttons:
           description: Inline DM buttons (up to 3). Omitted when none are set.
