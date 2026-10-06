@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   RemovePageUser200Response.JSON_PROPERTY_USER_ID,
   RemovePageUser200Response.JSON_PROPERTY_REMOVED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:48:18.752423519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:51:23.065282864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RemovePageUser200Response {
   public static final String JSON_PROPERTY_PAGE_ID = "pageId";
   @javax.annotation.Nullable

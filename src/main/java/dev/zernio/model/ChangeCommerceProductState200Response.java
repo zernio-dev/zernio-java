@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ChangeCommerceProductState200Response.JSON_PROPERTY_SUCCEEDED,
   ChangeCommerceProductState200Response.JSON_PROPERTY_FAILED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:48:18.752423519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:51:23.065282864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ChangeCommerceProductState200Response {
   /**
    * Gets or Sets action

@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.AdActivationStatus;
 import dev.zernio.model.BidStrategy;
 import dev.zernio.model.BoostPostRequestAttributionSpecInner;
 import dev.zernio.model.BoostPostRequestBudget;
@@ -98,13 +99,16 @@ import dev.zernio.ApiClient;
   BoostPostRequest.JSON_PROPERTY_DSA_PAYOR,
   BoostPostRequest.JSON_PROPERTY_LEAD_GEN_FORM_ID,
   BoostPostRequest.JSON_PROPERTY_STATUS,
+  BoostPostRequest.JSON_PROPERTY_CAMPAIGN_STATUS,
+  BoostPostRequest.JSON_PROPERTY_AD_SET_STATUS,
+  BoostPostRequest.JSON_PROPERTY_AD_STATUS,
   BoostPostRequest.JSON_PROPERTY_BUDGET_LEVEL,
   BoostPostRequest.JSON_PROPERTY_ATTRIBUTION_SPEC,
   BoostPostRequest.JSON_PROPERTY_BODIES,
   BoostPostRequest.JSON_PROPERTY_SMART_TARGETING,
   BoostPostRequest.JSON_PROPERTY_OPTIMIZATION_GOAL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:48:18.752423519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T09:51:23.065282864Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPostRequest {
   /**
    * Gets or Sets inner
@@ -525,7 +529,7 @@ public class BoostPostRequest {
   private String leadGenFormId;
 
   /**
-   * Publish state of the created entities, on every platform. Omitted or ACTIVE publishes live (default); PAUSED pauses only the top-most object this boost creates and switches everything below it on: a new campaign is held paused with its ad set and ad on (one PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings it live); into an existing campaign (TikTok &#x60;existingCampaignId&#x60;) the new ad set is held paused; attached to an existing ad set (&#x60;adSetId&#x60;) the new ad itself is paused. On LinkedIn the held campaign group is PAUSED, its campaign and creative ACTIVE. X has no per-ad switch, so its lowest level is the line item.
+   * Publish state of the created entities, on every platform. Omitted or ACTIVE publishes live (default); PAUSED pauses only the top-most object this boost creates and switches everything below it on: a new campaign is held paused with its ad set and ad on (one PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings it live); into an existing campaign (TikTok &#x60;existingCampaignId&#x60;) the new ad set is held paused; attached to an existing ad set (&#x60;adSetId&#x60;) the new ad itself is paused. On LinkedIn the held campaign group is PAUSED, its campaign and creative ACTIVE. X has no per-ad switch, so its lowest level is the line item. &#x60;campaignStatus&#x60;, &#x60;adSetStatus&#x60; and &#x60;adStatus&#x60; set one level each and always win for that level; &#x60;status: PAUSED&#x60; adds a hold of its own only when none of them is PAUSED. To create every object paused, send all three as PAUSED.
    */
   public enum StatusEnum {
     ACTIVE(String.valueOf("ACTIVE")),
@@ -562,6 +566,88 @@ public class BoostPostRequest {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable
   private StatusEnum status;
+
+  /**
+   * Every platform, same semantics as POST /v1/ads/create. Sets the switch of the new campaign alone (LinkedIn: the campaign group) and overrides &#x60;status&#x60; for it. &#x60;ACTIVE&#x60; with &#x60;status: PAUSED&#x60; switches the campaign on and holds the new ad set paused (its ad on). Omitted, it follows &#x60;status&#x60;. Rejected with a 400 alongside &#x60;adSetId&#x60; or &#x60;existingCampaignId&#x60;, where no campaign is created (change an existing one with PUT /v1/ads/campaigns/{campaignId}/status).
+   */
+  public enum CampaignStatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    CampaignStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static CampaignStatusEnum fromValue(String value) {
+      for (CampaignStatusEnum b : CampaignStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_CAMPAIGN_STATUS = "campaignStatus";
+  @javax.annotation.Nullable
+  private CampaignStatusEnum campaignStatus;
+
+  /**
+   * Every platform, same semantics as POST /v1/ads/create. Sets the switch of the new ad set alone (Google, TikTok and Pinterest: the ad group; LinkedIn: the campaign, which stays DRAFT when held; X: the line item) and overrides &#x60;status&#x60; for it. Omitted, it follows &#x60;status&#x60;.  Precedence: a level status (&#x60;campaignStatus&#x60;, &#x60;adSetStatus&#x60;, &#x60;adStatus&#x60;) always wins for its level. &#x60;status: PAUSED&#x60; then holds the top-most new object that has no level status, and only when no level status is PAUSED; every other new object is switched on. So &#x60;campaignStatus: ACTIVE&#x60; + &#x60;adSetStatus: PAUSED&#x60; + &#x60;adStatus: PAUSED&#x60; keeps the campaign on with the new ad set and ad off, and all three PAUSED create the whole tree paused.  Rejected with a 400 alongside &#x60;adSetId&#x60; (that ad set already exists; change it with PUT /v1/ads/ad-sets/{adSetId}/status). 
+   */
+  public enum AdSetStatusEnum {
+    ACTIVE(String.valueOf("ACTIVE")),
+    
+    PAUSED(String.valueOf("PAUSED"));
+
+    private String value;
+
+    AdSetStatusEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static AdSetStatusEnum fromValue(String value) {
+      for (AdSetStatusEnum b : AdSetStatusEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_AD_SET_STATUS = "adSetStatus";
+  @javax.annotation.Nullable
+  private AdSetStatusEnum adSetStatus;
+
+  public static final String JSON_PROPERTY_AD_STATUS = "adStatus";
+  @javax.annotation.Nullable
+  private AdActivationStatus adStatus;
 
   /**
    * Meta only, same semantics as POST /v1/ads/create: campaign &#x3D; Advantage campaign budget (CBO), the budget and bid strategy sit on the campaign and the ad set inherits them. Default adset. Not allowed with adSetId.
@@ -1781,7 +1867,7 @@ public class BoostPostRequest {
   }
 
   /**
-   * Publish state of the created entities, on every platform. Omitted or ACTIVE publishes live (default); PAUSED pauses only the top-most object this boost creates and switches everything below it on: a new campaign is held paused with its ad set and ad on (one PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings it live); into an existing campaign (TikTok &#x60;existingCampaignId&#x60;) the new ad set is held paused; attached to an existing ad set (&#x60;adSetId&#x60;) the new ad itself is paused. On LinkedIn the held campaign group is PAUSED, its campaign and creative ACTIVE. X has no per-ad switch, so its lowest level is the line item.
+   * Publish state of the created entities, on every platform. Omitted or ACTIVE publishes live (default); PAUSED pauses only the top-most object this boost creates and switches everything below it on: a new campaign is held paused with its ad set and ad on (one PUT /v1/ads/campaigns/{campaignId}/status with &#x60;active&#x60; brings it live); into an existing campaign (TikTok &#x60;existingCampaignId&#x60;) the new ad set is held paused; attached to an existing ad set (&#x60;adSetId&#x60;) the new ad itself is paused. On LinkedIn the held campaign group is PAUSED, its campaign and creative ACTIVE. X has no per-ad switch, so its lowest level is the line item. &#x60;campaignStatus&#x60;, &#x60;adSetStatus&#x60; and &#x60;adStatus&#x60; set one level each and always win for that level; &#x60;status: PAUSED&#x60; adds a hold of its own only when none of them is PAUSED. To create every object paused, send all three as PAUSED.
    * @return status
    */
   @javax.annotation.Nullable
@@ -1796,6 +1882,78 @@ public class BoostPostRequest {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setStatus(@javax.annotation.Nullable StatusEnum status) {
     this.status = status;
+  }
+
+
+  public BoostPostRequest campaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
+    this.campaignStatus = campaignStatus;
+    return this;
+  }
+
+  /**
+   * Every platform, same semantics as POST /v1/ads/create. Sets the switch of the new campaign alone (LinkedIn: the campaign group) and overrides &#x60;status&#x60; for it. &#x60;ACTIVE&#x60; with &#x60;status: PAUSED&#x60; switches the campaign on and holds the new ad set paused (its ad on). Omitted, it follows &#x60;status&#x60;. Rejected with a 400 alongside &#x60;adSetId&#x60; or &#x60;existingCampaignId&#x60;, where no campaign is created (change an existing one with PUT /v1/ads/campaigns/{campaignId}/status).
+   * @return campaignStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CampaignStatusEnum getCampaignStatus() {
+    return campaignStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_CAMPAIGN_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCampaignStatus(@javax.annotation.Nullable CampaignStatusEnum campaignStatus) {
+    this.campaignStatus = campaignStatus;
+  }
+
+
+  public BoostPostRequest adSetStatus(@javax.annotation.Nullable AdSetStatusEnum adSetStatus) {
+    this.adSetStatus = adSetStatus;
+    return this;
+  }
+
+  /**
+   * Every platform, same semantics as POST /v1/ads/create. Sets the switch of the new ad set alone (Google, TikTok and Pinterest: the ad group; LinkedIn: the campaign, which stays DRAFT when held; X: the line item) and overrides &#x60;status&#x60; for it. Omitted, it follows &#x60;status&#x60;.  Precedence: a level status (&#x60;campaignStatus&#x60;, &#x60;adSetStatus&#x60;, &#x60;adStatus&#x60;) always wins for its level. &#x60;status: PAUSED&#x60; then holds the top-most new object that has no level status, and only when no level status is PAUSED; every other new object is switched on. So &#x60;campaignStatus: ACTIVE&#x60; + &#x60;adSetStatus: PAUSED&#x60; + &#x60;adStatus: PAUSED&#x60; keeps the campaign on with the new ad set and ad off, and all three PAUSED create the whole tree paused.  Rejected with a 400 alongside &#x60;adSetId&#x60; (that ad set already exists; change it with PUT /v1/ads/ad-sets/{adSetId}/status). 
+   * @return adSetStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdSetStatusEnum getAdSetStatus() {
+    return adSetStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_SET_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdSetStatus(@javax.annotation.Nullable AdSetStatusEnum adSetStatus) {
+    this.adSetStatus = adSetStatus;
+  }
+
+
+  public BoostPostRequest adStatus(@javax.annotation.Nullable AdActivationStatus adStatus) {
+    this.adStatus = adStatus;
+    return this;
+  }
+
+  /**
+   * Sets the switch of the new ad alone, also when attaching to an existing ad set with &#x60;adSetId&#x60; (Meta, TikTok Smart+), and overrides &#x60;status&#x60; for it. Same precedence as &#x60;adSetStatus&#x60;. Omitted, it follows &#x60;status&#x60;.  X returns a 400: a promoted post has no switch of its own, so hold the line item with &#x60;adSetStatus&#x60;. 
+   * @return adStatus
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_AD_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public AdActivationStatus getAdStatus() {
+    return adStatus;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_AD_STATUS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAdStatus(@javax.annotation.Nullable AdActivationStatus adStatus) {
+    this.adStatus = adStatus;
   }
 
 
@@ -1993,6 +2151,9 @@ public class BoostPostRequest {
         Objects.equals(this.dsaPayor, boostPostRequest.dsaPayor) &&
         Objects.equals(this.leadGenFormId, boostPostRequest.leadGenFormId) &&
         Objects.equals(this.status, boostPostRequest.status) &&
+        Objects.equals(this.campaignStatus, boostPostRequest.campaignStatus) &&
+        Objects.equals(this.adSetStatus, boostPostRequest.adSetStatus) &&
+        Objects.equals(this.adStatus, boostPostRequest.adStatus) &&
         Objects.equals(this.budgetLevel, boostPostRequest.budgetLevel) &&
         Objects.equals(this.attributionSpec, boostPostRequest.attributionSpec) &&
         Objects.equals(this.bodies, boostPostRequest.bodies) &&
@@ -2002,7 +2163,7 @@ public class BoostPostRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(creativeFeatures, postId, platformPostId, accountId, adAccountId, name, campaignName, adSetName, goal, adSetId, existingCampaignId, identityId, identityType, budgetAmount, budgetType, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, startDate, endDate, schedule, targeting, locationTargetingType, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, smartPlus, sparkPosts, promoCodes, promotedObject, dsaBeneficiary, dsaPayor, leadGenFormId, status, budgetLevel, attributionSpec, bodies, smartTargeting, optimizationGoal);
+    return Objects.hash(creativeFeatures, postId, platformPostId, accountId, adAccountId, name, campaignName, adSetName, goal, adSetId, existingCampaignId, identityId, identityType, budgetAmount, budgetType, budget, instagramAccountId, destinationType, whatsappPhoneNumber, currency, startDate, endDate, schedule, targeting, locationTargetingType, rawTargeting, bidStrategy, bidAmount, roasAverageFloor, platformSpecificData, tracking, specialAdCategories, specialAdCategoryCountry, regionalRegulatedCategories, regionalRegulationIdentities, linkUrl, callToAction, sparkAuthCode, smartPlus, sparkPosts, promoCodes, promotedObject, dsaBeneficiary, dsaPayor, leadGenFormId, status, campaignStatus, adSetStatus, adStatus, budgetLevel, attributionSpec, bodies, smartTargeting, optimizationGoal);
   }
 
   @Override
@@ -2055,6 +2216,9 @@ public class BoostPostRequest {
     sb.append("    dsaPayor: ").append(toIndentedString(dsaPayor)).append("\n");
     sb.append("    leadGenFormId: ").append(toIndentedString(leadGenFormId)).append("\n");
     sb.append("    status: ").append(toIndentedString(status)).append("\n");
+    sb.append("    campaignStatus: ").append(toIndentedString(campaignStatus)).append("\n");
+    sb.append("    adSetStatus: ").append(toIndentedString(adSetStatus)).append("\n");
+    sb.append("    adStatus: ").append(toIndentedString(adStatus)).append("\n");
     sb.append("    budgetLevel: ").append(toIndentedString(budgetLevel)).append("\n");
     sb.append("    attributionSpec: ").append(toIndentedString(attributionSpec)).append("\n");
     sb.append("    bodies: ").append(toIndentedString(bodies)).append("\n");
@@ -2369,6 +2533,21 @@ public class BoostPostRequest {
     // add `status` to the URL query string
     if (getStatus() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sstatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getStatus()))));
+    }
+
+    // add `campaignStatus` to the URL query string
+    if (getCampaignStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scampaignStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCampaignStatus()))));
+    }
+
+    // add `adSetStatus` to the URL query string
+    if (getAdSetStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadSetStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdSetStatus()))));
+    }
+
+    // add `adStatus` to the URL query string
+    if (getAdStatus() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sadStatus%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdStatus()))));
     }
 
     // add `budgetLevel` to the URL query string

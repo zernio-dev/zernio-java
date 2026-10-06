@@ -1893,7 +1893,7 @@ ApiResponse<[**CreateStandaloneAd200Response**](CreateStandaloneAd200Response.md
 
 Cancel an ad
 
-Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).
+Deletes the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).  Only the ad is deleted; a campaign or ad set is never deleted while it still holds another ad. On Meta, when the ad set and campaign were created by Zernio (by &#x60;POST /v1/ads/create&#x60; or &#x60;POST /v1/ads/boost&#x60;) and Meta lists no other ad in the ad set (archived ads count), the emptied ad set is deleted too, then the campaign once it holds no other ad set. Parents created outside Zernio, and the parents of an ad imported from the platform, are always kept. To delete a whole campaign on purpose use &#x60;DELETE /v1/ads/campaigns/{campaignId}&#x60;. 
 
 ### Example
 
@@ -1965,7 +1965,7 @@ public class Example {
 
 Cancel an ad
 
-Cancels the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).
+Deletes the ad on the platform and marks it as cancelled in the database. The ad is preserved for history. OpenAI Ads has no delete API; the ad is archived instead (a terminal state, the closest equivalent).  Only the ad is deleted; a campaign or ad set is never deleted while it still holds another ad. On Meta, when the ad set and campaign were created by Zernio (by &#x60;POST /v1/ads/create&#x60; or &#x60;POST /v1/ads/boost&#x60;) and Meta lists no other ad in the ad set (archived ads count), the emptied ad set is deleted too, then the campaign once it holds no other ad set. Parents created outside Zernio, and the parents of an ad imported from the platform, are always kept. To delete a whole campaign on purpose use &#x60;DELETE /v1/ads/campaigns/{campaignId}&#x60;. 
 
 ### Example
 
