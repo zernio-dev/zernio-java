@@ -16,6 +16,7 @@
 |**syncStatus** | [**SyncStatusEnum**](#SyncStatusEnum) | Sync state of analytics for this platform |  [optional] |
 |**platformPostUrl** | **URI** |  |  [optional] |
 |**errorMessage** | **String** | Failure detail. On failed entries, why the post failed to publish. On unavailable entries, why analytics cannot be synced (e.g. Google Business Profile, a TikTok upload that never received a video id). On pending entries, the most recent analytics sync error for the account (null while no sync has failed), cleared after the next successful sync. |  [optional] |
+|**errorCode** | [**ErrorCodeEnum**](#ErrorCodeEnum) | Stable machine-readable reason for errorMessage. post_not_found: the post was deleted or is no longer visible to the account. permission_missing: the last analytics sync of the Facebook account failed because the Page no longer grants pages_read_engagement (pending entries only). null: no stable code, read errorMessage. New values may be added. |  [optional] |
 
 
 
@@ -35,6 +36,15 @@
 | SYNCED | &quot;synced&quot; |
 | PENDING | &quot;pending&quot; |
 | UNAVAILABLE | &quot;unavailable&quot; |
+
+
+
+## Enum: ErrorCodeEnum
+
+| Name | Value |
+|---- | -----|
+| POST_NOT_FOUND | &quot;post_not_found&quot; |
+| PERMISSION_MISSING | &quot;permission_missing&quot; |
 
 
 
