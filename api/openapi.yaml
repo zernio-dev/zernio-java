@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.218.0
+  version: 1.218.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -25271,6 +25271,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is profile-scoped and `from` belongs to a profile
+            outside its scope (alphanumeric sender IDs included)
         "404":
           description: No SMS-enabled number matches `from`
         "409":
