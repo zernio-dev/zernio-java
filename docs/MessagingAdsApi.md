@@ -251,7 +251,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **422** | Page is not connected to a verified WhatsApp number. |  -  |
+| **422** | Page is not connected to a verified WhatsApp number, or code &#x60;ad_account_unusable&#x60; when Meta refuses writes on the ad account (see &#x60;ErrorResponse.details&#x60;). |  -  |
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
 
 ## createCtwaAdWithHttpInfo
@@ -333,7 +333,7 @@ ApiResponse<[**CreateMessagingAd201Response**](CreateMessagingAd201Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **422** | Page is not connected to a verified WhatsApp number. |  -  |
+| **422** | Page is not connected to a verified WhatsApp number, or code &#x60;ad_account_unusable&#x60; when Meta refuses writes on the ad account (see &#x60;ErrorResponse.details&#x60;). |  -  |
 | **502** | Meta rejected the request (e.g. WABA business verification missing). Inspect &#x60;platformError&#x60; for the upstream Meta payload.  |  -  |
 
 
