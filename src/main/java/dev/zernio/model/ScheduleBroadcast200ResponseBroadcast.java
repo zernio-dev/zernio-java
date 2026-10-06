@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ScheduleBroadcast200ResponseBroadcast.JSON_PROPERTY_STATUS,
   ScheduleBroadcast200ResponseBroadcast.JSON_PROPERTY_SCHEDULED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:42:25.294240430Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:45:52.987746702Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ScheduleBroadcast200ResponseBroadcast {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

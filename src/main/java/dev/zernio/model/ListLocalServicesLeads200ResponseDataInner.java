@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   ListLocalServicesLeads200ResponseDataInner.JSON_PROPERTY_CREDIT_STATE,
   ListLocalServicesLeads200ResponseDataInner.JSON_PROPERTY_CREDIT_STATE_LAST_UPDATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:42:25.294240430Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:45:52.987746702Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListLocalServicesLeads200ResponseDataInner {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   MetaCustomerLifecycle.JSON_PROPERTY_EXISTING_CUSTOMER_AUDIENCE_IDS,
   MetaCustomerLifecycle.JSON_PROPERTY_ENGAGED_AUDIENCE_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:42:25.294240430Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T15:45:52.987746702Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaCustomerLifecycle {
   /**
    * &#x60;all_customers&#x60; is \&quot;Maximize conversions from all customers\&quot;. &#x60;new_customers&#x60; is \&quot;Acquire new customers\&quot; (excludes existing customers). &#x60;new_customers_excluding_engaged&#x60; also excludes people who engaged with you but have not bought yet. 
