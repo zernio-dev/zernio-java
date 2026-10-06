@@ -845,7 +845,7 @@ ApiResponse<[**GetAdCreative200Response**](GetAdCreative200Response.md)>
 
 Direct video and image URLs for an ad
 
-Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
 
 ### Example
 
@@ -920,7 +920,7 @@ public class Example {
 
 Direct video and image URLs for an ad
 
-Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
 
 ### Example
 
