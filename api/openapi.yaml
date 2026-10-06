@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.220.2
+  version: 1.220.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -21619,8 +21619,9 @@ paths:
           description: "Inbox addon required, or the account is missing the platform\
             \ permission"
         "409":
-          description: "LinkedIn only: the account already holds a different reaction\
-            \ on this target (code invalid_resource_state); remove it before creating\
+          description: "LinkedIn only: the account already holds a reaction on this\
+            \ target, either of a different type or one LinkedIn does not let this\
+            \ account read (code invalid_resource_state); remove it before creating\
             \ another."
       security:
       - bearerAuth: []
@@ -21758,8 +21759,9 @@ paths:
         "404":
           description: Account or post not found
         "409":
-          description: "LinkedIn only: the account already holds a different reaction\
-            \ on this target (code invalid_resource_state); remove it before creating\
+          description: "LinkedIn only: the account already holds a reaction on this\
+            \ target, either of a different type or one LinkedIn does not let this\
+            \ account read (code invalid_resource_state); remove it before creating\
             \ another."
       security:
       - bearerAuth: []
