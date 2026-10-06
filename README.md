@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.224.1
+- API version: 1.225.0
 
-- Build date: 2026-10-06T17:11:30.950325527Z[Etc/UTC]
+- Build date: 2026-10-06T17:38:02.837214491Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.224.1</version>
+  <version>1.225.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.224.1"
+compile "dev.zernio:zernio-sdk:1.225.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.224.1.jar`
+- `target/zernio-sdk-1.225.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3360,6 +3360,7 @@ Class | Method | HTTP request | Description
  - [InstallTrackingTagOnStoreRequest](docs/InstallTrackingTagOnStoreRequest.md)
  - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
+ - [KeywordEntryOneOf](docs/KeywordEntryOneOf.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
  - [LikePost200Response](docs/LikePost200Response.md)
@@ -3883,14 +3884,11 @@ Class | Method | HTTP request | Description
  - [RemediatePhoneNumberRequestDocumentsInner](docs/RemediatePhoneNumberRequestDocumentsInner.md)
  - [RemediatePhoneNumberRequestDocumentsInnerOneOf](docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md)
  - [RemoveAccountCallout200Response](docs/RemoveAccountCallout200Response.md)
- - [RemoveAccountCalloutRequest](docs/RemoveAccountCalloutRequest.md)
  - [RemoveAdAccountUser200Response](docs/RemoveAdAccountUser200Response.md)
- - [RemoveAdGroupAssetsRequest](docs/RemoveAdGroupAssetsRequest.md)
  - [RemoveAdKeyword200Response](docs/RemoveAdKeyword200Response.md)
  - [RemoveAdLabel200Response](docs/RemoveAdLabel200Response.md)
  - [RemoveBookmark200Response](docs/RemoveBookmark200Response.md)
  - [RemoveCampaignAssets200Response](docs/RemoveCampaignAssets200Response.md)
- - [RemoveCampaignAssetsRequest](docs/RemoveCampaignAssetsRequest.md)
  - [RemoveConversionAssociations200Response](docs/RemoveConversionAssociations200Response.md)
  - [RemoveCustomConversionGoal200Response](docs/RemoveCustomConversionGoal200Response.md)
  - [RemoveDiscordMemberRole200Response](docs/RemoveDiscordMemberRole200Response.md)

@@ -2525,11 +2525,11 @@ ApiResponse<[**DeleteValueRuleSet200Response**](DeleteValueRuleSet200Response.md
 
 ## detachAdLabel
 
-> DetachAdLabel200Response detachAdLabel(labelId, googleAdLabelAssignments)
+> DetachAdLabel200Response detachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
 
 Detach a Google Ads label
 
-Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -2553,9 +2553,15 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
-        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
+        List<String> campaignIds = Arrays.asList(); // List<String> | Google campaign ids. Repeat the parameter or pass a comma-separated list.
+        List<String> adSetIds = Arrays.asList(); // List<String> | Google ad group ids. Repeat the parameter or pass a comma-separated list.
+        List<String> adIds = Arrays.asList(); // List<String> | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list.
+        List<String> keywordIds = Arrays.asList(); // List<String> | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list.
         try {
-            DetachAdLabel200Response result = apiInstance.detachAdLabel(labelId, googleAdLabelAssignments);
+            DetachAdLabel200Response result = apiInstance.detachAdLabel(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#detachAdLabel");
@@ -2574,7 +2580,13 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
-| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
+| **campaignIds** | [**List&lt;String&gt;**](String.md)| Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **adSetIds** | [**List&lt;String&gt;**](String.md)| Google ad group ids. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **adIds** | [**List&lt;String&gt;**](String.md)| Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **keywordIds** | [**List&lt;String&gt;**](String.md)| Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list. | [optional] |
 
 ### Return type
 
@@ -2587,7 +2599,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -2602,11 +2614,11 @@ public class Example {
 
 ## detachAdLabelWithHttpInfo
 
-> ApiResponse<DetachAdLabel200Response> detachAdLabel detachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments)
+> ApiResponse<DetachAdLabel200Response> detachAdLabel detachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds)
 
 Detach a Google Ads label
 
-Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;.
+Removes the label from the given targets. Idempotent; a target without the label is counted in &#x60;unchanged&#x60;. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -2631,9 +2643,15 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String labelId = "labelId_example"; // String | Google label id
-        GoogleAdLabelAssignments googleAdLabelAssignments = new GoogleAdLabelAssignments(); // GoogleAdLabelAssignments | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
+        List<String> campaignIds = Arrays.asList(); // List<String> | Google campaign ids. Repeat the parameter or pass a comma-separated list.
+        List<String> adSetIds = Arrays.asList(); // List<String> | Google ad group ids. Repeat the parameter or pass a comma-separated list.
+        List<String> adIds = Arrays.asList(); // List<String> | Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list.
+        List<String> keywordIds = Arrays.asList(); // List<String> | Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list.
         try {
-            ApiResponse<DetachAdLabel200Response> response = apiInstance.detachAdLabelWithHttpInfo(labelId, googleAdLabelAssignments);
+            ApiResponse<DetachAdLabel200Response> response = apiInstance.detachAdLabelWithHttpInfo(labelId, accountId, adAccountId, customerId, campaignIds, adSetIds, adIds, keywordIds);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2654,7 +2672,13 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **labelId** | **String**| Google label id | |
-| **googleAdLabelAssignments** | [**GoogleAdLabelAssignments**](GoogleAdLabelAssignments.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
+| **campaignIds** | [**List&lt;String&gt;**](String.md)| Google campaign ids. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **adSetIds** | [**List&lt;String&gt;**](String.md)| Google ad group ids. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **adIds** | [**List&lt;String&gt;**](String.md)| Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter or pass a comma-separated list. | [optional] |
+| **keywordIds** | [**List&lt;String&gt;**](String.md)| Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat the parameter or pass a comma-separated list. | [optional] |
 
 ### Return type
 
@@ -2667,7 +2691,7 @@ ApiResponse<[**DetachAdLabel200Response**](DetachAdLabel200Response.md)>
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7819,11 +7843,11 @@ ApiResponse<[**ListValueRuleSets200Response**](ListValueRuleSets200Response.md)>
 
 ## removeAccountCallout
 
-> RemoveAccountCallout200Response removeAccountCallout(removeAccountCalloutRequest)
+> RemoveAccountCallout200Response removeAccountCallout(accountId, assetId, adAccountId, customerId)
 
 Remove account callout
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -7846,9 +7870,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountCallout(removeAccountCalloutRequest);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountCallout(accountId, assetId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountCallout");
@@ -7866,7 +7893,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -7879,7 +7909,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7896,11 +7926,11 @@ public class Example {
 
 ## removeAccountCalloutWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountCallout removeAccountCalloutWithHttpInfo(removeAccountCalloutRequest)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountCallout removeAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId)
 
 Remove account callout
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -7924,9 +7954,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountCalloutWithHttpInfo(removeAccountCalloutRequest);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountCalloutWithHttpInfo(accountId, assetId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7946,7 +7979,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -7959,7 +7995,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7977,11 +8013,11 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ## removeAccountSitelink
 
-> RemoveAccountCallout200Response removeAccountSitelink(removeAccountCalloutRequest)
+> RemoveAccountCallout200Response removeAccountSitelink(accountId, assetId, adAccountId, customerId)
 
 Remove account sitelink
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -8004,9 +8040,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountSitelink(removeAccountCalloutRequest);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountSitelink(accountId, assetId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountSitelink");
@@ -8024,7 +8063,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -8037,7 +8079,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -8054,11 +8096,11 @@ public class Example {
 
 ## removeAccountSitelinkWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountSitelink removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountSitelink removeAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId)
 
 Remove account sitelink
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -8082,9 +8124,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountSitelinkWithHttpInfo(removeAccountCalloutRequest);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountSitelinkWithHttpInfo(accountId, assetId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -8104,7 +8149,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -8117,7 +8165,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -8135,11 +8183,11 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ## removeAccountStructuredSnippet
 
-> RemoveAccountCallout200Response removeAccountStructuredSnippet(removeAccountCalloutRequest)
+> RemoveAccountCallout200Response removeAccountStructuredSnippet(accountId, assetId, adAccountId, customerId)
 
 Remove account snippet
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -8162,9 +8210,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveAccountCallout200Response result = apiInstance.removeAccountStructuredSnippet(removeAccountCalloutRequest);
+            RemoveAccountCallout200Response result = apiInstance.removeAccountStructuredSnippet(accountId, assetId, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#removeAccountStructuredSnippet");
@@ -8182,7 +8233,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -8195,7 +8249,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -8212,11 +8266,11 @@ public class Example {
 
 ## removeAccountStructuredSnippetWithHttpInfo
 
-> ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippet removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest)
+> ApiResponse<RemoveAccountCallout200Response> removeAccountStructuredSnippet removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId)
 
 Remove account snippet
 
-Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain.
+Removes the customer_asset attachment only. The underlying shared asset and its campaign or ad-group attachments remain. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -8240,9 +8294,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        RemoveAccountCalloutRequest removeAccountCalloutRequest = new RemoveAccountCalloutRequest(); // RemoveAccountCalloutRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        String assetId = "assetId_example"; // String | Numeric Google Ads asset id.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountStructuredSnippetWithHttpInfo(removeAccountCalloutRequest);
+            ApiResponse<RemoveAccountCallout200Response> response = apiInstance.removeAccountStructuredSnippetWithHttpInfo(accountId, assetId, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -8262,7 +8319,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **removeAccountCalloutRequest** | [**RemoveAccountCalloutRequest**](RemoveAccountCalloutRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetId** | **String**| Numeric Google Ads asset id. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -8275,7 +8335,7 @@ ApiResponse<[**RemoveAccountCallout200Response**](RemoveAccountCallout200Respons
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details

@@ -1358,6 +1358,7 @@ docs/InstallTrackingTagOnStoreRequest.md
 docs/InviteAdAccountToManagerRequest.md
 docs/InvitesApi.md
 docs/KeywordEntry.md
+docs/KeywordEntryOneOf.md
 docs/LeadGenApi.md
 docs/LikeInboxComment200Response.md
 docs/LikeInboxCommentRequest.md
@@ -1897,14 +1898,11 @@ docs/RemediatePhoneNumberRequest.md
 docs/RemediatePhoneNumberRequestDocumentsInner.md
 docs/RemediatePhoneNumberRequestDocumentsInnerOneOf.md
 docs/RemoveAccountCallout200Response.md
-docs/RemoveAccountCalloutRequest.md
 docs/RemoveAdAccountUser200Response.md
-docs/RemoveAdGroupAssetsRequest.md
 docs/RemoveAdKeyword200Response.md
 docs/RemoveAdLabel200Response.md
 docs/RemoveBookmark200Response.md
 docs/RemoveCampaignAssets200Response.md
-docs/RemoveCampaignAssetsRequest.md
 docs/RemoveConversionAssociations200Response.md
 docs/RemoveCustomConversionGoal200Response.md
 docs/RemoveDiscordMemberRole200Response.md
@@ -4178,6 +4176,7 @@ src/main/java/dev/zernio/model/InstallTrackingTagOnStore422ResponseDetails.java
 src/main/java/dev/zernio/model/InstallTrackingTagOnStoreRequest.java
 src/main/java/dev/zernio/model/InviteAdAccountToManagerRequest.java
 src/main/java/dev/zernio/model/KeywordEntry.java
+src/main/java/dev/zernio/model/KeywordEntryOneOf.java
 src/main/java/dev/zernio/model/LikeInboxComment200Response.java
 src/main/java/dev/zernio/model/LikeInboxCommentRequest.java
 src/main/java/dev/zernio/model/LikePost200Response.java
@@ -4701,14 +4700,11 @@ src/main/java/dev/zernio/model/RemediatePhoneNumberRequest.java
 src/main/java/dev/zernio/model/RemediatePhoneNumberRequestDocumentsInner.java
 src/main/java/dev/zernio/model/RemediatePhoneNumberRequestDocumentsInnerOneOf.java
 src/main/java/dev/zernio/model/RemoveAccountCallout200Response.java
-src/main/java/dev/zernio/model/RemoveAccountCalloutRequest.java
 src/main/java/dev/zernio/model/RemoveAdAccountUser200Response.java
-src/main/java/dev/zernio/model/RemoveAdGroupAssetsRequest.java
 src/main/java/dev/zernio/model/RemoveAdKeyword200Response.java
 src/main/java/dev/zernio/model/RemoveAdLabel200Response.java
 src/main/java/dev/zernio/model/RemoveBookmark200Response.java
 src/main/java/dev/zernio/model/RemoveCampaignAssets200Response.java
-src/main/java/dev/zernio/model/RemoveCampaignAssetsRequest.java
 src/main/java/dev/zernio/model/RemoveConversionAssociations200Response.java
 src/main/java/dev/zernio/model/RemoveCustomConversionGoal200Response.java
 src/main/java/dev/zernio/model/RemoveDiscordMemberRole200Response.java
@@ -5551,3 +5547,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/KeywordEntryOneOfTest.java

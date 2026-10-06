@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.224.1
+  version: 1.225.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -36592,7 +36592,8 @@ paths:
           - paused
           type: string
         style: form
-      - explode: true
+      - description: Accepted in any case.
+        explode: true
         in: query
         name: matchType
         required: false
@@ -37827,6 +37828,13 @@ paths:
       requestBody:
         content:
           application/json:
+            example:
+              status: paused
+              campaigns:
+              - platformCampaignId: "23456789012"
+                platform: google
+              - platformCampaignId: "120210000000000000"
+                platform: facebook
             schema:
               $ref: "#/components/schemas/bulkUpdateAdCampaignStatus_request"
         required: true
@@ -39578,8 +39586,10 @@ paths:
       - application/json
   /v1/ads/campaigns/{campaignId}/assets:
     delete:
-      description: Removes the specified attachments only. Google assets cannot be
-        deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+      description: "Removes the specified attachments only. Google assets cannot be\
+        \ deleted. Other attachments remain. assetResourceNames is retained for compatibility.\
+        \ Fields go in the query string. A JSON body with the same fields is also\
+        \ accepted and, when sent, the query string is ignored."
       operationId: removeCampaignAssets
       parameters:
       - description: Numeric Google platform id.
@@ -39591,19 +39601,59 @@ paths:
           pattern: ^\d+$
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 64b1f0c8a1b2c3d4e5f60718
-              adAccountId: "1234567890"
-              assetResourceNames:
-              - customers/1234567890/assets/123
-              campaignAssetResourceNames:
-              - customers/1234567890/campaignAssets/456~123~CALLOUT
-            schema:
-              $ref: "#/components/schemas/removeCampaignAssets_request"
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: "Asset resource names, retained for compatibility. Repeat the\
+          \ parameter or pass a comma-separated list."
+        explode: true
+        in: query
+        name: assetResourceNames
+        required: true
+        schema:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        style: form
+      - description: "campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT.\
+          \ Repeat the parameter or pass a comma-separated list."
+        explode: true
+        in: query
+        name: campaignAssetResourceNames
+        required: true
+        schema:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -39633,7 +39683,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     get:
@@ -39842,8 +39891,10 @@ paths:
       - application/json
   /v1/ads/ad-sets/{adSetId}/assets:
     delete:
-      description: Removes the specified attachments only. Google assets cannot be
-        deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+      description: "Removes the specified attachments only. Google assets cannot be\
+        \ deleted. Other attachments remain. assetResourceNames is retained for compatibility.\
+        \ Fields go in the query string. A JSON body with the same fields is also\
+        \ accepted and, when sent, the query string is ignored."
       operationId: removeAdGroupAssets
       parameters:
       - description: Numeric Google platform id.
@@ -39855,19 +39906,59 @@ paths:
           pattern: ^\d+$
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 64b1f0c8a1b2c3d4e5f60718
-              customerId: "1234567890"
-              assetResourceNames:
-              - customers/1234567890/assets/123
-              adGroupAssetResourceNames:
-              - customers/1234567890/adGroupAssets/456~123~CALLOUT
-            schema:
-              $ref: "#/components/schemas/removeAdGroupAssets_request"
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: "Asset resource names, retained for compatibility. Repeat the\
+          \ parameter or pass a comma-separated list."
+        explode: true
+        in: query
+        name: assetResourceNames
+        required: true
+        schema:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        style: form
+      - description: "ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT.\
+          \ Repeat the parameter or pass a comma-separated list."
+        explode: true
+        in: query
+        name: adGroupAssetResourceNames
+        required: true
+        schema:
+          items:
+            type: string
+          minItems: 1
+          type: array
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -39897,7 +39988,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     get:
@@ -41127,6 +41217,8 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - google
+      - linkedin
       x-accepts:
       - application/json
     patch:
@@ -41140,6 +41232,8 @@ paths:
           / dark / asset_feed creatives whose object_story_spec Meta strips (those return 422 asking for
           `creative`).
         - Google: `trackingUrlTemplate` and/or `finalUrlSuffix` (full template strings; account quota applies).
+          Written at the CAMPAIGN level (the campaign's `tracking_url_template` / `final_url_suffix`), so
+          the change applies to every ad in the ad's campaign.
         - LinkedIn: `dynamicValueParameters` and/or `customValueParameters` (campaign-level Dynamic UTM).
       operationId: updateAdTrackingTags
       parameters:
@@ -41192,6 +41286,8 @@ paths:
       x-resource-group: ads
       x-platforms:
       - meta
+      - google
+      - linkedin
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -43133,8 +43229,10 @@ paths:
       - application/json
   /v1/ads/labels/{labelId}/assignments:
     delete:
-      description: Removes the label from the given targets. Idempotent; a target
-        without the label is counted in `unchanged`.
+      description: "Removes the label from the given targets. Idempotent; a target\
+        \ without the label is counted in `unchanged`. Fields go in the query string.\
+        \ A JSON body with the same fields is also accepted and, when sent, the query\
+        \ string is ignored."
       operationId: detachAdLabel
       parameters:
       - description: Google label id
@@ -43146,12 +43244,91 @@ paths:
           pattern: ^\d+$
           type: string
         style: simple
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/GoogleAdLabelAssignments"
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: Google campaign ids. Repeat the parameter or pass a comma-separated
+          list.
+        explode: true
+        in: query
+        name: campaignIds
+        required: false
+        schema:
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+        style: form
+      - description: Google ad group ids. Repeat the parameter or pass a comma-separated
+          list.
+        explode: true
+        in: query
+        name: adSetIds
+        required: false
+        schema:
+          items:
+            pattern: ^\d+$
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+        style: form
+      - description: "Google ad group ad ids, {adGroupId}~{adId}. Repeat the parameter\
+          \ or pass a comma-separated list."
+        explode: true
+        in: query
+        name: adIds
+        required: false
+        schema:
+          items:
+            pattern: ^\d+~\d+$
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+        style: form
+      - description: "Google keyword criterion ids, {adGroupId}~{criterionId}. Repeat\
+          \ the parameter or pass a comma-separated list."
+        explode: true
+        in: query
+        name: keywordIds
+        required: false
+        schema:
+          items:
+            pattern: ^\d+~\d+$
+            type: string
+          maxItems: 1000
+          minItems: 1
+          type: array
+        style: form
       responses:
         "200":
           content:
@@ -43177,7 +43354,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     post:
@@ -44671,19 +44847,50 @@ paths:
       - application/json
   /v1/ads/accounts/callouts:
     delete:
-      description: Removes the customer_asset attachment only. The underlying shared
-        asset and its campaign or ad-group attachments remain.
+      description: "Removes the customer_asset attachment only. The underlying shared\
+        \ asset and its campaign or ad-group attachments remain. Fields go in the\
+        \ query string. A JSON body with the same fields is also accepted and, when\
+        \ sent, the query string is ignored."
       operationId: removeAccountCallout
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 64b1f0c8a1b2c3d4e5f60718
-              adAccountId: "1234567890"
-              assetId: "123"
-            schema:
-              $ref: "#/components/schemas/removeAccountCallout_request"
+      parameters:
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: Numeric Google Ads asset id.
+        explode: true
+        in: query
+        name: assetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -44713,7 +44920,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     get:
@@ -44883,19 +45089,50 @@ paths:
       - application/json
   /v1/ads/accounts/sitelinks:
     delete:
-      description: Removes the customer_asset attachment only. The underlying shared
-        asset and its campaign or ad-group attachments remain.
+      description: "Removes the customer_asset attachment only. The underlying shared\
+        \ asset and its campaign or ad-group attachments remain. Fields go in the\
+        \ query string. A JSON body with the same fields is also accepted and, when\
+        \ sent, the query string is ignored."
       operationId: removeAccountSitelink
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 64b1f0c8a1b2c3d4e5f60718
-              adAccountId: "1234567890"
-              assetId: "123"
-            schema:
-              $ref: "#/components/schemas/removeAccountCallout_request"
+      parameters:
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: Numeric Google Ads asset id.
+        explode: true
+        in: query
+        name: assetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -44925,7 +45162,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     get:
@@ -45097,19 +45333,50 @@ paths:
       - application/json
   /v1/ads/accounts/structured-snippets:
     delete:
-      description: Removes the customer_asset attachment only. The underlying shared
-        asset and its campaign or ad-group attachments remain.
+      description: "Removes the customer_asset attachment only. The underlying shared\
+        \ asset and its campaign or ad-group attachments remain. Fields go in the\
+        \ query string. A JSON body with the same fields is also accepted and, when\
+        \ sent, the query string is ignored."
       operationId: removeAccountStructuredSnippet
-      requestBody:
-        content:
-          application/json:
-            example:
-              accountId: 64b1f0c8a1b2c3d4e5f60718
-              adAccountId: "1234567890"
-              assetId: "123"
-            schema:
-              $ref: "#/components/schemas/removeAccountCallout_request"
+      parameters:
+      - description: Zernio Google Ads connection id.
+        explode: true
+        in: query
+        name: accountId
         required: true
+        schema:
+          pattern: "^[a-fA-F0-9]{24}$"
+          type: string
+        style: form
+      - description: "Platform ad account ID (Google customer ID, digits only). Required\
+          \ when the connection has multiple customers."
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - deprecated: true
+        description: "Alias of adAccountId, kept for existing callers"
+        explode: true
+        in: query
+        name: customerId
+        required: false
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
+      - description: Numeric Google Ads asset id.
+        explode: true
+        in: query
+        name: assetId
+        required: true
+        schema:
+          pattern: ^\d+$
+          type: string
+        style: form
       responses:
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
@@ -45139,7 +45406,6 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
-      x-content-type: application/json
       x-accepts:
       - application/json
     get:
@@ -85406,7 +85672,7 @@ components:
         maxLength: 80
         minLength: 1
         type: string
-      - $ref: "#/components/schemas/addAdKeywords_request_keywords_inner_anyOf"
+      - $ref: "#/components/schemas/KeywordEntry_oneOf"
     ConversionEvent:
       description: |
         A single conversion event to relay to the ad platform. All PII fields
@@ -124476,8 +124742,13 @@ components:
     bulkUpdateAdCampaignStatus_request_campaigns_inner:
       properties:
         platformCampaignId:
+          description: "The campaign id on the ad platform (e.g. the numeric Google\
+            \ campaign id), not a Zernio id."
           type: string
         platform:
+          description: "The ad platform, e.g. `google` for Google Ads. The ads connection\
+            \ slug (`googleads`, `tiktokads`, ...) is accepted as an alias. `metaads`\
+            \ is not: send `facebook` or `instagram`."
           enum:
           - facebook
           - instagram
@@ -124487,6 +124758,12 @@ components:
           - google
           - twitter
           - openai
+          - googleads
+          - tiktokads
+          - linkedinads
+          - pinterestads
+          - xads
+          - openaiads
           type: string
       required:
       - platform
@@ -128983,36 +129260,6 @@ components:
           items:
             type: string
           type: array
-    removeCampaignAssets_request:
-      properties:
-        accountId:
-          description: Zernio Google Ads connection id.
-          pattern: "^[a-fA-F0-9]{24}$"
-          type: string
-        adAccountId:
-          description: "Platform ad account ID (Google customer ID, digits only).\
-            \ Required when the connection has multiple customers."
-          pattern: ^\d+$
-          type: string
-        customerId:
-          deprecated: true
-          description: "Alias of adAccountId, kept for existing callers"
-          pattern: ^\d+$
-          type: string
-        assetResourceNames:
-          items:
-            type: string
-          minItems: 1
-          type: array
-        campaignAssetResourceNames:
-          items:
-            type: string
-          minItems: 1
-          type: array
-      required:
-      - accountId
-      - assetResourceNames
-      - campaignAssetResourceNames
     removeCampaignAssets_200_response:
       example:
         removed: true
@@ -129161,36 +129408,6 @@ components:
           items:
             type: string
           type: array
-    removeAdGroupAssets_request:
-      properties:
-        accountId:
-          description: Zernio Google Ads connection id.
-          pattern: "^[a-fA-F0-9]{24}$"
-          type: string
-        adAccountId:
-          description: "Platform ad account ID (Google customer ID, digits only).\
-            \ Required when the connection has multiple customers."
-          pattern: ^\d+$
-          type: string
-        customerId:
-          deprecated: true
-          description: "Alias of adAccountId, kept for existing callers"
-          pattern: ^\d+$
-          type: string
-        assetResourceNames:
-          items:
-            type: string
-          minItems: 1
-          type: array
-        adGroupAssetResourceNames:
-          items:
-            type: string
-          minItems: 1
-          type: array
-      required:
-      - accountId
-      - adGroupAssetResourceNames
-      - assetResourceNames
     getCampaignAnalytics_202_response:
       allOf:
       - $ref: "#/components/schemas/CampaignAnalyticsResponse"
@@ -132795,28 +133012,6 @@ components:
           items:
             $ref: "#/components/schemas/addAccountCallouts_201_response_callouts_inner"
           type: array
-    removeAccountCallout_request:
-      properties:
-        accountId:
-          description: Zernio Google Ads connection id.
-          pattern: "^[a-fA-F0-9]{24}$"
-          type: string
-        adAccountId:
-          description: "Platform ad account ID (Google customer ID, digits only).\
-            \ Required when the connection has multiple customers."
-          pattern: ^\d+$
-          type: string
-        customerId:
-          deprecated: true
-          description: "Alias of adAccountId, kept for existing callers"
-          pattern: ^\d+$
-          type: string
-        assetId:
-          pattern: ^\d+$
-          type: string
-      required:
-      - accountId
-      - assetId
     removeAccountCallout_200_response:
       example:
         removed: true
@@ -136044,11 +136239,15 @@ components:
       - locale
     createStandaloneAd_request_additionalHeadlines_inner:
       oneOf:
-      - type: string
+      - maxLength: 30
+        minLength: 1
+        type: string
       - $ref: "#/components/schemas/GoogleRsaHeadline"
     createStandaloneAd_request_additionalDescriptions_inner:
       oneOf:
-      - type: string
+      - maxLength: 90
+        minLength: 1
+        type: string
       - $ref: "#/components/schemas/GoogleRsaDescription"
     createStandaloneAd_request_sitelinks_inner:
       properties:
@@ -136611,15 +136810,18 @@ components:
             budget and schedule are inherited (passing those fields
             returns 400).
 
-            On Google Ads the `adSetId` is the AD GROUP id. `goal` is
-            still REQUIRED even though budget and targeting are
-            inherited from the ad group. Send `campaignType: "search"`
-            to attach into a Search ad group, including one created by
-            `POST /v1/ads/ad-sets` (always SEARCH_STANDARD): without it
-            the request is treated as Display and requires
-            `images.landscape` + `images.square` + `businessName`, and
-            the resulting display creative does not match a Search ad
-            group.
+            On Google Ads the `adSetId` is the AD GROUP id (numeric). `goal`
+            is not required: the ad group keeps its campaign's bidding,
+            budget and targeting. `campaignType` is read from the ad group's
+            campaign (Search, Display or Demand Gen), so it can be omitted;
+            a `campaignType` that contradicts the ad group returns 400, an
+            ad group Google does not know in that customer returns 404, and
+            any other campaign type returns 422. A Search ad needs
+            `headline` + `body` + `linkUrl`; a Display ad also needs
+            `images.landscape` + `images.square` + `businessName`. Google
+            allows 3 responsive search ads per ad group: a fourth returns
+            422 naming the limit (`RESPONSIVE_SEARCH_ADS_PER_AD_GROUP`) and
+            the ad group.
             `budgetAmount`/`budgetType` and bidding fields
             (`bidStrategy`, `bidAmount`, `portfolioBidStrategyId`)
             return 400 on this shape; the ad group already owns them.
@@ -137053,7 +137255,8 @@ components:
         campaignType:
           default: display
           description: Google only. Performance Max requires assetGroup and Demand
-            Gen requires demandGen; both are always created PAUSED.
+            Gen requires demandGen; both are always created PAUSED. With `adSetId`
+            it defaults to the ad group's own campaign type instead of display.
           enum:
           - display
           - search
@@ -137101,7 +137304,10 @@ components:
             \ with text and optional pinnedField. Existing string input remains supported.\
             \ The effective create lists, including primary text and deduplication,\
             \ must contain 3-15 headlines and 2-4 descriptions; excess entries return\
-            \ 400."
+            \ 400. Each headline is at most 30 characters (Google's limit): a longer\
+            \ one returns 400 naming the field and index (e.g. `additionalHeadlines[2]`),\
+            \ it is never truncated. On Search the same limit applies to `headline`\
+            \ and `longHeadline` (30) and to `body` (90)."
           example:
           - Schedule Your Posts
           - text: Build With Zernio
@@ -137114,7 +137320,10 @@ components:
             \ with text and optional pinnedField. Existing string input remains supported.\
             \ The effective create lists, including primary text and deduplication,\
             \ must contain 3-15 headlines and 2-4 descriptions; excess entries return\
-            \ 400."
+            \ 400. Each description is at most 90 characters (Google's limit): a longer\
+            \ one returns 400 naming the field and index (e.g. `additionalDescriptions[2]`),\
+            \ it is never truncated. On Search the same limit applies to `headline`\
+            \ and `longHeadline` (30) and to `body` (90)."
           example:
           - Build social publishing into your application.
           - text: Connect social accounts with one API.
@@ -156500,6 +156709,22 @@ components:
           description: Account currency
           nullable: true
           type: number
+    KeywordEntry_oneOf:
+      properties:
+        text:
+          maxLength: 80
+          minLength: 1
+          type: string
+        matchType:
+          description: "Defaults to broad. Accepted in any case (EXACT, Exact) and\
+            \ stored lowercase."
+          enum:
+          - exact
+          - phrase
+          - broad
+          type: string
+      required:
+      - text
     ConversionEvent_user_clickIds:
       description: Platform click identifiers captured from the originating ad click.
       properties:

@@ -5408,7 +5408,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Platform campaign ID
         String adSetId = "adSetId_example"; // String | Platform ad group ID (Google ad group)
         String status = "active"; // String | Keyword criterion status
-        String matchType = "exact"; // String | 
+        String matchType = "exact"; // String | Accepted in any case.
         Boolean negative = true; // Boolean | true = negative keywords only, false = positive only. Omit for both.
         String search = "search_example"; // String | Case-insensitive substring match on the keyword text
         try {
@@ -5438,7 +5438,7 @@ public class Example {
 | **campaignId** | **String**| Platform campaign ID | [optional] |
 | **adSetId** | **String**| Platform ad group ID (Google ad group) | [optional] |
 | **status** | **String**| Keyword criterion status | [optional] [enum: active, paused] |
-| **matchType** | **String**|  | [optional] [enum: exact, phrase, broad, unknown] |
+| **matchType** | **String**| Accepted in any case. | [optional] [enum: exact, phrase, broad, unknown] |
 | **negative** | **Boolean**| true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional] |
 | **search** | **String**| Case-insensitive substring match on the keyword text | [optional] |
 
@@ -5502,7 +5502,7 @@ public class Example {
         String campaignId = "campaignId_example"; // String | Platform campaign ID
         String adSetId = "adSetId_example"; // String | Platform ad group ID (Google ad group)
         String status = "active"; // String | Keyword criterion status
-        String matchType = "exact"; // String | 
+        String matchType = "exact"; // String | Accepted in any case.
         Boolean negative = true; // Boolean | true = negative keywords only, false = positive only. Omit for both.
         String search = "search_example"; // String | Case-insensitive substring match on the keyword text
         try {
@@ -5534,7 +5534,7 @@ public class Example {
 | **campaignId** | **String**| Platform campaign ID | [optional] |
 | **adSetId** | **String**| Platform ad group ID (Google ad group) | [optional] |
 | **status** | **String**| Keyword criterion status | [optional] [enum: active, paused] |
-| **matchType** | **String**|  | [optional] [enum: exact, phrase, broad, unknown] |
+| **matchType** | **String**| Accepted in any case. | [optional] [enum: exact, phrase, broad, unknown] |
 | **negative** | **Boolean**| true &#x3D; negative keywords only, false &#x3D; positive only. Omit for both. | [optional] |
 | **search** | **String**| Case-insensitive substring match on the keyword text | [optional] |
 
@@ -6933,11 +6933,11 @@ ApiResponse<[**ListGoogleRecommendations200Response**](ListGoogleRecommendations
 
 ## removeAdGroupAssets
 
-> RemoveCampaignAssets200Response removeAdGroupAssets(adSetId, removeAdGroupAssetsRequest)
+> RemoveCampaignAssets200Response removeAdGroupAssets(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId)
 
 Remove ad-group assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -6961,9 +6961,13 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Numeric Google platform id.
-        RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest = new RemoveAdGroupAssetsRequest(); // RemoveAdGroupAssetsRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        List<String> assetResourceNames = Arrays.asList(); // List<String> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+        List<String> adGroupAssetResourceNames = Arrays.asList(); // List<String> | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveCampaignAssets200Response result = apiInstance.removeAdGroupAssets(adSetId, removeAdGroupAssetsRequest);
+            RemoveCampaignAssets200Response result = apiInstance.removeAdGroupAssets(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#removeAdGroupAssets");
@@ -6982,7 +6986,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Numeric Google platform id. | |
-| **removeAdGroupAssetsRequest** | [**RemoveAdGroupAssetsRequest**](RemoveAdGroupAssetsRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetResourceNames** | [**List&lt;String&gt;**](String.md)| Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. | |
+| **adGroupAssetResourceNames** | [**List&lt;String&gt;**](String.md)| ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -6995,7 +7003,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7012,11 +7020,11 @@ public class Example {
 
 ## removeAdGroupAssetsWithHttpInfo
 
-> ApiResponse<RemoveCampaignAssets200Response> removeAdGroupAssets removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest)
+> ApiResponse<RemoveCampaignAssets200Response> removeAdGroupAssets removeAdGroupAssetsWithHttpInfo(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId)
 
 Remove ad-group assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -7041,9 +7049,13 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String adSetId = "adSetId_example"; // String | Numeric Google platform id.
-        RemoveAdGroupAssetsRequest removeAdGroupAssetsRequest = new RemoveAdGroupAssetsRequest(); // RemoveAdGroupAssetsRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        List<String> assetResourceNames = Arrays.asList(); // List<String> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+        List<String> adGroupAssetResourceNames = Arrays.asList(); // List<String> | ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeAdGroupAssetsWithHttpInfo(adSetId, removeAdGroupAssetsRequest);
+            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeAdGroupAssetsWithHttpInfo(adSetId, accountId, assetResourceNames, adGroupAssetResourceNames, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7064,7 +7076,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **adSetId** | **String**| Numeric Google platform id. | |
-| **removeAdGroupAssetsRequest** | [**RemoveAdGroupAssetsRequest**](RemoveAdGroupAssetsRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetResourceNames** | [**List&lt;String&gt;**](String.md)| Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. | |
+| **adGroupAssetResourceNames** | [**List&lt;String&gt;**](String.md)| ad_group_asset resource names to remove, e.g. customers/1234567890/adGroupAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -7077,7 +7093,7 @@ ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Respons
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7247,11 +7263,11 @@ ApiResponse<[**RemoveAdKeyword200Response**](RemoveAdKeyword200Response.md)>
 
 ## removeCampaignAssets
 
-> RemoveCampaignAssets200Response removeCampaignAssets(campaignId, removeCampaignAssetsRequest)
+> RemoveCampaignAssets200Response removeCampaignAssets(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId)
 
 Remove campaign assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -7275,9 +7291,13 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Numeric Google platform id.
-        RemoveCampaignAssetsRequest removeCampaignAssetsRequest = new RemoveCampaignAssetsRequest(); // RemoveCampaignAssetsRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        List<String> assetResourceNames = Arrays.asList(); // List<String> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+        List<String> campaignAssetResourceNames = Arrays.asList(); // List<String> | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            RemoveCampaignAssets200Response result = apiInstance.removeCampaignAssets(campaignId, removeCampaignAssetsRequest);
+            RemoveCampaignAssets200Response result = apiInstance.removeCampaignAssets(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#removeCampaignAssets");
@@ -7296,7 +7316,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Numeric Google platform id. | |
-| **removeCampaignAssetsRequest** | [**RemoveCampaignAssetsRequest**](RemoveCampaignAssetsRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetResourceNames** | [**List&lt;String&gt;**](String.md)| Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. | |
+| **campaignAssetResourceNames** | [**List&lt;String&gt;**](String.md)| campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -7309,7 +7333,7 @@ public class Example {
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
@@ -7326,11 +7350,11 @@ public class Example {
 
 ## removeCampaignAssetsWithHttpInfo
 
-> ApiResponse<RemoveCampaignAssets200Response> removeCampaignAssets removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest)
+> ApiResponse<RemoveCampaignAssets200Response> removeCampaignAssets removeCampaignAssetsWithHttpInfo(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId)
 
 Remove campaign assets
 
-Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility.
+Removes the specified attachments only. Google assets cannot be deleted. Other attachments remain. assetResourceNames is retained for compatibility. Fields go in the query string. A JSON body with the same fields is also accepted and, when sent, the query string is ignored.
 
 ### Example
 
@@ -7355,9 +7379,13 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String campaignId = "campaignId_example"; // String | Numeric Google platform id.
-        RemoveCampaignAssetsRequest removeCampaignAssetsRequest = new RemoveCampaignAssetsRequest(); // RemoveCampaignAssetsRequest | 
+        String accountId = "accountId_example"; // String | Zernio Google Ads connection id.
+        List<String> assetResourceNames = Arrays.asList(); // List<String> | Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list.
+        List<String> campaignAssetResourceNames = Arrays.asList(); // List<String> | campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list.
+        String adAccountId = "adAccountId_example"; // String | Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers.
+        String customerId = "customerId_example"; // String | Alias of adAccountId, kept for existing callers
         try {
-            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeCampaignAssetsWithHttpInfo(campaignId, removeCampaignAssetsRequest);
+            ApiResponse<RemoveCampaignAssets200Response> response = apiInstance.removeCampaignAssetsWithHttpInfo(campaignId, accountId, assetResourceNames, campaignAssetResourceNames, adAccountId, customerId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -7378,7 +7406,11 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **campaignId** | **String**| Numeric Google platform id. | |
-| **removeCampaignAssetsRequest** | [**RemoveCampaignAssetsRequest**](RemoveCampaignAssetsRequest.md)|  | |
+| **accountId** | **String**| Zernio Google Ads connection id. | |
+| **assetResourceNames** | [**List&lt;String&gt;**](String.md)| Asset resource names, retained for compatibility. Repeat the parameter or pass a comma-separated list. | |
+| **campaignAssetResourceNames** | [**List&lt;String&gt;**](String.md)| campaign_asset resource names to remove, e.g. customers/1234567890/campaignAssets/456~123~CALLOUT. Repeat the parameter or pass a comma-separated list. | |
+| **adAccountId** | **String**| Platform ad account ID (Google customer ID, digits only). Required when the connection has multiple customers. | [optional] |
+| **customerId** | **String**| Alias of adAccountId, kept for existing callers | [optional] |
 
 ### Return type
 
@@ -7391,7 +7423,7 @@ ApiResponse<[**RemoveCampaignAssets200Response**](RemoveCampaignAssets200Respons
 
 ### HTTP request headers
 
-- **Content-Type**: application/json
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 ### HTTP response details
