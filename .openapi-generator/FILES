@@ -1677,6 +1677,7 @@ docs/MarkConversationRead200Response.md
 docs/MediaApi.md
 docs/MediaContentType.md
 docs/MediaItem.md
+docs/MediaSubtitle.md
 docs/MediaUploadResponse.md
 docs/MentionsApi.md
 docs/MessagesApi.md
@@ -4458,6 +4459,7 @@ src/main/java/dev/zernio/model/LookupSmsNumber200Response.java
 src/main/java/dev/zernio/model/MarkConversationRead200Response.java
 src/main/java/dev/zernio/model/MediaContentType.java
 src/main/java/dev/zernio/model/MediaItem.java
+src/main/java/dev/zernio/model/MediaSubtitle.java
 src/main/java/dev/zernio/model/MediaUploadResponse.java
 src/main/java/dev/zernio/model/MessagingCarouselCard.java
 src/main/java/dev/zernio/model/MetaAdsPlatformData.java
@@ -5481,3 +5483,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/MediaSubtitleTest.java

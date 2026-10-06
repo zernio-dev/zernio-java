@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.220.4
+  version: 1.221.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -70177,6 +70177,17 @@ components:
         images and videos that exceed platform limits (videos over 200 MB may not
         be compressed).
       example:
+        subtitles:
+        - language: en
+          url: https://media.zernio.com/temp/walkthrough.en.srt
+        - language: en
+          url: https://media.zernio.com/temp/walkthrough.en.srt
+        - language: en
+          url: https://media.zernio.com/temp/walkthrough.en.srt
+        - language: en
+          url: https://media.zernio.com/temp/walkthrough.en.srt
+        - language: en
+          url: https://media.zernio.com/temp/walkthrough.en.srt
         thumbnail: https://openapi-generator.tech
         filename: filename
         altText: altText
@@ -70235,9 +70246,49 @@ components:
             \ (legacy)."
           format: uri
           type: string
+        subtitles:
+          description: "Subtitle (closed caption) files for a video item, in SRT or\
+            \ WebVTT. Each language may appear once per video. Sent to YouTube, Facebook\
+            \ videos, LinkedIn, X and Bluesky; ignored with a warning on every other\
+            \ platform. Zernio downloads each file when the post is created or updated\
+            \ and converts it to the format each platform requires. Per-platform rules:\
+            \ YouTube takes every track; Facebook takes every track, up to 200 KB\
+            \ each; Bluesky takes every track, up to 20 KB each after conversion to\
+            \ WebVTT; X takes the first track only (one subtitle per video); LinkedIn\
+            \ takes the first English track only. Tracks a platform cannot take are\
+            \ skipped and reported in the response warnings. A file that is unreachable,\
+            \ redirects, exceeds 1 MB, is not valid SRT or WebVTT, or is over a platform\
+            \ limit is rejected with a 400 (code INVALID_SUBTITLES). If a platform\
+            \ rejects a file at publish time, the post is still published, without\
+            \ subtitles."
+          items:
+            $ref: "#/components/schemas/MediaSubtitle"
+          maxItems: 20
+          type: array
         tiktokProcessed:
           description: Internal flag indicating the image was resized for TikTok
           type: boolean
+    MediaSubtitle:
+      example:
+        language: en
+        url: https://media.zernio.com/temp/walkthrough.en.srt
+      properties:
+        url:
+          description: "Public http(s) URL of an SRT or WebVTT file: your own host,\
+            \ or an upload from POST /v1/media/presign (contentType application/x-subrip\
+            \ or text/vtt). It must serve the file directly, since redirects are refused."
+          example: https://media.zernio.com/temp/walkthrough.en.srt
+          format: uri
+          type: string
+        language:
+          description: "BCP-47 language code with a two-letter language, e.g. en,\
+            \ es or pt-BR. Viewers see the track labelled with the language name,\
+            \ e.g. English."
+          example: en
+          type: string
+      required:
+      - language
+      - url
     ExternalPostMediaItem:
       description: |
         A media item on a native (external/synced) post, as carried by post.external.* webhook payloads. Distinct from the richer MediaItem used for Zernio-authored posts: external items are always already-published and limited to image or video. Kept as a separate schema so the generated SDK model does not collide with MediaItem.
@@ -70309,6 +70360,8 @@ components:
       - audio/wav
       - audio/webm
       - audio/x-m4a
+      - application/x-subrip
+      - text/vtt
       example: video/mp4
       type: string
     PlatformTarget:
@@ -70331,7 +70384,18 @@ components:
           subcode: 1
           message: message
         customMedia:
-        - thumbnail: https://openapi-generator.tech
+        - subtitles:
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          thumbnail: https://openapi-generator.tech
           filename: filename
           altText: altText
           size: 0
@@ -70341,7 +70405,18 @@ components:
           type: image
           title: title
           url: https://openapi-generator.tech
-        - thumbnail: https://openapi-generator.tech
+        - subtitles:
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          thumbnail: https://openapi-generator.tech
           filename: filename
           altText: altText
           size: 0
@@ -70548,7 +70623,18 @@ components:
             subcode: 1
             message: message
           customMedia:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -70558,7 +70644,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -70589,7 +70686,18 @@ components:
             subcode: 1
             message: message
           customMedia:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -70599,7 +70707,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -70617,7 +70736,18 @@ components:
         - tags
         createdAt: 2000-01-23T04:56:07.000+00:00
         mediaItems:
-        - thumbnail: https://openapi-generator.tech
+        - subtitles:
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          thumbnail: https://openapi-generator.tech
           filename: filename
           altText: altText
           size: 0
@@ -70627,7 +70757,18 @@ components:
           type: image
           title: title
           url: https://openapi-generator.tech
-        - thumbnail: https://openapi-generator.tech
+        - subtitles:
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          - language: en
+            url: https://media.zernio.com/temp/walkthrough.en.srt
+          thumbnail: https://openapi-generator.tech
           filename: filename
           altText: altText
           size: 0
@@ -73702,7 +73843,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73712,7 +73864,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73743,7 +73906,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73753,7 +73927,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73771,7 +73956,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -73781,7 +73977,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -73844,7 +74051,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73854,7 +74072,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73885,7 +74114,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73895,7 +74135,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -73913,7 +74164,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -73923,7 +74185,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -73996,7 +74269,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74006,7 +74290,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74037,7 +74332,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74047,7 +74353,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74065,7 +74382,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74075,7 +74403,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74174,7 +74513,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74184,7 +74534,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74215,7 +74576,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74225,7 +74597,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74243,7 +74626,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74253,7 +74647,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74336,7 +74741,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74346,7 +74762,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74377,7 +74804,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74387,7 +74825,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74405,7 +74854,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74415,7 +74875,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74497,7 +74968,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74507,7 +74989,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74538,7 +75031,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74548,7 +75052,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74566,7 +75081,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74576,7 +75102,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74685,7 +75222,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74695,7 +75243,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74726,7 +75285,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74736,7 +75306,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -74754,7 +75335,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -74764,7 +75356,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -89041,7 +89644,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -89051,7 +89665,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -89082,7 +89707,18 @@ components:
               subcode: 1
               message: message
             customMedia:
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -89092,7 +89728,18 @@ components:
               type: image
               title: title
               url: https://openapi-generator.tech
-            - thumbnail: https://openapi-generator.tech
+            - subtitles:
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              - language: en
+                url: https://media.zernio.com/temp/walkthrough.en.srt
+              thumbnail: https://openapi-generator.tech
               filename: filename
               altText: altText
               size: 0
@@ -89110,7 +89757,18 @@ components:
           - tags
           createdAt: 2000-01-23T04:56:07.000+00:00
           mediaItems:
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0
@@ -89120,7 +89778,18 @@ components:
             type: image
             title: title
             url: https://openapi-generator.tech
-          - thumbnail: https://openapi-generator.tech
+          - subtitles:
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            - language: en
+              url: https://media.zernio.com/temp/walkthrough.en.srt
+            thumbnail: https://openapi-generator.tech
             filename: filename
             altText: altText
             size: 0

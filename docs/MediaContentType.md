@@ -45,5 +45,9 @@
 
 * `AUDIO_X_M4A` (value: `"audio/x-m4a"`)
 
+* `APPLICATION_X_SUBRIP` (value: `"application/x-subrip"`)
+
+* `TEXT_VTT` (value: `"text/vtt"`)
+
 
 

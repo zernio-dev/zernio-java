@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.220.4
+- API version: 1.221.0
 
-- Build date: 2026-10-06T13:56:59.765601735Z[Etc/UTC]
+- Build date: 2026-10-06T14:26:51.148700597Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.220.4</version>
+  <version>1.221.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.220.4"
+compile "dev.zernio:zernio-sdk:1.221.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.220.4.jar`
+- `target/zernio-sdk-1.221.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3649,6 +3649,7 @@ Class | Method | HTTP request | Description
  - [MarkConversationRead200Response](docs/MarkConversationRead200Response.md)
  - [MediaContentType](docs/MediaContentType.md)
  - [MediaItem](docs/MediaItem.md)
+ - [MediaSubtitle](docs/MediaSubtitle.md)
  - [MediaUploadResponse](docs/MediaUploadResponse.md)
  - [MessagingCarouselCard](docs/MessagingCarouselCard.md)
  - [MetaAdsPlatformData](docs/MetaAdsPlatformData.md)
