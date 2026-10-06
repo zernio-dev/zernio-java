@@ -42,6 +42,8 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_ID,
   AccountWithFollowerStats.JSON_PROPERTY_USERNAME,
   AccountWithFollowerStats.JSON_PROPERTY_DISPLAY_NAME,
+  AccountWithFollowerStats.JSON_PROPERTY_PLATFORM_USER_ID,
+  AccountWithFollowerStats.JSON_PROPERTY_TIKTOK_ACCOUNT_TYPE,
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_PICTURE,
   AccountWithFollowerStats.JSON_PROPERTY_PROFILE_URL,
   AccountWithFollowerStats.JSON_PROPERTY_IS_ACTIVE,
@@ -58,7 +60,7 @@ import dev.zernio.ApiClient;
   AccountWithFollowerStats.JSON_PROPERTY_DATA_POINTS,
   AccountWithFollowerStats.JSON_PROPERTY_ACCOUNT_STATS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:27:02.518348678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:50:52.552941623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull
@@ -168,6 +170,51 @@ public class AccountWithFollowerStats {
   public static final String JSON_PROPERTY_DISPLAY_NAME = "displayName";
   @javax.annotation.Nullable
   private String displayName;
+
+  public static final String JSON_PROPERTY_PLATFORM_USER_ID = "platformUserId";
+  @javax.annotation.Nullable
+  private String platformUserId;
+
+  /**
+   * TikTok accounts only. The account type TikTok reported when the account was connected. &#x60;personal&#x60; accounts cannot use TikTok direct messages through the API (TikTok limits Business Messaging to Business Accounts): skip the inbox for them and tell the user to switch to a Business Account in the TikTok app, then reconnect. &#x60;business&#x60; is the prerequisite, not a guarantee; messaging also needs the messaging scopes granted and TikTok&#39;s regional availability. &#x60;unknown&#x60; on accounts connected before this was captured or whose grant left out the account-type scope.
+   */
+  public enum TiktokAccountTypeEnum {
+    BUSINESS(String.valueOf("business")),
+    
+    PERSONAL(String.valueOf("personal")),
+    
+    UNKNOWN(String.valueOf("unknown"));
+
+    private String value;
+
+    TiktokAccountTypeEnum(String value) {
+      this.value = value;
+    }
+
+    @JsonValue
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    @JsonCreator
+    public static TiktokAccountTypeEnum fromValue(String value) {
+      for (TiktokAccountTypeEnum b : TiktokAccountTypeEnum.values()) {
+        if (b.value.equals(value)) {
+          return b;
+        }
+      }
+      throw new IllegalArgumentException("Unexpected value '" + value + "'");
+    }
+  }
+
+  public static final String JSON_PROPERTY_TIKTOK_ACCOUNT_TYPE = "tiktokAccountType";
+  @javax.annotation.Nullable
+  private TiktokAccountTypeEnum tiktokAccountType;
 
   public static final String JSON_PROPERTY_PROFILE_PICTURE = "profilePicture";
   @javax.annotation.Nullable
@@ -349,6 +396,54 @@ public class AccountWithFollowerStats {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setDisplayName(@javax.annotation.Nullable String displayName) {
     this.displayName = displayName;
+  }
+
+
+  public AccountWithFollowerStats platformUserId(@javax.annotation.Nullable String platformUserId) {
+    this.platformUserId = platformUserId;
+    return this;
+  }
+
+  /**
+   * The account&#39;s id on its platform as the platform reports it to Zernio; stable across reconnects, so it is the key to match an account against your own records. Instagram: the app-scoped user id on Instagram Login accounts (the professional account id is in &#x60;metadata.instagramScopedId&#x60;), the professional account id (&#x60;17841...&#x60;) on Facebook Login accounts. TikTok: the open_id of Zernio&#39;s TikTok app, which differs from the open_id any other app sees for the same user. Either value can be passed back as &#x60;expectedPlatformUserId&#x60; on GET /v1/connect/{platform}.
+   * @return platformUserId
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPlatformUserId() {
+    return platformUserId;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PLATFORM_USER_ID, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPlatformUserId(@javax.annotation.Nullable String platformUserId) {
+    this.platformUserId = platformUserId;
+  }
+
+
+  public AccountWithFollowerStats tiktokAccountType(@javax.annotation.Nullable TiktokAccountTypeEnum tiktokAccountType) {
+    this.tiktokAccountType = tiktokAccountType;
+    return this;
+  }
+
+  /**
+   * TikTok accounts only. The account type TikTok reported when the account was connected. &#x60;personal&#x60; accounts cannot use TikTok direct messages through the API (TikTok limits Business Messaging to Business Accounts): skip the inbox for them and tell the user to switch to a Business Account in the TikTok app, then reconnect. &#x60;business&#x60; is the prerequisite, not a guarantee; messaging also needs the messaging scopes granted and TikTok&#39;s regional availability. &#x60;unknown&#x60; on accounts connected before this was captured or whose grant left out the account-type scope.
+   * @return tiktokAccountType
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_TIKTOK_ACCOUNT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public TiktokAccountTypeEnum getTiktokAccountType() {
+    return tiktokAccountType;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_TIKTOK_ACCOUNT_TYPE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setTiktokAccountType(@javax.annotation.Nullable TiktokAccountTypeEnum tiktokAccountType) {
+    this.tiktokAccountType = tiktokAccountType;
   }
 
 
@@ -550,7 +645,7 @@ public class AccountWithFollowerStats {
   }
 
   /**
-   * Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN) - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). A declined or pending display name does not by itself block sending; sendability is reported separately via health_status (can_send_message). - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves. - verifiedName: Meta-verified business display name - displayPhoneNumber: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - wabaId: WhatsApp Business Account ID - phoneNumberId: Meta phone number ID  For Meta ads business-login accounts: - tokenType: system-user - businessId: The owning Business Manager ID when there is one owner; null for multiple owners. - businessIds: Owning Business Manager IDs discovered from granted ad accounts. - grantedAdAccountIds: Ad-account IDs granted to the token. - adAccountBusinesses: Map from ad-account ID to its owning business ID or null. - availablePages: Granted Page IDs and names. No Page tokens are exposed. - selectedPageId: The Page selected for creatives and lead forms, or null. - scopedAdAccountIds: Existing sync scope preserved on reconnect. Non-expiring tokens have no tokenExpiresAt field. Parent posting reconnects do not replace this token.  For LinkedIn accounts, profileData carries the profile details refreshed on each daily snapshot: - profileData.bio: The member&#39;s headline for personal accounts, or the organization description for organization accounts. null when the member has not set one. - profileData.extraData.vanityName: The member&#39;s profile slug, i.e. the /in/{vanityName} segment of profileUrl. Personal accounts only; an organization&#39;s own slug is in metadata.organizationInfo.vanityName.  For Instagram accounts: - loginMethod: \&quot;facebook_login\&quot; when the account was connected through Facebook Login. Absent on accounts connected with Instagram Login. On facebook_login accounts, comment reads leave hidden comments out entirely instead of returning them with isHidden true.  For X (Twitter) accounts: - profileData.extraData.isPremium: Whether X reports a paid subscription (Basic, Premium, Premium+, or a blue verified badge), which raises the post length limit from 280 to 25,000 characters. Read live at connect and reconnect and refreshed by the daily follower snapshot; because X intermittently reports no subscription for subscribed accounts, a cancellation is stored on the fourth consecutive daily snapshot that reports it (about four days). Accounts connected before the extraData layout carry the same flag at profileData.isPremium. 
+   * Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes: - qualityRating: Phone number quality rating from Meta (GREEN, YELLOW, RED, or UNKNOWN) - nameStatus: Display name review status (APPROVED, PENDING_REVIEW, DECLINED, or NONE). A declined or pending display name does not by itself block sending; sendability is reported separately via health_status (can_send_message). - messagingLimitTier: Maximum unique business-initiated conversations per 24h rolling window (TIER_250, TIER_1K, TIER_10K, TIER_100K, or TIER_UNLIMITED). Scales automatically as quality rating improves. - verifiedName: Meta-verified business display name - displayPhoneNumber: Formatted phone number (e.g., \&quot;+1 555-123-4567\&quot;) - wabaId: WhatsApp Business Account ID - phoneNumberId: Meta phone number ID  For Meta ads business-login accounts: - tokenType: system-user - businessId: The owning Business Manager ID when there is one owner; null for multiple owners. - businessIds: Owning Business Manager IDs discovered from granted ad accounts. - grantedAdAccountIds: Ad-account IDs granted to the token. - adAccountBusinesses: Map from ad-account ID to its owning business ID or null. - availablePages: Granted Page IDs and names. No Page tokens are exposed. - selectedPageId: The Page selected for creatives and lead forms, or null. - scopedAdAccountIds: Existing sync scope preserved on reconnect. Non-expiring tokens have no tokenExpiresAt field. Parent posting reconnects do not replace this token.  For LinkedIn accounts, profileData carries the profile details refreshed on each daily snapshot: - profileData.bio: The member&#39;s headline for personal accounts, or the organization description for organization accounts. null when the member has not set one. - profileData.extraData.vanityName: The member&#39;s profile slug, i.e. the /in/{vanityName} segment of profileUrl. Personal accounts only; an organization&#39;s own slug is in metadata.organizationInfo.vanityName.  For Instagram accounts: - loginMethod: \&quot;facebook_login\&quot; when the account was connected through Facebook Login. Absent on accounts connected with Instagram Login. On facebook_login accounts, comment reads leave hidden comments out entirely instead of returning them with isHidden true. - instagramScopedId: the Instagram professional account id (&#x60;17841...&#x60;). On Instagram Login accounts this is the id that is the same whichever app connected the account, while platformUserId is app-scoped; Facebook Login accounts hold this id as platformUserId.  For X (Twitter) accounts: - profileData.extraData.isPremium: Whether X reports a paid subscription (Basic, Premium, Premium+, or a blue verified badge), which raises the post length limit from 280 to 25,000 characters. Read live at connect and reconnect and refreshed by the daily follower snapshot; because X intermittently reports no subscription for subscribed accounts, a cancellation is stored on the fourth consecutive daily snapshot that reports it (about four days). Accounts connected before the extraData layout carry the same flag at profileData.isPremium. 
    * @return metadata
    */
   @javax.annotation.Nullable
@@ -729,6 +824,8 @@ public class AccountWithFollowerStats {
         Objects.equals(this.profileId, accountWithFollowerStats.profileId) &&
         Objects.equals(this.username, accountWithFollowerStats.username) &&
         Objects.equals(this.displayName, accountWithFollowerStats.displayName) &&
+        Objects.equals(this.platformUserId, accountWithFollowerStats.platformUserId) &&
+        Objects.equals(this.tiktokAccountType, accountWithFollowerStats.tiktokAccountType) &&
         Objects.equals(this.profilePicture, accountWithFollowerStats.profilePicture) &&
         Objects.equals(this.profileUrl, accountWithFollowerStats.profileUrl) &&
         Objects.equals(this.isActive, accountWithFollowerStats.isActive) &&
@@ -748,7 +845,7 @@ public class AccountWithFollowerStats {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, platform, profileId, username, displayName, profilePicture, profileUrl, isActive, needsReconnection, followersCount, followersLastUpdated, parentAccountId, enabled, metadata, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
+    return Objects.hash(id, platform, profileId, username, displayName, platformUserId, tiktokAccountType, profilePicture, profileUrl, isActive, needsReconnection, followersCount, followersLastUpdated, parentAccountId, enabled, metadata, currentFollowers, lastUpdated, growth, growthPercentage, dataPoints, accountStats);
   }
 
   @Override
@@ -760,6 +857,8 @@ public class AccountWithFollowerStats {
     sb.append("    profileId: ").append(toIndentedString(profileId)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
     sb.append("    displayName: ").append(toIndentedString(displayName)).append("\n");
+    sb.append("    platformUserId: ").append(toIndentedString(platformUserId)).append("\n");
+    sb.append("    tiktokAccountType: ").append(toIndentedString(tiktokAccountType)).append("\n");
     sb.append("    profilePicture: ").append(toIndentedString(profilePicture)).append("\n");
     sb.append("    profileUrl: ").append(toIndentedString(profileUrl)).append("\n");
     sb.append("    isActive: ").append(toIndentedString(isActive)).append("\n");
@@ -845,6 +944,16 @@ public class AccountWithFollowerStats {
     // add `displayName` to the URL query string
     if (getDisplayName() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sdisplayName%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getDisplayName()))));
+    }
+
+    // add `platformUserId` to the URL query string
+    if (getPlatformUserId() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%splatformUserId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPlatformUserId()))));
+    }
+
+    // add `tiktokAccountType` to the URL query string
+    if (getTiktokAccountType() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%stiktokAccountType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getTiktokAccountType()))));
     }
 
     // add `profilePicture` to the URL query string

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   EditGoogleAssetGroupAssets200Response.JSON_PROPERTY_UNLINKED,
   EditGoogleAssetGroupAssets200Response.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:27:02.518348678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:50:52.552941623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditGoogleAssetGroupAssets200Response {
   public static final String JSON_PROPERTY_ASSET_GROUP_ID = "assetGroupId";
   @javax.annotation.Nullable

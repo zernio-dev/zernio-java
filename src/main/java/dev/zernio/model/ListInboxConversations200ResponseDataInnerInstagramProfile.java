@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListInboxConversations200ResponseDataInnerInstagramProfile.JSON_PROPERTY_IS_VERIFIED,
   ListInboxConversations200ResponseDataInnerInstagramProfile.JSON_PROPERTY_FETCHED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:27:02.518348678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:50:52.552941623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInboxConversations200ResponseDataInnerInstagramProfile {
   public static final String JSON_PROPERTY_IS_FOLLOWER = "isFollower";
   private JsonNullable<Boolean> isFollower = JsonNullable.<Boolean>undefined();

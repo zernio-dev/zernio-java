@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   AddAccountSitelinks201Response.JSON_PROPERTY_CUSTOMER_ID,
   AddAccountSitelinks201Response.JSON_PROPERTY_SITELINKS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:27:02.518348678Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-06T16:50:52.552941623Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AddAccountSitelinks201Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable
