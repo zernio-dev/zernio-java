@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | The id to send as musicSoundId (the full track&#39;s song clip id). TikTok rejects the commercial music id itself at publish time. |  [optional] |
+|**id** | **String** | The full track&#39;s song clip id. Accepted as musicSoundId, but prefer clip.id: posts published with this id have shown viewers a sound page saying the song is not available in their country (observed from Germany). TikTok rejects the commercial music id itself at publish time. |  [optional] |
 |**commercialMusicId** | **String** | TikTok&#39;s commercial_music_id, for reference only |  [optional] |
 |**name** | **String** |  |  [optional] |
 |**artist** | **String** |  |  [optional] |
