@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.221.0
+- API version: 1.222.0
 
-- Build date: 2026-10-06T14:26:51.148700597Z[Etc/UTC]
+- Build date: 2026-10-06T15:24:17.993310951Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.221.0</version>
+  <version>1.222.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.221.0"
+compile "dev.zernio:zernio-sdk:1.222.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.221.0.jar`
+- `target/zernio-sdk-1.222.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -561,6 +561,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getInstagramDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getInstagramDemographicsWithHttpInfo) | **GET** /v1/analytics/instagram/demographics | Get Instagram demographics
 *AnalyticsApi* | [**getInstagramFollowerHistory**](docs/AnalyticsApi.md#getInstagramFollowerHistory) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history
 *AnalyticsApi* | [**getInstagramFollowerHistoryWithHttpInfo**](docs/AnalyticsApi.md#getInstagramFollowerHistoryWithHttpInfo) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history
+*AnalyticsApi* | [**getInstagramOnlineFollowers**](docs/AnalyticsApi.md#getInstagramOnlineFollowers) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers
+*AnalyticsApi* | [**getInstagramOnlineFollowersWithHttpInfo**](docs/AnalyticsApi.md#getInstagramOnlineFollowersWithHttpInfo) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers
 *AnalyticsApi* | [**getLinkedInAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInOrgAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics
@@ -3011,6 +3013,8 @@ Class | Method | HTTP request | Description
  - [GetInstagramAccountInsights404Response](docs/GetInstagramAccountInsights404Response.md)
  - [GetInstagramAudio200Response](docs/GetInstagramAudio200Response.md)
  - [GetInstagramFollowStatus200Response](docs/GetInstagramFollowStatus200Response.md)
+ - [GetInstagramOnlineFollowers200Response](docs/GetInstagramOnlineFollowers200Response.md)
+ - [GetInstagramOnlineFollowers200ResponseDaysInner](docs/GetInstagramOnlineFollowers200ResponseDaysInner.md)
  - [GetInstagramPublishingLimit200Response](docs/GetInstagramPublishingLimit200Response.md)
  - [GetInstagramStoryInsights200Response](docs/GetInstagramStoryInsights200Response.md)
  - [GetInstagramStoryInsights200ResponseData](docs/GetInstagramStoryInsights200ResponseData.md)

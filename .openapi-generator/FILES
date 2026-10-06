@@ -1023,6 +1023,8 @@ docs/GetInboxVolume400Response.md
 docs/GetInstagramAccountInsights404Response.md
 docs/GetInstagramAudio200Response.md
 docs/GetInstagramFollowStatus200Response.md
+docs/GetInstagramOnlineFollowers200Response.md
+docs/GetInstagramOnlineFollowers200ResponseDaysInner.md
 docs/GetInstagramPublishingLimit200Response.md
 docs/GetInstagramStoryInsights200Response.md
 docs/GetInstagramStoryInsights200ResponseData.md
@@ -3821,6 +3823,8 @@ src/main/java/dev/zernio/model/GetInboxVolume400Response.java
 src/main/java/dev/zernio/model/GetInstagramAccountInsights404Response.java
 src/main/java/dev/zernio/model/GetInstagramAudio200Response.java
 src/main/java/dev/zernio/model/GetInstagramFollowStatus200Response.java
+src/main/java/dev/zernio/model/GetInstagramOnlineFollowers200Response.java
+src/main/java/dev/zernio/model/GetInstagramOnlineFollowers200ResponseDaysInner.java
 src/main/java/dev/zernio/model/GetInstagramPublishingLimit200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200Response.java
 src/main/java/dev/zernio/model/GetInstagramStoryInsights200ResponseData.java
@@ -5483,4 +5487,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/MediaSubtitleTest.java
+src/test/java/dev/zernio/model/GetInstagramOnlineFollowers200ResponseDaysInnerTest.java
+src/test/java/dev/zernio/model/GetInstagramOnlineFollowers200ResponseTest.java

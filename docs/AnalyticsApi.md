@@ -36,6 +36,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInstagramDemographicsWithHttpInfo**](AnalyticsApi.md#getInstagramDemographicsWithHttpInfo) | **GET** /v1/analytics/instagram/demographics | Get Instagram demographics |
 | [**getInstagramFollowerHistory**](AnalyticsApi.md#getInstagramFollowerHistory) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history |
 | [**getInstagramFollowerHistoryWithHttpInfo**](AnalyticsApi.md#getInstagramFollowerHistoryWithHttpInfo) | **GET** /v1/analytics/instagram/follower-history | Get Instagram follower history |
+| [**getInstagramOnlineFollowers**](AnalyticsApi.md#getInstagramOnlineFollowers) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers |
+| [**getInstagramOnlineFollowersWithHttpInfo**](AnalyticsApi.md#getInstagramOnlineFollowersWithHttpInfo) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers |
 | [**getLinkedInAggregateAnalytics**](AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInAggregateAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
@@ -2777,6 +2779,162 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
+
+
+## getInstagramOnlineFollowers
+
+> GetInstagramOnlineFollowers200Response getInstagramOnlineFollowers(accountId)
+
+Get Instagram online followers
+
+Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        try {
+            GetInstagramOnlineFollowers200Response result = apiInstance.getInstagramOnlineFollowers(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramOnlineFollowers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+
+### Return type
+
+[**GetInstagramOnlineFollowers200Response**](GetInstagramOnlineFollowers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Followers online per hour, one entry per day with data |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The API key cannot reach this account: the account&#39;s profile is outside the key&#39;s profile scope, or the key&#39;s analytics resource group is disabled. |  -  |
+| **404** | Resource not found |  -  |
+| **502** | The platform returned a server error. |  -  |
+
+## getInstagramOnlineFollowersWithHttpInfo
+
+> ApiResponse<GetInstagramOnlineFollowers200Response> getInstagramOnlineFollowers getInstagramOnlineFollowersWithHttpInfo(accountId)
+
+Get Instagram online followers
+
+Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Instagram account
+        try {
+            ApiResponse<GetInstagramOnlineFollowers200Response> response = apiInstance.getInstagramOnlineFollowersWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getInstagramOnlineFollowers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID for the Instagram account | |
+
+### Return type
+
+ApiResponse<[**GetInstagramOnlineFollowers200Response**](GetInstagramOnlineFollowers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Followers online per hour, one entry per day with data |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | The API key cannot reach this account: the account&#39;s profile is outside the key&#39;s profile scope, or the key&#39;s analytics resource group is disabled. |  -  |
+| **404** | Resource not found |  -  |
+| **502** | The platform returned a server error. |  -  |
 
 
 ## getLinkedInAggregateAnalytics
