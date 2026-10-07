@@ -14,6 +14,7 @@
 |**type** | [**TypeEnum**](#TypeEnum) |  |  [optional] |
 |**targetCpa** | **BigDecimal** |  |  [optional] |
 |**targetRoas** | **BigDecimal** |  |  [optional] |
+|**targetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) | Retargets a TARGET_IMPRESSION_SHARE strategy; location, percent and maxCpc are all written. |  [optional] |
 
 
 
@@ -25,6 +26,7 @@
 | TARGET_ROAS | &quot;TARGET_ROAS&quot; |
 | MAXIMIZE_CONVERSIONS | &quot;MAXIMIZE_CONVERSIONS&quot; |
 | MAXIMIZE_CONVERSION_VALUE | &quot;MAXIMIZE_CONVERSION_VALUE&quot; |
+| TARGET_IMPRESSION_SHARE | &quot;TARGET_IMPRESSION_SHARE&quot; |
 
 
 

@@ -1282,6 +1282,8 @@ docs/GoogleListingGroupFilterNode.md
 docs/GoogleListingGroupNode.md
 docs/GoogleListingGroupTree.md
 docs/GoogleLocationTargetingType.md
+docs/GoogleManualCpc.md
+docs/GoogleNetworkSettings.md
 docs/GooglePmaxAssetGroup.md
 docs/GooglePmaxAssetGroupAssetsInner.md
 docs/GooglePmaxAssetGroupDetail.md
@@ -1297,6 +1299,7 @@ docs/GoogleRsaDescription.md
 docs/GoogleRsaHeadline.md
 docs/GoogleSitelink.md
 docs/GoogleStructuredSnippet.md
+docs/GoogleTargetImpressionShare.md
 docs/GrantBusinessPartner200Response.md
 docs/GrantBusinessPartner200ResponsePartner.md
 docs/GrantBusinessPartner201Response.md
@@ -2263,6 +2266,7 @@ docs/UpdateAdAccount200Response.md
 docs/UpdateAdAccount200ResponseDsaDefaults.md
 docs/UpdateAdAccount200ResponseSettings.md
 docs/UpdateAdAccount200ResponseSettingsFundingSource.md
+docs/UpdateAdAccount200ResponseUrlTracking.md
 docs/UpdateAdAccountManagerLinkRequest.md
 docs/UpdateAdAccountRequest.md
 docs/UpdateAdAudienceRequest.md
@@ -4108,6 +4112,8 @@ src/main/java/dev/zernio/model/GoogleListingGroupFilterNode.java
 src/main/java/dev/zernio/model/GoogleListingGroupNode.java
 src/main/java/dev/zernio/model/GoogleListingGroupTree.java
 src/main/java/dev/zernio/model/GoogleLocationTargetingType.java
+src/main/java/dev/zernio/model/GoogleManualCpc.java
+src/main/java/dev/zernio/model/GoogleNetworkSettings.java
 src/main/java/dev/zernio/model/GooglePmaxAssetGroup.java
 src/main/java/dev/zernio/model/GooglePmaxAssetGroupAssetsInner.java
 src/main/java/dev/zernio/model/GooglePmaxAssetGroupDetail.java
@@ -4123,6 +4129,7 @@ src/main/java/dev/zernio/model/GoogleRsaDescription.java
 src/main/java/dev/zernio/model/GoogleRsaHeadline.java
 src/main/java/dev/zernio/model/GoogleSitelink.java
 src/main/java/dev/zernio/model/GoogleStructuredSnippet.java
+src/main/java/dev/zernio/model/GoogleTargetImpressionShare.java
 src/main/java/dev/zernio/model/GrantBusinessPartner200Response.java
 src/main/java/dev/zernio/model/GrantBusinessPartner200ResponsePartner.java
 src/main/java/dev/zernio/model/GrantBusinessPartner201Response.java
@@ -5062,6 +5069,7 @@ src/main/java/dev/zernio/model/UpdateAdAccount200Response.java
 src/main/java/dev/zernio/model/UpdateAdAccount200ResponseDsaDefaults.java
 src/main/java/dev/zernio/model/UpdateAdAccount200ResponseSettings.java
 src/main/java/dev/zernio/model/UpdateAdAccount200ResponseSettingsFundingSource.java
+src/main/java/dev/zernio/model/UpdateAdAccount200ResponseUrlTracking.java
 src/main/java/dev/zernio/model/UpdateAdAccountManagerLinkRequest.java
 src/main/java/dev/zernio/model/UpdateAdAccountRequest.java
 src/main/java/dev/zernio/model/UpdateAdAudienceRequest.java
@@ -5555,3 +5563,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GoogleManualCpcTest.java
+src/test/java/dev/zernio/model/GoogleNetworkSettingsTest.java
+src/test/java/dev/zernio/model/GoogleTargetImpressionShareTest.java
+src/test/java/dev/zernio/model/UpdateAdAccount200ResponseUrlTrackingTest.java

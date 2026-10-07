@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.230.1
+- API version: 1.231.0
 
-- Build date: 2026-10-07T08:40:06.453094584Z[Etc/UTC]
+- Build date: 2026-10-07T09:04:46.736519137Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.230.1</version>
+  <version>1.231.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.230.1"
+compile "dev.zernio:zernio-sdk:1.231.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.230.1.jar`
+- `target/zernio-sdk-1.231.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3288,6 +3288,8 @@ Class | Method | HTTP request | Description
  - [GoogleListingGroupNode](docs/GoogleListingGroupNode.md)
  - [GoogleListingGroupTree](docs/GoogleListingGroupTree.md)
  - [GoogleLocationTargetingType](docs/GoogleLocationTargetingType.md)
+ - [GoogleManualCpc](docs/GoogleManualCpc.md)
+ - [GoogleNetworkSettings](docs/GoogleNetworkSettings.md)
  - [GooglePmaxAssetGroup](docs/GooglePmaxAssetGroup.md)
  - [GooglePmaxAssetGroupAssetsInner](docs/GooglePmaxAssetGroupAssetsInner.md)
  - [GooglePmaxAssetGroupDetail](docs/GooglePmaxAssetGroupDetail.md)
@@ -3303,6 +3305,7 @@ Class | Method | HTTP request | Description
  - [GoogleRsaHeadline](docs/GoogleRsaHeadline.md)
  - [GoogleSitelink](docs/GoogleSitelink.md)
  - [GoogleStructuredSnippet](docs/GoogleStructuredSnippet.md)
+ - [GoogleTargetImpressionShare](docs/GoogleTargetImpressionShare.md)
  - [GrantBusinessPartner200Response](docs/GrantBusinessPartner200Response.md)
  - [GrantBusinessPartner200ResponsePartner](docs/GrantBusinessPartner200ResponsePartner.md)
  - [GrantBusinessPartner201Response](docs/GrantBusinessPartner201Response.md)
@@ -4242,6 +4245,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdAccount200ResponseDsaDefaults](docs/UpdateAdAccount200ResponseDsaDefaults.md)
  - [UpdateAdAccount200ResponseSettings](docs/UpdateAdAccount200ResponseSettings.md)
  - [UpdateAdAccount200ResponseSettingsFundingSource](docs/UpdateAdAccount200ResponseSettingsFundingSource.md)
+ - [UpdateAdAccount200ResponseUrlTracking](docs/UpdateAdAccount200ResponseUrlTracking.md)
  - [UpdateAdAccountManagerLinkRequest](docs/UpdateAdAccountManagerLinkRequest.md)
  - [UpdateAdAccountRequest](docs/UpdateAdAccountRequest.md)
  - [UpdateAdAudienceRequest](docs/UpdateAdAudienceRequest.md)

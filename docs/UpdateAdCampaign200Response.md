@@ -15,6 +15,11 @@ Echoes back only the fields you sent, plus `updated`.
 |**bidAmount** | **BigDecimal** |  |  [optional] |
 |**roasAverageFloor** | **BigDecimal** |  |  [optional] |
 |**portfolioBidStrategyId** | **String** | Google only. Echoed back, but NOT mirrored onto local Ad documents (no column for it yet). |  [optional] |
+|**targetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) |  |  [optional] |
+|**manualCpc** | [**GoogleManualCpc**](GoogleManualCpc.md) |  |  [optional] |
+|**networkSettings** | [**GoogleNetworkSettings**](GoogleNetworkSettings.md) |  |  [optional] |
+|**trackingUrlTemplate** | **String** |  |  [optional] |
+|**finalUrlSuffix** | **String** |  |  [optional] |
 |**platformSpecificData** | **Object** |  |  [optional] |
 
 

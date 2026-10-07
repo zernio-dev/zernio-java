@@ -12,6 +12,7 @@
 |**campaignId** | **String** | Google platform campaign ID (numeric) the ad group is created under. |  |
 |**name** | **String** |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**maxCpc** | **BigDecimal** | Max CPC of the new ad group, in the account&#39;s currency units. Send it when the campaign uses Manual CPC: Google gives an ad group without one a 0.01 bid. |  [optional] |
 |**adAccountId** | **String** | Platform ad account ID (Google customer ID, digits only). Only required when the connection has more than one. |  [optional] |
 |**customerId** | **String** | Alias of adAccountId, kept for existing callers |  [optional] |
 

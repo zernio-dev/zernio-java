@@ -21,6 +21,7 @@ A Google Ads portfolio bid strategy: a named bidding strategy shared across camp
 |**conversions** | **BigDecimal** |  |  [optional] |
 |**targetCpa** | **BigDecimal** | Current target, in the account&#39;s currency units. Null for a ROAS-family type (TARGET_ROAS, MAXIMIZE_CONVERSION_VALUE), or a Maximize type with no target set. Pre-fills the edit form&#39;s target field. |  [optional] |
 |**targetRoas** | **BigDecimal** | Current target as a decimal multiplier (2.0 &#x3D; 2.0x). Null for a CPA-family type (TARGET_CPA, MAXIMIZE_CONVERSIONS), or a Maximize type with no target set. |  [optional] |
+|**targetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) |  |  [optional] |
 
 
 
@@ -32,6 +33,7 @@ A Google Ads portfolio bid strategy: a named bidding strategy shared across camp
 | TARGET_ROAS | &quot;TARGET_ROAS&quot; |
 | MAXIMIZE_CONVERSIONS | &quot;MAXIMIZE_CONVERSIONS&quot; |
 | MAXIMIZE_CONVERSION_VALUE | &quot;MAXIMIZE_CONVERSION_VALUE&quot; |
+| TARGET_IMPRESSION_SHARE | &quot;TARGET_IMPRESSION_SHARE&quot; |
 
 
 
