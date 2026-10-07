@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   ListAdSets200ResponseAdSetsInner.JSON_PROPERTY_NATIVE_SETTINGS,
   ListAdSets200ResponseAdSetsInner.JSON_PROPERTY_CONFIG_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:04:46.736519137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:10:10.280749890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdSets200ResponseAdSetsInner {
   public static final String JSON_PROPERTY_PLATFORM_AD_SET_ID = "platformAdSetId";
   @javax.annotation.Nullable
@@ -613,7 +613,7 @@ public class ListAdSets200ResponseAdSetsInner {
   }
 
   /**
-   * The ad set&#39;s optimization goal as last synced, in the platform&#39;s own enum (Meta &#x60;optimization_goal&#x60;, for example OFFSITE_CONVERSIONS or LINK_CLICKS). On TikTok with &#x60;live&#x3D;true&#x60;, rows read live carry the ad group&#39;s &#x60;optimization_goal&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example ENGAGED_VIEW, ENGAGED_VIEW_FIFTEEN, CLICK, CONVERT).
+   * The ad set&#39;s optimization goal as last synced, in the platform&#39;s own enum (Meta &#x60;optimization_goal&#x60;, for example OFFSITE_CONVERSIONS or LINK_CLICKS; TikTok &#x60;optimization_goal&#x60;; Pinterest the conversion event of &#x60;optimization_goal_metadata&#x60;, for example CHECKOUT; X the line item &#x60;goal&#x60;; OpenAI the campaign &#x60;bidding_type&#x60;). Always null on Google, which has no per-ad-group optimization goal. On TikTok with &#x60;live&#x3D;true&#x60;, rows read live carry the ad group&#39;s &#x60;optimization_goal&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example ENGAGED_VIEW, ENGAGED_VIEW_FIFTEEN, CLICK, CONVERT).
    * @return optimizationGoal
    */
   @javax.annotation.Nullable
@@ -645,7 +645,7 @@ public class ListAdSets200ResponseAdSetsInner {
   }
 
   /**
-   * The ad set&#39;s billing event as last synced, where the platform reports one. On TikTok with &#x60;live&#x3D;true&#x60;, rows read live carry the ad group&#39;s &#x60;billing_event&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example CPV, CPC, OCPM).
+   * The ad set&#39;s billing event as last synced, in the platform&#39;s own enum (Meta &#x60;billing_event&#x60;, TikTok &#x60;billing_event&#x60;, Pinterest &#x60;billable_event&#x60;, X &#x60;pay_by&#x60;, OpenAI &#x60;bidding_config.billing_event_type&#x60;). Always null on Google, which reports none per ad group. On TikTok with &#x60;live&#x3D;true&#x60;, rows read live carry the ad group&#39;s &#x60;billing_event&#x60; exactly as TikTok&#39;s adgroup/get returns it now (for example CPV, CPC, OCPM).
    * @return billingEvent
    */
   @javax.annotation.Nullable
@@ -677,7 +677,7 @@ public class ListAdSets200ResponseAdSetsInner {
   }
 
   /**
-   * The bid strategy as last synced, in the platform&#39;s own enum (Meta &#x60;bid_strategy&#x60;, for example LOWEST_COST_WITHOUT_CAP, COST_CAP). On Meta under a campaign budget this is the campaign&#39;s strategy.
+   * The bid strategy as last synced, in Meta&#39;s vocabulary (LOWEST_COST_WITHOUT_CAP, LOWEST_COST_WITH_BID_CAP, COST_CAP, LOWEST_COST_WITH_MIN_ROAS) on every platform that has an equivalent. On Meta under a campaign budget this is the campaign&#39;s strategy. TikTok maps bid_type / deep_bid_type, Pinterest AUTOMATIC_BID / MAX_BID / TARGET_AVG, X AUTO / MAX / TARGET, OpenAI Maximize Results / a max bid. Google bids at the campaign, so an ad group carries its campaign&#39;s strategy; one without a Meta equivalent (MANUAL_CPC, TARGET_IMPRESSION_SHARE, or a portfolio strategy&#39;s type such as TARGET_CPA) keeps Google&#39;s own name. Null on LinkedIn.
    * @return bidStrategy
    */
   @javax.annotation.Nullable
@@ -709,7 +709,7 @@ public class ListAdSets200ResponseAdSetsInner {
   }
 
   /**
-   * Bid cap or cost target in whole units of &#x60;currency&#x60;, as last synced. Null when the strategy has none.
+   * Bid cap or cost target in whole units of &#x60;currency&#x60;, as last synced. Null when the strategy has none (automatic bidding, ROAS targets, a Google portfolio strategy). On Google a campaign target CPA, a Maximize clicks ceiling, the ad group&#39;s own target CPA override, or its CPC bid under MANUAL_CPC.
    * @return bidAmount
    */
   @javax.annotation.Nullable

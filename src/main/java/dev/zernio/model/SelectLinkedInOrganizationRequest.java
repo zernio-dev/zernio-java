@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   SelectLinkedInOrganizationRequest.JSON_PROPERTY_SELECTED_ORGANIZATION,
   SelectLinkedInOrganizationRequest.JSON_PROPERTY_REDIRECT_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:04:46.736519137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:10:10.280749890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectLinkedInOrganizationRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

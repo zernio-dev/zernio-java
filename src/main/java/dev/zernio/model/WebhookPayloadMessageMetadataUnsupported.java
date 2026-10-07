@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadataUnsupported.JSON_PROPERTY_DETAILS,
   WebhookPayloadMessageMetadataUnsupported.JSON_PROPERTY_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:04:46.736519137Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:10:10.280749890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadataUnsupported {
   public static final String JSON_PROPERTY_CODE = "code";
   @javax.annotation.Nullable
