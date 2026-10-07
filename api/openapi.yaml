@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.239.1
+  version: 1.240.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15839,9 +15839,16 @@ paths:
         "400":
           description: Not a Pinterest account
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          description: "Missing or invalid API key (missing_credentials / invalid_credentials),\
+            \ or the stored Pinterest token was revoked or expired (reconnect_required):\
+            \ reconnect the account."
         "404":
           description: Account not found
+        "409":
+          description: The account has no stored access token (ads_connection_required).
+            Reconnect it.
+        "502":
+          description: Pinterest rejected or failed the request.
       summary: List Pinterest boards
       tags:
       - Connect
@@ -16104,7 +16111,9 @@ paths:
         "400":
           description: Not a YouTube account
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          description: "Missing or invalid API key (missing_credentials / invalid_credentials),\
+            \ or the stored YouTube token was revoked or expired (reconnect_required):\
+            \ reconnect the account."
         "404":
           description: Account not found
       summary: List YouTube playlists
