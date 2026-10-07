@@ -1597,7 +1597,7 @@ ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Respons
 
 ## listAccounts
 
-> AccountsListResponse listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile)
+> AccountsListResponse listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1632,12 +1632,15 @@ public class Example {
         String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
+        Boolean excludeHidden = false; // Boolean | When true, leaves out accounts the dashboard does not show as connections: posting accounts with `enabled: false` (ads accounts are always kept, whatever their `enabled` value) and the internal `sms` and `phone` accounts behind each phone number. Applied before pagination, so page totals and `statusCounts` count only the remaining accounts. Sandbox accounts added by `includeSandbox` are appended after this filter. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page/limit) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeStatusCounts = false; // Boolean | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400. 
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
         Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
+            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -1663,6 +1666,9 @@ public class Example {
 | **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
+| **excludeHidden** | **Boolean**| When true, leaves out accounts the dashboard does not show as connections: posting accounts with &#x60;enabled: false&#x60; (ads accounts are always kept, whatever their &#x60;enabled&#x60; value) and the internal &#x60;sms&#x60; and &#x60;phone&#x60; accounts behind each phone number. Applied before pagination, so page totals and &#x60;statusCounts&#x60; count only the remaining accounts. Sandbox accounts added by &#x60;includeSandbox&#x60; are appended after this filter. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page/limit) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeStatusCounts** | **Boolean**| When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
 | **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
@@ -1692,7 +1698,7 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile)
+> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile)
 
 List accounts
 
@@ -1728,12 +1734,15 @@ public class Example {
         String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
+        Boolean excludeHidden = false; // Boolean | When true, leaves out accounts the dashboard does not show as connections: posting accounts with `enabled: false` (ads accounts are always kept, whatever their `enabled` value) and the internal `sms` and `phone` accounts behind each phone number. Applied before pagination, so page totals and `statusCounts` count only the remaining accounts. Sandbox accounts added by `includeSandbox` are appended after this filter. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page/limit) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeStatusCounts = false; // Boolean | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400. 
         Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
         Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
         Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
         try {
-            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, page, limit, profileIds, perProfile);
+            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1761,6 +1770,9 @@ public class Example {
 | **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
+| **excludeHidden** | **Boolean**| When true, leaves out accounts the dashboard does not show as connections: posting accounts with &#x60;enabled: false&#x60; (ads accounts are always kept, whatever their &#x60;enabled&#x60; value) and the internal &#x60;sms&#x60; and &#x60;phone&#x60; accounts behind each phone number. Applied before pagination, so page totals and &#x60;statusCounts&#x60; count only the remaining accounts. Sandbox accounts added by &#x60;includeSandbox&#x60; are appended after this filter. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page/limit) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeStatusCounts** | **Boolean**| When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
 | **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
 | **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
