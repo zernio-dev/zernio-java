@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.230.0
+  version: 1.230.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90588,7 +90588,8 @@ components:
         participantName: participantName
       properties:
         conversationId:
-          description: The platformConversationId (the same identity used by metadata.conversationId)
+          description: The platformConversationId. A thread whose events were logged
+            under both its ids comes back as one row.
           type: string
         mongoId:
           description: "The Zernio conversation id, when a matching conversation exists"

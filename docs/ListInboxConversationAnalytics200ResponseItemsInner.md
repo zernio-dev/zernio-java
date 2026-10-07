@@ -7,7 +7,7 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**conversationId** | **String** | The platformConversationId (the same identity used by metadata.conversationId) |  [optional] |
+|**conversationId** | **String** | The platformConversationId. A thread whose events were logged under both its ids comes back as one row. |  [optional] |
 |**mongoId** | **String** | The Zernio conversation id, when a matching conversation exists |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
