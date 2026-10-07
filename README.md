@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.227.0
+- API version: 1.228.0
 
-- Build date: 2026-10-07T06:32:16.678359970Z[Etc/UTC]
+- Build date: 2026-10-07T07:19:04.219122895Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.227.0</version>
+  <version>1.228.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.227.0"
+compile "dev.zernio:zernio-sdk:1.228.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.227.0.jar`
+- `target/zernio-sdk-1.228.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3424,6 +3424,7 @@ Class | Method | HTTP request | Description
  - [ListAdCreatives200Response](docs/ListAdCreatives200Response.md)
  - [ListAdGroupAssets200Response](docs/ListAdGroupAssets200Response.md)
  - [ListAdGroupAssets200ResponseCalloutsInner](docs/ListAdGroupAssets200ResponseCalloutsInner.md)
+ - [ListAdGroupAssets200ResponseImagesInner](docs/ListAdGroupAssets200ResponseImagesInner.md)
  - [ListAdGroupAssets200ResponseSitelinksInner](docs/ListAdGroupAssets200ResponseSitelinksInner.md)
  - [ListAdGroupAssets200ResponseStructuredSnippetsInner](docs/ListAdGroupAssets200ResponseStructuredSnippetsInner.md)
  - [ListAdImages200Response](docs/ListAdImages200Response.md)
@@ -3479,6 +3480,7 @@ Class | Method | HTTP request | Description
  - [ListCalls200ResponseCallsInner](docs/ListCalls200ResponseCallsInner.md)
  - [ListCampaignAssets200Response](docs/ListCampaignAssets200Response.md)
  - [ListCampaignAssets200ResponseCalloutsInner](docs/ListCampaignAssets200ResponseCalloutsInner.md)
+ - [ListCampaignAssets200ResponseImagesInner](docs/ListCampaignAssets200ResponseImagesInner.md)
  - [ListCampaignAssets200ResponseSitelinksInner](docs/ListCampaignAssets200ResponseSitelinksInner.md)
  - [ListCampaignAssets200ResponseStructuredSnippetsInner](docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md)
  - [ListCampaignNegativeKeywords200Response](docs/ListCampaignNegativeKeywords200Response.md)

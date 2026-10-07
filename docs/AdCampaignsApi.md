@@ -447,7 +447,7 @@ ApiResponse<[**ApplyGoogleRecommendations200Response**](ApplyGoogleRecommendatio
 
 Attach ad-group assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 
@@ -526,7 +526,7 @@ public class Example {
 
 Attach ad-group assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 
@@ -609,7 +609,7 @@ ApiResponse<[**AttachAdGroupAssets201Response**](AttachAdGroupAssets201Response.
 
 Attach campaign assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 
@@ -688,7 +688,7 @@ public class Example {
 
 Attach campaign assets
 
-Creates and attaches sitelinks, callouts and structured snippets in one Google mutation.
+Creates and attaches sitelinks, callouts, structured snippets and image assets in one Google mutation. Google shows images only on accounts it deems eligible (account age, policy history, vertical).
 
 ### Example
 

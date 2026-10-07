@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.227.0
+  version: 1.228.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39762,8 +39762,9 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: "Creates and attaches sitelinks, callouts and structured snippets\
-        \ in one Google mutation."
+      description: "Creates and attaches sitelinks, callouts, structured snippets\
+        \ and image assets in one Google mutation. Google shows images only on accounts\
+        \ it deems eligible (account age, policy history, vertical)."
       operationId: attachCampaignAssets
       parameters:
       - description: Numeric Google platform id.
@@ -40067,8 +40068,9 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: "Creates and attaches sitelinks, callouts and structured snippets\
-        \ in one Google mutation."
+      description: "Creates and attaches sitelinks, callouts, structured snippets\
+        \ and image assets in one Google mutation. Google shows images only on accounts\
+        \ it deems eligible (account age, policy history, vertical)."
       operationId: attachAdGroupAssets
       parameters:
       - description: Numeric Google platform id.
@@ -129130,6 +129132,26 @@ components:
           items:
             type: string
           type: array
+    listCampaignAssets_200_response_images_inner:
+      example:
+        campaignAssetResourceName: campaignAssetResourceName
+        imageUrl: https://openapi-generator.tech
+        width: 0
+        assetResourceName: assetResourceName
+        height: 6
+      properties:
+        assetResourceName:
+          type: string
+        campaignAssetResourceName:
+          type: string
+        imageUrl:
+          description: Google-hosted copy of the image.
+          format: uri
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
     listCampaignAssets_200_response:
       example:
         callouts:
@@ -129139,6 +129161,17 @@ components:
         - campaignAssetResourceName: campaignAssetResourceName
           assetResourceName: assetResourceName
           calloutText: calloutText
+        images:
+        - campaignAssetResourceName: campaignAssetResourceName
+          imageUrl: https://openapi-generator.tech
+          width: 0
+          assetResourceName: assetResourceName
+          height: 6
+        - campaignAssetResourceName: campaignAssetResourceName
+          imageUrl: https://openapi-generator.tech
+          width: 0
+          assetResourceName: assetResourceName
+          height: 6
         stale: true
         campaignId: campaignId
         sitelinks:
@@ -129183,6 +129216,10 @@ components:
           items:
             $ref: "#/components/schemas/listCampaignAssets_200_response_structuredSnippets_inner"
           type: array
+        images:
+          items:
+            $ref: "#/components/schemas/listCampaignAssets_200_response_images_inner"
+          type: array
         cachedAt:
           description: Time of the cached Google read. Null when no cache was used.
           format: date-time
@@ -129224,8 +129261,8 @@ components:
         updated:
           type: integer
     attachCampaignAssets_request:
-      description: "Provide at least one of sitelinks, callouts or structuredSnippets.\
-        \ Sitelink description1 and description2 must be supplied together."
+      description: "Provide at least one of sitelinks, callouts, structuredSnippets\
+        \ or images. Sitelink description1 and description2 must be supplied together."
       properties:
         accountId:
           description: Zernio Google Ads connection id.
@@ -129261,6 +129298,15 @@ components:
           maxItems: 20
           minItems: 1
           type: array
+        images:
+          description: "Public image URLs, uploaded to Google as image assets. Landscape\
+            \ 1.91:1 (min 600x314) or square 1:1 (min 300x300), up to 5 MB each."
+          items:
+            format: uri
+            type: string
+          maxItems: 20
+          minItems: 1
+          type: array
       required:
       - accountId
     attachCampaignAssets_201_response:
@@ -129269,6 +129315,9 @@ components:
         - sitelinkAssetResourceNames
         - sitelinkAssetResourceNames
         campaignId: campaignId
+        imageAssetResourceNames:
+        - imageAssetResourceNames
+        - imageAssetResourceNames
         structuredSnippetAssetResourceNames:
         - structuredSnippetAssetResourceNames
         - structuredSnippetAssetResourceNames
@@ -129287,6 +129336,10 @@ components:
             type: string
           type: array
         structuredSnippetAssetResourceNames:
+          items:
+            type: string
+          type: array
+        imageAssetResourceNames:
           items:
             type: string
           type: array
@@ -129349,6 +129402,26 @@ components:
           items:
             type: string
           type: array
+    listAdGroupAssets_200_response_images_inner:
+      example:
+        imageUrl: https://openapi-generator.tech
+        width: 0
+        assetResourceName: assetResourceName
+        adGroupAssetResourceName: adGroupAssetResourceName
+        height: 6
+      properties:
+        assetResourceName:
+          type: string
+        adGroupAssetResourceName:
+          type: string
+        imageUrl:
+          description: Google-hosted copy of the image.
+          format: uri
+          type: string
+        width:
+          type: integer
+        height:
+          type: integer
     listAdGroupAssets_200_response:
       example:
         callouts:
@@ -129358,6 +129431,17 @@ components:
         - assetResourceName: assetResourceName
           calloutText: calloutText
           adGroupAssetResourceName: adGroupAssetResourceName
+        images:
+        - imageUrl: https://openapi-generator.tech
+          width: 0
+          assetResourceName: assetResourceName
+          adGroupAssetResourceName: adGroupAssetResourceName
+          height: 6
+        - imageUrl: https://openapi-generator.tech
+          width: 0
+          assetResourceName: assetResourceName
+          adGroupAssetResourceName: adGroupAssetResourceName
+          height: 6
         stale: true
         sitelinks:
         - linkUrl: https://openapi-generator.tech
@@ -129402,6 +129486,10 @@ components:
           items:
             $ref: "#/components/schemas/listAdGroupAssets_200_response_structuredSnippets_inner"
           type: array
+        images:
+          items:
+            $ref: "#/components/schemas/listAdGroupAssets_200_response_images_inner"
+          type: array
         cachedAt:
           description: Time of the cached Google read. Null when no cache was used.
           format: date-time
@@ -129416,6 +129504,9 @@ components:
         sitelinkAssetResourceNames:
         - sitelinkAssetResourceNames
         - sitelinkAssetResourceNames
+        imageAssetResourceNames:
+        - imageAssetResourceNames
+        - imageAssetResourceNames
         structuredSnippetAssetResourceNames:
         - structuredSnippetAssetResourceNames
         - structuredSnippetAssetResourceNames
@@ -129435,6 +129526,10 @@ components:
             type: string
           type: array
         structuredSnippetAssetResourceNames:
+          items:
+            type: string
+          type: array
+        imageAssetResourceNames:
           items:
             type: string
           type: array

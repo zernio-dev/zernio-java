@@ -11,6 +11,7 @@
 |**sitelinkAssetResourceNames** | **List&lt;String&gt;** |  |  [optional] |
 |**calloutAssetResourceNames** | **List&lt;String&gt;** |  |  [optional] |
 |**structuredSnippetAssetResourceNames** | **List&lt;String&gt;** |  |  [optional] |
+|**imageAssetResourceNames** | **List&lt;String&gt;** |  |  [optional] |
 
 
 
