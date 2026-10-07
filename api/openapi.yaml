@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.239.0
+  version: 1.239.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19658,8 +19658,9 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/WhatsAppTemplateLookupError"
-          description: The exact approved WhatsApp template definition is unavailable.
-            No message was sent.
+          description: "The WhatsApp account has no Business Account ID, so the template\
+            \ definition cannot be looked up (a template with no approved variant\
+            \ in that language is a 400). No message was sent."
         default:
           content:
             application/json:
@@ -20175,9 +20176,10 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/sendInboxMessage_429_response"
-          description: "The exact approved WhatsApp template definition is unavailable,\
-            \ or the platform returned an upstream failure. No WhatsApp template message\
-            \ is sent when definition lookup fails."
+          description: "The WhatsApp account has no Business Account ID, or the platform\
+            \ returned an upstream failure (a template with no approved variant in\
+            \ that language is a 400). No WhatsApp template message is sent when definition\
+            \ lookup fails."
         default:
           content:
             application/json:

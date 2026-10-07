@@ -435,7 +435,7 @@ public class Example {
 | **409** | iMessage only. The contact opted out of this sender (recipient_opted_out); or this contact has never written to the sender and either the sender lacks the add-on for new contacts or three messages already went out and the contact has not replied (recipient_must_message_first). |  -  |
 | **422** | Recipient does not accept DMs from this account (X), or does not accept direct messages from you (Reddit) |  -  |
 | **429** | X API rate limit exceeded, Reddit rate limit reached, Meta rejected the WhatsApp template-definition lookup (a lookup failure sends no message), or an iMessage sender reached its new-contact pacing or warm-up limit (new_contact_limit; the error says when to retry). |  -  |
-| **502** | The exact approved WhatsApp template definition is unavailable. No message was sent. |  -  |
+| **502** | The WhatsApp account has no Business Account ID, so the template definition cannot be looked up (a template with no approved variant in that language is a 400). No message was sent. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
 
 ## createInboxConversationWithHttpInfo
@@ -517,7 +517,7 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 | **409** | iMessage only. The contact opted out of this sender (recipient_opted_out); or this contact has never written to the sender and either the sender lacks the add-on for new contacts or three messages already went out and the contact has not replied (recipient_must_message_first). |  -  |
 | **422** | Recipient does not accept DMs from this account (X), or does not accept direct messages from you (Reddit) |  -  |
 | **429** | X API rate limit exceeded, Reddit rate limit reached, Meta rejected the WhatsApp template-definition lookup (a lookup failure sends no message), or an iMessage sender reached its new-contact pacing or warm-up limit (new_contact_limit; the error says when to retry). |  -  |
-| **502** | The exact approved WhatsApp template definition is unavailable. No message was sent. |  -  |
+| **502** | The WhatsApp account has no Business Account ID, so the template definition cannot be looked up (a template with no approved variant in that language is a 400). No message was sent. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
 
 
@@ -2080,7 +2080,7 @@ public class Example {
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
-| **502** | The exact approved WhatsApp template definition is unavailable, or the platform returned an upstream failure. No WhatsApp template message is sent when definition lookup fails. |  -  |
+| **502** | The WhatsApp account has no Business Account ID, or the platform returned an upstream failure (a template with no approved variant in that language is a 400). No WhatsApp template message is sent when definition lookup fails. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
 
 ## sendInboxMessageWithHttpInfo
@@ -2167,7 +2167,7 @@ ApiResponse<[**SendInboxMessage200Response**](SendInboxMessage200Response.md)>
 | **422** | Idempotency-Key reused with a different request |  -  |
 | **429** | Rate limited. Either the connected account&#39;s upstream platform quota is exhausted (code rate_limited, see Retry-After; Reddit allows 1000 requests per 10 minutes per connected user), or Meta rejected the WhatsApp template-definition lookup (code platform_api_error). No message was sent. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
-| **502** | The exact approved WhatsApp template definition is unavailable, or the platform returned an upstream failure. No WhatsApp template message is sent when definition lookup fails. |  -  |
+| **502** | The WhatsApp account has no Business Account ID, or the platform returned an upstream failure (a template with no approved variant in that language is a 400). No WhatsApp template message is sent when definition lookup fails. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
 
 
