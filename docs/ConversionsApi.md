@@ -691,7 +691,7 @@ ApiResponse<[**CreateConversionDestination201Response**](CreateConversionDestina
 
 ## createCustomConversionGoal
 
-> CreateCustomConversionGoal201Response createCustomConversionGoal(createCustomConversionGoalRequest)
+> CreateSharedBudget201ResponseBudget createCustomConversionGoal(createCustomConversionGoalRequest)
 
 Create a custom conversion goal
 
@@ -720,7 +720,7 @@ public class Example {
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         CreateCustomConversionGoalRequest createCustomConversionGoalRequest = new CreateCustomConversionGoalRequest(); // CreateCustomConversionGoalRequest | 
         try {
-            CreateCustomConversionGoal201Response result = apiInstance.createCustomConversionGoal(createCustomConversionGoalRequest);
+            CreateSharedBudget201ResponseBudget result = apiInstance.createCustomConversionGoal(createCustomConversionGoalRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConversionsApi#createCustomConversionGoal");
@@ -742,7 +742,7 @@ public class Example {
 
 ### Return type
 
-[**CreateCustomConversionGoal201Response**](CreateCustomConversionGoal201Response.md)
+[**CreateSharedBudget201ResponseBudget**](CreateSharedBudget201ResponseBudget.md)
 
 
 ### Authorization
@@ -766,7 +766,7 @@ public class Example {
 
 ## createCustomConversionGoalWithHttpInfo
 
-> ApiResponse<CreateCustomConversionGoal201Response> createCustomConversionGoal createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest)
+> ApiResponse<CreateSharedBudget201ResponseBudget> createCustomConversionGoal createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest)
 
 Create a custom conversion goal
 
@@ -796,7 +796,7 @@ public class Example {
         ConversionsApi apiInstance = new ConversionsApi(defaultClient);
         CreateCustomConversionGoalRequest createCustomConversionGoalRequest = new CreateCustomConversionGoalRequest(); // CreateCustomConversionGoalRequest | 
         try {
-            ApiResponse<CreateCustomConversionGoal201Response> response = apiInstance.createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest);
+            ApiResponse<CreateSharedBudget201ResponseBudget> response = apiInstance.createCustomConversionGoalWithHttpInfo(createCustomConversionGoalRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -820,7 +820,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateCustomConversionGoal201Response**](CreateCustomConversionGoal201Response.md)>
+ApiResponse<[**CreateSharedBudget201ResponseBudget**](CreateSharedBudget201ResponseBudget.md)>
 
 
 ### Authorization

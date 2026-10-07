@@ -20,6 +20,7 @@ Echoes back only the fields you sent, plus `updated`.
 |**networkSettings** | [**GoogleNetworkSettings**](GoogleNetworkSettings.md) |  |  [optional] |
 |**trackingUrlTemplate** | **String** |  |  [optional] |
 |**finalUrlSuffix** | **String** |  |  [optional] |
+|**sharedBudgetId** | **String** | Google only. Echoed back when the campaign moved budgets; &#x60;budget&#x60; is then the budget it now uses. |  [optional] |
 |**platformSpecificData** | **Object** |  |  [optional] |
 
 

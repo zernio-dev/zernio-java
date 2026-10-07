@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.231.0
+- API version: 1.232.0
 
-- Build date: 2026-10-07T09:15:52.171065463Z[Etc/UTC]
+- Build date: 2026-10-07T09:19:38.818511839Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.231.0</version>
+  <version>1.232.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.231.0"
+compile "dev.zernio:zernio-sdk:1.232.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.231.0.jar`
+- `target/zernio-sdk-1.232.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -367,6 +367,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**createBidStrategyWithHttpInfo**](docs/AdCampaignsApi.md#createBidStrategyWithHttpInfo) | **POST** /v1/ads/bid-strategies | Create portfolio bid strategy
 *AdCampaignsApi* | [**createGoogleAssetGroup**](docs/AdCampaignsApi.md#createGoogleAssetGroup) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group
 *AdCampaignsApi* | [**createGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#createGoogleAssetGroupWithHttpInfo) | **POST** /v1/ads/campaigns/{campaignId}/asset-groups | Create a Performance Max asset group
+*AdCampaignsApi* | [**createSharedBudget**](docs/AdCampaignsApi.md#createSharedBudget) | **POST** /v1/ads/shared-budgets | Create a shared budget
+*AdCampaignsApi* | [**createSharedBudgetWithHttpInfo**](docs/AdCampaignsApi.md#createSharedBudgetWithHttpInfo) | **POST** /v1/ads/shared-budgets | Create a shared budget
 *AdCampaignsApi* | [**createStandaloneAd**](docs/AdCampaignsApi.md#createStandaloneAd) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**createStandaloneAdWithHttpInfo**](docs/AdCampaignsApi.md#createStandaloneAdWithHttpInfo) | **POST** /v1/ads/create | Create standalone ad
 *AdCampaignsApi* | [**deleteAd**](docs/AdCampaignsApi.md#deleteAd) | **DELETE** /v1/ads/{adId} | Cancel an ad
@@ -429,6 +431,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listGoogleAssetGroupsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleAssetGroupsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups | List Performance Max asset groups
 *AdCampaignsApi* | [**listGoogleRecommendations**](docs/AdCampaignsApi.md#listGoogleRecommendations) | **GET** /v1/ads/recommendations | List Google Ads recommendations
 *AdCampaignsApi* | [**listGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleRecommendationsWithHttpInfo) | **GET** /v1/ads/recommendations | List Google Ads recommendations
+*AdCampaignsApi* | [**listSharedBudgets**](docs/AdCampaignsApi.md#listSharedBudgets) | **GET** /v1/ads/shared-budgets | List shared budgets
+*AdCampaignsApi* | [**listSharedBudgetsWithHttpInfo**](docs/AdCampaignsApi.md#listSharedBudgetsWithHttpInfo) | **GET** /v1/ads/shared-budgets | List shared budgets
 *AdCampaignsApi* | [**removeAdGroupAssets**](docs/AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdKeyword**](docs/AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
@@ -2507,7 +2511,6 @@ Class | Method | HTTP request | Description
  - [CreateConversionDestination201Response](docs/CreateConversionDestination201Response.md)
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
- - [CreateCustomConversionGoal201Response](docs/CreateCustomConversionGoal201Response.md)
  - [CreateCustomConversionGoalRequest](docs/CreateCustomConversionGoalRequest.md)
  - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
@@ -2602,6 +2605,9 @@ Class | Method | HTTP request | Description
  - [CreateSequenceRequestStepsInner](docs/CreateSequenceRequestStepsInner.md)
  - [CreateSequenceRequestStepsInnerTemplate](docs/CreateSequenceRequestStepsInnerTemplate.md)
  - [CreateSequenceRequestStepsInnerTemplateVariableMappingValue](docs/CreateSequenceRequestStepsInnerTemplateVariableMappingValue.md)
+ - [CreateSharedBudget201Response](docs/CreateSharedBudget201Response.md)
+ - [CreateSharedBudget201ResponseBudget](docs/CreateSharedBudget201ResponseBudget.md)
+ - [CreateSharedBudgetRequest](docs/CreateSharedBudgetRequest.md)
  - [CreateSipTrunk201Response](docs/CreateSipTrunk201Response.md)
  - [CreateSipTrunk201ResponseTermination](docs/CreateSipTrunk201ResponseTermination.md)
  - [CreateSipTrunkRequest](docs/CreateSipTrunkRequest.md)
@@ -3626,6 +3632,8 @@ Class | Method | HTTP request | Description
  - [ListSequenceEnrollments200ResponseEnrollmentsInner](docs/ListSequenceEnrollments200ResponseEnrollmentsInner.md)
  - [ListSequences200Response](docs/ListSequences200Response.md)
  - [ListSequences200ResponseSequencesInner](docs/ListSequences200ResponseSequencesInner.md)
+ - [ListSharedBudgets200Response](docs/ListSharedBudgets200Response.md)
+ - [ListSharedBudgets200ResponseBudgetsInner](docs/ListSharedBudgets200ResponseBudgetsInner.md)
  - [ListSipTrunks200Response](docs/ListSipTrunks200Response.md)
  - [ListSipTrunks200ResponseTrunksInner](docs/ListSipTrunks200ResponseTrunksInner.md)
  - [ListSipTrunks200ResponseTrunksInnerTermination](docs/ListSipTrunks200ResponseTrunksInnerTermination.md)

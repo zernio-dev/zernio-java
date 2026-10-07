@@ -13,12 +13,13 @@
 |**bidAmount** | **BigDecimal** | **Google only.** Whole currency units (USD: 12 &#x3D; $12.00). Max CPC for LOWEST_COST_WITH_BID_CAP, CPA target for COST_CAP; required for both. |  [optional] |
 |**roasAverageFloor** | **BigDecimal** | **Google only.** Decimal ROAS multiplier (2.0 &#x3D; 2.0x), required for LOWEST_COST_WITH_MIN_ROAS. |  [optional] |
 |**portfolioBidStrategyId** | **String** | **Google only.** Attach an existing portfolio bid strategy (numeric id from GET /v1/ads/bid-strategies) instead of setting bidStrategy. Exclusive with bidStrategy. |  [optional] |
-|**allowSharedBudgetUpdate** | **Boolean** | Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state. |  [optional] |
+|**allowSharedBudgetUpdate** | **Boolean** | Google only. Explicitly allow changing a shared campaign budget, affecting every campaign that uses it. Does not bypass an unknown sharing state. Also required to move a campaign onto a shared budget with sharedBudgetId. |  [optional] |
 |**targetImpressionShare** | [**GoogleTargetImpressionShare**](GoogleTargetImpressionShare.md) | Google Search only. Target impression share bidding. Exclusive with bidStrategy, portfolioBidStrategyId and manualCpc; bidAmount is refused alongside it (the ceiling is maxCpc). |  [optional] |
 |**manualCpc** | [**GoogleManualCpc**](GoogleManualCpc.md) |  |  [optional] |
 |**networkSettings** | [**GoogleNetworkSettings**](GoogleNetworkSettings.md) |  |  [optional] |
 |**trackingUrlTemplate** | **String** | **Google only.** campaign.tracking_url_template; an empty string clears it. |  [optional] |
 |**finalUrlSuffix** | **String** | **Google only.** campaign.final_url_suffix; an empty string clears it. |  [optional] |
+|**sharedBudgetId** | **String** | **Google only.** Move the campaign onto this shared budget (id from GET /v1/ads/shared-budgets), or null to move it back onto a budget of its own sized by &#x60;budget&#x60;. |  [optional] |
 |**budget** | [**UpdateAdCampaignRequestBudget**](UpdateAdCampaignRequestBudget.md) |  |  [optional] |
 |**name** | **String** | **Meta only.** Rename the campaign. |  [optional] |
 |**platformSpecificData** | [**UpdateAdCampaignRequestPlatformSpecificData**](UpdateAdCampaignRequestPlatformSpecificData.md) |  |  [optional] |
