@@ -3631,7 +3631,7 @@ ApiResponse<[**GetAdCampaignDetails200Response**](GetAdCampaignDetails200Respons
 
 Read the platform&#39;s review verdict for an ad
 
-Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  TikTok only (&#x60;/ad/review_info/&#x60;); every other platform returns 501. Use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
+Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  **Google**: reads &#x60;ad_group_ad.policy_summary&#x60; live. &#x60;approvalStatus&#x60; and &#x60;reviewStatus&#x60; are Google&#39;s verbatim (&#x60;approvalStatus&#x60;: APPROVED, APPROVED_LIMITED, AREA_OF_INTEREST_ONLY, DISAPPROVED, UNKNOWN; &#x60;reviewStatus&#x60;: REVIEW_IN_PROGRESS, REVIEWED, UNDER_APPEAL, ELIGIBLE_MAY_SERVE); &#x60;approved&#x60; is true for the three approved statuses, false for DISAPPROVED, null otherwise. &#x60;policyTopics&#x60; carries every policy topic entry with its &#x60;type&#x60; (PROHIBITED, LIMITED, ...) and Google&#39;s &#x60;evidences&#x60; and &#x60;constraints&#x60; verbatim; each PROHIBITED topic is also listed in &#x60;rejections&#x60; (reason &#x3D; the topic). The &#x60;forbidden*&#x60; arrays are TikTok-only and always empty on Google.  TikTok uses &#x60;/ad/review_info/&#x60;; every other platform returns 501. On TikTok, use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
 
 ### Example
 
@@ -3696,8 +3696,8 @@ public class Example {
 | **200** | The review verdict |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Ad not found, it has no TikTok ad id yet, or TikTok has no review record for it |  -  |
-| **501** | Only supported on TikTok |  -  |
+| **404** | Ad not found, it has no platform ad id yet, or the platform has no review record for it |  -  |
+| **501** | Only supported on TikTok and Google |  -  |
 
 ## getAdReviewWithHttpInfo
 
@@ -3705,7 +3705,7 @@ public class Example {
 
 Read the platform&#39;s review verdict for an ad
 
-Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  TikTok only (&#x60;/ad/review_info/&#x60;); every other platform returns 501. Use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
+Reads the ad&#39;s review verdict from the platform now: whether it was approved, where it may not deliver, and every rejection reason with TikTok&#39;s suggestion and the piece of content it refers to. Read-only, so it works on a paused ad without re-enabling it.  **Google**: reads &#x60;ad_group_ad.policy_summary&#x60; live. &#x60;approvalStatus&#x60; and &#x60;reviewStatus&#x60; are Google&#39;s verbatim (&#x60;approvalStatus&#x60;: APPROVED, APPROVED_LIMITED, AREA_OF_INTEREST_ONLY, DISAPPROVED, UNKNOWN; &#x60;reviewStatus&#x60;: REVIEW_IN_PROGRESS, REVIEWED, UNDER_APPEAL, ELIGIBLE_MAY_SERVE); &#x60;approved&#x60; is true for the three approved statuses, false for DISAPPROVED, null otherwise. &#x60;policyTopics&#x60; carries every policy topic entry with its &#x60;type&#x60; (PROHIBITED, LIMITED, ...) and Google&#39;s &#x60;evidences&#x60; and &#x60;constraints&#x60; verbatim; each PROHIBITED topic is also listed in &#x60;rejections&#x60; (reason &#x3D; the topic). The &#x60;forbidden*&#x60; arrays are TikTok-only and always empty on Google.  TikTok uses &#x60;/ad/review_info/&#x60;; every other platform returns 501. On TikTok, use it alongside the ad&#39;s &#x60;platformStatus&#x60;: TikTok reports &#x60;AD_STATUS_AUDIT&#x60; while the ad is in review and &#x60;AD_STATUS_AD_PRE_ONLINE&#x60; once it passed and is about to deliver (both map to &#x60;status: pending_review&#x60;); &#x60;AD_STATUS_AUDIT_DENY&#x60; maps to &#x60;rejected&#x60;.
 
 ### Example
 
@@ -3773,8 +3773,8 @@ ApiResponse<[**GetAdReview200Response**](GetAdReview200Response.md)>
 | **200** | The review verdict |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **404** | Ad not found, it has no TikTok ad id yet, or TikTok has no review record for it |  -  |
-| **501** | Only supported on TikTok |  -  |
+| **404** | Ad not found, it has no platform ad id yet, or the platform has no review record for it |  -  |
+| **501** | Only supported on TikTok and Google |  -  |
 
 
 ## getAdSetDetails

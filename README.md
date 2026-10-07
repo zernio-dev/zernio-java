@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.233.0
+- API version: 1.234.0
 
-- Build date: 2026-10-07T09:59:16.451398683Z[Etc/UTC]
+- Build date: 2026-10-07T10:23:42.855681698Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.233.0</version>
+  <version>1.234.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.233.0"
+compile "dev.zernio:zernio-sdk:1.234.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.233.0.jar`
+- `target/zernio-sdk-1.234.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2875,6 +2875,7 @@ Class | Method | HTTP request | Description
  - [GetAdPreviews200Response](docs/GetAdPreviews200Response.md)
  - [GetAdReview200Response](docs/GetAdReview200Response.md)
  - [GetAdReview200ResponseReview](docs/GetAdReview200ResponseReview.md)
+ - [GetAdReview200ResponseReviewPolicyTopicsInner](docs/GetAdReview200ResponseReviewPolicyTopicsInner.md)
  - [GetAdReview200ResponseReviewRejectionsInner](docs/GetAdReview200ResponseReviewRejectionsInner.md)
  - [GetAdReview200ResponseReviewRejectionsInnerContent](docs/GetAdReview200ResponseReviewRejectionsInnerContent.md)
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)

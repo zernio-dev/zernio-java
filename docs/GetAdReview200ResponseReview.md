@@ -14,7 +14,9 @@
 |**forbiddenLocations** | **List&lt;String&gt;** |  |  [optional] |
 |**forbiddenOperatingSystems** | **List&lt;String&gt;** |  |  [optional] |
 |**rejections** | [**List&lt;GetAdReview200ResponseReviewRejectionsInner&gt;**](GetAdReview200ResponseReviewRejectionsInner.md) | One entry per rejected piece of content (TikTok &#x60;reject_info&#x60;). Empty when the ad was approved. |  [optional] |
-|**readAt** | **OffsetDateTime** | When the verdict was read from TikTok. |  [optional] |
+|**approvalStatus** | **String** | Google only. ad_group_ad.policy_summary.approval_status, verbatim. |  [optional] |
+|**policyTopics** | [**List&lt;GetAdReview200ResponseReviewPolicyTopicsInner&gt;**](GetAdReview200ResponseReviewPolicyTopicsInner.md) | Google only. ad_group_ad.policy_summary.policy_topic_entries. |  [optional] |
+|**readAt** | **OffsetDateTime** | When the verdict was read from the platform. |  [optional] |
 
 
 

@@ -3563,7 +3563,7 @@ ApiResponse<[**GetAdNegativeKeywordList200Response**](GetAdNegativeKeywordList20
 
 Ad account change / audit log
 
-Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad).
+**Google**: reads the customer&#39;s &#x60;change_event&#x60; history, newest first. Google keeps 30 days of it, so &#x60;since&#x60; defaults to 29 days ago and an older &#x60;since&#x60; returns 400; &#x60;until&#x60; defaults to today. Each change is mapped onto the Meta row shape: &#x60;event_type&#x60; &#x3D; resource_change_operation (CREATE, UPDATE, REMOVE), &#x60;event_time&#x60; &#x3D; change_date_time, &#x60;actor_name&#x60; &#x3D; user_email, &#x60;object_type&#x60; &#x3D; change_resource_type, &#x60;object_id&#x60; &#x3D; the last numeric id of &#x60;object_resource_name&#x60;, &#x60;application_name&#x60; &#x3D; client_type, &#x60;changed_fields&#x60; (array), and &#x60;extra_data&#x60; &#x3D; a JSON string &#x60;{ old, new }&#x60; with Google&#39;s old and new resource. Pass &#x60;paging.after&#x60; back as &#x60;after&#x60; for the next page; it is null when nothing older is left. A page never splits a change batch (the changes of one request share an &#x60;event_time&#x60;), so a page can hold fewer rows than &#x60;limit&#x60; while more follow, or more when one batch is larger than &#x60;limit&#x60;. &#x60;adAccountId&#x60; is the numeric customer id.  **Meta**: Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad).
 
 ### Example
 
@@ -3587,10 +3587,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD).
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>), or the Google customer id (digits only).
+        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD). Google: at most 29 days ago, the default.
         LocalDate until = LocalDate.now(); // LocalDate | End of range (YYYY-MM-DD).
-        String objectId = "objectId_example"; // String | Client-side filter to one Meta object id (campaign, ad set or ad).
+        String objectId = "objectId_example"; // String | Client-side filter to one object id (campaign, ad set / ad group or ad).
         Integer limit = 50; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -3613,10 +3613,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **since** | **LocalDate**| Start of range (YYYY-MM-DD). | [optional] |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;), or the Google customer id (digits only). | |
+| **since** | **LocalDate**| Start of range (YYYY-MM-DD). Google: at most 29 days ago, the default. | [optional] |
 | **until** | **LocalDate**| End of range (YYYY-MM-DD). | [optional] |
-| **objectId** | **String**| Client-side filter to one Meta object id (campaign, ad set or ad). | [optional] |
+| **objectId** | **String**| Client-side filter to one object id (campaign, ad set / ad group or ad). | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 50] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -3639,10 +3639,10 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **200** | Activity rows (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query |  -  |
+| **200** | Activity rows (raw Meta shape; Google changes mapped onto it) |  -  |
+| **400** | Invalid input, a Google since older than 30 days, or the platform rejected the query |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and Google |  -  |
 
 ## getAdsActivityLogWithHttpInfo
 
@@ -3650,7 +3650,7 @@ public class Example {
 
 Ad account change / audit log
 
-Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad).
+**Google**: reads the customer&#39;s &#x60;change_event&#x60; history, newest first. Google keeps 30 days of it, so &#x60;since&#x60; defaults to 29 days ago and an older &#x60;since&#x60; returns 400; &#x60;until&#x60; defaults to today. Each change is mapped onto the Meta row shape: &#x60;event_type&#x60; &#x3D; resource_change_operation (CREATE, UPDATE, REMOVE), &#x60;event_time&#x60; &#x3D; change_date_time, &#x60;actor_name&#x60; &#x3D; user_email, &#x60;object_type&#x60; &#x3D; change_resource_type, &#x60;object_id&#x60; &#x3D; the last numeric id of &#x60;object_resource_name&#x60;, &#x60;application_name&#x60; &#x3D; client_type, &#x60;changed_fields&#x60; (array), and &#x60;extra_data&#x60; &#x3D; a JSON string &#x60;{ old, new }&#x60; with Google&#39;s old and new resource. Pass &#x60;paging.after&#x60; back as &#x60;after&#x60; for the next page; it is null when nothing older is left. A page never splits a change batch (the changes of one request share an &#x60;event_time&#x60;), so a page can hold fewer rows than &#x60;limit&#x60; while more follow, or more when one batch is larger than &#x60;limit&#x60;. &#x60;adAccountId&#x60; is the numeric customer id.  **Meta**: Account-level audit log from Meta&#39;s &#x60;/act_X/activities&#x60;: who changed what and when (creates, edits, status flips, budget changes...) with Meta&#39;s translated event names and the structured before/after in &#x60;extra_data&#x60;. Rows are returned verbatim. Meta has no server-side per-object filter on this edge, so &#x60;objectId&#x60; filters the returned page client-side (combine with paging to walk history for one campaign/ad set/ad).
 
 ### Example
 
@@ -3675,10 +3675,10 @@ public class Example {
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD).
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>), or the Google customer id (digits only).
+        LocalDate since = LocalDate.now(); // LocalDate | Start of range (YYYY-MM-DD). Google: at most 29 days ago, the default.
         LocalDate until = LocalDate.now(); // LocalDate | End of range (YYYY-MM-DD).
-        String objectId = "objectId_example"; // String | Client-side filter to one Meta object id (campaign, ad set or ad).
+        String objectId = "objectId_example"; // String | Client-side filter to one object id (campaign, ad set / ad group or ad).
         Integer limit = 50; // Integer | Rows per page
         String after = "after_example"; // String | Cursor from paging.after of the previous page.
         try {
@@ -3703,10 +3703,10 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **since** | **LocalDate**| Start of range (YYYY-MM-DD). | [optional] |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;), or the Google customer id (digits only). | |
+| **since** | **LocalDate**| Start of range (YYYY-MM-DD). Google: at most 29 days ago, the default. | [optional] |
 | **until** | **LocalDate**| End of range (YYYY-MM-DD). | [optional] |
-| **objectId** | **String**| Client-side filter to one Meta object id (campaign, ad set or ad). | [optional] |
+| **objectId** | **String**| Client-side filter to one object id (campaign, ad set / ad group or ad). | [optional] |
 | **limit** | **Integer**| Rows per page | [optional] [default to 50] |
 | **after** | **String**| Cursor from paging.after of the previous page. | [optional] |
 
@@ -3729,10 +3729,10 @@ ApiResponse<[**GetAdsActivityLog200Response**](GetAdsActivityLog200Response.md)>
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **200** | Activity rows (raw Meta shape) |  -  |
-| **400** | Invalid input, or Meta rejected the query |  -  |
+| **200** | Activity rows (raw Meta shape; Google changes mapped onto it) |  -  |
+| **400** | Invalid input, a Google since older than 30 days, or the platform rejected the query |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **501** | Only supported on Meta (facebook/instagram) |  -  |
+| **501** | Only supported on Meta (facebook/instagram) and Google |  -  |
 
 
 ## getDsaDefaults
