@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.237.0
+  version: 1.238.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -64636,9 +64636,10 @@ components:
         whatsappPhoneNumber:
           description: "WhatsApp only. Optional E.164 number already paired with the\
             \ Facebook Page. Omit to let Meta select the paired number. Sent to the\
-            \ creative CTA and, when creating a new ad set, its promoted_object. Attach\
-            \ requests do not change the existing ad set. Stored as creative.whatsappPhoneNumber\
-            \ on every created ad."
+            \ creative CTA and, when creating a new ad set, its promoted_object. Meta\
+            \ can accept the number yet create the ad set without it; the response\
+            \ then carries a `warnings` entry. Attach requests do not change the existing\
+            \ ad set. Stored as creative.whatsappPhoneNumber on every created ad."
           pattern: "^\\+[1-9]\\d{6,14}$"
           type: string
         headline:
@@ -86274,6 +86275,9 @@ components:
       example:
         adType: single
         ad: "{}"
+        warnings:
+        - warnings
+        - warnings
         message: message
       properties:
         adType:
@@ -86285,6 +86289,13 @@ components:
           type: object
         message:
           type: string
+        warnings:
+          description: "Present when Meta created the ad set differently from the\
+            \ request. Today: Meta kept the ad set without the requested `whatsappPhoneNumber`\
+            \ in its promoted_object (the ads still carry it on their WhatsApp button)."
+          items:
+            type: string
+          type: array
       required:
       - ad
       - adType
@@ -86313,6 +86324,13 @@ components:
           type: string
         message:
           type: string
+        warnings:
+          description: "Present when Meta created the ad set differently from the\
+            \ request. Today: Meta kept the ad set without the requested `whatsappPhoneNumber`\
+            \ in its promoted_object (the ads still carry it on their WhatsApp button)."
+          items:
+            type: string
+          type: array
       required:
       - adType
       - ads
