@@ -1867,7 +1867,7 @@ ApiResponse<[**ListImessageSenders200Response**](ListImessageSenders200Response.
 
 Order a new iMessage sender
 
-Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration); when the account spend threshold is below the sender price, the first month is charged before the number is bought. Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
+Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration); when the account spend threshold is below the sender price, the first month is charged before the number is bought; when the card&#39;s answer takes longer than this request, the order is returned as &#x60;status: awaiting_payment&#x60; and the number is ordered automatically once it is paid (usually under 5 minutes). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
 
 ### Example
 
@@ -1929,13 +1929,13 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **202** | Order accepted; activation continues asynchronously |  -  |
+| **202** | Order accepted; activation continues asynchronously. &#x60;sender.status&#x60; is &#x60;ordering&#x60; or &#x60;activating&#x60; when the provider has the order, &#x60;awaiting_payment&#x60; while the first-month charge is still being confirmed (poll the sender; it moves on by itself). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required); the last payment failed and is still unpaid, or the card was declined for the first month (code: payment_required). Nothing is ordered; update the card in Billing, then order again. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete), or the first-month payment was not confirmed in time (code: invalid_resource_state; details.purchase_intent_id): nothing was ordered, retry with that purchaseIntentId within the hour and you are not charged twice. |  -  |
+| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete). |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
 | **502** | The provider rejected the order. Nothing was charged, or a first month already billed is given back as account credit. |  -  |
 
@@ -1945,7 +1945,7 @@ public class Example {
 
 Order a new iMessage sender
 
-Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration); when the account spend threshold is below the sender price, the first month is charged before the number is bought. Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
+Orders a NEW dedicated iMessage sender from the delivery provider (compare with POST /v1/imessage/senders, which registers a sender you already own). Activation is asynchronous (minutes to a few hours): the response is 202 with the lifecycle object; poll GET /v1/imessage/senders/{senderId} or subscribe to the account.connected webhook. Billing starts at activation (monthly per sender, no proration); when the account spend threshold is below the sender price, the first month is charged before the number is bought; when the card&#39;s answer takes longer than this request, the order is returned as &#x60;status: awaiting_payment&#x60; and the number is ordered automatically once it is paid (usually under 5 minutes). Requires usage-based billing and a valid payment method. Pass purchaseIntentId to make retries idempotent — the provider-side order is never retried automatically. Ordered phone senders include SMS/RCS fallback with call forwarding and the ability to message contacts who have not written first (sending intervals still apply). 
 
 ### Example
 
@@ -2010,13 +2010,13 @@ ApiResponse<[**OrderImessageSender202Response**](OrderImessageSender202Response.
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **202** | Order accepted; activation continues asynchronously |  -  |
+| **202** | Order accepted; activation continues asynchronously. &#x60;sender.status&#x60; is &#x60;ordering&#x60; or &#x60;activating&#x60; when the provider has the order, &#x60;awaiting_payment&#x60; while the first-month charge is still being confirmed (poll the sender; it moves on by itself). |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | A valid payment method is required (code: payment_method_required); the last payment failed and is still unpaid, or the card was declined for the first month (code: payment_required). Nothing is ordered; update the card in Billing, then order again. |  -  |
 | **403** | Sender limit reached (code: imessage_sender_limit) |  -  |
 | **404** | Profile not found or access denied |  -  |
-| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete), or the first-month payment was not confirmed in time (code: invalid_resource_state; details.purchase_intent_id): nothing was ordered, retry with that purchaseIntentId within the hour and you are not charged twice. |  -  |
+| **409** | Billing setup is incomplete and support must finish it (code: billing_setup_incomplete). |  -  |
 | **422** | Workspace is not on usage-based billing (code: usage_billing_required) |  -  |
 | **502** | The provider rejected the order. Nothing was charged, or a first month already billed is given back as account credit. |  -  |
 

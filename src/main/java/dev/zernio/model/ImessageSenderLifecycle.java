@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   ImessageSenderLifecycle.JSON_PROPERTY_ACCOUNT_ID,
   ImessageSenderLifecycle.JSON_PROPERTY_CREATED_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:10:10.280749890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:15:52.171065463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ImessageSenderLifecycle {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -142,10 +142,12 @@ public class ImessageSenderLifecycle {
   private JsonNullable<String> optInLink = JsonNullable.<String>undefined();
 
   /**
-   * Gets or Sets status
+   * &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.
    */
   public enum StatusEnum {
     ORDERING(String.valueOf("ordering")),
+    
+    AWAITING_PAYMENT(String.valueOf("awaiting_payment")),
     
     ACTIVATING(String.valueOf("activating")),
     
@@ -366,7 +368,7 @@ public class ImessageSenderLifecycle {
   }
 
   /**
-   * Get status
+   * &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes.
    * @return status
    */
   @javax.annotation.Nullable

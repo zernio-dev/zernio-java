@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   AdScheduleWindow.JSON_PROPERTY_END_MINUTE,
   AdScheduleWindow.JSON_PROPERTY_BID_MODIFIER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:10:10.280749890Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T09:15:52.171065463Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdScheduleWindow {
   public static final String JSON_PROPERTY_CRITERION_ID = "criterionId";
   @javax.annotation.Nullable

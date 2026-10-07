@@ -13,7 +13,7 @@ A provisioned iMessage sender order and its lifecycle. Activation is asynchronou
 |**region** | [**RegionEnum**](#RegionEnum) |  |  [optional] |
 |**handle** | **String** | The sender handle once activation assigns it |  [optional] |
 |**optInLink** | **String** | imessage:// deep link that opens Messages on this sender with a prefilled text. Share it so contacts message you first (Apple only lets a sender reach contacts who wrote to it first); null until the handle is assigned. |  [optional] |
-|**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
+|**status** | [**StatusEnum**](#StatusEnum) | &#x60;awaiting_payment&#x60;: the first-month charge is still being confirmed by the card; the number is ordered automatically once it is paid (usually under 5 minutes), or the order fails with &#x60;failureReason&#x60; when the card declines or nothing confirms within 30 minutes. |  [optional] |
 |**priceCents** | **Integer** | Monthly price billed while the sender is active |  [optional] |
 |**provider** | **String** |  |  [optional] |
 |**profileId** | **String** |  |  [optional] |
@@ -47,6 +47,7 @@ A provisioned iMessage sender order and its lifecycle. Activation is asynchronou
 | Name | Value |
 |---- | -----|
 | ORDERING | &quot;ordering&quot; |
+| AWAITING_PAYMENT | &quot;awaiting_payment&quot; |
 | ACTIVATING | &quot;activating&quot; |
 | ACTIVE | &quot;active&quot; |
 | SUSPENDED | &quot;suspended&quot; |
