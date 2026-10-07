@@ -5571,8 +5571,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateSharedBudget201ResponseBudgetTest.java
-src/test/java/dev/zernio/model/CreateSharedBudget201ResponseTest.java
-src/test/java/dev/zernio/model/CreateSharedBudgetRequestTest.java
-src/test/java/dev/zernio/model/ListSharedBudgets200ResponseBudgetsInnerTest.java
-src/test/java/dev/zernio/model/ListSharedBudgets200ResponseTest.java

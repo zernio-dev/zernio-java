@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.232.0
+- API version: 1.233.0
 
-- Build date: 2026-10-07T09:19:38.818511839Z[Etc/UTC]
+- Build date: 2026-10-07T09:59:16.451398683Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.232.0</version>
+  <version>1.233.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.232.0"
+compile "dev.zernio:zernio-sdk:1.233.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.232.0.jar`
+- `target/zernio-sdk-1.233.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1163,8 +1163,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**updateAdConversionGoals**](docs/ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
 *ConversionsApi* | [**updateAdConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
-*ConversionsApi* | [**updateConversionAction**](docs/ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary
-*ConversionsApi* | [**updateConversionActionWithHttpInfo**](docs/ConversionsApi.md#updateConversionActionWithHttpInfo) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary
+*ConversionsApi* | [**updateConversionAction**](docs/ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings
+*ConversionsApi* | [**updateConversionActionWithHttpInfo**](docs/ConversionsApi.md#updateConversionActionWithHttpInfo) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings
 *ConversionsApi* | [**updateConversionDestination**](docs/ConversionsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateCustomConversionGoal**](docs/ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal

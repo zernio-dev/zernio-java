@@ -40,8 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**sendConversionsWithHttpInfo**](ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events |
 | [**updateAdConversionGoals**](ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
 | [**updateAdConversionGoalsWithHttpInfo**](ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
-| [**updateConversionAction**](ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary |
-| [**updateConversionActionWithHttpInfo**](ConversionsApi.md#updateConversionActionWithHttpInfo) | **PATCH** /v1/ads/conversions/actions/{actionId} | Set a conversion action primary or secondary |
+| [**updateConversionAction**](ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
+| [**updateConversionActionWithHttpInfo**](ConversionsApi.md#updateConversionActionWithHttpInfo) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
 | [**updateConversionDestination**](ConversionsApi.md#updateConversionDestination) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateConversionDestinationWithHttpInfo**](ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination |
 | [**updateCustomConversionGoal**](ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal |
@@ -2975,9 +2975,9 @@ ApiResponse<[**UpdateAdConversionGoals200Response**](UpdateAdConversionGoals200R
 
 > UpdateConversionAction200Response updateConversionAction(actionId, updateConversionActionRequest)
 
-Set a conversion action primary or secondary
+Update a conversion action&#39;s settings
 
-Sets &#x60;primary_for_goal&#x60; on a Google Ads conversion action. A primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions).
+Updates a Google Ads conversion action in one mutate, each field sent written on its own update mask leaf so omitted fields keep their value. Send at least one field.  &#x60;primaryForGoal&#x60; sets &#x60;primary_for_goal&#x60;: a primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions). &#x60;countingType&#x60;, &#x60;category&#x60;, the value settings (&#x60;defaultValue&#x60;, &#x60;defaultCurrency&#x60;, &#x60;alwaysUseDefaultValue&#x60;) and the click-through / view-through lookback windows map to the same-named conversion_action fields.  &#x60;status: REMOVED&#x60; removes the action (Google keeps it, with its history, as REMOVED) and must be sent alone; &#x60;status: ENABLED&#x60; restores a removed action. Google refuses HIDDEN on website actions, so it is not offered.
 
 ### Example
 
@@ -3052,9 +3052,9 @@ public class Example {
 
 > ApiResponse<UpdateConversionAction200Response> updateConversionAction updateConversionActionWithHttpInfo(actionId, updateConversionActionRequest)
 
-Set a conversion action primary or secondary
+Update a conversion action&#39;s settings
 
-Sets &#x60;primary_for_goal&#x60; on a Google Ads conversion action. A primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions).
+Updates a Google Ads conversion action in one mutate, each field sent written on its own update mask leaf so omitted fields keep their value. Send at least one field.  &#x60;primaryForGoal&#x60; sets &#x60;primary_for_goal&#x60;: a primary action counts toward its goal&#39;s bidding and the Conversions column; a secondary one is observation-only (All conversions). &#x60;countingType&#x60;, &#x60;category&#x60;, the value settings (&#x60;defaultValue&#x60;, &#x60;defaultCurrency&#x60;, &#x60;alwaysUseDefaultValue&#x60;) and the click-through / view-through lookback windows map to the same-named conversion_action fields.  &#x60;status: REMOVED&#x60; removes the action (Google keeps it, with its history, as REMOVED) and must be sent alone; &#x60;status: ENABLED&#x60; restores a removed action. Google refuses HIDDEN on website actions, so it is not offered.
 
 ### Example
 
