@@ -16,6 +16,7 @@
 |**transcriptionLanguage** | [**TranscriptionLanguageEnum**](#TranscriptionLanguageEnum) | &#39;auto&#39; derives from the callee&#39;s country; &#39;en&#39;/&#39;es&#39; force it. |  [optional] |
 |**amd** | **Boolean** | Answering-machine detection; defers the bridge until human vs machine is known. |  [optional] |
 |**voicemailDropMessage** | **String** | Spoken to a detected machine, then hang up (implies &#x60;amd&#x60;). For outbound voicemail drops. |  [optional] |
+|**ringTimeoutSeconds** | **Integer** | Seconds to let the callee&#39;s phone ring before the call ends as no_answer. The destination carrier can end it sooner. |  [optional] |
 
 
 
