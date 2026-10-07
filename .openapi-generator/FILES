@@ -1116,6 +1116,7 @@ docs/GetProduct200Response.md
 docs/GetRcsCapabilities200Response.md
 docs/GetRedditFlairs200Response.md
 docs/GetRedditFlairs200ResponseFlairsInner.md
+docs/GetRedditPostComments200Response.md
 docs/GetRedditSubreddits200Response.md
 docs/GetRedditSubreddits200ResponseSubredditsInner.md
 docs/GetSequence200Response.md
@@ -1893,6 +1894,7 @@ docs/RcsTestDevice.md
 docs/ReachAndFrequencyApi.md
 docs/RecyclingConfig.md
 docs/RecyclingState.md
+docs/RedditComment.md
 docs/RedditPlatformData.md
 docs/RedditPost.md
 docs/RedditSearchApi.md
@@ -3960,6 +3962,7 @@ src/main/java/dev/zernio/model/GetProduct200Response.java
 src/main/java/dev/zernio/model/GetRcsCapabilities200Response.java
 src/main/java/dev/zernio/model/GetRedditFlairs200Response.java
 src/main/java/dev/zernio/model/GetRedditFlairs200ResponseFlairsInner.java
+src/main/java/dev/zernio/model/GetRedditPostComments200Response.java
 src/main/java/dev/zernio/model/GetRedditSubreddits200Response.java
 src/main/java/dev/zernio/model/GetRedditSubreddits200ResponseSubredditsInner.java
 src/main/java/dev/zernio/model/GetSequence200Response.java
@@ -4710,6 +4713,7 @@ src/main/java/dev/zernio/model/RcsSuggestionOneOf5.java
 src/main/java/dev/zernio/model/RcsTestDevice.java
 src/main/java/dev/zernio/model/RecyclingConfig.java
 src/main/java/dev/zernio/model/RecyclingState.java
+src/main/java/dev/zernio/model/RedditComment.java
 src/main/java/dev/zernio/model/RedditPlatformData.java
 src/main/java/dev/zernio/model/RedditPost.java
 src/main/java/dev/zernio/model/RedeliverWebhookEventRequest.java
@@ -5575,3 +5579,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetRedditPostComments200ResponseTest.java
+src/test/java/dev/zernio/model/RedditCommentTest.java

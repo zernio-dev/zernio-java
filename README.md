@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.238.0
+- API version: 1.239.0
 
-- Build date: 2026-10-07T19:30:40.624334586Z[Etc/UTC]
+- Build date: 2026-10-07T20:05:24.403320304Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.238.0</version>
+  <version>1.239.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.238.0"
+compile "dev.zernio:zernio-sdk:1.239.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.238.0.jar`
+- `target/zernio-sdk-1.239.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1599,6 +1599,8 @@ Class | Method | HTTP request | Description
 *ReachAndFrequencyApi* | [**reserveRfPredictionWithHttpInfo**](docs/ReachAndFrequencyApi.md#reserveRfPredictionWithHttpInfo) | **POST** /v1/ads/rf-predictions/{predictionId}/reserve | Reserve reach-frequency inventory
 *RedditSearchApi* | [**getRedditFeed**](docs/RedditSearchApi.md#getRedditFeed) | **GET** /v1/reddit/feed | Get subreddit feed
 *RedditSearchApi* | [**getRedditFeedWithHttpInfo**](docs/RedditSearchApi.md#getRedditFeedWithHttpInfo) | **GET** /v1/reddit/feed | Get subreddit feed
+*RedditSearchApi* | [**getRedditPostComments**](docs/RedditSearchApi.md#getRedditPostComments) | **GET** /v1/reddit/comments/{postId} | Get the comments of a Reddit post
+*RedditSearchApi* | [**getRedditPostCommentsWithHttpInfo**](docs/RedditSearchApi.md#getRedditPostCommentsWithHttpInfo) | **GET** /v1/reddit/comments/{postId} | Get the comments of a Reddit post
 *RedditSearchApi* | [**searchReddit**](docs/RedditSearchApi.md#searchReddit) | **GET** /v1/reddit/search | Search posts
 *RedditSearchApi* | [**searchRedditWithHttpInfo**](docs/RedditSearchApi.md#searchRedditWithHttpInfo) | **GET** /v1/reddit/search | Search posts
 *ReviewsApi* | [**deleteInboxReviewReply**](docs/ReviewsApi.md#deleteInboxReviewReply) | **DELETE** /v1/inbox/reviews/{reviewId}/reply | Delete review reply
@@ -3134,6 +3136,7 @@ Class | Method | HTTP request | Description
  - [GetRcsCapabilities200Response](docs/GetRcsCapabilities200Response.md)
  - [GetRedditFlairs200Response](docs/GetRedditFlairs200Response.md)
  - [GetRedditFlairs200ResponseFlairsInner](docs/GetRedditFlairs200ResponseFlairsInner.md)
+ - [GetRedditPostComments200Response](docs/GetRedditPostComments200Response.md)
  - [GetRedditSubreddits200Response](docs/GetRedditSubreddits200Response.md)
  - [GetRedditSubreddits200ResponseSubredditsInner](docs/GetRedditSubreddits200ResponseSubredditsInner.md)
  - [GetSequence200Response](docs/GetSequence200Response.md)
@@ -3884,6 +3887,7 @@ Class | Method | HTTP request | Description
  - [RcsTestDevice](docs/RcsTestDevice.md)
  - [RecyclingConfig](docs/RecyclingConfig.md)
  - [RecyclingState](docs/RecyclingState.md)
+ - [RedditComment](docs/RedditComment.md)
  - [RedditPlatformData](docs/RedditPlatformData.md)
  - [RedditPost](docs/RedditPost.md)
  - [RedeliverWebhookEventRequest](docs/RedeliverWebhookEventRequest.md)
