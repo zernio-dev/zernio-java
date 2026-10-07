@@ -3033,7 +3033,7 @@ ApiResponse<[**GetAdAccountHierarchy200Response**](GetAdAccountHierarchy200Respo
 
 Read an ad account&#39;s campaigns and ad sets live
 
-Reads the campaigns and ad sets of one Meta ad account **live from Meta**, in a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;), so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current &#x60;daily_budget&#x60; / &#x60;lifetime_budget&#x60; rather than the synced copy.  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;, the same units as the synced rows. A campaign with a campaign budget (Advantage+ campaign budget) carries &#x60;budget&#x60; and its ad sets have &#x60;budget: null&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. Other platforms answer 501 rather than serving synced data.
+Reads the campaigns and ad sets of one Meta ad account or TikTok advertiser **live from the platform**, so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current daily / lifetime budget rather than the synced copy. On Meta it is a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;); on TikTok one &#x60;campaign/get&#x60; and one &#x60;adgroup/get&#x60; page (TikTok ad groups are returned as &#x60;adSets&#x60;).  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are in whole units of &#x60;currency&#x60;, the same units as the synced rows (Meta&#39;s minor units are converted; TikTok already reports whole units). A campaign with a campaign budget (Meta Advantage+ campaign budget, TikTok campaign budget optimization) carries &#x60;budget&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. TikTok pages by number, so a TikTok cursor must be sent with the same &#x60;limit&#x60; that produced it (another &#x60;limit&#x60; is a 400). Other platforms answer 501 rather than serving synced data.  **TikTok specifics.** &#x60;status&#x60; maps to TikTok&#39;s &#x60;primary_status&#x60; filter, which takes one value: ACTIVE &#x3D; delivering (&#x60;STATUS_DELIVERY_OK&#x60;), PAUSED &#x3D; switched off (&#x60;STATUS_DISABLE&#x60;), DELETED &#x3D; &#x60;STATUS_DELETE&#x60;; omitted &#x3D; every status except deleted (&#x60;STATUS_NOT_DELETE&#x60;, which includes enabled entities that are not delivering, such as an ad group in review). Several values, or IN_PROCESS, WITH_ISSUES, CAMPAIGN_PAUSED and ARCHIVED, are a 400. &#x60;budgetRemaining&#x60; and &#x60;spendCap&#x60; are always null (TikTok reports neither), campaign &#x60;bidStrategy&#x60; is null (TikTok bids per ad group), ad set &#x60;bidStrategy&#x60; is normalized to the Meta vocabulary like GET /v1/ads, &#x60;promotedObject&#x60; is &#x60;{ pixelId, customEventType, applicationId, customConversionId }&#x60; (the keys TikTok has set, as POST /v1/ads/create takes them), and &#x60;targeting&#x60; holds TikTok&#39;s targeting fields verbatim.
 
 ### Example
 
@@ -3056,12 +3056,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the platform token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) or TikTok advertiser id (digits).
+        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. TikTok takes a single value: ACTIVE, PAUSED or DELETED (see the description).
         String level = "campaign"; // String | Read only one level. Required with `after`. Both levels are read when omitted.
         Integer limit = 200; // Integer | Maximum rows per level in this response.
-        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level`.
+        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level` (and on TikTok the same `limit`).
         try {
             GetAdAccountLiveEntities200Response result = apiInstance.getAdAccountLiveEntities(accountId, adAccountId, status, level, limit, after);
             System.out.println(result);
@@ -3081,12 +3081,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the platform token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) or TikTok advertiser id (digits). | |
+| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. TikTok takes a single value: ACTIVE, PAUSED or DELETED (see the description). | [optional] |
 | **level** | **String**| Read only one level. Required with &#x60;after&#x60;. Both levels are read when omitted. | [optional] [enum: campaign, adSet] |
 | **limit** | **Integer**| Maximum rows per level in this response. | [optional] [default to 200] |
-| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60;. | [optional] |
+| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60; (and on TikTok the same &#x60;limit&#x60;). | [optional] |
 
 ### Return type
 
@@ -3111,9 +3111,9 @@ public class Example {
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | Meta rate limit reached; retry after the indicated delay. |  -  |
-| **501** | The platform has no bulk live read (only Meta today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
-| **502** | Meta did not return the ad account (for example a deleted ad account). |  -  |
+| **429** | Platform rate limit reached; retry later (after the indicated delay on Meta). |  -  |
+| **501** | The platform has no bulk live read (Meta and TikTok today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
+| **502** | The platform did not return the ad account or its currency (for example a deleted ad account). |  -  |
 
 ## getAdAccountLiveEntitiesWithHttpInfo
 
@@ -3121,7 +3121,7 @@ public class Example {
 
 Read an ad account&#39;s campaigns and ad sets live
 
-Reads the campaigns and ad sets of one Meta ad account **live from Meta**, in a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;), so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current &#x60;daily_budget&#x60; / &#x60;lifetime_budget&#x60; rather than the synced copy.  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are converted from Meta&#39;s minor units to whole units of &#x60;currency&#x60;, the same units as the synced rows. A campaign with a campaign budget (Advantage+ campaign budget) carries &#x60;budget&#x60; and its ad sets have &#x60;budget: null&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. Other platforms answer 501 rather than serving synced data.
+Reads the campaigns and ad sets of one Meta ad account or TikTok advertiser **live from the platform**, so it is cheap enough to run before every write: for example a per-ad-account spend ceiling that must see the current daily / lifetime budget rather than the synced copy. On Meta it is a single Graph call per request (the account&#39;s &#x60;/campaigns&#x60; and &#x60;/adsets&#x60; edges, filtered by &#x60;effective_status&#x60;); on TikTok one &#x60;campaign/get&#x60; and one &#x60;adgroup/get&#x60; page (TikTok ad groups are returned as &#x60;adSets&#x60;).  **Live vs synced.** GET /v1/ads/campaigns and GET /v1/ads/ad-sets serve Zernio&#39;s synced store, refreshed by background sync (typically 15 to 60 minutes behind Meta), and their &#x60;live&#x3D;true&#x60; re-reads only the on/off switches of at most 20 objects. This endpoint returns what Meta reports at &#x60;readAt&#x60;, for every matching campaign and ad set, and stores nothing.  Budgets and bid amounts are in whole units of &#x60;currency&#x60;, the same units as the synced rows (Meta&#39;s minor units are converted; TikTok already reports whole units). A campaign with a campaign budget (Meta Advantage+ campaign budget, TikTok campaign budget optimization) carries &#x60;budget&#x60;; otherwise each ad set carries its own.  Each level returns at most &#x60;limit&#x60; rows. When more match, &#x60;paging.&lt;level&gt;.after&#x60; is a cursor: pass it back as &#x60;after&#x60; together with &#x60;level&#x60; to read the next page of that level only. TikTok pages by number, so a TikTok cursor must be sent with the same &#x60;limit&#x60; that produced it (another &#x60;limit&#x60; is a 400). Other platforms answer 501 rather than serving synced data.  **TikTok specifics.** &#x60;status&#x60; maps to TikTok&#39;s &#x60;primary_status&#x60; filter, which takes one value: ACTIVE &#x3D; delivering (&#x60;STATUS_DELIVERY_OK&#x60;), PAUSED &#x3D; switched off (&#x60;STATUS_DISABLE&#x60;), DELETED &#x3D; &#x60;STATUS_DELETE&#x60;; omitted &#x3D; every status except deleted (&#x60;STATUS_NOT_DELETE&#x60;, which includes enabled entities that are not delivering, such as an ad group in review). Several values, or IN_PROCESS, WITH_ISSUES, CAMPAIGN_PAUSED and ARCHIVED, are a 400. &#x60;budgetRemaining&#x60; and &#x60;spendCap&#x60; are always null (TikTok reports neither), campaign &#x60;bidStrategy&#x60; is null (TikTok bids per ad group), ad set &#x60;bidStrategy&#x60; is normalized to the Meta vocabulary like GET /v1/ads, &#x60;promotedObject&#x60; is &#x60;{ pixelId, customEventType, applicationId, customConversionId }&#x60; (the keys TikTok has set, as POST /v1/ads/create takes them), and &#x60;targeting&#x60; holds TikTok&#39;s targeting fields verbatim.
 
 ### Example
 
@@ -3145,12 +3145,12 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
-        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>).
-        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400.
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the platform token.
+        String adAccountId = "adAccountId_example"; // String | Meta ad account id (act_<n>) or TikTok advertiser id (digits).
+        String status = "ACTIVE"; // String | Comma-separated Meta `effective_status` values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. TikTok takes a single value: ACTIVE, PAUSED or DELETED (see the description).
         String level = "campaign"; // String | Read only one level. Required with `after`. Both levels are read when omitted.
         Integer limit = 200; // Integer | Maximum rows per level in this response.
-        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level`.
+        String after = "after_example"; // String | Cursor from `paging.campaigns.after` or `paging.adSets.after` of a previous response. Requires `level` (and on TikTok the same `limit`).
         try {
             ApiResponse<GetAdAccountLiveEntities200Response> response = apiInstance.getAdAccountLiveEntitiesWithHttpInfo(accountId, adAccountId, status, level, limit, after);
             System.out.println("Status code: " + response.getStatusCode());
@@ -3172,12 +3172,12 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
-| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
-| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. | [optional] |
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the platform token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;) or TikTok advertiser id (digits). | |
+| **status** | **String**| Comma-separated Meta &#x60;effective_status&#x60; values to keep: ACTIVE, PAUSED, IN_PROCESS, WITH_ISSUES, DELETED, ARCHIVED, and CAMPAIGN_PAUSED (ad sets only; the campaigns level ignores it). Defaults to every status except DELETED and ARCHIVED. An unknown value is a 400. TikTok takes a single value: ACTIVE, PAUSED or DELETED (see the description). | [optional] |
 | **level** | **String**| Read only one level. Required with &#x60;after&#x60;. Both levels are read when omitted. | [optional] [enum: campaign, adSet] |
 | **limit** | **Integer**| Maximum rows per level in this response. | [optional] [default to 200] |
-| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60;. | [optional] |
+| **after** | **String**| Cursor from &#x60;paging.campaigns.after&#x60; or &#x60;paging.adSets.after&#x60; of a previous response. Requires &#x60;level&#x60; (and on TikTok the same &#x60;limit&#x60;). | [optional] |
 
 ### Return type
 
@@ -3202,9 +3202,9 @@ ApiResponse<[**GetAdAccountLiveEntities200Response**](GetAdAccountLiveEntities20
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **429** | Meta rate limit reached; retry after the indicated delay. |  -  |
-| **501** | The platform has no bulk live read (only Meta today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
-| **502** | Meta did not return the ad account (for example a deleted ad account). |  -  |
+| **429** | Platform rate limit reached; retry later (after the indicated delay on Meta). |  -  |
+| **501** | The platform has no bulk live read (Meta and TikTok today). Use the synced GET /v1/ads/campaigns and GET /v1/ads/ad-sets there. |  -  |
+| **502** | The platform did not return the ad account or its currency (for example a deleted ad account). |  -  |
 
 
 ## getAdComments
