@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.UpdateCampaignTargeting200ResponseDevicesInner;
+import dev.zernio.model.UpdateCampaignTargeting200ResponseExcludedLocationsInner;
 import dev.zernio.model.UpdateCampaignTargeting200ResponseLanguagesInner;
 import dev.zernio.model.UpdateCampaignTargeting200ResponseLocationsInner;
 import java.util.ArrayList;
@@ -48,9 +49,10 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LOCATION_TARGETING_TYPE,
   UpdateCampaignTargeting200Response.JSON_PROPERTY_DEVICES,
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LOCATIONS,
+  UpdateCampaignTargeting200Response.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LANGUAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable
@@ -67,6 +69,8 @@ public class UpdateCampaignTargeting200Response {
     DEVICES(String.valueOf("devices")),
     
     LOCATIONS(String.valueOf("locations")),
+    
+    EXCLUDED_LOCATIONS(String.valueOf("excludedLocations")),
     
     LANGUAGES(String.valueOf("languages")),
     
@@ -148,6 +152,10 @@ public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable
   private List<UpdateCampaignTargeting200ResponseLocationsInner> locations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS = "excludedLocations";
+  @javax.annotation.Nullable
+  private List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations = new ArrayList<>();
 
   public static final String JSON_PROPERTY_LANGUAGES = "languages";
   @javax.annotation.Nullable
@@ -332,6 +340,38 @@ public class UpdateCampaignTargeting200Response {
   }
 
 
+  public UpdateCampaignTargeting200Response excludedLocations(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations) {
+    this.excludedLocations = excludedLocations;
+    return this;
+  }
+
+  public UpdateCampaignTargeting200Response addExcludedLocationsItem(UpdateCampaignTargeting200ResponseExcludedLocationsInner excludedLocationsItem) {
+    if (this.excludedLocations == null) {
+      this.excludedLocations = new ArrayList<>();
+    }
+    this.excludedLocations.add(excludedLocationsItem);
+    return this;
+  }
+
+  /**
+   * The negative (excluded) location criteria read back after the edit, same item shape as &#x60;locations&#x60;.
+   * @return excludedLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> getExcludedLocations() {
+    return excludedLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExcludedLocations(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations) {
+    this.excludedLocations = excludedLocations;
+  }
+
+
   public UpdateCampaignTargeting200Response languages(@javax.annotation.Nullable List<UpdateCampaignTargeting200ResponseLanguagesInner> languages) {
     this.languages = languages;
     return this;
@@ -382,6 +422,7 @@ public class UpdateCampaignTargeting200Response {
         equalsNullable(this.locationTargetingType, updateCampaignTargeting200Response.locationTargetingType) &&
         Objects.equals(this.devices, updateCampaignTargeting200Response.devices) &&
         Objects.equals(this.locations, updateCampaignTargeting200Response.locations) &&
+        Objects.equals(this.excludedLocations, updateCampaignTargeting200Response.excludedLocations) &&
         Objects.equals(this.languages, updateCampaignTargeting200Response.languages);
   }
 
@@ -391,7 +432,7 @@ public class UpdateCampaignTargeting200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(campaignId, adGroupId, updated, hashCodeNullable(locationTargetingType), devices, locations, languages);
+    return Objects.hash(campaignId, adGroupId, updated, hashCodeNullable(locationTargetingType), devices, locations, excludedLocations, languages);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -411,6 +452,7 @@ public class UpdateCampaignTargeting200Response {
     sb.append("    locationTargetingType: ").append(toIndentedString(locationTargetingType)).append("\n");
     sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -498,6 +540,16 @@ public class UpdateCampaignTargeting200Response {
       for (int i = 0; i < getLocations().size(); i++) {
         if (getLocations().get(i) != null) {
           joiner.add(getLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%slocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `excludedLocations` to the URL query string
+    if (getExcludedLocations() != null) {
+      for (int i = 0; i < getExcludedLocations().size(); i++) {
+        if (getExcludedLocations().get(i) != null) {
+          joiner.add(getExcludedLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sexcludedLocations%s%s", prefix, suffix,
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }

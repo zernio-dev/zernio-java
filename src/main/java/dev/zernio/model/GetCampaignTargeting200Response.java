@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.GetCampaignTargeting200ResponseDevicesInner;
+import dev.zernio.model.GetCampaignTargeting200ResponseExcludedLocationsInner;
 import dev.zernio.model.GetCampaignTargeting200ResponseLanguagesInner;
 import dev.zernio.model.GetCampaignTargeting200ResponseLocationsInner;
 import java.time.OffsetDateTime;
@@ -45,12 +46,14 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetCampaignTargeting200Response.JSON_PROPERTY_DEVICES,
   GetCampaignTargeting200Response.JSON_PROPERTY_LOCATIONS,
+  GetCampaignTargeting200Response.JSON_PROPERTY_EXCLUDED_LOCATIONS,
+  GetCampaignTargeting200Response.JSON_PROPERTY_EXCLUDED_LOCATIONS_EDITABLE,
   GetCampaignTargeting200Response.JSON_PROPERTY_LANGUAGES,
   GetCampaignTargeting200Response.JSON_PROPERTY_LOCATION_TARGETING_TYPE,
   GetCampaignTargeting200Response.JSON_PROPERTY_CACHED_AT,
   GetCampaignTargeting200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCampaignTargeting200Response {
   public static final String JSON_PROPERTY_DEVICES = "devices";
   @javax.annotation.Nullable
@@ -59,6 +62,14 @@ public class GetCampaignTargeting200Response {
   public static final String JSON_PROPERTY_LOCATIONS = "locations";
   @javax.annotation.Nullable
   private List<GetCampaignTargeting200ResponseLocationsInner> locations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS = "excludedLocations";
+  @javax.annotation.Nullable
+  private List<GetCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS_EDITABLE = "excludedLocationsEditable";
+  @javax.annotation.Nullable
+  private Boolean excludedLocationsEditable;
 
   public static final String JSON_PROPERTY_LANGUAGES = "languages";
   @javax.annotation.Nullable
@@ -173,6 +184,62 @@ public class GetCampaignTargeting200Response {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setLocations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseLocationsInner> locations) {
     this.locations = locations;
+  }
+
+
+  public GetCampaignTargeting200Response excludedLocations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations) {
+    this.excludedLocations = excludedLocations;
+    return this;
+  }
+
+  public GetCampaignTargeting200Response addExcludedLocationsItem(GetCampaignTargeting200ResponseExcludedLocationsInner excludedLocationsItem) {
+    if (this.excludedLocations == null) {
+      this.excludedLocations = new ArrayList<>();
+    }
+    this.excludedLocations.add(excludedLocationsItem);
+    return this;
+  }
+
+  /**
+   * The negative (excluded) location criteria, same item shape as &#x60;locations&#x60; with &#x60;negative: true&#x60;.
+   * @return excludedLocations
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<GetCampaignTargeting200ResponseExcludedLocationsInner> getExcludedLocations() {
+    return excludedLocations;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExcludedLocations(@javax.annotation.Nullable List<GetCampaignTargeting200ResponseExcludedLocationsInner> excludedLocations) {
+    this.excludedLocations = excludedLocations;
+  }
+
+
+  public GetCampaignTargeting200Response excludedLocationsEditable(@javax.annotation.Nullable Boolean excludedLocationsEditable) {
+    this.excludedLocationsEditable = excludedLocationsEditable;
+    return this;
+  }
+
+  /**
+   * Whether PUT accepts &#x60;excludedLocations&#x60; for this campaign. False on Demand Gen, which returns 400 for any exclusion.
+   * @return excludedLocationsEditable
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS_EDITABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Boolean getExcludedLocationsEditable() {
+    return excludedLocationsEditable;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS_EDITABLE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setExcludedLocationsEditable(@javax.annotation.Nullable Boolean excludedLocationsEditable) {
+    this.excludedLocationsEditable = excludedLocationsEditable;
   }
 
 
@@ -310,6 +377,8 @@ public class GetCampaignTargeting200Response {
     GetCampaignTargeting200Response getCampaignTargeting200Response = (GetCampaignTargeting200Response) o;
     return Objects.equals(this.devices, getCampaignTargeting200Response.devices) &&
         Objects.equals(this.locations, getCampaignTargeting200Response.locations) &&
+        Objects.equals(this.excludedLocations, getCampaignTargeting200Response.excludedLocations) &&
+        Objects.equals(this.excludedLocationsEditable, getCampaignTargeting200Response.excludedLocationsEditable) &&
         Objects.equals(this.languages, getCampaignTargeting200Response.languages) &&
         equalsNullable(this.locationTargetingType, getCampaignTargeting200Response.locationTargetingType) &&
         equalsNullable(this.cachedAt, getCampaignTargeting200Response.cachedAt) &&
@@ -322,7 +391,7 @@ public class GetCampaignTargeting200Response {
 
   @Override
   public int hashCode() {
-    return Objects.hash(devices, locations, languages, hashCodeNullable(locationTargetingType), hashCodeNullable(cachedAt), stale);
+    return Objects.hash(devices, locations, excludedLocations, excludedLocationsEditable, languages, hashCodeNullable(locationTargetingType), hashCodeNullable(cachedAt), stale);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -338,6 +407,8 @@ public class GetCampaignTargeting200Response {
     sb.append("class GetCampaignTargeting200Response {\n");
     sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
+    sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
+    sb.append("    excludedLocationsEditable: ").append(toIndentedString(excludedLocationsEditable)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
     sb.append("    locationTargetingType: ").append(toIndentedString(locationTargetingType)).append("\n");
     sb.append("    cachedAt: ").append(toIndentedString(cachedAt)).append("\n");
@@ -407,6 +478,21 @@ public class GetCampaignTargeting200Response {
           "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
         }
       }
+    }
+
+    // add `excludedLocations` to the URL query string
+    if (getExcludedLocations() != null) {
+      for (int i = 0; i < getExcludedLocations().size(); i++) {
+        if (getExcludedLocations().get(i) != null) {
+          joiner.add(getExcludedLocations().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sexcludedLocations%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `excludedLocationsEditable` to the URL query string
+    if (getExcludedLocationsEditable() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexcludedLocationsEditable%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExcludedLocationsEditable()))));
     }
 
     // add `languages` to the URL query string

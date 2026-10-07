@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GoogleAdLabelAssignments.JSON_PROPERTY_AD_IDS,
   GoogleAdLabelAssignments.JSON_PROPERTY_KEYWORD_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAdLabelAssignments {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

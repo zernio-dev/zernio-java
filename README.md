@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.230.0
 
-- Build date: 2026-10-07T08:23:03.826813484Z[Etc/UTC]
+- Build date: 2026-10-07T08:29:01.661378069Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -403,8 +403,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getCampaignBiddingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignBiddingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/bidding | Read a campaign&#39;s current bidding
 *AdCampaignsApi* | [**getCampaignConversionGoals**](docs/AdCampaignsApi.md#getCampaignConversionGoals) | **GET** /v1/ads/campaigns/{campaignId}/conversion-goals | Get campaign conversion goals
 *AdCampaignsApi* | [**getCampaignConversionGoalsWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignConversionGoalsWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/conversion-goals | Get campaign conversion goals
-*AdCampaignsApi* | [**getCampaignTargeting**](docs/AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting
-*AdCampaignsApi* | [**getCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, and language targeting
+*AdCampaignsApi* | [**getCampaignTargeting**](docs/AdCampaignsApi.md#getCampaignTargeting) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, excluded location, and language targeting
+*AdCampaignsApi* | [**getCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, excluded location, and language targeting
 *AdCampaignsApi* | [**getGoogleAssetGroup**](docs/AdCampaignsApi.md#getGoogleAssetGroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
 *AdCampaignsApi* | [**getGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#getGoogleAssetGroupWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
@@ -467,8 +467,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**updateCampaignAssetsWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignAssetsWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/assets | Update campaign assets
 *AdCampaignsApi* | [**updateCampaignConversionGoals**](docs/AdCampaignsApi.md#updateCampaignConversionGoals) | **PATCH** /v1/ads/campaigns/{campaignId}/conversion-goals | Update campaign conversion goals
 *AdCampaignsApi* | [**updateCampaignConversionGoalsWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/conversion-goals | Update campaign conversion goals
-*AdCampaignsApi* | [**updateCampaignTargeting**](docs/AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting
-*AdCampaignsApi* | [**updateCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, or language targeting
+*AdCampaignsApi* | [**updateCampaignTargeting**](docs/AdCampaignsApi.md#updateCampaignTargeting) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, excluded location, or language targeting
+*AdCampaignsApi* | [**updateCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#updateCampaignTargetingWithHttpInfo) | **PUT** /v1/ads/campaigns/{campaignId}/targeting | Edit a Google campaign&#39;s device, location, excluded location, or language targeting
 *AdCampaignsApi* | [**updateGoogleAssetGroup**](docs/AdCampaignsApi.md#updateGoogleAssetGroup) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
 *AdCampaignsApi* | [**updateGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#updateGoogleAssetGroupWithHttpInfo) | **PATCH** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Update a Performance Max asset group
 *AdCreativesApi* | [**createAdCreative**](docs/AdCreativesApi.md#createAdCreative) | **POST** /v1/ads/creatives | Create a standalone creative
@@ -2917,6 +2917,7 @@ Class | Method | HTTP request | Description
  - [GetCampaignConversionGoals200Response](docs/GetCampaignConversionGoals200Response.md)
  - [GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
  - [GetCampaignTargeting200ResponseDevicesInner](docs/GetCampaignTargeting200ResponseDevicesInner.md)
+ - [GetCampaignTargeting200ResponseExcludedLocationsInner](docs/GetCampaignTargeting200ResponseExcludedLocationsInner.md)
  - [GetCampaignTargeting200ResponseLanguagesInner](docs/GetCampaignTargeting200ResponseLanguagesInner.md)
  - [GetCampaignTargeting200ResponseLocationsInner](docs/GetCampaignTargeting200ResponseLocationsInner.md)
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
@@ -4311,6 +4312,7 @@ Class | Method | HTTP request | Description
  - [UpdateCampaignConversionGoalsRequest](docs/UpdateCampaignConversionGoalsRequest.md)
  - [UpdateCampaignTargeting200Response](docs/UpdateCampaignTargeting200Response.md)
  - [UpdateCampaignTargeting200ResponseDevicesInner](docs/UpdateCampaignTargeting200ResponseDevicesInner.md)
+ - [UpdateCampaignTargeting200ResponseExcludedLocationsInner](docs/UpdateCampaignTargeting200ResponseExcludedLocationsInner.md)
  - [UpdateCampaignTargeting200ResponseLanguagesInner](docs/UpdateCampaignTargeting200ResponseLanguagesInner.md)
  - [UpdateCampaignTargeting200ResponseLocationsInner](docs/UpdateCampaignTargeting200ResponseLocationsInner.md)
  - [UpdateCampaignTargetingRequest](docs/UpdateCampaignTargetingRequest.md)

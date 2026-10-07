@@ -44,9 +44,10 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_DEVICES,
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_LOCATIONS,
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_LANGUAGES,
+  UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   UpdateCampaignTargetingRequestTargeting.JSON_PROPERTY_LOCATION_TARGETING_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargetingRequestTargeting {
   public static final String JSON_PROPERTY_DEVICES = "devices";
   @javax.annotation.Nullable
@@ -58,6 +59,9 @@ public class UpdateCampaignTargetingRequestTargeting {
   public static final String JSON_PROPERTY_LANGUAGES = "languages";
   @javax.annotation.Nullable
   private List<String> languages = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_EXCLUDED_LOCATIONS = "excludedLocations";
+  private JsonNullable<Object> excludedLocations = JsonNullable.<Object>of(null);
 
   public static final String JSON_PROPERTY_LOCATION_TARGETING_TYPE = "locationTargetingType";
   @javax.annotation.Nullable
@@ -162,6 +166,38 @@ public class UpdateCampaignTargetingRequestTargeting {
   }
 
 
+  public UpdateCampaignTargetingRequestTargeting excludedLocations(@javax.annotation.Nullable Object excludedLocations) {
+    this.excludedLocations = JsonNullable.<Object>of(excludedLocations);
+    return this;
+  }
+
+  /**
+   * Get excludedLocations
+   * @return excludedLocations
+   */
+  @javax.annotation.Nullable
+  @JsonIgnore
+  public Object getExcludedLocations() {
+        return excludedLocations.orElse(null);
+  }
+
+  @JsonProperty(value = JSON_PROPERTY_EXCLUDED_LOCATIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+
+  public JsonNullable<Object> getExcludedLocations_JsonNullable() {
+    return excludedLocations;
+  }
+  
+  @JsonProperty(JSON_PROPERTY_EXCLUDED_LOCATIONS)
+  public void setExcludedLocations_JsonNullable(JsonNullable<Object> excludedLocations) {
+    this.excludedLocations = excludedLocations;
+  }
+
+  public void setExcludedLocations(@javax.annotation.Nullable Object excludedLocations) {
+    this.excludedLocations = JsonNullable.<Object>of(excludedLocations);
+  }
+
+
   public UpdateCampaignTargetingRequestTargeting locationTargetingType(@javax.annotation.Nullable GoogleLocationTargetingType locationTargetingType) {
     this.locationTargetingType = locationTargetingType;
     return this;
@@ -201,6 +237,7 @@ public class UpdateCampaignTargetingRequestTargeting {
     return Objects.equals(this.devices, updateCampaignTargetingRequestTargeting.devices) &&
         equalsNullable(this.locations, updateCampaignTargetingRequestTargeting.locations) &&
         Objects.equals(this.languages, updateCampaignTargetingRequestTargeting.languages) &&
+        equalsNullable(this.excludedLocations, updateCampaignTargetingRequestTargeting.excludedLocations) &&
         Objects.equals(this.locationTargetingType, updateCampaignTargetingRequestTargeting.locationTargetingType);
   }
 
@@ -210,7 +247,7 @@ public class UpdateCampaignTargetingRequestTargeting {
 
   @Override
   public int hashCode() {
-    return Objects.hash(devices, hashCodeNullable(locations), languages, locationTargetingType);
+    return Objects.hash(devices, hashCodeNullable(locations), languages, hashCodeNullable(excludedLocations), locationTargetingType);
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -227,6 +264,7 @@ public class UpdateCampaignTargetingRequestTargeting {
     sb.append("    devices: ").append(toIndentedString(devices)).append("\n");
     sb.append("    locations: ").append(toIndentedString(locations)).append("\n");
     sb.append("    languages: ").append(toIndentedString(languages)).append("\n");
+    sb.append("    excludedLocations: ").append(toIndentedString(excludedLocations)).append("\n");
     sb.append("    locationTargetingType: ").append(toIndentedString(locationTargetingType)).append("\n");
     sb.append("}");
     return sb.toString();
@@ -297,6 +335,11 @@ public class UpdateCampaignTargetingRequestTargeting {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
             ApiClient.urlEncode(ApiClient.valueToString(getLanguages().get(i)))));
       }
+    }
+
+    // add `excludedLocations` to the URL query string
+    if (getExcludedLocations() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sexcludedLocations%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getExcludedLocations()))));
     }
 
     // add `locationTargetingType` to the URL query string

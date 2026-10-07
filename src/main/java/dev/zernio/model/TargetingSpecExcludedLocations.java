@@ -36,7 +36,7 @@ import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
 import dev.zernio.ApiClient;
 /**
- * Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations).
+ * Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations). Google (Search, Display, Performance Max) excludes countries, regions, cities and zips as negative location criteria; countryGroups, places, neighborhoods, customLocations and a city radius return 400 there, and Demand Gen returns 400 for any exclusion.
  */
 @JsonPropertyOrder({
   TargetingSpecExcludedLocations.JSON_PROPERTY_COUNTRIES,
@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   TargetingSpecExcludedLocations.JSON_PROPERTY_NEIGHBORHOODS,
   TargetingSpecExcludedLocations.JSON_PROPERTY_CUSTOM_LOCATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TargetingSpecExcludedLocations {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable

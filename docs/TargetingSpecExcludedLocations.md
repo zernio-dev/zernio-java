@@ -2,7 +2,7 @@
 
 # TargetingSpecExcludedLocations
 
-Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations).
+Geo to exclude from the audience. Mirrors the inclusion geo shape: excluded cities can carry a radius catchment and excluded custom (lat/lng) pins are supported, both on Meta (excluded_geo_locations). Google (Search, Display, Performance Max) excludes countries, regions, cities and zips as negative location criteria; countryGroups, places, neighborhoods, customLocations and a city radius return 400 there, and Demand Gen returns 400 for any exclusion.
 
 ## Properties
 

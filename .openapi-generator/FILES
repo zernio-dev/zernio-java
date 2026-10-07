@@ -903,6 +903,7 @@ docs/GetCampaignBidding200Response.md
 docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignTargeting200Response.md
 docs/GetCampaignTargeting200ResponseDevicesInner.md
+docs/GetCampaignTargeting200ResponseExcludedLocationsInner.md
 docs/GetCampaignTargeting200ResponseLanguagesInner.md
 docs/GetCampaignTargeting200ResponseLocationsInner.md
 docs/GetCommentAutomation200Response.md
@@ -2332,6 +2333,7 @@ docs/UpdateCampaignConversionGoals200Response.md
 docs/UpdateCampaignConversionGoalsRequest.md
 docs/UpdateCampaignTargeting200Response.md
 docs/UpdateCampaignTargeting200ResponseDevicesInner.md
+docs/UpdateCampaignTargeting200ResponseExcludedLocationsInner.md
 docs/UpdateCampaignTargeting200ResponseLanguagesInner.md
 docs/UpdateCampaignTargeting200ResponseLocationsInner.md
 docs/UpdateCampaignTargetingRequest.md
@@ -3735,6 +3737,7 @@ src/main/java/dev/zernio/model/GetCampaignBidding200Response.java
 src/main/java/dev/zernio/model/GetCampaignConversionGoals200Response.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200Response.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200ResponseDevicesInner.java
+src/main/java/dev/zernio/model/GetCampaignTargeting200ResponseExcludedLocationsInner.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200ResponseLanguagesInner.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200ResponseLocationsInner.java
 src/main/java/dev/zernio/model/GetCommentAutomation200Response.java
@@ -5129,6 +5132,7 @@ src/main/java/dev/zernio/model/UpdateCampaignConversionGoals200Response.java
 src/main/java/dev/zernio/model/UpdateCampaignConversionGoalsRequest.java
 src/main/java/dev/zernio/model/UpdateCampaignTargeting200Response.java
 src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseDevicesInner.java
+src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseExcludedLocationsInner.java
 src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseLanguagesInner.java
 src/main/java/dev/zernio/model/UpdateCampaignTargeting200ResponseLocationsInner.java
 src/main/java/dev/zernio/model/UpdateCampaignTargetingRequest.java
@@ -5551,3 +5555,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetCampaignTargeting200ResponseExcludedLocationsInnerTest.java
+src/test/java/dev/zernio/model/UpdateCampaignTargeting200ResponseExcludedLocationsInnerTest.java

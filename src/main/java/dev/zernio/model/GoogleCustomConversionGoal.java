@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GoogleCustomConversionGoal.JSON_PROPERTY_STATUS,
   GoogleCustomConversionGoal.JSON_PROPERTY_CONVERSION_ACTION_IDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:23:03.826813484Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-07T08:29:01.661378069Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleCustomConversionGoal {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
