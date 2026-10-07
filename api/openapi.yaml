@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.235.0
+  version: 1.236.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -43978,6 +43978,30 @@ paths:
         schema:
           example: "id,name,status,object_story_spec{page_id,link_data{link,message}}"
           type: string
+        style: form
+      - description: "Width in pixels of the `thumbnail_url` rendering, forwarded\
+          \ to Meta as `thumbnail_width`. Without it Meta returns a 64x64 thumbnail."
+        explode: true
+        in: query
+        name: thumbnailWidth
+        required: false
+        schema:
+          example: 600
+          maximum: 4096
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Height in pixels of the `thumbnail_url` rendering, forwarded\
+          \ to Meta as `thumbnail_height`. Without it Meta returns a 64x64 thumbnail."
+        explode: true
+        in: query
+        name: thumbnailHeight
+        required: false
+        schema:
+          example: 600
+          maximum: 4096
+          minimum: 1
+          type: integer
         style: form
       responses:
         "409":

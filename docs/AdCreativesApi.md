@@ -679,7 +679,7 @@ ApiResponse<[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md
 
 ## getAdCreative
 
-> GetAdCreative200Response getAdCreative(creativeId, accountId, fields)
+> GetAdCreative200Response getAdCreative(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight)
 
 Creative details
 
@@ -709,8 +709,10 @@ public class Example {
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
+        Integer thumbnailWidth = 600; // Integer | Width in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_width`. Without it Meta returns a 64x64 thumbnail.
+        Integer thumbnailHeight = 600; // Integer | Height in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_height`. Without it Meta returns a 64x64 thumbnail.
         try {
-            GetAdCreative200Response result = apiInstance.getAdCreative(creativeId, accountId, fields);
+            GetAdCreative200Response result = apiInstance.getAdCreative(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCreativesApi#getAdCreative");
@@ -731,6 +733,8 @@ public class Example {
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
+| **thumbnailWidth** | **Integer**| Width in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_width&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional] |
+| **thumbnailHeight** | **Integer**| Height in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_height&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional] |
 
 ### Return type
 
@@ -758,7 +762,7 @@ public class Example {
 
 ## getAdCreativeWithHttpInfo
 
-> ApiResponse<GetAdCreative200Response> getAdCreative getAdCreativeWithHttpInfo(creativeId, accountId, fields)
+> ApiResponse<GetAdCreative200Response> getAdCreative getAdCreativeWithHttpInfo(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight)
 
 Creative details
 
@@ -789,8 +793,10 @@ public class Example {
         String creativeId = "creativeId_example"; // String | Platform creative id
         String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
         String fields = "id,name,status,object_story_spec{page_id,link_data{link,message}}"; // String | Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently.
+        Integer thumbnailWidth = 600; // Integer | Width in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_width`. Without it Meta returns a 64x64 thumbnail.
+        Integer thumbnailHeight = 600; // Integer | Height in pixels of the `thumbnail_url` rendering, forwarded to Meta as `thumbnail_height`. Without it Meta returns a 64x64 thumbnail.
         try {
-            ApiResponse<GetAdCreative200Response> response = apiInstance.getAdCreativeWithHttpInfo(creativeId, accountId, fields);
+            ApiResponse<GetAdCreative200Response> response = apiInstance.getAdCreativeWithHttpInfo(creativeId, accountId, fields, thumbnailWidth, thumbnailHeight);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -813,6 +819,8 @@ public class Example {
 | **creativeId** | **String**| Platform creative id | |
 | **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
 | **fields** | **String**| Comma-separated Graph field override. Supports nested {} projections and Graph field modifiers, so a nested edge can be paged explicitly: without a .limit() modifier the expansion runs at the Meta default page size and the tail is dropped silently. | [optional] |
+| **thumbnailWidth** | **Integer**| Width in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_width&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional] |
+| **thumbnailHeight** | **Integer**| Height in pixels of the &#x60;thumbnail_url&#x60; rendering, forwarded to Meta as &#x60;thumbnail_height&#x60;. Without it Meta returns a 64x64 thumbnail. | [optional] |
 
 ### Return type
 
