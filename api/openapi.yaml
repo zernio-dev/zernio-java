@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.244.1
+  version: 1.244.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -30853,6 +30853,9 @@ paths:
           description: Number is not awaiting remediation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -30896,6 +30899,9 @@ paths:
           description: Number is not awaiting remediation / nothing to remediate
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -30944,6 +30950,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "502":
@@ -30993,6 +31002,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "409":
@@ -31365,6 +31377,9 @@ paths:
           description: Number is not awaiting remediation
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -31412,6 +31427,9 @@ paths:
           description: Number is not awaiting remediation / nothing to remediate
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -31446,6 +31464,9 @@ paths:
           description: Voice disabled.
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -31493,6 +31514,9 @@ paths:
           description: Voice enabled; the full effective voice config is echoed back.
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "409":
@@ -31815,6 +31839,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -31863,7 +31890,8 @@ paths:
         "403":
           description: "The team is on legacy (non-usage-based) billing, which cannot\
             \ invoice trunk call costs (code feature_not_available). Move to usage-based\
-            \ billing to use SIP trunking."
+            \ billing to use SIP trunking. Also returned when the API key is scoped\
+            \ to profiles that do not include this number."
         "404":
           description: Number or trunk not found
         "409":
@@ -31906,6 +31934,9 @@ paths:
           description: SMS disabled.
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
@@ -31956,6 +31987,9 @@ paths:
             \ true`)."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "422":
@@ -31995,6 +32029,9 @@ paths:
           description: Number added to the existing registration.
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "409":
@@ -32052,6 +32089,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
@@ -32291,6 +32331,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "429":
@@ -32338,6 +32381,9 @@ paths:
           description: "Invalid or expired code, or malformed request"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
         "429":
@@ -32432,6 +32478,9 @@ paths:
           description: Phone number retrieved successfully
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           $ref: "#/components/responses/NotFound"
       security:

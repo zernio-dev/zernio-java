@@ -1974,6 +1974,7 @@ public class Example {
 | **200** | Code sent (or the number was already verified) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Too many verification attempts for this number; wait before retrying |  -  |
 
@@ -2053,6 +2054,7 @@ ApiResponse<[**StartWhatsAppCallerIdVerification200Response**](StartWhatsAppCall
 | **200** | Code sent (or the number was already verified) |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Too many verification attempts for this number; wait before retrying |  -  |
 
@@ -2438,6 +2440,7 @@ public class Example {
 | **200** | Verified |  -  |
 | **400** | Invalid or expired code, or malformed request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
 
@@ -2517,6 +2520,7 @@ ApiResponse<[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp20
 | **200** | Verified |  -  |
 | **400** | Invalid or expired code, or malformed request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **429** | Attempt lockout from the carrier; wait a few minutes, then request a fresh code |  -  |
 

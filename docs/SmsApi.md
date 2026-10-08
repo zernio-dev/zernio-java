@@ -731,6 +731,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | SMS disabled. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 ## disableSmsOnNumberWithHttpInfo
@@ -806,6 +807,7 @@ ApiResponse<[**DisableSmsOnNumber200Response**](DisableSmsOnNumber200Response.md
 |-------------|-------------|------------------|
 | **200** | SMS disabled. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 
@@ -879,6 +881,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Result. Check &#x60;enabled&#x60;: a 200 with &#x60;enabled: false&#x60; means the number can&#39;t do SMS (&#x60;smsCapable: false&#x60;) or isn&#39;t ready yet (&#x60;notReady: true&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
@@ -955,6 +958,7 @@ ApiResponse<[**EnableSmsOnNumber200Response**](EnableSmsOnNumber200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Result. Check &#x60;enabled&#x60;: a 200 with &#x60;enabled: false&#x60; means the number can&#39;t do SMS (&#x60;smsCapable: false&#x60;) or isn&#39;t ready yet (&#x60;notReady: true&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **422** | This number is hosted by your own carrier (brought via WhatsApp embedded signup), so SMS can&#39;t be enabled on it. |  -  |
 
@@ -2363,6 +2367,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Number added to the existing registration. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **409** | No existing SMS registration to reuse for this number |  -  |
 
@@ -2439,6 +2444,7 @@ ApiResponse<[**ReuseSmsRegistrationForNumber200Response**](ReuseSmsRegistrationF
 |-------------|-------------|------------------|
 | **200** | Number added to the existing registration. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 | **409** | No existing SMS registration to reuse for this number |  -  |
 
