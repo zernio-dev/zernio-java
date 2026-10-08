@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.242.0
+  version: 1.242.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20253,7 +20253,14 @@ paths:
             \ Meta reports it). Take control with POST /v1/inbox/conversations/{conversationId}/thread-control,\
             \ then resend."
         "422":
-          $ref: "#/components/responses/IdempotencyKeyReused"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Idempotency-Key reused with a different request, or the audio\
+            \ at attachmentUrl could not be downloaded (code attachment_fetch_failed,\
+            \ param attachmentUrl, the upstream HTTP status in the message): the URL\
+            \ is private, expired or gone. Nothing was sent."
         "429":
           content:
             application/json:
