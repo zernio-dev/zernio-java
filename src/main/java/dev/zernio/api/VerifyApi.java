@@ -55,7 +55,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T12:48:53.735453414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T14:33:38.256679236Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VerifyApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.

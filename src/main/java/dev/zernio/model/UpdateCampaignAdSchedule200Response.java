@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignAdSchedule200Response.JSON_PROPERTY_SCHEDULE,
   UpdateCampaignAdSchedule200Response.JSON_PROPERTY_SERVES_AROUND_THE_CLOCK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T12:48:53.735453414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T14:33:38.256679236Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignAdSchedule200Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable

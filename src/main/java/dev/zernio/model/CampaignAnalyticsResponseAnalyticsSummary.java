@@ -73,6 +73,9 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO_P75_WATCHED_ACTIONS,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO_P95_WATCHED_ACTIONS,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS,
+  CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO2_SEC_WATCHED_ACTIONS,
+  CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO6_SEC_WATCHED_ACTIONS,
+  CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO6_SEC_FOCUSED_VIEWS,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_COST_PER_THRUPLAY,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_FUNNEL,
@@ -84,7 +87,7 @@ import dev.zernio.ApiClient;
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_SEARCH_TOP_IMPRESSION_SHARE,
   CampaignAnalyticsResponseAnalyticsSummary.JSON_PROPERTY_SEARCH_ABSOLUTE_TOP_IMPRESSION_SHARE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T12:48:53.735453414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T14:33:38.256679236Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignAnalyticsResponseAnalyticsSummary {
   public static final String JSON_PROPERTY_SPEND = "spend";
   @javax.annotation.Nullable
@@ -205,6 +208,18 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
   public static final String JSON_PROPERTY_VIDEO_P100_WATCHED_ACTIONS = "videoP100WatchedActions";
   @javax.annotation.Nullable
   private Integer videoP100WatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO2_SEC_WATCHED_ACTIONS = "video2SecWatchedActions";
+  @javax.annotation.Nullable
+  private Integer video2SecWatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO6_SEC_WATCHED_ACTIONS = "video6SecWatchedActions";
+  @javax.annotation.Nullable
+  private Integer video6SecWatchedActions;
+
+  public static final String JSON_PROPERTY_VIDEO6_SEC_FOCUSED_VIEWS = "video6SecFocusedViews";
+  @javax.annotation.Nullable
+  private Integer video6SecFocusedViews;
 
   public static final String JSON_PROPERTY_VIDEO_AVG_TIME_WATCHED_ACTIONS = "videoAvgTimeWatchedActions";
   @javax.annotation.Nullable
@@ -988,6 +1003,78 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
   }
 
 
+  public CampaignAnalyticsResponseAnalyticsSummary video2SecWatchedActions(@javax.annotation.Nullable Integer video2SecWatchedActions) {
+    this.video2SecWatchedActions = video2SecWatchedActions;
+    return this;
+  }
+
+  /**
+   * Plays of at least 2 seconds, replays excluded. Hook rate &#x3D; video2SecWatchedActions / impressions. Sources: TikTok &#x60;video_watched_2s&#x60; (TikTok only; Meta&#39;s closest field, 2-second continuous plays, is not synced). TikTok history note: added 2026-10, and each sync re-fetches only the last 7 days, so older days read 0.
+   * @return video2SecWatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO2_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideo2SecWatchedActions() {
+    return video2SecWatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO2_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideo2SecWatchedActions(@javax.annotation.Nullable Integer video2SecWatchedActions) {
+    this.video2SecWatchedActions = video2SecWatchedActions;
+  }
+
+
+  public CampaignAnalyticsResponseAnalyticsSummary video6SecWatchedActions(@javax.annotation.Nullable Integer video6SecWatchedActions) {
+    this.video6SecWatchedActions = video6SecWatchedActions;
+    return this;
+  }
+
+  /**
+   * Plays of at least 6 seconds, replays excluded. Hold rate &#x3D; video6SecWatchedActions / video2SecWatchedActions. Sources: TikTok &#x60;video_watched_6s&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.
+   * @return video6SecWatchedActions
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO6_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideo6SecWatchedActions() {
+    return video6SecWatchedActions;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO6_SEC_WATCHED_ACTIONS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideo6SecWatchedActions(@javax.annotation.Nullable Integer video6SecWatchedActions) {
+    this.video6SecWatchedActions = video6SecWatchedActions;
+  }
+
+
+  public CampaignAnalyticsResponseAnalyticsSummary video6SecFocusedViews(@javax.annotation.Nullable Integer video6SecFocusedViews) {
+    this.video6SecFocusedViews = video6SecFocusedViews;
+    return this;
+  }
+
+  /**
+   * TikTok&#39;s 6-second focused views: plays of at least 6 seconds (or to the end, for shorter videos) or with an interaction in the first 6 seconds, so it is at least &#x60;video6SecWatchedActions&#x60;. Sources: TikTok &#x60;engaged_view&#x60; (TikTok only). Same history note as &#x60;video2SecWatchedActions&#x60;.
+   * @return video6SecFocusedViews
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_VIDEO6_SEC_FOCUSED_VIEWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Integer getVideo6SecFocusedViews() {
+    return video6SecFocusedViews;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_VIDEO6_SEC_FOCUSED_VIEWS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setVideo6SecFocusedViews(@javax.annotation.Nullable Integer video6SecFocusedViews) {
+    this.video6SecFocusedViews = video6SecFocusedViews;
+  }
+
+
   public CampaignAnalyticsResponseAnalyticsSummary videoAvgTimeWatchedActions(@javax.annotation.Nullable BigDecimal videoAvgTimeWatchedActions) {
     this.videoAvgTimeWatchedActions = videoAvgTimeWatchedActions;
     return this;
@@ -1310,6 +1397,9 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
         Objects.equals(this.videoP75WatchedActions, campaignAnalyticsResponseAnalyticsSummary.videoP75WatchedActions) &&
         Objects.equals(this.videoP95WatchedActions, campaignAnalyticsResponseAnalyticsSummary.videoP95WatchedActions) &&
         Objects.equals(this.videoP100WatchedActions, campaignAnalyticsResponseAnalyticsSummary.videoP100WatchedActions) &&
+        Objects.equals(this.video2SecWatchedActions, campaignAnalyticsResponseAnalyticsSummary.video2SecWatchedActions) &&
+        Objects.equals(this.video6SecWatchedActions, campaignAnalyticsResponseAnalyticsSummary.video6SecWatchedActions) &&
+        Objects.equals(this.video6SecFocusedViews, campaignAnalyticsResponseAnalyticsSummary.video6SecFocusedViews) &&
         Objects.equals(this.videoAvgTimeWatchedActions, campaignAnalyticsResponseAnalyticsSummary.videoAvgTimeWatchedActions) &&
         Objects.equals(this.costPerThruplay, campaignAnalyticsResponseAnalyticsSummary.costPerThruplay) &&
         Objects.equals(this.funnel, campaignAnalyticsResponseAnalyticsSummary.funnel) &&
@@ -1328,7 +1418,7 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
 
   @Override
   public int hashCode() {
-    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, allConversions, costPerConversion, actions, actionValues, purchaseValue, roas, costPerAction, outboundClicks, outboundClicksCtr, inlineLinkClicks, inlineLinkClickCtr, uniqueClicks, uniqueCtr, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt, hashCodeNullable(searchImpressionShare), hashCodeNullable(searchBudgetLostImpressionShare), hashCodeNullable(searchRankLostImpressionShare), hashCodeNullable(searchTopImpressionShare), hashCodeNullable(searchAbsoluteTopImpressionShare));
+    return Objects.hash(spend, impressions, reach, clicks, ctr, cpc, cpm, engagement, conversions, allConversions, costPerConversion, actions, actionValues, purchaseValue, roas, costPerAction, outboundClicks, outboundClicksCtr, inlineLinkClicks, inlineLinkClickCtr, uniqueClicks, uniqueCtr, videoPlayActions, video30SecWatchedActions, videoThruplayWatchedActions, videoP25WatchedActions, videoP50WatchedActions, videoP75WatchedActions, videoP95WatchedActions, videoP100WatchedActions, video2SecWatchedActions, video6SecWatchedActions, video6SecFocusedViews, videoAvgTimeWatchedActions, costPerThruplay, funnel, engagementBreakdown, lastSyncedAt, hashCodeNullable(searchImpressionShare), hashCodeNullable(searchBudgetLostImpressionShare), hashCodeNullable(searchRankLostImpressionShare), hashCodeNullable(searchTopImpressionShare), hashCodeNullable(searchAbsoluteTopImpressionShare));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1372,6 +1462,9 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
     sb.append("    videoP75WatchedActions: ").append(toIndentedString(videoP75WatchedActions)).append("\n");
     sb.append("    videoP95WatchedActions: ").append(toIndentedString(videoP95WatchedActions)).append("\n");
     sb.append("    videoP100WatchedActions: ").append(toIndentedString(videoP100WatchedActions)).append("\n");
+    sb.append("    video2SecWatchedActions: ").append(toIndentedString(video2SecWatchedActions)).append("\n");
+    sb.append("    video6SecWatchedActions: ").append(toIndentedString(video6SecWatchedActions)).append("\n");
+    sb.append("    video6SecFocusedViews: ").append(toIndentedString(video6SecFocusedViews)).append("\n");
     sb.append("    videoAvgTimeWatchedActions: ").append(toIndentedString(videoAvgTimeWatchedActions)).append("\n");
     sb.append("    costPerThruplay: ").append(toIndentedString(costPerThruplay)).append("\n");
     sb.append("    funnel: ").append(toIndentedString(funnel)).append("\n");
@@ -1589,6 +1682,21 @@ public class CampaignAnalyticsResponseAnalyticsSummary {
     // add `videoP100WatchedActions` to the URL query string
     if (getVideoP100WatchedActions() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%svideoP100WatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideoP100WatchedActions()))));
+    }
+
+    // add `video2SecWatchedActions` to the URL query string
+    if (getVideo2SecWatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideo2SecWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideo2SecWatchedActions()))));
+    }
+
+    // add `video6SecWatchedActions` to the URL query string
+    if (getVideo6SecWatchedActions() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideo6SecWatchedActions%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideo6SecWatchedActions()))));
+    }
+
+    // add `video6SecFocusedViews` to the URL query string
+    if (getVideo6SecFocusedViews() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%svideo6SecFocusedViews%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getVideo6SecFocusedViews()))));
     }
 
     // add `videoAvgTimeWatchedActions` to the URL query string
