@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.243.0
+- API version: 1.244.0
 
-- Build date: 2026-10-08T10:43:31.654853920Z[Etc/UTC]
+- Build date: 2026-10-08T12:48:53.735453414Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.243.0</version>
+  <version>1.244.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.243.0"
+compile "dev.zernio:zernio-sdk:1.244.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.243.0.jar`
+- `target/zernio-sdk-1.244.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1675,6 +1675,10 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**uploadSmsOptInProofFileWithHttpInfo**](docs/SmsApi.md#uploadSmsOptInProofFileWithHttpInfo) | **POST** /v1/sms/opt-in-proof | Upload opt-in form proof
 *SmsApi* | [**verifySmsRegistrationOtp**](docs/SmsApi.md#verifySmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
 *SmsApi* | [**verifySmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#verifySmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
+*SupportRunsApi* | [**createSupportRun**](docs/SupportRunsApi.md#createSupportRun) | **POST** /v1/support/runs | Start a support run (private beta)
+*SupportRunsApi* | [**createSupportRunWithHttpInfo**](docs/SupportRunsApi.md#createSupportRunWithHttpInfo) | **POST** /v1/support/runs | Start a support run (private beta)
+*SupportRunsApi* | [**getSupportRun**](docs/SupportRunsApi.md#getSupportRun) | **GET** /v1/support/runs/{runId} | Get a support run (private beta)
+*SupportRunsApi* | [**getSupportRunWithHttpInfo**](docs/SupportRunsApi.md#getSupportRunWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support run (private beta)
 *ToolsApi* | [**downloadTikTokVideo**](docs/ToolsApi.md#downloadTikTokVideo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *ToolsApi* | [**downloadTikTokVideoWithHttpInfo**](docs/ToolsApi.md#downloadTikTokVideoWithHttpInfo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
@@ -2643,6 +2647,9 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
  - [CreateStandaloneAdRequestZipsInner](docs/CreateStandaloneAdRequestZipsInner.md)
+ - [CreateSupportRun202Response](docs/CreateSupportRun202Response.md)
+ - [CreateSupportRunRequest](docs/CreateSupportRunRequest.md)
+ - [CreateSupportRunRequestContext](docs/CreateSupportRunRequestContext.md)
  - [CreateTestLead200Response](docs/CreateTestLead200Response.md)
  - [CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)
  - [CreateTestLeadRequest](docs/CreateTestLeadRequest.md)
@@ -4195,6 +4202,8 @@ Class | Method | HTTP request | Description
  - [SubmitWhatsAppNumberKycRequest](docs/SubmitWhatsAppNumberKycRequest.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
+ - [SupportRun](docs/SupportRun.md)
+ - [SupportRunUsage](docs/SupportRunUsage.md)
  - [SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)
  - [SyncExternalPosts200ResponseSynced](docs/SyncExternalPosts200ResponseSynced.md)
  - [SyncExternalPostsRequest](docs/SyncExternalPostsRequest.md)
@@ -4659,6 +4668,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadReviewNewAccount](docs/WebhookPayloadReviewNewAccount.md)
  - [WebhookPayloadReviewUpdated](docs/WebhookPayloadReviewUpdated.md)
  - [WebhookPayloadSequenceEnrollment](docs/WebhookPayloadSequenceEnrollment.md)
+ - [WebhookPayloadSupportRun](docs/WebhookPayloadSupportRun.md)
  - [WebhookPayloadTest](docs/WebhookPayloadTest.md)
  - [WebhookPayloadWhatsAppAccountAlertReceived](docs/WebhookPayloadWhatsAppAccountAlertReceived.md)
  - [WebhookPayloadWhatsAppAccountAlertReceivedAlert](docs/WebhookPayloadWhatsAppAccountAlertReceivedAlert.md)

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.243.0
+  version: 1.244.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -384,13 +384,16 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.video.processed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.video.processed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
-    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.* and workflow.run.* to messages, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.*, workflow.run.* and support.run.* to messages, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
 
     Profile and account filters. A subscription can also carry `profileIds`, an allowlist of profiles, and `accountIds`, an allowlist of connected accounts with the same semantics keyed on the account; each non-empty list narrows delivery and a subscription with both must be satisfied on both. A scoped subscription is only sent events it can attribute to one of those profiles: the profile of the connected account behind the event, or for an aggregate `post.*` event the profile of every account the post targets (a post spanning two scoped endpoints' profiles reaches both). So an integrator can route the profile holding test accounts to a staging endpoint while a second subscription, scoped to the production profiles, keeps production traffic. Events that belong to no profile (`verification.*`, `phone_number.*`, and a legacy post whose accounts were deleted) reach only unscoped subscriptions. The filter runs when an event is emitted; redelivery replays a delivery already made to that endpoint and test fires ignore it. Absent or empty means every profile (or every account).
   name: Webhooks
+- description: |
+    Private beta: returns 403 `feature_not_available` unless enabled for your account. Ask Ana, the Zernio support agent, a question about your own workspace (a post, a connected account or a profile) over the API. Runs are asynchronous: start one with `POST /v1/support/runs`, then receive the answer through the `support.run.completed` and `support.run.failed` webhooks, or poll `GET /v1/support/runs/{runId}`. Requires an unrestricted API key and a usage-based plan with a card on file.
+  name: Support Runs
 - description: |
     Incoming webhook deliveries sent by Zernio to your configured endpoint URL.
   name: Webhook Events
@@ -34655,6 +34658,167 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/support/runs:
+    post:
+      description: "Private beta: returns 403 `feature_not_available` unless enabled\
+        \ for your account. Asks Ana, the Zernio support agent, a question about your\
+        \ workspace. The run is asynchronous: this returns 202 with a `runId`, and\
+        \ the answer arrives through the `support.run.completed` and `support.run.failed`\
+        \ webhooks. `GET /v1/support/runs/{runId}` is the fallback. Pass `threadId`\
+        \ to continue an earlier conversation, and `context` to point Ana at a post,\
+        \ account or profile. Billed when the run finishes at the model cost plus\
+        \ 20%, never above `maxCostUsd`; failed runs are free. Requires an unrestricted\
+        \ API key, usage-based billing and a card on file. Limits per account: 3 active\
+        \ runs and $100 of runs per UTC month. Send an Idempotency-Key header to make\
+        \ retries safe."
+      operationId: createSupportRun
+      parameters:
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      requestBody:
+        content:
+          application/json:
+            example:
+              message: Why did my Instagram post fail to publish?
+              context:
+                postId: 64f0a1b2c3d4e5f6a7b8c9d0
+            schema:
+              $ref: "#/components/schemas/createSupportRun_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              example:
+                runId: 64f0a1b2c3d4e5f6a7b8c9d1
+                threadId: 64f0a1b2c3d4e5f6a7b8c9d2
+                status: queued
+                pollAfterSeconds: 5
+              schema:
+                $ref: "#/components/schemas/createSupportRun_202_response"
+          description: Run accepted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: A card is required (code `payment_method_required`) or the
+            last payment failed (code `payment_required`). Add or update the card
+            in Billing.
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `insufficient_permissions`: the credential is not an\
+            \ unrestricted API key, or the user is read-only, restricted or profile-scoped.\
+            \ Code `feature_not_available`: the private beta is not enabled for your\
+            \ account."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `support_thread_not_found` (`threadId`), `post_not_found`,\
+            \ `account_not_found` or `profile_not_found` (`context.*`)."
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `support_run_in_progress`: the thread already has a run\
+            \ queued or running, so poll it first. Code `billing_setup_incomplete`:\
+            \ no billing customer to attach a card to, contact support. Also returned\
+            \ while a request with the same Idempotency-Key is still processing."
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `usage_billing_required`: support runs need a usage-based\
+            \ plan. Also returned when an Idempotency-Key is reused with a different\
+            \ request."
+        "429":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `support_active_runs_limit`: 3 runs are already active,\
+            \ retry when one finishes. Code `support_monthly_cap_exceeded`: this run\
+            \ could take the account past $100 for the UTC month; `Retry-After` runs\
+            \ until the next month starts, which can be weeks."
+          headers:
+            Retry-After:
+              description: Seconds before retrying.
+              explode: false
+              schema:
+                type: integer
+              style: simple
+      summary: Start a support run (private beta)
+      tags:
+      - Support Runs
+      x-resource-group: admin-plane
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/support/runs/{runId}:
+    get:
+      description: "Private beta: returns 403 `feature_not_available` unless enabled\
+        \ for your account. Returns a run started by your team. Prefer the `support.run.completed`\
+        \ and `support.run.failed` webhooks; use this as the fallback, waiting `pollAfterSeconds`\
+        \ between polls. `costUsd` is the amount billed: the model cost plus 20%,\
+        \ never above `maxCostUsd`, and 0 for a failed run."
+      operationId: getSupportRun
+      parameters:
+      - explode: false
+        in: path
+        name: runId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/SupportRun"
+          description: The run
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: A card is required (code `payment_method_required`) or the
+            last payment failed (code `payment_required`).
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `insufficient_permissions` (not an unrestricted API key,\
+            \ or a read-only, restricted or profile-scoped user) or `feature_not_available`\
+            \ (private beta not enabled)."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `support_run_not_found`: no such run, or it was not started\
+            \ by your team."
+      summary: Get a support run (private beta)
+      tags:
+      - Support Runs
+      x-resource-group: admin-plane
+      x-accepts:
+      - application/json
   /v1/workflows:
     get:
       description: Returns workflows with run stats. Filter by status or profile.
@@ -68112,6 +68276,8 @@ components:
             - workflow.run.started
             - workflow.run.completed
             - workflow.run.failed
+            - support.run.completed
+            - support.run.failed
             type: string
           type: array
         isActive:
@@ -88093,6 +88259,157 @@ components:
       - timestamp
       - trigger
       - workflow
+    WebhookPayloadSupportRun:
+      example:
+        run:
+          threadId: threadId
+          stopReason: answered
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          maxCostUsd: 2.3021358869347655
+          answer: answer
+          costUsd: 5.637376656633329
+          usage:
+            cacheReadTokens: 1
+            cacheWriteTokens: 5
+            inputTokens: 0
+            outputTokens: 6
+          startedAt: 2000-01-23T04:56:07.000+00:00
+          runId: runId
+          pollAfterSeconds: 7
+          status: queued
+          finishedAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        event: support.run.completed
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Event id, the dedupe key."
+          type: string
+        event:
+          enum:
+          - support.run.completed
+          - support.run.failed
+          type: string
+        timestamp:
+          format: date-time
+          type: string
+        run:
+          $ref: "#/components/schemas/SupportRun"
+      required:
+      - event
+      - id
+      - run
+      - timestamp
+    SupportRunUsage:
+      example:
+        cacheReadTokens: 1
+        cacheWriteTokens: 5
+        inputTokens: 0
+        outputTokens: 6
+      properties:
+        inputTokens:
+          type: integer
+        outputTokens:
+          type: integer
+        cacheReadTokens:
+          type: integer
+        cacheWriteTokens:
+          type: integer
+      required:
+      - cacheReadTokens
+      - cacheWriteTokens
+      - inputTokens
+      - outputTokens
+    SupportRun:
+      example:
+        threadId: threadId
+        stopReason: answered
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        maxCostUsd: 2.3021358869347655
+        answer: answer
+        costUsd: 5.637376656633329
+        usage:
+          cacheReadTokens: 1
+          cacheWriteTokens: 5
+          inputTokens: 0
+          outputTokens: 6
+        startedAt: 2000-01-23T04:56:07.000+00:00
+        runId: runId
+        pollAfterSeconds: 7
+        status: queued
+        finishedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        runId:
+          description: "Run id, a 24-character hex string."
+          type: string
+        threadId:
+          description: Conversation thread id. Send it back as `threadId` to ask a
+            follow-up in the same thread.
+          type: string
+        status:
+          description: queued and running are in progress. needs_human means Ana handed
+            the question to a person instead of answering.
+          enum:
+          - queued
+          - running
+          - completed
+          - needs_human
+          - failed
+          type: string
+        stopReason:
+          description: Why the run stopped. Null while it is in progress.
+          enum:
+          - answered
+          - human_review
+          - cost_cap
+          - deadline
+          - max_iterations
+          - error
+          - expired
+          - null
+          nullable: true
+          type: string
+        answer:
+          description: Ana's answer. Null while the run is in progress or when it
+            failed.
+          nullable: true
+          type: string
+        usage:
+          $ref: "#/components/schemas/SupportRunUsage"
+        costUsd:
+          description: "The amount billed for the run, in USD: the model cost plus\
+            \ 20%, never above `maxCostUsd`. 0 for a failed run."
+          type: number
+        maxCostUsd:
+          description: "The cost cap this run was started with, in USD."
+          type: number
+        createdAt:
+          format: date-time
+          type: string
+        startedAt:
+          format: date-time
+          nullable: true
+          type: string
+        finishedAt:
+          format: date-time
+          nullable: true
+          type: string
+        pollAfterSeconds:
+          description: Seconds to wait before polling again. Present only while the
+            run is queued or running.
+          type: integer
+      required:
+      - answer
+      - costUsd
+      - createdAt
+      - finishedAt
+      - maxCostUsd
+      - runId
+      - startedAt
+      - status
+      - stopReason
+      - threadId
+      - usage
     CommerceCollection:
       description: A product collection on a connected store.
       example:
@@ -102521,6 +102838,8 @@ components:
             - workflow.run.started
             - workflow.run.completed
             - workflow.run.failed
+            - support.run.completed
+            - support.run.failed
             type: string
           minItems: 1
           type: array
@@ -102702,6 +103021,8 @@ components:
             - workflow.run.started
             - workflow.run.completed
             - workflow.run.failed
+            - support.run.completed
+            - support.run.failed
             type: string
           minItems: 1
           type: array
@@ -119882,6 +120203,62 @@ components:
         skipped:
           description: Number skipped (duplicates or missing channels)
           type: integer
+    createSupportRun_request_context:
+      additionalProperties: {}
+      description: Ids Ana should look at. Each must belong to your workspace.
+      properties:
+        postId:
+          type: string
+        accountId:
+          type: string
+        profileId:
+          type: string
+    createSupportRun_request:
+      additionalProperties: {}
+      properties:
+        message:
+          description: The question. Leading and trailing whitespace is trimmed.
+          maxLength: 10000
+          minLength: 1
+          type: string
+        threadId:
+          description: "Continue this thread. The thread must have a run started by\
+            \ your team, and no run in progress."
+          type: string
+        context:
+          $ref: "#/components/schemas/createSupportRun_request_context"
+        maxCostUsd:
+          default: 3
+          description: "Cost cap for this run, in USD. The run stops at the cap and\
+            \ bills at most this amount."
+          maximum: 3
+          minimum: 0.5
+          type: number
+      required:
+      - message
+    createSupportRun_202_response:
+      example:
+        threadId: threadId
+        runId: runId
+        pollAfterSeconds: 0
+        status: queued
+      properties:
+        runId:
+          type: string
+        threadId:
+          type: string
+        status:
+          enum:
+          - queued
+          type: string
+        pollAfterSeconds:
+          description: Seconds to wait before the first poll.
+          type: integer
+      required:
+      - pollAfterSeconds
+      - runId
+      - status
+      - threadId
     listWorkflows_200_response_workflows_inner:
       example:
         accountId: accountId
@@ -159222,6 +159599,8 @@ x-documentation:
     - `workflow.run.started` - A workflow run started for a conversation
     - `workflow.run.completed` - A workflow run ended. `execution.status` is `completed`, or `exited` when the run was ended on purpose before its last node (a handoff, or a button that switched the contact to another workflow)
     - `workflow.run.failed` - A workflow run failed; `error` says which node failed and why
+    - `support.run.completed` - An Ana support run finished (private beta). `run.status` is `completed`, or `needs_human` when Ana handed the question to a person; `run.answer` holds the answer. The `run` object is exactly what `GET /v1/support/runs/{runId}` answers
+    - `support.run.failed` - An Ana support run failed or expired (private beta). Failed runs are not billed, so `run.costUsd` is 0
     - `webhook.test` - Test event sent when verifying a webhook endpoint
 
     Every delivery carries `X-Zernio-Event` (the event name) and `X-Zernio-Event-Id` (the payload's `id`, a UUID generated once when the event is emitted). That id is identical on every subscription that receives the event, on every automatic retry and on a redelivery via `POST /v1/webhooks/logs/redeliver`, so it is the key to dedupe on. Payloads are signed with HMAC-SHA256 via the `X-Zernio-Signature` header when the subscription has a secret. Legacy `X-Late-*` copies of these three headers are still sent and will be removed in a future major version.

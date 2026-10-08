@@ -105,6 +105,8 @@ Individual webhook configuration for receiving real-time notifications
 | WORKFLOW_RUN_STARTED | &quot;workflow.run.started&quot; |
 | WORKFLOW_RUN_COMPLETED | &quot;workflow.run.completed&quot; |
 | WORKFLOW_RUN_FAILED | &quot;workflow.run.failed&quot; |
+| SUPPORT_RUN_COMPLETED | &quot;support.run.completed&quot; |
+| SUPPORT_RUN_FAILED | &quot;support.run.failed&quot; |
 
 
 

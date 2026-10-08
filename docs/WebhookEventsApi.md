@@ -118,6 +118,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onSmsRegistrationActionRequiredWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationActionRequiredWithHttpInfo) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**onSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onSmsRegistrationStatusUpdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
 | [**onSmsRegistrationStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationStatusUpdatedWithHttpInfo) | **POST** /sms.registration.status_updated | SMS registration status updated event |
+| [**onSupportRunCompleted**](WebhookEventsApi.md#onSupportRunCompleted) | **POST** /support.run.completed | Support run completed event |
+| [**onSupportRunCompletedWithHttpInfo**](WebhookEventsApi.md#onSupportRunCompletedWithHttpInfo) | **POST** /support.run.completed | Support run completed event |
+| [**onSupportRunFailed**](WebhookEventsApi.md#onSupportRunFailed) | **POST** /support.run.failed | Support run failed event |
+| [**onSupportRunFailedWithHttpInfo**](WebhookEventsApi.md#onSupportRunFailedWithHttpInfo) | **POST** /support.run.failed | Support run failed event |
 | [**onVerificationApproved**](WebhookEventsApi.md#onVerificationApproved) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationApprovedWithHttpInfo**](WebhookEventsApi.md#onVerificationApprovedWithHttpInfo) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationFailed**](WebhookEventsApi.md#onVerificationFailed) | **POST** /verification.failed | Verification failed event |
@@ -8238,6 +8242,290 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **onSmsRegistrationStatusUpdatedRequest** | [**OnSmsRegistrationStatusUpdatedRequest**](OnSmsRegistrationStatusUpdatedRequest.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onSupportRunCompleted
+
+> void onSupportRunCompleted(webhookPayloadSupportRun)
+
+Support run completed event
+
+Fired when an Ana support run finishes (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadSupportRun webhookPayloadSupportRun = new WebhookPayloadSupportRun(); // WebhookPayloadSupportRun | 
+        try {
+            apiInstance.onSupportRunCompleted(webhookPayloadSupportRun);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSupportRunCompleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onSupportRunCompletedWithHttpInfo
+
+> ApiResponse<Void> onSupportRunCompleted onSupportRunCompletedWithHttpInfo(webhookPayloadSupportRun)
+
+Support run completed event
+
+Fired when an Ana support run finishes (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadSupportRun webhookPayloadSupportRun = new WebhookPayloadSupportRun(); // WebhookPayloadSupportRun | 
+        try {
+            ApiResponse<Void> response = apiInstance.onSupportRunCompletedWithHttpInfo(webhookPayloadSupportRun);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSupportRunCompleted");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onSupportRunFailed
+
+> void onSupportRunFailed(webhookPayloadSupportRun)
+
+Support run failed event
+
+Fired when an Ana support run fails or expires (private beta). Failed runs are not billed.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadSupportRun webhookPayloadSupportRun = new WebhookPayloadSupportRun(); // WebhookPayloadSupportRun | 
+        try {
+            apiInstance.onSupportRunFailed(webhookPayloadSupportRun);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSupportRunFailed");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onSupportRunFailedWithHttpInfo
+
+> ApiResponse<Void> onSupportRunFailed onSupportRunFailedWithHttpInfo(webhookPayloadSupportRun)
+
+Support run failed event
+
+Fired when an Ana support run fails or expires (private beta). Failed runs are not billed.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadSupportRun webhookPayloadSupportRun = new WebhookPayloadSupportRun(); // WebhookPayloadSupportRun | 
+        try {
+            ApiResponse<Void> response = apiInstance.onSupportRunFailedWithHttpInfo(webhookPayloadSupportRun);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onSupportRunFailed");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadSupportRun** | [**WebhookPayloadSupportRun**](WebhookPayloadSupportRun.md)|  | |
 
 ### Return type
 
