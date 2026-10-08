@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateSipTrunkRequest.JSON_PROPERTY_SIP_PORT,
   CreateSipTrunkRequest.JSON_PROPERTY_TRANSPORT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:35:34.617028409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:38:46.036347618Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateSipTrunkRequest {
   public static final String JSON_PROPERTY_LABEL = "label";
   @javax.annotation.Nonnull

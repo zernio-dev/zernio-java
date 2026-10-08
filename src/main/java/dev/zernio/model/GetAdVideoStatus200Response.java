@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetAdVideoStatus200Response.JSON_PROPERTY_AD_ACCOUNT_ID,
   GetAdVideoStatus200Response.JSON_PROPERTY_VIDEO
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:35:34.617028409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:38:46.036347618Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdVideoStatus200Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

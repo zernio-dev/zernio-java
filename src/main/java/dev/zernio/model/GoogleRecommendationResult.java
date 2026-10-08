@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GoogleRecommendationResult.JSON_PROPERTY_STATUS,
   GoogleRecommendationResult.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:35:34.617028409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:38:46.036347618Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleRecommendationResult {
   public static final String JSON_PROPERTY_RESOURCE_NAME = "resourceName";
   @javax.annotation.Nonnull

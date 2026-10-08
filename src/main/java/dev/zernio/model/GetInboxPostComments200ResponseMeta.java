@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_LAST_UPDATED,
   GetInboxPostComments200ResponseMeta.JSON_PROPERTY_AD_COMMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:35:34.617028409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:38:46.036347618Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetInboxPostComments200ResponseMeta {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

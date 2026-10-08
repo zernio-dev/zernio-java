@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateBusinessAgentSettingsRequest.JSON_PROPERTY_AI_AUDIENCE,
   UpdateBusinessAgentSettingsRequest.JSON_PROPERTY_NEVER_SAY_PHRASES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:35:34.617028409Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-08T09:38:46.036347618Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateBusinessAgentSettingsRequest {
   public static final String JSON_PROPERTY_ROLLOUT = "rollout";
   @javax.annotation.Nullable
