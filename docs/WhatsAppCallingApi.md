@@ -1346,6 +1346,7 @@ public class Example {
 | **200** | Calling config |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 ## getWhatsAppCallingWithHttpInfo
@@ -1422,6 +1423,7 @@ ApiResponse<[**GetWhatsAppCalling200Response**](GetWhatsAppCalling200Response.md
 | **200** | Calling config |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
 
 

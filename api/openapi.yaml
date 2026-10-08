@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.244.0
+  version: 1.244.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -29420,6 +29420,9 @@ paths:
           description: Phone number retrieved successfully
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -32145,6 +32148,9 @@ paths:
           description: Invalid request
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The API key is scoped to profiles that do not include this
+            number.
         "404":
           description: Number not found
       security:
