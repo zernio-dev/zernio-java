@@ -5651,7 +5651,7 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 
 ## listFacebookPages
 
-> ListFacebookPages200Response listFacebookPages(profileId, tempToken, selectionToken)
+> ListFacebookPages200Response listFacebookPages(profileId, tempToken, xTempToken, connectFlow, selectionToken)
 
 List Facebook pages
 
@@ -5685,10 +5685,12 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Profile ID from your classic connection flow. Required with tempToken.
-        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId.
+        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         String selectionToken = "ENCRYPTED_SELECTION_TOKEN"; // String | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes.
         try {
-            ListFacebookPages200Response result = apiInstance.listFacebookPages(profileId, tempToken, selectionToken);
+            ListFacebookPages200Response result = apiInstance.listFacebookPages(profileId, tempToken, xTempToken, connectFlow, selectionToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listFacebookPages");
@@ -5707,7 +5709,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID from your classic connection flow. Required with tempToken. | [optional] |
-| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId. | [optional] |
+| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 | **selectionToken** | **String**| Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. | [optional] |
 
 ### Return type
@@ -5735,7 +5739,7 @@ public class Example {
 
 ## listFacebookPagesWithHttpInfo
 
-> ApiResponse<ListFacebookPages200Response> listFacebookPages listFacebookPagesWithHttpInfo(profileId, tempToken, selectionToken)
+> ApiResponse<ListFacebookPages200Response> listFacebookPages listFacebookPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, selectionToken)
 
 List Facebook pages
 
@@ -5770,10 +5774,12 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Profile ID from your classic connection flow. Required with tempToken.
-        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId.
+        String tempToken = "tempToken_example"; // String | Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         String selectionToken = "ENCRYPTED_SELECTION_TOKEN"; // String | Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes.
         try {
-            ApiResponse<ListFacebookPages200Response> response = apiInstance.listFacebookPagesWithHttpInfo(profileId, tempToken, selectionToken);
+            ApiResponse<ListFacebookPages200Response> response = apiInstance.listFacebookPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow, selectionToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -5794,7 +5800,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID from your classic connection flow. Required with tempToken. | [optional] |
-| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId. | [optional] |
+| **tempToken** | **String**| Temporary Facebook access token from the classic OAuth callback. Required with profileId unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 | **selectionToken** | **String**| Encrypted dashboard business-login grant. Send alone instead of profileId and tempToken. Expires after ten minutes. | [optional] |
 
 ### Return type
@@ -6001,7 +6009,7 @@ ApiResponse<[**ListGoogleBusinessLocations200Response**](ListGoogleBusinessLocat
 
 ## listInstagramPages
 
-> ListInstagramPages200Response listInstagramPages(profileId, tempToken)
+> ListInstagramPages200Response listInstagramPages(profileId, tempToken, xTempToken, connectFlow)
 
 List Pages with a linked Instagram account
 
@@ -6035,9 +6043,11 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Long-lived Facebook user access token from the OAuth callback redirect
+        String tempToken = "tempToken_example"; // String | Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         try {
-            ListInstagramPages200Response result = apiInstance.listInstagramPages(profileId, tempToken);
+            ListInstagramPages200Response result = apiInstance.listInstagramPages(profileId, tempToken, xTempToken, connectFlow);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#listInstagramPages");
@@ -6056,7 +6066,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Long-lived Facebook user access token from the OAuth callback redirect | |
+| **tempToken** | **String**| Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 
 ### Return type
 
@@ -6082,7 +6094,7 @@ public class Example {
 
 ## listInstagramPagesWithHttpInfo
 
-> ApiResponse<ListInstagramPages200Response> listInstagramPages listInstagramPagesWithHttpInfo(profileId, tempToken)
+> ApiResponse<ListInstagramPages200Response> listInstagramPages listInstagramPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow)
 
 List Pages with a linked Instagram account
 
@@ -6117,9 +6129,11 @@ public class Example {
 
         ConnectApi apiInstance = new ConnectApi(defaultClient);
         String profileId = "profileId_example"; // String | Profile ID from your connection flow
-        String tempToken = "tempToken_example"; // String | Long-lived Facebook user access token from the OAuth callback redirect
+        String tempToken = "tempToken_example"; // String | Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header.
+        String xTempToken = "xTempToken_example"; // String | The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way.
+        String connectFlow = "connectFlow_example"; // String | Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead.
         try {
-            ApiResponse<ListInstagramPages200Response> response = apiInstance.listInstagramPagesWithHttpInfo(profileId, tempToken);
+            ApiResponse<ListInstagramPages200Response> response = apiInstance.listInstagramPagesWithHttpInfo(profileId, tempToken, xTempToken, connectFlow);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6140,7 +6154,9 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **profileId** | **String**| Profile ID from your connection flow | |
-| **tempToken** | **String**| Long-lived Facebook user access token from the OAuth callback redirect | |
+| **tempToken** | **String**| Long-lived Facebook user access token from the OAuth callback redirect. Required unless sent in the X-Temp-Token header. | [optional] |
+| **xTempToken** | **String**| The OAuth user token, in place of the tempToken query parameter. Prefer it: a query string is written to request logs along the way. | [optional] |
+| **connectFlow** | **String**| Set by the Zernio-hosted picker, whose user token stays in an httpOnly cookie. Integrators send tempToken instead. | [optional] |
 
 ### Return type
 

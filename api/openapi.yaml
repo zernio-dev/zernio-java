@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.240.1
+  version: 1.241.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10692,12 +10692,31 @@ paths:
           type: string
         style: form
       - description: Temporary Facebook access token from the classic OAuth callback.
-          Required with profileId.
+          Required with profileId unless sent in the X-Temp-Token header.
         explode: true
         in: query
         name: tempToken
         required: false
         schema:
+          type: string
+        style: form
+      - description: "The OAuth user token, in place of the tempToken query parameter.\
+          \ Prefer it: a query string is written to request logs along the way."
+        explode: false
+        in: header
+        name: X-Temp-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "Set by the Zernio-hosted picker, whose user token stays in an\
+          \ httpOnly cookie. Integrators send tempToken instead."
+        explode: true
+        in: query
+        name: connectFlow
+        required: false
+        schema:
+          pattern: "^[a-f0-9]{32}$"
           type: string
         style: form
       - description: Encrypted dashboard business-login grant. Send alone instead
@@ -10865,12 +10884,31 @@ paths:
           type: string
         style: form
       - description: Long-lived Facebook user access token from the OAuth callback
-          redirect
+          redirect. Required unless sent in the X-Temp-Token header.
         explode: true
         in: query
         name: tempToken
-        required: true
+        required: false
         schema:
+          type: string
+        style: form
+      - description: "The OAuth user token, in place of the tempToken query parameter.\
+          \ Prefer it: a query string is written to request logs along the way."
+        explode: false
+        in: header
+        name: X-Temp-Token
+        required: false
+        schema:
+          type: string
+        style: simple
+      - description: "Set by the Zernio-hosted picker, whose user token stays in an\
+          \ httpOnly cookie. Integrators send tempToken instead."
+        explode: true
+        in: query
+        name: connectFlow
+        required: false
+        schema:
+          pattern: "^[a-f0-9]{32}$"
           type: string
         style: form
       responses:
@@ -94566,7 +94604,13 @@ components:
           minItems: 1
           type: array
         tempToken:
-          description: Temporary Facebook access token from OAuth.
+          description: Temporary Facebook access token from OAuth. Required unless
+            sent in the X-Temp-Token header.
+          type: string
+        connectFlow:
+          description: "Set by the Zernio-hosted picker, whose user token stays in\
+            \ an httpOnly cookie. Integrators send tempToken instead."
+          pattern: "^[a-f0-9]{32}$"
           type: string
         userProfile:
           $ref: "#/components/schemas/selectFacebookPage_request_oneOf_userProfile"
@@ -94576,7 +94620,6 @@ components:
           type: string
       required:
       - profileId
-      - tempToken
       - userProfile
     selectFacebookPage_request_oneOf_1:
       additionalProperties: {}
@@ -94767,7 +94810,12 @@ components:
           type: array
         tempToken:
           description: Long-lived Facebook user access token from the OAuth callback
-            redirect
+            redirect. Required unless sent in the X-Temp-Token header.
+          type: string
+        connectFlow:
+          description: "Set by the Zernio-hosted picker, whose user token stays in\
+            \ an httpOnly cookie. Integrators send tempToken instead."
+          pattern: "^[a-f0-9]{32}$"
           type: string
         redirect_url:
           description: Optional custom redirect URL to return to after selection
@@ -94775,7 +94823,6 @@ components:
           type: string
       required:
       - profileId
-      - tempToken
     selectInstagramAccount_200_response_account:
       example:
         accountId: accountId
