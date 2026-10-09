@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.247.0
+- API version: 1.248.0
 
-- Build date: 2026-10-09T08:00:41.754495957Z[Etc/UTC]
+- Build date: 2026-10-09T08:49:45.441813733Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.247.0</version>
+  <version>1.248.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.247.0"
+compile "dev.zernio:zernio-sdk:1.248.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.247.0.jar`
+- `target/zernio-sdk-1.248.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2816,6 +2816,7 @@ Class | Method | HTTP request | Description
  - [ExternalPostSummary](docs/ExternalPostSummary.md)
  - [ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
+ - [FacebookOrInstagramPost](docs/FacebookOrInstagramPost.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPostEarningsResponse](docs/FacebookPostEarningsResponse.md)
  - [FacebookPostEarningsResponseMetricsValue](docs/FacebookPostEarningsResponseMetricsValue.md)

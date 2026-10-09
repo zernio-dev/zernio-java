@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.247.0
+  version: 1.248.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -107970,12 +107970,7 @@ components:
           description: Bluesky root post CID
           nullable: true
           type: string
-    getInboxPostComments_200_response_post:
-      description: |
-        (Reddit only) Metadata for the target post, returned alongside the comments in Reddit's
-        single round-trip. Lets integrators render a preview of the post the user is commenting on
-        without an additional request. Absent for non-Reddit platforms and when the upstream
-        response is missing the post listing (deleted post, malformed response).
+    Reddit_post:
       example:
         selftext: selftext
         over18: true
@@ -108036,6 +108031,75 @@ components:
         isGallery:
           description: True if the post is a Reddit gallery (multiple images)
           type: boolean
+      title: Reddit post
+    Facebook_or_Instagram_post:
+      properties:
+        id:
+          description: "Facebook post id ({pageId}_{postId}) or Instagram media id"
+          type: string
+        permalink:
+          format: uri
+          nullable: true
+          type: string
+        text:
+          description: Facebook post message or Instagram caption
+          nullable: true
+          type: string
+        thumbnailUrl:
+          description: "Facebook `full_picture` (or the first attachment image); Instagram\
+            \ `thumbnail_url` for videos, `media_url` for images. Expiring Meta CDN\
+            \ URL."
+          format: uri
+          nullable: true
+          type: string
+        mediaUrl:
+          description: Instagram `media_url` (the video file for videos). Always null
+            on Facebook. Expiring Meta CDN URL.
+          format: uri
+          nullable: true
+          type: string
+        mediaType:
+          description: "Instagram `media_type` (IMAGE, VIDEO, CAROUSEL_ALBUM) or the\
+            \ Facebook attachment type (photo, video_inline, link, ...)"
+          nullable: true
+          type: string
+        productType:
+          description: "Instagram `media_product_type`: AD, FEED, REELS or STORY.\
+            \ Always null on Facebook."
+          nullable: true
+          type: string
+        createdAt:
+          description: Creation time as Meta returns it (e.g. 2026-05-27T17:15:51+0000)
+          nullable: true
+          type: string
+      required:
+      - createdAt
+      - id
+      - mediaType
+      - mediaUrl
+      - permalink
+      - productType
+      - text
+      - thumbnailUrl
+      title: Facebook or Instagram post
+    getInboxPostComments_200_response_post:
+      anyOf:
+      - $ref: "#/components/schemas/Reddit_post"
+      - $ref: "#/components/schemas/Facebook_or_Instagram_post"
+      description: |
+        (Reddit, Facebook and Instagram) Metadata for the target post, returned alongside the comments
+        so integrators can render a preview of the post being commented on without an additional request.
+
+        Facebook and Instagram return the Meta shape: the post thumbnail, text and permalink, for any post
+        the account can read, including the hidden dark posts Meta publishes for each variant of an ad
+        (dynamic creative, placement asset customization, Advantage+). Facebook posts need the Facebook
+        Page connection and Instagram media the Instagram connection. `thumbnailUrl` and `mediaUrl` are
+        Meta CDN URLs that expire: store a copy if you render them later. On Instagram, `productType`
+        tells an ad (`AD`) from organic media (`FEED`, `REELS`, `STORY`).
+
+        Absent on other platforms, when the post cannot be read with the connection's token, and on Reddit
+        when the upstream response is missing the post listing (deleted post, malformed response).
+      nullable: true
     getInboxPostComments_200_response_pagination:
       example:
         cursor: cursor
