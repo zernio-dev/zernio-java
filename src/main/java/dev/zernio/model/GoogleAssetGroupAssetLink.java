@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GoogleAssetGroupAssetLink.JSON_PROPERTY_IMAGE_URL,
   GoogleAssetGroupAssetLink.JSON_PROPERTY_YOUTUBE_VIDEO_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-09T07:32:29.718356727Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-09T07:47:38.365453961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleAssetGroupAssetLink {
   public static final String JSON_PROPERTY_FIELD_TYPE = "fieldType";
   @javax.annotation.Nonnull

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   DialVoiceWebCallRequest.JSON_PROPERTY_RECORD_OVERRIDE,
   DialVoiceWebCallRequest.JSON_PROPERTY_RING_TIMEOUT_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-09T07:32:29.718356727Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-09T07:47:38.365453961Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DialVoiceWebCallRequest {
   public static final String JSON_PROPERTY_TO = "to";
   @javax.annotation.Nonnull
