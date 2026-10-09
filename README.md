@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.246.0
+- API version: 1.247.0
 
-- Build date: 2026-10-09T07:47:38.365453961Z[Etc/UTC]
+- Build date: 2026-10-09T08:00:41.754495957Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.246.0</version>
+  <version>1.247.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.246.0"
+compile "dev.zernio:zernio-sdk:1.247.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.246.0.jar`
+- `target/zernio-sdk-1.247.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -535,6 +535,8 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query
 *AdLibraryApi* | [**searchAdLibrary**](docs/AdLibraryApi.md#searchAdLibrary) | **GET** /v1/ads/library | Search the public Ad Library
 *AdLibraryApi* | [**searchAdLibraryWithHttpInfo**](docs/AdLibraryApi.md#searchAdLibraryWithHttpInfo) | **GET** /v1/ads/library | Search the public Ad Library
+*AdTargetingApi* | [**browseAdTargeting**](docs/AdTargetingApi.md#browseAdTargeting) | **GET** /v1/ads/targeting/browse | Browse targeting categories
+*AdTargetingApi* | [**browseAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#browseAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/browse | Browse targeting categories
 *AdTargetingApi* | [**estimateAdReach**](docs/AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdTargetingApi* | [**estimateAdReachWithHttpInfo**](docs/AdTargetingApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
 *AdTargetingApi* | [**getLinkedInBidPricing**](docs/AdTargetingApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds
@@ -2248,6 +2250,8 @@ Class | Method | HTTP request | Description
  - [BrandedCallingIdentityReviewRequestPointsInner](docs/BrandedCallingIdentityReviewRequestPointsInner.md)
  - [BrandedCallingReference](docs/BrandedCallingReference.md)
  - [BrandedCallingReferences](docs/BrandedCallingReferences.md)
+ - [BrowseAdTargeting200Response](docs/BrowseAdTargeting200Response.md)
+ - [BrowseAdTargeting200ResponseNodesInner](docs/BrowseAdTargeting200ResponseNodesInner.md)
  - [BulkCreateContacts200Response](docs/BulkCreateContacts200Response.md)
  - [BulkCreateContactsRequest](docs/BulkCreateContactsRequest.md)
  - [BulkCreateContactsRequestContactsInner](docs/BulkCreateContactsRequestContactsInner.md)

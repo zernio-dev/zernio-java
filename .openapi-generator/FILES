@@ -211,6 +211,8 @@ docs/BrandedCallingIdentityReviewRequestPointsInner.md
 docs/BrandedCallingReference.md
 docs/BrandedCallingReferences.md
 docs/BroadcastsApi.md
+docs/BrowseAdTargeting200Response.md
+docs/BrowseAdTargeting200ResponseNodesInner.md
 docs/BulkCreateContacts200Response.md
 docs/BulkCreateContactsRequest.md
 docs/BulkCreateContactsRequestContactsInner.md
@@ -3078,6 +3080,8 @@ src/main/java/dev/zernio/model/BrandedCallingIdentityReviewRequest.java
 src/main/java/dev/zernio/model/BrandedCallingIdentityReviewRequestPointsInner.java
 src/main/java/dev/zernio/model/BrandedCallingReference.java
 src/main/java/dev/zernio/model/BrandedCallingReferences.java
+src/main/java/dev/zernio/model/BrowseAdTargeting200Response.java
+src/main/java/dev/zernio/model/BrowseAdTargeting200ResponseNodesInner.java
 src/main/java/dev/zernio/model/BulkCreateContacts200Response.java
 src/main/java/dev/zernio/model/BulkCreateContactsRequest.java
 src/main/java/dev/zernio/model/BulkCreateContactsRequestContactsInner.java
@@ -5593,3 +5597,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BrowseAdTargeting200ResponseNodesInnerTest.java
+src/test/java/dev/zernio/model/BrowseAdTargeting200ResponseTest.java

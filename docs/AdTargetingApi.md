@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**browseAdTargeting**](AdTargetingApi.md#browseAdTargeting) | **GET** /v1/ads/targeting/browse | Browse targeting categories |
+| [**browseAdTargetingWithHttpInfo**](AdTargetingApi.md#browseAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/browse | Browse targeting categories |
 | [**estimateAdReach**](AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**estimateAdReachWithHttpInfo**](AdTargetingApi.md#estimateAdReachWithHttpInfo) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach |
 | [**getLinkedInBidPricing**](AdTargetingApi.md#getLinkedInBidPricing) | **POST** /v1/ads/targeting/bid-pricing | Suggested bid and budget bounds |
@@ -15,6 +17,178 @@ All URIs are relative to *https://zernio.com/api*
 | [**searchAdTargeting**](AdTargetingApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options |
 | [**searchAdTargetingWithHttpInfo**](AdTargetingApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options |
 
+
+
+## browseAdTargeting
+
+> BrowseAdTargeting200Response browseAdTargeting(accountId, adAccountId, type, parentNodeId, selectable)
+
+Browse targeting categories
+
+The whole Meta detailed-targeting category tree of one ad account (Meta&#39;s &#x60;GET /act_{ad_account_id}/targetingbrowse&#x60;), as one flat list you can render as a tree. Use it to show what can be targeted without a keyword; use &#x60;GET /v1/ads/targeting/search&#x60; to find an entry by name.  Every node is one of two kinds:  - **Selectable entity** (&#x60;selectable: true&#x60;): an interest, behavior or demographic Meta   gives an id. &#x60;id&#x60; plus &#x60;type&#x60; is what a targeting spec takes. &#x60;interests&#x60;, &#x60;behaviors&#x60;   and &#x60;industries&#x60; ids go in &#x60;TargetingSpec.interests&#x60;, &#x60;behaviors&#x60; and &#x60;workIndustries&#x60;   on &#x60;POST /v1/ads/create&#x60;; every other type goes in &#x60;rawTargeting.flexible_spec&#x60; under   its &#x60;type&#x60; as the key. &#x60;life_events&#x60;, &#x60;family_statuses&#x60; and &#x60;income&#x60; take objects   (&#x60;{ \&quot;flexible_spec\&quot;: [{ \&quot;life_events\&quot;: [{ \&quot;id\&quot;: \&quot;6017476616183\&quot; }] }] }&#x60;), while   &#x60;education_statuses&#x60; and &#x60;relationship_statuses&#x60; take the bare number   (&#x60;{ \&quot;flexible_spec\&quot;: [{ \&quot;education_statuses\&quot;: [3] }] }&#x60;): Meta answers an object   there with a 500. - **Organizational node** (&#x60;selectable: false&#x60;, &#x60;id: null&#x60;): a category such as   &#x60;Demographics &gt; Financial &gt; Income&#x60; that only groups other nodes and cannot be targeted.   A few carry a &#x60;type&#x60; and have no children (&#x60;Schools&#x60;, &#x60;Employers&#x60;, &#x60;Job titles&#x60;,   &#x60;Fields of study&#x60;, &#x60;Undergrad years&#x60;): those are open-ended categories Meta only exposes   through search (&#x60;dimension&#x3D;workEmployer&#x60; / &#x60;workPosition&#x60; on the search endpoint).  &#x60;nodeId&#x60; identifies a node within this response and &#x60;parentNodeId&#x60; points at its parent (&#x60;null&#x60; for the three roots &#x60;Demographics&#x60;, &#x60;Interests&#x60;, &#x60;Behaviors&#x60;). A selectable node&#39;s &#x60;nodeId&#x60; is &#x60;{type}:{id}&#x60;, because Meta reuses small ids across types (education status 3 and relationship status 3 are different entities). An organizational node&#39;s &#x60;nodeId&#x60; is its full path joined with &#x60; &gt; &#x60;. Labels are kept exactly as Meta sends them, including stray leading or trailing spaces, because Meta has sibling nodes that differ only by whitespace.  The interests branch is Meta&#39;s curated browse list (a few hundred entries), not every interest Meta can target: search finds the long tail.  **No pagination.** Meta returns the whole catalog in one response (about 770 nodes) and ignores &#x60;limit&#x60;, so there is no cursor. Narrow it with &#x60;type&#x60;, &#x60;parentNodeId&#x60; and &#x60;selectable&#x60; instead; they are applied by Zernio. The catalog is cached for an hour per ad account and connection. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdTargetingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdTargetingApi apiInstance = new AdTargetingApi(defaultClient);
+        String accountId = "accountId_example"; // String | A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported.
+        String adAccountId = "adAccountId_example"; // String | The Meta ad account to browse as, in the form \"act_<digits>\".
+        String type = "type_example"; // String | Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400.
+        String parentNodeId = "parentNodeId_example"; // String | Only the descendants (every depth) of this organizational node, e.g. `Demographics > Financial`. A nodeId that is not an organizational node of the catalog returns 400.
+        Boolean selectable = true; // Boolean | `true` for selectable entities only, `false` for organizational nodes only.
+        try {
+            BrowseAdTargeting200Response result = apiInstance.browseAdTargeting(accountId, adAccountId, type, parentNodeId, selectable);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdTargetingApi#browseAdTargeting");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported. | |
+| **adAccountId** | **String**| The Meta ad account to browse as, in the form \&quot;act_&lt;digits&gt;\&quot;. | |
+| **type** | **String**| Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400. | [optional] |
+| **parentNodeId** | **String**| Only the descendants (every depth) of this organizational node, e.g. &#x60;Demographics &gt; Financial&#x60;. A nodeId that is not an organizational node of the catalog returns 400. | [optional] |
+| **selectable** | **Boolean**| &#x60;true&#x60; for selectable entities only, &#x60;false&#x60; for organizational nodes only. | [optional] |
+
+### Return type
+
+[**BrowseAdTargeting200Response**](BrowseAdTargeting200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The category tree as a flat list, in Meta&#39;s order (parents before their children). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | accountId is not a Meta connection (platform_not_supported). |  -  |
+
+## browseAdTargetingWithHttpInfo
+
+> ApiResponse<BrowseAdTargeting200Response> browseAdTargeting browseAdTargetingWithHttpInfo(accountId, adAccountId, type, parentNodeId, selectable)
+
+Browse targeting categories
+
+The whole Meta detailed-targeting category tree of one ad account (Meta&#39;s &#x60;GET /act_{ad_account_id}/targetingbrowse&#x60;), as one flat list you can render as a tree. Use it to show what can be targeted without a keyword; use &#x60;GET /v1/ads/targeting/search&#x60; to find an entry by name.  Every node is one of two kinds:  - **Selectable entity** (&#x60;selectable: true&#x60;): an interest, behavior or demographic Meta   gives an id. &#x60;id&#x60; plus &#x60;type&#x60; is what a targeting spec takes. &#x60;interests&#x60;, &#x60;behaviors&#x60;   and &#x60;industries&#x60; ids go in &#x60;TargetingSpec.interests&#x60;, &#x60;behaviors&#x60; and &#x60;workIndustries&#x60;   on &#x60;POST /v1/ads/create&#x60;; every other type goes in &#x60;rawTargeting.flexible_spec&#x60; under   its &#x60;type&#x60; as the key. &#x60;life_events&#x60;, &#x60;family_statuses&#x60; and &#x60;income&#x60; take objects   (&#x60;{ \&quot;flexible_spec\&quot;: [{ \&quot;life_events\&quot;: [{ \&quot;id\&quot;: \&quot;6017476616183\&quot; }] }] }&#x60;), while   &#x60;education_statuses&#x60; and &#x60;relationship_statuses&#x60; take the bare number   (&#x60;{ \&quot;flexible_spec\&quot;: [{ \&quot;education_statuses\&quot;: [3] }] }&#x60;): Meta answers an object   there with a 500. - **Organizational node** (&#x60;selectable: false&#x60;, &#x60;id: null&#x60;): a category such as   &#x60;Demographics &gt; Financial &gt; Income&#x60; that only groups other nodes and cannot be targeted.   A few carry a &#x60;type&#x60; and have no children (&#x60;Schools&#x60;, &#x60;Employers&#x60;, &#x60;Job titles&#x60;,   &#x60;Fields of study&#x60;, &#x60;Undergrad years&#x60;): those are open-ended categories Meta only exposes   through search (&#x60;dimension&#x3D;workEmployer&#x60; / &#x60;workPosition&#x60; on the search endpoint).  &#x60;nodeId&#x60; identifies a node within this response and &#x60;parentNodeId&#x60; points at its parent (&#x60;null&#x60; for the three roots &#x60;Demographics&#x60;, &#x60;Interests&#x60;, &#x60;Behaviors&#x60;). A selectable node&#39;s &#x60;nodeId&#x60; is &#x60;{type}:{id}&#x60;, because Meta reuses small ids across types (education status 3 and relationship status 3 are different entities). An organizational node&#39;s &#x60;nodeId&#x60; is its full path joined with &#x60; &gt; &#x60;. Labels are kept exactly as Meta sends them, including stray leading or trailing spaces, because Meta has sibling nodes that differ only by whitespace.  The interests branch is Meta&#39;s curated browse list (a few hundred entries), not every interest Meta can target: search finds the long tail.  **No pagination.** Meta returns the whole catalog in one response (about 770 nodes) and ignores &#x60;limit&#x60;, so there is no cursor. Narrow it with &#x60;type&#x60;, &#x60;parentNodeId&#x60; and &#x60;selectable&#x60; instead; they are applied by Zernio. The catalog is cached for an hour per ad account and connection. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdTargetingApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdTargetingApi apiInstance = new AdTargetingApi(defaultClient);
+        String accountId = "accountId_example"; // String | A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported.
+        String adAccountId = "adAccountId_example"; // String | The Meta ad account to browse as, in the form \"act_<digits>\".
+        String type = "type_example"; // String | Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400.
+        String parentNodeId = "parentNodeId_example"; // String | Only the descendants (every depth) of this organizational node, e.g. `Demographics > Financial`. A nodeId that is not an organizational node of the catalog returns 400.
+        Boolean selectable = true; // Boolean | `true` for selectable entities only, `false` for organizational nodes only.
+        try {
+            ApiResponse<BrowseAdTargeting200Response> response = apiInstance.browseAdTargetingWithHttpInfo(accountId, adAccountId, type, parentNodeId, selectable);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdTargetingApi#browseAdTargeting");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| A connected Meta account (metaads, facebook or instagram). Any other ad platform returns 501 platform_not_supported. | |
+| **adAccountId** | **String**| The Meta ad account to browse as, in the form \&quot;act_&lt;digits&gt;\&quot;. | |
+| **type** | **String**| Only the nodes of this Meta type (e.g. interests, behaviors, life_events, income), plus the organizational nodes leading to them. A type that is not in the catalog returns 400. | [optional] |
+| **parentNodeId** | **String**| Only the descendants (every depth) of this organizational node, e.g. &#x60;Demographics &gt; Financial&#x60;. A nodeId that is not an organizational node of the catalog returns 400. | [optional] |
+| **selectable** | **Boolean**| &#x60;true&#x60; for selectable entities only, &#x60;false&#x60; for organizational nodes only. | [optional] |
+
+### Return type
+
+ApiResponse<[**BrowseAdTargeting200Response**](BrowseAdTargeting200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The category tree as a flat list, in Meta&#39;s order (parents before their children). |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | accountId is not a Meta connection (platform_not_supported). |  -  |
 
 
 ## estimateAdReach
