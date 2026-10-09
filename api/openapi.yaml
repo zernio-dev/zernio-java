@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.245.0
+  version: 1.245.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47247,6 +47247,11 @@ paths:
         connection. A business-login connection has no posting account, so pass
         the post as `platformPostId` (Facebook `pageId_postId` or an Instagram
         media id); a Zernio `postId` is a 400 there.
+
+        For X, `accountId` may be the posting X account or its X Ads
+        connection: either resolves the other on the same profile. A Zernio
+        `postId` on an X Ads connection resolves through its X account, and is
+        a 400 when the profile has none (pass `platformPostId` instead).
 
         **Messaging boosts (Meta).** Use `goal: engagement` with
         `callToAction: WHATSAPP_MESSAGE`, `MESSAGE_PAGE`, or `INSTAGRAM_MESSAGE`.
