@@ -1311,7 +1311,7 @@ ApiResponse<Void>
 
 API changelog entry published event
 
-Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live. The event belongs to no profile or account: every active subscription that opted in receives it, scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not. &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified); &#x60;entry.message&#x60; is the written announcement. Act on &#x60;changes&#x60; and &#x60;type&#x60;, read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
+Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live. The event belongs to no profile or account: every active subscription that opted in receives it, scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not. &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified); &#x60;entry.impact&#x60; says whether an existing integration must act (&#x60;action_required&#x60;), only gained something (&#x60;additive&#x60;) or nothing changed beyond descriptions (&#x60;none&#x60;); &#x60;entry.message&#x60; is the written announcement. Act on &#x60;impact&#x60; and &#x60;changes&#x60;, read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
 
 ### Example
 
@@ -1380,7 +1380,7 @@ null (empty response body)
 
 API changelog entry published event
 
-Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live. The event belongs to no profile or account: every active subscription that opted in receives it, scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not. &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified); &#x60;entry.message&#x60; is the written announcement. Act on &#x60;changes&#x60; and &#x60;type&#x60;, read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
+Fired when an entry is published to the API changelog (https://docs.zernio.com/changelog), which happens when a change to this OpenAPI spec goes live. The event belongs to no profile or account: every active subscription that opted in receives it, scoped subscriptions (&#x60;profileIds&#x60; / &#x60;accountIds&#x60;) do not. &#x60;entry.changes&#x60; is the deterministic diff of the spec (operations and schemas added, removed and modified); &#x60;entry.impact&#x60; says whether an existing integration must act (&#x60;action_required&#x60;), only gained something (&#x60;additive&#x60;) or nothing changed beyond descriptions (&#x60;none&#x60;); &#x60;entry.message&#x60; is the written announcement. Act on &#x60;impact&#x60; and &#x60;changes&#x60;, read &#x60;message&#x60; for the why. Entries are listed by &#x60;GET /v1/changelog&#x60;. 
 
 ### Example
 

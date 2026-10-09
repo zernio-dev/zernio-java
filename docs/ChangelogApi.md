@@ -11,11 +11,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## listChangelog
 
-> ListChangelog200Response listChangelog(type, platform, before, limit)
+> ListChangelog200Response listChangelog(type, impact, platform, before, limit)
 
 List API changelog entries
 
-The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
+The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, its &#x60;impact&#x60; on existing integrations, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
 
 ### Example
 
@@ -34,11 +34,12 @@ public class Example {
 
         ChangelogApi apiInstance = new ChangelogApi(defaultClient);
         String type = "new_feature"; // String | Only entries of this type.
+        String impact = "none"; // String | Only entries with this impact. `action_required` lists the changes an integration may need to act on.
         String platform = "whatsapp"; // String | Only entries tagged with this platform or area slug (see `platforms` on the entry). One slug per request.
         OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only entries published strictly before this instant. Pass the previous page's `nextCursor`.
         Integer limit = 20; // Integer | 
         try {
-            ListChangelog200Response result = apiInstance.listChangelog(type, platform, before, limit);
+            ListChangelog200Response result = apiInstance.listChangelog(type, impact, platform, before, limit);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ChangelogApi#listChangelog");
@@ -57,6 +58,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **type** | **String**| Only entries of this type. | [optional] [enum: new_feature, breaking_change, improvement, deprecation, minor] |
+| **impact** | **String**| Only entries with this impact. &#x60;action_required&#x60; lists the changes an integration may need to act on. | [optional] [enum: none, additive, action_required] |
 | **platform** | **String**| Only entries tagged with this platform or area slug (see &#x60;platforms&#x60; on the entry). One slug per request. | [optional] |
 | **before** | **OffsetDateTime**| Only entries published strictly before this instant. Pass the previous page&#39;s &#x60;nextCursor&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
@@ -84,11 +86,11 @@ No authorization required
 
 ## listChangelogWithHttpInfo
 
-> ApiResponse<ListChangelog200Response> listChangelog listChangelogWithHttpInfo(type, platform, before, limit)
+> ApiResponse<ListChangelog200Response> listChangelog listChangelogWithHttpInfo(type, impact, platform, before, limit)
 
 List API changelog entries
 
-The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
+The API changelog, newest first. No API key needed; one address may make 120 requests a minute. Each entry is what the &#x60;api.changelog.published&#x60; webhook delivered: the announcement in &#x60;message&#x60;, its &#x60;impact&#x60; on existing integrations, and in &#x60;changes&#x60; the deterministic diff of the OpenAPI spec (operations and schemas added, removed and modified) for automation to act on. Page with &#x60;before&#x60; set to the previous page&#39;s &#x60;nextCursor&#x60;. 
 
 ### Example
 
@@ -108,11 +110,12 @@ public class Example {
 
         ChangelogApi apiInstance = new ChangelogApi(defaultClient);
         String type = "new_feature"; // String | Only entries of this type.
+        String impact = "none"; // String | Only entries with this impact. `action_required` lists the changes an integration may need to act on.
         String platform = "whatsapp"; // String | Only entries tagged with this platform or area slug (see `platforms` on the entry). One slug per request.
         OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only entries published strictly before this instant. Pass the previous page's `nextCursor`.
         Integer limit = 20; // Integer | 
         try {
-            ApiResponse<ListChangelog200Response> response = apiInstance.listChangelogWithHttpInfo(type, platform, before, limit);
+            ApiResponse<ListChangelog200Response> response = apiInstance.listChangelogWithHttpInfo(type, impact, platform, before, limit);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -133,6 +136,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **type** | **String**| Only entries of this type. | [optional] [enum: new_feature, breaking_change, improvement, deprecation, minor] |
+| **impact** | **String**| Only entries with this impact. &#x60;action_required&#x60; lists the changes an integration may need to act on. | [optional] [enum: none, additive, action_required] |
 | **platform** | **String**| Only entries tagged with this platform or area slug (see &#x60;platforms&#x60; on the entry). One slug per request. | [optional] |
 | **before** | **OffsetDateTime**| Only entries published strictly before this instant. Pass the previous page&#39;s &#x60;nextCursor&#x60;. | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 20] |
