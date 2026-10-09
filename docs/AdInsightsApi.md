@@ -1197,7 +1197,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 
 Per-creative performance inside TikTok Smart+ ads
 
-Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
 
 ### Example
 
@@ -1287,7 +1287,7 @@ public class Example {
 
 Per-creative performance inside TikTok Smart+ ads
 
-Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
 
 ### Example
 
