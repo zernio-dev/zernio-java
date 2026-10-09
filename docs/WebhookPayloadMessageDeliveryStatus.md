@@ -8,6 +8,7 @@ Shared payload for message.delivered, message.read, message.played and message.f
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**test** | **Boolean** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. |  [optional] |
 |**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. It identifies the event only, never an account or other resource. |  |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**message** | [**InboxWebhookMessage**](InboxWebhookMessage.md) |  |  |

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.245.1
+  version: 1.246.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19269,6 +19269,15 @@ paths:
       description: |
         Send a test webhook to verify your endpoint is configured correctly. The test payload includes event: "webhook.test" to distinguish it from real events.
 
+        Pass `event` to receive a sample payload of that event instead, so you can exercise the handler
+        for an event that only fires on a real outage or lifecycle change (e.g. `account.ads.sync_failed`).
+        The sample has the exact shape documented for the event under Webhook Events and is delivered
+        like a real one (same `X-Zernio-Event`, `X-Zernio-Event-Id` and `X-Zernio-Signature` headers),
+        with a top-level `test: true` and placeholder ids, never your data. The webhook does not have
+        to be subscribed to the event, but a webhook that lists the event's resource group in its
+        `disabledResourceGroups` answers 403, as does an API key with that group disabled. The delivery
+        shows up in the webhook logs with `test: true`.
+
         `webhook.test` belongs to the `webhooks` resource group, so a key with that
         group disabled is rejected with 403, as is a test fire on a subscription that
         lists `webhooks` in its own `disabledResourceGroups` (a 403, not a reported
@@ -19279,8 +19288,16 @@ paths:
       requestBody:
         content:
           application/json:
-            example:
-              webhookId: 507f1f77bcf86cd799439011
+            examples:
+              generic:
+                summary: Generic webhook.test payload
+                value:
+                  webhookId: 507f1f77bcf86cd799439011
+              sampleEvent:
+                summary: Sample payload of a specific event
+                value:
+                  webhookId: 507f1f77bcf86cd799439011
+                  event: account.ads.sync_failed
             schema:
               $ref: "#/components/schemas/testWebhook_request"
         required: true
@@ -19295,7 +19312,8 @@ paths:
                 $ref: "#/components/schemas/unpublishPost_200_response"
           description: Test webhook sent successfully
         "400":
-          description: Webhook ID required
+          description: "Webhook ID missing, or `event` is not one of the listed events\
+            \ (omit `event` to send `webhook.test`)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -68420,6 +68438,7 @@ components:
         eventId: eventId
         webhookId: webhookId
         responseBody: responseBody
+        test: true
         requestPayload:
           key: ""
         responseTime: 1
@@ -68449,6 +68468,10 @@ components:
         event:
           description: Event type that triggered the delivery (e.g. post.published)
           type: string
+        test:
+          description: "true when the delivery was a sample fired by POST /v1/webhooks/test\
+            \ with an event, not a real event. Absent otherwise."
+          type: boolean
         url:
           description: Destination URL the webhook was delivered to
           format: uri
@@ -68485,6 +68508,7 @@ components:
     WebhookPayloadPost:
       description: Webhook payload for post events
       example:
+        test: true
         post:
           metadata:
             key: ""
@@ -68527,6 +68551,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - post.scheduled
@@ -68570,6 +68598,7 @@ components:
         block identifies the connected account behind that
         platform-write.
       example:
+        test: true
         post:
           metadata:
             key: ""
@@ -68626,6 +68655,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - post.platform.published
@@ -68656,6 +68689,7 @@ components:
     WebhookPayloadAccountConnected:
       description: Webhook payload for account connected events
       example:
+        test: true
         id: id
         event: account.connected
         account:
@@ -68671,6 +68705,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - account.connected
@@ -69067,6 +69105,7 @@ components:
     WebhookPayloadPhoneNumberStockAvailable:
       description: Webhook payload for phone_number.stock_available events
       example:
+        test: true
         id: id
         event: phone_number.stock_available
         stock:
@@ -69085,6 +69124,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - phone_number.stock_available
@@ -69106,6 +69149,7 @@ components:
     WebhookPayloadAccountDisconnected:
       description: Webhook payload for account disconnected events
       example:
+        test: true
         id: id
         event: account.disconnected
         account:
@@ -69123,6 +69167,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - account.disconnected
@@ -69189,6 +69237,7 @@ components:
         at the retry cap. It does not fire again for the same ad account until
         `account.ads.sync_recovered`. Metrics for the ad account are stale meanwhile.
       example:
+        test: true
         adAccount:
           name: name
           platformAdAccountId: platformAdAccountId
@@ -69211,6 +69260,10 @@ components:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - account.ads.sync_failed
@@ -69238,6 +69291,7 @@ components:
         Webhook payload for `account.ads.sync_recovered` events. Fired once when an ad account
         previously reported by `account.ads.sync_failed` syncs successfully again.
       example:
+        test: true
         adAccount:
           name: name
           platformAdAccountId: platformAdAccountId
@@ -69258,6 +69312,10 @@ components:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - account.ads.sync_recovered
@@ -69286,6 +69344,7 @@ components:
         Fired once per ads-enabled account when the initial discovery + 90-day
         ad backfill finishes (whether it succeeded fully, partially, or failed).
       example:
+        test: true
         id: id
         event: account.ads.initial_sync_completed
         sync:
@@ -69316,6 +69375,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - account.ads.initial_sync_completed
@@ -69364,6 +69427,7 @@ components:
         this event is flowing can suppress the low-volume publishing events that share
         the same subscription.
       example:
+        test: true
         id: id
         event: analytics.synced
         sync:
@@ -69381,6 +69445,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - analytics.synced
@@ -69406,6 +69474,7 @@ components:
         \ fire this event. TikTok events carry only the author id: the comment.update\
         \ webhook has no username, picture or owner flag."
       example:
+        test: true
         post:
           imageUrl: imageUrl
           id: id
@@ -69456,6 +69525,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - comment.received
@@ -69484,6 +69557,7 @@ components:
       description: Webhook payload for lead.received events (Meta Lead Gen / Instant
         Forms).
       example:
+        test: true
         id: id
         event: lead.received
         lead:
@@ -69510,6 +69584,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - lead.received
@@ -69589,6 +69667,7 @@ components:
       description: Webhook payload for the review.new event (new review posted on
         a connected account).
       example:
+        test: true
         review:
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasReply: true
@@ -69617,6 +69696,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - review.new
@@ -69647,6 +69730,7 @@ components:
         notification when a reviewReply is written. Same shape as review.new. When a reply
         is present, review.hasReply is true and review.reply is populated.
       example:
+        test: true
         review:
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasReply: true
@@ -69675,6 +69759,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - review.updated
@@ -69801,6 +69889,7 @@ components:
         the Google UI), NOT a post published through Zernio. Poll-driven (~hourly),
         not real-time. On post.external.deleted, post.deletedAt is populated.
       example:
+        test: true
         post:
           publishedAt: 2000-01-23T04:56:07.000+00:00
           mediaType: mediaType
@@ -69841,6 +69930,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - post.external.created
@@ -70122,6 +70215,7 @@ components:
           messageId: messageId
           platformMessageId: platformMessageId
           reactedAt: 2000-01-23T04:56:07.000+00:00
+        test: true
         id: id
         event: reaction.received
         conversation:
@@ -70147,6 +70241,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - reaction.received
@@ -70188,6 +70286,7 @@ components:
             product_id: product_id
             photo_url: photo_url
             ad_title: ad_title
+        test: true
         sender:
           contactId: contactId
           id: id
@@ -70216,6 +70315,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - referral.received
@@ -70325,6 +70428,7 @@ components:
           - key: ""
           - key: ""
           buttonPayload: buttonPayload
+        test: true
         id: id
         event: message.received
         message:
@@ -70393,6 +70497,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - message.received
@@ -70441,6 +70549,7 @@ components:
           contacts:
           - key: ""
           - key: ""
+        test: true
         id: id
         event: message.sent
         message:
@@ -70502,6 +70611,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - message.sent
@@ -70581,6 +70694,7 @@ components:
         (oldest first), so the last entry is the version immediately before
         the current content.
       example:
+        test: true
         editHistory:
         - attachments:
           - payload: "{}"
@@ -70655,6 +70769,10 @@ components:
         editCount: 6
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -70714,6 +70832,7 @@ components:
         moderation, compliance, or archival use cases.
       example:
         deletedAt: 2000-01-23T04:56:07.000+00:00
+        test: true
         id: id
         event: message.deleted
         message:
@@ -70767,6 +70886,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -70819,6 +70942,7 @@ components:
           originType: utility
           id: id
           expiresAt: 2000-01-23T04:56:07.000+00:00
+        test: true
         id: id
         event: message.delivered
         message:
@@ -70885,6 +71009,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71005,6 +71133,7 @@ components:
         platform (Instagram, Messenger/Facebook, Telegram, WhatsApp, X, Reddit,
         Bluesky, SMS, TikTok). Platform-agnostic: one subscription covers every DM platform.
       example:
+        test: true
         startedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         event: conversation.started
@@ -71027,6 +71156,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71143,6 +71276,7 @@ components:
         Business Agent took it over, handed it to you, or another partner app took it.
         Facebook and Instagram: another app passed the thread to you, or took or received it.
       example:
+        test: true
         control:
           owner: app
           previousOwner: app
@@ -71170,6 +71304,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71424,6 +71562,7 @@ components:
           to: to
           phoneNumberId: phoneNumberId
           direction: inbound
+        test: true
         id: id
         event: call.received
         account:
@@ -71435,6 +71574,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71494,6 +71637,7 @@ components:
           id: id
           to: to
           direction: inbound
+        test: true
         id: id
         event: call.ended
         account:
@@ -71505,6 +71649,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71548,6 +71696,7 @@ components:
             message: message
           phoneNumberId: phoneNumberId
           direction: inbound
+        test: true
         id: id
         event: call.failed
         account:
@@ -71559,6 +71708,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71591,6 +71744,7 @@ components:
         when a consumer accepts or rejects an interactive
         `call_permission_request` message.
       example:
+        test: true
         permission:
           isPermanent: true
           response: accept
@@ -71608,6 +71762,10 @@ components:
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -71640,6 +71798,7 @@ components:
         `POST /v1/ads/videos` call made with `async: true`, when Meta finishes
         processing the video (Meta only).
       example:
+        test: true
         id: id
         video:
           id: id
@@ -71660,6 +71819,10 @@ components:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - ad.video.processed
@@ -71696,6 +71859,7 @@ components:
         `effective_status`. An ad-level outcome is delivered once per status:
         whichever source sees it first sends it.
       example:
+        test: true
         adObject:
           level: CAMPAIGN
           platformId: "120244894077860689"
@@ -71721,6 +71885,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - ad.status_changed
@@ -71760,6 +71928,7 @@ components:
           language: language
           templateId: templateId
           status: APPROVED
+        test: true
         id: id
         event: whatsapp.template.status_updated
         account:
@@ -71775,6 +71944,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.template.status_updated
@@ -71812,6 +71985,7 @@ components:
           templateId: templateId
           category: UTILITY
           scheduledCategory: UTILITY
+        test: true
         id: id
         event: whatsapp.template.category_updated
         account:
@@ -71827,6 +72001,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.template.category_updated
@@ -71858,6 +72036,7 @@ components:
         reports `name_status: AVAILABLE_WITHOUT_REVIEW` on the phone node
         instead, and Meta never sends this webhook field for that case.
       example:
+        test: true
         name:
           requestedName: requestedName
           rejectionReason: rejectionReason
@@ -71878,6 +72057,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.account.name_status_updated
@@ -71905,6 +72088,7 @@ components:
         number's quality rating or messaging limit tier differs from the value Zernio held.
         Tier changes that Meta applies to the whole portfolio fire once per connected number.
       example:
+        test: true
         id: id
         event: whatsapp.account.quality_updated
         account:
@@ -71928,6 +72112,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.account.quality_updated
@@ -71955,6 +72143,7 @@ components:
         flags a violation on, disables, deletes or reinstates the WhatsApp Business Account.
         The same status is also exposed on the account as `platformStatus`.
       example:
+        test: true
         id: id
         event: whatsapp.account.status_updated
         account:
@@ -71982,6 +72171,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.account.status_updated
@@ -72009,6 +72202,7 @@ components:
         `account_alerts` webhook. Alerts about a specific number go to that number's
         account; business-level alerts go to every connected number on the WABA.
       example:
+        test: true
         alert:
           severity: severity
           entityType: entityType
@@ -72031,6 +72225,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.account.alert_received
@@ -72115,6 +72313,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - whatsapp.contact.identity_changed
@@ -72326,6 +72528,7 @@ components:
           platforms:
           - whatsapp
           - inbox
+        test: true
         id: id
         event: api.changelog.published
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -72335,6 +72538,10 @@ components:
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
             \ It identifies the event only, never an account or other resource."
           type: string
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         event:
           enum:
           - api.changelog.published
@@ -88279,6 +88486,7 @@ components:
           type: object
     WebhookPayloadCommerceProduct:
       example:
+        test: true
         resource:
           id: id
           platformStatus: platformStatus
@@ -88292,6 +88500,10 @@ components:
         event: commerce.product.created
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           type: string
         event:
@@ -88313,6 +88525,7 @@ components:
           $ref: "#/components/schemas/WebhookPayloadCommerceProduct_resource"
     WebhookPayloadContactTag:
       example:
+        test: true
         contact:
           id: id
         id: id
@@ -88321,6 +88534,10 @@ components:
         event: contact.tag_added
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Event id, the dedupe key."
           type: string
@@ -88353,6 +88570,7 @@ components:
       - timestamp
     WebhookPayloadContactFieldChanged:
       example:
+        test: true
         field: field
         contact:
           id: id
@@ -88363,6 +88581,10 @@ components:
         value: ""
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Event id, the dedupe key."
           type: string
@@ -88402,6 +88624,7 @@ components:
         sequence:
           name: name
           id: id
+        test: true
         exitReason: completed
         contact:
           id: id
@@ -88411,6 +88634,10 @@ components:
         enrollment:
           id: id
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Event id, the dedupe key."
           type: string
@@ -88452,6 +88679,7 @@ components:
         execution:
           id: id
           status: running
+        test: true
         workflow:
           name: name
           id: id
@@ -88467,6 +88695,10 @@ components:
           id: id
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Event id, the dedupe key."
           type: string
@@ -88503,6 +88735,7 @@ components:
       - workflow
     WebhookPayloadSupportRun:
       example:
+        test: true
         run:
           threadId: threadId
           stopReason: answered
@@ -88524,6 +88757,10 @@ components:
         event: support.run.completed
         timestamp: 2000-01-23T04:56:07.000+00:00
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Event id, the dedupe key."
           type: string
@@ -103365,6 +103602,7 @@ components:
           eventId: eventId
           webhookId: webhookId
           responseBody: responseBody
+          test: true
           requestPayload:
             key: ""
           responseTime: 1
@@ -103380,6 +103618,7 @@ components:
           eventId: eventId
           webhookId: webhookId
           responseBody: responseBody
+          test: true
           requestPayload:
             key: ""
           responseTime: 1
@@ -103415,6 +103654,91 @@ components:
       properties:
         webhookId:
           description: ID of the webhook to test
+          type: string
+        event:
+          description: "Send a sample payload of this event instead of `webhook.test`.\
+            \ The sample is marked with `test: true`."
+          enum:
+          - post.scheduled
+          - post.published
+          - post.failed
+          - post.partial
+          - post.cancelled
+          - post.recycled
+          - post.platform.published
+          - post.platform.failed
+          - post.platform.deleted
+          - post.tiktok.url_resolved
+          - post.external.created
+          - post.external.updated
+          - post.external.deleted
+          - account.connected
+          - account.disconnected
+          - account.ads.initial_sync_completed
+          - account.ads.sync_failed
+          - account.ads.sync_recovered
+          - analytics.synced
+          - message.received
+          - message.sent
+          - message.edited
+          - message.deleted
+          - message.delivered
+          - message.read
+          - message.played
+          - message.failed
+          - reaction.received
+          - referral.received
+          - conversation.started
+          - conversation.control_changed
+          - contact.tag_added
+          - contact.tag_removed
+          - contact.field_changed
+          - sequence.enrolled
+          - sequence.exited
+          - workflow.run.started
+          - workflow.run.completed
+          - workflow.run.failed
+          - support.run.completed
+          - support.run.failed
+          - call.received
+          - call.ended
+          - call.failed
+          - call.permission_request
+          - comment.received
+          - review.new
+          - review.updated
+          - ad.status_changed
+          - ad.video.processed
+          - lead.received
+          - whatsapp.template.status_updated
+          - whatsapp.template.category_updated
+          - whatsapp.account.name_status_updated
+          - whatsapp.account.quality_updated
+          - whatsapp.account.status_updated
+          - whatsapp.account.alert_received
+          - whatsapp.contact.identity_changed
+          - whatsapp.number.activated
+          - whatsapp.number.declined
+          - whatsapp.number.action_required
+          - whatsapp.automatic_event
+          - whatsapp.number.verification_required
+          - whatsapp.number.suspended
+          - whatsapp.number.reactivated
+          - whatsapp.number.released
+          - whatsapp.number.kyc_submitted
+          - phone_number.stock_available
+          - sms.registration.action_required
+          - sms.registration.status_updated
+          - branded_calling.identity.status_updated
+          - branded_calling.identity.action_required
+          - branded_calling.number.status_updated
+          - rcs.agent.status_updated
+          - verification.approved
+          - verification.failed
+          - commerce.product.created
+          - commerce.product.updated
+          - commerce.product.deleted
+          - api.changelog.published
           type: string
       required:
       - webhookId
@@ -148725,6 +149049,10 @@ components:
           type: number
     onWhatsAppAutomaticEvent_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148768,6 +149096,10 @@ components:
           type: string
     onWhatsAppNumberActivated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148793,6 +149125,10 @@ components:
         profileId: {}
     onWhatsAppNumberDeclined_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148826,6 +149162,10 @@ components:
           - declined
     onWhatsAppNumberActionRequired_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148856,6 +149196,10 @@ components:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
     onWhatsAppNumberVerificationRequired_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148877,6 +149221,10 @@ components:
           type: string
     onWhatsAppNumberSuspended_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148899,6 +149247,10 @@ components:
           type: string
     onWhatsAppNumberReactivated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148918,6 +149270,10 @@ components:
           $ref: "#/components/schemas/onWhatsAppNumberDeclined_request_number"
     onWhatsAppNumberReleased_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148940,6 +149296,10 @@ components:
           type: string
     onWhatsAppNumberKycSubmitted_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148971,6 +149331,10 @@ components:
           type: string
     onVerificationApproved_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -148998,6 +149362,10 @@ components:
         to: {}
     onVerificationFailed_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149038,6 +149406,10 @@ components:
           type: string
     onSmsRegistrationActionRequired_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149082,6 +149454,10 @@ components:
           type: string
     onSmsRegistrationStatusUpdated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149119,6 +149495,10 @@ components:
           type: string
     onBrandedCallingIdentityStatusUpdated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149157,6 +149537,10 @@ components:
         status: {}
     onBrandedCallingIdentityActionRequired_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149206,6 +149590,10 @@ components:
           - permanently_rejected
     onBrandedCallingNumberStatusUpdated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\
@@ -149239,6 +149627,10 @@ components:
           description: "The rcs inbox account, once the agent exists with the carriers."
     onRcsAgentStatusUpdated_request:
       properties:
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
         id:
           description: "Stable webhook event ID: the dedupe key, also sent as the\
             \ X-Zernio-Event-Id header and identical on every retry and redelivery.\

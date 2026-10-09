@@ -9,6 +9,7 @@ Webhook payload for `account.ads.sync_failed` events. Fired once per ad account 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Stable webhook event ID: the dedupe key, also sent as the X-Zernio-Event-Id header and identical on every retry and redelivery. |  |
+|**test** | **Boolean** | Always true when present: only a sample sent by POST /v1/webhooks/test with an event carries it. Real deliveries never do. |  [optional] |
 |**event** | [**EventEnum**](#EventEnum) |  |  |
 |**account** | [**WebhookAdsSyncAccount**](WebhookAdsSyncAccount.md) |  |  |
 |**adAccount** | [**WebhookAdsSyncAdAccount**](WebhookAdsSyncAdAccount.md) |  |  |

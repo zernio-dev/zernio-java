@@ -13,6 +13,7 @@ A single webhook delivery attempt recorded by Zernio (30-day retention).
 |**webhookName** | **String** | Name of the webhook configuration at delivery time |  [optional] |
 |**eventId** | **String** | Stable webhook event ID: the payload &#x60;id&#x60;, also sent as the X-Zernio-Event-Id header. Shared by every attempt and redelivery of the same event. |  [optional] |
 |**event** | **String** | Event type that triggered the delivery (e.g. post.published) |  [optional] |
+|**test** | **Boolean** | true when the delivery was a sample fired by POST /v1/webhooks/test with an event, not a real event. Absent otherwise. |  [optional] |
 |**url** | **URI** | Destination URL the webhook was delivered to |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) | Delivery outcome |  [optional] |
 |**statusCode** | **Integer** | HTTP status code returned by the destination endpoint |  [optional] |
