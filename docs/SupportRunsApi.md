@@ -90,6 +90,7 @@ public class Example {
 | **409** | Code &#x60;support_run_in_progress&#x60;: the thread already has a run queued or running, so poll it first. Code &#x60;billing_setup_incomplete&#x60;: no billing customer to attach a card to, contact support. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
 | **422** | Code &#x60;usage_billing_required&#x60;: support runs need a usage-based plan. Also returned when an Idempotency-Key is reused with a different request. |  -  |
 | **429** | Code &#x60;support_active_runs_limit&#x60;: 3 runs are already active, retry when one finishes. Code &#x60;support_monthly_cap_exceeded&#x60;: this run could take the account past $100 for the UTC month; &#x60;Retry-After&#x60; runs until the next month starts, which can be weeks. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## createSupportRunWithHttpInfo
 
@@ -173,6 +174,7 @@ ApiResponse<[**CreateSupportRun202Response**](CreateSupportRun202Response.md)>
 | **409** | Code &#x60;support_run_in_progress&#x60;: the thread already has a run queued or running, so poll it first. Code &#x60;billing_setup_incomplete&#x60;: no billing customer to attach a card to, contact support. Also returned while a request with the same Idempotency-Key is still processing. |  -  |
 | **422** | Code &#x60;usage_billing_required&#x60;: support runs need a usage-based plan. Also returned when an Idempotency-Key is reused with a different request. |  -  |
 | **429** | Code &#x60;support_active_runs_limit&#x60;: 3 runs are already active, retry when one finishes. Code &#x60;support_monthly_cap_exceeded&#x60;: this run could take the account past $100 for the UTC month; &#x60;Retry-After&#x60; runs until the next month starts, which can be weeks. |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## getSupportRun
