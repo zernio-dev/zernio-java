@@ -17,6 +17,7 @@
 |**permissions** | [**GetAccountHealth200ResponsePermissions**](GetAccountHealth200ResponsePermissions.md) |  |  [optional] |
 |**issues** | **List&lt;String&gt;** | List of issues found |  [optional] |
 |**recommendations** | **List&lt;String&gt;** | Actionable recommendations to fix issues |  [optional] |
+|**analyticsSync** | [**GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync**](GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md) |  |  [optional] |
 |**messagingRestriction** | [**GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction**](GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md) |  |  [optional] |
 |**platformConnection** | [**GetAccountHealth200ResponsePlatformConnection**](GetAccountHealth200ResponsePlatformConnection.md) |  |  [optional] |
 

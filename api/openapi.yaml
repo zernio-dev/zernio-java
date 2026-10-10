@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.250.1
+  version: 1.251.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8403,7 +8403,9 @@ paths:
   /v1/accounts/health:
     get:
       description: "Returns health status of all connected accounts including token\
-        \ validity, permissions, and issues needing attention."
+        \ validity, permissions, and issues needing attention. A failing or stalled\
+        \ analytics sync (see `analyticsSync`) raises a healthy account to at least\
+        \ warning."
       operationId: getAllAccountsHealth
       parameters:
       - description: Filter by profile ID
@@ -8684,6 +8686,8 @@ paths:
     get:
       description: |
         Returns detailed health info for a specific account including token status, permissions, and recommendations.
+
+        A failing or stalled analytics sync (see `analyticsSync`) raises a healthy account to at least `warning`.
 
         For WhatsApp accounts the response also includes `platformConnection`, a live probe of the
         Meta link behind the channel (the same read as `GET /v1/whatsapp/number-info`). The OAuth
@@ -94130,6 +94134,28 @@ components:
         needsReconnect:
           description: Number of accounts needing reconnection
           type: integer
+    getAllAccountsHealth_200_response_accounts_inner_analyticsSync:
+      description: "Absent on platforms without analytics sync. failing: several consecutive\
+        \ sync attempts failed. stalled: a sync was requested over 6 hours ago and\
+        \ never completed. never_synced: no sync has completed yet. Failing and stalled\
+        \ raise the account status to at least warning."
+      example:
+        lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+        status: ok
+      properties:
+        status:
+          enum:
+          - ok
+          - failing
+          - stalled
+          - never_synced
+          type: string
+        lastSyncedAt:
+          description: Last successful sync. Null when never synced or the latest
+            attempt failed.
+          format: date-time
+          nullable: true
+          type: string
     getAllAccountsHealth_200_response_accounts_inner_messagingRestriction:
       description: "Observed from Meta's own errors on our own sends, not a live probe.\
         \ Facebook/Instagram: error subcodes 2534122, 1893063, 2534029, set on the\
@@ -94192,6 +94218,9 @@ components:
         accountId: accountId
         canPost: true
         profileId: profileId
+        analyticsSync:
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          status: ok
         tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
         username: username
         status: healthy
@@ -94231,6 +94260,8 @@ components:
           items:
             type: string
           type: array
+        analyticsSync:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
         messagingRestriction:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
     getAllAccountsHealth_200_response:
@@ -94259,6 +94290,9 @@ components:
           accountId: accountId
           canPost: true
           profileId: profileId
+          analyticsSync:
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            status: ok
           tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
           username: username
           status: healthy
@@ -94280,6 +94314,9 @@ components:
           accountId: accountId
           canPost: true
           profileId: profileId
+          analyticsSync:
+            lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+            status: ok
           tokenExpiresAt: 2000-01-23T04:56:07.000+00:00
           username: username
           status: healthy
@@ -94505,13 +94542,27 @@ components:
           type: boolean
     getAccountHealth_200_response:
       example:
-        accountId: accountId
         tokenStatus:
           valid: true
           expiresIn: expiresIn
           needsRefresh: true
           expiresAt: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
+        messagingRestriction:
+          lastSeenAt: 2000-01-23T04:56:07.000+00:00
+          code: 2
+          subcode: 7
+          pausedUntil: 2000-01-23T04:56:07.000+00:00
+          message: message
+          firstSeenAt: 2000-01-23T04:56:07.000+00:00
+        issues:
+        - issues
+        - issues
+        recommendations:
+        - recommendations
+        - recommendations
+        platform: platform
+        accountId: accountId
         permissions:
           analytics:
           - scope: scope
@@ -94539,21 +94590,10 @@ components:
             required: true
             granted: true
           canFetchAnalytics: true
-        messagingRestriction:
-          lastSeenAt: 2000-01-23T04:56:07.000+00:00
-          code: 2
-          subcode: 7
-          pausedUntil: 2000-01-23T04:56:07.000+00:00
-          message: message
-          firstSeenAt: 2000-01-23T04:56:07.000+00:00
         integrationLane: business
-        issues:
-        - issues
-        - issues
-        recommendations:
-        - recommendations
-        - recommendations
-        platform: platform
+        analyticsSync:
+          lastSyncedAt: 2000-01-23T04:56:07.000+00:00
+          status: ok
         username: username
         status: healthy
         platformConnection:
@@ -94603,6 +94643,8 @@ components:
           items:
             type: string
           type: array
+        analyticsSync:
+          $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
         messagingRestriction:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_messagingRestriction"
         platformConnection:

@@ -880,6 +880,7 @@ docs/GetAdsSearchTerms200ResponsePaging.md
 docs/GetAdsTimeline202Response.md
 docs/GetAllAccountsHealth200Response.md
 docs/GetAllAccountsHealth200ResponseAccountsInner.md
+docs/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.md
 docs/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.md
 docs/GetAllAccountsHealth200ResponseSummary.md
 docs/GetAnalytics200Response.md
@@ -3737,6 +3738,7 @@ src/main/java/dev/zernio/model/GetAdsSearchTerms200ResponsePaging.java
 src/main/java/dev/zernio/model/GetAdsTimeline202Response.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200Response.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInner.java
+src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSync.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerMessagingRestriction.java
 src/main/java/dev/zernio/model/GetAllAccountsHealth200ResponseSummary.java
 src/main/java/dev/zernio/model/GetAnalytics200Response.java
@@ -5599,3 +5601,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAllAccountsHealth200ResponseAccountsInnerAnalyticsSyncTest.java
