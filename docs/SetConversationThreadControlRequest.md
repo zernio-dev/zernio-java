@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | Social account ID |  |
-|**action** | [**ActionEnum**](#ActionEnum) | &#x60;request&#x60; is Facebook and Instagram only. |  |
+|**action** | [**ActionEnum**](#ActionEnum) | &#x60;request&#x60; is Facebook and Instagram only. &#x60;take&#x60; and &#x60;request&#x60; are refused with &#x60;platform_not_supported&#x60; on Instagram accounts connected with Instagram Login. |  |
 |**target** | [**TargetEnum**](#TargetEnum) | WhatsApp only. With action pass: send control to Meta Business Agent instead of the escalation partner. |  [optional] |
 |**targetAppId** | **String** | Facebook and Instagram only, required with action pass: the Meta app id receiving the thread. |  [optional] |
 |**metadata** | **String** | Free-form note forwarded verbatim to the app receiving control (its messaging_handovers webhook). |  [optional] |
