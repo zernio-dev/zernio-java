@@ -1713,7 +1713,7 @@ ApiResponse<[**PauseWorkflow200Response**](PauseWorkflow200Response.md)>
 
 Restore a workflow version
 
-Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore. The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 
 ### Example
 
@@ -1778,7 +1778,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
-| **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
+| **400** | Workflow is active, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1788,7 +1788,7 @@ public class Example {
 
 Restore a workflow version
 
-Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in &#x60;draft&#x60; or &#x60;paused&#x60; status (same gate as a normal graph edit). The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore. The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 
 ### Example
 
@@ -1856,7 +1856,7 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow restored to the named version |  -  |
-| **400** | Workflow is not draft/paused, or the named version&#39;s graph is invalid for the current platform |  -  |
+| **400** | Workflow is active, or the named version&#39;s graph is invalid for the current platform |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2175,7 +2175,7 @@ ApiResponse<[**TriggerWorkflow200Response**](TriggerWorkflow200Response.md)>
 
 Update workflow
 
-Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
+Update name, description, the graph, or reassign to a different account. The graph can be modified in any status, including &#x60;active&#x60;: a run already in progress reloads the saved graph at its next step, and a run parked on a node the edit removed completes instead of failing. Every graph edit is re-validated and an invalid graph answers 400 regardless of status. &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
 
 ### Example
 
@@ -2240,7 +2240,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
+| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or an account swap to an inactive account or to a platform workflows do not support |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -2250,7 +2250,7 @@ public class Example {
 
 Update workflow
 
-Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
+Update name, description, the graph, or reassign to a different account. The graph can be modified in any status, including &#x60;active&#x60;: a run already in progress reloads the saved graph at its next step, and a run parked on a node the edit removed completes instead of failing. Every graph edit is re-validated and an invalid graph answers 400 regardless of status. &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
 
 ### Example
 
@@ -2318,7 +2318,7 @@ ApiResponse<[**UpdateWorkflow200Response**](UpdateWorkflow200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Workflow updated |  -  |
-| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or a graph edit attempted while the workflow is active |  -  |
+| **400** | Invalid graph (including a WhatsApp interactive list node whose sections carry no rows), or an account swap to an inactive account or to a platform workflows do not support |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

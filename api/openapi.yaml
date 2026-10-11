@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.252.0
+  version: 1.252.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -35051,7 +35051,7 @@ paths:
       - application/json
     patch:
       description: |
-        Update name, description, the graph, or reassign to a different account. The graph can only be modified while the workflow is draft or paused. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a `start_call` node as an error instead of silently saving an unrunnable graph).
+        Update name, description, the graph, or reassign to a different account. The graph can be modified in any status, including `active`: a run already in progress reloads the saved graph at its next step, and a run parked on a node the edit removed completes instead of failing. Every graph edit is re-validated and an invalid graph answers 400 regardless of status. `status` is not a field of this request; use the activate and pause endpoints. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a `start_call` node as an error instead of silently saving an unrunnable graph).
       operationId: updateWorkflow
       parameters:
       - explode: false
@@ -35075,8 +35075,8 @@ paths:
           description: Workflow updated
         "400":
           description: "Invalid graph (including a WhatsApp interactive list node\
-            \ whose sections carry no rows), or a graph edit attempted while the workflow\
-            \ is active"
+            \ whose sections carry no rows), or an account swap to an inactive account\
+            \ or to a platform workflows do not support"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -35436,7 +35436,7 @@ paths:
   /v1/workflows/{workflowId}/versions/{version}/restore:
     post:
       description: |
-        Replace the current graph with the named version's snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must be in `draft` or `paused` status (same gate as a normal graph edit). The returned workflow carries `restoredFromVersion` so the UI can surface which version was rolled back to.
+        Replace the current graph with the named version's snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be `active`: pause it first, then restore. The returned workflow carries `restoredFromVersion` so the UI can surface which version was rolled back to.
       operationId: restoreWorkflowVersion
       parameters:
       - explode: false
@@ -35461,8 +35461,8 @@ paths:
                 $ref: "#/components/schemas/restoreWorkflowVersion_200_response"
           description: Workflow restored to the named version
         "400":
-          description: "Workflow is not draft/paused, or the named version's graph\
-            \ is invalid for the current platform"
+          description: "Workflow is active, or the named version's graph is invalid\
+            \ for the current platform"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
