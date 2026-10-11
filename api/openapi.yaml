@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.252.1
+  version: 1.252.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -3112,7 +3112,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/getYouTubeDailyViews_403_response"
-          description: Access denied to this account
+          description: "Access denied to this account, or the connected YouTube account\
+            \ or channel is suspended"
         "404":
           content:
             application/json:
