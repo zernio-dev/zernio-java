@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   RespondToSmsRegistrationReviewRequestAnswersInner.JSON_PROPERTY_URL,
   RespondToSmsRegistrationReviewRequestAnswersInner.JSON_PROPERTY_FILES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T18:02:35.894493601Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T18:06:29.180192418Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RespondToSmsRegistrationReviewRequestAnswersInner {
   public static final String JSON_PROPERTY_POINT_ID = "pointId";
   @javax.annotation.Nonnull
