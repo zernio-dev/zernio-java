@@ -5605,7 +5605,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/SupportAssistantApiTest.java
-src/test/java/dev/zernio/model/AskSupportQuestion202ResponseTest.java
-src/test/java/dev/zernio/model/AskSupportQuestionRequestContextTest.java
-src/test/java/dev/zernio/model/AskSupportQuestionRequestTest.java

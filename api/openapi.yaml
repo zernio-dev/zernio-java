@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.256.0
+  version: 1.257.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7687,9 +7687,9 @@ paths:
   /v1/profiles:
     get:
       description: "Returns profiles sorted default-first, then by creation date.\
-        \ Filter with name (exact match) and paginate with limit/skip; without those\
-        \ params the full list is returned unchanged. Use includeOverLimit=true to\
-        \ include profiles that exceed the plan limit."
+        \ Filter with name or externalId (exact match) and paginate with limit/skip;\
+        \ without those params the full list is returned unchanged. Use includeOverLimit=true\
+        \ to include profiles that exceed the plan limit."
       operationId: listProfiles
       parameters:
       - description: "When true, includes over-limit profiles (marked with isOverLimit:\
@@ -7707,6 +7707,17 @@ paths:
         explode: true
         in: query
         name: name
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Exact-match filter on the externalId you set on the profile,\
+          \ to find the profile of one of your tenants without storing its Zernio\
+          \ id. Team members can each own a profile with the same externalId, so the\
+          \ result is a list."
+        explode: true
+        in: query
+        name: externalId
         required: false
         schema:
           type: string
@@ -7759,9 +7770,11 @@ paths:
     post:
       description: "Creates a new profile with a name, optional description, and color.\
         \ Names are unique per team: a duplicate returns a 409 whose details.existingProfileId\
-        \ carries the id of the existing profile. Send an Idempotency-Key header to\
-        \ make retries safe: a retried create with the same key and body replays the\
-        \ original 201 (same _id) instead of conflicting."
+        \ carries the id of the existing profile. Set externalId to your own tenant\
+        \ or client id to find the profile later without storing its Zernio id. A\
+        \ duplicate externalId returns the same kind of 409, with code profile_external_id_conflict.\
+        \ Send an Idempotency-Key header to make retries safe: a retried create with\
+        \ the same key and body replays the original 201 (same _id) instead of conflicting."
       operationId: createProfile
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -7773,6 +7786,7 @@ paths:
               description: Profile for marketing campaigns
               color: "#4CAF50"
               timezone: Europe/Istanbul
+              externalId: tenant_42
             schema:
               $ref: "#/components/schemas/createProfile_request"
         required: true
@@ -7788,6 +7802,7 @@ paths:
                   name: Marketing Team
                   description: Profile for marketing campaigns
                   color: "#4CAF50"
+                  externalId: tenant_42
                   isDefault: false
                   createdAt: 2024-11-01T10:00:00Z
               schema:
@@ -7802,7 +7817,8 @@ paths:
         "403":
           description: Profile limit exceeded
         "409":
-          description: "A profile with this name already exists (code: profile_name_conflict);\
+          description: "A profile with this name (code: profile_name_conflict) or\
+            \ this externalId (code: profile_external_id_conflict) already exists;\
             \ details.existingProfileId carries the id of the existing profile. Also\
             \ returned while a request with the same Idempotency-Key is still processing."
         "422":
@@ -7892,7 +7908,7 @@ paths:
       - application/json
     put:
       description: "Updates a profile's name, description, color, default timezone,\
-        \ or default status."
+        \ externalId, or default status."
       operationId: updateProfile
       parameters:
       - explode: false
@@ -7931,14 +7947,15 @@ paths:
           description: Updated
         "400":
           description: "Invalid request, including an unknown timezone or a body that\
-            \ carries none of name, description, color, timezone or isDefault (code:\
-            \ missing_required_field)."
+            \ carries none of name, description, color, timezone, externalId or isDefault\
+            \ (code: missing_required_field)."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
           $ref: "#/components/responses/NotFound"
         "409":
-          description: "A profile with this name already exists (code: profile_name_conflict)."
+          description: "A profile with this name (code: profile_name_conflict) or\
+            \ this externalId (code: profile_external_id_conflict) already exists."
       summary: Update profile
       tags:
       - Profiles
@@ -75479,6 +75496,7 @@ components:
         timezone: timezone
         name: name
         description: description
+        externalId: externalId
         _id: _id
         userId: userId
         isOverLimit: true
@@ -75496,6 +75514,11 @@ components:
         timezone:
           description: IANA timezone new posts on this profile use when the request
             names no `timezone`. Null means UTC.
+          nullable: true
+          type: string
+        externalId:
+          description: "Your own identifier for this profile, set on create or update.\
+            \ Null when none is set."
           nullable: true
           type: string
         isDefault:
@@ -78634,6 +78657,7 @@ components:
           timezone: timezone
           name: name
           description: description
+          externalId: externalId
           _id: _id
           userId: userId
           isOverLimit: true
@@ -78644,6 +78668,7 @@ components:
           timezone: timezone
           name: name
           description: description
+          externalId: externalId
           _id: _id
           userId: userId
           isOverLimit: true
@@ -78674,6 +78699,7 @@ components:
           timezone: timezone
           name: name
           description: description
+          externalId: externalId
           _id: _id
           userId: userId
           isOverLimit: true
@@ -78693,6 +78719,7 @@ components:
           timezone: timezone
           name: name
           description: description
+          externalId: externalId
           _id: _id
           userId: userId
           isOverLimit: true
@@ -78709,6 +78736,7 @@ components:
           timezone: timezone
           name: name
           description: description
+          externalId: externalId
           _id: _id
           userId: userId
           isOverLimit: true
@@ -94344,6 +94372,16 @@ components:
             no `timezone`. Omit to keep UTC. An unknown name returns 400.
           example: Europe/Istanbul
           type: string
+        externalId:
+          description: "Your own identifier for this profile, typically the id of\
+            \ the tenant or client it serves in your system (1 to 255 characters,\
+            \ trimmed). Unique among the profiles of the user who owns the profile:\
+            \ a duplicate returns 409 profile_external_id_conflict. Look a profile\
+            \ up by it with GET /v1/profiles?externalId=."
+          example: tenant_42
+          maxLength: 255
+          minLength: 1
+          type: string
       required:
       - name
     updateProfile_request:
@@ -94363,6 +94401,15 @@ components:
             no `timezone`. Set to null to go back to UTC. An unknown name returns
             400.
           example: Europe/Istanbul
+          nullable: true
+          type: string
+        externalId:
+          description: "Your own identifier for this profile (1 to 255 characters,\
+            \ trimmed). Set to null to clear it. A value another profile of the same\
+            \ owner already holds returns 409 profile_external_id_conflict."
+          example: tenant_42
+          maxLength: 255
+          minLength: 1
           nullable: true
           type: string
         isDefault:
