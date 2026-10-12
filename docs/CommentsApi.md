@@ -1521,7 +1521,7 @@ ApiResponse<[**ReplyToInboxPost200Response**](ReplyToInboxPost200Response.md)>
 
 Send private reply
 
-Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account&#39;s own past refusals show whether it is affected. The failed call still consumes the comment&#39;s single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
+Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account&#39;s own past refusals show whether it is affected. The failed call still consumes the comment&#39;s single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. A 502 means Meta answered a server error after receiving the reply; it carries &#x60;details.privateReplyOutcome: \&quot;unknown\&quot;&#x60;, the reply is usually delivered and the comment&#39;s private reply spent, so check the conversation before retrying. 
 
 ### Example
 
@@ -1592,6 +1592,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
+| **502** | Meta returned a server error after receiving the reply; outcome unknown, usually delivered. Do not retry blindly. |  -  |
 
 ## sendPrivateReplyToCommentWithHttpInfo
 
@@ -1599,7 +1600,7 @@ public class Example {
 
 Send private reply
 
-Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account&#39;s own past refusals show whether it is affected. The failed call still consumes the comment&#39;s single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. 
+Send a direct message to the author of a comment. Supported on Instagram and Facebook only. One reply per comment, must be sent within 7 days. Optionally attach interactive elements: &#x60;quickReplies&#x60; (chips above the keyboard, max 13) or &#x60;buttons&#x60; (1-3 inline postback/url buttons rendered in the same bubble via Meta&#39;s button_template). Chips do not render in the Instagram Message Requests folder. Instagram can refuse buttons, cards and attachments to commenters who do not follow the account (Meta code 2, subcode 1545133, returned here as a non-retryable 400 that says so). The refusal is uneven: most accounts do not get it, an affected account gets it on many of its non-followers, and only that account&#39;s own past refusals show whether it is affected. The failed call still consumes the comment&#39;s single private reply. On an affected account, send plain text to reach non-followers and add buttons once they reply. &#x60;quickReplies&#x60; and &#x60;buttons&#x60; are mutually exclusive. When the comment&#39;s single private reply is spent (by this call or an earlier one) the 400 carries &#x60;details.privateReplyConsumed: true&#x60;; never retry it. A 502 means Meta answered a server error after receiving the reply; it carries &#x60;details.privateReplyOutcome: \&quot;unknown\&quot;&#x60;, the reply is usually delivered and the comment&#39;s private reply spent, so check the conversation before retrying. 
 
 ### Example
 
@@ -1673,6 +1674,7 @@ ApiResponse<[**SendPrivateReplyToComment200Response**](SendPrivateReplyToComment
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account not found |  -  |
+| **502** | Meta returned a server error after receiving the reply; outcome unknown, usually delivered. Do not retry blindly. |  -  |
 
 
 ## setCommentModeration
