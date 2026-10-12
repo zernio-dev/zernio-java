@@ -51,7 +51,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create, update or delete products in bulk
 
-Up to 5000 CREATE / UPDATE / DELETE requests keyed by &#x60;retailerId&#x60;, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency.
+Creates, updates or deletes up to 5,000 catalog products in one request, processed in the background by Meta.  Up to 5000 CREATE / UPDATE / DELETE requests keyed by &#x60;retailerId&#x60;, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency. 
 
 ### Example
 
@@ -127,7 +127,7 @@ public class Example {
 
 Create, update or delete products in bulk
 
-Up to 5000 CREATE / UPDATE / DELETE requests keyed by &#x60;retailerId&#x60;, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency.
+Creates, updates or deletes up to 5,000 catalog products in one request, processed in the background by Meta.  Up to 5000 CREATE / UPDATE / DELETE requests keyed by &#x60;retailerId&#x60;, processed asynchronously by Meta. Returns handles; poll GET /v1/ads/catalogs/{catalogId}/batches/{handle} for the outcome and per-item errors. CREATE requests need name, url, imageUrl, price and currency. 
 
 ### Example
 
@@ -207,7 +207,7 @@ ApiResponse<[**BatchAdCatalogProducts202Response**](BatchAdCatalogProducts202Res
 
 Create a Meta product catalog
 
-Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login.
+Creates a Meta product catalog that can power catalog ads, Instagram and Facebook Shops, and a WhatsApp Business catalog.  Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login. 
 
 ### Example
 
@@ -282,7 +282,7 @@ public class Example {
 
 Create a Meta product catalog
 
-Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login.
+Creates a Meta product catalog that can power catalog ads, Instagram and Facebook Shops, and a WhatsApp Business catalog.  Creates a Meta Commerce catalog in the business portfolio (resolved like GET). The same catalog serves Advantage+ catalog ads, Instagram/Facebook Shops and the WhatsApp Business catalog: link it to a WhatsApp number with POST /v1/whatsapp/catalogs. Needs catalog_management on the Meta login. 
 
 ### Example
 
@@ -361,7 +361,7 @@ ApiResponse<[**CreateAdCatalog201Response**](CreateAdCatalog201Response.md)>
 
 Create a product feed
 
-A feed pulls a CSV/TSV/XML product file from a URL. With &#x60;schedule&#x60; Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads.
+Creates a product feed that imports a CSV, TSV or XML product file into a Meta catalog, on a schedule or on demand.  A feed pulls a CSV/TSV/XML product file from a URL. With &#x60;schedule&#x60; Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads. 
 
 ### Example
 
@@ -437,7 +437,7 @@ public class Example {
 
 Create a product feed
 
-A feed pulls a CSV/TSV/XML product file from a URL. With &#x60;schedule&#x60; Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads.
+Creates a product feed that imports a CSV, TSV or XML product file into a Meta catalog, on a schedule or on demand.  A feed pulls a CSV/TSV/XML product file from a URL. With &#x60;schedule&#x60; Meta fetches it on a cadence; without it, trigger fetches with POST /v1/ads/catalogs/{catalogId}/feeds/{feedId}/uploads. 
 
 ### Example
 
@@ -517,7 +517,7 @@ ApiResponse<[**CreateAdCatalogFeed201Response**](CreateAdCatalogFeed201Response.
 
 Fetch a feed file now
 
-Asks Meta to fetch the product file at &#x60;url&#x60; into the feed. Processing is asynchronous: read the outcome with GET uploads.
+Asks Meta to import a product file into a feed right away instead of waiting for its schedule.  Asks Meta to fetch the product file at &#x60;url&#x60; into the feed. Processing is asynchronous: read the outcome with GET uploads. 
 
 ### Example
 
@@ -595,7 +595,7 @@ public class Example {
 
 Fetch a feed file now
 
-Asks Meta to fetch the product file at &#x60;url&#x60; into the feed. Processing is asynchronous: read the outcome with GET uploads.
+Asks Meta to import a product file into a feed right away instead of waiting for its schedule.  Asks Meta to fetch the product file at &#x60;url&#x60; into the feed. Processing is asynchronous: read the outcome with GET uploads. 
 
 ### Example
 
@@ -677,7 +677,7 @@ ApiResponse<[**CreateAdCatalogFeedUpload202Response**](CreateAdCatalogFeedUpload
 
 Add a product to a catalog
 
-Adds one product. &#x60;retailerId&#x60; is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login.
+Adds a single product to a Meta catalog, keyed by your own SKU for later lookups and updates.  &#x60;retailerId&#x60; is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login. 
 
 ### Example
 
@@ -753,7 +753,7 @@ public class Example {
 
 Add a product to a catalog
 
-Adds one product. &#x60;retailerId&#x60; is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login.
+Adds a single product to a Meta catalog, keyed by your own SKU for later lookups and updates.  &#x60;retailerId&#x60; is your SKU and stays the handle for later lookups and batch updates. For many products at once use POST /v1/ads/catalogs/{catalogId}/products/batch. Needs catalog_management on the Meta login. 
 
 ### Example
 
@@ -833,7 +833,7 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 
 Create a product set
 
-A product set is a filter over the catalog, e.g. &#x60;{\&quot;retailer_id\&quot;: {\&quot;is_any\&quot;: [\&quot;sku-1\&quot;, \&quot;sku-2\&quot;]}}&#x60; or &#x60;{\&quot;brand\&quot;: {\&quot;i_contains\&quot;: \&quot;acme\&quot;}}&#x60; (Meta&#39;s product set filter syntax).
+Creates a product set, a filtered group of catalog products (by SKU, brand and so on) to promote in catalog ads.  A product set is a filter over the catalog, e.g. &#x60;{\&quot;retailer_id\&quot;: {\&quot;is_any\&quot;: [\&quot;sku-1\&quot;, \&quot;sku-2\&quot;]}}&#x60; or &#x60;{\&quot;brand\&quot;: {\&quot;i_contains\&quot;: \&quot;acme\&quot;}}&#x60; (Meta&#39;s product set filter syntax). 
 
 ### Example
 
@@ -909,7 +909,7 @@ public class Example {
 
 Create a product set
 
-A product set is a filter over the catalog, e.g. &#x60;{\&quot;retailer_id\&quot;: {\&quot;is_any\&quot;: [\&quot;sku-1\&quot;, \&quot;sku-2\&quot;]}}&#x60; or &#x60;{\&quot;brand\&quot;: {\&quot;i_contains\&quot;: \&quot;acme\&quot;}}&#x60; (Meta&#39;s product set filter syntax).
+Creates a product set, a filtered group of catalog products (by SKU, brand and so on) to promote in catalog ads.  A product set is a filter over the catalog, e.g. &#x60;{\&quot;retailer_id\&quot;: {\&quot;is_any\&quot;: [\&quot;sku-1\&quot;, \&quot;sku-2\&quot;]}}&#x60; or &#x60;{\&quot;brand\&quot;: {\&quot;i_contains\&quot;: \&quot;acme\&quot;}}&#x60; (Meta&#39;s product set filter syntax). 
 
 ### Example
 
@@ -989,7 +989,7 @@ ApiResponse<[**CreateAdCatalogProductSet201Response**](CreateAdCatalogProductSet
 
 Delete a product catalog
 
-Deletes the catalog and every product in it on Meta. Ads and WhatsApp numbers that use it lose their catalog.
+Deletes a Meta product catalog and all its products, removing it from any ads or WhatsApp numbers that use it.  Ads and WhatsApp numbers that use it lose their catalog. 
 
 ### Example
 
@@ -1067,7 +1067,7 @@ public class Example {
 
 Delete a product catalog
 
-Deletes the catalog and every product in it on Meta. Ads and WhatsApp numbers that use it lose their catalog.
+Deletes a Meta product catalog and all its products, removing it from any ads or WhatsApp numbers that use it.  Ads and WhatsApp numbers that use it lose their catalog. 
 
 ### Example
 
@@ -1149,6 +1149,8 @@ ApiResponse<[**DeleteAdCatalog200Response**](DeleteAdCatalog200Response.md)>
 
 Delete a product
 
+Removes one product from a Meta catalog. 
+
 ### Example
 
 ```java
@@ -1226,6 +1228,8 @@ public class Example {
 > ApiResponse<DeleteAdCatalogProduct200Response> deleteAdCatalogProduct deleteAdCatalogProductWithHttpInfo(catalogId, productId, accountId, catalogAccountId)
 
 Delete a product
+
+Removes one product from a Meta catalog. 
 
 ### Example
 
@@ -1309,6 +1313,8 @@ ApiResponse<[**DeleteAdCatalogProduct200Response**](DeleteAdCatalogProduct200Res
 
 Delete a product set
 
+Deletes a product set from a Meta catalog. 
+
 ### Example
 
 ```java
@@ -1386,6 +1392,8 @@ public class Example {
 > ApiResponse<DeleteAdCatalogProductSet200Response> deleteAdCatalogProductSet deleteAdCatalogProductSetWithHttpInfo(catalogId, productSetId, accountId, catalogAccountId)
 
 Delete a product set
+
+Deletes a product set from a Meta catalog. 
 
 ### Example
 
@@ -1469,6 +1477,8 @@ ApiResponse<[**DeleteAdCatalogProductSet200Response**](DeleteAdCatalogProductSet
 
 Get a product catalog
 
+Shows one Meta product catalog and its details. 
+
 ### Example
 
 ```java
@@ -1544,6 +1554,8 @@ public class Example {
 > ApiResponse<CreateAdCatalog201Response> getAdCatalog getAdCatalogWithHttpInfo(catalogId, accountId, catalogAccountId)
 
 Get a product catalog
+
+Shows one Meta product catalog and its details. 
 
 ### Example
 
@@ -1625,6 +1637,8 @@ ApiResponse<[**CreateAdCatalog201Response**](CreateAdCatalog201Response.md)>
 
 Get a bulk request&#39;s status
 
+Shows whether a bulk catalog product request has finished, with any per-product errors. 
+
 ### Example
 
 ```java
@@ -1702,6 +1716,8 @@ public class Example {
 > ApiResponse<GetAdCatalogBatch200Response> getAdCatalogBatch getAdCatalogBatchWithHttpInfo(catalogId, handle, accountId, catalogAccountId)
 
 Get a bulk request&#39;s status
+
+Shows whether a bulk catalog product request has finished, with any per-product errors. 
 
 ### Example
 
@@ -1785,6 +1801,8 @@ ApiResponse<[**GetAdCatalogBatch200Response**](GetAdCatalogBatch200Response.md)>
 
 Get a product
 
+Shows one product from a Meta catalog. 
+
 ### Example
 
 ```java
@@ -1862,6 +1880,8 @@ public class Example {
 > ApiResponse<CreateAdCatalogProduct201Response> getAdCatalogProduct getAdCatalogProductWithHttpInfo(catalogId, productId, accountId, catalogAccountId)
 
 Get a product
+
+Shows one product from a Meta catalog. 
 
 ### Example
 
@@ -1945,6 +1965,8 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 
 List a feed&#39;s uploads
 
+Lists a product feed&#39;s past file imports so you can check how each one went. 
+
 ### Example
 
 ```java
@@ -2022,6 +2044,8 @@ public class Example {
 > ApiResponse<ListAdCatalogFeedUploads200Response> listAdCatalogFeedUploads listAdCatalogFeedUploadsWithHttpInfo(catalogId, feedId, accountId, catalogAccountId)
 
 List a feed&#39;s uploads
+
+Lists a product feed&#39;s past file imports so you can check how each one went. 
 
 ### Example
 
@@ -2105,6 +2129,8 @@ ApiResponse<[**ListAdCatalogFeedUploads200Response**](ListAdCatalogFeedUploads20
 
 List a catalog&#39;s product feeds
 
+Lists the product feeds that keep a Meta catalog filled from your product files. 
+
 ### Example
 
 ```java
@@ -2180,6 +2206,8 @@ public class Example {
 > ApiResponse<ListAdCatalogFeeds200Response> listAdCatalogFeeds listAdCatalogFeedsWithHttpInfo(catalogId, accountId, catalogAccountId)
 
 List a catalog&#39;s product feeds
+
+Lists the product feeds that keep a Meta catalog filled from your product files. 
 
 ### Example
 
@@ -2261,7 +2289,7 @@ ApiResponse<[**ListAdCatalogFeeds200Response**](ListAdCatalogFeeds200Response.md
 
 List a catalog&#39;s product sets
 
-Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+Lists a Meta catalog&#39;s product sets, the groups of products a catalog ad promotes.  Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;. 
 
 ### Example
 
@@ -2339,7 +2367,7 @@ public class Example {
 
 List a catalog&#39;s product sets
 
-Lists a Meta product catalog&#39;s product sets, the unit a catalog ad promotes. Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;.
+Lists a Meta catalog&#39;s product sets, the groups of products a catalog ad promotes.  Pass the chosen set id, not the parent catalog id, as &#x60;promotedObject.productSetId&#x60; on POST /v1/ads/create with &#x60;goal: catalog_sales&#x60;. 
 
 ### Example
 
@@ -2421,7 +2449,7 @@ ApiResponse<[**ListAdCatalogProductSets200Response**](ListAdCatalogProductSets20
 
 List a catalog&#39;s products
 
-Pages through the catalog&#39;s products. Filter by your own &#x60;retailerId&#x60; to look one up. &#x60;price&#x60; and &#x60;salePrice&#x60; come back formatted by Meta (for example \&quot;€49.90\&quot;).
+Lists the products in a Meta catalog, or looks one up by your own SKU.  Filter by your own &#x60;retailerId&#x60; to look one up. &#x60;price&#x60; and &#x60;salePrice&#x60; come back formatted by Meta (for example \&quot;€49.90\&quot;). 
 
 ### Example
 
@@ -2505,7 +2533,7 @@ public class Example {
 
 List a catalog&#39;s products
 
-Pages through the catalog&#39;s products. Filter by your own &#x60;retailerId&#x60; to look one up. &#x60;price&#x60; and &#x60;salePrice&#x60; come back formatted by Meta (for example \&quot;€49.90\&quot;).
+Lists the products in a Meta catalog, or looks one up by your own SKU.  Filter by your own &#x60;retailerId&#x60; to look one up. &#x60;price&#x60; and &#x60;salePrice&#x60; come back formatted by Meta (for example \&quot;€49.90\&quot;). 
 
 ### Example
 
@@ -2593,7 +2621,7 @@ ApiResponse<[**ListAdCatalogProducts200Response**](ListAdCatalogProducts200Respo
 
 List Meta product catalogs
 
-Lists the Meta Commerce catalogs of a business portfolio (owned + agency-shared). The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted.
+Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted. 
 
 ### Example
 
@@ -2674,7 +2702,7 @@ public class Example {
 
 List Meta product catalogs
 
-Lists the Meta Commerce catalogs of a business portfolio (owned + agency-shared). The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted.
+Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted. 
 
 ### Example
 
@@ -2759,7 +2787,7 @@ ApiResponse<[**ListAdCatalogs200Response**](ListAdCatalogs200Response.md)>
 
 Update a product
 
-Partial update: only the fields sent change. &#x60;retailerId&#x60; cannot change.
+Changes some fields of a catalog product, such as its price or image, leaving the rest as they are.  &#x60;retailerId&#x60; cannot change. 
 
 ### Example
 
@@ -2837,7 +2865,7 @@ public class Example {
 
 Update a product
 
-Partial update: only the fields sent change. &#x60;retailerId&#x60; cannot change.
+Changes some fields of a catalog product, such as its price or image, leaving the rest as they are.  &#x60;retailerId&#x60; cannot change. 
 
 ### Example
 
@@ -2919,6 +2947,8 @@ ApiResponse<[**CreateAdCatalogProduct201Response**](CreateAdCatalogProduct201Res
 
 Update a product set
 
+Changes a product set&#39;s name or the filter that decides which products it includes. 
+
 ### Example
 
 ```java
@@ -2994,6 +3024,8 @@ public class Example {
 > ApiResponse<CreateAdCatalogProductSet201Response> updateAdCatalogProductSet updateAdCatalogProductSetWithHttpInfo(catalogId, productSetId, updateAdCatalogProductSetRequest)
 
 Update a product set
+
+Changes a product set&#39;s name or the filter that decides which products it includes. 
 
 ### Example
 

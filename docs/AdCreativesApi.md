@@ -49,7 +49,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
+Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
 
 ### Example
 
@@ -126,7 +126,7 @@ public class Example {
 
 Create a standalone creative
 
-Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
+Creates a reusable Meta creative from an image or carousel without creating an ad, ready to attach to ads later.  Creates a creative in the library WITHOUT an ad, reusable on the create endpoints via &#x60;existingCreativeId&#x60;. Provide exactly one of &#x60;imageUrl&#x60; (uploaded server-side), &#x60;imageHash&#x60; (from POST /v1/ads/images or the library list), or &#x60;carouselCards&#x60; (2-10 hand-built cards). The Page (and linked Instagram account, when present) is resolved from &#x60;accountId&#x60; as the story actor. &#x60;creativeFeatures&#x60; configures Advantage+ enhancements. &#x60;promotion&#x60; is not supported and any object is rejected with 400.
 
 ### Example
 
@@ -207,7 +207,7 @@ ApiResponse<[**CreateAdCreative201Response**](CreateAdCreative201Response.md)>
 
 Delete a creative
 
-Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad; otherwise its 400 surfaces verbatim.
+Deletes a Meta creative from the library, which Meta only allows when no ad uses it.  Meta only allows deleting creatives not referenced by any ad; otherwise its 400 surfaces verbatim. 
 
 ### Example
 
@@ -284,7 +284,7 @@ public class Example {
 
 Delete a creative
 
-Deletes a creative from the library. Meta only allows deleting creatives not referenced by any ad; otherwise its 400 surfaces verbatim.
+Deletes a Meta creative from the library, which Meta only allows when no ad uses it.  Meta only allows deleting creatives not referenced by any ad; otherwise its 400 surfaces verbatim. 
 
 ### Example
 
@@ -365,7 +365,7 @@ ApiResponse<[**DeleteAdCreative200Response**](DeleteAdCreative200Response.md)>
 
 Delete an ad video
 
-Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+Removes a video from a Meta ad account&#39;s video library.  Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx. 
 
 ### Example
 
@@ -444,7 +444,7 @@ public class Example {
 
 Delete an ad video
 
-Removes a video from the ad account&#39;s video library. Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx.
+Removes a video from a Meta ad account&#39;s video library.  Meta&#39;s canonical &#x60;DELETE /{video_id}&#x60; fails with code 10 / subcode 1363055 for videos uploaded via &#x60;/act_X/advideos&#x60; even with &#x60;ads_management&#x60;; this endpoint uses the working account-scoped shape &#x60;DELETE /act_X/advideos?video_id&#x3D;&lt;id&gt;&#x60; and returns Meta&#39;s &#x60;{success: true}&#x60; verbatim. Deleting a video that lives in a different ad account, or that Meta has already removed, returns Meta&#39;s error verbatim as a 4xx. 
 
 ### Example
 
@@ -527,7 +527,7 @@ ApiResponse<[**DeleteAdVideo200Response**](DeleteAdVideo200Response.md)>
 
 Render pre-create ad previews
 
-Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
@@ -603,7 +603,7 @@ public class Example {
 
 Render pre-create ad previews
 
-Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how a Meta creative will look in each placement before you create the ad, as embeddable previews.  Renders how a creative would look per placement BEFORE any ad exists, via Meta&#39;s &#x60;/generatepreviews&#x60;. Provide exactly one creative source: &#x60;existingCreativeId&#x60; or &#x60;creativeSpec&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
@@ -683,7 +683,7 @@ ApiResponse<[**GenerateAdPreviews200Response**](GenerateAdPreviews200Response.md
 
 Creative details
 
-One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
+Shows the details of one Meta creative, such as its content, status and thumbnail.  One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
 
 ### Example
 
@@ -766,7 +766,7 @@ public class Example {
 
 Creative details
 
-One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
+Shows the details of one Meta creative, such as its content, status and thumbnail.  One creative&#39;s details, verbatim from Meta. &#x60;fields&#x60; is a raw-passthrough override of the default projection.
 
 ### Example
 
@@ -853,7 +853,7 @@ ApiResponse<[**GetAdCreative200Response**](GetAdCreative200Response.md)>
 
 Direct video and image URLs for an ad
 
-Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+Returns fresh, short-lived download links for every image and video a Meta ad uses, including the original media of a boosted Instagram post.  Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
 
 ### Example
 
@@ -928,7 +928,7 @@ public class Example {
 
 Direct video and image URLs for an ad
 
-Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
+Returns fresh, short-lived download links for every image and video a Meta ad uses, including the original media of a boosted Instagram post.  Returns the direct signed URLs for every video and image asset used by an ad&#39;s live creative, normalised across shapes: single image/video, carousel, Reels/Story (&#x60;object_story_spec.video_data&#x60;) and dynamic creative (&#x60;asset_feed_spec&#x60;). Video items include Meta&#39;s poster thumbnail and the video&#39;s Meta id when available.  Boosted Instagram posts (creatives with no image of their own) return the original post&#39;s media: the image, the video with its cover as &#x60;thumbnailUrl&#x60;, or every child of a carousel post with &#x60;index&#x60;. When the connection cannot read the Instagram post, the item is a 1080px rendering of the creative instead.  Reads Meta live rather than the stored creative blob because Meta&#39;s signed fbcdn URLs carry an &#x60;oe&#x3D;&lt;hex&gt;&#x60; expiration (image_url ~24 h, video source ~12 d). Treat URLs as short-lived: re-fetch this endpoint before serving or downloading assets instead of caching URLs beyond that window.
 
 ### Example
 
@@ -1007,7 +1007,7 @@ ApiResponse<[**GetAdMedia200Response**](GetAdMedia200Response.md)>
 
 Render previews of an existing ad
 
-Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how an existing Meta ad looks in each placement, as embeddable previews.  Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
@@ -1084,7 +1084,7 @@ public class Example {
 
 Render previews of an existing ad
 
-Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
+Shows how an existing Meta ad looks in each placement, as embeddable previews.  Renders an EXISTING ad per placement via Meta&#39;s &#x60;/{ad_id}/previews&#x60;. Each preview is an HTML &#x60;&lt;iframe&gt;&#x60; snippet embeddable directly. Unknown &#x60;formats&#x60; values return Meta&#39;s 400 verbatim. 
 
 ### Example
 
@@ -1165,7 +1165,7 @@ ApiResponse<[**GetAdPreviews200Response**](GetAdPreviews200Response.md)>
 
 Get ad video processing status
 
-Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
+Checks whether an uploaded Meta ad video has finished processing and is ready to use in an ad.  Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
 
 ### Example
 
@@ -1244,7 +1244,7 @@ public class Example {
 
 Get ad video processing status
 
-Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
+Checks whether an uploaded Meta ad video has finished processing and is ready to use in an ad.  Reads a video&#39;s processing state live from Meta (&#x60;GET /{video-id}?fields&#x3D;status&#x60;). Poll this after &#x60;POST /v1/ads/videos&#x60; with &#x60;async: true&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;; the video is only usable as &#x60;video.id&#x60; on the create endpoints from then on.  &#x60;status&#x60; is normalised: &#x60;ready&#x60;, &#x60;error&#x60; (Meta&#39;s &#x60;error&#x60; or &#x60;expired&#x60;), and &#x60;processing&#x60; for every other Meta state. &#x60;platformStatus&#x60; carries Meta&#39;s raw &#x60;video_status&#x60; and &#x60;processingProgress&#x60; Meta&#39;s 0-100 percentage when it reports one. Polling every 5 to 10 seconds is plenty.
 
 ### Example
 
@@ -1327,7 +1327,7 @@ ApiResponse<[**GetAdVideoStatus200Response**](GetAdVideoStatus200Response.md)>
 
 Creative library
 
-Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
+Lists the creatives saved in a Meta ad account so you can reuse one in a new ad.  Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
 
 ### Example
 
@@ -1410,7 +1410,7 @@ public class Example {
 
 Creative library
 
-Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
+Lists the creatives saved in a Meta ad account so you can reuse one in a new ad.  Lists the ad account&#39;s creative library (Meta&#39;s &#x60;/act_X/adcreatives&#x60;), rows returned verbatim. The default projection covers id, name, status, object type, thumbnail, object_story_spec / asset_feed_spec and url_tags; &#x60;fields&#x60; is a raw-passthrough override. Any creative id here is reusable on the create endpoints via &#x60;existingCreativeId&#x60;.
 
 ### Example
 
@@ -1497,7 +1497,7 @@ ApiResponse<[**ListAdCreatives200Response**](ListAdCreatives200Response.md)>
 
 Ad image library
 
-Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
+Lists the images in a Meta ad account&#39;s library so you can reuse one in a creative.  Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
 
 ### Example
 
@@ -1580,7 +1580,7 @@ public class Example {
 
 Ad image library
 
-Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
+Lists the images in a Meta ad account&#39;s library so you can reuse one in a creative.  Lists the ad account&#39;s image library (Meta&#39;s &#x60;/act_X/adimages&#x60;), rows returned verbatim. The default projection covers hash, url, name, dimensions and status; &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;hash&#x60; here is reusable wherever Meta accepts &#x60;image_hash&#x60; (e.g. &#x60;imageHash&#x60; on POST /v1/ads/creatives).
 
 ### Example
 
@@ -1667,7 +1667,7 @@ ApiResponse<[**ListAdImages200Response**](ListAdImages200Response.md)>
 
 Ad video library
 
-Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+Lists the videos in a Meta ad account&#39;s library, including ones uploaded elsewhere, so you can reuse one across ads.  Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
 
 ### Example
 
@@ -1750,7 +1750,7 @@ public class Example {
 
 Ad video library
 
-Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
+Lists the videos in a Meta ad account&#39;s library, including ones uploaded elsewhere, so you can reuse one across ads.  Lists the ad account&#39;s video library (Meta&#39;s &#x60;/act_X/advideos&#x60;), rows returned verbatim. The default projection covers id, title, status, poster frames, length and &#x60;source&#x60; (the playable MP4); &#x60;fields&#x60; is a raw-passthrough override. Any &#x60;id&#x60; here is reusable as &#x60;video.id&#x60; on the create endpoints, so N ads that differ only in copy share one upload.  &#x60;source&#x60; lets you PLAY a video before picking it, which a poster frame alone can&#39;t settle when several videos share a first frame. It is a signed CDN URL that EXPIRES, so treat it as good for preview at selection time only. Never persist it; re-list to get a fresh one.  This is the only way to reach a video uploaded OUTSIDE Zernio (Ads Manager, another tool); videos we uploaded also come back as &#x60;creative.videoId&#x60; on GET /v1/ads.  Meta transcodes asynchronously, so a row is only usable once &#x60;status.video_status&#x60; reads &#x60;ready&#x60;. Upload a new video via POST /v1/ads/videos, or inline via &#x60;video.url&#x60; on POST /v1/ads/create.
 
 ### Example
 
@@ -1993,7 +1993,7 @@ ApiResponse<[**ListAdsTikTokIdentities200Response**](ListAdsTikTokIdentities200R
 
 List partnership ad content
 
-Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+Lists a creator&#39;s Instagram posts you can run as Partnership Ads, looked up by creator or post link (private beta).  Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account. 
 
 ### Example
 
@@ -2075,7 +2075,7 @@ public class Example {
 
 List partnership ad content
 
-Private beta. Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account.
+Lists a creator&#39;s Instagram posts you can run as Partnership Ads, looked up by creator or post link (private beta).  Lists creator Instagram posts available to the advertiser for Partnership Ads. Supply creatorUsername or postUrl. Requires instagram_branded_content_ads_brand permission and an advertiser Instagram Business Account. 
 
 ### Example
 
@@ -2161,7 +2161,7 @@ ApiResponse<[**ListPartnershipAdContent200Response**](ListPartnershipAdContent20
 
 List partnership permissions
 
-Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+Lists the creators who have granted, or have pending, permission for your Instagram account to run Partnership Ads with them (private beta).  Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission. 
 
 ### Example
 
@@ -2239,7 +2239,7 @@ public class Example {
 
 List partnership permissions
 
-Private beta. Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission.
+Lists the creators who have granted, or have pending, permission for your Instagram account to run Partnership Ads with them (private beta).  Lists granted or pending creator permissions for the advertiser Instagram Business Account. Requires instagram_branded_content_ads_brand permission. 
 
 ### Example
 
@@ -2321,7 +2321,7 @@ ApiResponse<[**ListPartnershipAdPermissions200Response**](ListPartnershipAdPermi
 
 Set partnership permission
 
-Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+Asks a creator for permission to run Partnership Ads with their content, or revokes it (private beta).  Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission. 
 
 ### Example
 
@@ -2398,7 +2398,7 @@ public class Example {
 
 Set partnership permission
 
-Private beta. Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission.
+Asks a creator for permission to run Partnership Ads with their content, or revokes it (private beta).  Requests permission from a creator or revokes it when revoke is true. Requests require the creator to approve in Instagram. Requires instagram_branded_content_ads_brand permission. 
 
 ### Example
 
@@ -2479,7 +2479,7 @@ ApiResponse<[**SetPartnershipAdPermission200Response**](SetPartnershipAdPermissi
 
 Rename a creative
 
-Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60;. For content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;).
+Renames a Meta creative (Meta does not allow other changes, so make a new creative to change its content).  Creatives are immutable on Meta beyond &#x60;name&#x60;. For content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). 
 
 ### Example
 
@@ -2556,7 +2556,7 @@ public class Example {
 
 Rename a creative
 
-Renames a creative. Creatives are immutable on Meta beyond &#x60;name&#x60;. For content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;).
+Renames a Meta creative (Meta does not allow other changes, so make a new creative to change its content).  Creatives are immutable on Meta beyond &#x60;name&#x60;. For content changes create a new creative (POST /v1/ads/creatives) and swap it onto the ad (PUT /v1/ads/{adId} with &#x60;creative&#x60;). 
 
 ### Example
 
@@ -2637,7 +2637,7 @@ ApiResponse<[**UpdateAdCreative200Response**](UpdateAdCreative200Response.md)>
 
 Upload an ad image from base64
 
-Uploads raw image bytes to the Meta ad account&#39;s image library, for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded.
+Uploads an image file to a Meta ad account&#39;s library, for creatives that are not hosted at a public URL.  Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. 
 
 ### Example
 
@@ -2713,7 +2713,7 @@ public class Example {
 
 Upload an ad image from base64
 
-Uploads raw image bytes to the Meta ad account&#39;s image library, for callers whose creatives aren&#39;t hosted at a public URL. Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded.
+Uploads an image file to a Meta ad account&#39;s library, for creatives that are not hosted at a public URL.  Returns the image &#x60;hash&#x60; (Meta&#39;s identifier for the asset) and the Meta-hosted &#x60;url&#x60;, which can be used directly as &#x60;imageUrl&#x60; on the create endpoints. Max 30 MB decoded. 
 
 ### Example
 
@@ -2793,7 +2793,7 @@ ApiResponse<[**UploadAdImage201Response**](UploadAdImage201Response.md)>
 
 Upload an ad video
 
-Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
+Uploads a video to a Meta ad account from a URL or file, so you can preview it or use it in ads before any ad exists.  Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
 
 ### Example
 
@@ -2870,7 +2870,7 @@ public class Example {
 
 Upload an ad video
 
-Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
+Uploads a video to a Meta ad account from a URL or file, so you can preview it or use it in ads before any ad exists.  Standalone ad-video upload (parallel to POST /v1/ads/images), so a video creative can be rendered via POST /v1/ads/preview or attached via &#x60;video.id&#x60; on POST /v1/ads/create before an ad exists.  Accepts either an https &#x60;videoUrl&#x60; we download server-side (SSRF-guarded) or raw &#x60;videoBase64&#x60; bytes; exactly one is required. &#x60;videoBase64&#x60; is capped by Vercel&#39;s body limit, around 4.5 MB payload in practice, so larger videos must come via &#x60;videoUrl&#x60;.  Returns the Meta &#x60;video.id&#x60; (reusable wherever &#x60;video.id&#x60; is accepted) plus Meta&#39;s auto-generated poster URL when available. By default the endpoint waits until Meta reports the video ready (chunked upload + transcode can take minutes; the handler runs up to 800 s) and answers 201.  **Async mode.** Send &#x60;async: true&#x60; to get a 202 as soon as Meta has accepted the bytes, with &#x60;video.status: processing&#x60;. Then either poll &#x60;GET /v1/ads/videos/{videoId}&#x60; until &#x60;status&#x60; is &#x60;ready&#x60;, or subscribe to the &#x60;ad.video.processed&#x60; webhook. A create call that references the video while it is still processing waits up to 30 s, then answers 409 &#x60;invalid_resource_state&#x60; naming the status endpoint. With &#x60;videoUrl&#x60; the download and byte transfer still happen inside the request; only Meta&#39;s transcode is skipped.
 
 ### Example
 

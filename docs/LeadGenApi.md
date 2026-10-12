@@ -29,7 +29,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Archive a lead form
 
-Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
+Archives a lead form so it can no longer be used (neither Meta nor LinkedIn allows deleting one).  Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages. 
 
 ### Example
 
@@ -104,7 +104,7 @@ public class Example {
 
 Archive a lead form
 
-Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages.
+Archives a lead form so it can no longer be used (neither Meta nor LinkedIn allows deleting one).  Neither platform hard-deletes a form; this archives it (Meta status&#x3D;ARCHIVED; LinkedIn state&#x3D;ARCHIVED via PARTIAL_UPDATE). Meta forms must belong to the Page the accountId manages. 
 
 ### Example
 
@@ -183,7 +183,7 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 
 Create a lead form
 
-Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.  The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -257,7 +257,7 @@ public class Example {
 
 Create a lead form
 
-Creates a Lead Gen form. The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
+Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.  The form content goes inside &#x60;platformSpecificData&#x60; for both platforms (the shape is selected by the accountId&#39;s platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where &#x60;accountId&#x60; may be the &#x60;metaads&#x60; ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account&#39;s Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on. 
 
 ### Example
 
@@ -335,7 +335,7 @@ ApiResponse<[**CreateLeadForm200Response**](CreateLeadForm200Response.md)>
 
 Create a test lead
 
-Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+Submits a test lead to a Meta lead form so you can check your lead retrieval without running ads.  Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
 
 ### Example
 
@@ -409,7 +409,7 @@ public class Example {
 
 Create a test lead
 
-Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
+Submits a test lead to a Meta lead form so you can check your lead retrieval without running ads.  Submits a test lead against the form (POST /{form-id}/test_leads) to exercise retrieval without waiting for real ad impressions. Meta allows one test lead per form at a time. 
 
 ### Example
 
@@ -487,7 +487,7 @@ ApiResponse<[**CreateTestLead200Response**](CreateTestLead200Response.md)>
 
 Delete a test lead
 
-Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+Deletes the test lead on a Meta lead form so you can submit a new one (Meta allows only one at a time).  Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
 
 ### Example
 
@@ -564,7 +564,7 @@ public class Example {
 
 Delete a test lead
 
-Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
+Deletes the test lead on a Meta lead form so you can submit a new one (Meta allows only one at a time).  Removes a test lead created for the form (DELETE /{leadgen_id}), so a new one can be submitted: Meta keeps one test lead per form and refuses a second until the first is gone. The same test lead appears in Meta&#39;s Lead Ads Testing Tool. Meta only deletes test leads; a real lead is refused. 
 
 ### Example
 
@@ -645,7 +645,7 @@ ApiResponse<[**DeleteTestLead200Response**](DeleteTestLead200Response.md)>
 
 Get a lead form
 
-Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
+Shows a lead form in full, including its questions and thank-you page.  Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
 
 ### Example
 
@@ -722,7 +722,7 @@ public class Example {
 
 Get a lead form
 
-Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
+Shows a lead form in full, including its questions and thank-you page.  Returns the full form, including the thank-you page, so a form can be diffed against what was created. Meta forms are scoped to the Page the accountId manages: a form on any other Page is a 404, never a read. 
 
 ### Example
 
@@ -803,7 +803,7 @@ ApiResponse<[**GetLeadForm200Response**](GetLeadForm200Response.md)>
 
 List leads for a single form
 
-Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
+Lists the leads submitted through one Meta lead form.  Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
 
 ### Example
 
@@ -885,7 +885,7 @@ public class Example {
 
 List leads for a single form
 
-Returns leads for one form. Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
+Lists the leads submitted through one Meta lead form.  Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent. 
 
 ### Example
 
@@ -971,7 +971,7 @@ ApiResponse<[**ListFormLeads200Response**](ListFormLeads200Response.md)>
 
 List lead forms
 
-Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+Lists the lead forms on a Facebook Page or LinkedIn Company Page.  Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -1050,7 +1050,7 @@ public class Example {
 
 List lead forms
 
-Lists the Lead Gen forms owned by the account. Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
+Lists the lead forms on a Facebook Page or LinkedIn Company Page.  Meta: forms on the connected Facebook Page. Pass either the &#x60;metaads&#x60; ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account&#39;s Company Page. Pass &#x60;adAccountId&#x60; (LinkedIn forms are org-owned). Requires the Ads add-on. 
 
 ### Example
 
@@ -1133,7 +1133,7 @@ ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
 
 List submitted leads
 
-Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
+Lists the leads submitted through your Meta or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
 
 ### Example
 
@@ -1218,7 +1218,7 @@ public class Example {
 
 List submitted leads
 
-Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
+Lists the leads submitted through your Meta or LinkedIn lead forms, newest first.  Returns submitted Lead Gen leads for your team, newest-first, with keyset pagination on &#x60;cursor&#x60;. For Meta (default) leads are served from the persisted cache, ingested in real time from the &#x60;leadgen&#x60; webhook. When &#x60;accountId&#x60; is a LinkedIn ads account, leads are fetched live from LinkedIn&#39;s &#x60;leadFormResponses&#x60; (LinkedIn has no webhook and enforces 90-day retention, so nothing is persisted) and &#x60;adAccountId&#x60; is required. Reading LinkedIn responses needs the &#x60;r_marketing_leadgen_automation&#x60; permission; accounts connected before it was added must reconnect. Requires the Ads add-on. 
 
 ### Example
 
