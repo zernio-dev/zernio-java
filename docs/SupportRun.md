@@ -13,7 +13,7 @@
 |**stopReason** | [**StopReasonEnum**](#StopReasonEnum) | Why the run stopped. Null while it is in progress. |  |
 |**answer** | **String** | Ana&#39;s answer. Null while the run is in progress or when it failed. |  |
 |**usage** | [**SupportRunUsage**](SupportRunUsage.md) |  |  |
-|**costUsd** | **BigDecimal** | The amount billed for the run, in USD: the model cost plus 20%, never above &#x60;maxCostUsd&#x60;. 0 for a failed run. |  |
+|**costUsd** | **BigDecimal** | The amount billed for the run, in USD: the tokens in &#x60;usage&#x60; at the Support Assistant rates (see Ask a support question), never above &#x60;maxCostUsd&#x60;. 0 for a failed run. |  |
 |**maxCostUsd** | **BigDecimal** | The cost cap this run was started with, in USD. |  |
 |**createdAt** | **OffsetDateTime** |  |  |
 |**startedAt** | **OffsetDateTime** |  |  |

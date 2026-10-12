@@ -8269,7 +8269,7 @@ ApiResponse<Void>
 
 Support Assistant finished event
 
-Fired when the Support Assistant finishes a question (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 
@@ -8338,7 +8338,7 @@ null (empty response body)
 
 Support Assistant finished event
 
-Fired when the Support Assistant finishes a question (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question. run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 
@@ -8411,7 +8411,7 @@ ApiResponse<Void>
 
 Support Assistant failed event
 
-Fired when a Support Assistant question fails or expires (private beta). Failed runs are not billed.
+Fired when a Support Assistant question fails or expires. Failed runs are not billed.
 
 ### Example
 
@@ -8480,7 +8480,7 @@ null (empty response body)
 
 Support Assistant failed event
 
-Fired when a Support Assistant question fails or expires (private beta). Failed runs are not billed.
+Fired when a Support Assistant question fails or expires. Failed runs are not billed.
 
 ### Example
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.257.0
+- API version: 1.258.1
 
-- Build date: 2026-10-12T17:43:44.212473166Z[Etc/UTC]
+- Build date: 2026-10-12T17:53:33.878084923Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.257.0</version>
+  <version>1.258.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.257.0"
+compile "dev.zernio:zernio-sdk:1.258.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.257.0.jar`
+- `target/zernio-sdk-1.258.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1677,10 +1677,10 @@ Class | Method | HTTP request | Description
 *SmsApi* | [**uploadSmsOptInProofFileWithHttpInfo**](docs/SmsApi.md#uploadSmsOptInProofFileWithHttpInfo) | **POST** /v1/sms/opt-in-proof | Upload opt-in form proof
 *SmsApi* | [**verifySmsRegistrationOtp**](docs/SmsApi.md#verifySmsRegistrationOtp) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
 *SmsApi* | [**verifySmsRegistrationOtpWithHttpInfo**](docs/SmsApi.md#verifySmsRegistrationOtpWithHttpInfo) | **POST** /v1/sms/registrations/{id}/verify-otp | Submit the sole-prop OTP
-*SupportAssistantApi* | [**askSupportQuestion**](docs/SupportAssistantApi.md#askSupportQuestion) | **POST** /v1/support/runs | Ask a support question (private beta)
-*SupportAssistantApi* | [**askSupportQuestionWithHttpInfo**](docs/SupportAssistantApi.md#askSupportQuestionWithHttpInfo) | **POST** /v1/support/runs | Ask a support question (private beta)
-*SupportAssistantApi* | [**getSupportAnswer**](docs/SupportAssistantApi.md#getSupportAnswer) | **GET** /v1/support/runs/{runId} | Get a support answer (private beta)
-*SupportAssistantApi* | [**getSupportAnswerWithHttpInfo**](docs/SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer (private beta)
+*SupportAssistantApi* | [**askSupportQuestion**](docs/SupportAssistantApi.md#askSupportQuestion) | **POST** /v1/support/runs | Ask a support question
+*SupportAssistantApi* | [**askSupportQuestionWithHttpInfo**](docs/SupportAssistantApi.md#askSupportQuestionWithHttpInfo) | **POST** /v1/support/runs | Ask a support question
+*SupportAssistantApi* | [**getSupportAnswer**](docs/SupportAssistantApi.md#getSupportAnswer) | **GET** /v1/support/runs/{runId} | Get a support answer
+*SupportAssistantApi* | [**getSupportAnswerWithHttpInfo**](docs/SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer
 *ToolsApi* | [**downloadTikTokVideo**](docs/ToolsApi.md#downloadTikTokVideo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *ToolsApi* | [**downloadTikTokVideoWithHttpInfo**](docs/ToolsApi.md#downloadTikTokVideoWithHttpInfo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
