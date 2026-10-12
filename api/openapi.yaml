@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.252.3
+  version: 1.252.4
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1757,6 +1757,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/YouTubeScopeMissingResponse"
           description: Missing YouTube Analytics scope
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "500":
           content:
             application/json:
@@ -1925,6 +1927,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/YouTubeScopeMissingResponse"
           description: Missing YouTube Analytics scope
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "500":
           content:
             application/json:
