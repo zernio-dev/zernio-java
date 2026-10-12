@@ -339,7 +339,7 @@ ApiResponse<[**SupportRun**](SupportRun.md)>
 
 List a thread&#39;s support answers
 
-Lists the runs of one thread that your team started, with their answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+Lists the runs of one thread that your team started, with each question and its answer, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
 
 ### Example
 
@@ -418,7 +418,7 @@ public class Example {
 
 List a thread&#39;s support answers
 
-Lists the runs of one thread that your team started, with their answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+Lists the runs of one thread that your team started, with each question and its answer, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
 
 ### Example
 
