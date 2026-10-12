@@ -177,7 +177,7 @@ ApiResponse<[**CreateCommentAutomation200Response**](CreateCommentAutomation200R
 
 Delete automation
 
-Permanently delete an automation and all its trigger logs.
+Delete an automation. Its trigger logs are kept so tracked links already sent in DMs keep redirecting; they are removed with the account.
 
 ### Example
 
@@ -248,7 +248,7 @@ null (empty response body)
 
 Delete automation
 
-Permanently delete an automation and all its trigger logs.
+Delete an automation. Its trigger logs are kept so tracked links already sent in DMs keep redirecting; they are removed with the account.
 
 ### Example
 

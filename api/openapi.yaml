@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.253.0
+  version: 1.253.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -36030,7 +36030,8 @@ paths:
       - application/json
   /v1/comment-automations/{automationId}:
     delete:
-      description: Permanently delete an automation and all its trigger logs.
+      description: Delete an automation. Its trigger logs are kept so tracked links
+        already sent in DMs keep redirecting; they are removed with the account.
       operationId: deleteCommentAutomation
       parameters:
       - explode: false
