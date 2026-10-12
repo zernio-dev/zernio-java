@@ -19,7 +19,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Ask a support question
 
-Asks Ana, the Zernio support agent, a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a &#x60;runId&#x60;, and the answer arrives through the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks. &#x60;GET /v1/support/runs/{runId}&#x60; is the fallback. Pass &#x60;threadId&#x60; to continue an earlier conversation, and &#x60;context&#x60; to point Ana at a post, account or profile. When Ana finds a problem on Zernio&#39;s side she opens a support ticket with the team (see &#x60;supportTicket&#x60; on the run) and the run ends as &#x60;needs_human&#x60;.  **Pricing.** You pay per question, once it finishes. The exact amount charged is the run&#39;s &#x60;costUsd&#x60;.  | Question | You pay | | --- | --- | | Typical question | $0.10 to $0.50 | | Most one question can cost | Its &#x60;maxCostUsd&#x60;: $0.50 to $3, $3 by default | | Handed to the Zernio team (&#x60;needs_human&#x60;) | Charged like an answered question | | Failed or expired | $0 | | All questions in a UTC month | At most $100 per account |  Near its &#x60;maxCostUsd&#x60; a run stops investigating and answers with what it found so far, so it never charges more than the cap; with nothing to answer yet it fails and costs nothing. Charges appear as \&quot;Support API\&quot; on your invoice.  Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe. 
+Asks the Zernio Support Assistant a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a &#x60;runId&#x60;, and the answer arrives through the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks. &#x60;GET /v1/support/runs/{runId}&#x60; is the fallback. Pass &#x60;threadId&#x60; to continue an earlier conversation, and &#x60;context&#x60; to point the assistant at a post, account or profile. When the assistant finds a problem on Zernio&#39;s side it opens a support ticket with the team (see &#x60;supportTicket&#x60; on the run) and the run ends as &#x60;needs_human&#x60;.  **Pricing.** You pay per question, once it finishes. The exact amount charged is the run&#39;s &#x60;costUsd&#x60;.  | Question | You pay | | --- | --- | | Typical question | $0.10 to $0.50 | | Most one question can cost | Its &#x60;maxCostUsd&#x60;: $0.50 to $3, $3 by default | | Handed to the Zernio team (&#x60;needs_human&#x60;) | Charged like an answered question | | Failed or expired | $0 | | All questions in a UTC month | At most $100 per account |  Near its &#x60;maxCostUsd&#x60; a run stops investigating and answers with what it found so far, so it never charges more than the cap; with nothing to answer yet it fails and costs nothing. Charges appear as \&quot;Support API\&quot; on your invoice.  Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe. 
 
 ### Example
 
@@ -100,7 +100,7 @@ public class Example {
 
 Ask a support question
 
-Asks Ana, the Zernio support agent, a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a &#x60;runId&#x60;, and the answer arrives through the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks. &#x60;GET /v1/support/runs/{runId}&#x60; is the fallback. Pass &#x60;threadId&#x60; to continue an earlier conversation, and &#x60;context&#x60; to point Ana at a post, account or profile. When Ana finds a problem on Zernio&#39;s side she opens a support ticket with the team (see &#x60;supportTicket&#x60; on the run) and the run ends as &#x60;needs_human&#x60;.  **Pricing.** You pay per question, once it finishes. The exact amount charged is the run&#39;s &#x60;costUsd&#x60;.  | Question | You pay | | --- | --- | | Typical question | $0.10 to $0.50 | | Most one question can cost | Its &#x60;maxCostUsd&#x60;: $0.50 to $3, $3 by default | | Handed to the Zernio team (&#x60;needs_human&#x60;) | Charged like an answered question | | Failed or expired | $0 | | All questions in a UTC month | At most $100 per account |  Near its &#x60;maxCostUsd&#x60; a run stops investigating and answers with what it found so far, so it never charges more than the cap; with nothing to answer yet it fails and costs nothing. Charges appear as \&quot;Support API\&quot; on your invoice.  Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe. 
+Asks the Zernio Support Assistant a question about your workspace. Each question starts a run that answers asynchronously: this returns 202 with a &#x60;runId&#x60;, and the answer arrives through the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks. &#x60;GET /v1/support/runs/{runId}&#x60; is the fallback. Pass &#x60;threadId&#x60; to continue an earlier conversation, and &#x60;context&#x60; to point the assistant at a post, account or profile. When the assistant finds a problem on Zernio&#39;s side it opens a support ticket with the team (see &#x60;supportTicket&#x60; on the run) and the run ends as &#x60;needs_human&#x60;.  **Pricing.** You pay per question, once it finishes. The exact amount charged is the run&#39;s &#x60;costUsd&#x60;.  | Question | You pay | | --- | --- | | Typical question | $0.10 to $0.50 | | Most one question can cost | Its &#x60;maxCostUsd&#x60;: $0.50 to $3, $3 by default | | Handed to the Zernio team (&#x60;needs_human&#x60;) | Charged like an answered question | | Failed or expired | $0 | | All questions in a UTC month | At most $100 per account |  Near its &#x60;maxCostUsd&#x60; a run stops investigating and answers with what it found so far, so it never charges more than the cap; with nothing to answer yet it fails and costs nothing. Charges appear as \&quot;Support API\&quot; on your invoice.  Requires an unrestricted API key, usage-based billing and a card on file. Limits per account: 3 active runs and $100 of runs per UTC month. Send an Idempotency-Key header to make retries safe. 
 
 ### Example
 
@@ -185,7 +185,7 @@ ApiResponse<[**AskSupportQuestion202Response**](AskSupportQuestion202Response.md
 
 Get a support answer
 
-Returns a run started by your team, with Ana&#39;s answer once it is ready. Prefer the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks; use this as the fallback, waiting &#x60;pollAfterSeconds&#x60; between polls. &#x60;costUsd&#x60; is the amount billed for the question, never above &#x60;maxCostUsd&#x60;, and 0 for a failed run (pricing on Ask a support question).
+Returns a run started by your team, with the answer once it is ready. Prefer the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks; use this as the fallback, waiting &#x60;pollAfterSeconds&#x60; between polls. &#x60;costUsd&#x60; is the amount billed for the question, never above &#x60;maxCostUsd&#x60;, and 0 for a failed run (pricing on Ask a support question).
 
 ### Example
 
@@ -260,7 +260,7 @@ public class Example {
 
 Get a support answer
 
-Returns a run started by your team, with Ana&#39;s answer once it is ready. Prefer the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks; use this as the fallback, waiting &#x60;pollAfterSeconds&#x60; between polls. &#x60;costUsd&#x60; is the amount billed for the question, never above &#x60;maxCostUsd&#x60;, and 0 for a failed run (pricing on Ask a support question).
+Returns a run started by your team, with the answer once it is ready. Prefer the &#x60;support.run.completed&#x60; and &#x60;support.run.failed&#x60; webhooks; use this as the fallback, waiting &#x60;pollAfterSeconds&#x60; between polls. &#x60;costUsd&#x60; is the amount billed for the question, never above &#x60;maxCostUsd&#x60;, and 0 for a failed run (pricing on Ask a support question).
 
 ### Example
 
@@ -339,7 +339,7 @@ ApiResponse<[**SupportRun**](SupportRun.md)>
 
 List a thread&#39;s support answers
 
-Lists the runs of one thread that your team started, with Ana&#39;s answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+Lists the runs of one thread that your team started, with their answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
 
 ### Example
 
@@ -418,7 +418,7 @@ public class Example {
 
 List a thread&#39;s support answers
 
-Lists the runs of one thread that your team started, with Ana&#39;s answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+Lists the runs of one thread that your team started, with their answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
 
 ### Example
 
