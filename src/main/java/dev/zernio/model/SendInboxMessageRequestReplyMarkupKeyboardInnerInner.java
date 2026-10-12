@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequestReplyMarkupKeyboardInnerInner.JSON_PROPERTY_CALLBACK_DATA,
   SendInboxMessageRequestReplyMarkupKeyboardInnerInner.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T20:01:53.677162456Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T20:04:34.543150732Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequestReplyMarkupKeyboardInnerInner {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nullable

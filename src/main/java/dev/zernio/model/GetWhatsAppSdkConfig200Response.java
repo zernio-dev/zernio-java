@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppSdkConfig200Response.JSON_PROPERTY_CONFIG_ID,
   GetWhatsAppSdkConfig200Response.JSON_PROPERTY_BRANDING
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T20:01:53.677162456Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T20:04:34.543150732Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppSdkConfig200Response {
   public static final String JSON_PROPERTY_APP_ID = "appId";
   @javax.annotation.Nonnull
