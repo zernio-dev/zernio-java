@@ -118,10 +118,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**onSmsRegistrationActionRequiredWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationActionRequiredWithHttpInfo) | **POST** /sms.registration.action_required | SMS registration action required event |
 | [**onSmsRegistrationStatusUpdated**](WebhookEventsApi.md#onSmsRegistrationStatusUpdated) | **POST** /sms.registration.status_updated | SMS registration status updated event |
 | [**onSmsRegistrationStatusUpdatedWithHttpInfo**](WebhookEventsApi.md#onSmsRegistrationStatusUpdatedWithHttpInfo) | **POST** /sms.registration.status_updated | SMS registration status updated event |
-| [**onSupportRunCompleted**](WebhookEventsApi.md#onSupportRunCompleted) | **POST** /support.run.completed | Support run completed event |
-| [**onSupportRunCompletedWithHttpInfo**](WebhookEventsApi.md#onSupportRunCompletedWithHttpInfo) | **POST** /support.run.completed | Support run completed event |
-| [**onSupportRunFailed**](WebhookEventsApi.md#onSupportRunFailed) | **POST** /support.run.failed | Support run failed event |
-| [**onSupportRunFailedWithHttpInfo**](WebhookEventsApi.md#onSupportRunFailedWithHttpInfo) | **POST** /support.run.failed | Support run failed event |
+| [**onSupportRunCompleted**](WebhookEventsApi.md#onSupportRunCompleted) | **POST** /support.run.completed | Support Assistant finished event |
+| [**onSupportRunCompletedWithHttpInfo**](WebhookEventsApi.md#onSupportRunCompletedWithHttpInfo) | **POST** /support.run.completed | Support Assistant finished event |
+| [**onSupportRunFailed**](WebhookEventsApi.md#onSupportRunFailed) | **POST** /support.run.failed | Support Assistant failed event |
+| [**onSupportRunFailedWithHttpInfo**](WebhookEventsApi.md#onSupportRunFailedWithHttpInfo) | **POST** /support.run.failed | Support Assistant failed event |
 | [**onVerificationApproved**](WebhookEventsApi.md#onVerificationApproved) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationApprovedWithHttpInfo**](WebhookEventsApi.md#onVerificationApprovedWithHttpInfo) | **POST** /verification.approved | Verification approved event |
 | [**onVerificationFailed**](WebhookEventsApi.md#onVerificationFailed) | **POST** /verification.failed | Verification failed event |
@@ -8267,9 +8267,9 @@ ApiResponse<Void>
 
 > void onSupportRunCompleted(webhookPayloadSupportRun)
 
-Support run completed event
+Support Assistant finished event
 
-Fired when an Ana support run finishes (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 
@@ -8336,9 +8336,9 @@ null (empty response body)
 
 > ApiResponse<Void> onSupportRunCompleted onSupportRunCompletedWithHttpInfo(webhookPayloadSupportRun)
 
-Support run completed event
+Support Assistant finished event
 
-Fired when an Ana support run finishes (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
+Fired when the Support Assistant finishes a question (private beta). run.status is completed, or needs_human when Ana handed the question to a person. The run object matches GET /v1/support/runs/{runId}.
 
 ### Example
 
@@ -8409,9 +8409,9 @@ ApiResponse<Void>
 
 > void onSupportRunFailed(webhookPayloadSupportRun)
 
-Support run failed event
+Support Assistant failed event
 
-Fired when an Ana support run fails or expires (private beta). Failed runs are not billed.
+Fired when a Support Assistant question fails or expires (private beta). Failed runs are not billed.
 
 ### Example
 
@@ -8478,9 +8478,9 @@ null (empty response body)
 
 > ApiResponse<Void> onSupportRunFailed onSupportRunFailedWithHttpInfo(webhookPayloadSupportRun)
 
-Support run failed event
+Support Assistant failed event
 
-Fired when an Ana support run fails or expires (private beta). Failed runs are not billed.
+Fired when a Support Assistant question fails or expires (private beta). Failed runs are not billed.
 
 ### Example
 
