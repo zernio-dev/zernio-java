@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   UploadMediaDirectRequest.JSON_PROPERTY_FILE,
   UploadMediaDirectRequest.JSON_PROPERTY_CONTENT_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:53:33.878084923Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:56:41.866636945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UploadMediaDirectRequest {
   public static final String JSON_PROPERTY_FILE = "file";
   @javax.annotation.Nonnull

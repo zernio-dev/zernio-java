@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   GetCallsUsage200ResponseGroupsInner.JSON_PROPERTY_BRANDED_CALLS,
   GetCallsUsage200ResponseGroupsInner.JSON_PROPERTY_BRANDED_CALL_U_S_D
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:53:33.878084923Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:56:41.866636945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetCallsUsage200ResponseGroupsInner {
   public static final String JSON_PROPERTY_KEY = "key";
   @javax.annotation.Nullable

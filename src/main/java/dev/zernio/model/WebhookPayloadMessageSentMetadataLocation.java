@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageSentMetadataLocation.JSON_PROPERTY_NAME,
   WebhookPayloadMessageSentMetadataLocation.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:53:33.878084923Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:56:41.866636945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageSentMetadataLocation {
   public static final String JSON_PROPERTY_LATITUDE = "latitude";
   @javax.annotation.Nullable

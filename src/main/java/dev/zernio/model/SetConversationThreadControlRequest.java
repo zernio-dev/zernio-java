@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   SetConversationThreadControlRequest.JSON_PROPERTY_TARGET_APP_ID,
   SetConversationThreadControlRequest.JSON_PROPERTY_METADATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:53:33.878084923Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-12T17:56:41.866636945Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetConversationThreadControlRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
