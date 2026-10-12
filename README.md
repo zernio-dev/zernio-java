@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.258.1
+- API version: 1.259.0
 
-- Build date: 2026-10-12T17:56:41.866636945Z[Etc/UTC]
+- Build date: 2026-10-12T18:02:35.894493601Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.258.1</version>
+  <version>1.259.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.258.1"
+compile "dev.zernio:zernio-sdk:1.259.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.258.1.jar`
+- `target/zernio-sdk-1.259.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1681,6 +1681,8 @@ Class | Method | HTTP request | Description
 *SupportAssistantApi* | [**askSupportQuestionWithHttpInfo**](docs/SupportAssistantApi.md#askSupportQuestionWithHttpInfo) | **POST** /v1/support/runs | Ask a support question
 *SupportAssistantApi* | [**getSupportAnswer**](docs/SupportAssistantApi.md#getSupportAnswer) | **GET** /v1/support/runs/{runId} | Get a support answer
 *SupportAssistantApi* | [**getSupportAnswerWithHttpInfo**](docs/SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer
+*SupportAssistantApi* | [**listSupportAnswers**](docs/SupportAssistantApi.md#listSupportAnswers) | **GET** /v1/support/runs | List a thread&#39;s support answers
+*SupportAssistantApi* | [**listSupportAnswersWithHttpInfo**](docs/SupportAssistantApi.md#listSupportAnswersWithHttpInfo) | **GET** /v1/support/runs | List a thread&#39;s support answers
 *ToolsApi* | [**downloadTikTokVideo**](docs/ToolsApi.md#downloadTikTokVideo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *ToolsApi* | [**downloadTikTokVideoWithHttpInfo**](docs/ToolsApi.md#downloadTikTokVideoWithHttpInfo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
@@ -3670,6 +3672,7 @@ Class | Method | HTTP request | Description
  - [ListSmsSenderIds200ResponseSenderIdsInner](docs/ListSmsSenderIds200ResponseSenderIdsInner.md)
  - [ListSnapchatProfiles200Response](docs/ListSnapchatProfiles200Response.md)
  - [ListSnapchatProfiles200ResponsePublicProfilesInner](docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md)
+ - [ListSupportAnswers200Response](docs/ListSupportAnswers200Response.md)
  - [ListTikTokAdPixels200Response](docs/ListTikTokAdPixels200Response.md)
  - [ListTikTokAdPixels200ResponsePixelsInner](docs/ListTikTokAdPixels200ResponsePixelsInner.md)
  - [ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner](docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md)
@@ -4699,6 +4702,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadWorkflowRunExecution](docs/WebhookPayloadWorkflowRunExecution.md)
  - [WebhookPayloadWorkflowRunTrigger](docs/WebhookPayloadWorkflowRunTrigger.md)
  - [WebhookPayloadWorkflowRunWorkflow](docs/WebhookPayloadWorkflowRunWorkflow.md)
+ - [WebhookProfilesInner](docs/WebhookProfilesInner.md)
  - [WhatsAppBillingConversation](docs/WhatsAppBillingConversation.md)
  - [WhatsAppBodyComponent](docs/WhatsAppBodyComponent.md)
  - [WhatsAppBodyComponentExample](docs/WhatsAppBodyComponentExample.md)

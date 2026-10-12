@@ -1658,6 +1658,7 @@ docs/ListSmsSenderIds200ResponseBudgetPendingRequest.md
 docs/ListSmsSenderIds200ResponseSenderIdsInner.md
 docs/ListSnapchatProfiles200Response.md
 docs/ListSnapchatProfiles200ResponsePublicProfilesInner.md
+docs/ListSupportAnswers200Response.md
 docs/ListTikTokAdPixels200Response.md
 docs/ListTikTokAdPixels200ResponsePixelsInner.md
 docs/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.md
@@ -2715,6 +2716,7 @@ docs/WebhookPayloadWorkflowRunConversation.md
 docs/WebhookPayloadWorkflowRunExecution.md
 docs/WebhookPayloadWorkflowRunTrigger.md
 docs/WebhookPayloadWorkflowRunWorkflow.md
+docs/WebhookProfilesInner.md
 docs/WebhooksApi.md
 docs/WhatsAppApi.md
 docs/WhatsAppBillingConversation.md
@@ -4504,6 +4506,7 @@ src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseBudgetPendingRequest.j
 src/main/java/dev/zernio/model/ListSmsSenderIds200ResponseSenderIdsInner.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200Response.java
 src/main/java/dev/zernio/model/ListSnapchatProfiles200ResponsePublicProfilesInner.java
+src/main/java/dev/zernio/model/ListSupportAnswers200Response.java
 src/main/java/dev/zernio/model/ListTikTokAdPixels200Response.java
 src/main/java/dev/zernio/model/ListTikTokAdPixels200ResponsePixelsInner.java
 src/main/java/dev/zernio/model/ListTikTokAdPixels200ResponsePixelsInnerEventDetailsInner.java
@@ -5533,6 +5536,7 @@ src/main/java/dev/zernio/model/WebhookPayloadWorkflowRunConversation.java
 src/main/java/dev/zernio/model/WebhookPayloadWorkflowRunExecution.java
 src/main/java/dev/zernio/model/WebhookPayloadWorkflowRunTrigger.java
 src/main/java/dev/zernio/model/WebhookPayloadWorkflowRunWorkflow.java
+src/main/java/dev/zernio/model/WebhookProfilesInner.java
 src/main/java/dev/zernio/model/WhatsAppBillingConversation.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponent.java
 src/main/java/dev/zernio/model/WhatsAppBodyComponentExample.java
@@ -5605,3 +5609,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListSupportAnswers200ResponseTest.java
+src/test/java/dev/zernio/model/WebhookProfilesInnerTest.java

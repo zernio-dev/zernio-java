@@ -8,6 +8,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**askSupportQuestionWithHttpInfo**](SupportAssistantApi.md#askSupportQuestionWithHttpInfo) | **POST** /v1/support/runs | Ask a support question |
 | [**getSupportAnswer**](SupportAssistantApi.md#getSupportAnswer) | **GET** /v1/support/runs/{runId} | Get a support answer |
 | [**getSupportAnswerWithHttpInfo**](SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer |
+| [**listSupportAnswers**](SupportAssistantApi.md#listSupportAnswers) | **GET** /v1/support/runs | List a thread&#39;s support answers |
+| [**listSupportAnswersWithHttpInfo**](SupportAssistantApi.md#listSupportAnswersWithHttpInfo) | **GET** /v1/support/runs | List a thread&#39;s support answers |
 
 
 
@@ -329,4 +331,166 @@ ApiResponse<[**SupportRun**](SupportRun.md)>
 | **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
 | **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
 | **404** | Code &#x60;support_run_not_found&#x60;: no such run, or it was not started by your team. |  -  |
+
+
+## listSupportAnswers
+
+> ListSupportAnswers200Response listSupportAnswers(threadId, limit, cursor)
+
+List a thread&#39;s support answers
+
+Lists the runs of one thread that your team started, with Ana&#39;s answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SupportAssistantApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SupportAssistantApi apiInstance = new SupportAssistantApi(defaultClient);
+        String threadId = "threadId_example"; // String | The thread to list, as returned by `POST /v1/support/runs`.
+        Integer limit = 20; // Integer | Runs per page.
+        String cursor = "cursor_example"; // String | Pass `nextCursor` from the previous page.
+        try {
+            ListSupportAnswers200Response result = apiInstance.listSupportAnswers(threadId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SupportAssistantApi#listSupportAnswers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **threadId** | **String**| The thread to list, as returned by &#x60;POST /v1/support/runs&#x60;. | |
+| **limit** | **Integer**| Runs per page. | [optional] [default to 20] |
+| **cursor** | **String**| Pass &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListSupportAnswers200Response**](ListSupportAnswers200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The thread&#39;s runs, oldest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
+| **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
+| **404** | Code &#x60;support_thread_not_found&#x60;: no run in this thread was started by your team, or its runs are older than 90 days. |  -  |
+
+## listSupportAnswersWithHttpInfo
+
+> ApiResponse<ListSupportAnswers200Response> listSupportAnswers listSupportAnswersWithHttpInfo(threadId, limit, cursor)
+
+List a thread&#39;s support answers
+
+Lists the runs of one thread that your team started, with Ana&#39;s answers, oldest first. Replies from the Zernio team after a support ticket arrive by email and are not included. Runs are kept for 90 days. Page through a long thread with &#x60;limit&#x60; and &#x60;cursor&#x60;: pass &#x60;nextCursor&#x60; as &#x60;cursor&#x60; until it is null.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.SupportAssistantApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        SupportAssistantApi apiInstance = new SupportAssistantApi(defaultClient);
+        String threadId = "threadId_example"; // String | The thread to list, as returned by `POST /v1/support/runs`.
+        Integer limit = 20; // Integer | Runs per page.
+        String cursor = "cursor_example"; // String | Pass `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListSupportAnswers200Response> response = apiInstance.listSupportAnswersWithHttpInfo(threadId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling SupportAssistantApi#listSupportAnswers");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **threadId** | **String**| The thread to list, as returned by &#x60;POST /v1/support/runs&#x60;. | |
+| **limit** | **Integer**| Runs per page. | [optional] [default to 20] |
+| **cursor** | **String**| Pass &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListSupportAnswers200Response**](ListSupportAnswers200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The thread&#39;s runs, oldest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | A card is required (code &#x60;payment_method_required&#x60;) or the last payment failed (code &#x60;payment_required&#x60;). |  -  |
+| **403** | Code &#x60;insufficient_permissions&#x60;: not an unrestricted API key, or a read-only, restricted or profile-scoped user. |  -  |
+| **404** | Code &#x60;support_thread_not_found&#x60;: no run in this thread was started by your team, or its runs are older than 90 days. |  -  |
 
