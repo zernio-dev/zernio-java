@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.252.4
+  version: 1.253.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -34765,7 +34765,9 @@ paths:
         \ webhooks. `GET /v1/support/runs/{runId}` is the fallback. Pass `threadId`\
         \ to continue an earlier conversation, and `context` to point Ana at a post,\
         \ account or profile. Billed when the run finishes at the model cost plus\
-        \ 20%, never above `maxCostUsd`; failed runs are free. Requires an unrestricted\
+        \ 20%, never above `maxCostUsd`; failed runs are free. When Ana finds a problem\
+        \ on Zernio's side she opens a support ticket with the team (see `supportTicket`\
+        \ on the run) and the run ends as `needs_human`. Requires an unrestricted\
         \ API key, usage-based billing and a card on file. Limits per account: 3 active\
         \ runs and $100 of runs per UTC month. Send an Idempotency-Key header to make\
         \ retries safe."
@@ -89053,11 +89055,8 @@ components:
       example:
         test: true
         run:
-          threadId: threadId
           stopReason: answered
-          createdAt: 2000-01-23T04:56:07.000+00:00
           maxCostUsd: 2.3021358869347655
-          answer: answer
           costUsd: 5.637376656633329
           usage:
             cacheReadTokens: 1
@@ -89065,10 +89064,15 @@ components:
             inputTokens: 0
             outputTokens: 6
           startedAt: 2000-01-23T04:56:07.000+00:00
+          finishedAt: 2000-01-23T04:56:07.000+00:00
+          threadId: threadId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          answer: answer
+          supportTicket:
+            openedAt: 2000-01-23T04:56:07.000+00:00
           runId: runId
           pollAfterSeconds: 7
           status: queued
-          finishedAt: 2000-01-23T04:56:07.000+00:00
         id: id
         event: support.run.completed
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -89117,11 +89121,8 @@ components:
       - outputTokens
     SupportRun:
       example:
-        threadId: threadId
         stopReason: answered
-        createdAt: 2000-01-23T04:56:07.000+00:00
         maxCostUsd: 2.3021358869347655
-        answer: answer
         costUsd: 5.637376656633329
         usage:
           cacheReadTokens: 1
@@ -89129,10 +89130,15 @@ components:
           inputTokens: 0
           outputTokens: 6
         startedAt: 2000-01-23T04:56:07.000+00:00
+        finishedAt: 2000-01-23T04:56:07.000+00:00
+        threadId: threadId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        answer: answer
+        supportTicket:
+          openedAt: 2000-01-23T04:56:07.000+00:00
         runId: runId
         pollAfterSeconds: 7
         status: queued
-        finishedAt: 2000-01-23T04:56:07.000+00:00
       properties:
         runId:
           description: "Run id, a 24-character hex string."
@@ -89142,8 +89148,9 @@ components:
             follow-up in the same thread.
           type: string
         status:
-          description: queued and running are in progress. needs_human means Ana handed
-            the question to a person instead of answering.
+          description: "queued and running are in progress. needs_human means Ana\
+            \ handed the question to a person instead of answering; when `supportTicket`\
+            \ is set, a Zernio teammate has been notified and will follow up by email."
           enum:
           - queued
           - running
@@ -89189,6 +89196,8 @@ components:
           format: date-time
           nullable: true
           type: string
+        supportTicket:
+          $ref: "#/components/schemas/SupportRun_supportTicket"
         pollAfterSeconds:
           description: Seconds to wait before polling again. Present only while the
             run is queued or running.
@@ -89203,6 +89212,7 @@ components:
       - startedAt
       - status
       - stopReason
+      - supportTicket
       - threadId
       - usage
     CommerceCollection:
@@ -160462,6 +160472,18 @@ components:
         text:
           description: "The inbound message that started the run, when there was one."
           type: string
+    SupportRun_supportTicket:
+      description: Set when Ana opened a support ticket with the Zernio team. Null
+        otherwise. A teammate follows up by email with the user whose API key started
+        the run.
+      example:
+        openedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        openedAt:
+          format: date-time
+          type: string
+      required:
+      - openedAt
     BusinessAgentSettings_rollout:
       example:
         enabled: true

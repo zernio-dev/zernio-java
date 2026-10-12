@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.252.4
+- API version: 1.253.0
 
-- Build date: 2026-10-12T03:33:13.781986182Z[Etc/UTC]
+- Build date: 2026-10-12T05:33:13.921713590Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.252.4</version>
+  <version>1.253.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.252.4"
+compile "dev.zernio:zernio-sdk:1.253.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.252.4.jar`
+- `target/zernio-sdk-1.253.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4209,6 +4209,7 @@ Class | Method | HTTP request | Description
  - [SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
  - [SupportRun](docs/SupportRun.md)
+ - [SupportRunSupportTicket](docs/SupportRunSupportTicket.md)
  - [SupportRunUsage](docs/SupportRunUsage.md)
  - [SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)
  - [SyncExternalPosts200ResponseSynced](docs/SyncExternalPosts200ResponseSynced.md)

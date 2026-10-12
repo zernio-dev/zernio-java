@@ -2215,6 +2215,7 @@ docs/SubmitWhatsAppNumberKycRequest.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md
 docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md
 docs/SupportRun.md
+docs/SupportRunSupportTicket.md
 docs/SupportRunUsage.md
 docs/SupportRunsApi.md
 docs/SyncExternalPosts200Response.md
@@ -5041,6 +5042,7 @@ src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequest.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInner.java
 src/main/java/dev/zernio/model/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.java
 src/main/java/dev/zernio/model/SupportRun.java
+src/main/java/dev/zernio/model/SupportRunSupportTicket.java
 src/main/java/dev/zernio/model/SupportRunUsage.java
 src/main/java/dev/zernio/model/SyncExternalPosts200Response.java
 src/main/java/dev/zernio/model/SyncExternalPosts200ResponseSynced.java
@@ -5601,3 +5603,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/SupportRunSupportTicketTest.java
