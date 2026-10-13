@@ -380,7 +380,7 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
             ReplyToInboxReview200Response result = apiInstance.replyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println(result);
@@ -402,7 +402,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
 ### Return type
 
@@ -460,7 +460,7 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
             ApiResponse<ReplyToInboxReview200Response> response = apiInstance.replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -484,7 +484,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
 ### Return type
 

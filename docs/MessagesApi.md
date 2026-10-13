@@ -2030,7 +2030,7 @@ public class Example {
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         SendInboxMessageRequest sendInboxMessageRequest = new SendInboxMessageRequest(); // SendInboxMessageRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
             SendInboxMessage200Response result = apiInstance.sendInboxMessage(conversationId, sendInboxMessageRequest, idempotencyKey);
             System.out.println(result);
@@ -2052,7 +2052,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **sendInboxMessageRequest** | [**SendInboxMessageRequest**](SendInboxMessageRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
 ### Return type
 
@@ -2115,7 +2115,7 @@ public class Example {
         MessagesApi apiInstance = new MessagesApi(defaultClient);
         String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
         SendInboxMessageRequest sendInboxMessageRequest = new SendInboxMessageRequest(); // SendInboxMessageRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
             ApiResponse<SendInboxMessage200Response> response = apiInstance.sendInboxMessageWithHttpInfo(conversationId, sendInboxMessageRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2139,7 +2139,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
 | **sendInboxMessageRequest** | [**SendInboxMessageRequest**](SendInboxMessageRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
 ### Return type
 
@@ -2643,7 +2643,7 @@ ApiResponse<[**UpdateInboxConversation200Response**](UpdateInboxConversation200R
 
 Upload media file
 
-Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint takes your API key in the Authorization header, for programmatic use. 
+Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. The effective maximum is about 4.5 MB: the multipart body goes through the hosting platform&#39;s request body limit, which answers 413 before the endpoint&#39;s own 25 MB check is reached. For larger files use POST /v1/media/presign and upload straight to storage.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint takes your API key in the Authorization header, for programmatic use. 
 
 ### Example
 
@@ -2666,7 +2666,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        File _file = new File("/path/to/file"); // File | The file to upload (max 25MB)
+        File _file = new File("/path/to/file"); // File | The file to upload (about 4.5 MB at most in practice; use POST /v1/media/presign for larger files)
         String contentType = "contentType_example"; // String | Override MIME type (e.g. \\\"image/jpeg\\\"). Auto-detected from file if not provided.
         try {
             UploadMediaDirect200Response result = apiInstance.uploadMediaDirect(_file, contentType);
@@ -2687,7 +2687,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **_file** | **File**| The file to upload (max 25MB) | |
+| **_file** | **File**| The file to upload (about 4.5 MB at most in practice; use POST /v1/media/presign for larger files) | |
 | **contentType** | **String**| Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. | [optional] |
 
 ### Return type
@@ -2717,7 +2717,7 @@ public class Example {
 
 Upload media file
 
-Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. Maximum file size is 25MB.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint takes your API key in the Authorization header, for programmatic use. 
+Upload a media file using API key authentication and get back a publicly accessible URL. The URL can be used as attachmentUrl when sending inbox messages.  Files are stored in temporary storage and auto-delete after 7 days. The effective maximum is about 4.5 MB: the multipart body goes through the hosting platform&#39;s request body limit, which answers 413 before the endpoint&#39;s own 25 MB check is reached. For larger files use POST /v1/media/presign and upload straight to storage.  Unlike /v1/media/upload (which uses upload tokens for end-user flows), this endpoint takes your API key in the Authorization header, for programmatic use. 
 
 ### Example
 
@@ -2741,7 +2741,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         MessagesApi apiInstance = new MessagesApi(defaultClient);
-        File _file = new File("/path/to/file"); // File | The file to upload (max 25MB)
+        File _file = new File("/path/to/file"); // File | The file to upload (about 4.5 MB at most in practice; use POST /v1/media/presign for larger files)
         String contentType = "contentType_example"; // String | Override MIME type (e.g. \\\"image/jpeg\\\"). Auto-detected from file if not provided.
         try {
             ApiResponse<UploadMediaDirect200Response> response = apiInstance.uploadMediaDirectWithHttpInfo(_file, contentType);
@@ -2764,7 +2764,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **_file** | **File**| The file to upload (max 25MB) | |
+| **_file** | **File**| The file to upload (about 4.5 MB at most in practice; use POST /v1/media/presign for larger files) | |
 | **contentType** | **String**| Override MIME type (e.g. \\\&quot;image/jpeg\\\&quot;). Auto-detected from file if not provided. | [optional] |
 
 ### Return type

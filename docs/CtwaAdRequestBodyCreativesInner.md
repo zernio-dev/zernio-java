@@ -2,7 +2,7 @@
 
 # CtwaAdRequestBodyCreativesInner
 
-Supply headline, body, and image/video, or exactly one existing post reference. References cannot be combined with headline, body, imageUrl or video; welcomeMessage works on both.
+Supply headline, body, and image/video; or body and carouselCards (no headline); or exactly one existing post reference. References cannot be combined with headline, body, imageUrl, video or carouselCards; welcomeMessage works on all three.
 
 ## Properties
 
