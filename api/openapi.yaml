@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.267.0
+  version: 1.267.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -48760,9 +48760,11 @@ paths:
         Meta: forms on the connected Facebook Page. Pass either the `metaads` ads connection (the Page is taken from the Facebook account linked to it) or the Facebook account itself. LinkedIn: forms owned by the ad account's Company Page. Pass `adAccountId` (LinkedIn forms are org-owned). Requires the Ads add-on.
       operationId: listLeadForms
       parameters:
-      - description: "Connected Meta ads, Facebook or LinkedIn ads account ID. A Meta\
-          \ ads connection resolves its Page through the Facebook account linked to\
-          \ the same profile."
+      - description: "Connected Meta ads, Facebook, Instagram or LinkedIn ads account\
+          \ ID. A Meta ads connection resolves its Page through the Facebook account\
+          \ linked to the same profile; an Instagram account uses the Page its ads\
+          \ run under (its own linked Page, else the Facebook or business-login Meta\
+          \ ads account on the same profile)."
         explode: true
         in: query
         name: accountId
@@ -48822,7 +48824,7 @@ paths:
       description: |
         Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.
 
-        The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
+        The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile), an Instagram account (the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
       operationId: createLeadForm
       requestBody:
         content:
@@ -48873,9 +48875,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Connected Meta ads, facebook or linkedin ads account id (selects\
-          \ the platform). A Meta ads connection resolves its Page through the Facebook\
-          \ account linked to the same profile."
+      - description: "Connected Meta ads, facebook, instagram or linkedin ads account\
+          \ id (selects the platform). A Meta ads connection resolves its Page through\
+          \ the Facebook account linked to the same profile; an Instagram account\
+          \ uses the Page its ads run under (its own linked Page, else the Facebook\
+          \ or business-login Meta ads account on the same profile)."
         explode: true
         in: query
         name: accountId
@@ -48920,9 +48924,11 @@ paths:
         schema:
           type: string
         style: simple
-      - description: "Connected Meta ads, facebook or linkedin ads account id (selects\
-          \ the platform). A Meta ads connection resolves its Page through the Facebook\
-          \ account linked to the same profile."
+      - description: "Connected Meta ads, facebook, instagram or linkedin ads account\
+          \ id (selects the platform). A Meta ads connection resolves its Page through\
+          \ the Facebook account linked to the same profile; an Instagram account\
+          \ uses the Page its ads run under (its own linked Page, else the Facebook\
+          \ or business-login Meta ads account on the same profile)."
         explode: true
         in: query
         name: accountId
