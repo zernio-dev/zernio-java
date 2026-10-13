@@ -1970,6 +1970,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## remediateWhatsAppNumberWithHttpInfo
 
@@ -2049,6 +2050,7 @@ ApiResponse<[**RemediatePhoneNumber200Response**](RemediatePhoneNumber200Respons
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The API key is scoped to profiles that do not include this number. |  -  |
 | **404** | Number not found |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## searchAvailableWhatsAppNumbers
@@ -2299,6 +2301,7 @@ public class Example {
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
 | **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 ## submitWhatsAppNumberKycWithHttpInfo
 
@@ -2375,6 +2378,7 @@ ApiResponse<[**SubmitPhoneNumberKyc200Response**](SubmitPhoneNumberKyc200Respons
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
 | **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
 
 ## uploadWhatsAppNumberKycDocument

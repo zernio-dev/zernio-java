@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.273.0
+  version: 1.274.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -31271,6 +31271,8 @@ paths:
             \ carries it as an ISO timestamp."
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Submit KYC
@@ -31581,6 +31583,8 @@ paths:
             number.
         "404":
           description: Number not found
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Resubmit a declined number
