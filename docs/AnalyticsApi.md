@@ -67,7 +67,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## getAnalytics
 
-> GetAnalytics200Response getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order)
+> GetAnalytics200Response getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags)
 
 Get post analytics
 
@@ -105,8 +105,9 @@ public class Example {
         Integer page = 1; // Integer | Page number (default 1)
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0.
         String order = "asc"; // String | Sort order
+        String tags = "job"; // String | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set.
         try {
-            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
+            GetAnalytics200Response result = apiInstance.getAnalytics(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getAnalytics");
@@ -135,6 +136,7 @@ public class Example {
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
 | **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views, website_clicks] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
+| **tags** | **String**| Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional] |
 
 ### Return type
 
@@ -164,7 +166,7 @@ public class Example {
 
 ## getAnalyticsWithHttpInfo
 
-> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order)
+> ApiResponse<GetAnalytics200Response> getAnalytics getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags)
 
 Get post analytics
 
@@ -203,8 +205,9 @@ public class Example {
         Integer page = 1; // Integer | Page number (default 1)
         String sortBy = "date"; // String | Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0.
         String order = "asc"; // String | Sort order
+        String tags = "job"; // String | Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set.
         try {
-            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order);
+            ApiResponse<GetAnalytics200Response> response = apiInstance.getAnalyticsWithHttpInfo(postId, platform, profileId, accountId, source, fromDate, toDate, limit, page, sortBy, order, tags);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -235,6 +238,7 @@ public class Example {
 | **page** | **Integer**| Page number (default 1) | [optional] [default to 1] |
 | **sortBy** | **String**| Sort by date, engagement, or a specific metric. Platform-specific metrics (follows, reposts, reels_skip_rate, ig_reels_*, completion_rate, profile_views, website_clicks) sort a null value as 0. | [optional] [default to date] [enum: date, engagement, impressions, reach, likes, comments, shares, saves, clicks, views, follows, ig_reels_avg_watch_time, ig_reels_video_view_total_time, reposts, reels_skip_rate, completion_rate, profile_views, website_clicks] |
 | **order** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
+| **tags** | **String**| Comma-separated tags (at most 20). Lists only posts created through Zernio that carry every listed tag, matched exactly and case-sensitively. Up to 200 published posts can match within the date range; more returns 400 asking to narrow fromDate and toDate. Ignored when postId is set. | [optional] |
 
 ### Return type
 

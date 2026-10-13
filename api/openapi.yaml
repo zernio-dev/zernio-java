@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.272.0
+  version: 1.273.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -790,6 +790,18 @@ paths:
           enum:
           - asc
           - desc
+          type: string
+        style: form
+      - description: "Comma-separated tags (at most 20). Lists only posts created\
+          \ through Zernio that carry every listed tag, matched exactly and case-sensitively.\
+          \ Up to 200 published posts can match within the date range; more returns\
+          \ 400 asking to narrow fromDate and toDate. Ignored when postId is set."
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          example: job
           type: string
         style: form
       responses:
