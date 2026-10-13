@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.265.1
+  version: 1.266.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -34920,7 +34920,7 @@ paths:
         starts a run that answers asynchronously: this returns 202 with a `runId`, and the
         answer arrives through the `support.run.completed` and `support.run.failed` webhooks.
         `GET /v1/support/runs/{runId}` is the fallback. Pass `threadId` to continue an earlier
-        conversation, and `context` to point the assistant at a post, account or profile.
+        conversation, and `context` to point the assistant at a post, account, profile or a failed request (its `X-Request-Id`).
         When the assistant finds a problem on Zernio's side it opens a support ticket with
         the team (see `supportTicket` on the run) and the run ends as `needs_human`.
 
@@ -122592,13 +122592,20 @@ components:
       - runs
     askSupportQuestion_request_context:
       additionalProperties: {}
-      description: Ids the assistant should look at. Each must belong to your workspace.
+      description: "Ids the assistant should look at. postId, accountId and profileId\
+        \ must belong to your workspace (404 otherwise)."
       properties:
         postId:
           type: string
         accountId:
           type: string
         profileId:
+          type: string
+        requestId:
+          description: The X-Request-Id of a call you want explained. The assistant
+            reads that request's logged record. Not checked up front.
+          maxLength: 128
+          pattern: "^[\\w.-]{1,128}$"
           type: string
     askSupportQuestion_request:
       additionalProperties: {}
