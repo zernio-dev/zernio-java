@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.266.0
+  version: 1.266.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -34673,7 +34673,8 @@ paths:
       - application/json
   /v1/broadcasts/{broadcastId}/schedule:
     post:
-      description: Schedule a draft broadcast to be sent at a future date and time.
+      description: "Schedule a draft broadcast, or move the date of an already scheduled\
+        \ one, to a future date and time."
       operationId: scheduleBroadcast
       parameters:
       - explode: false
