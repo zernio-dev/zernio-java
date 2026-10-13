@@ -2,7 +2,7 @@
 
 # BoostPostRequestTargeting
 
-Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo keys (`regions`/`cities`/`zips`/`metros`) resolve via GET /v1/ads/targeting/search?dimension=geo. City radius and lat/lng `customLocations` are Meta-only and preserve the boosted post's social proof (the ad references the existing post). 
+Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo keys (`regions`/`cities`/`zips`/`metros`) resolve via GET /v1/ads/targeting/search?dimension=geo. City radius and lat/lng `customLocations` are Meta-only and preserve the boosted post's social proof (the ad references the existing post). On Reddit the whole `TargetingSpec` applies, including `communities`, `excludedCommunities`, `conversationKeywords`, `excludedConversationKeywords`, `interests`, `audienceInclude` / `audienceExclude` and `excludedLocations`; without any geo the ad targets the US. 
 
 ## Properties
 
@@ -10,8 +10,8 @@ Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo k
 |------------ | ------------- | ------------- | -------------|
 |**ageMin** | **Integer** |  |  [optional] |
 |**ageMax** | **Integer** |  |  [optional] |
-|**gender** | [**GenderEnum**](#GenderEnum) | Applied on Meta, TikTok and Pinterest. Ignored on Google, LinkedIn and X. |  [optional] |
-|**languages** | **List&lt;String&gt;** | Meta locale ids (numeric), passed through as given. |  [optional] |
+|**gender** | [**GenderEnum**](#GenderEnum) | Applied on Meta, TikTok, Pinterest and Reddit. Ignored on Google, LinkedIn and X. |  [optional] |
+|**languages** | **List&lt;String&gt;** | Meta locale ids (numeric), passed through as given. Reddit: language codes (e.g. &#x60;en&#x60;). |  [optional] |
 |**countries** | **List&lt;String&gt;** | ISO country codes. Required for TikTok boosts (TikTok&#39;s ad group requires location_ids); optional on other platforms. |  [optional] |
 |**regions** | [**List&lt;BoostPostRequestTargetingRegionsInner&gt;**](BoostPostRequestTargetingRegionsInner.md) | Region/state targeting. &#x60;key&#x60; from /v1/ads/targeting/search?dimension&#x3D;geo&amp;geoType&#x3D;region. |  [optional] |
 |**cities** | [**List&lt;BoostPostRequestTargetingCitiesInner&gt;**](BoostPostRequestTargetingCitiesInner.md) | City targeting. Optional &#x60;radius&#x60; + &#x60;distanceUnit&#x60; extend beyond the city limits (both set together, Meta only). |  [optional] |

@@ -11,7 +11,7 @@
 |**eventsReceived** | **Integer** | Events accepted by the platform. |  [optional] |
 |**eventsFailed** | **Integer** | Events rejected (see failures). |  [optional] |
 |**failures** | [**List&lt;SendConversions200ResponseFailuresInner&gt;**](SendConversions200ResponseFailuresInner.md) |  |  [optional] |
-|**traceId** | **String** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID) and OpenAI Ads (no trace ID surfaced).  |  [optional] |
+|**traceId** | **String** | Platform trace ID for debugging. fbtrace_id for Meta, requestId for Google. Absent for LinkedIn (LinkedIn&#39;s conversionEvents endpoint does not surface a trace ID), OpenAI Ads and Reddit (no trace ID surfaced).  |  [optional] |
 
 
 
@@ -25,6 +25,7 @@
 | TIKTOKADS | &quot;tiktokads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |
+| REDDITADS | &quot;redditads&quot; |
 
 
 

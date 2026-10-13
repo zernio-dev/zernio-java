@@ -2,7 +2,7 @@
 
 # BoostPostRequestTracking
 
-Meta only. Tracking specs (pixel, URL tags).
+Meta only, except `pixelId`, which also picks the Reddit pixel of the new ad group (`promotedObject.pixelId` wins when both are sent). Tracking specs (pixel, URL tags).
 
 ## Properties
 

@@ -27,6 +27,7 @@
 | GOOGLE | &quot;google&quot; |
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
+| REDDIT | &quot;reddit&quot; |
 
 
 

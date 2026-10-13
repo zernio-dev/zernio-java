@@ -2,7 +2,7 @@
 
 # UpdateAdCampaignRequestBudget
 
-Meta CBO, Google daily, or OpenAI Ads daily or lifetime campaign budget, in whole currency units.
+Meta CBO, Google daily, or OpenAI Ads or Reddit Ads daily or lifetime campaign budget, in whole currency units.
 
 ## Properties
 

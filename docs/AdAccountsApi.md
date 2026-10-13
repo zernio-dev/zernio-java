@@ -2246,7 +2246,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 
@@ -2335,7 +2335,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 
@@ -3438,7 +3438,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 
@@ -3527,7 +3527,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 
@@ -5371,7 +5371,7 @@ ApiResponse<[**ListAdAccountUsers200Response**](ListAdAccountUsers200Response.md
 
 List ad accounts
 
-Lists the ad accounts a connection can manage, such as Meta ad accounts, TikTok advertisers or Google Ads customers.  Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Lists the ad accounts a connection can manage, such as Meta ad accounts, TikTok advertisers or Google Ads customers.  Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay.  For Reddit Ads (&#x60;redditads&#x60;): every Reddit ad account the connected Reddit user can reach, with &#x60;businessId&#x60;, &#x60;approvalStatus&#x60; (Reddit&#39;s &#x60;admin_approval&#x60;), &#x60;timezone&#x60; and &#x60;type&#x60;. 
 
 ### Example
 
@@ -5451,7 +5451,7 @@ public class Example {
 
 List ad accounts
 
-Lists the ad accounts a connection can manage, such as Meta ad accounts, TikTok advertisers or Google Ads customers.  Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay. 
+Lists the ad accounts a connection can manage, such as Meta ad accounts, TikTok advertisers or Google Ads customers.  Returns the platform ad accounts available for the given account (e.g. Meta ad accounts, TikTok advertiser IDs, Google Ads customer IDs). Meta business-login accounts use their own system-user token. Fresh Meta discovery includes businessId and businessName from the owning Business Manager when available; cached entries gain these fields after the next discovery refresh.  For TikTok agencies: enumerates every advertiser under every Business Center the token can read (paginated server-side), then chunks the lookup against TikTok&#39;s &#x60;/advertiser/info/&#x60; endpoint (which has a per-call cap of ≤100 IDs). Solo advertisers without a BC fall back to the OAuth-time &#x60;advertiser_ids&#x60; list. Cached for 1h on the SocialAccount; lazy-refreshed on first call after expiry.  For Google Ads: responds &#x60;429&#x60; when Google&#39;s API quota is temporarily exhausted (instead of an empty list). Retry after a delay.  For Reddit Ads (&#x60;redditads&#x60;): every Reddit ad account the connected Reddit user can reach, with &#x60;businessId&#x60;, &#x60;approvalStatus&#x60; (Reddit&#39;s &#x60;admin_approval&#x60;), &#x60;timezone&#x60; and &#x60;type&#x60;. 
 
 ### Example
 
@@ -5754,7 +5754,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 
@@ -5841,7 +5841,7 @@ public class Example {
 | **accountId** | **String**|  | |
 | **adAccountId** | **String**|  | [optional] |
 | **customerId** | **String**|  | [optional] |
-| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai] |
+| **platform** | **String**|  | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
 
 ### Return type
 

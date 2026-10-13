@@ -61,6 +61,7 @@
 | XADS | &quot;xads&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
+| REDDITADS | &quot;redditads&quot; |
 | SMS | &quot;sms&quot; |
 | PHONE | &quot;phone&quot; |
 | RCS | &quot;rcs&quot; |

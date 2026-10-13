@@ -21,7 +21,7 @@
 |**finalUrlSuffix** | **String** | **Google only.** campaign.final_url_suffix; an empty string clears it. |  [optional] |
 |**sharedBudgetId** | **String** | **Google only.** Move the campaign onto this shared budget (id from GET /v1/ads/shared-budgets), or null to move it back onto a budget of its own sized by &#x60;budget&#x60;. |  [optional] |
 |**budget** | [**UpdateAdCampaignRequestBudget**](UpdateAdCampaignRequestBudget.md) |  |  [optional] |
-|**name** | **String** | **Meta only.** Rename the campaign. |  [optional] |
+|**name** | **String** | **Meta and Reddit.** Rename the campaign. |  [optional] |
 |**platformSpecificData** | [**UpdateAdCampaignRequestPlatformSpecificData**](UpdateAdCampaignRequestPlatformSpecificData.md) |  |  [optional] |
 
 
@@ -32,7 +32,13 @@
 |---- | -----|
 | FACEBOOK | &quot;facebook&quot; |
 | INSTAGRAM | &quot;instagram&quot; |
+| TIKTOK | &quot;tiktok&quot; |
+| LINKEDIN | &quot;linkedin&quot; |
+| PINTEREST | &quot;pinterest&quot; |
 | GOOGLE | &quot;google&quot; |
+| TWITTER | &quot;twitter&quot; |
+| OPENAI | &quot;openai&quot; |
+| REDDIT | &quot;reddit&quot; |
 
 
 

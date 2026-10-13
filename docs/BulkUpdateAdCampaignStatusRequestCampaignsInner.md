@@ -24,12 +24,14 @@
 | GOOGLE | &quot;google&quot; |
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
+| REDDIT | &quot;reddit&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
 | TIKTOKADS | &quot;tiktokads&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |
 | XADS | &quot;xads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
+| REDDITADS | &quot;redditads&quot; |
 
 
 
