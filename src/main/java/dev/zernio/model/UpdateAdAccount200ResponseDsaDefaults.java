@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   UpdateAdAccount200ResponseDsaDefaults.JSON_PROPERTY_BENEFICIARY,
   UpdateAdAccount200ResponseDsaDefaults.JSON_PROPERTY_PAYOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateAdAccount200ResponseDsaDefaults {
   public static final String JSON_PROPERTY_BENEFICIARY = "beneficiary";
   @javax.annotation.Nullable

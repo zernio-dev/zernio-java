@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetGoogleBusinessLocationDetails200ResponseCategories.JSON_PROPERTY_PRIMARY_CATEGORY,
   GetGoogleBusinessLocationDetails200ResponseCategories.JSON_PROPERTY_ADDITIONAL_CATEGORIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGoogleBusinessLocationDetails200ResponseCategories {
   public static final String JSON_PROPERTY_PRIMARY_CATEGORY = "primaryCategory";
   @javax.annotation.Nullable

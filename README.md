@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.267.0
 
-- Build date: 2026-10-13T03:58:11.734459340Z[Etc/UTC]
+- Build date: 2026-10-13T05:57:28.266148193Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -4213,6 +4213,7 @@ Class | Method | HTTP request | Description
  - [SubmitWhatsAppNumberKycRequestDocumentsInner](docs/SubmitWhatsAppNumberKycRequestDocumentsInner.md)
  - [SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf](docs/SubmitWhatsAppNumberKycRequestDocumentsInnerOneOf.md)
  - [SupportRun](docs/SupportRun.md)
+ - [SupportRunDiagnosis](docs/SupportRunDiagnosis.md)
  - [SupportRunSupportTicket](docs/SupportRunSupportTicket.md)
  - [SupportRunUsage](docs/SupportRunUsage.md)
  - [SyncExternalPosts200Response](docs/SyncExternalPosts200Response.md)

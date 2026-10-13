@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.SupportRunDiagnosis;
 import dev.zernio.model.SupportRunSupportTicket;
 import dev.zernio.model.SupportRunUsage;
 import java.math.BigDecimal;
@@ -43,6 +44,7 @@ import dev.zernio.ApiClient;
   SupportRun.JSON_PROPERTY_STOP_REASON,
   SupportRun.JSON_PROPERTY_QUESTION,
   SupportRun.JSON_PROPERTY_ANSWER,
+  SupportRun.JSON_PROPERTY_DIAGNOSIS,
   SupportRun.JSON_PROPERTY_USAGE,
   SupportRun.JSON_PROPERTY_COST_USD,
   SupportRun.JSON_PROPERTY_MAX_COST_USD,
@@ -52,7 +54,7 @@ import dev.zernio.ApiClient;
   SupportRun.JSON_PROPERTY_SUPPORT_TICKET,
   SupportRun.JSON_PROPERTY_POLL_AFTER_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SupportRun {
   public static final String JSON_PROPERTY_RUN_ID = "runId";
   @javax.annotation.Nonnull
@@ -163,6 +165,10 @@ public class SupportRun {
   public static final String JSON_PROPERTY_ANSWER = "answer";
   @javax.annotation.Nullable
   private String answer;
+
+  public static final String JSON_PROPERTY_DIAGNOSIS = "diagnosis";
+  @javax.annotation.Nullable
+  private SupportRunDiagnosis diagnosis;
 
   public static final String JSON_PROPERTY_USAGE = "usage";
   @javax.annotation.Nonnull
@@ -340,6 +346,30 @@ public class SupportRun {
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
   public void setAnswer(@javax.annotation.Nullable String answer) {
     this.answer = answer;
+  }
+
+
+  public SupportRun diagnosis(@javax.annotation.Nullable SupportRunDiagnosis diagnosis) {
+    this.diagnosis = diagnosis;
+    return this;
+  }
+
+  /**
+   * Get diagnosis
+   * @return diagnosis
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_DIAGNOSIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public SupportRunDiagnosis getDiagnosis() {
+    return diagnosis;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_DIAGNOSIS, required = false)
+  @JsonInclude(value = JsonInclude.Include.ALWAYS)
+  public void setDiagnosis(@javax.annotation.Nullable SupportRunDiagnosis diagnosis) {
+    this.diagnosis = diagnosis;
   }
 
 
@@ -553,6 +583,7 @@ public class SupportRun {
         Objects.equals(this.stopReason, supportRun.stopReason) &&
         Objects.equals(this.question, supportRun.question) &&
         Objects.equals(this.answer, supportRun.answer) &&
+        Objects.equals(this.diagnosis, supportRun.diagnosis) &&
         Objects.equals(this.usage, supportRun.usage) &&
         Objects.equals(this.costUsd, supportRun.costUsd) &&
         Objects.equals(this.maxCostUsd, supportRun.maxCostUsd) &&
@@ -565,7 +596,7 @@ public class SupportRun {
 
   @Override
   public int hashCode() {
-    return Objects.hash(runId, threadId, status, stopReason, question, answer, usage, costUsd, maxCostUsd, createdAt, startedAt, finishedAt, supportTicket, pollAfterSeconds);
+    return Objects.hash(runId, threadId, status, stopReason, question, answer, diagnosis, usage, costUsd, maxCostUsd, createdAt, startedAt, finishedAt, supportTicket, pollAfterSeconds);
   }
 
   @Override
@@ -578,6 +609,7 @@ public class SupportRun {
     sb.append("    stopReason: ").append(toIndentedString(stopReason)).append("\n");
     sb.append("    question: ").append(toIndentedString(question)).append("\n");
     sb.append("    answer: ").append(toIndentedString(answer)).append("\n");
+    sb.append("    diagnosis: ").append(toIndentedString(diagnosis)).append("\n");
     sb.append("    usage: ").append(toIndentedString(usage)).append("\n");
     sb.append("    costUsd: ").append(toIndentedString(costUsd)).append("\n");
     sb.append("    maxCostUsd: ").append(toIndentedString(maxCostUsd)).append("\n");
@@ -661,6 +693,11 @@ public class SupportRun {
     // add `answer` to the URL query string
     if (getAnswer() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sanswer%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAnswer()))));
+    }
+
+    // add `diagnosis` to the URL query string
+    if (getDiagnosis() != null) {
+      joiner.add(getDiagnosis().toUrlQueryString(prefix + "diagnosis" + suffix));
     }
 
     // add `usage` to the URL query string

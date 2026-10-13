@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CommentAutomationAudience.JSON_PROPERTY_WHEN_UNKNOWN,
   CommentAutomationAudience.JSON_PROPERTY_TAP_TO_UNLOCK
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationAudience {
   /**
    * Gets or Sets followerStatus

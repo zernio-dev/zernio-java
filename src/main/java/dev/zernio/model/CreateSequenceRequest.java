@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   CreateSequenceRequest.JSON_PROPERTY_EXIT_ON_REPLY,
   CreateSequenceRequest.JSON_PROPERTY_EXIT_ON_UNSUBSCRIBE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateSequenceRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull

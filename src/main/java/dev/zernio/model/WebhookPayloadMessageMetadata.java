@@ -71,7 +71,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadMessageMetadata.JSON_PROPERTY_NO_RENDERABLE_CONTENT,
   WebhookPayloadMessageMetadata.JSON_PROPERTY_TIKTOK_MESSAGE_TYPE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadMessageMetadata {
   public static final String JSON_PROPERTY_STANDBY = "standby";
   @javax.annotation.Nullable

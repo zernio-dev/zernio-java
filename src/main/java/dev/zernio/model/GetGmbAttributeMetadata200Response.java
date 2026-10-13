@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   GetGmbAttributeMetadata200Response.JSON_PROPERTY_ATTRIBUTE_METADATA,
   GetGmbAttributeMetadata200Response.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T03:58:11.734459340Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-13T05:57:28.266148193Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetGmbAttributeMetadata200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

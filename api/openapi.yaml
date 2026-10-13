@@ -90372,6 +90372,7 @@ components:
             cacheWriteTokens: 5
             inputTokens: 0
             outputTokens: 6
+          diagnosis: ""
           startedAt: 2000-01-23T04:56:07.000+00:00
           finishedAt: 2000-01-23T04:56:07.000+00:00
           threadId: threadId
@@ -90428,6 +90429,56 @@ components:
       - cacheWriteTokens
       - inputTokens
       - outputTokens
+    SupportRunDiagnosis:
+      properties:
+        category:
+          description: "What kind of problem the answer describes. New values may\
+            \ be added: treat any value you do not recognize as `other`."
+          enum:
+          - account_connection
+          - content_rejected
+          - rate_limited
+          - platform_issue
+          - zernio_issue
+          - billing
+          - configuration
+          - how_to
+          - other
+          type: string
+        cause:
+          description: "The cause the answer gives, in one sentence. Null when the\
+            \ answer reports no problem, for example a how-to question."
+          nullable: true
+          type: string
+        fixSteps:
+          description: "The steps the answer recommends, in order. Empty when it recommends\
+            \ none."
+          items:
+            type: string
+          type: array
+        docsLinks:
+          description: Links to docs.zernio.com that the answer itself cites. Empty
+            when it cites none.
+          items:
+            type: string
+          type: array
+        whoMustAct:
+          description: "Who has to act to resolve it: you (`integrator`), your end\
+            \ user, Zernio, the social platform, or nobody. New values may be added:\
+            \ treat any value you do not recognize as `none`."
+          enum:
+          - integrator
+          - end_user
+          - zernio
+          - platform
+          - none
+          type: string
+      required:
+      - category
+      - cause
+      - docsLinks
+      - fixSteps
+      - whoMustAct
     SupportRun:
       example:
         stopReason: answered
@@ -90439,6 +90490,7 @@ components:
           cacheWriteTokens: 5
           inputTokens: 0
           outputTokens: 6
+        diagnosis: ""
         startedAt: 2000-01-23T04:56:07.000+00:00
         finishedAt: 2000-01-23T04:56:07.000+00:00
         threadId: threadId
@@ -90492,6 +90544,10 @@ components:
             when it failed.
           nullable: true
           type: string
+        diagnosis:
+          allOf:
+          - $ref: "#/components/schemas/SupportRunDiagnosis"
+          nullable: true
         usage:
           $ref: "#/components/schemas/SupportRunUsage"
         costUsd:
@@ -90522,6 +90578,7 @@ components:
       - answer
       - costUsd
       - createdAt
+      - diagnosis
       - finishedAt
       - maxCostUsd
       - question
@@ -122555,6 +122612,7 @@ components:
             cacheWriteTokens: 5
             inputTokens: 0
             outputTokens: 6
+          diagnosis: ""
           startedAt: 2000-01-23T04:56:07.000+00:00
           finishedAt: 2000-01-23T04:56:07.000+00:00
           threadId: threadId
@@ -122574,6 +122632,7 @@ components:
             cacheWriteTokens: 5
             inputTokens: 0
             outputTokens: 6
+          diagnosis: ""
           startedAt: 2000-01-23T04:56:07.000+00:00
           finishedAt: 2000-01-23T04:56:07.000+00:00
           threadId: threadId
