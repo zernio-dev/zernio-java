@@ -1048,7 +1048,7 @@ public class Example {
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID. With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection's ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400.
         try {
             ListInboxComments200Response result = apiInstance.listInboxComments(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println(result);
@@ -1076,7 +1076,7 @@ public class Example {
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID. With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection&#39;s ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400. | [optional] |
 
 ### Return type
 
@@ -1096,6 +1096,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated posts with comments |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
@@ -1137,7 +1138,7 @@ public class Example {
         String sortOrder = "asc"; // String | Sort order
         Integer limit = 50; // Integer | 
         String cursor = "cursor_example"; // String | 
-        String accountId = "accountId_example"; // String | Filter by specific account ID
+        String accountId = "accountId_example"; // String | Filter by specific account ID. With `platform=metaads` it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection's ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400.
         try {
             ApiResponse<ListInboxComments200Response> response = apiInstance.listInboxCommentsWithHttpInfo(profileId, platform, minComments, since, sortBy, sortOrder, limit, cursor, accountId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1167,7 +1168,7 @@ public class Example {
 | **sortOrder** | **String**| Sort order | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **cursor** | **String**|  | [optional] |
-| **accountId** | **String**| Filter by specific account ID | [optional] |
+| **accountId** | **String**| Filter by specific account ID. With &#x60;platform&#x3D;metaads&#x60; it takes the Meta Ads account ID, or the Facebook or Instagram account ID the Meta Ads connection belongs to, which returns that Meta Ads connection&#39;s ad rows. A Facebook or Instagram account with no Meta Ads connection returns no rows; an account on any other platform returns 400. | [optional] |
 
 ### Return type
 
@@ -1187,6 +1188,7 @@ ApiResponse<[**ListInboxComments200Response**](ListInboxComments200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Aggregated posts with comments |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 
