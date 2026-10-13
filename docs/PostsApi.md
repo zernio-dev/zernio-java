@@ -819,7 +819,7 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 
 ## listPosts
 
-> PostsListResponse listPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
+> PostsListResponse listPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId)
 
 List posts
 
@@ -860,10 +860,11 @@ public class Example {
         LocalDate dateTo = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         Boolean includeHidden = false; // Boolean | 
         String search = "search_example"; // String | Search posts by text content.
+        String tags = "job,engineering"; // String | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. `tag` is accepted as an alias.
         String sortBy = "scheduled-desc"; // String | Sort order for results.
         String accountId = "accountId_example"; // String | Filter posts to those published via a specific account (24-char hex ObjectId).
         try {
-            PostsListResponse result = apiInstance.listPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            PostsListResponse result = apiInstance.listPosts(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling PostsApi#listPosts");
@@ -895,6 +896,7 @@ public class Example {
 | **dateTo** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
 | **search** | **String**| Search posts by text content. | [optional] |
+| **tags** | **String**| Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. &#x60;tag&#x60; is accepted as an alias. | [optional] |
 | **sortBy** | **String**| Sort order for results. | [optional] [default to scheduled-desc] [enum: scheduled-desc, scheduled-asc, created-desc, created-asc, status, platform] |
 | **accountId** | **String**| Filter posts to those published via a specific account (24-char hex ObjectId). | [optional] |
 
@@ -921,7 +923,7 @@ public class Example {
 
 ## listPostsWithHttpInfo
 
-> ApiResponse<PostsListResponse> listPosts listPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId)
+> ApiResponse<PostsListResponse> listPosts listPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId)
 
 List posts
 
@@ -963,10 +965,11 @@ public class Example {
         LocalDate dateTo = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         Boolean includeHidden = false; // Boolean | 
         String search = "search_example"; // String | Search posts by text content.
+        String tags = "job,engineering"; // String | Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. `tag` is accepted as an alias.
         String sortBy = "scheduled-desc"; // String | Sort order for results.
         String accountId = "accountId_example"; // String | Filter posts to those published via a specific account (24-char hex ObjectId).
         try {
-            ApiResponse<PostsListResponse> response = apiInstance.listPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, sortBy, accountId);
+            ApiResponse<PostsListResponse> response = apiInstance.listPostsWithHttpInfo(page, limit, offset, source, status, platform, profileId, createdBy, fromDate, toDate, dateFrom, dateTo, includeHidden, search, tags, sortBy, accountId);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1000,6 +1003,7 @@ public class Example {
 | **dateTo** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **includeHidden** | **Boolean**|  | [optional] [default to false] |
 | **search** | **String**| Search posts by text content. | [optional] |
+| **tags** | **String**| Comma-separated tags (at most 20). Returns only posts carrying every listed tag, matched exactly and case-sensitively against the tags set when the post was created. An empty value means no tag filter. &#x60;tag&#x60; is accepted as an alias. | [optional] |
 | **sortBy** | **String**| Sort order for results. | [optional] [default to scheduled-desc] [enum: scheduled-desc, scheduled-asc, created-desc, created-asc, status, platform] |
 | **accountId** | **String**| Filter posts to those published via a specific account (24-char hex ObjectId). | [optional] |
 

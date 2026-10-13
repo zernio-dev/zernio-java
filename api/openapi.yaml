@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.264.1
+  version: 1.265.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6073,6 +6073,18 @@ paths:
         name: search
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Comma-separated tags (at most 20). Returns only posts carrying\
+          \ every listed tag, matched exactly and case-sensitively against the tags\
+          \ set when the post was created. An empty value means no tag filter. `tag`\
+          \ is accepted as an alias."
+        explode: true
+        in: query
+        name: tags
+        required: false
+        schema:
+          example: "job,engineering"
           type: string
         style: form
       - description: Sort order for results.

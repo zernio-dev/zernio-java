@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.264.1
+- API version: 1.265.0
 
-- Build date: 2026-10-13T00:20:13.046658710Z[Etc/UTC]
+- Build date: 2026-10-13T01:13:18.874126794Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.264.1</version>
+  <version>1.265.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.264.1"
+compile "dev.zernio:zernio-sdk:1.265.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.264.1.jar`
+- `target/zernio-sdk-1.265.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
