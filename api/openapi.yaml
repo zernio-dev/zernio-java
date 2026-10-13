@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.266.1
+  version: 1.267.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75796,6 +75796,11 @@ components:
           default: false
           description: AI-generated content disclosure. Set true if the video contains
             synthetic content that could be mistaken for real. YouTube may add a label.
+          type: boolean
+        notifySubscribers:
+          default: true
+          description: Set false to skip notifying subscribers about this upload (YouTube's
+            notifySubscribers). Defaults to true.
           type: boolean
         categoryId:
           default: "22"
