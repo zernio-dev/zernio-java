@@ -1362,6 +1362,7 @@ docs/InstagramApi.md
 docs/InstagramAudioAsset.md
 docs/InstagramBusinessDiscovery.md
 docs/InstagramBusinessDiscoveryMediaInner.md
+docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md
 docs/InstagramBusinessDiscoveryProfile.md
 docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
@@ -4216,6 +4217,7 @@ src/main/java/dev/zernio/model/InstagramAccountInsightsResponseUnavailableMetric
 src/main/java/dev/zernio/model/InstagramAudioAsset.java
 src/main/java/dev/zernio/model/InstagramBusinessDiscovery.java
 src/main/java/dev/zernio/model/InstagramBusinessDiscoveryMediaInner.java
+src/main/java/dev/zernio/model/InstagramBusinessDiscoveryMediaInnerChildrenInner.java
 src/main/java/dev/zernio/model/InstagramBusinessDiscoveryProfile.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponse.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponseDemographicsValueInner.java
@@ -5615,5 +5617,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInnerTest.java
-src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownsRangeTest.java
+src/test/java/dev/zernio/model/InstagramBusinessDiscoveryMediaInnerChildrenInnerTest.java

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.277.0
+  version: 1.278.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15873,6 +15873,8 @@ paths:
         up any public Business or Creator handle.
 
         `likeCount` is null when the owner hides like counts.
+
+        Media URLs are temporary, and fields Meta does not return come back as null, never omitted.
       operationId: getInstagramBusinessDiscovery
       parameters:
       - description: The ID of a connected Instagram account (Facebook Login).
@@ -75568,22 +75570,46 @@ components:
           followersCount: 0
           username: username
         media:
-        - commentsCount: 5
+        - mediaUrl: mediaUrl
+          children:
+          - mediaUrl: mediaUrl
+            mediaType: mediaType
+            id: id
+            thumbnailUrl: thumbnailUrl
+          - mediaUrl: mediaUrl
+            mediaType: mediaType
+            id: id
+            thumbnailUrl: thumbnailUrl
+          commentsCount: 5
           mediaProductType: mediaProductType
           caption: caption
           mediaType: mediaType
           likeCount: 5
           id: id
+          viewCount: 2
           permalink: permalink
           timestamp: 2000-01-23T04:56:07.000+00:00
-        - commentsCount: 5
+          thumbnailUrl: thumbnailUrl
+        - mediaUrl: mediaUrl
+          children:
+          - mediaUrl: mediaUrl
+            mediaType: mediaType
+            id: id
+            thumbnailUrl: thumbnailUrl
+          - mediaUrl: mediaUrl
+            mediaType: mediaType
+            id: id
+            thumbnailUrl: thumbnailUrl
+          commentsCount: 5
           mediaProductType: mediaProductType
           caption: caption
           mediaType: mediaType
           likeCount: 5
           id: id
+          viewCount: 2
           permalink: permalink
           timestamp: 2000-01-23T04:56:07.000+00:00
+          thumbnailUrl: thumbnailUrl
       properties:
         profile:
           $ref: "#/components/schemas/InstagramBusinessDiscovery_profile"
@@ -158441,16 +158467,51 @@ components:
       required:
       - id
       - username
+    InstagramBusinessDiscovery_media_inner_children_inner:
+      example:
+        mediaUrl: mediaUrl
+        mediaType: mediaType
+        id: id
+        thumbnailUrl: thumbnailUrl
+      properties:
+        id:
+          type: string
+        mediaType:
+          nullable: true
+          type: string
+        mediaUrl:
+          nullable: true
+          type: string
+        thumbnailUrl:
+          nullable: true
+          type: string
+      required:
+      - id
+      - mediaType
+      - mediaUrl
+      - thumbnailUrl
     InstagramBusinessDiscovery_media_inner:
       example:
+        mediaUrl: mediaUrl
+        children:
+        - mediaUrl: mediaUrl
+          mediaType: mediaType
+          id: id
+          thumbnailUrl: thumbnailUrl
+        - mediaUrl: mediaUrl
+          mediaType: mediaType
+          id: id
+          thumbnailUrl: thumbnailUrl
         commentsCount: 5
         mediaProductType: mediaProductType
         caption: caption
         mediaType: mediaType
         likeCount: 5
         id: id
+        viewCount: 2
         permalink: permalink
         timestamp: 2000-01-23T04:56:07.000+00:00
+        thumbnailUrl: thumbnailUrl
       properties:
         id:
           type: string
@@ -158479,6 +158540,39 @@ components:
         commentsCount:
           nullable: true
           type: integer
+        mediaUrl:
+          description: "Temporary CDN URL that expires; download the file rather than\
+            \ storing the link. Null on videos whose audio is licensed music, use\
+            \ thumbnailUrl for the cover."
+          nullable: true
+          type: string
+        thumbnailUrl:
+          description: "Video cover frame, VIDEO only. Temporary CDN URL."
+          nullable: true
+          type: string
+        viewCount:
+          description: Reels only. Null on images and carousels.
+          nullable: true
+          type: integer
+        children:
+          description: Carousel slides in order. Null unless mediaType is CAROUSEL_ALBUM.
+          items:
+            $ref: "#/components/schemas/InstagramBusinessDiscovery_media_inner_children_inner"
+          nullable: true
+          type: array
+      required:
+      - caption
+      - children
+      - commentsCount
+      - id
+      - likeCount
+      - mediaProductType
+      - mediaType
+      - mediaUrl
+      - permalink
+      - thumbnailUrl
+      - timestamp
+      - viewCount
     LinkedInPlatformData_audience_interfaceLocales_inner:
       properties:
         language:

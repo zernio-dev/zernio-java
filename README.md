@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.277.0
+- API version: 1.278.0
 
-- Build date: 2026-10-14T19:27:35.118866998Z[Etc/UTC]
+- Build date: 2026-10-14T19:35:15.592342595Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.277.0</version>
+  <version>1.278.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.277.0"
+compile "dev.zernio:zernio-sdk:1.278.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.277.0.jar`
+- `target/zernio-sdk-1.278.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3379,6 +3379,7 @@ Class | Method | HTTP request | Description
  - [InstagramAudioAsset](docs/InstagramAudioAsset.md)
  - [InstagramBusinessDiscovery](docs/InstagramBusinessDiscovery.md)
  - [InstagramBusinessDiscoveryMediaInner](docs/InstagramBusinessDiscoveryMediaInner.md)
+ - [InstagramBusinessDiscoveryMediaInnerChildrenInner](docs/InstagramBusinessDiscoveryMediaInnerChildrenInner.md)
  - [InstagramBusinessDiscoveryProfile](docs/InstagramBusinessDiscoveryProfile.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
