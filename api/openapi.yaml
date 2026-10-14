@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.275.3
+  version: 1.276.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -80186,6 +80186,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -80303,6 +80304,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -80626,6 +80628,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -80743,6 +80746,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -81095,6 +81099,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -81212,6 +81217,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -81806,6 +81812,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -81923,6 +81930,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -82275,6 +82283,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -82392,6 +82401,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -85943,6 +85953,7 @@ components:
           endDate: 2000-01-23T04:56:07.000+00:00
           startDate: 2000-01-23T04:56:07.000+00:00
         creativeType: video
+        profileId: profileId
         name: name
         platformObjective: OUTCOME_SALES
         platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -85969,6 +85980,12 @@ components:
           - twitter
           - openai
           - reddit
+          type: string
+        profileId:
+          description: "Profile the row belongs to: the profile of its owning connection\
+            \ (`accountId`); when that connection no longer exists, the requested\
+            \ profile (`profileId` filter) that reaches the row ad account, else the\
+            \ profile of the oldest connection of the row owner that reaches it."
           type: string
         status:
           allOf:
@@ -86333,6 +86350,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -86450,6 +86468,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -87067,6 +87086,7 @@ components:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
             creativeType: video
+            profileId: profileId
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -87184,6 +87204,7 @@ components:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
             creativeType: video
+            profileId: profileId
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -87536,6 +87557,7 @@ components:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
             creativeType: video
+            profileId: profileId
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -87653,6 +87675,7 @@ components:
               endDate: 2000-01-23T04:56:07.000+00:00
               startDate: 2000-01-23T04:56:07.000+00:00
             creativeType: video
+            profileId: profileId
             name: name
             platformObjective: OUTCOME_SALES
             platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -88054,6 +88077,10 @@ components:
         accountId:
           type: string
         profileId:
+          description: "Profile the row belongs to: the profile of its owning connection\
+            \ (`accountId`); when that connection no longer exists, the requested\
+            \ profile (`profileId` filter) that reaches the row ad account, else the\
+            \ profile of the oldest connection of the row owner that reaches it."
           type: string
         isSmartPlus:
           description: "TikTok only. true when the campaign is an Upgraded Smart+\
@@ -88317,6 +88344,10 @@ components:
         accountId:
           type: string
         profileId:
+          description: "Profile the row belongs to: the profile of its owning connection\
+            \ (`accountId`); when that connection no longer exists, the requested\
+            \ profile (`profileId` filter) that reaches the row ad account, else the\
+            \ profile of the oldest connection of the row owner that reaches it."
           type: string
         isSmartPlus:
           description: TikTok only. true when the campaign is an Upgraded Smart+ campaign.
@@ -88600,6 +88631,10 @@ components:
           description: Account ID owning the sync
           type: string
         profileId:
+          description: "Profile the row belongs to: the profile of its owning connection\
+            \ (`accountId`); when that connection no longer exists, the requested\
+            \ profile (`profileId` filter) that reaches the row ad account, else the\
+            \ profile of the oldest connection of the row owner that reaches it."
           type: string
         platform:
           enum:
@@ -126553,6 +126588,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -126670,6 +126706,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -129557,6 +129594,10 @@ components:
           nullable: true
           type: string
         profileId:
+          description: "Profile the row belongs to: the profile of its owning connection\
+            \ (`accountId`); when that connection no longer exists, the requested\
+            \ profile (`profileId` filter) that reaches the row ad account, else the\
+            \ profile of the oldest connection of the row owner that reaches it."
           type: string
         currency:
           nullable: true
@@ -130566,6 +130607,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -130683,6 +130725,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -131035,6 +131078,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -131152,6 +131196,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -131746,6 +131791,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -131863,6 +131909,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -132215,6 +132262,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -132332,6 +132380,7 @@ components:
                 endDate: 2000-01-23T04:56:07.000+00:00
                 startDate: 2000-01-23T04:56:07.000+00:00
               creativeType: video
+              profileId: profileId
               name: name
               platformObjective: OUTCOME_SALES
               platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -132797,6 +132846,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -133244,6 +133294,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00
@@ -142383,6 +142434,7 @@ components:
             endDate: 2000-01-23T04:56:07.000+00:00
             startDate: 2000-01-23T04:56:07.000+00:00
           creativeType: video
+          profileId: profileId
           name: name
           platformObjective: OUTCOME_SALES
           platformCreatedAt: 2000-01-23T04:56:07.000+00:00

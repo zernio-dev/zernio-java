@@ -11,7 +11,7 @@
 |**platformCriterionId** | **String** | Google ad_group_criterion.criterion_id. Unique only within its ad group (&#x60;adSetId&#x60;), not across the account. |  [optional] |
 |**resourceName** | **String** | Google resource name, customers/{adAccountId}/adGroupCriteria/{adSetId}~{platformCriterionId}. |  [optional] |
 |**accountId** | **String** | Account ID owning the sync |  [optional] |
-|**profileId** | **String** |  |  [optional] |
+|**profileId** | **String** | Profile the row belongs to: the profile of its owning connection (&#x60;accountId&#x60;); when that connection no longer exists, the requested profile (&#x60;profileId&#x60; filter) that reaches the row ad account, else the profile of the oldest connection of the row owner that reaches it. |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**adAccountId** | **String** | Google customer ID |  [optional] |
 |**campaignId** | **String** |  |  [optional] |

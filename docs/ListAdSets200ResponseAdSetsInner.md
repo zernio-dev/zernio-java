@@ -15,7 +15,7 @@
 |**platformCampaignId** | **String** |  |  [optional] |
 |**platformAdAccountId** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
-|**profileId** | **String** |  |  [optional] |
+|**profileId** | **String** | Profile the row belongs to: the profile of its owning connection (&#x60;accountId&#x60;); when that connection no longer exists, the requested profile (&#x60;profileId&#x60; filter) that reaches the row ad account, else the profile of the oldest connection of the row owner that reaches it. |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**budget** | [**ListAdSets200ResponseAdSetsInnerBudget**](ListAdSets200ResponseAdSetsInnerBudget.md) |  |  [optional] |
 |**schedule** | [**ListAdSets200ResponseAdSetsInnerSchedule**](ListAdSets200ResponseAdSetsInnerSchedule.md) |  |  [optional] |
