@@ -1547,7 +1547,7 @@ ApiResponse<[**ListSmsSenderIds200Response**](ListSmsSenderIds200Response.md)>
 
 Look up carrier + line type
 
-Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60;. Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
 
 ### Example
 
@@ -1619,7 +1619,7 @@ public class Example {
 
 Look up carrier + line type
 
-Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60; (landlines can&#39;t receive SMS). Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
+Carrier name and line type (mobile / landline / voip / toll-free) for a number, plus &#x60;smsReachable&#x60;. Use it to validate recipients before sending. Each lookup is billed by the carrier-data provider, so call it explicitly (e.g. pre-validating an opt-in list), not on every send. 
 
 ### Example
 

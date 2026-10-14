@@ -10,7 +10,7 @@
 |**phoneNumber** | **String** |  |  [optional] |
 |**carrierName** | **String** |  |  [optional] |
 |**lineType** | [**LineTypeEnum**](#LineTypeEnum) |  |  [optional] |
-|**smsReachable** | **Boolean** | True when the line type can receive SMS (not a landline). |  [optional] |
+|**smsReachable** | **Boolean** | False for landlines, toll-free numbers, ambiguous fixed-or-mobile lines and carriers whose numbers are not SMS-routable. True is a best guess, not a delivery guarantee. |  [optional] |
 
 
 
