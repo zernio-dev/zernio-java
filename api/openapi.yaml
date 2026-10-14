@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.274.0
+  version: 1.275.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -77264,9 +77264,10 @@ components:
           example: 0
           type: number
         profileViews:
-          description: "TikTok accounts connected through the TikTok for Business\
-            \ app only: profile views from users who reached the profile through this\
-            \ post (T+24-48h). 0 for other platforms."
+          description: "Instagram feed posts (images and carousels; 0 on Reels and\
+            \ Stories) and TikTok accounts connected through the TikTok for Business\
+            \ app: profile views from users who reached the profile through this post\
+            \ (TikTok T+24-48h). 0 for other platforms."
           example: 0
           type: integer
         websiteClicks:
@@ -93187,7 +93188,8 @@ components:
             \ end on this date, 0 to 1; 0 elsewhere"
           type: number
         profileViews:
-          description: "TikTok business lane: profile views attributed to the post\
+          description: "Instagram feed posts (images and carousels; 0 on Reels and\
+            \ Stories) and TikTok business lane: profile views attributed to the post\
             \ on this date; 0 elsewhere"
           type: integer
         websiteClicks:
@@ -159807,7 +159809,8 @@ components:
             \ end, 0 to 1"
           type: number
         profileViews:
-          description: "TikTok business lane: profile views attributed to the post"
+          description: "Instagram feed posts (images and carousels; 0 on Reels and\
+            \ Stories) and TikTok business lane: profile views attributed to the post"
           type: integer
         websiteClicks:
           description: "TikTok business lane: website-link clicks attributed to the\

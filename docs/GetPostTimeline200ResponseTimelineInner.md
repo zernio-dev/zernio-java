@@ -20,7 +20,7 @@
 |**views** | **Integer** | Total views on this date |  [optional] |
 |**follows** | **Integer** | Follows attributed to the post on this date (Instagram feed and stories, Facebook Reels, TikTok business lane). Null on Instagram Reels and video and on Facebook posts that are not Reels, where Meta has no follows metric; 0 on other platforms. |  [optional] |
 |**completionRate** | **BigDecimal** | TikTok business lane: share of viewers who watched to the end on this date, 0 to 1; 0 elsewhere |  [optional] |
-|**profileViews** | **Integer** | TikTok business lane: profile views attributed to the post on this date; 0 elsewhere |  [optional] |
+|**profileViews** | **Integer** | Instagram feed posts (images and carousels; 0 on Reels and Stories) and TikTok business lane: profile views attributed to the post on this date; 0 elsewhere |  [optional] |
 |**websiteClicks** | **Integer** | TikTok business lane: website-link clicks attributed to the post on this date (also inside clicks); 0 elsewhere |  [optional] |
 |**impressionSources** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: share of views by surface on this date (forYou, follow, search, personalProfile, sound, directMessage, other), fractions 0 to 1; empty object elsewhere |  [optional] |
 |**audienceTypes** | **Map&lt;String, BigDecimal&gt;** | TikTok business lane: follower / nonFollower and newViewer / returnViewer shares on this date, fractions 0 to 1; empty object elsewhere |  [optional] |
