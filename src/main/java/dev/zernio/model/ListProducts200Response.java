@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ListProducts200Response.JSON_PROPERTY_PRODUCTS,
   ListProducts200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T18:59:59.678073720Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:08:20.558069107Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListProducts200Response {
   /**
    * Gets or Sets platform

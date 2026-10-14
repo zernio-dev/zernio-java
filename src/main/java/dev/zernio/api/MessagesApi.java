@@ -86,7 +86,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T18:59:59.678073720Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:08:20.558069107Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -1361,9 +1361,9 @@ public class MessagesApi {
    * @param profileId Filter by profile ID (optional)
    * @param platform Filter by platform (optional)
    * @param status Filter by conversation status (optional)
-   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional, default to inbox)
+   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to &#x60;limit&#x60; threads; &#x60;pagination.hasMore&#x60; is true when threads past &#x60;limit&#x60; were cut (narrow with &#x60;accountId&#x60;), &#x60;pagination.nextCursor&#x60; is always null and a &#x60;cursor&#x60; answers 400. (optional, default to inbox)
    * @param sortOrder Sort order by updated time (optional, default to desc)
-   * @param limit Maximum number of conversations to return (optional, default to 50)
+   * @param limit Maximum number of conversations to return; values above 100 are served as 100. (optional, default to 50)
    * @param cursor Pagination cursor for next page (optional)
    * @param accountId Filter by specific account ID (optional)
    * @return ListInboxConversations200Response
@@ -1379,9 +1379,9 @@ public class MessagesApi {
    * @param profileId Filter by profile ID (optional)
    * @param platform Filter by platform (optional)
    * @param status Filter by conversation status (optional)
-   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional, default to inbox)
+   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to &#x60;limit&#x60; threads; &#x60;pagination.hasMore&#x60; is true when threads past &#x60;limit&#x60; were cut (narrow with &#x60;accountId&#x60;), &#x60;pagination.nextCursor&#x60; is always null and a &#x60;cursor&#x60; answers 400. (optional, default to inbox)
    * @param sortOrder Sort order by updated time (optional, default to desc)
-   * @param limit Maximum number of conversations to return (optional, default to 50)
+   * @param limit Maximum number of conversations to return; values above 100 are served as 100. (optional, default to 50)
    * @param cursor Pagination cursor for next page (optional)
    * @param accountId Filter by specific account ID (optional)
    * @param headers Optional headers to include in the request
@@ -1399,9 +1399,9 @@ public class MessagesApi {
    * @param profileId Filter by profile ID (optional)
    * @param platform Filter by platform (optional)
    * @param status Filter by conversation status (optional)
-   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional, default to inbox)
+   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to &#x60;limit&#x60; threads; &#x60;pagination.hasMore&#x60; is true when threads past &#x60;limit&#x60; were cut (narrow with &#x60;accountId&#x60;), &#x60;pagination.nextCursor&#x60; is always null and a &#x60;cursor&#x60; answers 400. (optional, default to inbox)
    * @param sortOrder Sort order by updated time (optional, default to desc)
-   * @param limit Maximum number of conversations to return (optional, default to 50)
+   * @param limit Maximum number of conversations to return; values above 100 are served as 100. (optional, default to 50)
    * @param cursor Pagination cursor for next page (optional)
    * @param accountId Filter by specific account ID (optional)
    * @return ApiResponse&lt;ListInboxConversations200Response&gt;
@@ -1417,9 +1417,9 @@ public class MessagesApi {
    * @param profileId Filter by profile ID (optional)
    * @param platform Filter by platform (optional)
    * @param status Filter by conversation status (optional)
-   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, first page only, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. (optional, default to inbox)
+   * @param folder requests lists Facebook and Instagram Message Requests (threads from people the account has not accepted) live from Meta, each item with &#x60;folder: requests&#x60;. Meta has no accept call: replying moves a thread to the inbox, which is what POST /v1/inbox/conversations/{conversationId}/accept does. When Meta will not list the folder for the one account asked (&#x60;accountId&#x60;), the call answers 400 PLATFORM_LIMITATION; across several accounts the refusal is reported per account in meta.failedAccounts. Instagram accounts connected with Instagram Login answer PLATFORM_LIMITATION (Meta does not expose the folder on that login); Facebook and Instagram via Facebook Login are served. One page of up to &#x60;limit&#x60; threads; &#x60;pagination.hasMore&#x60; is true when threads past &#x60;limit&#x60; were cut (narrow with &#x60;accountId&#x60;), &#x60;pagination.nextCursor&#x60; is always null and a &#x60;cursor&#x60; answers 400. (optional, default to inbox)
    * @param sortOrder Sort order by updated time (optional, default to desc)
-   * @param limit Maximum number of conversations to return (optional, default to 50)
+   * @param limit Maximum number of conversations to return; values above 100 are served as 100. (optional, default to 50)
    * @param cursor Pagination cursor for next page (optional)
    * @param accountId Filter by specific account ID (optional)
    * @param headers Optional headers to include in the request
