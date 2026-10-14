@@ -2,7 +2,7 @@
 
 # PostPlatformError
 
-The platform's own error for this target, so you can see what the platform said (access tokens are redacted). Set when the last attempt failed with an error the platform described (currently Instagram and Facebook), and kept while an automatic retry of that failure is pending or running; cleared when the target publishes or is retried manually. errorMessage stays the human-readable summary; this block is for diagnostics and support tickets. Instagram media processing failures carry no code or subcode, only Meta's status text in message.
+The platform's own error for this target, so you can see what the platform said (access tokens are redacted). Set when the last attempt failed with an error the platform described (currently Instagram and Facebook), and kept while an automatic retry of that failure is pending or running; cleared when the target publishes or is retried manually. errorMessage stays the human-readable summary; this block is for diagnostics and support tickets. Instagram media processing failures carry no code or subcode, only Meta's status text in message. On an Instagram publish whose outcome is uncertain (for example errorMessage starting \"Instagram did not confirm\"), carries the last media_publish error Meta returned, when it returned one; errorMessage stays the verdict, so do not read this block as a confirmed failure.
 
 ## Properties
 
