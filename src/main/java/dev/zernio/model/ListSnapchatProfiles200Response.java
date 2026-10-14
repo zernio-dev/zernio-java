@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListSnapchatProfiles200Response.JSON_PROPERTY_PUBLIC_PROFILES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:16:21.675950536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:27:35.118866998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSnapchatProfiles200Response {
   public static final String JSON_PROPERTY_PUBLIC_PROFILES = "publicProfiles";
   @javax.annotation.Nullable

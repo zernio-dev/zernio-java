@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.277.0
 
-- Build date: 2026-10-14T19:16:21.675950536Z[Etc/UTC]
+- Build date: 2026-10-14T19:27:35.118866998Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2308,6 +2308,8 @@ Class | Method | HTTP request | Description
  - [CallRecordTranscriptInner](docs/CallRecordTranscriptInner.md)
  - [CampaignAnalyticsResponse](docs/CampaignAnalyticsResponse.md)
  - [CampaignAnalyticsResponseAnalytics](docs/CampaignAnalyticsResponseAnalytics.md)
+ - [CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner](docs/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.md)
+ - [CampaignAnalyticsResponseAnalyticsBreakdownsRange](docs/CampaignAnalyticsResponseAnalyticsBreakdownsRange.md)
  - [CampaignAnalyticsResponseAnalyticsDailyInner](docs/CampaignAnalyticsResponseAnalyticsDailyInner.md)
  - [CampaignAnalyticsResponseAnalyticsImpressionShareCache](docs/CampaignAnalyticsResponseAnalyticsImpressionShareCache.md)
  - [CampaignAnalyticsResponseAnalyticsSummary](docs/CampaignAnalyticsResponseAnalyticsSummary.md)

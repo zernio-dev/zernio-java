@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   StorePixelInstallTagsInner.JSON_PROPERTY_SIDEBAR_ID,
   StorePixelInstallTagsInner.JSON_PROPERTY_ACTIVE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:16:21.675950536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:27:35.118866998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class StorePixelInstallTagsInner {
   public static final String JSON_PROPERTY_PLATFORM = "platform";
   @javax.annotation.Nullable

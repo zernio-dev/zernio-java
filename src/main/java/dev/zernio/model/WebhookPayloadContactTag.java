@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadContactTag.JSON_PROPERTY_TAG,
   WebhookPayloadContactTag.JSON_PROPERTY_SOURCE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:16:21.675950536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:27:35.118866998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadContactTag {
   public static final String JSON_PROPERTY_TEST = "test";
   @javax.annotation.Nullable

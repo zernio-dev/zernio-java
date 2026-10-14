@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   DetachAdLabel200Response.JSON_PROPERTY_DETACHED,
   DetachAdLabel200Response.JSON_PROPERTY_UNCHANGED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:16:21.675950536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:27:35.118866998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class DetachAdLabel200Response {
   public static final String JSON_PROPERTY_CUSTOMER_ID = "customerId";
   @javax.annotation.Nullable

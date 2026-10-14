@@ -41280,9 +41280,9 @@ paths:
 
         Returns performance analytics for a whole campaign in one call: summary metrics, a daily
         timeline over the requested date range (summed across the campaign's ads), and optional
-        demographic breakdowns. Breakdowns are fetched live from Meta at the campaign level (one call
-        per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/etc.
-        without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass
+        demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign
+        level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level
+        age/gender/placement/etc. without summing thousands of per-ad reads. `campaignId` is the platform campaign id; pass
         `platform` when a campaign id could be ambiguous across platforms. If no date range is provided,
         defaults to the last 90 days. Date range is capped at 730 days max.
         Google adds searchImpressionShare, searchBudgetLostImpressionShare,
@@ -41334,10 +41334,22 @@ paths:
           **Meta**: age, gender, country, publisher_platform, device_platform, region,
           platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.
 
+          **TikTok**: gender, age, country (or country_code), publisher_platform (or platform),
+          ac, language, placement. TikTok serves at most 365 days per breakdown, so a longer
+          range is read over its last 365 days and `analytics.breakdownsRange` says which window.
+
           **LinkedIn** (firmographics): job_title, job_function, seniority, industry,
           company, company_size, country, region. Rows carry the raw pivot `value`
           plus a resolved `name`. LinkedIn serves these aggregated over the whole
           range, delays the data 12-24h, and omits segments with fewer than 3 events.
+
+          A known dimension the platform cannot break down by is listed in
+          `analytics.unsupportedBreakdowns` instead of being dropped (with guidance in
+          `analytics.breakdownHints` where there is an alternative); the rest of the response
+          is unchanged. An unknown name returns 400. A TikTok dimension that fails is listed
+          in `analytics.breakdownErrors` and the response stays 200.
+          Metrics TikTok refuses for a dimension are listed in `analytics.breakdownDroppedMetrics`,
+          and the row values derived from them are null.
         explode: true
         in: query
         name: breakdowns
@@ -41930,7 +41942,10 @@ paths:
         schema:
           type: string
         style: form
-      - description: "Comma-separated Graph breakdowns (e.g. age,gender or publisher_platform)."
+      - description: "Meta only: comma-separated Graph breakdowns (e.g. age,gender\
+          \ or publisher_platform). Returns 400 on TikTok (add the breakdown to dimensions\
+          \ with reportType=AUDIENCE, e.g. dimensions=campaign_id,placement) and on\
+          \ Google (select segments.* in the query)."
         explode: true
         in: query
         name: breakdowns
@@ -42212,10 +42227,10 @@ paths:
   /v1/ads/{adId}/analytics:
     get:
       description: |
-        Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta and TikTok.
+        Returns one ad's performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.
 
         Includes summary metrics, a daily timeline
-        over the requested date range, and optional demographic breakdowns (Meta and TikTok only).
+        over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only).
         If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.
       operationId: getAdAnalytics
       parameters:
@@ -42248,14 +42263,25 @@ paths:
       - description: |
           Comma-separated breakdown dimensions.
 
-          **Meta**: age, gender, country, publisher_platform, device_platform, region.
+          **Meta**: age, gender, country, publisher_platform, device_platform, region,
+          platform_position, impression_device, video_asset, image_asset, body_asset, title_asset.
 
-          **TikTok**: gender, age, country_code, platform, ac, language.
+          **TikTok**: gender, age, country (or country_code), publisher_platform (or platform),
+          ac, language, placement. TikTok serves at most 365 days per breakdown, so a longer
+          range is read over its last 365 days and `analytics.breakdownsRange` says which window.
 
           **LinkedIn** (firmographics): job_title, job_function, seniority, industry,
           company, company_size, country, region. Rows carry the raw pivot `value`
           plus a resolved `name`. LinkedIn serves these aggregated over the whole
           range, delays the data 12-24h, and omits segments with fewer than 3 events.
+
+          A known dimension the platform cannot break down by is listed in
+          `analytics.unsupportedBreakdowns` instead of being dropped (with guidance in
+          `analytics.breakdownHints` where there is an alternative); the rest of the response
+          is unchanged. An unknown name returns 400. A TikTok dimension that fails is listed
+          in `analytics.breakdownErrors` and the response stays 200.
+          Metrics TikTok refuses for a dimension are listed in `analytics.breakdownDroppedMetrics`,
+          and the row values derived from them are null.
         explode: true
         in: query
         name: breakdowns
@@ -82896,9 +82922,25 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 2
+          breakdownDroppedMetrics:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+          unsupportedBreakdowns:
+          - unsupportedBreakdowns
+          - unsupportedBreakdowns
           impressionShareCache:
             stale: true
             cachedAt: 2000-01-23T04:56:07.000+00:00
+          breakdownsRange:
+            fromDate: 2000-01-23
+            toDate: 2000-01-23
+          breakdownErrors:
+          - breakdown: breakdown
+            message: message
+          - breakdown: breakdown
+            message: message
           daily:
           - date: 2000-01-23
             conversions: 3.0576100241049344
@@ -83040,6 +83082,8 @@ components:
             key:
             - "{}"
             - "{}"
+          breakdownHints:
+            key: breakdownHints
         backfillPending: true
         campaign:
           name: name
@@ -83127,6 +83171,22 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 6
+          breakdownDroppedMetrics:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+          unsupportedBreakdowns:
+          - unsupportedBreakdowns
+          - unsupportedBreakdowns
+          breakdownsRange:
+            fromDate: 2000-01-23
+            toDate: 2000-01-23
+          breakdownErrors:
+          - breakdown: breakdown
+            message: message
+          - breakdown: breakdown
+            message: message
           daily:
           - date: 2000-01-23
             conversions: 3.0576100241049344
@@ -83268,6 +83328,8 @@ components:
             key:
             - "{}"
             - "{}"
+          breakdownHints:
+            key: breakdownHints
         ad:
           name: name
           currency: currency
@@ -133892,9 +133954,25 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 2
+          breakdownDroppedMetrics:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+          unsupportedBreakdowns:
+          - unsupportedBreakdowns
+          - unsupportedBreakdowns
           impressionShareCache:
             stale: true
             cachedAt: 2000-01-23T04:56:07.000+00:00
+          breakdownsRange:
+            fromDate: 2000-01-23
+            toDate: 2000-01-23
+          breakdownErrors:
+          - breakdown: breakdown
+            message: message
+          - breakdown: breakdown
+            message: message
           daily:
           - date: 2000-01-23
             conversions: 3.0576100241049344
@@ -134036,6 +134114,8 @@ components:
             key:
             - "{}"
             - "{}"
+          breakdownHints:
+            key: breakdownHints
         backfillPending: true
         campaign:
           name: name
@@ -134948,6 +135028,22 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 6
+          breakdownDroppedMetrics:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+          unsupportedBreakdowns:
+          - unsupportedBreakdowns
+          - unsupportedBreakdowns
+          breakdownsRange:
+            fromDate: 2000-01-23
+            toDate: 2000-01-23
+          breakdownErrors:
+          - breakdown: breakdown
+            message: message
+          - breakdown: breakdown
+            message: message
           daily:
           - date: 2000-01-23
             conversions: 3.0576100241049344
@@ -135089,6 +135185,8 @@ components:
             key:
             - "{}"
             - "{}"
+          breakdownHints:
+            key: breakdownHints
         ad:
           name: name
           currency: currency
@@ -160405,6 +160503,30 @@ components:
           post_engagement: 300
           offsite_conversion.fb_pixel_purchase: 42
         video6SecFocusedViews: 3
+    CampaignAnalyticsResponse_analytics_breakdownErrors_inner:
+      example:
+        breakdown: breakdown
+        message: message
+      properties:
+        breakdown:
+          type: string
+        message:
+          description: The platform's error message.
+          type: string
+    CampaignAnalyticsResponse_analytics_breakdownsRange:
+      description: "TikTok only, present when the requested range is longer than the\
+        \ 365 days TikTok serves per breakdown: the window the breakdowns cover (the\
+        \ last 365 days of the range). summary and daily still cover the full range."
+      example:
+        fromDate: 2000-01-23
+        toDate: 2000-01-23
+      properties:
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
     CampaignAnalyticsResponse_analytics:
       example:
         summary:
@@ -160480,9 +160602,25 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
           video6SecFocusedViews: 2
+        breakdownDroppedMetrics:
+          publisher_platform:
+          - total_purchase
+          - total_purchase_value
+          - total_initiate_checkout_value
+        unsupportedBreakdowns:
+        - unsupportedBreakdowns
+        - unsupportedBreakdowns
         impressionShareCache:
           stale: true
           cachedAt: 2000-01-23T04:56:07.000+00:00
+        breakdownsRange:
+          fromDate: 2000-01-23
+          toDate: 2000-01-23
+        breakdownErrors:
+        - breakdown: breakdown
+          message: message
+        - breakdown: breakdown
+          message: message
         daily:
         - date: 2000-01-23
           conversions: 3.0576100241049344
@@ -160624,6 +160762,8 @@ components:
           key:
           - "{}"
           - "{}"
+        breakdownHints:
+          key: breakdownHints
       properties:
         summary:
           $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_summary"
@@ -160653,6 +160793,54 @@ components:
             LinkedIn withholds both below its audience privacy threshold, in which case the
             keys are ABSENT rather than 0. `audiencePenetration` is available here only: it
             is not part of the stored metrics series.
+
+            TikTok rows are keyed by TikTok's own dimension name (`country_code` for
+            `country`, `platform` for `publisher_platform`). `placement` rows carry the
+            label TikTok Ads Manager shows (`TikTok`, `TikTok Ad Network`, `News Feed App Series`)
+            in `placement` and TikTok's API value (`PLACEMENT_TIKTOK`, `PLACEMENT_PANGLE`,
+            `PLACEMENT_GLOBAL_APP_BUNDLE`) in `placementRaw`; a value without a known label
+            carries the raw value in both.
+
+            A requested dimension with no data in the range is an empty array.
+        unsupportedBreakdowns:
+          description: "Requested breakdowns this platform cannot break down by (e.g.\
+            \ region on TikTok, any breakdown on Google). Absent when every requested\
+            \ breakdown is supported."
+          items:
+            type: string
+          type: array
+        breakdownHints:
+          additionalProperties:
+            type: string
+          description: "Guidance for some names in unsupportedBreakdowns, keyed by\
+            \ that name (e.g. placement on Meta points at publisher_platform and platform_position;\
+            \ platform_position on TikTok points at placement). Absent when no unsupported\
+            \ name has a hint."
+        breakdownErrors:
+          description: "TikTok only: breakdowns the platform failed to return (rate\
+            \ limit, permission, rejected query). Each one is an empty array under\
+            \ breakdowns; summary and daily are unaffected. Absent when every breakdown\
+            \ answered."
+          items:
+            $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_breakdownErrors_inner"
+          type: array
+        breakdownDroppedMetrics:
+          additionalProperties:
+            items:
+              type: string
+          description: "TikTok only: TikTok metric names TikTok refused for a breakdown,\
+            \ keyed by the requested breakdown (e.g. total_purchase and total_purchase_value\
+            \ have no relation to platform, ac or language). Every row value derived\
+            \ from a refused metric is null in that breakdown (purchaseValue and roas,\
+            \ or the matching actions and actionValues entries), never a number computed\
+            \ without it. Absent when no metric was refused."
+          example:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+        breakdownsRange:
+          $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_breakdownsRange"
     AdAnalyticsResponse_ad:
       example:
         name: name
@@ -160745,6 +160933,22 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
           video6SecFocusedViews: 6
+        breakdownDroppedMetrics:
+          publisher_platform:
+          - total_purchase
+          - total_purchase_value
+          - total_initiate_checkout_value
+        unsupportedBreakdowns:
+        - unsupportedBreakdowns
+        - unsupportedBreakdowns
+        breakdownsRange:
+          fromDate: 2000-01-23
+          toDate: 2000-01-23
+        breakdownErrors:
+        - breakdown: breakdown
+          message: message
+        - breakdown: breakdown
+          message: message
         daily:
         - date: 2000-01-23
           conversions: 3.0576100241049344
@@ -160886,6 +161090,8 @@ components:
           key:
           - "{}"
           - "{}"
+        breakdownHints:
+          key: breakdownHints
       properties:
         summary:
           $ref: "#/components/schemas/AdMetrics"
@@ -160913,6 +161119,54 @@ components:
             LinkedIn withholds both below its audience privacy threshold, in which case the
             keys are ABSENT rather than 0. `audiencePenetration` is available here only: it
             is not part of the stored metrics series.
+
+            TikTok rows are keyed by TikTok's own dimension name (`country_code` for
+            `country`, `platform` for `publisher_platform`). `placement` rows carry the
+            label TikTok Ads Manager shows (`TikTok`, `TikTok Ad Network`, `News Feed App Series`)
+            in `placement` and TikTok's API value (`PLACEMENT_TIKTOK`, `PLACEMENT_PANGLE`,
+            `PLACEMENT_GLOBAL_APP_BUNDLE`) in `placementRaw`; a value without a known label
+            carries the raw value in both.
+
+            A requested dimension with no data in the range is an empty array.
+        unsupportedBreakdowns:
+          description: "Requested breakdowns this platform cannot break down by (e.g.\
+            \ region on TikTok, any breakdown on Google). Absent when every requested\
+            \ breakdown is supported."
+          items:
+            type: string
+          type: array
+        breakdownHints:
+          additionalProperties:
+            type: string
+          description: "Guidance for some names in unsupportedBreakdowns, keyed by\
+            \ that name (e.g. placement on Meta points at publisher_platform and platform_position;\
+            \ platform_position on TikTok points at placement). Absent when no unsupported\
+            \ name has a hint."
+        breakdownErrors:
+          description: "TikTok only: breakdowns the platform failed to return (rate\
+            \ limit, permission, rejected query). Each one is an empty array under\
+            \ breakdowns; summary and daily are unaffected. Absent when every breakdown\
+            \ answered."
+          items:
+            $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_breakdownErrors_inner"
+          type: array
+        breakdownDroppedMetrics:
+          additionalProperties:
+            items:
+              type: string
+          description: "TikTok only: TikTok metric names TikTok refused for a breakdown,\
+            \ keyed by the requested breakdown (e.g. total_purchase and total_purchase_value\
+            \ have no relation to platform, ac or language). Every row value derived\
+            \ from a refused metric is null in that breakdown (purchaseValue and roas,\
+            \ or the matching actions and actionValues entries), never a number computed\
+            \ without it. Absent when no metric was refused."
+          example:
+            publisher_platform:
+            - total_purchase
+            - total_purchase_value
+            - total_initiate_checkout_value
+        breakdownsRange:
+          $ref: "#/components/schemas/CampaignAnalyticsResponse_analytics_breakdownsRange"
     CampaignBidding_bidSpec:
       description: "Null when the campaign is on a strategy PUT does not model (Manual\
         \ CPC, Target Impression Share, ...); show biddingStrategyType instead in\

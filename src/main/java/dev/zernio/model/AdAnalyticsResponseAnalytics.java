@@ -25,6 +25,8 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.AdMetrics;
+import dev.zernio.model.CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner;
+import dev.zernio.model.CampaignAnalyticsResponseAnalyticsBreakdownsRange;
 import dev.zernio.model.CampaignAnalyticsResponseAnalyticsDailyInner;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,9 +43,14 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   AdAnalyticsResponseAnalytics.JSON_PROPERTY_SUMMARY,
   AdAnalyticsResponseAnalytics.JSON_PROPERTY_DAILY,
-  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWNS
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWNS,
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_UNSUPPORTED_BREAKDOWNS,
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWN_HINTS,
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWN_ERRORS,
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWN_DROPPED_METRICS,
+  AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWNS_RANGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:16:21.675950536Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:27:35.118866998Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAnalyticsResponseAnalytics {
   public static final String JSON_PROPERTY_SUMMARY = "summary";
   @javax.annotation.Nullable
@@ -56,6 +63,26 @@ public class AdAnalyticsResponseAnalytics {
   public static final String JSON_PROPERTY_BREAKDOWNS = "breakdowns";
   @javax.annotation.Nullable
   private Map<String, List<Object>> breakdowns = new HashMap<>();
+
+  public static final String JSON_PROPERTY_UNSUPPORTED_BREAKDOWNS = "unsupportedBreakdowns";
+  @javax.annotation.Nullable
+  private List<String> unsupportedBreakdowns = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BREAKDOWN_HINTS = "breakdownHints";
+  @javax.annotation.Nullable
+  private Map<String, String> breakdownHints = new HashMap<>();
+
+  public static final String JSON_PROPERTY_BREAKDOWN_ERRORS = "breakdownErrors";
+  @javax.annotation.Nullable
+  private List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> breakdownErrors = new ArrayList<>();
+
+  public static final String JSON_PROPERTY_BREAKDOWN_DROPPED_METRICS = "breakdownDroppedMetrics";
+  @javax.annotation.Nullable
+  private Map<String, List<String>> breakdownDroppedMetrics = new HashMap<>();
+
+  public static final String JSON_PROPERTY_BREAKDOWNS_RANGE = "breakdownsRange";
+  @javax.annotation.Nullable
+  private CampaignAnalyticsResponseAnalyticsBreakdownsRange breakdownsRange;
 
   public AdAnalyticsResponseAnalytics() { 
   }
@@ -130,7 +157,7 @@ public class AdAnalyticsResponseAnalytics {
   }
 
   /**
-   * Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series. 
+   * Requested demographic breakdowns, keyed by dimension. Fetched live from the platform per request and never stored, so these rows can carry fields the stored &#x60;summary&#x60; and &#x60;daily&#x60; series do not.  LinkedIn rows carry &#x60;value&#x60; (the pivot URN), &#x60;name&#x60; (resolved label where LinkedIn provides one), the usual spend/impressions/clicks/ctr/cpc/cpm/engagement figures, plus two reach fields:  - &#x60;reach&#x60;: the segment&#39;s &#x60;approximateMemberReach&#x60;. - &#x60;audiencePenetration&#x60;: LinkedIn&#39;s own ratio of members reached to the size of   the targeted audience, passed through verbatim.  LinkedIn withholds both below its audience privacy threshold, in which case the keys are ABSENT rather than 0. &#x60;audiencePenetration&#x60; is available here only: it is not part of the stored metrics series.  TikTok rows are keyed by TikTok&#39;s own dimension name (&#x60;country_code&#x60; for &#x60;country&#x60;, &#x60;platform&#x60; for &#x60;publisher_platform&#x60;). &#x60;placement&#x60; rows carry the label TikTok Ads Manager shows (&#x60;TikTok&#x60;, &#x60;TikTok Ad Network&#x60;, &#x60;News Feed App Series&#x60;) in &#x60;placement&#x60; and TikTok&#39;s API value (&#x60;PLACEMENT_TIKTOK&#x60;, &#x60;PLACEMENT_PANGLE&#x60;, &#x60;PLACEMENT_GLOBAL_APP_BUNDLE&#x60;) in &#x60;placementRaw&#x60;; a value without a known label carries the raw value in both.  A requested dimension with no data in the range is an empty array. 
    * @return breakdowns
    */
   @javax.annotation.Nullable
@@ -148,6 +175,158 @@ public class AdAnalyticsResponseAnalytics {
   }
 
 
+  public AdAnalyticsResponseAnalytics unsupportedBreakdowns(@javax.annotation.Nullable List<String> unsupportedBreakdowns) {
+    this.unsupportedBreakdowns = unsupportedBreakdowns;
+    return this;
+  }
+
+  public AdAnalyticsResponseAnalytics addUnsupportedBreakdownsItem(String unsupportedBreakdownsItem) {
+    if (this.unsupportedBreakdowns == null) {
+      this.unsupportedBreakdowns = new ArrayList<>();
+    }
+    this.unsupportedBreakdowns.add(unsupportedBreakdownsItem);
+    return this;
+  }
+
+  /**
+   * Requested breakdowns this platform cannot break down by (e.g. region on TikTok, any breakdown on Google). Absent when every requested breakdown is supported.
+   * @return unsupportedBreakdowns
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_UNSUPPORTED_BREAKDOWNS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<String> getUnsupportedBreakdowns() {
+    return unsupportedBreakdowns;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_UNSUPPORTED_BREAKDOWNS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setUnsupportedBreakdowns(@javax.annotation.Nullable List<String> unsupportedBreakdowns) {
+    this.unsupportedBreakdowns = unsupportedBreakdowns;
+  }
+
+
+  public AdAnalyticsResponseAnalytics breakdownHints(@javax.annotation.Nullable Map<String, String> breakdownHints) {
+    this.breakdownHints = breakdownHints;
+    return this;
+  }
+
+  public AdAnalyticsResponseAnalytics putBreakdownHintsItem(String key, String breakdownHintsItem) {
+    if (this.breakdownHints == null) {
+      this.breakdownHints = new HashMap<>();
+    }
+    this.breakdownHints.put(key, breakdownHintsItem);
+    return this;
+  }
+
+  /**
+   * Guidance for some names in unsupportedBreakdowns, keyed by that name (e.g. placement on Meta points at publisher_platform and platform_position; platform_position on TikTok points at placement). Absent when no unsupported name has a hint.
+   * @return breakdownHints
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_HINTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, String> getBreakdownHints() {
+    return breakdownHints;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_HINTS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBreakdownHints(@javax.annotation.Nullable Map<String, String> breakdownHints) {
+    this.breakdownHints = breakdownHints;
+  }
+
+
+  public AdAnalyticsResponseAnalytics breakdownErrors(@javax.annotation.Nullable List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> breakdownErrors) {
+    this.breakdownErrors = breakdownErrors;
+    return this;
+  }
+
+  public AdAnalyticsResponseAnalytics addBreakdownErrorsItem(CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner breakdownErrorsItem) {
+    if (this.breakdownErrors == null) {
+      this.breakdownErrors = new ArrayList<>();
+    }
+    this.breakdownErrors.add(breakdownErrorsItem);
+    return this;
+  }
+
+  /**
+   * TikTok only: breakdowns the platform failed to return (rate limit, permission, rejected query). Each one is an empty array under breakdowns; summary and daily are unaffected. Absent when every breakdown answered.
+   * @return breakdownErrors
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> getBreakdownErrors() {
+    return breakdownErrors;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_ERRORS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBreakdownErrors(@javax.annotation.Nullable List<CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner> breakdownErrors) {
+    this.breakdownErrors = breakdownErrors;
+  }
+
+
+  public AdAnalyticsResponseAnalytics breakdownDroppedMetrics(@javax.annotation.Nullable Map<String, List<String>> breakdownDroppedMetrics) {
+    this.breakdownDroppedMetrics = breakdownDroppedMetrics;
+    return this;
+  }
+
+  public AdAnalyticsResponseAnalytics putBreakdownDroppedMetricsItem(String key, List<String> breakdownDroppedMetricsItem) {
+    if (this.breakdownDroppedMetrics == null) {
+      this.breakdownDroppedMetrics = new HashMap<>();
+    }
+    this.breakdownDroppedMetrics.put(key, breakdownDroppedMetricsItem);
+    return this;
+  }
+
+  /**
+   * TikTok only: TikTok metric names TikTok refused for a breakdown, keyed by the requested breakdown (e.g. total_purchase and total_purchase_value have no relation to platform, ac or language). Every row value derived from a refused metric is null in that breakdown (purchaseValue and roas, or the matching actions and actionValues entries), never a number computed without it. Absent when no metric was refused.
+   * @return breakdownDroppedMetrics
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_DROPPED_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public Map<String, List<String>> getBreakdownDroppedMetrics() {
+    return breakdownDroppedMetrics;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWN_DROPPED_METRICS, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBreakdownDroppedMetrics(@javax.annotation.Nullable Map<String, List<String>> breakdownDroppedMetrics) {
+    this.breakdownDroppedMetrics = breakdownDroppedMetrics;
+  }
+
+
+  public AdAnalyticsResponseAnalytics breakdownsRange(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsBreakdownsRange breakdownsRange) {
+    this.breakdownsRange = breakdownsRange;
+    return this;
+  }
+
+  /**
+   * Get breakdownsRange
+   * @return breakdownsRange
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWNS_RANGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CampaignAnalyticsResponseAnalyticsBreakdownsRange getBreakdownsRange() {
+    return breakdownsRange;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BREAKDOWNS_RANGE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBreakdownsRange(@javax.annotation.Nullable CampaignAnalyticsResponseAnalyticsBreakdownsRange breakdownsRange) {
+    this.breakdownsRange = breakdownsRange;
+  }
+
+
   /**
    * Return true if this AdAnalyticsResponse_analytics object is equal to o.
    */
@@ -162,12 +341,17 @@ public class AdAnalyticsResponseAnalytics {
     AdAnalyticsResponseAnalytics adAnalyticsResponseAnalytics = (AdAnalyticsResponseAnalytics) o;
     return Objects.equals(this.summary, adAnalyticsResponseAnalytics.summary) &&
         Objects.equals(this.daily, adAnalyticsResponseAnalytics.daily) &&
-        Objects.equals(this.breakdowns, adAnalyticsResponseAnalytics.breakdowns);
+        Objects.equals(this.breakdowns, adAnalyticsResponseAnalytics.breakdowns) &&
+        Objects.equals(this.unsupportedBreakdowns, adAnalyticsResponseAnalytics.unsupportedBreakdowns) &&
+        Objects.equals(this.breakdownHints, adAnalyticsResponseAnalytics.breakdownHints) &&
+        Objects.equals(this.breakdownErrors, adAnalyticsResponseAnalytics.breakdownErrors) &&
+        Objects.equals(this.breakdownDroppedMetrics, adAnalyticsResponseAnalytics.breakdownDroppedMetrics) &&
+        Objects.equals(this.breakdownsRange, adAnalyticsResponseAnalytics.breakdownsRange);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(summary, daily, breakdowns);
+    return Objects.hash(summary, daily, breakdowns, unsupportedBreakdowns, breakdownHints, breakdownErrors, breakdownDroppedMetrics, breakdownsRange);
   }
 
   @Override
@@ -177,6 +361,11 @@ public class AdAnalyticsResponseAnalytics {
     sb.append("    summary: ").append(toIndentedString(summary)).append("\n");
     sb.append("    daily: ").append(toIndentedString(daily)).append("\n");
     sb.append("    breakdowns: ").append(toIndentedString(breakdowns)).append("\n");
+    sb.append("    unsupportedBreakdowns: ").append(toIndentedString(unsupportedBreakdowns)).append("\n");
+    sb.append("    breakdownHints: ").append(toIndentedString(breakdownHints)).append("\n");
+    sb.append("    breakdownErrors: ").append(toIndentedString(breakdownErrors)).append("\n");
+    sb.append("    breakdownDroppedMetrics: ").append(toIndentedString(breakdownDroppedMetrics)).append("\n");
+    sb.append("    breakdownsRange: ").append(toIndentedString(breakdownsRange)).append("\n");
     sb.append("}");
     return sb.toString();
   }
@@ -246,6 +435,48 @@ public class AdAnalyticsResponseAnalytics {
             "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
             getBreakdowns().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getBreakdowns().get(_key)))));
       }
+    }
+
+    // add `unsupportedBreakdowns` to the URL query string
+    if (getUnsupportedBreakdowns() != null) {
+      for (int i = 0; i < getUnsupportedBreakdowns().size(); i++) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sunsupportedBreakdowns%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
+            ApiClient.urlEncode(ApiClient.valueToString(getUnsupportedBreakdowns().get(i)))));
+      }
+    }
+
+    // add `breakdownHints` to the URL query string
+    if (getBreakdownHints() != null) {
+      for (String _key : getBreakdownHints().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sbreakdownHints%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getBreakdownHints().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getBreakdownHints().get(_key)))));
+      }
+    }
+
+    // add `breakdownErrors` to the URL query string
+    if (getBreakdownErrors() != null) {
+      for (int i = 0; i < getBreakdownErrors().size(); i++) {
+        if (getBreakdownErrors().get(i) != null) {
+          joiner.add(getBreakdownErrors().get(i).toUrlQueryString(String.format(java.util.Locale.ROOT, "%sbreakdownErrors%s%s", prefix, suffix,
+          "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix))));
+        }
+      }
+    }
+
+    // add `breakdownDroppedMetrics` to the URL query string
+    if (getBreakdownDroppedMetrics() != null) {
+      for (String _key : getBreakdownDroppedMetrics().keySet()) {
+        joiner.add(String.format(java.util.Locale.ROOT, "%sbreakdownDroppedMetrics%s%s=%s", prefix, suffix,
+            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, _key, containerSuffix),
+            getBreakdownDroppedMetrics().get(_key), ApiClient.urlEncode(ApiClient.valueToString(getBreakdownDroppedMetrics().get(_key)))));
+      }
+    }
+
+    // add `breakdownsRange` to the URL query string
+    if (getBreakdownsRange() != null) {
+      joiner.add(getBreakdownsRange().toUrlQueryString(prefix + "breakdownsRange" + suffix));
     }
 
     return joiner.toString();

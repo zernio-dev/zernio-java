@@ -269,6 +269,8 @@ docs/CallRecordTranscriptInner.md
 docs/CallsApi.md
 docs/CampaignAnalyticsResponse.md
 docs/CampaignAnalyticsResponseAnalytics.md
+docs/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.md
+docs/CampaignAnalyticsResponseAnalyticsBreakdownsRange.md
 docs/CampaignAnalyticsResponseAnalyticsDailyInner.md
 docs/CampaignAnalyticsResponseAnalyticsImpressionShareCache.md
 docs/CampaignAnalyticsResponseAnalyticsSummary.md
@@ -3143,6 +3145,8 @@ src/main/java/dev/zernio/model/CallRecordCallErrorsInner.java
 src/main/java/dev/zernio/model/CallRecordTranscriptInner.java
 src/main/java/dev/zernio/model/CampaignAnalyticsResponse.java
 src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalytics.java
+src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.java
+src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownsRange.java
 src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsDailyInner.java
 src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsImpressionShareCache.java
 src/main/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsSummary.java
@@ -5611,3 +5615,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInnerTest.java
+src/test/java/dev/zernio/model/CampaignAnalyticsResponseAnalyticsBreakdownsRangeTest.java
