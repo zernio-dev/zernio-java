@@ -2621,7 +2621,7 @@ ApiResponse<[**ListAdCatalogProducts200Response**](ListAdCatalogProducts200Respo
 
 List Meta product catalogs
 
-Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted. 
+Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see.  Listing catalogs needs catalog_management on the Meta login. The permission is pending Meta App Review and is not requested on connect yet, so most logins get the 403 below (Meta&#39;s code 100 \&quot;This application has not been approved to use this api\&quot;); pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. Creating a catalog_sales ad from a known product set ID does not need it (see promotedObject.productSetId on POST /v1/ads/create). 
 
 ### Example
 
@@ -2702,7 +2702,7 @@ public class Example {
 
 List Meta product catalogs
 
-Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see. Reads work with scopes customers already granted. 
+Lists the Meta product catalogs a business portfolio owns or has been shared, for catalog and shopping ads.  The business comes from &#x60;businessId&#x60;, else the ad account&#39;s owner (&#x60;adAccountId&#x60;), else the WhatsApp Business Account&#39;s owner when &#x60;accountId&#x60; is a WhatsApp connection, else the only business the Meta login can see.  Listing catalogs needs catalog_management on the Meta login. The permission is pending Meta App Review and is not requested on connect yet, so most logins get the 403 below (Meta&#39;s code 100 \&quot;This application has not been approved to use this api\&quot;); pass catalogAccountId naming a facebook, instagram or metaads connection whose Meta login already holds it. Creating a catalog_sales ad from a known product set ID does not need it (see promotedObject.productSetId on POST /v1/ads/create). 
 
 ### Example
 
