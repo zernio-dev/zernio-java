@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListChangelog200Response.JSON_PROPERTY_ENTRIES,
   ListChangelog200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:50:36.425168730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:54:12.247535333Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListChangelog200Response {
   public static final String JSON_PROPERTY_ENTRIES = "entries";
   @javax.annotation.Nonnull

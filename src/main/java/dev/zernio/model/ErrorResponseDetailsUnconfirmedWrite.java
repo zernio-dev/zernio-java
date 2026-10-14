@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ErrorResponseDetailsUnconfirmedWrite.JSON_PROPERTY_TYPE,
   ErrorResponseDetailsUnconfirmedWrite.JSON_PROPERTY_PARENT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:50:36.425168730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:54:12.247535333Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponseDetailsUnconfirmedWrite {
   /**
    * Gets or Sets type

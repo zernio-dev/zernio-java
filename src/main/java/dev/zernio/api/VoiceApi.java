@@ -76,7 +76,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:50:36.425168730Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-14T19:54:12.247535333Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class VoiceApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -925,7 +925,7 @@ public class VoiceApi {
 
   /**
    * Dial from the browser softphone
-   * Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+   * Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
    * @param dialVoiceWebCallRequest  (required)
    * @return DialVoiceWebCall200Response
    * @throws ApiException if fails to make API call
@@ -936,7 +936,7 @@ public class VoiceApi {
 
   /**
    * Dial from the browser softphone
-   * Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+   * Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
    * @param dialVoiceWebCallRequest  (required)
    * @param headers Optional headers to include in the request
    * @return DialVoiceWebCall200Response
@@ -949,7 +949,7 @@ public class VoiceApi {
 
   /**
    * Dial from the browser softphone
-   * Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+   * Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
    * @param dialVoiceWebCallRequest  (required)
    * @return ApiResponse&lt;DialVoiceWebCall200Response&gt;
    * @throws ApiException if fails to make API call
@@ -960,7 +960,7 @@ public class VoiceApi {
 
   /**
    * Dial from the browser softphone
-   * Step 2 of the browser softphone handshake: places an outbound call whose answered leg is bridged to the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60;. The call runs through the normal outbound lane, so it is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. 
+   * Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
    * @param dialVoiceWebCallRequest  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;DialVoiceWebCall200Response&gt;
