@@ -832,6 +832,7 @@ docs/GetAccountHealth200ResponseTokenStatus.md
 docs/GetAccountPosts200Response.md
 docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
+docs/GetAd200ResponseDarkPost.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
@@ -3698,6 +3699,7 @@ src/main/java/dev/zernio/model/GetAccountHealth200ResponseTokenStatus.java
 src/main/java/dev/zernio/model/GetAccountPosts200Response.java
 src/main/java/dev/zernio/model/GetAccountPosts200ResponsePostsInner.java
 src/main/java/dev/zernio/model/GetAd200Response.java
+src/main/java/dev/zernio/model/GetAd200ResponseDarkPost.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
@@ -5617,3 +5619,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAd200ResponseDarkPostTest.java

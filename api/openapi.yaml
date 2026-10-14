@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.278.1
+  version: 1.279.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40268,9 +40268,20 @@ paths:
         - the creative's `effective_object_story_id` (`{pageId}_{postId}` shape, Facebook side)
         - the creative's `effective_instagram_media_id` (Instagram side)
 
-        Any of the four resolve to the same ad. Caller doesn't need a translation step.
+        - an Instagram media id an ad comment arrived on (`comment.platformPostId` of a `comment.received`
+          carrying `comment.ad.id`), including the extra media Meta creates for placement variants
+
+        Any of these resolve to the same ad. Caller doesn't need a translation step.
         `creative.creativeFeatures` holds the stored requested settings, which do not confirm
         platform application.
+
+        **Facebook ad dark posts.** Meta gives an ad with per-placement assets one extra unpublished
+        post per placement, and comments land on it. Meta exposes no link from that post to its ad.
+        When exactly one ad on the Page, created before the dark post, carries the same copy as the
+        post, the dark post id resolves to that ad. Otherwise, when the id is a dark post Zernio has
+        seen comments on and its Page is connected, the response is `ad: null` plus `darkPost`, which
+        carries the Meta Ads account and the ad accounts running ads for that Page. Read its comments
+        with GET /v1/ads/{adId}/comments using the same id.
 
         **Status freshness.** `status`, `configuredStatus`, `platformStatus`, `platformAdSetStatus`
         and `platformCampaignStatus` are the values Zernio last stored. Background sync refreshes
@@ -42477,6 +42488,12 @@ paths:
         param the Instagram side is returned when it exists, otherwise Facebook. The
         identifiers are read from the ad record (persisted during sync) with a Marketing-API
         fallback for ads that predate the field.
+
+        Comments can land on extra posts Meta creates for placement variants, which the creative
+        does not report. On Instagram, every media a `comment.received` for this ad arrived on is
+        read too; on Facebook, every dark post matched to this ad by its copy. They are merged
+        newest first. With more than one post, `pagination.cursor` is a Zernio cursor covering all
+        of them: pass it back unchanged.
 
         For Instagram-placed comments, the Instagram account that runs the ad must be connected
         to Zernio, because those comments are read through that account's token. If no connected
@@ -132840,8 +132857,74 @@ components:
           costPerConversion: 4.145608029883936
           actions:
             key: 7.386281948385884
+    getAd_200_response_darkPost:
+      description: "Only when `{adId}` is a Facebook ad dark post with no resolvable\
+        \ ad (then `ad` is null)."
+      example:
+        accountId: accountId
+        adId: adId
+        facebookAccountId: facebookAccountId
+        lastActivityAt: 2000-01-23T04:56:07.000+00:00
+        isDarkPost: true
+        pageId: pageId
+        platformAdAccountIds:
+        - platformAdAccountIds
+        - platformAdAccountIds
+        firstSeenAt: 2000-01-23T04:56:07.000+00:00
+        platform: facebook
+        platformPostId: platformPostId
+      properties:
+        platform:
+          enum:
+          - facebook
+          type: string
+        platformPostId:
+          description: "The dark post id, `{pageId}_{postId}`."
+          type: string
+        pageId:
+          type: string
+        isDarkPost:
+          description: Always true.
+          type: boolean
+        adId:
+          description: "Always null: Meta exposes no link from a placement dark post\
+            \ to its ad."
+          nullable: true
+          type: string
+        accountId:
+          description: "Zernio Meta Ads account id for the Page, null when none is\
+            \ connected."
+          nullable: true
+          type: string
+        facebookAccountId:
+          description: Zernio Facebook account id of the Page.
+          type: string
+        platformAdAccountIds:
+          description: Meta ad accounts (`act_...`) with synced ads on this Page.
+          items:
+            type: string
+          type: array
+        firstSeenAt:
+          format: date-time
+          type: string
+        lastActivityAt:
+          format: date-time
+          type: string
     getAd_200_response:
       example:
+        darkPost:
+          accountId: accountId
+          adId: adId
+          facebookAccountId: facebookAccountId
+          lastActivityAt: 2000-01-23T04:56:07.000+00:00
+          isDarkPost: true
+          pageId: pageId
+          platformAdAccountIds:
+          - platformAdAccountIds
+          - platformAdAccountIds
+          firstSeenAt: 2000-01-23T04:56:07.000+00:00
+          platform: facebook
+          platformPostId: platformPostId
         ad:
           bidStrategy: ""
           adSetName: adSetName
@@ -132981,6 +133064,8 @@ components:
           format: date-time
           nullable: true
           type: string
+        darkPost:
+          $ref: "#/components/schemas/getAd_200_response_darkPost"
     updateAd_request_budget:
       properties:
         amount:
@@ -155149,7 +155234,8 @@ components:
         Facebook: populated from a Graph API lookup of the parent post. Present when the post is an
         ad dark post (isDarkPost true, whatever its promotionStatus) or an organic post that is or was
         boosted (promotionStatus "active", "extendable" or "finished"). Meta does not link a dark post
-        back to its ad, so id and title are never set on Facebook.
+        back to its ad, so on Facebook id is set only when exactly one ad on the Page, created before the
+        dark post, carries the same copy as the post. title is never set on Facebook.
         Absent for comments on organic posts that are not promoted.
       example:
         id: id
@@ -155159,7 +155245,8 @@ components:
         promotionStatus: promotionStatus
       properties:
         id:
-          description: Meta ad ID (Instagram only).
+          description: "Meta ad ID. Instagram: from the webhook. Facebook: only on\
+            \ a dark post matched to a single ad by its copy."
           type: string
         title:
           description: Ad creative title (Instagram only).

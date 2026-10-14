@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.278.1
+- API version: 1.279.0
 
-- Build date: 2026-10-14T19:54:12.247535333Z[Etc/UTC]
+- Build date: 2026-10-14T22:43:25.187840315Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.278.1</version>
+  <version>1.279.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.278.1"
+compile "dev.zernio:zernio-sdk:1.279.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.278.1.jar`
+- `target/zernio-sdk-1.279.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2860,6 +2860,7 @@ Class | Method | HTTP request | Description
  - [GetAccountPosts200Response](docs/GetAccountPosts200Response.md)
  - [GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
  - [GetAd200Response](docs/GetAd200Response.md)
+ - [GetAd200ResponseDarkPost](docs/GetAd200ResponseDarkPost.md)
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
