@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.275.0
+  version: 1.275.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47860,6 +47860,8 @@ paths:
             is reused with a different request body, and as `ad_account_unusable`
             when Meta refuses writes on the ad account because its status is
             ineligible to manage ads (see `ErrorResponse.details`).
+        "503":
+          $ref: "#/components/responses/TemporarilyUnavailable"
       security:
       - bearerAuth: []
       summary: Boost post as ad
