@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.276.0
+  version: 1.277.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -15002,12 +15002,13 @@ paths:
       - application/json
   /v1/accounts/{accountId}/linkedin-aggregate-analytics:
     get:
-      description: Returns aggregate analytics across all posts for a LinkedIn personal
-        account. Only includes posts published through Zernio (LinkedIn API limitation).
-        Org accounts should use /v1/analytics instead. Requires r_member_postAnalytics
-        scope. Saves (POST_SAVE) and sends (POST_SEND) are available for personal
-        accounts; organization pages always return 0 for these two metrics because
-        LinkedIn does not expose them on the organization analytics endpoint.
+      description: "Returns aggregate analytics across all posts for a LinkedIn personal\
+        \ account. Covers every post authored by the member, whether or not it was\
+        \ published through Zernio (LinkedIn aggregates by member, not by post). Org\
+        \ accounts should use /v1/analytics instead. Requires r_member_postAnalytics\
+        \ scope. Saves (POST_SAVE) and sends (POST_SEND) are available for personal\
+        \ accounts; organization pages always return 0 for these two metrics because\
+        \ LinkedIn does not expose them on the organization analytics endpoint."
       operationId: getLinkedInAggregateAnalytics
       parameters:
       - description: The ID of the LinkedIn personal account
@@ -77376,10 +77377,14 @@ components:
           example: 0
           type: integer
         videoDurationSeconds:
-          description: "Video length in seconds. Currently Instagram Reels only; combine\
-            \ with igReelsAvgWatchTime (ms) to estimate retention. Null when unknown\
-            \ (other platforms, non-video media, or when Instagram does not expose\
-            \ the media URL, e.g. reels with copyrighted audio)."
+          description: "Video length in seconds. Filled for public YouTube videos\
+            \ once their analytics next refresh (from the Data API; live streams may\
+            \ report null). The YouTube Data API has no Shorts flag: a video over\
+            \ 180 seconds cannot be a Short, but a shorter one may be a regular upload.\
+            \ Also filled for Instagram Reels (combine with igReelsAvgWatchTime (ms)\
+            \ to estimate retention). Null when unknown: platforms that do not report\
+            \ a length, non-video media, or when Instagram does not expose the media\
+            \ URL, e.g. reels with copyrighted audio."
           example: 30
           nullable: true
           type: integer
