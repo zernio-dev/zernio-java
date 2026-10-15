@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.279.1
+  version: 1.279.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8636,8 +8636,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/requestWhatsAppVerificationCode_200_response"
-          description: "Code requested, or the number was already CONNECTED and no\
-            \ code was needed."
+          description: "Code requested, or the number was already CONNECTED with a\
+            \ current verification and no code was needed."
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":

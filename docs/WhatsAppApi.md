@@ -5547,7 +5547,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
+| **200** | Code requested, or the number was already CONNECTED with a current verification and no code was needed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
@@ -5629,7 +5629,7 @@ ApiResponse<[**RequestWhatsAppVerificationCode200Response**](RequestWhatsAppVeri
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **200** | Code requested, or the number was already CONNECTED and no code was needed. |  -  |
+| **200** | Code requested, or the number was already CONNECTED with a current verification and no code was needed. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
