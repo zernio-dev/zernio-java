@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.279.3
+  version: 1.280.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47447,6 +47447,20 @@ paths:
           maximum: 1000
           minimum: 1
           type: integer
+        style: form
+      - description: "Google Ads only. `true` returns only the customers this connection\
+          \ accepts as `adAccountId` (or `customerId`) on the other /v1/ads endpoints,\
+          \ i.e. those inside its ad-account selection. Without it every customer\
+          \ the Google login can reach is listed, including ones selected on another\
+          \ connection of the same login, which those endpoints answer with a 400.\
+          \ Ignored on other platforms."
+        explode: true
+        in: query
+        name: inScopeOnly
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "409":

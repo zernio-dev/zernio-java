@@ -5367,7 +5367,7 @@ ApiResponse<[**ListAdAccountUsers200Response**](ListAdAccountUsers200Response.md
 
 ## listAdAccounts
 
-> ListAdAccounts200Response listAdAccounts(accountId, adAccountId, limit)
+> ListAdAccounts200Response listAdAccounts(accountId, adAccountId, limit, inScopeOnly)
 
 List ad accounts
 
@@ -5397,8 +5397,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Filter response to a single platform ad account ID (e.g. `act_123` for Meta, advertiser_id for TikTok). Returns at most one item.
         Integer limit = 56; // Integer | Clamp the returned `accounts[]` length. Useful for typeahead pickers on agency tokens with hundreds of advertisers.
+        Boolean inScopeOnly = false; // Boolean | Google Ads only. `true` returns only the customers this connection accepts as `adAccountId` (or `customerId`) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms.
         try {
-            ListAdAccounts200Response result = apiInstance.listAdAccounts(accountId, adAccountId, limit);
+            ListAdAccounts200Response result = apiInstance.listAdAccounts(accountId, adAccountId, limit, inScopeOnly);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#listAdAccounts");
@@ -5419,6 +5420,7 @@ public class Example {
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. | [optional] |
 | **limit** | **Integer**| Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. | [optional] |
+| **inScopeOnly** | **Boolean**| Google Ads only. &#x60;true&#x60; returns only the customers this connection accepts as &#x60;adAccountId&#x60; (or &#x60;customerId&#x60;) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms. | [optional] [default to false] |
 
 ### Return type
 
@@ -5447,7 +5449,7 @@ public class Example {
 
 ## listAdAccountsWithHttpInfo
 
-> ApiResponse<ListAdAccounts200Response> listAdAccounts listAdAccountsWithHttpInfo(accountId, adAccountId, limit)
+> ApiResponse<ListAdAccounts200Response> listAdAccounts listAdAccountsWithHttpInfo(accountId, adAccountId, limit, inScopeOnly)
 
 List ad accounts
 
@@ -5478,8 +5480,9 @@ public class Example {
         String accountId = "accountId_example"; // String | Account ID
         String adAccountId = "adAccountId_example"; // String | Filter response to a single platform ad account ID (e.g. `act_123` for Meta, advertiser_id for TikTok). Returns at most one item.
         Integer limit = 56; // Integer | Clamp the returned `accounts[]` length. Useful for typeahead pickers on agency tokens with hundreds of advertisers.
+        Boolean inScopeOnly = false; // Boolean | Google Ads only. `true` returns only the customers this connection accepts as `adAccountId` (or `customerId`) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms.
         try {
-            ApiResponse<ListAdAccounts200Response> response = apiInstance.listAdAccountsWithHttpInfo(accountId, adAccountId, limit);
+            ApiResponse<ListAdAccounts200Response> response = apiInstance.listAdAccountsWithHttpInfo(accountId, adAccountId, limit, inScopeOnly);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -5502,6 +5505,7 @@ public class Example {
 | **accountId** | **String**| Account ID | |
 | **adAccountId** | **String**| Filter response to a single platform ad account ID (e.g. &#x60;act_123&#x60; for Meta, advertiser_id for TikTok). Returns at most one item. | [optional] |
 | **limit** | **Integer**| Clamp the returned &#x60;accounts[]&#x60; length. Useful for typeahead pickers on agency tokens with hundreds of advertisers. | [optional] |
+| **inScopeOnly** | **Boolean**| Google Ads only. &#x60;true&#x60; returns only the customers this connection accepts as &#x60;adAccountId&#x60; (or &#x60;customerId&#x60;) on the other /v1/ads endpoints, i.e. those inside its ad-account selection. Without it every customer the Google login can reach is listed, including ones selected on another connection of the same login, which those endpoints answer with a 400. Ignored on other platforms. | [optional] [default to false] |
 
 ### Return type
 
