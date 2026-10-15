@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.279.2
+  version: 1.279.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -56035,6 +56035,8 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -56156,6 +56158,8 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -56265,6 +56269,8 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -56771,6 +56777,8 @@ paths:
             \ on usage-based plans)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -56915,6 +56923,8 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -57040,6 +57050,8 @@ paths:
             \ (reconnect required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "501":
@@ -57173,6 +57185,8 @@ paths:
             \ (reconnect required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "501":
@@ -57276,6 +57290,8 @@ paths:
             \ (reconnect required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "501":
@@ -57373,6 +57389,8 @@ paths:
             \ (reconnect required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "501":
@@ -57830,6 +57848,8 @@ paths:
             \ required)."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "429":
+          $ref: "#/components/responses/RateLimited"
         "501":
           description: The platform does not offer this operation (code `platform_not_supported`);
             the message names the reason and the alternative.
@@ -63519,6 +63539,10 @@ components:
         `x-business-use-case-usage` estimate when Meta sends one, otherwise it
         is Meta's documented 60-second minimum (30 seconds for the one-write-per-30-seconds
         limit on a single object).
+
+        Pinterest ads: Pinterest rate-limits per user and app, per category
+        (ads_read, ads_write, ads_analytics). `Retry-After` comes from
+        Pinterest's `x-ratelimit-reset` when it sends one, otherwise 60 seconds.
       headers:
         Retry-After:
           description: Seconds remaining until the upstream quota resets.
