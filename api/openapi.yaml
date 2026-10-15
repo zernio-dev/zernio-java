@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.282.0
+  version: 1.283.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -282,7 +282,8 @@ tags:
     Pinterest `status`, X `entity_status`, ChatGPT (OpenAI) `status`, Reddit `configured_status`):
 
     - **Own switch** is what you set. Ads return it as `configuredStatus`, ad sets as
-      `platformAdSetStatus`, campaigns as `platformCampaignStatus`.
+      `platformAdSetStatus`, campaigns as `platformCampaignStatus`. Meta and Reddit ad sets
+      return their `effective_status` in `platformAdSetStatus` instead (e.g. `CAMPAIGN_PAUSED`).
     - **Delivery status** (`status`, and the raw `platformStatus` on ads) is derived: an object
       delivers only when its own switch AND every switch above it are on. An ad whose own switch
       is on under a paused campaign reads `configuredStatus: ACTIVE` with `status: paused`.
@@ -39745,9 +39746,9 @@ paths:
         the delivery status of its ads (up to 20) is re-read and stored, so an
         immediate GET returns what the platform now reports. A stored switch
         never skips a write, and when the platform cannot be read the write
-        always goes out. On Meta the check reads the ad set's own `status`, so
-        a repeated request skips even while `platformAdSetStatus` reads
-        `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`.
+        always goes out. On Meta and Reddit the check reads the ad set's own
+        switch (`status` / `configured_status`), so a repeated request skips even
+        while `platformAdSetStatus` reads `CAMPAIGN_PAUSED`, `WITH_ISSUES` or `IN_PROCESS`.
       operationId: updateAdSetStatus
       parameters:
       - description: Platform ad set ID
@@ -129762,7 +129763,8 @@ components:
           type: string
         platformAdSetStatus:
           description: "Raw platform ad set status. On TikTok the ad group's own switch\
-            \ `operation_status` (ENABLE / DISABLE), independent of its campaign."
+            \ `operation_status` (ENABLE / DISABLE), independent of its campaign.\
+            \ On Meta and Reddit the ad set's `effective_status` (e.g. CAMPAIGN_PAUSED)."
           nullable: true
           type: string
         platformCampaignId:
@@ -130283,8 +130285,11 @@ components:
           - paused
           type: string
         name:
-          description: "Rename the ad set (on X, the line item `name`). Platforms\
-            \ without a rename return 501. At least one of budget/status/bidStrategy/name\
+          description: "Rename the ad set on any supported platform: Meta, Google\
+            \ (the ad group), TikTok, LinkedIn (the campaign), Pinterest, X (the line\
+            \ item `name`), OpenAI and Reddit; platforms without a rename return 501.\
+            \ The new name is stored right away, so GET /v1/ads/ad-sets and GET /v1/ads/tree\
+            \ return it without a sync. At least one of budget/status/bidStrategy/name\
             \ is required."
           maxLength: 255
           type: string
@@ -130378,8 +130383,9 @@ components:
           - paused
           type: string
         platformAdSetStatus:
-          description: The ad set's own switch read back from the platform; null when
-            it could not be read.
+          description: "The ad set's status read back from the platform, as in PUT\
+            \ /v1/ads/ad-sets/{adSetId}/status (Meta and Reddit return the ad set's\
+            \ effective_status); null when it could not be read."
           nullable: true
           type: string
         platformCampaignStatus:
@@ -130449,8 +130455,9 @@ components:
           description: "The ad set's own switch as read back from the platform, in\
             \ the raw platform vocabulary (Meta effective_status, TikTok ENABLE /\
             \ DISABLE, Google ENABLED / PAUSED, LinkedIn and Pinterest ACTIVE / PAUSED,\
-            \ ChatGPT (OpenAI) status, Reddit configured_status). Null when the platform\
-            \ could not be read, which is always the case on X."
+            \ ChatGPT (OpenAI) status, Reddit effective_status such as CAMPAIGN_PAUSED,\
+            \ as GET /v1/ads/ad-sets returns it). Null when the platform could not\
+            \ be read, which is always the case on X."
           nullable: true
           type: string
         platformCampaignStatus:

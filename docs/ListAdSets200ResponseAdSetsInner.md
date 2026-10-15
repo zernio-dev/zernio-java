@@ -11,7 +11,7 @@
 |**platform** | **String** |  |  [optional] |
 |**adSetName** | **String** |  |  [optional] |
 |**status** | **String** |  |  [optional] |
-|**platformAdSetStatus** | **String** | Raw platform ad set status. On TikTok the ad group&#39;s own switch &#x60;operation_status&#x60; (ENABLE / DISABLE), independent of its campaign. |  [optional] |
+|**platformAdSetStatus** | **String** | Raw platform ad set status. On TikTok the ad group&#39;s own switch &#x60;operation_status&#x60; (ENABLE / DISABLE), independent of its campaign. On Meta and Reddit the ad set&#39;s &#x60;effective_status&#x60; (e.g. CAMPAIGN_PAUSED). |  [optional] |
 |**platformCampaignId** | **String** |  |  [optional] |
 |**platformAdAccountId** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
