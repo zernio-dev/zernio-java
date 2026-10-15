@@ -1580,7 +1580,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
-| **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
+| **400** | Invalid request: unsupported platform, post not published, missing fields, validation error, or the thumbnail could not be set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
@@ -1661,7 +1661,7 @@ ApiResponse<[**UpdatePostMetadata200Response**](UpdatePostMetadata200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Metadata updated successfully |  -  |
-| **400** | Invalid request: unsupported platform, post not published, missing fields, or validation error. |  -  |
+| **400** | Invalid request: unsupported platform, post not published, missing fields, validation error, or the thumbnail could not be set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |

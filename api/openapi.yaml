@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.285.0
+  version: 1.285.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7600,7 +7600,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
           description: "Invalid request: unsupported platform, post not published,\
-            \ missing fields, or validation error."
+            \ missing fields, validation error, or the thumbnail could not be set."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -95643,7 +95643,12 @@ components:
           description: "Public URL of a custom thumbnail image (JPEG, PNG, or GIF,\
             \ max 50 MB, recommended 1280x720). Works on any video you own, including\
             \ existing videos not published through Zernio. The channel must be verified\
-            \ (phone verification) to set custom thumbnails."
+            \ (phone verification) to set custom thumbnails. If the thumbnail cannot\
+            \ be set (YouTube refuses it, for example a channel without the custom-thumbnail\
+            \ permission or a video not owned by the connected channel, or the image\
+            \ URL cannot be fetched or is not a supported format or size), the request\
+            \ answers 400 with the reason and no field is updated. A temporary YouTube\
+            \ or network failure answers 500 and can be retried."
           format: uri
           type: string
         madeForKids:
