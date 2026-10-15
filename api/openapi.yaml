@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.283.0
+  version: 1.284.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20009,6 +20009,60 @@ paths:
       x-accepts:
       - application/json
   /v1/inbox/conversations/{conversationId}:
+    delete:
+      description: "Permanently deletes Zernio's stored copy of one conversation and\
+        \ every message in it, in one transaction, and unlinks the contact channel\
+        \ that pointed at it. Nothing is deleted on the platform (the thread stays\
+        \ in WhatsApp, Messenger or Instagram), and the contact record is kept: call\
+        \ DELETE /v1/contacts/{contactId} to erase the person's name and number as\
+        \ well. A platform re-sync can import the thread again: WhatsApp coexistence\
+        \ numbers receive their messaging history from Meta repeatedly, and a Facebook\
+        \ or Instagram account whose DM history walk has not finished imports it on\
+        \ that walk. Inbound media copies Zernio stored are removed on a best-effort\
+        \ basis."
+      operationId: deleteInboxConversation
+      parameters:
+      - description: "Opaque conversation identifier, accepted verbatim from the list\
+          \ endpoint or from the conversationId on inbox webhooks. Format not to be\
+          \ assumed."
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteInboxConversation_200_response"
+          description: Conversation deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+      security:
+      - bearerAuth: []
+      summary: Delete conversation
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-accepts:
+      - application/json
     get:
       description: Retrieve details and metadata for a specific conversation. Requires
         accountId query parameter.
@@ -107410,6 +107464,34 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/updateInboxConversation_200_response_data"
+    deleteInboxConversation_200_response_data:
+      example:
+        accountId: accountId
+        id: id
+        deletedMessages: 0
+        platform: platform
+      properties:
+        id:
+          type: string
+        accountId:
+          type: string
+        platform:
+          type: string
+        deletedMessages:
+          type: integer
+    deleteInboxConversation_200_response:
+      example:
+        data:
+          accountId: accountId
+          id: id
+          deletedMessages: 0
+          platform: platform
+        success: true
+      properties:
+        success:
+          type: boolean
+        data:
+          $ref: "#/components/schemas/deleteInboxConversation_200_response_data"
     getInboxConversationMessages_200_response_pagination:
       example:
         nextCursor: nextCursor

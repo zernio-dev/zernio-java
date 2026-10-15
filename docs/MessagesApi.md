@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**addMessageReactionWithHttpInfo**](MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**createInboxConversation**](MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation |
 | [**createInboxConversationWithHttpInfo**](MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation |
+| [**deleteInboxConversation**](MessagesApi.md#deleteInboxConversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation |
+| [**deleteInboxConversationWithHttpInfo**](MessagesApi.md#deleteInboxConversationWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation |
 | [**deleteInboxMessage**](MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**deleteInboxMessageWithHttpInfo**](MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message |
 | [**editInboxMessage**](MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message |
@@ -519,6 +521,162 @@ ApiResponse<[**CreateInboxConversation201Response**](CreateInboxConversation201R
 | **429** | X API rate limit exceeded, Reddit rate limit reached, Meta rejected the WhatsApp template-definition lookup (a lookup failure sends no message), or an iMessage sender reached its new-contact pacing or warm-up limit (new_contact_limit; the error says when to retry). |  -  |
 | **502** | The WhatsApp account has no Business Account ID, so the template definition cannot be looked up (a template with no approved variant in that language is a 400). No message was sent. |  -  |
 | **0** | Meta rejected the WhatsApp template-definition lookup with another upstream status. No message was sent. |  -  |
+
+
+## deleteInboxConversation
+
+> DeleteInboxConversation200Response deleteInboxConversation(conversationId, accountId)
+
+Delete conversation
+
+Permanently deletes Zernio&#39;s stored copy of one conversation and every message in it, in one transaction, and unlinks the contact channel that pointed at it. Nothing is deleted on the platform (the thread stays in WhatsApp, Messenger or Instagram), and the contact record is kept: call DELETE /v1/contacts/{contactId} to erase the person&#39;s name and number as well. A platform re-sync can import the thread again: WhatsApp coexistence numbers receive their messaging history from Meta repeatedly, and a Facebook or Instagram account whose DM history walk has not finished imports it on that walk. Inbound media copies Zernio stored are removed on a best-effort basis.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
+        String accountId = "accountId_example"; // String | Account ID
+        try {
+            DeleteInboxConversation200Response result = apiInstance.deleteInboxConversation(conversationId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#deleteInboxConversation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
+| **accountId** | **String**| Account ID | |
+
+### Return type
+
+[**DeleteInboxConversation200Response**](DeleteInboxConversation200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+
+## deleteInboxConversationWithHttpInfo
+
+> ApiResponse<DeleteInboxConversation200Response> deleteInboxConversation deleteInboxConversationWithHttpInfo(conversationId, accountId)
+
+Delete conversation
+
+Permanently deletes Zernio&#39;s stored copy of one conversation and every message in it, in one transaction, and unlinks the contact channel that pointed at it. Nothing is deleted on the platform (the thread stays in WhatsApp, Messenger or Instagram), and the contact record is kept: call DELETE /v1/contacts/{contactId} to erase the person&#39;s name and number as well. A platform re-sync can import the thread again: WhatsApp coexistence numbers receive their messaging history from Meta repeatedly, and a Facebook or Instagram account whose DM history walk has not finished imports it on that walk. Inbound media copies Zernio stored are removed on a best-effort basis.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed.
+        String accountId = "accountId_example"; // String | Account ID
+        try {
+            ApiResponse<DeleteInboxConversation200Response> response = apiInstance.deleteInboxConversationWithHttpInfo(conversationId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#deleteInboxConversation");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. | |
+| **accountId** | **String**| Account ID | |
+
+### Return type
+
+ApiResponse<[**DeleteInboxConversation200Response**](DeleteInboxConversation200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Conversation deleted |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
 
 
 ## deleteInboxMessage

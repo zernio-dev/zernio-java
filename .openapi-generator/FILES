@@ -708,6 +708,8 @@ docs/DeleteGoogleBusinessMedia200Response.md
 docs/DeleteGoogleBusinessPlaceAction200Response.md
 docs/DeleteGoogleBusinessReviewReply200Response.md
 docs/DeleteInboxComment200Response.md
+docs/DeleteInboxConversation200Response.md
+docs/DeleteInboxConversation200ResponseData.md
 docs/DeleteInboxReviewReply200Response.md
 docs/DeleteInboxReviewReplyRequest.md
 docs/DeleteSmsSenderId200Response.md
@@ -3577,6 +3579,8 @@ src/main/java/dev/zernio/model/DeleteGoogleBusinessMedia200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessPlaceAction200Response.java
 src/main/java/dev/zernio/model/DeleteGoogleBusinessReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxComment200Response.java
+src/main/java/dev/zernio/model/DeleteInboxConversation200Response.java
+src/main/java/dev/zernio/model/DeleteInboxConversation200ResponseData.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReply200Response.java
 src/main/java/dev/zernio/model/DeleteInboxReviewReplyRequest.java
 src/main/java/dev/zernio/model/DeleteSmsSenderId200Response.java
@@ -5619,3 +5623,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/DeleteInboxConversation200ResponseDataTest.java
+src/test/java/dev/zernio/model/DeleteInboxConversation200ResponseTest.java

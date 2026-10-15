@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.283.0
+- API version: 1.284.0
 
-- Build date: 2026-10-15T09:18:20.508963887Z[Etc/UTC]
+- Build date: 2026-10-15T12:44:47.831618030Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.283.0</version>
+  <version>1.284.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.283.0"
+compile "dev.zernio:zernio-sdk:1.284.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.283.0.jar`
+- `target/zernio-sdk-1.284.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1383,6 +1383,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**deleteInboxConversation**](docs/MessagesApi.md#deleteInboxConversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation
+*MessagesApi* | [**deleteInboxConversationWithHttpInfo**](docs/MessagesApi.md#deleteInboxConversationWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation
 *MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
@@ -2738,6 +2740,8 @@ Class | Method | HTTP request | Description
  - [DeleteGoogleBusinessPlaceAction200Response](docs/DeleteGoogleBusinessPlaceAction200Response.md)
  - [DeleteGoogleBusinessReviewReply200Response](docs/DeleteGoogleBusinessReviewReply200Response.md)
  - [DeleteInboxComment200Response](docs/DeleteInboxComment200Response.md)
+ - [DeleteInboxConversation200Response](docs/DeleteInboxConversation200Response.md)
+ - [DeleteInboxConversation200ResponseData](docs/DeleteInboxConversation200ResponseData.md)
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
