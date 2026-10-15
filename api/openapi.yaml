@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.284.0
+  version: 1.285.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -20393,8 +20393,9 @@ paths:
             \ validation error, category combined with a template or attachment, category\
             \ used on a non-WhatsApp account, or the WhatsApp Business Account is\
             \ not eligible for Direct Send). Meta rejections (e.g. sending outside\
-            \ the messaging window) arrive with code platform_api_error, type platform_error,\
-            \ and platform + platformError set."
+            \ the messaging window) and TikTok business-account rejections arrive\
+            \ with code platform_api_error, type platform_error, and platform + platformError\
+            \ set."
         "500":
           description: "The platform rejected or failed the send. Zernio does NOT\
             \ retry a send internally: a message send is not idempotent, and an opaque\
@@ -20441,7 +20442,8 @@ paths:
                 $ref: "#/components/schemas/sendInboxMessage_429_response"
           description: "Rate limited. Either the connected account's upstream platform\
             \ quota is exhausted (code rate_limited, see Retry-After; Reddit allows\
-            \ 1000 requests per 10 minutes per connected user), or Meta rejected the\
+            \ 1000 requests per 10 minutes per connected user; TikTok code 40100 also\
+            \ lands here with platform and platformError set), or Meta rejected the\
             \ WhatsApp template-definition lookup (code platform_api_error). No message\
             \ was sent."
           headers:
@@ -109171,18 +109173,21 @@ components:
         data:
           $ref: "#/components/schemas/sendInboxMessage_200_response_data"
     sendInboxMessage_400_response_platformError:
-      description: "Instagram, Facebook, or WhatsApp. Meta's diagnostic fields for\
-        \ the rejected send or template lookup. WhatsApp lookup errors retain only\
-        \ code, message, and error_data.details. Absent when the failure did not come\
-        \ from Meta."
+      description: "Instagram, Facebook, WhatsApp, or TikTok. The platform's diagnostic\
+        \ fields for the rejected send or template lookup. WhatsApp lookup errors\
+        \ retain only code, message, and error_data.details. On TikTok only code,\
+        \ message, and request_id are set. Absent when the failure did not come from\
+        \ the platform."
       example:
         code: 1
         subcode: 5
         fbtraceId: fbtraceId
         type: type
+        message: message
+        request_id: request_id
       properties:
         code:
-          description: Meta error code
+          description: Meta or TikTok error code
           type: integer
         subcode:
           description: Meta error_subcode
@@ -109193,6 +109198,12 @@ components:
         type:
           description: Meta error type (e.g. OAuthException)
           type: string
+        message:
+          description: TikTok error message
+          type: string
+        request_id:
+          description: "TikTok request_id, quote this in a TikTok support ticket"
+          type: string
     sendInboxMessage_400_response:
       example:
         code: PLATFORM_LIMITATION
@@ -109201,6 +109212,8 @@ components:
           subcode: 5
           fbtraceId: fbtraceId
           type: type
+          message: message
+          request_id: request_id
         error: error
         type: platform_error
         platform: platform
@@ -109208,9 +109221,9 @@ components:
         error:
           type: string
         type:
-          description: "Present on Meta pass-through rejections: platform_error when\
-            \ Meta rejected the send (see platform/platformError below), invalid_request_error\
-            \ for validation failures."
+          description: "Present on Meta and TikTok pass-through rejections: platform_error\
+            \ when the platform rejected the send (see platform/platformError below),\
+            \ invalid_request_error for validation failures."
           enum:
           - platform_error
           - invalid_request_error
@@ -109222,7 +109235,8 @@ components:
             \ no recipient to send to; DIRECT_SEND_NOT_ELIGIBLE and DIRECT_SEND_BLOCKED\
             \ mean the WhatsApp Business Account needs Meta to grant or restore Direct\
             \ Send access; DIRECT_SEND_LIMITED is temporary, Meta lifts it on its\
-            \ own; platform_api_error means Meta itself rejected the send (see platformError)."
+            \ own; platform_api_error means the platform itself rejected the send\
+            \ (see platformError)."
           enum:
           - PLATFORM_LIMITATION
           - MISSING_PARTICIPANT
@@ -109234,7 +109248,7 @@ components:
           type: string
         platform:
           description: "Present alongside code platform_api_error. The platform that\
-            \ rejected the send (e.g. instagram, facebook, whatsapp)."
+            \ rejected the send (e.g. instagram, facebook, whatsapp, tiktok)."
           type: string
         platformError:
           $ref: "#/components/schemas/sendInboxMessage_400_response_platformError"
