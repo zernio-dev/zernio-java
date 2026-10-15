@@ -11,6 +11,7 @@ The Instagram professional account linked to this Page
 |**id** | **String** | Instagram Business Account ID |  [optional] |
 |**username** | **String** |  |  [optional] |
 |**profilePictureUrl** | **String** |  |  [optional] |
+|**followersCount** | **Integer** | Followers of the Instagram account when Meta returns it |  [optional] |
 
 
 
