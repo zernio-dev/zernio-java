@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.279.0
+  version: 1.279.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75029,6 +75029,8 @@ components:
           format: date-time
           type: string
         updatedAt:
+          description: "Last change to the post or to any of its platforms (a publish,\
+            \ a failure, a resolved URL)."
           format: date-time
           type: string
     RecyclingConfig:

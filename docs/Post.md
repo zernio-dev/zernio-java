@@ -26,7 +26,7 @@
 |**queuedFromProfile** | **String** | Profile ID if the post was scheduled via the queue |  [optional] |
 |**queueId** | **String** | Queue ID if the post was scheduled via a specific queue |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  [optional] |
-|**updatedAt** | **OffsetDateTime** |  |  [optional] |
+|**updatedAt** | **OffsetDateTime** | Last change to the post or to any of its platforms (a publish, a failure, a resolved URL). |  [optional] |
 
 
 
