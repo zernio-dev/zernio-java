@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.288.1
+  version: 1.288.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -23076,7 +23076,9 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Inbox addon required
+          description: "Inbox addon required, or code `message_allowance_exceeded`\
+            \ when the team has no payment method on file and has used its free monthly\
+            \ messages."
         "404":
           description: Account not found
         "502":

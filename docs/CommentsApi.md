@@ -1592,7 +1592,7 @@ public class Example {
 | **200** | Private reply sent successfully |  -  |
 | **400** | Bad request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or code &#x60;message_allowance_exceeded&#x60; when the team has no payment method on file and has used its free monthly messages. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Meta returned a server error after receiving the reply; outcome unknown, usually delivered. Do not retry blindly. |  -  |
 
@@ -1674,7 +1674,7 @@ ApiResponse<[**SendPrivateReplyToComment200Response**](SendPrivateReplyToComment
 | **200** | Private reply sent successfully |  -  |
 | **400** | Bad request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Inbox addon required |  -  |
+| **403** | Inbox addon required, or code &#x60;message_allowance_exceeded&#x60; when the team has no payment method on file and has used its free monthly messages. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Meta returned a server error after receiving the reply; outcome unknown, usually delivered. Do not retry blindly. |  -  |
 
