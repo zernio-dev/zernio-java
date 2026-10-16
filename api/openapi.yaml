@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.288.0
+  version: 1.288.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75632,7 +75632,7 @@ components:
           pattern: ^\d+$
           type: string
     InstagramPlatformData:
-      description: "Feed aspect ratio 0.5625-1.91, carousels up to 10 items, stories\
+      description: "Feed aspect ratio 0.5625-1.91, carousels up to 20 items, stories\
         \ require media (no captions). User tag coordinates 0.0-1.0 from top-left.\
         \ Images over 8 MB and videos over platform limits are auto-compressed."
       properties:
