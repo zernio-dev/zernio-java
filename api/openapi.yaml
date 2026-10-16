@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.286.1
+  version: 1.286.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -21975,8 +21975,9 @@ paths:
         Requires accountId and commentId query parameters.
       operationId: deleteInboxComment
       parameters:
-      - description: Zernio post ID or platform-specific post ID. LinkedIn third-party
-          posts accept full activity URN or numeric ID.
+      - description: "Zernio post ID or platform-specific post ID. On LinkedIn, pass\
+          \ the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>);\
+          \ a bare number is read as an activity id (urn:li:activity:<n>)."
         explode: false
         in: path
         name: postId
@@ -22067,10 +22068,13 @@ paths:
       operationId: getInboxPostComments
       parameters:
       - description: "Zernio post ID or platform-specific post ID. Zernio IDs are\
-          \ auto-resolved. LinkedIn third-party posts accept full activity URN or\
-          \ numeric ID. On Facebook, a comment ID is also accepted here and returns\
-          \ that comment's replies, kept for backwards compatibility; prefer the `commentId`\
-          \ query parameter, which also works on Instagram."
+          \ auto-resolved. On LinkedIn, pass the post id exactly as the feed returns\
+          \ it (urn:li:share:<id> or urn:li:ugcPost:<id>). A bare number is read as\
+          \ an activity id (urn:li:activity:<n>, the number in a linkedin.com/feed/update\
+          \ URL); a share or ugcPost number passed bare returns an empty list. On\
+          \ Facebook, a comment ID is also accepted here and returns that comment's\
+          \ replies, kept for backwards compatibility; prefer the `commentId` query\
+          \ parameter, which also works on Instagram."
         explode: false
         in: path
         name: postId
@@ -22176,8 +22180,9 @@ paths:
         inconclusive rather than as proof nothing was posted.
       operationId: replyToInboxPost
       parameters:
-      - description: Zernio post ID or platform-specific post ID. LinkedIn third-party
-          posts accept full activity URN or numeric ID.
+      - description: "Zernio post ID or platform-specific post ID. On LinkedIn, pass\
+          \ the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>);\
+          \ a bare number is read as an activity id (urn:li:activity:<n>)."
         explode: false
         in: path
         name: postId
@@ -110205,6 +110210,7 @@ components:
         postId: postId
         platform: platform
         subreddit: subreddit
+        postUrn: postUrn
       properties:
         platform:
           type: string
@@ -110215,6 +110221,10 @@ components:
         subreddit:
           description: (Reddit only) Subreddit name
           nullable: true
+          type: string
+        postUrn:
+          description: "(LinkedIn only) The post URN that was queried, after a bare\
+            \ number is read as urn:li:activity:<n>"
           type: string
         lastUpdated:
           format: date-time
@@ -110310,6 +110320,7 @@ components:
           postId: postId
           platform: platform
           subreddit: subreddit
+          postUrn: postUrn
         comment: "{}"
         status: status
       properties:

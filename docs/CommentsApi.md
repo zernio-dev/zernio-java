@@ -66,7 +66,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>); a bare number is read as an activity id (urn:li:activity:<n>).
         String accountId = "accountId_example"; // String | 
         String commentId = "commentId_example"; // String | For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))
         try {
@@ -88,7 +88,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;); a bare number is read as an activity id (urn:li:activity:&lt;n&gt;). | |
 | **accountId** | **String**|  | |
 | **commentId** | **String**| For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) | |
 
@@ -146,7 +146,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>); a bare number is read as an activity id (urn:li:activity:<n>).
         String accountId = "accountId_example"; // String | 
         String commentId = "commentId_example"; // String | For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id))
         try {
@@ -170,7 +170,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;); a bare number is read as an activity id (urn:li:activity:&lt;n&gt;). | |
 | **accountId** | **String**|  | |
 | **commentId** | **String**| For LinkedIn, accepts either the numeric comment ID or the composite comment URN returned by the comments listing (e.g. urn:li:comment:(threadUrn,id)) | |
 
@@ -390,7 +390,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>). A bare number is read as an activity id (urn:li:activity:<n>, the number in a linkedin.com/feed/update URL); a share or ugcPost number passed bare returns an empty list. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
         String accountId = "accountId_example"; // String | 
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
@@ -415,7 +415,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;). A bare number is read as an activity id (urn:li:activity:&lt;n&gt;, the number in a linkedin.com/feed/update URL); a share or ugcPost number passed bare returns an empty list. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
 | **accountId** | **String**|  | |
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
@@ -476,7 +476,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>). A bare number is read as an activity id (urn:li:activity:<n>, the number in a linkedin.com/feed/update URL); a share or ugcPost number passed bare returns an empty list. On Facebook, a comment ID is also accepted here and returns that comment's replies, kept for backwards compatibility; prefer the `commentId` query parameter, which also works on Instagram.
         String accountId = "accountId_example"; // String | 
         String subreddit = "subreddit_example"; // String | (Reddit only) Subreddit name
         Integer limit = 25; // Integer | Maximum number of comments to return
@@ -503,7 +503,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. LinkedIn third-party posts accept full activity URN or numeric ID. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. Zernio IDs are auto-resolved. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;). A bare number is read as an activity id (urn:li:activity:&lt;n&gt;, the number in a linkedin.com/feed/update URL); a share or ugcPost number passed bare returns an empty list. On Facebook, a comment ID is also accepted here and returns that comment&#39;s replies, kept for backwards compatibility; prefer the &#x60;commentId&#x60; query parameter, which also works on Instagram. | |
 | **accountId** | **String**|  | |
 | **subreddit** | **String**| (Reddit only) Subreddit name | [optional] |
 | **limit** | **Integer**| Maximum number of comments to return | [optional] [default to 25] |
@@ -1380,7 +1380,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>); a bare number is read as an activity id (urn:li:activity:<n>).
         ReplyToInboxPostRequest replyToInboxPostRequest = new ReplyToInboxPostRequest(); // ReplyToInboxPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
@@ -1402,7 +1402,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;); a bare number is read as an activity id (urn:li:activity:&lt;n&gt;). | |
 | **replyToInboxPostRequest** | [**ReplyToInboxPostRequest**](ReplyToInboxPostRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
@@ -1462,7 +1462,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         CommentsApi apiInstance = new CommentsApi(defaultClient);
-        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID.
+        String postId = "postId_example"; // String | Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:<id> or urn:li:ugcPost:<id>); a bare number is read as an activity id (urn:li:activity:<n>).
         ReplyToInboxPostRequest replyToInboxPostRequest = new ReplyToInboxPostRequest(); // ReplyToInboxPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
@@ -1486,7 +1486,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Zernio post ID or platform-specific post ID. LinkedIn third-party posts accept full activity URN or numeric ID. | |
+| **postId** | **String**| Zernio post ID or platform-specific post ID. On LinkedIn, pass the post id exactly as the feed returns it (urn:li:share:&lt;id&gt; or urn:li:ugcPost:&lt;id&gt;); a bare number is read as an activity id (urn:li:activity:&lt;n&gt;). | |
 | **replyToInboxPostRequest** | [**ReplyToInboxPostRequest**](ReplyToInboxPostRequest.md)|  | |
 | **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
 
