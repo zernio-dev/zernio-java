@@ -11,7 +11,7 @@ All URIs are relative to *https://zernio.com/api*
 
 ## listLogs
 
-> ListLogs200Response listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts)
+> ListLogs200Response listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts)
 
 List activity logs
 
@@ -53,9 +53,10 @@ public class Example {
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
         String apiKeyId = "apiKeyId_example"; // String | Filter by the API key that made the request (api_request logs)
+        String profileId = "profileId_example"; // String | Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named
         Boolean includeReadReceipts = false; // Boolean | Include message.read / message.delivered events (hidden by default for messaging logs)
         try {
-            ListLogs200Response result = apiInstance.listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+            ListLogs200Response result = apiInstance.listLogs(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LogsApi#listLogs");
@@ -88,6 +89,7 @@ public class Example {
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |
 | **apiKeyId** | **String**| Filter by the API key that made the request (api_request logs) | [optional] |
+| **profileId** | **String**| Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named | [optional] |
 | **includeReadReceipts** | **Boolean**| Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
 
 ### Return type
@@ -113,7 +115,7 @@ public class Example {
 
 ## listLogsWithHttpInfo
 
-> ApiResponse<ListLogs200Response> listLogs listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts)
+> ApiResponse<ListLogs200Response> listLogs listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts)
 
 List activity logs
 
@@ -156,9 +158,10 @@ public class Example {
         OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Precise end instant (ISO 8601)
         Integer statusCode = 56; // Integer | Filter by exact HTTP status code (api_request logs)
         String apiKeyId = "apiKeyId_example"; // String | Filter by the API key that made the request (api_request logs)
+        String profileId = "profileId_example"; // String | Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named
         Boolean includeReadReceipts = false; // Boolean | Include message.read / message.delivered events (hidden by default for messaging logs)
         try {
-            ApiResponse<ListLogs200Response> response = apiInstance.listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, includeReadReceipts);
+            ApiResponse<ListLogs200Response> response = apiInstance.listLogsWithHttpInfo(type, status, platform, action, search, days, limit, skip, accountId, event, requestId, from, to, statusCode, apiKeyId, profileId, includeReadReceipts);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -193,6 +196,7 @@ public class Example {
 | **to** | **OffsetDateTime**| Precise end instant (ISO 8601) | [optional] |
 | **statusCode** | **Integer**| Filter by exact HTTP status code (api_request logs) | [optional] |
 | **apiKeyId** | **String**| Filter by the API key that made the request (api_request logs) | [optional] |
+| **profileId** | **String**| Filter by profile: every log type carries the profile it belongs to, and an API request log carries the profileId the call named | [optional] |
 | **includeReadReceipts** | **Boolean**| Include message.read / message.delivered events (hidden by default for messaging logs) | [optional] [default to false] |
 
 ### Return type

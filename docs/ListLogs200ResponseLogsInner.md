@@ -12,6 +12,8 @@
 |**userId** | **String** |  |  [optional] |
 |**platform** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
+|**profileId** | **String** | The profile the entry belongs to; on API request logs, the profileId the call named in its query or body |  [optional] |
+|**operationId** | **String** | API request logs only: the operationId of the public operation the request hit (e.g. createPost), absent for routes outside this spec |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
 |**statusCode** | **Integer** |  |  [optional] |
 |**errorMessage** | **String** |  |  [optional] |
