@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_ANALYTICS_SYNC,
   GetAllAccountsHealth200ResponseAccountsInner.JSON_PROPERTY_MESSAGING_RESTRICTION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:34:46.231398832Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:50:29.537488710Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAllAccountsHealth200ResponseAccountsInner {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable

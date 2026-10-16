@@ -61,7 +61,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:34:46.231398832Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:50:29.537488710Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = RcsSuggestion.RcsSuggestionDeserializer.class)
 @JsonSerialize(using = RcsSuggestion.RcsSuggestionSerializer.class)
 public class RcsSuggestion extends AbstractOpenApiSchema {

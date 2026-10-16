@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   BusinessAgentWebsiteInput.JSON_PROPERTY_EXCLUDED_URL_PATTERNS,
   BusinessAgentWebsiteInput.JSON_PROPERTY_SINGLE_URLS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:34:46.231398832Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:50:29.537488710Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentWebsiteInput {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull

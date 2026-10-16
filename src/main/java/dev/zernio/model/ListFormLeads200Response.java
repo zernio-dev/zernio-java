@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListFormLeads200Response.JSON_PROPERTY_LEADS,
   ListFormLeads200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:34:46.231398832Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:50:29.537488710Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListFormLeads200Response {
   public static final String JSON_PROPERTY_STATUS = "status";
   @javax.annotation.Nullable

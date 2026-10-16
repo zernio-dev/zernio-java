@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   LinkedInLeadFormPlatformDataQuestionsInnerOneOf.JSON_PROPERTY_RESPONSE_EDITABLE,
   LinkedInLeadFormPlatformDataQuestionsInnerOneOf.JSON_PROPERTY_MAX_RESPONSE_LENGTH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:34:46.231398832Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-16T17:50:29.537488710Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInLeadFormPlatformDataQuestionsInnerOneOf {
   /**
    * Gets or Sets kind
