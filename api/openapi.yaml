@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.289.0
+  version: 1.289.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -156357,7 +156357,7 @@ components:
             **Nullable during the BSUID rollout (April 2026+).** WhatsApp users
             who adopt a username can message businesses without exposing a phone
             number, so this field is omitted for them. Match by `businessScopedUserId`
-            instead. See `docs/whatsapp-bsuid-migration.md`.
+            instead. See `libs/whatsapp/docs/whatsapp-bsuid-migration.md`.
           nullable: true
           type: string
         businessScopedUserId:
@@ -156678,7 +156678,7 @@ components:
             users who adopt a username can message businesses without
             exposing a phone number, so this field is omitted for them.
             Match by `businessScopedUserId` instead. See
-            `docs/whatsapp-bsuid-migration.md`.
+            `libs/whatsapp/docs/whatsapp-bsuid-migration.md`.
           nullable: true
           type: string
         businessScopedUserId:
