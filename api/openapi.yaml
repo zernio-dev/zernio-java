@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.286.2
+  version: 1.287.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -142711,11 +142711,13 @@ components:
           enum:
           - validated
           - skipped
+          - unverified
           type: string
         reason:
-          description: "Why the node could not be validated (on skipped), or what\
-            \ the dry run could not check and what the request would do as sent (on\
-            \ validated). A Performance Max validation with no location targeting\
+          description: "Why the node could not be validated (on skipped), why Meta\
+            \ could not dry-run it although the other nodes passed (on unverified),\
+            \ or what the dry run could not check and what the request would do as\
+            \ sent (on validated). A Performance Max validation with no location targeting\
             \ reports here that the campaign would run worldwide."
           type: string
     createStandaloneAd_200_response:
@@ -147172,8 +147174,11 @@ components:
           enum:
           - validated
           - skipped
+          - unverified
           type: string
         reason:
+          description: "On unverified: why Meta could not dry-run this node although\
+            \ the other nodes passed."
           type: string
       required:
       - node

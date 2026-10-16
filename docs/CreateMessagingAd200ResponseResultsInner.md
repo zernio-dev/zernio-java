@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**node** | [**NodeEnum**](#NodeEnum) |  |  |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
-|**reason** | **String** |  |  [optional] |
+|**reason** | **String** | On unverified: why Meta could not dry-run this node although the other nodes passed. |  [optional] |
 
 
 
@@ -30,6 +30,7 @@
 |---- | -----|
 | VALIDATED | &quot;validated&quot; |
 | SKIPPED | &quot;skipped&quot; |
+| UNVERIFIED | &quot;unverified&quot; |
 
 
 
