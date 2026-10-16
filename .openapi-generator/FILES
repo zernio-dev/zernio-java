@@ -31,6 +31,8 @@ docs/AdCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativeCarouselCardsInner.md
+docs/AdCreativeCatalog.md
+docs/AdCreativeCatalogFormatTransformationSpecInner.md
 docs/AdCreativesApi.md
 docs/AdDailyMetrics.md
 docs/AdEngagementCounts.md
@@ -2922,6 +2924,8 @@ src/main/java/dev/zernio/model/AdCampaign.java
 src/main/java/dev/zernio/model/AdCampaignBudget.java
 src/main/java/dev/zernio/model/AdCreative.java
 src/main/java/dev/zernio/model/AdCreativeCarouselCardsInner.java
+src/main/java/dev/zernio/model/AdCreativeCatalog.java
+src/main/java/dev/zernio/model/AdCreativeCatalogFormatTransformationSpecInner.java
 src/main/java/dev/zernio/model/AdDailyMetrics.java
 src/main/java/dev/zernio/model/AdEngagementCounts.java
 src/main/java/dev/zernio/model/AdFunnelCounts.java
@@ -5623,3 +5627,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdCreativeCatalogFormatTransformationSpecInnerTest.java
+src/test/java/dev/zernio/model/AdCreativeCatalogTest.java
