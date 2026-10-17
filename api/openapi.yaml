@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.290.0
+  version: 1.290.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40571,7 +40571,8 @@ paths:
             `creative.businessName`, `creative.imageUrl` (the landscape marketing image) and
             `creative.squareImageUrl`. Each image URL is uploaded as a new Google asset and the ad
             is pointed at it; Google assets are immutable, so the previous asset stays in the
-            account's asset library.
+            account's asset library. A new landscape image also updates `creative.assetResourceName`
+            to the new asset.
           - **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset
             group. The other creative fields return 422 for this channel, and `assetGroup` returns
             422 on any other channel.
@@ -80502,6 +80503,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -80633,6 +80635,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -80970,6 +80973,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -81101,6 +81105,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -81467,6 +81472,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -81598,6 +81604,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -82206,6 +82213,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -82337,6 +82345,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -82703,6 +82712,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -82834,6 +82844,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -86437,6 +86448,7 @@ components:
           - text: text
             pinnedField: HEADLINE_1
           isServing: true
+          assetResourceName: assetResourceName
           adFormat: adFormat
           creativeFeatures: ""
           mediaUrls:
@@ -86847,6 +86859,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -86978,6 +86991,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -87609,6 +87623,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
               mediaUrls:
@@ -87740,6 +87755,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
               mediaUrls:
@@ -88106,6 +88122,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
               mediaUrls:
@@ -88237,6 +88254,7 @@ components:
               - text: text
                 pinnedField: HEADLINE_1
               isServing: true
+              assetResourceName: assetResourceName
               adFormat: adFormat
               creativeFeatures: ""
               mediaUrls:
@@ -127243,6 +127261,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -127374,6 +127393,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -131296,6 +131316,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -131427,6 +131448,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -131793,6 +131815,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -131924,6 +131947,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -132532,6 +132556,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -132663,6 +132688,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -133029,6 +133055,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -133160,6 +133187,7 @@ components:
                 - text: text
                   pinnedField: HEADLINE_1
                 isServing: true
+                assetResourceName: assetResourceName
                 adFormat: adFormat
                 creativeFeatures: ""
                 mediaUrls:
@@ -133705,6 +133733,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -134168,6 +134197,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -143381,6 +143411,7 @@ components:
             - text: text
               pinnedField: HEADLINE_1
             isServing: true
+            assetResourceName: assetResourceName
             adFormat: adFormat
             creativeFeatures: ""
             mediaUrls:
@@ -162901,6 +162932,7 @@ components:
         - text: text
           pinnedField: HEADLINE_1
         isServing: true
+        assetResourceName: assetResourceName
         adFormat: adFormat
         creativeFeatures: ""
         mediaUrls:
@@ -162945,6 +162977,12 @@ components:
           type: string
         imageUrl:
           description: Alternative image URL
+          type: string
+        assetResourceName:
+          description: "Google Display only. Resource name of the landscape marketing\
+            \ image asset (`creative.imageUrl`), for example customers/1234567890/assets/123.\
+            \ Set at creation and updated when PUT /v1/ads/{adId} replaces `creative.imageUrl`;\
+            \ replacing only `creative.squareImageUrl` leaves it unchanged."
           type: string
         videoId:
           description: "Meta video ID for VIDEO-type ads. Null for non-video ads.\
