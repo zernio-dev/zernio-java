@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.289.2
+  version: 1.290.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -144168,8 +144168,16 @@ components:
             \ Provide exactly one of videoUrl or videoBase64."
           type: string
         filename:
-          description: Optional filename shown alongside the upload session. Applied
-            only when uploading via videoBase64.
+          description: "Optional file name, sent to Meta as the video's name and title\
+            \ so it shows and is searchable in the Ads Manager media library. Applies\
+            \ to both videoUrl and videoBase64. Without it (and without name), a videoUrl\
+            \ upload is named after the last path segment of the URL."
+          maxLength: 255
+          type: string
+        name:
+          description: Optional video name shown in the Ads Manager media library.
+            Takes precedence over filename.
+          maxLength: 255
           type: string
         async:
           default: false
