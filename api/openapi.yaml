@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.290.1
+  version: 1.291.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -123658,6 +123658,7 @@ components:
           - twitter
           - bluesky
           - reddit
+          - tiktok
           type: string
         name:
           type: string
@@ -123873,7 +123874,7 @@ components:
           type: string
         accountId:
           description: |
-            Reassign the workflow to a different `SocialAccount`. `platform` and `profileId` are derived server-side from the new account (the client never sends them directly). The account must belong to the caller's team and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit). Changing this triggers a graph revalidation against the new platform.
+            Reassign the workflow to a different `SocialAccount`. `platform` and `profileId` are derived server-side from the new account (the client never sends them directly). The account must belong to the caller's team and be on a workflow-supported platform (whatsapp, instagram, facebook, telegram, twitter, bluesky, reddit, tiktok). Changing this triggers a graph revalidation against the new platform.
           type: string
     updateWorkflow_200_response_workflow:
       example:

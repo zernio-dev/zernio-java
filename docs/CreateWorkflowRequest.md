@@ -29,6 +29,7 @@
 | TWITTER | &quot;twitter&quot; |
 | BLUESKY | &quot;bluesky&quot; |
 | REDDIT | &quot;reddit&quot; |
+| TIKTOK | &quot;tiktok&quot; |
 
 
 
