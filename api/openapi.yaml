@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.296.0
+  version: 1.296.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -28961,6 +28961,9 @@ paths:
           description: Username deleted successfully
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Meta has not granted username management for this WhatsApp
+            Business Account (code insufficient_permissions)
         "404":
           description: WhatsApp account not found
       security:
@@ -28976,6 +28979,8 @@ paths:
       description: |
         Fetch the current WhatsApp Business username and its approval status.
         Username status can be `approved` (active), `reserved` (pending activation), or `none` (no username set).
+        If Meta has not granted username management for the WhatsApp Business Account, the API returns the
+        standard error envelope with code `insufficient_permissions`.
       operationId: getWhatsappBusinessUsername
       parameters:
       - description: WhatsApp account ID
@@ -28995,6 +29000,9 @@ paths:
           description: Business username retrieved successfully
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Meta has not granted username management for this WhatsApp
+            Business Account (code insufficient_permissions)
         "404":
           description: WhatsApp account not found
       security:
@@ -29015,8 +29023,9 @@ paths:
         If the desired username is currently held by another account, pass `transferAction: "force_transfer"` to
         request a transfer. On failure the API returns a standard error envelope with one of these codes:
         `whatsapp_username_unavailable` (already taken and transfer not requested),
-        `whatsapp_username_ineligible` (account not eligible to claim a username), or
-        `whatsapp_username_transfer_required` (username is held elsewhere; retry with `force_transfer`).
+        `whatsapp_username_ineligible` (account not eligible to claim a username),
+        `whatsapp_username_transfer_required` (username is held elsewhere; retry with `force_transfer`), or
+        `insufficient_permissions` (Meta has not granted username management for this WhatsApp Business Account).
       operationId: setWhatsappBusinessUsername
       requestBody:
         content:
@@ -29044,6 +29053,9 @@ paths:
             response)
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Meta has not granted username management for this WhatsApp
+            Business Account (code insufficient_permissions)
         "404":
           description: WhatsApp account not found
       security:
