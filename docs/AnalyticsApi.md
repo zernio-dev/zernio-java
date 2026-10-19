@@ -5085,7 +5085,7 @@ public class Example {
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 | **401** | The platform authorization has expired. Reconnect the account. |  -  |
-| **403** | The API key lacks access to this account or the platform denied access. |  -  |
+| **403** | The API key lacks access to this account or the platform denied access. For X accounts it returns X_ANALYTICS_NOT_ENABLED when X analytics is not enabled for the account, or PAYMENT_REQUIRED when X access is paused for failed billing. |  -  |
 | **409** | The account is inactive or needs reconnection. Stop scheduled retries until it is reconnected. |  -  |
 
 ## syncExternalPostsWithHttpInfo
@@ -5165,6 +5165,6 @@ ApiResponse<[**SyncExternalPosts200Response**](SyncExternalPosts200Response.md)>
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
 | **401** | The platform authorization has expired. Reconnect the account. |  -  |
-| **403** | The API key lacks access to this account or the platform denied access. |  -  |
+| **403** | The API key lacks access to this account or the platform denied access. For X accounts it returns X_ANALYTICS_NOT_ENABLED when X analytics is not enabled for the account, or PAYMENT_REQUIRED when X access is paused for failed billing. |  -  |
 | **409** | The account is inactive or needs reconnection. Stop scheduled retries until it is reconnected. |  -  |
 
