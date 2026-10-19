@@ -1073,6 +1073,9 @@ docs/GetLinkedInBidPricing200ResponsePricing.md
 docs/GetLinkedInBidPricing200ResponsePricingBidLimits.md
 docs/GetLinkedInBidPricing200ResponsePricingSuggestedBid.md
 docs/GetLinkedInBidPricingRequest.md
+docs/GetLinkedInDemographics200Response.md
+docs/GetLinkedInDemographics200ResponseDemographicsValueInner.md
+docs/GetLinkedInDemographics412Response.md
 docs/GetLinkedInMentions200Response.md
 docs/GetLinkedInOrganizations200Response.md
 docs/GetLinkedInOrganizations200ResponseOrganizationsInner.md
@@ -3945,6 +3948,9 @@ src/main/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricing.java
 src/main/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricingBidLimits.java
 src/main/java/dev/zernio/model/GetLinkedInBidPricing200ResponsePricingSuggestedBid.java
 src/main/java/dev/zernio/model/GetLinkedInBidPricingRequest.java
+src/main/java/dev/zernio/model/GetLinkedInDemographics200Response.java
+src/main/java/dev/zernio/model/GetLinkedInDemographics200ResponseDemographicsValueInner.java
+src/main/java/dev/zernio/model/GetLinkedInDemographics412Response.java
 src/main/java/dev/zernio/model/GetLinkedInMentions200Response.java
 src/main/java/dev/zernio/model/GetLinkedInOrganizations200Response.java
 src/main/java/dev/zernio/model/GetLinkedInOrganizations200ResponseOrganizationsInner.java
@@ -5629,3 +5635,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetLinkedInDemographics200ResponseDemographicsValueInnerTest.java
+src/test/java/dev/zernio/model/GetLinkedInDemographics200ResponseTest.java
+src/test/java/dev/zernio/model/GetLinkedInDemographics412ResponseTest.java

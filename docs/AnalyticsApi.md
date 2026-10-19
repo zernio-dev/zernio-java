@@ -40,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInstagramOnlineFollowersWithHttpInfo**](AnalyticsApi.md#getInstagramOnlineFollowersWithHttpInfo) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers |
 | [**getLinkedInAggregateAnalytics**](AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
 | [**getLinkedInAggregateAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats |
+| [**getLinkedInDemographics**](AnalyticsApi.md#getLinkedInDemographics) | **GET** /v1/analytics/linkedin/demographics | Get LinkedIn organization follower demographics |
+| [**getLinkedInDemographicsWithHttpInfo**](AnalyticsApi.md#getLinkedInDemographicsWithHttpInfo) | **GET** /v1/analytics/linkedin/demographics | Get LinkedIn organization follower demographics |
 | [**getLinkedInOrgAggregateAnalytics**](AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
 | [**getLinkedInOrgAggregateAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInOrgAggregateAnalyticsWithHttpInfo) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics |
 | [**getLinkedInPostAnalytics**](AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
@@ -3117,6 +3119,164 @@ ApiResponse<[**GetLinkedInAggregateAnalytics200Response**](GetLinkedInAggregateA
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **403** | Missing required LinkedIn scope |  -  |
 | **404** | Account not found |  -  |
+
+
+## getLinkedInDemographics
+
+> GetLinkedInDemographics200Response getLinkedInDemographics(accountId, breakdown)
+
+Get LinkedIn organization follower demographics
+
+Returns the lifetime follower breakdown of a connected LinkedIn organization page by job function, seniority, industry and company size. Function, seniority and industry are labelled with LinkedIn&#39;s standardized names (English) and keep the LinkedIn URN in &#x60;id&#x60;. Company size is labelled as a range such as &#x60;2-10&#x60; or &#x60;10001+&#x60;. LinkedIn returns at most the top 100 values per breakdown and leaves out followers whose profile lacks that field, so a breakdown does not add up to the follower count. Organization accounts only: a personal LinkedIn account answers 400 &#x60;personal_account_not_supported&#x60;. Requires the r_organization_social, r_organization_followers and r_organization_admin scopes (412 otherwise) and the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID of the LinkedIn organization account
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted. 
+        try {
+            GetLinkedInDemographics200Response result = apiInstance.getLinkedInDemographics(accountId, breakdown);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getLinkedInDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID of the LinkedIn organization account | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted.  | [optional] |
+
+### Return type
+
+[**GetLinkedInDemographics200Response**](GetLinkedInDemographics200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the organization page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The LinkedIn connection is missing the organization analytics scopes. Reconnect the account to grant them. |  -  |
+
+## getLinkedInDemographicsWithHttpInfo
+
+> ApiResponse<GetLinkedInDemographics200Response> getLinkedInDemographics getLinkedInDemographicsWithHttpInfo(accountId, breakdown)
+
+Get LinkedIn organization follower demographics
+
+Returns the lifetime follower breakdown of a connected LinkedIn organization page by job function, seniority, industry and company size. Function, seniority and industry are labelled with LinkedIn&#39;s standardized names (English) and keep the LinkedIn URN in &#x60;id&#x60;. Company size is labelled as a range such as &#x60;2-10&#x60; or &#x60;10001+&#x60;. LinkedIn returns at most the top 100 values per breakdown and leaves out followers whose profile lacks that field, so a breakdown does not add up to the follower count. Organization accounts only: a personal LinkedIn account answers 400 &#x60;personal_account_not_supported&#x60;. Requires the r_organization_social, r_organization_followers and r_organization_admin scopes (412 otherwise) and the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The Zernio SocialAccount ID of the LinkedIn organization account
+        String breakdown = "breakdown_example"; // String | Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted. 
+        try {
+            ApiResponse<GetLinkedInDemographics200Response> response = apiInstance.getLinkedInDemographicsWithHttpInfo(accountId, breakdown);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getLinkedInDemographics");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The Zernio SocialAccount ID of the LinkedIn organization account | |
+| **breakdown** | **String**| Comma-separated list of demographic dimensions: function, seniority, industry, company_size. Defaults to all four if omitted.  | [optional] |
+
+### Return type
+
+ApiResponse<[**GetLinkedInDemographics200Response**](GetLinkedInDemographics200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Follower demographics for the organization page |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **404** | Resource not found |  -  |
+| **412** | The LinkedIn connection is missing the organization analytics scopes. Reconnect the account to grant them. |  -  |
 
 
 ## getLinkedInOrgAggregateAnalytics

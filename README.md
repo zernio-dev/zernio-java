@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.296.1
+- API version: 1.297.0
 
-- Build date: 2026-10-19T18:20:59.830548488Z[Etc/UTC]
+- Build date: 2026-10-19T20:18:45.874178249Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.296.1</version>
+  <version>1.297.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.296.1"
+compile "dev.zernio:zernio-sdk:1.297.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.296.1.jar`
+- `target/zernio-sdk-1.297.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -583,6 +583,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getInstagramOnlineFollowersWithHttpInfo**](docs/AnalyticsApi.md#getInstagramOnlineFollowersWithHttpInfo) | **GET** /v1/analytics/instagram/online-followers | Get Instagram online followers
 *AnalyticsApi* | [**getLinkedInAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInAggregateAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
 *AnalyticsApi* | [**getLinkedInAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInAggregateAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-aggregate-analytics | Get LinkedIn aggregate stats
+*AnalyticsApi* | [**getLinkedInDemographics**](docs/AnalyticsApi.md#getLinkedInDemographics) | **GET** /v1/analytics/linkedin/demographics | Get LinkedIn organization follower demographics
+*AnalyticsApi* | [**getLinkedInDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInDemographicsWithHttpInfo) | **GET** /v1/analytics/linkedin/demographics | Get LinkedIn organization follower demographics
 *AnalyticsApi* | [**getLinkedInOrgAggregateAnalytics**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalytics) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics
 *AnalyticsApi* | [**getLinkedInOrgAggregateAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInOrgAggregateAnalyticsWithHttpInfo) | **GET** /v1/analytics/linkedin/org-aggregate-analytics | Get LinkedIn org analytics
 *AnalyticsApi* | [**getLinkedInPostAnalytics**](docs/AnalyticsApi.md#getLinkedInPostAnalytics) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
@@ -3103,6 +3105,9 @@ Class | Method | HTTP request | Description
  - [GetLinkedInBidPricing200ResponsePricingBidLimits](docs/GetLinkedInBidPricing200ResponsePricingBidLimits.md)
  - [GetLinkedInBidPricing200ResponsePricingSuggestedBid](docs/GetLinkedInBidPricing200ResponsePricingSuggestedBid.md)
  - [GetLinkedInBidPricingRequest](docs/GetLinkedInBidPricingRequest.md)
+ - [GetLinkedInDemographics200Response](docs/GetLinkedInDemographics200Response.md)
+ - [GetLinkedInDemographics200ResponseDemographicsValueInner](docs/GetLinkedInDemographics200ResponseDemographicsValueInner.md)
+ - [GetLinkedInDemographics412Response](docs/GetLinkedInDemographics412Response.md)
  - [GetLinkedInMentions200Response](docs/GetLinkedInMentions200Response.md)
  - [GetLinkedInOrganizations200Response](docs/GetLinkedInOrganizations200Response.md)
  - [GetLinkedInOrganizations200ResponseOrganizationsInner](docs/GetLinkedInOrganizations200ResponseOrganizationsInner.md)
