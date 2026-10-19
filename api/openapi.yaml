@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.292.0
+  version: 1.293.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -76803,6 +76803,7 @@ components:
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
+        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
         isActive: true
         platform: tiktok
         enabled: true
@@ -76924,6 +76925,23 @@ components:
             does not hide the connection: ads accounts are listed whatever their `enabled` value and
             keep working for ads.
           type: boolean
+        rateLimitedUntil:
+          description: |
+            End of the account's publishing cooldown. Compare it with the current time: a value
+            in the past means the cooldown has ended (the field is cleared on the next successful
+            publish), null means no cooldown since the last successful publish. A cooldown starts
+            when a post to the account fails with `errorCategory` `user_abuse` (spam, abuse or
+            rate-limit errors), or when 10 or more posts to it fail within an hour with
+            `user_content`, `platform_error`, `platform_rate_limit` or `unknown`. It doubles with
+            each start inside a 24-hour window that opens at the first one (10, 20, 40, 80 minutes
+            and so on, capped at 24 hours). On a YouTube account with a recorded successful upload
+            it instead runs until 24 hours after that upload, or 1 hour when that upload is older
+            than 24 hours. While it is in the future, POST /v1/posts (drafts excepted) and
+            POST /v1/posts/{postId}/retry return 429 for this account, and this account's pending
+            targets on posts scheduled before the cooldown ends are failed when it starts.
+          format: date-time
+          nullable: true
+          type: string
         metadata:
           description: |
             Platform-specific metadata. Fields vary by platform. For WhatsApp accounts, includes:
@@ -76988,6 +77006,7 @@ components:
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
+        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
         isActive: true
         platform: tiktok
         enabled: true
@@ -80034,6 +80053,7 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
           enabled: true
@@ -80050,6 +80070,7 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
           enabled: true
@@ -80101,6 +80122,7 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
           enabled: true
@@ -80134,6 +80156,7 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
           enabled: true
@@ -102248,6 +102271,7 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
           enabled: true
