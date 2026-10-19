@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.297.2
+- API version: 1.298.0
 
-- Build date: 2026-10-19T23:38:56.693209993Z[Etc/UTC]
+- Build date: 2026-10-19T23:51:07.890129170Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.297.2</version>
+  <version>1.298.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.297.2"
+compile "dev.zernio:zernio-sdk:1.298.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.297.2.jar`
+- `target/zernio-sdk-1.298.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -925,6 +925,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**getCommerceMenuWithHttpInfo**](docs/CommerceApi.md#getCommerceMenuWithHttpInfo) | **GET** /v1/commerce/menus/{menuId} | Get a navigation menu
 *CommerceApi* | [**getCommerceMetaobject**](docs/CommerceApi.md#getCommerceMetaobject) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject
 *CommerceApi* | [**getCommerceMetaobjectWithHttpInfo**](docs/CommerceApi.md#getCommerceMetaobjectWithHttpInfo) | **GET** /v1/commerce/metaobjects/{metaobjectId} | Get a metaobject
+*CommerceApi* | [**getCommerceOrder**](docs/CommerceApi.md#getCommerceOrder) | **GET** /v1/commerce/orders/{orderId} | Get an order
+*CommerceApi* | [**getCommerceOrderWithHttpInfo**](docs/CommerceApi.md#getCommerceOrderWithHttpInfo) | **GET** /v1/commerce/orders/{orderId} | Get an order
 *CommerceApi* | [**getCommercePage**](docs/CommerceApi.md#getCommercePage) | **GET** /v1/commerce/pages/{pageId} | Get a page
 *CommerceApi* | [**getCommercePageWithHttpInfo**](docs/CommerceApi.md#getCommercePageWithHttpInfo) | **GET** /v1/commerce/pages/{pageId} | Get a page
 *CommerceApi* | [**getCommerceProduct**](docs/CommerceApi.md#getCommerceProduct) | **GET** /v1/commerce/products/{productId} | Get a product
@@ -953,6 +955,8 @@ Class | Method | HTTP request | Description
 *CommerceApi* | [**listCommerceMetaobjectDefinitionsWithHttpInfo**](docs/CommerceApi.md#listCommerceMetaobjectDefinitionsWithHttpInfo) | **GET** /v1/commerce/metaobject-definitions | List metaobject definitions
 *CommerceApi* | [**listCommerceMetaobjects**](docs/CommerceApi.md#listCommerceMetaobjects) | **GET** /v1/commerce/metaobjects | List metaobjects of a type
 *CommerceApi* | [**listCommerceMetaobjectsWithHttpInfo**](docs/CommerceApi.md#listCommerceMetaobjectsWithHttpInfo) | **GET** /v1/commerce/metaobjects | List metaobjects of a type
+*CommerceApi* | [**listCommerceOrders**](docs/CommerceApi.md#listCommerceOrders) | **GET** /v1/commerce/orders | List orders
+*CommerceApi* | [**listCommerceOrdersWithHttpInfo**](docs/CommerceApi.md#listCommerceOrdersWithHttpInfo) | **GET** /v1/commerce/orders | List orders
 *CommerceApi* | [**listCommercePages**](docs/CommerceApi.md#listCommercePages) | **GET** /v1/commerce/pages | List pages
 *CommerceApi* | [**listCommercePagesWithHttpInfo**](docs/CommerceApi.md#listCommercePagesWithHttpInfo) | **GET** /v1/commerce/pages | List pages
 *CommerceApi* | [**listCommercePriceLists**](docs/CommerceApi.md#listCommercePriceLists) | **GET** /v1/commerce/price-lists | List price lists
@@ -2365,6 +2369,7 @@ Class | Method | HTTP request | Description
  - [CommentAutomationTemplate](docs/CommentAutomationTemplate.md)
  - [CommentAutomationTemplateElement](docs/CommentAutomationTemplateElement.md)
  - [CommentAutomationTemplateElementButtonsInner](docs/CommentAutomationTemplateElementButtonsInner.md)
+ - [CommerceAddress](docs/CommerceAddress.md)
  - [CommerceCapability](docs/CommerceCapability.md)
  - [CommerceCatalogSync](docs/CommerceCatalogSync.md)
  - [CommerceChannel](docs/CommerceChannel.md)
@@ -2390,12 +2395,21 @@ Class | Method | HTTP request | Description
  - [CommerceMetaobjectDefinitionFieldsInner](docs/CommerceMetaobjectDefinitionFieldsInner.md)
  - [CommerceMetaobjectFieldsInner](docs/CommerceMetaobjectFieldsInner.md)
  - [CommerceMoney](docs/CommerceMoney.md)
+ - [CommerceOrder](docs/CommerceOrder.md)
+ - [CommerceOrderChargeLine](docs/CommerceOrderChargeLine.md)
+ - [CommerceOrderCustomer](docs/CommerceOrderCustomer.md)
+ - [CommerceOrderFulfillmentsInner](docs/CommerceOrderFulfillmentsInner.md)
+ - [CommerceOrderLineItemsInner](docs/CommerceOrderLineItemsInner.md)
+ - [CommerceOrderRefundsInner](docs/CommerceOrderRefundsInner.md)
+ - [CommerceOrderRefundsInnerLineItemsInner](docs/CommerceOrderRefundsInnerLineItemsInner.md)
+ - [CommerceOrderStatus](docs/CommerceOrderStatus.md)
  - [CommercePage](docs/CommercePage.md)
  - [CommercePriceList](docs/CommercePriceList.md)
  - [CommerceProduct](docs/CommerceProduct.md)
  - [CommerceProductStatus](docs/CommerceProductStatus.md)
  - [CommerceRedirect](docs/CommerceRedirect.md)
  - [CommerceStore](docs/CommerceStore.md)
+ - [CommerceTaxLine](docs/CommerceTaxLine.md)
  - [CommerceVariant](docs/CommerceVariant.md)
  - [CompleteGoogleBusinessVerificationRequest](docs/CompleteGoogleBusinessVerificationRequest.md)
  - [CompleteTelegramConnect200Response](docs/CompleteTelegramConnect200Response.md)
@@ -2959,6 +2973,7 @@ Class | Method | HTTP request | Description
  - [GetCampaignTargeting200ResponseLocationsInner](docs/GetCampaignTargeting200ResponseLocationsInner.md)
  - [GetCommentAutomation200Response](docs/GetCommentAutomation200Response.md)
  - [GetCommentAutomation200ResponseAutomation](docs/GetCommentAutomation200ResponseAutomation.md)
+ - [GetCommerceOrder200Response](docs/GetCommerceOrder200Response.md)
  - [GetCommerceStore200Response](docs/GetCommerceStore200Response.md)
  - [GetConnectUrl200Response](docs/GetConnectUrl200Response.md)
  - [GetContact200Response](docs/GetContact200Response.md)
@@ -3547,6 +3562,7 @@ Class | Method | HTTP request | Description
  - [ListCommerceMenus200Response](docs/ListCommerceMenus200Response.md)
  - [ListCommerceMetaobjectDefinitions200Response](docs/ListCommerceMetaobjectDefinitions200Response.md)
  - [ListCommerceMetaobjects200Response](docs/ListCommerceMetaobjects200Response.md)
+ - [ListCommerceOrders200Response](docs/ListCommerceOrders200Response.md)
  - [ListCommercePages200Response](docs/ListCommercePages200Response.md)
  - [ListCommercePriceLists200Response](docs/ListCommercePriceLists200Response.md)
  - [ListCommerceProductMetafields200Response](docs/ListCommerceProductMetafields200Response.md)
@@ -4635,6 +4651,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [WebhookPayloadCommentCommentAuthorInstagramProfile](docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md)
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)
+ - [WebhookPayloadCommerceOrder](docs/WebhookPayloadCommerceOrder.md)
+ - [WebhookPayloadCommerceOrderResource](docs/WebhookPayloadCommerceOrderResource.md)
  - [WebhookPayloadCommerceProduct](docs/WebhookPayloadCommerceProduct.md)
  - [WebhookPayloadCommerceProductResource](docs/WebhookPayloadCommerceProductResource.md)
  - [WebhookPayloadCommerceProductStore](docs/WebhookPayloadCommerceProductStore.md)

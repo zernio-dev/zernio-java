@@ -95,6 +95,9 @@
 | COMMERCE_PRODUCT_CREATED | &quot;commerce.product.created&quot; |
 | COMMERCE_PRODUCT_UPDATED | &quot;commerce.product.updated&quot; |
 | COMMERCE_PRODUCT_DELETED | &quot;commerce.product.deleted&quot; |
+| COMMERCE_ORDER_CREATED | &quot;commerce.order.created&quot; |
+| COMMERCE_ORDER_UPDATED | &quot;commerce.order.updated&quot; |
+| COMMERCE_ORDER_REFUNDED | &quot;commerce.order.refunded&quot; |
 | API_CHANGELOG_PUBLISHED | &quot;api.changelog.published&quot; |
 
 

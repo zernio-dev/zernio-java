@@ -38,6 +38,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**onCallReceivedWithHttpInfo**](WebhookEventsApi.md#onCallReceivedWithHttpInfo) | **POST** /call.received | Call received event |
 | [**onCommentReceived**](WebhookEventsApi.md#onCommentReceived) | **POST** /comment.received | Comment received event |
 | [**onCommentReceivedWithHttpInfo**](WebhookEventsApi.md#onCommentReceivedWithHttpInfo) | **POST** /comment.received | Comment received event |
+| [**onCommerceOrderCreated**](WebhookEventsApi.md#onCommerceOrderCreated) | **POST** /commerce.order.created | Commerce order created event |
+| [**onCommerceOrderCreatedWithHttpInfo**](WebhookEventsApi.md#onCommerceOrderCreatedWithHttpInfo) | **POST** /commerce.order.created | Commerce order created event |
+| [**onCommerceOrderRefunded**](WebhookEventsApi.md#onCommerceOrderRefunded) | **POST** /commerce.order.refunded | Commerce order refunded event |
+| [**onCommerceOrderRefundedWithHttpInfo**](WebhookEventsApi.md#onCommerceOrderRefundedWithHttpInfo) | **POST** /commerce.order.refunded | Commerce order refunded event |
+| [**onCommerceOrderUpdated**](WebhookEventsApi.md#onCommerceOrderUpdated) | **POST** /commerce.order.updated | Commerce order updated event |
+| [**onCommerceOrderUpdatedWithHttpInfo**](WebhookEventsApi.md#onCommerceOrderUpdatedWithHttpInfo) | **POST** /commerce.order.updated | Commerce order updated event |
 | [**onCommerceProductCreated**](WebhookEventsApi.md#onCommerceProductCreated) | **POST** /commerce.product.created | Commerce product created event |
 | [**onCommerceProductCreatedWithHttpInfo**](WebhookEventsApi.md#onCommerceProductCreatedWithHttpInfo) | **POST** /commerce.product.created | Commerce product created event |
 | [**onCommerceProductDeleted**](WebhookEventsApi.md#onCommerceProductDeleted) | **POST** /commerce.product.deleted | Commerce product deleted event |
@@ -2562,6 +2568,432 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadComment** | [**WebhookPayloadComment**](WebhookPayloadComment.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceOrderCreated
+
+> void onCommerceOrderCreated(webhookPayloadCommerceOrder)
+
+Commerce order created event
+
+Fired when an order is placed on a connected store. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            apiInstance.onCommerceOrderCreated(webhookPayloadCommerceOrder);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceOrderCreatedWithHttpInfo
+
+> ApiResponse<Void> onCommerceOrderCreated onCommerceOrderCreatedWithHttpInfo(webhookPayloadCommerceOrder)
+
+Commerce order created event
+
+Fired when an order is placed on a connected store. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceOrderCreatedWithHttpInfo(webhookPayloadCommerceOrder);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderCreated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceOrderRefunded
+
+> void onCommerceOrderRefunded(webhookPayloadCommerceOrder)
+
+Commerce order refunded event
+
+Fired when a refund is issued on an order of a connected store. A commerce.order.updated usually follows for the same change. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            apiInstance.onCommerceOrderRefunded(webhookPayloadCommerceOrder);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderRefunded");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceOrderRefundedWithHttpInfo
+
+> ApiResponse<Void> onCommerceOrderRefunded onCommerceOrderRefundedWithHttpInfo(webhookPayloadCommerceOrder)
+
+Commerce order refunded event
+
+Fired when a refund is issued on an order of a connected store. A commerce.order.updated usually follows for the same change. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceOrderRefundedWithHttpInfo(webhookPayloadCommerceOrder);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderRefunded");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onCommerceOrderUpdated
+
+> void onCommerceOrderUpdated(webhookPayloadCommerceOrder)
+
+Commerce order updated event
+
+Fired when an order on a connected store changes: payment, fulfilment, cancellation, edits, and refunds too. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            apiInstance.onCommerceOrderUpdated(webhookPayloadCommerceOrder);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onCommerceOrderUpdatedWithHttpInfo
+
+> ApiResponse<Void> onCommerceOrderUpdated onCommerceOrderUpdatedWithHttpInfo(webhookPayloadCommerceOrder)
+
+Commerce order updated event
+
+Fired when an order on a connected store changes: payment, fulfilment, cancellation, edits, and refunds too. The payload carries identifiers only; read the order with &#x60;GET /v1/commerce/orders/{orderId}?accountId&#x3D;...&#x60;. Fired once per Zernio account connected to the store. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadCommerceOrder webhookPayloadCommerceOrder = new WebhookPayloadCommerceOrder(); // WebhookPayloadCommerceOrder | 
+        try {
+            ApiResponse<Void> response = apiInstance.onCommerceOrderUpdatedWithHttpInfo(webhookPayloadCommerceOrder);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onCommerceOrderUpdated");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadCommerceOrder** | [**WebhookPayloadCommerceOrder**](WebhookPayloadCommerceOrder.md)|  | |
 
 ### Return type
 

@@ -63,5 +63,7 @@
 
 * `MARKETING_WRITE` (value: `"marketing.write"`)
 
+* `ORDERS_READ` (value: `"orders.read"`)
+
 
 
