@@ -2330,6 +2330,7 @@ docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md
 docs/UpdateAdSet200Response.md
 docs/UpdateAdSetRequest.md
 docs/UpdateAdSetRequestBudget.md
+docs/UpdateAdSetRequestPlacements.md
 docs/UpdateAdSetRequestPlatformSpecificData.md
 docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md
 docs/UpdateAdSetRequestSmartTargeting.md
@@ -5165,6 +5166,7 @@ src/main/java/dev/zernio/model/UpdateAdRequestTargetingKeywordsInnerOneOf.java
 src/main/java/dev/zernio/model/UpdateAdSet200Response.java
 src/main/java/dev/zernio/model/UpdateAdSetRequest.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestBudget.java
+src/main/java/dev/zernio/model/UpdateAdSetRequestPlacements.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestPlatformSpecificDataPromotedObject.java
 src/main/java/dev/zernio/model/UpdateAdSetRequestSmartTargeting.java
@@ -5627,3 +5629,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/UpdateAdSetRequestPlacementsTest.java

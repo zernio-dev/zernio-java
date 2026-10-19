@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.294.0
+  version: 1.295.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -39841,6 +39841,17 @@ paths:
         describes: only the ad set's own switch is written, its ads keep
         theirs, and `statusUpdated` / `statusSkipped` report whether that switch
         was written or a live read showed it already in place.
+
+        Placements and targeting (Meta only): `placements` and `targeting` take the same shapes
+        as POST /v1/ads/create. Meta replaces an ad set's targeting wholesale, so Zernio reads
+        the live targeting first, changes only what the request names and writes the merged
+        spec back: custom audiences, geo, age, interest groups and `targeting_automation` you do
+        not send are kept. `placements` replaces the whole placement set, `placements: null`
+        returns the ad set to automatic placements, and omitting it leaves placements as they
+        are. Other platforms return 400 for either field before anything in the request is
+        written (use PUT /v1/ads/{adId} with `targeting` where that platform supports it). The
+        live read and the `incomeTier` lookup run before any other field is written, so a 502
+        or 422 from them leaves the ad set unchanged.
       operationId: updateAdSet
       parameters:
       - description: Platform ad set ID
@@ -39865,7 +39876,9 @@ paths:
                 $ref: "#/components/schemas/updateAdSet_200_response"
           description: Ad set updated
         "400":
-          description: Invalid input
+          description: "Invalid input, including `placements` or `targeting` on a\
+            \ platform other than Meta, a targeting field Meta cannot honour, or `placements`\
+            \ sent both at the top level and inside `targeting`"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -39879,8 +39892,12 @@ paths:
             \ campaign's (Meta), belongs on /v1/ads/campaigns/{campaignId}"
         "422":
           description: "bidStrategy is LOWEST_COST_WITH_MIN_ROAS on OpenAI or Reddit\
-            \ (unsupported: no ROAS-based bidding), or a Reddit budget that the ad\
-            \ group cannot take (campaign budget, or a daily/lifetime switch)"
+            \ (unsupported: no ROAS-based bidding), a Reddit budget that the ad group\
+            \ cannot take (campaign budget, or a daily/lifetime switch), or a `targeting.incomeTier`\
+            \ Meta has no income segment for"
+        "502":
+          description: "Meta: the ad set's live targeting could not be read, so the\
+            \ placements or targeting update was not written"
         "501":
           description: "bidStrategy not supported on the platform (Meta, TikTok, OpenAI\
             \ and Reddit only)"
@@ -130742,6 +130759,93 @@ components:
         interestsBehaviors:
           description: TikTok smart_interest_behavior_enabled.
           type: boolean
+    updateAdSet_request_placements:
+      description: |
+        Meta only (400 elsewhere). Manual placements, same object and enums as `placements` on
+        POST /v1/ads/create. Sending an object REPLACES the ad set's current placement set
+        (`publisher_platforms`, every `*_positions` list and `device_platforms`); a position
+        list you leave out is removed. `null` removes every placement key so Meta returns to
+        automatic (Advantage+) placements. Omit to leave placements untouched. Meta enforces
+        co-selection rules (e.g. a position needs its publisher platform) and its error is
+        returned as is. Meta may also reject `null` or a narrower set when an ad's creative
+        uses per-placement asset customization (`placementAssets`). An object with no
+        non-empty list is a 400 (send `null` instead). Cannot be combined with
+        `targeting.placements` (400).
+      properties:
+        publisherPlatforms:
+          items:
+            enum:
+            - facebook
+            - instagram
+            - threads
+            - messenger
+            - audience_network
+            - whatsapp
+            type: string
+          type: array
+        facebookPositions:
+          items:
+            enum:
+            - feed
+            - right_hand_column
+            - marketplace
+            - video_feeds
+            - story
+            - search
+            - instream_video
+            - facebook_reels
+            - facebook_reels_overlay
+            - profile_feed
+            - notification
+            type: string
+          type: array
+        instagramPositions:
+          items:
+            enum:
+            - stream
+            - story
+            - explore
+            - explore_home
+            - reels
+            - profile_feed
+            - ig_search
+            - profile_reels
+            type: string
+          type: array
+        messengerPositions:
+          items:
+            enum:
+            - messenger_home
+            - sponsored_messages
+            - story
+            type: string
+          type: array
+        audienceNetworkPositions:
+          items:
+            enum:
+            - classic
+            - rewarded_video
+            type: string
+          type: array
+        threadsPositions:
+          items:
+            enum:
+            - threads_stream
+            type: string
+          type: array
+        whatsappPositions:
+          items:
+            enum:
+            - status
+            type: string
+          type: array
+        devicePlatforms:
+          items:
+            enum:
+            - mobile
+            - desktop
+            type: string
+          type: array
     updateAdSet_request_platformSpecificData_promotedObject:
       additionalProperties: {}
       description: "Meta ad-set promoted_object, forwarded verbatim (same shape as\
@@ -130869,6 +130973,23 @@ components:
             (linkedin, pinterest, google) return 501 Not Implemented when bidStrategy is set.
         smartTargeting:
           $ref: "#/components/schemas/updateAdSet_request_smartTargeting"
+        placements:
+          $ref: "#/components/schemas/updateAdSet_request_placements"
+        targeting:
+          allOf:
+          - $ref: "#/components/schemas/TargetingSpec"
+          description: |
+            Meta only (400 elsewhere). Targeting fields to change, same shape as the `targeting`
+            object on POST /v1/ads/create. Only the keys you send change: Zernio reads the ad set's
+            live targeting from Meta, merges these keys over it and writes the full spec back, so
+            everything you do not send (custom audiences, geo, age, interest groups,
+            `targeting_automation`) is kept. Setting any location replaces every location list.
+            An empty list or `gender: all` clears that key. `incomeTier` is resolved to Meta's
+            income segment first (422 when Meta has none). Fields Meta cannot target (LinkedIn
+            B2B, Google `devices`, Reddit communities and keywords) return 400 with
+            `param: targeting.<field>`. An empty object is a 400, and so is a
+            `targeting.placements` object with no non-empty list (`param: targeting.placements`). When the live targeting cannot be
+            read the request returns 502 and nothing is written.
         bidAmount:
           description: |
             Bid cap in WHOLE currency units (USD: 5 = $5.00; JPY: 100 = ¥100). Required when
@@ -130918,6 +131039,7 @@ components:
         roasAverageFloor: 5.637376656633329
         statusSkipped: 1
         platformAdSetStatus: platformAdSetStatus
+        targeting: "{}"
         statusUpdated: 6
         budget:
           amount: 0.8008281904610115
@@ -130976,6 +131098,11 @@ components:
           nullable: true
           type: number
         platformSpecificData:
+          type: object
+        targeting:
+          description: Present when `placements` or `targeting` was sent. The ad set's
+            full Meta targeting as written (Meta snake_case). The same snake_case
+            object is stored as the ad set's and its ads' `targeting`.
           type: object
     deleteAdSet_200_response:
       example:
@@ -142573,7 +142700,9 @@ components:
           type: string
         targeting:
           allOf:
-          - $ref: "#/components/schemas/TargetingSpec"
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
           description: |
             Nested targeting object, the same TargetingSpec shape as `POST /v1/ads/boost`,
             `POST /v1/ads/targeting/reach-estimate`, and `saved_targeting` audiences. Merged

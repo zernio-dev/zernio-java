@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.294.0
+- API version: 1.295.0
 
-- Build date: 2026-10-19T06:14:11.887429970Z[Etc/UTC]
+- Build date: 2026-10-19T07:39:24.306934652Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.294.0</version>
+  <version>1.295.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.294.0"
+compile "dev.zernio:zernio-sdk:1.295.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.294.0.jar`
+- `target/zernio-sdk-1.295.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4324,6 +4324,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSet200Response](docs/UpdateAdSet200Response.md)
  - [UpdateAdSetRequest](docs/UpdateAdSetRequest.md)
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)
+ - [UpdateAdSetRequestPlacements](docs/UpdateAdSetRequestPlacements.md)
  - [UpdateAdSetRequestPlatformSpecificData](docs/UpdateAdSetRequestPlatformSpecificData.md)
  - [UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
  - [UpdateAdSetRequestSmartTargeting](docs/UpdateAdSetRequestSmartTargeting.md)
