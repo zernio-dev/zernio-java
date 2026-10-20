@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.307.1
+  version: 1.308.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -49759,6 +49759,8 @@ paths:
         Lists the leads submitted through one Meta lead form.
 
         Serves persisted leads (ingested via the leadgen webhook) when available, falling back to a live Graph read. Accepts a Facebook account or a metaads business-login account with leads_retrieval access to the form; the latter uses its system-user token without a posting parent.
+
+        Persisted leads arrive in real time through Meta's webhook, and a background pass re-reads every Page from Meta to catch the leads the webhook misses: every 15 minutes for Pages that received a lead in the last 7 days. `meta.lastCheckedAt` says when that pass last ran, so polling this endpoint faster than that returns nothing new; subscribe to the `lead.received` webhook instead. The live Graph read is cached for 5 minutes, and `meta.lastCheckedAt` is when it was read.
       operationId: listFormLeads
       parameters:
       - explode: false
@@ -145276,6 +145278,21 @@ components:
           items:
             type: object
           type: array
+    listLeads_200_response_meta:
+      example:
+        lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+      properties:
+        lastCheckedAt:
+          description: "Meta only, present when `accountId` is passed: when Zernio\
+            \ last re-read the Page's forms from Meta to catch leads the webhook missed.\
+            \ Null when no leads matched or before the first pass."
+          format: date-time
+          nullable: true
+          type: string
+        lastUpdated:
+          format: date-time
+          type: string
     listLeads_200_response:
       example:
         pagination:
@@ -145312,6 +145329,9 @@ components:
             key: fields
           leadgenId: leadgenId
           adsetId: adsetId
+        meta:
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
         status: success
       properties:
         status:
@@ -145323,6 +145343,8 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/searchTweets_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/listLeads_200_response_meta"
     listLeadForms_200_response:
       example:
         pagination:
@@ -145768,6 +145790,39 @@ components:
           items:
             type: object
           type: array
+    listFormLeads_200_response_meta:
+      example:
+        formId: formId
+        accountId: accountId
+        lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+        lastUpdated: 2000-01-23T04:56:07.000+00:00
+        source: persisted
+        platform: facebook
+      properties:
+        platform:
+          example: facebook
+          type: string
+        accountId:
+          type: string
+        formId:
+          type: string
+        source:
+          description: "persisted: leads stored from the webhook and the reconcile\
+            \ pass. live: read from Meta because none are stored for this form yet."
+          enum:
+          - persisted
+          - live
+          type: string
+        lastCheckedAt:
+          description: "When Zernio last read this form's leads from Meta. For persisted\
+            \ leads, the last reconcile pass for the Page (null before the first one).\
+            \ For live reads, when the cached Graph read was made."
+          format: date-time
+          nullable: true
+          type: string
+        lastUpdated:
+          format: date-time
+          type: string
     listFormLeads_200_response:
       example:
         pagination:
@@ -145792,6 +145847,13 @@ components:
           id: id
           fields:
             key: fields
+        meta:
+          formId: formId
+          accountId: accountId
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          lastUpdated: 2000-01-23T04:56:07.000+00:00
+          source: persisted
+          platform: facebook
         status: success
       properties:
         status:
@@ -145803,6 +145865,8 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/searchTweets_200_response_pagination"
+        meta:
+          $ref: "#/components/schemas/listFormLeads_200_response_meta"
     createTestLead_request_fieldData_inner:
       properties:
         name:

@@ -1576,6 +1576,7 @@ docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
+docs/ListFormLeads200ResponseMeta.md
 docs/ListGoogleAssetGroups200Response.md
 docs/ListGoogleBusinessLocations200Response.md
 docs/ListGoogleBusinessLocations200ResponseLocationsInner.md
@@ -1625,6 +1626,7 @@ docs/ListInstagramStories200ResponseDataInner.md
 docs/ListLeadForms200Response.md
 docs/ListLeads200Response.md
 docs/ListLeads200ResponseLeadsInner.md
+docs/ListLeads200ResponseMeta.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
 docs/ListLocalServicesLeadConversations200Response.md
@@ -4456,6 +4458,7 @@ src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFormLeads200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseLeadsInner.java
+src/main/java/dev/zernio/model/ListFormLeads200ResponseMeta.java
 src/main/java/dev/zernio/model/ListGoogleAssetGroups200Response.java
 src/main/java/dev/zernio/model/ListGoogleBusinessLocations200Response.java
 src/main/java/dev/zernio/model/ListGoogleBusinessLocations200ResponseLocationsInner.java
@@ -4505,6 +4508,7 @@ src/main/java/dev/zernio/model/ListInstagramStories200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListLeadForms200Response.java
 src/main/java/dev/zernio/model/ListLeads200Response.java
 src/main/java/dev/zernio/model/ListLeads200ResponseLeadsInner.java
+src/main/java/dev/zernio/model/ListLeads200ResponseMeta.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200Response.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200ResponseOrganizationsInner.java
 src/main/java/dev/zernio/model/ListLocalServicesLeadConversations200Response.java
@@ -5673,3 +5677,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ListFormLeads200ResponseMetaTest.java
+src/test/java/dev/zernio/model/ListLeads200ResponseMetaTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.307.1
+- API version: 1.308.0
 
-- Build date: 2026-10-20T19:52:30.411958476Z[Etc/UTC]
+- Build date: 2026-10-20T20:14:27.741485756Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.307.1</version>
+  <version>1.308.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.307.1"
+compile "dev.zernio:zernio-sdk:1.308.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.307.1.jar`
+- `target/zernio-sdk-1.308.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3600,6 +3600,7 @@ Class | Method | HTTP request | Description
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
+ - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
  - [ListGoogleAssetGroups200Response](docs/ListGoogleAssetGroups200Response.md)
  - [ListGoogleBusinessLocations200Response](docs/ListGoogleBusinessLocations200Response.md)
  - [ListGoogleBusinessLocations200ResponseLocationsInner](docs/ListGoogleBusinessLocations200ResponseLocationsInner.md)
@@ -3649,6 +3650,7 @@ Class | Method | HTTP request | Description
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
  - [ListLeads200Response](docs/ListLeads200Response.md)
  - [ListLeads200ResponseLeadsInner](docs/ListLeads200ResponseLeadsInner.md)
+ - [ListLeads200ResponseMeta](docs/ListLeads200ResponseMeta.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
  - [ListLocalServicesLeadConversations200Response](docs/ListLocalServicesLeadConversations200Response.md)

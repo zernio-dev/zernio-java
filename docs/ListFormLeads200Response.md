@@ -10,6 +10,7 @@
 |**status** | **String** |  |  [optional] |
 |**leads** | [**List&lt;ListFormLeads200ResponseLeadsInner&gt;**](ListFormLeads200ResponseLeadsInner.md) |  |  [optional] |
 |**pagination** | [**SearchTweets200ResponsePagination**](SearchTweets200ResponsePagination.md) |  |  [optional] |
+|**meta** | [**ListFormLeads200ResponseMeta**](ListFormLeads200ResponseMeta.md) |  |  [optional] |
 
 
 
