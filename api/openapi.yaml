@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.309.2
+  version: 1.310.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -90908,9 +90908,11 @@ components:
           format: uri
           type: string
         actionSource:
-          description: Where the conversion happened. Used by Meta. Google also requires
-            an event source internally; omitting this field sends OTHER to Google.
-            Send an explicit value for accurate origin reporting.
+          description: "Where the conversion happened. Used by Meta. Google also requires\
+            \ an event source internally; omitting this field sends OTHER to Google.\
+            \ Send an explicit value for accurate origin reporting. `business_messaging`\
+            \ (Meta) marks an event from a WhatsApp, Messenger or Instagram Direct\
+            \ conversation and needs `messaging`."
           enum:
           - web
           - app
@@ -90918,7 +90920,10 @@ components:
           - crm
           - phone_call
           - system_generated
+          - business_messaging
           type: string
+        messaging:
+          $ref: "#/components/schemas/ConversionEvent_messaging"
         platformData:
           additionalProperties: true
           description: |
@@ -166597,6 +166602,41 @@ components:
           type: integer
         category:
           type: string
+    ConversionEvent_messaging:
+      description: |
+        Meta only, read when `actionSource` is `business_messaging` (Conversions API
+        for Business Messaging). `channel` is sent as the event's `messaging_channel`
+        (`instagram_direct` goes out as `instagram`). Each id lands in Meta's
+        `user_data` unhashed, and an id that does not belong to `channel` is ignored.
+      properties:
+        channel:
+          enum:
+          - whatsapp
+          - messenger
+          - instagram_direct
+          type: string
+        wabaId:
+          description: "WhatsApp only. WhatsApp Business Account id, sent as `whatsapp_business_account_id`."
+          type: string
+        ctwaClid:
+          description: "WhatsApp only. Click-to-WhatsApp click id from the first inbound\
+            \ message referral, sent as `ctwa_clid`."
+          type: string
+        pageId:
+          description: "Messenger and Instagram Direct. Facebook Page id, sent as\
+            \ `page_id`."
+          type: string
+        pageScopedUserId:
+          description: "Messenger only. The page-scoped user id (PSID) your Messenger\
+            \ webhook gives for the person, sent as `page_scoped_user_id` next to\
+            \ `page_id`."
+          type: string
+        instagramScopedUserId:
+          description: "Instagram Direct only. The Instagram-scoped user id (IGSID)\
+            \ your Instagram messaging webhook gives for the person, sent as `ig_sid`."
+          type: string
+      required:
+      - channel
     ConversionAction_tagSnippets_inner:
       example:
         globalSiteTag: globalSiteTag

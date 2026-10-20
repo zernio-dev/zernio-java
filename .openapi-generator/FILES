@@ -413,6 +413,7 @@ docs/ConversionActionTagSnippetsInner.md
 docs/ConversionDestination.md
 docs/ConversionEvent.md
 docs/ConversionEventItemsInner.md
+docs/ConversionEventMessaging.md
 docs/ConversionEventUser.md
 docs/ConversionEventUserClickIds.md
 docs/ConversionsApi.md
@@ -3325,6 +3326,7 @@ src/main/java/dev/zernio/model/ConversionActionTagSnippetsInner.java
 src/main/java/dev/zernio/model/ConversionDestination.java
 src/main/java/dev/zernio/model/ConversionEvent.java
 src/main/java/dev/zernio/model/ConversionEventItemsInner.java
+src/main/java/dev/zernio/model/ConversionEventMessaging.java
 src/main/java/dev/zernio/model/ConversionEventUser.java
 src/main/java/dev/zernio/model/ConversionEventUserClickIds.java
 src/main/java/dev/zernio/model/CreateAccountGroup201Response.java
@@ -5701,5 +5703,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/InstagramMediaCollaboratorTest.java
-src/test/java/dev/zernio/model/ListInstagramMediaCollaborators200ResponseTest.java
+src/test/java/dev/zernio/model/ConversionEventMessagingTest.java

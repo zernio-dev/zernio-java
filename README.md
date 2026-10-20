@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.309.2
+- API version: 1.310.0
 
-- Build date: 2026-10-20T22:42:43.621940151Z[Etc/UTC]
+- Build date: 2026-10-20T22:51:40.985680377Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.309.2</version>
+  <version>1.310.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.309.2"
+compile "dev.zernio:zernio-sdk:1.310.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.309.2.jar`
+- `target/zernio-sdk-1.310.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2463,6 +2463,7 @@ Class | Method | HTTP request | Description
  - [ConversionDestination](docs/ConversionDestination.md)
  - [ConversionEvent](docs/ConversionEvent.md)
  - [ConversionEventItemsInner](docs/ConversionEventItemsInner.md)
+ - [ConversionEventMessaging](docs/ConversionEventMessaging.md)
  - [ConversionEventUser](docs/ConversionEventUser.md)
  - [ConversionEventUserClickIds](docs/ConversionEventUserClickIds.md)
  - [CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
