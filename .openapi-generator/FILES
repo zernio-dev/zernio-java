@@ -5663,17 +5663,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CommerceAddressTest.java
-src/test/java/dev/zernio/model/CommerceOrderChargeLineTest.java
-src/test/java/dev/zernio/model/CommerceOrderCustomerTest.java
-src/test/java/dev/zernio/model/CommerceOrderFulfillmentsInnerTest.java
-src/test/java/dev/zernio/model/CommerceOrderLineItemsInnerTest.java
-src/test/java/dev/zernio/model/CommerceOrderRefundsInnerLineItemsInnerTest.java
-src/test/java/dev/zernio/model/CommerceOrderRefundsInnerTest.java
-src/test/java/dev/zernio/model/CommerceOrderStatusTest.java
-src/test/java/dev/zernio/model/CommerceOrderTest.java
-src/test/java/dev/zernio/model/CommerceTaxLineTest.java
-src/test/java/dev/zernio/model/GetCommerceOrder200ResponseTest.java
-src/test/java/dev/zernio/model/ListCommerceOrders200ResponseTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCommerceOrderResourceTest.java
-src/test/java/dev/zernio/model/WebhookPayloadCommerceOrderTest.java
