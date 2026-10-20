@@ -55,6 +55,7 @@
 | WHATSAPP | &quot;whatsapp&quot; |
 | SHOPIFY | &quot;shopify&quot; |
 | WORDPRESS | &quot;wordpress&quot; |
+| WIX | &quot;wix&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
 | METAADS | &quot;metaads&quot; |
 | PINTERESTADS | &quot;pinterestads&quot; |

@@ -2,7 +2,7 @@
 
 # CreateBlogArticleRequestSeo
 
-Shopify only. Search-engine overrides mapped to global title_tag and description_tag metafields. WordPress rejects this field.
+Shopify and Wix. Search-engine overrides: Shopify global title_tag and description_tag metafields, Wix post SEO title and meta description. WordPress rejects this field.
 
 ## Properties
 

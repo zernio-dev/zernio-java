@@ -1248,6 +1248,7 @@ docs/GetWhatsAppTemplates200Response.md
 docs/GetWhatsAppTemplates200ResponseTemplatesInner.md
 docs/GetWhatsappBusinessUsername200Response.md
 docs/GetWhatsappBusinessUsernameSuggestions200Response.md
+docs/GetWixConnectUrl200Response.md
 docs/GetWordPressAuthUrl200Response.md
 docs/GetWorkflow200Response.md
 docs/GetWorkflow200ResponseWorkflow.md
@@ -4137,6 +4138,7 @@ src/main/java/dev/zernio/model/GetWhatsAppTemplates200Response.java
 src/main/java/dev/zernio/model/GetWhatsAppTemplates200ResponseTemplatesInner.java
 src/main/java/dev/zernio/model/GetWhatsappBusinessUsername200Response.java
 src/main/java/dev/zernio/model/GetWhatsappBusinessUsernameSuggestions200Response.java
+src/main/java/dev/zernio/model/GetWixConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetWordPressAuthUrl200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200Response.java
 src/main/java/dev/zernio/model/GetWorkflow200ResponseWorkflow.java
@@ -5663,3 +5665,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetWixConnectUrl200ResponseTest.java

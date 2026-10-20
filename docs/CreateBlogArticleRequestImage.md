@@ -2,7 +2,7 @@
 
 # CreateBlogArticleRequestImage
 
-Featured image from a public URL. WordPress downloads it into the media library; JPEG, PNG, GIF and WebP are accepted up to 10 MB.
+Featured image from a public URL. WordPress downloads it into the media library and Wix imports it into the Media Manager; JPEG, PNG, GIF and WebP are accepted up to 10 MB.
 
 ## Properties
 

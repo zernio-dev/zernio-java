@@ -8,10 +8,10 @@ A blog container on the connected platform. All content lives on the platform; Z
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Platform-native blog id. Shopify uses a numeric blog id. WordPress.com uses the numeric site id; self-hosted WordPress uses &#x60;1&#x60;, scoped to the connected account. |  [optional] |
+|**id** | **String** | Platform-native blog id. Shopify uses a numeric blog id. WordPress.com uses the numeric site id; self-hosted WordPress and Wix use &#x60;1&#x60;, scoped to the connected account. |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**title** | **String** |  |  [optional] |
-|**handle** | **String** | URL slug on Shopify; site hostname on WordPress. |  [optional] |
+|**handle** | **String** | URL slug on Shopify; site hostname on WordPress and Wix. |  [optional] |
 
 
 
@@ -21,6 +21,7 @@ A blog container on the connected platform. All content lives on the platform; Z
 |---- | -----|
 | SHOPIFY | &quot;shopify&quot; |
 | WORDPRESS | &quot;wordpress&quot; |
+| WIX | &quot;wix&quot; |
 
 
 

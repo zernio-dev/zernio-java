@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.299.1
+- API version: 1.300.0
 
-- Build date: 2026-10-20T00:38:50.533502331Z[Etc/UTC]
+- Build date: 2026-10-20T01:09:27.256799507Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.299.1</version>
+  <version>1.300.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.299.1"
+compile "dev.zernio:zernio-sdk:1.300.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.299.1.jar`
+- `target/zernio-sdk-1.300.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1061,6 +1061,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getWhatsAppSdkConfig**](docs/ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWhatsAppSdkConfigWithHttpInfo**](docs/ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
+*ConnectApi* | [**getWixConnectUrl**](docs/ConnectApi.md#getWixConnectUrl) | **GET** /v1/connect/wix | Get Wix site install URL
+*ConnectApi* | [**getWixConnectUrlWithHttpInfo**](docs/ConnectApi.md#getWixConnectUrlWithHttpInfo) | **GET** /v1/connect/wix | Get Wix site install URL
 *ConnectApi* | [**getWordPressAuthUrl**](docs/ConnectApi.md#getWordPressAuthUrl) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL
 *ConnectApi* | [**getWordPressAuthUrlWithHttpInfo**](docs/ConnectApi.md#getWordPressAuthUrlWithHttpInfo) | **GET** /v1/connect/wordpress | Get WordPress.com OAuth connect URL
 *ConnectApi* | [**getYoutubeCaptions**](docs/ConnectApi.md#getYoutubeCaptions) | **GET** /v1/accounts/{accountId}/youtube-captions | Get a YouTube video transcript
@@ -3284,6 +3286,7 @@ Class | Method | HTTP request | Description
  - [GetWhatsAppTemplates200ResponseTemplatesInner](docs/GetWhatsAppTemplates200ResponseTemplatesInner.md)
  - [GetWhatsappBusinessUsername200Response](docs/GetWhatsappBusinessUsername200Response.md)
  - [GetWhatsappBusinessUsernameSuggestions200Response](docs/GetWhatsappBusinessUsernameSuggestions200Response.md)
+ - [GetWixConnectUrl200Response](docs/GetWixConnectUrl200Response.md)
  - [GetWordPressAuthUrl200Response](docs/GetWordPressAuthUrl200Response.md)
  - [GetWorkflow200Response](docs/GetWorkflow200Response.md)
  - [GetWorkflow200ResponseWorkflow](docs/GetWorkflow200ResponseWorkflow.md)
