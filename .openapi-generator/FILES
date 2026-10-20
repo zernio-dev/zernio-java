@@ -30,6 +30,9 @@ docs/AdCampaign.md
 docs/AdCampaignBudget.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
+docs/AdCreativeAssets.md
+docs/AdCreativeAssetsMarketingImagesInner.md
+docs/AdCreativeAssetsSquareMarketingImagesInner.md
 docs/AdCreativeCarouselCardsInner.md
 docs/AdCreativeCatalog.md
 docs/AdCreativeCatalogFormatTransformationSpecInner.md
@@ -2942,6 +2945,9 @@ src/main/java/dev/zernio/model/AdBudget.java
 src/main/java/dev/zernio/model/AdCampaign.java
 src/main/java/dev/zernio/model/AdCampaignBudget.java
 src/main/java/dev/zernio/model/AdCreative.java
+src/main/java/dev/zernio/model/AdCreativeAssets.java
+src/main/java/dev/zernio/model/AdCreativeAssetsMarketingImagesInner.java
+src/main/java/dev/zernio/model/AdCreativeAssetsSquareMarketingImagesInner.java
 src/main/java/dev/zernio/model/AdCreativeCarouselCardsInner.java
 src/main/java/dev/zernio/model/AdCreativeCatalog.java
 src/main/java/dev/zernio/model/AdCreativeCatalogFormatTransformationSpecInner.java
@@ -5665,3 +5671,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdCreativeAssetsMarketingImagesInnerTest.java
+src/test/java/dev/zernio/model/AdCreativeAssetsSquareMarketingImagesInnerTest.java
+src/test/java/dev/zernio/model/AdCreativeAssetsTest.java

@@ -16,6 +16,7 @@ Platform-specific creative data. Fields vary by platform.
 |**thumbnailUrl** | **String** | Primary thumbnail/image URL |  [optional] |
 |**imageUrl** | **String** | Alternative image URL |  [optional] |
 |**assetResourceName** | **String** | Google Display only. Resource name of the landscape marketing image asset (&#x60;creative.imageUrl&#x60;), for example customers/1234567890/assets/123. Set at creation and updated when PUT /v1/ads/{adId} replaces &#x60;creative.imageUrl&#x60;; replacing only &#x60;creative.squareImageUrl&#x60; leaves it unchanged. |  [optional] |
+|**assets** | [**AdCreativeAssets**](AdCreativeAssets.md) |  |  [optional] |
 |**videoId** | **String** | Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token. |  [optional] |
 |**videoUrl** | **String** | Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads. |  [optional] |
 |**creativeId** | **String** | Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create. |  [optional] |

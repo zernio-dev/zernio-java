@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.302.1
+  version: 1.303.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -40872,7 +40872,7 @@ paths:
             `creative.squareImageUrl`. Each image URL is uploaded as a new Google asset and the ad
             is pointed at it; Google assets are immutable, so the previous asset stays in the
             account's asset library. A new landscape image also updates `creative.assetResourceName`
-            to the new asset.
+            to the new asset, and each replaced image updates its own role in `creative.assets`.
           - **Performance Max**: top-level `assetGroup`, which swaps asset roles on the ad's asset
             group. The other creative fields return 422 for this channel, and `assetGroup` returns
             422 on any other channel.
@@ -81205,6 +81205,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -81337,6 +81344,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -81675,6 +81689,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -81807,6 +81828,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -82174,6 +82202,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -82306,6 +82341,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -82915,6 +82957,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -83047,6 +83096,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -83414,6 +83470,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -83546,6 +83609,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -87161,6 +87231,13 @@ components:
           effectiveObjectStoryId: effectiveObjectStoryId
           creativeId: creativeId
           objectType: objectType
+          assets:
+            squareMarketingImages:
+            - resourceName: resourceName
+            - resourceName: resourceName
+            marketingImages:
+            - resourceName: resourceName
+            - resourceName: resourceName
           videoUrl: videoUrl
           objectStoryId: objectStoryId
           pinterestDescription: pinterestDescription
@@ -87572,6 +87649,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -87704,6 +87788,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -88336,6 +88427,13 @@ components:
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               objectType: objectType
+              assets:
+                squareMarketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
+                marketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
@@ -88468,6 +88566,13 @@ components:
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               objectType: objectType
+              assets:
+                squareMarketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
+                marketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
@@ -88835,6 +88940,13 @@ components:
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               objectType: objectType
+              assets:
+                squareMarketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
+                marketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
@@ -88967,6 +89079,13 @@ components:
               effectiveObjectStoryId: effectiveObjectStoryId
               creativeId: creativeId
               objectType: objectType
+              assets:
+                squareMarketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
+                marketingImages:
+                - resourceName: resourceName
+                - resourceName: resourceName
               videoUrl: videoUrl
               objectStoryId: objectStoryId
               pinterestDescription: pinterestDescription
@@ -128552,6 +128671,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -128684,6 +128810,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -132717,6 +132850,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -132849,6 +132989,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -133216,6 +133363,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -133348,6 +133502,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -133957,6 +134118,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -134089,6 +134257,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -134456,6 +134631,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -134588,6 +134770,13 @@ components:
                 effectiveObjectStoryId: effectiveObjectStoryId
                 creativeId: creativeId
                 objectType: objectType
+                assets:
+                  squareMarketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
+                  marketingImages:
+                  - resourceName: resourceName
+                  - resourceName: resourceName
                 videoUrl: videoUrl
                 objectStoryId: objectStoryId
                 pinterestDescription: pinterestDescription
@@ -135134,6 +135323,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -135598,6 +135794,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -144831,6 +145034,13 @@ components:
             effectiveObjectStoryId: effectiveObjectStoryId
             creativeId: creativeId
             objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
             videoUrl: videoUrl
             objectStoryId: objectStoryId
             pinterestDescription: pinterestDescription
@@ -164903,6 +165113,45 @@ components:
         product_set_id:
           description: Product catalog set ID
           type: string
+    Ad_creative_assets_marketingImages_inner:
+      example:
+        resourceName: resourceName
+      properties:
+        resourceName:
+          description: "Google asset resource name, for example customers/1234567890/assets/123."
+          type: string
+    Ad_creative_assets_squareMarketingImages_inner:
+      example:
+        resourceName: resourceName
+      properties:
+        resourceName:
+          description: "Google asset resource name, for example customers/1234567890/assets/124."
+          type: string
+    Ad_creative_assets:
+      description: "Google Display only. Native Google asset resource name of each\
+        \ image on the responsive display ad, keyed by Google's image role. Set at\
+        \ creation for ads created through Zernio. PUT /v1/ads/{adId} overwrites only\
+        \ the role it replaces: `creative.imageUrl` updates `marketingImages`, `creative.squareImageUrl`\
+        \ updates `squareMarketingImages`. Absent on ads synced from Google."
+      example:
+        squareMarketingImages:
+        - resourceName: resourceName
+        - resourceName: resourceName
+        marketingImages:
+        - resourceName: resourceName
+        - resourceName: resourceName
+      properties:
+        marketingImages:
+          description: Landscape (1.91:1) marketing images. The first item matches
+            `assetResourceName`.
+          items:
+            $ref: "#/components/schemas/Ad_creative_assets_marketingImages_inner"
+          type: array
+        squareMarketingImages:
+          description: Square (1:1) marketing images.
+          items:
+            $ref: "#/components/schemas/Ad_creative_assets_squareMarketingImages_inner"
+          type: array
     Ad_creative_catalog_formatTransformationSpec_inner:
       example:
         format: format
@@ -165016,6 +165265,13 @@ components:
         effectiveObjectStoryId: effectiveObjectStoryId
         creativeId: creativeId
         objectType: objectType
+        assets:
+          squareMarketingImages:
+          - resourceName: resourceName
+          - resourceName: resourceName
+          marketingImages:
+          - resourceName: resourceName
+          - resourceName: resourceName
         videoUrl: videoUrl
         objectStoryId: objectStoryId
         pinterestDescription: pinterestDescription
@@ -165116,6 +165372,8 @@ components:
             \ Set at creation and updated when PUT /v1/ads/{adId} replaces `creative.imageUrl`;\
             \ replacing only `creative.squareImageUrl` leaves it unchanged."
           type: string
+        assets:
+          $ref: "#/components/schemas/Ad_creative_assets"
         videoId:
           description: "Meta video ID for VIDEO-type ads. Null for non-video ads.\
             \ Callers that need an embeddable MP4 can call GET /{videoId}?fields=source\
