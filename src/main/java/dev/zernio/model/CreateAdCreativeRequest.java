@@ -60,7 +60,7 @@ import dev.zernio.ApiClient;
   CreateAdCreativeRequest.JSON_PROPERTY_MULTI_ADVERTISER,
   CreateAdCreativeRequest.JSON_PROPERTY_AI_DISCLOSURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:02:23.497087856Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:13:04.208305450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateAdCreativeRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

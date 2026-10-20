@@ -24,286 +24,230 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.CreatedGoogleAdAccount;
+import dev.zernio.model.CreatedMetaAdAccount;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
+
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.JsonToken;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
+import com.fasterxml.jackson.databind.SerializerProvider;
+import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
-/**
- * CreateAdAccount201Response
- */
-@JsonPropertyOrder({
-  CreateAdAccount201Response.JSON_PROPERTY_AD_ACCOUNT_ID,
-  CreateAdAccount201Response.JSON_PROPERTY_BUSINESS_ID,
-  CreateAdAccount201Response.JSON_PROPERTY_CONNECTION_UPDATED,
-  CreateAdAccount201Response.JSON_PROPERTY_PAYMENT_METHOD_REQUIRED,
-  CreateAdAccount201Response.JSON_PROPERTY_ADS_MANAGER_URL,
-  CreateAdAccount201Response.JSON_PROPERTY_NEXT_STEPS,
-  CreateAdAccount201Response.JSON_PROPERTY_WARNINGS
-})
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:02:23.497087856Z[Etc/UTC]", comments = "Generator version: 7.19.0")
-public class CreateAdAccount201Response {
-  public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
-  @javax.annotation.Nonnull
-  private String adAccountId;
+import dev.zernio.JSON;
 
-  public static final String JSON_PROPERTY_BUSINESS_ID = "businessId";
-  @javax.annotation.Nonnull
-  private String businessId;
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:13:04.208305450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@JsonDeserialize(using = CreateAdAccount201Response.CreateAdAccount201ResponseDeserializer.class)
+@JsonSerialize(using = CreateAdAccount201Response.CreateAdAccount201ResponseSerializer.class)
+public class CreateAdAccount201Response extends AbstractOpenApiSchema {
+    private static final Logger log = Logger.getLogger(CreateAdAccount201Response.class.getName());
 
-  public static final String JSON_PROPERTY_CONNECTION_UPDATED = "connectionUpdated";
-  @javax.annotation.Nonnull
-  private Boolean connectionUpdated;
+    public static class CreateAdAccount201ResponseSerializer extends StdSerializer<CreateAdAccount201Response> {
+        public CreateAdAccount201ResponseSerializer(Class<CreateAdAccount201Response> t) {
+            super(t);
+        }
 
-  public static final String JSON_PROPERTY_PAYMENT_METHOD_REQUIRED = "paymentMethodRequired";
-  @javax.annotation.Nonnull
-  private Boolean paymentMethodRequired;
+        public CreateAdAccount201ResponseSerializer() {
+            this(null);
+        }
 
-  public static final String JSON_PROPERTY_ADS_MANAGER_URL = "adsManagerUrl";
-  @javax.annotation.Nonnull
-  private URI adsManagerUrl;
-
-  public static final String JSON_PROPERTY_NEXT_STEPS = "nextSteps";
-  @javax.annotation.Nonnull
-  private String nextSteps;
-
-  public static final String JSON_PROPERTY_WARNINGS = "warnings";
-  @javax.annotation.Nonnull
-  private List<String> warnings = new ArrayList<>();
-
-  public CreateAdAccount201Response() { 
-  }
-
-  public CreateAdAccount201Response adAccountId(@javax.annotation.Nonnull String adAccountId) {
-    this.adAccountId = adAccountId;
-    return this;
-  }
-
-  /**
-   * New Meta ad account ID for subsequent ads calls.
-   * @return adAccountId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getAdAccountId() {
-    return adAccountId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_AD_ACCOUNT_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAdAccountId(@javax.annotation.Nonnull String adAccountId) {
-    this.adAccountId = adAccountId;
-  }
-
-
-  public CreateAdAccount201Response businessId(@javax.annotation.Nonnull String businessId) {
-    this.businessId = businessId;
-    return this;
-  }
-
-  /**
-   * Owning business portfolio ID.
-   * @return businessId
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_BUSINESS_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getBusinessId() {
-    return businessId;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_BUSINESS_ID, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setBusinessId(@javax.annotation.Nonnull String businessId) {
-    this.businessId = businessId;
-  }
-
-
-  public CreateAdAccount201Response connectionUpdated(@javax.annotation.Nonnull Boolean connectionUpdated) {
-    this.connectionUpdated = connectionUpdated;
-    return this;
-  }
-
-  /**
-   * Whether the connection scope and discovery schedule were updated.
-   * @return connectionUpdated
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_UPDATED, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getConnectionUpdated() {
-    return connectionUpdated;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_CONNECTION_UPDATED, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setConnectionUpdated(@javax.annotation.Nonnull Boolean connectionUpdated) {
-    this.connectionUpdated = connectionUpdated;
-  }
-
-
-  public CreateAdAccount201Response paymentMethodRequired(@javax.annotation.Nonnull Boolean paymentMethodRequired) {
-    this.paymentMethodRequired = paymentMethodRequired;
-    return this;
-  }
-
-  /**
-   * Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager.
-   * @return paymentMethodRequired
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_REQUIRED, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public Boolean getPaymentMethodRequired() {
-    return paymentMethodRequired;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_PAYMENT_METHOD_REQUIRED, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setPaymentMethodRequired(@javax.annotation.Nonnull Boolean paymentMethodRequired) {
-    this.paymentMethodRequired = paymentMethodRequired;
-  }
-
-
-  public CreateAdAccount201Response adsManagerUrl(@javax.annotation.Nonnull URI adsManagerUrl) {
-    this.adsManagerUrl = adsManagerUrl;
-    return this;
-  }
-
-  /**
-   * Open the created account in Ads Manager.
-   * @return adsManagerUrl
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_ADS_MANAGER_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public URI getAdsManagerUrl() {
-    return adsManagerUrl;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_ADS_MANAGER_URL, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setAdsManagerUrl(@javax.annotation.Nonnull URI adsManagerUrl) {
-    this.adsManagerUrl = adsManagerUrl;
-  }
-
-
-  public CreateAdAccount201Response nextSteps(@javax.annotation.Nonnull String nextSteps) {
-    this.nextSteps = nextSteps;
-    return this;
-  }
-
-  /**
-   * Payment setup instructions for the user.
-   * @return nextSteps
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_NEXT_STEPS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public String getNextSteps() {
-    return nextSteps;
-  }
-
-
-  @JsonProperty(value = JSON_PROPERTY_NEXT_STEPS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setNextSteps(@javax.annotation.Nonnull String nextSteps) {
-    this.nextSteps = nextSteps;
-  }
-
-
-  public CreateAdAccount201Response warnings(@javax.annotation.Nonnull List<String> warnings) {
-    this.warnings = warnings;
-    return this;
-  }
-
-  public CreateAdAccount201Response addWarningsItem(String warningsItem) {
-    if (this.warnings == null) {
-      this.warnings = new ArrayList<>();
+        @Override
+        public void serialize(CreateAdAccount201Response value, JsonGenerator jgen, SerializerProvider provider) throws IOException, JsonProcessingException {
+            jgen.writeObject(value.getActualInstance());
+        }
     }
-    this.warnings.add(warningsItem);
-    return this;
-  }
 
-  /**
-   * Recovery instructions if the account could not be attached to the connection.
-   * @return warnings
-   */
-  @javax.annotation.Nonnull
-  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public List<String> getWarnings() {
-    return warnings;
-  }
+    public static class CreateAdAccount201ResponseDeserializer extends StdDeserializer<CreateAdAccount201Response> {
+        public CreateAdAccount201ResponseDeserializer() {
+            this(CreateAdAccount201Response.class);
+        }
 
+        public CreateAdAccount201ResponseDeserializer(Class<?> vc) {
+            super(vc);
+        }
 
-  @JsonProperty(value = JSON_PROPERTY_WARNINGS, required = true)
-  @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setWarnings(@javax.annotation.Nonnull List<String> warnings) {
-    this.warnings = warnings;
-  }
+        @Override
+        public CreateAdAccount201Response deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException, JsonProcessingException {
+            JsonNode tree = jp.readValueAsTree();
+            Object deserialized = null;
+            boolean typeCoercion = ctxt.isEnabled(MapperFeature.ALLOW_COERCION_OF_SCALARS);
+            int match = 0;
+            JsonToken token = tree.traverse(jp.getCodec()).nextToken();
+            // deserialize CreatedGoogleAdAccount
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (CreatedGoogleAdAccount.class.equals(Integer.class) || CreatedGoogleAdAccount.class.equals(Long.class) || CreatedGoogleAdAccount.class.equals(Float.class) || CreatedGoogleAdAccount.class.equals(Double.class) || CreatedGoogleAdAccount.class.equals(Boolean.class) || CreatedGoogleAdAccount.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((CreatedGoogleAdAccount.class.equals(Integer.class) || CreatedGoogleAdAccount.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((CreatedGoogleAdAccount.class.equals(Float.class) || CreatedGoogleAdAccount.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (CreatedGoogleAdAccount.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (CreatedGoogleAdAccount.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CreatedGoogleAdAccount.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'CreatedGoogleAdAccount'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'CreatedGoogleAdAccount'", e);
+            }
 
+            // deserialize CreatedMetaAdAccount
+            try {
+                boolean attemptParsing = true;
+                // ensure that we respect type coercion as set on the client ObjectMapper
+                if (CreatedMetaAdAccount.class.equals(Integer.class) || CreatedMetaAdAccount.class.equals(Long.class) || CreatedMetaAdAccount.class.equals(Float.class) || CreatedMetaAdAccount.class.equals(Double.class) || CreatedMetaAdAccount.class.equals(Boolean.class) || CreatedMetaAdAccount.class.equals(String.class)) {
+                    attemptParsing = typeCoercion;
+                    if (!attemptParsing) {
+                        attemptParsing |= ((CreatedMetaAdAccount.class.equals(Integer.class) || CreatedMetaAdAccount.class.equals(Long.class)) && token == JsonToken.VALUE_NUMBER_INT);
+                        attemptParsing |= ((CreatedMetaAdAccount.class.equals(Float.class) || CreatedMetaAdAccount.class.equals(Double.class)) && token == JsonToken.VALUE_NUMBER_FLOAT);
+                        attemptParsing |= (CreatedMetaAdAccount.class.equals(Boolean.class) && (token == JsonToken.VALUE_FALSE || token == JsonToken.VALUE_TRUE));
+                        attemptParsing |= (CreatedMetaAdAccount.class.equals(String.class) && token == JsonToken.VALUE_STRING);
+                    }
+                }
+                if (attemptParsing) {
+                    deserialized = tree.traverse(jp.getCodec()).readValueAs(CreatedMetaAdAccount.class);
+                    // TODO: there is no validation against JSON schema constraints
+                    // (min, max, enum, pattern...), this does not perform a strict JSON
+                    // validation, which means the 'match' count may be higher than it should be.
+                    match++;
+                    log.log(Level.FINER, "Input data matches schema 'CreatedMetaAdAccount'");
+                }
+            } catch (Exception e) {
+                // deserialization failed, continue
+                log.log(Level.FINER, "Input data does not match schema 'CreatedMetaAdAccount'", e);
+            }
 
-  /**
-   * Return true if this createAdAccount_201_response object is equal to o.
-   */
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) {
-      return true;
+            if (match == 1) {
+                CreateAdAccount201Response ret = new CreateAdAccount201Response();
+                ret.setActualInstance(deserialized);
+                return ret;
+            }
+            throw new IOException(String.format(java.util.Locale.ROOT, "Failed deserialization for CreateAdAccount201Response: %d classes match result, expected 1", match));
+        }
+
+        /**
+         * Handle deserialization of the 'null' value.
+         */
+        @Override
+        public CreateAdAccount201Response getNullValue(DeserializationContext ctxt) throws JsonMappingException {
+            throw new JsonMappingException(ctxt.getParser(), "CreateAdAccount201Response cannot be null");
+        }
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    // store a list of schema names defined in oneOf
+    public static final Map<String, Class<?>> schemas = new HashMap<>();
+
+    public CreateAdAccount201Response() {
+        super("oneOf", Boolean.FALSE);
     }
-    CreateAdAccount201Response createAdAccount201Response = (CreateAdAccount201Response) o;
-    return Objects.equals(this.adAccountId, createAdAccount201Response.adAccountId) &&
-        Objects.equals(this.businessId, createAdAccount201Response.businessId) &&
-        Objects.equals(this.connectionUpdated, createAdAccount201Response.connectionUpdated) &&
-        Objects.equals(this.paymentMethodRequired, createAdAccount201Response.paymentMethodRequired) &&
-        Objects.equals(this.adsManagerUrl, createAdAccount201Response.adsManagerUrl) &&
-        Objects.equals(this.nextSteps, createAdAccount201Response.nextSteps) &&
-        Objects.equals(this.warnings, createAdAccount201Response.warnings);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(adAccountId, businessId, connectionUpdated, paymentMethodRequired, adsManagerUrl, nextSteps, warnings);
-  }
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class CreateAdAccount201Response {\n");
-    sb.append("    adAccountId: ").append(toIndentedString(adAccountId)).append("\n");
-    sb.append("    businessId: ").append(toIndentedString(businessId)).append("\n");
-    sb.append("    connectionUpdated: ").append(toIndentedString(connectionUpdated)).append("\n");
-    sb.append("    paymentMethodRequired: ").append(toIndentedString(paymentMethodRequired)).append("\n");
-    sb.append("    adsManagerUrl: ").append(toIndentedString(adsManagerUrl)).append("\n");
-    sb.append("    nextSteps: ").append(toIndentedString(nextSteps)).append("\n");
-    sb.append("    warnings: ").append(toIndentedString(warnings)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(Object o) {
-    if (o == null) {
-      return "null";
+    public CreateAdAccount201Response(CreatedGoogleAdAccount o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    public CreateAdAccount201Response(CreatedMetaAdAccount o) {
+        super("oneOf", Boolean.FALSE);
+        setActualInstance(o);
+    }
+
+    static {
+        schemas.put("CreatedGoogleAdAccount", CreatedGoogleAdAccount.class);
+        schemas.put("CreatedMetaAdAccount", CreatedMetaAdAccount.class);
+        JSON.registerDescendants(CreateAdAccount201Response.class, Collections.unmodifiableMap(schemas));
+    }
+
+    @Override
+    public Map<String, Class<?>> getSchemas() {
+        return CreateAdAccount201Response.schemas;
+    }
+
+    /**
+     * Set the instance that matches the oneOf child schema, check
+     * the instance parameter is valid against the oneOf child schemas:
+     * CreatedGoogleAdAccount, CreatedMetaAdAccount
+     *
+     * It could be an instance of the 'oneOf' schemas.
+     * The oneOf child schemas may themselves be a composed schema (allOf, anyOf, oneOf).
+     */
+    @Override
+    public void setActualInstance(Object instance) {
+        if (JSON.isInstanceOf(CreatedGoogleAdAccount.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        if (JSON.isInstanceOf(CreatedMetaAdAccount.class, instance, new HashSet<Class<?>>())) {
+            super.setActualInstance(instance);
+            return;
+        }
+
+        throw new RuntimeException("Invalid instance type. Must be CreatedGoogleAdAccount, CreatedMetaAdAccount");
+    }
+
+    /**
+     * Get the actual instance, which can be the following:
+     * CreatedGoogleAdAccount, CreatedMetaAdAccount
+     *
+     * @return The actual instance (CreatedGoogleAdAccount, CreatedMetaAdAccount)
+     */
+    @Override
+    public Object getActualInstance() {
+        return super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CreatedGoogleAdAccount`. If the actual instance is not `CreatedGoogleAdAccount`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CreatedGoogleAdAccount`
+     * @throws ClassCastException if the instance is not `CreatedGoogleAdAccount`
+     */
+    public CreatedGoogleAdAccount getCreatedGoogleAdAccount() throws ClassCastException {
+        return (CreatedGoogleAdAccount)super.getActualInstance();
+    }
+
+    /**
+     * Get the actual instance of `CreatedMetaAdAccount`. If the actual instance is not `CreatedMetaAdAccount`,
+     * the ClassCastException will be thrown.
+     *
+     * @return The actual instance of `CreatedMetaAdAccount`
+     * @throws ClassCastException if the instance is not `CreatedMetaAdAccount`
+     */
+    public CreatedMetaAdAccount getCreatedMetaAdAccount() throws ClassCastException {
+        return (CreatedMetaAdAccount)super.getActualInstance();
+    }
+
+
 
   /**
    * Convert the instance into URL query string.
@@ -337,46 +281,20 @@ public class CreateAdAccount201Response {
 
     StringJoiner joiner = new StringJoiner("&");
 
-    // add `adAccountId` to the URL query string
-    if (getAdAccountId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sadAccountId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdAccountId()))));
+    if (getActualInstance() instanceof CreatedMetaAdAccount) {
+        if (getActualInstance() != null) {
+          joiner.add(((CreatedMetaAdAccount)getActualInstance()).toUrlQueryString(prefix + "one_of_0" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `businessId` to the URL query string
-    if (getBusinessId() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessId%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessId()))));
+    if (getActualInstance() instanceof CreatedGoogleAdAccount) {
+        if (getActualInstance() != null) {
+          joiner.add(((CreatedGoogleAdAccount)getActualInstance()).toUrlQueryString(prefix + "one_of_1" + suffix));
+        }
+        return joiner.toString();
     }
-
-    // add `connectionUpdated` to the URL query string
-    if (getConnectionUpdated() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sconnectionUpdated%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getConnectionUpdated()))));
-    }
-
-    // add `paymentMethodRequired` to the URL query string
-    if (getPaymentMethodRequired() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%spaymentMethodRequired%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPaymentMethodRequired()))));
-    }
-
-    // add `adsManagerUrl` to the URL query string
-    if (getAdsManagerUrl() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%sadsManagerUrl%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAdsManagerUrl()))));
-    }
-
-    // add `nextSteps` to the URL query string
-    if (getNextSteps() != null) {
-      joiner.add(String.format(java.util.Locale.ROOT, "%snextSteps%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getNextSteps()))));
-    }
-
-    // add `warnings` to the URL query string
-    if (getWarnings() != null) {
-      for (int i = 0; i < getWarnings().size(); i++) {
-        joiner.add(String.format(java.util.Locale.ROOT, "%swarnings%s%s=%s", prefix, suffix,
-            "".equals(suffix) ? "" : String.format(java.util.Locale.ROOT, "%s%d%s", containerPrefix, i, containerSuffix),
-            ApiClient.urlEncode(ApiClient.valueToString(getWarnings().get(i)))));
-      }
-    }
-
-    return joiner.toString();
+    return null;
   }
+
 }
 

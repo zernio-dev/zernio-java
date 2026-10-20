@@ -2,18 +2,36 @@
 
 # CreateAdAccount201Response
 
+## oneOf schemas
+* [CreatedGoogleAdAccount](CreatedGoogleAdAccount.md)
+* [CreatedMetaAdAccount](CreatedMetaAdAccount.md)
 
-## Properties
+## Example
+```java
+// Import classes:
+import dev.zernio.model.CreateAdAccount201Response;
+import dev.zernio.model.CreatedGoogleAdAccount;
+import dev.zernio.model.CreatedMetaAdAccount;
 
-| Name | Type | Description | Notes |
-|------------ | ------------- | ------------- | -------------|
-|**adAccountId** | **String** | New Meta ad account ID for subsequent ads calls. |  |
-|**businessId** | **String** | Owning business portfolio ID. |  |
-|**connectionUpdated** | **Boolean** | Whether the connection scope and discovery schedule were updated. |  |
-|**paymentMethodRequired** | **Boolean** | Always true as a delivery prerequisite. This is not a live funding-source check. Confirm payment or invoicing in Ads Manager. |  |
-|**adsManagerUrl** | **URI** | Open the created account in Ads Manager. |  |
-|**nextSteps** | **String** | Payment setup instructions for the user. |  |
-|**warnings** | **List&lt;String&gt;** | Recovery instructions if the account could not be attached to the connection. |  |
+public class Example {
+    public static void main(String[] args) {
+        CreateAdAccount201Response exampleCreateAdAccount201Response = new CreateAdAccount201Response();
 
+        // create a new CreatedGoogleAdAccount
+        CreatedGoogleAdAccount exampleCreatedGoogleAdAccount = new CreatedGoogleAdAccount();
+        // set CreateAdAccount201Response to CreatedGoogleAdAccount
+        exampleCreateAdAccount201Response.setActualInstance(exampleCreatedGoogleAdAccount);
+        // to get back the CreatedGoogleAdAccount set earlier
+        CreatedGoogleAdAccount testCreatedGoogleAdAccount = (CreatedGoogleAdAccount) exampleCreateAdAccount201Response.getActualInstance();
+
+        // create a new CreatedMetaAdAccount
+        CreatedMetaAdAccount exampleCreatedMetaAdAccount = new CreatedMetaAdAccount();
+        // set CreateAdAccount201Response to CreatedMetaAdAccount
+        exampleCreateAdAccount201Response.setActualInstance(exampleCreatedMetaAdAccount);
+        // to get back the CreatedMetaAdAccount set earlier
+        CreatedMetaAdAccount testCreatedMetaAdAccount = (CreatedMetaAdAccount) exampleCreateAdAccount201Response.getActualInstance();
+    }
+}
+```
 
 

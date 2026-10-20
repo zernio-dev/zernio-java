@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   ListCommerceChannels200Response.JSON_PROPERTY_CHANNELS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:02:23.497087856Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:13:04.208305450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCommerceChannels200Response {
   public static final String JSON_PROPERTY_CHANNELS = "channels";
   @javax.annotation.Nullable

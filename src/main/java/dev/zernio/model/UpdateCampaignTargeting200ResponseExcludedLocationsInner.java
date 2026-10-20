@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargeting200ResponseExcludedLocationsInner.JSON_PROPERTY_TYPE,
   UpdateCampaignTargeting200ResponseExcludedLocationsInner.JSON_PROPERTY_COUNTRY_CODE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:02:23.497087856Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:13:04.208305450Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargeting200ResponseExcludedLocationsInner {
   public static final String JSON_PROPERTY_GEO_TARGET_ID = "geoTargetId";
   @javax.annotation.Nullable

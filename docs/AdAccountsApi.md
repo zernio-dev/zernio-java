@@ -16,8 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**assignPageUserWithHttpInfo**](AdAccountsApi.md#assignPageUserWithHttpInfo) | **POST** /v1/ads/page-users | Assign a user to a Page |
 | [**attachAdLabel**](AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
 | [**attachAdLabelWithHttpInfo**](AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label |
-| [**createAdAccount**](AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account |
-| [**createAdAccountWithHttpInfo**](AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create Meta ad account |
+| [**createAdAccount**](AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create ad account |
+| [**createAdAccountWithHttpInfo**](AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create ad account |
 | [**createAdLabel**](AdAccountsApi.md#createAdLabel) | **POST** /v1/ads/labels | Create a Google Ads label |
 | [**createAdLabelWithHttpInfo**](AdAccountsApi.md#createAdLabelWithHttpInfo) | **POST** /v1/ads/labels | Create a Google Ads label |
 | [**createAdNegativeKeywordList**](AdAccountsApi.md#createAdNegativeKeywordList) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list |
@@ -1085,11 +1085,11 @@ ApiResponse<[**AttachAdLabel200Response**](AttachAdLabel200Response.md)>
 
 ## createAdAccount
 
-> CreateAdAccount201Response createAdAccount(createAdAccountRequest)
+> CreateAdAccount200Response createAdAccount(createAdAccountRequest)
 
-Create Meta ad account
+Create ad account
 
-Creates a new Meta ad account in the user&#39;s own business portfolio (a payment method must then be added in Ads Manager).  Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+Creates a new Meta ad account in the user&#39;s own business portfolio, or a Google Ads client account under a manager (MCC) account the connection reaches. Billing must then be set up on the platform.  **Meta** (omit &#x60;platform&#x60; or send &#x60;meta&#x60;).  Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. The Meta flow has no validateOnly or dry-run option. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call.  **Google** (send &#x60;platform: google&#x60;).  Google only creates accounts through a manager account, so the new client account is created under &#x60;managerCustomerId&#x60;, which must be a manager the Google user behind the googleads &#x60;accountId&#x60; reaches (directly or as a sub-manager). List them with GET /v1/ads/accounts/hierarchy. Whose manager it is (the integrator&#39;s or the end user&#39;s) is the caller&#39;s choice: pass the connection that reaches it.  &#x60;currency&#x60; (ISO 4217) and &#x60;timeZone&#x60; (IANA name, for example Europe/Madrid) cannot be changed after creation. The account starts without billing: set it up in Google Ads before ads can serve. Google caps how many accounts a manager can create and how many active client accounts it can hold.  The new customer is added to the connection (and to a scoped connection&#39;s allowlist), discovery is nudged immediately, and the returned adAccountId works with every other ads endpoint. &#x60;validateOnly: true&#x60; asks Google to validate the request without creating anything and returns 200. A real create is not idempotent: after a 502 with details.creationStatus&#x3D;unknown, check the manager in Google Ads before trying again. 
 
 ### Example
 
@@ -1114,7 +1114,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         CreateAdAccountRequest createAdAccountRequest = new CreateAdAccountRequest(); // CreateAdAccountRequest | 
         try {
-            CreateAdAccount201Response result = apiInstance.createAdAccount(createAdAccountRequest);
+            CreateAdAccount200Response result = apiInstance.createAdAccount(createAdAccountRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdAccountsApi#createAdAccount");
@@ -1136,7 +1136,7 @@ public class Example {
 
 ### Return type
 
-[**CreateAdAccount201Response**](CreateAdAccount201Response.md)
+[**CreateAdAccount200Response**](CreateAdAccount200Response.md)
 
 
 ### Authorization
@@ -1152,20 +1152,23 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **201** | Ad account created. Check connectionUpdated and payment instructions. |  -  |
-| **400** | Invalid input or Meta rejection. details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
+| **200** | Google validateOnly request accepted by Google. Nothing was created. |  -  |
+| **201** | Ad account created. Check connectionUpdated and the billing instructions. |  -  |
+| **400** | Invalid input, a managerCustomerId the connection does not reach, or a Meta or Google rejection. For Meta, details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads access denied or Meta permission missing. details.reason may be business_management_required, business_admin_required or business_access_required. |  -  |
+| **403** | Ads access denied, Meta permission missing (details.reason may be business_management_required, business_admin_required or business_access_required), or Google denied the connection&#39;s user permission on managerCustomerId. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
+| **429** | Google Ads rate limit or quota reached before the account was created. Retry later. |  -  |
+| **501** | platform google was sent with an accountId that is not a googleads connection. |  -  |
+| **502** | Creation outcome unknown (details.creationStatus&#x3D;unknown). Check Ads Manager or the Google Ads manager account before repeating this non-idempotent request. A Google validateOnly request answers 502 without creationStatus when Google did not respond; that is safe to retry. |  -  |
 
 ## createAdAccountWithHttpInfo
 
-> ApiResponse<CreateAdAccount201Response> createAdAccount createAdAccountWithHttpInfo(createAdAccountRequest)
+> ApiResponse<CreateAdAccount200Response> createAdAccount createAdAccountWithHttpInfo(createAdAccountRequest)
 
-Create Meta ad account
+Create ad account
 
-Creates a new Meta ad account in the user&#39;s own business portfolio (a payment method must then be added in Ads Manager).  Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. No validateOnly or dry-run option is supported. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call. 
+Creates a new Meta ad account in the user&#39;s own business portfolio, or a Google Ads client account under a manager (MCC) account the connection reaches. Billing must then be set up on the platform.  **Meta** (omit &#x60;platform&#x60; or send &#x60;meta&#x60;).  Creates a durable Meta ad account in the end user&#39;s own business portfolio using their connected Meta Ads token. Requires an active metaads accountId, Ads access, business_management permission and business admin access. Discover portfolios with GET /v1/ads/businesses. System-user tokens may return an empty businesses list; supply the known business ID in that case.  The self-serve account starts without a payment method. The user must add a payment method in Ads Manager before ads can deliver. Zernio cannot add payment methods. Meta may require business verification and limits how many accounts a business can create. Closing an account does not guarantee more capacity. An ad account cannot truly be deleted, even after closing it and removing it from a business.  timezoneId is Meta&#39;s numeric ID, not an IANA timezone name. Select it from https://developers.facebook.com/docs/marketing-api/reference/ad-account/timezone-ids/. For example, 1 is America/Los_Angeles. Meta validates supported currencies and IDs. endAdvertiser, mediaAgency and partner default to NONE for the self-serve flow.  The new account is added atomically to an existing scoped ad-account allowlist. Unrestricted connections stay unrestricted. Reconnecting the same Meta identity preserves this scope unless a caller explicitly replaces it. Discovery is nudged immediately. Use the returned adAccountId with the existing ads endpoints.  This operation is not idempotent and Zernio never automatically retries it. Unknown body fields are rejected. The Meta flow has no validateOnly or dry-run option. After a timeout or a 502 with details.creationStatus&#x3D;unknown, check the business in Ads Manager before attempting another creation. A 201 with connectionUpdated&#x3D;false means the account exists but needs reconnecting with adAccountIds containing the returned ID and the previous scoped IDs via GET /v1/connect/facebook/ads. Do not repeat the create call.  **Google** (send &#x60;platform: google&#x60;).  Google only creates accounts through a manager account, so the new client account is created under &#x60;managerCustomerId&#x60;, which must be a manager the Google user behind the googleads &#x60;accountId&#x60; reaches (directly or as a sub-manager). List them with GET /v1/ads/accounts/hierarchy. Whose manager it is (the integrator&#39;s or the end user&#39;s) is the caller&#39;s choice: pass the connection that reaches it.  &#x60;currency&#x60; (ISO 4217) and &#x60;timeZone&#x60; (IANA name, for example Europe/Madrid) cannot be changed after creation. The account starts without billing: set it up in Google Ads before ads can serve. Google caps how many accounts a manager can create and how many active client accounts it can hold.  The new customer is added to the connection (and to a scoped connection&#39;s allowlist), discovery is nudged immediately, and the returned adAccountId works with every other ads endpoint. &#x60;validateOnly: true&#x60; asks Google to validate the request without creating anything and returns 200. A real create is not idempotent: after a 502 with details.creationStatus&#x3D;unknown, check the manager in Google Ads before trying again. 
 
 ### Example
 
@@ -1191,7 +1194,7 @@ public class Example {
         AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
         CreateAdAccountRequest createAdAccountRequest = new CreateAdAccountRequest(); // CreateAdAccountRequest | 
         try {
-            ApiResponse<CreateAdAccount201Response> response = apiInstance.createAdAccountWithHttpInfo(createAdAccountRequest);
+            ApiResponse<CreateAdAccount200Response> response = apiInstance.createAdAccountWithHttpInfo(createAdAccountRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1215,7 +1218,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CreateAdAccount201Response**](CreateAdAccount201Response.md)>
+ApiResponse<[**CreateAdAccount200Response**](CreateAdAccount200Response.md)>
 
 
 ### Authorization
@@ -1231,12 +1234,15 @@ ApiResponse<[**CreateAdAccount201Response**](CreateAdAccount201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
-| **201** | Ad account created. Check connectionUpdated and payment instructions. |  -  |
-| **400** | Invalid input or Meta rejection. details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
+| **200** | Google validateOnly request accepted by Google. Nothing was created. |  -  |
+| **201** | Ad account created. Check connectionUpdated and the billing instructions. |  -  |
+| **400** | Invalid input, a managerCustomerId the connection does not reach, or a Meta or Google rejection. For Meta, details.reason identifies creation_limit, business_verification_required, unsupported_currency, unsupported_timezone or business_unavailable when recognized. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | Ads access denied or Meta permission missing. details.reason may be business_management_required, business_admin_required or business_access_required. |  -  |
+| **403** | Ads access denied, Meta permission missing (details.reason may be business_management_required, business_admin_required or business_access_required), or Google denied the connection&#39;s user permission on managerCustomerId. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
-| **502** | Creation outcome unknown. Check Ads Manager before repeating this non-idempotent request. |  -  |
+| **429** | Google Ads rate limit or quota reached before the account was created. Retry later. |  -  |
+| **501** | platform google was sent with an accountId that is not a googleads connection. |  -  |
+| **502** | Creation outcome unknown (details.creationStatus&#x3D;unknown). Check Ads Manager or the Google Ads manager account before repeating this non-idempotent request. A Google validateOnly request answers 502 without creationStatus when Google did not respond; that is safe to retry. |  -  |
 
 
 ## createAdLabel

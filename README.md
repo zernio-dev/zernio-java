@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.309.0
 
-- Build date: 2026-10-20T22:02:23.497087856Z[Etc/UTC]
+- Build date: 2026-10-20T22:13:04.208305450Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -223,8 +223,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**assignPageUserWithHttpInfo**](docs/AdAccountsApi.md#assignPageUserWithHttpInfo) | **POST** /v1/ads/page-users | Assign a user to a Page
 *AdAccountsApi* | [**attachAdLabel**](docs/AdAccountsApi.md#attachAdLabel) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
 *AdAccountsApi* | [**attachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#attachAdLabelWithHttpInfo) | **POST** /v1/ads/labels/{labelId}/assignments | Attach a Google Ads label
-*AdAccountsApi* | [**createAdAccount**](docs/AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create Meta ad account
-*AdAccountsApi* | [**createAdAccountWithHttpInfo**](docs/AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create Meta ad account
+*AdAccountsApi* | [**createAdAccount**](docs/AdAccountsApi.md#createAdAccount) | **POST** /v1/ads/accounts | Create ad account
+*AdAccountsApi* | [**createAdAccountWithHttpInfo**](docs/AdAccountsApi.md#createAdAccountWithHttpInfo) | **POST** /v1/ads/accounts | Create ad account
 *AdAccountsApi* | [**createAdLabel**](docs/AdAccountsApi.md#createAdLabel) | **POST** /v1/ads/labels | Create a Google Ads label
 *AdAccountsApi* | [**createAdLabelWithHttpInfo**](docs/AdAccountsApi.md#createAdLabelWithHttpInfo) | **POST** /v1/ads/labels | Create a Google Ads label
 *AdAccountsApi* | [**createAdNegativeKeywordList**](docs/AdAccountsApi.md#createAdNegativeKeywordList) | **POST** /v1/ads/accounts/negative-keyword-lists | Create a negative keyword list
@@ -2466,6 +2466,7 @@ Class | Method | HTTP request | Description
  - [CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
  - [CreateAccountGroup201ResponseGroup](docs/CreateAccountGroup201ResponseGroup.md)
  - [CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
+ - [CreateAdAccount200Response](docs/CreateAdAccount200Response.md)
  - [CreateAdAccount201Response](docs/CreateAdAccount201Response.md)
  - [CreateAdAccountRequest](docs/CreateAdAccountRequest.md)
  - [CreateAdAudience201Response](docs/CreateAdAudience201Response.md)
@@ -2575,6 +2576,7 @@ Class | Method | HTTP request | Description
  - [CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
  - [CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
  - [CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
+ - [CreateGoogleAdAccountRequest](docs/CreateGoogleAdAccountRequest.md)
  - [CreateGoogleAssetGroup200Response](docs/CreateGoogleAssetGroup200Response.md)
  - [CreateGoogleAssetGroup201Response](docs/CreateGoogleAssetGroup201Response.md)
  - [CreateGoogleAssetGroup201ResponseAssetGroup](docs/CreateGoogleAssetGroup201ResponseAssetGroup.md)
@@ -2619,6 +2621,7 @@ Class | Method | HTTP request | Description
  - [CreateMessagingAd200ResponseResultsInner](docs/CreateMessagingAd200ResponseResultsInner.md)
  - [CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
+ - [CreateMetaAdAccountRequest](docs/CreateMetaAdAccountRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
  - [CreatePhoneNumberKycLinkRequestBranding](docs/CreatePhoneNumberKycLinkRequestBranding.md)
@@ -2725,6 +2728,8 @@ Class | Method | HTTP request | Description
  - [CreateYoutubePlaylist201Response](docs/CreateYoutubePlaylist201Response.md)
  - [CreateYoutubePlaylist201ResponsePlaylist](docs/CreateYoutubePlaylist201ResponsePlaylist.md)
  - [CreateYoutubePlaylistRequest](docs/CreateYoutubePlaylistRequest.md)
+ - [CreatedGoogleAdAccount](docs/CreatedGoogleAdAccount.md)
+ - [CreatedMetaAdAccount](docs/CreatedMetaAdAccount.md)
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
