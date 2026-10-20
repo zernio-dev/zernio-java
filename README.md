@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.304.0
 
-- Build date: 2026-10-20T10:48:51.178272226Z[Etc/UTC]
+- Build date: 2026-10-20T17:57:48.951720483Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -3865,6 +3865,7 @@ Class | Method | HTTP request | Description
  - [PostUpdateResponse](docs/PostUpdateResponse.md)
  - [PostUserId](docs/PostUserId.md)
  - [PostsListResponse](docs/PostsListResponse.md)
+ - [PostsListResponsePagination](docs/PostsListResponsePagination.md)
  - [PreflightBrandedCallingIdentity200Response](docs/PreflightBrandedCallingIdentity200Response.md)
  - [PreflightBrandedCallingIdentity200ResponseFindingsInner](docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md)
  - [PreflightBrandedCallingIdentityRequest](docs/PreflightBrandedCallingIdentityRequest.md)

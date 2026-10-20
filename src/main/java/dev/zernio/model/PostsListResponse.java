@@ -24,8 +24,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
-import dev.zernio.model.Pagination;
 import dev.zernio.model.Post;
+import dev.zernio.model.PostsListResponsePagination;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   PostsListResponse.JSON_PROPERTY_POSTS,
   PostsListResponse.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T10:48:51.178272226Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T17:57:48.951720483Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PostsListResponse {
   public static final String JSON_PROPERTY_POSTS = "posts";
   @javax.annotation.Nullable
@@ -48,7 +48,7 @@ public class PostsListResponse {
 
   public static final String JSON_PROPERTY_PAGINATION = "pagination";
   @javax.annotation.Nullable
-  private Pagination pagination;
+  private PostsListResponsePagination pagination;
 
   public PostsListResponse() { 
   }
@@ -85,7 +85,7 @@ public class PostsListResponse {
   }
 
 
-  public PostsListResponse pagination(@javax.annotation.Nullable Pagination pagination) {
+  public PostsListResponse pagination(@javax.annotation.Nullable PostsListResponsePagination pagination) {
     this.pagination = pagination;
     return this;
   }
@@ -97,14 +97,14 @@ public class PostsListResponse {
   @javax.annotation.Nullable
   @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public Pagination getPagination() {
+  public PostsListResponsePagination getPagination() {
     return pagination;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_PAGINATION, required = false)
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
-  public void setPagination(@javax.annotation.Nullable Pagination pagination) {
+  public void setPagination(@javax.annotation.Nullable PostsListResponsePagination pagination) {
     this.pagination = pagination;
   }
 

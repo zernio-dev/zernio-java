@@ -6089,6 +6089,37 @@ paths:
           minimum: 0
           type: integer
         style: form
+      - description: "Opaque cursor from a previous response's `pagination.nextCursor`.\
+          \ Returns the page that follows it in the same `sortBy` order, and takes\
+          \ precedence over `page` and `offset`. Each cursor page costs the same however\
+          \ deep it is, unlike `page`/`offset`, which get slower the further you go;\
+          \ prefer it to walk a long history. Send the same filters and `sortBy` as\
+          \ the request that issued it: a cursor from another `sortBy` returns 400.\
+          \ Not available with `sortBy=status` or `sortBy=platform`, or with `source=external`."
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Comma-separated list of post fields to return. Each post then\
+          \ carries `_id` plus only these fields, which makes large pages much cheaper:\
+          \ leave out `platforms`, `content`, `mediaItems` or `metadata` when you\
+          \ do not need them. Accepted: `userId`, `title`, `content`, `mediaItems`,\
+          \ `platforms`, `scheduledFor`, `timezone`, `status`, `tags`, `hashtags`,\
+          \ `mentions`, `visibility`, `metadata`, `recycling`, `recycledFromPostId`,\
+          \ `queuedFromProfile`, `queueId`, `createdAt`, `updatedAt`. An unknown field\
+          \ returns 400 naming it. `fields=_id` returns ids only. Omit it (or send\
+          \ it empty) for the full post. Not available with `source=external`."
+        example: "status,scheduledFor,platforms"
+        explode: true
+        in: query
+        name: fields
+        required: false
+        schema:
+          type: string
+        style: form
       - description: Which collection to read. `zernio` (default) returns posts authored
           through Zernio. `external` returns posts synced from the platform (existing/historical
           posts that were published outside Zernio). Combine with `accountId` and
@@ -77464,10 +77495,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 7
-        pages: 1
-        limit: 4
-        page: 2
+        total: 2
+        pages: 7
+        limit: 5
+        page: 5
       properties:
         page:
           type: integer
@@ -79036,6 +79067,7 @@ components:
     PostsListResponse:
       example:
         pagination:
+          nextCursor: nextCursor
           total: 7
           pages: 1
           limit: 4
@@ -79471,7 +79503,7 @@ components:
             $ref: "#/components/schemas/Post"
           type: array
         pagination:
-          $ref: "#/components/schemas/Pagination"
+          $ref: "#/components/schemas/PostsListResponse_pagination"
     PostGetResponse:
       example:
         post:
@@ -81425,10 +81457,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         backfillPending: true
       properties:
         ads:
@@ -81443,10 +81475,10 @@ components:
     AdTreeResponse:
       example:
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -128891,10 +128923,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -129653,10 +129685,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -129919,10 +129951,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -132604,10 +132636,10 @@ components:
         - backfillPending
       example:
         pagination:
-          total: 7
-          pages: 1
-          limit: 4
-          page: 2
+          total: 2
+          pages: 7
+          limit: 5
+          page: 5
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -163424,6 +163456,22 @@ components:
           items:
             $ref: "#/components/schemas/LinkedInAggregateAnalyticsDailyResponse_analytics_impressions_inner"
           type: array
+    PostsListResponse_pagination:
+      allOf:
+      - $ref: "#/components/schemas/Pagination"
+      - properties:
+          nextCursor:
+            description: "Cursor for the next page in the same sortBy order. Send\
+              \ it back as `cursor`. Null on the last page, and always null for `sortBy=status`\
+              \ or `sortBy=platform`. Absent for `source=external`."
+            nullable: true
+            type: string
+      example:
+        nextCursor: nextCursor
+        total: 7
+        pages: 1
+        limit: 4
+        page: 2
     TikTokDryRunVerdict_tiktok_inner:
       example:
         accountId: accountId

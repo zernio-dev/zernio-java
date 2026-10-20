@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   EditPostRequest.JSON_PROPERTY_CONTENT,
   EditPostRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T10:48:51.178272226Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T17:57:48.951720483Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class EditPostRequest {
   /**
    * The platform to edit the post on.

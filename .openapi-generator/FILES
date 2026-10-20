@@ -1848,6 +1848,7 @@ docs/PostUpdateResponse.md
 docs/PostUserId.md
 docs/PostsApi.md
 docs/PostsListResponse.md
+docs/PostsListResponsePagination.md
 docs/PreflightBrandedCallingIdentity200Response.md
 docs/PreflightBrandedCallingIdentity200ResponseFindingsInner.md
 docs/PreflightBrandedCallingIdentityRequest.md
@@ -4720,6 +4721,7 @@ src/main/java/dev/zernio/model/PostRetryResponse.java
 src/main/java/dev/zernio/model/PostUpdateResponse.java
 src/main/java/dev/zernio/model/PostUserId.java
 src/main/java/dev/zernio/model/PostsListResponse.java
+src/main/java/dev/zernio/model/PostsListResponsePagination.java
 src/main/java/dev/zernio/model/PreflightBrandedCallingIdentity200Response.java
 src/main/java/dev/zernio/model/PreflightBrandedCallingIdentity200ResponseFindingsInner.java
 src/main/java/dev/zernio/model/PreflightBrandedCallingIdentityRequest.java
@@ -5671,3 +5673,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PostsListResponsePaginationTest.java
