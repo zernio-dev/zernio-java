@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   GetAccountHealth200ResponseTokenStatus.JSON_PROPERTY_EXPIRES_IN,
   GetAccountHealth200ResponseTokenStatus.JSON_PROPERTY_NEEDS_REFRESH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T01:51:50.698487750Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:03:56.472426580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAccountHealth200ResponseTokenStatus {
   public static final String JSON_PROPERTY_VALID = "valid";
   @javax.annotation.Nullable

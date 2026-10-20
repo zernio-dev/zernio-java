@@ -3945,7 +3945,7 @@ ApiResponse<[**GetPinterestBoards200Response**](GetPinterestBoards200Response.md
 
 List subreddit flairs
 
-Returns available post flairs for a subreddit. Some subreddits require a flair when posting.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns available post flairs for a subreddit. Some subreddits require a flair when posting. 
 
 ### Example
 
@@ -4013,6 +4013,7 @@ public class Example {
 | **400** | Not a Reddit account or missing subreddit parameter |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## getRedditFlairsWithHttpInfo
 
@@ -4020,7 +4021,7 @@ public class Example {
 
 List subreddit flairs
 
-Returns available post flairs for a subreddit. Some subreddits require a flair when posting.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns available post flairs for a subreddit. Some subreddits require a flair when posting. 
 
 ### Example
 
@@ -4091,6 +4092,7 @@ ApiResponse<[**GetRedditFlairs200Response**](GetRedditFlairs200Response.md)>
 | **400** | Not a Reddit account or missing subreddit parameter |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 
 ## getRedditSubreddits
@@ -4099,7 +4101,7 @@ ApiResponse<[**GetRedditFlairs200Response**](GetRedditFlairs200Response.md)>
 
 List Reddit subreddits
 
-Returns the subreddits the connected Reddit account can post to. Use this to get a subreddit name when creating a Reddit post.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns the subreddits the connected Reddit account can post to. Use this to get a subreddit name when creating a Reddit post. 
 
 ### Example
 
@@ -4165,6 +4167,7 @@ public class Example {
 | **400** | Not a Reddit account |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## getRedditSubredditsWithHttpInfo
 
@@ -4172,7 +4175,7 @@ public class Example {
 
 List Reddit subreddits
 
-Returns the subreddits the connected Reddit account can post to. Use this to get a subreddit name when creating a Reddit post.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns the subreddits the connected Reddit account can post to. Use this to get a subreddit name when creating a Reddit post. 
 
 ### Example
 
@@ -4241,6 +4244,7 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 | **400** | Not a Reddit account |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 
 ## getShopifyConnectUrl
@@ -4413,7 +4417,7 @@ ApiResponse<[**GetConnectUrl200Response**](GetConnectUrl200Response.md)>
 
 Get subreddit rules
 
-Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
 
 ### Example
 
@@ -4482,6 +4486,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or subreddit not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## getSubredditRulesWithHttpInfo
 
@@ -4489,7 +4494,7 @@ public class Example {
 
 Get subreddit rules
 
-Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Returns a subreddit&#39;s posting rules plus Reddit&#39;s site-wide rules, so you can check them before submitting and avoid a removal.  Use this alongside &#x60;POST /v1/tools/validate/subreddit&#x60;, which only confirms that a subreddit exists and reports its basic posting settings. 
 
 ### Example
 
@@ -4561,6 +4566,7 @@ ApiResponse<[**GetSubredditRules200Response**](GetSubredditRules200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account or subreddit not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 
 ## getTelegramConnectStatus
@@ -8305,7 +8311,7 @@ ApiResponse<[**SelectSnapchatProfile200Response**](SelectSnapchatProfile200Respo
 
 Set Reddit post flair
 
-Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
 
 ### Example
 
@@ -8374,6 +8380,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## setRedditPostFlairWithHttpInfo
 
@@ -8381,7 +8388,7 @@ public class Example {
 
 Set Reddit post flair
 
-Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Applies a flair to a post the connected account already published. Use the GET on this path to list the available &#x60;flairTemplateId&#x60; values for the subreddit.  Flair can also be set at submit time by passing &#x60;flairId&#x60; in &#x60;platformSpecificData&#x60; when creating the post. This endpoint is for changing it afterwards.  The subreddit must allow users to select their own post flair. Setting flair on another user&#39;s post requires moderator permissions, which Zernio does not request. 
 
 ### Example
 
@@ -8453,6 +8460,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses (e.g. subreddit does not allow user flair selection) are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 
 ## updateFacebookPage
@@ -9083,7 +9091,7 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 
 Set default subreddit
 
-Sets the default subreddit used when publishing posts for this Reddit account.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Sets the default subreddit used when publishing posts for this Reddit account. 
 
 ### Example
 
@@ -9151,6 +9159,7 @@ public class Example {
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## updateRedditSubredditsWithHttpInfo
 
@@ -9158,7 +9167,7 @@ public class Example {
 
 Set default subreddit
 
-Sets the default subreddit used when publishing posts for this Reddit account.
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Sets the default subreddit used when publishing posts for this Reddit account. 
 
 ### Example
 
@@ -9229,6 +9238,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 
 ## updateYoutubeDefaultPlaylist
@@ -9391,7 +9401,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Vote on a Reddit post or comment
 
-Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
 
 ### Example
 
@@ -9460,6 +9470,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## voteRedditThingWithHttpInfo
 
@@ -9467,7 +9478,7 @@ public class Example {
 
 Vote on a Reddit post or comment
 
-Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Cast, change, or clear the connected account&#39;s vote on a Reddit post or comment.  **Reddit requires that votes be cast by humans.** Reddit&#39;s API terms permit a client to proxy a human&#39;s action one-for-one, and prohibit a bot from deciding how to vote or from amplifying a human&#39;s vote. Call this endpoint only in direct response to an explicit action by the account owner. Automated or agent-decided voting is vote manipulation and puts API access at risk. 
 
 ### Example
 
@@ -9539,4 +9550,5 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Account not found |  -  |
 | **502** | Reddit was unreachable or returned an unclassified error. Reddit 4xx statuses are forwarded as-is. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 

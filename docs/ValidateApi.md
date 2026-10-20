@@ -459,7 +459,7 @@ ApiResponse<[**ValidatePostLength200Response**](ValidatePostLength200Response.md
 
 Check subreddit existence
 
-Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
 
 ### Example
 
@@ -525,6 +525,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Subreddit lookup result |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 
 ## validateSubredditWithHttpInfo
 
@@ -532,7 +533,7 @@ public class Example {
 
 Check subreddit existence
 
-Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
 
 ### Example
 
@@ -601,4 +602,5 @@ ApiResponse<[**ValidateSubreddit200Response**](ValidateSubreddit200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Subreddit lookup result |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **503** | Organic Reddit is temporarily unavailable while Reddit blocks third-party API access (&#x60;PLATFORM_DISABLED&#x60;). |  -  |
 

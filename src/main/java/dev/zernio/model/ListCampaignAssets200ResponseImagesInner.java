@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ListCampaignAssets200ResponseImagesInner.JSON_PROPERTY_WIDTH,
   ListCampaignAssets200ResponseImagesInner.JSON_PROPERTY_HEIGHT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T01:51:50.698487750Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:03:56.472426580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListCampaignAssets200ResponseImagesInner {
   public static final String JSON_PROPERTY_ASSET_RESOURCE_NAME = "assetResourceName";
   @javax.annotation.Nullable

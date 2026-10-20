@@ -58,7 +58,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T01:51:50.698487750Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:03:56.472426580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ValidateApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -546,7 +546,7 @@ public class ValidateApi {
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+   * Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
    * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ValidateSubreddit200Response
@@ -558,7 +558,7 @@ public class ValidateApi {
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+   * Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
    * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
@@ -572,7 +572,7 @@ public class ValidateApi {
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+   * Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
    * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @return ApiResponse&lt;ValidateSubreddit200Response&gt;
@@ -584,7 +584,7 @@ public class ValidateApi {
 
   /**
    * Check subreddit existence
-   * Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
+   * Temporarily unavailable: Reddit has blocked third-party apps from its API, so this endpoint returns 503 &#x60;PLATFORM_DISABLED&#x60; until Reddit restores access. Reddit Ads is not affected.  Check if a subreddit exists and return basic info (title, subscriber count, NSFW status, post types allowed).  When accountId is provided, uses authenticated Reddit OAuth API with automatic token refresh (recommended). Falls back to Reddit&#39;s public JSON API, which may be unreliable from server IPs. Returns exists: false for private, banned, or nonexistent subreddits. 
    * @param name Subreddit name (with or without \&quot;r/\&quot; prefix) (required)
    * @param accountId Reddit account ID for authenticated lookup (recommended for reliable results) (optional)
    * @param headers Optional headers to include in the request
