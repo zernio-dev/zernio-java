@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.301.1
+  version: 1.302.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -37102,6 +37102,8 @@ paths:
           description: Search terms
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -37180,6 +37182,8 @@ paths:
           description: Recommendations.
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -37235,6 +37239,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -37280,6 +37286,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -37363,6 +37371,8 @@ paths:
           description: Portfolio bid strategies
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -37394,6 +37404,8 @@ paths:
               $ref: "#/components/schemas/createBidStrategy_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "201":
@@ -37450,6 +37462,8 @@ paths:
               $ref: "#/components/schemas/updateBidStrategy_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "200":
@@ -37515,6 +37529,8 @@ paths:
           description: Shared budgets
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -37559,6 +37575,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -37684,6 +37702,8 @@ paths:
           description: Local Services leads
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -37767,6 +37787,8 @@ paths:
           description: Lead conversations
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -37934,6 +37956,8 @@ paths:
               $ref: "#/components/schemas/addAdKeywords_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "201":
@@ -37980,6 +38004,8 @@ paths:
           type: string
         style: simple
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "200":
@@ -38029,6 +38055,8 @@ paths:
               $ref: "#/components/schemas/updateAdKeyword_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "200":
@@ -38349,6 +38377,8 @@ paths:
               $ref: "#/components/schemas/createAdCampaign_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -38444,9 +38474,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: No ads found for this campaign
       security:
@@ -38646,8 +38675,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
@@ -38749,8 +38778,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -38825,6 +38859,8 @@ paths:
               $ref: "#/components/schemas/deleteAdCampaign_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           content:
             application/json:
@@ -39088,9 +39124,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -39168,6 +39203,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/listCampaignNegativeKeywords_200_response"
           description: Campaign-level negative keywords
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -39224,6 +39261,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Campaign not found
         "429":
@@ -39373,9 +39412,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Source campaign not found
         "501":
@@ -39546,9 +39584,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Campaign not found
         "501":
@@ -39740,9 +39777,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -39815,9 +39851,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Source ad set not found
         "501":
@@ -39890,9 +39925,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad not found
         "501":
@@ -39939,6 +39973,8 @@ paths:
           description: Ad set deleted
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Ad set not found
         "501":
@@ -40127,9 +40163,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad set not found
         "409":
@@ -40221,9 +40256,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad set not found
       security:
@@ -40685,6 +40719,8 @@ paths:
           description: Ad cancelled
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -40998,9 +41034,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
@@ -41102,9 +41137,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad not found
       security:
@@ -41208,7 +41242,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41284,7 +41319,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: "Ads access is required. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41353,7 +41393,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41414,7 +41455,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41516,7 +41558,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41592,7 +41635,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: "Ads access is required. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41661,7 +41709,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -41722,7 +41771,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -42153,6 +42203,8 @@ paths:
         "400":
           description: "Invalid input, or Google rejected the request; the message\
             \ carries Google's error"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -42202,6 +42254,8 @@ paths:
         "400":
           description: "Invalid input, or Google rejected the request; the message\
             \ carries Google's error"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -42538,7 +42592,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "TikTok only: the connection cannot read that advertiser."
+          description: "TikTok: the connection cannot read that advertiser. Also returned\
+            \ with code `ad_account_not_selected` when the connection has selected\
+            \ ad accounts and the ad account this request targets is not among them;\
+            \ `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "429":
           content:
             application/json:
@@ -42897,9 +42957,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           description: Ad not found
         "405":
@@ -43562,6 +43621,8 @@ paths:
         "400":
           description: "Invalid input, a Google since older than 30 days, or the platform\
             \ rejected the query"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "501":
@@ -43601,6 +43662,8 @@ paths:
               $ref: "#/components/schemas/createRfPrediction_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -43661,6 +43724,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -43760,6 +43825,8 @@ paths:
               $ref: "#/components/schemas/reserveRfPrediction_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -44727,6 +44794,8 @@ paths:
           description: Ad labels
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "501":
@@ -44767,6 +44836,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -44840,6 +44911,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Label not found on this customer, or account unavailable"
         "409":
@@ -44889,6 +44962,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Label not found on this customer, or account unavailable"
         "409":
@@ -45019,6 +45094,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Label not found on this customer, or account unavailable"
         "409":
@@ -45073,6 +45150,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Label not found on this customer, or account unavailable"
         "409":
@@ -45192,6 +45271,8 @@ paths:
               $ref: "#/components/schemas/createHighDemandPeriod_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -45333,6 +45414,8 @@ paths:
               $ref: "#/components/schemas/createAdCreative_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -45396,6 +45479,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -45535,6 +45620,8 @@ paths:
               $ref: "#/components/schemas/updateAdCreative_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -45694,6 +45781,8 @@ paths:
               $ref: "#/components/schemas/createValueRuleSet_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -45981,7 +46070,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: "Ads access and permission to the selected account are required.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46042,7 +46137,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: |
+            Ads access and permission to the selected account are required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46147,7 +46243,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: |
+            Ads access and permission to the selected account are required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46264,7 +46361,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: "Ads access and permission to the selected account are required.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46329,7 +46432,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: |
+            Ads access and permission to the selected account are required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46400,7 +46504,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: |
+            Ads access and permission to the selected account are required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46483,7 +46588,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: "Ads access and permission to the selected account are required.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46549,7 +46660,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access and permission to the selected account are required.
+          description: |
+            Ads access and permission to the selected account are required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -46634,7 +46746,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -46749,7 +46862,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -46800,7 +46914,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -46878,7 +46993,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -46994,7 +47110,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -47047,7 +47164,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -47125,7 +47243,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -47244,7 +47363,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -47299,7 +47419,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access is required.
+          description: |
+            Ads access is required. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -47406,6 +47527,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -47454,6 +47577,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -47520,7 +47645,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Meta refused: the token lacks business_management or business\
-            \ admin access."
+            \ admin access. Also returned with code `ad_account_not_selected` when\
+            \ the connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "429":
           $ref: "#/components/responses/RateLimited"
         "501":
@@ -47637,7 +47767,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Meta refused: the token lacks business_management or business\
-            \ admin access."
+            \ admin access. Also returned with code `ad_account_not_selected` when\
+            \ the connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "429":
           $ref: "#/components/responses/RateLimited"
         "501":
@@ -48020,7 +48155,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Meta refused: the token cannot manage this ad account."
+          description: "Meta refused: the token cannot manage this ad account. Also\
+            \ returned with code `ad_account_not_selected` when the connection has\
+            \ selected ad accounts and the ad account this request targets is not\
+            \ among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -48368,10 +48509,8 @@ paths:
         "429":
           $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
-          description: "Ads access required. Legacy plans need the Ads add-on; included\
-            \ by default on usage-based plans. Also returned with code `ads_allowance_exceeded`\
-            \ when the team has no payment method on file and has reached the 500\
-            \ free live ads: add a card to resume."
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "409":
           description: |
             The account may also be inactive or need reconnection (code ads_connection_required). Reconnect it and read GET /v1/accounts for its current ID before retrying.
@@ -48448,6 +48587,8 @@ paths:
           description: Asset groups and linked assets.
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -48514,6 +48655,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -48577,6 +48720,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -48630,6 +48775,8 @@ paths:
           description: The asset group.
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -48697,6 +48844,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -48767,6 +48916,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -48830,6 +48981,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -49179,10 +49332,8 @@ paths:
         "429":
           $ref: "#/components/responses/MetaAdAccountWriteLimited"
         "403":
-          description: "Ads access required. Legacy plans need the Ads add-on; included\
-            \ by default on usage-based plans. Also returned with code `ads_allowance_exceeded`\
-            \ when the team has no payment method on file and has reached the 500\
-            \ free live ads: add a card to resume."
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "422":
           description: |
             Platform ads connection required (TikTok Ads, X Ads) or missing linked account.
@@ -49412,7 +49563,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on required.
+          description: "Ads add-on required. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "422":
           description: "Meta rejected the lead form. Code 3 is Meta's generic app-capability\
             \ error and does not name a field; when the request set isPhoneSmsVerifyEnabled,\
@@ -49466,6 +49622,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: No lead form with that id on the Page this account manages.
       summary: Archive a lead form
@@ -49802,6 +49960,8 @@ paths:
               $ref: "#/components/schemas/uploadAdImage_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -49961,6 +50121,8 @@ paths:
               $ref: "#/components/schemas/uploadAdVideo_request"
         required: true
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -50037,6 +50199,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -52041,8 +52205,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
       security:
       - bearerAuth: []
       summary: Create custom audience
@@ -52091,8 +52255,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -52197,8 +52361,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -52262,8 +52426,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -52338,8 +52502,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/NotFound"
         "422":
@@ -52754,8 +52918,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: |
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans). Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -52822,6 +52986,8 @@ paths:
           description: Account conversion goals
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -52865,6 +53031,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -52927,6 +53095,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -52989,6 +53159,8 @@ paths:
           description: Custom conversion goals
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -53030,6 +53202,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -53103,6 +53277,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Goal not found on this customer, or account unavailable"
         "409":
@@ -53152,6 +53328,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: "Goal not found on this customer, or account unavailable"
         "409":
@@ -53198,6 +53376,8 @@ paths:
           description: Campaign conversion goals
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "404":
@@ -53254,6 +53434,8 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           description: Campaign not found
         "409":
@@ -53412,6 +53594,7 @@ paths:
           description: |
             Ads access required (Ads add-on on legacy plans, included on usage-based plans),
             or the connected LinkedIn account lacks the `rw_conversions` scope (reconnect required).
+            Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
@@ -53483,7 +53666,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: "Ads add-on or LinkedIn reconnect required. Also returned with\
+            \ code `ad_account_not_selected` when the connection has selected ad accounts\
+            \ and the ad account this request targets is not among them; `details`\
+            \ carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the\
+            \ ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds,\
+            \ which replaces the selection) or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
@@ -53607,7 +53795,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: "Ads add-on or LinkedIn reconnect required. Also returned with\
+            \ code `ad_account_not_selected` when the connection has selected ad accounts\
+            \ and the ad account this request targets is not among them; `details`\
+            \ carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the\
+            \ ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds,\
+            \ which replaces the selection) or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
@@ -53686,7 +53879,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: "Ads add-on or LinkedIn reconnect required. Also returned with\
+            \ code `ad_account_not_selected` when the connection has selected ad accounts\
+            \ and the ad account this request targets is not among them; `details`\
+            \ carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the\
+            \ ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds,\
+            \ which replaces the selection) or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
@@ -53812,7 +54010,12 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads add-on or LinkedIn reconnect required.
+          description: "Ads add-on or LinkedIn reconnect required. Also returned with\
+            \ code `ad_account_not_selected` when the connection has selected ad accounts\
+            \ and the ad account this request targets is not among them; `details`\
+            \ carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the\
+            \ ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds,\
+            \ which replaces the selection) or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "405":
@@ -54178,9 +54381,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
@@ -54238,9 +54440,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Returned with code `ads_allowance_exceeded` when the team\
-            \ has no payment method on file and has reached the 500 free live ads:\
-            \ add a card to resume."
+          description: |
+            Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
@@ -54329,9 +54530,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Forbidden. Also returned with code `ads_allowance_exceeded`\
-            \ when the team has no payment method on file and has reached the 500\
-            \ free live ads: add a card to resume."
+          description: |
+            Forbidden. Also returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
@@ -54459,7 +54659,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required, or the token lacks the ads permissions."
+          description: "Ads access required, or the token lacks the ads permissions.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
       security:
       - bearerAuth: []
       summary: Create custom conversion
@@ -56643,7 +56849,12 @@ paths:
         "403":
           description: "Ads access required (Ads add-on on legacy plans, included\
             \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
-            \ required)."
+            \ required). Also returned with code `ad_account_not_selected` when the\
+            \ connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -56868,7 +57079,12 @@ paths:
         "403":
           description: "Ads access required (Ads add-on on legacy plans, included\
             \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
-            \ required)."
+            \ required). Also returned with code `ad_account_not_selected` when the\
+            \ connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -56947,7 +57163,12 @@ paths:
         "403":
           description: "Ads access required (Ads add-on on legacy plans, included\
             \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
-            \ required)."
+            \ required). Also returned with code `ad_account_not_selected` when the\
+            \ connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -57092,7 +57313,12 @@ paths:
         "403":
           description: "Ads access required (Ads add-on on legacy plans, included\
             \ on usage-based plans), or the Meta token lacks ads permissions (reconnect\
-            \ required)."
+            \ required). Also returned with code `ad_account_not_selected` when the\
+            \ connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -57670,7 +57896,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Ads access required, or the platform token lacks the permission\
-            \ (reconnect required)."
+            \ (reconnect required). Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -57775,7 +58006,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Ads access required, or the platform token lacks the permission\
-            \ (reconnect required)."
+            \ (reconnect required). Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -57874,7 +58110,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Ads access required, or the platform token lacks the permission\
-            \ (reconnect required)."
+            \ (reconnect required). Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "429":
@@ -64003,6 +64244,32 @@ components:
         type: string
       style: simple
   responses:
+    AdAccountNotSelected:
+      content:
+        application/json:
+          example:
+            error: "Ad account act_222 is not in the selected ad accounts of connection\
+              \ 6a0000000000000000000001, so requests through this connection cannot\
+              \ act on it."
+            type: permission_error
+            code: ad_account_not_selected
+            param: adAccountId
+            details:
+              accountId: 6a0000000000000000000001
+              adAccountId: act_222
+              selectedAdAccountIds:
+              - act_111
+          schema:
+            $ref: "#/components/schemas/ErrorResponse"
+      description: "The connection has selected ad accounts (its ad-account scope,\
+        \ set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds)\
+        \ and the ad account this request targets is not among them, so the connection\
+        \ may not act on it even though its token can reach it. Code `ad_account_not_selected`.\
+        \ `details` carries `accountId` (the connection), `adAccountId` (the refused\
+        \ ad account) and `selectedAdAccountIds`. Add the ad account to the selection\
+        \ (adAccountIds replaces the whole selection, so pass the ids already selected\
+        \ plus this one) or use a connection that has it selected. Connections without\
+        \ a selection keep reaching every ad account their token can manage."
     CatalogPermissionDenied:
       content:
         application/json:
