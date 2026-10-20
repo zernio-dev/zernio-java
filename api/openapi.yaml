@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.305.0
+  version: 1.306.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4141,7 +4141,8 @@ paths:
     get:
       description: |
         Returns search keywords that triggered impressions for a Google Business Profile location.
-        Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded.
+        Data is aggregated monthly. Keywords Google reports only as below a threshold have `impressions` 0 and `impressionsThreshold` set to that threshold.
+        Returns up to 100 keywords per page. When `nextPageToken` is not null, pass it as `pageToken` with the same `startMonth` and `endMonth` to get the next page.
         Max 18 months of historical data. Requires the Analytics add-on.
       operationId: getGoogleBusinessSearchKeywords
       parameters:
@@ -4171,6 +4172,15 @@ paths:
           pattern: "^\\d{4}-\\d{2}$"
           type: string
         style: form
+      - description: The nextPageToken from the previous page. Valid only with the
+          same startMonth and endMonth as the request that returned it.
+        explode: true
+        in: query
+        name: pageToken
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -4188,12 +4198,19 @@ paths:
                     keywords:
                     - keyword: restaurant near me
                       impressions: 245
+                      impressionsThreshold: null
                     - keyword: best tapas barcelona
                       impressions: 89
+                      impressionsThreshold: null
                     - keyword: zernio
                       impressions: 34
-                    note: Keywords below a minimum impression threshold are excluded
-                      by Google
+                      impressionsThreshold: null
+                    - keyword: tapas delivery
+                      impressions: 0
+                      impressionsThreshold: 15
+                    nextPageToken: null
+                    note: Keywords Google reports only as below a threshold have impressions
+                      0 and impressionsThreshold set
               schema:
                 $ref: "#/components/schemas/getGoogleBusinessSearchKeywords_200_response"
           description: Search keywords with impression counts
@@ -95530,26 +95547,38 @@ components:
       example:
         impressions: 245
         keyword: restaurant near me
+        impressionsThreshold: 0
       properties:
         keyword:
           example: restaurant near me
           type: string
         impressions:
+          description: Impressions for the range. 0 when Google reports only a threshold.
           example: 245
           type: integer
+        impressionsThreshold:
+          description: Set when Google reports only that impressions were below this
+            value. null when impressions is exact.
+          nullable: true
+          type: integer
+          example: null
     getGoogleBusinessSearchKeywords_200_response:
       example:
         accountId: accountId
-        note: Keywords below a minimum impression threshold are excluded by Google
+        note: Keywords Google reports only as below a threshold have impressions 0
+          and impressionsThreshold set
         monthRange:
           startMonth: 2026-01
           endMonth: 2026-03
         keywords:
         - impressions: 245
           keyword: restaurant near me
+          impressionsThreshold: 0
         - impressions: 245
           keyword: restaurant near me
+          impressionsThreshold: 0
         success: true
+        nextPageToken: nextPageToken
         platform: googlebusiness
       properties:
         success:
@@ -95566,8 +95595,14 @@ components:
           items:
             $ref: "#/components/schemas/getGoogleBusinessSearchKeywords_200_response_keywords_inner"
           type: array
+        nextPageToken:
+          description: Pass as pageToken to fetch the next page. null on the last
+            page.
+          nullable: true
+          type: string
         note:
-          example: Keywords below a minimum impression threshold are excluded by Google
+          example: Keywords Google reports only as below a threshold have impressions
+            0 and impressionsThreshold set
           type: string
     getGoogleBusinessSearchKeywords_400_response:
       example:

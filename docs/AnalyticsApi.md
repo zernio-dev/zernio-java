@@ -2101,11 +2101,11 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 
 ## getGoogleBusinessSearchKeywords
 
-> GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth)
+> GetGoogleBusinessSearchKeywords200Response getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth, pageToken)
 
 Get Google Business Profile search keywords
 
-Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. Requires the Analytics add-on. 
 
 ### Example
 
@@ -2131,8 +2131,9 @@ public class Example {
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
         String startMonth = "startMonth_example"; // String | Start month (YYYY-MM). Defaults to 3 months ago.
         String endMonth = "endMonth_example"; // String | End month (YYYY-MM). Defaults to current month.
+        String pageToken = "pageToken_example"; // String | The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it.
         try {
-            GetGoogleBusinessSearchKeywords200Response result = apiInstance.getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth);
+            GetGoogleBusinessSearchKeywords200Response result = apiInstance.getGoogleBusinessSearchKeywords(accountId, startMonth, endMonth, pageToken);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AnalyticsApi#getGoogleBusinessSearchKeywords");
@@ -2153,6 +2154,7 @@ public class Example {
 | **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
 | **startMonth** | **String**| Start month (YYYY-MM). Defaults to 3 months ago. | [optional] |
 | **endMonth** | **String**| End month (YYYY-MM). Defaults to current month. | [optional] |
+| **pageToken** | **String**| The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it. | [optional] |
 
 ### Return type
 
@@ -2181,11 +2183,11 @@ public class Example {
 
 ## getGoogleBusinessSearchKeywordsWithHttpInfo
 
-> ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywords getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth)
+> ApiResponse<GetGoogleBusinessSearchKeywords200Response> getGoogleBusinessSearchKeywords getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth, pageToken)
 
 Get Google Business Profile search keywords
 
-Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords below a minimum impression threshold set by Google are excluded. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. Requires the Analytics add-on. 
 
 ### Example
 
@@ -2212,8 +2214,9 @@ public class Example {
         String accountId = "accountId_example"; // String | The Zernio SocialAccount ID for the Google Business Profile account.
         String startMonth = "startMonth_example"; // String | Start month (YYYY-MM). Defaults to 3 months ago.
         String endMonth = "endMonth_example"; // String | End month (YYYY-MM). Defaults to current month.
+        String pageToken = "pageToken_example"; // String | The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it.
         try {
-            ApiResponse<GetGoogleBusinessSearchKeywords200Response> response = apiInstance.getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth);
+            ApiResponse<GetGoogleBusinessSearchKeywords200Response> response = apiInstance.getGoogleBusinessSearchKeywordsWithHttpInfo(accountId, startMonth, endMonth, pageToken);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2236,6 +2239,7 @@ public class Example {
 | **accountId** | **String**| The Zernio SocialAccount ID for the Google Business Profile account. | |
 | **startMonth** | **String**| Start month (YYYY-MM). Defaults to 3 months ago. | [optional] |
 | **endMonth** | **String**| End month (YYYY-MM). Defaults to current month. | [optional] |
+| **pageToken** | **String**| The nextPageToken from the previous page. Valid only with the same startMonth and endMonth as the request that returned it. | [optional] |
 
 ### Return type
 
