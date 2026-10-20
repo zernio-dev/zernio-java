@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.309.1
+  version: 1.309.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -16292,6 +16292,69 @@ paths:
       tags:
       - Instagram
       x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators:
+    get:
+      description: |
+        Returns the accounts invited as collaborators on one of the connected
+        account's own posts (feed image, Reel or carousel), with whether each
+        invitation was accepted or is still pending. Use it to check who
+        accepted a collab post after publishing it.
+
+        Requires an Instagram account connected via **Facebook Login**. Meta
+        serves this edge on graph.facebook.com only, so accounts connected with
+        classic Instagram Login receive a 400
+        (`instagram_collaborators_require_facebook_login`) and must be
+        reconnected choosing the Facebook option.
+
+        Meta returns at most 5 collaborators and only those who allow
+        collaborator tagging. A post without collaborators returns an empty list.
+      operationId: listInstagramMediaCollaborators
+      parameters:
+      - description: The ID of a connected Instagram account (Facebook Login).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: "Instagram media ID of a post published by this account (digits\
+          \ only, e.g. the platformPostId of a published post)."
+        explode: false
+        in: path
+        name: mediaId
+        required: true
+        schema:
+          example: "18063237463112345"
+          pattern: "^[0-9]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInstagramMediaCollaborators_200_response"
+          description: Collaborators of the post
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account is not reachable by the caller (`account_not_found`),\
+            \ or the media does not exist or does not belong to this account (`resource_not_found`)."
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      summary: List the collaborators of an Instagram post
+      tags:
+      - Instagram
+      x-resource-group: publishing
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
@@ -77026,6 +77089,29 @@ components:
           example: "105890561436614"
           pattern: "^[0-9]+$"
           type: string
+    InstagramMediaCollaborator:
+      example:
+        inviteStatus: accepted
+        id: id
+        username: username
+      properties:
+        id:
+          description: App-scoped ID of the collaborator's Instagram account.
+          type: string
+        username:
+          description: Instagram handle of the collaborator.
+          nullable: true
+          type: string
+        inviteStatus:
+          description: accepted or pending. Any other value Meta adds later is passed
+            through in lowercase.
+          example: accepted
+          nullable: true
+          type: string
+      required:
+      - id
+      - inviteStatus
+      - username
     InstagramBusinessDiscovery:
       example:
         profile:
@@ -105812,6 +105898,32 @@ components:
       properties:
         audio:
           $ref: "#/components/schemas/InstagramAudioAsset"
+    listInstagramMediaCollaborators_200_response:
+      example:
+        data:
+        - inviteStatus: accepted
+          id: id
+          username: username
+        - inviteStatus: accepted
+          id: id
+          username: username
+        - inviteStatus: accepted
+          id: id
+          username: username
+        - inviteStatus: accepted
+          id: id
+          username: username
+        - inviteStatus: accepted
+          id: id
+          username: username
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/InstagramMediaCollaborator"
+          maxItems: 5
+          type: array
+      required:
+      - data
     getInstagramStoryInsights_200_response_data_metrics:
       example:
         tapsBack: 7

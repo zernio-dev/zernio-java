@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.309.1
+- API version: 1.309.2
 
-- Build date: 2026-10-20T22:27:27.448294345Z[Etc/UTC]
+- Build date: 2026-10-20T22:42:43.621940151Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.309.1</version>
+  <version>1.309.2</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.309.1"
+compile "dev.zernio:zernio-sdk:1.309.2"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.309.1.jar`
+- `target/zernio-sdk-1.309.2.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1359,6 +1359,8 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**getInstagramPublishingLimitWithHttpInfo**](docs/InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
 *InstagramApi* | [**getInstagramStoryInsightsWithHttpInfo**](docs/InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
+*InstagramApi* | [**listInstagramMediaCollaborators**](docs/InstagramApi.md#listInstagramMediaCollaborators) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post
+*InstagramApi* | [**listInstagramMediaCollaboratorsWithHttpInfo**](docs/InstagramApi.md#listInstagramMediaCollaboratorsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InstagramApi* | [**listInstagramStoriesWithHttpInfo**](docs/InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InstagramApi* | [**searchInstagramAudio**](docs/InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
@@ -3430,6 +3432,7 @@ Class | Method | HTTP request | Description
  - [InstagramBusinessDiscoveryProfile](docs/InstagramBusinessDiscoveryProfile.md)
  - [InstagramDemographicsResponse](docs/InstagramDemographicsResponse.md)
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
+ - [InstagramMediaCollaborator](docs/InstagramMediaCollaborator.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
@@ -3656,6 +3659,7 @@ Class | Method | HTTP request | Description
  - [ListInboxReviews200ResponseDataInnerReply](docs/ListInboxReviews200ResponseDataInnerReply.md)
  - [ListInboxReviews200ResponseDataInnerReviewer](docs/ListInboxReviews200ResponseDataInnerReviewer.md)
  - [ListInboxReviews200ResponseSummary](docs/ListInboxReviews200ResponseSummary.md)
+ - [ListInstagramMediaCollaborators200Response](docs/ListInstagramMediaCollaborators200Response.md)
  - [ListInstagramPages200Response](docs/ListInstagramPages200Response.md)
  - [ListInstagramPages200ResponsePagesInner](docs/ListInstagramPages200ResponsePagesInner.md)
  - [ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount](docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md)
