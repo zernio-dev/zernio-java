@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.311.0
+- API version: 1.312.0
 
-- Build date: 2026-10-20T23:14:43.903725720Z[Etc/UTC]
+- Build date: 2026-10-20T23:46:20.716001855Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.311.0</version>
+  <version>1.312.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.311.0"
+compile "dev.zernio:zernio-sdk:1.312.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.311.0.jar`
+- `target/zernio-sdk-1.312.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -267,12 +267,16 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**hideAdCommentWithHttpInfo**](docs/AdAccountsApi.md#hideAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/hide | Hide or unhide an ad comment
 *AdAccountsApi* | [**inviteAdAccountToManager**](docs/AdAccountsApi.md#inviteAdAccountToManager) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager
 *AdAccountsApi* | [**inviteAdAccountToManagerWithHttpInfo**](docs/AdAccountsApi.md#inviteAdAccountToManagerWithHttpInfo) | **POST** /v1/ads/accounts/manager-links | Invite a client account to a manager
+*AdAccountsApi* | [**inviteAdAccountUser**](docs/AdAccountsApi.md#inviteAdAccountUser) | **POST** /v1/ads/accounts/user-invitations | Invite a user to an ad account by email
+*AdAccountsApi* | [**inviteAdAccountUserWithHttpInfo**](docs/AdAccountsApi.md#inviteAdAccountUserWithHttpInfo) | **POST** /v1/ads/accounts/user-invitations | Invite a user to an ad account by email
 *AdAccountsApi* | [**listAccountCallouts**](docs/AdAccountsApi.md#listAccountCallouts) | **GET** /v1/ads/accounts/callouts | List account callouts
 *AdAccountsApi* | [**listAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#listAccountCalloutsWithHttpInfo) | **GET** /v1/ads/accounts/callouts | List account callouts
 *AdAccountsApi* | [**listAccountSitelinks**](docs/AdAccountsApi.md#listAccountSitelinks) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks
 *AdAccountsApi* | [**listAccountSitelinksWithHttpInfo**](docs/AdAccountsApi.md#listAccountSitelinksWithHttpInfo) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks
 *AdAccountsApi* | [**listAccountStructuredSnippets**](docs/AdAccountsApi.md#listAccountStructuredSnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
 *AdAccountsApi* | [**listAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
+*AdAccountsApi* | [**listAdAccountUserInvitations**](docs/AdAccountsApi.md#listAdAccountUserInvitations) | **GET** /v1/ads/accounts/user-invitations | List user access invitations
+*AdAccountsApi* | [**listAdAccountUserInvitationsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountUserInvitationsWithHttpInfo) | **GET** /v1/ads/accounts/user-invitations | List user access invitations
 *AdAccountsApi* | [**listAdAccountUsers**](docs/AdAccountsApi.md#listAdAccountUsers) | **GET** /v1/ads/accounts/users | Ad account users
 *AdAccountsApi* | [**listAdAccountUsersWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountUsersWithHttpInfo) | **GET** /v1/ads/accounts/users | Ad account users
 *AdAccountsApi* | [**listAdAccounts**](docs/AdAccountsApi.md#listAdAccounts) | **GET** /v1/ads/accounts | List ad accounts
@@ -321,6 +325,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**replaceAdNegativeKeywordListKeywordsWithHttpInfo**](docs/AdAccountsApi.md#replaceAdNegativeKeywordListKeywordsWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId}/keywords | Replace negative list keywords
 *AdAccountsApi* | [**replyToAdComment**](docs/AdAccountsApi.md#replyToAdComment) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
 *AdAccountsApi* | [**replyToAdCommentWithHttpInfo**](docs/AdAccountsApi.md#replyToAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
+*AdAccountsApi* | [**revokeAdAccountUserInvitation**](docs/AdAccountsApi.md#revokeAdAccountUserInvitation) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation
+*AdAccountsApi* | [**revokeAdAccountUserInvitationWithHttpInfo**](docs/AdAccountsApi.md#revokeAdAccountUserInvitationWithHttpInfo) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation
 *AdAccountsApi* | [**updateAccountCallouts**](docs/AdAccountsApi.md#updateAccountCallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts
 *AdAccountsApi* | [**updateAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#updateAccountCalloutsWithHttpInfo) | **PUT** /v1/ads/accounts/callouts | Update account callouts
 *AdAccountsApi* | [**updateAccountSitelinks**](docs/AdAccountsApi.md#updateAccountSitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks
@@ -3324,8 +3330,11 @@ Class | Method | HTTP request | Description
  - [GetYoutubePlaylists200ResponsePlaylistsInner](docs/GetYoutubePlaylists200ResponsePlaylistsInner.md)
  - [GoogleAdLabel](docs/GoogleAdLabel.md)
  - [GoogleAdLabelAssignments](docs/GoogleAdLabelAssignments.md)
+ - [GoogleAdsAccessRole](docs/GoogleAdsAccessRole.md)
  - [GoogleAdsHierarchyClient](docs/GoogleAdsHierarchyClient.md)
  - [GoogleAdsManagerLink](docs/GoogleAdsManagerLink.md)
+ - [GoogleAdsUserAccessInvitation](docs/GoogleAdsUserAccessInvitation.md)
+ - [GoogleAdsUserAccessInvitationResult](docs/GoogleAdsUserAccessInvitationResult.md)
  - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
  - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
@@ -3444,6 +3453,7 @@ Class | Method | HTTP request | Description
  - [InstallTrackingTagOnStore422ResponseDetails](docs/InstallTrackingTagOnStore422ResponseDetails.md)
  - [InstallTrackingTagOnStoreRequest](docs/InstallTrackingTagOnStoreRequest.md)
  - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
+ - [InviteAdAccountUserRequest](docs/InviteAdAccountUserRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
  - [KeywordEntryOneOf](docs/KeywordEntryOneOf.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
@@ -3492,6 +3502,7 @@ Class | Method | HTTP request | Description
  - [ListAccountSitelinks200ResponseSitelinksInner](docs/ListAccountSitelinks200ResponseSitelinksInner.md)
  - [ListAccountStructuredSnippets200Response](docs/ListAccountStructuredSnippets200Response.md)
  - [ListAccountStructuredSnippets200ResponseStructuredSnippetsInner](docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md)
+ - [ListAdAccountUserInvitations200Response](docs/ListAdAccountUserInvitations200Response.md)
  - [ListAdAccountUsers200Response](docs/ListAdAccountUsers200Response.md)
  - [ListAdAccounts200Response](docs/ListAdAccounts200Response.md)
  - [ListAdAccounts200ResponseAccountsInner](docs/ListAdAccounts200ResponseAccountsInner.md)
@@ -4053,6 +4064,7 @@ Class | Method | HTTP request | Description
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
+ - [RevokeAdAccountUserInvitation200Response](docs/RevokeAdAccountUserInvitation200Response.md)
  - [RevokeBusinessPartner200Response](docs/RevokeBusinessPartner200Response.md)
  - [RevokeConnectedApp200Response](docs/RevokeConnectedApp200Response.md)
  - [RfPrediction](docs/RfPrediction.md)
