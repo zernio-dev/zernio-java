@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetTrackingTagStoreInstall200Response.JSON_PROPERTY_PLATFORM,
   GetTrackingTagStoreInstall200Response.JSON_PROPERTY_INSTALL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:20:02.028362590Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T22:27:27.448294345Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTrackingTagStoreInstall200Response {
   /**
    * Gets or Sets platform
