@@ -6198,7 +6198,7 @@ public class Example {
 | **200** | The order |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **403** | The store has not granted orders.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve orders.read. |  -  |
 | **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -6278,7 +6278,7 @@ ApiResponse<[**GetCommerceOrder200Response**](GetCommerceOrder200Response.md)>
 | **200** | The order |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **403** | The store has not granted orders.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve orders.read. |  -  |
 | **404** | Account not found (code account_not_found) or order not found (code resource_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -8566,7 +8566,7 @@ public class Example {
 | **200** | Orders listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **403** | The store has not granted orders.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve orders.read. |  -  |
 | **404** | Account not found (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
@@ -8654,7 +8654,7 @@ ApiResponse<[**ListCommerceOrders200Response**](ListCommerceOrders200Response.md
 | **200** | Orders listed |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | The store has not granted orders.read (code insufficient_permissions). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve it. |  -  |
+| **403** | The store has not granted orders.read, or the platform has not yet approved Zernio&#39;s access to order and customer data (code insufficient_permissions; the message says which). GET /v1/commerce/store returns grantPermissionsUrl for the store owner to approve orders.read. |  -  |
 | **404** | Account not found (code account_not_found). |  -  |
 | **429** | Rate limited, either by Zernio or by the platform. Retry later. |  -  |
 
