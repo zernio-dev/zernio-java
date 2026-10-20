@@ -5697,8 +5697,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateAdAccount200ResponseTest.java
-src/test/java/dev/zernio/model/CreateGoogleAdAccountRequestTest.java
-src/test/java/dev/zernio/model/CreateMetaAdAccountRequestTest.java
-src/test/java/dev/zernio/model/CreatedGoogleAdAccountTest.java
-src/test/java/dev/zernio/model/CreatedMetaAdAccountTest.java
