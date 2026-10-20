@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CommerceMenuItem.JSON_PROPERTY_RESOURCE_ID,
   CommerceMenuItem.JSON_PROPERTY_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:14:08.490745375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:17:44.431027547Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceMenuItem {
   public static final String JSON_PROPERTY_ID = "id";
   private JsonNullable<String> id = JsonNullable.<String>undefined();

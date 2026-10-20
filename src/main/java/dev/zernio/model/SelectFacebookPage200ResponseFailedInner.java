@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   SelectFacebookPage200ResponseFailedInner.JSON_PROPERTY_CODE,
   SelectFacebookPage200ResponseFailedInner.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:14:08.490745375Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T02:17:44.431027547Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SelectFacebookPage200ResponseFailedInner {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
