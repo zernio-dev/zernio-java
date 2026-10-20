@@ -124,6 +124,7 @@ public class Example {
 | **200** | Appeal submitted; the registration is pending again. |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 ## appealSmsRegistrationWithHttpInfo
@@ -202,6 +203,7 @@ ApiResponse<[**AppealSmsRegistration200Response**](AppealSmsRegistration200Respo
 | **200** | Appeal submitted; the registration is pending again. |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration has no campaign to appeal (fix the brand and re-verify instead). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -432,6 +434,7 @@ public class Example {
 | **200** | Registration deactivated. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 ## deactivateSmsRegistrationWithHttpInfo
@@ -508,6 +511,7 @@ ApiResponse<[**DeactivateSmsRegistration200Response**](DeactivateSmsRegistration
 | **200** | Registration deactivated. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -1034,6 +1038,7 @@ public class Example {
 | **200** | Registration |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 ## getSmsRegistrationWithHttpInfo
@@ -1110,6 +1115,7 @@ ApiResponse<[**GetSmsRegistration200Response**](GetSmsRegistration200Response.md
 | **200** | Registration |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 
@@ -1332,6 +1338,7 @@ public class Example {
 | **200** | Registrations, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 
 ## listSmsRegistrationsWithHttpInfo
 
@@ -1405,6 +1412,7 @@ ApiResponse<[**ListSmsRegistrations200Response**](ListSmsRegistrations200Respons
 | **200** | Registrations, newest first |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 
 
 ## listSmsSenderIds
@@ -2060,6 +2068,7 @@ public class Example {
 | **200** | A new code was sent |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
@@ -2137,6 +2146,7 @@ ApiResponse<[**ResendSmsRegistrationOtp200Response**](ResendSmsRegistrationOtp20
 | **200** | A new code was sent |  -  |
 | **400** | Malformed &#x60;id&#x60;, or the registration is not awaiting a verification code. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **429** | A code was sent recently. Wait a minute before requesting another |  -  |
 
@@ -2214,6 +2224,7 @@ public class Example {
 | **200** | Reply recorded; the registration is back in review. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
@@ -2293,6 +2304,7 @@ ApiResponse<[**RespondToSmsRegistrationReview200Response**](RespondToSmsRegistra
 | **200** | Reply recorded; the registration is back in review. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 | **409** | The registration is not waiting on changes, or &#x60;requestId&#x60; is no longer the open request (reload it). |  -  |
 
@@ -2832,6 +2844,7 @@ public class Example {
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
@@ -2909,6 +2922,7 @@ ApiResponse<[**StartSmsRegistration200Response**](StartSmsRegistration200Respons
 | **200** | Registration submitted. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **422** | Carrier registry rejected a field; &#x60;param&#x60; names it when known. |  -  |
 | **409** | The brand already exists at the carrier and failed identity verification (a rejected registration of yours with the same EIN or legal name); the fix is applied to that brand on reply, a new registration would file and bill a second one. |  -  |
 
@@ -3288,6 +3302,7 @@ public class Example {
 | **200** | OTP result |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
 ## verifySmsRegistrationOtpWithHttpInfo
@@ -3366,5 +3381,6 @@ ApiResponse<[**VerifySmsRegistrationOtp200Response**](VerifySmsRegistrationOtp20
 | **200** | OTP result |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The caller is a team member limited to specific profiles; registrations cover the whole account. |  -  |
 | **404** | Registration not found |  -  |
 
