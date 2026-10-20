@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.300.0
+  version: 1.301.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -47792,6 +47792,13 @@ paths:
 
         For Reddit Ads (`redditads`): every Reddit ad account the connected Reddit user can reach,
         with `businessId`, `approvalStatus` (Reddit's `admin_approval`), `timezone` and `type`.
+
+        Every listed ad account carries `selected`: whether it is in the connection's ad-account
+        selection (the ad accounts picked at connect time or in the dashboard picker, the ones
+        Zernio syncs). On a connection without a selection every ad account is `selected: true`.
+        Writes through /v1/ads endpoints to an ad account with `selected: false` are being
+        restricted and will answer `403 ad_account_not_selected`; add it to the selection first
+        (dashboard picker, or `GET /v1/connect/{platform}/ads` with `adAccountIds`).
       operationId: listAdAccounts
       parameters:
       - description: Account ID
@@ -47827,7 +47834,8 @@ paths:
           \ i.e. those inside its ad-account selection. Without it every customer\
           \ the Google login can reach is listed, including ones selected on another\
           \ connection of the same login, which those endpoints answer with a 400.\
-          \ Ignored on other platforms."
+          \ Ignored on other platforms. On every platform, each item's `selected`\
+          \ flags selection membership without narrowing the list."
         explode: true
         in: query
         name: inScopeOnly
@@ -140803,6 +140811,7 @@ components:
           displayString: displayString
           id: id
           type: 7
+        selected: true
         status: status
       properties:
         id:
@@ -140916,6 +140925,14 @@ components:
             Human-readable reason when selectable is false; null when selectable.
           nullable: true
           type: string
+        selected:
+          description: "Always present. True when the ad account is in this connection's\
+            \ ad-account selection, or when the connection has no selection (then\
+            \ every ad account is usable). For a posting account (e.g. facebook, twitter)\
+            \ the selection of its ads connection applies. Unrelated to `selectable`,\
+            \ which is the platform's own status. Writes to an ad account with `selected:\
+            \ false` will answer 403 `ad_account_not_selected`."
+          type: boolean
     listAdAccounts_200_response:
       example:
         stale: true
@@ -140944,6 +140961,7 @@ components:
             displayString: displayString
             id: id
             type: 7
+          selected: true
           status: status
         - approvalStatus: approvalStatus
           disableReason: 0
@@ -140969,6 +140987,7 @@ components:
             displayString: displayString
             id: id
             type: 7
+          selected: true
           status: status
         cachedAt: 2000-01-23T04:56:07.000+00:00
       properties:
