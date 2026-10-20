@@ -16,7 +16,7 @@ Partial edit of a Google Demand Gen ad, sent in one atomic Google request. Every
 |**callToAction** | **String** | Image and carousel ads only. |  [optional] |
 |**images** | [**GoogleDemandGenUpdateImages**](GoogleDemandGenUpdateImages.md) |  |  [optional] |
 |**youtubeVideoIds** | **List&lt;String&gt;** | Video ads only. |  [optional] |
-|**channels** | [**List&lt;ChannelsEnum&gt;**](#List&lt;ChannelsEnum&gt;) | Replaces the ad group&#39;s channel controls; only the listed channels serve. |  [optional] |
+|**channels** | [**List&lt;ChannelsEnum&gt;**](#List&lt;ChannelsEnum&gt;) | Replaces the ad group&#39;s channel controls. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to leave the ad group&#39;s channel controls unchanged. |  [optional] |
 |**audience** | [**GoogleDemandGenAudience**](GoogleDemandGenAudience.md) |  |  [optional] |
 |**audienceId** | **String** | Attach an existing Google Audience by numeric id instead of audience. |  [optional] |
 

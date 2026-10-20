@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   LinkedInPlatformData.JSON_PROPERTY_GEO_RESTRICTION,
   LinkedInPlatformData.JSON_PROPERTY_POLL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:31:42.053365785Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:38:50.533502331Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformData {
   public static final String JSON_PROPERTY_DOCUMENT_TITLE = "documentTitle";
   @javax.annotation.Nullable

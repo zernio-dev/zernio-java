@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   HideAdComment200Response.JSON_PROPERTY_COMMENT_ID,
   HideAdComment200Response.JSON_PROPERTY_HIDDEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:31:42.053365785Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:38:50.533502331Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class HideAdComment200Response {
   /**
    * Gets or Sets status

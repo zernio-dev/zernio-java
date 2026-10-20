@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   SendBusinessAgentTestMessageRequest.JSON_PROPERTY_MESSAGE,
   SendBusinessAgentTestMessageRequest.JSON_PROPERTY_CONVERSATION_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:31:42.053365785Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:38:50.533502331Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendBusinessAgentTestMessageRequest {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nonnull

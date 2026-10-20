@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   GoogleDemandGenInput.JSON_PROPERTY_AUDIENCE,
   GoogleDemandGenInput.JSON_PROPERTY_AUDIENCE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:31:42.053365785Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-20T00:38:50.533502331Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleDemandGenInput {
   public static final String JSON_PROPERTY_AD_GROUP_NAME = "adGroupName";
   @javax.annotation.Nullable
@@ -447,7 +447,7 @@ public class GoogleDemandGenInput {
   }
 
   /**
-   * Channel controls on the ad group. Only the listed channels serve; omit to serve on all of them.
+   * Channel controls on the new ad group. Only the listed channels serve; Google Maps, which this list cannot select, is turned off. Omit to send no channel controls, so Google applies its default for a new ad group: all Demand Gen channels, Google Maps included.
    * @return channels
    */
   @javax.annotation.Nullable
