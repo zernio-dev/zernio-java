@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.304.0
+  version: 1.305.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -76354,6 +76354,15 @@ components:
           type: boolean
         sensitiveMedia:
           $ref: "#/components/schemas/TwitterPlatformData_sensitiveMedia"
+        mediaTaggedUsers:
+          description: "X usernames (with or without @) to tag on the photos of the\
+            \ post, up to 10. Photos only, not video or GIF. Applied to the media\
+            \ of every tweet in a thread. An unknown username fails the post."
+          items:
+            pattern: "^@?\\w{1,15}$"
+            type: string
+          maxItems: 10
+          type: array
     ThreadsPlatformData:
       description: "Up to 10 images per carousel (no videos). Videos must be H.264/AAC\
         \ MP4, max 5 min. Images JPEG/PNG, max 8 MB. Use threadItems for reply chains."

@@ -19,6 +19,7 @@ X-specific post options. The article field creates a long-form X Article and is 
 |**paidPartnership** | **Boolean** | When true, the post is labeled by X as a paid partnership / paid promotion. For threads, applies to the root tweet only. Field availability may depend on your X API access tier. |  [optional] |
 |**madeWithAi** | **Boolean** | When true, the post is labeled by X as containing AI-generated media. Per X, this label is for AI-generated media, not AI-written text. For threads, applies to the root tweet only. |  [optional] |
 |**sensitiveMedia** | [**TwitterPlatformDataSensitiveMedia**](TwitterPlatformDataSensitiveMedia.md) |  |  [optional] |
+|**mediaTaggedUsers** | **List&lt;String&gt;** | X usernames (with or without @) to tag on the photos of the post, up to 10. Photos only, not video or GIF. Applied to the media of every tweet in a thread. An unknown username fails the post. |  [optional] |
 
 
 
