@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.308.1
+- API version: 1.309.0
 
-- Build date: 2026-10-20T21:17:50.048304332Z[Etc/UTC]
+- Build date: 2026-10-20T22:02:23.497087856Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.308.1</version>
+  <version>1.309.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.308.1"
+compile "dev.zernio:zernio-sdk:1.309.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.308.1.jar`
+- `target/zernio-sdk-1.309.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -181,6 +181,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**getBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#getBlueskySettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/bluesky-settings | Get Bluesky account settings
 *AccountsApi* | [**getFollowerStats**](docs/AccountsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AccountsApi* | [**getFollowerStatsWithHttpInfo**](docs/AccountsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AccountsApi* | [**getHubSpotSettings**](docs/AccountsApi.md#getHubSpotSettings) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings
+*AccountsApi* | [**getHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#getHubSpotSettingsWithHttpInfo) | **GET** /v1/accounts/{accountId}/hubspot-settings | Get HubSpot account settings
 *AccountsApi* | [**getInstagramFollowStatus**](docs/AccountsApi.md#getInstagramFollowStatus) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
 *AccountsApi* | [**getInstagramFollowStatusWithHttpInfo**](docs/AccountsApi.md#getInstagramFollowStatusWithHttpInfo) | **GET** /v1/accounts/{accountId}/follow-status/{userId} | Check whether an Instagram user follows the account
 *AccountsApi* | [**getSlackSettings**](docs/AccountsApi.md#getSlackSettings) | **GET** /v1/accounts/{accountId}/slack-settings | Get Slack account settings
@@ -205,6 +207,8 @@ Class | Method | HTTP request | Description
 *AccountsApi* | [**updateAccountWithHttpInfo**](docs/AccountsApi.md#updateAccountWithHttpInfo) | **PUT** /v1/accounts/{accountId} | Update account
 *AccountsApi* | [**updateBlueskySettings**](docs/AccountsApi.md#updateBlueskySettings) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
 *AccountsApi* | [**updateBlueskySettingsWithHttpInfo**](docs/AccountsApi.md#updateBlueskySettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/bluesky-settings | Update Bluesky account settings
+*AccountsApi* | [**updateHubSpotSettings**](docs/AccountsApi.md#updateHubSpotSettings) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
+*AccountsApi* | [**updateHubSpotSettingsWithHttpInfo**](docs/AccountsApi.md#updateHubSpotSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/hubspot-settings | Update HubSpot account settings
 *AccountsApi* | [**updateSlackSettings**](docs/AccountsApi.md#updateSlackSettings) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AccountsApi* | [**updateSlackSettingsWithHttpInfo**](docs/AccountsApi.md#updateSlackSettingsWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/slack-settings | Update Slack account settings
 *AdAccountsApi* | [**addAccountCallouts**](docs/AdAccountsApi.md#addAccountCallouts) | **POST** /v1/ads/accounts/callouts | Add account callouts
@@ -1041,6 +1045,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getFacebookPagesWithHttpInfo**](docs/ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getGmbLocations**](docs/ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
 *ConnectApi* | [**getGmbLocationsWithHttpInfo**](docs/ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
+*ConnectApi* | [**getHubSpotConnectUrl**](docs/ConnectApi.md#getHubSpotConnectUrl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL
+*ConnectApi* | [**getHubSpotConnectUrlWithHttpInfo**](docs/ConnectApi.md#getHubSpotConnectUrlWithHttpInfo) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL
 *ConnectApi* | [**getLinkedInOrganizations**](docs/ConnectApi.md#getLinkedInOrganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
 *ConnectApi* | [**getLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
 *ConnectApi* | [**getPageWebhookSubscription**](docs/ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription
@@ -3063,6 +3069,8 @@ Class | Method | HTTP request | Description
  - [GetGoogleBusinessVerifications200ResponseVerificationsInner](docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md)
  - [GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md)
  - [GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify](docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md)
+ - [GetHubSpotConnectUrl200Response](docs/GetHubSpotConnectUrl200Response.md)
+ - [GetHubSpotSettings200Response](docs/GetHubSpotSettings200Response.md)
  - [GetImessageGroup200Response](docs/GetImessageGroup200Response.md)
  - [GetImessageGroup200ResponseGroup](docs/GetImessageGroup200ResponseGroup.md)
  - [GetImessageSender200Response](docs/GetImessageSender200Response.md)
@@ -3378,6 +3386,7 @@ Class | Method | HTTP request | Description
  - [HideAdCommentRequest](docs/HideAdCommentRequest.md)
  - [HideInboxComment200Response](docs/HideInboxComment200Response.md)
  - [HideInboxCommentRequest](docs/HideInboxCommentRequest.md)
+ - [HubSpotSettings](docs/HubSpotSettings.md)
  - [ImessageAudienceContact](docs/ImessageAudienceContact.md)
  - [ImessageAudienceContactOptIn](docs/ImessageAudienceContactOptIn.md)
  - [ImessageSandboxContact](docs/ImessageSandboxContact.md)
@@ -4472,6 +4481,8 @@ Class | Method | HTTP request | Description
  - [UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md)
  - [UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md)
  - [UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem](docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md)
+ - [UpdateHubSpotSettings200Response](docs/UpdateHubSpotSettings200Response.md)
+ - [UpdateHubSpotSettingsRequest](docs/UpdateHubSpotSettingsRequest.md)
  - [UpdateImessageGroup200Response](docs/UpdateImessageGroup200Response.md)
  - [UpdateImessageGroupRequest](docs/UpdateImessageGroupRequest.md)
  - [UpdateImessageSenderRequest](docs/UpdateImessageSenderRequest.md)

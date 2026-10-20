@@ -62,6 +62,7 @@
 | PHONE | &quot;phone&quot; |
 | RCS | &quot;rcs&quot; |
 | WHOPADS | &quot;whopads&quot; |
+| HUBSPOT | &quot;hubspot&quot; |
 
 
 

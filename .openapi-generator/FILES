@@ -1025,6 +1025,8 @@ docs/GetGoogleBusinessVerifications200Response.md
 docs/GetGoogleBusinessVerifications200ResponseVerificationsInner.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.md
 docs/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.md
+docs/GetHubSpotConnectUrl200Response.md
+docs/GetHubSpotSettings200Response.md
 docs/GetImessageGroup200Response.md
 docs/GetImessageGroup200ResponseGroup.md
 docs/GetImessageSender200Response.md
@@ -1348,6 +1350,7 @@ docs/HideAdComment200Response.md
 docs/HideAdCommentRequest.md
 docs/HideInboxComment200Response.md
 docs/HideInboxCommentRequest.md
+docs/HubSpotSettings.md
 docs/IMessageApi.md
 docs/ImessageAudienceContact.md
 docs/ImessageAudienceContactOptIn.md
@@ -2470,6 +2473,8 @@ docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItem.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.md
 docs/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.md
+docs/UpdateHubSpotSettings200Response.md
+docs/UpdateHubSpotSettingsRequest.md
 docs/UpdateImessageGroup200Response.md
 docs/UpdateImessageGroupRequest.md
 docs/UpdateImessageSenderRequest.md
@@ -3921,6 +3926,8 @@ src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200Response.java
 src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVerificationsInner.java
 src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantState.java
 src/main/java/dev/zernio/model/GetGoogleBusinessVerifications200ResponseVoiceOfMerchantStateVerify.java
+src/main/java/dev/zernio/model/GetHubSpotConnectUrl200Response.java
+src/main/java/dev/zernio/model/GetHubSpotSettings200Response.java
 src/main/java/dev/zernio/model/GetImessageGroup200Response.java
 src/main/java/dev/zernio/model/GetImessageGroup200ResponseGroup.java
 src/main/java/dev/zernio/model/GetImessageSender200Response.java
@@ -4236,6 +4243,7 @@ src/main/java/dev/zernio/model/HideAdComment200Response.java
 src/main/java/dev/zernio/model/HideAdCommentRequest.java
 src/main/java/dev/zernio/model/HideInboxComment200Response.java
 src/main/java/dev/zernio/model/HideInboxCommentRequest.java
+src/main/java/dev/zernio/model/HubSpotSettings.java
 src/main/java/dev/zernio/model/ImessageAudienceContact.java
 src/main/java/dev/zernio/model/ImessageAudienceContactOptIn.java
 src/main/java/dev/zernio/model/ImessageSandboxContact.java
@@ -5330,6 +5338,8 @@ src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsIn
 src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsInnerFreeFormServiceItemLabel.java
 src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsInnerPrice.java
 src/main/java/dev/zernio/model/UpdateGoogleBusinessServicesRequestServiceItemsInnerStructuredServiceItem.java
+src/main/java/dev/zernio/model/UpdateHubSpotSettings200Response.java
+src/main/java/dev/zernio/model/UpdateHubSpotSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateImessageGroup200Response.java
 src/main/java/dev/zernio/model/UpdateImessageGroupRequest.java
 src/main/java/dev/zernio/model/UpdateImessageSenderRequest.java
@@ -5677,3 +5687,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetHubSpotConnectUrl200ResponseTest.java
+src/test/java/dev/zernio/model/GetHubSpotSettings200ResponseTest.java
+src/test/java/dev/zernio/model/HubSpotSettingsTest.java
+src/test/java/dev/zernio/model/UpdateHubSpotSettings200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateHubSpotSettingsRequestTest.java

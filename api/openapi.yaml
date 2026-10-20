@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.308.1
+  version: 1.309.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8216,7 +8216,7 @@ paths:
       - description: "Only accounts of this kind. ads = ad accounts (Meta, Google,\
           \ LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication = WhatsApp,\
           \ Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress,\
-          \ social = every other platform."
+          \ crm = HubSpot, social = every other platform."
         explode: true
         in: query
         name: category
@@ -8227,6 +8227,7 @@ paths:
           - ads
           - communication
           - blogs
+          - crm
           type: string
         style: form
       - description: "Sort a paginated listing (page/limit) by account name, platform,\
@@ -8674,6 +8675,7 @@ paths:
           - openaiads
           - redditads
           - whopads
+          - hubspot
           type: string
         style: form
       - description: Filter by health status
@@ -10845,6 +10847,71 @@ paths:
       - Connect
       x-resource-group: accounts
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/hubspot:
+    get:
+      description: |
+        Initiates OAuth for a HubSpot portal. HubSpot is a connect-only CRM
+        platform: the connected account does not post, read analytics or run
+        ads. One HubSpot portal can be connected per profile; connecting a
+        different portal to a profile that already has one redirects with
+        `error=hubspot_profile_has_portal`.
+        Redirect the user to `authUrl`; after authorization, HubSpot returns
+        the browser to Zernio's internal callback and Zernio redirects to
+        `redirect_url` (or the dashboard when omitted). On success the redirect
+        carries `connected=hubspot`, `profileId`, `accountId` and `username`
+        (the portal domain); on failure it carries `error`, `platform=hubspot`
+        and `error_message`. Reconnecting the same portal and profile updates
+        the stored connection in place and keeps its settings.
+        Requested scopes: `crm.objects.contacts.read`, `crm.objects.contacts.write`.
+      operationId: getHubSpotConnectUrl
+      parameters:
+      - description: Your Zernio profile ID (get from /v1/profiles).
+        explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Custom redirect after connection. Must be an absolute http(s)
+          URL or custom app scheme such as `myapp://callback`; relative and unsafe
+          URLs return 400.
+        explode: true
+        in: query
+        name: redirect_url
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getHubSpotConnectUrl_200_response"
+          description: OAuth authorization URL and authenticated state
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: "API key does not have access to this profile, or the key is\
+            \ read-only."
+        "404":
+          description: Profile not found or access denied.
+        "503":
+          description: HubSpot OAuth is not configured.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Get HubSpot OAuth connect URL
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/connect/wordpress:
@@ -17295,6 +17362,76 @@ paths:
       summary: Set Reddit post flair
       tags:
       - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/hubspot-settings:
+    get:
+      description: Read a connected HubSpot portal and what Zernio syncs to it.
+      operationId: getHubSpotSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getHubSpotSettings_200_response"
+          description: HubSpot settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Get HubSpot account settings
+      tags:
+      - Accounts
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    patch:
+      description: Turn contact sync or message logging on or off for a connected
+        HubSpot portal. Send at least one field; omitted fields keep their value.
+        Settings survive reconnecting the same portal.
+      operationId: updateHubSpotSettings
+      parameters:
+      - explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateHubSpotSettings_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateHubSpotSettings_200_response"
+          description: Updated settings
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: Account not found
+      summary: Update HubSpot account settings
+      tags:
+      - Accounts
       x-resource-group: accounts
       x-content-type: application/json
       x-accepts:
@@ -77589,6 +77726,52 @@ components:
         createdAt:
           format: date-time
           type: string
+    HubSpotSettings:
+      example:
+        hubId: hubId
+        _id: _id
+        hubDomain: hubDomain
+        scopes:
+        - scopes
+        - scopes
+        logMessages: true
+        syncContacts: true
+        platform: hubspot
+      properties:
+        _id:
+          description: Zernio account ID of the HubSpot connection.
+          type: string
+        platform:
+          enum:
+          - hubspot
+          type: string
+        hubId:
+          description: HubSpot portal (hub) ID.
+          type: string
+        hubDomain:
+          description: "HubSpot portal domain, when HubSpot reports one."
+          nullable: true
+          type: string
+        scopes:
+          description: OAuth scopes the portal granted.
+          items:
+            type: string
+          type: array
+        syncContacts:
+          description: Whether Zernio creates or updates HubSpot contacts for inbox
+            contacts.
+          type: boolean
+        logMessages:
+          description: Whether Zernio logs inbox messages on HubSpot contact timelines.
+          type: boolean
+      required:
+      - _id
+      - hubDomain
+      - hubId
+      - logMessages
+      - platform
+      - scopes
+      - syncContacts
     SocialAccount:
       example:
         profileUrl: profileUrl
@@ -77644,6 +77827,7 @@ components:
           - phone
           - rcs
           - whopads
+          - hubspot
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
@@ -99316,6 +99500,21 @@ components:
       properties:
         account:
           $ref: "#/components/schemas/connectShopifyWithToken_200_response_account"
+    getHubSpotConnectUrl_200_response:
+      example:
+        authUrl: https://openapi-generator.tech
+        state: state
+      properties:
+        authUrl:
+          description: HubSpot URL to open in the user agent.
+          format: uri
+          type: string
+        state:
+          description: "Authenticated, expiring OAuth state handled by the callback."
+          type: string
+      required:
+      - authUrl
+      - state
     getWordPressAuthUrl_200_response:
       example:
         authUrl: https://openapi-generator.tech
@@ -106150,6 +106349,48 @@ components:
       - flairTemplateId
       - postId
       - subreddit
+    getHubSpotSettings_200_response:
+      example:
+        account:
+          hubId: hubId
+          _id: _id
+          hubDomain: hubDomain
+          scopes:
+          - scopes
+          - scopes
+          logMessages: true
+          syncContacts: true
+          platform: hubspot
+      properties:
+        account:
+          $ref: "#/components/schemas/HubSpotSettings"
+    updateHubSpotSettings_request:
+      properties:
+        syncContacts:
+          description: Create or update a HubSpot contact for each inbox contact.
+          type: boolean
+        logMessages:
+          description: Log inbound and outbound inbox messages on the contact's HubSpot
+            timeline.
+          type: boolean
+    updateHubSpotSettings_200_response:
+      example:
+        message: message
+        account:
+          hubId: hubId
+          _id: _id
+          hubDomain: hubDomain
+          scopes:
+          - scopes
+          - scopes
+          logMessages: true
+          syncContacts: true
+          platform: hubspot
+      properties:
+        message:
+          type: string
+        account:
+          $ref: "#/components/schemas/HubSpotSettings"
     getSlackSettings_200_response_account:
       example:
         teamName: teamName
