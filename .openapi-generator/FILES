@@ -860,6 +860,11 @@ docs/GetAccountPosts200Response.md
 docs/GetAccountPosts200ResponsePostsInner.md
 docs/GetAd200Response.md
 docs/GetAd200ResponseDarkPost.md
+docs/GetAdAccountBilling200Response.md
+docs/GetAdAccountBilling200ResponseAccountBudgetsInner.md
+docs/GetAdAccountBilling200ResponseBillingSetupsInner.md
+docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md
+docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHierarchy200Response.md
@@ -2233,6 +2238,9 @@ docs/SetPartnershipAdPermissionRequest.md
 docs/SetRedditPostFlairRequest.md
 docs/SetTelegramCommandsRequest.md
 docs/SetTelegramCommandsRequestCommandsInner.md
+docs/SetUpAdAccountBilling200Response.md
+docs/SetUpAdAccountBilling201Response.md
+docs/SetUpAdAccountBillingRequest.md
 docs/SetWhatsAppConversationalAutomationRequest.md
 docs/SetWhatsAppFlowsEncryptionKeyRequest.md
 docs/SetWhatsappBusinessUsername200Response.md
@@ -3794,6 +3802,11 @@ src/main/java/dev/zernio/model/GetAccountPosts200Response.java
 src/main/java/dev/zernio/model/GetAccountPosts200ResponsePostsInner.java
 src/main/java/dev/zernio/model/GetAd200Response.java
 src/main/java/dev/zernio/model/GetAd200ResponseDarkPost.java
+src/main/java/dev/zernio/model/GetAdAccountBilling200Response.java
+src/main/java/dev/zernio/model/GetAdAccountBilling200ResponseAccountBudgetsInner.java
+src/main/java/dev/zernio/model/GetAdAccountBilling200ResponseBillingSetupsInner.java
+src/main/java/dev/zernio/model/GetAdAccountBilling200ResponsePaymentsAccountsInner.java
+src/main/java/dev/zernio/model/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
@@ -5137,6 +5150,9 @@ src/main/java/dev/zernio/model/SetPartnershipAdPermissionRequest.java
 src/main/java/dev/zernio/model/SetRedditPostFlairRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequest.java
 src/main/java/dev/zernio/model/SetTelegramCommandsRequestCommandsInner.java
+src/main/java/dev/zernio/model/SetUpAdAccountBilling200Response.java
+src/main/java/dev/zernio/model/SetUpAdAccountBilling201Response.java
+src/main/java/dev/zernio/model/SetUpAdAccountBillingRequest.java
 src/main/java/dev/zernio/model/SetWhatsAppConversationalAutomationRequest.java
 src/main/java/dev/zernio/model/SetWhatsAppFlowsEncryptionKeyRequest.java
 src/main/java/dev/zernio/model/SetWhatsappBusinessUsername200Response.java
@@ -5753,3 +5769,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseAccountBudgetsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseBillingSetupsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountBilling200ResponsePaymentsAccountsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountBilling200ResponsePendingBudgetProposalsInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseTest.java
+src/test/java/dev/zernio/model/SetUpAdAccountBilling200ResponseTest.java
+src/test/java/dev/zernio/model/SetUpAdAccountBilling201ResponseTest.java
+src/test/java/dev/zernio/model/SetUpAdAccountBillingRequestTest.java

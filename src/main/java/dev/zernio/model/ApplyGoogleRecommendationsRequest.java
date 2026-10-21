@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   ApplyGoogleRecommendationsRequest.JSON_PROPERTY_AD_ACCOUNT_ID,
   ApplyGoogleRecommendationsRequest.JSON_PROPERTY_RECOMMENDATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApplyGoogleRecommendationsRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull

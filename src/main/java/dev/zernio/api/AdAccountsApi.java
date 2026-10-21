@@ -46,6 +46,7 @@ import dev.zernio.model.DeleteAdNegativeKeywordList200Response;
 import dev.zernio.model.DeleteValueRuleSet200Response;
 import dev.zernio.model.DetachAdLabel200Response;
 import dev.zernio.model.ErrorResponse;
+import dev.zernio.model.GetAdAccountBilling200Response;
 import dev.zernio.model.GetAdAccountFinance200Response;
 import dev.zernio.model.GetAdAccountHierarchy200Response;
 import dev.zernio.model.GetAdAccountLiveEntities200Response;
@@ -95,6 +96,9 @@ import dev.zernio.model.ReplaceAdNegativeKeywordListKeywordsRequest;
 import dev.zernio.model.ReplyToAdComment200Response;
 import dev.zernio.model.ReplyToAdCommentRequest;
 import dev.zernio.model.RevokeAdAccountUserInvitation200Response;
+import dev.zernio.model.SetUpAdAccountBilling200Response;
+import dev.zernio.model.SetUpAdAccountBilling201Response;
+import dev.zernio.model.SetUpAdAccountBillingRequest;
 import dev.zernio.model.UpdateAccountCallouts200Response;
 import dev.zernio.model.UpdateAccountCalloutsRequest;
 import dev.zernio.model.UpdateAccountSitelinksRequest;
@@ -135,7 +139,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAccountsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -2364,6 +2368,144 @@ public class AdAccountsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Get ad account billing
+   * Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param adAccountId Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)
+   * @return GetAdAccountBilling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdAccountBilling200Response getAdAccountBilling(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId) throws ApiException {
+    return getAdAccountBilling(accountId, adAccountId, null);
+  }
+
+  /**
+   * Get ad account billing
+   * Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param adAccountId Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)
+   * @param headers Optional headers to include in the request
+   * @return GetAdAccountBilling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public GetAdAccountBilling200Response getAdAccountBilling(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<GetAdAccountBilling200Response> localVarResponse = getAdAccountBillingWithHttpInfo(accountId, adAccountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Get ad account billing
+   * Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param adAccountId Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)
+   * @return ApiResponse&lt;GetAdAccountBilling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdAccountBilling200Response> getAdAccountBillingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId) throws ApiException {
+    return getAdAccountBillingWithHttpInfo(accountId, adAccountId, null);
+  }
+
+  /**
+   * Get ad account billing
+   * Reads the payments accounts a Google Ads account can be billed to, plus its billing setups and account budgets.  Payments accounts come from Google&#39;s PaymentsAccountService, read as the manager above the customer: they are the monthly invoicing (consolidated billing) accounts of that manager. An empty &#x60;paymentsAccounts&#x60; means the manager has no monthly invoicing, so billing cannot be set up through the API and has to be added in Google Ads. Billing setups and account budgets are read live from Google with their status. Results are cached for 10 minutes and dropped on every setup through Zernio.
+   * @param accountId Google ads SocialAccount id. (required)
+   * @param adAccountId Google Ads customer id, digits only. Defaults to the connection&#39;s selected customer. (optional)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;GetAdAccountBilling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<GetAdAccountBilling200Response> getAdAccountBillingWithHttpInfo(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = getAdAccountBillingRequestBuilder(accountId, adAccountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("getAdAccountBilling", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<GetAdAccountBilling200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        GetAdAccountBilling200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<GetAdAccountBilling200Response>() {});
+        
+
+        return new ApiResponse<GetAdAccountBilling200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder getAdAccountBillingRequestBuilder(@javax.annotation.Nonnull String accountId, @javax.annotation.Nullable String adAccountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling getAdAccountBilling");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/billing";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+    localVarQueryParameterBaseName = "adAccountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("adAccountId", adAccountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }
@@ -8753,6 +8895,129 @@ public class AdAccountsApi {
     localVarRequestBuilder.header("Accept", "application/json");
 
     localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Set up ad account billing (monthly invoicing)
+   * Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+   * @param setUpAdAccountBillingRequest  (required)
+   * @return SetUpAdAccountBilling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SetUpAdAccountBilling200Response setUpAdAccountBilling(@javax.annotation.Nonnull SetUpAdAccountBillingRequest setUpAdAccountBillingRequest) throws ApiException {
+    return setUpAdAccountBilling(setUpAdAccountBillingRequest, null);
+  }
+
+  /**
+   * Set up ad account billing (monthly invoicing)
+   * Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+   * @param setUpAdAccountBillingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return SetUpAdAccountBilling200Response
+   * @throws ApiException if fails to make API call
+   */
+  public SetUpAdAccountBilling200Response setUpAdAccountBilling(@javax.annotation.Nonnull SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<SetUpAdAccountBilling200Response> localVarResponse = setUpAdAccountBillingWithHttpInfo(setUpAdAccountBillingRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Set up ad account billing (monthly invoicing)
+   * Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+   * @param setUpAdAccountBillingRequest  (required)
+   * @return ApiResponse&lt;SetUpAdAccountBilling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SetUpAdAccountBilling200Response> setUpAdAccountBillingWithHttpInfo(@javax.annotation.Nonnull SetUpAdAccountBillingRequest setUpAdAccountBillingRequest) throws ApiException {
+    return setUpAdAccountBillingWithHttpInfo(setUpAdAccountBillingRequest, null);
+  }
+
+  /**
+   * Set up ad account billing (monthly invoicing)
+   * Bills a Google Ads account to a monthly invoicing payments account of a manager above it, and proposes its account budget, so the account can serve without anyone opening Google Ads.  Monthly invoicing only. Google&#39;s API cannot add a card or other payment method, so &#x60;paymentsAccountId&#x60; must be one of the manager&#39;s monthly invoicing (consolidated billing) payments accounts listed by GET /v1/ads/accounts/billing. A manager without monthly invoicing has none, and billing has to be added in Google Ads instead.  Creates a billing setup (Google&#39;s BillingSetupService) that starts now on that payments account, then an account budget proposal that starts now and never ends: unlimited by default, or capped at &#x60;spendingLimit&#x60; in the account currency. Google reviews the budget offline, usually within an hour; until then the setup reads &#x60;APPROVED_HELD&#x60; and ads do not serve. A customer whose current billing setup already has a budget is refused with 409, and so is one billed to another payments account: this call never replaces existing billing. A current setup on the same payments account without a budget (for example after a budget rejection) is reused, so resending the same request finishes it.  Not idempotent and never retried: after a 502 with details.creationStatus&#x3D;unknown, read GET /v1/ads/accounts/billing before retrying. Google has no dry run for billing setups, so &#x60;validateOnly: true&#x60; checks the payments account and the existing billing without creating anything (and asks Google to validate the budget when a setup would be reused).
+   * @param setUpAdAccountBillingRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;SetUpAdAccountBilling200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<SetUpAdAccountBilling200Response> setUpAdAccountBillingWithHttpInfo(@javax.annotation.Nonnull SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = setUpAdAccountBillingRequestBuilder(setUpAdAccountBillingRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("setUpAdAccountBilling", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<SetUpAdAccountBilling200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        SetUpAdAccountBilling200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<SetUpAdAccountBilling200Response>() {});
+        
+
+        return new ApiResponse<SetUpAdAccountBilling200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder setUpAdAccountBillingRequestBuilder(@javax.annotation.Nonnull SetUpAdAccountBillingRequest setUpAdAccountBillingRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'setUpAdAccountBillingRequest' is set
+    if (setUpAdAccountBillingRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'setUpAdAccountBillingRequest' when calling setUpAdAccountBilling");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/ads/accounts/billing";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(setUpAdAccountBillingRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
     if (memberVarReadTimeout != null) {
       localVarRequestBuilder.timeout(memberVarReadTimeout);
     }

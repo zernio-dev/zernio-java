@@ -49,7 +49,7 @@ import dev.zernio.ApiClient;
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_REVIEWED_AT,
   OnWhatsAppNumberActionRequiredRequest.JSON_PROPERTY_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OnWhatsAppNumberActionRequiredRequest {
   public static final String JSON_PROPERTY_TEST = "test";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ErrorResponseDetailsCreatedObjectsInner.JSON_PROPERTY_ID,
   ErrorResponseDetailsCreatedObjectsInner.JSON_PROPERTY_CLEANUP
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ErrorResponseDetailsCreatedObjectsInner {
   /**
    * Gets or Sets type

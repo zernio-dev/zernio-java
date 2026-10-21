@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings.JSON_PROPERTY_ALLOW_DUET,
   GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings.JSON_PROPERTY_ALLOW_STITCH
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettings {
   public static final String JSON_PROPERTY_ALLOW_COMMENT = "allow_comment";
   @javax.annotation.Nullable

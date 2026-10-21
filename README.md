@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.324.0
 
-- Build date: 2026-10-21T23:33:20.444945575Z[Etc/UTC]
+- Build date: 2026-10-21T23:38:30.811827872Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -243,6 +243,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**deleteValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#deleteValueRuleSetWithHttpInfo) | **DELETE** /v1/ads/value-rule-sets/{valueRuleSetId} | Delete a value rule set
 *AdAccountsApi* | [**detachAdLabel**](docs/AdAccountsApi.md#detachAdLabel) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
 *AdAccountsApi* | [**detachAdLabelWithHttpInfo**](docs/AdAccountsApi.md#detachAdLabelWithHttpInfo) | **DELETE** /v1/ads/labels/{labelId}/assignments | Detach a Google Ads label
+*AdAccountsApi* | [**getAdAccountBilling**](docs/AdAccountsApi.md#getAdAccountBilling) | **GET** /v1/ads/accounts/billing | Get ad account billing
+*AdAccountsApi* | [**getAdAccountBillingWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountBillingWithHttpInfo) | **GET** /v1/ads/accounts/billing | Get ad account billing
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountHierarchy**](docs/AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
@@ -329,6 +331,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**replyToAdCommentWithHttpInfo**](docs/AdAccountsApi.md#replyToAdCommentWithHttpInfo) | **POST** /v1/ads/{adId}/comments/{commentId}/reply | Reply to an ad comment
 *AdAccountsApi* | [**revokeAdAccountUserInvitation**](docs/AdAccountsApi.md#revokeAdAccountUserInvitation) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation
 *AdAccountsApi* | [**revokeAdAccountUserInvitationWithHttpInfo**](docs/AdAccountsApi.md#revokeAdAccountUserInvitationWithHttpInfo) | **DELETE** /v1/ads/accounts/user-invitations | Revoke a user access invitation
+*AdAccountsApi* | [**setUpAdAccountBilling**](docs/AdAccountsApi.md#setUpAdAccountBilling) | **POST** /v1/ads/accounts/billing | Set up ad account billing (monthly invoicing)
+*AdAccountsApi* | [**setUpAdAccountBillingWithHttpInfo**](docs/AdAccountsApi.md#setUpAdAccountBillingWithHttpInfo) | **POST** /v1/ads/accounts/billing | Set up ad account billing (monthly invoicing)
 *AdAccountsApi* | [**updateAccountCallouts**](docs/AdAccountsApi.md#updateAccountCallouts) | **PUT** /v1/ads/accounts/callouts | Update account callouts
 *AdAccountsApi* | [**updateAccountCalloutsWithHttpInfo**](docs/AdAccountsApi.md#updateAccountCalloutsWithHttpInfo) | **PUT** /v1/ads/accounts/callouts | Update account callouts
 *AdAccountsApi* | [**updateAccountSitelinks**](docs/AdAccountsApi.md#updateAccountSitelinks) | **PUT** /v1/ads/accounts/sitelinks | Update account sitelinks
@@ -2928,6 +2932,11 @@ Class | Method | HTTP request | Description
  - [GetAccountPosts200ResponsePostsInner](docs/GetAccountPosts200ResponsePostsInner.md)
  - [GetAd200Response](docs/GetAd200Response.md)
  - [GetAd200ResponseDarkPost](docs/GetAd200ResponseDarkPost.md)
+ - [GetAdAccountBilling200Response](docs/GetAdAccountBilling200Response.md)
+ - [GetAdAccountBilling200ResponseAccountBudgetsInner](docs/GetAdAccountBilling200ResponseAccountBudgetsInner.md)
+ - [GetAdAccountBilling200ResponseBillingSetupsInner](docs/GetAdAccountBilling200ResponseBillingSetupsInner.md)
+ - [GetAdAccountBilling200ResponsePaymentsAccountsInner](docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md)
+ - [GetAdAccountBilling200ResponsePendingBudgetProposalsInner](docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md)
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
@@ -4271,6 +4280,9 @@ Class | Method | HTTP request | Description
  - [SetRedditPostFlairRequest](docs/SetRedditPostFlairRequest.md)
  - [SetTelegramCommandsRequest](docs/SetTelegramCommandsRequest.md)
  - [SetTelegramCommandsRequestCommandsInner](docs/SetTelegramCommandsRequestCommandsInner.md)
+ - [SetUpAdAccountBilling200Response](docs/SetUpAdAccountBilling200Response.md)
+ - [SetUpAdAccountBilling201Response](docs/SetUpAdAccountBilling201Response.md)
+ - [SetUpAdAccountBillingRequest](docs/SetUpAdAccountBillingRequest.md)
  - [SetWhatsAppConversationalAutomationRequest](docs/SetWhatsAppConversationalAutomationRequest.md)
  - [SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)

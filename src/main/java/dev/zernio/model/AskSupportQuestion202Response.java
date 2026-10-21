@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   AskSupportQuestion202Response.JSON_PROPERTY_STATUS,
   AskSupportQuestion202Response.JSON_PROPERTY_POLL_AFTER_SECONDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:33:20.444945575Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T23:38:30.811827872Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AskSupportQuestion202Response {
   public static final String JSON_PROPERTY_RUN_ID = "runId";
   @javax.annotation.Nonnull
