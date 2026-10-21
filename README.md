@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.323.0
+- API version: 1.324.0
 
-- Build date: 2026-10-21T21:06:08.417629181Z[Etc/UTC]
+- Build date: 2026-10-21T23:33:20.444945575Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.323.0</version>
+  <version>1.324.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.323.0"
+compile "dev.zernio:zernio-sdk:1.324.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.323.0.jar`
+- `target/zernio-sdk-1.324.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1745,8 +1745,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStoreInstall**](docs/TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
 *TrackingTagsApi* | [**getTrackingTagStoreInstallWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
-*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site
-*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store or WordPress site
+*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store, WordPress site or Wix site
+*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store, WordPress site or Wix site
 *TrackingTagsApi* | [**listTrackingTagEvents**](docs/TrackingTagsApi.md#listTrackingTagEvents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
 *TrackingTagsApi* | [**listTrackingTagEventsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagEventsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
 *TrackingTagsApi* | [**listTrackingTagPartners**](docs/TrackingTagsApi.md#listTrackingTagPartners) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag
@@ -1757,8 +1757,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**listTrackingTagUsersWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users
 *TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
-*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
-*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store or WordPress site
+*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store, WordPress site or Wix site
+*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store, WordPress site or Wix site
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagUser**](docs/TrackingTagsApi.md#removeTrackingTagUser) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag

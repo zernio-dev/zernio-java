@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.323.0
+  version: 1.324.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58460,12 +58460,13 @@ paths:
   /v1/accounts/{accountId}/tracking-tags/{tagId}/install:
     delete:
       description: |
-        Removes a tracking tag from your Shopify store or WordPress site, leaving other platforms' tags and hand-added pixel code in place.
+        Removes a tracking tag from your Shopify store, WordPress site or Wix site, leaving other platforms' tags and hand-added pixel code in place.
 
         Idempotent: nothing installed returns 200 with
         `installed: false`. If the store fires a different tag of the same platform, nothing is
         removed and the call answers 409 `invalid_resource_state`. Shopify: other platforms'
-        tags stay; the web pixel itself is deleted once no tag remains.
+        tags stay; the web pixel itself is deleted once no tag remains. Wix works the same way,
+        and the site's Zernio script is disabled once no tag remains.
 
         WordPress: deletes every widget Zernio created for this pixel and reports how many in
         `removed` (0 when nothing was installed). Pixel code added by hand is left alone.
@@ -58486,7 +58487,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The connected Shopify or WordPress account id.
+      - description: "The connected Shopify, WordPress or Wix account id."
         explode: true
         in: query
         name: storeAccountId
@@ -58528,7 +58529,7 @@ paths:
             \ see `details.authUrl`)."
       security:
       - bearerAuth: []
-      summary: Remove from a Shopify store or WordPress site
+      summary: "Remove from a Shopify store, WordPress site or Wix site"
       tags:
       - Tracking Tags
       x-resource-group: ads
@@ -58542,11 +58543,12 @@ paths:
       - pinterest
       - shopify
       - wordpress
+      - wix
       x-accepts:
       - application/json
     get:
       description: |
-        Shows whether a tracking tag is live on your Shopify store or WordPress site, and whether a WordPress install would be blocked.
+        Shows whether a tracking tag is live on your Shopify store, WordPress site or Wix site, and whether a WordPress install would be blocked.
 
         Whether this tag is the one the Shopify store fires for its platform. `installedTagId`
         names the tag of that platform the store currently fires, which can be a different tag,
@@ -58575,7 +58577,7 @@ paths:
         schema:
           type: string
         style: simple
-      - description: The connected Shopify or WordPress account id.
+      - description: "The connected Shopify, WordPress or Wix account id."
         explode: true
         in: query
         name: storeAccountId
@@ -58631,11 +58633,12 @@ paths:
       - pinterest
       - shopify
       - wordpress
+      - wix
       x-accepts:
       - application/json
     post:
       description: |
-        Installs a pixel on a connected Shopify store or WordPress site, so store visits and purchases are reported without editing the theme.
+        Installs a pixel on a connected Shopify store, WordPress site or Wix site, so store visits and purchases are reported without editing the theme.
 
         Puts the Meta pixel on a connected Shopify store's storefront and checkout through
         Zernio's Shopify web pixel (a Shopify app pixel, no theme edits). The store then sends
@@ -58714,6 +58717,18 @@ paths:
         kept in the `_epik` cookie. WordPress gets Pinterest's base code (core.js, `load`, `page`)
         with a `pagevisit` event; the manual fallback is the official Pinterest for WooCommerce
         plugin (WooCommerce stores).
+
+        **Wix** (`storeAccountId` is a connected Wix site): Zernio's Wix app embeds one script on
+        the site that loads each installed tag's base code (the same code WordPress gets), so on
+        Wix each tag records page views. Wix changes pages without reloading, so later page views
+        are recorded again on Wix's own page-view event for Meta, TikTok, Google, Pinterest,
+        OpenAI and Whop; LinkedIn and X count the first page of each visit. Like Shopify, the site holds one tag per platform:
+        installing a different tag of the same platform replaces it (`replacedTagId`) and other
+        platforms' tags are kept. The script is an Advertising script, so it runs only for
+        visitors who accept advertising cookies when the site shows a cookie banner. Sites
+        connected before pixel support answer 409 `reconnect_required` until the owner approves
+        the Zernio app's new permission (`details.authUrl`, or Apps > Manage Apps in the Wix
+        dashboard).
       operationId: installTrackingTagOnStore
       parameters:
       - explode: false
@@ -58775,7 +58790,7 @@ paths:
             \ GET before retrying."
       security:
       - bearerAuth: []
-      summary: Install on a Shopify store or WordPress site
+      summary: "Install on a Shopify store, WordPress site or Wix site"
       tags:
       - Tracking Tags
       x-resource-group: ads
@@ -58790,6 +58805,7 @@ paths:
       - whop
       - shopify
       - wordpress
+      - wix
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -65466,10 +65482,10 @@ components:
               authUrl: https://acme.myshopify.com/admin/oauth/authorize?client_id=...
           schema:
             $ref: "#/components/schemas/ErrorResponse"
-      description: The store must re-approve the Zernio Shopify app to grant pixel
-        access (code `reconnect_required`). Send the merchant to `details.authUrl`;
-        the Shopify account id stays the same. Also returned while the store account
-        itself needs reconnection (code `ads_connection_required`).
+      description: The store must re-approve the Zernio app (Shopify or Wix) to grant
+        pixel access (code `reconnect_required`). Send the merchant to `details.authUrl`;
+        the account id stays the same. Also returned while the store account itself
+        needs reconnection (code `ads_connection_required`).
     TemporarilyUnavailable:
       content:
         application/json:
@@ -95383,8 +95399,9 @@ components:
       - updated_at
     StorePixelInstall:
       description: "A tracking tag's install on a connected store: a Shopify web pixel,\
-        \ or a Custom HTML widget on a WordPress site. Fields marked Shopify or WordPress\
-        \ are present only for that platform."
+        \ a Custom HTML widget on a WordPress site, or the Zernio embedded script\
+        \ on a Wix site. Fields marked Shopify, WordPress or Wix are present only\
+        \ for that platform."
       properties:
         storeAccountId:
           type: string
@@ -95393,6 +95410,7 @@ components:
           enum:
           - shopify
           - wordpress
+          - wix
           type: string
         tagPlatform:
           description: Platform of the tag this install is about (e.g. `metaads`).
@@ -95401,22 +95419,22 @@ components:
           description: The id the tag carries on the site (see `TrackingTag.siteTagId`).
           type: string
         installed:
-          description: "Shopify: this tag is the one the store fires for its platform.\
-            \ WordPress: the Zernio widget for this tag is in an active widget area\
-            \ with its script intact."
+          description: "Shopify and Wix: this tag is the one the store fires for its\
+            \ platform. WordPress: the Zernio widget for this tag is in an active\
+            \ widget area with its script intact."
           type: boolean
         shopDomain:
           description: Shopify only.
           example: acme.myshopify.com
           type: string
         installedTagId:
-          description: "Shopify only: the tag of the same platform the store fires\
-            \ now (may be a different tag), or null."
+          description: "Shopify and Wix only: the tag of the same platform the store\
+            \ fires now (may be a different tag), or null."
           nullable: true
           type: string
         tags:
-          description: "GET only on WordPress, always on Shopify: every Zernio tag\
-            \ on the store, all platforms."
+          description: "GET only on WordPress, always on Shopify and Wix: every Zernio\
+            \ tag on the store, all platforms."
           items:
             $ref: "#/components/schemas/StorePixelInstall_tags_inner"
           type: array
@@ -95425,7 +95443,8 @@ components:
           nullable: true
           type: string
         siteUrl:
-          description: WordPress only.
+          description: WordPress and Wix only. Null on a Wix site that was never published.
+          nullable: true
           type: string
         method:
           description: WordPress only.
@@ -153179,8 +153198,8 @@ components:
     installTrackingTagOnStore_request:
       properties:
         storeAccountId:
-          description: The connected Shopify (`shopify`) or WordPress (`wordpress`)
-            account id.
+          description: "The connected Shopify (`shopify`), WordPress (`wordpress`)\
+            \ or Wix (`wix`) account id."
           type: string
         adAccountId:
           description: Scopes the tag lookup on platforms whose tag ids live inside
@@ -153201,8 +153220,8 @@ components:
       - $ref: "#/components/schemas/StorePixelInstall"
       - properties:
           replacedTagId:
-            description: "Shopify only: the pixel this install replaced on the store,\
-              \ if any."
+            description: "Shopify and Wix only: the pixel this install replaced on\
+              \ the store, if any."
             nullable: true
             type: string
           sidebarName:
