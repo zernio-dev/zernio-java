@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.320.0
+  version: 1.321.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51482,6 +51482,18 @@ paths:
 
         For geo queries, `q` should contain only the locality name (e.g. `"Amsterdam"`,
         not `"Amsterdam, NL"`). Use `countryCode` to disambiguate.
+
+        Meta language: Meta matches `q` against names in one language and returns names and `path` in
+        that language. Pass `locale` (e.g. `pl_PL`) to choose it. Without `locale`, the `behavior` and
+        `workIndustry` catalogs are in `en_US`, and `interest`, `interestSuggestion`, `geo`, `workPosition`
+        and `workEmployer` follow the language of the Facebook user who connected the account (so a
+        Russian-language Facebook user gets Russian paths, and Polish names need `locale=pl_PL`).
+        A non-English `behavior` or `workIndustry` query without `locale` never matches, so pass the
+        locale of the names you search. Meta's `interest` search matches its own interest names and has no fuzzy or
+        synonym mode, so a phrase Meta does not use as an interest name (e.g. `dental implants`) can
+        return nothing while a shorter word (`dentistry`) does. If Meta returns an empty `behavior`,
+        `workIndustry` or `income` catalog the request fails with a 502 `platform_api_error` instead of
+        an empty `results` list.
       operationId: searchAdTargeting
       parameters:
       - description: Account ID (a connected account on the target ad platform).
@@ -51581,6 +51593,21 @@ paths:
         name: adAccountId
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Meta only: the language Meta matches `q` against and names results\
+          \ and `path` in, as language_TERRITORY (e.g. `pl_PL`, `en_US`). Applies\
+          \ to `geo`, `interest`, `interestSuggestion`, `behavior`, `workPosition`,\
+          \ `workEmployer` and `workIndustry`. Without it, `behavior` and `workIndustry`\
+          \ use `en_US` and the other searches use the language of the Facebook user\
+          \ who connected the account. `income` always uses `en_US`. Ignored on other\
+          \ platforms."
+        explode: true
+        in: query
+        name: locale
+        required: false
+        schema:
+          pattern: "^[a-z]{2,3}_[A-Z]{2}$"
           type: string
         style: form
       - description: Maximum results to return.

@@ -5747,9 +5747,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetTikTokSmartPlusAdReview200ResponseMaterialsInnerTest.java
-src/test/java/dev/zernio/model/GetTikTokSmartPlusAdReview200ResponseReviewTest.java
-src/test/java/dev/zernio/model/GetTikTokSmartPlusAdReview200ResponseTest.java
-src/test/java/dev/zernio/model/TikTokReviewRejectionContentTest.java
-src/test/java/dev/zernio/model/TikTokReviewRejectionTest.java
-src/test/java/dev/zernio/model/TikTokSmartPlusReviewStatusTest.java
