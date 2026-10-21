@@ -392,6 +392,9 @@ docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
+docs/ConnectWebflowWithSiteToken200Response.md
+docs/ConnectWebflowWithSiteToken200ResponseAccount.md
+docs/ConnectWebflowWithSiteTokenRequest.md
 docs/ConnectWelcomeScreen.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
@@ -3329,6 +3332,9 @@ src/main/java/dev/zernio/model/ConnectShopifyWithToken200Response.java
 src/main/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
+src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200Response.java
+src/main/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccount.java
+src/main/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequest.java
 src/main/java/dev/zernio/model/ConnectWelcomeScreen.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
@@ -5747,3 +5753,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseAccountTest.java
+src/test/java/dev/zernio/model/ConnectWebflowWithSiteToken200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectWebflowWithSiteTokenRequestTest.java

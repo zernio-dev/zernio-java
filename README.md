@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.321.1
+- API version: 1.323.0
 
-- Build date: 2026-10-21T17:17:11.432265461Z[Etc/UTC]
+- Build date: 2026-10-21T21:06:08.417629181Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.321.1</version>
+  <version>1.323.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.321.1"
+compile "dev.zernio:zernio-sdk:1.323.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.321.1.jar`
+- `target/zernio-sdk-1.323.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1039,6 +1039,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectShopifyWithTokenWithHttpInfo**](docs/ConnectApi.md#connectShopifyWithTokenWithHttpInfo) | **POST** /v1/connect/shopify/token | Connect a Shopify store with a custom-app Admin token
 *ConnectApi* | [**connectSlackChannel**](docs/ConnectApi.md#connectSlackChannel) | **POST** /v1/connect/slack | Connect a Slack channel
 *ConnectApi* | [**connectSlackChannelWithHttpInfo**](docs/ConnectApi.md#connectSlackChannelWithHttpInfo) | **POST** /v1/connect/slack | Connect a Slack channel
+*ConnectApi* | [**connectWebflowWithSiteToken**](docs/ConnectApi.md#connectWebflowWithSiteToken) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
+*ConnectApi* | [**connectWebflowWithSiteTokenWithHttpInfo**](docs/ConnectApi.md#connectWebflowWithSiteTokenWithHttpInfo) | **POST** /v1/connect/webflow/token | Connect Webflow with a site API token
 *ConnectApi* | [**connectWhatsAppCredentials**](docs/ConnectApi.md#connectWhatsAppCredentials) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhatsAppCredentialsWithHttpInfo) | **POST** /v1/connect/whatsapp/credentials | Connect WhatsApp via credentials
 *ConnectApi* | [**connectWhatsAppEmbeddedSignup**](docs/ConnectApi.md#connectWhatsAppEmbeddedSignup) | **POST** /v1/connect/whatsapp/embedded-signup | Connect WhatsApp from Embedded Signup
@@ -2464,6 +2466,9 @@ Class | Method | HTTP request | Description
  - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
  - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)
  - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
+ - [ConnectWebflowWithSiteToken200Response](docs/ConnectWebflowWithSiteToken200Response.md)
+ - [ConnectWebflowWithSiteToken200ResponseAccount](docs/ConnectWebflowWithSiteToken200ResponseAccount.md)
+ - [ConnectWebflowWithSiteTokenRequest](docs/ConnectWebflowWithSiteTokenRequest.md)
  - [ConnectWelcomeScreen](docs/ConnectWelcomeScreen.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)

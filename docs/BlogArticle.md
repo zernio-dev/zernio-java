@@ -8,7 +8,7 @@ An article inside a blog on the connected platform.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** | Platform-native article/post id: numeric on Shopify and WordPress, a GUID on Wix. |  [optional] |
+|**id** | **String** | Platform-native article/post id: numeric on Shopify and WordPress, a GUID on Wix, a hex item id on Webflow. |  [optional] |
 |**blogId** | **String** | Platform-native id of the blog the article belongs to. |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**title** | **String** |  |  [optional] |
@@ -34,6 +34,7 @@ An article inside a blog on the connected platform.
 | SHOPIFY | &quot;shopify&quot; |
 | WORDPRESS | &quot;wordpress&quot; |
 | WIX | &quot;wix&quot; |
+| WEBFLOW | &quot;webflow&quot; |
 
 
 

@@ -193,7 +193,7 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - WordPress and Wix default to a draft when both publishing fields are   omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post&#39;s SEO   title and meta description. WordPress rejects &#x60;seo&#x60;; SEO plugin and   custom-field writes are not supported. - Wix stores rich content: &#x60;bodyHtml&#x60; is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site&#39;s Media Manager.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
+Creates an article on the blog. Publishing behavior:  - WordPress, Wix and Webflow default to a draft when both publishing   fields are omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post&#39;s SEO   title and meta description. WordPress and Webflow reject &#x60;seo&#x60;; SEO   plugin and custom-field writes are not supported. - Webflow has no scheduling API: a future &#x60;publishDate&#x60; returns 400   unless &#x60;isPublished: false&#x60; keeps a draft. Fields map to the   collection&#39;s own fields by type and slug (the body to its rich text   field, &#x60;excerpt&#x60; to a summary field, &#x60;image&#x60; to an image field, &#x60;tags&#x60;   and &#x60;author&#x60; to tag and author reference fields); sending a field the   collection does not have returns 400, as does a collection that   requires a field the Blogs API cannot fill. - Wix stores rich content: &#x60;bodyHtml&#x60; is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site&#39;s Media Manager.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
 
 ### Example
 
@@ -216,7 +216,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
         try {
@@ -238,7 +238,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
 
@@ -274,7 +274,7 @@ public class Example {
 
 Create a blog article
 
-Creates an article on the blog. Publishing behavior:  - WordPress and Wix default to a draft when both publishing fields are   omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post&#39;s SEO   title and meta description. WordPress rejects &#x60;seo&#x60;; SEO plugin and   custom-field writes are not supported. - Wix stores rich content: &#x60;bodyHtml&#x60; is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site&#39;s Media Manager.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
+Creates an article on the blog. Publishing behavior:  - WordPress, Wix and Webflow default to a draft when both publishing   fields are omitted. - &#x60;isPublished: false&#x60; keeps the article as a draft and takes priority   over a future &#x60;publishDate&#x60;. - A future &#x60;publishDate&#x60; schedules publication natively on the   platform; the platform publishes it at that time with no Zernio   queue involved. - &#x60;isPublished: true&#x60; publishes immediately when there is no future   &#x60;publishDate&#x60;. - &#x60;seo.title&#x60; / &#x60;seo.description&#x60; map to Shopify&#39;s global &#x60;title_tag&#x60;   and &#x60;description_tag&#x60; metafields (the fields Shopify themes read for   the page title and meta description), and on Wix to the post&#39;s SEO   title and meta description. WordPress and Webflow reject &#x60;seo&#x60;; SEO   plugin and custom-field writes are not supported. - Webflow has no scheduling API: a future &#x60;publishDate&#x60; returns 400   unless &#x60;isPublished: false&#x60; keeps a draft. Fields map to the   collection&#39;s own fields by type and slug (the body to its rich text   field, &#x60;excerpt&#x60; to a summary field, &#x60;image&#x60; to an image field, &#x60;tags&#x60;   and &#x60;author&#x60; to tag and author reference fields); sending a field the   collection does not have returns 400, as does a collection that   requires a field the Blogs API cannot fill. - Wix stores rich content: &#x60;bodyHtml&#x60; is converted on write (each   top-level HTML element must fit 30,000 characters), and images in   the body are imported into the site&#39;s Media Manager.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress native scheduling depends on the site&#39;s scheduler/WP-Cron. 
 
 ### Example
 
@@ -298,7 +298,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         CreateBlogArticleRequest createBlogArticleRequest = new CreateBlogArticleRequest(); // CreateBlogArticleRequest | 
         try {
@@ -322,7 +322,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **createBlogArticleRequest** | [**CreateBlogArticleRequest**](CreateBlogArticleRequest.md)|  | |
 
@@ -517,7 +517,7 @@ ApiResponse<Void>
 
 Delete a blog article
 
-Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy. On Webflow the item is unpublished from the live site, then deleted from the collection.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -540,9 +540,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         try {
             apiInstance.deleteBlogArticle(accountId, blogId, articleId);
         } catch (ApiException e) {
@@ -561,9 +561,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 
 ### Return type
 
@@ -597,7 +597,7 @@ null (empty response body)
 
 Delete a blog article
 
-Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Deletes the article. The delete happens on the platform and is permanent; Zernio stores nothing to restore it from. On WordPress the post is force-deleted, while uploaded attachments and tags remain in the site&#39;s media library and taxonomy. On Webflow the item is unpublished from the live site, then deleted from the collection.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -621,9 +621,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         try {
             ApiResponse<Void> response = apiInstance.deleteBlogArticleWithHttpInfo(accountId, blogId, articleId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -644,9 +644,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 
 ### Return type
 
@@ -704,7 +704,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         try {
             GetBlog200Response result = apiInstance.getBlog(accountId, blogId);
@@ -725,7 +725,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 
 ### Return type
@@ -784,7 +784,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         try {
             ApiResponse<GetBlog200Response> response = apiInstance.getBlogWithHttpInfo(accountId, blogId);
@@ -807,7 +807,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 
 ### Return type
@@ -843,7 +843,7 @@ ApiResponse<[**GetBlog200Response**](GetBlog200Response.md)>
 
 Get a blog article
 
-Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
+Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
 
 ### Example
 
@@ -866,9 +866,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         try {
             CreateBlogArticle201Response result = apiInstance.getBlogArticle(accountId, blogId, articleId);
             System.out.println(result);
@@ -888,9 +888,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 
 ### Return type
 
@@ -924,7 +924,7 @@ public class Example {
 
 Get a blog article
 
-Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
+Fetches a single article. An article addressed through a blog it does not belong to is a 404 (code blog_article_not_found).  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress returns its native &#x60;status&#x60;; &#x60;publishedAt&#x60; is present only for a published post and &#x60;publishDate&#x60; only for a scheduled post. 
 
 ### Example
 
@@ -948,9 +948,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         try {
             ApiResponse<CreateBlogArticle201Response> response = apiInstance.getBlogArticleWithHttpInfo(accountId, blogId, articleId);
             System.out.println("Status code: " + response.getStatusCode());
@@ -972,9 +972,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 
 ### Return type
 
@@ -1009,7 +1009,7 @@ ApiResponse<[**CreateBlogArticle201Response**](CreateBlogArticle201Response.md)>
 
 List blog articles
 
-Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress and Wix results include &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. 
+Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress and Wix results include &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
 
 ### Example
 
@@ -1032,7 +1032,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
@@ -1055,7 +1055,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
@@ -1092,7 +1092,7 @@ public class Example {
 
 List blog articles
 
-Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). WordPress and Wix results include &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. 
+Lists the articles of a blog. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Treat cursors as opaque and pass them unchanged. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). WordPress and Wix results include &#x60;status&#x60; and include &#x60;publishDate&#x60; only for scheduled (&#x60;future&#x60;) posts. Wix lists return &#x60;bodyHtml: null&#x60;; get the article for its body. Webflow results report &#x60;status&#x60; as &#x60;publish&#x60; or &#x60;draft&#x60; only. 
 
 ### Example
 
@@ -1116,7 +1116,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
@@ -1141,7 +1141,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
@@ -1179,7 +1179,7 @@ ApiResponse<[**ListBlogArticles200Response**](ListBlogArticles200Response.md)>
 
 List blogs
 
-Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;. A Webflow site returns each CMS collection that has a rich text field (its blog id is the collection id), with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -1202,7 +1202,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1224,7 +1224,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1260,7 +1260,7 @@ public class Example {
 
 List blogs
 
-Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Lists blogs on the connected account. Shopify returns its store blogs with cursor pagination. A WordPress or Wix account represents one site and always returns exactly that one blog with &#x60;nextCursor: null&#x60;. A Webflow site returns each CMS collection that has a rich text field (its blog id is the collection id), with &#x60;nextCursor: null&#x60;.  &#x60;limit&#x60; is 1-50 (default 20). Treat &#x60;nextCursor&#x60; as opaque; pass it unchanged on the next request. Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -1284,7 +1284,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         Integer limit = 20; // Integer | Page size (1-50).
         String cursor = "cursor_example"; // String | Opaque cursor from a previous response. Omit for the first page.
         try {
@@ -1308,7 +1308,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **limit** | **Integer**| Page size (1-50). | [optional] [default to 20] |
 | **cursor** | **String**| Opaque cursor from a previous response. Omit for the first page. | [optional] |
 
@@ -1509,7 +1509,7 @@ ApiResponse<[**CreateBlog201Response**](CreateBlog201Response.md)>
 
 Update a blog article
 
-Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes. On Webflow, an edit to a published item goes live immediately, &#x60;isPublished: false&#x60; unpublishes it, and a future &#x60;publishDate&#x60; returns 400.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -1532,9 +1532,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         UpdateBlogArticleRequest updateBlogArticleRequest = new UpdateBlogArticleRequest(); // UpdateBlogArticleRequest | 
         try {
             CreateBlogArticle201Response result = apiInstance.updateBlogArticle(accountId, blogId, articleId, updateBlogArticleRequest);
@@ -1555,9 +1555,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 | **updateBlogArticleRequest** | [**UpdateBlogArticleRequest**](UpdateBlogArticleRequest.md)|  | |
 
 ### Return type
@@ -1592,7 +1592,7 @@ public class Example {
 
 Update a blog article
 
-Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;) and Wix (&#x60;wix&#x60;). 
+Partial-updates an article. Send any subset of the create fields (&#x60;title&#x60;, &#x60;bodyHtml&#x60;, &#x60;handle&#x60;, &#x60;tags&#x60;, &#x60;author&#x60;, &#x60;excerpt&#x60;, &#x60;image&#x60;, &#x60;seo&#x60;, &#x60;isPublished&#x60;, &#x60;publishDate&#x60;); at least one field is required (an empty body returns 400). &#x60;isPublished&#x60; and &#x60;publishDate&#x60; behave as on create: &#x60;isPublished: false&#x60; unpublishes back to a draft and a future &#x60;publishDate&#x60; schedules publication natively on the platform. Omitting both fields preserves the current WordPress or Wix status. Omitting &#x60;image&#x60; preserves the current featured image; removal is not supported. WordPress rejects &#x60;seo&#x60; and does not support SEO-plugin/custom-field, category, or custom-post-type writes. On Webflow, an edit to a published item goes live immediately, &#x60;isPublished: false&#x60; unpublishes it, and a future &#x60;publishDate&#x60; returns 400.  Supported on Shopify (&#x60;shopify&#x60;), WordPress (&#x60;wordpress&#x60;), Wix (&#x60;wix&#x60;) and Webflow (&#x60;webflow&#x60;). 
 
 ### Example
 
@@ -1616,9 +1616,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         BlogsApi apiInstance = new BlogsApi(defaultClient);
-        String accountId = "accountId_example"; // String | Connected Shopify, WordPress or Wix account id.
+        String accountId = "accountId_example"; // String | Connected Shopify, WordPress, Wix or Webflow account id.
         String blogId = "blogId_example"; // String | Platform-native blog/site id returned by the list operation.
-        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400.
+        String articleId = "articleId_example"; // String | Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400.
         UpdateBlogArticleRequest updateBlogArticleRequest = new UpdateBlogArticleRequest(); // UpdateBlogArticleRequest | 
         try {
             ApiResponse<CreateBlogArticle201Response> response = apiInstance.updateBlogArticleWithHttpInfo(accountId, blogId, articleId, updateBlogArticleRequest);
@@ -1641,9 +1641,9 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **accountId** | **String**| Connected Shopify, WordPress or Wix account id. | |
+| **accountId** | **String**| Connected Shopify, WordPress, Wix or Webflow account id. | |
 | **blogId** | **String**| Platform-native blog/site id returned by the list operation. | |
-| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix. Other formats return 400. | |
+| **articleId** | **String**| Platform-native article id: numeric on Shopify and WordPress, a GUID on Wix, a 24-character hex item id on Webflow. Other formats return 400. | |
 | **updateBlogArticleRequest** | [**UpdateBlogArticleRequest**](UpdateBlogArticleRequest.md)|  | |
 
 ### Return type
