@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.312.0
+- API version: 1.314.0
 
-- Build date: 2026-10-20T23:46:20.716001855Z[Etc/UTC]
+- Build date: 2026-10-21T00:11:29.290106024Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.312.0</version>
+  <version>1.314.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.312.0"
+compile "dev.zernio:zernio-sdk:1.314.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.312.0.jar`
+- `target/zernio-sdk-1.314.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1047,6 +1047,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectUrlWithHttpInfo**](docs/ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL
+*ConnectApi* | [**getConnectWelcomeScreen**](docs/ConnectApi.md#getConnectWelcomeScreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen
+*ConnectApi* | [**getConnectWelcomeScreenWithHttpInfo**](docs/ConnectApi.md#getConnectWelcomeScreenWithHttpInfo) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen
 *ConnectApi* | [**getFacebookPages**](docs/ConnectApi.md#getFacebookPages) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getFacebookPagesWithHttpInfo**](docs/ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getGmbLocations**](docs/ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
@@ -1117,6 +1119,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**selectSnapchatProfileWithHttpInfo**](docs/ConnectApi.md#selectSnapchatProfileWithHttpInfo) | **POST** /v1/connect/snapchat/select-profile | Select Snapchat profile
 *ConnectApi* | [**setRedditPostFlair**](docs/ConnectApi.md#setRedditPostFlair) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
 *ConnectApi* | [**setRedditPostFlairWithHttpInfo**](docs/ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
+*ConnectApi* | [**updateConnectWelcomeScreen**](docs/ConnectApi.md#updateConnectWelcomeScreen) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
+*ConnectApi* | [**updateConnectWelcomeScreenWithHttpInfo**](docs/ConnectApi.md#updateConnectWelcomeScreenWithHttpInfo) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
 *ConnectApi* | [**updateFacebookPage**](docs/ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateFacebookPageWithHttpInfo**](docs/ConnectApi.md#updateFacebookPageWithHttpInfo) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
 *ConnectApi* | [**updateGmbLocation**](docs/ConnectApi.md#updateGmbLocation) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update Google Business Profile location
@@ -2450,6 +2454,7 @@ Class | Method | HTTP request | Description
  - [ConnectShopifyWithToken200ResponseAccount](docs/ConnectShopifyWithToken200ResponseAccount.md)
  - [ConnectShopifyWithTokenRequest](docs/ConnectShopifyWithTokenRequest.md)
  - [ConnectSlackChannelRequest](docs/ConnectSlackChannelRequest.md)
+ - [ConnectWelcomeScreen](docs/ConnectWelcomeScreen.md)
  - [ConnectWhatsAppCredentials200Response](docs/ConnectWhatsAppCredentials200Response.md)
  - [ConnectWhatsAppCredentials200ResponseAccount](docs/ConnectWhatsAppCredentials200ResponseAccount.md)
  - [ConnectWhatsAppCredentialsRequest](docs/ConnectWhatsAppCredentialsRequest.md)
@@ -4443,6 +4448,7 @@ Class | Method | HTTP request | Description
  - [UpdateCommerceProductPricesRequestVariantsInnerPrice](docs/UpdateCommerceProductPricesRequestVariantsInnerPrice.md)
  - [UpdateCommerceProductRequest](docs/UpdateCommerceProductRequest.md)
  - [UpdateCommerceRedirectRequest](docs/UpdateCommerceRedirectRequest.md)
+ - [UpdateConnectWelcomeScreenRequest](docs/UpdateConnectWelcomeScreenRequest.md)
  - [UpdateContact200Response](docs/UpdateContact200Response.md)
  - [UpdateContact200ResponseContact](docs/UpdateContact200ResponseContact.md)
  - [UpdateContactRequest](docs/UpdateContactRequest.md)

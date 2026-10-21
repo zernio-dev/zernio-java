@@ -392,6 +392,7 @@ docs/ConnectShopifyWithToken200Response.md
 docs/ConnectShopifyWithToken200ResponseAccount.md
 docs/ConnectShopifyWithTokenRequest.md
 docs/ConnectSlackChannelRequest.md
+docs/ConnectWelcomeScreen.md
 docs/ConnectWhatsAppCredentials200Response.md
 docs/ConnectWhatsAppCredentials200ResponseAccount.md
 docs/ConnectWhatsAppCredentialsRequest.md
@@ -2427,6 +2428,7 @@ docs/UpdateCommerceProductPricesRequestVariantsInner.md
 docs/UpdateCommerceProductPricesRequestVariantsInnerPrice.md
 docs/UpdateCommerceProductRequest.md
 docs/UpdateCommerceRedirectRequest.md
+docs/UpdateConnectWelcomeScreenRequest.md
 docs/UpdateContact200Response.md
 docs/UpdateContact200ResponseContact.md
 docs/UpdateContactRequest.md
@@ -3313,6 +3315,7 @@ src/main/java/dev/zernio/model/ConnectShopifyWithToken200Response.java
 src/main/java/dev/zernio/model/ConnectShopifyWithToken200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectShopifyWithTokenRequest.java
 src/main/java/dev/zernio/model/ConnectSlackChannelRequest.java
+src/main/java/dev/zernio/model/ConnectWelcomeScreen.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200Response.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentials200ResponseAccount.java
 src/main/java/dev/zernio/model/ConnectWhatsAppCredentialsRequest.java
@@ -5306,6 +5309,7 @@ src/main/java/dev/zernio/model/UpdateCommerceProductPricesRequestVariantsInner.j
 src/main/java/dev/zernio/model/UpdateCommerceProductPricesRequestVariantsInnerPrice.java
 src/main/java/dev/zernio/model/UpdateCommerceProductRequest.java
 src/main/java/dev/zernio/model/UpdateCommerceRedirectRequest.java
+src/main/java/dev/zernio/model/UpdateConnectWelcomeScreenRequest.java
 src/main/java/dev/zernio/model/UpdateContact200Response.java
 src/main/java/dev/zernio/model/UpdateContact200ResponseContact.java
 src/main/java/dev/zernio/model/UpdateContactRequest.java
@@ -5715,9 +5719,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GoogleAdsAccessRoleTest.java
-src/test/java/dev/zernio/model/GoogleAdsUserAccessInvitationResultTest.java
-src/test/java/dev/zernio/model/GoogleAdsUserAccessInvitationTest.java
-src/test/java/dev/zernio/model/InviteAdAccountUserRequestTest.java
-src/test/java/dev/zernio/model/ListAdAccountUserInvitations200ResponseTest.java
-src/test/java/dev/zernio/model/RevokeAdAccountUserInvitation200ResponseTest.java
+src/test/java/dev/zernio/model/ConnectWelcomeScreenTest.java
+src/test/java/dev/zernio/model/UpdateConnectWelcomeScreenRequestTest.java

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.312.0
+  version: 1.314.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10127,36 +10127,40 @@ paths:
         style: form
       - description: "Any platform. When `true`, `authUrl` points to a Zernio-hosted\
           \ welcome screen that shows your brand next to the platform (\"<brandName>\
-          \ wants to connect to your <platform>\") with a Continue button; Continue\
-          \ sends the user to the platform's own authorization screen and the rest\
-          \ of the flow is unchanged. `brandName`, `logoUrl`, `primaryColor` and `welcomeTheme`\
-          \ are optional and default to Zernio's own name, mark and look. The link\
-          \ is valid for 30 minutes, after which the page asks the user to start again.\
-          \ The brand also carries to the account and channel pickers Zernio shows\
-          \ after authorization, and when you pass no `redirect_url` the flow ends\
-          \ on a branded Zernio-hosted page saying whether the account connected,\
-          \ instead of the Zernio dashboard. Cannot be combined with `headless=true`\
-          \ or `signup=hosted` (400 `INVALID_FIELD_VALUE`). The platform's authorization\
-          \ screen still names the Zernio app."
+          \ wants to connect to your <platform>\") whose button fills for about a\
+          \ second and then sends the user on to the platform's own authorization\
+          \ screen, with no click; the rest of the flow is unchanged. `brandName`,\
+          \ `logoUrl`, `primaryColor` and `welcomeTheme` are optional and default\
+          \ to Zernio's own name, mark and look. The link is valid for 30 minutes,\
+          \ after which the page asks the user to start again. The brand also carries\
+          \ to the account and channel pickers Zernio shows after authorization, and\
+          \ when you pass no `redirect_url` the flow ends on a branded Zernio-hosted\
+          \ page saying whether the account connected, instead of the Zernio dashboard.\
+          \ Cannot be combined with `headless=true` or `signup=hosted` (400 `INVALID_FIELD_VALUE`).\
+          \ The platform's authorization screen still names the Zernio app. Recommended.\
+          \ When left out, the screen is shown if the workspace saved it as on by\
+          \ default (`PUT /v1/connect/welcome-screen`), except with `headless=true`\
+          \ or `signup=hosted`; pass `false` to skip it. Branding you leave out of\
+          \ the call comes from those saved settings, and a `welcomeTheme` you send\
+          \ is merged key by key over the saved theme."
         explode: true
         in: query
         name: welcome
         required: false
         schema:
-          default: false
           type: boolean
         style: form
       - description: "Welcome screen only (`welcome=true`): a URL-encoded JSON object\
           \ that restyles and rewords the screen. All keys are optional. Copy: `heading`\
           \ (up to 120 characters), `trustLine` and `consentLine` (up to 200 each),\
-          \ `buttonLabel` (up to 30); each may contain the placeholders `{brand}`\
-          \ and `{platform}`. Style: `primaryColor`, `pageColor`, `cardColor` and\
-          \ `textColor` as `#RRGGBB`, `cornerRadius` as an integer from 0 to 24 (pixels),\
-          \ `font` as `sans`, `serif` or `mono`. A `primaryColor` here wins over the\
-          \ `primaryColor` parameter. Unknown keys, invalid JSON or an invalid value\
-          \ are a 400 `INVALID_FIELD_VALUE`. Rejected without `welcome=true`. Example:\
-          \ `{\"heading\":\"Link your {platform} to {brand}\",\"cardColor\":\"#FFF7ED\"\
-          ,\"cornerRadius\":12}`."
+          \ `buttonLabel` (up to 30, the label on that button); each may contain the\
+          \ placeholders `{brand}` and `{platform}`. Style: `primaryColor`, `pageColor`,\
+          \ `cardColor` and `textColor` as `#RRGGBB`, `cornerRadius` as an integer\
+          \ from 0 to 24 (pixels), `font` as `sans`, `serif` or `mono`. A `primaryColor`\
+          \ here wins over the `primaryColor` parameter. Unknown keys, invalid JSON\
+          \ or an invalid value are a 400 `INVALID_FIELD_VALUE`. Rejected when the\
+          \ welcome screen is not shown. Example: `{\"heading\":\"Link your {platform}\
+          \ to {brand}\",\"cardColor\":\"#FFF7ED\",\"cornerRadius\":12}`."
         explode: true
         in: query
         name: welcomeTheme
@@ -10168,7 +10172,8 @@ paths:
       - description: "Welcome screen only (`welcome=true`): https URL of your logo,\
           \ shown in a square tile, so use a square image. Without it the tile shows\
           \ the first letter of `brandName`, or the Zernio mark when there is no `brandName`\
-          \ either. Rejected with 400 `INVALID_FIELD_VALUE` without `welcome=true`."
+          \ either. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen\
+          \ is not shown."
         explode: true
         in: query
         name: logoUrl
@@ -13620,6 +13625,73 @@ paths:
       tags:
       - GMB Reviews
       x-resource-group: engagement
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/welcome-screen:
+    get:
+      description: "The workspace's saved welcome screen settings, shared by the whole\
+        \ team. With `showByDefault` on, every `GET /v1/connect/{platform}` made with\
+        \ your API key shows the welcome screen before the platform's authorization\
+        \ screen, without `welcome=true` or any branding parameter. Connects started\
+        \ from the Zernio dashboard always show it, with this branding when saved."
+      operationId: getConnectWelcomeScreen
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectWelcomeScreen"
+          description: The saved settings. A workspace that never saved any gets `showByDefault`
+            false and null fields.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Get the saved welcome screen
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    put:
+      description: "Replaces the workspace's welcome screen settings: a field left\
+        \ out is cleared. Only the account owner or a full-access team member can\
+        \ save, and not with a profile-scoped API key. Parameters sent on a connect\
+        \ call still win over these values for that call."
+      operationId: updateConnectWelcomeScreen
+      requestBody:
+        content:
+          application/json:
+            example:
+              showByDefault: true
+              brandName: Acme
+              logoUrl: https://acme.com/logo.png
+              theme:
+                primaryColor: "#1D4ED8"
+                cornerRadius: 12
+            schema:
+              $ref: "#/components/schemas/updateConnectWelcomeScreen_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConnectWelcomeScreen"
+          description: The saved settings.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings (code INSUFFICIENT_PERMISSIONS).
+      security:
+      - bearerAuth: []
+      summary: Save the welcome screen
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -65104,6 +65176,27 @@ components:
         `dashboard_url` (the enterprise contact form) to adjust the
         contract's limit.
   schemas:
+    ConnectWelcomeScreen:
+      example:
+        showByDefault: true
+        brandName: Acme
+        logoUrl: https://acme.com/logo.png
+        theme:
+          primaryColor: "#1D4ED8"
+          cornerRadius: 12
+      properties:
+        showByDefault:
+          type: boolean
+        brandName:
+          nullable: true
+          type: string
+        logoUrl:
+          nullable: true
+          type: string
+        theme:
+          description: "Same keys as the `welcomeTheme` parameter of `GET /v1/connect/{platform}`."
+          nullable: true
+          type: object
     AnalyticsDashboardTotals:
       example:
         shares: 5
@@ -68118,11 +68211,11 @@ components:
           type: string
         type:
           description: |
-            Node kind. The 16 supported types break into four groups:
+            Node kind. The 17 supported types break into four groups:
               messaging (send_message),
               control flow (trigger, condition, delay, wait_for_reply, a_b_split, end),
               data ops (set_variable, set_field, add_tag, remove_tag, enroll_sequence),
-              integrations (webhook, ai, handoff, start_call).
+              integrations (webhook, hubspot_upsert_contact, ai, handoff, start_call).
           enum:
           - trigger
           - send_message
@@ -68131,6 +68224,7 @@ components:
           - set_variable
           - delay
           - webhook
+          - hubspot_upsert_contact
           - ai
           - handoff
           - start_call
@@ -68162,6 +68256,8 @@ components:
             **delay**: `{ delayMinutes:int (max 43200) }`. Suspends the run, resumes via timer.
 
             **webhook**: `{ url, method: GET|POST|PUT|PATCH|DELETE, headers, bodyTemplate, saveAs }`. SSRF-guarded (private/loopback/metadata IPs rejected). Response saved as `{ status, ok, body }` to `vars[saveAs]`. Edge: `'success'` on 2xx, `'error'` otherwise.
+
+            **hubspot_upsert_contact**: `{ email, phone, firstName, lastName, properties, saveAs }`. Creates or updates the run contact in the profile's connected HubSpot portal: the contact already linked by inbox sync, else one matching by email, then phone, is updated; otherwise one is created. An existing contact gets only the fields the node sets (a value that resolves to an empty string is skipped); a new one also takes the Zernio contact's name, email and phone for anything left out. `properties` maps HubSpot internal property names to values (at most 50). Saves `{ id, created }` (or `{ error }`) to `vars[saveAs]` (default `hubspotContact`). Edges: `'success'` | `'error'` (HubSpot not connected, or HubSpot refused the write).
 
             **ai**: `{ provider: anthropic|openai|google|mistral|groq|openrouter, model, preset: smart|tools|cheap, systemPrompt, userPromptTemplate, saveAs, temperature, maxTokens, outputType: text|json, tools:[{ name, description, parameters }] }`. Set `provider` + `model` for BYOK (uses your stored API key); omit `provider` for the legacy Telnyx path. Edges: `'success'`, `'tool:<name>'` (model picked a tool), `'error'`.
 
@@ -68214,6 +68310,7 @@ components:
               - **condition**: a rule's `id`, or `'default'` (no rule matched)
               - **wait_for_reply**: `'reply'` (contact replied) | `'timeout'` (no reply in window)
               - **webhook**: `'success'` (2xx) | `'error'` (non-2xx / fetch failed)
+              - **hubspot_upsert_contact**: `'success'` | `'error'` (not connected / HubSpot refused)
               - **ai**: `'success'` (text/JSON response) | `'tool:<toolName>'` (model invoked
                 that tool) | `'error'` (upstream failure / non-JSON in JSON mode)
               - **start_call**: `'success'` | `'permission_required'` | `'failed'`
@@ -104032,6 +104129,27 @@ components:
         platform:
           example: googlebusiness
           type: string
+    updateConnectWelcomeScreen_request:
+      additionalProperties: {}
+      properties:
+        showByDefault:
+          description: Show the welcome screen on connect calls that do not pass `welcome`.
+          type: boolean
+        brandName:
+          maxLength: 60
+          minLength: 1
+          type: string
+        logoUrl:
+          description: https URL of a square logo.
+          format: uri
+          maxLength: 2048
+          type: string
+        theme:
+          description: "Same keys as the `welcomeTheme` parameter of `GET /v1/connect/{platform}`,\
+            \ as a JSON object."
+          type: object
+      required:
+      - showByDefault
     getPendingOAuthData_200_response_organizations_inner:
       example:
         urn: urn
