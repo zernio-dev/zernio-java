@@ -2191,6 +2191,7 @@ docs/SendSms200Response.md
 docs/SendSmsRequest.md
 docs/SendTypingIndicatorRequest.md
 docs/SendWhatsAppConversion200Response.md
+docs/SendWhatsAppConversion200ResponseFailuresInner.md
 docs/SendWhatsAppConversionRequest.md
 docs/SendWhatsAppFlowMessage200Response.md
 docs/SendWhatsAppFlowMessageRequest.md
@@ -5084,6 +5085,7 @@ src/main/java/dev/zernio/model/SendSms200Response.java
 src/main/java/dev/zernio/model/SendSmsRequest.java
 src/main/java/dev/zernio/model/SendTypingIndicatorRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppConversion200Response.java
+src/main/java/dev/zernio/model/SendWhatsAppConversion200ResponseFailuresInner.java
 src/main/java/dev/zernio/model/SendWhatsAppConversionRequest.java
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessage200Response.java
 src/main/java/dev/zernio/model/SendWhatsAppFlowMessageRequest.java
@@ -5729,5 +5731,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/InstagramLiveMediaTest.java
-src/test/java/dev/zernio/model/ListInstagramLiveMedia200ResponseTest.java
+src/test/java/dev/zernio/model/SendWhatsAppConversion200ResponseFailuresInnerTest.java

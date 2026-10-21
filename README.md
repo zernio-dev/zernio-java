@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.315.2
+- API version: 1.316.0
 
-- Build date: 2026-10-21T04:32:58.344179996Z[Etc/UTC]
+- Build date: 2026-10-21T05:18:57.047071480Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.315.2</version>
+  <version>1.316.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.315.2"
+compile "dev.zernio:zernio-sdk:1.316.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.315.2.jar`
+- `target/zernio-sdk-1.316.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4224,6 +4224,7 @@ Class | Method | HTTP request | Description
  - [SendSmsRequest](docs/SendSmsRequest.md)
  - [SendTypingIndicatorRequest](docs/SendTypingIndicatorRequest.md)
  - [SendWhatsAppConversion200Response](docs/SendWhatsAppConversion200Response.md)
+ - [SendWhatsAppConversion200ResponseFailuresInner](docs/SendWhatsAppConversion200ResponseFailuresInner.md)
  - [SendWhatsAppConversionRequest](docs/SendWhatsAppConversionRequest.md)
  - [SendWhatsAppFlowMessage200Response](docs/SendWhatsAppFlowMessage200Response.md)
  - [SendWhatsAppFlowMessageRequest](docs/SendWhatsAppFlowMessageRequest.md)
