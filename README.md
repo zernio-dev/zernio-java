@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.316.0
+- API version: 1.317.0
 
-- Build date: 2026-10-21T05:18:57.047071480Z[Etc/UTC]
+- Build date: 2026-10-21T07:12:44.909559590Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.316.0</version>
+  <version>1.317.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.316.0"
+compile "dev.zernio:zernio-sdk:1.317.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.316.0.jar`
+- `target/zernio-sdk-1.317.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1379,6 +1379,8 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**listInstagramMediaCollaboratorsWithHttpInfo**](docs/InstagramApi.md#listInstagramMediaCollaboratorsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post
 *InstagramApi* | [**listInstagramStories**](docs/InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
 *InstagramApi* | [**listInstagramStoriesWithHttpInfo**](docs/InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories
+*InstagramApi* | [**listInstagramTaggedMedia**](docs/InstagramApi.md#listInstagramTaggedMedia) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in
+*InstagramApi* | [**listInstagramTaggedMediaWithHttpInfo**](docs/InstagramApi.md#listInstagramTaggedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in
 *InstagramApi* | [**searchInstagramAudio**](docs/InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
 *InstagramApi* | [**searchInstagramAudioWithHttpInfo**](docs/InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio
 *InvitesApi* | [**createInviteToken**](docs/InvitesApi.md#createInviteToken) | **POST** /v1/invite/tokens | Create invite token
@@ -3460,6 +3462,7 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
+ - [InstagramTaggedMedia](docs/InstagramTaggedMedia.md)
  - [InstallTrackingTagOnStore200Response](docs/InstallTrackingTagOnStore200Response.md)
  - [InstallTrackingTagOnStore200ResponseInstall](docs/InstallTrackingTagOnStore200ResponseInstall.md)
  - [InstallTrackingTagOnStore422Response](docs/InstallTrackingTagOnStore422Response.md)
@@ -3692,6 +3695,7 @@ Class | Method | HTTP request | Description
  - [ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount](docs/ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.md)
  - [ListInstagramStories200Response](docs/ListInstagramStories200Response.md)
  - [ListInstagramStories200ResponseDataInner](docs/ListInstagramStories200ResponseDataInner.md)
+ - [ListInstagramTaggedMedia200Response](docs/ListInstagramTaggedMedia200Response.md)
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
  - [ListLeads200Response](docs/ListLeads200Response.md)
  - [ListLeads200ResponseLeadsInner](docs/ListLeads200ResponseLeadsInner.md)

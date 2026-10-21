@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listInstagramMediaCollaboratorsWithHttpInfo**](InstagramApi.md#listInstagramMediaCollaboratorsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post |
 | [**listInstagramStories**](InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
 | [**listInstagramStoriesWithHttpInfo**](InstagramApi.md#listInstagramStoriesWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
+| [**listInstagramTaggedMedia**](InstagramApi.md#listInstagramTaggedMedia) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in |
+| [**listInstagramTaggedMediaWithHttpInfo**](InstagramApi.md#listInstagramTaggedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/tags | List the posts an Instagram account is tagged in |
 | [**searchInstagramAudio**](InstagramApi.md#searchInstagramAudio) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
 | [**searchInstagramAudioWithHttpInfo**](InstagramApi.md#searchInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio | Search Instagram audio |
 
@@ -1113,6 +1115,168 @@ ApiResponse<[**ListInstagramStories200Response**](ListInstagramStories200Respons
 | **400** | Invalid request. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+
+
+## listInstagramTaggedMedia
+
+> ListInstagramTaggedMedia200Response listInstagramTaggedMedia(accountId, limit, cursor)
+
+List the posts an Instagram account is tagged in
+
+Returns the media where other Instagram users photo-tagged the connected account, newest first. Private media is never returned.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. Meta does not say whether a page is the last one, so the final page can come back empty with &#x60;nextCursor&#x60; null.  Requires an Instagram account connected via **Facebook Login**. Meta does not give Instagram Login access to tagging, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_tagged_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ListInstagramTaggedMedia200Response result = apiInstance.listInstagramTaggedMedia(accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#listInstagramTaggedMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+[**ListInstagramTaggedMedia200Response**](ListInstagramTaggedMedia200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of tagged media |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;) or an account connected with Instagram Login (&#x60;instagram_tagged_media_requires_facebook_login&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## listInstagramTaggedMediaWithHttpInfo
+
+> ApiResponse<ListInstagramTaggedMedia200Response> listInstagramTaggedMedia listInstagramTaggedMediaWithHttpInfo(accountId, limit, cursor)
+
+List the posts an Instagram account is tagged in
+
+Returns the media where other Instagram users photo-tagged the connected account, newest first. Private media is never returned.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. Meta does not say whether a page is the last one, so the final page can come back empty with &#x60;nextCursor&#x60; null.  Requires an Instagram account connected via **Facebook Login**. Meta does not give Instagram Login access to tagging, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_tagged_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ApiResponse<ListInstagramTaggedMedia200Response> response = apiInstance.listInstagramTaggedMediaWithHttpInfo(accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#listInstagramTaggedMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListInstagramTaggedMedia200Response**](ListInstagramTaggedMedia200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of tagged media |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;) or an account connected with Instagram Login (&#x60;instagram_tagged_media_requires_facebook_login&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
 ## searchInstagramAudio
