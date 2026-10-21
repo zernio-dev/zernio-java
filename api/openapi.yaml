@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.319.0
+  version: 1.319.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -167815,12 +167815,12 @@ components:
           description: "Messenger: Facebook Page id, sent as `page_id`. Instagram\
             \ Direct: when `instagramBusinessAccountId` is absent, Zernio reads the\
             \ Instagram professional account linked to this Page and sends its id\
-            \ as `instagram_business_account_id`; if none is linked or the lookup\
-            \ fails, `page_id` is sent instead."
+            \ as `ig_account_id`; if none is linked or the lookup fails, `page_id`\
+            \ is sent instead."
           type: string
         instagramBusinessAccountId:
           description: "Instagram Direct only. Instagram professional account id (`instagram_business_account`\
-            \ on the Page), sent as `instagram_business_account_id` next to `ig_sid`."
+            \ on the Page), sent as `ig_account_id` next to `ig_sid`."
           type: string
         pageScopedUserId:
           description: "Messenger only. The page-scoped user id (PSID) your Messenger\
