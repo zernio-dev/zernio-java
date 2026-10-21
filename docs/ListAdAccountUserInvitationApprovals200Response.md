@@ -1,0 +1,16 @@
+
+
+# ListAdAccountUserInvitationApprovals200Response
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**customerId** | **String** |  |  [optional] |
+|**approvals** | [**List&lt;GoogleAdsUserInvitationApproval&gt;**](GoogleAdsUserInvitationApproval.md) |  |  [optional] |
+|**cachedAt** | **OffsetDateTime** | When this data was fetched from Google. Null when the cache is unavailable. |  [optional] |
+|**stale** | **Boolean** | True when Google&#39;s quota was exhausted and this is the last successful fetch. |  [optional] |
+
+
+

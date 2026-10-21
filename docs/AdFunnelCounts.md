@@ -15,7 +15,7 @@ Named conversion-funnel steps, resolved from the same data as `actions` so you n
 |**cartAdds** | **Integer** | Adds to cart (Meta &#x60;AddToCart&#x60; pixel event). |  [optional] |
 |**checkoutsInitiated** | **Integer** | Checkouts started (Meta &#x60;InitiateCheckout&#x60; pixel event). |  [optional] |
 |**paymentInfoAdds** | **Integer** | Payment details added at checkout (Meta &#x60;AddPaymentInfo&#x60; pixel event). |  [optional] |
-|**purchases** | **Integer** | Purchases (Meta &#x60;Purchase&#x60; pixel event). Pair with &#x60;purchaseValue&#x60; for revenue. |  [optional] |
+|**purchases** | **Integer** | Purchases. Meta reports one purchase under several action types at once, so this takes the FIRST one present, in this order, never a sum: &#x60;offsite_conversion.fb_pixel_purchase&#x60;, &#x60;omni_purchase&#x60;, &#x60;app_custom_event.fb_mobile_purchase&#x60;, &#x60;onsite_conversion.purchase&#x60;, &#x60;purchase&#x60;. It always counts purchases, whatever the ad set optimizes for. &#x60;conversions&#x60; instead follows the ad set&#39;s optimization event (PURCHASE when the ad set names none), so the two can differ on any other goal. TikTok: app purchases (&#x60;purchase&#x60;), else website complete payments (&#x60;complete_payment&#x60;), else Place an Order (&#x60;place_order&#x60;). Pair with &#x60;purchaseValue&#x60; for revenue.  |  [optional] |
 |**leads** | **Integer** | Leads, from either the website pixel or an instant form, whichever the ad uses. |  [optional] |
 |**registrationsCompleted** | **Integer** | Completed registrations (Meta &#x60;CompleteRegistration&#x60; pixel event). |  [optional] |
 |**appInstalls** | **Integer** | Mobile app installs attributed to the ad. |  [optional] |

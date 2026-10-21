@@ -1292,6 +1292,7 @@ docs/GoogleAdsHierarchyClient.md
 docs/GoogleAdsManagerLink.md
 docs/GoogleAdsUserAccessInvitation.md
 docs/GoogleAdsUserAccessInvitationResult.md
+docs/GoogleAdsUserInvitationApproval.md
 docs/GoogleAssetGroupAssetLink.md
 docs/GoogleAssetGroupAssetUnlink.md
 docs/GoogleAssetUpdate.md
@@ -1465,6 +1466,7 @@ docs/ListAccountSitelinks200Response.md
 docs/ListAccountSitelinks200ResponseSitelinksInner.md
 docs/ListAccountStructuredSnippets200Response.md
 docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md
+docs/ListAdAccountUserInvitationApprovals200Response.md
 docs/ListAdAccountUserInvitations200Response.md
 docs/ListAdAccountUsers200Response.md
 docs/ListAdAccounts200Response.md
@@ -2805,6 +2807,7 @@ docs/WhatsAppTemplateLookupErrorDetailsProviderHeaders.md
 docs/WhatsAppTemplateLookupErrorPlatformError.md
 docs/WhatsAppTemplateLookupErrorPlatformErrorErrorData.md
 docs/WhatsAppTemplatesApi.md
+docs/WithdrawAdAccountUserInvitationApproval200Response.md
 docs/WorkflowEdge.md
 docs/WorkflowExecutionEvent.md
 docs/WorkflowNode.md
@@ -4201,6 +4204,7 @@ src/main/java/dev/zernio/model/GoogleAdsHierarchyClient.java
 src/main/java/dev/zernio/model/GoogleAdsManagerLink.java
 src/main/java/dev/zernio/model/GoogleAdsUserAccessInvitation.java
 src/main/java/dev/zernio/model/GoogleAdsUserAccessInvitationResult.java
+src/main/java/dev/zernio/model/GoogleAdsUserInvitationApproval.java
 src/main/java/dev/zernio/model/GoogleAssetGroupAssetLink.java
 src/main/java/dev/zernio/model/GoogleAssetGroupAssetUnlink.java
 src/main/java/dev/zernio/model/GoogleAssetUpdate.java
@@ -4368,6 +4372,7 @@ src/main/java/dev/zernio/model/ListAccountSitelinks200Response.java
 src/main/java/dev/zernio/model/ListAccountSitelinks200ResponseSitelinksInner.java
 src/main/java/dev/zernio/model/ListAccountStructuredSnippets200Response.java
 src/main/java/dev/zernio/model/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.java
+src/main/java/dev/zernio/model/ListAdAccountUserInvitationApprovals200Response.java
 src/main/java/dev/zernio/model/ListAdAccountUserInvitations200Response.java
 src/main/java/dev/zernio/model/ListAdAccountUsers200Response.java
 src/main/java/dev/zernio/model/ListAdAccounts200Response.java
@@ -5673,6 +5678,7 @@ src/main/java/dev/zernio/model/WhatsAppTemplateLookupErrorDetails.java
 src/main/java/dev/zernio/model/WhatsAppTemplateLookupErrorDetailsProviderHeaders.java
 src/main/java/dev/zernio/model/WhatsAppTemplateLookupErrorPlatformError.java
 src/main/java/dev/zernio/model/WhatsAppTemplateLookupErrorPlatformErrorErrorData.java
+src/main/java/dev/zernio/model/WithdrawAdAccountUserInvitationApproval200Response.java
 src/main/java/dev/zernio/model/WorkflowEdge.java
 src/main/java/dev/zernio/model/WorkflowExecutionEvent.java
 src/main/java/dev/zernio/model/WorkflowNode.java
@@ -5719,3 +5725,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GoogleAdsUserInvitationApprovalTest.java
+src/test/java/dev/zernio/model/ListAdAccountUserInvitationApprovals200ResponseTest.java
+src/test/java/dev/zernio/model/WithdrawAdAccountUserInvitationApproval200ResponseTest.java

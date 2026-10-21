@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.314.2
+- API version: 1.315.1
 
-- Build date: 2026-10-21T00:42:04.100035160Z[Etc/UTC]
+- Build date: 2026-10-21T03:11:28.355907823Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.314.2</version>
+  <version>1.315.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.314.2"
+compile "dev.zernio:zernio-sdk:1.315.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.314.2.jar`
+- `target/zernio-sdk-1.315.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -275,6 +275,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**listAccountSitelinksWithHttpInfo**](docs/AdAccountsApi.md#listAccountSitelinksWithHttpInfo) | **GET** /v1/ads/accounts/sitelinks | List account sitelinks
 *AdAccountsApi* | [**listAccountStructuredSnippets**](docs/AdAccountsApi.md#listAccountStructuredSnippets) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
 *AdAccountsApi* | [**listAccountStructuredSnippetsWithHttpInfo**](docs/AdAccountsApi.md#listAccountStructuredSnippetsWithHttpInfo) | **GET** /v1/ads/accounts/structured-snippets | List account snippets
+*AdAccountsApi* | [**listAdAccountUserInvitationApprovals**](docs/AdAccountsApi.md#listAdAccountUserInvitationApprovals) | **GET** /v1/ads/accounts/user-invitations/pending-approvals | List invitations awaiting multi-party approval
+*AdAccountsApi* | [**listAdAccountUserInvitationApprovalsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountUserInvitationApprovalsWithHttpInfo) | **GET** /v1/ads/accounts/user-invitations/pending-approvals | List invitations awaiting multi-party approval
 *AdAccountsApi* | [**listAdAccountUserInvitations**](docs/AdAccountsApi.md#listAdAccountUserInvitations) | **GET** /v1/ads/accounts/user-invitations | List user access invitations
 *AdAccountsApi* | [**listAdAccountUserInvitationsWithHttpInfo**](docs/AdAccountsApi.md#listAdAccountUserInvitationsWithHttpInfo) | **GET** /v1/ads/accounts/user-invitations | List user access invitations
 *AdAccountsApi* | [**listAdAccountUsers**](docs/AdAccountsApi.md#listAdAccountUsers) | **GET** /v1/ads/accounts/users | Ad account users
@@ -343,6 +345,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**updateAdNegativeKeywordListWithHttpInfo**](docs/AdAccountsApi.md#updateAdNegativeKeywordListWithHttpInfo) | **PUT** /v1/ads/accounts/negative-keyword-lists/{listId} | Rename a negative keyword list
 *AdAccountsApi* | [**updateValueRuleSet**](docs/AdAccountsApi.md#updateValueRuleSet) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
 *AdAccountsApi* | [**updateValueRuleSetWithHttpInfo**](docs/AdAccountsApi.md#updateValueRuleSetWithHttpInfo) | **PUT** /v1/ads/value-rule-sets/{valueRuleSetId} | Replace a value rule set
+*AdAccountsApi* | [**withdrawAdAccountUserInvitationApproval**](docs/AdAccountsApi.md#withdrawAdAccountUserInvitationApproval) | **DELETE** /v1/ads/accounts/user-invitations/pending-approvals | Withdraw an invitation awaiting multi-party approval
+*AdAccountsApi* | [**withdrawAdAccountUserInvitationApprovalWithHttpInfo**](docs/AdAccountsApi.md#withdrawAdAccountUserInvitationApprovalWithHttpInfo) | **DELETE** /v1/ads/accounts/user-invitations/pending-approvals | Withdraw an invitation awaiting multi-party approval
 *AdAudiencesApi* | [**addUsersToAdAudience**](docs/AdAudiencesApi.md#addUsersToAdAudience) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**addUsersToAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#addUsersToAdAudienceWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/users | Add users to audience
 *AdAudiencesApi* | [**createAdAudience**](docs/AdAudiencesApi.md#createAdAudience) | **POST** /v1/ads/audiences | Create custom audience
@@ -3340,6 +3344,7 @@ Class | Method | HTTP request | Description
  - [GoogleAdsManagerLink](docs/GoogleAdsManagerLink.md)
  - [GoogleAdsUserAccessInvitation](docs/GoogleAdsUserAccessInvitation.md)
  - [GoogleAdsUserAccessInvitationResult](docs/GoogleAdsUserAccessInvitationResult.md)
+ - [GoogleAdsUserInvitationApproval](docs/GoogleAdsUserInvitationApproval.md)
  - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
  - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
@@ -3507,6 +3512,7 @@ Class | Method | HTTP request | Description
  - [ListAccountSitelinks200ResponseSitelinksInner](docs/ListAccountSitelinks200ResponseSitelinksInner.md)
  - [ListAccountStructuredSnippets200Response](docs/ListAccountStructuredSnippets200Response.md)
  - [ListAccountStructuredSnippets200ResponseStructuredSnippetsInner](docs/ListAccountStructuredSnippets200ResponseStructuredSnippetsInner.md)
+ - [ListAdAccountUserInvitationApprovals200Response](docs/ListAdAccountUserInvitationApprovals200Response.md)
  - [ListAdAccountUserInvitations200Response](docs/ListAdAccountUserInvitations200Response.md)
  - [ListAdAccountUsers200Response](docs/ListAdAccountUsers200Response.md)
  - [ListAdAccounts200Response](docs/ListAdAccounts200Response.md)
@@ -4812,6 +4818,7 @@ Class | Method | HTTP request | Description
  - [WhatsAppTemplateLookupErrorDetailsProviderHeaders](docs/WhatsAppTemplateLookupErrorDetailsProviderHeaders.md)
  - [WhatsAppTemplateLookupErrorPlatformError](docs/WhatsAppTemplateLookupErrorPlatformError.md)
  - [WhatsAppTemplateLookupErrorPlatformErrorErrorData](docs/WhatsAppTemplateLookupErrorPlatformErrorErrorData.md)
+ - [WithdrawAdAccountUserInvitationApproval200Response](docs/WithdrawAdAccountUserInvitationApproval200Response.md)
  - [WorkflowEdge](docs/WorkflowEdge.md)
  - [WorkflowExecutionEvent](docs/WorkflowExecutionEvent.md)
  - [WorkflowNode](docs/WorkflowNode.md)
