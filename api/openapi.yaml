@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.315.1
+  version: 1.315.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -16427,6 +16427,67 @@ paths:
       tags:
       - Instagram
       x-resource-group: publishing
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/live-media:
+    get:
+      description: |
+        Returns the live videos the connected Instagram account is broadcasting
+        right now. Meta only returns broadcasts in progress at the time of the
+        request, so the list is empty when nothing is live (a 200, not an error).
+        Pair the returned `id` with comments flagged as live (the live_comments
+        webhook field) or with a `live_comment` comment automation.
+
+        Requires an Instagram account connected via **Facebook Login**. Meta
+        documents the live_media edge on graph.facebook.com only, so accounts
+        connected with classic Instagram Login receive a 400
+        (`instagram_live_media_requires_facebook_login`) and must be
+        reconnected choosing the Facebook option.
+      operationId: listInstagramLiveMedia
+      parameters:
+      - description: The ID of a connected Instagram account (Facebook Login).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInstagramLiveMedia_200_response"
+          description: Live broadcasts in progress
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, an account on another platform (`platform_not_supported`)\
+            \ or an account connected with Instagram Login (`instagram_live_media_requires_facebook_login`)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The API key is not scoped to this account, or Meta refused\
+            \ the request (`platform_api_error`, for example a missing permission)."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The account is not reachable by the caller (`account_not_found`).
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      summary: List the live broadcasts of an Instagram account
+      tags:
+      - Instagram
+      x-resource-group: analytics
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
@@ -77589,6 +77650,42 @@ components:
       - id
       - inviteStatus
       - username
+    InstagramLiveMedia:
+      example:
+        mediaProductType: LIVE
+        mediaType: BROADCAST
+        id: id
+        username: username
+        timestamp: timestamp
+      properties:
+        id:
+          description: Instagram media ID of the live broadcast.
+          type: string
+        mediaType:
+          description: BROADCAST for a live video.
+          example: BROADCAST
+          nullable: true
+          type: string
+        mediaProductType:
+          description: LIVE for a live video.
+          example: LIVE
+          nullable: true
+          type: string
+        username:
+          description: Instagram handle of the broadcasting account.
+          nullable: true
+          type: string
+        timestamp:
+          description: Creation time of the broadcast media as Meta returns it (ISO
+            8601).
+          nullable: true
+          type: string
+      required:
+      - id
+      - mediaProductType
+      - mediaType
+      - timestamp
+      - username
     InstagramBusinessDiscovery:
       example:
         profile:
@@ -106541,6 +106638,26 @@ components:
           items:
             $ref: "#/components/schemas/InstagramMediaCollaborator"
           maxItems: 5
+          type: array
+      required:
+      - data
+    listInstagramLiveMedia_200_response:
+      example:
+        data:
+        - mediaProductType: LIVE
+          mediaType: BROADCAST
+          id: id
+          username: username
+          timestamp: timestamp
+        - mediaProductType: LIVE
+          mediaType: BROADCAST
+          id: id
+          username: username
+          timestamp: timestamp
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/InstagramLiveMedia"
           type: array
       required:
       - data
@@ -145140,10 +145257,12 @@ components:
             \ validation still downloads image URLs and consumes quota. On Meta, validates\
             \ the complete inline campaign, ad set, creative and ad with execution_options\
             \ validate_only. Nothing is uploaded or created, and validation bypasses\
-            \ Idempotency-Key storage. Supports a single image, all-image placementAssets\
-            \ with per-rule copy, existing video.id or existingCreativeId; other media\
-            \ pools, new video uploads, creatives[], adSetId and RESERVED buying return\
-            \ 400. Placement validation uses existing Instagram identities only. Existing\
+            \ Idempotency-Key storage. Supports a single image or existing video.id\
+            \ (each also with bodies[] / headlines[] Multiple Text Options), all-image\
+            \ placementAssets with per-rule copy and text pools, or existingCreativeId;\
+            \ dynamicCreative, translations, carouselCards, placement videos, new\
+            \ video uploads, creatives[], adSetId and RESERVED buying return 400.\
+            \ Placement validation uses existing Instagram identities only. Existing\
             \ campaign or creative nodes are marked skipped. Success returns 200 with\
             \ per-node results; Meta rejection returns an error. ChatGPT (OpenAI)\
             \ has no platform dry-run: Zernio runs every check it knows (creative\

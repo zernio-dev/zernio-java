@@ -12,6 +12,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInstagramPublishingLimitWithHttpInfo**](InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramStoryInsights**](InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
 | [**getInstagramStoryInsightsWithHttpInfo**](InstagramApi.md#getInstagramStoryInsightsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
+| [**listInstagramLiveMedia**](InstagramApi.md#listInstagramLiveMedia) | **GET** /v1/accounts/{accountId}/instagram/live-media | List the live broadcasts of an Instagram account |
+| [**listInstagramLiveMediaWithHttpInfo**](InstagramApi.md#listInstagramLiveMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/live-media | List the live broadcasts of an Instagram account |
 | [**listInstagramMediaCollaborators**](InstagramApi.md#listInstagramMediaCollaborators) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post |
 | [**listInstagramMediaCollaboratorsWithHttpInfo**](InstagramApi.md#listInstagramMediaCollaboratorsWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/media/{mediaId}/collaborators | List the collaborators of an Instagram post |
 | [**listInstagramStories**](InstagramApi.md#listInstagramStories) | **GET** /v1/accounts/{accountId}/instagram/stories | List active Instagram stories |
@@ -649,6 +651,160 @@ ApiResponse<[**GetInstagramStoryInsights200Response**](GetInstagramStoryInsights
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **502** | Instagram rejected the request. |  -  |
+
+
+## listInstagramLiveMedia
+
+> ListInstagramLiveMedia200Response listInstagramLiveMedia(accountId)
+
+List the live broadcasts of an Instagram account
+
+Returns the live videos the connected Instagram account is broadcasting right now. Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error). Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  Requires an Instagram account connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        try {
+            ListInstagramLiveMedia200Response result = apiInstance.listInstagramLiveMedia(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#listInstagramLiveMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+
+### Return type
+
+[**ListInstagramLiveMedia200Response**](ListInstagramLiveMedia200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Live broadcasts in progress |  -  |
+| **400** | Invalid accountId, an account on another platform (&#x60;platform_not_supported&#x60;) or an account connected with Instagram Login (&#x60;instagram_live_media_requires_facebook_login&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## listInstagramLiveMediaWithHttpInfo
+
+> ApiResponse<ListInstagramLiveMedia200Response> listInstagramLiveMedia listInstagramLiveMediaWithHttpInfo(accountId)
+
+List the live broadcasts of an Instagram account
+
+Returns the live videos the connected Instagram account is broadcasting right now. Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error). Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  Requires an Instagram account connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        try {
+            ApiResponse<ListInstagramLiveMedia200Response> response = apiInstance.listInstagramLiveMediaWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#listInstagramLiveMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+
+### Return type
+
+ApiResponse<[**ListInstagramLiveMedia200Response**](ListInstagramLiveMedia200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Live broadcasts in progress |  -  |
+| **400** | Invalid accountId, an account on another platform (&#x60;platform_not_supported&#x60;) or an account connected with Instagram Login (&#x60;instagram_live_media_requires_facebook_login&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
 ## listInstagramMediaCollaborators
