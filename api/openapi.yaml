@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.314.0
+  version: 1.314.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -53268,7 +53268,8 @@ paths:
             all-or-nothing, same as Meta.
         "400":
           description: "Invalid body (missing accountId/destinationId/events, malformed\
-            \ event shape)."
+            \ event shape), or (Google Ads, param `destinationId`) the customer named\
+            \ in `destinationId` is not one of this connection's Google Ads accounts."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -53277,13 +53278,24 @@ paths:
             OR (for LinkedIn) the connected account lacks the `rw_conversions` scope and must be reconnected,
             OR (for Reddit) the connection lacks the `adsconversions` permission (code
             `reconnect_required`, reconnect Reddit Ads) or the Reddit user has no role on the ad
-            account that owns the pixel (code `insufficient_permissions`).
+            account that owns the pixel (code `insufficient_permissions`),
+            OR (for Google Ads) code `ad_account_not_selected`: the connection has selected ad accounts and the
+            Google Ads customer named in `destinationId` is not among them (param `destinationId`; `details`
+            carries `accountId`, `adAccountId` and `selectedAdAccountIds`). Add the customer to the selection
+            (GET /v1/connect/googleads/ads with adAccountIds, which replaces the selection) or use a connection
+            that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "422":
-          description: "OpenAI Ads only: no tracking tag (pixel) exists yet for this\
-            \ account. Code `TRACKING_TAG_REQUIRED`; create one via `POST /v1/accounts/{accountId}/tracking-tags`\
-            \ first."
+          description: "OpenAI Ads: no tracking tag (pixel) exists yet for this account.\
+            \ Code `TRACKING_TAG_REQUIRED`; create one via `POST /v1/accounts/{accountId}/tracking-tags`\
+            \ first. Google Ads: no Google Ads customer account is left on this connection\
+            \ after its ad-account selection (code `ads_connection_required`). Reconnect\
+            \ via GET /v1/connect/googleads/ads with a Google user that can reach\
+            \ the ad account, or select one of its ad accounts. Code `invalid_resource_state`\
+            \ when the connection reaches only a Google Ads manager account with no\
+            \ client accounts yet: create one with POST /v1/ads/accounts or under\
+            \ the manager in Google Ads, then retry."
         "429":
           description: |
             LinkedIn token-level rate limit hit (600 requests/min, 300k/day
@@ -53358,14 +53370,29 @@ paths:
             partial failure (Google reports per-row errors via partial failure).
         "400":
           description: "Invalid body, or a malformed adjustment (missing key, missing\
-            \ restatementValue for RESTATEMENT, missing identifiers for ENHANCEMENT)."
+            \ restatementValue for RESTATEMENT, missing identifiers for ENHANCEMENT),\
+            \ or (param `destinationId`) the customer named in `destinationId` is\
+            \ not one of this connection's Google Ads accounts."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: |
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans),
+            OR (for Google Ads) code `ad_account_not_selected`: the connection has selected ad accounts and the
+            Google Ads customer named in `destinationId` is not among them (param `destinationId`; `details`
+            carries `accountId`, `adAccountId` and `selectedAdAccountIds`). Add the customer to the selection
+            (GET /v1/connect/googleads/ads with adAccountIds, which replaces the selection) or use a connection
+            that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "Google Ads: no Google Ads customer account is left on this\
+            \ connection after its ad-account selection (code `ads_connection_required`).\
+            \ Reconnect via GET /v1/connect/googleads/ads with a Google user that\
+            \ can reach the ad account, or select one of its ad accounts. Code `invalid_resource_state`\
+            \ when the connection reaches only a Google Ads manager account with no\
+            \ client accounts yet: create one with POST /v1/ads/accounts or under\
+            \ the manager in Google Ads, then retry."
         "405":
           description: Conversion adjustments are only available for Google Ads (the
             account's platform is not `googleads`).
@@ -53449,10 +53476,18 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required (Ads add-on on legacy plans, included\
-            \ on usage-based plans)."
+          description: |
+            Ads access required (Ads add-on on legacy plans, included on usage-based plans). Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the Google Ads customer this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add it to the selection (GET /v1/connect/googleads/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "Google Ads: no Google Ads customer account is left on this\
+            \ connection after its ad-account selection (code `ads_connection_required`).\
+            \ Reconnect via GET /v1/connect/googleads/ads with a Google user that\
+            \ can reach the ad account, or select one of its ad accounts. Code `invalid_resource_state`\
+            \ when the connection reaches only a Google Ads manager account with no\
+            \ client accounts yet: create one with POST /v1/ads/accounts or under\
+            \ the manager in Google Ads, then retry."
         "501":
           description: Conversion actions are only available for Google Ads (the account's
             platform is not `googleads`).
@@ -53500,6 +53535,14 @@ paths:
             Ads access required (Ads add-on on legacy plans, included on usage-based plans). Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "Google Ads: no Google Ads customer account is left on this\
+            \ connection after its ad-account selection (code `ads_connection_required`).\
+            \ Reconnect via GET /v1/connect/googleads/ads with a Google user that\
+            \ can reach the ad account, or select one of its ad accounts. Code `invalid_resource_state`\
+            \ when the connection reaches only a Google Ads manager account with no\
+            \ client accounts yet: create one with POST /v1/ads/accounts or under\
+            \ the manager in Google Ads, then retry."
         "501":
           description: Conversion actions are only available for Google Ads (the account's
             platform is not `googleads`).
@@ -54183,6 +54226,14 @@ paths:
             Google Ads only. A conversion action with the given name already
             exists but has a different category. Use a different name or use
             the existing destination. Error code: `IDEMPOTENCY_CONFLICT`.
+        "422":
+          description: "Google Ads: no Google Ads customer account is left on this\
+            \ connection after its ad-account selection (code `ads_connection_required`).\
+            \ Reconnect via GET /v1/connect/googleads/ads with a Google user that\
+            \ can reach the ad account, or select one of its ad accounts. Code `invalid_resource_state`\
+            \ when the connection reaches only a Google Ads manager account with no\
+            \ client accounts yet: create one with POST /v1/ads/accounts or under\
+            \ the manager in Google Ads, then retry."
         "429":
           description: Rate limit hit. Retry with backoff.
       security:
