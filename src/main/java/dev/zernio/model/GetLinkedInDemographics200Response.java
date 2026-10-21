@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   GetLinkedInDemographics200Response.JSON_PROPERTY_DEMOGRAPHICS,
   GetLinkedInDemographics200Response.JSON_PROPERTY_NOTE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T00:11:29.290106024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T00:15:23.644910178Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetLinkedInDemographics200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

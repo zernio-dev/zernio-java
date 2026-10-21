@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListSmsOptOuts200Response.JSON_PROPERTY_OPT_OUTS,
   ListSmsOptOuts200Response.JSON_PROPERTY_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T00:11:29.290106024Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-21T00:15:23.644910178Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSmsOptOuts200Response {
   public static final String JSON_PROPERTY_OPT_OUTS = "optOuts";
   @javax.annotation.Nullable
