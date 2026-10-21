@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.319.1
+  version: 1.319.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -145545,14 +145545,19 @@ components:
             \ dynamicCreative, translations, carouselCards, placement videos, new\
             \ video uploads, creatives[], adSetId and RESERVED buying return 400.\
             \ Placement validation uses existing Instagram identities only. Existing\
-            \ campaign or creative nodes are marked skipped. Success returns 200 with\
-            \ per-node results; Meta rejection returns an error. ChatGPT (OpenAI)\
-            \ has no platform dry-run: Zernio runs every check it knows (creative\
-            \ lengths, budget, bid strategy, targeting) plus live lookups of the conversion\
-            \ event and target countries, and uploads or creates nothing. OpenAI's\
-            \ own write-time checks (image fetch, currency-specific minimums, ad review)\
-            \ still run only on a real create. Any other platform, or a Google campaignType\
-            \ other than pmax or demand_gen, returns 501 `feature_not_available`."
+            \ campaign or creative nodes are marked skipped. When Meta cannot dry-run\
+            \ the nested tree (code 2, or an unknown-error code 1 on an OFFSITE_CONVERSIONS\
+            \ ad set nested in a new campaign, which Meta returns for some website-conversion\
+            \ ad sets that it then creates normally), the campaign and creative are\
+            \ validated on their own and the adSet and ad nodes come back unverified\
+            \ with the reason. Success returns 200 with per-node results; Meta rejection\
+            \ returns an error. ChatGPT (OpenAI) has no platform dry-run: Zernio runs\
+            \ every check it knows (creative lengths, budget, bid strategy, targeting)\
+            \ plus live lookups of the conversion event and target countries, and\
+            \ uploads or creates nothing. OpenAI's own write-time checks (image fetch,\
+            \ currency-specific minimums, ad review) still run only on a real create.\
+            \ Any other platform, or a Google campaignType other than pmax or demand_gen,\
+            \ returns 501 `feature_not_available`."
           type: boolean
         budgetAmount:
           description: "Budget in WHOLE currency units (USD: 50 = $50.00), NOT cents.\
