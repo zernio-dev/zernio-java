@@ -507,7 +507,7 @@ ApiResponse<[**GenerateKeywordIdeas200Response**](GenerateKeywordIdeas200Respons
 
 Get ad analytics
 
-Returns one ad&#39;s performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+Returns one ad&#39;s performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. &#x60;summary&#x60; and &#x60;daily&#x60; come from those synced metrics, so they hold no data for days before that. Breakdowns are read live from the platform over the requested range, so they are not limited by the import. When the ad belongs to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;. 
 
 ### Example
 
@@ -576,7 +576,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -588,7 +588,7 @@ public class Example {
 
 Get ad analytics
 
-Returns one ad&#39;s performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. 
+Returns one ad&#39;s performance summary and daily timeline, with optional audience breakdowns on Meta, TikTok and LinkedIn.  Includes summary metrics, a daily timeline over the requested date range, and optional demographic breakdowns (Meta, TikTok and LinkedIn only). If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. &#x60;summary&#x60; and &#x60;daily&#x60; come from those synced metrics, so they hold no data for days before that. Breakdowns are read live from the platform over the requested range, so they are not limited by the import. When the ad belongs to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;. 
 
 ### Example
 
@@ -660,7 +660,7 @@ ApiResponse<[**AdAnalyticsResponse**](AdAnalyticsResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -1031,7 +1031,7 @@ ApiResponse<[**GetAdsSearchTerms200Response**](GetAdsSearchTerms200Response.md)>
 
 Get campaign analytics
 
-Returns a campaign&#39;s performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
+Returns a campaign&#39;s performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. &#x60;summary&#x60; and &#x60;daily&#x60; come from those synced metrics, so they hold no data for days before that. Breakdowns and Google&#39;s impression share are read live from the platform over the requested range, so they are not limited by the import. When the campaign belongs to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;.  Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
 
 ### Example
 
@@ -1102,7 +1102,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -1115,7 +1115,7 @@ public class Example {
 
 Get campaign analytics
 
-Returns a campaign&#39;s performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max. Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
+Returns a campaign&#39;s performance summary and daily timeline, with optional breakdowns by age, gender and other audience dimensions.  Returns performance analytics for a whole campaign in one call: summary metrics, a daily timeline over the requested date range (summed across the campaign&#39;s ads), and optional demographic breakdowns. Breakdowns are fetched live from Meta, TikTok or LinkedIn at the campaign level (one call per dimension, no per-ad fan-out), so an agency dashboard gets campaign-level age/gender/placement/etc. without summing thousands of per-ad reads. &#x60;campaignId&#x60; is the platform campaign id; pass &#x60;platform&#x60; when a campaign id could be ambiguous across platforms. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics. &#x60;summary&#x60; and &#x60;daily&#x60; come from those synced metrics, so they hold no data for days before that. Breakdowns and Google&#39;s impression share are read live from the platform over the requested range, so they are not limited by the import. When the campaign belongs to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;.  Google adds searchImpressionShare, searchBudgetLostImpressionShare, searchRankLostImpressionShare, searchTopImpressionShare and searchAbsoluteTopImpressionShare under analytics.summary for the requested inclusive range. These ratios are queried together without daily segmentation and cached for 10 minutes. Unavailable values are null. analytics.impressionShareCache reports cachedAt and stale independently of synced metrics. 
 
 ### Example
 
@@ -1189,7 +1189,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Campaign analytics |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid parameter (e.g. an unknown &#x60;breakdowns&#x60; dimension). The message lists the offending value(s) and the supported set. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

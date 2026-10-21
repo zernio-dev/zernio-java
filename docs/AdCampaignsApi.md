@@ -3971,7 +3971,7 @@ ApiResponse<[**GetAdSetDetails200Response**](GetAdSetDetails200Response.md)>
 
 Get campaign tree
 
-Shows your campaigns with their ad sets and ads nested inside, with spend and results rolled up at every level.  Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  Pass &#x60;timeIncrement&#x3D;1&#x60; to also get a daily breakdown: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) in the same call. Use &#x60;dailyLevel&#x60; (&#x60;campaign&#x60; default, or &#x60;adset&#x60; / &#x60;ad&#x60;) to choose which levels carry the series. This replaces calling the tree once per day for per-campaign daily trends.  **Deleted objects stay in the tree.** Deleting an ad or a campaign is a soft delete: the Ad documents move to &#x60;status: cancelled&#x60; and are kept indefinitely, so their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window. Filter on &#x60;status&#x60; if your view should hide them, but do that after reading the totals, not before. 
+Shows your campaigns with their ad sets and ads nested inside, with spend and results rolled up at every level.  Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. A request scoped to no Meta account never returns &#x60;202&#x60;.  Pass &#x60;timeIncrement&#x3D;1&#x60; to also get a daily breakdown: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) in the same call. Use &#x60;dailyLevel&#x60; (&#x60;campaign&#x60; default, or &#x60;adset&#x60; / &#x60;ad&#x60;) to choose which levels carry the series. This replaces calling the tree once per day for per-campaign daily trends.  **Deleted objects stay in the tree.** Deleting an ad or a campaign is a soft delete: the Ad documents move to &#x60;status: cancelled&#x60; and are kept indefinitely, so their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window. Filter on &#x60;status&#x60; if your view should hide them, but do that after reading the totals, not before. 
 
 ### Example
 
@@ -4070,7 +4070,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
@@ -4080,7 +4080,7 @@ public class Example {
 
 Get campaign tree
 
-Shows your campaigns with their ad sets and ads nested inside, with spend and results rolled up at every level.  Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  Pass &#x60;timeIncrement&#x3D;1&#x60; to also get a daily breakdown: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) in the same call. Use &#x60;dailyLevel&#x60; (&#x60;campaign&#x60; default, or &#x60;adset&#x60; / &#x60;ad&#x60;) to choose which levels carry the series. This replaces calling the tree once per day for per-campaign daily trends.  **Deleted objects stay in the tree.** Deleting an ad or a campaign is a soft delete: the Ad documents move to &#x60;status: cancelled&#x60; and are kept indefinitely, so their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window. Filter on &#x60;status&#x60; if your view should hide them, but do that after reading the totals, not before. 
+Shows your campaigns with their ad sets and ads nested inside, with spend and results rolled up at every level.  Uses a two-stage aggregation: ads are grouped into ad sets, then ad sets into campaigns. Metrics are computed over an optional date range, then rolled up from ad level to ad set and campaign levels. Pagination is at the campaign level. Ads without a campaign or ad set ID are grouped into synthetic \&quot;Ungrouped\&quot; buckets. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. A request scoped to no Meta account never returns &#x60;202&#x60;.  Pass &#x60;timeIncrement&#x3D;1&#x60; to also get a daily breakdown: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) in the same call. Use &#x60;dailyLevel&#x60; (&#x60;campaign&#x60; default, or &#x60;adset&#x60; / &#x60;ad&#x60;) to choose which levels carry the series. This replaces calling the tree once per day for per-campaign daily trends.  **Deleted objects stay in the tree.** Deleting an ad or a campaign is a soft delete: the Ad documents move to &#x60;status: cancelled&#x60; and are kept indefinitely, so their historical spend still counts toward the metrics of any date range they fall in. There is no pruning job and no retention window. Filter on &#x60;status&#x60; if your view should hide them, but do that after reading the totals, not before. 
 
 ### Example
 
@@ -4182,7 +4182,7 @@ ApiResponse<[**AdTreeResponse**](AdTreeResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Nested campaign tree with pagination |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 
@@ -4193,7 +4193,7 @@ ApiResponse<[**AdTreeResponse**](AdTreeResponse.md)>
 
 Get daily account metrics
 
-Returns an ads account&#39;s spend, results and other metrics day by day, ready for a daily performance chart.  Returns daily aggregate metrics across all ads in a SocialAccount as a single time series, one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa), the same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the ingested history return a &#x60;202&#x60; immediately with the covered part and &#x60;backfillPending: true&#x60; while the rest is backfilled in the background; repeat the request shortly until it returns 200 with full data.  With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day). 
+Returns an ads account&#39;s spend, results and other metrics day by day, ready for a daily performance chart.  Returns daily aggregate metrics across all ads in a SocialAccount as a single time series, one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa), the same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so &#x60;rows&#x60; hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;.  With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day). 
 
 ### Example
 
@@ -4264,7 +4264,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -4275,7 +4275,7 @@ public class Example {
 
 Get daily account metrics
 
-Returns an ads account&#39;s spend, results and other metrics day by day, ready for a daily performance chart.  Returns daily aggregate metrics across all ads in a SocialAccount as a single time series, one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa), the same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days. Ranges older than the ingested history return a &#x60;202&#x60; immediately with the covered part and &#x60;backfillPending: true&#x60; while the rest is backfilled in the background; repeat the request shortly until it returns 200 with full data.  With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day). 
+Returns an ads account&#39;s spend, results and other metrics day by day, ready for a daily performance chart.  Returns daily aggregate metrics across all ads in a SocialAccount as a single time series, one row per calendar day in the requested range. Use this for dashboards that draw a daily-spend or daily-conversions chart, instead of calling &#x60;/v1/ads/tree&#x60; once per day.  &#x60;accountId&#x60; is required. The lookup is sibling-expanded so passing the &#x60;metaads&#x60; ID also includes ads under the linked &#x60;facebook&#x60; / &#x60;instagram&#x60; posting account (and vice-versa), the same convention as &#x60;/v1/ads/tree&#x60; and &#x60;/v1/ads&#x60;.  Date range defaults to the last 90 days. Capped at 730 days.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so &#x60;rows&#x60; hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. Other platforms never return &#x60;202&#x60;.  With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day). 
 
 ### Example
 
@@ -4349,7 +4349,7 @@ ApiResponse<[**AdsTimelineResponse**](AdsTimelineResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Daily time series of aggregate metrics. Empty &#x60;rows&#x60; means the account has no ad activity in the range. |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -5927,7 +5927,7 @@ ApiResponse<[**ListAdSets200Response**](ListAdSets200Response.md)>
 
 List ads
 
-Lists your ads with their performance over a date range, including ads created directly in each platform&#39;s ads manager.  Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram). Those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
+Lists your ads with their performance over a date range, including ads created directly in each platform&#39;s ads manager.  Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. A request scoped to no Meta account never returns &#x60;202&#x60;.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram). Those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
 
 ### Example
 
@@ -6020,7 +6020,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated ads |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
@@ -6031,7 +6031,7 @@ public class Example {
 
 List ads
 
-Lists your ads with their performance over a date range, including ads created directly in each platform&#39;s ads manager.  Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram). Those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
+Lists your ads with their performance over a date range, including ads created directly in each platform&#39;s ads manager.  Returns a paginated list of ads with metrics computed over an optional date range. Use source&#x3D;all to include externally-synced ads from platform ad managers. If no date range is provided, defaults to the last 90 days. Date range is capped at 730 days max.  History: when an ad account connects, Zernio imports its last 90 days of metrics, so the metrics hold no data for days before that. When &#x60;accountId&#x60; or &#x60;adAccountId&#x60; resolves to a Meta ad account, a range reaching further back answers &#x60;202&#x60; with &#x60;backfillPending: true&#x60; and the covered part while the older days (up to 730 days back) are imported in the background; repeat the request until it returns 200. A request scoped to no Meta account never returns &#x60;202&#x60;.  To find the Zernio ad behind a comment you see in Meta Business Manager, filter by platformAdId (the Meta ad ID), effectiveObjectStoryId (Facebook), or effectiveInstagramMediaId (Instagram). Those are the post/media the ad&#39;s engagement lives on, and are also returned on each ad&#39;s &#x60;creative&#x60; object. Then call GET /v1/ads/{adId}/comments with the returned ad id. 
 
 ### Example
 
@@ -6127,7 +6127,7 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Paginated ads |  -  |
-| **202** | Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
