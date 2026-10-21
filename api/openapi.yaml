@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.318.1
+  version: 1.319.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41090,7 +41090,9 @@ paths:
         With adAccountId set to a Google customer id this is the customer-level performance report (clicks, cost, impressions, conversions, all conversions per day).
       operationId: getAdsTimeline
       parameters:
-      - description: Account ID. Sibling-expanded to its linked posting↔ads pair.
+      - description: "Account ID. Sibling-expanded to its linked posting↔ads pair.\
+          \ An id that does not exist or sits on a profile the API key cannot reach\
+          \ answers 404 (code: account_not_found)."
         explode: true
         in: query
         name: accountId
@@ -41173,6 +41175,8 @@ paths:
         "403":
           description: Ads access required. Legacy plans need the Ads add-on; included
             by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
       security:
       - bearerAuth: []
       summary: Get daily account metrics
