@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.321.0
+  version: 1.321.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -98687,7 +98687,10 @@ components:
             $ref: "#/components/schemas/MediaItem"
           type: array
         scheduledFor:
-          description: Optional per-platform scheduled time override.
+          description: "Optional per-platform scheduled time override. It is kept\
+            \ when a top-level scheduledFor is also sent, except a date sent back\
+            \ unchanged that matched the post scheduled time or is already past, which\
+            \ follows the new top-level scheduledFor."
           format: date-time
           type: string
         platformSpecificData:
