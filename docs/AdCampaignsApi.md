@@ -66,6 +66,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getCampaignTargetingWithHttpInfo**](AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, excluded location, and language targeting |
 | [**getGoogleAssetGroup**](AdCampaignsApi.md#getGoogleAssetGroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
 | [**getGoogleAssetGroupWithHttpInfo**](AdCampaignsApi.md#getGoogleAssetGroupWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group |
+| [**getTikTokSmartPlusAdReview**](AdCampaignsApi.md#getTikTokSmartPlusAdReview) | **GET** /v1/ads/{adId}/tiktok-smart-plus-review | Review status of each creative in a TikTok Smart+ ad |
+| [**getTikTokSmartPlusAdReviewWithHttpInfo**](AdCampaignsApi.md#getTikTokSmartPlusAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/tiktok-smart-plus-review | Review status of each creative in a TikTok Smart+ ad |
 | [**listAdCampaigns**](AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdCampaignsWithHttpInfo**](AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns |
 | [**listAdGroupAssets**](AdCampaignsApi.md#listAdGroupAssets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets |
@@ -5177,6 +5179,162 @@ ApiResponse<[**GetGoogleAssetGroup200Response**](GetGoogleAssetGroup200Response.
 | **422** | Google Ads connection needs reconnecting. |  -  |
 | **429** | Google quota or the Zernio Google operations burst limit is exhausted. |  -  |
 | **501** | Campaign is not on Google Ads. |  -  |
+
+
+## getTikTokSmartPlusAdReview
+
+> GetTikTokSmartPlusAdReview200Response getTikTokSmartPlusAdReview(adId)
+
+Review status of each creative in a TikTok Smart+ ad
+
+Shows which Spark post, video or carousel of an Upgraded Smart+ ad TikTok approved or rejected, with every rejection reason, keyed by the TikTok post id for a Spark post.  Reads TikTok&#39;s &#x60;/smart_plus/ad/review_info/&#x60; live (read-only, works on a paused ad) for the Smart+ ad that holds &#x60;adId&#x60;, and returns the ad-level verdict plus one entry per creative. &#x60;adId&#x60; may be the Smart+ ad itself or any creative of it synced as its own ad: Zernio finds the Smart+ ad in the ad&#39;s ad group through &#x60;/smart_plus/ad/get/&#x60;, and uses the ad group&#39;s only Smart+ ad when no creative list names the ad.  &#x60;materialType&#x60;, &#x60;tiktokItemId&#x60;, &#x60;videoId&#x60;, &#x60;name&#x60; and &#x60;operationStatus&#x60; come from the Smart+ ad&#39;s &#x60;creative_list&#x60;. TikTok leaves out of that list the creatives it added on its own (creator content, authorized TikTok posts, Creative Library content) and lists each image of a carousel under its own material id, so those entries come back with the review verdict and null descriptive fields. TikTok returns no review timestamp; &#x60;readAt&#x60; is when Zernio read it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex) or the TikTok ad id: the Smart+ ad id or the ad id of one of its creatives.
+        try {
+            GetTikTokSmartPlusAdReview200Response result = apiInstance.getTikTokSmartPlusAdReview(adId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getTikTokSmartPlusAdReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex) or the TikTok ad id: the Smart+ ad id or the ad id of one of its creatives. | |
+
+### Return type
+
+[**GetTikTokSmartPlusAdReview200Response**](GetTikTokSmartPlusAdReview200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Smart+ ad&#39;s review verdict per creative |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad not found, it has no TikTok ad or ad group id yet, or no Smart+ ad of its ad group holds it |  -  |
+| **422** | The TikTok ad is not an Upgraded Smart+ ad (read it with GET /v1/ads/{adId}/review) |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on TikTok |  -  |
+
+## getTikTokSmartPlusAdReviewWithHttpInfo
+
+> ApiResponse<GetTikTokSmartPlusAdReview200Response> getTikTokSmartPlusAdReview getTikTokSmartPlusAdReviewWithHttpInfo(adId)
+
+Review status of each creative in a TikTok Smart+ ad
+
+Shows which Spark post, video or carousel of an Upgraded Smart+ ad TikTok approved or rejected, with every rejection reason, keyed by the TikTok post id for a Spark post.  Reads TikTok&#39;s &#x60;/smart_plus/ad/review_info/&#x60; live (read-only, works on a paused ad) for the Smart+ ad that holds &#x60;adId&#x60;, and returns the ad-level verdict plus one entry per creative. &#x60;adId&#x60; may be the Smart+ ad itself or any creative of it synced as its own ad: Zernio finds the Smart+ ad in the ad&#39;s ad group through &#x60;/smart_plus/ad/get/&#x60;, and uses the ad group&#39;s only Smart+ ad when no creative list names the ad.  &#x60;materialType&#x60;, &#x60;tiktokItemId&#x60;, &#x60;videoId&#x60;, &#x60;name&#x60; and &#x60;operationStatus&#x60; come from the Smart+ ad&#39;s &#x60;creative_list&#x60;. TikTok leaves out of that list the creatives it added on its own (creator content, authorized TikTok posts, Creative Library content) and lists each image of a carousel under its own material id, so those entries come back with the review verdict and null descriptive fields. TikTok returns no review timestamp; &#x60;readAt&#x60; is when Zernio read it.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adId = "adId_example"; // String | Zernio ad id (24-char hex) or the TikTok ad id: the Smart+ ad id or the ad id of one of its creatives.
+        try {
+            ApiResponse<GetTikTokSmartPlusAdReview200Response> response = apiInstance.getTikTokSmartPlusAdReviewWithHttpInfo(adId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getTikTokSmartPlusAdReview");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adId** | **String**| Zernio ad id (24-char hex) or the TikTok ad id: the Smart+ ad id or the ad id of one of its creatives. | |
+
+### Return type
+
+ApiResponse<[**GetTikTokSmartPlusAdReview200Response**](GetTikTokSmartPlusAdReview200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Smart+ ad&#39;s review verdict per creative |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad not found, it has no TikTok ad or ad group id yet, or no Smart+ ad of its ad group holds it |  -  |
+| **422** | The TikTok ad is not an Upgraded Smart+ ad (read it with GET /v1/ads/{adId}/review) |  -  |
+| **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
+| **501** | Only supported on TikTok |  -  |
 
 
 ## listAdCampaigns

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.319.2
+- API version: 1.320.0
 
-- Build date: 2026-10-21T11:39:09.639900165Z[Etc/UTC]
+- Build date: 2026-10-21T12:17:25.607390911Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.319.2</version>
+  <version>1.320.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.319.2"
+compile "dev.zernio:zernio-sdk:1.320.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.319.2.jar`
+- `target/zernio-sdk-1.320.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -423,6 +423,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getCampaignTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getCampaignTargetingWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/targeting | Read a Google campaign&#39;s device, location, excluded location, and language targeting
 *AdCampaignsApi* | [**getGoogleAssetGroup**](docs/AdCampaignsApi.md#getGoogleAssetGroup) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
 *AdCampaignsApi* | [**getGoogleAssetGroupWithHttpInfo**](docs/AdCampaignsApi.md#getGoogleAssetGroupWithHttpInfo) | **GET** /v1/ads/campaigns/{campaignId}/asset-groups/{assetGroupId} | Get a Performance Max asset group
+*AdCampaignsApi* | [**getTikTokSmartPlusAdReview**](docs/AdCampaignsApi.md#getTikTokSmartPlusAdReview) | **GET** /v1/ads/{adId}/tiktok-smart-plus-review | Review status of each creative in a TikTok Smart+ ad
+*AdCampaignsApi* | [**getTikTokSmartPlusAdReviewWithHttpInfo**](docs/AdCampaignsApi.md#getTikTokSmartPlusAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/tiktok-smart-plus-review | Review status of each creative in a TikTok Smart+ ad
 *AdCampaignsApi* | [**listAdCampaigns**](docs/AdCampaignsApi.md#listAdCampaigns) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdCampaignsWithHttpInfo**](docs/AdCampaignsApi.md#listAdCampaignsWithHttpInfo) | **GET** /v1/ads/campaigns | List campaigns
 *AdCampaignsApi* | [**listAdGroupAssets**](docs/AdCampaignsApi.md#listAdGroupAssets) | **GET** /v1/ads/ad-sets/{adSetId}/assets | List ad-group assets
@@ -3251,6 +3253,9 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowDuet.md)
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
+ - [GetTikTokSmartPlusAdReview200Response](docs/GetTikTokSmartPlusAdReview200Response.md)
+ - [GetTikTokSmartPlusAdReview200ResponseMaterialsInner](docs/GetTikTokSmartPlusAdReview200ResponseMaterialsInner.md)
+ - [GetTikTokSmartPlusAdReview200ResponseReview](docs/GetTikTokSmartPlusAdReview200ResponseReview.md)
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
@@ -4323,6 +4328,9 @@ Class | Method | HTTP request | Description
  - [TikTokDryRunVerdictTiktokInner](docs/TikTokDryRunVerdictTiktokInner.md)
  - [TikTokPlatformData](docs/TikTokPlatformData.md)
  - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
+ - [TikTokReviewRejection](docs/TikTokReviewRejection.md)
+ - [TikTokReviewRejectionContent](docs/TikTokReviewRejectionContent.md)
+ - [TikTokSmartPlusReviewStatus](docs/TikTokSmartPlusReviewStatus.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)
  - [TrackingTagEvent](docs/TrackingTagEvent.md)

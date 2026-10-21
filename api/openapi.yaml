@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.319.2
+  version: 1.320.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42631,6 +42631,64 @@ paths:
       - meta
       x-accepts:
       - application/json
+  /v1/ads/{adId}/tiktok-smart-plus-review:
+    get:
+      description: |-
+        Shows which Spark post, video or carousel of an Upgraded Smart+ ad TikTok approved or rejected, with every rejection reason, keyed by the TikTok post id for a Spark post.
+
+        Reads TikTok's `/smart_plus/ad/review_info/` live (read-only, works on a paused ad) for the
+        Smart+ ad that holds `adId`, and returns the ad-level verdict plus one entry per creative.
+        `adId` may be the Smart+ ad itself or any creative of it synced as its own ad: Zernio finds
+        the Smart+ ad in the ad's ad group through `/smart_plus/ad/get/`, and uses the ad group's only
+        Smart+ ad when no creative list names the ad.
+
+        `materialType`, `tiktokItemId`, `videoId`, `name` and `operationStatus` come from the Smart+
+        ad's `creative_list`. TikTok leaves out of that list the creatives it added on its own
+        (creator content, authorized TikTok posts, Creative Library content) and lists each image of a
+        carousel under its own material id, so those entries come back with the review verdict and
+        null descriptive fields. TikTok returns no review timestamp; `readAt` is when Zernio read it.
+      operationId: getTikTokSmartPlusAdReview
+      parameters:
+      - description: "Zernio ad id (24-char hex) or the TikTok ad id: the Smart+ ad\
+          \ id or the ad id of one of its creatives."
+        explode: false
+        in: path
+        name: adId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getTikTokSmartPlusAdReview_200_response"
+          description: The Smart+ ad's review verdict per creative
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "Ad not found, it has no TikTok ad or ad group id yet, or no\
+            \ Smart+ ad of its ad group holds it"
+        "422":
+          description: "The TikTok ad is not an Upgraded Smart+ ad (read it with GET\
+            \ /v1/ads/{adId}/review)"
+        "429":
+          $ref: "#/components/responses/RateLimited"
+        "501":
+          description: Only supported on TikTok
+      security:
+      - bearerAuth: []
+      summary: Review status of each creative in a TikTok Smart+ ad
+      tags:
+      - Ad Campaigns
+      x-resource-group: ads
+      x-platforms:
+      - tiktok
+      x-accepts:
+      - application/json
   /v1/ads/{adId}/media:
     get:
       description: |-
@@ -81096,6 +81154,61 @@ components:
       properties:
         post:
           $ref: "#/components/schemas/Post"
+    TikTokSmartPlusReviewStatus:
+      description: "TikTok `review_status` normalized: ALL_AVAILABLE -> approved,\
+        \ PART_AVAILABLE -> partially_approved (delivers in part of the targeted locations),\
+        \ UNAVAILABLE -> rejected, anything else or missing -> unknown (see `rawReviewStatus`)."
+      enum:
+      - approved
+      - partially_approved
+      - rejected
+      - unknown
+      type: string
+    TikTokReviewRejection:
+      description: One TikTok `reject_info` entry.
+      example:
+        forbiddenAges:
+        - forbiddenAges
+        - forbiddenAges
+        forbiddenLocations:
+        - forbiddenLocations
+        - forbiddenLocations
+        reasons:
+        - reasons
+        - reasons
+        suggestion: suggestion
+        forbiddenPlacements:
+        - forbiddenPlacements
+        - forbiddenPlacements
+        content:
+          imageId: imageId
+          musicId: musicId
+          videoId: videoId
+          text: text
+          type: type
+      properties:
+        reasons:
+          items:
+            type: string
+          type: array
+        suggestion:
+          description: TikTok's advice for fixing the rejection.
+          nullable: true
+          type: string
+        forbiddenPlacements:
+          items:
+            type: string
+          type: array
+        forbiddenAges:
+          items:
+            type: string
+          type: array
+        forbiddenLocations:
+          items:
+            type: string
+          type: array
+        content:
+          $ref: "#/components/schemas/TikTokReviewRejection_content"
     TikTokDryRunVerdict:
       example:
         dryRun: true
@@ -138769,6 +138882,382 @@ components:
           type: string
         review:
           $ref: "#/components/schemas/getAdReview_200_response_review"
+    getTikTokSmartPlusAdReview_200_response_review:
+      description: The ad-level verdict (`smart_plus_ad_review_infos`). Null when
+        TikTok returned none.
+      example:
+        rawReviewStatus: rawReviewStatus
+        appealRejectReasons:
+        - appealRejectReasons
+        - appealRejectReasons
+        rejections:
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        appealStatus: appealStatus
+        reviewStatus: approved
+        passedLocations:
+        - passedLocations
+        - passedLocations
+        rejectReasons:
+        - rejectReasons
+        - rejectReasons
+      properties:
+        reviewStatus:
+          $ref: "#/components/schemas/TikTokSmartPlusReviewStatus"
+        rawReviewStatus:
+          description: "TikTok `review_status`, verbatim."
+          nullable: true
+          type: string
+        rejectReasons:
+          description: Every distinct reason across `rejections`.
+          items:
+            type: string
+          type: array
+        passedLocations:
+          description: Location codes that passed the review.
+          items:
+            type: string
+          type: array
+        appealStatus:
+          description: "TikTok `appeal_status`, verbatim: NOT_APPEALED, APPEALING,\
+            \ APPEAL_SUCCESSFUL, APPEAL_FAILED, APPEAL_DONE."
+          nullable: true
+          type: string
+        appealRejectReasons:
+          items:
+            type: string
+          type: array
+        rejections:
+          items:
+            $ref: "#/components/schemas/TikTokReviewRejection"
+          type: array
+    getTikTokSmartPlusAdReview_200_response_materials_inner:
+      example:
+        rawReviewStatus: rawReviewStatus
+        operationStatus: operationStatus
+        adMaterialId: adMaterialId
+        rejections:
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        - forbiddenAges:
+          - forbiddenAges
+          - forbiddenAges
+          forbiddenLocations:
+          - forbiddenLocations
+          - forbiddenLocations
+          reasons:
+          - reasons
+          - reasons
+          suggestion: suggestion
+          forbiddenPlacements:
+          - forbiddenPlacements
+          - forbiddenPlacements
+          content:
+            imageId: imageId
+            musicId: musicId
+            videoId: videoId
+            text: text
+            type: type
+        materialType: spark_post
+        name: name
+        tiktokItemId: tiktokItemId
+        videoId: videoId
+        reviewStatus: null
+        passedLocations:
+        - passedLocations
+        - passedLocations
+        rejectReasons:
+        - rejectReasons
+        - rejectReasons
+      properties:
+        adMaterialId:
+          description: TikTok `ad_material_id` of the creative inside this ad.
+          type: string
+        materialType:
+          description: Null for a creative TikTok added on its own or a carousel image.
+          enum:
+          - spark_post
+          - video
+          - carousel
+          - catalog_carousel
+          - null
+          nullable: true
+          type: string
+        tiktokItemId:
+          description: The TikTok post id when the creative is a Spark post.
+          nullable: true
+          type: string
+        videoId:
+          nullable: true
+          type: string
+        name:
+          nullable: true
+          type: string
+        operationStatus:
+          description: "TikTok `material_operation_status`: ENABLE or DISABLE."
+          nullable: true
+          type: string
+        reviewStatus:
+          $ref: "#/components/schemas/TikTokSmartPlusReviewStatus"
+        rawReviewStatus:
+          description: "TikTok `review_status`, verbatim."
+          nullable: true
+          type: string
+        rejectReasons:
+          description: Every distinct reason across `rejections`. Empty when approved.
+          items:
+            type: string
+          type: array
+        passedLocations:
+          items:
+            type: string
+          type: array
+        rejections:
+          items:
+            $ref: "#/components/schemas/TikTokReviewRejection"
+          type: array
+    getTikTokSmartPlusAdReview_200_response:
+      example:
+        adId: adId
+        materials:
+        - rawReviewStatus: rawReviewStatus
+          operationStatus: operationStatus
+          adMaterialId: adMaterialId
+          rejections:
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          materialType: spark_post
+          name: name
+          tiktokItemId: tiktokItemId
+          videoId: videoId
+          reviewStatus: null
+          passedLocations:
+          - passedLocations
+          - passedLocations
+          rejectReasons:
+          - rejectReasons
+          - rejectReasons
+        - rawReviewStatus: rawReviewStatus
+          operationStatus: operationStatus
+          adMaterialId: adMaterialId
+          rejections:
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          materialType: spark_post
+          name: name
+          tiktokItemId: tiktokItemId
+          videoId: videoId
+          reviewStatus: null
+          passedLocations:
+          - passedLocations
+          - passedLocations
+          rejectReasons:
+          - rejectReasons
+          - rejectReasons
+        smartPlusAdId: smartPlusAdId
+        review:
+          rawReviewStatus: rawReviewStatus
+          appealRejectReasons:
+          - appealRejectReasons
+          - appealRejectReasons
+          rejections:
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          - forbiddenAges:
+            - forbiddenAges
+            - forbiddenAges
+            forbiddenLocations:
+            - forbiddenLocations
+            - forbiddenLocations
+            reasons:
+            - reasons
+            - reasons
+            suggestion: suggestion
+            forbiddenPlacements:
+            - forbiddenPlacements
+            - forbiddenPlacements
+            content:
+              imageId: imageId
+              musicId: musicId
+              videoId: videoId
+              text: text
+              type: type
+          appealStatus: appealStatus
+          reviewStatus: approved
+          passedLocations:
+          - passedLocations
+          - passedLocations
+          rejectReasons:
+          - rejectReasons
+          - rejectReasons
+        platformAdId: platformAdId
+        readAt: 2000-01-23T04:56:07.000+00:00
+        platform: tiktok
+      properties:
+        adId:
+          type: string
+        platform:
+          enum:
+          - tiktok
+          type: string
+        platformAdId:
+          type: string
+        smartPlusAdId:
+          description: The TikTok Smart+ ad whose review this is.
+          type: string
+        review:
+          $ref: "#/components/schemas/getTikTokSmartPlusAdReview_200_response_review"
+        materials:
+          description: One entry per creative TikTok reviewed (`material_review_infos`).
+          items:
+            $ref: "#/components/schemas/getTikTokSmartPlusAdReview_200_response_materials_inner"
+          type: array
+        readAt:
+          description: When the verdict was read from TikTok.
+          format: date-time
+          type: string
     getAdMedia_200_response_media_inner:
       example:
         length: 0.8008281904610115
@@ -165328,6 +165817,32 @@ components:
         pages: 1
         limit: 4
         page: 2
+    TikTokReviewRejection_content:
+      description: The content TikTok rejected.
+      example:
+        imageId: imageId
+        musicId: musicId
+        videoId: videoId
+        text: text
+        type: type
+      properties:
+        type:
+          description: "TikTok `content_type`, verbatim (ModeString, ModeImage, ModeVideo,\
+            \ ModeMusic, LandingPage, ...)."
+          nullable: true
+          type: string
+        text:
+          nullable: true
+          type: string
+        imageId:
+          nullable: true
+          type: string
+        videoId:
+          nullable: true
+          type: string
+        musicId:
+          nullable: true
+          type: string
     TikTokDryRunVerdict_tiktok_inner:
       example:
         accountId: accountId
