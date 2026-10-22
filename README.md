@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.330.0
+- API version: 1.330.1
 
-- Build date: 2026-10-22T03:00:15.500874395Z[Etc/UTC]
+- Build date: 2026-10-22T07:54:13.163064673Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.330.0</version>
+  <version>1.330.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.330.0"
+compile "dev.zernio:zernio-sdk:1.330.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.330.0.jar`
+- `target/zernio-sdk-1.330.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1379,6 +1379,10 @@ Class | Method | HTTP request | Description
 *InstagramApi* | [**getInstagramAudioWithHttpInfo**](docs/InstagramApi.md#getInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata
 *InstagramApi* | [**getInstagramBusinessDiscovery**](docs/InstagramApi.md#getInstagramBusinessDiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account
 *InstagramApi* | [**getInstagramBusinessDiscoveryWithHttpInfo**](docs/InstagramApi.md#getInstagramBusinessDiscoveryWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account
+*InstagramApi* | [**getInstagramMentionedComment**](docs/InstagramApi.md#getInstagramMentionedComment) | **GET** /v1/accounts/{accountId}/instagram/mentions/comments/{commentId} | Get a comment that mentions an Instagram account
+*InstagramApi* | [**getInstagramMentionedCommentWithHttpInfo**](docs/InstagramApi.md#getInstagramMentionedCommentWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/mentions/comments/{commentId} | Get a comment that mentions an Instagram account
+*InstagramApi* | [**getInstagramMentionedMedia**](docs/InstagramApi.md#getInstagramMentionedMedia) | **GET** /v1/accounts/{accountId}/instagram/mentions/media/{mediaId} | Get a post that mentions an Instagram account in its caption
+*InstagramApi* | [**getInstagramMentionedMediaWithHttpInfo**](docs/InstagramApi.md#getInstagramMentionedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/mentions/media/{mediaId} | Get a post that mentions an Instagram account in its caption
 *InstagramApi* | [**getInstagramPublishingLimit**](docs/InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramPublishingLimitWithHttpInfo**](docs/InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit
 *InstagramApi* | [**getInstagramStoryInsights**](docs/InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights
@@ -3487,6 +3491,9 @@ Class | Method | HTTP request | Description
  - [InstagramDemographicsResponseDemographicsValueInner](docs/InstagramDemographicsResponseDemographicsValueInner.md)
  - [InstagramLiveMedia](docs/InstagramLiveMedia.md)
  - [InstagramMediaCollaborator](docs/InstagramMediaCollaborator.md)
+ - [InstagramMentionedComment](docs/InstagramMentionedComment.md)
+ - [InstagramMentionedCommentMedia](docs/InstagramMentionedCommentMedia.md)
+ - [InstagramMentionedMedia](docs/InstagramMentionedMedia.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)

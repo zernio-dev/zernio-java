@@ -1418,6 +1418,9 @@ docs/InstagramDemographicsResponse.md
 docs/InstagramDemographicsResponseDemographicsValueInner.md
 docs/InstagramLiveMedia.md
 docs/InstagramMediaCollaborator.md
+docs/InstagramMentionedComment.md
+docs/InstagramMentionedCommentMedia.md
+docs/InstagramMentionedMedia.md
 docs/InstagramPlatformData.md
 docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
@@ -4357,6 +4360,9 @@ src/main/java/dev/zernio/model/InstagramDemographicsResponse.java
 src/main/java/dev/zernio/model/InstagramDemographicsResponseDemographicsValueInner.java
 src/main/java/dev/zernio/model/InstagramLiveMedia.java
 src/main/java/dev/zernio/model/InstagramMediaCollaborator.java
+src/main/java/dev/zernio/model/InstagramMentionedComment.java
+src/main/java/dev/zernio/model/InstagramMentionedCommentMedia.java
+src/main/java/dev/zernio/model/InstagramMentionedMedia.java
 src/main/java/dev/zernio/model/InstagramPlatformData.java
 src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
@@ -5785,5 +5791,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/PrepareMedia200ResponseTest.java
-src/test/java/dev/zernio/model/PrepareMediaRequestTest.java
+src/test/java/dev/zernio/model/InstagramMentionedCommentMediaTest.java
+src/test/java/dev/zernio/model/InstagramMentionedCommentTest.java
+src/test/java/dev/zernio/model/InstagramMentionedMediaTest.java

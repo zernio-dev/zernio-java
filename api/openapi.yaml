@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.330.0
+  version: 1.330.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -16746,6 +16746,156 @@ paths:
       tags:
       - Instagram
       x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/mentions/media/{mediaId}:
+    get:
+      description: |
+        Returns a post in which another Instagram user @mentioned the
+        connected account in the caption. Meta sends the media ID in its
+        mention notification and offers no list of mentions, so this reads one
+        mention by ID. Mentions in Stories are not supported by Meta.
+
+        Requires an Instagram account connected via **Facebook Login**. Meta
+        serves mentions on graph.facebook.com only, so accounts connected with
+        classic Instagram Login receive a 400
+        (`instagram_mentions_require_facebook_login`) and must be reconnected
+        choosing the Facebook option.
+      operationId: getInstagramMentionedMedia
+      parameters:
+      - description: The ID of a connected Instagram account (Facebook Login).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instagram media ID of the post that mentions the account (digits
+          only).
+        explode: false
+        in: path
+        name: mediaId
+        required: true
+        schema:
+          example: "18027939643230671"
+          maxLength: 32
+          pattern: "^[0-9]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstagramMentionedMedia"
+          description: Get a post that mentions an Instagram account in its caption
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId or mediaId, an account on another platform\
+            \ (`platform_not_supported`), an account connected with Instagram Login\
+            \ (`instagram_mentions_require_facebook_login`), or a Meta rejection (`platform_api_error`)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The API key is not scoped to this account, or Meta refused\
+            \ the request (`platform_api_error`, for example a missing permission)."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account is not reachable by the caller (`account_not_found`),\
+            \ or the media does not exist or does not mention the account in its caption\
+            \ (`resource_not_found`)."
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      summary: Get a post that mentions an Instagram account in its caption
+      tags:
+      - Instagram
+      x-resource-group: engagement
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/instagram/mentions/comments/{commentId}:
+    get:
+      description: |
+        Returns a comment in which another Instagram user @mentioned the
+        connected account, with the post it was left on. Meta sends the
+        comment ID in its mention notification and offers no list of mentions,
+        so this reads one mention by ID. Meta answers an error when comments
+        are disabled on that post.
+
+        Requires an Instagram account connected via **Facebook Login**. Meta
+        serves mentions on graph.facebook.com only, so accounts connected with
+        classic Instagram Login receive a 400
+        (`instagram_mentions_require_facebook_login`) and must be reconnected
+        choosing the Facebook option.
+      operationId: getInstagramMentionedComment
+      parameters:
+      - description: The ID of a connected Instagram account (Facebook Login).
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Instagram comment ID of the comment that mentions the account
+          (digits only).
+        explode: false
+        in: path
+        name: commentId
+        required: true
+        schema:
+          example: "17894227972186120"
+          maxLength: 32
+          pattern: "^[0-9]+$"
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InstagramMentionedComment"
+          description: Get a comment that mentions an Instagram account
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId or commentId, an account on another platform\
+            \ (`platform_not_supported`), an account connected with Instagram Login\
+            \ (`instagram_mentions_require_facebook_login`), or a Meta rejection (`platform_api_error`)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The API key is not scoped to this account, or Meta refused\
+            \ the request (`platform_api_error`, for example a missing permission)."
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "The account is not reachable by the caller (`account_not_found`),\
+            \ or the comment does not exist or does not mention the account (`resource_not_found`)."
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      summary: Get a comment that mentions an Instagram account
+      tags:
+      - Instagram
+      x-resource-group: engagement
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/instagram/stories/{storyId}/insights:
@@ -78558,6 +78708,88 @@ components:
       - thumbnailUrl
       - timestamp
       - username
+    InstagramMentionedMedia:
+      example:
+        mediaUrl: mediaUrl
+        commentsCount: 6
+        caption: caption
+        mediaType: IMAGE
+        likeCount: 0
+        id: id
+        timestamp: timestamp
+        username: username
+      properties:
+        id:
+          description: Instagram media ID of the post whose caption mentions the account.
+          type: string
+        caption:
+          nullable: true
+          type: string
+        mediaType:
+          description: "IMAGE, VIDEO or CAROUSEL_ALBUM."
+          example: IMAGE
+          nullable: true
+          type: string
+        mediaUrl:
+          description: Temporary CDN URL. Meta omits it for videos with copyrighted
+            or licensed audio and reels whose owner disabled downloads.
+          nullable: true
+          type: string
+        timestamp:
+          description: Publication time as Meta returns it (ISO 8601).
+          nullable: true
+          type: string
+        username:
+          description: Instagram handle of the account that posted the media and mentioned
+            yours.
+          nullable: true
+          type: string
+        likeCount:
+          description: Null when the owner hides like counts.
+          nullable: true
+          type: integer
+        commentsCount:
+          nullable: true
+          type: integer
+      required:
+      - caption
+      - commentsCount
+      - id
+      - likeCount
+      - mediaType
+      - mediaUrl
+      - timestamp
+      - username
+    InstagramMentionedComment:
+      example:
+        likeCount: 0
+        id: id
+        text: text
+        media:
+          id: id
+        timestamp: timestamp
+      properties:
+        id:
+          description: Instagram comment ID of the comment that mentions the account.
+          type: string
+        text:
+          nullable: true
+          type: string
+        timestamp:
+          description: Creation time as Meta returns it (ISO 8601).
+          nullable: true
+          type: string
+        likeCount:
+          nullable: true
+          type: integer
+        media:
+          $ref: "#/components/schemas/InstagramMentionedComment_media"
+      required:
+      - id
+      - likeCount
+      - media
+      - text
+      - timestamp
     InstagramBusinessDiscovery:
       example:
         profile:
@@ -165163,6 +165395,16 @@ components:
           type: integer
       required:
       - audioId
+    InstagramMentionedComment_media:
+      description: The post the comment was left on.
+      example:
+        id: id
+      properties:
+        id:
+          description: Instagram media ID of the post.
+          type: string
+      required:
+      - id
     InstagramBusinessDiscovery_profile:
       example:
         profilePictureUrl: profilePictureUrl

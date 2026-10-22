@@ -8,6 +8,10 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInstagramAudioWithHttpInfo**](InstagramApi.md#getInstagramAudioWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/audio/{audioId} | Get Instagram audio metadata |
 | [**getInstagramBusinessDiscovery**](InstagramApi.md#getInstagramBusinessDiscovery) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account |
 | [**getInstagramBusinessDiscoveryWithHttpInfo**](InstagramApi.md#getInstagramBusinessDiscoveryWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/business-discovery | Look up a public Instagram Business account |
+| [**getInstagramMentionedComment**](InstagramApi.md#getInstagramMentionedComment) | **GET** /v1/accounts/{accountId}/instagram/mentions/comments/{commentId} | Get a comment that mentions an Instagram account |
+| [**getInstagramMentionedCommentWithHttpInfo**](InstagramApi.md#getInstagramMentionedCommentWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/mentions/comments/{commentId} | Get a comment that mentions an Instagram account |
+| [**getInstagramMentionedMedia**](InstagramApi.md#getInstagramMentionedMedia) | **GET** /v1/accounts/{accountId}/instagram/mentions/media/{mediaId} | Get a post that mentions an Instagram account in its caption |
+| [**getInstagramMentionedMediaWithHttpInfo**](InstagramApi.md#getInstagramMentionedMediaWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/mentions/media/{mediaId} | Get a post that mentions an Instagram account in its caption |
 | [**getInstagramPublishingLimit**](InstagramApi.md#getInstagramPublishingLimit) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramPublishingLimitWithHttpInfo**](InstagramApi.md#getInstagramPublishingLimitWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram/publishing-limit | Get Instagram publishing limit |
 | [**getInstagramStoryInsights**](InstagramApi.md#getInstagramStoryInsights) | **GET** /v1/accounts/{accountId}/instagram/stories/{storyId}/insights | Get Instagram story insights |
@@ -340,6 +344,322 @@ ApiResponse<[**InstagramBusinessDiscovery**](InstagramBusinessDiscovery.md)>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or no public Business or Creator account has that username (&#x60;instagram_profile_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+
+## getInstagramMentionedComment
+
+> InstagramMentionedComment getInstagramMentionedComment(accountId, commentId)
+
+Get a comment that mentions an Instagram account
+
+Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on. Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String commentId = "17894227972186120"; // String | Instagram comment ID of the comment that mentions the account (digits only).
+        try {
+            InstagramMentionedComment result = apiInstance.getInstagramMentionedComment(accountId, commentId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramMentionedComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **commentId** | **String**| Instagram comment ID of the comment that mentions the account (digits only). | |
+
+### Return type
+
+[**InstagramMentionedComment**](InstagramMentionedComment.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get a comment that mentions an Instagram account |  -  |
+| **400** | Invalid accountId or commentId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## getInstagramMentionedCommentWithHttpInfo
+
+> ApiResponse<InstagramMentionedComment> getInstagramMentionedComment getInstagramMentionedCommentWithHttpInfo(accountId, commentId)
+
+Get a comment that mentions an Instagram account
+
+Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on. Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String commentId = "17894227972186120"; // String | Instagram comment ID of the comment that mentions the account (digits only).
+        try {
+            ApiResponse<InstagramMentionedComment> response = apiInstance.getInstagramMentionedCommentWithHttpInfo(accountId, commentId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramMentionedComment");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **commentId** | **String**| Instagram comment ID of the comment that mentions the account (digits only). | |
+
+### Return type
+
+ApiResponse<[**InstagramMentionedComment**](InstagramMentionedComment.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get a comment that mentions an Instagram account |  -  |
+| **400** | Invalid accountId or commentId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the comment does not exist or does not mention the account (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+
+## getInstagramMentionedMedia
+
+> InstagramMentionedMedia getInstagramMentionedMedia(accountId, mediaId)
+
+Get a post that mentions an Instagram account in its caption
+
+Returns a post in which another Instagram user @mentioned the connected account in the caption. Meta sends the media ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Mentions in Stories are not supported by Meta.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String mediaId = "18027939643230671"; // String | Instagram media ID of the post that mentions the account (digits only).
+        try {
+            InstagramMentionedMedia result = apiInstance.getInstagramMentionedMedia(accountId, mediaId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramMentionedMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **mediaId** | **String**| Instagram media ID of the post that mentions the account (digits only). | |
+
+### Return type
+
+[**InstagramMentionedMedia**](InstagramMentionedMedia.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get a post that mentions an Instagram account in its caption |  -  |
+| **400** | Invalid accountId or mediaId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption (&#x60;resource_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+
+## getInstagramMentionedMediaWithHttpInfo
+
+> ApiResponse<InstagramMentionedMedia> getInstagramMentionedMedia getInstagramMentionedMediaWithHttpInfo(accountId, mediaId)
+
+Get a post that mentions an Instagram account in its caption
+
+Returns a post in which another Instagram user @mentioned the connected account in the caption. Meta sends the media ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Mentions in Stories are not supported by Meta.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.InstagramApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        InstagramApi apiInstance = new InstagramApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Instagram account (Facebook Login).
+        String mediaId = "18027939643230671"; // String | Instagram media ID of the post that mentions the account (digits only).
+        try {
+            ApiResponse<InstagramMentionedMedia> response = apiInstance.getInstagramMentionedMediaWithHttpInfo(accountId, mediaId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling InstagramApi#getInstagramMentionedMedia");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Instagram account (Facebook Login). | |
+| **mediaId** | **String**| Instagram media ID of the post that mentions the account (digits only). | |
+
+### Return type
+
+ApiResponse<[**InstagramMentionedMedia**](InstagramMentionedMedia.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Get a post that mentions an Instagram account in its caption |  -  |
+| **400** | Invalid accountId or mediaId, an account on another platform (&#x60;platform_not_supported&#x60;), an account connected with Instagram Login (&#x60;instagram_mentions_require_facebook_login&#x60;), or a Meta rejection (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing permission). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;), or the media does not exist or does not mention the account in its caption (&#x60;resource_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 
 
