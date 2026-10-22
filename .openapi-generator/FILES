@@ -1896,6 +1896,8 @@ docs/PreflightSmsRegistration200Response.md
 docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md
 docs/PreflightSmsRegistration200ResponseComposed.md
 docs/PreflightSmsRegistrationRequest.md
+docs/PrepareMedia200Response.md
+docs/PrepareMediaRequest.md
 docs/Product.md
 docs/ProductCatalogsApi.md
 docs/ProductImage.md
@@ -4823,6 +4825,8 @@ src/main/java/dev/zernio/model/PreflightSmsRegistration200Response.java
 src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseAdvisoriesInner.java
 src/main/java/dev/zernio/model/PreflightSmsRegistration200ResponseComposed.java
 src/main/java/dev/zernio/model/PreflightSmsRegistrationRequest.java
+src/main/java/dev/zernio/model/PrepareMedia200Response.java
+src/main/java/dev/zernio/model/PrepareMediaRequest.java
 src/main/java/dev/zernio/model/Product.java
 src/main/java/dev/zernio/model/ProductImage.java
 src/main/java/dev/zernio/model/ProductOptionsInner.java
@@ -5781,3 +5785,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PrepareMedia200ResponseTest.java
+src/test/java/dev/zernio/model/PrepareMediaRequestTest.java

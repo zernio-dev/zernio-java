@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.329.0
+- API version: 1.330.0
 
-- Build date: 2026-10-22T01:19:11.177676300Z[Etc/UTC]
+- Build date: 2026-10-22T03:00:15.500874395Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.329.0</version>
+  <version>1.330.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.329.0"
+compile "dev.zernio:zernio-sdk:1.330.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.329.0.jar`
+- `target/zernio-sdk-1.330.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1419,6 +1419,8 @@ Class | Method | HTTP request | Description
 *LogsApi* | [**listLogsWithHttpInfo**](docs/LogsApi.md#listLogsWithHttpInfo) | **GET** /v1/logs | List activity logs
 *MediaApi* | [**getMediaPresignedUrl**](docs/MediaApi.md#getMediaPresignedUrl) | **POST** /v1/media/presign | Get upload URL
 *MediaApi* | [**getMediaPresignedUrlWithHttpInfo**](docs/MediaApi.md#getMediaPresignedUrlWithHttpInfo) | **POST** /v1/media/presign | Get upload URL
+*MediaApi* | [**prepareMedia**](docs/MediaApi.md#prepareMedia) | **POST** /v1/media/prepare | Prepare media for a platform
+*MediaApi* | [**prepareMediaWithHttpInfo**](docs/MediaApi.md#prepareMediaWithHttpInfo) | **POST** /v1/media/prepare | Prepare media for a platform
 *MentionsApi* | [**listInboxMentions**](docs/MentionsApi.md#listInboxMentions) | **GET** /v1/inbox/mentions | List mentions
 *MentionsApi* | [**listInboxMentionsWithHttpInfo**](docs/MentionsApi.md#listInboxMentionsWithHttpInfo) | **GET** /v1/inbox/mentions | List mentions
 *MentionsApi* | [**replyToMention**](docs/MentionsApi.md#replyToMention) | **POST** /v1/inbox/mentions/reply | Reply to a mention
@@ -3953,6 +3955,8 @@ Class | Method | HTTP request | Description
  - [PreflightSmsRegistration200ResponseAdvisoriesInner](docs/PreflightSmsRegistration200ResponseAdvisoriesInner.md)
  - [PreflightSmsRegistration200ResponseComposed](docs/PreflightSmsRegistration200ResponseComposed.md)
  - [PreflightSmsRegistrationRequest](docs/PreflightSmsRegistrationRequest.md)
+ - [PrepareMedia200Response](docs/PrepareMedia200Response.md)
+ - [PrepareMediaRequest](docs/PrepareMediaRequest.md)
  - [Product](docs/Product.md)
  - [ProductImage](docs/ProductImage.md)
  - [ProductOptionsInner](docs/ProductOptionsInner.md)
