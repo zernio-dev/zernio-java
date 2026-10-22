@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.335.0
+  version: 1.336.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8385,7 +8385,7 @@ paths:
         name: limit
         required: false
         schema:
-          maximum: 100
+          maximum: 500
           minimum: 1
           type: integer
         style: form
