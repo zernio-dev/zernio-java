@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.334.0
+  version: 1.335.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -132242,16 +132242,17 @@ components:
     getAdsSearchTerms_200_response_data_inner:
       example:
         conversions: 5.962133916683182
-        searchTerm: searchTerm
-        costMicros: 1
         adGroupName: adGroupName
         conversionsValue: 5.637376656633329
         matchType: matchType
         campaignId: campaignId
-        clicks: 6
+        matchSource: matchSource
         impressions: 0
-        campaignName: campaignName
         adGroupId: adGroupId
+        searchTerm: searchTerm
+        costMicros: 1
+        clicks: 6
+        campaignName: campaignName
         status: status
       properties:
         searchTerm:
@@ -132264,6 +132265,11 @@ components:
           type: string
         matchType:
           description: "How the term matched (BROAD, PHRASE, EXACT, NEAR_PHRASE, NEAR_EXACT)."
+          nullable: true
+          type: string
+        matchSource:
+          description: "What matched the term: ADVERTISER_PROVIDED_KEYWORD (one of\
+            \ your keywords), AI_MAX_BROAD_MATCH or AI_MAX_KEYWORDLESS (AI Max expansion)."
           nullable: true
           type: string
         campaignId:
@@ -132302,28 +132308,30 @@ components:
         stale: true
         data:
         - conversions: 5.962133916683182
-          searchTerm: searchTerm
-          costMicros: 1
           adGroupName: adGroupName
           conversionsValue: 5.637376656633329
           matchType: matchType
           campaignId: campaignId
-          clicks: 6
+          matchSource: matchSource
           impressions: 0
-          campaignName: campaignName
           adGroupId: adGroupId
+          searchTerm: searchTerm
+          costMicros: 1
+          clicks: 6
+          campaignName: campaignName
           status: status
         - conversions: 5.962133916683182
-          searchTerm: searchTerm
-          costMicros: 1
           adGroupName: adGroupName
           conversionsValue: 5.637376656633329
           matchType: matchType
           campaignId: campaignId
-          clicks: 6
+          matchSource: matchSource
           impressions: 0
-          campaignName: campaignName
           adGroupId: adGroupId
+          searchTerm: searchTerm
+          costMicros: 1
+          clicks: 6
+          campaignName: campaignName
           status: status
         customerId: customerId
         paging:

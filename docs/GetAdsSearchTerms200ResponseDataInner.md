@@ -10,6 +10,7 @@
 |**searchTerm** | **String** |  |  [optional] |
 |**status** | **String** | ADDED / EXCLUDED / ADDED_EXCLUDED / NONE: whether the term is already a keyword or a negative. |  [optional] |
 |**matchType** | **String** | How the term matched (BROAD, PHRASE, EXACT, NEAR_PHRASE, NEAR_EXACT). |  [optional] |
+|**matchSource** | **String** | What matched the term: ADVERTISER_PROVIDED_KEYWORD (one of your keywords), AI_MAX_BROAD_MATCH or AI_MAX_KEYWORDLESS (AI Max expansion). |  [optional] |
 |**campaignId** | **String** |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |
 |**adGroupId** | **String** |  |  [optional] |
