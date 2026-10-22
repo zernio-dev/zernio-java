@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.336.1
+  version: 1.337.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -388,7 +388,7 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.video.processed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.delivery_issue, campaign.budget.depleted, ad_account.status_changed, ad.video.processed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
     Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.* and workflow.run.* to messages, ad.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Support Assistant events (support.run.*) belong to no single group: they need every resource group enabled and a first-party full-scope caller (a session or a full-scope key, never an OAuth token or a profile-scoped key). Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -72451,6 +72451,9 @@ components:
             - ad.status_changed
             - ad.review.approved
             - ad.review.rejected
+            - ad.delivery_issue
+            - campaign.budget.depleted
+            - ad_account.status_changed
             - ad.video.processed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
@@ -76465,7 +76468,7 @@ components:
           - ad.review.rejected
           type: string
         account:
-          $ref: "#/components/schemas/WebhookPayloadAdReview_account"
+          $ref: "#/components/schemas/WebhookAdsAccount"
         adObject:
           $ref: "#/components/schemas/WebhookPayloadAdReview_adObject"
         review:
@@ -76481,6 +76484,261 @@ components:
       - id
       - review
       - timestamp
+    WebhookPayloadAdDeliveryIssue:
+      description: |
+        Webhook payload for the `ad.delivery_issue` event. Fires when an ad Zernio
+        already tracked moves into the platform's error state: Meta `WITH_ISSUES`
+        (payment, policy and account problems), TikTok account punishment or missing
+        balance, LinkedIn removals, and any platform status Zernio does not recognize
+        yet (check `issue.raw`). Ads seen for the first time by a sync never fire it.
+
+        Detected by Zernio's own ad sync, so it arrives within one sync cycle. Each
+        ad fires at most once per 24 hours. On Meta, `ad.status_changed` with
+        `WITH_ISSUES` can also fire for the same problem, straight from Meta's webhook.
+      example:
+        test: true
+        adObject:
+          adId: adId
+          level: AD
+          name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        issue:
+          reasons:
+          - message: message
+          - message: message
+          raw: raw
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: ad.delivery_issue
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - ad.delivery_issue
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadAdReview_adObject"
+        issue:
+          $ref: "#/components/schemas/WebhookPayloadAdDeliveryIssue_issue"
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - event
+      - id
+      - issue
+      - timestamp
+    WebhookPayloadCampaignBudgetDepleted:
+      description: |
+        Webhook payload for the `campaign.budget.depleted` event. Fires when a campaign
+        Zernio already tracked stops delivering because its budget ran out. TikTok only:
+        it is the one network that reports an exhausted budget on the ad. Meta and Google
+        keep such ads `ACTIVE`, so they never fire it.
+
+        Detected by Zernio's own ad sync. Each campaign fires at most once per 6 hours, so a
+        daily budget that runs out again the next day is announced again.
+      example:
+        test: true
+        adObject:
+          level: CAMPAIGN
+          name: name
+          platformId: platformId
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: campaign.budget.depleted
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        budget:
+          raw: raw
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - campaign.budget.depleted
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adObject:
+          $ref: "#/components/schemas/WebhookPayloadCampaignBudgetDepleted_adObject"
+        budget:
+          $ref: "#/components/schemas/WebhookPayloadCampaignBudgetDepleted_budget"
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adObject
+      - budget
+      - event
+      - id
+      - timestamp
+    WebhookPayloadAdAccountStatusChanged:
+      description: |
+        Webhook payload for the `ad_account.status_changed` event. Fires when an ad
+        account Zernio already tracked moves between `active`, `restricted`, `disabled`
+        and `closed`, as read by Zernio's ad account discovery (Meta, Google, TikTok, X).
+        An account seen for the first time, an account not seen in the last 48 hours,
+        or a platform status Zernio does not recognize, never fires it.
+
+        `restricted` means the account exists but cannot run ads normally until
+        something is settled (Meta unpaid balance or risk review, TikTok limits or
+        pending verification, X review). Each new status fires at most once per
+        account per 24 hours.
+      example:
+        test: true
+        adAccount:
+          name: name
+          platformAdAccountId: platformAdAccountId
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: ad_account.status_changed
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        status:
+          current: active
+          previous: active
+          raw: raw
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - ad_account.status_changed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        adAccount:
+          $ref: "#/components/schemas/WebhookPayloadAdAccountStatusChanged_adAccount"
+        status:
+          $ref: "#/components/schemas/WebhookPayloadAdAccountStatusChanged_status"
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - adAccount
+      - event
+      - id
+      - status
+      - timestamp
+    WebhookAdsAccount:
+      description: The connected ads account the event belongs to.
+      example:
+        accountId: accountId
+        profileId: profileId
+        displayName: displayName
+        platform: tiktokads
+        username: username
+      properties:
+        accountId:
+          description: "Internal Zernio account ID (same as used in /v1/accounts/{accountId})."
+          type: string
+        profileId:
+          description: Internal Zernio profile ID this account belongs to.
+          type: string
+        platform:
+          description: "Ads connection platform (`metaads`, `googleads`, `tiktokads`,\
+            \ `linkedinads`, `pinterestads`, `xads`, ...)."
+          example: tiktokads
+          type: string
+        username:
+          type: string
+        displayName:
+          nullable: true
+          type: string
+      required:
+      - accountId
+      - platform
+      - profileId
+      - username
     WebhookPayloadAdStatusChanged:
       description: |
         Webhook payload for the `ad.status_changed` event. Currently emitted
@@ -110557,6 +110815,9 @@ components:
             - ad.status_changed
             - ad.review.approved
             - ad.review.rejected
+            - ad.delivery_issue
+            - campaign.budget.depleted
+            - ad_account.status_changed
             - ad.video.processed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
@@ -110745,6 +111006,9 @@ components:
             - ad.status_changed
             - ad.review.approved
             - ad.review.rejected
+            - ad.delivery_issue
+            - campaign.budget.depleted
+            - ad_account.status_changed
             - ad.video.processed
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
@@ -110992,6 +111256,9 @@ components:
           - ad.status_changed
           - ad.review.approved
           - ad.review.rejected
+          - ad.delivery_issue
+          - campaign.budget.depleted
+          - ad_account.status_changed
           - ad.video.processed
           - lead.received
           - whatsapp.template.status_updated
@@ -165360,36 +165627,6 @@ components:
       - platformAdAccountId
       - status
       - thumbnailUrl
-    WebhookPayloadAdReview_account:
-      description: The connected ads account that owns the ad.
-      example:
-        accountId: accountId
-        profileId: profileId
-        displayName: displayName
-        platform: tiktokads
-        username: username
-      properties:
-        accountId:
-          description: "Internal Zernio account ID (same as used in /v1/accounts/{accountId})."
-          type: string
-        profileId:
-          description: Internal Zernio profile ID this account belongs to.
-          type: string
-        platform:
-          description: "Ads connection platform (`metaads`, `googleads`, `tiktokads`,\
-            \ `linkedinads`, `pinterestads`, `xads`, ...)."
-          example: tiktokads
-          type: string
-        username:
-          type: string
-        displayName:
-          nullable: true
-          type: string
-      required:
-      - accountId
-      - platform
-      - profileId
-      - username
     WebhookPayloadAdReview_adObject:
       example:
         adId: adId
@@ -165455,6 +165692,104 @@ components:
       - raw
       - reasons
       - status
+    WebhookPayloadAdDeliveryIssue_issue:
+      example:
+        reasons:
+        - message: message
+        - message: message
+        raw: raw
+      properties:
+        raw:
+          description: "Platform-native status string, forwarded verbatim (Meta `WITH_ISSUES`,\
+            \ TikTok `ADVERTISER_ACCOUNT_PUNISH`, LinkedIn `REMOVED`, ...)."
+          type: string
+        reasons:
+          description: "What the platform says is wrong. Meta reports it per campaign;\
+            \ other networks send no message today, so it is empty there."
+          items:
+            $ref: "#/components/schemas/WebhookPayloadAdReview_review_reasons_inner"
+          type: array
+      required:
+      - raw
+      - reasons
+    WebhookPayloadCampaignBudgetDepleted_adObject:
+      example:
+        level: CAMPAIGN
+        name: name
+        platformId: platformId
+        platformAdAccountId: platformAdAccountId
+      properties:
+        level:
+          description: Always `CAMPAIGN`.
+          enum:
+          - CAMPAIGN
+          type: string
+        platformId:
+          description: Platform-native campaign ID.
+          type: string
+        platformAdAccountId:
+          description: Platform-native ad account ID.
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - level
+      - name
+      - platformAdAccountId
+      - platformId
+    WebhookPayloadCampaignBudgetDepleted_budget:
+      example:
+        raw: raw
+      properties:
+        raw:
+          description: "Platform-native status string, forwarded verbatim (TikTok\
+            \ `AD_STATUS_CAMPAIGN_EXCEED`)."
+          type: string
+      required:
+      - raw
+    WebhookPayloadAdAccountStatusChanged_adAccount:
+      example:
+        name: name
+        platformAdAccountId: platformAdAccountId
+      properties:
+        platformAdAccountId:
+          description: Platform-native ad account ID.
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - name
+      - platformAdAccountId
+    WebhookPayloadAdAccountStatusChanged_status:
+      example:
+        current: active
+        previous: active
+        raw: raw
+      properties:
+        previous:
+          enum:
+          - active
+          - restricted
+          - disabled
+          - closed
+          type: string
+        current:
+          enum:
+          - active
+          - restricted
+          - disabled
+          - closed
+          type: string
+        raw:
+          description: "Platform-native status, forwarded verbatim (Meta `account_status`\
+            \ code such as `2`, Google `SUSPENDED`, TikTok `STATUS_LIMIT`, X `REJECTED`)."
+          type: string
+      required:
+      - current
+      - previous
+      - raw
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:
@@ -171849,6 +172184,9 @@ x-documentation:
     - `ad.status_changed` - Ad, ad set, or campaign changed status on the ad platform (Meta: `in_process_ad_objects` entry/exit and `with_issues_ad_objects` violations)
     - `ad.review.approved` - An ad Zernio already tracked passed platform review, or a rejection was overturned (every ad network)
     - `ad.review.rejected` - An ad Zernio already tracked was rejected in platform review (every ad network). `review.reasons` carries the platform's reason when it gives one
+    - `ad.delivery_issue` - An ad Zernio already tracked stopped delivering for a platform reason (Meta `WITH_ISSUES`, TikTok account or balance problems, LinkedIn removals). `issue.reasons` carries Meta's messages
+    - `campaign.budget.depleted` - A campaign Zernio already tracked ran out of budget (TikTok, the only network that reports it on the ad)
+    - `ad_account.status_changed` - An ad account Zernio already tracked became `active`, `restricted`, `disabled` or `closed` (Meta, Google, TikTok, X)
     - `ad.video.processed` - Meta finished processing a video uploaded with `POST /v1/ads/videos` and `async: true`. `video.status` is `ready` (usable as `video.id`) or `error`
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.

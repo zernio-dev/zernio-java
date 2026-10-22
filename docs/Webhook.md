@@ -69,6 +69,9 @@ Individual webhook configuration for receiving real-time notifications
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |
 | AD_REVIEW_REJECTED | &quot;ad.review.rejected&quot; |
+| AD_DELIVERY_ISSUE | &quot;ad.delivery_issue&quot; |
+| CAMPAIGN_BUDGET_DEPLETED | &quot;campaign.budget.depleted&quot; |
+| AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |

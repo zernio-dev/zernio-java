@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.336.1
+- API version: 1.337.0
 
-- Build date: 2026-10-22T23:43:33.350812855Z[Etc/UTC]
+- Build date: 2026-10-22T23:52:23.630549794Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.336.1</version>
+  <version>1.337.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.336.1"
+compile "dev.zernio:zernio-sdk:1.337.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.336.1.jar`
+- `target/zernio-sdk-1.337.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -4728,6 +4728,7 @@ Class | Method | HTTP request | Description
  - [VerifyWhatsAppNumberRequest](docs/VerifyWhatsAppNumberRequest.md)
  - [VoteRedditThingRequest](docs/VoteRedditThingRequest.md)
  - [Webhook](docs/Webhook.md)
+ - [WebhookAdsAccount](docs/WebhookAdsAccount.md)
  - [WebhookAdsSyncAccount](docs/WebhookAdsSyncAccount.md)
  - [WebhookAdsSyncAdAccount](docs/WebhookAdsSyncAdAccount.md)
  - [WebhookLog](docs/WebhookLog.md)
@@ -4742,8 +4743,12 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAccountConnectedAccount](docs/WebhookPayloadAccountConnectedAccount.md)
  - [WebhookPayloadAccountDisconnected](docs/WebhookPayloadAccountDisconnected.md)
  - [WebhookPayloadAccountDisconnectedAccount](docs/WebhookPayloadAccountDisconnectedAccount.md)
+ - [WebhookPayloadAdAccountStatusChanged](docs/WebhookPayloadAdAccountStatusChanged.md)
+ - [WebhookPayloadAdAccountStatusChangedAdAccount](docs/WebhookPayloadAdAccountStatusChangedAdAccount.md)
+ - [WebhookPayloadAdAccountStatusChangedStatus](docs/WebhookPayloadAdAccountStatusChangedStatus.md)
+ - [WebhookPayloadAdDeliveryIssue](docs/WebhookPayloadAdDeliveryIssue.md)
+ - [WebhookPayloadAdDeliveryIssueIssue](docs/WebhookPayloadAdDeliveryIssueIssue.md)
  - [WebhookPayloadAdReview](docs/WebhookPayloadAdReview.md)
- - [WebhookPayloadAdReviewAccount](docs/WebhookPayloadAdReviewAccount.md)
  - [WebhookPayloadAdReviewAdObject](docs/WebhookPayloadAdReviewAdObject.md)
  - [WebhookPayloadAdReviewReview](docs/WebhookPayloadAdReviewReview.md)
  - [WebhookPayloadAdReviewReviewReasonsInner](docs/WebhookPayloadAdReviewReviewReasonsInner.md)
@@ -4768,6 +4773,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCallPermissionRequestPermission](docs/WebhookPayloadCallPermissionRequestPermission.md)
  - [WebhookPayloadCallReceived](docs/WebhookPayloadCallReceived.md)
  - [WebhookPayloadCallReceivedCall](docs/WebhookPayloadCallReceivedCall.md)
+ - [WebhookPayloadCampaignBudgetDepleted](docs/WebhookPayloadCampaignBudgetDepleted.md)
+ - [WebhookPayloadCampaignBudgetDepletedAdObject](docs/WebhookPayloadCampaignBudgetDepletedAdObject.md)
+ - [WebhookPayloadCampaignBudgetDepletedBudget](docs/WebhookPayloadCampaignBudgetDepletedBudget.md)
  - [WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)
