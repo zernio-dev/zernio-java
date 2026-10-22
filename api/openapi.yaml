@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.326.0
+  version: 1.327.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -76650,6 +76650,7 @@ components:
     ApiChangelogEntry:
       description: "One API changelog entry, as shown on https://docs.zernio.com/changelog."
       example:
+        summary: summary
         specVersion: specVersion
         publishedAt: 2000-01-23T04:56:07.000+00:00
         impact: none
@@ -76712,6 +76713,7 @@ components:
             - modified
         id: id
         type: new_feature
+        title: title
         message: message
         url: https://openapi-generator.tech
         platforms:
@@ -76760,8 +76762,19 @@ components:
           items:
             type: string
           type: array
+        title:
+          description: "The change in a few words, for example `Delete inbox conversations`.\
+            \ Null on older entries."
+          nullable: true
+          type: string
+        summary:
+          description: One or two plain sentences on what changed and why it matters.
+            Null when `title` is.
+          nullable: true
+          type: string
         message:
-          description: "The announcement, in Markdown."
+          description: "The details in Markdown: endpoints, fields and how to use\
+            \ them."
           type: string
         publishedAt:
           format: date-time
@@ -76785,11 +76798,14 @@ components:
       - platforms
       - publishedAt
       - specVersion
+      - summary
+      - title
       - type
       - url
     WebhookPayloadApiChangelogPublished:
       example:
         entry:
+          summary: summary
           specVersion: specVersion
           publishedAt: 2000-01-23T04:56:07.000+00:00
           impact: none
@@ -76852,6 +76868,7 @@ components:
               - modified
           id: id
           type: new_feature
+          title: title
           message: message
           url: https://openapi-generator.tech
           platforms:
@@ -157978,7 +157995,8 @@ components:
       example:
         nextCursor: 2000-01-23T04:56:07.000+00:00
         entries:
-        - specVersion: specVersion
+        - summary: summary
+          specVersion: specVersion
           publishedAt: 2000-01-23T04:56:07.000+00:00
           impact: none
           changes:
@@ -158040,12 +158058,14 @@ components:
               - modified
           id: id
           type: new_feature
+          title: title
           message: message
           url: https://openapi-generator.tech
           platforms:
           - whatsapp
           - inbox
-        - specVersion: specVersion
+        - summary: summary
+          specVersion: specVersion
           publishedAt: 2000-01-23T04:56:07.000+00:00
           impact: none
           changes:
@@ -158107,6 +158127,7 @@ components:
               - modified
           id: id
           type: new_feature
+          title: title
           message: message
           url: https://openapi-generator.tech
           platforms:
