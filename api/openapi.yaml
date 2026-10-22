@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.333.0
+  version: 1.333.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44935,9 +44935,11 @@ paths:
         \ then the Smart+ ad or ad group id, then `materialId`, and the full result\
         \ is cached for 10 minutes per account, advertiser and query, so pages read\
         \ within that window are consistent and `totalRows` counts distinct rows.\
-        \ When TikTok's slices do not add up to the row count it declares on two reads,\
-        \ the call answers 502 instead of a short result. Metrics TikTok returns empty\
-        \ come back as null."
+        \ The result can hold more rows than TikTok's unfiltered report declares,\
+        \ because the per-ad reads also return listed Smart+ ads that report leaves\
+        \ out. When the slices come back with fewer rows than TikTok declares on two\
+        \ reads, the call answers 502 instead of a short result. Metrics TikTok returns\
+        \ empty come back as null."
       operationId: getTikTokSmartPlusMaterialReport
       parameters:
       - description: A tiktok or tiktokads account ID
@@ -45042,8 +45044,8 @@ paths:
           description: "The TikTok connection has no TikTok Ads token: connect TikTok\
             \ Ads first (code ads_connection_required)."
         "502":
-          description: "TikTok's material report slices did not add up to the row\
-            \ count it declared, on two reads. Retry later."
+          description: "TikTok's material report slices came back with fewer rows\
+            \ than the row count it declared, on two reads. Retry later."
       security:
       - bearerAuth: []
       summary: Per-creative performance inside TikTok Smart+ ads
