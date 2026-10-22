@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.332.0
+  version: 1.332.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -99664,16 +99664,18 @@ components:
             \ could publish right now under the TikTok Direct Post daily limits, without\
             \ creating, scheduling or publishing anything: no post is persisted and\
             \ no upload slot is claimed, so it can be repeated freely. The request\
-            \ still goes through auth, the payment gate and body validation, then\
-            \ returns HTTP 200 with `{ dryRun: true, canPublish, tiktok: [...] }`\
-            \ instead of 201. Only `tiktok` entries are evaluated; other platforms\
-            \ in the body are ignored, and a body with no `tiktok` entry is rejected\
-            \ with 400 `invalid_field_value` on `platforms`. An entry with `platformSpecificData.tiktokSettings.draft:\
-            \ true` (Creator Inbox upload) is not subject to the limit and always\
-            \ reports `canPublish: true`. Accounts connected through the TikTok for\
-            \ Business app do not go through these limits at all and also always report\
-            \ `canPublish: true`, so on those accounts a dry run confirms the request\
-            \ is well-formed rather than gating it."
+            \ still goes through auth, the payment gate and body validation, and runs\
+            \ the same account access checks as a real create (it can return 400 or\
+            \ 403), then returns HTTP 200 with `{ dryRun: true, canPublish, tiktok:\
+            \ [...] }` instead of 201. Only `tiktok` entries are evaluated; other\
+            \ platforms in the body are ignored, and a body with no `tiktok` entry\
+            \ is rejected with 400 `invalid_field_value` on `platforms`. An entry\
+            \ with `platformSpecificData.tiktokSettings.draft: true` (Creator Inbox\
+            \ upload) is not subject to the limit and always reports `canPublish:\
+            \ true`. Accounts connected through the TikTok for Business app do not\
+            \ go through these limits at all and also always report `canPublish: true`,\
+            \ so on those accounts a dry run confirms the request is well-formed rather\
+            \ than gating it."
           type: boolean
         timezone:
           description: "IANA timezone (`Europe/Madrid`, `America/New_York`) used to\
