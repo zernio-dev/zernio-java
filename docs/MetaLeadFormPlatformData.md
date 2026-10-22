@@ -22,6 +22,7 @@
 |**blockDisplayForNonTargetedViewer** | **Boolean** |  |  [optional] |
 |**questionPageCustomHeadline** | **String** |  |  [optional] |
 |**contextCard** | [**MetaLeadFormPlatformDataContextCard**](MetaLeadFormPlatformDataContextCard.md) |  |  [optional] |
+|**customDisclaimer** | [**MetaLeadFormPlatformDataCustomDisclaimer**](MetaLeadFormPlatformDataCustomDisclaimer.md) |  |  [optional] |
 
 
 

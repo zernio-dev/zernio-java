@@ -7,7 +7,9 @@
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**id** | **String** |  |  [optional] |
+|**id** | **String** | Meta leadgenId. |  [optional] |
+|**leadId** | **String** | Zernio lead id, for PATCH /v1/ads/leads/{id}. Only on persisted leads. |  [optional] |
+|**status** | **String** | Lead status (see PATCH /v1/ads/leads/{id}). Only on persisted leads. |  [optional] |
 |**createdTime** | **String** |  |  [optional] |
 |**adId** | **String** |  |  [optional] |
 |**formId** | **String** |  |  [optional] |

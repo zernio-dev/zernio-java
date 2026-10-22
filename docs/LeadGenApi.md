@@ -20,6 +20,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listLeadFormsWithHttpInfo**](LeadGenApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms |
 | [**listLeads**](LeadGenApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads |
 | [**listLeadsWithHttpInfo**](LeadGenApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads |
+| [**updateLead**](LeadGenApi.md#updateLead) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status |
+| [**updateLeadWithHttpInfo**](LeadGenApi.md#updateLeadWithHttpInfo) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status |
 
 
 
@@ -1301,4 +1303,160 @@ ApiResponse<[**ListLeads200Response**](ListLeads200Response.md)>
 | **403** | Ads add-on required. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 | **502** | The platform returned a server error. |  -  |
+
+
+## updateLead
+
+> UpdateLead200Response updateLead(id, updateLeadRequest)
+
+Update a lead&#39;s status
+
+Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String id = "id_example"; // String | Zernio lead id, or the Meta leadgenId (then accountId is required).
+        UpdateLeadRequest updateLeadRequest = new UpdateLeadRequest(); // UpdateLeadRequest | 
+        try {
+            UpdateLead200Response result = apiInstance.updateLead(id, updateLeadRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#updateLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Zernio lead id, or the Meta leadgenId (then accountId is required). | |
+| **updateLeadRequest** | [**UpdateLeadRequest**](UpdateLeadRequest.md)|  | |
+
+### Return type
+
+[**UpdateLead200Response**](UpdateLead200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated lead. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | Lead not found or not accessible. |  -  |
+
+## updateLeadWithHttpInfo
+
+> ApiResponse<UpdateLead200Response> updateLead updateLeadWithHttpInfo(id, updateLeadRequest)
+
+Update a lead&#39;s status
+
+Sets the status of a Meta lead (and optionally its value) so you can track it from lead to sale.  &#x60;{id}&#x60; is the Zernio lead id (&#x60;id&#x60; on &#x60;GET /v1/ads/leads&#x60;, &#x60;leadId&#x60; on &#x60;GET /v1/ads/lead-forms/{formId}/leads&#x60;) or the Meta &#x60;leadgenId&#x60; together with &#x60;accountId&#x60; in the body. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String id = "id_example"; // String | Zernio lead id, or the Meta leadgenId (then accountId is required).
+        UpdateLeadRequest updateLeadRequest = new UpdateLeadRequest(); // UpdateLeadRequest | 
+        try {
+            ApiResponse<UpdateLead200Response> response = apiInstance.updateLeadWithHttpInfo(id, updateLeadRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#updateLead");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **id** | **String**| Zernio lead id, or the Meta leadgenId (then accountId is required). | |
+| **updateLeadRequest** | [**UpdateLeadRequest**](UpdateLeadRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateLead200Response**](UpdateLead200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The updated lead. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+| **404** | Lead not found or not accessible. |  -  |
 

@@ -44,6 +44,7 @@ docs/AdInsightsApi.md
 docs/AdKeyword.md
 docs/AdKeywordMetrics.md
 docs/AdKeywordQuality.md
+docs/AdLead.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdNegativeKeywordList.md
@@ -1659,7 +1660,6 @@ docs/ListInstagramStories200ResponseDataInner.md
 docs/ListInstagramTaggedMedia200Response.md
 docs/ListLeadForms200Response.md
 docs/ListLeads200Response.md
-docs/ListLeads200ResponseLeadsInner.md
 docs/ListLeads200ResponseMeta.md
 docs/ListLinkedInOrganizations200Response.md
 docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md
@@ -1801,6 +1801,8 @@ docs/MetaLeadFormLegalContent.md
 docs/MetaLeadFormLegalContentPrivacyPolicy.md
 docs/MetaLeadFormPlatformData.md
 docs/MetaLeadFormPlatformDataContextCard.md
+docs/MetaLeadFormPlatformDataCustomDisclaimer.md
+docs/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner.md
 docs/MetaLeadFormQuestionsInner.md
 docs/MetaLeadFormThankYouPage.md
 docs/MetaPageOwnership.md
@@ -2522,6 +2524,8 @@ docs/UpdateImessageSenderRequestContact.md
 docs/UpdateInboxConversation200Response.md
 docs/UpdateInboxConversation200ResponseData.md
 docs/UpdateInboxConversationRequest.md
+docs/UpdateLead200Response.md
+docs/UpdateLeadRequest.md
 docs/UpdateLinkedInOrganization200Response.md
 docs/UpdateLinkedInOrganizationRequest.md
 docs/UpdatePinterestBoardsRequest.md
@@ -3006,6 +3010,7 @@ src/main/java/dev/zernio/model/AdFunnelCounts.java
 src/main/java/dev/zernio/model/AdKeyword.java
 src/main/java/dev/zernio/model/AdKeywordMetrics.java
 src/main/java/dev/zernio/model/AdKeywordQuality.java
+src/main/java/dev/zernio/model/AdLead.java
 src/main/java/dev/zernio/model/AdMetrics.java
 src/main/java/dev/zernio/model/AdNegativeKeywordList.java
 src/main/java/dev/zernio/model/AdNegativeKeywordListKeyword.java
@@ -4587,7 +4592,6 @@ src/main/java/dev/zernio/model/ListInstagramStories200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListInstagramTaggedMedia200Response.java
 src/main/java/dev/zernio/model/ListLeadForms200Response.java
 src/main/java/dev/zernio/model/ListLeads200Response.java
-src/main/java/dev/zernio/model/ListLeads200ResponseLeadsInner.java
 src/main/java/dev/zernio/model/ListLeads200ResponseMeta.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200Response.java
 src/main/java/dev/zernio/model/ListLinkedInOrganizations200ResponseOrganizationsInner.java
@@ -4724,6 +4728,8 @@ src/main/java/dev/zernio/model/MetaLeadFormLegalContent.java
 src/main/java/dev/zernio/model/MetaLeadFormLegalContentPrivacyPolicy.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformData.java
 src/main/java/dev/zernio/model/MetaLeadFormPlatformDataContextCard.java
+src/main/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimer.java
+src/main/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner.java
 src/main/java/dev/zernio/model/MetaLeadFormQuestionsInner.java
 src/main/java/dev/zernio/model/MetaLeadFormThankYouPage.java
 src/main/java/dev/zernio/model/MetaPageOwnership.java
@@ -5428,6 +5434,8 @@ src/main/java/dev/zernio/model/UpdateImessageSenderRequestContact.java
 src/main/java/dev/zernio/model/UpdateInboxConversation200Response.java
 src/main/java/dev/zernio/model/UpdateInboxConversation200ResponseData.java
 src/main/java/dev/zernio/model/UpdateInboxConversationRequest.java
+src/main/java/dev/zernio/model/UpdateLead200Response.java
+src/main/java/dev/zernio/model/UpdateLeadRequest.java
 src/main/java/dev/zernio/model/UpdateLinkedInOrganization200Response.java
 src/main/java/dev/zernio/model/UpdateLinkedInOrganizationRequest.java
 src/main/java/dev/zernio/model/UpdatePinterestBoardsRequest.java
@@ -5769,11 +5777,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseAccountBudgetsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseBillingSetupsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountBilling200ResponsePaymentsAccountsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountBilling200ResponsePendingBudgetProposalsInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountBilling200ResponseTest.java
-src/test/java/dev/zernio/model/SetUpAdAccountBilling200ResponseTest.java
-src/test/java/dev/zernio/model/SetUpAdAccountBilling201ResponseTest.java
-src/test/java/dev/zernio/model/SetUpAdAccountBillingRequestTest.java
+src/test/java/dev/zernio/model/AdLeadTest.java
+src/test/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInnerTest.java
+src/test/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimerTest.java
+src/test/java/dev/zernio/model/UpdateLead200ResponseTest.java
+src/test/java/dev/zernio/model/UpdateLeadRequestTest.java

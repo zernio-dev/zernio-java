@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.324.0
+- API version: 1.325.0
 
-- Build date: 2026-10-21T23:38:30.811827872Z[Etc/UTC]
+- Build date: 2026-10-22T00:01:18.174076242Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.324.0</version>
+  <version>1.325.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.324.0"
+compile "dev.zernio:zernio-sdk:1.325.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.324.0.jar`
+- `target/zernio-sdk-1.325.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1409,6 +1409,8 @@ Class | Method | HTTP request | Description
 *LeadGenApi* | [**listLeadFormsWithHttpInfo**](docs/LeadGenApi.md#listLeadFormsWithHttpInfo) | **GET** /v1/ads/lead-forms | List lead forms
 *LeadGenApi* | [**listLeads**](docs/LeadGenApi.md#listLeads) | **GET** /v1/ads/leads | List submitted leads
 *LeadGenApi* | [**listLeadsWithHttpInfo**](docs/LeadGenApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
+*LeadGenApi* | [**updateLead**](docs/LeadGenApi.md#updateLead) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status
+*LeadGenApi* | [**updateLeadWithHttpInfo**](docs/LeadGenApi.md#updateLeadWithHttpInfo) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status
 *LinkedInMentionsApi* | [**getLinkedInMentions**](docs/LinkedInMentionsApi.md#getLinkedInMentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LinkedInMentionsApi* | [**getLinkedInMentionsWithHttpInfo**](docs/LinkedInMentionsApi.md#getLinkedInMentionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**listLogs**](docs/LogsApi.md#listLogs) | **GET** /v1/logs | List activity logs
@@ -2136,6 +2138,7 @@ Class | Method | HTTP request | Description
  - [AdKeyword](docs/AdKeyword.md)
  - [AdKeywordMetrics](docs/AdKeywordMetrics.md)
  - [AdKeywordQuality](docs/AdKeywordQuality.md)
+ - [AdLead](docs/AdLead.md)
  - [AdMetrics](docs/AdMetrics.md)
  - [AdNegativeKeywordList](docs/AdNegativeKeywordList.md)
  - [AdNegativeKeywordListKeyword](docs/AdNegativeKeywordListKeyword.md)
@@ -3717,7 +3720,6 @@ Class | Method | HTTP request | Description
  - [ListInstagramTaggedMedia200Response](docs/ListInstagramTaggedMedia200Response.md)
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
  - [ListLeads200Response](docs/ListLeads200Response.md)
- - [ListLeads200ResponseLeadsInner](docs/ListLeads200ResponseLeadsInner.md)
  - [ListLeads200ResponseMeta](docs/ListLeads200ResponseMeta.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
@@ -3854,6 +3856,8 @@ Class | Method | HTTP request | Description
  - [MetaLeadFormLegalContentPrivacyPolicy](docs/MetaLeadFormLegalContentPrivacyPolicy.md)
  - [MetaLeadFormPlatformData](docs/MetaLeadFormPlatformData.md)
  - [MetaLeadFormPlatformDataContextCard](docs/MetaLeadFormPlatformDataContextCard.md)
+ - [MetaLeadFormPlatformDataCustomDisclaimer](docs/MetaLeadFormPlatformDataCustomDisclaimer.md)
+ - [MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner](docs/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInner.md)
  - [MetaLeadFormQuestionsInner](docs/MetaLeadFormQuestionsInner.md)
  - [MetaLeadFormThankYouPage](docs/MetaLeadFormThankYouPage.md)
  - [MetaPageOwnership](docs/MetaPageOwnership.md)
@@ -4558,6 +4562,8 @@ Class | Method | HTTP request | Description
  - [UpdateInboxConversation200Response](docs/UpdateInboxConversation200Response.md)
  - [UpdateInboxConversation200ResponseData](docs/UpdateInboxConversation200ResponseData.md)
  - [UpdateInboxConversationRequest](docs/UpdateInboxConversationRequest.md)
+ - [UpdateLead200Response](docs/UpdateLead200Response.md)
+ - [UpdateLeadRequest](docs/UpdateLeadRequest.md)
  - [UpdateLinkedInOrganization200Response](docs/UpdateLinkedInOrganization200Response.md)
  - [UpdateLinkedInOrganizationRequest](docs/UpdateLinkedInOrganizationRequest.md)
  - [UpdatePinterestBoardsRequest](docs/UpdatePinterestBoardsRequest.md)
