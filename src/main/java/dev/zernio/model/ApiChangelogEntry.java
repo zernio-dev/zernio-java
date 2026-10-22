@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   ApiChangelogEntry.JSON_PROPERTY_URL,
   ApiChangelogEntry.JSON_PROPERTY_CHANGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:27:01.968324081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:30:59.878805192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ApiChangelogEntry {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

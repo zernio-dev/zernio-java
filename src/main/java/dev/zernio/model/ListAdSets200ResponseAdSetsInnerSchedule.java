@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   ListAdSets200ResponseAdSetsInnerSchedule.JSON_PROPERTY_START_DATE,
   ListAdSets200ResponseAdSetsInnerSchedule.JSON_PROPERTY_END_DATE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:27:01.968324081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:30:59.878805192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListAdSets200ResponseAdSetsInnerSchedule {
   public static final String JSON_PROPERTY_START_DATE = "startDate";
   @javax.annotation.Nullable

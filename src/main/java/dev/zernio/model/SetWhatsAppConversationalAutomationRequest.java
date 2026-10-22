@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   SetWhatsAppConversationalAutomationRequest.JSON_PROPERTY_COMMANDS,
   SetWhatsAppConversationalAutomationRequest.JSON_PROPERTY_ACCOUNT_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:27:01.968324081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:30:59.878805192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SetWhatsAppConversationalAutomationRequest {
   public static final String JSON_PROPERTY_ENABLE_WELCOME_MESSAGE = "enable_welcome_message";
   @javax.annotation.Nullable

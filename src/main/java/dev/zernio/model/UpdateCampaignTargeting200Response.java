@@ -52,7 +52,7 @@ import dev.zernio.ApiClient;
   UpdateCampaignTargeting200Response.JSON_PROPERTY_EXCLUDED_LOCATIONS,
   UpdateCampaignTargeting200Response.JSON_PROPERTY_LANGUAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:27:01.968324081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:30:59.878805192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateCampaignTargeting200Response {
   public static final String JSON_PROPERTY_CAMPAIGN_ID = "campaignId";
   @javax.annotation.Nullable

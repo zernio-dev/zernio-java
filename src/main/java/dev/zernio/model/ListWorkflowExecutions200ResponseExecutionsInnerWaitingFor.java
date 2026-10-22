@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.JSON_PROPERTY_KIND,
   ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor.JSON_PROPERTY_NODE_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:27:01.968324081Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T11:30:59.878805192Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListWorkflowExecutions200ResponseExecutionsInnerWaitingFor {
   /**
    * Gets or Sets kind
