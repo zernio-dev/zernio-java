@@ -1218,6 +1218,7 @@ docs/GetValueRuleSet200Response.md
 docs/GetVoiceCall200Response.md
 docs/GetVoiceCallEstimate200Response.md
 docs/GetVoiceCallEstimate200ResponseBreakdown.md
+docs/GetWebflowConnectUrl200Response.md
 docs/GetWebhookLogs200Response.md
 docs/GetWebhookLogs200ResponsePagination.md
 docs/GetWebhookSettings200Response.md
@@ -4164,6 +4165,7 @@ src/main/java/dev/zernio/model/GetValueRuleSet200Response.java
 src/main/java/dev/zernio/model/GetVoiceCall200Response.java
 src/main/java/dev/zernio/model/GetVoiceCallEstimate200Response.java
 src/main/java/dev/zernio/model/GetVoiceCallEstimate200ResponseBreakdown.java
+src/main/java/dev/zernio/model/GetWebflowConnectUrl200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200Response.java
 src/main/java/dev/zernio/model/GetWebhookLogs200ResponsePagination.java
 src/main/java/dev/zernio/model/GetWebhookSettings200Response.java
@@ -5777,8 +5779,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AdLeadTest.java
-src/test/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimerCheckboxesInnerTest.java
-src/test/java/dev/zernio/model/MetaLeadFormPlatformDataCustomDisclaimerTest.java
-src/test/java/dev/zernio/model/UpdateLead200ResponseTest.java
-src/test/java/dev/zernio/model/UpdateLeadRequestTest.java
+src/test/java/dev/zernio/model/GetWebflowConnectUrl200ResponseTest.java

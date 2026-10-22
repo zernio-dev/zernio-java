@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.325.0
+- API version: 1.326.0
 
-- Build date: 2026-10-22T00:01:18.174076242Z[Etc/UTC]
+- Build date: 2026-10-22T00:10:36.261784372Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.325.0</version>
+  <version>1.326.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.325.0"
+compile "dev.zernio:zernio-sdk:1.326.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.325.0.jar`
+- `target/zernio-sdk-1.326.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1085,6 +1085,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getSubredditRulesWithHttpInfo**](docs/ConnectApi.md#getSubredditRulesWithHttpInfo) | **GET** /v1/accounts/{accountId}/reddit-subreddits/{subreddit}/rules | Get subreddit rules
 *ConnectApi* | [**getTelegramConnectStatus**](docs/ConnectApi.md#getTelegramConnectStatus) | **GET** /v1/connect/telegram | Generate Telegram code
 *ConnectApi* | [**getTelegramConnectStatusWithHttpInfo**](docs/ConnectApi.md#getTelegramConnectStatusWithHttpInfo) | **GET** /v1/connect/telegram | Generate Telegram code
+*ConnectApi* | [**getWebflowConnectUrl**](docs/ConnectApi.md#getWebflowConnectUrl) | **GET** /v1/connect/webflow | Get Webflow OAuth URL
+*ConnectApi* | [**getWebflowConnectUrlWithHttpInfo**](docs/ConnectApi.md#getWebflowConnectUrlWithHttpInfo) | **GET** /v1/connect/webflow | Get Webflow OAuth URL
 *ConnectApi* | [**getWhatsAppSdkConfig**](docs/ConnectApi.md#getWhatsAppSdkConfig) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWhatsAppSdkConfigWithHttpInfo**](docs/ConnectApi.md#getWhatsAppSdkConfigWithHttpInfo) | **GET** /v1/connect/whatsapp/sdk-config | Get Embedded Signup SDK config
 *ConnectApi* | [**getWixConnectUrl**](docs/ConnectApi.md#getWixConnectUrl) | **GET** /v1/connect/wix | Get Wix site install URL
@@ -1751,8 +1753,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**getTrackingTagStatsWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStatsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/stats | Get aggregated event stats
 *TrackingTagsApi* | [**getTrackingTagStoreInstall**](docs/TrackingTagsApi.md#getTrackingTagStoreInstall) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
 *TrackingTagsApi* | [**getTrackingTagStoreInstallWithHttpInfo**](docs/TrackingTagsApi.md#getTrackingTagStoreInstallWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Get store install status
-*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store, WordPress site or Wix site
-*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify store, WordPress site or Wix site
+*TrackingTagsApi* | [**installTrackingTagOnStore**](docs/TrackingTagsApi.md#installTrackingTagOnStore) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify, WordPress, Wix or Webflow site
+*TrackingTagsApi* | [**installTrackingTagOnStoreWithHttpInfo**](docs/TrackingTagsApi.md#installTrackingTagOnStoreWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Install on a Shopify, WordPress, Wix or Webflow site
 *TrackingTagsApi* | [**listTrackingTagEvents**](docs/TrackingTagsApi.md#listTrackingTagEvents) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
 *TrackingTagsApi* | [**listTrackingTagEventsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagEventsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/events | List conversion events
 *TrackingTagsApi* | [**listTrackingTagPartners**](docs/TrackingTagsApi.md#listTrackingTagPartners) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/partners | List partner businesses of a tag
@@ -1763,8 +1765,8 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**listTrackingTagUsersWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagUsersWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | List tag users
 *TrackingTagsApi* | [**listTrackingTags**](docs/TrackingTagsApi.md#listTrackingTags) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
 *TrackingTagsApi* | [**listTrackingTagsWithHttpInfo**](docs/TrackingTagsApi.md#listTrackingTagsWithHttpInfo) | **GET** /v1/accounts/{accountId}/tracking-tags | List tracking tags
-*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store, WordPress site or Wix site
-*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify store, WordPress site or Wix site
+*TrackingTagsApi* | [**removeTrackingTagFromStore**](docs/TrackingTagsApi.md#removeTrackingTagFromStore) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify, WordPress, Wix or Webflow site
+*TrackingTagsApi* | [**removeTrackingTagFromStoreWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagFromStoreWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/install | Remove from a Shopify, WordPress, Wix or Webflow site
 *TrackingTagsApi* | [**removeTrackingTagSharedAccount**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccount) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#removeTrackingTagSharedAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Stop sharing with an account
 *TrackingTagsApi* | [**removeTrackingTagUser**](docs/TrackingTagsApi.md#removeTrackingTagUser) | **DELETE** /v1/accounts/{accountId}/tracking-tags/{tagId}/users/{userId} | Remove a user from a tag
@@ -3292,6 +3294,7 @@ Class | Method | HTTP request | Description
  - [GetVoiceCall200Response](docs/GetVoiceCall200Response.md)
  - [GetVoiceCallEstimate200Response](docs/GetVoiceCallEstimate200Response.md)
  - [GetVoiceCallEstimate200ResponseBreakdown](docs/GetVoiceCallEstimate200ResponseBreakdown.md)
+ - [GetWebflowConnectUrl200Response](docs/GetWebflowConnectUrl200Response.md)
  - [GetWebhookLogs200Response](docs/GetWebhookLogs200Response.md)
  - [GetWebhookLogs200ResponsePagination](docs/GetWebhookLogs200ResponsePagination.md)
  - [GetWebhookSettings200Response](docs/GetWebhookSettings200Response.md)
