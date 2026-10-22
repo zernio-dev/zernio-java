@@ -1203,7 +1203,7 @@ ApiResponse<[**CampaignAnalyticsResponse**](CampaignAnalyticsResponse.md)>
 
 Per-creative performance inside TikTok Smart+ ads
 
-Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. A row is identified by &#x60;smartPlusAdId&#x60; + &#x60;materialId&#x60; at &#x60;level&#x3D;ad&#x60; and by &#x60;adGroupId&#x60; + &#x60;materialId&#x60; at &#x60;level&#x3D;adGroup&#x60;; each appears once across all pages. Rows are sorted by &#x60;spend&#x60; descending, then the Smart+ ad or ad group id, then &#x60;materialId&#x60;, and the full result is cached for 10 minutes per account, advertiser and query, so pages read within that window are consistent and &#x60;totalRows&#x60; counts distinct rows. When TikTok&#39;s slices do not add up to the row count it declares on two reads, the call answers 502 instead of a short result. Metrics TikTok returns empty come back as null.
 
 ### Example
 
@@ -1286,6 +1286,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **502** | TikTok&#39;s material report slices did not add up to the row count it declared, on two reads. Retry later. |  -  |
 
 ## getTikTokSmartPlusMaterialReportWithHttpInfo
 
@@ -1293,7 +1294,7 @@ public class Example {
 
 Per-creative performance inside TikTok Smart+ ads
 
-Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. Metrics TikTok returns empty come back as null.
+Breaks a Smart+ ad (or ad group) down by creative material, one row per Spark post, video or image, from TikTok&#39;s Smart+ material report. For a Spark post &#x60;tiktokItemId&#x60; is the TikTok post id. Conversion metrics are TikTok web (pixel) events. &#x60;purchases&#x60;, &#x60;purchaseValue&#x60; and &#x60;roas&#x60; come from Complete Payment, or from Place an Order (legacy ON_WEB_ORDER pixels) when that reports more; the two are never summed. TikTok allows two dimensions per report, so rows are keyed by the Smart+ ad (&#x60;level&#x3D;ad&#x60;) or by the ad group (&#x60;level&#x3D;adGroup&#x60;), not both. A row is identified by &#x60;smartPlusAdId&#x60; + &#x60;materialId&#x60; at &#x60;level&#x3D;ad&#x60; and by &#x60;adGroupId&#x60; + &#x60;materialId&#x60; at &#x60;level&#x3D;adGroup&#x60;; each appears once across all pages. Rows are sorted by &#x60;spend&#x60; descending, then the Smart+ ad or ad group id, then &#x60;materialId&#x60;, and the full result is cached for 10 minutes per account, advertiser and query, so pages read within that window are consistent and &#x60;totalRows&#x60; counts distinct rows. When TikTok&#39;s slices do not add up to the row count it declares on two reads, the call answers 502 instead of a short result. Metrics TikTok returns empty come back as null.
 
 ### Example
 
@@ -1379,6 +1380,7 @@ ApiResponse<[**GetTikTokSmartPlusMaterialReport200Response**](GetTikTokSmartPlus
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **502** | TikTok&#39;s material report slices did not add up to the row count it declared, on two reads. Retry later. |  -  |
 
 
 ## listLocalServicesLeadConversations
