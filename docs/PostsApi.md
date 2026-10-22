@@ -18,6 +18,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listPostsWithHttpInfo**](PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts |
 | [**retryPost**](PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**retryPostWithHttpInfo**](PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post |
+| [**reviewPost**](PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
+| [**reviewPostWithHttpInfo**](PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
 | [**unpublishPost**](PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**unpublishPostWithHttpInfo**](PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**updatePost**](PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post |
@@ -890,7 +892,7 @@ public class Example {
 | **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;. Returns the page that follows it in the same &#x60;sortBy&#x60; order, and takes precedence over &#x60;page&#x60; and &#x60;offset&#x60;. Each cursor page costs the same however deep it is, unlike &#x60;page&#x60;/&#x60;offset&#x60;, which get slower the further you go; prefer it to walk a long history. Send the same filters and &#x60;sortBy&#x60; as the request that issued it: a cursor from another &#x60;sortBy&#x60; returns 400. Not available with &#x60;sortBy&#x3D;status&#x60; or &#x60;sortBy&#x3D;platform&#x60;, or with &#x60;source&#x3D;external&#x60;. | [optional] |
 | **fields** | **String**| Comma-separated list of post fields to return. Each post then carries &#x60;_id&#x60; plus only these fields, which makes large pages much cheaper: leave out &#x60;platforms&#x60;, &#x60;content&#x60;, &#x60;mediaItems&#x60; or &#x60;metadata&#x60; when you do not need them. Accepted: &#x60;userId&#x60;, &#x60;title&#x60;, &#x60;content&#x60;, &#x60;mediaItems&#x60;, &#x60;platforms&#x60;, &#x60;scheduledFor&#x60;, &#x60;timezone&#x60;, &#x60;status&#x60;, &#x60;tags&#x60;, &#x60;hashtags&#x60;, &#x60;mentions&#x60;, &#x60;visibility&#x60;, &#x60;metadata&#x60;, &#x60;recycling&#x60;, &#x60;recycledFromPostId&#x60;, &#x60;queuedFromProfile&#x60;, &#x60;queueId&#x60;, &#x60;createdAt&#x60;, &#x60;updatedAt&#x60;. An unknown field returns 400 naming it. &#x60;fields&#x3D;_id&#x60; returns ids only. Omit it (or send it empty) for the full post. Not available with &#x60;source&#x3D;external&#x60;. | [optional] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
-| **status** | **String**|  | [optional] [enum: draft, scheduled, publishing, published, partial, failed, cancelled] |
+| **status** | **String**|  | [optional] [enum: draft, pending_approval, scheduled, publishing, published, partial, failed, cancelled] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
@@ -1001,7 +1003,7 @@ public class Example {
 | **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;. Returns the page that follows it in the same &#x60;sortBy&#x60; order, and takes precedence over &#x60;page&#x60; and &#x60;offset&#x60;. Each cursor page costs the same however deep it is, unlike &#x60;page&#x60;/&#x60;offset&#x60;, which get slower the further you go; prefer it to walk a long history. Send the same filters and &#x60;sortBy&#x60; as the request that issued it: a cursor from another &#x60;sortBy&#x60; returns 400. Not available with &#x60;sortBy&#x3D;status&#x60; or &#x60;sortBy&#x3D;platform&#x60;, or with &#x60;source&#x3D;external&#x60;. | [optional] |
 | **fields** | **String**| Comma-separated list of post fields to return. Each post then carries &#x60;_id&#x60; plus only these fields, which makes large pages much cheaper: leave out &#x60;platforms&#x60;, &#x60;content&#x60;, &#x60;mediaItems&#x60; or &#x60;metadata&#x60; when you do not need them. Accepted: &#x60;userId&#x60;, &#x60;title&#x60;, &#x60;content&#x60;, &#x60;mediaItems&#x60;, &#x60;platforms&#x60;, &#x60;scheduledFor&#x60;, &#x60;timezone&#x60;, &#x60;status&#x60;, &#x60;tags&#x60;, &#x60;hashtags&#x60;, &#x60;mentions&#x60;, &#x60;visibility&#x60;, &#x60;metadata&#x60;, &#x60;recycling&#x60;, &#x60;recycledFromPostId&#x60;, &#x60;queuedFromProfile&#x60;, &#x60;queueId&#x60;, &#x60;createdAt&#x60;, &#x60;updatedAt&#x60;. An unknown field returns 400 naming it. &#x60;fields&#x3D;_id&#x60; returns ids only. Omit it (or send it empty) for the full post. Not available with &#x60;source&#x3D;external&#x60;. | [optional] |
 | **source** | **String**| Which collection to read. &#x60;zernio&#x60; (default) returns posts authored through Zernio. &#x60;external&#x60; returns posts synced from the platform (existing/historical posts that were published outside Zernio). Combine with &#x60;accountId&#x60; and paginate via &#x60;page&#x60;/&#x60;limit&#x60; to walk the full synced history (we keep up to the last ~12 months per account). | [optional] [default to zernio] [enum: zernio, external] |
-| **status** | **String**|  | [optional] [enum: draft, scheduled, publishing, published, partial, failed, cancelled] |
+| **status** | **String**|  | [optional] [enum: draft, pending_approval, scheduled, publishing, published, partial, failed, cancelled] |
 | **platform** | **String**|  | [optional] |
 | **profileId** | **String**| Filter posts to a specific profile (24-char hex ObjectId). Omit it, or send &#x60;all&#x60; or an empty value, to list posts across every profile. | [optional] |
 | **createdBy** | **String**| Filter posts to those created by a specific team user (24-char hex ObjectId). | [optional] |
@@ -1195,6 +1197,164 @@ ApiResponse<[**PostRetryResponse**](PostRetryResponse.md)>
 | **404** | Resource not found |  -  |
 | **409** | Post is currently publishing |  -  |
 | **429** | Rate limit exceeded. Possible causes: API rate limit (requests per minute), velocity limit (25 posts/hour per account), or account cooldown (temporarily rate-limited due to repeated errors).  |  -  |
+
+
+## reviewPost
+
+> PostGetResponse reviewPost(postId, reviewPostRequest)
+
+Approve or reject a post
+
+Approves or rejects a post saved with &#x60;requiresApproval: true&#x60; (status &#x60;pending_approval&#x60;). &#x60;approve&#x60; schedules the post for its &#x60;scheduledFor&#x60; and fires the &#x60;post.scheduled&#x60; webhook. When that time has already passed, the post publishes within a couple of minutes. &#x60;reject&#x60; returns the post to &#x60;draft&#x60;. Returns 409 when the post is not &#x60;pending_approval&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        ReviewPostRequest reviewPostRequest = new ReviewPostRequest(); // ReviewPostRequest | 
+        try {
+            PostGetResponse result = apiInstance.reviewPost(postId, reviewPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#reviewPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **reviewPostRequest** | [**ReviewPostRequest**](ReviewPostRequest.md)|  | |
+
+### Return type
+
+[**PostGetResponse**](PostGetResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The reviewed post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+## reviewPostWithHttpInfo
+
+> ApiResponse<PostGetResponse> reviewPost reviewPostWithHttpInfo(postId, reviewPostRequest)
+
+Approve or reject a post
+
+Approves or rejects a post saved with &#x60;requiresApproval: true&#x60; (status &#x60;pending_approval&#x60;). &#x60;approve&#x60; schedules the post for its &#x60;scheduledFor&#x60; and fires the &#x60;post.scheduled&#x60; webhook. When that time has already passed, the post publishes within a couple of minutes. &#x60;reject&#x60; returns the post to &#x60;draft&#x60;. Returns 409 when the post is not &#x60;pending_approval&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        ReviewPostRequest reviewPostRequest = new ReviewPostRequest(); // ReviewPostRequest | 
+        try {
+            ApiResponse<PostGetResponse> response = apiInstance.reviewPostWithHttpInfo(postId, reviewPostRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#reviewPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **reviewPostRequest** | [**ReviewPostRequest**](ReviewPostRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The reviewed post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
 
 
 ## unpublishPost
@@ -1433,7 +1593,7 @@ public class Example {
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. |  -  |
+| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. Also returned when requiresApproval is sent on a post that is not a draft (code: invalid_resource_state). |  -  |
 
 ## updatePostWithHttpInfo
 
@@ -1514,7 +1674,7 @@ ApiResponse<[**PostUpdateResponse**](PostUpdateResponse.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
-| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. |  -  |
+| **409** | The requested scheduledFor collides with another post already occupying that slot in the same queue (code: queue_slot_conflict). Choose a different time, omit scheduledFor and let the queue assign the next open slot, or send queueId: null to schedule this post outside the queue. Also returned when requiresApproval is sent on a post that is not a draft (code: invalid_resource_state). |  -  |
 
 
 ## updatePostMetadata

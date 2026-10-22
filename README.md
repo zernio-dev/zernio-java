@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.327.0
+- API version: 1.328.0
 
-- Build date: 2026-10-22T00:26:02.901944898Z[Etc/UTC]
+- Build date: 2026-10-22T00:57:25.013261666Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.327.0</version>
+  <version>1.328.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.327.0"
+compile "dev.zernio:zernio-sdk:1.328.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.327.0.jar`
+- `target/zernio-sdk-1.328.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1541,6 +1541,8 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**listPostsWithHttpInfo**](docs/PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts
 *PostsApi* | [**retryPost**](docs/PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
+*PostsApi* | [**reviewPost**](docs/PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post
+*PostsApi* | [**reviewPostWithHttpInfo**](docs/PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
@@ -4106,6 +4108,7 @@ Class | Method | HTTP request | Description
  - [ReviewPhoneNumberKycPacket200Response](docs/ReviewPhoneNumberKycPacket200Response.md)
  - [ReviewPhoneNumberKycPacket200ResponseAdvisoriesInner](docs/ReviewPhoneNumberKycPacket200ResponseAdvisoriesInner.md)
  - [ReviewPhoneNumberKycPacketRequest](docs/ReviewPhoneNumberKycPacketRequest.md)
+ - [ReviewPostRequest](docs/ReviewPostRequest.md)
  - [ReviewWebhookReview](docs/ReviewWebhookReview.md)
  - [ReviewWebhookReviewReply](docs/ReviewWebhookReviewReply.md)
  - [ReviewWebhookReviewReviewer](docs/ReviewWebhookReviewReviewer.md)
