@@ -2698,6 +2698,11 @@ docs/WebhookPayloadAccountConnected.md
 docs/WebhookPayloadAccountConnectedAccount.md
 docs/WebhookPayloadAccountDisconnected.md
 docs/WebhookPayloadAccountDisconnectedAccount.md
+docs/WebhookPayloadAdReview.md
+docs/WebhookPayloadAdReviewAccount.md
+docs/WebhookPayloadAdReviewAdObject.md
+docs/WebhookPayloadAdReviewReview.md
+docs/WebhookPayloadAdReviewReviewReasonsInner.md
 docs/WebhookPayloadAdStatusChanged.md
 docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
@@ -5616,6 +5621,11 @@ src/main/java/dev/zernio/model/WebhookPayloadAccountConnected.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountConnectedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnected.java
 src/main/java/dev/zernio/model/WebhookPayloadAccountDisconnectedAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAdReview.java
+src/main/java/dev/zernio/model/WebhookPayloadAdReviewAccount.java
+src/main/java/dev/zernio/model/WebhookPayloadAdReviewAdObject.java
+src/main/java/dev/zernio/model/WebhookPayloadAdReviewReview.java
+src/main/java/dev/zernio/model/WebhookPayloadAdReviewReviewReasonsInner.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
@@ -5805,3 +5815,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/WebhookPayloadAdReviewAccountTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdReviewAdObjectTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdReviewReviewReasonsInnerTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdReviewReviewTest.java
+src/test/java/dev/zernio/model/WebhookPayloadAdReviewTest.java

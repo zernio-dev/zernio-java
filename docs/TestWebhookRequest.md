@@ -65,6 +65,8 @@
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
+| AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |
+| AD_REVIEW_REJECTED | &quot;ad.review.rejected&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
