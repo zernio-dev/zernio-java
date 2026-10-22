@@ -17,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 List mentions
 
-Returns mentions of your connected organization accounts, delivered via platform webhooks. Currently supports LinkedIn organization mentions.  Requires Inbox addon. 
+Returns mentions of your connected accounts from the last 7 days.  - **LinkedIn**: organization mentions, delivered by webhooks and a background pull. - **Instagram**: comment mentions (someone tags the account in a comment) and caption mentions   (someone tags it in their media caption), delivered by Meta webhooks. Accounts connected through   Instagram Login receive comment mentions only. Accounts connected through Facebook Login receive   both; their text is read from Instagram in the background after the first request, so &#x60;content&#x60;   can be empty on the first read. Pass &#x60;mediaId&#x60; and &#x60;commentId&#x60; to &#x60;POST /v1/inbox/mentions/reply&#x60;   to answer one.  Requires Inbox addon. 
 
 ### Example
 
@@ -97,7 +97,7 @@ public class Example {
 
 List mentions
 
-Returns mentions of your connected organization accounts, delivered via platform webhooks. Currently supports LinkedIn organization mentions.  Requires Inbox addon. 
+Returns mentions of your connected accounts from the last 7 days.  - **LinkedIn**: organization mentions, delivered by webhooks and a background pull. - **Instagram**: comment mentions (someone tags the account in a comment) and caption mentions   (someone tags it in their media caption), delivered by Meta webhooks. Accounts connected through   Instagram Login receive comment mentions only. Accounts connected through Facebook Login receive   both; their text is read from Instagram in the background after the first request, so &#x60;content&#x60;   can be empty on the first read. Pass &#x60;mediaId&#x60; and &#x60;commentId&#x60; to &#x60;POST /v1/inbox/mentions/reply&#x60;   to answer one.  Requires Inbox addon. 
 
 ### Example
 
@@ -181,7 +181,7 @@ ApiResponse<[**ListInboxMentions200Response**](ListInboxMentions200Response.md)>
 
 Reply to a mention
 
-Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  &#x60;GET /v1/inbox/mentions&#x60; returns Instagram mentions with the &#x60;mediaId&#x60; and &#x60;commentId&#x60; to pass here. 
 
 ### Example
 
@@ -256,7 +256,7 @@ public class Example {
 
 Reply to a mention
 
-Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  &#x60;GET /v1/inbox/mentions&#x60; currently returns LinkedIn mentions only and does not surface Instagram mentions. Source &#x60;mediaId&#x60; and &#x60;commentId&#x60; from Instagram&#39;s &#x60;comments&#x60; webhook, which is where mention notifications are delivered for accounts connected through Instagram Login. 
+Reply to a mention of the connected account. Supported on Instagram only.  Two shapes, selected by whether &#x60;commentId&#x60; is present:  - **Comment mention** (someone @mentioned the account inside a comment): pass both   &#x60;mediaId&#x60; and &#x60;commentId&#x60;. Instagram posts a reply under that comment. - **Caption mention** (someone @mentioned the account in their media caption, so no   comment exists): pass &#x60;mediaId&#x60; only. Instagram posts a comment on their media.  Story mentions are not supported by Instagram&#39;s API.  &#x60;GET /v1/inbox/mentions&#x60; returns Instagram mentions with the &#x60;mediaId&#x60; and &#x60;commentId&#x60; to pass here. 
 
 ### Example
 
