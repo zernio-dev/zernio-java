@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.332.0
 
-- Build date: 2026-10-22T17:40:36.255099392Z[Etc/UTC]
+- Build date: 2026-10-22T17:44:59.652120038Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -2450,6 +2450,7 @@ Class | Method | HTTP request | Description
  - [CommerceMetaobjectFieldsInner](docs/CommerceMetaobjectFieldsInner.md)
  - [CommerceMoney](docs/CommerceMoney.md)
  - [CommerceOrder](docs/CommerceOrder.md)
+ - [CommerceOrderAttribution](docs/CommerceOrderAttribution.md)
  - [CommerceOrderChargeLine](docs/CommerceOrderChargeLine.md)
  - [CommerceOrderCustomer](docs/CommerceOrderCustomer.md)
  - [CommerceOrderFulfillmentsInner](docs/CommerceOrderFulfillmentsInner.md)
@@ -2457,6 +2458,8 @@ Class | Method | HTTP request | Description
  - [CommerceOrderRefundsInner](docs/CommerceOrderRefundsInner.md)
  - [CommerceOrderRefundsInnerLineItemsInner](docs/CommerceOrderRefundsInnerLineItemsInner.md)
  - [CommerceOrderStatus](docs/CommerceOrderStatus.md)
+ - [CommerceOrderVisit](docs/CommerceOrderVisit.md)
+ - [CommerceOrderVisitUtm](docs/CommerceOrderVisitUtm.md)
  - [CommercePage](docs/CommercePage.md)
  - [CommercePriceList](docs/CommercePriceList.md)
  - [CommerceProduct](docs/CommerceProduct.md)

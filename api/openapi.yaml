@@ -94023,6 +94023,67 @@ components:
           items:
             $ref: "#/components/schemas/CommerceTaxLine"
           type: array
+    CommerceOrderVisit:
+      description: A store session that led to the order.
+      properties:
+        occurredAt:
+          description: "Null on WooCommerce, which records the session start without\
+            \ a timezone."
+          format: date-time
+          nullable: true
+          type: string
+        landingUrl:
+          description: "The first page of the session, with its query string."
+          nullable: true
+          type: string
+        referrerUrl:
+          nullable: true
+          type: string
+        source:
+          description: "Where the visit came from, as the platform names it."
+          example: instagram
+          nullable: true
+          type: string
+        sourceType:
+          description: "Shopify marketing tactic (e.g. SOCIAL, AD, SEARCH) or WooCommerce\
+            \ source type (utm, organic, referral, typein, admin)."
+          nullable: true
+          type: string
+        utm:
+          $ref: "#/components/schemas/CommerceOrderVisit_utm"
+    CommerceOrderAttribution:
+      description: "Where the order came from. Shopify reads it from the customer\
+        \ journey, WooCommerce from its order attribution (WooCommerce 8.5+ with the\
+        \ feature on, orders placed after it was turned on)."
+      example:
+        ready: true
+        lastVisit: ""
+        firstVisit: ""
+        customAttributes:
+        - value: value
+          key: key
+        - value: value
+          key: key
+      properties:
+        ready:
+          description: "False while Shopify is still attributing a new order. No webhook\
+            \ fires when it becomes true, so read the order again later. Always true\
+            \ on WooCommerce."
+          type: boolean
+        firstVisit:
+          allOf:
+          - $ref: "#/components/schemas/CommerceOrderVisit"
+          nullable: true
+        lastVisit:
+          allOf:
+          - $ref: "#/components/schemas/CommerceOrderVisit"
+          nullable: true
+        customAttributes:
+          description: "Shopify cart and note attributes, or WooCommerce public order\
+            \ meta."
+          items:
+            $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
+          type: array
     CommerceOrder:
       description: "An order with what an invoice needs. Every amount is in `currency`,\
         \ the store currency."
@@ -94218,6 +94279,15 @@ components:
         platformPaymentStatus: platformPaymentStatus
         subtotal: ""
         buyerNote: buyerNote
+        attribution:
+          ready: true
+          lastVisit: ""
+          firstVisit: ""
+          customAttributes:
+          - value: value
+            key: key
+          - value: value
+            key: key
         paidAt: 2000-01-23T04:56:07.000+00:00
         shippingAddress: ""
         billingAddress: ""
@@ -94338,6 +94408,8 @@ components:
         buyerNote:
           nullable: true
           type: string
+        attribution:
+          $ref: "#/components/schemas/CommerceOrderAttribution"
         lineItems:
           items:
             $ref: "#/components/schemas/CommerceOrder_lineItems_inner"
@@ -156363,6 +156435,15 @@ components:
           platformPaymentStatus: platformPaymentStatus
           subtotal: ""
           buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
           paidAt: 2000-01-23T04:56:07.000+00:00
           shippingAddress: ""
           billingAddress: ""
@@ -156575,6 +156656,15 @@ components:
           platformPaymentStatus: platformPaymentStatus
           subtotal: ""
           buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
           paidAt: 2000-01-23T04:56:07.000+00:00
           shippingAddress: ""
           billingAddress: ""
@@ -156798,6 +156888,15 @@ components:
           platformPaymentStatus: platformPaymentStatus
           subtotal: ""
           buyerNote: buyerNote
+          attribution:
+            ready: true
+            lastVisit: ""
+            firstVisit: ""
+            customAttributes:
+            - value: value
+              key: key
+            - value: value
+              key: key
           paidAt: 2000-01-23T04:56:07.000+00:00
           shippingAddress: ""
           billingAddress: ""
@@ -170655,6 +170754,24 @@ components:
         incoming:
           nullable: true
           type: integer
+    CommerceOrderVisit_utm:
+      description: Null when the landing URL carried no UTM parameters.
+      properties:
+        source:
+          nullable: true
+          type: string
+        medium:
+          nullable: true
+          type: string
+        campaign:
+          nullable: true
+          type: string
+        term:
+          nullable: true
+          type: string
+        content:
+          nullable: true
+          type: string
     CommerceOrder_customer:
       example:
         firstName: firstName

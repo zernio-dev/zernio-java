@@ -35,6 +35,7 @@ An order with what an invoice needs. Every amount is in `currency`, the store cu
 |**billingAddress** | [**CommerceAddress**](CommerceAddress.md) |  |  [optional] |
 |**shippingAddress** | [**CommerceAddress**](CommerceAddress.md) |  |  [optional] |
 |**buyerNote** | **String** |  |  [optional] |
+|**attribution** | [**CommerceOrderAttribution**](CommerceOrderAttribution.md) |  |  [optional] |
 |**lineItems** | [**List&lt;CommerceOrderLineItemsInner&gt;**](CommerceOrderLineItemsInner.md) |  |  [optional] |
 |**shippingLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) |  |  [optional] |
 |**feeLines** | [**List&lt;CommerceOrderChargeLine&gt;**](CommerceOrderChargeLine.md) | WooCommerce fees. Always empty on Shopify. |  [optional] |

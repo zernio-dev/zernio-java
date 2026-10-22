@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CommentAutomationTemplate.JSON_PROPERTY_IMAGE_ASPECT_RATIO,
   CommentAutomationTemplate.JSON_PROPERTY_ELEMENTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:40:36.255099392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:44:59.652120038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationTemplate {
   /**
    * Gets or Sets type

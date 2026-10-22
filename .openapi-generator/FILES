@@ -357,6 +357,7 @@ docs/CommerceMetaobjectDefinitionFieldsInner.md
 docs/CommerceMetaobjectFieldsInner.md
 docs/CommerceMoney.md
 docs/CommerceOrder.md
+docs/CommerceOrderAttribution.md
 docs/CommerceOrderChargeLine.md
 docs/CommerceOrderCustomer.md
 docs/CommerceOrderFulfillmentsInner.md
@@ -364,6 +365,8 @@ docs/CommerceOrderLineItemsInner.md
 docs/CommerceOrderRefundsInner.md
 docs/CommerceOrderRefundsInnerLineItemsInner.md
 docs/CommerceOrderStatus.md
+docs/CommerceOrderVisit.md
+docs/CommerceOrderVisitUtm.md
 docs/CommercePage.md
 docs/CommercePriceList.md
 docs/CommerceProduct.md
@@ -3321,6 +3324,7 @@ src/main/java/dev/zernio/model/CommerceMetaobjectDefinitionFieldsInner.java
 src/main/java/dev/zernio/model/CommerceMetaobjectFieldsInner.java
 src/main/java/dev/zernio/model/CommerceMoney.java
 src/main/java/dev/zernio/model/CommerceOrder.java
+src/main/java/dev/zernio/model/CommerceOrderAttribution.java
 src/main/java/dev/zernio/model/CommerceOrderChargeLine.java
 src/main/java/dev/zernio/model/CommerceOrderCustomer.java
 src/main/java/dev/zernio/model/CommerceOrderFulfillmentsInner.java
@@ -3328,6 +3332,8 @@ src/main/java/dev/zernio/model/CommerceOrderLineItemsInner.java
 src/main/java/dev/zernio/model/CommerceOrderRefundsInner.java
 src/main/java/dev/zernio/model/CommerceOrderRefundsInnerLineItemsInner.java
 src/main/java/dev/zernio/model/CommerceOrderStatus.java
+src/main/java/dev/zernio/model/CommerceOrderVisit.java
+src/main/java/dev/zernio/model/CommerceOrderVisitUtm.java
 src/main/java/dev/zernio/model/CommercePage.java
 src/main/java/dev/zernio/model/CommercePriceList.java
 src/main/java/dev/zernio/model/CommerceProduct.java
@@ -5799,9 +5805,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerErrorTest.java
-src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerTest.java
-src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseItemsInnerTest.java
-src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseTest.java
-src/test/java/dev/zernio/model/TikTokSmartPlusAdLevelReviewTest.java
-src/test/java/dev/zernio/model/TikTokSmartPlusMaterialReviewTest.java
+src/test/java/dev/zernio/model/CommerceOrderAttributionTest.java
+src/test/java/dev/zernio/model/CommerceOrderVisitTest.java
+src/test/java/dev/zernio/model/CommerceOrderVisitUtmTest.java

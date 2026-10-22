@@ -26,6 +26,7 @@ import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
 import dev.zernio.model.CommerceAddress;
 import dev.zernio.model.CommerceMoney;
+import dev.zernio.model.CommerceOrderAttribution;
 import dev.zernio.model.CommerceOrderChargeLine;
 import dev.zernio.model.CommerceOrderCustomer;
 import dev.zernio.model.CommerceOrderFulfillmentsInner;
@@ -78,6 +79,7 @@ import dev.zernio.ApiClient;
   CommerceOrder.JSON_PROPERTY_BILLING_ADDRESS,
   CommerceOrder.JSON_PROPERTY_SHIPPING_ADDRESS,
   CommerceOrder.JSON_PROPERTY_BUYER_NOTE,
+  CommerceOrder.JSON_PROPERTY_ATTRIBUTION,
   CommerceOrder.JSON_PROPERTY_LINE_ITEMS,
   CommerceOrder.JSON_PROPERTY_SHIPPING_LINES,
   CommerceOrder.JSON_PROPERTY_FEE_LINES,
@@ -86,7 +88,7 @@ import dev.zernio.ApiClient;
   CommerceOrder.JSON_PROPERTY_FULFILLMENTS,
   CommerceOrder.JSON_PROPERTY_PLATFORM_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:40:36.255099392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:44:59.652120038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceOrder {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable
@@ -269,6 +271,10 @@ public class CommerceOrder {
 
   public static final String JSON_PROPERTY_BUYER_NOTE = "buyerNote";
   private JsonNullable<String> buyerNote = JsonNullable.<String>undefined();
+
+  public static final String JSON_PROPERTY_ATTRIBUTION = "attribution";
+  @javax.annotation.Nullable
+  private CommerceOrderAttribution attribution;
 
   public static final String JSON_PROPERTY_LINE_ITEMS = "lineItems";
   @javax.annotation.Nullable
@@ -1028,6 +1034,30 @@ public class CommerceOrder {
   }
 
 
+  public CommerceOrder attribution(@javax.annotation.Nullable CommerceOrderAttribution attribution) {
+    this.attribution = attribution;
+    return this;
+  }
+
+  /**
+   * Get attribution
+   * @return attribution
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public CommerceOrderAttribution getAttribution() {
+    return attribution;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_ATTRIBUTION, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setAttribution(@javax.annotation.Nullable CommerceOrderAttribution attribution) {
+    this.attribution = attribution;
+  }
+
+
   public CommerceOrder lineItems(@javax.annotation.Nullable List<CommerceOrderLineItemsInner> lineItems) {
     this.lineItems = lineItems;
     return this;
@@ -1303,6 +1333,7 @@ public class CommerceOrder {
         equalsNullable(this.billingAddress, commerceOrder.billingAddress) &&
         equalsNullable(this.shippingAddress, commerceOrder.shippingAddress) &&
         equalsNullable(this.buyerNote, commerceOrder.buyerNote) &&
+        Objects.equals(this.attribution, commerceOrder.attribution) &&
         Objects.equals(this.lineItems, commerceOrder.lineItems) &&
         Objects.equals(this.shippingLines, commerceOrder.shippingLines) &&
         Objects.equals(this.feeLines, commerceOrder.feeLines) &&
@@ -1318,7 +1349,7 @@ public class CommerceOrder {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, accountId, platform, number, status, platformStatus, hashCodeNullable(paymentStatus), hashCodeNullable(platformPaymentStatus), currency, taxesIncluded, createdAt, updatedAt, hashCodeNullable(paidAt), hashCodeNullable(cancelledAt), hashCodeNullable(cancelReason), subtotal, discountTotal, shippingTotal, taxTotal, total, refundedTotal, discountCodes, paymentMethods, customer, hashCodeNullable(billingAddress), hashCodeNullable(shippingAddress), hashCodeNullable(buyerNote), lineItems, shippingLines, feeLines, taxLines, refunds, fulfillments, hashCodeNullable(platformData));
+    return Objects.hash(id, accountId, platform, number, status, platformStatus, hashCodeNullable(paymentStatus), hashCodeNullable(platformPaymentStatus), currency, taxesIncluded, createdAt, updatedAt, hashCodeNullable(paidAt), hashCodeNullable(cancelledAt), hashCodeNullable(cancelReason), subtotal, discountTotal, shippingTotal, taxTotal, total, refundedTotal, discountCodes, paymentMethods, customer, hashCodeNullable(billingAddress), hashCodeNullable(shippingAddress), hashCodeNullable(buyerNote), attribution, lineItems, shippingLines, feeLines, taxLines, refunds, fulfillments, hashCodeNullable(platformData));
   }
 
   private static <T> int hashCodeNullable(JsonNullable<T> a) {
@@ -1359,6 +1390,7 @@ public class CommerceOrder {
     sb.append("    billingAddress: ").append(toIndentedString(billingAddress)).append("\n");
     sb.append("    shippingAddress: ").append(toIndentedString(shippingAddress)).append("\n");
     sb.append("    buyerNote: ").append(toIndentedString(buyerNote)).append("\n");
+    sb.append("    attribution: ").append(toIndentedString(attribution)).append("\n");
     sb.append("    lineItems: ").append(toIndentedString(lineItems)).append("\n");
     sb.append("    shippingLines: ").append(toIndentedString(shippingLines)).append("\n");
     sb.append("    feeLines: ").append(toIndentedString(feeLines)).append("\n");
@@ -1554,6 +1586,11 @@ public class CommerceOrder {
     // add `buyerNote` to the URL query string
     if (getBuyerNote() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sbuyerNote%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBuyerNote()))));
+    }
+
+    // add `attribution` to the URL query string
+    if (getAttribution() != null) {
+      joiner.add(getAttribution().toUrlQueryString(prefix + "attribution" + suffix));
     }
 
     // add `lineItems` to the URL query string

@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   TikTokReviewRejectionContent.JSON_PROPERTY_VIDEO_ID,
   TikTokReviewRejectionContent.JSON_PROPERTY_MUSIC_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:40:36.255099392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:44:59.652120038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TikTokReviewRejectionContent {
   public static final String JSON_PROPERTY_TYPE = "type";
   private JsonNullable<String> type = JsonNullable.<String>undefined();

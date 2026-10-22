@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateBroadcastRequestMessage.JSON_PROPERTY_ATTACHMENTS,
   CreateBroadcastRequestMessage.JSON_PROPERTY_MESSAGE_TAG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:40:36.255099392Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-22T17:44:59.652120038Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateBroadcastRequestMessage {
   public static final String JSON_PROPERTY_TEXT = "text";
   @javax.annotation.Nullable
