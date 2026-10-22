@@ -1284,8 +1284,10 @@ public class Example {
 | **200** | Material rows |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | accountId is not a TikTok or TikTok Ads connection (code feature_not_available). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The TikTok connection has no TikTok Ads token: connect TikTok Ads first (code ads_connection_required). |  -  |
 | **502** | TikTok&#39;s material report slices did not add up to the row count it declared, on two reads. Retry later. |  -  |
 
 ## getTikTokSmartPlusMaterialReportWithHttpInfo
@@ -1378,8 +1380,10 @@ ApiResponse<[**GetTikTokSmartPlusMaterialReport200Response**](GetTikTokSmartPlus
 | **200** | Material rows |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | accountId is not a TikTok or TikTok Ads connection (code feature_not_available). |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The TikTok connection has no TikTok Ads token: connect TikTok Ads first (code ads_connection_required). |  -  |
 | **502** | TikTok&#39;s material report slices did not add up to the row count it declared, on two reads. Retry later. |  -  |
 
 

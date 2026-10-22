@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.331.4
+- API version: 1.332.0
 
-- Build date: 2026-10-22T17:31:55.840433112Z[Etc/UTC]
+- Build date: 2026-10-22T17:40:36.255099392Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.331.4</version>
+  <version>1.332.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.331.4"
+compile "dev.zernio:zernio-sdk:1.332.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.331.4.jar`
+- `target/zernio-sdk-1.332.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -453,6 +453,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#listGoogleRecommendationsWithHttpInfo) | **GET** /v1/ads/recommendations | List Google Ads recommendations
 *AdCampaignsApi* | [**listSharedBudgets**](docs/AdCampaignsApi.md#listSharedBudgets) | **GET** /v1/ads/shared-budgets | List shared budgets
 *AdCampaignsApi* | [**listSharedBudgetsWithHttpInfo**](docs/AdCampaignsApi.md#listSharedBudgetsWithHttpInfo) | **GET** /v1/ads/shared-budgets | List shared budgets
+*AdCampaignsApi* | [**listTikTokSmartPlusReviews**](docs/AdCampaignsApi.md#listTikTokSmartPlusReviews) | **GET** /v1/ads/tiktok-smart-plus-reviews | Review status of every TikTok Smart+ ad of an advertiser
+*AdCampaignsApi* | [**listTikTokSmartPlusReviewsWithHttpInfo**](docs/AdCampaignsApi.md#listTikTokSmartPlusReviewsWithHttpInfo) | **GET** /v1/ads/tiktok-smart-plus-reviews | Review status of every TikTok Smart+ ad of an advertiser
 *AdCampaignsApi* | [**removeAdGroupAssets**](docs/AdCampaignsApi.md#removeAdGroupAssets) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdGroupAssetsWithHttpInfo**](docs/AdCampaignsApi.md#removeAdGroupAssetsWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId}/assets | Remove ad-group assets
 *AdCampaignsApi* | [**removeAdKeyword**](docs/AdCampaignsApi.md#removeAdKeyword) | **DELETE** /v1/ads/keywords/{keywordId} | Remove a Search keyword
@@ -3281,8 +3283,6 @@ Class | Method | HTTP request | Description
  - [GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch](docs/GetTikTokCreatorInfo200ResponsePostingLimitsInteractionSettingsAllowStitch.md)
  - [GetTikTokCreatorInfo200ResponsePrivacyLevelsInner](docs/GetTikTokCreatorInfo200ResponsePrivacyLevelsInner.md)
  - [GetTikTokSmartPlusAdReview200Response](docs/GetTikTokSmartPlusAdReview200Response.md)
- - [GetTikTokSmartPlusAdReview200ResponseMaterialsInner](docs/GetTikTokSmartPlusAdReview200ResponseMaterialsInner.md)
- - [GetTikTokSmartPlusAdReview200ResponseReview](docs/GetTikTokSmartPlusAdReview200ResponseReview.md)
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
@@ -3802,6 +3802,10 @@ Class | Method | HTTP request | Description
  - [ListTikTokCommercialMusic200Response](docs/ListTikTokCommercialMusic200Response.md)
  - [ListTikTokCommercialMusic200ResponseTracksInner](docs/ListTikTokCommercialMusic200ResponseTracksInner.md)
  - [ListTikTokCommercialMusic200ResponseTracksInnerClip](docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md)
+ - [ListTikTokSmartPlusReviews200Response](docs/ListTikTokSmartPlusReviews200Response.md)
+ - [ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner](docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.md)
+ - [ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError](docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.md)
+ - [ListTikTokSmartPlusReviews200ResponseItemsInner](docs/ListTikTokSmartPlusReviews200ResponseItemsInner.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
  - [ListTrackingTagPartners200Response](docs/ListTrackingTagPartners200Response.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
@@ -4368,6 +4372,8 @@ Class | Method | HTTP request | Description
  - [TikTokPlatformDataMusicSoundInfo](docs/TikTokPlatformDataMusicSoundInfo.md)
  - [TikTokReviewRejection](docs/TikTokReviewRejection.md)
  - [TikTokReviewRejectionContent](docs/TikTokReviewRejectionContent.md)
+ - [TikTokSmartPlusAdLevelReview](docs/TikTokSmartPlusAdLevelReview.md)
+ - [TikTokSmartPlusMaterialReview](docs/TikTokSmartPlusMaterialReview.md)
  - [TikTokSmartPlusReviewStatus](docs/TikTokSmartPlusReviewStatus.md)
  - [TrackingTag](docs/TrackingTag.md)
  - [TrackingTagDiagnostic](docs/TrackingTagDiagnostic.md)
