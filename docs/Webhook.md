@@ -73,6 +73,7 @@ Individual webhook configuration for receiving real-time notifications
 | CAMPAIGN_BUDGET_DEPLETED | &quot;campaign.budget.depleted&quot; |
 | AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
+| AD_RULE_TRIGGERED | &quot;ad_rule.triggered&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |
 | WHATSAPP_ACCOUNT_NAME_STATUS_UPDATED | &quot;whatsapp.account.name_status_updated&quot; |
