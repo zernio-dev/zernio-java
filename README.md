@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.337.0
+- API version: 1.338.0
 
-- Build date: 2026-10-22T23:52:23.630549794Z[Etc/UTC]
+- Build date: 2026-10-23T01:36:34.800778922Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.337.0</version>
+  <version>1.338.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.337.0"
+compile "dev.zernio:zernio-sdk:1.338.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.337.0.jar`
+- `target/zernio-sdk-1.338.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2506,6 +2506,7 @@ Class | Method | HTTP request | Description
  - [Connected](docs/Connected.md)
  - [ConnectedAccount](docs/ConnectedAccount.md)
  - [ConnectedApp](docs/ConnectedApp.md)
+ - [ConversationAdAttribution](docs/ConversationAdAttribution.md)
  - [ConversionAction](docs/ConversionAction.md)
  - [ConversionActionTagSnippetsInner](docs/ConversionActionTagSnippetsInner.md)
  - [ConversionDestination](docs/ConversionDestination.md)
@@ -3138,7 +3139,6 @@ Class | Method | HTTP request | Description
  - [GetImessageSender200ResponseHealth](docs/GetImessageSender200ResponseHealth.md)
  - [GetInboxConversation200Response](docs/GetInboxConversation200Response.md)
  - [GetInboxConversation200ResponseData](docs/GetInboxConversation200ResponseData.md)
- - [GetInboxConversation200ResponseDataMetadata](docs/GetInboxConversation200ResponseDataMetadata.md)
  - [GetInboxConversationAnalytics200Response](docs/GetInboxConversationAnalytics200Response.md)
  - [GetInboxConversationAnalytics200ResponseBySourceInner](docs/GetInboxConversationAnalytics200ResponseBySourceInner.md)
  - [GetInboxConversationAnalytics200ResponseSummary](docs/GetInboxConversationAnalytics200ResponseSummary.md)
@@ -3459,6 +3459,7 @@ Class | Method | HTTP request | Description
  - [ImessageSandboxContact](docs/ImessageSandboxContact.md)
  - [ImessageSender](docs/ImessageSender.md)
  - [ImessageSenderLifecycle](docs/ImessageSenderLifecycle.md)
+ - [InboxConversationAdMetadata](docs/InboxConversationAdMetadata.md)
  - [InboxMessageEditAttachment](docs/InboxMessageEditAttachment.md)
  - [InboxMessageEditHistoryEntry](docs/InboxMessageEditHistoryEntry.md)
  - [InboxWebhookAccount](docs/InboxWebhookAccount.md)
@@ -3713,7 +3714,6 @@ Class | Method | HTTP request | Description
  - [ListInboxConversations200Response](docs/ListInboxConversations200Response.md)
  - [ListInboxConversations200ResponseDataInner](docs/ListInboxConversations200ResponseDataInner.md)
  - [ListInboxConversations200ResponseDataInnerInstagramProfile](docs/ListInboxConversations200ResponseDataInnerInstagramProfile.md)
- - [ListInboxConversations200ResponseDataInnerMetadata](docs/ListInboxConversations200ResponseDataInnerMetadata.md)
  - [ListInboxConversations200ResponseMeta](docs/ListInboxConversations200ResponseMeta.md)
  - [ListInboxConversations200ResponseMetaAccountsSkippedInner](docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
@@ -4795,6 +4795,7 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadConversationControlChanged](docs/WebhookPayloadConversationControlChanged.md)
  - [WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
+ - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
  - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadLead](docs/WebhookPayloadLead.md)
  - [WebhookPayloadLeadAccount](docs/WebhookPayloadLeadAccount.md)

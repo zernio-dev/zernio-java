@@ -22,7 +22,8 @@
 |**updatedTime** | **OffsetDateTime** |  |  [optional] |
 |**participants** | [**List&lt;UpdateFacebookPage200ResponseSelectedPage&gt;**](UpdateFacebookPage200ResponseSelectedPage.md) |  |  [optional] |
 |**instagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  |  [optional] |
-|**metadata** | [**GetInboxConversation200ResponseDataMetadata**](GetInboxConversation200ResponseDataMetadata.md) |  |  [optional] |
+|**metadata** | [**InboxConversationAdMetadata**](InboxConversationAdMetadata.md) |  |  [optional] |
+|**adAttribution** | [**ConversationAdAttribution**](ConversationAdAttribution.md) |  |  [optional] |
 
 
 

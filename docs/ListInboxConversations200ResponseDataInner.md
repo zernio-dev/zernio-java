@@ -26,7 +26,8 @@
 |**isGroup** | **Boolean** | iMessage only, true for a group thread. Manage it through the /v1/imessage/groups/{conversationId} endpoints. |  [optional] |
 |**url** | **String** | Direct link to open the conversation on the platform (if available) |  [optional] |
 |**instagramProfile** | [**ListInboxConversations200ResponseDataInnerInstagramProfile**](ListInboxConversations200ResponseDataInnerInstagramProfile.md) |  |  [optional] |
-|**metadata** | [**ListInboxConversations200ResponseDataInnerMetadata**](ListInboxConversations200ResponseDataInnerMetadata.md) |  |  [optional] |
+|**metadata** | [**InboxConversationAdMetadata**](InboxConversationAdMetadata.md) |  |  [optional] |
+|**adAttribution** | [**ConversationAdAttribution**](ConversationAdAttribution.md) |  |  [optional] |
 
 
 
