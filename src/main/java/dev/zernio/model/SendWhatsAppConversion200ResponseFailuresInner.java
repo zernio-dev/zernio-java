@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendWhatsAppConversion200ResponseFailuresInner.JSON_PROPERTY_CODE,
   SendWhatsAppConversion200ResponseFailuresInner.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:50:28.994722322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:54:38.764784534Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendWhatsAppConversion200ResponseFailuresInner {
   public static final String JSON_PROPERTY_EVENT_INDEX = "eventIndex";
   @javax.annotation.Nullable

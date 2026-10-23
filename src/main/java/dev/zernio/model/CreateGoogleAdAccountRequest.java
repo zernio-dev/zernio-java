@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CreateGoogleAdAccountRequest.JSON_PROPERTY_TIME_ZONE,
   CreateGoogleAdAccountRequest.JSON_PROPERTY_VALIDATE_ONLY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:50:28.994722322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:54:38.764784534Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateGoogleAdAccountRequest {
   /**
    * Gets or Sets platform

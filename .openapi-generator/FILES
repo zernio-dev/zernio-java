@@ -5853,8 +5853,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/ConnectHandoffAccountsInnerTest.java
-src/test/java/dev/zernio/model/ConnectHandoffErrorTest.java
-src/test/java/dev/zernio/model/ConnectHandoffLinkTest.java
-src/test/java/dev/zernio/model/ConnectHandoffTest.java
-src/test/java/dev/zernio/model/GetShopifyConnectUrl200ResponseTest.java

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ListSupportAnswers200Response.JSON_PROPERTY_RUNS,
   ListSupportAnswers200Response.JSON_PROPERTY_NEXT_CURSOR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:50:28.994722322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:54:38.764784534Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSupportAnswers200Response {
   public static final String JSON_PROPERTY_RUNS = "runs";
   @javax.annotation.Nonnull

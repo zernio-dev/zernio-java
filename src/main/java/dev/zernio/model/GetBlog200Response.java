@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   GetBlog200Response.JSON_PROPERTY_PLATFORM,
   GetBlog200Response.JSON_PROPERTY_BLOG
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:50:28.994722322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:54:38.764784534Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetBlog200Response {
   /**
    * Gets or Sets platform

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateInboxConversationRequestHeaderMedia.JSON_PROPERTY_ID,
   CreateInboxConversationRequestHeaderMedia.JSON_PROPERTY_FILENAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:50:28.994722322Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T18:54:38.764784534Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateInboxConversationRequestHeaderMedia {
   /**
    * Must match the template header&#39;s media type.
