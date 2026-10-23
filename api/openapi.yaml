@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.345.0
+  version: 1.346.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45073,11 +45073,15 @@ paths:
         \ then the Smart+ ad or ad group id, then `materialId`, and the full result\
         \ is cached for 10 minutes per account, advertiser and query, so pages read\
         \ within that window are consistent and `totalRows` counts distinct rows.\
-        \ The result can hold more rows than TikTok's unfiltered report declares,\
-        \ because the per-ad reads also return listed Smart+ ads that report leaves\
-        \ out. When the slices come back with fewer rows than TikTok declares on two\
-        \ reads, the call answers 502 instead of a short result. Metrics TikTok returns\
-        \ empty come back as null."
+        \ When the result spans more than one TikTok page it is read per Smart+ ad\
+        \ (or ad group) listed on the advertiser, every status included, and those\
+        \ reads can return more rows than TikTok's unfiltered report declares, so\
+        \ `totalRows` can be larger than that count; when the unfiltered report fits\
+        \ one page (100 rows or fewer) it is served as is. Each TikTok read is checked\
+        \ against the row count it declares itself, and a short read is retried once.\
+        \ A shortfall of at most 2 rows (or 1% of the rows, whichever is more) is\
+        \ served with `missingRows` set to that number; a larger one answers 502 instead\
+        \ of a short result. Metrics TikTok returns empty come back as null."
       operationId: getTikTokSmartPlusMaterialReport
       parameters:
       - description: A tiktok or tiktokads account ID
@@ -45182,8 +45186,13 @@ paths:
           description: "The TikTok connection has no TikTok Ads token: connect TikTok\
             \ Ads first (code ads_connection_required)."
         "502":
-          description: "TikTok's material report slices came back with fewer rows\
-            \ than the row count it declared, on two reads. Retry later."
+          description: "More rows than the tolerance (2, or 1% of the rows) were missing\
+            \ from TikTok's material report after a retry (`details` carries `totalNumber`,\
+            \ `distinctRows` and `missingRows`), or TikTok's Smart+ ad listing returned\
+            \ fewer ads than it declared (`details` carries `declaredAds`, `listedAds`\
+            \ and `listingTruncated`; with `listingTruncated` the advertiser has more\
+            \ than 2,000 Smart+ ads, so pass `smartPlusAdIds` or `adGroupIds`). Retry\
+            \ later."
       security:
       - bearerAuth: []
       summary: Per-creative performance inside TikTok Smart+ ads
@@ -142557,16 +142566,16 @@ components:
           type: array
     getTikTokSmartPlusMaterialReport_200_response_rows_inner_metrics:
       example:
-        purchaseValue: 1.2315135367772556
-        addPaymentInfo: 4.145608029883936
-        purchases: 7.386281948385884
-        spend: 5.637376656633329
-        cpc: 9.301444243932576
-        clicks: 7.061401241503109
-        addToCart: 3.616076749251911
-        roas: 1.0246457001441578
-        impressions: 2.3021358869347655
-        initiateCheckout: 2.027123023002322
+        purchaseValue: 1.0246457001441578
+        addPaymentInfo: 7.386281948385884
+        purchases: 1.2315135367772556
+        spend: 2.3021358869347655
+        cpc: 3.616076749251911
+        clicks: 9.301444243932576
+        addToCart: 2.027123023002322
+        roas: 1.4894159098541704
+        impressions: 7.061401241503109
+        initiateCheckout: 4.145608029883936
       properties:
         spend:
           nullable: true
@@ -142605,16 +142614,16 @@ components:
         name: name
         tiktokItemId: tiktokItemId
         metrics:
-          purchaseValue: 1.2315135367772556
-          addPaymentInfo: 4.145608029883936
-          purchases: 7.386281948385884
-          spend: 5.637376656633329
-          cpc: 9.301444243932576
-          clicks: 7.061401241503109
-          addToCart: 3.616076749251911
-          roas: 1.0246457001441578
-          impressions: 2.3021358869347655
-          initiateCheckout: 2.027123023002322
+          purchaseValue: 1.0246457001441578
+          addPaymentInfo: 7.386281948385884
+          purchases: 1.2315135367772556
+          spend: 2.3021358869347655
+          cpc: 3.616076749251911
+          clicks: 9.301444243932576
+          addToCart: 2.027123023002322
+          roas: 1.4894159098541704
+          impressions: 7.061401241503109
+          initiateCheckout: 4.145608029883936
         materialId: materialId
         adGroupId: adGroupId
       properties:
@@ -142647,6 +142656,7 @@ components:
       example:
         level: ad
         endDate: endDate
+        missingRows: 5
         adAccountId: adAccountId
         totalPages: 5
         pageSize: 6
@@ -142658,16 +142668,16 @@ components:
           name: name
           tiktokItemId: tiktokItemId
           metrics:
-            purchaseValue: 1.2315135367772556
-            addPaymentInfo: 4.145608029883936
-            purchases: 7.386281948385884
-            spend: 5.637376656633329
-            cpc: 9.301444243932576
-            clicks: 7.061401241503109
-            addToCart: 3.616076749251911
-            roas: 1.0246457001441578
-            impressions: 2.3021358869347655
-            initiateCheckout: 2.027123023002322
+            purchaseValue: 1.0246457001441578
+            addPaymentInfo: 7.386281948385884
+            purchases: 1.2315135367772556
+            spend: 2.3021358869347655
+            cpc: 3.616076749251911
+            clicks: 9.301444243932576
+            addToCart: 2.027123023002322
+            roas: 1.4894159098541704
+            impressions: 7.061401241503109
+            initiateCheckout: 4.145608029883936
           materialId: materialId
           adGroupId: adGroupId
         - smartPlusAdId: smartPlusAdId
@@ -142675,16 +142685,16 @@ components:
           name: name
           tiktokItemId: tiktokItemId
           metrics:
-            purchaseValue: 1.2315135367772556
-            addPaymentInfo: 4.145608029883936
-            purchases: 7.386281948385884
-            spend: 5.637376656633329
-            cpc: 9.301444243932576
-            clicks: 7.061401241503109
-            addToCart: 3.616076749251911
-            roas: 1.0246457001441578
-            impressions: 2.3021358869347655
-            initiateCheckout: 2.027123023002322
+            purchaseValue: 1.0246457001441578
+            addPaymentInfo: 7.386281948385884
+            purchases: 1.2315135367772556
+            spend: 2.3021358869347655
+            cpc: 3.616076749251911
+            clicks: 9.301444243932576
+            addToCart: 2.027123023002322
+            roas: 1.4894159098541704
+            impressions: 7.061401241503109
+            initiateCheckout: 4.145608029883936
           materialId: materialId
           adGroupId: adGroupId
         startDate: startDate
@@ -142707,6 +142717,10 @@ components:
         totalRows:
           type: integer
         totalPages:
+          type: integer
+        missingRows:
+          description: Rows TikTok declared that a read and its retry could not return.
+            0 when the result is complete.
           type: integer
         rows:
           items:
