@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   LinkedInPlatformDataAudience.JSON_PROPERTY_FIELDS_OF_STUDY,
   LinkedInPlatformDataAudience.JSON_PROPERTY_ORGANIZATIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:43:29.773225863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:46:32.720173522Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class LinkedInPlatformDataAudience {
   public static final String JSON_PROPERTY_COUNTRIES = "countries";
   @javax.annotation.Nullable

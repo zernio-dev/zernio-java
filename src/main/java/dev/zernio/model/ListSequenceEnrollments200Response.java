@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   ListSequenceEnrollments200Response.JSON_PROPERTY_ENROLLMENTS,
   ListSequenceEnrollments200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:43:29.773225863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:46:32.720173522Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListSequenceEnrollments200Response {
   public static final String JSON_PROPERTY_SUCCESS = "success";
   @javax.annotation.Nullable

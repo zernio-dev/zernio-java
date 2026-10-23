@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   AnalyticsDashboardPost.JSON_PROPERTY_PUBLISHED_AT,
   AnalyticsDashboardPost.JSON_PROPERTY_METRICS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:43:29.773225863Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-23T20:46:32.720173522Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AnalyticsDashboardPost {
   public static final String JSON_PROPERTY_POST_ID = "postId";
   @javax.annotation.Nullable
