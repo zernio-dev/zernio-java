@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.338.0
+  version: 1.338.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -88121,7 +88121,10 @@ components:
             \ complete-payment value (from 2026-10-08), or the Place an Order value\
             \ when that is larger (they are never summed, since a pixel can fire both\
             \ for one sale); days synced before each was added carry the app value\
-            \ only until the ad is re-synced. Other platforms report 0."
+            \ only until the ad is re-synced. Google: `conversions_value` of every\
+            \ primary conversion action. Pinterest: checkout value. LinkedIn: `conversionValueInLocalCurrency`,\
+            \ the advertiser-defined value of every conversion (days synced before\
+            \ 2026-10-23 report 0). Other platforms report 0."
           type: number
         roas:
           description: "Return on ad spend, derived as `purchaseValue / spend`. 0\
