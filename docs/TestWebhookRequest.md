@@ -71,7 +71,6 @@
 | CAMPAIGN_BUDGET_DEPLETED | &quot;campaign.budget.depleted&quot; |
 | AD_ACCOUNT_STATUS_CHANGED | &quot;ad_account.status_changed&quot; |
 | AD_VIDEO_PROCESSED | &quot;ad.video.processed&quot; |
-| AD_RULE_TRIGGERED | &quot;ad_rule.triggered&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | WHATSAPP_TEMPLATE_STATUS_UPDATED | &quot;whatsapp.template.status_updated&quot; |
 | WHATSAPP_TEMPLATE_CATEGORY_UPDATED | &quot;whatsapp.template.category_updated&quot; |

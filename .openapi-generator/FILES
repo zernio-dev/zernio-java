@@ -2718,11 +2718,6 @@ docs/WebhookPayloadAdReview.md
 docs/WebhookPayloadAdReviewAdObject.md
 docs/WebhookPayloadAdReviewReview.md
 docs/WebhookPayloadAdReviewReviewReasonsInner.md
-docs/WebhookPayloadAdRuleTriggered.md
-docs/WebhookPayloadAdRuleTriggeredObjectsInner.md
-docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md
-docs/WebhookPayloadAdRuleTriggeredRule.md
-docs/WebhookPayloadAdRuleTriggeredRun.md
 docs/WebhookPayloadAdStatusChanged.md
 docs/WebhookPayloadAdStatusChangedAccount.md
 docs/WebhookPayloadAdStatusChangedAdObject.md
@@ -5665,11 +5660,6 @@ src/main/java/dev/zernio/model/WebhookPayloadAdReview.java
 src/main/java/dev/zernio/model/WebhookPayloadAdReviewAdObject.java
 src/main/java/dev/zernio/model/WebhookPayloadAdReviewReview.java
 src/main/java/dev/zernio/model/WebhookPayloadAdReviewReviewReasonsInner.java
-src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggered.java
-src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInner.java
-src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.java
-src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRule.java
-src/main/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRun.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChanged.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadAdStatusChangedAdObject.java
@@ -5863,8 +5853,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredObjectsInnerTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRuleTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredRunTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAdRuleTriggeredTest.java
