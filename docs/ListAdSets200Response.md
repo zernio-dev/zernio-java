@@ -8,6 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**adSets** | [**List&lt;ListAdSets200ResponseAdSetsInner&gt;**](ListAdSets200ResponseAdSetsInner.md) |  |  [optional] |
+|**pagination** | [**Pagination**](Pagination.md) |  |  [optional] |
 
 
 
