@@ -9,7 +9,7 @@ In addition to the `required` list, at least one of `conversationId` or `phoneE1
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**accountId** | **String** | WhatsApp SocialAccount ID. |  |
-|**eventName** | [**EventNameEnum**](#EventNameEnum) | Live-verified allowlist of event names accepted by Meta&#39;s CAPI for Business Messaging (Graph API v25.0). Other standard pixel events including &#x60;Lead&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Subscribe&#x60;, &#x60;Schedule&#x60;, &#x60;Contact&#x60;, &#x60;StartTrial&#x60;, &#x60;AddPaymentInfo&#x60;, &#x60;Search&#x60;, and &#x60;SubmitApplication&#x60; are rejected with subcode 2804066 (\&quot;Messaging Event Invalid Event Type\&quot;) on &#x60;action_source &#x3D; business_messaging&#x60; events. Custom event names are also rejected.  Use &#x60;LeadSubmitted&#x60; (NOT &#x60;Lead&#x60;) for lead-style conversions.  |  |
+|**eventName** | [**EventNameEnum**](#EventNameEnum) | Event names accepted by Meta&#39;s CAPI for Business Messaging. Other standard pixel events including &#x60;Lead&#x60;, &#x60;CompleteRegistration&#x60;, &#x60;Subscribe&#x60;, &#x60;Schedule&#x60;, &#x60;Contact&#x60;, &#x60;StartTrial&#x60;, &#x60;AddPaymentInfo&#x60;, &#x60;Search&#x60;, and &#x60;SubmitApplication&#x60; are rejected with subcode 2804066 (\&quot;Messaging Event Invalid Event Type\&quot;) on &#x60;action_source &#x3D; business_messaging&#x60; events. Custom event names are also rejected.  Use &#x60;LeadSubmitted&#x60; (NOT &#x60;Lead&#x60;) when a lead comes in and &#x60;QualifiedLead&#x60; once your team qualifies it. &#x60;OrderCreated&#x60;, &#x60;OrderCanceled&#x60; and &#x60;OrderReturned&#x60; track an order placed in the chat; send &#x60;value&#x60; and &#x60;currency&#x60; with them (and with &#x60;Purchase&#x60;) to report the order amount.  |  |
 |**eventTime** | **BigDecimal** | Unix seconds. Defaults to the time of the request when omitted. Meta&#39;s attribution window is 7 days from click; events older than that lose attribution.  |  [optional] |
 |**eventId** | **String** | Stable dedup key. Reuse to suppress duplicate events (Meta dedupes against pixel events with the same id).  |  |
 |**conversationId** | **String** | Zernio Conversation &#x60;_id&#x60; (preferred lookup). The conversation must have a captured &#x60;ctwa_clid&#x60; in metadata (set automatically by the WhatsApp webhook on the first inbound message after a CTWA ad click).  |  [optional] |
@@ -28,10 +28,14 @@ In addition to the `required` list, at least one of `conversationId` or `phoneE1
 | Name | Value |
 |---- | -----|
 | LEAD_SUBMITTED | &quot;LeadSubmitted&quot; |
+| QUALIFIED_LEAD | &quot;QualifiedLead&quot; |
 | PURCHASE | &quot;Purchase&quot; |
 | ADD_TO_CART | &quot;AddToCart&quot; |
 | INITIATE_CHECKOUT | &quot;InitiateCheckout&quot; |
 | VIEW_CONTENT | &quot;ViewContent&quot; |
+| ORDER_CREATED | &quot;OrderCreated&quot; |
+| ORDER_CANCELED | &quot;OrderCanceled&quot; |
+| ORDER_RETURNED | &quot;OrderReturned&quot; |
 
 
 

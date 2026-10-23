@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.339.2
+  version: 1.340.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -55914,8 +55914,9 @@ paths:
     post:
       description: |
         Forward a WhatsApp Business Messaging conversion event (`LeadSubmitted`,
-        `Purchase`, `AddToCart`, `InitiateCheckout`, `ViewContent`) to Meta's
-        Conversions API with `action_source = business_messaging` and
+        `QualifiedLead`, `Purchase`, `AddToCart`, `InitiateCheckout`,
+        `ViewContent`, `OrderCreated`, `OrderCanceled`, `OrderReturned`) to
+        Meta's Conversions API with `action_source = business_messaging` and
         `messaging_channel = whatsapp`. The endpoint looks up the originating
         CTWA click ID (`ctwa_clid`) captured on the first inbound message of
         the conversation and replays it on every event so Meta can attribute
@@ -154278,8 +154279,8 @@ components:
           format: date-time
           type: string
         eventName:
-          description: "One of LeadSubmitted, Purchase, AddToCart, InitiateCheckout,\
-            \ ViewContent."
+          description: "One of LeadSubmitted, QualifiedLead, Purchase, AddToCart,\
+            \ InitiateCheckout, ViewContent, OrderCreated, OrderCanceled, OrderReturned."
           type: string
         conversationId:
           nullable: true
@@ -154335,9 +154336,8 @@ components:
           type: string
         eventName:
           description: |
-            Live-verified allowlist of event names accepted by Meta's
-            CAPI for Business Messaging (Graph API v25.0). Other
-            standard pixel events including `Lead`,
+            Event names accepted by Meta's CAPI for Business
+            Messaging. Other standard pixel events including `Lead`,
             `CompleteRegistration`, `Subscribe`, `Schedule`, `Contact`,
             `StartTrial`, `AddPaymentInfo`, `Search`, and
             `SubmitApplication` are rejected with subcode 2804066
@@ -154345,13 +154345,21 @@ components:
             `action_source = business_messaging` events. Custom event
             names are also rejected.
 
-            Use `LeadSubmitted` (NOT `Lead`) for lead-style conversions.
+            Use `LeadSubmitted` (NOT `Lead`) when a lead comes in and
+            `QualifiedLead` once your team qualifies it. `OrderCreated`,
+            `OrderCanceled` and `OrderReturned` track an order placed in
+            the chat; send `value` and `currency` with them (and with
+            `Purchase`) to report the order amount.
           enum:
           - LeadSubmitted
+          - QualifiedLead
           - Purchase
           - AddToCart
           - InitiateCheckout
           - ViewContent
+          - OrderCreated
+          - OrderCanceled
+          - OrderReturned
           type: string
         eventTime:
           description: |
@@ -171453,6 +171461,11 @@ components:
         for Business Messaging). `channel` is sent as the event's `messaging_channel`
         (`instagram_direct` goes out as `instagram`). Each id lands in Meta's
         `user_data` unhashed, and an id that does not belong to `channel` is ignored.
+        Meta accepts only its business messaging event names here (`LeadSubmitted`,
+        `QualifiedLead`, `Purchase`, `AddToCart`, `InitiateCheckout`, `ViewContent`,
+        `OrderCreated`, `OrderShipped`, `OrderDelivered`, `OrderCanceled`,
+        `OrderReturned`, `CartAbandoned`, `RatingProvided`, `ReviewProvided`);
+        `eventName` is forwarded unchanged.
       properties:
         channel:
           enum:
