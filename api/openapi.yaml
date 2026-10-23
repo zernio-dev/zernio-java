@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.341.0
+  version: 1.342.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -8228,8 +8228,9 @@ paths:
     get:
       description: |
         Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on.
-        Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible).
-        page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped.
+        Supports optional server-side pagination. When omitted, returns all accounts (backward-compatible).
+        Cursor paging: send `limit` alone for the first page, then pass `pagination.nextCursor` back as `cursor` until it is null. Pages are ordered by account id, so accounts added or removed between calls never shift a page. Cannot be combined with `page`, `sort` or `perProfile`.
+        Offset paging: send `page` and `limit` together. Out-of-range page/limit values are rejected with 400 rather than silently clamped.
       operationId: listAccounts
       parameters:
       - description: Filter accounts by profile ID. Must be a valid ObjectId.
@@ -8290,10 +8291,10 @@ paths:
           - crm
           type: string
         style: form
-      - description: "Sort a paginated listing (page/limit) by account name, platform,\
-          \ profile name, status (accounts needing a reconnect first when ascending)\
-          \ or connection date. Ties keep the default order: platform, then newest\
-          \ first."
+      - description: "Sort an offset-paginated listing (page and limit) by account\
+          \ name, platform, profile name, status (accounts needing a reconnect first\
+          \ when ascending) or connection date. Ties keep the default order: platform,\
+          \ then newest first."
         explode: true
         in: query
         name: sort
@@ -8346,7 +8347,7 @@ paths:
       - description: |
           When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account
           to the list when they are active, honouring `platform` but no other filter. Ignored on
-          a paginated request (page/limit) and together with `perProfile`. Accepts `true` or
+          a paginated request (page, limit or cursor) and together with `perProfile`. Accepts `true` or
           `false` in any letter case; any other value returns 400.
         explode: true
         in: query
@@ -8369,7 +8370,7 @@ paths:
           type: boolean
         style: form
       - description: |
-          Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.
+          Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts.
         explode: true
         in: query
         name: page
@@ -8379,7 +8380,7 @@ paths:
           type: integer
         style: form
       - description: |
-          Page size. Must be provided together with page; sending only one of the two returns 400.
+          Page size. With page, an offset page; alone or with cursor, a cursor page.
         explode: true
         in: query
         name: limit
@@ -8388,6 +8389,16 @@ paths:
           maximum: 500
           minimum: 1
           type: integer
+        style: form
+      - description: Opaque cursor from a previous response's `pagination.nextCursor`;
+          returns the next page of `limit` accounts (500 when limit is omitted). A
+          cursor we cannot parse returns 400. Cannot be combined with page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
         style: form
       - description: "Comma-separated profile IDs (up to 50) to preview, together\
           \ with perProfile. The response then also carries `profileTotals`."
@@ -8400,7 +8411,7 @@ paths:
         style: form
       - description: "Return a preview of each profile in profileIds: the newest account\
           \ of every platform it has, topped up to at least N. Requires profileIds;\
-          \ cannot be combined with page and limit."
+          \ cannot be combined with page, limit or cursor."
         explode: true
         in: query
         name: perProfile
@@ -8499,6 +8510,28 @@ paths:
           - monthly
           type: string
         style: form
+      - description: "Accounts per page, ordered by account id. Send it to page through\
+          \ accounts; the response then carries `pagination.nextCursor`. Without limit\
+          \ or cursor every matching account is returned."
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          maximum: 25
+          minimum: 1
+          type: integer
+        style: form
+      - description: Opaque cursor from a previous response's `pagination.nextCursor`;
+          returns the next page of `limit` accounts (25 when limit is omitted). A
+          cursor we cannot parse returns 400.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
       responses:
         "200":
           content:
@@ -8527,6 +8560,8 @@ paths:
               schema:
                 $ref: "#/components/schemas/FollowerStatsResponse"
           description: Follower stats
+        "400":
+          $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
@@ -80612,10 +80647,10 @@ components:
           type: string
     Pagination:
       example:
-        total: 2
-        pages: 7
-        limit: 5
-        page: 5
+        total: 5
+        pages: 5
+        limit: 1
+        page: 6
       properties:
         page:
           type: integer
@@ -84212,11 +84247,15 @@ components:
       example:
         hasAnalyticsAccess: true
         profileTotals:
-          key: 6
-        pagination: ""
+          key: 2
+        pagination:
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         statusCounts:
-          all: 1
-          disconnected: 5
+          all: 7
+          disconnected: 9
         accounts:
         - profileUrl: profileUrl
           metadata: "{}"
@@ -84261,9 +84300,7 @@ components:
           description: Whether user has analytics add-on access
           type: boolean
         pagination:
-          allOf:
-          - $ref: "#/components/schemas/Pagination"
-          description: Only present when page/limit params are provided
+          $ref: "#/components/schemas/AccountsListResponse_pagination"
         profileTotals:
           additionalProperties:
             type: integer
@@ -84274,8 +84311,21 @@ components:
       required:
       - accounts
       - hasAnalyticsAccess
+    AccountCursorPagination:
+      properties:
+        limit:
+          type: integer
+        nextCursor:
+          description: Opaque cursor for the next page; pass it back as `cursor`.
+            Null on the last page.
+          nullable: true
+          type: string
+      required:
+      - limit
+      - nextCursor
     FollowerStatsResponse:
       example:
+        pagination: ""
         stats:
           key:
           - date: 2000-01-23
@@ -84368,6 +84418,10 @@ components:
           $ref: "#/components/schemas/FollowerStatsResponse_dateRange"
         granularity:
           type: string
+        pagination:
+          allOf:
+          - $ref: "#/components/schemas/AccountCursorPagination"
+          description: Only present when limit or cursor is sent.
     UploadedFile:
       properties:
         type:
@@ -84865,10 +84919,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         backfillPending: true
       properties:
         ads:
@@ -84884,10 +84938,10 @@ components:
     AdTreeResponse:
       example:
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -132805,10 +132859,10 @@ components:
           platformAdAccountId: platformAdAccountId
           status: ""
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         backfillPending: true
     getAdsSearchTerms_200_response_data_inner:
       example:
@@ -133575,10 +133629,10 @@ components:
     listAdKeywords_200_response:
       example:
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         keywords:
         - adSetName: adSetName
           adAccountId: adAccountId
@@ -133841,10 +133895,10 @@ components:
     listAdCampaigns_200_response:
       example:
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -136526,10 +136580,10 @@ components:
         - backfillPending
       example:
         pagination:
-          total: 2
-          pages: 7
-          limit: 5
-          page: 5
+          total: 5
+          pages: 5
+          limit: 1
+          page: 6
         campaigns:
         - bidStrategy: ""
           platformCampaignId: platformCampaignId
@@ -169144,12 +169198,19 @@ components:
       - error
       - platform
       - status
+    AccountsListResponse_pagination:
+      description: "Present on a paginated request: `{ page, limit, total, pages }`\
+        \ with page and limit, `{ limit, nextCursor }` with cursor paging (limit alone\
+        \ or cursor)."
+      oneOf:
+      - $ref: "#/components/schemas/Pagination"
+      - $ref: "#/components/schemas/AccountCursorPagination"
     AccountsListResponse_statusCounts:
       description: Only with includeStatusCounts=true. Counts over every filter of
         the request except status.
       example:
-        all: 1
-        disconnected: 5
+        all: 7
+        disconnected: 9
       properties:
         all:
           description: Accounts matching the filters in any status.

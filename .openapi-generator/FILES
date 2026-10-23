@@ -8,12 +8,14 @@ build.sbt
 docs/AcceptConversationRequest200Response.md
 docs/AcceptConversationRequest200ResponseData.md
 docs/AcceptConversationRequestRequest.md
+docs/AccountCursorPagination.md
 docs/AccountGroupsApi.md
 docs/AccountSettingsApi.md
 docs/AccountWithFollowerStats.md
 docs/AccountWithFollowerStatsAllOfAccountStats.md
 docs/AccountsApi.md
 docs/AccountsListResponse.md
+docs/AccountsListResponsePagination.md
 docs/AccountsListResponseStatusCounts.md
 docs/ActivateSequence200Response.md
 docs/ActivateWorkflow200Response.md
@@ -3013,9 +3015,11 @@ src/main/java/dev/zernio/model/AbstractOpenApiSchema.java
 src/main/java/dev/zernio/model/AcceptConversationRequest200Response.java
 src/main/java/dev/zernio/model/AcceptConversationRequest200ResponseData.java
 src/main/java/dev/zernio/model/AcceptConversationRequestRequest.java
+src/main/java/dev/zernio/model/AccountCursorPagination.java
 src/main/java/dev/zernio/model/AccountWithFollowerStats.java
 src/main/java/dev/zernio/model/AccountWithFollowerStatsAllOfAccountStats.java
 src/main/java/dev/zernio/model/AccountsListResponse.java
+src/main/java/dev/zernio/model/AccountsListResponsePagination.java
 src/main/java/dev/zernio/model/AccountsListResponseStatusCounts.java
 src/main/java/dev/zernio/model/ActivateSequence200Response.java
 src/main/java/dev/zernio/model/ActivateWorkflow200Response.java
@@ -5839,5 +5843,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/RemoveUsersFromAdAudience200ResponseTest.java
-src/test/java/dev/zernio/model/RemoveUsersFromAdAudienceRequestTest.java
+src/test/java/dev/zernio/model/AccountCursorPaginationTest.java
+src/test/java/dev/zernio/model/AccountsListResponsePaginationTest.java

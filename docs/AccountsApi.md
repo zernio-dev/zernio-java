@@ -811,7 +811,7 @@ ApiResponse<[**GetBlueskySettings200Response**](GetBlueskySettings200Response.md
 
 ## getFollowerStats
 
-> FollowerStatsResponse getFollowerStats(accountIds, profileId, fromDate, toDate, granularity)
+> FollowerStatsResponse getFollowerStats(accountIds, profileId, fromDate, toDate, granularity, limit, cursor)
 
 Get follower stats
 
@@ -843,8 +843,10 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to 30 days ago)
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
+        Integer limit = 56; // Integer | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned.
+        String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400.
         try {
-            FollowerStatsResponse result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity);
+            FollowerStatsResponse result = apiInstance.getFollowerStats(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#getFollowerStats");
@@ -867,6 +869,8 @@ public class Example {
 | **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
+| **limit** | **Integer**| Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional] |
+| **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional] |
 
 ### Return type
 
@@ -886,12 +890,13 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
 ## getFollowerStatsWithHttpInfo
 
-> ApiResponse<FollowerStatsResponse> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity)
+> ApiResponse<FollowerStatsResponse> getFollowerStats getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, limit, cursor)
 
 Get follower stats
 
@@ -924,8 +929,10 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Start date in YYYY-MM-DD format (defaults to 30 days ago)
         LocalDate toDate = LocalDate.now(); // LocalDate | End date in YYYY-MM-DD format (defaults to today)
         String granularity = "daily"; // String | Data aggregation level
+        Integer limit = 56; // Integer | Accounts per page, ordered by account id. Send it to page through accounts; the response then carries `pagination.nextCursor`. Without limit or cursor every matching account is returned.
+        String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (25 when limit is omitted). A cursor we cannot parse returns 400.
         try {
-            ApiResponse<FollowerStatsResponse> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity);
+            ApiResponse<FollowerStatsResponse> response = apiInstance.getFollowerStatsWithHttpInfo(accountIds, profileId, fromDate, toDate, granularity, limit, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -950,6 +957,8 @@ public class Example {
 | **fromDate** | **LocalDate**| Start date in YYYY-MM-DD format (defaults to 30 days ago) | [optional] |
 | **toDate** | **LocalDate**| End date in YYYY-MM-DD format (defaults to today) | [optional] |
 | **granularity** | **String**| Data aggregation level | [optional] [default to daily] [enum: daily, weekly, monthly] |
+| **limit** | **Integer**| Accounts per page, ordered by account id. Send it to page through accounts; the response then carries &#x60;pagination.nextCursor&#x60;. Without limit or cursor every matching account is returned. | [optional] |
+| **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (25 when limit is omitted). A cursor we cannot parse returns 400. | [optional] |
 
 ### Return type
 
@@ -969,6 +978,7 @@ ApiResponse<[**FollowerStatsResponse**](FollowerStatsResponse.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Follower stats |  -  |
+| **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 
@@ -1751,11 +1761,11 @@ ApiResponse<[**GrantBusinessPartner200Response**](GrantBusinessPartner200Respons
 
 ## listAccounts
 
-> AccountsListResponse listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile)
+> AccountsListResponse listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile)
 
 List accounts
 
-Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination. When omitted, returns all accounts (backward-compatible). Cursor paging: send &#x60;limit&#x60; alone for the first page, then pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; until it is null. Pages are ordered by account id, so accounts added or removed between calls never shift a page. Cannot be combined with &#x60;page&#x60;, &#x60;sort&#x60; or &#x60;perProfile&#x60;. Offset paging: send &#x60;page&#x60; and &#x60;limit&#x60; together. Out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 
@@ -1783,18 +1793,19 @@ public class Example {
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches.
         String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, crm = HubSpot, social = every other platform.
-        String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
+        String sort = "account"; // String | Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Boolean excludeHidden = false; // Boolean | When true, leaves out accounts the dashboard does not show as connections: posting accounts with `enabled: false` (ads accounts are always kept, whatever their `enabled` value) and the internal `sms` and `phone` accounts behind each phone number. Applied before pagination, so page totals and `statusCounts` count only the remaining accounts. Sandbox accounts added by `includeSandbox` are appended after this filter. Accepts `true` or `false` in any letter case; any other value returns 400. 
-        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page/limit) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page, limit or cursor) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
         Boolean includeStatusCounts = false; // Boolean | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400. 
-        Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
-        Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
+        Integer page = 56; // Integer | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts. 
+        Integer limit = 56; // Integer | Page size. With page, an offset page; alone or with cursor, a cursor page. 
+        String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page.
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
-        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
+        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page, limit or cursor.
         try {
-            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile);
+            AccountsListResponse result = apiInstance.listAccounts(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AccountsApi#listAccounts");
@@ -1817,16 +1828,17 @@ public class Example {
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **search** | **String**| Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional] |
 | **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm] |
-| **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
+| **sort** | **String**| Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **excludeHidden** | **Boolean**| When true, leaves out accounts the dashboard does not show as connections: posting accounts with &#x60;enabled: false&#x60; (ads accounts are always kept, whatever their &#x60;enabled&#x60; value) and the internal &#x60;sms&#x60; and &#x60;phone&#x60; accounts behind each phone number. Applied before pagination, so page totals and &#x60;statusCounts&#x60; count only the remaining accounts. Sandbox accounts added by &#x60;includeSandbox&#x60; are appended after this filter. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
-| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page/limit) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page, limit or cursor) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeStatusCounts** | **Boolean**| When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
-| **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
-| **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
+| **page** | **Integer**| Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts.  | [optional] |
+| **limit** | **Integer**| Page size. With page, an offset page; alone or with cursor, a cursor page.  | [optional] |
+| **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page. | [optional] |
 | **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
-| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. | [optional] |
+| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page, limit or cursor. | [optional] |
 
 ### Return type
 
@@ -1852,11 +1864,11 @@ public class Example {
 
 ## listAccountsWithHttpInfo
 
-> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile)
+> ApiResponse<AccountsListResponse> listAccounts listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile)
 
 List accounts
 
-Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination via page/limit params. When omitted, returns all accounts (backward-compatible). page and limit must be supplied together; out-of-range page/limit values are rejected with 400 rather than silently clamped. 
+Returns connected accounts. Only includes accounts within the plan limit by default. Follower data requires analytics add-on. Supports optional server-side pagination. When omitted, returns all accounts (backward-compatible). Cursor paging: send &#x60;limit&#x60; alone for the first page, then pass &#x60;pagination.nextCursor&#x60; back as &#x60;cursor&#x60; until it is null. Pages are ordered by account id, so accounts added or removed between calls never shift a page. Cannot be combined with &#x60;page&#x60;, &#x60;sort&#x60; or &#x60;perProfile&#x60;. Offset paging: send &#x60;page&#x60; and &#x60;limit&#x60; together. Out-of-range page/limit values are rejected with 400 rather than silently clamped. 
 
 ### Example
 
@@ -1885,18 +1897,19 @@ public class Example {
         String status = "connected"; // String | Filter accounts by connection status. `connected` returns healthy accounts; `disconnected` returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set. 
         String search = "search_example"; // String | Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches.
         String category = "social"; // String | Only accounts of this kind. ads = ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication = WhatsApp, Telegram, Discord, Slack and iMessage, blogs = Shopify and WordPress, crm = HubSpot, social = every other platform.
-        String sort = "account"; // String | Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
+        String sort = "account"; // String | Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first.
         String order = "asc"; // String | Direction for `sort`.
         Boolean includeOverLimit = false; // Boolean | When true, includes accounts from over-limit profiles.
         Boolean excludeHidden = false; // Boolean | When true, leaves out accounts the dashboard does not show as connections: posting accounts with `enabled: false` (ads accounts are always kept, whatever their `enabled` value) and the internal `sms` and `phone` accounts behind each phone number. Applied before pagination, so page totals and `statusCounts` count only the remaining accounts. Sandbox accounts added by `includeSandbox` are appended after this filter. Accepts `true` or `false` in any letter case; any other value returns 400. 
-        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page/limit) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
+        Boolean includeSandbox = false; // Boolean | When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring `platform` but no other filter. Ignored on a paginated request (page, limit or cursor) and together with `perProfile`. Accepts `true` or `false` in any letter case; any other value returns 400. 
         Boolean includeStatusCounts = false; // Boolean | When true, the response carries `statusCounts`: how many accounts match every other filter of the request (with `status` lifted) in total and how many of those need a reconnection. Accepts `true` or `false` in any letter case; any other value returns 400. 
-        Integer page = 56; // Integer | Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts. 
-        Integer limit = 56; // Integer | Page size. Must be provided together with page; sending only one of the two returns 400. 
+        Integer page = 56; // Integer | Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts. 
+        Integer limit = 56; // Integer | Page size. With page, an offset page; alone or with cursor, a cursor page. 
+        String cursor = "cursor_example"; // String | Opaque cursor from a previous response's `pagination.nextCursor`; returns the next page of `limit` accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page.
         String profileIds = "profileIds_example"; // String | Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries `profileTotals`.
-        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit.
+        Integer perProfile = 56; // Integer | Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page, limit or cursor.
         try {
-            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, profileIds, perProfile);
+            ApiResponse<AccountsListResponse> response = apiInstance.listAccountsWithHttpInfo(profileId, platform, status, search, category, sort, order, includeOverLimit, excludeHidden, includeSandbox, includeStatusCounts, page, limit, cursor, profileIds, perProfile);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1921,16 +1934,17 @@ public class Example {
 | **status** | **String**| Filter accounts by connection status. &#x60;connected&#x60; returns healthy accounts; &#x60;disconnected&#x60; returns accounts that need reconnection (per the same reconnection check surfaced in the dashboard). Omit to return accounts in any status. When combined with page/limit, pagination totals reflect the filtered result set.  | [optional] [enum: connected, disconnected] |
 | **search** | **String**| Case-insensitive match on the account username, display name or platform user id, or an exact account id. Combine with page/limit to paginate the matches. | [optional] |
 | **category** | **String**| Only accounts of this kind. ads &#x3D; ad accounts (Meta, Google, LinkedIn, Pinterest, TikTok, X, OpenAI, Reddit), communication &#x3D; WhatsApp, Telegram, Discord, Slack and iMessage, blogs &#x3D; Shopify and WordPress, crm &#x3D; HubSpot, social &#x3D; every other platform. | [optional] [enum: social, ads, communication, blogs, crm] |
-| **sort** | **String**| Sort a paginated listing (page/limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
+| **sort** | **String**| Sort an offset-paginated listing (page and limit) by account name, platform, profile name, status (accounts needing a reconnect first when ascending) or connection date. Ties keep the default order: platform, then newest first. | [optional] [enum: account, platform, profile, status, connected] |
 | **order** | **String**| Direction for &#x60;sort&#x60;. | [optional] [default to asc] [enum: asc, desc] |
 | **includeOverLimit** | **Boolean**| When true, includes accounts from over-limit profiles. | [optional] [default to false] |
 | **excludeHidden** | **Boolean**| When true, leaves out accounts the dashboard does not show as connections: posting accounts with &#x60;enabled: false&#x60; (ads accounts are always kept, whatever their &#x60;enabled&#x60; value) and the internal &#x60;sms&#x60; and &#x60;phone&#x60; accounts behind each phone number. Applied before pagination, so page totals and &#x60;statusCounts&#x60; count only the remaining accounts. Sandbox accounts added by &#x60;includeSandbox&#x60; are appended after this filter. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
-| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page/limit) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
+| **includeSandbox** | **Boolean**| When true, appends the shared WhatsApp sandbox account and the iMessage sandbox account to the list when they are active, honouring &#x60;platform&#x60; but no other filter. Ignored on a paginated request (page, limit or cursor) and together with &#x60;perProfile&#x60;. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
 | **includeStatusCounts** | **Boolean**| When true, the response carries &#x60;statusCounts&#x60;: how many accounts match every other filter of the request (with &#x60;status&#x60; lifted) in total and how many of those need a reconnection. Accepts &#x60;true&#x60; or &#x60;false&#x60; in any letter case; any other value returns 400.  | [optional] [default to false] |
-| **page** | **Integer**| Page number (1-based). Must be provided together with limit to enable server-side pagination; sending only one of the two returns 400. Omit both for all accounts.  | [optional] |
-| **limit** | **Integer**| Page size. Must be provided together with page; sending only one of the two returns 400.  | [optional] |
+| **page** | **Integer**| Page number (1-based) for offset paging. Requires limit; omit page, limit and cursor for all accounts.  | [optional] |
+| **limit** | **Integer**| Page size. With page, an offset page; alone or with cursor, a cursor page.  | [optional] |
+| **cursor** | **String**| Opaque cursor from a previous response&#39;s &#x60;pagination.nextCursor&#x60;; returns the next page of &#x60;limit&#x60; accounts (500 when limit is omitted). A cursor we cannot parse returns 400. Cannot be combined with page. | [optional] |
 | **profileIds** | **String**| Comma-separated profile IDs (up to 50) to preview, together with perProfile. The response then also carries &#x60;profileTotals&#x60;. | [optional] |
-| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page and limit. | [optional] |
+| **perProfile** | **Integer**| Return a preview of each profile in profileIds: the newest account of every platform it has, topped up to at least N. Requires profileIds; cannot be combined with page, limit or cursor. | [optional] |
 
 ### Return type
 

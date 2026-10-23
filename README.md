@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.341.0
+- API version: 1.342.0
 
-- Build date: 2026-10-23T11:19:43.897293907Z[Etc/UTC]
+- Build date: 2026-10-23T18:19:44.303671430Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.341.0</version>
+  <version>1.342.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.341.0"
+compile "dev.zernio:zernio-sdk:1.342.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.341.0.jar`
+- `target/zernio-sdk-1.342.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2124,9 +2124,11 @@ Class | Method | HTTP request | Description
  - [AcceptConversationRequest200Response](docs/AcceptConversationRequest200Response.md)
  - [AcceptConversationRequest200ResponseData](docs/AcceptConversationRequest200ResponseData.md)
  - [AcceptConversationRequestRequest](docs/AcceptConversationRequestRequest.md)
+ - [AccountCursorPagination](docs/AccountCursorPagination.md)
  - [AccountWithFollowerStats](docs/AccountWithFollowerStats.md)
  - [AccountWithFollowerStatsAllOfAccountStats](docs/AccountWithFollowerStatsAllOfAccountStats.md)
  - [AccountsListResponse](docs/AccountsListResponse.md)
+ - [AccountsListResponsePagination](docs/AccountsListResponsePagination.md)
  - [AccountsListResponseStatusCounts](docs/AccountsListResponseStatusCounts.md)
  - [ActivateSequence200Response](docs/ActivateSequence200Response.md)
  - [ActivateWorkflow200Response](docs/ActivateWorkflow200Response.md)
