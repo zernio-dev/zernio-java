@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.346.0
+  version: 1.347.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -16228,9 +16228,9 @@ paths:
         Important: The mentions array field in POST /v1/posts is stored for reference only and does NOT trigger @mentions on LinkedIn. You must embed the mention format directly in the content text.
 
         Requirements:
-        - Person mentions require the LinkedIn account to be admin of at least one organization: both endpoints that resolve a profile URL to a member URN take an organization you administer. Organization mentions (e.g. @Microsoft) have no such requirement.
+        - Resolving a profile URL to a person mention requires the LinkedIn account to be admin of at least one organization: both endpoints that resolve a profile URL to a member URN take an organization you administer. A resolved person mention publishes from any account. Organization mentions (e.g. @Microsoft) have no such requirement.
         - The two are not scoped alike. peopleTypeahead?q=organizationFollowers only returns that organization's followers; vanityUrl?q=vanityUrlAsOrganization does not, and its resolvable set is opaque. A 404 here does not mean the person is unknown to you or unknown to LinkedIn: a live public profile can 404 with no reason given.
-        - For person mentions to be clickable, the displayName parameter must exactly match the name shown on their LinkedIn profile.
+        - displayName is optional: the endpoint looks up the person's real name itself. LinkedIn renders a person mention as a link when the mention text is the person's first name, last name or full name (case-sensitive).
         - Person mentions DO work when published from personal profiles (the URN only needs to be valid). The limitation is only in the resolution step (URL to URN), not in publishing.
       operationId: getLinkedInMentions
       parameters:
@@ -16263,8 +16263,9 @@ paths:
         schema:
           type: string
         style: form
-      - description: Exact display name as shown on LinkedIn. Required for person
-          mentions to be clickable. Optional for org mentions.
+      - description: "Optional override for a person's mention text. When omitted,\
+          \ the real name is resolved from LinkedIn. Ignored for org mentions, which\
+          \ always use the organization's LinkedIn name."
         examples:
           personName:
             summary: Exact name as shown on LinkedIn profile
@@ -16285,21 +16286,25 @@ paths:
             application/json:
               examples:
                 personWithDisplayName:
-                  summary: Person mention with displayName (recommended)
+                  summary: "Person mention with a displayName override (must match\
+                    \ the person's first name, last name or full name exactly, or\
+                    \ the mention is not a link)"
                   value:
                     urn: urn:li:person:4qj5ox-agD
                     type: person
                     displayName: Miquel Palet
                     mentionFormat: "@[Miquel Palet](urn:li:person:4qj5ox-agD)"
                 personWithoutDisplayName:
-                  summary: Person mention without displayName (may not be clickable)
+                  summary: Person mention whose real name could not be resolved (name
+                    derived from the vanity URL)
                   value:
                     urn: urn:li:person:4qj5ox-agD
                     type: person
                     displayName: Miquelpalet
                     mentionFormat: "@[Miquelpalet](urn:li:person:4qj5ox-agD)"
-                    warning: "For clickable person mentions, provide the displayName\
-                      \ parameter with the exact name as shown on their LinkedIn profile."
+                    warning: Could not resolve real name from LinkedIn. Display name
+                      was derived from the vanity URL and may not match the profile
+                      exactly.
                 organization:
                   summary: Org mention
                   value:
@@ -16318,16 +16323,42 @@ paths:
                 missingUrl:
                   value:
                     error: url parameter is required
+                    type: invalid_request_error
+                    code: missing_required_field
+                    param: url
                 noOrgForPersonMention:
                   value:
                     error: No organization found. You need to be an admin of a LinkedIn
                       organization to use person mentions. Organization mentions work
                       without this requirement.
+                    type: invalid_request_error
+                    code: linkedin_mention_no_organization
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+                $ref: "#/components/schemas/ErrorResponse"
           description: Invalid request or no organization found (for person mentions)
         "401":
-          $ref: "#/components/responses/Unauthorized"
+          content:
+            application/json:
+              examples:
+                missingCredentials:
+                  value:
+                    error: "Missing API key. Send it as Authorization: Bearer <your\
+                      \ API key>."
+                    type: authentication_error
+                    code: missing_credentials
+                    docUrl: https://docs.zernio.com
+                reconnectRequired:
+                  value:
+                    error: Token expired or revoked for LinkedIn. Please reconnect
+                      your account.
+                    type: permission_error
+                    code: reconnect_required
+                    platform: linkedin
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Missing or invalid API key (`missing_credentials` or `invalid_credentials`),\
+            \ or LinkedIn revoked or expired the account's token (`reconnect_required`,\
+            \ reconnect the account)."
         "403":
           content:
             application/json:
@@ -16338,8 +16369,10 @@ paths:
                       \ page where it can create posts, which LinkedIn requires to\
                       \ resolve a person's profile URL. Ask for an Admin or Content\
                       \ Admin role on one of your pages, or mention a company instead."
+                    type: permission_error
+                    code: linkedin_mention_lookup_forbidden
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
+                $ref: "#/components/schemas/ErrorResponse"
           description: The account holds no organization role that can resolve person
             mentions
         "404":
@@ -16352,13 +16385,24 @@ paths:
                       \ is resolvable through LinkedIn's API, even public ones, and\
                       \ LinkedIn gives no reason. Check the profile address is current\
                       \ (people can change theirs), or mention a company instead."
+                    type: not_found
+                    code: linkedin_person_not_resolvable
                 orgNotFound:
                   value:
                     error: Organization not found. Check the LinkedIn company URL
                       is correct.
+                    type: not_found
+                    code: linkedin_organization_not_found
+                accountNotFound:
+                  value:
+                    error: LinkedIn account not found
+                    type: not_found
+                    code: account_not_found
               schema:
-                $ref: "#/components/schemas/getYouTubeDailyViews_400_response"
-          description: Person or organization not found
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Account, person or organization not found"
+        "429":
+          $ref: "#/components/responses/RateLimited"
       summary: Resolve LinkedIn mention
       tags:
       - LinkedIn Mentions
@@ -109152,8 +109196,8 @@ components:
         vanityName: microsoft
         mentionFormat: "@[Miquel Palet](urn:li:person:4qj5ox-agD)"
         displayName: Miquel Palet
-        warning: "For clickable person mentions, provide the displayName parameter\
-          \ with the exact name as shown on their LinkedIn profile."
+        warning: Could not resolve real name from LinkedIn. Display name was derived
+          from the vanity URL and may not match the profile exactly.
         type: person
       properties:
         urn:
@@ -109180,10 +109224,10 @@ components:
           example: microsoft
           type: string
         warning:
-          description: Warning about clickable mentions (only present for person mentions
-            if displayName was not provided)
-          example: "For clickable person mentions, provide the displayName parameter\
-            \ with the exact name as shown on their LinkedIn profile."
+          description: Only present for person mentions when displayName was not provided
+            and the real name could not be resolved from LinkedIn
+          example: Could not resolve real name from LinkedIn. Display name was derived
+            from the vanity URL and may not match the profile exactly.
           type: string
     listInstagramStories_200_response_data_inner:
       example:

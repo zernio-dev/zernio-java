@@ -12,7 +12,7 @@
 |**displayName** | **String** | Display name (provided, from API, or derived from vanity URL) |  [optional] |
 |**mentionFormat** | **String** | Ready-to-use mention format for post content |  [optional] |
 |**vanityName** | **String** | The vanity name/slug (only for organization mentions) |  [optional] |
-|**warning** | **String** | Warning about clickable mentions (only present for person mentions if displayName was not provided) |  [optional] |
+|**warning** | **String** | Only present for person mentions when displayName was not provided and the real name could not be resolved from LinkedIn |  [optional] |
 
 
 
