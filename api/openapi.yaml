@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.338.5
+  version: 1.339.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68778,7 +68778,7 @@ components:
         - name: name
           id: id
         regionalRegulationIdentities:
-          key: 4
+          key: boostPost_request_regionalRegulationIdentities_value
         audienceInclude:
         - audienceInclude
         - audienceInclude
@@ -69535,7 +69535,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            type: integer
+            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through
@@ -69543,6 +69543,9 @@ components:
             settings (seen on AUSTRALIA_FINSERV), so sending them explicitly is the reliable path.
             The value is the Verified identity ID (Meta Business Settings > Verified identities),
             not a Page or Business ID, and beneficiary and payer may be the same ID.
+            Send each ID as a string of digits: Verified identity IDs can have 17 digits, more than a
+            JSON number holds exactly, and a number that arrives rounded is rejected. Numbers up to
+            9007199254740991 are still accepted. The IDs reach Meta unchanged.
             Keys by category: AUSTRALIA_FINSERV uses australia_finserv_beneficiary /
             australia_finserv_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary /
             taiwan_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer;
@@ -146951,6 +146954,11 @@ components:
           items:
             $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
+    boostPost_request_regionalRegulationIdentities_value:
+      anyOf:
+      - type: string
+      - format: int32
+        type: integer
     boostPost_request_sparkPosts_inner:
       properties:
         platformPostId:
@@ -147348,7 +147356,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            type: integer
+            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through
@@ -147356,6 +147364,9 @@ components:
             settings (seen on AUSTRALIA_FINSERV), so sending them explicitly is the reliable path.
             The value is the Verified identity ID (Meta Business Settings > Verified identities),
             not a Page or Business ID, and beneficiary and payer may be the same ID.
+            Send each ID as a string of digits: Verified identity IDs can have 17 digits, more than a
+            JSON number holds exactly, and a number that arrives rounded is rejected. Numbers up to
+            9007199254740991 are still accepted. The IDs reach Meta unchanged.
             Keys by category: AUSTRALIA_FINSERV uses australia_finserv_beneficiary /
             australia_finserv_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary /
             taiwan_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer;
@@ -149350,7 +149361,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            type: integer
+            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through
@@ -149358,6 +149369,9 @@ components:
             settings (seen on AUSTRALIA_FINSERV), so sending them explicitly is the reliable path.
             The value is the Verified identity ID (Meta Business Settings > Verified identities),
             not a Page or Business ID, and beneficiary and payer may be the same ID.
+            Send each ID as a string of digits: Verified identity IDs can have 17 digits, more than a
+            JSON number holds exactly, and a number that arrives rounded is rejected. Numbers up to
+            9007199254740991 are still accepted. The IDs reach Meta unchanged.
             Keys by category: AUSTRALIA_FINSERV uses australia_finserv_beneficiary /
             australia_finserv_payer; TAIWAN_FINSERV uses taiwan_finserv_beneficiary /
             taiwan_finserv_payer; INDIA_FINSERV uses india_finserv_beneficiary / india_finserv_payer;

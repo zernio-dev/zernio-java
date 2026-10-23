@@ -197,6 +197,7 @@ docs/BoostPostRequestBudget.md
 docs/BoostPostRequestPlatformSpecificData.md
 docs/BoostPostRequestPromoCodesInner.md
 docs/BoostPostRequestPromotedObject.md
+docs/BoostPostRequestRegionalRegulationIdentitiesValue.md
 docs/BoostPostRequestSchedule.md
 docs/BoostPostRequestSmartTargeting.md
 docs/BoostPostRequestSparkPostsInner.md
@@ -3186,6 +3187,7 @@ src/main/java/dev/zernio/model/BoostPostRequestBudget.java
 src/main/java/dev/zernio/model/BoostPostRequestPlatformSpecificData.java
 src/main/java/dev/zernio/model/BoostPostRequestPromoCodesInner.java
 src/main/java/dev/zernio/model/BoostPostRequestPromotedObject.java
+src/main/java/dev/zernio/model/BoostPostRequestRegionalRegulationIdentitiesValue.java
 src/main/java/dev/zernio/model/BoostPostRequestSchedule.java
 src/main/java/dev/zernio/model/BoostPostRequestSmartTargeting.java
 src/main/java/dev/zernio/model/BoostPostRequestSparkPostsInner.java
@@ -5833,3 +5835,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPostRequestRegionalRegulationIdentitiesValueTest.java
