@@ -40,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**createPinterestBoardWithHttpInfo**](ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board |
 | [**createYoutubePlaylist**](ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
 | [**createYoutubePlaylistWithHttpInfo**](ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist |
+| [**getConnectHandoff**](ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
+| [**getConnectHandoffWithHttpInfo**](ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff |
 | [**getConnectUrl**](ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getConnectUrlWithHttpInfo**](ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL |
 | [**getConnectWelcomeScreen**](ConnectApi.md#getConnectWelcomeScreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen |
@@ -2979,9 +2981,159 @@ ApiResponse<[**CreateYoutubePlaylist201Response**](CreateYoutubePlaylist201Respo
 | **502** | YouTube request failed. Check existing playlists before retrying, because the playlist may have been created. |  -  |
 
 
+## getConnectHandoff
+
+> ConnectHandoff getConnectHandoff(handoffId)
+
+Get a phone handoff
+
+Where a connect started with &#x60;handoff&#x3D;true&#x60; on &#x60;GET /v1/connect/{platform}&#x60; stands: &#x60;waiting&#x60; until the QR code is scanned, &#x60;opened&#x60; once the phone opened it, then &#x60;connected&#x60; with the new accounts or &#x60;failed&#x60; with the error the flow ended on (the same &#x60;error&#x60; codes as the redirect flow). &#x60;expired&#x60; when nobody opened the QR code within its 30 minutes. Poll it every 2 to 5 seconds while your QR code is shown, and stop once it is &#x60;connected&#x60;, &#x60;failed&#x60; or &#x60;expired&#x60;. Readable for 60 minutes after it was created, then 404, as is a handoff created by another workspace.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        UUID handoffId = UUID.randomUUID(); // UUID | `handoff.id` from the connect response.
+        try {
+            ConnectHandoff result = apiInstance.getConnectHandoff(handoffId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getConnectHandoff");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **handoffId** | **UUID**| &#x60;handoff.id&#x60; from the connect response. | |
+
+### Return type
+
+[**ConnectHandoff**](ConnectHandoff.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The handoff. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The handoff expired, does not exist, or belongs to another workspace (code RESOURCE_NOT_FOUND). |  -  |
+
+## getConnectHandoffWithHttpInfo
+
+> ApiResponse<ConnectHandoff> getConnectHandoff getConnectHandoffWithHttpInfo(handoffId)
+
+Get a phone handoff
+
+Where a connect started with &#x60;handoff&#x3D;true&#x60; on &#x60;GET /v1/connect/{platform}&#x60; stands: &#x60;waiting&#x60; until the QR code is scanned, &#x60;opened&#x60; once the phone opened it, then &#x60;connected&#x60; with the new accounts or &#x60;failed&#x60; with the error the flow ended on (the same &#x60;error&#x60; codes as the redirect flow). &#x60;expired&#x60; when nobody opened the QR code within its 30 minutes. Poll it every 2 to 5 seconds while your QR code is shown, and stop once it is &#x60;connected&#x60;, &#x60;failed&#x60; or &#x60;expired&#x60;. Readable for 60 minutes after it was created, then 404, as is a handoff created by another workspace.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        UUID handoffId = UUID.randomUUID(); // UUID | `handoff.id` from the connect response.
+        try {
+            ApiResponse<ConnectHandoff> response = apiInstance.getConnectHandoffWithHttpInfo(handoffId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#getConnectHandoff");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **handoffId** | **UUID**| &#x60;handoff.id&#x60; from the connect response. | |
+
+### Return type
+
+ApiResponse<[**ConnectHandoff**](ConnectHandoff.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The handoff. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The handoff expired, does not exist, or belongs to another workspace (code RESOURCE_NOT_FOUND). |  -  |
+
+
 ## getConnectUrl
 
-> GetConnectUrl200Response getConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language)
+> GetConnectUrl200Response getConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff)
 
 Get OAuth connect URL
 
@@ -3026,8 +3178,9 @@ public class Example {
         String welcomeTheme = "welcomeTheme_example"; // String | Welcome screen only (`welcome=true`): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: `heading` (up to 120 characters), `trustLine`, `consentLine` and `statusLine` (up to 200 each, `statusLine` being the line above the button), `buttonLabel` (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders `{brand}` and `{platform}`. Style: `primaryColor` (the button), `accentColor` (the header gradient, built as a scale of that colour, and the icons), `pageColor`, `cardColor` and `textColor` as `#RRGGBB`, `cornerRadius` as an integer from 0 to 24 (pixels), `font` as `sans`, `serif` or `mono`. A `primaryColor` here wins over the `primaryColor` parameter. Unknown keys, invalid JSON or an invalid value are a 400 `INVALID_FIELD_VALUE`. Rejected when the welcome screen is not shown. Example: `{\"heading\":\"Link your {platform} to {brand}\",\"cardColor\":\"#FFF7ED\",\"cornerRadius\":12}`.
         URI logoUrl = new URI(); // URI | Welcome screen only (`welcome=true`): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of `brandName`, or the Zernio mark when there is no `brandName` either. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown.
         String language = "en"; // String | Hosted signup page only (`signup=hosted`, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default `en`. Rejected without `signup=hosted`.
+        Boolean handoff = false; // Boolean | Let the user finish on their phone. When `true`, the response also carries `handoff`: show `handoff.url` as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling `GET /v1/connect/handoffs/{handoffId}` (every 2 to 5 seconds is fine) or from the `account.connected` webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with `welcome=false`, `headless=true`, `signup`, `redirect=true` or `redirect_url` (400 `INVALID_FIELD_VALUE`). `handoff.url` works for 30 minutes. When the account is re-enabled straight away the response carries `account` instead, as without `handoff`.
         try {
-            GetConnectUrl200Response result = apiInstance.getConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language);
+            GetConnectUrl200Response result = apiInstance.getConnectUrl(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getConnectUrl");
@@ -3063,6 +3216,7 @@ public class Example {
 | **welcomeTheme** | **String**| Welcome screen only (&#x60;welcome&#x3D;true&#x60;): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: &#x60;heading&#x60; (up to 120 characters), &#x60;trustLine&#x60;, &#x60;consentLine&#x60; and &#x60;statusLine&#x60; (up to 200 each, &#x60;statusLine&#x60; being the line above the button), &#x60;buttonLabel&#x60; (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders &#x60;{brand}&#x60; and &#x60;{platform}&#x60;. Style: &#x60;primaryColor&#x60; (the button), &#x60;accentColor&#x60; (the header gradient, built as a scale of that colour, and the icons), &#x60;pageColor&#x60;, &#x60;cardColor&#x60; and &#x60;textColor&#x60; as &#x60;#RRGGBB&#x60;, &#x60;cornerRadius&#x60; as an integer from 0 to 24 (pixels), &#x60;font&#x60; as &#x60;sans&#x60;, &#x60;serif&#x60; or &#x60;mono&#x60;. A &#x60;primaryColor&#x60; here wins over the &#x60;primaryColor&#x60; parameter. Unknown keys, invalid JSON or an invalid value are a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected when the welcome screen is not shown. Example: &#x60;{\&quot;heading\&quot;:\&quot;Link your {platform} to {brand}\&quot;,\&quot;cardColor\&quot;:\&quot;#FFF7ED\&quot;,\&quot;cornerRadius\&quot;:12}&#x60;. | [optional] |
 | **logoUrl** | **URI**| Welcome screen only (&#x60;welcome&#x3D;true&#x60;): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of &#x60;brandName&#x60;, or the Zernio mark when there is no &#x60;brandName&#x60; either. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; when the welcome screen is not shown. | [optional] |
 | **language** | **String**| Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. | [optional] [enum: en, es, pt-BR] |
+| **handoff** | **Boolean**| Let the user finish on their phone. When &#x60;true&#x60;, the response also carries &#x60;handoff&#x60;: show &#x60;handoff.url&#x60; as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling &#x60;GET /v1/connect/handoffs/{handoffId}&#x60; (every 2 to 5 seconds is fine) or from the &#x60;account.connected&#x60; webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with &#x60;welcome&#x3D;false&#x60;, &#x60;headless&#x3D;true&#x60;, &#x60;signup&#x60;, &#x60;redirect&#x3D;true&#x60; or &#x60;redirect_url&#x60; (400 &#x60;INVALID_FIELD_VALUE&#x60;). &#x60;handoff.url&#x60; works for 30 minutes. When the account is re-enabled straight away the response carries &#x60;account&#x60; instead, as without &#x60;handoff&#x60;. | [optional] [default to false] |
 
 ### Return type
 
@@ -3090,7 +3244,7 @@ public class Example {
 
 ## getConnectUrlWithHttpInfo
 
-> ApiResponse<GetConnectUrl200Response> getConnectUrl getConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language)
+> ApiResponse<GetConnectUrl200Response> getConnectUrl getConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff)
 
 Get OAuth connect URL
 
@@ -3136,8 +3290,9 @@ public class Example {
         String welcomeTheme = "welcomeTheme_example"; // String | Welcome screen only (`welcome=true`): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: `heading` (up to 120 characters), `trustLine`, `consentLine` and `statusLine` (up to 200 each, `statusLine` being the line above the button), `buttonLabel` (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders `{brand}` and `{platform}`. Style: `primaryColor` (the button), `accentColor` (the header gradient, built as a scale of that colour, and the icons), `pageColor`, `cardColor` and `textColor` as `#RRGGBB`, `cornerRadius` as an integer from 0 to 24 (pixels), `font` as `sans`, `serif` or `mono`. A `primaryColor` here wins over the `primaryColor` parameter. Unknown keys, invalid JSON or an invalid value are a 400 `INVALID_FIELD_VALUE`. Rejected when the welcome screen is not shown. Example: `{\"heading\":\"Link your {platform} to {brand}\",\"cardColor\":\"#FFF7ED\",\"cornerRadius\":12}`.
         URI logoUrl = new URI(); // URI | Welcome screen only (`welcome=true`): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of `brandName`, or the Zernio mark when there is no `brandName` either. Rejected with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown.
         String language = "en"; // String | Hosted signup page only (`signup=hosted`, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default `en`. Rejected without `signup=hosted`.
+        Boolean handoff = false; // Boolean | Let the user finish on their phone. When `true`, the response also carries `handoff`: show `handoff.url` as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling `GET /v1/connect/handoffs/{handoffId}` (every 2 to 5 seconds is fine) or from the `account.connected` webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with `welcome=false`, `headless=true`, `signup`, `redirect=true` or `redirect_url` (400 `INVALID_FIELD_VALUE`). `handoff.url` works for 30 minutes. When the account is re-enabled straight away the response carries `account` instead, as without `handoff`.
         try {
-            ApiResponse<GetConnectUrl200Response> response = apiInstance.getConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language);
+            ApiResponse<GetConnectUrl200Response> response = apiInstance.getConnectUrlWithHttpInfo(platform, profileId, reconnectAccountId, expectedPlatformUserId, expectedUsername, forceReauth, redirectUrl, scopes, headless, loginMethod, onboarding, signup, brandName, primaryColor, welcome, welcomeTheme, logoUrl, language, handoff);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -3175,6 +3330,7 @@ public class Example {
 | **welcomeTheme** | **String**| Welcome screen only (&#x60;welcome&#x3D;true&#x60;): a URL-encoded JSON object that restyles and rewords the screen. All keys are optional. Copy: &#x60;heading&#x60; (up to 120 characters), &#x60;trustLine&#x60;, &#x60;consentLine&#x60; and &#x60;statusLine&#x60; (up to 200 each, &#x60;statusLine&#x60; being the line above the button), &#x60;buttonLabel&#x60; (up to 30, the label of the link the button becomes if the redirect stalls); each may contain the placeholders &#x60;{brand}&#x60; and &#x60;{platform}&#x60;. Style: &#x60;primaryColor&#x60; (the button), &#x60;accentColor&#x60; (the header gradient, built as a scale of that colour, and the icons), &#x60;pageColor&#x60;, &#x60;cardColor&#x60; and &#x60;textColor&#x60; as &#x60;#RRGGBB&#x60;, &#x60;cornerRadius&#x60; as an integer from 0 to 24 (pixels), &#x60;font&#x60; as &#x60;sans&#x60;, &#x60;serif&#x60; or &#x60;mono&#x60;. A &#x60;primaryColor&#x60; here wins over the &#x60;primaryColor&#x60; parameter. Unknown keys, invalid JSON or an invalid value are a 400 &#x60;INVALID_FIELD_VALUE&#x60;. Rejected when the welcome screen is not shown. Example: &#x60;{\&quot;heading\&quot;:\&quot;Link your {platform} to {brand}\&quot;,\&quot;cardColor\&quot;:\&quot;#FFF7ED\&quot;,\&quot;cornerRadius\&quot;:12}&#x60;. | [optional] |
 | **logoUrl** | **URI**| Welcome screen only (&#x60;welcome&#x3D;true&#x60;): https URL of your logo, shown in a square tile, so use a square image. Without it the tile shows the first letter of &#x60;brandName&#x60;, or the Zernio mark when there is no &#x60;brandName&#x60; either. Rejected with 400 &#x60;INVALID_FIELD_VALUE&#x60; when the welcome screen is not shown. | [optional] |
 | **language** | **String**| Hosted signup page only (&#x60;signup&#x3D;hosted&#x60;, WhatsApp): language of the page and its follow-along guide. Explainer videos stay in English. Default &#x60;en&#x60;. Rejected without &#x60;signup&#x3D;hosted&#x60;. | [optional] [enum: en, es, pt-BR] |
+| **handoff** | **Boolean**| Let the user finish on their phone. When &#x60;true&#x60;, the response also carries &#x60;handoff&#x60;: show &#x60;handoff.url&#x60; as a QR code in your app (any QR library), the user scans it and the welcome screen opens on the phone, already carrying this connect, so they log in to the platform there without signing in to anything else. The phone ends on a Zernio result screen telling them to go back to their computer. Learn the outcome by polling &#x60;GET /v1/connect/handoffs/{handoffId}&#x60; (every 2 to 5 seconds is fine) or from the &#x60;account.connected&#x60; webhook. Shows the welcome screen with your branding parameters or saved settings. Cannot be combined with &#x60;welcome&#x3D;false&#x60;, &#x60;headless&#x3D;true&#x60;, &#x60;signup&#x60;, &#x60;redirect&#x3D;true&#x60; or &#x60;redirect_url&#x60; (400 &#x60;INVALID_FIELD_VALUE&#x60;). &#x60;handoff.url&#x60; works for 30 minutes. When the account is re-enabled straight away the response carries &#x60;account&#x60; instead, as without &#x60;handoff&#x60;. | [optional] [default to false] |
 
 ### Return type
 
@@ -4737,7 +4893,7 @@ ApiResponse<[**GetRedditSubreddits200Response**](GetRedditSubreddits200Response.
 
 ## getShopifyConnectUrl
 
-> GetConnectUrl200Response getShopifyConnectUrl(profileId, shop, redirectUrl)
+> GetShopifyConnectUrl200Response getShopifyConnectUrl(profileId, shop, redirectUrl)
 
 Get Shopify OAuth connect URL
 
@@ -4768,7 +4924,7 @@ public class Example {
         String shop = "shop_example"; // String | The myshopify.com store domain to connect, e.g. `your-store.myshopify.com` (the bare `your-store` prefix is accepted too).
         URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On failure an `error` query param is appended.
         try {
-            GetConnectUrl200Response result = apiInstance.getShopifyConnectUrl(profileId, shop, redirectUrl);
+            GetShopifyConnectUrl200Response result = apiInstance.getShopifyConnectUrl(profileId, shop, redirectUrl);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling ConnectApi#getShopifyConnectUrl");
@@ -4792,7 +4948,7 @@ public class Example {
 
 ### Return type
 
-[**GetConnectUrl200Response**](GetConnectUrl200Response.md)
+[**GetShopifyConnectUrl200Response**](GetShopifyConnectUrl200Response.md)
 
 
 ### Authorization
@@ -4817,7 +4973,7 @@ public class Example {
 
 ## getShopifyConnectUrlWithHttpInfo
 
-> ApiResponse<GetConnectUrl200Response> getShopifyConnectUrl getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl)
+> ApiResponse<GetShopifyConnectUrl200Response> getShopifyConnectUrl getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl)
 
 Get Shopify OAuth connect URL
 
@@ -4849,7 +5005,7 @@ public class Example {
         String shop = "shop_example"; // String | The myshopify.com store domain to connect, e.g. `your-store.myshopify.com` (the bare `your-store` prefix is accepted too).
         URI redirectUrl = new URI(); // URI | Your custom redirect URL after connection completes. MUST be an absolute http(s) URL or a custom app scheme for mobile deeplinks (e.g. myapp://callback); a relative path is rejected with 400 INVALID_REDIRECT_URL. On failure an `error` query param is appended.
         try {
-            ApiResponse<GetConnectUrl200Response> response = apiInstance.getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl);
+            ApiResponse<GetShopifyConnectUrl200Response> response = apiInstance.getShopifyConnectUrlWithHttpInfo(profileId, shop, redirectUrl);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4875,7 +5031,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**GetConnectUrl200Response**](GetConnectUrl200Response.md)>
+ApiResponse<[**GetShopifyConnectUrl200Response**](GetShopifyConnectUrl200Response.md)>
 
 
 ### Authorization

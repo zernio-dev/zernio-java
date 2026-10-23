@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.342.0
+- API version: 1.343.0
 
-- Build date: 2026-10-23T18:19:44.303671430Z[Etc/UTC]
+- Build date: 2026-10-23T18:50:28.994722322Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.342.0</version>
+  <version>1.343.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.342.0"
+compile "dev.zernio:zernio-sdk:1.343.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.342.0.jar`
+- `target/zernio-sdk-1.343.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1061,6 +1061,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
+*ConnectApi* | [**getConnectHandoff**](docs/ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
+*ConnectApi* | [**getConnectHandoffWithHttpInfo**](docs/ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectUrlWithHttpInfo**](docs/ConnectApi.md#getConnectUrlWithHttpInfo) | **GET** /v1/connect/{platform} | Get OAuth connect URL
 *ConnectApi* | [**getConnectWelcomeScreen**](docs/ConnectApi.md#getConnectWelcomeScreen) | **GET** /v1/connect/welcome-screen | Get the saved welcome screen
@@ -2487,6 +2489,10 @@ Class | Method | HTTP request | Description
  - [ConnectBlueskyCredentials200Response](docs/ConnectBlueskyCredentials200Response.md)
  - [ConnectBlueskyCredentialsRequest](docs/ConnectBlueskyCredentialsRequest.md)
  - [ConnectDiscordChannelRequest](docs/ConnectDiscordChannelRequest.md)
+ - [ConnectHandoff](docs/ConnectHandoff.md)
+ - [ConnectHandoffAccountsInner](docs/ConnectHandoffAccountsInner.md)
+ - [ConnectHandoffError](docs/ConnectHandoffError.md)
+ - [ConnectHandoffLink](docs/ConnectHandoffLink.md)
  - [ConnectOpenAIAdsCredentials200Response](docs/ConnectOpenAIAdsCredentials200Response.md)
  - [ConnectOpenAIAdsCredentialsRequest](docs/ConnectOpenAIAdsCredentialsRequest.md)
  - [ConnectShopifyWithToken200Response](docs/ConnectShopifyWithToken200Response.md)
@@ -3267,6 +3273,7 @@ Class | Method | HTTP request | Description
  - [GetSequence200ResponseSequence](docs/GetSequence200ResponseSequence.md)
  - [GetSequence200ResponseSequenceStepsInner](docs/GetSequence200ResponseSequenceStepsInner.md)
  - [GetSequence200ResponseSequenceStepsInnerTemplate](docs/GetSequence200ResponseSequenceStepsInnerTemplate.md)
+ - [GetShopifyConnectUrl200Response](docs/GetShopifyConnectUrl200Response.md)
  - [GetSipTrunk200Response](docs/GetSipTrunk200Response.md)
  - [GetSipTrunk200ResponseNumbersInner](docs/GetSipTrunk200ResponseNumbersInner.md)
  - [GetSlackSettings200Response](docs/GetSlackSettings200Response.md)

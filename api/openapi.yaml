@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.342.0
+  version: 1.343.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9814,6 +9814,7 @@ paths:
                 invitedProfileIds:
                 - 64f0a1b2c3d4e5f6a7b8c9d0
                 - 64f0a1b2c3d4e5f6a7b8c9d1
+                disabledResourceGroups: []
                 expiresAt: 2024-11-08T10:30:00Z
                 inviteUrl: https://zernio.com/invite/inv_abc123def456ghi789
               schema:
@@ -10295,6 +10296,26 @@ paths:
           - es
           - pt-BR
           type: string
+        style: form
+      - description: "Let the user finish on their phone. When `true`, the response\
+          \ also carries `handoff`: show `handoff.url` as a QR code in your app (any\
+          \ QR library), the user scans it and the welcome screen opens on the phone,\
+          \ already carrying this connect, so they log in to the platform there without\
+          \ signing in to anything else. The phone ends on a Zernio result screen\
+          \ telling them to go back to their computer. Learn the outcome by polling\
+          \ `GET /v1/connect/handoffs/{handoffId}` (every 2 to 5 seconds is fine)\
+          \ or from the `account.connected` webhook. Shows the welcome screen with\
+          \ your branding parameters or saved settings. Cannot be combined with `welcome=false`,\
+          \ `headless=true`, `signup`, `redirect=true` or `redirect_url` (400 `INVALID_FIELD_VALUE`).\
+          \ `handoff.url` works for 30 minutes. When the account is re-enabled straight\
+          \ away the response carries `account` instead, as without `handoff`."
+        explode: true
+        in: query
+        name: handoff
+        required: false
+        schema:
+          default: false
+          type: boolean
         style: form
       responses:
         "200":
@@ -10889,7 +10910,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/getConnectUrl_200_response"
+                $ref: "#/components/schemas/getShopifyConnectUrl_200_response"
           description: OAuth authorization URL to redirect the merchant to
         "400":
           description: "Invalid `profileId` format, `shop` is not a myshopify.com\
@@ -13839,6 +13860,58 @@ paths:
       - GMB Reviews
       x-resource-group: engagement
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/handoffs/{handoffId}:
+    get:
+      description: "Where a connect started with `handoff=true` on `GET /v1/connect/{platform}`\
+        \ stands: `waiting` until the QR code is scanned, `opened` once the phone\
+        \ opened it, then `connected` with the new accounts or `failed` with the error\
+        \ the flow ended on (the same `error` codes as the redirect flow). `expired`\
+        \ when nobody opened the QR code within its 30 minutes. Poll it every 2 to\
+        \ 5 seconds while your QR code is shown, and stop once it is `connected`,\
+        \ `failed` or `expired`. Readable for 60 minutes after it was created, then\
+        \ 404, as is a handoff created by another workspace."
+      operationId: getConnectHandoff
+      parameters:
+      - description: '`handoff.id` from the connect response.'
+        explode: false
+        in: path
+        name: handoffId
+        required: true
+        schema:
+          format: uuid
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                id: 79c6dbf2-97ba-4f34-b615-5bf9435526db
+                status: connected
+                platform: instagram
+                accounts:
+                - id: 6ab0c2f1e4d5a6b7c8d9e0f1
+                  profileId: 69b0a1b2c3d4e5f6a7b8c9d0
+                  username: acme
+                error: null
+              schema:
+                $ref: "#/components/schemas/ConnectHandoff"
+          description: The handoff.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: "The handoff expired, does not exist, or belongs to another\
+            \ workspace (code RESOURCE_NOT_FOUND)."
+      security:
+      - bearerAuth: []
+      summary: Get a phone handoff
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/connect/welcome-screen:
@@ -66660,6 +66733,67 @@ components:
           format: date-time
           nullable: true
           type: string
+    ConnectHandoffLink:
+      description: "Only with `handoff=true`: the link to show as a QR code."
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        url: https://openapi-generator.tech
+        expiresAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Pass to `GET /v1/connect/handoffs/{handoffId}`."
+          format: uuid
+          type: string
+        url:
+          description: Short link to encode in the QR code. It opens the welcome screen
+            on the phone.
+          format: uri
+          type: string
+        expiresAt:
+          description: When `url` stops working (30 minutes).
+          format: date-time
+          type: string
+    ConnectHandoff:
+      example:
+        id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+        accounts:
+        - profileId: profileId
+          id: id
+          username: username
+        - profileId: profileId
+          id: id
+          username: username
+        error:
+          code: code
+          details:
+            key: details
+          message: message
+        platform: platform
+        status: waiting
+      properties:
+        id:
+          format: uuid
+          type: string
+        status:
+          enum:
+          - waiting
+          - opened
+          - connected
+          - failed
+          - expired
+          type: string
+        platform:
+          type: string
+        accounts:
+          description: "Filled when `status` is `connected`: every account the connect\
+            \ added (several when the user picked several pages, locations or organizations),\
+            \ each checked to be on the profile the connect was started for and written\
+            \ during this handoff. Empty otherwise."
+          items:
+            $ref: "#/components/schemas/ConnectHandoff_accounts_inner"
+          type: array
+        error:
+          $ref: "#/components/schemas/ConnectHandoff_error"
     ConnectWelcomeScreen:
       example:
         showByDefault: true
@@ -84624,6 +84758,12 @@ components:
           type: string
         role:
           type: string
+        disabledResourceGroups:
+          description: Resource groups turned off for this team member. Empty for
+            owners and unrestricted members.
+          items:
+            type: string
+          type: array
         createdAt:
           format: date-time
           type: string
@@ -102843,6 +102983,27 @@ components:
           - billing_admin
           - viewer
           type: string
+        disabledResourceGroups:
+          description: "Resource groups the invitee may not use once they join (the\
+            \ same groups as restricted API keys). Their dashboard hides those sections\
+            \ and every API request into a disabled group, with any credential they\
+            \ hold, is refused with 403. Omitted or empty means full access. Groups\
+            \ the caller lacks themselves are always added."
+          items:
+            enum:
+            - publishing
+            - engagement
+            - messages
+            - contacts
+            - analytics
+            - ads
+            - telephony
+            - accounts
+            - billing
+            - webhooks
+            - commerce
+            type: string
+          type: array
         readOnly:
           deprecated: true
           description: "Deprecated. Use role 'viewer' instead. When true, the invite\
@@ -102855,6 +103016,9 @@ components:
       example:
         inviteUrl: https://openapi-generator.tech
         scope: scope
+        disabledResourceGroups:
+        - disabledResourceGroups
+        - disabledResourceGroups
         invitedProfileIds:
         - invitedProfileIds
         - invitedProfileIds
@@ -102869,6 +103033,10 @@ components:
           items:
             type: string
           type: array
+        disabledResourceGroups:
+          items:
+            type: string
+          type: array
         expiresAt:
           format: date-time
           type: string
@@ -102879,6 +103047,10 @@ components:
       example:
         authUrl: https://openapi-generator.tech
         state: state
+        handoff:
+          id: 046b6c7f-0b8a-43b9-b35d-6489e6daee91
+          url: https://openapi-generator.tech
+          expiresAt: 2000-01-23T04:56:07.000+00:00
       properties:
         authUrl:
           description: URL to redirect your user to for OAuth authorization
@@ -102887,6 +103059,8 @@ components:
         state:
           description: State parameter for security (handled automatically)
           type: string
+        handoff:
+          $ref: "#/components/schemas/ConnectHandoffLink"
     handleOAuthCallback_request:
       properties:
         code:
@@ -102952,6 +103126,18 @@ components:
       oneOf:
       - $ref: "#/components/schemas/connectAds_200_response_oneOf"
       - $ref: "#/components/schemas/connectAds_200_response_oneOf_1"
+    getShopifyConnectUrl_200_response:
+      example:
+        authUrl: https://openapi-generator.tech
+        state: state
+      properties:
+        authUrl:
+          description: URL to redirect your user to for OAuth authorization
+          format: uri
+          type: string
+        state:
+          description: State parameter for security (handled automatically)
+          type: string
     connectShopifyWithToken_request:
       properties:
         profileId:
@@ -161021,6 +161207,41 @@ components:
         reason:
           description: "Our review note on changes_requested, the reason on rejected,\
             \ or why a launch filing bounced back to testing."
+    ConnectHandoff_accounts_inner:
+      example:
+        profileId: profileId
+        id: id
+        username: username
+      properties:
+        id:
+          description: The Zernio account id.
+          type: string
+        profileId:
+          type: string
+        username:
+          type: string
+    ConnectHandoff_error:
+      description: Set when `status` is `failed`.
+      example:
+        code: code
+        details:
+          key: details
+        message: message
+      properties:
+        code:
+          description: "The `error` code the flow ended on, as on a redirect_url.\
+            \ `connect_incomplete` when the phone reported no outcome, `connect_unverified`\
+            \ when it reported an account Zernio could not match to this connect."
+          type: string
+        message:
+          nullable: true
+          type: string
+        details:
+          additionalProperties:
+            type: string
+          description: "The other params the redirect flow appends for that error,\
+            \ such as `is_user_fixable`, `reason`, `dashboard_url`, `request_id` and\
+            \ `stage`. All optional."
     AnalyticsDashboardFollowers_byAccount_inner:
       example:
         accountId: accountId
