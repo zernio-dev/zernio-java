@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.340.2
+  version: 1.341.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54087,6 +54087,62 @@ paths:
       x-accepts:
       - application/json
   /v1/ads/audiences/{audienceId}/users:
+    delete:
+      description: |
+        Removes customer emails and phone numbers from a Meta customer list audience. Same body as
+        `POST /v1/ads/audiences/{audienceId}/users`: send plaintext rows, they are normalized and
+        SHA256-hashed server-side exactly like an upload, so a row removes the person it added.
+
+        Meta only, customer_list only. Every other platform returns 422 with code `feature_not_available`,
+        and every other audience type returns 422. Max 10,000 users per request. Meta applies the removal
+        asynchronously, so the audience size does not drop immediately.
+      operationId: removeUsersFromAdAudience
+      parameters:
+      - description: "The Zernio audience id (the id field of GET /v1/ads/audiences),\
+          \ not the platform segment id."
+        explode: false
+        in: path
+        name: audienceId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/removeUsersFromAdAudience_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/removeUsersFromAdAudience_200_response"
+          description: Users removed
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: |
+            Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "422":
+          description: "The audience is not a customer_list, is not on Meta (code\
+            \ `feature_not_available`), or has no platform ID yet."
+      security:
+      - bearerAuth: []
+      summary: Remove users from audience
+      tags:
+      - Ad Audiences
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-content-type: application/json
+      x-accepts:
+      - application/json
     post:
       description: |
         Uploads customer emails (and phone numbers on Meta) to a customer list audience, hashed before they are sent.
@@ -152830,7 +152886,39 @@ components:
         numReceived:
           type: integer
         numInvalid:
+          description: Rows the platform could not read. Returned on Meta only.
           type: integer
+    removeUsersFromAdAudience_request:
+      properties:
+        users:
+          items:
+            $ref: "#/components/schemas/addUsersToAdAudience_request_users_inner"
+          maxItems: 10000
+          minItems: 1
+          type: array
+      required:
+      - users
+    removeUsersFromAdAudience_200_response:
+      example:
+        invalidEntrySamples:
+          key: invalidEntrySamples
+        numReceived: 0
+        message: message
+        numInvalid: 6
+      properties:
+        message:
+          type: string
+        numReceived:
+          description: Rows Meta received.
+          type: integer
+        numInvalid:
+          description: Rows Meta could not read.
+          type: integer
+        invalidEntrySamples:
+          additionalProperties:
+            type: string
+          description: "A sample of the rows Meta could not read, passed through as\
+            \ Meta returns it. Empty when every row was valid."
     replaceAdAudienceCompanies_request_companies_inner:
       additionalProperties: false
       properties:

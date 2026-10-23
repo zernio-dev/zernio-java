@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.340.2
+- API version: 1.341.0
 
-- Build date: 2026-10-23T10:47:54.430342386Z[Etc/UTC]
+- Build date: 2026-10-23T11:19:43.897293907Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.340.2</version>
+  <version>1.341.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.340.2"
+compile "dev.zernio:zernio-sdk:1.341.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.340.2.jar`
+- `target/zernio-sdk-1.341.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -361,6 +361,8 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**getAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#getAdAudienceWithHttpInfo) | **GET** /v1/ads/audiences/{audienceId} | Get audience details
 *AdAudiencesApi* | [**listAdAudiences**](docs/AdAudiencesApi.md#listAdAudiences) | **GET** /v1/ads/audiences | List custom audiences
 *AdAudiencesApi* | [**listAdAudiencesWithHttpInfo**](docs/AdAudiencesApi.md#listAdAudiencesWithHttpInfo) | **GET** /v1/ads/audiences | List custom audiences
+*AdAudiencesApi* | [**removeUsersFromAdAudience**](docs/AdAudiencesApi.md#removeUsersFromAdAudience) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience
+*AdAudiencesApi* | [**removeUsersFromAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#removeUsersFromAdAudienceWithHttpInfo) | **DELETE** /v1/ads/audiences/{audienceId}/users | Remove users from audience
 *AdAudiencesApi* | [**replaceAdAudienceCompanies**](docs/AdAudiencesApi.md#replaceAdAudienceCompanies) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
@@ -4071,6 +4073,8 @@ Class | Method | HTTP request | Description
  - [RemoveTrackingTagFromStore200Response](docs/RemoveTrackingTagFromStore200Response.md)
  - [RemoveTrackingTagFromStore200ResponseInstall](docs/RemoveTrackingTagFromStore200ResponseInstall.md)
  - [RemoveTrackingTagUser200Response](docs/RemoveTrackingTagUser200Response.md)
+ - [RemoveUsersFromAdAudience200Response](docs/RemoveUsersFromAdAudience200Response.md)
+ - [RemoveUsersFromAdAudienceRequest](docs/RemoveUsersFromAdAudienceRequest.md)
  - [RemoveWhatsAppGroupParticipantsRequest](docs/RemoveWhatsAppGroupParticipantsRequest.md)
  - [ReorderCommerceCollectionProductsRequest](docs/ReorderCommerceCollectionProductsRequest.md)
  - [ReorderCommerceCollectionProductsRequestMovesInner](docs/ReorderCommerceCollectionProductsRequestMovesInner.md)

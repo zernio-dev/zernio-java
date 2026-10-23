@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**message** | **String** |  |  [optional] |
 |**numReceived** | **Integer** |  |  [optional] |
-|**numInvalid** | **Integer** |  |  [optional] |
+|**numInvalid** | **Integer** | Rows the platform could not read. Returned on Meta only. |  [optional] |
 
 
 
