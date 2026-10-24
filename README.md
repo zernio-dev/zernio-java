@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.348.1
+- API version: 1.349.0
 
-- Build date: 2026-10-24T00:08:38.176884417Z[Etc/UTC]
+- Build date: 2026-10-24T01:51:22.858263059Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.348.1</version>
+  <version>1.349.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.348.1"
+compile "dev.zernio:zernio-sdk:1.349.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.348.1.jar`
+- `target/zernio-sdk-1.349.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2702,6 +2702,8 @@ Class | Method | HTTP request | Description
  - [CreatePinterestBoard201ResponseBoard](docs/CreatePinterestBoard201ResponseBoard.md)
  - [CreatePinterestBoardRequest](docs/CreatePinterestBoardRequest.md)
  - [CreatePost200Response](docs/CreatePost200Response.md)
+ - [CreatePost400Response](docs/CreatePost400Response.md)
+ - [CreatePost400ResponseDetails](docs/CreatePost400ResponseDetails.md)
  - [CreatePost403Response](docs/CreatePost403Response.md)
  - [CreatePost409Response](docs/CreatePost409Response.md)
  - [CreatePost409ResponseDetails](docs/CreatePost409ResponseDetails.md)
@@ -3562,6 +3564,7 @@ Class | Method | HTTP request | Description
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf.md)
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1.md)
  - [LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner](docs/LinkedInLeadFormPlatformDataQuestionsInnerOneOf1ChoicesInner.md)
+ - [LinkedInMentionIssue](docs/LinkedInMentionIssue.md)
  - [LinkedInPlatformData](docs/LinkedInPlatformData.md)
  - [LinkedInPlatformDataAudience](docs/LinkedInPlatformDataAudience.md)
  - [LinkedInPlatformDataAudienceInterfaceLocalesInner](docs/LinkedInPlatformDataAudienceInterfaceLocalesInner.md)
