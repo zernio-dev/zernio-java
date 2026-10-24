@@ -42,7 +42,7 @@ import dev.zernio.ApiClient;
   SendConversions200ResponseFailuresInner.JSON_PROPERTY_CODE,
   SendConversions200ResponseFailuresInner.JSON_PROPERTY_PLATFORM_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:55:06.005090414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:58:31.821368419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendConversions200ResponseFailuresInner {
   public static final String JSON_PROPERTY_EVENT_INDEX = "eventIndex";
   @javax.annotation.Nullable

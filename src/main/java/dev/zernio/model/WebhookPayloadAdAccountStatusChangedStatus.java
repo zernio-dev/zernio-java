@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdAccountStatusChangedStatus.JSON_PROPERTY_CURRENT,
   WebhookPayloadAdAccountStatusChangedStatus.JSON_PROPERTY_RAW
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:55:06.005090414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:58:31.821368419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdAccountStatusChangedStatus {
   /**
    * Gets or Sets previous

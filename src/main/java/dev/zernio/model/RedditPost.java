@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   RedditPost.JSON_PROPERTY_FLAIR_TEXT,
   RedditPost.JSON_PROPERTY_IS_GALLERY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:55:06.005090414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:58:31.821368419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RedditPost {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

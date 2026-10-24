@@ -48,7 +48,7 @@ import dev.zernio.ApiClient;
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_FULFILMENT,
   ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.JSON_PROPERTY_PRE_ORDERABLE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:55:06.005090414Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T18:58:31.821368419Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListPhoneNumberCountries200ResponseCountriesInnerTypesInner {
   /**
    * Gets or Sets numberType
