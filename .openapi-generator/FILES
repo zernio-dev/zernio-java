@@ -833,6 +833,7 @@ docs/ExternalPostSummary.md
 docs/ExternalPostSummaryAnalytics.md
 docs/ExternalPostWebhookPost.md
 docs/FacebookOrInstagramPost.md
+docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
 docs/FacebookPostEarningsResponse.md
 docs/FacebookPostEarningsResponseMetricsValue.md
@@ -2511,6 +2512,7 @@ docs/UpdateDiscordSettings200ResponseAccount.md
 docs/UpdateDiscordSettingsRequest.md
 docs/UpdateFacebookPage200Response.md
 docs/UpdateFacebookPage200ResponseSelectedPage.md
+docs/UpdateFacebookPageInfoRequest.md
 docs/UpdateFacebookPageRequest.md
 docs/UpdateGmbLocation200Response.md
 docs/UpdateGmbLocationRequest.md
@@ -3831,6 +3833,7 @@ src/main/java/dev/zernio/model/ExternalPostSummary.java
 src/main/java/dev/zernio/model/ExternalPostSummaryAnalytics.java
 src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
 src/main/java/dev/zernio/model/FacebookOrInstagramPost.java
+src/main/java/dev/zernio/model/FacebookPageInfo.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponse.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValue.java
@@ -5472,6 +5475,7 @@ src/main/java/dev/zernio/model/UpdateDiscordSettings200ResponseAccount.java
 src/main/java/dev/zernio/model/UpdateDiscordSettingsRequest.java
 src/main/java/dev/zernio/model/UpdateFacebookPage200Response.java
 src/main/java/dev/zernio/model/UpdateFacebookPage200ResponseSelectedPage.java
+src/main/java/dev/zernio/model/UpdateFacebookPageInfoRequest.java
 src/main/java/dev/zernio/model/UpdateFacebookPageRequest.java
 src/main/java/dev/zernio/model/UpdateGmbLocation200Response.java
 src/main/java/dev/zernio/model/UpdateGmbLocationRequest.java
@@ -5879,3 +5883,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FacebookPageInfoTest.java
+src/test/java/dev/zernio/model/UpdateFacebookPageInfoRequestTest.java

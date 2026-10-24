@@ -16,6 +16,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteMessengerMenuWithHttpInfo**](AccountSettingsApi.md#deleteMessengerMenuWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete persistent menu |
 | [**deleteTelegramCommands**](AccountSettingsApi.md#deleteTelegramCommands) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands |
 | [**deleteTelegramCommandsWithHttpInfo**](AccountSettingsApi.md#deleteTelegramCommandsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands |
+| [**getFacebookPageInfo**](AccountSettingsApi.md#getFacebookPageInfo) | **GET** /v1/accounts/{accountId}/facebook-page-info | Get a Facebook Page&#39;s public info |
+| [**getFacebookPageInfoWithHttpInfo**](AccountSettingsApi.md#getFacebookPageInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page-info | Get a Facebook Page&#39;s public info |
 | [**getInstagramIceBreakers**](AccountSettingsApi.md#getInstagramIceBreakers) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers |
 | [**getInstagramIceBreakersWithHttpInfo**](AccountSettingsApi.md#getInstagramIceBreakersWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers |
 | [**getMessengerGetStarted**](AccountSettingsApi.md#getMessengerGetStarted) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button |
@@ -40,6 +42,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**setMessengerMenuWithHttpInfo**](AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu |
 | [**setTelegramCommands**](AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands |
 | [**setTelegramCommandsWithHttpInfo**](AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands |
+| [**updateFacebookPageInfo**](AccountSettingsApi.md#updateFacebookPageInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info |
+| [**updateFacebookPageInfoWithHttpInfo**](AccountSettingsApi.md#updateFacebookPageInfoWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info |
 
 
 
@@ -931,6 +935,162 @@ ApiResponse<Void>
 | **200** | Commands deleted |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## getFacebookPageInfo
+
+> FacebookPageInfo getFacebookPageInfo(accountId)
+
+Get a Facebook Page&#39;s public info
+
+Returns the public info of the Page selected on a &#x60;facebook&#x60; account: about, description, website, phone, emails and opening hours, as Meta returns them from the Page node. Text fields the Page never filled come back as null. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        try {
+            FacebookPageInfo result = apiInstance.getFacebookPageInfo(accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#getFacebookPageInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+
+### Return type
+
+[**FacebookPageInfo**](FacebookPageInfo.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s public info |  -  |
+| **400** | Invalid accountId, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## getFacebookPageInfoWithHttpInfo
+
+> ApiResponse<FacebookPageInfo> getFacebookPageInfo getFacebookPageInfoWithHttpInfo(accountId)
+
+Get a Facebook Page&#39;s public info
+
+Returns the public info of the Page selected on a &#x60;facebook&#x60; account: about, description, website, phone, emails and opening hours, as Meta returns them from the Page node. Text fields the Page never filled come back as null. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        try {
+            ApiResponse<FacebookPageInfo> response = apiInstance.getFacebookPageInfoWithHttpInfo(accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#getFacebookPageInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+
+### Return type
+
+ApiResponse<[**FacebookPageInfo**](FacebookPageInfo.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s public info |  -  |
+| **400** | Invalid accountId, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 
 
 ## getInstagramIceBreakers
@@ -2739,4 +2899,164 @@ ApiResponse<Void>
 | **200** | Commands set successfully |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+
+## updateFacebookPageInfo
+
+> FacebookPageInfo updateFacebookPageInfo(accountId, updateFacebookPageInfoRequest)
+
+Update a Facebook Page&#39;s public info
+
+Updates the public info of the Page selected on a &#x60;facebook&#x60; account. Only the fields in the body are sent to Meta, every other field keeps its value. Send an empty string to clear a text field. Unknown fields are rejected with a 400.  Returns the Page info read back from Meta after the update. Meta needs the &#x60;pages_manage_metadata&#x60; permission and a Page role that can edit the Page: without them Meta&#39;s refusal comes back as &#x60;platform_api_error&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        UpdateFacebookPageInfoRequest updateFacebookPageInfoRequest = new UpdateFacebookPageInfoRequest(); // UpdateFacebookPageInfoRequest | 
+        try {
+            FacebookPageInfo result = apiInstance.updateFacebookPageInfo(accountId, updateFacebookPageInfoRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#updateFacebookPageInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **updateFacebookPageInfoRequest** | [**UpdateFacebookPageInfoRequest**](UpdateFacebookPageInfoRequest.md)|  | |
+
+### Return type
+
+[**FacebookPageInfo**](FacebookPageInfo.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s public info after the update |  -  |
+| **400** | Invalid accountId, an empty body, an unknown or malformed field, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the value (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the edit (&#x60;platform_api_error&#x60;, for example a Page role that cannot edit the Page). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## updateFacebookPageInfoWithHttpInfo
+
+> ApiResponse<FacebookPageInfo> updateFacebookPageInfo updateFacebookPageInfoWithHttpInfo(accountId, updateFacebookPageInfoRequest)
+
+Update a Facebook Page&#39;s public info
+
+Updates the public info of the Page selected on a &#x60;facebook&#x60; account. Only the fields in the body are sent to Meta, every other field keeps its value. Send an empty string to clear a text field. Unknown fields are rejected with a 400.  Returns the Page info read back from Meta after the update. Meta needs the &#x60;pages_manage_metadata&#x60; permission and a Page role that can edit the Page: without them Meta&#39;s refusal comes back as &#x60;platform_api_error&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AccountSettingsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AccountSettingsApi apiInstance = new AccountSettingsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        UpdateFacebookPageInfoRequest updateFacebookPageInfoRequest = new UpdateFacebookPageInfoRequest(); // UpdateFacebookPageInfoRequest | 
+        try {
+            ApiResponse<FacebookPageInfo> response = apiInstance.updateFacebookPageInfoWithHttpInfo(accountId, updateFacebookPageInfoRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AccountSettingsApi#updateFacebookPageInfo");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **updateFacebookPageInfoRequest** | [**UpdateFacebookPageInfoRequest**](UpdateFacebookPageInfoRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**FacebookPageInfo**](FacebookPageInfo.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The Page&#39;s public info after the update |  -  |
+| **400** | Invalid accountId, an empty body, an unknown or malformed field, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the value (&#x60;platform_api_error&#x60;). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account, or Meta refused the edit (&#x60;platform_api_error&#x60;, for example a Page role that cannot edit the Page). |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 

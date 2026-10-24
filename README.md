@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.350.8
+- API version: 1.350.9
 
-- Build date: 2026-10-24T19:30:43.235465970Z[Etc/UTC]
+- Build date: 2026-10-24T20:44:55.980268784Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.350.8</version>
+  <version>1.350.9</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.350.8"
+compile "dev.zernio:zernio-sdk:1.350.9"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.350.8.jar`
+- `target/zernio-sdk-1.350.9.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -145,6 +145,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**deleteMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#deleteMessengerMenuWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/messenger-menu | Delete persistent menu
 *AccountSettingsApi* | [**deleteTelegramCommands**](docs/AccountSettingsApi.md#deleteTelegramCommands) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
 *AccountSettingsApi* | [**deleteTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#deleteTelegramCommandsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/telegram-commands | Delete TG bot commands
+*AccountSettingsApi* | [**getFacebookPageInfo**](docs/AccountSettingsApi.md#getFacebookPageInfo) | **GET** /v1/accounts/{accountId}/facebook-page-info | Get a Facebook Page&#39;s public info
+*AccountSettingsApi* | [**getFacebookPageInfoWithHttpInfo**](docs/AccountSettingsApi.md#getFacebookPageInfoWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page-info | Get a Facebook Page&#39;s public info
 *AccountSettingsApi* | [**getInstagramIceBreakers**](docs/AccountSettingsApi.md#getInstagramIceBreakers) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
 *AccountSettingsApi* | [**getInstagramIceBreakersWithHttpInfo**](docs/AccountSettingsApi.md#getInstagramIceBreakersWithHttpInfo) | **GET** /v1/accounts/{accountId}/instagram-ice-breakers | Get IG ice breakers
 *AccountSettingsApi* | [**getMessengerGetStarted**](docs/AccountSettingsApi.md#getMessengerGetStarted) | **GET** /v1/accounts/{accountId}/messenger-get-started | Get FB Get Started button
@@ -169,6 +171,8 @@ Class | Method | HTTP request | Description
 *AccountSettingsApi* | [**setMessengerMenuWithHttpInfo**](docs/AccountSettingsApi.md#setMessengerMenuWithHttpInfo) | **PUT** /v1/accounts/{accountId}/messenger-menu | Set persistent menu
 *AccountSettingsApi* | [**setTelegramCommands**](docs/AccountSettingsApi.md#setTelegramCommands) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
 *AccountSettingsApi* | [**setTelegramCommandsWithHttpInfo**](docs/AccountSettingsApi.md#setTelegramCommandsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/telegram-commands | Set TG bot commands
+*AccountSettingsApi* | [**updateFacebookPageInfo**](docs/AccountSettingsApi.md#updateFacebookPageInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info
+*AccountSettingsApi* | [**updateFacebookPageInfoWithHttpInfo**](docs/AccountSettingsApi.md#updateFacebookPageInfoWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/facebook-page-info | Update a Facebook Page&#39;s public info
 *AccountsApi* | [**deleteAccount**](docs/AccountsApi.md#deleteAccount) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**deleteAccountWithHttpInfo**](docs/AccountsApi.md#deleteAccountWithHttpInfo) | **DELETE** /v1/accounts/{accountId} | Disconnect account
 *AccountsApi* | [**getAccountHealth**](docs/AccountsApi.md#getAccountHealth) | **GET** /v1/accounts/{accountId}/health | Check account health
@@ -2932,6 +2936,7 @@ Class | Method | HTTP request | Description
  - [ExternalPostSummaryAnalytics](docs/ExternalPostSummaryAnalytics.md)
  - [ExternalPostWebhookPost](docs/ExternalPostWebhookPost.md)
  - [FacebookOrInstagramPost](docs/FacebookOrInstagramPost.md)
+ - [FacebookPageInfo](docs/FacebookPageInfo.md)
  - [FacebookPlatformData](docs/FacebookPlatformData.md)
  - [FacebookPostEarningsResponse](docs/FacebookPostEarningsResponse.md)
  - [FacebookPostEarningsResponseMetricsValue](docs/FacebookPostEarningsResponseMetricsValue.md)
@@ -4573,6 +4578,7 @@ Class | Method | HTTP request | Description
  - [UpdateDiscordSettingsRequest](docs/UpdateDiscordSettingsRequest.md)
  - [UpdateFacebookPage200Response](docs/UpdateFacebookPage200Response.md)
  - [UpdateFacebookPage200ResponseSelectedPage](docs/UpdateFacebookPage200ResponseSelectedPage.md)
+ - [UpdateFacebookPageInfoRequest](docs/UpdateFacebookPageInfoRequest.md)
  - [UpdateFacebookPageRequest](docs/UpdateFacebookPageRequest.md)
  - [UpdateGmbLocation200Response](docs/UpdateGmbLocation200Response.md)
  - [UpdateGmbLocationRequest](docs/UpdateGmbLocationRequest.md)
