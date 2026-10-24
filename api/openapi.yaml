@@ -31900,7 +31900,9 @@ paths:
             \ choose an area with stock or set a stock watch). When the only numbers\
             \ the carrier lists failed WhatsApp registration recently and are held\
             \ back, the message names the date the first one clears and details.undeliverableUntil\
-            \ carries it as an ISO timestamp."
+            \ carries it as an ISO timestamp. When phoneNumber was sent and that exact\
+            \ number is no longer available (or WhatsApp cannot use it), code phone_number_unavailable\
+            \ with param phoneNumber: nothing was ordered, pick another number."
         "401":
           $ref: "#/components/responses/Unauthorized"
       security:
@@ -32768,7 +32770,9 @@ paths:
             \ choose an area with stock or set a stock watch). When the only numbers\
             \ the carrier lists failed WhatsApp registration recently and are held\
             \ back, the message names the date the first one clears and details.undeliverableUntil\
-            \ carries it as an ISO timestamp."
+            \ carries it as an ISO timestamp. When phoneNumber was sent and that exact\
+            \ number is no longer available (or WhatsApp cannot use it), code phone_number_unavailable\
+            \ with param phoneNumber: nothing was ordered, pick another number."
         "401":
           $ref: "#/components/responses/Unauthorized"
         "503":
@@ -124819,6 +124823,14 @@ components:
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
           type: string
+        phoneNumber:
+          description: "Exact number to order, in E.164, taken from GET /v1/phone-numbers/available.\
+            \ It is ordered as is or the request fails with 409 code phone_number_unavailable;\
+            \ another number is never substituted and a pre-order is never placed.\
+            \ Requires quantity 1 (or omitted). Omit to let the carrier pick a number\
+            \ in the area."
+          pattern: "^\\+[1-9]\\d{6,14}$"
+          type: string
         preOrder:
           description: "With areaCode: pre-order that area when it has no stock (an\
             \ area listed in soldOutAreas with preOrderable true) instead of failing\
@@ -126098,6 +126110,14 @@ components:
             \ /v1/phone-numbers/availability (areaOptions); the purchase 202 kycUrl\
             \ echoes the areaCode picked at purchase time so it can be passed here."
           pattern: "^\\d{1,4}$"
+          type: string
+        phoneNumber:
+          description: "Exact number to order, in E.164, taken from GET /v1/whatsapp/phone-numbers/available.\
+            \ It is ordered as is or the request fails with 409 code phone_number_unavailable;\
+            \ another number is never substituted and a pre-order is never placed.\
+            \ Requires quantity 1 (or omitted). Omit to let the carrier pick a number\
+            \ in the area."
+          pattern: "^\\+[1-9]\\d{6,14}$"
           type: string
         preOrder:
           description: "With areaCode: pre-order that area when it has no stock (an\

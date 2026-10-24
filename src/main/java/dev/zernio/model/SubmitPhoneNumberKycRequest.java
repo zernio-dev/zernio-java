@@ -47,6 +47,7 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_REUSE_OPTION_ID,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_REUSE_FROM,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_AREA_CODE,
+  SubmitPhoneNumberKycRequest.JSON_PROPERTY_PHONE_NUMBER,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_PRE_ORDER,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_END_USER_FIRST_NAME,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_END_USER_LAST_NAME,
@@ -54,7 +55,7 @@ import dev.zernio.ApiClient;
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_DOCUMENTS,
   SubmitPhoneNumberKycRequest.JSON_PROPERTY_ADDRESS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T01:51:22.858263059Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T02:50:14.340326538Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SubmitPhoneNumberKycRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
@@ -87,6 +88,10 @@ public class SubmitPhoneNumberKycRequest {
   public static final String JSON_PROPERTY_AREA_CODE = "areaCode";
   @javax.annotation.Nullable
   private String areaCode;
+
+  public static final String JSON_PROPERTY_PHONE_NUMBER = "phoneNumber";
+  @javax.annotation.Nullable
+  private String phoneNumber;
 
   public static final String JSON_PROPERTY_PRE_ORDER = "preOrder";
   @javax.annotation.Nullable
@@ -309,6 +314,30 @@ public class SubmitPhoneNumberKycRequest {
   }
 
 
+  public SubmitPhoneNumberKycRequest phoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+    return this;
+  }
+
+  /**
+   * Exact number to order, in E.164, taken from GET /v1/phone-numbers/available. It is ordered as is or the request fails with 409 code phone_number_unavailable; another number is never substituted and a pre-order is never placed. Requires quantity 1 (or omitted). Omit to let the carrier pick a number in the area.
+   * @return phoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getPhoneNumber() {
+    return phoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setPhoneNumber(@javax.annotation.Nullable String phoneNumber) {
+    this.phoneNumber = phoneNumber;
+  }
+
+
   public SubmitPhoneNumberKycRequest preOrder(@javax.annotation.Nullable Boolean preOrder) {
     this.preOrder = preOrder;
     return this;
@@ -489,6 +518,7 @@ public class SubmitPhoneNumberKycRequest {
         Objects.equals(this.reuseOptionId, submitPhoneNumberKycRequest.reuseOptionId) &&
         Objects.equals(this.reuseFrom, submitPhoneNumberKycRequest.reuseFrom) &&
         Objects.equals(this.areaCode, submitPhoneNumberKycRequest.areaCode) &&
+        Objects.equals(this.phoneNumber, submitPhoneNumberKycRequest.phoneNumber) &&
         Objects.equals(this.preOrder, submitPhoneNumberKycRequest.preOrder) &&
         Objects.equals(this.endUserFirstName, submitPhoneNumberKycRequest.endUserFirstName) &&
         Objects.equals(this.endUserLastName, submitPhoneNumberKycRequest.endUserLastName) &&
@@ -499,7 +529,7 @@ public class SubmitPhoneNumberKycRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseOptionId, reuseFrom, areaCode, preOrder, endUserFirstName, endUserLastName, values, documents, address);
+    return Objects.hash(profileId, country, submissionId, quantity, reuse, reuseOptionId, reuseFrom, areaCode, phoneNumber, preOrder, endUserFirstName, endUserLastName, values, documents, address);
   }
 
   @Override
@@ -514,6 +544,7 @@ public class SubmitPhoneNumberKycRequest {
     sb.append("    reuseOptionId: ").append(toIndentedString(reuseOptionId)).append("\n");
     sb.append("    reuseFrom: ").append(toIndentedString(reuseFrom)).append("\n");
     sb.append("    areaCode: ").append(toIndentedString(areaCode)).append("\n");
+    sb.append("    phoneNumber: ").append(toIndentedString(phoneNumber)).append("\n");
     sb.append("    preOrder: ").append(toIndentedString(preOrder)).append("\n");
     sb.append("    endUserFirstName: ").append(toIndentedString(endUserFirstName)).append("\n");
     sb.append("    endUserLastName: ").append(toIndentedString(endUserLastName)).append("\n");
@@ -605,6 +636,11 @@ public class SubmitPhoneNumberKycRequest {
     // add `areaCode` to the URL query string
     if (getAreaCode() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sareaCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getAreaCode()))));
+    }
+
+    // add `phoneNumber` to the URL query string
+    if (getPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sphoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getPhoneNumber()))));
     }
 
     // add `preOrder` to the URL query string

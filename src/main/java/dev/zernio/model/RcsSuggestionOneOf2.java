@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   RcsSuggestionOneOf2.JSON_PROPERTY_WEBVIEW_VIEW_MODE,
   RcsSuggestionOneOf2.JSON_PROPERTY_POSTBACK_DATA
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T01:51:22.858263059Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-24T02:50:14.340326538Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class RcsSuggestionOneOf2 {
   /**
    * Gets or Sets type
