@@ -841,6 +841,10 @@ docs/FacebookSettings.md
 docs/FacebookSettingsCarouselCardsInner.md
 docs/FacebookTaggedPost.md
 docs/FacebookTaggedPostFrom.md
+docs/FacebookVisitorPost.md
+docs/FacebookVisitorPostFrom.md
+docs/FacebookVisitorPostMedia.md
+docs/FacebookVisitorPostMediaMediaItemsInner.md
 docs/FeedbackApi.md
 docs/FeedbackReceipt.md
 docs/FetchGoogleBusinessVerificationOptions200Response.md
@@ -1626,6 +1630,7 @@ docs/ListDiscordScheduledEvents200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
+docs/ListFacebookVisitorPosts200Response.md
 docs/ListFormLeads200Response.md
 docs/ListFormLeads200ResponseLeadsInner.md
 docs/ListFormLeads200ResponseMeta.md
@@ -3832,6 +3837,10 @@ src/main/java/dev/zernio/model/FacebookSettings.java
 src/main/java/dev/zernio/model/FacebookSettingsCarouselCardsInner.java
 src/main/java/dev/zernio/model/FacebookTaggedPost.java
 src/main/java/dev/zernio/model/FacebookTaggedPostFrom.java
+src/main/java/dev/zernio/model/FacebookVisitorPost.java
+src/main/java/dev/zernio/model/FacebookVisitorPostFrom.java
+src/main/java/dev/zernio/model/FacebookVisitorPostMedia.java
+src/main/java/dev/zernio/model/FacebookVisitorPostMediaMediaItemsInner.java
 src/main/java/dev/zernio/model/FeedbackReceipt.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200Response.java
 src/main/java/dev/zernio/model/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.java
@@ -4602,6 +4611,7 @@ src/main/java/dev/zernio/model/ListDiscordScheduledEvents200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
+src/main/java/dev/zernio/model/ListFacebookVisitorPosts200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200Response.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseLeadsInner.java
 src/main/java/dev/zernio/model/ListFormLeads200ResponseMeta.java
@@ -5865,3 +5875,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FacebookVisitorPostFromTest.java
+src/test/java/dev/zernio/model/FacebookVisitorPostMediaMediaItemsInnerTest.java
+src/test/java/dev/zernio/model/FacebookVisitorPostMediaTest.java
+src/test/java/dev/zernio/model/FacebookVisitorPostTest.java
+src/test/java/dev/zernio/model/ListFacebookVisitorPosts200ResponseTest.java

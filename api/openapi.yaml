@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.350.1
+  version: 1.350.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -17813,6 +17813,115 @@ paths:
       tags:
       - Analytics
       x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/facebook-visitor-posts:
+    get:
+      description: |
+        Returns the posts other people published on the connected Facebook Page,
+        newest first. Zernio reads the Page feed (Graph `/{page-id}/feed`, which
+        works on New Pages Experience Pages, unlike the deprecated `visitor_posts`
+        edge) and drops the posts the Page published itself and the posts other
+        people published on their own timeline that only tag the Page. A Page
+        without visitor posts returns an empty `data` array.
+
+        Cursor-paginated: pass `nextCursor` from the previous response as
+        `cursor` to read the next page. `limit` sets how many feed entries are
+        scanned, so a page can hold fewer posts than `limit`, or none, while
+        `nextCursor` is not null. `nextCursor` is null when there are no more
+        pages, and the final page can come back empty.
+
+        Works on `facebook` accounts with a Page selected. Meta requires the `pages_read_user_content`
+        permission, which Zernio requests with the comments scope: an account
+        connected without it receives Meta's refusal as `platform_api_error`.
+      operationId: listFacebookVisitorPosts
+      parameters:
+      - description: The ID of a connected Facebook Page account.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Number of Page feed entries to scan. The Page's own posts are
+          dropped from them.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: The `nextCursor` of the previous page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          maxLength: 4096
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                data:
+                - id: 108765432101234_900000000000001
+                  message: Love this page
+                  createdTime: 2026-10-20T08:00:00+0000
+                  from:
+                    id: "27000000000001"
+                    name: Jane Visitor
+                  permalinkUrl: https://www.facebook.com/108765432101234/posts/900000000000001
+                  media: null
+                nextCursor: QVFIUa
+              schema:
+                $ref: "#/components/schemas/listFacebookVisitorPosts_200_response"
+          description: One page of visitor posts
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, limit or cursor, an account on another\
+            \ platform (`platform_not_supported`), or Meta refused the request (`platform_api_error`,\
+            \ for example the Page was connected without the `pages_read_user_content`\
+            \ permission)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The API key is not scoped to this account.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The account is not reachable by the caller (`account_not_found`).
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The connection has no Facebook Page selected (`linked_account_required`).
+            Select a Page or reconnect the account.
+      summary: List visitor posts on a Facebook Page
+      tags:
+      - Analytics
+      x-resource-group: analytics
+      x-platforms:
+      - facebook
       x-accepts:
       - application/json
   /v1/accounts/{accountId}/facebook-tagged-posts:
@@ -79939,6 +80048,52 @@ components:
       - mediaType
       - timestamp
       - username
+    FacebookVisitorPost:
+      example:
+        createdTime: createdTime
+        from:
+          name: name
+          id: id
+        id: id
+        media:
+          mediaItems:
+          - thumbnail: thumbnail
+            type: image
+            url: url
+          - thumbnail: thumbnail
+            type: image
+            url: url
+          mediaType: image
+          thumbnailUrl: thumbnailUrl
+        message: message
+        permalinkUrl: permalinkUrl
+      properties:
+        id:
+          description: "Facebook post ID (`{pageId}_{postId}`)."
+          type: string
+        message:
+          description: Text of the post. Null for media-only posts.
+          nullable: true
+          type: string
+        createdTime:
+          description: Creation time as Meta returns it (ISO 8601).
+          nullable: true
+          type: string
+        from:
+          $ref: "#/components/schemas/FacebookVisitorPost_from"
+        permalinkUrl:
+          description: Public Facebook URL of the post.
+          nullable: true
+          type: string
+        media:
+          $ref: "#/components/schemas/FacebookVisitorPost_media"
+      required:
+      - createdTime
+      - from
+      - id
+      - media
+      - message
+      - permalinkUrl
     FacebookTaggedPost:
       example:
         pictureUrl: pictureUrl
@@ -110351,6 +110506,57 @@ components:
         lastUpdated:
           format: date-time
           type: string
+    listFacebookVisitorPosts_200_response:
+      example:
+        nextCursor: nextCursor
+        data:
+        - createdTime: createdTime
+          from:
+            name: name
+            id: id
+          id: id
+          media:
+            mediaItems:
+            - thumbnail: thumbnail
+              type: image
+              url: url
+            - thumbnail: thumbnail
+              type: image
+              url: url
+            mediaType: image
+            thumbnailUrl: thumbnailUrl
+          message: message
+          permalinkUrl: permalinkUrl
+        - createdTime: createdTime
+          from:
+            name: name
+            id: id
+          id: id
+          media:
+            mediaItems:
+            - thumbnail: thumbnail
+              type: image
+              url: url
+            - thumbnail: thumbnail
+              type: image
+              url: url
+            mediaType: image
+            thumbnailUrl: thumbnailUrl
+          message: message
+          permalinkUrl: permalinkUrl
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/FacebookVisitorPost"
+          type: array
+        nextCursor:
+          description: Pass as `cursor` to read the next page. Null when there are
+            no more pages.
+          nullable: true
+          type: string
+      required:
+      - data
+      - nextCursor
     listFacebookTaggedPosts_200_response:
       example:
         nextCursor: nextCursor
@@ -167933,6 +168139,74 @@ components:
           type: integer
       required:
       - audioId
+    FacebookVisitorPost_from:
+      description: The person or Page that published the post. Null when Meta omits
+        the author.
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: App-scoped ID of the author.
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
+    FacebookVisitorPost_media_mediaItems_inner:
+      example:
+        thumbnail: thumbnail
+        type: image
+        url: url
+      properties:
+        type:
+          enum:
+          - image
+          - video
+          type: string
+        url:
+          description: Temporary CDN URL.
+          type: string
+        thumbnail:
+          description: Poster frame of a video.
+          type: string
+      required:
+      - type
+      - url
+    FacebookVisitorPost_media:
+      description: "Media of the first attachment, in the same shape as Facebook Page\
+        \ posts. Null when the post has no attachment."
+      example:
+        mediaItems:
+        - thumbnail: thumbnail
+          type: image
+          url: url
+        - thumbnail: thumbnail
+          type: image
+          url: url
+        mediaType: image
+        thumbnailUrl: thumbnailUrl
+      properties:
+        mediaType:
+          enum:
+          - image
+          - video
+          - carousel
+          - text
+          type: string
+        thumbnailUrl:
+          description: Temporary CDN URL of the cover image. Empty when there is none.
+          type: string
+        mediaItems:
+          items:
+            $ref: "#/components/schemas/FacebookVisitorPost_media_mediaItems_inner"
+          type: array
+      required:
+      - mediaItems
+      - mediaType
+      - thumbnailUrl
     FacebookTaggedPost_from:
       description: "Null when Meta does not return the author, which is common for\
         \ posts by people."
