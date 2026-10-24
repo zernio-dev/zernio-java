@@ -5875,8 +5875,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/FacebookVisitorPostFromTest.java
-src/test/java/dev/zernio/model/FacebookVisitorPostMediaMediaItemsInnerTest.java
-src/test/java/dev/zernio/model/FacebookVisitorPostMediaTest.java
-src/test/java/dev/zernio/model/FacebookVisitorPostTest.java
-src/test/java/dev/zernio/model/ListFacebookVisitorPosts200ResponseTest.java
