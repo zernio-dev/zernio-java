@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.348.0
+  version: 1.348.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -17783,6 +17783,96 @@ paths:
         "502":
           description: Facebook rejected the request
       summary: Get Facebook post reactions
+      tags:
+      - Analytics
+      x-resource-group: analytics
+      x-accepts:
+      - application/json
+  /v1/accounts/{accountId}/facebook-tagged-posts:
+    get:
+      description: |
+        Returns the public posts where other people or Pages tagged the connected
+        Facebook Page, as Meta returns them from the Page's `tagged` edge.
+
+        Cursor-paginated: pass `nextCursor` from the previous response as
+        `cursor` to read the next page. `nextCursor` is null when there are no
+        more pages. Meta does not say whether a page is the last one, so the
+        final page can come back empty with `nextCursor` null.
+
+        Works for `facebook` accounts with a Page selected. Meta needs the
+        `pages_read_user_content` permission on the connection: a connection
+        made without it gets Meta's refusal back as `platform_api_error`, and
+        reconnecting the account grants it.
+      operationId: listFacebookTaggedPosts
+      parameters:
+      - description: The ID of a connected Facebook account.
+        explode: false
+        in: path
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Page size.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 25
+          maximum: 50
+          minimum: 1
+          type: integer
+        style: form
+      - description: The `nextCursor` of the previous page.
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listFacebookTaggedPosts_200_response"
+          description: One page of posts the Page is tagged in
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, limit or cursor, an account on another\
+            \ platform (`platform_not_supported`), or Meta refused the request (`platform_api_error`,\
+            \ for example a missing `pages_read_user_content` permission)."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The API key is not scoped to this account.
+        "404":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The account is not reachable by the caller (`account_not_found`).
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "422":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The connection has no Facebook Page selected (`linked_account_required`).
+            Select a Page or reconnect the account.
+      summary: List the posts a Facebook Page is tagged in
       tags:
       - Analytics
       x-resource-group: analytics
@@ -79784,6 +79874,50 @@ components:
       - mediaType
       - timestamp
       - username
+    FacebookTaggedPost:
+      example:
+        pictureUrl: pictureUrl
+        createdTime: createdTime
+        from:
+          name: name
+          id: id
+        id: id
+        taggedTime: taggedTime
+        message: message
+        permalinkUrl: permalinkUrl
+      properties:
+        id:
+          description: Facebook post ID of the post that tags the Page.
+          type: string
+        message:
+          nullable: true
+          type: string
+        createdTime:
+          description: Publication time as Meta returns it (ISO 8601).
+          nullable: true
+          type: string
+        taggedTime:
+          description: When the Page was tagged in the post (ISO 8601).
+          nullable: true
+          type: string
+        permalinkUrl:
+          description: Public Facebook URL of the post.
+          nullable: true
+          type: string
+        pictureUrl:
+          description: Full-size picture attached to the post.
+          nullable: true
+          type: string
+        from:
+          $ref: "#/components/schemas/FacebookTaggedPost_from"
+      required:
+      - createdTime
+      - from
+      - id
+      - message
+      - permalinkUrl
+      - pictureUrl
+      - taggedTime
     InstagramTaggedMedia:
       example:
         mediaUrl: mediaUrl
@@ -110117,6 +110251,41 @@ components:
         lastUpdated:
           format: date-time
           type: string
+    listFacebookTaggedPosts_200_response:
+      example:
+        nextCursor: nextCursor
+        data:
+        - pictureUrl: pictureUrl
+          createdTime: createdTime
+          from:
+            name: name
+            id: id
+          id: id
+          taggedTime: taggedTime
+          message: message
+          permalinkUrl: permalinkUrl
+        - pictureUrl: pictureUrl
+          createdTime: createdTime
+          from:
+            name: name
+            id: id
+          id: id
+          taggedTime: taggedTime
+          message: message
+          permalinkUrl: permalinkUrl
+      properties:
+        data:
+          items:
+            $ref: "#/components/schemas/FacebookTaggedPost"
+          type: array
+        nextCursor:
+          description: Pass as `cursor` to read the next page. Null when there are
+            no more pages.
+          nullable: true
+          type: string
+      required:
+      - data
+      - nextCursor
     getRedditSubreddits_200_response_subreddits_inner:
       example:
         over18: true
@@ -167631,6 +167800,21 @@ components:
           type: integer
       required:
       - audioId
+    FacebookTaggedPost_from:
+      description: "Null when Meta does not return the author, which is common for\
+        \ posts by people."
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          type: string
+        name:
+          nullable: true
+          type: string
+      required:
+      - id
+      - name
     InstagramMentionedComment_media:
       description: The post the comment was left on.
       example:

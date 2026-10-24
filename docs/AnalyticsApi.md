@@ -62,6 +62,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getYouTubeDemographicsWithHttpInfo**](AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics |
 | [**getYouTubeVideoRetention**](AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
 | [**getYouTubeVideoRetentionWithHttpInfo**](AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve |
+| [**listFacebookTaggedPosts**](AnalyticsApi.md#listFacebookTaggedPosts) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
+| [**listFacebookTaggedPostsWithHttpInfo**](AnalyticsApi.md#listFacebookTaggedPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
 | [**syncExternalPosts**](AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post |
 | [**syncExternalPostsWithHttpInfo**](AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post |
 
@@ -5023,6 +5025,170 @@ ApiResponse<[**YouTubeVideoRetentionResponse**](YouTubeVideoRetentionResponse.md
 | **412** | Missing YouTube Analytics scope |  -  |
 | **429** | The connected account&#39;s upstream platform quota is exhausted.  Reddit rate-limits per connected Reddit user (1000 requests per 10-minute window), and that budget is shared by every operation using that account. Retry after the window resets rather than retrying immediately; repeated calls while exhausted do not succeed and keep the budget spent.  Google Ads: writes and reports run on one developer token shared by every Google Ads account on Zernio. The token holds Standard access (no daily operations cap), so this only happens when Google throttles the token or your ad account. The envelope has &#x60;code: rate_limited&#x60;, &#x60;platform: google&#x60;, &#x60;details.quotaScope: DEVELOPER&#x60; (&#x60;ACCOUNT&#x60; when it is your own ad account&#39;s quota), &#x60;details.resetsAt&#x60; (ISO instant when Google accepts requests again) and &#x60;Retry-After&#x60; counting down to it. Retrying earlier cannot succeed.  Meta ads: every Meta throttle (codes 4, 17, 32, 613 and the business-use-case codes 80000-80014) returns 429 &#x60;rate_limited&#x60;, even when Meta itself answers HTTP 400. &#x60;Retry-After&#x60; comes from Meta&#39;s &#x60;x-business-use-case-usage&#x60; estimate when Meta sends one, otherwise it is Meta&#39;s documented 60-second minimum (30 seconds for the one-write-per-30-seconds limit on a single object).  Pinterest ads: Pinterest rate-limits per user and app, per category (ads_read, ads_write, ads_analytics). &#x60;Retry-After&#x60; comes from Pinterest&#39;s &#x60;x-ratelimit-reset&#x60; when it sends one, otherwise 60 seconds.  TikTok ads: TikTok caps requests per second and answers overage with code 40100 or with code 40002 &#x60;OVER_QPS_LIMIT&#x60;. Both return 429 &#x60;rate_limited&#x60; with &#x60;platform: tiktok&#x60; and &#x60;Retry-After: 10&#x60;. Space out bulk reads (for example one ad at a time per advertiser) instead of retrying at once. The Smart+ review read (&#x60;GET /v1/ads/{adId}/tiktok-smart-plus-review&#x60;) has a stricter quota of its own on TikTok, which behaves per advertiser: after an overage Zernio answers 429 for that advertiser and connection, without calling TikTok, for 60 seconds, then 120, then 240 while TikTok keeps refusing (back to 60 after a successful call); &#x60;Retry-After&#x60; is the time left. The advertiser-wide read (&#x60;GET /v1/ads/tiktok-smart-plus-reviews&#x60;) answers 200 with &#x60;incomplete: true&#x60; instead. Keep one request in flight per advertiser there; different advertisers can be read in parallel.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **500** | Internal server error |  -  |
+
+
+## listFacebookTaggedPosts
+
+> ListFacebookTaggedPosts200Response listFacebookTaggedPosts(accountId, limit, cursor)
+
+List the posts a Facebook Page is tagged in
+
+Returns the public posts where other people or Pages tagged the connected Facebook Page, as Meta returns them from the Page&#39;s &#x60;tagged&#x60; edge.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. Meta does not say whether a page is the last one, so the final page can come back empty with &#x60;nextCursor&#x60; null.  Works for &#x60;facebook&#x60; accounts with a Page selected. Meta needs the &#x60;pages_read_user_content&#x60; permission on the connection: a connection made without it gets Meta&#39;s refusal back as &#x60;platform_api_error&#x60;, and reconnecting the account grants it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ListFacebookTaggedPosts200Response result = apiInstance.listFacebookTaggedPosts(accountId, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listFacebookTaggedPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+[**ListFacebookTaggedPosts200Response**](ListFacebookTaggedPosts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of posts the Page is tagged in |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing &#x60;pages_read_user_content&#x60; permission). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+## listFacebookTaggedPostsWithHttpInfo
+
+> ApiResponse<ListFacebookTaggedPosts200Response> listFacebookTaggedPosts listFacebookTaggedPostsWithHttpInfo(accountId, limit, cursor)
+
+List the posts a Facebook Page is tagged in
+
+Returns the public posts where other people or Pages tagged the connected Facebook Page, as Meta returns them from the Page&#39;s &#x60;tagged&#x60; edge.  Cursor-paginated: pass &#x60;nextCursor&#x60; from the previous response as &#x60;cursor&#x60; to read the next page. &#x60;nextCursor&#x60; is null when there are no more pages. Meta does not say whether a page is the last one, so the final page can come back empty with &#x60;nextCursor&#x60; null.  Works for &#x60;facebook&#x60; accounts with a Page selected. Meta needs the &#x60;pages_read_user_content&#x60; permission on the connection: a connection made without it gets Meta&#39;s refusal back as &#x60;platform_api_error&#x60;, and reconnecting the account grants it. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The ID of a connected Facebook account.
+        Integer limit = 25; // Integer | Page size.
+        String cursor = "cursor_example"; // String | The `nextCursor` of the previous page.
+        try {
+            ApiResponse<ListFacebookTaggedPosts200Response> response = apiInstance.listFacebookTaggedPostsWithHttpInfo(accountId, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listFacebookTaggedPosts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The ID of a connected Facebook account. | |
+| **limit** | **Integer**| Page size. | [optional] [default to 25] |
+| **cursor** | **String**| The &#x60;nextCursor&#x60; of the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListFacebookTaggedPosts200Response**](ListFacebookTaggedPosts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | One page of posts the Page is tagged in |  -  |
+| **400** | Invalid accountId, limit or cursor, an account on another platform (&#x60;platform_not_supported&#x60;), or Meta refused the request (&#x60;platform_api_error&#x60;, for example a missing &#x60;pages_read_user_content&#x60; permission). |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The API key is not scoped to this account. |  -  |
+| **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
 
 
 ## syncExternalPosts

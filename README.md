@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.348.0
+- API version: 1.348.1
 
-- Build date: 2026-10-23T23:16:51.029520442Z[Etc/UTC]
+- Build date: 2026-10-24T00:08:38.176884417Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.348.0</version>
+  <version>1.348.1</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.348.0"
+compile "dev.zernio:zernio-sdk:1.348.1"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.348.0.jar`
+- `target/zernio-sdk-1.348.1.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -629,6 +629,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getYouTubeDemographicsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeDemographicsWithHttpInfo) | **GET** /v1/analytics/youtube/demographics | Get YouTube demographics
 *AnalyticsApi* | [**getYouTubeVideoRetention**](docs/AnalyticsApi.md#getYouTubeVideoRetention) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
 *AnalyticsApi* | [**getYouTubeVideoRetentionWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeVideoRetentionWithHttpInfo) | **GET** /v1/analytics/youtube/video-retention | Get YouTube video retention curve
+*AnalyticsApi* | [**listFacebookTaggedPosts**](docs/AnalyticsApi.md#listFacebookTaggedPosts) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in
+*AnalyticsApi* | [**listFacebookTaggedPostsWithHttpInfo**](docs/AnalyticsApi.md#listFacebookTaggedPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in
 *AnalyticsApi* | [**syncExternalPosts**](docs/AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post
 *AnalyticsApi* | [**syncExternalPostsWithHttpInfo**](docs/AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post
 *ApiKeysApi* | [**createApiKey**](docs/ApiKeysApi.md#createApiKey) | **POST** /v1/api-keys | Create key
@@ -2928,6 +2930,8 @@ Class | Method | HTTP request | Description
  - [FacebookPostEarningsResponseUnavailableMetricsInner](docs/FacebookPostEarningsResponseUnavailableMetricsInner.md)
  - [FacebookSettings](docs/FacebookSettings.md)
  - [FacebookSettingsCarouselCardsInner](docs/FacebookSettingsCarouselCardsInner.md)
+ - [FacebookTaggedPost](docs/FacebookTaggedPost.md)
+ - [FacebookTaggedPostFrom](docs/FacebookTaggedPostFrom.md)
  - [FeedbackReceipt](docs/FeedbackReceipt.md)
  - [FetchGoogleBusinessVerificationOptions200Response](docs/FetchGoogleBusinessVerificationOptions200Response.md)
  - [FetchGoogleBusinessVerificationOptions200ResponseOptionsInner](docs/FetchGoogleBusinessVerificationOptions200ResponseOptionsInner.md)
@@ -3696,6 +3700,7 @@ Class | Method | HTTP request | Description
  - [ListDiscordScheduledEvents200Response](docs/ListDiscordScheduledEvents200Response.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
+ - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
