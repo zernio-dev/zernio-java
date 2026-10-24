@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.349.0
+  version: 1.350.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -24851,6 +24851,10 @@ paths:
           own posts are never listed, even when they contain its @handle. Their text is read from Instagram
           in the background after the first request, so `content` can be empty on the first read. Pass
           `mediaId` and `commentId` to `POST /v1/inbox/mentions/reply` to answer one.
+        - **Facebook**: post mentions (someone tags the Page in a post) and comment mentions (someone tags
+          it in a comment), delivered by the Page `mention` webhook with their text. Comments on the Page's
+          own posts and anything the Page wrote itself are never listed. Facebook mentions cannot be replied
+          to through `POST /v1/inbox/mentions/reply`.
 
         Requires Inbox addon.
       operationId: listInboxMentions
@@ -117434,6 +117438,7 @@ components:
       example:
         publishedAt: 2000-01-23T04:56:07.000+00:00
         authorUsername: authorUsername
+        postId: postId
         type: caption
         mediaId: mediaId
         platform: linkedin
@@ -117456,24 +117461,32 @@ components:
           enum:
           - linkedin
           - instagram
+          - facebook
           type: string
         type:
-          description: "Instagram only: `caption` when the account was tagged in a\
-            \ media caption, `comment` when it was tagged in a comment. Null for LinkedIn."
+          description: "Instagram and Facebook: `caption` when the Instagram account\
+            \ was tagged in a media caption, `post` when the Facebook Page was tagged\
+            \ in a post, `comment` when either was tagged in a comment. Null for LinkedIn."
           enum:
           - caption
+          - post
           - comment
           - null
           nullable: true
           type: string
         mediaId:
           description: "Instagram only: ID of the media the account was mentioned\
-            \ in (or under). Null for LinkedIn."
+            \ in (or under). Null for LinkedIn and Facebook."
+          nullable: true
+          type: string
+        postId:
+          description: "Facebook only: ID of the post the Page was mentioned in (or\
+            \ under). Null for LinkedIn and Instagram."
           nullable: true
           type: string
         commentId:
-          description: "Instagram only: ID of the comment that mentioned the account.\
-            \ Null for caption mentions and LinkedIn."
+          description: "Instagram and Facebook: ID of the comment that mentioned the\
+            \ account. Null for caption and post mentions and for LinkedIn."
           nullable: true
           type: string
         accountId:
@@ -117482,20 +117495,23 @@ components:
           type: string
         content:
           description: "Text that mentioned you: the post text on LinkedIn, the caption\
-            \ or comment text on Instagram. Empty until it has been read."
+            \ or comment text on Instagram, the post or comment text on Facebook.\
+            \ Empty until it has been read."
           type: string
         permalink:
-          description: URL to the source post on LinkedIn. Null on Instagram.
+          description: URL to the source post on LinkedIn. Null on Instagram and Facebook.
           nullable: true
           type: string
         authorUrn:
-          description: "LinkedIn URN of the person who mentioned you, or the Instagram-scoped\
-            \ ID of the commenter on an Instagram comment mention."
+          description: "LinkedIn URN of the person who mentioned you, the Instagram-scoped\
+            \ ID of the commenter on an Instagram comment mention, or the ID of the\
+            \ Facebook user or Page that mentioned your Page when Meta sends it."
           nullable: true
           type: string
         authorName:
-          description: "Display name of the author, resolved from authorUrn. Null\
-            \ when LinkedIn does not allow resolving the profile."
+          description: "Display name of the author, resolved from authorUrn on LinkedIn\
+            \ (null when LinkedIn does not allow resolving the profile) and taken\
+            \ from the webhook on Facebook."
           nullable: true
           type: string
         authorUsername:
@@ -117509,8 +117525,9 @@ components:
           nullable: true
           type: string
         organizationalEntity:
-          description: "URN of the LinkedIn organization that was mentioned, or the\
-            \ Instagram user ID of the mentioned account."
+          description: "URN of the LinkedIn organization that was mentioned, the Instagram\
+            \ user ID of the mentioned account, or the ID of the mentioned Facebook\
+            \ Page."
           type: string
         publishedAt:
           format: date-time
@@ -117538,6 +117555,7 @@ components:
         data:
         - publishedAt: 2000-01-23T04:56:07.000+00:00
           authorUsername: authorUsername
+          postId: postId
           type: caption
           mediaId: mediaId
           platform: linkedin
@@ -117554,6 +117572,7 @@ components:
           organizationalEntity: organizationalEntity
         - publishedAt: 2000-01-23T04:56:07.000+00:00
           authorUsername: authorUsername
+          postId: postId
           type: caption
           mediaId: mediaId
           platform: linkedin
