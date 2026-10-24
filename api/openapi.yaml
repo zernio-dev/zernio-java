@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.350.9
+  version: 1.351.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -71354,7 +71354,11 @@ components:
               * `skip` - stay silent.
               * `verify` - send `followGate.message` with a confirm button. Tapping it is a
                 message, which grants consent, so the re-check on the tap resolves and the
-                real DM (or `followGate.notFollowingMessage`) follows automatically.
+                real DM (or `followGate.notFollowingMessage`) follows automatically. The tap
+                re-checks the follow relationship live, with no cached answer. A known
+                non-follower gets `followGate.notFollowingMessage`, never the DM. If Instagram
+                still will not reveal the relationship on the tap, or the lookup fails, the DM
+                is delivered (fails open).
           enum:
           - send
           - skip
@@ -71372,6 +71376,7 @@ components:
       description: Copy for the follow gate. Sensible defaults are used for any field
         left empty.
       example:
+        profileButtonLabel: profileButtonLabel
         message: message
         buttonLabel: buttonLabel
         notFollowingMessage: notFollowingMessage
@@ -71386,6 +71391,14 @@ components:
           description: Confirm button label. Defaults to "I'm following" (whenUnknown=verify)
             or "Unlock" (tapToUnlock).
           maxLength: 20
+          type: string
+        profileButtonLabel:
+          description: "Optional. When set, the follow gate DM and the not-following\
+            \ message with the confirm button also carry a URL button with this label\
+            \ that opens the connected Instagram account's profile. Omit for the confirm\
+            \ button only. Instagram only."
+          maxLength: 20
+          minLength: 1
           type: string
         notFollowingMessage:
           description: "Sent to a commenter we know does not follow (followerStatus=follower),\
@@ -131861,6 +131874,7 @@ components:
         clickTag: clickTag
         name: name
         followGate:
+          profileButtonLabel: profileButtonLabel
           message: message
           buttonLabel: buttonLabel
           notFollowingMessage: notFollowingMessage
@@ -132160,6 +132174,7 @@ components:
           clickTag: clickTag
           name: name
           followGate:
+            profileButtonLabel: profileButtonLabel
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
@@ -132327,6 +132342,7 @@ components:
           clickTag: clickTag
           name: name
           followGate:
+            profileButtonLabel: profileButtonLabel
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
@@ -132611,6 +132627,7 @@ components:
         clickTag: clickTag
         name: name
         followGate:
+          profileButtonLabel: profileButtonLabel
           message: message
           buttonLabel: buttonLabel
           notFollowingMessage: notFollowingMessage
@@ -132814,6 +132831,7 @@ components:
           clickTag: clickTag
           name: name
           followGate:
+            profileButtonLabel: profileButtonLabel
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
@@ -132905,6 +132923,7 @@ components:
         clickTag: clickTag
         name: name
         followGate:
+          profileButtonLabel: profileButtonLabel
           message: message
           buttonLabel: buttonLabel
           notFollowingMessage: notFollowingMessage
@@ -133121,6 +133140,7 @@ components:
           clickTag: clickTag
           name: name
           followGate:
+            profileButtonLabel: profileButtonLabel
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
@@ -133422,6 +133442,7 @@ components:
         - dmMessageVariations
         id: id
         followGate:
+          profileButtonLabel: profileButtonLabel
           message: message
           buttonLabel: buttonLabel
           notFollowingMessage: notFollowingMessage
@@ -133588,6 +133609,7 @@ components:
           - dmMessageVariations
           id: id
           followGate:
+            profileButtonLabel: profileButtonLabel
             message: message
             buttonLabel: buttonLabel
             notFollowingMessage: notFollowingMessage
