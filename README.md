@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.350.4
+- API version: 1.350.5
 
-- Build date: 2026-10-24T18:07:16.624520065Z[Etc/UTC]
+- Build date: 2026-10-24T18:21:29.844129345Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.350.4</version>
+  <version>1.350.5</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.350.4"
+compile "dev.zernio:zernio-sdk:1.350.5"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.350.4.jar`
+- `target/zernio-sdk-1.350.5.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1555,10 +1555,14 @@ Class | Method | HTTP request | Description
 *PostsApi* | [**getPostWithHttpInfo**](docs/PostsApi.md#getPostWithHttpInfo) | **GET** /v1/posts/{postId} | Get post
 *PostsApi* | [**listPosts**](docs/PostsApi.md#listPosts) | **GET** /v1/posts | List posts
 *PostsApi* | [**listPostsWithHttpInfo**](docs/PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts
+*PostsApi* | [**pinPost**](docs/PostsApi.md#pinPost) | **POST** /v1/posts/{postId}/pin | Pin post
+*PostsApi* | [**pinPostWithHttpInfo**](docs/PostsApi.md#pinPostWithHttpInfo) | **POST** /v1/posts/{postId}/pin | Pin post
 *PostsApi* | [**retryPost**](docs/PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**retryPostWithHttpInfo**](docs/PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post
 *PostsApi* | [**reviewPost**](docs/PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post
 *PostsApi* | [**reviewPostWithHttpInfo**](docs/PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post
+*PostsApi* | [**unpinPost**](docs/PostsApi.md#unpinPost) | **POST** /v1/posts/{postId}/unpin | Unpin post
+*PostsApi* | [**unpinPostWithHttpInfo**](docs/PostsApi.md#unpinPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpin | Unpin post
 *PostsApi* | [**unpublishPost**](docs/PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**unpublishPostWithHttpInfo**](docs/PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post
 *PostsApi* | [**updatePost**](docs/PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post
@@ -3970,6 +3974,8 @@ Class | Method | HTTP request | Description
  - [PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
  - [PinInboxComment200Response](docs/PinInboxComment200Response.md)
  - [PinInboxCommentRequest](docs/PinInboxCommentRequest.md)
+ - [PinPostRequest](docs/PinPostRequest.md)
+ - [PinPostResponse](docs/PinPostResponse.md)
  - [PinterestPlatformData](docs/PinterestPlatformData.md)
  - [PlatformAnalytics](docs/PlatformAnalytics.md)
  - [PlatformTarget](docs/PlatformTarget.md)

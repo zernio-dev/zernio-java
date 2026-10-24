@@ -1896,6 +1896,8 @@ docs/PhoneNumbersApi.md
 docs/PinDiscordMessage200Response.md
 docs/PinInboxComment200Response.md
 docs/PinInboxCommentRequest.md
+docs/PinPostRequest.md
+docs/PinPostResponse.md
 docs/PinterestPlatformData.md
 docs/PlatformAnalytics.md
 docs/PlatformTarget.md
@@ -4871,6 +4873,8 @@ src/main/java/dev/zernio/model/PhoneNumberStockWatch.java
 src/main/java/dev/zernio/model/PinDiscordMessage200Response.java
 src/main/java/dev/zernio/model/PinInboxComment200Response.java
 src/main/java/dev/zernio/model/PinInboxCommentRequest.java
+src/main/java/dev/zernio/model/PinPostRequest.java
+src/main/java/dev/zernio/model/PinPostResponse.java
 src/main/java/dev/zernio/model/PinterestPlatformData.java
 src/main/java/dev/zernio/model/PlatformAnalytics.java
 src/main/java/dev/zernio/model/PlatformTarget.java
@@ -5875,3 +5879,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/PinPostRequestTest.java
+src/test/java/dev/zernio/model/PinPostResponseTest.java

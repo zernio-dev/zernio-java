@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.350.4
+  version: 1.350.5
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -7639,6 +7639,142 @@ paths:
         "500":
           description: Platform API deletion failed
       summary: Unpublish post
+      tags:
+      - Posts
+      x-resource-group: publishing
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/posts/{postId}/pin:
+    post:
+      description: |
+        Pins a published Facebook Page post to the top of its Page. Only Facebook posts can be pinned; any other platform answers 400 `platform_not_supported`. Works for posts on Pages connected through Facebook Login.
+      operationId: pinPost
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: facebook
+            schema:
+              $ref: "#/components/schemas/PinPostRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                pinned: true
+                platformPostId: 123456789012345_987654321098765
+                message: Post pinned to the top of the Facebook Page
+              schema:
+                $ref: "#/components/schemas/PinPostResponse"
+          description: Pin applied on Facebook
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: invalid postId or accountId, the post or\
+            \ the chosen account is not on Facebook (`platform_not_supported`), the\
+            \ Facebook entry is not published or has no platform post ID, no access\
+            \ token, or Facebook rejected the change."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Forbidden
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several Facebook accounts and no
+            accountId was sent (ambiguous_account).
+        "500":
+          description: Facebook API call failed
+      summary: Pin post
+      tags:
+      - Posts
+      x-resource-group: publishing
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/posts/{postId}/unpin:
+    post:
+      description: |
+        Unpins a published Facebook Page post from the top of its Page. Only Facebook posts can be unpinned; any other platform answers 400 `platform_not_supported`.
+      operationId: unpinPost
+      parameters:
+      - explode: false
+        in: path
+        name: postId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: facebook
+            schema:
+              $ref: "#/components/schemas/PinPostRequest"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              example:
+                success: true
+                pinned: false
+                platformPostId: 123456789012345_987654321098765
+                message: Post unpinned from the Facebook Page
+              schema:
+                $ref: "#/components/schemas/PinPostResponse"
+          description: Unpin applied on Facebook
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid request: invalid postId or accountId, the post or\
+            \ the chosen account is not on Facebook (`platform_not_supported`), the\
+            \ Facebook entry is not published or has no platform post ID, no access\
+            \ token, or Facebook rejected the change."
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Forbidden
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The post was published to several Facebook accounts and no
+            accountId was sent (ambiguous_account).
+        "500":
+          description: Facebook API call failed
+      summary: Unpin post
       tags:
       - Posts
       x-resource-group: publishing
@@ -70932,6 +71068,38 @@ components:
       - code
       - input
       - message
+    PinPostRequest:
+      example:
+        accountId: accountId
+        platform: facebook
+      properties:
+        platform:
+          description: Must be `facebook`. Any other value answers 400 `platform_not_supported`.
+          example: facebook
+          type: string
+        accountId:
+          description: Which Facebook account's copy to change when the post was published
+            to several Facebook accounts. Required in that case.
+          type: string
+      required:
+      - platform
+    PinPostResponse:
+      example:
+        pinned: true
+        success: true
+        message: message
+        platformPostId: platformPostId
+      properties:
+        success:
+          type: boolean
+        pinned:
+          description: Whether the post is now pinned to the top of the Page.
+          type: boolean
+        platformPostId:
+          description: The Facebook post ID that was changed.
+          type: string
+        message:
+          type: string
     ErrorResponse:
       description: |
         Canonical error envelope. `error` is the human-readable message; `type`,

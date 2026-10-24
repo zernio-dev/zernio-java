@@ -16,10 +16,14 @@ All URIs are relative to *https://zernio.com/api*
 | [**getPostWithHttpInfo**](PostsApi.md#getPostWithHttpInfo) | **GET** /v1/posts/{postId} | Get post |
 | [**listPosts**](PostsApi.md#listPosts) | **GET** /v1/posts | List posts |
 | [**listPostsWithHttpInfo**](PostsApi.md#listPostsWithHttpInfo) | **GET** /v1/posts | List posts |
+| [**pinPost**](PostsApi.md#pinPost) | **POST** /v1/posts/{postId}/pin | Pin post |
+| [**pinPostWithHttpInfo**](PostsApi.md#pinPostWithHttpInfo) | **POST** /v1/posts/{postId}/pin | Pin post |
 | [**retryPost**](PostsApi.md#retryPost) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**retryPostWithHttpInfo**](PostsApi.md#retryPostWithHttpInfo) | **POST** /v1/posts/{postId}/retry | Retry failed post |
 | [**reviewPost**](PostsApi.md#reviewPost) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
 | [**reviewPostWithHttpInfo**](PostsApi.md#reviewPostWithHttpInfo) | **POST** /v1/posts/{postId}/review | Approve or reject a post |
+| [**unpinPost**](PostsApi.md#unpinPost) | **POST** /v1/posts/{postId}/unpin | Unpin post |
+| [**unpinPostWithHttpInfo**](PostsApi.md#unpinPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpin | Unpin post |
 | [**unpublishPost**](PostsApi.md#unpublishPost) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**unpublishPostWithHttpInfo**](PostsApi.md#unpublishPostWithHttpInfo) | **POST** /v1/posts/{postId}/unpublish | Unpublish post |
 | [**updatePost**](PostsApi.md#updatePost) | **PUT** /v1/posts/{postId} | Update post |
@@ -1041,6 +1045,166 @@ ApiResponse<[**PostsListResponse**](PostsListResponse.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
+## pinPost
+
+> PinPostResponse pinPost(postId, pinPostRequest)
+
+Pin post
+
+Pins a published Facebook Page post to the top of its Page. Only Facebook posts can be pinned; any other platform answers 400 &#x60;platform_not_supported&#x60;. Works for posts on Pages connected through Facebook Login. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        PinPostRequest pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+        try {
+            PinPostResponse result = apiInstance.pinPost(postId, pinPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#pinPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md)|  | |
+
+### Return type
+
+[**PinPostResponse**](PinPostResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
+
+## pinPostWithHttpInfo
+
+> ApiResponse<PinPostResponse> pinPost pinPostWithHttpInfo(postId, pinPostRequest)
+
+Pin post
+
+Pins a published Facebook Page post to the top of its Page. Only Facebook posts can be pinned; any other platform answers 400 &#x60;platform_not_supported&#x60;. Works for posts on Pages connected through Facebook Login. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        PinPostRequest pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+        try {
+            ApiResponse<PinPostResponse> response = apiInstance.pinPostWithHttpInfo(postId, pinPostRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#pinPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PinPostResponse**](PinPostResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Pin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
+
+
 ## retryPost
 
 > PostRetryResponse retryPost(postId)
@@ -1357,6 +1521,166 @@ ApiResponse<[**PostGetResponse**](PostGetResponse.md)>
 | **403** | Forbidden |  -  |
 | **404** | Resource not found |  -  |
 | **409** | The post is not pending_approval (code: invalid_resource_state), for example because it was already approved or rejected. |  -  |
+
+
+## unpinPost
+
+> PinPostResponse unpinPost(postId, pinPostRequest)
+
+Unpin post
+
+Unpins a published Facebook Page post from the top of its Page. Only Facebook posts can be unpinned; any other platform answers 400 &#x60;platform_not_supported&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        PinPostRequest pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+        try {
+            PinPostResponse result = apiInstance.unpinPost(postId, pinPostRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#unpinPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md)|  | |
+
+### Return type
+
+[**PinPostResponse**](PinPostResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unpin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
+
+## unpinPostWithHttpInfo
+
+> ApiResponse<PinPostResponse> unpinPost unpinPostWithHttpInfo(postId, pinPostRequest)
+
+Unpin post
+
+Unpins a published Facebook Page post from the top of its Page. Only Facebook posts can be unpinned; any other platform answers 400 &#x60;platform_not_supported&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.PostsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        PostsApi apiInstance = new PostsApi(defaultClient);
+        String postId = "postId_example"; // String | 
+        PinPostRequest pinPostRequest = new PinPostRequest(); // PinPostRequest | 
+        try {
+            ApiResponse<PinPostResponse> response = apiInstance.unpinPostWithHttpInfo(postId, pinPostRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling PostsApi#unpinPost");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**|  | |
+| **pinPostRequest** | [**PinPostRequest**](PinPostRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**PinPostResponse**](PinPostResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Unpin applied on Facebook |  -  |
+| **400** | Invalid request: invalid postId or accountId, the post or the chosen account is not on Facebook (&#x60;platform_not_supported&#x60;), the Facebook entry is not published or has no platform post ID, no access token, or Facebook rejected the change. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Forbidden |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The post was published to several Facebook accounts and no accountId was sent (ambiguous_account). |  -  |
+| **500** | Facebook API call failed |  -  |
 
 
 ## unpublishPost
