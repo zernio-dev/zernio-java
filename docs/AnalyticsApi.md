@@ -2317,7 +2317,7 @@ public class Example {
         LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
         LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
-        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
+        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type. 
         try {
             InstagramAccountInsightsResponse result = apiInstance.getInstagramAccountInsights(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
             System.out.println(result);
@@ -2344,7 +2344,7 @@ public class Example {
 | **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
 | **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
-| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
+| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type.  | [optional] |
 
 ### Return type
 
@@ -2407,7 +2407,7 @@ public class Example {
         LocalDate since = LocalDate.now(); // LocalDate | Alias of fromDate, kept for existing callers
         LocalDate until = LocalDate.now(); // LocalDate | Alias of toDate, kept for existing callers
         String metricType = "time_series"; // String | \"total_value\" (default) returns aggregated totals and supports breakdowns. \"time_series\" returns daily values but only works with the \"reach\" metric. 
-        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type. 
+        String breakdown = "breakdown_example"; // String | Breakdown dimension (only valid with metricType=total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type. 
         try {
             ApiResponse<InstagramAccountInsightsResponse> response = apiInstance.getInstagramAccountInsightsWithHttpInfo(accountId, metrics, fromDate, toDate, since, until, metricType, breakdown);
             System.out.println("Status code: " + response.getStatusCode());
@@ -2436,7 +2436,7 @@ public class Example {
 | **since** | **LocalDate**| Alias of fromDate, kept for existing callers | [optional] |
 | **until** | **LocalDate**| Alias of toDate, kept for existing callers | [optional] |
 | **metricType** | **String**| \&quot;total_value\&quot; (default) returns aggregated totals and supports breakdowns. \&quot;time_series\&quot; returns daily values but only works with the \&quot;reach\&quot; metric.  | [optional] [default to total_value] [enum: time_series, total_value] |
-| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values depend on the metric: media_product_type, follow_type, follower_type, contact_button_type.  | [optional] |
+| **breakdown** | **String**| Breakdown dimension (only valid with metricType&#x3D;total_value). Valid values per metric: reach and views take follow_type or media_product_type; follows_and_unfollows takes follow_type; profile_links_taps takes contact_button_type; comments, likes, saves, shares and total_interactions take media_product_type.  | [optional] |
 
 ### Return type
 
