@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.350.0
+  version: 1.350.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51529,7 +51529,7 @@ paths:
       description: |
         Creates a lead form on a Facebook Page or LinkedIn Company Page to collect contact details from ads.
 
-        The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile), an Instagram account (the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
+        The form content goes inside `platformSpecificData` for both platforms (the shape is selected by the accountId's platform). Meta: created on the connected Facebook Page (POST /{page-id}/leadgen_forms), where `accountId` may be the `metaads` ads connection (its Page comes from the Facebook account linked to the same profile), an Instagram account (the Page its ads run under: its own linked Page, else the Facebook or business-login Meta ads account on the same profile) or the Facebook account itself; the old top-level Meta fields (questions, thankYou*, contextCard, …) are DEPRECATED but still accepted while platformSpecificData is absent; mixing both shapes is a 400. thankYouEnableMessenger, isPhoneSmsVerifyEnabled and customDisclaimer are accepted only inside platformSpecificData (top-level is a 400). LinkedIn: created on the ad account's Company Page. NOT idempotent: a retry creates a second form. Meta prefilled question types (EMAIL, PHONE, FULL_NAME, …) must omit label/key; CUSTOM questions require both. LinkedIn exposes only free-text and multiple-choice questions via API (prefilled-from-profile fields are Campaign Manager UI-only). Requires the Ads add-on.
       operationId: createLeadForm
       requestBody:
         content:
@@ -151083,6 +151083,9 @@ components:
         thankYouButtonText:
           type: string
         thankYouButtonType:
+          description: Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE.
+            Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button
+            type is not yet supported for Thank You Page.
           example: VIEW_WEBSITE
           type: string
         thankYouWebsiteUrl:
@@ -151090,10 +151093,9 @@ components:
           type: string
         thankYouEnableMessenger:
           default: false
-          description: "Adds a 'Continue in Messenger' option to the thank-you page\
-            \ (Meta thank_you_page.enable_messenger), so the lead can carry on chatting\
-            \ with the Page. Set thankYouButtonType to MESSAGE_BUSINESS or P2B_MESSENGER\
-            \ to make the chat the primary button."
+          description: "Sent as Meta thank_you_page.enable_messenger (boolean). Accepted\
+            \ only inside platformSpecificData: a top-level thankYouEnableMessenger\
+            \ is a 400."
           type: boolean
         isOptimizedForQuality:
           description: Set true for a higher-intent form (adds a review step before
