@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.356.1
+  version: 1.357.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -9272,8 +9272,10 @@ paths:
         a video picker in your own UI.
 
         Not every field applies to every platform: `reactionCount` is Facebook and LinkedIn,
-        `shareCount` is platform dependent, `cid` is the Bluesky content id needed to reply, and
-        `subreddit` is Reddit only. Absent fields are omitted from the response.
+        `shareCount` is platform dependent, `cid` is the Bluesky content id needed to reply,
+        `subreddit` is Reddit only, and `title`, `description`, `link`, `boardId` and
+        `boardOwnerUsername` are Pinterest only (the native Pin values; `message` keeps title and
+        description joined). Absent fields are omitted from the response.
 
         The account's token is refreshed before the call when it has expired. When the refresh
         cannot recover it, the response is a 401 with code `TOKEN_EXPIRED` and the account has to
@@ -103410,16 +103412,21 @@ components:
           $ref: "#/components/schemas/getAccountHealth_200_response_platformConnection"
     getAccountPosts_200_response_posts_inner:
       example:
+        link: link
+        description: description
         mediaType: mediaType
         likeCount: 6
         message: message
+        title: title
         platform: platform
         picture: picture
         reactionCount: 1
         subreddit: subreddit
         commentCount: 0
         shareCount: 5
+        boardOwnerUsername: boardOwnerUsername
         createdTime: 2000-01-23T04:56:07.000+00:00
+        boardId: boardId
         id: id
         permalink: permalink
         cid: cid
@@ -103458,33 +103465,60 @@ components:
         subreddit:
           description: Reddit only
           type: string
+        title:
+          description: "Pinterest only: native Pin title"
+          type: string
+        description:
+          description: "Pinterest only: full native Pin description (Pinterest caps\
+            \ it at 800 characters)"
+          type: string
+        link:
+          description: "Pinterest only: destination URL of the Pin, not the Pin page\
+            \ (see permalink)"
+          type: string
+        boardId:
+          description: "Pinterest only: id of the board holding the Pin"
+          type: string
+        boardOwnerUsername:
+          description: "Pinterest only: username of the board owner"
+          type: string
     getAccountPosts_200_response:
       example:
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         posts:
-        - mediaType: mediaType
+        - link: link
+          description: description
+          mediaType: mediaType
           likeCount: 6
           message: message
+          title: title
           platform: platform
           picture: picture
           reactionCount: 1
           subreddit: subreddit
           commentCount: 0
           shareCount: 5
+          boardOwnerUsername: boardOwnerUsername
           createdTime: 2000-01-23T04:56:07.000+00:00
+          boardId: boardId
           id: id
           permalink: permalink
           cid: cid
-        - mediaType: mediaType
+        - link: link
+          description: description
+          mediaType: mediaType
           likeCount: 6
           message: message
+          title: title
           platform: platform
           picture: picture
           reactionCount: 1
           subreddit: subreddit
           commentCount: 0
           shareCount: 5
+          boardOwnerUsername: boardOwnerUsername
           createdTime: 2000-01-23T04:56:07.000+00:00
+          boardId: boardId
           id: id
           permalink: permalink
           cid: cid

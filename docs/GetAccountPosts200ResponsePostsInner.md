@@ -20,6 +20,11 @@
 |**shareCount** | **Integer** |  |  [optional] |
 |**cid** | **String** | Bluesky content id, required to reply to the post |  [optional] |
 |**subreddit** | **String** | Reddit only |  [optional] |
+|**title** | **String** | Pinterest only: native Pin title |  [optional] |
+|**description** | **String** | Pinterest only: full native Pin description (Pinterest caps it at 800 characters) |  [optional] |
+|**link** | **String** | Pinterest only: destination URL of the Pin, not the Pin page (see permalink) |  [optional] |
+|**boardId** | **String** | Pinterest only: id of the board holding the Pin |  [optional] |
+|**boardOwnerUsername** | **String** | Pinterest only: username of the board owner |  [optional] |
 
 
 
