@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.353.0
+- API version: 1.354.0
 
-- Build date: 2026-10-25T02:34:21.216800352Z[Etc/UTC]
+- Build date: 2026-10-25T08:37:58.482757432Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.353.0</version>
+  <version>1.354.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.353.0"
+compile "dev.zernio:zernio-sdk:1.354.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.353.0.jar`
+- `target/zernio-sdk-1.354.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3859,9 +3859,13 @@ Class | Method | HTTP request | Description
  - [ListTikTokCommercialMusic200ResponseTracksInner](docs/ListTikTokCommercialMusic200ResponseTracksInner.md)
  - [ListTikTokCommercialMusic200ResponseTracksInnerClip](docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md)
  - [ListTikTokSmartPlusReviews200Response](docs/ListTikTokSmartPlusReviews200Response.md)
+ - [ListTikTokSmartPlusReviews200ResponseCounts](docs/ListTikTokSmartPlusReviews200ResponseCounts.md)
  - [ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner](docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.md)
  - [ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError](docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.md)
  - [ListTikTokSmartPlusReviews200ResponseItemsInner](docs/ListTikTokSmartPlusReviews200ResponseItemsInner.md)
+ - [ListTikTokSmartPlusReviews200ResponseListing](docs/ListTikTokSmartPlusReviews200ResponseListing.md)
+ - [ListTikTokSmartPlusReviews200ResponseListingError](docs/ListTikTokSmartPlusReviews200ResponseListingError.md)
+ - [ListTikTokSmartPlusReviews200ResponseReviewError](docs/ListTikTokSmartPlusReviews200ResponseReviewError.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
  - [ListTrackingTagPartners200Response](docs/ListTrackingTagPartners200Response.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)

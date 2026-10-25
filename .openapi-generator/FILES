@@ -1759,9 +1759,13 @@ docs/ListTikTokCommercialMusic200Response.md
 docs/ListTikTokCommercialMusic200ResponseTracksInner.md
 docs/ListTikTokCommercialMusic200ResponseTracksInnerClip.md
 docs/ListTikTokSmartPlusReviews200Response.md
+docs/ListTikTokSmartPlusReviews200ResponseCounts.md
 docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.md
 docs/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.md
 docs/ListTikTokSmartPlusReviews200ResponseItemsInner.md
+docs/ListTikTokSmartPlusReviews200ResponseListing.md
+docs/ListTikTokSmartPlusReviews200ResponseListingError.md
+docs/ListTikTokSmartPlusReviews200ResponseReviewError.md
 docs/ListTrackingTagEvents200Response.md
 docs/ListTrackingTagPartners200Response.md
 docs/ListTrackingTagSharedAccounts200Response.md
@@ -4749,9 +4753,13 @@ src/main/java/dev/zernio/model/ListTikTokCommercialMusic200Response.java
 src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInner.java
 src/main/java/dev/zernio/model/ListTikTokCommercialMusic200ResponseTracksInnerClip.java
 src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200Response.java
+src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseCounts.java
 src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInner.java
 src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseFailedSmartPlusAdsInnerError.java
 src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseItemsInner.java
+src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseListing.java
+src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseListingError.java
+src/main/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseReviewError.java
 src/main/java/dev/zernio/model/ListTrackingTagEvents200Response.java
 src/main/java/dev/zernio/model/ListTrackingTagPartners200Response.java
 src/main/java/dev/zernio/model/ListTrackingTagSharedAccounts200Response.java
@@ -5893,4 +5901,7 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/AddConversationLabelRequestTest.java
+src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseCountsTest.java
+src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseListingErrorTest.java
+src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseListingTest.java
+src/test/java/dev/zernio/model/ListTikTokSmartPlusReviews200ResponseReviewErrorTest.java
