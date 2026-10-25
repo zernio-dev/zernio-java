@@ -30,6 +30,8 @@ import dev.zernio.model.CreateInboxConversation422Response;
 import dev.zernio.model.CreateInboxConversation429Response;
 import dev.zernio.model.CreateInboxConversationRequest;
 import dev.zernio.model.CreateInboxConversationRequest1;
+import dev.zernio.model.CreateInboxLabel201Response;
+import dev.zernio.model.CreateInboxLabelRequest;
 import dev.zernio.model.DeleteInboxConversation200Response;
 import dev.zernio.model.EditInboxMessage200Response;
 import dev.zernio.model.EditInboxMessageRequest;
@@ -39,6 +41,7 @@ import dev.zernio.model.GetInboxConversation200Response;
 import dev.zernio.model.GetInboxConversationMessages200Response;
 import dev.zernio.model.GetMessageAttachment200Response;
 import dev.zernio.model.ListInboxConversations200Response;
+import dev.zernio.model.ListInboxLabels200Response;
 import dev.zernio.model.MarkConversationRead200Response;
 import dev.zernio.model.RemoveMessageReaction200Response;
 import dev.zernio.model.SearchInboxConversations200Response;
@@ -87,7 +90,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-25T00:56:23.992304169Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-25T01:15:47.696922715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MessagesApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -601,6 +604,129 @@ public class MessagesApi {
   }
 
   /**
+   * Create a conversation label
+   * Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param createInboxLabelRequest  (required)
+   * @return CreateInboxLabel201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateInboxLabel201Response createInboxLabel(@javax.annotation.Nonnull CreateInboxLabelRequest createInboxLabelRequest) throws ApiException {
+    return createInboxLabel(createInboxLabelRequest, null);
+  }
+
+  /**
+   * Create a conversation label
+   * Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param createInboxLabelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return CreateInboxLabel201Response
+   * @throws ApiException if fails to make API call
+   */
+  public CreateInboxLabel201Response createInboxLabel(@javax.annotation.Nonnull CreateInboxLabelRequest createInboxLabelRequest, Map<String, String> headers) throws ApiException {
+    ApiResponse<CreateInboxLabel201Response> localVarResponse = createInboxLabelWithHttpInfo(createInboxLabelRequest, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Create a conversation label
+   * Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param createInboxLabelRequest  (required)
+   * @return ApiResponse&lt;CreateInboxLabel201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateInboxLabel201Response> createInboxLabelWithHttpInfo(@javax.annotation.Nonnull CreateInboxLabelRequest createInboxLabelRequest) throws ApiException {
+    return createInboxLabelWithHttpInfo(createInboxLabelRequest, null);
+  }
+
+  /**
+   * Create a conversation label
+   * Facebook Messenger only. Creates a custom label on the Page (Graph &#x60;POST /{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param createInboxLabelRequest  (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;CreateInboxLabel201Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<CreateInboxLabel201Response> createInboxLabelWithHttpInfo(@javax.annotation.Nonnull CreateInboxLabelRequest createInboxLabelRequest, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = createInboxLabelRequestBuilder(createInboxLabelRequest, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("createInboxLabel", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<CreateInboxLabel201Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        CreateInboxLabel201Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<CreateInboxLabel201Response>() {});
+        
+
+        return new ApiResponse<CreateInboxLabel201Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder createInboxLabelRequestBuilder(@javax.annotation.Nonnull CreateInboxLabelRequest createInboxLabelRequest, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'createInboxLabelRequest' is set
+    if (createInboxLabelRequest == null) {
+      throw new ApiException(400, "Missing the required parameter 'createInboxLabelRequest' when calling createInboxLabel");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/labels";
+
+    localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+
+    localVarRequestBuilder.header("Content-Type", "application/json");
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    try {
+      byte[] localVarPostBody = memberVarObjectMapper.writeValueAsBytes(createInboxLabelRequest);
+      localVarRequestBuilder.method("POST", HttpRequest.BodyPublishers.ofByteArray(localVarPostBody));
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
    * Delete conversation
    * Permanently deletes Zernio&#39;s stored copy of one conversation and every message in it, in one transaction, and unlinks the contact channel that pointed at it. Nothing is deleted on the platform (the thread stays in WhatsApp, Messenger or Instagram), and the contact record is kept: call DELETE /v1/contacts/{contactId} to erase the person&#39;s name and number as well. A platform re-sync can import the thread again: WhatsApp coexistence numbers receive their messaging history from Meta repeatedly, and a Facebook or Instagram account whose DM history walk has not finished imports it on that walk. Inbound media copies Zernio stored are removed on a best-effort basis.
    * @param conversationId Opaque conversation identifier, accepted verbatim from the list endpoint or from the conversationId on inbox webhooks. Format not to be assumed. (required)
@@ -709,6 +835,147 @@ public class MessagesApi {
 
     String localVarPath = "/v1/inbox/conversations/{conversationId}"
         .replace("{conversationId}", ApiClient.urlEncode(conversationId.toString()));
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("DELETE", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * Delete a conversation label
+   * Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param labelId Meta label id (required)
+   * @param accountId Facebook social account ID (required)
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteInboxLabel(@javax.annotation.Nonnull String labelId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteInboxLabel(labelId, accountId, null);
+  }
+
+  /**
+   * Delete a conversation label
+   * Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param labelId Meta label id (required)
+   * @param accountId Facebook social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return UpdateYoutubeDefaultPlaylist200Response
+   * @throws ApiException if fails to make API call
+   */
+  public UpdateYoutubeDefaultPlaylist200Response deleteInboxLabel(@javax.annotation.Nonnull String labelId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<UpdateYoutubeDefaultPlaylist200Response> localVarResponse = deleteInboxLabelWithHttpInfo(labelId, accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * Delete a conversation label
+   * Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param labelId Meta label id (required)
+   * @param accountId Facebook social account ID (required)
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteInboxLabelWithHttpInfo(@javax.annotation.Nonnull String labelId, @javax.annotation.Nonnull String accountId) throws ApiException {
+    return deleteInboxLabelWithHttpInfo(labelId, accountId, null);
+  }
+
+  /**
+   * Delete a conversation label
+   * Facebook Messenger only. Deletes a custom label from the Page (Graph &#x60;DELETE /{label-id}&#x60;), which also removes it from every conversation. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param labelId Meta label id (required)
+   * @param accountId Facebook social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;UpdateYoutubeDefaultPlaylist200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<UpdateYoutubeDefaultPlaylist200Response> deleteInboxLabelWithHttpInfo(@javax.annotation.Nonnull String labelId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = deleteInboxLabelRequestBuilder(labelId, accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("deleteInboxLabel", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        UpdateYoutubeDefaultPlaylist200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<UpdateYoutubeDefaultPlaylist200Response>() {});
+        
+
+        return new ApiResponse<UpdateYoutubeDefaultPlaylist200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder deleteInboxLabelRequestBuilder(@javax.annotation.Nonnull String labelId, @javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'labelId' is set
+    if (labelId == null) {
+      throw new ApiException(400, "Missing the required parameter 'labelId' when calling deleteInboxLabel");
+    }
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling deleteInboxLabel");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/labels/{labelId}"
+        .replace("{labelId}", ApiClient.urlEncode(labelId.toString()));
 
     List<Pair> localVarQueryParams = new ArrayList<>();
     StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
@@ -1639,6 +1906,138 @@ public class MessagesApi {
     localVarQueryParams.addAll(ApiClient.parameterToPairs("limit", limit));
     localVarQueryParameterBaseName = "cursor";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("cursor", cursor));
+    localVarQueryParameterBaseName = "accountId";
+    localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
+
+    if (!localVarQueryParams.isEmpty() || localVarQueryStringJoiner.length() != 0) {
+      StringJoiner queryJoiner = new StringJoiner("&");
+      localVarQueryParams.forEach(p -> queryJoiner.add(p.getName() + '=' + p.getValue()));
+      if (localVarQueryStringJoiner.length() != 0) {
+        queryJoiner.add(localVarQueryStringJoiner.toString());
+      }
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath + '?' + queryJoiner.toString()));
+    } else {
+      localVarRequestBuilder.uri(URI.create(memberVarBaseUri + localVarPath));
+    }
+
+    localVarRequestBuilder.header("Accept", "application/json");
+
+    localVarRequestBuilder.method("GET", HttpRequest.BodyPublishers.noBody());
+    if (memberVarReadTimeout != null) {
+      localVarRequestBuilder.timeout(memberVarReadTimeout);
+    }
+    // Add custom headers if provided
+    localVarRequestBuilder = HttpRequestBuilderExtensions.withAdditionalHeaders(localVarRequestBuilder, headers);
+    if (memberVarInterceptor != null) {
+      memberVarInterceptor.accept(localVarRequestBuilder);
+    }
+    return localVarRequestBuilder;
+  }
+
+  /**
+   * List the Page&#39;s conversation labels
+   * Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param accountId Facebook social account ID (required)
+   * @return ListInboxLabels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListInboxLabels200Response listInboxLabels(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return listInboxLabels(accountId, null);
+  }
+
+  /**
+   * List the Page&#39;s conversation labels
+   * Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param accountId Facebook social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ListInboxLabels200Response
+   * @throws ApiException if fails to make API call
+   */
+  public ListInboxLabels200Response listInboxLabels(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    ApiResponse<ListInboxLabels200Response> localVarResponse = listInboxLabelsWithHttpInfo(accountId, headers);
+    return localVarResponse.getData();
+  }
+
+  /**
+   * List the Page&#39;s conversation labels
+   * Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param accountId Facebook social account ID (required)
+   * @return ApiResponse&lt;ListInboxLabels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListInboxLabels200Response> listInboxLabelsWithHttpInfo(@javax.annotation.Nonnull String accountId) throws ApiException {
+    return listInboxLabelsWithHttpInfo(accountId, null);
+  }
+
+  /**
+   * List the Page&#39;s conversation labels
+   * Facebook Messenger only. Lists the custom labels defined on the Page (Graph &#x60;/{page-id}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+   * @param accountId Facebook social account ID (required)
+   * @param headers Optional headers to include in the request
+   * @return ApiResponse&lt;ListInboxLabels200Response&gt;
+   * @throws ApiException if fails to make API call
+   */
+  public ApiResponse<ListInboxLabels200Response> listInboxLabelsWithHttpInfo(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    HttpRequest.Builder localVarRequestBuilder = listInboxLabelsRequestBuilder(accountId, headers);
+    try {
+      HttpResponse<InputStream> localVarResponse = memberVarHttpClient.send(
+          localVarRequestBuilder.build(),
+          HttpResponse.BodyHandlers.ofInputStream());
+      if (memberVarResponseInterceptor != null) {
+        memberVarResponseInterceptor.accept(localVarResponse);
+      }
+      InputStream localVarResponseBody = null;
+      try {
+        if (localVarResponse.statusCode()/ 100 != 2) {
+          throw getApiException("listInboxLabels", localVarResponse);
+        }
+        localVarResponseBody = ApiClient.getResponseBody(localVarResponse);
+        if (localVarResponseBody == null) {
+          return new ApiResponse<ListInboxLabels200Response>(
+              localVarResponse.statusCode(),
+              localVarResponse.headers().map(),
+              null
+          );
+        }
+
+        
+        
+        String responseBody = new String(localVarResponseBody.readAllBytes());
+        ListInboxLabels200Response responseValue = responseBody.isBlank()? null: memberVarObjectMapper.readValue(responseBody, new TypeReference<ListInboxLabels200Response>() {});
+        
+
+        return new ApiResponse<ListInboxLabels200Response>(
+            localVarResponse.statusCode(),
+            localVarResponse.headers().map(),
+            responseValue
+        );
+      } finally {
+        if (localVarResponseBody != null) {
+          localVarResponseBody.close();
+        }
+      }
+    } catch (IOException e) {
+      throw new ApiException(e);
+    }
+    catch (InterruptedException e) {
+      Thread.currentThread().interrupt();
+      throw new ApiException(e);
+    }
+  }
+
+  private HttpRequest.Builder listInboxLabelsRequestBuilder(@javax.annotation.Nonnull String accountId, Map<String, String> headers) throws ApiException {
+    // verify the required parameter 'accountId' is set
+    if (accountId == null) {
+      throw new ApiException(400, "Missing the required parameter 'accountId' when calling listInboxLabels");
+    }
+
+    HttpRequest.Builder localVarRequestBuilder = HttpRequest.newBuilder();
+
+    String localVarPath = "/v1/inbox/labels";
+
+    List<Pair> localVarQueryParams = new ArrayList<>();
+    StringJoiner localVarQueryStringJoiner = new StringJoiner("&");
+    String localVarQueryParameterBaseName;
     localVarQueryParameterBaseName = "accountId";
     localVarQueryParams.addAll(ApiClient.parameterToPairs("accountId", accountId));
 

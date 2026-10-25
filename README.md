@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.352.0
 
-- Build date: 2026-10-25T00:56:23.992304169Z[Etc/UTC]
+- Build date: 2026-10-25T01:15:47.696922715Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -1449,8 +1449,12 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
 *MessagesApi* | [**createInboxConversationWithHttpInfo**](docs/MessagesApi.md#createInboxConversationWithHttpInfo) | **POST** /v1/inbox/conversations | Create conversation
+*MessagesApi* | [**createInboxLabel**](docs/MessagesApi.md#createInboxLabel) | **POST** /v1/inbox/labels | Create a conversation label
+*MessagesApi* | [**createInboxLabelWithHttpInfo**](docs/MessagesApi.md#createInboxLabelWithHttpInfo) | **POST** /v1/inbox/labels | Create a conversation label
 *MessagesApi* | [**deleteInboxConversation**](docs/MessagesApi.md#deleteInboxConversation) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation
 *MessagesApi* | [**deleteInboxConversationWithHttpInfo**](docs/MessagesApi.md#deleteInboxConversationWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId} | Delete conversation
+*MessagesApi* | [**deleteInboxLabel**](docs/MessagesApi.md#deleteInboxLabel) | **DELETE** /v1/inbox/labels/{labelId} | Delete a conversation label
+*MessagesApi* | [**deleteInboxLabelWithHttpInfo**](docs/MessagesApi.md#deleteInboxLabelWithHttpInfo) | **DELETE** /v1/inbox/labels/{labelId} | Delete a conversation label
 *MessagesApi* | [**deleteInboxMessage**](docs/MessagesApi.md#deleteInboxMessage) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**deleteInboxMessageWithHttpInfo**](docs/MessagesApi.md#deleteInboxMessageWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Delete message
 *MessagesApi* | [**editInboxMessage**](docs/MessagesApi.md#editInboxMessage) | **PATCH** /v1/inbox/conversations/{conversationId}/messages/{messageId} | Edit message
@@ -1463,6 +1467,8 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getMessageAttachmentWithHttpInfo**](docs/MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**listInboxConversations**](docs/MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**listInboxConversationsWithHttpInfo**](docs/MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations
+*MessagesApi* | [**listInboxLabels**](docs/MessagesApi.md#listInboxLabels) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels
+*MessagesApi* | [**listInboxLabelsWithHttpInfo**](docs/MessagesApi.md#listInboxLabelsWithHttpInfo) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels
 *MessagesApi* | [**markConversationRead**](docs/MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**markConversationReadWithHttpInfo**](docs/MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**removeMessageReaction**](docs/MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
@@ -2686,6 +2692,8 @@ Class | Method | HTTP request | Description
  - [CreateInboxConversationRequestTemplateCardsInner](docs/CreateInboxConversationRequestTemplateCardsInner.md)
  - [CreateInboxConversationRequestTemplateCardsInnerButtonsInner](docs/CreateInboxConversationRequestTemplateCardsInnerButtonsInner.md)
  - [CreateInboxConversationRequestTemplateCardsInnerHeaderMedia](docs/CreateInboxConversationRequestTemplateCardsInnerHeaderMedia.md)
+ - [CreateInboxLabel201Response](docs/CreateInboxLabel201Response.md)
+ - [CreateInboxLabelRequest](docs/CreateInboxLabelRequest.md)
  - [CreateInviteToken201Response](docs/CreateInviteToken201Response.md)
  - [CreateInviteTokenRequest](docs/CreateInviteTokenRequest.md)
  - [CreateLeadForm200Response](docs/CreateLeadForm200Response.md)
@@ -3754,6 +3762,8 @@ Class | Method | HTTP request | Description
  - [ListInboxConversations200ResponseMetaAccountsSkippedInner](docs/ListInboxConversations200ResponseMetaAccountsSkippedInner.md)
  - [ListInboxConversations200ResponseMetaFailedAccountsInner](docs/ListInboxConversations200ResponseMetaFailedAccountsInner.md)
  - [ListInboxConversations200ResponsePagination](docs/ListInboxConversations200ResponsePagination.md)
+ - [ListInboxLabels200Response](docs/ListInboxLabels200Response.md)
+ - [ListInboxLabels200ResponseLabelsInner](docs/ListInboxLabels200ResponseLabelsInner.md)
  - [ListInboxMentions200Response](docs/ListInboxMentions200Response.md)
  - [ListInboxMentions200ResponseDataInner](docs/ListInboxMentions200ResponseDataInner.md)
  - [ListInboxMentions200ResponseMeta](docs/ListInboxMentions200ResponseMeta.md)

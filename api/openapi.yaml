@@ -22592,6 +22592,162 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/inbox/labels:
+    get:
+      description: "Facebook Messenger only. Lists the custom labels defined on the\
+        \ Page (Graph `/{page-id}/custom_labels`). Other platforms answer 400 `platform_not_supported`."
+      operationId: listInboxLabels
+      parameters:
+      - description: Facebook social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInboxLabels_200_response"
+          description: The Page's labels
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's error_user_title\
+            \ and error_user_msg in the message, e.g. the Page has not accepted the\
+            \ label privacy terms, subcode 2018344, in platformError). A transient\
+            \ Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account not found
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: List the Page's conversation labels
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: "Facebook Messenger only. Creates a custom label on the Page (Graph\
+        \ `POST /{page-id}/custom_labels`). Other platforms answer 400 `platform_not_supported`."
+      operationId: createInboxLabel
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64e1f0a9e2b5af0012ab34cd
+              name: VIP
+            schema:
+              $ref: "#/components/schemas/createInboxLabel_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createInboxLabel_201_response"
+          description: Label created
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid body, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's error_user_title\
+            \ and error_user_msg in the message, e.g. the Page has not accepted the\
+            \ label privacy terms, subcode 2018344, in platformError). A transient\
+            \ Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account not found
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: Create a conversation label
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/labels/{labelId}:
+    delete:
+      description: "Facebook Messenger only. Deletes a custom label from the Page\
+        \ (Graph `DELETE /{label-id}`), which also removes it from every conversation.\
+        \ The id must be one of the Page's custom labels, otherwise 404 `resource_not_found`.\
+        \ Other platforms answer 400 `platform_not_supported`."
+      operationId: deleteInboxLabel
+      parameters:
+      - description: Meta label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: "^[0-9]+$"
+          type: string
+        style: simple
+      - description: Facebook social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Label deleted
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid id, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's error_user_title\
+            \ and error_user_msg in the message, e.g. the Page has not accepted the\
+            \ label privacy terms, subcode 2018344, in platformError). A transient\
+            \ Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: "Account not found, or the label is not one of the Page's custom\
+            \ labels"
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: Delete a conversation label
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-accepts:
+      - application/json
   /v1/inbox/conversations/{conversationId}/read:
     post:
       description: |
@@ -116344,6 +116500,48 @@ components:
           type: boolean
         data:
           $ref: "#/components/schemas/acceptConversationRequest_200_response_data"
+    listInboxLabels_200_response_labels_inner:
+      example:
+        name: name
+        id: id
+      properties:
+        id:
+          description: Meta label id
+          type: string
+        name:
+          type: string
+    listInboxLabels_200_response:
+      example:
+        labels:
+        - name: name
+          id: id
+        - name: name
+          id: id
+      properties:
+        labels:
+          items:
+            $ref: "#/components/schemas/listInboxLabels_200_response_labels_inner"
+          type: array
+    createInboxLabel_request:
+      properties:
+        accountId:
+          description: Facebook social account ID
+          type: string
+        name:
+          description: Label name
+          minLength: 1
+          type: string
+      required:
+      - accountId
+      - name
+    createInboxLabel_201_response:
+      example:
+        label:
+          name: name
+          id: id
+      properties:
+        label:
+          $ref: "#/components/schemas/listInboxLabels_200_response_labels_inner"
     markConversationRead_200_response:
       example:
         success: true

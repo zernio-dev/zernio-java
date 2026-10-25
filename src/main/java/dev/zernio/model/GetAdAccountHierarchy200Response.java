@@ -51,7 +51,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHierarchy200Response.JSON_PROPERTY_CACHED_AT,
   GetAdAccountHierarchy200Response.JSON_PROPERTY_STALE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-25T00:56:23.992304169Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-25T01:15:47.696922715Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHierarchy200Response {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nullable
