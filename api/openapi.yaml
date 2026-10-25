@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.352.0
+  version: 1.353.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -22743,6 +22743,186 @@ paths:
       security:
       - bearerAuth: []
       summary: Delete a conversation label
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+  /v1/inbox/conversations/{conversationId}/labels:
+    get:
+      description: "Facebook Messenger only. Lists the Page's custom labels applied\
+        \ to the person in this conversation (Graph `/{psid}/custom_labels`). Other\
+        \ platforms answer 400 `platform_not_supported`."
+      operationId: listConversationLabels
+      parameters:
+      - description: Conversation ID (Zernio id or Meta platform conversation id)
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Facebook social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listInboxLabels_200_response"
+          description: The labels on the conversation's participant
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid accountId, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's message, e.g.\
+            \ the Page has not accepted the label privacy terms, subcode 2018344,\
+            \ in platformError). A transient Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: Account or conversation not found
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: List the labels on a conversation
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-accepts:
+      - application/json
+    post:
+      description: "Facebook Messenger only. Applies one of the Page's custom labels\
+        \ to the person in this conversation (Graph `POST /{label-id}/label?user={psid}`).\
+        \ The id must be one of the Page's custom labels, otherwise 404 `resource_not_found`.\
+        \ Other platforms answer 400 `platform_not_supported`."
+      operationId: addConversationLabel
+      parameters:
+      - description: Conversation ID (Zernio id or Meta platform conversation id)
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            example:
+              accountId: 64e1f0a9e2b5af0012ab34cd
+              labelId: "1712444532121303"
+            schema:
+              $ref: "#/components/schemas/addConversationLabel_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Label added
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid body, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's message in\
+            \ platformError). A transient Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: "Account or conversation not found, or the label is not one\
+            \ of the Page's custom labels"
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: Add a label to a conversation
+      tags:
+      - Messages
+      x-resource-group: messages
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/inbox/conversations/{conversationId}/labels/{labelId}:
+    delete:
+      description: "Facebook Messenger only. Removes one of the Page's custom labels\
+        \ from the person in this conversation (Graph `DELETE /{label-id}/label?user={psid}`).\
+        \ The label itself stays on the Page. The id must be one of the Page's custom\
+        \ labels, otherwise 404 `resource_not_found`. Other platforms answer 400 `platform_not_supported`."
+      operationId: removeConversationLabel
+      parameters:
+      - description: Conversation ID (Zernio id or Meta platform conversation id)
+        explode: false
+        in: path
+        name: conversationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Meta label id
+        explode: false
+        in: path
+        name: labelId
+        required: true
+        schema:
+          pattern: "^[0-9]+$"
+          type: string
+        style: simple
+      - description: Facebook social account ID
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Label removed
+        "400":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Invalid id, or an account that is not Facebook (platform_not_supported),\
+            \ or Meta refusing for good (platform_api_error with Meta's message in\
+            \ platformError). A transient Meta failure answers 502"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Inbox addon required
+        "404":
+          description: "Account or conversation not found, or the label is not one\
+            \ of the Page's custom labels"
+        "422":
+          description: No Facebook Page is selected on this account (linked_account_required);
+            reconnect it and select the Page
+      security:
+      - bearerAuth: []
+      summary: Remove a label from a conversation
       tags:
       - Messages
       x-resource-group: messages
@@ -116542,6 +116722,18 @@ components:
       properties:
         label:
           $ref: "#/components/schemas/listInboxLabels_200_response_labels_inner"
+    addConversationLabel_request:
+      properties:
+        accountId:
+          description: Facebook social account ID
+          type: string
+        labelId:
+          description: Meta label id from listInboxLabels
+          pattern: "^[0-9]+$"
+          type: string
+      required:
+      - accountId
+      - labelId
     markConversationRead_200_response:
       example:
         success: true

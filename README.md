@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.352.0
+- API version: 1.353.0
 
-- Build date: 2026-10-25T01:15:47.696922715Z[Etc/UTC]
+- Build date: 2026-10-25T02:34:21.216800352Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.352.0</version>
+  <version>1.353.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.352.0"
+compile "dev.zernio:zernio-sdk:1.353.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.352.0.jar`
+- `target/zernio-sdk-1.353.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1445,6 +1445,8 @@ Class | Method | HTTP request | Description
 *MentionsApi* | [**replyToMentionWithHttpInfo**](docs/MentionsApi.md#replyToMentionWithHttpInfo) | **POST** /v1/inbox/mentions/reply | Reply to a mention
 *MessagesApi* | [**acceptConversationRequest**](docs/MessagesApi.md#acceptConversationRequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request
 *MessagesApi* | [**acceptConversationRequestWithHttpInfo**](docs/MessagesApi.md#acceptConversationRequestWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request
+*MessagesApi* | [**addConversationLabel**](docs/MessagesApi.md#addConversationLabel) | **POST** /v1/inbox/conversations/{conversationId}/labels | Add a label to a conversation
+*MessagesApi* | [**addConversationLabelWithHttpInfo**](docs/MessagesApi.md#addConversationLabelWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/labels | Add a label to a conversation
 *MessagesApi* | [**addMessageReaction**](docs/MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**addMessageReactionWithHttpInfo**](docs/MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction
 *MessagesApi* | [**createInboxConversation**](docs/MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation
@@ -1465,12 +1467,16 @@ Class | Method | HTTP request | Description
 *MessagesApi* | [**getInboxConversationMessagesWithHttpInfo**](docs/MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages
 *MessagesApi* | [**getMessageAttachment**](docs/MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
 *MessagesApi* | [**getMessageAttachmentWithHttpInfo**](docs/MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment
+*MessagesApi* | [**listConversationLabels**](docs/MessagesApi.md#listConversationLabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation
+*MessagesApi* | [**listConversationLabelsWithHttpInfo**](docs/MessagesApi.md#listConversationLabelsWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation
 *MessagesApi* | [**listInboxConversations**](docs/MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**listInboxConversationsWithHttpInfo**](docs/MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations
 *MessagesApi* | [**listInboxLabels**](docs/MessagesApi.md#listInboxLabels) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels
 *MessagesApi* | [**listInboxLabelsWithHttpInfo**](docs/MessagesApi.md#listInboxLabelsWithHttpInfo) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels
 *MessagesApi* | [**markConversationRead**](docs/MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
 *MessagesApi* | [**markConversationReadWithHttpInfo**](docs/MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read
+*MessagesApi* | [**removeConversationLabel**](docs/MessagesApi.md#removeConversationLabel) | **DELETE** /v1/inbox/conversations/{conversationId}/labels/{labelId} | Remove a label from a conversation
+*MessagesApi* | [**removeConversationLabelWithHttpInfo**](docs/MessagesApi.md#removeConversationLabelWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/labels/{labelId} | Remove a label from a conversation
 *MessagesApi* | [**removeMessageReaction**](docs/MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**removeMessageReactionWithHttpInfo**](docs/MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction
 *MessagesApi* | [**searchInboxConversations**](docs/MessagesApi.md#searchInboxConversations) | **GET** /v1/inbox/conversations/search | Search conversations
@@ -2213,6 +2219,7 @@ Class | Method | HTTP request | Description
  - [AddCommerceMarketingEngagement201Response](docs/AddCommerceMarketingEngagement201Response.md)
  - [AddCommerceMarketingEngagementRequest](docs/AddCommerceMarketingEngagementRequest.md)
  - [AddCommerceProductImagesRequest](docs/AddCommerceProductImagesRequest.md)
+ - [AddConversationLabelRequest](docs/AddConversationLabelRequest.md)
  - [AddConversionAssociations200Response](docs/AddConversionAssociations200Response.md)
  - [AddConversionAssociations200ResponseFailedInner](docs/AddConversionAssociations200ResponseFailedInner.md)
  - [AddConversionAssociationsRequest](docs/AddConversionAssociationsRequest.md)

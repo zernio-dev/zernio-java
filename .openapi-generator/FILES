@@ -87,6 +87,7 @@ docs/AddCommerceDiscountCodesRequest.md
 docs/AddCommerceMarketingEngagement201Response.md
 docs/AddCommerceMarketingEngagementRequest.md
 docs/AddCommerceProductImagesRequest.md
+docs/AddConversationLabelRequest.md
 docs/AddConversionAssociations200Response.md
 docs/AddConversionAssociations200ResponseFailedInner.md
 docs/AddConversionAssociationsRequest.md
@@ -3108,6 +3109,7 @@ src/main/java/dev/zernio/model/AddCommerceDiscountCodesRequest.java
 src/main/java/dev/zernio/model/AddCommerceMarketingEngagement201Response.java
 src/main/java/dev/zernio/model/AddCommerceMarketingEngagementRequest.java
 src/main/java/dev/zernio/model/AddCommerceProductImagesRequest.java
+src/main/java/dev/zernio/model/AddConversationLabelRequest.java
 src/main/java/dev/zernio/model/AddConversionAssociations200Response.java
 src/main/java/dev/zernio/model/AddConversionAssociations200ResponseFailedInner.java
 src/main/java/dev/zernio/model/AddConversionAssociationsRequest.java
@@ -5891,7 +5893,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateInboxLabel201ResponseTest.java
-src/test/java/dev/zernio/model/CreateInboxLabelRequestTest.java
-src/test/java/dev/zernio/model/ListInboxLabels200ResponseLabelsInnerTest.java
-src/test/java/dev/zernio/model/ListInboxLabels200ResponseTest.java
+src/test/java/dev/zernio/model/AddConversationLabelRequestTest.java

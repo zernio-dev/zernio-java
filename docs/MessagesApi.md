@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**acceptConversationRequest**](MessagesApi.md#acceptConversationRequest) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
 | [**acceptConversationRequestWithHttpInfo**](MessagesApi.md#acceptConversationRequestWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/accept | Accept a message request |
+| [**addConversationLabel**](MessagesApi.md#addConversationLabel) | **POST** /v1/inbox/conversations/{conversationId}/labels | Add a label to a conversation |
+| [**addConversationLabelWithHttpInfo**](MessagesApi.md#addConversationLabelWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/labels | Add a label to a conversation |
 | [**addMessageReaction**](MessagesApi.md#addMessageReaction) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**addMessageReactionWithHttpInfo**](MessagesApi.md#addMessageReactionWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Add reaction |
 | [**createInboxConversation**](MessagesApi.md#createInboxConversation) | **POST** /v1/inbox/conversations | Create conversation |
@@ -26,12 +28,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**getInboxConversationMessagesWithHttpInfo**](MessagesApi.md#getInboxConversationMessagesWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages | List messages |
 | [**getMessageAttachment**](MessagesApi.md#getMessageAttachment) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
 | [**getMessageAttachmentWithHttpInfo**](MessagesApi.md#getMessageAttachmentWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/messages/{messageId}/attachments/{index} | Resolve message attachment |
+| [**listConversationLabels**](MessagesApi.md#listConversationLabels) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
+| [**listConversationLabelsWithHttpInfo**](MessagesApi.md#listConversationLabelsWithHttpInfo) | **GET** /v1/inbox/conversations/{conversationId}/labels | List the labels on a conversation |
 | [**listInboxConversations**](MessagesApi.md#listInboxConversations) | **GET** /v1/inbox/conversations | List conversations |
 | [**listInboxConversationsWithHttpInfo**](MessagesApi.md#listInboxConversationsWithHttpInfo) | **GET** /v1/inbox/conversations | List conversations |
 | [**listInboxLabels**](MessagesApi.md#listInboxLabels) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels |
 | [**listInboxLabelsWithHttpInfo**](MessagesApi.md#listInboxLabelsWithHttpInfo) | **GET** /v1/inbox/labels | List the Page&#39;s conversation labels |
 | [**markConversationRead**](MessagesApi.md#markConversationRead) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
 | [**markConversationReadWithHttpInfo**](MessagesApi.md#markConversationReadWithHttpInfo) | **POST** /v1/inbox/conversations/{conversationId}/read | Mark a conversation as read |
+| [**removeConversationLabel**](MessagesApi.md#removeConversationLabel) | **DELETE** /v1/inbox/conversations/{conversationId}/labels/{labelId} | Remove a label from a conversation |
+| [**removeConversationLabelWithHttpInfo**](MessagesApi.md#removeConversationLabelWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/labels/{labelId} | Remove a label from a conversation |
 | [**removeMessageReaction**](MessagesApi.md#removeMessageReaction) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**removeMessageReactionWithHttpInfo**](MessagesApi.md#removeMessageReactionWithHttpInfo) | **DELETE** /v1/inbox/conversations/{conversationId}/messages/{messageId}/reactions | Remove reaction |
 | [**searchInboxConversations**](MessagesApi.md#searchInboxConversations) | **GET** /v1/inbox/conversations/search | Search conversations |
@@ -205,6 +211,164 @@ ApiResponse<[**AcceptConversationRequest200Response**](AcceptConversationRequest
 | **403** | Inbox addon required or plan limit reached |  -  |
 | **404** | Account or conversation not found |  -  |
 | **409** | The same Idempotency-Key is still processing, or another app owns the thread under Meta&#39;s handover protocol (code not_thread_owner, &#x60;details.ownerAppId&#x60; names it when Meta says). Take control with thread-control first (accounts connected through a Facebook Page only; an Instagram Login connection cannot take). |  -  |
+
+
+## addConversationLabel
+
+> UpdateYoutubeDefaultPlaylist200Response addConversationLabel(conversationId, addConversationLabelRequest)
+
+Add a label to a conversation
+
+Facebook Messenger only. Applies one of the Page&#39;s custom labels to the person in this conversation (Graph &#x60;POST /{label-id}/label?user&#x3D;{psid}&#x60;). The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        AddConversationLabelRequest addConversationLabelRequest = new AddConversationLabelRequest(); // AddConversationLabelRequest | 
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.addConversationLabel(conversationId, addConversationLabelRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#addConversationLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **addConversationLabelRequest** | [**AddConversationLabelRequest**](AddConversationLabelRequest.md)|  | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label added |  -  |
+| **400** | Invalid body, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found, or the label is not one of the Page&#39;s custom labels |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
+
+## addConversationLabelWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> addConversationLabel addConversationLabelWithHttpInfo(conversationId, addConversationLabelRequest)
+
+Add a label to a conversation
+
+Facebook Messenger only. Applies one of the Page&#39;s custom labels to the person in this conversation (Graph &#x60;POST /{label-id}/label?user&#x3D;{psid}&#x60;). The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        AddConversationLabelRequest addConversationLabelRequest = new AddConversationLabelRequest(); // AddConversationLabelRequest | 
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.addConversationLabelWithHttpInfo(conversationId, addConversationLabelRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#addConversationLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **addConversationLabelRequest** | [**AddConversationLabelRequest**](AddConversationLabelRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label added |  -  |
+| **400** | Invalid body, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found, or the label is not one of the Page&#39;s custom labels |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
 
 
 ## addMessageReaction
@@ -1809,6 +1973,164 @@ ApiResponse<[**GetMessageAttachment200Response**](GetMessageAttachment200Respons
 | **404** | Account, conversation, message or attachment not found, or the platform no longer serves the media |  -  |
 
 
+## listConversationLabels
+
+> ListInboxLabels200Response listConversationLabels(conversationId, accountId)
+
+List the labels on a conversation
+
+Facebook Messenger only. Lists the Page&#39;s custom labels applied to the person in this conversation (Graph &#x60;/{psid}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        String accountId = "accountId_example"; // String | Facebook social account ID
+        try {
+            ListInboxLabels200Response result = apiInstance.listConversationLabels(conversationId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#listConversationLabels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **accountId** | **String**| Facebook social account ID | |
+
+### Return type
+
+[**ListInboxLabels200Response**](ListInboxLabels200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The labels on the conversation&#39;s participant |  -  |
+| **400** | Invalid accountId, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message, e.g. the Page has not accepted the label privacy terms, subcode 2018344, in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
+
+## listConversationLabelsWithHttpInfo
+
+> ApiResponse<ListInboxLabels200Response> listConversationLabels listConversationLabelsWithHttpInfo(conversationId, accountId)
+
+List the labels on a conversation
+
+Facebook Messenger only. Lists the Page&#39;s custom labels applied to the person in this conversation (Graph &#x60;/{psid}/custom_labels&#x60;). Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        String accountId = "accountId_example"; // String | Facebook social account ID
+        try {
+            ApiResponse<ListInboxLabels200Response> response = apiInstance.listConversationLabelsWithHttpInfo(conversationId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#listConversationLabels");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **accountId** | **String**| Facebook social account ID | |
+
+### Return type
+
+ApiResponse<[**ListInboxLabels200Response**](ListInboxLabels200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The labels on the conversation&#39;s participant |  -  |
+| **400** | Invalid accountId, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message, e.g. the Page has not accepted the label privacy terms, subcode 2018344, in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
+
+
 ## listInboxConversations
 
 > ListInboxConversations200Response listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId)
@@ -2293,6 +2615,168 @@ ApiResponse<[**MarkConversationRead200Response**](MarkConversationRead200Respons
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Inbox addon required |  -  |
 | **404** | Account or conversation not found |  -  |
+
+
+## removeConversationLabel
+
+> UpdateYoutubeDefaultPlaylist200Response removeConversationLabel(conversationId, labelId, accountId)
+
+Remove a label from a conversation
+
+Facebook Messenger only. Removes one of the Page&#39;s custom labels from the person in this conversation (Graph &#x60;DELETE /{label-id}/label?user&#x3D;{psid}&#x60;). The label itself stays on the Page. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        String labelId = "labelId_example"; // String | Meta label id
+        String accountId = "accountId_example"; // String | Facebook social account ID
+        try {
+            UpdateYoutubeDefaultPlaylist200Response result = apiInstance.removeConversationLabel(conversationId, labelId, accountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#removeConversationLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **labelId** | **String**| Meta label id | |
+| **accountId** | **String**| Facebook social account ID | |
+
+### Return type
+
+[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label removed |  -  |
+| **400** | Invalid id, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found, or the label is not one of the Page&#39;s custom labels |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
+
+## removeConversationLabelWithHttpInfo
+
+> ApiResponse<UpdateYoutubeDefaultPlaylist200Response> removeConversationLabel removeConversationLabelWithHttpInfo(conversationId, labelId, accountId)
+
+Remove a label from a conversation
+
+Facebook Messenger only. Removes one of the Page&#39;s custom labels from the person in this conversation (Graph &#x60;DELETE /{label-id}/label?user&#x3D;{psid}&#x60;). The label itself stays on the Page. The id must be one of the Page&#39;s custom labels, otherwise 404 &#x60;resource_not_found&#x60;. Other platforms answer 400 &#x60;platform_not_supported&#x60;.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.MessagesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        MessagesApi apiInstance = new MessagesApi(defaultClient);
+        String conversationId = "conversationId_example"; // String | Conversation ID (Zernio id or Meta platform conversation id)
+        String labelId = "labelId_example"; // String | Meta label id
+        String accountId = "accountId_example"; // String | Facebook social account ID
+        try {
+            ApiResponse<UpdateYoutubeDefaultPlaylist200Response> response = apiInstance.removeConversationLabelWithHttpInfo(conversationId, labelId, accountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling MessagesApi#removeConversationLabel");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **conversationId** | **String**| Conversation ID (Zernio id or Meta platform conversation id) | |
+| **labelId** | **String**| Meta label id | |
+| **accountId** | **String**| Facebook social account ID | |
+
+### Return type
+
+ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPlaylist200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Label removed |  -  |
+| **400** | Invalid id, or an account that is not Facebook (platform_not_supported), or Meta refusing for good (platform_api_error with Meta&#39;s message in platformError). A transient Meta failure answers 502 |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Inbox addon required |  -  |
+| **404** | Account or conversation not found, or the label is not one of the Page&#39;s custom labels |  -  |
+| **422** | No Facebook Page is selected on this account (linked_account_required); reconnect it and select the Page |  -  |
 
 
 ## removeMessageReaction
