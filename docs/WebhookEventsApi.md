@@ -22,6 +22,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**onAdReviewApprovedWithHttpInfo**](WebhookEventsApi.md#onAdReviewApprovedWithHttpInfo) | **POST** /ad.review.approved | Ad review approved event |
 | [**onAdReviewRejected**](WebhookEventsApi.md#onAdReviewRejected) | **POST** /ad.review.rejected | Ad review rejected event |
 | [**onAdReviewRejectedWithHttpInfo**](WebhookEventsApi.md#onAdReviewRejectedWithHttpInfo) | **POST** /ad.review.rejected | Ad review rejected event |
+| [**onAdRuleTriggered**](WebhookEventsApi.md#onAdRuleTriggered) | **POST** /ad_rule.triggered | Ad rule triggered event |
+| [**onAdRuleTriggeredWithHttpInfo**](WebhookEventsApi.md#onAdRuleTriggeredWithHttpInfo) | **POST** /ad_rule.triggered | Ad rule triggered event |
 | [**onAdStatusChanged**](WebhookEventsApi.md#onAdStatusChanged) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdStatusChangedWithHttpInfo**](WebhookEventsApi.md#onAdStatusChangedWithHttpInfo) | **POST** /ad.status_changed | Ad status changed event |
 | [**onAdVideoProcessed**](WebhookEventsApi.md#onAdVideoProcessed) | **POST** /ad.video.processed | Ad video processed event |
@@ -1442,6 +1444,148 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **webhookPayloadAdReview** | [**WebhookPayloadAdReview**](WebhookPayloadAdReview.md)|  | |
+
+### Return type
+
+
+ApiResponse<Void>
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+
+## onAdRuleTriggered
+
+> void onAdRuleTriggered(webhookPayloadAdRuleTriggered)
+
+Ad rule triggered event
+
+Fired when a scheduled ad rule run finds campaigns or ad sets meeting every condition, once per object per cooldown. See &#x60;WebhookPayloadAdRuleTriggered&#x60; for when it fires and when it does not. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdRuleTriggered webhookPayloadAdRuleTriggered = new WebhookPayloadAdRuleTriggered(); // WebhookPayloadAdRuleTriggered | 
+        try {
+            apiInstance.onAdRuleTriggered(webhookPayloadAdRuleTriggered);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdRuleTriggered");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdRuleTriggered** | [**WebhookPayloadAdRuleTriggered**](WebhookPayloadAdRuleTriggered.md)|  | |
+
+### Return type
+
+
+null (empty response body)
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: Not defined
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Webhook received successfully |  -  |
+
+## onAdRuleTriggeredWithHttpInfo
+
+> ApiResponse<Void> onAdRuleTriggered onAdRuleTriggeredWithHttpInfo(webhookPayloadAdRuleTriggered)
+
+Ad rule triggered event
+
+Fired when a scheduled ad rule run finds campaigns or ad sets meeting every condition, once per object per cooldown. See &#x60;WebhookPayloadAdRuleTriggered&#x60; for when it fires and when it does not. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.WebhookEventsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        WebhookEventsApi apiInstance = new WebhookEventsApi(defaultClient);
+        WebhookPayloadAdRuleTriggered webhookPayloadAdRuleTriggered = new WebhookPayloadAdRuleTriggered(); // WebhookPayloadAdRuleTriggered | 
+        try {
+            ApiResponse<Void> response = apiInstance.onAdRuleTriggeredWithHttpInfo(webhookPayloadAdRuleTriggered);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling WebhookEventsApi#onAdRuleTriggered");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **webhookPayloadAdRuleTriggered** | [**WebhookPayloadAdRuleTriggered**](WebhookPayloadAdRuleTriggered.md)|  | |
 
 ### Return type
 

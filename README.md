@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.357.0
+- API version: 1.358.0
 
-- Build date: 2026-10-25T13:37:42.876967378Z[Etc/UTC]
+- Build date: 2026-10-25T16:09:07.647001972Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.357.0</version>
+  <version>1.358.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.357.0"
+compile "dev.zernio:zernio-sdk:1.358.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.357.0.jar`
+- `target/zernio-sdk-1.358.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -563,6 +563,20 @@ Class | Method | HTTP request | Description
 *AdInsightsApi* | [**queryAdInsightsWithHttpInfo**](docs/AdInsightsApi.md#queryAdInsightsWithHttpInfo) | **GET** /v1/ads/insights | Flexible live insights query
 *AdLibraryApi* | [**searchAdLibrary**](docs/AdLibraryApi.md#searchAdLibrary) | **GET** /v1/ads/library | Search the public Ad Library
 *AdLibraryApi* | [**searchAdLibraryWithHttpInfo**](docs/AdLibraryApi.md#searchAdLibraryWithHttpInfo) | **GET** /v1/ads/library | Search the public Ad Library
+*AdRulesApi* | [**createAdRule**](docs/AdRulesApi.md#createAdRule) | **POST** /v1/ads/rules | Create an ad rule
+*AdRulesApi* | [**createAdRuleWithHttpInfo**](docs/AdRulesApi.md#createAdRuleWithHttpInfo) | **POST** /v1/ads/rules | Create an ad rule
+*AdRulesApi* | [**deleteAdRule**](docs/AdRulesApi.md#deleteAdRule) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule
+*AdRulesApi* | [**deleteAdRuleWithHttpInfo**](docs/AdRulesApi.md#deleteAdRuleWithHttpInfo) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule
+*AdRulesApi* | [**getAdRule**](docs/AdRulesApi.md#getAdRule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
+*AdRulesApi* | [**getAdRuleWithHttpInfo**](docs/AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
+*AdRulesApi* | [**listAdRuleRuns**](docs/AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
+*AdRulesApi* | [**listAdRuleRunsWithHttpInfo**](docs/AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
+*AdRulesApi* | [**listAdRules**](docs/AdRulesApi.md#listAdRules) | **GET** /v1/ads/rules | List ad rules
+*AdRulesApi* | [**listAdRulesWithHttpInfo**](docs/AdRulesApi.md#listAdRulesWithHttpInfo) | **GET** /v1/ads/rules | List ad rules
+*AdRulesApi* | [**previewAdRule**](docs/AdRulesApi.md#previewAdRule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule
+*AdRulesApi* | [**previewAdRuleWithHttpInfo**](docs/AdRulesApi.md#previewAdRuleWithHttpInfo) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule
+*AdRulesApi* | [**updateAdRule**](docs/AdRulesApi.md#updateAdRule) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule
+*AdRulesApi* | [**updateAdRuleWithHttpInfo**](docs/AdRulesApi.md#updateAdRuleWithHttpInfo) | **PATCH** /v1/ads/rules/{ruleId} | Update an ad rule
 *AdTargetingApi* | [**browseAdTargeting**](docs/AdTargetingApi.md#browseAdTargeting) | **GET** /v1/ads/targeting/browse | Browse targeting categories
 *AdTargetingApi* | [**browseAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#browseAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/browse | Browse targeting categories
 *AdTargetingApi* | [**estimateAdReach**](docs/AdTargetingApi.md#estimateAdReach) | **POST** /v1/ads/targeting/reach-estimate | Estimate audience reach
@@ -2186,6 +2200,22 @@ Class | Method | HTTP request | Description
  - [AdNegativeKeywordListKeyword](docs/AdNegativeKeywordListKeyword.md)
  - [AdPromotedObject](docs/AdPromotedObject.md)
  - [AdReviewStatus](docs/AdReviewStatus.md)
+ - [AdRule](docs/AdRule.md)
+ - [AdRuleAction](docs/AdRuleAction.md)
+ - [AdRuleActionOneOf](docs/AdRuleActionOneOf.md)
+ - [AdRuleActionOneOf1](docs/AdRuleActionOneOf1.md)
+ - [AdRuleActionOneOf2](docs/AdRuleActionOneOf2.md)
+ - [AdRuleActionOneOf3](docs/AdRuleActionOneOf3.md)
+ - [AdRuleCondition](docs/AdRuleCondition.md)
+ - [AdRuleConditions](docs/AdRuleConditions.md)
+ - [AdRuleEvaluation](docs/AdRuleEvaluation.md)
+ - [AdRuleLevel](docs/AdRuleLevel.md)
+ - [AdRuleObjectEvaluation](docs/AdRuleObjectEvaluation.md)
+ - [AdRuleObjectEvaluationConditionsInner](docs/AdRuleObjectEvaluationConditionsInner.md)
+ - [AdRuleRun](docs/AdRuleRun.md)
+ - [AdRuleRunEvaluation](docs/AdRuleRunEvaluation.md)
+ - [AdRuleRunEvaluationActionsInner](docs/AdRuleRunEvaluationActionsInner.md)
+ - [AdRuleSchedule](docs/AdRuleSchedule.md)
  - [AdSchedule](docs/AdSchedule.md)
  - [AdScheduleWindow](docs/AdScheduleWindow.md)
  - [AdStatus](docs/AdStatus.md)
@@ -2585,6 +2615,8 @@ Class | Method | HTTP request | Description
  - [CreateAdLabelRequest](docs/CreateAdLabelRequest.md)
  - [CreateAdNegativeKeywordList201Response](docs/CreateAdNegativeKeywordList201Response.md)
  - [CreateAdNegativeKeywordListRequest](docs/CreateAdNegativeKeywordListRequest.md)
+ - [CreateAdRule201Response](docs/CreateAdRule201Response.md)
+ - [CreateAdRuleRequest](docs/CreateAdRuleRequest.md)
  - [CreateAdSet201Response](docs/CreateAdSet201Response.md)
  - [CreateAdSetRequest](docs/CreateAdSetRequest.md)
  - [CreateApiKey201Response](docs/CreateApiKey201Response.md)
@@ -3635,6 +3667,8 @@ Class | Method | HTTP request | Description
  - [ListAdLabels200ResponseDataInner](docs/ListAdLabels200ResponseDataInner.md)
  - [ListAdLabels200ResponsePaging](docs/ListAdLabels200ResponsePaging.md)
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
+ - [ListAdRuleRuns200Response](docs/ListAdRuleRuns200Response.md)
+ - [ListAdRules200Response](docs/ListAdRules200Response.md)
  - [ListAdSets200Response](docs/ListAdSets200Response.md)
  - [ListAdSets200ResponseAdSetsInner](docs/ListAdSets200ResponseAdSetsInner.md)
  - [ListAdSets200ResponseAdSetsInnerBudget](docs/ListAdSets200ResponseAdSetsInnerBudget.md)
@@ -4518,6 +4552,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdRequestTargetingInterestsInner](docs/UpdateAdRequestTargetingInterestsInner.md)
  - [UpdateAdRequestTargetingKeywordsInner](docs/UpdateAdRequestTargetingKeywordsInner.md)
  - [UpdateAdRequestTargetingKeywordsInnerOneOf](docs/UpdateAdRequestTargetingKeywordsInnerOneOf.md)
+ - [UpdateAdRuleRequest](docs/UpdateAdRuleRequest.md)
  - [UpdateAdSet200Response](docs/UpdateAdSet200Response.md)
  - [UpdateAdSetRequest](docs/UpdateAdSetRequest.md)
  - [UpdateAdSetRequestBudget](docs/UpdateAdSetRequestBudget.md)
@@ -4814,6 +4849,12 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAdReviewAdObject](docs/WebhookPayloadAdReviewAdObject.md)
  - [WebhookPayloadAdReviewReview](docs/WebhookPayloadAdReviewReview.md)
  - [WebhookPayloadAdReviewReviewReasonsInner](docs/WebhookPayloadAdReviewReviewReasonsInner.md)
+ - [WebhookPayloadAdRuleTriggered](docs/WebhookPayloadAdRuleTriggered.md)
+ - [WebhookPayloadAdRuleTriggeredObjectsInner](docs/WebhookPayloadAdRuleTriggeredObjectsInner.md)
+ - [WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner](docs/WebhookPayloadAdRuleTriggeredObjectsInnerActionsInner.md)
+ - [WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner](docs/WebhookPayloadAdRuleTriggeredObjectsInnerConditionsInner.md)
+ - [WebhookPayloadAdRuleTriggeredRule](docs/WebhookPayloadAdRuleTriggeredRule.md)
+ - [WebhookPayloadAdRuleTriggeredRun](docs/WebhookPayloadAdRuleTriggeredRun.md)
  - [WebhookPayloadAdStatusChanged](docs/WebhookPayloadAdStatusChanged.md)
  - [WebhookPayloadAdStatusChangedAccount](docs/WebhookPayloadAdStatusChangedAccount.md)
  - [WebhookPayloadAdStatusChangedAdObject](docs/WebhookPayloadAdStatusChangedAdObject.md)

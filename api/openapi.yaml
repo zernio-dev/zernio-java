@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.357.0
+  version: 1.358.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -274,6 +274,10 @@ tags:
     auto-creates contacts.
   name: Comment Automations
 - description: |
+    Rules that check campaigns or ad sets on a schedule and pause, reactivate, rebudget or notify
+    when their metrics cross a threshold. Requires the Ads add-on.
+  name: Ad Rules
+- description: |
     The advertising structure: campaigns, ad sets, and ads. Create standalone campaigns/ads, boost an
     organic post, duplicate at any level, pause/resume, and read the full tree and timeline. Campaigns
     are virtual aggregations of ads grouped by their platform campaign ID.
@@ -388,10 +392,10 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.delivery_issue, campaign.budget.depleted, ad_account.status_changed, ad.video.processed, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.delivery_issue, campaign.budget.depleted, ad_account.status_changed, ad.video.processed, ad_rule.triggered, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
-    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.* and workflow.run.* to messages, ad.*, ad_account.* and campaign.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Support Assistant events (support.run.*) belong to no single group: they need every resource group enabled and a first-party full-scope caller (a session or a full-scope key, never an OAuth token or a profile-scoped key). Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
+    Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.* and workflow.run.* to messages, ad.*, ad_account.*, ad_rule.* and campaign.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Support Assistant events (support.run.*) belong to no single group: they need every resource group enabled and a first-party full-scope caller (a session or a full-scope key, never an OAuth token or a profile-scoped key). Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
 
     Profile and account filters. A subscription can also carry `profileIds`, an allowlist of profiles, and `accountIds`, an allowlist of connected accounts with the same semantics keyed on the account; each non-empty list narrows delivery and a subscription with both must be satisfied on both. A scoped subscription is only sent events it can attribute to one of those profiles: the profile of the connected account behind the event, or for an aggregate `post.*` event the profile of every account the post targets (a post spanning two scoped endpoints' profiles reaches both). So an integrator can route the profile holding test accounts to a staging endpoint while a second subscription, scoped to the production profiles, keeps production traffic. Events that belong to no profile (`verification.*`, `phone_number.*`, and a legacy post whose accounts were deleted) reach only unscoped subscriptions. The filter runs when an event is emitted; redelivery replays a delivery already made to that endpoint and test fires ignore it. Absent or empty means every profile (or every account).
   name: Webhooks
@@ -39943,6 +39947,430 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/rules:
+    get:
+      description: |
+        Lists the ad rules on the profiles your key can reach, newest first.
+      operationId: listAdRules
+      parameters:
+      - description: Only rules on this ads connection.
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only rules watching this platform ad account.
+        explode: true
+        in: query
+        name: adAccountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdRules_200_response"
+          description: Rules
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+      security:
+      - bearerAuth: []
+      summary: List ad rules
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Creates a rule that checks the campaigns or ad sets of one ad account on a schedule and acts on
+        each one that meets every condition.
+
+        Rules support Meta, Google, TikTok, LinkedIn, Pinterest, X and Reddit ads connections. Each
+        campaign or ad set is evaluated on its own, over the ad account's calendar days, from the
+        metrics Zernio syncs. A rule can notify (the `ad_rule.triggered` webhook), and take at most one of
+        `pause`, `activate` and `adjust_budget`. After acting on an object, the rule leaves that object
+        alone for `cooldownMinutes`; a rule that pauses, activates or adjusts budgets needs a cooldown at
+        least as long as its schedule.
+
+        `activate` only reactivates objects a rule paused, never ones you paused yourself, and only once
+        the cooldown has passed since that pause. If you reactivate and pause such an object yourself
+        between two runs of a rule, Zernio cannot tell your pause from the rule's, and an `activate` rule
+        may reactivate it.
+
+        Use `POST /v1/ads/rules/{ruleId}/preview` to see what a rule would match before enabling it.
+      operationId: createAdRule
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createAdRule_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdRule_201_response"
+          description: Rule created
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `ads_addon_required` when the team has no ads access\
+            \ (legacy plans need the Ads add-on), `ad_account_not_selected` when `adAccountId`\
+            \ is not in the connection's selected ad accounts, or `ads_allowance_exceeded`\
+            \ when a rule that reactivates or raises budgets is created for a team\
+            \ past its free live-ads allowance with no payment method."
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+      security:
+      - bearerAuth: []
+      summary: Create an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/rules/{ruleId}:
+    delete:
+      description: |
+        Deletes a rule and its run history. Changes the rule already made on the platform stay.
+      operationId: deleteAdRule
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/updateYoutubeDefaultPlaylist_200_response"
+          description: Rule deleted
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Delete an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+    get:
+      description: |
+        Returns one ad rule.
+      operationId: getAdRule
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdRule_201_response"
+          description: Rule
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: ruleId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: |
+        Changes any field of a rule except its connection and ad account. Send `campaignIds: null` to
+        check the whole ad account again. Changing the schedule, or enabling a disabled rule, moves the
+        next run; re-sending `enabled: true` on an enabled rule does not.
+      operationId: updateAdRule
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateAdRule_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createAdRule_201_response"
+          description: Rule updated
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `ads_addon_required` when the team has no ads access,\
+            \ or `ads_allowance_exceeded` when the change enables a rule that reactivates\
+            \ or raises budgets for a team past its free live-ads allowance with no\
+            \ payment method."
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/rules/{ruleId}/preview:
+    post:
+      description: |
+        Evaluates a rule against current metrics and returns what it would match right now, without
+        acting on anything, sending a webhook or starting a cooldown. Works on disabled rules.
+      operationId: previewAdRule
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AdRuleEvaluation"
+          description: Evaluation
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Preview an ad rule
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/rules/{ruleId}/runs:
+    get:
+      description: |
+        Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did.
+      operationId: listAdRuleRuns
+      parameters:
+      - explode: false
+        in: path
+        name: ruleId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 20
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - explode: true
+        in: query
+        name: skip
+        required: false
+        schema:
+          default: 0
+          minimum: 0
+          type: integer
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdRuleRuns_200_response"
+          description: Runs
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List an ad rule's runs
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
   /v1/ads/campaigns:
     get:
       description: |
@@ -73769,6 +74197,7 @@ components:
             - campaign.budget.depleted
             - ad_account.status_changed
             - ad.video.processed
+            - ad_rule.triggered
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -78317,6 +78746,142 @@ components:
       - event
       - id
       - status
+      - timestamp
+    WebhookPayloadAdRuleTriggered:
+      description: |
+        Webhook payload for the `ad_rule.triggered` event.
+
+        Fires when a scheduled run of a rule with a `notify` action finds campaigns or ad sets
+        that meet every condition of the rule. Each object is announced at most once per rule
+        cooldown, so `objects` lists only the objects the run acted on, never the ones still in
+        cooldown. A run where every matching object is still in cooldown sends nothing. An object
+        whose action failed gets no cooldown: the next run retries it and reports it again.
+      example:
+        test: true
+        objects:
+        - name: name
+          platformCampaignId: platformCampaignId
+          platformId: platformId
+          conditions:
+          - op: '>'
+            actual: 6.027456183070403
+            metric: metric
+            window: window
+            value: 0.8008281904610115
+          - op: '>'
+            actual: 6.027456183070403
+            metric: metric
+            window: window
+            value: 0.8008281904610115
+          actions:
+          - reason: reason
+            previousDailyBudget: 1.4658129805029452
+            newDailyBudget: 5.962133916683182
+            type: pause
+            status: done
+          - reason: reason
+            previousDailyBudget: 1.4658129805029452
+            newDailyBudget: 5.962133916683182
+            type: pause
+            status: done
+        - name: name
+          platformCampaignId: platformCampaignId
+          platformId: platformId
+          conditions:
+          - op: '>'
+            actual: 6.027456183070403
+            metric: metric
+            window: window
+            value: 0.8008281904610115
+          - op: '>'
+            actual: 6.027456183070403
+            metric: metric
+            window: window
+            value: 0.8008281904610115
+          actions:
+          - reason: reason
+            previousDailyBudget: 1.4658129805029452
+            newDailyBudget: 5.962133916683182
+            type: pause
+            status: done
+          - reason: reason
+            previousDailyBudget: 1.4658129805029452
+            newDailyBudget: 5.962133916683182
+            type: pause
+            status: done
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        rule:
+          level: campaign
+          name: name
+          id: id
+          platformAdAccountId: platformAdAccountId
+        run:
+          ranAt: 2000-01-23T04:56:07.000+00:00
+          timezone: timezone
+          today: 2000-01-23
+          timezoneAssumed: true
+          currency: currency
+          id: id
+        id: id
+        event: ad_rule.triggered
+        account:
+          accountId: accountId
+          profileId: profileId
+          displayName: displayName
+          platform: tiktokads
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it. Real deliveries never do."
+          type: boolean
+        event:
+          enum:
+          - ad_rule.triggered
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookAdsAccount"
+        rule:
+          $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_rule"
+        run:
+          $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_run"
+        objects:
+          description: "The campaigns or ad sets this run acted on, at the rule's\
+            \ `level`, including those whose action failed. Objects still in cooldown\
+            \ are left out."
+          items:
+            $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_objects_inner"
+          type: array
+        timestamp:
+          description: UTC time at which Zernio generated this event.
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
+      - objects
+      - rule
+      - run
       - timestamp
     WebhookAdsAccount:
       description: The connected ads account the event belongs to.
@@ -95005,6 +95570,454 @@ components:
           items:
             type: string
           type: array
+    AdRuleLevel:
+      description: Whether the rule checks campaigns or ad sets. Each one is evaluated
+        on its own.
+      enum:
+      - campaign
+      - adset
+      type: string
+    AdRuleCondition:
+      example:
+        op: '>'
+        metric: spend
+        window: today
+        value: 0.08008281904610115
+      properties:
+        metric:
+          description: "`ctr` is a percentage. `spend`, `cpc`, `cpm` and `cpa` are\
+            \ in the ad account currency."
+          enum:
+          - spend
+          - impressions
+          - clicks
+          - conversions
+          - ctr
+          - cpc
+          - cpm
+          - cpa
+          - roas
+          type: string
+        window:
+          description: Days in the ad account's own timezone. `last_7d` includes today.
+          enum:
+          - today
+          - yesterday
+          - last_3d
+          - last_7d
+          - last_14d
+          - last_30d
+          type: string
+        op:
+          enum:
+          - '>'
+          - '>='
+          - <
+          - <=
+          type: string
+        value:
+          minimum: 0
+          type: number
+      required:
+      - metric
+      - op
+      - value
+      - window
+    AdRuleConditions:
+      description: Every condition must hold for an object to match. A rate with no
+        denominator (a CPA with no conversions) never matches.
+      example:
+        all:
+        - op: '>'
+          metric: spend
+          window: today
+          value: 0.08008281904610115
+        - op: '>'
+          metric: spend
+          window: today
+          value: 0.08008281904610115
+        - op: '>'
+          metric: spend
+          window: today
+          value: 0.08008281904610115
+        - op: '>'
+          metric: spend
+          window: today
+          value: 0.08008281904610115
+        - op: '>'
+          metric: spend
+          window: today
+          value: 0.08008281904610115
+      properties:
+        all:
+          items:
+            $ref: "#/components/schemas/AdRuleCondition"
+          maxItems: 10
+          minItems: 1
+          type: array
+      required:
+      - all
+    AdRuleAction:
+      oneOf:
+      - $ref: "#/components/schemas/AdRuleAction_oneOf"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_1"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_2"
+      - $ref: "#/components/schemas/AdRuleAction_oneOf_3"
+    AdRuleActions:
+      description: "Each type at most once, and at most one of `pause`, `activate`\
+        \ and `adjust_budget`."
+      items:
+        $ref: "#/components/schemas/AdRuleAction"
+      minItems: 1
+      type: array
+    AdRuleSchedule:
+      example:
+        everyMinutes: 6
+      properties:
+        everyMinutes:
+          description: "How often the rule runs, in minutes."
+          enum:
+          - 60
+          - 180
+          - 360
+          - 720
+          - 1440
+          type: integer
+      required:
+      - everyMinutes
+    AdRule:
+      example:
+        lastRunAt: 2000-01-23T04:56:07.000+00:00
+        cooldownMinutes: 1
+        level: campaign
+        adAccountId: adAccountId
+        platform: platform
+        enabled: true
+        accountId: accountId
+        schedule:
+          everyMinutes: 6
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        name: name
+        id: id
+        campaignIds:
+        - campaignIds
+        - campaignIds
+        conditions:
+          all:
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+        actions:
+        - type: notify
+        - type: notify
+        nextRunAt: 2000-01-23T04:56:07.000+00:00
+        updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        accountId:
+          description: The ads connection the rule acts through.
+          type: string
+        platform:
+          description: "Ad platform, for example `facebook` (Meta) or `google`."
+          type: string
+        adAccountId:
+          description: Platform ad account ID.
+          type: string
+        level:
+          $ref: "#/components/schemas/AdRuleLevel"
+        campaignIds:
+          description: Platform campaign IDs the rule is limited to. Null checks the
+            whole ad account.
+          items:
+            type: string
+          nullable: true
+          type: array
+        conditions:
+          $ref: "#/components/schemas/AdRuleConditions"
+        actions:
+          description: "Each type at most once, and at most one of `pause`, `activate`\
+            \ and `adjust_budget`."
+          items:
+            $ref: "#/components/schemas/AdRuleAction"
+          minItems: 1
+          type: array
+        schedule:
+          $ref: "#/components/schemas/AdRuleSchedule"
+        cooldownMinutes:
+          type: integer
+        enabled:
+          type: boolean
+        lastRunAt:
+          format: date-time
+          nullable: true
+          type: string
+        nextRunAt:
+          description: Null while the rule is disabled.
+          format: date-time
+          nullable: true
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+        updatedAt:
+          format: date-time
+          type: string
+      required:
+      - accountId
+      - actions
+      - adAccountId
+      - campaignIds
+      - conditions
+      - cooldownMinutes
+      - createdAt
+      - enabled
+      - id
+      - lastRunAt
+      - level
+      - name
+      - nextRunAt
+      - platform
+      - schedule
+      - updatedAt
+    AdRuleObjectEvaluation:
+      example:
+        campaignId: campaignId
+        name: name
+        matched: true
+        id: id
+        conditions:
+        - op: '>'
+          actual: 1.4658129805029452
+          metric: spend
+          window: today
+          value: 0.6027456183070403
+          met: true
+        - op: '>'
+          actual: 1.4658129805029452
+          metric: spend
+          window: today
+          value: 0.6027456183070403
+          met: true
+      properties:
+        id:
+          description: Platform ID of the campaign or ad set.
+          type: string
+        name:
+          type: string
+        campaignId:
+          nullable: true
+          type: string
+        matched:
+          description: True when every condition holds.
+          type: boolean
+        conditions:
+          items:
+            $ref: "#/components/schemas/AdRuleObjectEvaluation_conditions_inner"
+          type: array
+      required:
+      - campaignId
+      - conditions
+      - id
+      - matched
+      - name
+    AdRuleEvaluation:
+      example:
+        timezone: timezone
+        today: 2000-01-23
+        objects:
+        - campaignId: campaignId
+          name: name
+          matched: true
+          id: id
+          conditions:
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+        - campaignId: campaignId
+          name: name
+          matched: true
+          id: id
+          conditions:
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+        timezoneAssumed: true
+        currency: currency
+        matched: 0
+        evaluatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        evaluatedAt:
+          format: date-time
+          type: string
+        today:
+          description: The ad account's calendar date the windows were resolved against.
+          format: date
+          type: string
+        timezone:
+          description: IANA timezone of the ad account.
+          type: string
+        timezoneAssumed:
+          description: True when the ad account has no known timezone and UTC was
+            assumed.
+          type: boolean
+        currency:
+          nullable: true
+          type: string
+        matched:
+          description: How many objects meet every condition.
+          type: integer
+        objects:
+          description: "Every delivering campaign or ad set in scope (for an `activate`\
+            \ rule, the rule-paused ones it may reactivate)."
+          items:
+            $ref: "#/components/schemas/AdRuleObjectEvaluation"
+          type: array
+      required:
+      - currency
+      - evaluatedAt
+      - matched
+      - objects
+      - timezone
+      - timezoneAssumed
+      - today
+    AdRuleRun:
+      example:
+        evaluation:
+          timezone: timezone
+          today: 2000-01-23
+          timezoneAssumed: true
+          currency: currency
+          matched:
+          - campaignId: campaignId
+            name: name
+            matched: true
+            id: id
+            conditions:
+            - op: '>'
+              actual: 1.4658129805029452
+              metric: spend
+              window: today
+              value: 0.6027456183070403
+              met: true
+            - op: '>'
+              actual: 1.4658129805029452
+              metric: spend
+              window: today
+              value: 0.6027456183070403
+              met: true
+          - campaignId: campaignId
+            name: name
+            matched: true
+            id: id
+            conditions:
+            - op: '>'
+              actual: 1.4658129805029452
+              metric: spend
+              window: today
+              value: 0.6027456183070403
+              met: true
+            - op: '>'
+              actual: 1.4658129805029452
+              metric: spend
+              window: today
+              value: 0.6027456183070403
+              met: true
+          actions:
+          - reason: reason
+            previousDailyBudget: 6.027456183070403
+            newDailyBudget: 1.4658129805029452
+            type: pause
+            objectId: objectId
+            status: done
+          - reason: reason
+            previousDailyBudget: 6.027456183070403
+            newDailyBudget: 1.4658129805029452
+            type: pause
+            objectId: objectId
+            status: done
+        ranAt: 2000-01-23T04:56:07.000+00:00
+        id: id
+        error: error
+        outcome: triggered
+        objectsEvaluated: 0
+        actedObjectIds:
+        - actedObjectIds
+        - actedObjectIds
+      properties:
+        id:
+          type: string
+        ranAt:
+          format: date-time
+          type: string
+        outcome:
+          description: "`triggered`: the rule acted on at least one object (`error`\
+            \ is set if the webhook could not be sent afterwards). `cooldown`: objects\
+            \ matched but all were in cooldown. `no_match`: nothing matched. `failed`:\
+            \ the metrics could not be read, every action failed, or the webhook of\
+            \ a notify-only rule could not be sent (see `error`)."
+          enum:
+          - triggered
+          - cooldown
+          - no_match
+          - failed
+          type: string
+        objectsEvaluated:
+          type: integer
+        actedObjectIds:
+          items:
+            type: string
+          type: array
+        evaluation:
+          $ref: "#/components/schemas/AdRuleRun_evaluation"
+        error:
+          nullable: true
+          type: string
+      required:
+      - actedObjectIds
+      - error
+      - evaluation
+      - id
+      - objectsEvaluated
+      - outcome
+      - ranAt
     AdKeyword:
       example:
         adSetName: adSetName
@@ -112836,6 +113849,7 @@ components:
             - campaign.budget.depleted
             - ad_account.status_changed
             - ad.video.processed
+            - ad_rule.triggered
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -113027,6 +114041,7 @@ components:
             - campaign.budget.depleted
             - ad_account.status_changed
             - ad.video.processed
+            - ad_rule.triggered
             - whatsapp.template.status_updated
             - whatsapp.template.category_updated
             - whatsapp.account.name_status_updated
@@ -113277,6 +114292,7 @@ components:
           - campaign.budget.depleted
           - ad_account.status_changed
           - ad.video.processed
+          - ad_rule.triggered
           - lead.received
           - whatsapp.template.status_updated
           - whatsapp.template.category_updated
@@ -135543,6 +136559,365 @@ components:
       properties:
         keyword:
           $ref: "#/components/schemas/AdKeyword"
+    listAdRules_200_response:
+      example:
+        rules:
+        - lastRunAt: 2000-01-23T04:56:07.000+00:00
+          cooldownMinutes: 1
+          level: campaign
+          adAccountId: adAccountId
+          platform: platform
+          enabled: true
+          accountId: accountId
+          schedule:
+            everyMinutes: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+          campaignIds:
+          - campaignIds
+          - campaignIds
+          conditions:
+            all:
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+          actions:
+          - type: notify
+          - type: notify
+          nextRunAt: 2000-01-23T04:56:07.000+00:00
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+        - lastRunAt: 2000-01-23T04:56:07.000+00:00
+          cooldownMinutes: 1
+          level: campaign
+          adAccountId: adAccountId
+          platform: platform
+          enabled: true
+          accountId: accountId
+          schedule:
+            everyMinutes: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+          campaignIds:
+          - campaignIds
+          - campaignIds
+          conditions:
+            all:
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+          actions:
+          - type: notify
+          - type: notify
+          nextRunAt: 2000-01-23T04:56:07.000+00:00
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        rules:
+          items:
+            $ref: "#/components/schemas/AdRule"
+          type: array
+      required:
+      - rules
+    createAdRule_request:
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        accountId:
+          description: The ads connection (account ID from `GET /v1/accounts`).
+          type: string
+        adAccountId:
+          description: "Platform ad account ID, from `GET /v1/ads/accounts`."
+          type: string
+        level:
+          $ref: "#/components/schemas/AdRuleLevel"
+        campaignIds:
+          description: Only check these platform campaign IDs (or their ad sets).
+            Leave out to check the whole ad account.
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          type: array
+        conditions:
+          $ref: "#/components/schemas/AdRuleConditions"
+        actions:
+          description: "Each type at most once, and at most one of `pause`, `activate`\
+            \ and `adjust_budget`."
+          items:
+            $ref: "#/components/schemas/AdRuleAction"
+          minItems: 1
+          type: array
+        schedule:
+          allOf:
+          - $ref: "#/components/schemas/AdRuleSchedule"
+          description: Leave it out to run every 60 minutes.
+        cooldownMinutes:
+          default: 1440
+          description: How long the rule leaves an object alone after acting on it.
+          maximum: 43200
+          minimum: 0
+          type: integer
+        enabled:
+          default: true
+          type: boolean
+      required:
+      - accountId
+      - actions
+      - adAccountId
+      - conditions
+      - level
+      - name
+    createAdRule_201_response:
+      example:
+        rule:
+          lastRunAt: 2000-01-23T04:56:07.000+00:00
+          cooldownMinutes: 1
+          level: campaign
+          adAccountId: adAccountId
+          platform: platform
+          enabled: true
+          accountId: accountId
+          schedule:
+            everyMinutes: 6
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          name: name
+          id: id
+          campaignIds:
+          - campaignIds
+          - campaignIds
+          conditions:
+            all:
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+          actions:
+          - type: notify
+          - type: notify
+          nextRunAt: 2000-01-23T04:56:07.000+00:00
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        rule:
+          $ref: "#/components/schemas/AdRule"
+      required:
+      - rule
+    updateAdRule_request:
+      properties:
+        name:
+          maxLength: 200
+          minLength: 1
+          type: string
+        level:
+          $ref: "#/components/schemas/AdRuleLevel"
+        campaignIds:
+          items:
+            type: string
+          maxItems: 100
+          minItems: 1
+          nullable: true
+          type: array
+        conditions:
+          $ref: "#/components/schemas/AdRuleConditions"
+        actions:
+          description: "Each type at most once, and at most one of `pause`, `activate`\
+            \ and `adjust_budget`."
+          items:
+            $ref: "#/components/schemas/AdRuleAction"
+          minItems: 1
+          type: array
+        schedule:
+          $ref: "#/components/schemas/AdRuleSchedule"
+        cooldownMinutes:
+          maximum: 43200
+          minimum: 0
+          type: integer
+        enabled:
+          type: boolean
+    listAdRuleRuns_200_response:
+      example:
+        runs:
+        - evaluation:
+            timezone: timezone
+            today: 2000-01-23
+            timezoneAssumed: true
+            currency: currency
+            matched:
+            - campaignId: campaignId
+              name: name
+              matched: true
+              id: id
+              conditions:
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+            - campaignId: campaignId
+              name: name
+              matched: true
+              id: id
+              conditions:
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+            actions:
+            - reason: reason
+              previousDailyBudget: 6.027456183070403
+              newDailyBudget: 1.4658129805029452
+              type: pause
+              objectId: objectId
+              status: done
+            - reason: reason
+              previousDailyBudget: 6.027456183070403
+              newDailyBudget: 1.4658129805029452
+              type: pause
+              objectId: objectId
+              status: done
+          ranAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+          outcome: triggered
+          objectsEvaluated: 0
+          actedObjectIds:
+          - actedObjectIds
+          - actedObjectIds
+        - evaluation:
+            timezone: timezone
+            today: 2000-01-23
+            timezoneAssumed: true
+            currency: currency
+            matched:
+            - campaignId: campaignId
+              name: name
+              matched: true
+              id: id
+              conditions:
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+            - campaignId: campaignId
+              name: name
+              matched: true
+              id: id
+              conditions:
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+              - op: '>'
+                actual: 1.4658129805029452
+                metric: spend
+                window: today
+                value: 0.6027456183070403
+                met: true
+            actions:
+            - reason: reason
+              previousDailyBudget: 6.027456183070403
+              newDailyBudget: 1.4658129805029452
+              type: pause
+              objectId: objectId
+              status: done
+            - reason: reason
+              previousDailyBudget: 6.027456183070403
+              newDailyBudget: 1.4658129805029452
+              type: pause
+              objectId: objectId
+              status: done
+          ranAt: 2000-01-23T04:56:07.000+00:00
+          id: id
+          error: error
+          outcome: triggered
+          objectsEvaluated: 0
+          actedObjectIds:
+          - actedObjectIds
+          - actedObjectIds
+      properties:
+        runs:
+          items:
+            $ref: "#/components/schemas/AdRuleRun"
+          type: array
+      required:
+      - runs
     listAdCampaigns_200_response:
       example:
         pagination:
@@ -168120,6 +169495,217 @@ components:
       - current
       - previous
       - raw
+    WebhookPayloadAdRuleTriggered_rule:
+      example:
+        level: campaign
+        name: name
+        id: id
+        platformAdAccountId: platformAdAccountId
+      properties:
+        id:
+          description: Zernio ad rule ID.
+          type: string
+        name:
+          type: string
+        level:
+          description: Whether the rule evaluates campaigns or ad sets.
+          enum:
+          - campaign
+          - adset
+          type: string
+        platformAdAccountId:
+          description: Platform-native ad account ID the rule watches.
+          type: string
+      required:
+      - id
+      - level
+      - name
+      - platformAdAccountId
+    WebhookPayloadAdRuleTriggered_run:
+      example:
+        ranAt: 2000-01-23T04:56:07.000+00:00
+        timezone: timezone
+        today: 2000-01-23
+        timezoneAssumed: true
+        currency: currency
+        id: id
+      properties:
+        id:
+          description: ID of the rule run that triggered.
+          type: string
+        ranAt:
+          description: Scheduled time of the run (UTC).
+          format: date-time
+          type: string
+        today:
+          description: "The ad account's calendar date (YYYY-MM-DD) the condition\
+            \ windows were resolved against, so `today` and `last_7d` mean the account's\
+            \ days, not UTC days."
+          format: date
+          type: string
+        timezone:
+          description: "IANA timezone used for `today`, for example `Europe/Madrid`."
+          type: string
+        timezoneAssumed:
+          description: True when the ad account has no known timezone and UTC was
+            assumed.
+          type: boolean
+        currency:
+          description: "ISO 4217 currency of the ad account, which money metrics (`spend`,\
+            \ `cpc`, `cpm`, `cpa`) and condition values are in. Null when unknown."
+          nullable: true
+          type: string
+      required:
+      - currency
+      - id
+      - ranAt
+      - timezone
+      - timezoneAssumed
+      - today
+    WebhookPayloadAdRuleTriggered_objects_inner_conditions_inner:
+      example:
+        op: '>'
+        actual: 6.027456183070403
+        metric: metric
+        window: window
+        value: 0.8008281904610115
+      properties:
+        metric:
+          description: "`spend`, `impressions`, `clicks`, `conversions`, `ctr`, `cpc`,\
+            \ `cpm`, `cpa` or `roas`. New values may be added."
+          type: string
+        window:
+          description: "`today`, `yesterday`, `last_3d`, `last_7d`, `last_14d` or\
+            \ `last_30d`, in the account's calendar (see `run.today`). New values\
+            \ may be added."
+          type: string
+        op:
+          enum:
+          - '>'
+          - '>='
+          - <
+          - <=
+          type: string
+        value:
+          description: The threshold set on the rule.
+          type: number
+        actual:
+          description: "The object's value for the metric over the window. Null when\
+            \ it cannot be computed, for example a cost per action with no actions."
+          nullable: true
+          type: number
+      required:
+      - actual
+      - metric
+      - op
+      - value
+      - window
+    WebhookPayloadAdRuleTriggered_objects_inner_actions_inner:
+      example:
+        reason: reason
+        previousDailyBudget: 1.4658129805029452
+        newDailyBudget: 5.962133916683182
+        type: pause
+        status: done
+      properties:
+        type:
+          enum:
+          - pause
+          - activate
+          - adjust_budget
+          type: string
+        status:
+          description: "`skipped` when the action could not or need not apply (already\
+            \ paused or active, budget at its limit, a budget that is unknown, not\
+            \ daily or set at another level, no live ads, or a permanent refusal from\
+            \ the platform), `failed` when it errored and will be retried on the next\
+            \ run."
+          enum:
+          - done
+          - skipped
+          - failed
+          type: string
+        reason:
+          description: "Why the action was skipped or failed: `already_paused`, `already_active`,\
+            \ `at_limit`, `budget_unknown`, `budget_not_daily`, `budget_level_mismatch`,\
+            \ `no_live_ads`, `ads_allowance_exceeded` (a reactivation or budget increase\
+            \ for a team past its free live-ads allowance), or the platform's message.\
+            \ Null when done."
+          nullable: true
+          type: string
+        previousDailyBudget:
+          description: "On `adjust_budget`, the daily budget before the change, in\
+            \ the ad account currency. Null otherwise."
+          nullable: true
+          type: number
+        newDailyBudget:
+          description: "On `adjust_budget`, the daily budget after the change. Null\
+            \ when nothing changed."
+          nullable: true
+          type: number
+      required:
+      - newDailyBudget
+      - previousDailyBudget
+      - reason
+      - status
+      - type
+    WebhookPayloadAdRuleTriggered_objects_inner:
+      example:
+        name: name
+        platformCampaignId: platformCampaignId
+        platformId: platformId
+        conditions:
+        - op: '>'
+          actual: 6.027456183070403
+          metric: metric
+          window: window
+          value: 0.8008281904610115
+        - op: '>'
+          actual: 6.027456183070403
+          metric: metric
+          window: window
+          value: 0.8008281904610115
+        actions:
+        - reason: reason
+          previousDailyBudget: 1.4658129805029452
+          newDailyBudget: 5.962133916683182
+          type: pause
+          status: done
+        - reason: reason
+          previousDailyBudget: 1.4658129805029452
+          newDailyBudget: 5.962133916683182
+          type: pause
+          status: done
+      properties:
+        platformId:
+          description: Platform-native ID of the campaign or ad set.
+          type: string
+        name:
+          description: Name on the platform. Falls back to `platformId` when the platform
+            reports none.
+          type: string
+        platformCampaignId:
+          description: "Platform-native ID of the campaign the object belongs to (on\
+            \ a campaign-level rule, the campaign's own ID). Null when unknown."
+          nullable: true
+          type: string
+        conditions:
+          description: "Every condition of the rule, with the value the object reached."
+          items:
+            $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_objects_inner_conditions_inner"
+          type: array
+        actions:
+          description: What the rule did to the object. Empty on a rule that only
+            notifies.
+          items:
+            $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_objects_inner_actions_inner"
+          type: array
+      required:
+      - actions
+      - conditions
+      - name
+      - platformCampaignId
+      - platformId
     WebhookPayloadAdStatusChanged_account:
       description: The connected ad-platform account that owns the ad object.
       example:
@@ -173366,6 +174952,194 @@ components:
           type: boolean
         resourceName:
           type: string
+    AdRuleAction_oneOf:
+      example:
+        type: notify
+      properties:
+        type:
+          description: Send the `ad_rule.triggered` webhook.
+          enum:
+          - notify
+          type: string
+      required:
+      - type
+    AdRuleAction_oneOf_1:
+      properties:
+        type:
+          description: Pause the campaign or ad set.
+          enum:
+          - pause
+          type: string
+      required:
+      - type
+    AdRuleAction_oneOf_2:
+      properties:
+        type:
+          description: "Reactivate a campaign or ad set a rule paused, once `cooldownMinutes`\
+            \ has passed since the pause. Objects you paused yourself are never touched."
+          enum:
+          - activate
+          type: string
+      required:
+      - type
+    AdRuleAction_oneOf_3:
+      properties:
+        type:
+          description: "Change the daily budget. Google ad groups have no budget of\
+            \ their own, so on Google it needs a campaign-level rule."
+          enum:
+          - adjust_budget
+          type: string
+        direction:
+          enum:
+          - increase
+          - decrease
+          type: string
+        percent:
+          description: "Change in percent: up to 100 for an increase, up to 90 for\
+            \ a decrease."
+          maximum: 100
+          minimum: 1
+          type: integer
+        limit:
+          description: "The budget never goes above this on an increase, or below\
+            \ it on a decrease, in the ad account currency."
+          type: number
+      required:
+      - direction
+      - limit
+      - percent
+      - type
+    AdRuleObjectEvaluation_conditions_inner:
+      allOf:
+      - $ref: "#/components/schemas/AdRuleCondition"
+      - properties:
+          actual:
+            description: The object's value over the window. Null when it cannot be
+              computed.
+            nullable: true
+            type: number
+          met:
+            type: boolean
+        required:
+        - actual
+        - met
+      example:
+        op: '>'
+        actual: 1.4658129805029452
+        metric: spend
+        window: today
+        value: 0.6027456183070403
+        met: true
+    AdRuleRun_evaluation_actions_inner:
+      example:
+        reason: reason
+        previousDailyBudget: 6.027456183070403
+        newDailyBudget: 1.4658129805029452
+        type: pause
+        objectId: objectId
+        status: done
+      properties:
+        objectId:
+          type: string
+        type:
+          enum:
+          - pause
+          - activate
+          - adjust_budget
+          type: string
+        status:
+          enum:
+          - done
+          - skipped
+          - failed
+          type: string
+        reason:
+          description: "Why it was skipped or failed, for example `already_paused`."
+          type: string
+        previousDailyBudget:
+          type: number
+        newDailyBudget:
+          type: number
+      required:
+      - objectId
+      - status
+      - type
+    AdRuleRun_evaluation:
+      description: "The matched objects with their condition values, and what each\
+        \ action did."
+      example:
+        timezone: timezone
+        today: 2000-01-23
+        timezoneAssumed: true
+        currency: currency
+        matched:
+        - campaignId: campaignId
+          name: name
+          matched: true
+          id: id
+          conditions:
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+        - campaignId: campaignId
+          name: name
+          matched: true
+          id: id
+          conditions:
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+          - op: '>'
+            actual: 1.4658129805029452
+            metric: spend
+            window: today
+            value: 0.6027456183070403
+            met: true
+        actions:
+        - reason: reason
+          previousDailyBudget: 6.027456183070403
+          newDailyBudget: 1.4658129805029452
+          type: pause
+          objectId: objectId
+          status: done
+        - reason: reason
+          previousDailyBudget: 6.027456183070403
+          newDailyBudget: 1.4658129805029452
+          type: pause
+          objectId: objectId
+          status: done
+      properties:
+        today:
+          format: date
+          type: string
+        timezone:
+          type: string
+        timezoneAssumed:
+          type: boolean
+        currency:
+          nullable: true
+          type: string
+        matched:
+          items:
+            $ref: "#/components/schemas/AdRuleObjectEvaluation"
+          type: array
+        actions:
+          items:
+            $ref: "#/components/schemas/AdRuleRun_evaluation_actions_inner"
+          type: array
     AdKeyword_quality:
       description: |
         Google Quality Score and the three component ratings behind it
@@ -174622,6 +176396,7 @@ x-documentation:
     - `campaign.budget.depleted` - A campaign Zernio already tracked ran out of budget (TikTok, the only network that reports it on the ad)
     - `ad_account.status_changed` - An ad account Zernio already tracked became `active`, `restricted`, `disabled` or `closed` (Meta, Google, TikTok, X)
     - `ad.video.processed` - Meta finished processing a video uploaded with `POST /v1/ads/videos` and `async: true`. `video.status` is `ready` (usable as `video.id`) or `error`
+    - `ad_rule.triggered` - A scheduled ad rule run found campaigns or ad sets meeting every condition, once per object per cooldown. `objects` lists the objects acted on
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
     - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.
@@ -174683,7 +176458,7 @@ x-documentation:
     | `post.platform.*`, `post.tiktok.url_resolved` | `account.accountId` (the target this event is about; `post.platforms[].accountId` lists every target) |
     | `post.scheduled`, `post.published`, `post.failed`, `post.partial`, `post.cancelled`, `post.recycled` | `post.platforms[].accountId`, one per target; there is no top-level account |
     | `post.external.*` | `account.accountId` (also `post.accountId`) |
-    | `ad.status_changed`, `ad.review.*`, `ad.video.processed`, `whatsapp.template.*`, `whatsapp.account.*`, `whatsapp.contact.identity_changed` | `account.accountId` |
+    | `ad.status_changed`, `ad.review.*`, `ad.video.processed`, `ad_rule.triggered`, `whatsapp.template.*`, `whatsapp.account.*`, `whatsapp.contact.identity_changed` | `account.accountId` |
     | `whatsapp.automatic_event` | top-level `accountId` |
     | `whatsapp.number.*`, `sms.registration.*` | none; `number.id` / `registration.id` are the number and registration ids, `number.profileId` / `registration.profileId` the profile |
     | `verification.*`, `phone_number.stock_available`, `api.changelog.published`, `webhook.test`, `contact.*`, `sequence.*`, `workflow.run.*` | none (`sequence.*` and `workflow.run.*` still reach subscriptions scoped to the sending account) |
