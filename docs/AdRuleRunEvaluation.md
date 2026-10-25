@@ -14,6 +14,7 @@ The matched objects with their condition values, and what each action did.
 |**currency** | **String** |  |  [optional] |
 |**matched** | [**List&lt;AdRuleObjectEvaluation&gt;**](AdRuleObjectEvaluation.md) |  |  [optional] |
 |**actions** | [**List&lt;AdRuleRunEvaluationActionsInner&gt;**](AdRuleRunEvaluationActionsInner.md) |  |  [optional] |
+|**notification** | [**AdRuleRunEvaluationNotification**](AdRuleRunEvaluationNotification.md) |  |  [optional] |
 
 
 

@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.358.1
+  version: 1.359.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95922,6 +95922,9 @@ components:
     AdRuleRun:
       example:
         evaluation:
+          notification:
+            reason: reason
+            status: done
           timezone: timezone
           today: 2000-01-23
           timezoneAssumed: true
@@ -136791,6 +136794,9 @@ components:
       example:
         runs:
         - evaluation:
+            notification:
+              reason: reason
+              status: done
             timezone: timezone
             today: 2000-01-23
             timezoneAssumed: true
@@ -136852,6 +136858,9 @@ components:
           - actedObjectIds
           - actedObjectIds
         - evaluation:
+            notification:
+              reason: reason
+              status: done
             timezone: timezone
             today: 2000-01-23
             timezoneAssumed: true
@@ -175066,10 +175075,33 @@ components:
       - objectId
       - status
       - type
+    AdRuleRun_evaluation_notification:
+      description: "Set when a run of a rule with a `notify` action matched objects\
+        \ and tried to send the webhook. A notify-only rule whose webhook fails ends\
+        \ with outcome `failed`. `done` once the `ad_rule.triggered` webhook is queued\
+        \ for the webhooks subscribed to it (with none subscribed it is still `done`,\
+        \ but nothing is delivered), `failed` when it could not be queued."
+      example:
+        reason: reason
+        status: done
+      properties:
+        status:
+          enum:
+          - done
+          - failed
+          type: string
+        reason:
+          description: Why the webhook could not be queued.
+          type: string
+      required:
+      - status
     AdRuleRun_evaluation:
       description: "The matched objects with their condition values, and what each\
         \ action did."
       example:
+        notification:
+          reason: reason
+          status: done
         timezone: timezone
         today: 2000-01-23
         timezoneAssumed: true
@@ -175141,6 +175173,8 @@ components:
           items:
             $ref: "#/components/schemas/AdRuleRun_evaluation_actions_inner"
           type: array
+        notification:
+          $ref: "#/components/schemas/AdRuleRun_evaluation_notification"
     AdKeyword_quality:
       description: |
         Google Quality Score and the three component ratings behind it

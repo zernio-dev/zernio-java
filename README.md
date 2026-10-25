@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.358.1
+- API version: 1.359.0
 
-- Build date: 2026-10-25T18:00:06.701171628Z[Etc/UTC]
+- Build date: 2026-10-25T18:20:32.709952812Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.358.1</version>
+  <version>1.359.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.358.1"
+compile "dev.zernio:zernio-sdk:1.359.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.358.1.jar`
+- `target/zernio-sdk-1.359.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2215,6 +2215,7 @@ Class | Method | HTTP request | Description
  - [AdRuleRun](docs/AdRuleRun.md)
  - [AdRuleRunEvaluation](docs/AdRuleRunEvaluation.md)
  - [AdRuleRunEvaluationActionsInner](docs/AdRuleRunEvaluationActionsInner.md)
+ - [AdRuleRunEvaluationNotification](docs/AdRuleRunEvaluationNotification.md)
  - [AdRuleSchedule](docs/AdRuleSchedule.md)
  - [AdSchedule](docs/AdSchedule.md)
  - [AdScheduleWindow](docs/AdScheduleWindow.md)
