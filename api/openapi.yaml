@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.356.0
+  version: 1.356.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -123512,7 +123512,8 @@ components:
           maxItems: 2
           type: array
         vertical:
-          description: "Business category (e.g., RETAIL, ENTERTAINMENT, etc.)"
+          description: "Business category, one of Meta's keys (e.g. AUTO, ENTERTAIN,\
+            \ RETAIL, PROF_SERVICES, OTHER)"
           type: string
         profilePictureHandle:
           description: Handle from resumable upload for profile picture
