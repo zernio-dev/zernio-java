@@ -779,7 +779,7 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 
 ## boostPost
 
-> UpdateAd200Response boostPost(boostPostRequest, idempotencyKey)
+> BoostPost201Response boostPost(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
@@ -809,7 +809,7 @@ public class Example {
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
-            UpdateAd200Response result = apiInstance.boostPost(boostPostRequest, idempotencyKey);
+            BoostPost201Response result = apiInstance.boostPost(boostPostRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#boostPost");
@@ -832,7 +832,7 @@ public class Example {
 
 ### Return type
 
-[**UpdateAd200Response**](UpdateAd200Response.md)
+[**BoostPost201Response**](BoostPost201Response.md)
 
 
 ### Authorization
@@ -859,7 +859,7 @@ public class Example {
 
 ## boostPostWithHttpInfo
 
-> ApiResponse<UpdateAd200Response> boostPost boostPostWithHttpInfo(boostPostRequest, idempotencyKey)
+> ApiResponse<BoostPost201Response> boostPost boostPostWithHttpInfo(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
@@ -890,7 +890,7 @@ public class Example {
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
-            ApiResponse<UpdateAd200Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest, idempotencyKey);
+            ApiResponse<BoostPost201Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -915,7 +915,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**UpdateAd200Response**](UpdateAd200Response.md)>
+ApiResponse<[**BoostPost201Response**](BoostPost201Response.md)>
 
 
 ### Authorization

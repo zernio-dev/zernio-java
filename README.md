@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.363.0
+- API version: 1.364.0
 
-- Build date: 2026-10-26T04:14:36.927729904Z[Etc/UTC]
+- Build date: 2026-10-26T08:33:19.614315150Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.363.0</version>
+  <version>1.364.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.363.0"
+compile "dev.zernio:zernio-sdk:1.364.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.363.0.jar`
+- `target/zernio-sdk-1.364.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2362,6 +2362,7 @@ Class | Method | HTTP request | Description
  - [BlueskyPlatformData](docs/BlueskyPlatformData.md)
  - [BookmarkPost200Response](docs/BookmarkPost200Response.md)
  - [BookmarkPostRequest](docs/BookmarkPostRequest.md)
+ - [BoostPost201Response](docs/BoostPost201Response.md)
  - [BoostPostRequest](docs/BoostPostRequest.md)
  - [BoostPostRequestAttributionSpecInner](docs/BoostPostRequestAttributionSpecInner.md)
  - [BoostPostRequestBudget](docs/BoostPostRequestBudget.md)
@@ -3595,6 +3596,8 @@ Class | Method | HTTP request | Description
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [InstagramTaggedMedia](docs/InstagramTaggedMedia.md)
+ - [InstagramVideoFallback](docs/InstagramVideoFallback.md)
+ - [InstagramVideoFallbackPlatformError](docs/InstagramVideoFallbackPlatformError.md)
  - [InstallTrackingTagOnStore200Response](docs/InstallTrackingTagOnStore200Response.md)
  - [InstallTrackingTagOnStore200ResponseInstall](docs/InstallTrackingTagOnStore200ResponseInstall.md)
  - [InstallTrackingTagOnStore422Response](docs/InstallTrackingTagOnStore422Response.md)

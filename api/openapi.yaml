@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.363.0
+  version: 1.364.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51587,7 +51587,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/updateAd_200_response"
+                $ref: "#/components/schemas/boostPost_201_response"
           description: Ad created
         "400":
           description: Missing required fields or invalid values
@@ -86789,6 +86789,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -86928,6 +86937,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -87274,6 +87292,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -87413,6 +87440,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -87787,6 +87823,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -87926,6 +87971,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -88542,6 +88596,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -88681,6 +88744,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -89055,6 +89127,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -89194,6 +89275,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -92868,6 +92958,50 @@ components:
           type: string
       required:
       - text
+    InstagramVideoFallback:
+      description: "Meta only. Present when Meta refused an existing Instagram video\
+        \ as the boosted ad (code 100, subcode 1815279: upload it to Facebook first)\
+        \ and Zernio created the ad another way. `instagram_video_reuploaded`: the\
+        \ video was copied into the ad account and the ad still references the original\
+        \ post. `instagram_video_rehosted_copy`: the video was uploaded as a new Facebook\
+        \ video in a new Page post, so the ad does not show the original post's likes\
+        \ and comments. Send `rehostOnInstagramVideoRejection: false` on the boost\
+        \ to get Meta's error instead."
+      example:
+        kind: instagram_video_reuploaded
+        platformError:
+          code: 100
+          subcode: 1815279
+          message: message
+          fbtraceId: fbtraceId
+        videoId: videoId
+        linkedToOriginalPost: true
+      properties:
+        kind:
+          enum:
+          - instagram_video_reuploaded
+          - instagram_video_rehosted_copy
+          type: string
+        linkedToOriginalPost:
+          description: True when the ad still references the original Instagram post
+            and keeps its engagement.
+          type: boolean
+        videoId:
+          description: "The Facebook-side ad video Zernio made. With instagram_video_reuploaded\
+            \ it is the copy in the ad account video library (possibly one made by\
+            \ an earlier boost of the same media, reused); the creative carries it\
+            \ as video_id unless Meta accepted the plain post reference once the copy\
+            \ existed, in which case the copy is kept for that reference. With instagram_video_rehosted_copy\
+            \ it is the new upload the creative uses (an unused copy made by this\
+            \ request is deleted)."
+          type: string
+        platformError:
+          $ref: "#/components/schemas/InstagramVideoFallback_platformError"
+      required:
+      - kind
+      - linkedToOriginalPost
+      - platformError
+      - videoId
     Ad:
       example:
         bidStrategy: ""
@@ -92949,6 +93083,15 @@ components:
           imageUrl: imageUrl
           linkUrl: linkUrl
           googleHeadline: googleHeadline
+          instagramVideoFallback:
+            kind: instagram_video_reuploaded
+            platformError:
+              code: 100
+              subcode: 1815279
+              message: message
+              fbtraceId: fbtraceId
+            videoId: videoId
+            linkedToOriginalPost: true
           youtubeVideoIds:
           - youtubeVideoIds
           - youtubeVideoIds
@@ -93367,6 +93510,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -93506,6 +93658,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -94145,6 +94306,15 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              instagramVideoFallback:
+                kind: instagram_video_reuploaded
+                platformError:
+                  code: 100
+                  subcode: 1815279
+                  message: message
+                  fbtraceId: fbtraceId
+                videoId: videoId
+                linkedToOriginalPost: true
               youtubeVideoIds:
               - youtubeVideoIds
               - youtubeVideoIds
@@ -94284,6 +94454,15 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              instagramVideoFallback:
+                kind: instagram_video_reuploaded
+                platformError:
+                  code: 100
+                  subcode: 1815279
+                  message: message
+                  fbtraceId: fbtraceId
+                videoId: videoId
+                linkedToOriginalPost: true
               youtubeVideoIds:
               - youtubeVideoIds
               - youtubeVideoIds
@@ -94658,6 +94837,15 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              instagramVideoFallback:
+                kind: instagram_video_reuploaded
+                platformError:
+                  code: 100
+                  subcode: 1815279
+                  message: message
+                  fbtraceId: fbtraceId
+                videoId: videoId
+                linkedToOriginalPost: true
               youtubeVideoIds:
               - youtubeVideoIds
               - youtubeVideoIds
@@ -94797,6 +94985,15 @@ components:
               imageUrl: imageUrl
               linkUrl: linkUrl
               googleHeadline: googleHeadline
+              instagramVideoFallback:
+                kind: instagram_video_reuploaded
+                platformError:
+                  code: 100
+                  subcode: 1815279
+                  message: message
+                  fbtraceId: fbtraceId
+                videoId: videoId
+                linkedToOriginalPost: true
               youtubeVideoIds:
               - youtubeVideoIds
               - youtubeVideoIds
@@ -135542,6 +135739,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -135681,6 +135887,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -140110,6 +140325,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -140249,6 +140473,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -140623,6 +140856,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -140762,6 +141004,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -141378,6 +141629,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -141517,6 +141777,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -141891,6 +142160,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -142030,6 +142308,15 @@ components:
                 imageUrl: imageUrl
                 linkUrl: linkUrl
                 googleHeadline: googleHeadline
+                instagramVideoFallback:
+                  kind: instagram_video_reuploaded
+                  platformError:
+                    code: 100
+                    subcode: 1815279
+                    message: message
+                    fbtraceId: fbtraceId
+                  videoId: videoId
+                  linkedToOriginalPost: true
                 youtubeVideoIds:
                 - youtubeVideoIds
                 - youtubeVideoIds
@@ -142585,6 +142872,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -143056,6 +143352,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -151124,6 +151429,16 @@ components:
           maxItems: 5
           minItems: 1
           type: array
+        rehostOnInstagramVideoRejection:
+          default: true
+          description: "Meta only (a 400 elsewhere). When Meta refuses an existing\
+            \ Instagram video as the ad (subcode 1815279), Zernio first copies the\
+            \ video into the ad account and retries on the original post, then falls\
+            \ back to a new Facebook video in a new Page post that does not show the\
+            \ original post's likes and comments; the response reports which in `instagramVideoFallback`.\
+            \ Messaging boosts never use the unlinked copy. `false` skips every fallback\
+            \ and returns Meta's error."
+          type: boolean
         smartTargeting:
           $ref: "#/components/schemas/boostPost_request_smartTargeting"
         optimizationGoal:
@@ -151162,6 +151477,183 @@ components:
       - adAccountId
       - goal
       - name
+    boostPost_201_response:
+      example:
+        ad:
+          bidStrategy: ""
+          adSetName: adSetName
+          platformCampaignId: platformCampaignId
+          optimizationGoal: OFFSITE_CONVERSIONS
+          platformAdId: platformAdId
+          platform: facebook
+          promotedObject:
+            page_id: page_id
+            custom_event_type: PURCHASE
+            product_set_id: product_set_id
+            pixel_id: pixel_id
+            application_id: application_id
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          adType: boost
+          targeting: "{}"
+          costType: CPC
+          platformAdSetId: platformAdSetId
+          budget:
+            amount: 0.8008281904610115
+            pacing: pacing
+            daily: 6.027456183070403
+            lifetime: 1.4658129805029452
+            type: daily
+          platformAdAccountName: Zernio - previously Late
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          configuredStatus: ACTIVE
+          goal: engagement
+          isExternal: true
+          servingStatuses:
+          - ACCOUNT_TOTAL_BUDGET_HOLD
+          bidAmount: 5
+          roasAverageFloor: 2.0
+          creative:
+            effectiveInstagramMediaId: effectiveInstagramMediaId
+            servingHoldReasons:
+            - UNDER_REVIEW
+            whatsappPhoneNumber: "+12025550123"
+            catalog:
+              productSetId: productSetId
+              format: single_image
+              formatTransformationSpec:
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+              - format: format
+                data_source:
+                - data_source
+                - data_source
+            videoId: videoId
+            body: body
+            descriptions:
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            - text: text
+              pinnedField: DESCRIPTION_1
+            effectiveObjectStoryId: effectiveObjectStoryId
+            creativeId: creativeId
+            objectType: objectType
+            assets:
+              squareMarketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+              marketingImages:
+              - resourceName: resourceName
+              - resourceName: resourceName
+            videoUrl: videoUrl
+            objectStoryId: objectStoryId
+            pinterestDescription: pinterestDescription
+            finalUrls:
+            - https://openapi-generator.tech
+            - https://openapi-generator.tech
+            imageUrl: imageUrl
+            linkUrl: linkUrl
+            googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
+            youtubeVideoIds:
+            - youtubeVideoIds
+            - youtubeVideoIds
+            thumbnailUrl: thumbnailUrl
+            pinterestImageUrl: pinterestImageUrl
+            instagramPermalinkUrl: instagramPermalinkUrl
+            assetGroupResourceName: customers/9122445560/assetGroups/123456789
+            instagramUserId: instagramUserId
+            pinterestTitle: pinterestTitle
+            pageId: pageId
+            assetGroup: ""
+            googleDescription: googleDescription
+            carouselCards:
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            - imageUrl: imageUrl
+              linkUrl: linkUrl
+              description: description
+              videoId: videoId
+              imageHash: imageHash
+              headline: headline
+              callToAction: SHOP_NOW
+            headlines:
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            - text: text
+              pinnedField: HEADLINE_1
+            isServing: true
+            assetResourceName: assetResourceName
+            adFormat: adFormat
+            creativeFeatures: ""
+            mediaUrls:
+            - mediaUrls
+            - mediaUrls
+          schedule:
+            endDate: 2000-01-23T04:56:07.000+00:00
+            startDate: 2000-01-23T04:56:07.000+00:00
+          creativeType: video
+          profileId: profileId
+          name: name
+          platformObjective: OUTCOME_SALES
+          platformCreatedAt: 2000-01-23T04:56:07.000+00:00
+          reviewStatus: ""
+          _id: _id
+          metrics: ""
+          rejectionReason: rejectionReason
+          campaignName: campaignName
+          platformAdAccountId: platformAdAccountId
+          status: ""
+        warnings:
+        - warnings
+        - warnings
+        message: message
+        instagramVideoFallback:
+          kind: instagram_video_reuploaded
+          platformError:
+            code: 100
+            subcode: 1815279
+            message: message
+            fbtraceId: fbtraceId
+          videoId: videoId
+          linkedToOriginalPost: true
+      properties:
+        ad:
+          $ref: "#/components/schemas/Ad"
+        message:
+          type: string
+        instagramVideoFallback:
+          $ref: "#/components/schemas/InstagramVideoFallback"
+        warnings:
+          description: "Present with instagramVideoFallback: one human-readable line\
+            \ saying how the Instagram video was boosted."
+          items:
+            type: string
+          type: array
     listGoogleAssetGroups_200_response:
       example:
         stale: true
@@ -153593,6 +154085,15 @@ components:
             imageUrl: imageUrl
             linkUrl: linkUrl
             googleHeadline: googleHeadline
+            instagramVideoFallback:
+              kind: instagram_video_reuploaded
+              platformError:
+                code: 100
+                subcode: 1815279
+                message: message
+                fbtraceId: fbtraceId
+              videoId: videoId
+              linkedToOriginalPost: true
             youtubeVideoIds:
             - youtubeVideoIds
             - youtubeVideoIds
@@ -174791,6 +175292,26 @@ components:
           $ref: "#/components/schemas/GoogleRecommendationMetrics"
         potential:
           $ref: "#/components/schemas/GoogleRecommendationMetrics"
+    InstagramVideoFallback_platformError:
+      description: Meta's original refusal.
+      example:
+        code: 100
+        subcode: 1815279
+        message: message
+        fbtraceId: fbtraceId
+      properties:
+        code:
+          example: 100
+          type: integer
+        subcode:
+          example: 1815279
+          type: integer
+        message:
+          type: string
+        fbtraceId:
+          type: string
+      required:
+      - message
     Ad_budget:
       example:
         amount: 0.8008281904610115
@@ -175018,6 +175539,15 @@ components:
         imageUrl: imageUrl
         linkUrl: linkUrl
         googleHeadline: googleHeadline
+        instagramVideoFallback:
+          kind: instagram_video_reuploaded
+          platformError:
+            code: 100
+            subcode: 1815279
+            message: message
+            fbtraceId: fbtraceId
+          videoId: videoId
+          linkedToOriginalPost: true
         youtubeVideoIds:
         - youtubeVideoIds
         - youtubeVideoIds
@@ -175253,6 +175783,8 @@ components:
             boost or messaging ad. Absent when omitted by the caller or on older records.
           example: "+12025550123"
           type: string
+        instagramVideoFallback:
+          $ref: "#/components/schemas/InstagramVideoFallback"
         pinterestImageUrl:
           type: string
         pinterestTitle:

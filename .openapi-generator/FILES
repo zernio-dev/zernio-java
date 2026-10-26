@@ -212,6 +212,7 @@ docs/BlogsApi.md
 docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
+docs/BoostPost201Response.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestAttributionSpecInner.md
 docs/BoostPostRequestBudget.md
@@ -1471,6 +1472,8 @@ docs/InstagramPlatformDataAudioConfiguration.md
 docs/InstagramPlatformDataTrialParams.md
 docs/InstagramPlatformDataUserTagsInner.md
 docs/InstagramTaggedMedia.md
+docs/InstagramVideoFallback.md
+docs/InstagramVideoFallbackPlatformError.md
 docs/InstallTrackingTagOnStore200Response.md
 docs/InstallTrackingTagOnStore200ResponseInstall.md
 docs/InstallTrackingTagOnStore422Response.md
@@ -3274,6 +3277,7 @@ src/main/java/dev/zernio/model/BlogArticleImage.java
 src/main/java/dev/zernio/model/BlueskyPlatformData.java
 src/main/java/dev/zernio/model/BookmarkPost200Response.java
 src/main/java/dev/zernio/model/BookmarkPostRequest.java
+src/main/java/dev/zernio/model/BoostPost201Response.java
 src/main/java/dev/zernio/model/BoostPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequestAttributionSpecInner.java
 src/main/java/dev/zernio/model/BoostPostRequestBudget.java
@@ -4507,6 +4511,8 @@ src/main/java/dev/zernio/model/InstagramPlatformDataAudioConfiguration.java
 src/main/java/dev/zernio/model/InstagramPlatformDataTrialParams.java
 src/main/java/dev/zernio/model/InstagramPlatformDataUserTagsInner.java
 src/main/java/dev/zernio/model/InstagramTaggedMedia.java
+src/main/java/dev/zernio/model/InstagramVideoFallback.java
+src/main/java/dev/zernio/model/InstagramVideoFallbackPlatformError.java
 src/main/java/dev/zernio/model/InstallTrackingTagOnStore200Response.java
 src/main/java/dev/zernio/model/InstallTrackingTagOnStore200ResponseInstall.java
 src/main/java/dev/zernio/model/InstallTrackingTagOnStore422Response.java
@@ -5979,3 +5985,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPost201ResponseTest.java
+src/test/java/dev/zernio/model/InstagramVideoFallbackPlatformErrorTest.java
+src/test/java/dev/zernio/model/InstagramVideoFallbackTest.java
