@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.365.0
+  version: 1.366.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11316,7 +11316,10 @@ paths:
         Redirect the user to `authUrl`. When the Google account can read one property, Zernio connects
         it and redirects to `redirect_url` (or the dashboard) with `connected=googleanalytics`,
         `profileId`, `accountId` and `username` (the property name). When it can read several, the user
-        first picks one on a Zernio-hosted page, which then redirects the same way. On failure the
+        first picks one on a Zernio-hosted page, which then redirects the same way. To show your own picker
+        instead, add `headless=true` to `redirect_url`: Zernio then redirects there with `step=select_property`,
+        `profileId`, `platform=googleanalytics` and a `pendingDataToken` for
+        `GET /v1/connect/googleanalytics/properties` and `POST /v1/connect/googleanalytics/select-property`. On failure the
         redirect carries `error`, `platform=googleanalytics` and `error_message`; errors include
         `googleanalytics_scope_missing` (the user unticked Analytics access) and
         `googleanalytics_no_properties`.
@@ -11377,6 +11380,90 @@ paths:
       tags:
       - Connect
       x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/connect/googleanalytics/properties:
+    get:
+      description: |
+        For headless flows. When the connect started with `redirect_url=...?headless=true` and the Google
+        account can read several GA4 properties, Zernio redirects to your `redirect_url` with
+        `step=select_property`, `profileId`, `platform=googleanalytics` and a `pendingDataToken`. Call this
+        to list the properties and show your own picker, then call
+        `POST /v1/connect/googleanalytics/select-property`. Listing does not consume the token. A headless
+        token passes through your own URLs, so it is honored only together with your API key (or connect
+        token) for the same profile. It expires after one hour.
+      operationId: listGoogleAnalyticsProperties
+      parameters:
+      - description: Token from the headless redirect.
+        explode: true
+        in: query
+        name: pendingDataToken
+        required: true
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listGoogleAnalyticsProperties_200_response"
+          description: Properties the Google account can read
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          description: The pending sign-in expired or was already used. Start the
+            connect again.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: List Google Analytics properties for a pending connect
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+  /v1/connect/googleanalytics/select-property:
+    post:
+      description: |
+        For headless flows. Connects the property the user picked as a `googleanalytics` account and returns
+        where to send the user next: your `redirect_url` with `connected=googleanalytics`, `profileId`,
+        `accountId` and `username`, or an `error` when the connect was refused (for example a billing block).
+        Consumes the `pendingDataToken`; a refused or failed attempt leaves it usable for a retry. Send your
+        API key (or connect token) for the same profile with a headless token.
+      operationId: selectGoogleAnalyticsProperty
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/selectGoogleAnalyticsProperty_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/selectGoogleAnalyticsProperty_200_response"
+          description: "The property is connected, or the connect was refused with\
+            \ a reason in redirect_url"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "404":
+          description: The pending sign-in expired or was already used. Start the
+            connect again.
+        "500":
+          description: Google or Zernio failed while saving. The pendingDataToken
+            stays usable; retry.
+      security:
+      - bearerAuth: []
+      - connectToken: []
+      summary: Connect the chosen Google Analytics property
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/connect/hubspot:
@@ -97336,6 +97423,7 @@ components:
         handle: handle
         title: title
         platform: shopify
+        url: url
         tags:
         - tags
         - tags
@@ -97370,6 +97458,12 @@ components:
           type: string
         handle:
           description: URL slug of the article.
+          type: string
+        url:
+          description: "WordPress and Wix. Public URL of the article while it is published;\
+            \ null for drafts and scheduled posts, and on a Wix site that is not published\
+            \ yet."
+          nullable: true
           type: string
         tags:
           description: "Tag names. On WordPress and Wix, missing tag names are created\
@@ -106361,6 +106455,85 @@ components:
       required:
       - authUrl
       - state
+    listGoogleAnalyticsProperties_200_response_properties_inner:
+      example:
+        accountId: accountId
+        accountName: Acme Inc
+        displayName: acme.com
+        propertyId: "312456789"
+      properties:
+        propertyId:
+          description: Numeric GA4 property ID.
+          example: "312456789"
+          type: string
+        displayName:
+          example: acme.com
+          type: string
+        accountId:
+          description: Google Analytics account ID.
+          type: string
+        accountName:
+          example: Acme Inc
+          type: string
+    listGoogleAnalyticsProperties_200_response:
+      example:
+        properties:
+        - accountId: accountId
+          accountName: Acme Inc
+          displayName: acme.com
+          propertyId: "312456789"
+        - accountId: accountId
+          accountName: Acme Inc
+          displayName: acme.com
+          propertyId: "312456789"
+      properties:
+        properties:
+          items:
+            $ref: "#/components/schemas/listGoogleAnalyticsProperties_200_response_properties_inner"
+          type: array
+    selectGoogleAnalyticsProperty_request:
+      properties:
+        pendingDataToken:
+          description: Token from the headless redirect.
+          type: string
+        propertyId:
+          description: A propertyId from the properties list.
+          example: "312456789"
+          type: string
+      required:
+      - pendingDataToken
+      - propertyId
+    selectGoogleAnalyticsProperty_200_response_account:
+      description: "The connected account, or null when the connect was refused."
+      example:
+        accountId: accountId
+        displayName: displayName
+        platform: googleanalytics
+        username: username
+      properties:
+        accountId:
+          type: string
+        platform:
+          example: googleanalytics
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+    selectGoogleAnalyticsProperty_200_response:
+      example:
+        redirect_url: redirect_url
+        account:
+          accountId: accountId
+          displayName: displayName
+          platform: googleanalytics
+          username: username
+      properties:
+        redirect_url:
+          description: Where to send the user next.
+          type: string
+        account:
+          $ref: "#/components/schemas/selectGoogleAnalyticsProperty_200_response_account"
     getHubSpotConnectUrl_200_response:
       example:
         authUrl: https://openapi-generator.tech
@@ -161150,6 +161323,7 @@ components:
           handle: handle
           title: title
           platform: shopify
+          url: url
           tags:
           - tags
           - tags
@@ -161170,6 +161344,7 @@ components:
           handle: handle
           title: title
           platform: shopify
+          url: url
           tags:
           - tags
           - tags
@@ -161285,6 +161460,7 @@ components:
           handle: handle
           title: title
           platform: shopify
+          url: url
           tags:
           - tags
           - tags

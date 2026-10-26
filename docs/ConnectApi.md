@@ -90,6 +90,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**initiateTelegramConnectWithHttpInfo**](ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly |
 | [**listFacebookPages**](ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
 | [**listFacebookPagesWithHttpInfo**](ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages |
+| [**listGoogleAnalyticsProperties**](ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
+| [**listGoogleAnalyticsPropertiesWithHttpInfo**](ConnectApi.md#listGoogleAnalyticsPropertiesWithHttpInfo) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect |
 | [**listGoogleBusinessLocations**](ConnectApi.md#listGoogleBusinessLocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
 | [**listGoogleBusinessLocationsWithHttpInfo**](ConnectApi.md#listGoogleBusinessLocationsWithHttpInfo) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations |
 | [**listInstagramPages**](ConnectApi.md#listInstagramPages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account |
@@ -108,6 +110,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**resyncPageWebhookSubscriptionWithHttpInfo**](ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks |
 | [**selectFacebookPage**](ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
 | [**selectFacebookPageWithHttpInfo**](ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page |
+| [**selectGoogleAnalyticsProperty**](ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
+| [**selectGoogleAnalyticsPropertyWithHttpInfo**](ConnectApi.md#selectGoogleAnalyticsPropertyWithHttpInfo) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property |
 | [**selectGoogleBusinessLocation**](ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
 | [**selectGoogleBusinessLocationWithHttpInfo**](ConnectApi.md#selectGoogleBusinessLocationWithHttpInfo) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location |
 | [**selectInstagramAccount**](ConnectApi.md#selectInstagramAccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect |
@@ -3819,7 +3823,7 @@ ApiResponse<[**GetGmbLocations200Response**](GetGmbLocations200Response.md)>
 
 Get Google Analytics OAuth connect URL
 
-Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform &#x60;googleanalytics&#x60;; it reads reports and does not post. Redirect the user to &#x60;authUrl&#x60;. When the Google account can read one property, Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and &#x60;error_message&#x60;; errors include &#x60;googleanalytics_scope_missing&#x60; (the user unticked Analytics access) and &#x60;googleanalytics_no_properties&#x60;. Requested scope: &#x60;https://www.googleapis.com/auth/analytics.readonly&#x60;. 
+Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform &#x60;googleanalytics&#x60;; it reads reports and does not post. Redirect the user to &#x60;authUrl&#x60;. When the Google account can read one property, Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. To show your own picker instead, add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;: Zernio then redirects there with &#x60;step&#x3D;select_property&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/googleanalytics/properties&#x60; and &#x60;POST /v1/connect/googleanalytics/select-property&#x60;. On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and &#x60;error_message&#x60;; errors include &#x60;googleanalytics_scope_missing&#x60; (the user unticked Analytics access) and &#x60;googleanalytics_no_properties&#x60;. Requested scope: &#x60;https://www.googleapis.com/auth/analytics.readonly&#x60;. 
 
 ### Example
 
@@ -3905,7 +3909,7 @@ public class Example {
 
 Get Google Analytics OAuth connect URL
 
-Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform &#x60;googleanalytics&#x60;; it reads reports and does not post. Redirect the user to &#x60;authUrl&#x60;. When the Google account can read one property, Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and &#x60;error_message&#x60;; errors include &#x60;googleanalytics_scope_missing&#x60; (the user unticked Analytics access) and &#x60;googleanalytics_no_properties&#x60;. Requested scope: &#x60;https://www.googleapis.com/auth/analytics.readonly&#x60;. 
+Starts OAuth for Google Analytics (GA4). Each connected GA4 property becomes its own account with platform &#x60;googleanalytics&#x60;; it reads reports and does not post. Redirect the user to &#x60;authUrl&#x60;. When the Google account can read one property, Zernio connects it and redirects to &#x60;redirect_url&#x60; (or the dashboard) with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60; (the property name). When it can read several, the user first picks one on a Zernio-hosted page, which then redirects the same way. To show your own picker instead, add &#x60;headless&#x3D;true&#x60; to &#x60;redirect_url&#x60;: Zernio then redirects there with &#x60;step&#x3D;select_property&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and a &#x60;pendingDataToken&#x60; for &#x60;GET /v1/connect/googleanalytics/properties&#x60; and &#x60;POST /v1/connect/googleanalytics/select-property&#x60;. On failure the redirect carries &#x60;error&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and &#x60;error_message&#x60;; errors include &#x60;googleanalytics_scope_missing&#x60; (the user unticked Analytics access) and &#x60;googleanalytics_no_properties&#x60;. Requested scope: &#x60;https://www.googleapis.com/auth/analytics.readonly&#x60;. 
 
 ### Example
 
@@ -7021,6 +7025,168 @@ ApiResponse<[**ListFacebookPages200Response**](ListFacebookPages200Response.md)>
 | **500** | Failed to fetch pages (e.g., invalid token, insufficient permissions) |  -  |
 
 
+## listGoogleAnalyticsProperties
+
+> ListGoogleAnalyticsProperties200Response listGoogleAnalyticsProperties(pendingDataToken)
+
+List Google Analytics properties for a pending connect
+
+For headless flows. When the connect started with &#x60;redirect_url&#x3D;...?headless&#x3D;true&#x60; and the Google account can read several GA4 properties, Zernio redirects to your &#x60;redirect_url&#x60; with &#x60;step&#x3D;select_property&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and a &#x60;pendingDataToken&#x60;. Call this to list the properties and show your own picker, then call &#x60;POST /v1/connect/googleanalytics/select-property&#x60;. Listing does not consume the token. A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ListGoogleAnalyticsProperties200Response result = apiInstance.listGoogleAnalyticsProperties(pendingDataToken);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listGoogleAnalyticsProperties");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+[**ListGoogleAnalyticsProperties200Response**](ListGoogleAnalyticsProperties200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Properties the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+## listGoogleAnalyticsPropertiesWithHttpInfo
+
+> ApiResponse<ListGoogleAnalyticsProperties200Response> listGoogleAnalyticsProperties listGoogleAnalyticsPropertiesWithHttpInfo(pendingDataToken)
+
+List Google Analytics properties for a pending connect
+
+For headless flows. When the connect started with &#x60;redirect_url&#x3D;...?headless&#x3D;true&#x60; and the Google account can read several GA4 properties, Zernio redirects to your &#x60;redirect_url&#x60; with &#x60;step&#x3D;select_property&#x60;, &#x60;profileId&#x60;, &#x60;platform&#x3D;googleanalytics&#x60; and a &#x60;pendingDataToken&#x60;. Call this to list the properties and show your own picker, then call &#x60;POST /v1/connect/googleanalytics/select-property&#x60;. Listing does not consume the token. A headless token passes through your own URLs, so it is honored only together with your API key (or connect token) for the same profile. It expires after one hour. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        String pendingDataToken = "pendingDataToken_example"; // String | Token from the headless redirect.
+        try {
+            ApiResponse<ListGoogleAnalyticsProperties200Response> response = apiInstance.listGoogleAnalyticsPropertiesWithHttpInfo(pendingDataToken);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#listGoogleAnalyticsProperties");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **pendingDataToken** | **String**| Token from the headless redirect. | |
+
+### Return type
+
+ApiResponse<[**ListGoogleAnalyticsProperties200Response**](ListGoogleAnalyticsProperties200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Properties the Google account can read |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+
+
 ## listGoogleBusinessLocations
 
 > ListGoogleBusinessLocations200Response listGoogleBusinessLocations(profileId, pendingDataToken, tempToken, search, filter)
@@ -8495,6 +8661,168 @@ ApiResponse<[**SelectFacebookPage200Response**](SelectFacebookPage200Response.md
 | **422** | pageIds only. None of the Pages could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | Reconnect identity mismatch. The OAuth was initiated as a &#x60;force&#x3D;true&#x60; token-recovery re-auth (&#x60;GET /v1/connect/{platform}/ads&#x60;), but the grant landed on a different Facebook user or page than the connected account. The existing account is left untouched. Returned in the standard error envelope with &#x60;code: reconnect_account_mismatch&#x60; (the same value the OAuth redirect uses in &#x60;error&#x3D;&#x60;). Before 1.79.0 this body was &#x60;{error, code: RECONNECT_ACCOUNT_MISMATCH}&#x60; without &#x60;type&#x60;.  |  -  |
 | **500** | Failed to save Facebook connection |  -  |
+
+
+## selectGoogleAnalyticsProperty
+
+> SelectGoogleAnalyticsProperty200Response selectGoogleAnalyticsProperty(selectGoogleAnalyticsPropertyRequest)
+
+Connect the chosen Google Analytics property
+
+For headless flows. Connects the property the user picked as a &#x60;googleanalytics&#x60; account and returns where to send the user next: your &#x60;redirect_url&#x60; with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;, or an &#x60;error&#x60; when the connect was refused (for example a billing block). Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectGoogleAnalyticsPropertyRequest selectGoogleAnalyticsPropertyRequest = new SelectGoogleAnalyticsPropertyRequest(); // SelectGoogleAnalyticsPropertyRequest | 
+        try {
+            SelectGoogleAnalyticsProperty200Response result = apiInstance.selectGoogleAnalyticsProperty(selectGoogleAnalyticsPropertyRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectGoogleAnalyticsProperty");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectGoogleAnalyticsPropertyRequest** | [**SelectGoogleAnalyticsPropertyRequest**](SelectGoogleAnalyticsPropertyRequest.md)|  | |
+
+### Return type
+
+[**SelectGoogleAnalyticsProperty200Response**](SelectGoogleAnalyticsProperty200Response.md)
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The property is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
+
+## selectGoogleAnalyticsPropertyWithHttpInfo
+
+> ApiResponse<SelectGoogleAnalyticsProperty200Response> selectGoogleAnalyticsProperty selectGoogleAnalyticsPropertyWithHttpInfo(selectGoogleAnalyticsPropertyRequest)
+
+Connect the chosen Google Analytics property
+
+For headless flows. Connects the property the user picked as a &#x60;googleanalytics&#x60; account and returns where to send the user next: your &#x60;redirect_url&#x60; with &#x60;connected&#x3D;googleanalytics&#x60;, &#x60;profileId&#x60;, &#x60;accountId&#x60; and &#x60;username&#x60;, or an &#x60;error&#x60; when the connect was refused (for example a billing block). Consumes the &#x60;pendingDataToken&#x60;; a refused or failed attempt leaves it usable for a retry. Send your API key (or connect token) for the same profile with a headless token. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConnectApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure API key authorization: connectToken
+        ApiKeyAuth connectToken = (ApiKeyAuth) defaultClient.getAuthentication("connectToken");
+        connectToken.setApiKey("YOUR API KEY");
+        // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+        //connectToken.setApiKeyPrefix("Token");
+
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConnectApi apiInstance = new ConnectApi(defaultClient);
+        SelectGoogleAnalyticsPropertyRequest selectGoogleAnalyticsPropertyRequest = new SelectGoogleAnalyticsPropertyRequest(); // SelectGoogleAnalyticsPropertyRequest | 
+        try {
+            ApiResponse<SelectGoogleAnalyticsProperty200Response> response = apiInstance.selectGoogleAnalyticsPropertyWithHttpInfo(selectGoogleAnalyticsPropertyRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConnectApi#selectGoogleAnalyticsProperty");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **selectGoogleAnalyticsPropertyRequest** | [**SelectGoogleAnalyticsPropertyRequest**](SelectGoogleAnalyticsPropertyRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SelectGoogleAnalyticsProperty200Response**](SelectGoogleAnalyticsProperty200Response.md)>
+
+
+### Authorization
+
+[connectToken](../README.md#connectToken), [bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The property is connected, or the connect was refused with a reason in redirect_url |  -  |
+| **400** | Invalid request |  -  |
+| **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
+| **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
 
 ## selectGoogleBusinessLocation

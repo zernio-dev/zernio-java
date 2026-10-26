@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.365.0
+- API version: 1.366.0
 
-- Build date: 2026-10-26T12:45:45.511520543Z[Etc/UTC]
+- Build date: 2026-10-26T13:08:20.965447559Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.365.0</version>
+  <version>1.366.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.365.0"
+compile "dev.zernio:zernio-sdk:1.366.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.365.0.jar`
+- `target/zernio-sdk-1.366.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1139,6 +1139,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**initiateTelegramConnectWithHttpInfo**](docs/ConnectApi.md#initiateTelegramConnectWithHttpInfo) | **POST** /v1/connect/telegram | Connect Telegram directly
 *ConnectApi* | [**listFacebookPages**](docs/ConnectApi.md#listFacebookPages) | **GET** /v1/connect/facebook/select-page | List Facebook pages
 *ConnectApi* | [**listFacebookPagesWithHttpInfo**](docs/ConnectApi.md#listFacebookPagesWithHttpInfo) | **GET** /v1/connect/facebook/select-page | List Facebook pages
+*ConnectApi* | [**listGoogleAnalyticsProperties**](docs/ConnectApi.md#listGoogleAnalyticsProperties) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect
+*ConnectApi* | [**listGoogleAnalyticsPropertiesWithHttpInfo**](docs/ConnectApi.md#listGoogleAnalyticsPropertiesWithHttpInfo) | **GET** /v1/connect/googleanalytics/properties | List Google Analytics properties for a pending connect
 *ConnectApi* | [**listGoogleBusinessLocations**](docs/ConnectApi.md#listGoogleBusinessLocations) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations
 *ConnectApi* | [**listGoogleBusinessLocationsWithHttpInfo**](docs/ConnectApi.md#listGoogleBusinessLocationsWithHttpInfo) | **GET** /v1/connect/googlebusiness/locations | List Google Business Profile locations
 *ConnectApi* | [**listInstagramPages**](docs/ConnectApi.md#listInstagramPages) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
@@ -1157,6 +1159,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**resyncPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#resyncPageWebhookSubscriptionWithHttpInfo) | **POST** /v1/accounts/{accountId}/webhook-subscription | Re-subscribe a Facebook Page to Zernio&#39;s webhooks
 *ConnectApi* | [**selectFacebookPage**](docs/ConnectApi.md#selectFacebookPage) | **POST** /v1/connect/facebook/select-page | Select Facebook page
 *ConnectApi* | [**selectFacebookPageWithHttpInfo**](docs/ConnectApi.md#selectFacebookPageWithHttpInfo) | **POST** /v1/connect/facebook/select-page | Select Facebook page
+*ConnectApi* | [**selectGoogleAnalyticsProperty**](docs/ConnectApi.md#selectGoogleAnalyticsProperty) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property
+*ConnectApi* | [**selectGoogleAnalyticsPropertyWithHttpInfo**](docs/ConnectApi.md#selectGoogleAnalyticsPropertyWithHttpInfo) | **POST** /v1/connect/googleanalytics/select-property | Connect the chosen Google Analytics property
 *ConnectApi* | [**selectGoogleBusinessLocation**](docs/ConnectApi.md#selectGoogleBusinessLocation) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location
 *ConnectApi* | [**selectGoogleBusinessLocationWithHttpInfo**](docs/ConnectApi.md#selectGoogleBusinessLocationWithHttpInfo) | **POST** /v1/connect/googlebusiness/select-location | Select Google Business Profile location
 *ConnectApi* | [**selectInstagramAccount**](docs/ConnectApi.md#selectInstagramAccount) | **POST** /v1/connect/instagram/select-account | Select the Page whose Instagram account to connect
@@ -3805,6 +3809,8 @@ Class | Method | HTTP request | Description
  - [ListFormLeads200Response](docs/ListFormLeads200Response.md)
  - [ListFormLeads200ResponseLeadsInner](docs/ListFormLeads200ResponseLeadsInner.md)
  - [ListFormLeads200ResponseMeta](docs/ListFormLeads200ResponseMeta.md)
+ - [ListGoogleAnalyticsProperties200Response](docs/ListGoogleAnalyticsProperties200Response.md)
+ - [ListGoogleAnalyticsProperties200ResponsePropertiesInner](docs/ListGoogleAnalyticsProperties200ResponsePropertiesInner.md)
  - [ListGoogleAssetGroups200Response](docs/ListGoogleAssetGroups200Response.md)
  - [ListGoogleBusinessLocations200Response](docs/ListGoogleBusinessLocations200Response.md)
  - [ListGoogleBusinessLocations200ResponseLocationsInner](docs/ListGoogleBusinessLocations200ResponseLocationsInner.md)
@@ -4307,6 +4313,9 @@ Class | Method | HTTP request | Description
  - [SelectFacebookPageRequestOneOf1](docs/SelectFacebookPageRequestOneOf1.md)
  - [SelectFacebookPageRequestOneOfNot](docs/SelectFacebookPageRequestOneOfNot.md)
  - [SelectFacebookPageRequestOneOfUserProfile](docs/SelectFacebookPageRequestOneOfUserProfile.md)
+ - [SelectGoogleAnalyticsProperty200Response](docs/SelectGoogleAnalyticsProperty200Response.md)
+ - [SelectGoogleAnalyticsProperty200ResponseAccount](docs/SelectGoogleAnalyticsProperty200ResponseAccount.md)
+ - [SelectGoogleAnalyticsPropertyRequest](docs/SelectGoogleAnalyticsPropertyRequest.md)
  - [SelectGoogleBusinessLocation200Response](docs/SelectGoogleBusinessLocation200Response.md)
  - [SelectGoogleBusinessLocation200ResponseAccount](docs/SelectGoogleBusinessLocation200ResponseAccount.md)
  - [SelectGoogleBusinessLocation200ResponseFailedInner](docs/SelectGoogleBusinessLocation200ResponseFailedInner.md)
