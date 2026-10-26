@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.359.1
+- API version: 1.360.0
 
-- Build date: 2026-10-25T18:48:46.195909528Z[Etc/UTC]
+- Build date: 2026-10-26T02:45:11.372717453Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.359.1</version>
+  <version>1.360.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.359.1"
+compile "dev.zernio:zernio-sdk:1.360.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.359.1.jar`
+- `target/zernio-sdk-1.360.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1205,8 +1205,12 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**createConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination
 *ConversionsApi* | [**createCustomConversionGoal**](docs/ConversionsApi.md#createCustomConversionGoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal
 *ConversionsApi* | [**createCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#createCustomConversionGoalWithHttpInfo) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal
+*ConversionsApi* | [**createEventDestination**](docs/ConversionsApi.md#createEventDestination) | **POST** /v1/events/destinations | Add an event destination
+*ConversionsApi* | [**createEventDestinationWithHttpInfo**](docs/ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination
 *ConversionsApi* | [**deleteConversionDestination**](docs/ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
 *ConversionsApi* | [**deleteConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination
+*ConversionsApi* | [**deleteEventDestination**](docs/ConversionsApi.md#deleteEventDestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
+*ConversionsApi* | [**deleteEventDestinationWithHttpInfo**](docs/ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination
 *ConversionsApi* | [**getConversionDestination**](docs/ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination
 *ConversionsApi* | [**getConversionMetrics**](docs/ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics
@@ -1223,12 +1227,16 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listConversionDestinationsWithHttpInfo**](docs/ConversionsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations
 *ConversionsApi* | [**listCustomConversionGoals**](docs/ConversionsApi.md#listCustomConversionGoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals
 *ConversionsApi* | [**listCustomConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals
+*ConversionsApi* | [**listEventDestinations**](docs/ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations
+*ConversionsApi* | [**listEventDestinationsWithHttpInfo**](docs/ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations
 *ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeCustomConversionGoal**](docs/ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
 *ConversionsApi* | [**removeCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#removeCustomConversionGoalWithHttpInfo) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
 *ConversionsApi* | [**sendConversions**](docs/ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events
 *ConversionsApi* | [**sendConversionsWithHttpInfo**](docs/ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events
+*ConversionsApi* | [**sendEvents**](docs/ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination
+*ConversionsApi* | [**sendEventsWithHttpInfo**](docs/ConversionsApi.md#sendEventsWithHttpInfo) | **POST** /v1/events | Send events to every destination
 *ConversionsApi* | [**updateAdConversionGoals**](docs/ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
 *ConversionsApi* | [**updateAdConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals
 *ConversionsApi* | [**updateConversionAction**](docs/ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings
@@ -2697,6 +2705,8 @@ Class | Method | HTTP request | Description
  - [CreateDiscordThread200Response](docs/CreateDiscordThread200Response.md)
  - [CreateDiscordThread200ResponseData](docs/CreateDiscordThread200ResponseData.md)
  - [CreateDiscordThreadRequest](docs/CreateDiscordThreadRequest.md)
+ - [CreateEventDestination201Response](docs/CreateEventDestination201Response.md)
+ - [CreateEventDestinationRequest](docs/CreateEventDestinationRequest.md)
  - [CreateGoogleAdAccountRequest](docs/CreateGoogleAdAccountRequest.md)
  - [CreateGoogleAssetGroup200Response](docs/CreateGoogleAssetGroup200Response.md)
  - [CreateGoogleAssetGroup201Response](docs/CreateGoogleAssetGroup201Response.md)
@@ -2978,6 +2988,7 @@ Class | Method | HTTP request | Description
  - [ErrorResponseDetailsUnconfirmedWrite](docs/ErrorResponseDetailsUnconfirmedWrite.md)
  - [EstimateAdReach200Response](docs/EstimateAdReach200Response.md)
  - [EstimateAdReachRequest](docs/EstimateAdReachRequest.md)
+ - [EventDestination](docs/EventDestination.md)
  - [Expired](docs/Expired.md)
  - [ExternalPostMediaItem](docs/ExternalPostMediaItem.md)
  - [ExternalPostSummary](docs/ExternalPostSummary.md)
@@ -3766,6 +3777,7 @@ Class | Method | HTTP request | Description
  - [ListDiscordPinnedMessages200Response](docs/ListDiscordPinnedMessages200Response.md)
  - [ListDiscordPinnedMessages200ResponseDataInner](docs/ListDiscordPinnedMessages200ResponseDataInner.md)
  - [ListDiscordScheduledEvents200Response](docs/ListDiscordScheduledEvents200Response.md)
+ - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)
@@ -4307,6 +4319,12 @@ Class | Method | HTTP request | Description
  - [SendDiscordDirectMessage200ResponseRecipient](docs/SendDiscordDirectMessage200ResponseRecipient.md)
  - [SendDiscordDirectMessageRequest](docs/SendDiscordDirectMessageRequest.md)
  - [SendDiscordDirectMessageRequestAttachmentsInner](docs/SendDiscordDirectMessageRequestAttachmentsInner.md)
+ - [SendEvents200Response](docs/SendEvents200Response.md)
+ - [SendEvents200ResponseDestinationsInner](docs/SendEvents200ResponseDestinationsInner.md)
+ - [SendEvents200ResponseDestinationsInnerFailuresInner](docs/SendEvents200ResponseDestinationsInnerFailuresInner.md)
+ - [SendEventsRequest](docs/SendEventsRequest.md)
+ - [SendEventsRequestConsent](docs/SendEventsRequestConsent.md)
+ - [SendEventsRequestDestinationsInner](docs/SendEventsRequestDestinationsInner.md)
  - [SendInboxMessage200Response](docs/SendInboxMessage200Response.md)
  - [SendInboxMessage200ResponseData](docs/SendInboxMessage200ResponseData.md)
  - [SendInboxMessage200ResponseDataAttachmentsInner](docs/SendInboxMessage200ResponseDataAttachmentsInner.md)

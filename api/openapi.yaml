@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.359.1
+  version: 1.360.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -56651,6 +56651,166 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/events:
+    post:
+      description: |
+        Sends conversion events once and forwards them to every ad platform destination saved for the
+        profile (see `POST /v1/events/destinations`), or to the `destinations` given in the request.
+        Each destination receives the events exactly as `POST /v1/ads/conversions` would send them, so the
+        per-platform notes there (hashing, batching, `eventName` semantics, dedup on `eventId`) apply here too.
+        A destination saved with `eventNames` only receives events with those names.
+
+        Zernio also stores each event for the profile's reporting. Email, phone and `externalId` are stored
+        only as SHA-256 hashes, and `sourceUrl` keeps only its origin, path and attribution parameters
+        (`utm_*`, `gclid`, `fbclid`, `ttclid`, `li_fat_id`, `epik`, `rdt_cid`, `gbraid`, `wbraid`).
+        Events sent with `testCode` are forwarded but not stored.
+
+        One destination failing never blocks the others: each one reports its own result. Requires the Ads add-on.
+      operationId: sendEvents
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/sendEvents_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/sendEvents_200_response"
+          description: Events processed. Check each destination for partial failure.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Send events to every destination
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - reddit
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/events/destinations:
+    get:
+      description: "Lists the ad platform destinations that receive events sent to\
+        \ `POST /v1/events`, for one profile or every profile you can access."
+      operationId: listEventDestinations
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listEventDestinations_200_response"
+          description: Event destinations.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List event destinations
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Saves an ad platform destination for a profile, so events sent to `POST /v1/events` for that profile are forwarded
+        to it. Pick `destinationId` from `GET /v1/accounts/{accountId}/conversion-destinations`. Set `eventNames` to forward
+        only those events (for example only `Purchase`); leave it out to forward every event.
+      operationId: createEventDestination
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/createEventDestination_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createEventDestination_201_response"
+          description: Destination saved.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The profile already sends events to this destination (code
+            `invalid_resource_state`).
+      security:
+      - bearerAuth: []
+      summary: Add an event destination
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/events/destinations/{destinationId}:
+    delete:
+      description: "Stops forwarding events to this destination. `destinationId` is\
+        \ the event destination `id`, not the platform destination."
+      operationId: deleteEventDestination
+      parameters:
+      - explode: false
+        in: path
+        name: destinationId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteSmsSenderId_200_response"
+          description: Destination removed.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Remove an event destination
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
   /v1/ads/campaigns/{campaignId}/conversion-goals:
     get:
       description: |-
@@ -96199,6 +96359,37 @@ components:
         minLength: 1
         type: string
       - $ref: "#/components/schemas/KeywordEntry_oneOf"
+    EventDestination:
+      example:
+        accountId: accountId
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        profileId: profileId
+        eventNames:
+        - eventNames
+        - eventNames
+        id: id
+        destinationId: destinationId
+      properties:
+        id:
+          description: "Event destination ID, used to delete it."
+          type: string
+        profileId:
+          type: string
+        accountId:
+          type: string
+        destinationId:
+          description: "Platform destination (pixel, conversion action, rule, ...)."
+          type: string
+        eventNames:
+          description: Event names forwarded to this destination; null forwards every
+            event.
+          items:
+            type: string
+          nullable: true
+          type: array
+        createdAt:
+          format: date-time
+          type: string
     ConversionEvent:
       description: |
         A single conversion event to relay to the ad platform. All PII fields
@@ -157064,6 +157255,229 @@ components:
           type: string
         goal:
           $ref: "#/components/schemas/GoogleCustomConversionGoal"
+    sendEvents_request_destinations_inner:
+      additionalProperties: {}
+      properties:
+        accountId:
+          description: "Connected ads account ID (metaads, googleads, linkedinads,\
+            \ tiktokads, openaiads, pinterestads or redditads)."
+          type: string
+        destinationId:
+          description: "Platform destination, as listed by GET /v1/accounts/{accountId}/conversion-destinations."
+          type: string
+      required:
+      - accountId
+      - destinationId
+    sendEvents_request_consent:
+      description: "Batch-level user consent, forwarded to every destination (see\
+        \ POST /v1/ads/conversions)."
+      properties:
+        adUserData:
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+        adPersonalization:
+          enum:
+          - GRANTED
+          - DENIED
+          type: string
+    sendEvents_request:
+      additionalProperties: {}
+      properties:
+        profileId:
+          description: Profile the events belong to. Its saved destinations receive
+            the events.
+          type: string
+        events:
+          items:
+            $ref: "#/components/schemas/ConversionEvent"
+          maxItems: 1000
+          minItems: 1
+          type: array
+        destinations:
+          description: Send to these destinations instead of the saved ones (every
+            event goes to each).
+          items:
+            $ref: "#/components/schemas/sendEvents_request_destinations_inner"
+          maxItems: 20
+          minItems: 1
+          type: array
+        consent:
+          $ref: "#/components/schemas/sendEvents_request_consent"
+        testCode:
+          description: Forwarded as each platform test code (see POST /v1/ads/conversions).
+            Test events are not stored.
+          type: string
+      required:
+      - events
+      - profileId
+    sendEvents_200_response_destinations_inner_failures_inner:
+      example:
+        eventId: eventId
+        code: sendConversions_200_response_failures_inner_code
+        eventIndex: 5
+        message: message
+      properties:
+        eventIndex:
+          description: Index into the events sent to this destination.
+          type: integer
+        eventId:
+          type: string
+        message:
+          type: string
+        code:
+          $ref: "#/components/schemas/sendConversions_200_response_failures_inner_code"
+    sendEvents_200_response_destinations_inner:
+      example:
+        accountId: accountId
+        failures:
+        - eventId: eventId
+          code: sendConversions_200_response_failures_inner_code
+          eventIndex: 5
+          message: message
+        - eventId: eventId
+          code: sendConversions_200_response_failures_inner_code
+          eventIndex: 5
+          message: message
+        eventsFailed: 1
+        eventsSent: 6
+        destinationId: destinationId
+        error: error
+        platform: metaads
+      properties:
+        accountId:
+          type: string
+        destinationId:
+          type: string
+        platform:
+          enum:
+          - metaads
+          - googleads
+          - linkedinads
+          - tiktokads
+          - openaiads
+          - pinterestads
+          - redditads
+          type: string
+        eventsSent:
+          description: Events the platform accepted.
+          type: integer
+        eventsFailed:
+          type: integer
+        failures:
+          items:
+            $ref: "#/components/schemas/sendEvents_200_response_destinations_inner_failures_inner"
+          type: array
+        error:
+          description: "Set when the destination could not be reached at all (account\
+            \ disconnected, unsupported platform, platform error)."
+          type: string
+    sendEvents_200_response:
+      example:
+        eventsReceived: 0
+        stored: true
+        destinations:
+        - accountId: accountId
+          failures:
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 5
+            message: message
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 5
+            message: message
+          eventsFailed: 1
+          eventsSent: 6
+          destinationId: destinationId
+          error: error
+          platform: metaads
+        - accountId: accountId
+          failures:
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 5
+            message: message
+          - eventId: eventId
+            code: sendConversions_200_response_failures_inner_code
+            eventIndex: 5
+            message: message
+          eventsFailed: 1
+          eventsSent: 6
+          destinationId: destinationId
+          error: error
+          platform: metaads
+      properties:
+        eventsReceived:
+          description: Events in the request.
+          type: integer
+        stored:
+          description: Whether the events were stored for reporting (always false
+            with testCode).
+          type: boolean
+        destinations:
+          items:
+            $ref: "#/components/schemas/sendEvents_200_response_destinations_inner"
+          type: array
+    listEventDestinations_200_response:
+      example:
+        destinations:
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          profileId: profileId
+          eventNames:
+          - eventNames
+          - eventNames
+          id: id
+          destinationId: destinationId
+        - accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          profileId: profileId
+          eventNames:
+          - eventNames
+          - eventNames
+          id: id
+          destinationId: destinationId
+      properties:
+        destinations:
+          items:
+            $ref: "#/components/schemas/EventDestination"
+          type: array
+    createEventDestination_request:
+      additionalProperties: {}
+      properties:
+        profileId:
+          type: string
+        accountId:
+          description: Connected ads account ID that owns the destination.
+          type: string
+        destinationId:
+          type: string
+        eventNames:
+          items:
+            type: string
+          maxItems: 50
+          minItems: 1
+          type: array
+      required:
+      - accountId
+      - destinationId
+      - profileId
+    createEventDestination_201_response:
+      example:
+        destination:
+          accountId: accountId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          profileId: profileId
+          eventNames:
+          - eventNames
+          - eventNames
+          id: id
+          destinationId: destinationId
+      properties:
+        destination:
+          $ref: "#/components/schemas/EventDestination"
     getCampaignConversionGoals_200_response:
       allOf:
       - $ref: "#/components/schemas/GoogleCampaignConversionGoals"

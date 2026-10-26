@@ -567,6 +567,8 @@ docs/CreateDiscordScheduledEventRequestEntityOneOf2.md
 docs/CreateDiscordThread200Response.md
 docs/CreateDiscordThread200ResponseData.md
 docs/CreateDiscordThreadRequest.md
+docs/CreateEventDestination201Response.md
+docs/CreateEventDestinationRequest.md
 docs/CreateGoogleAdAccountRequest.md
 docs/CreateGoogleAssetGroup200Response.md
 docs/CreateGoogleAssetGroup201Response.md
@@ -850,6 +852,7 @@ docs/ErrorResponseDetailsCreatedObjectsInner.md
 docs/ErrorResponseDetailsUnconfirmedWrite.md
 docs/EstimateAdReach200Response.md
 docs/EstimateAdReachRequest.md
+docs/EventDestination.md
 docs/Expired.md
 docs/ExternalPostMediaItem.md
 docs/ExternalPostSummary.md
@@ -1653,6 +1656,7 @@ docs/ListDiscordGuildRoles200ResponseDataInner.md
 docs/ListDiscordPinnedMessages200Response.md
 docs/ListDiscordPinnedMessages200ResponseDataInner.md
 docs/ListDiscordScheduledEvents200Response.md
+docs/ListEventDestinations200Response.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -2209,6 +2213,12 @@ docs/SendDiscordDirectMessage200ResponseAccount.md
 docs/SendDiscordDirectMessage200ResponseRecipient.md
 docs/SendDiscordDirectMessageRequest.md
 docs/SendDiscordDirectMessageRequestAttachmentsInner.md
+docs/SendEvents200Response.md
+docs/SendEvents200ResponseDestinationsInner.md
+docs/SendEvents200ResponseDestinationsInnerFailuresInner.md
+docs/SendEventsRequest.md
+docs/SendEventsRequestConsent.md
+docs/SendEventsRequestDestinationsInner.md
 docs/SendInboxMessage200Response.md
 docs/SendInboxMessage200ResponseData.md
 docs/SendInboxMessage200ResponseDataAttachmentsInner.md
@@ -3607,6 +3617,8 @@ src/main/java/dev/zernio/model/CreateDiscordScheduledEventRequestEntityOneOf2.ja
 src/main/java/dev/zernio/model/CreateDiscordThread200Response.java
 src/main/java/dev/zernio/model/CreateDiscordThread200ResponseData.java
 src/main/java/dev/zernio/model/CreateDiscordThreadRequest.java
+src/main/java/dev/zernio/model/CreateEventDestination201Response.java
+src/main/java/dev/zernio/model/CreateEventDestinationRequest.java
 src/main/java/dev/zernio/model/CreateGoogleAdAccountRequest.java
 src/main/java/dev/zernio/model/CreateGoogleAssetGroup200Response.java
 src/main/java/dev/zernio/model/CreateGoogleAssetGroup201Response.java
@@ -3888,6 +3900,7 @@ src/main/java/dev/zernio/model/ErrorResponseDetailsCreatedObjectsInner.java
 src/main/java/dev/zernio/model/ErrorResponseDetailsUnconfirmedWrite.java
 src/main/java/dev/zernio/model/EstimateAdReach200Response.java
 src/main/java/dev/zernio/model/EstimateAdReachRequest.java
+src/main/java/dev/zernio/model/EventDestination.java
 src/main/java/dev/zernio/model/Expired.java
 src/main/java/dev/zernio/model/ExternalPostMediaItem.java
 src/main/java/dev/zernio/model/ExternalPostSummary.java
@@ -4676,6 +4689,7 @@ src/main/java/dev/zernio/model/ListDiscordGuildRoles200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListDiscordPinnedMessages200Response.java
 src/main/java/dev/zernio/model/ListDiscordPinnedMessages200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListDiscordScheduledEvents200Response.java
+src/main/java/dev/zernio/model/ListEventDestinations200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
@@ -5217,6 +5231,12 @@ src/main/java/dev/zernio/model/SendDiscordDirectMessage200ResponseAccount.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessage200ResponseRecipient.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessageRequest.java
 src/main/java/dev/zernio/model/SendDiscordDirectMessageRequestAttachmentsInner.java
+src/main/java/dev/zernio/model/SendEvents200Response.java
+src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInner.java
+src/main/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerFailuresInner.java
+src/main/java/dev/zernio/model/SendEventsRequest.java
+src/main/java/dev/zernio/model/SendEventsRequestConsent.java
+src/main/java/dev/zernio/model/SendEventsRequestDestinationsInner.java
 src/main/java/dev/zernio/model/SendInboxMessage200Response.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseData.java
 src/main/java/dev/zernio/model/SendInboxMessage200ResponseDataAttachmentsInner.java
@@ -5959,3 +5979,13 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateEventDestination201ResponseTest.java
+src/test/java/dev/zernio/model/CreateEventDestinationRequestTest.java
+src/test/java/dev/zernio/model/EventDestinationTest.java
+src/test/java/dev/zernio/model/ListEventDestinations200ResponseTest.java
+src/test/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerFailuresInnerTest.java
+src/test/java/dev/zernio/model/SendEvents200ResponseDestinationsInnerTest.java
+src/test/java/dev/zernio/model/SendEvents200ResponseTest.java
+src/test/java/dev/zernio/model/SendEventsRequestConsentTest.java
+src/test/java/dev/zernio/model/SendEventsRequestDestinationsInnerTest.java
+src/test/java/dev/zernio/model/SendEventsRequestTest.java

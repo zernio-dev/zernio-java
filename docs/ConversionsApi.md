@@ -14,8 +14,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**createConversionDestinationWithHttpInfo**](ConversionsApi.md#createConversionDestinationWithHttpInfo) | **POST** /v1/accounts/{accountId}/conversion-destinations | Create a conversion destination |
 | [**createCustomConversionGoal**](ConversionsApi.md#createCustomConversionGoal) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
 | [**createCustomConversionGoalWithHttpInfo**](ConversionsApi.md#createCustomConversionGoalWithHttpInfo) | **POST** /v1/ads/conversions/custom-goals | Create a custom conversion goal |
+| [**createEventDestination**](ConversionsApi.md#createEventDestination) | **POST** /v1/events/destinations | Add an event destination |
+| [**createEventDestinationWithHttpInfo**](ConversionsApi.md#createEventDestinationWithHttpInfo) | **POST** /v1/events/destinations | Add an event destination |
 | [**deleteConversionDestination**](ConversionsApi.md#deleteConversionDestination) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
 | [**deleteConversionDestinationWithHttpInfo**](ConversionsApi.md#deleteConversionDestinationWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Delete a conversion destination |
+| [**deleteEventDestination**](ConversionsApi.md#deleteEventDestination) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
+| [**deleteEventDestinationWithHttpInfo**](ConversionsApi.md#deleteEventDestinationWithHttpInfo) | **DELETE** /v1/events/destinations/{destinationId} | Remove an event destination |
 | [**getConversionDestination**](ConversionsApi.md#getConversionDestination) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**getConversionDestinationWithHttpInfo**](ConversionsApi.md#getConversionDestinationWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Get a conversion destination |
 | [**getConversionMetrics**](ConversionsApi.md#getConversionMetrics) | **GET** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/metrics | Get attribution metrics |
@@ -32,12 +36,16 @@ All URIs are relative to *https://zernio.com/api*
 | [**listConversionDestinationsWithHttpInfo**](ConversionsApi.md#listConversionDestinationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/conversion-destinations | List conversion destinations |
 | [**listCustomConversionGoals**](ConversionsApi.md#listCustomConversionGoals) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**listCustomConversionGoalsWithHttpInfo**](ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
+| [**listEventDestinations**](ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations |
+| [**listEventDestinationsWithHttpInfo**](ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations |
 | [**removeConversionAssociations**](ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociationsWithHttpInfo**](ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeCustomConversionGoal**](ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**removeCustomConversionGoalWithHttpInfo**](ConversionsApi.md#removeCustomConversionGoalWithHttpInfo) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
 | [**sendConversions**](ConversionsApi.md#sendConversions) | **POST** /v1/ads/conversions | Send conversion events |
 | [**sendConversionsWithHttpInfo**](ConversionsApi.md#sendConversionsWithHttpInfo) | **POST** /v1/ads/conversions | Send conversion events |
+| [**sendEvents**](ConversionsApi.md#sendEvents) | **POST** /v1/events | Send events to every destination |
+| [**sendEventsWithHttpInfo**](ConversionsApi.md#sendEventsWithHttpInfo) | **POST** /v1/events | Send events to every destination |
 | [**updateAdConversionGoals**](ConversionsApi.md#updateAdConversionGoals) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
 | [**updateAdConversionGoalsWithHttpInfo**](ConversionsApi.md#updateAdConversionGoalsWithHttpInfo) | **PATCH** /v1/ads/conversions/goals | Update account conversion goals |
 | [**updateConversionAction**](ConversionsApi.md#updateConversionAction) | **PATCH** /v1/ads/conversions/actions/{actionId} | Update a conversion action&#39;s settings |
@@ -851,6 +859,158 @@ ApiResponse<[**CreateSharedBudget201ResponseBudget**](CreateSharedBudget201Respo
 | **501** | Only available on Google Ads accounts |  -  |
 
 
+## createEventDestination
+
+> CreateEventDestination201Response createEventDestination(createEventDestinationRequest)
+
+Add an event destination
+
+Saves an ad platform destination for a profile, so events sent to &#x60;POST /v1/events&#x60; for that profile are forwarded to it. Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events (for example only &#x60;Purchase&#x60;); leave it out to forward every event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateEventDestinationRequest createEventDestinationRequest = new CreateEventDestinationRequest(); // CreateEventDestinationRequest | 
+        try {
+            CreateEventDestination201Response result = apiInstance.createEventDestination(createEventDestinationRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createEventDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEventDestinationRequest** | [**CreateEventDestinationRequest**](CreateEventDestinationRequest.md)|  | |
+
+### Return type
+
+[**CreateEventDestination201Response**](CreateEventDestination201Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Destination saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The profile already sends events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
+
+## createEventDestinationWithHttpInfo
+
+> ApiResponse<CreateEventDestination201Response> createEventDestination createEventDestinationWithHttpInfo(createEventDestinationRequest)
+
+Add an event destination
+
+Saves an ad platform destination for a profile, so events sent to &#x60;POST /v1/events&#x60; for that profile are forwarded to it. Pick &#x60;destinationId&#x60; from &#x60;GET /v1/accounts/{accountId}/conversion-destinations&#x60;. Set &#x60;eventNames&#x60; to forward only those events (for example only &#x60;Purchase&#x60;); leave it out to forward every event. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        CreateEventDestinationRequest createEventDestinationRequest = new CreateEventDestinationRequest(); // CreateEventDestinationRequest | 
+        try {
+            ApiResponse<CreateEventDestination201Response> response = apiInstance.createEventDestinationWithHttpInfo(createEventDestinationRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#createEventDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **createEventDestinationRequest** | [**CreateEventDestinationRequest**](CreateEventDestinationRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**CreateEventDestination201Response**](CreateEventDestination201Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **201** | Destination saved. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+| **409** | The profile already sends events to this destination (code &#x60;invalid_resource_state&#x60;). |  -  |
+
+
 ## deleteConversionDestination
 
 > void deleteConversionDestination(accountId, destinationId, adAccountId)
@@ -1013,6 +1173,156 @@ ApiResponse<Void>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **405** | Platform does not support deleting destinations. |  -  |
 | **429** | LinkedIn rate limit hit. Retry with backoff. |  -  |
+
+
+## deleteEventDestination
+
+> DeleteSmsSenderId200Response deleteEventDestination(destinationId)
+
+Remove an event destination
+
+Stops forwarding events to this destination. &#x60;destinationId&#x60; is the event destination &#x60;id&#x60;, not the platform destination.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String destinationId = "destinationId_example"; // String | 
+        try {
+            DeleteSmsSenderId200Response result = apiInstance.deleteEventDestination(destinationId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteEventDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **destinationId** | **String**|  | |
+
+### Return type
+
+[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## deleteEventDestinationWithHttpInfo
+
+> ApiResponse<DeleteSmsSenderId200Response> deleteEventDestination deleteEventDestinationWithHttpInfo(destinationId)
+
+Remove an event destination
+
+Stops forwarding events to this destination. &#x60;destinationId&#x60; is the event destination &#x60;id&#x60;, not the platform destination.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String destinationId = "destinationId_example"; // String | 
+        try {
+            ApiResponse<DeleteSmsSenderId200Response> response = apiInstance.deleteEventDestinationWithHttpInfo(destinationId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#deleteEventDestination");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **destinationId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**DeleteSmsSenderId200Response**](DeleteSmsSenderId200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Destination removed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## getConversionDestination
@@ -2337,6 +2647,156 @@ ApiResponse<[**ListCustomConversionGoals200Response**](ListCustomConversionGoals
 | **501** | Only available on Google Ads accounts |  -  |
 
 
+## listEventDestinations
+
+> ListEventDestinations200Response listEventDestinations(profileId)
+
+List event destinations
+
+Lists the ad platform destinations that receive events sent to &#x60;POST /v1/events&#x60;, for one profile or every profile you can access.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ListEventDestinations200Response result = apiInstance.listEventDestinations(profileId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEventDestinations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+
+### Return type
+
+[**ListEventDestinations200Response**](ListEventDestinations200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## listEventDestinationsWithHttpInfo
+
+> ApiResponse<ListEventDestinations200Response> listEventDestinations listEventDestinationsWithHttpInfo(profileId)
+
+List event destinations
+
+Lists the ad platform destinations that receive events sent to &#x60;POST /v1/events&#x60;, for one profile or every profile you can access.
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        try {
+            ApiResponse<ListEventDestinations200Response> response = apiInstance.listEventDestinationsWithHttpInfo(profileId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEventDestinations");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | [optional] |
+
+### Return type
+
+ApiResponse<[**ListEventDestinations200Response**](ListEventDestinations200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
 ## removeConversionAssociations
 
 > RemoveConversionAssociations200Response removeConversionAssociations(accountId, destinationId, adAccountId, campaignIds)
@@ -2831,6 +3291,156 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
 | **422** | OpenAI Ads: no tracking tag (pixel) exists yet for this account. Code &#x60;TRACKING_TAG_REQUIRED&#x60;; create one via &#x60;POST /v1/accounts/{accountId}/tracking-tags&#x60; first. Google Ads: no Google Ads customer account is left on this connection after its ad-account selection (code &#x60;ads_connection_required&#x60;). Reconnect via GET /v1/connect/googleads/ads with a Google user that can reach the ad account, or select one of its ad accounts. Code &#x60;invalid_resource_state&#x60; when the connection reaches only a Google Ads manager account with no client accounts yet: create one with POST /v1/ads/accounts or under the manager in Google Ads, then retry. |  -  |
 | **429** | LinkedIn token-level rate limit hit (600 requests/min, 300k/day per token). Retry with backoff. Meta and Google have their own rate-limit semantics surfaced via platform-specific 4xx responses.  |  -  |
+
+
+## sendEvents
+
+> SendEvents200Response sendEvents(sendEventsRequest)
+
+Send events to every destination
+
+Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. A destination saved with &#x60;eventNames&#x60; only receives events with those names.  Zernio also stores each event for the profile&#39;s reporting. Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes, and &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;). Events sent with &#x60;testCode&#x60; are forwarded but not stored.  One destination failing never blocks the others: each one reports its own result. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        SendEventsRequest sendEventsRequest = new SendEventsRequest(); // SendEventsRequest | 
+        try {
+            SendEvents200Response result = apiInstance.sendEvents(sendEventsRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#sendEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sendEventsRequest** | [**SendEventsRequest**](SendEventsRequest.md)|  | |
+
+### Return type
+
+[**SendEvents200Response**](SendEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Events processed. Check each destination for partial failure. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## sendEventsWithHttpInfo
+
+> ApiResponse<SendEvents200Response> sendEvents sendEventsWithHttpInfo(sendEventsRequest)
+
+Send events to every destination
+
+Sends conversion events once and forwards them to every ad platform destination saved for the profile (see &#x60;POST /v1/events/destinations&#x60;), or to the &#x60;destinations&#x60; given in the request. Each destination receives the events exactly as &#x60;POST /v1/ads/conversions&#x60; would send them, so the per-platform notes there (hashing, batching, &#x60;eventName&#x60; semantics, dedup on &#x60;eventId&#x60;) apply here too. A destination saved with &#x60;eventNames&#x60; only receives events with those names.  Zernio also stores each event for the profile&#39;s reporting. Email, phone and &#x60;externalId&#x60; are stored only as SHA-256 hashes, and &#x60;sourceUrl&#x60; keeps only its origin, path and attribution parameters (&#x60;utm_*&#x60;, &#x60;gclid&#x60;, &#x60;fbclid&#x60;, &#x60;ttclid&#x60;, &#x60;li_fat_id&#x60;, &#x60;epik&#x60;, &#x60;rdt_cid&#x60;, &#x60;gbraid&#x60;, &#x60;wbraid&#x60;). Events sent with &#x60;testCode&#x60; are forwarded but not stored.  One destination failing never blocks the others: each one reports its own result. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        SendEventsRequest sendEventsRequest = new SendEventsRequest(); // SendEventsRequest | 
+        try {
+            ApiResponse<SendEvents200Response> response = apiInstance.sendEventsWithHttpInfo(sendEventsRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#sendEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **sendEventsRequest** | [**SendEventsRequest**](SendEventsRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**SendEvents200Response**](SendEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Events processed. Check each destination for partial failure. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
 
 
 ## updateAdConversionGoals
