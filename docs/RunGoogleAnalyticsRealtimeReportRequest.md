@@ -1,0 +1,20 @@
+
+
+# RunGoogleAnalyticsRealtimeReportRequest
+
+
+## Properties
+
+| Name | Type | Description | Notes |
+|------------ | ------------- | ------------- | -------------|
+|**accountId** | **String** | Zernio account ID of the Google Analytics connection (platform &#x60;googleanalytics&#x60;). |  |
+|**dimensions** | **List&lt;String&gt;** | GA4 dimension API names, e.g. &#x60;date&#x60;, &#x60;sessionSource&#x60;, &#x60;pagePath&#x60;. List them with GET /v1/analytics/googleanalytics/metadata. |  [optional] |
+|**metrics** | **List&lt;String&gt;** | GA4 metric API names, e.g. &#x60;sessions&#x60;, &#x60;activeUsers&#x60;, &#x60;keyEvents&#x60;, &#x60;totalRevenue&#x60;. |  |
+|**dimensionFilter** | **Map&lt;String, Object&gt;** | A Google FilterExpression on dimensions, in Google&#39;s own shape. |  [optional] |
+|**metricFilter** | **Map&lt;String, Object&gt;** | A Google FilterExpression on metrics, in Google&#39;s own shape. |  [optional] |
+|**orderBys** | **List&lt;Map&lt;String, Object&gt;&gt;** | Google OrderBy objects, e.g. &#x60;{ \&quot;metric\&quot;: { \&quot;metricName\&quot;: \&quot;sessions\&quot; }, \&quot;desc\&quot;: true }&#x60;. |  [optional] |
+|**limit** | **Integer** | Rows to return. Defaults to Google&#39;s default (10000). |  [optional] |
+|**minuteRanges** | [**List&lt;RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner&gt;**](RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.md) |  |  [optional] |
+
+
+

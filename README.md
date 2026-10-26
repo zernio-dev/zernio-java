@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.364.0
+- API version: 1.365.0
 
-- Build date: 2026-10-26T08:33:19.614315150Z[Etc/UTC]
+- Build date: 2026-10-26T12:45:45.511520543Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.364.0</version>
+  <version>1.365.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.364.0"
+compile "dev.zernio:zernio-sdk:1.365.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.364.0.jar`
+- `target/zernio-sdk-1.365.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -611,6 +611,8 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getFacebookPostReactionsWithHttpInfo**](docs/AnalyticsApi.md#getFacebookPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-post-reactions | Get Facebook post reactions
 *AnalyticsApi* | [**getFollowerStats**](docs/AnalyticsApi.md#getFollowerStats) | **GET** /v1/accounts/follower-stats | Get follower stats
 *AnalyticsApi* | [**getFollowerStatsWithHttpInfo**](docs/AnalyticsApi.md#getFollowerStatsWithHttpInfo) | **GET** /v1/accounts/follower-stats | Get follower stats
+*AnalyticsApi* | [**getGoogleAnalyticsMetadata**](docs/AnalyticsApi.md#getGoogleAnalyticsMetadata) | **GET** /v1/analytics/googleanalytics/metadata | List Google Analytics (GA4) dimensions and metrics
+*AnalyticsApi* | [**getGoogleAnalyticsMetadataWithHttpInfo**](docs/AnalyticsApi.md#getGoogleAnalyticsMetadataWithHttpInfo) | **GET** /v1/analytics/googleanalytics/metadata | List Google Analytics (GA4) dimensions and metrics
 *AnalyticsApi* | [**getGoogleBusinessPerformance**](docs/AnalyticsApi.md#getGoogleBusinessPerformance) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics
 *AnalyticsApi* | [**getGoogleBusinessPerformanceWithHttpInfo**](docs/AnalyticsApi.md#getGoogleBusinessPerformanceWithHttpInfo) | **GET** /v1/analytics/googlebusiness/performance | Get Google Business Profile performance metrics
 *AnalyticsApi* | [**getGoogleBusinessSearchKeywords**](docs/AnalyticsApi.md#getGoogleBusinessSearchKeywords) | **GET** /v1/analytics/googlebusiness/search-keywords | Get Google Business Profile search keywords
@@ -651,6 +653,10 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**listFacebookTaggedPostsWithHttpInfo**](docs/AnalyticsApi.md#listFacebookTaggedPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in
 *AnalyticsApi* | [**listFacebookVisitorPosts**](docs/AnalyticsApi.md#listFacebookVisitorPosts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page
 *AnalyticsApi* | [**listFacebookVisitorPostsWithHttpInfo**](docs/AnalyticsApi.md#listFacebookVisitorPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page
+*AnalyticsApi* | [**runGoogleAnalyticsRealtimeReport**](docs/AnalyticsApi.md#runGoogleAnalyticsRealtimeReport) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report
+*AnalyticsApi* | [**runGoogleAnalyticsRealtimeReportWithHttpInfo**](docs/AnalyticsApi.md#runGoogleAnalyticsRealtimeReportWithHttpInfo) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report
+*AnalyticsApi* | [**runGoogleAnalyticsReport**](docs/AnalyticsApi.md#runGoogleAnalyticsReport) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report
+*AnalyticsApi* | [**runGoogleAnalyticsReportWithHttpInfo**](docs/AnalyticsApi.md#runGoogleAnalyticsReportWithHttpInfo) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report
 *AnalyticsApi* | [**syncExternalPosts**](docs/AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post
 *AnalyticsApi* | [**syncExternalPostsWithHttpInfo**](docs/AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post
 *ApiKeysApi* | [**createApiKey**](docs/ApiKeysApi.md#createApiKey) | **POST** /v1/api-keys | Create key
@@ -1093,6 +1099,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getFacebookPagesWithHttpInfo**](docs/ConnectApi.md#getFacebookPagesWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-page | List Facebook pages
 *ConnectApi* | [**getGmbLocations**](docs/ConnectApi.md#getGmbLocations) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
 *ConnectApi* | [**getGmbLocationsWithHttpInfo**](docs/ConnectApi.md#getGmbLocationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/gmb-locations | List Google Business Profile locations
+*ConnectApi* | [**getGoogleAnalyticsConnectUrl**](docs/ConnectApi.md#getGoogleAnalyticsConnectUrl) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL
+*ConnectApi* | [**getGoogleAnalyticsConnectUrlWithHttpInfo**](docs/ConnectApi.md#getGoogleAnalyticsConnectUrlWithHttpInfo) | **GET** /v1/connect/googleanalytics | Get Google Analytics OAuth connect URL
 *ConnectApi* | [**getHubSpotConnectUrl**](docs/ConnectApi.md#getHubSpotConnectUrl) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL
 *ConnectApi* | [**getHubSpotConnectUrlWithHttpInfo**](docs/ConnectApi.md#getHubSpotConnectUrlWithHttpInfo) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL
 *ConnectApi* | [**getLinkedInOrganizations**](docs/ConnectApi.md#getLinkedInOrganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
@@ -3181,6 +3189,10 @@ Class | Method | HTTP request | Description
  - [GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner](docs/GetGmbAttributeMetadata200ResponseAttributeMetadataInnerValueMetadataInner.md)
  - [GetGmbLocations200Response](docs/GetGmbLocations200Response.md)
  - [GetGmbLocations200ResponseLocationsInner](docs/GetGmbLocations200ResponseLocationsInner.md)
+ - [GetGoogleAnalyticsConnectUrl200Response](docs/GetGoogleAnalyticsConnectUrl200Response.md)
+ - [GetGoogleAnalyticsMetadata200Response](docs/GetGoogleAnalyticsMetadata200Response.md)
+ - [GetGoogleAnalyticsMetadata200ResponseDimensionsInner](docs/GetGoogleAnalyticsMetadata200ResponseDimensionsInner.md)
+ - [GetGoogleAnalyticsMetadata200ResponseMetricsInner](docs/GetGoogleAnalyticsMetadata200ResponseMetricsInner.md)
  - [GetGoogleAssetGroup200Response](docs/GetGoogleAssetGroup200Response.md)
  - [GetGoogleBusinessAttributes200Response](docs/GetGoogleBusinessAttributes200Response.md)
  - [GetGoogleBusinessAttributes200ResponseAttributesInner](docs/GetGoogleBusinessAttributes200ResponseAttributesInner.md)
@@ -3478,6 +3490,12 @@ Class | Method | HTTP request | Description
  - [GoogleAdsUserAccessInvitation](docs/GoogleAdsUserAccessInvitation.md)
  - [GoogleAdsUserAccessInvitationResult](docs/GoogleAdsUserAccessInvitationResult.md)
  - [GoogleAdsUserInvitationApproval](docs/GoogleAdsUserInvitationApproval.md)
+ - [GoogleAnalyticsReport](docs/GoogleAnalyticsReport.md)
+ - [GoogleAnalyticsReportDimensionHeadersInner](docs/GoogleAnalyticsReportDimensionHeadersInner.md)
+ - [GoogleAnalyticsReportFields](docs/GoogleAnalyticsReportFields.md)
+ - [GoogleAnalyticsReportMetricHeadersInner](docs/GoogleAnalyticsReportMetricHeadersInner.md)
+ - [GoogleAnalyticsReportRowsInner](docs/GoogleAnalyticsReportRowsInner.md)
+ - [GoogleAnalyticsReportRowsInnerDimensionValuesInner](docs/GoogleAnalyticsReportRowsInnerDimensionValuesInner.md)
  - [GoogleAssetGroupAssetLink](docs/GoogleAssetGroupAssetLink.md)
  - [GoogleAssetGroupAssetUnlink](docs/GoogleAssetGroupAssetUnlink.md)
  - [GoogleAssetUpdate](docs/GoogleAssetUpdate.md)
@@ -3508,7 +3526,6 @@ Class | Method | HTTP request | Description
  - [GoogleDemandGenUpdate](docs/GoogleDemandGenUpdate.md)
  - [GoogleDemandGenUpdateImages](docs/GoogleDemandGenUpdateImages.md)
  - [GoogleListingGroupDimension](docs/GoogleListingGroupDimension.md)
- - [GoogleListingGroupDimensionProductBrand](docs/GoogleListingGroupDimensionProductBrand.md)
  - [GoogleListingGroupDimensionProductCategory](docs/GoogleListingGroupDimensionProductCategory.md)
  - [GoogleListingGroupDimensionProductChannel](docs/GoogleListingGroupDimensionProductChannel.md)
  - [GoogleListingGroupDimensionProductCondition](docs/GoogleListingGroupDimensionProductCondition.md)
@@ -4248,6 +4265,10 @@ Class | Method | HTTP request | Description
  - [RotateSipTrunkCredentials200Response](docs/RotateSipTrunkCredentials200Response.md)
  - [RunBusinessAgentConnectorTool200Response](docs/RunBusinessAgentConnectorTool200Response.md)
  - [RunBusinessAgentConnectorToolRequest](docs/RunBusinessAgentConnectorToolRequest.md)
+ - [RunGoogleAnalyticsRealtimeReportRequest](docs/RunGoogleAnalyticsRealtimeReportRequest.md)
+ - [RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner](docs/RunGoogleAnalyticsRealtimeReportRequestAllOfMinuteRangesInner.md)
+ - [RunGoogleAnalyticsReportRequest](docs/RunGoogleAnalyticsReportRequest.md)
+ - [RunGoogleAnalyticsReportRequestAllOfDateRangesInner](docs/RunGoogleAnalyticsReportRequestAllOfDateRangesInner.md)
  - [SavedTargetingAudience](docs/SavedTargetingAudience.md)
  - [ScheduleBroadcast200Response](docs/ScheduleBroadcast200Response.md)
  - [ScheduleBroadcast200ResponseBroadcast](docs/ScheduleBroadcast200ResponseBroadcast.md)

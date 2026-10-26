@@ -8,10 +8,10 @@ Exactly one key. Omit the value (for example { productBrand: {} }) for the every
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
-|**productBrand** | [**GoogleListingGroupDimensionProductBrand**](GoogleListingGroupDimensionProductBrand.md) |  |  [optional] |
+|**productBrand** | [**GoogleAnalyticsReportRowsInnerDimensionValuesInner**](GoogleAnalyticsReportRowsInnerDimensionValuesInner.md) |  |  [optional] |
 |**productCategory** | [**GoogleListingGroupDimensionProductCategory**](GoogleListingGroupDimensionProductCategory.md) |  |  [optional] |
 |**productType** | [**GoogleListingGroupDimensionProductType**](GoogleListingGroupDimensionProductType.md) |  |  [optional] |
-|**productItemId** | [**GoogleListingGroupDimensionProductBrand**](GoogleListingGroupDimensionProductBrand.md) |  |  [optional] |
+|**productItemId** | [**GoogleAnalyticsReportRowsInnerDimensionValuesInner**](GoogleAnalyticsReportRowsInnerDimensionValuesInner.md) |  |  [optional] |
 |**productCondition** | [**GoogleListingGroupDimensionProductCondition**](GoogleListingGroupDimensionProductCondition.md) |  |  [optional] |
 |**productChannel** | [**GoogleListingGroupDimensionProductChannel**](GoogleListingGroupDimensionProductChannel.md) |  |  [optional] |
 |**productCustomAttribute** | [**GoogleListingGroupDimensionProductCustomAttribute**](GoogleListingGroupDimensionProductCustomAttribute.md) |  |  [optional] |
