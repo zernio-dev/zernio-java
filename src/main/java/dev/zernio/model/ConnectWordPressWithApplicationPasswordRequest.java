@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   ConnectWordPressWithApplicationPasswordRequest.JSON_PROPERTY_USERNAME,
   ConnectWordPressWithApplicationPasswordRequest.JSON_PROPERTY_APPLICATION_PASSWORD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-26T13:08:20.965447559Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-26T13:12:12.105991784Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectWordPressWithApplicationPasswordRequest {
   public static final String JSON_PROPERTY_PROFILE_ID = "profileId";
   @javax.annotation.Nonnull
