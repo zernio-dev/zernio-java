@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.360.0
+  version: 1.361.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -69826,6 +69826,7 @@ components:
           key: key
         - value: value
           key: key
+        zernioTag: true
       properties:
         pixelId:
           description: "Meta Pixel ID to attach for offsite-conversion measurement,\
@@ -69843,6 +69844,20 @@ components:
           items:
             $ref: "#/components/schemas/updateAdTrackingTags_request_urlTags_inner"
           type: array
+        zernioTag:
+          default: true
+          description: "POST /v1/ads/create on Meta and Google only. Every ad created\
+            \ there carries `zrn=<platform ad id>` on its landing URL so orders and\
+            \ events tied to the landing URL map back to the ad. Meta: `{ key: zrn,\
+            \ value: '{{ad.id}}' }` is appended after your `urlTags`, which are sent\
+            \ unchanged; a `zrn` key you send yourself is kept. Skipped for lead forms,\
+            \ call ads, `existingCreativeId` and app promotion. Google (Display and\
+            \ Search): the ad's `final_url_suffix` becomes the suffix it would inherit\
+            \ (ad group, campaign or account) plus `&zrn={creative}`, so your account\
+            \ and campaign UTMs still apply; if that suffix cannot be read or Google\
+            \ rejects it, the ad is created untagged. Existing ads are never changed.\
+            \ Set `false` to create the ad with no Zernio tag."
+          type: boolean
     MetaLeadForm:
       description: |
         A Meta Lead Gen form as Graph returns it, in Meta's own snake_case. Read through GET /v1/ads/lead-forms/{formId}. Every setting POST /v1/ads/lead-forms writes is present here, so a form can be diffed against what was created and drift from edits made in Meta's form builder is detectable. A compound field is omitted entirely when the form has no value for it, and `fields` narrows the selection.
@@ -70596,6 +70611,7 @@ components:
             key: key
           - value: value
             key: key
+          zernioTag: true
         incomeTier: top_5
         objective: OUTCOME_ENGAGEMENT
         adSetId: adSetId
