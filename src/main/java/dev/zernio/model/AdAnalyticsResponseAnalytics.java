@@ -50,7 +50,7 @@ import dev.zernio.ApiClient;
   AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWN_DROPPED_METRICS,
   AdAnalyticsResponseAnalytics.JSON_PROPERTY_BREAKDOWNS_RANGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdAnalyticsResponseAnalytics {
   public static final String JSON_PROPERTY_SUMMARY = "summary";
   @javax.annotation.Nullable

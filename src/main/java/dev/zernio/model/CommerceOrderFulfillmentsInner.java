@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   CommerceOrderFulfillmentsInner.JSON_PROPERTY_TRACKING_NUMBER,
   CommerceOrderFulfillmentsInner.JSON_PROPERTY_TRACKING_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceOrderFulfillmentsInner {
   public static final String JSON_PROPERTY_CARRIER_NAME = "carrierName";
   private JsonNullable<String> carrierName = JsonNullable.<String>undefined();

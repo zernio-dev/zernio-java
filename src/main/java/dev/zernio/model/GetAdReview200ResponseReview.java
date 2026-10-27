@@ -56,7 +56,7 @@ import dev.zernio.ApiClient;
   GetAdReview200ResponseReview.JSON_PROPERTY_ISSUES,
   GetAdReview200ResponseReview.JSON_PROPERTY_READ_AT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdReview200ResponseReview {
   public static final String JSON_PROPERTY_APPROVED = "approved";
   private JsonNullable<Boolean> approved = JsonNullable.<Boolean>undefined();

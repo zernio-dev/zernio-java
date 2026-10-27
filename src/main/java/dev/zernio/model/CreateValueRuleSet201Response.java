@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   CreateValueRuleSet201Response.JSON_PROPERTY_AD_ACCOUNT_ID,
   CreateValueRuleSet201Response.JSON_PROPERTY_VALUE_RULE_SET_ID
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateValueRuleSet201Response {
   public static final String JSON_PROPERTY_AD_ACCOUNT_ID = "adAccountId";
   @javax.annotation.Nullable

@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
 @JsonPropertyOrder({
   GetAdsSearchTerms200ResponsePaging.JSON_PROPERTY_NEXT_PAGE_TOKEN
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdsSearchTerms200ResponsePaging {
   public static final String JSON_PROPERTY_NEXT_PAGE_TOKEN = "nextPageToken";
   private JsonNullable<String> nextPageToken = JsonNullable.<String>undefined();

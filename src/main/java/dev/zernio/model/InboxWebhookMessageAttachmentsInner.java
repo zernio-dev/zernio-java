@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   InboxWebhookMessageAttachmentsInner.JSON_PROPERTY_URL,
   InboxWebhookMessageAttachmentsInner.JSON_PROPERTY_PAYLOAD
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:39:22.568848638Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:46:17.900441562Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class InboxWebhookMessageAttachmentsInner {
   public static final String JSON_PROPERTY_TYPE = "type";
   @javax.annotation.Nonnull
