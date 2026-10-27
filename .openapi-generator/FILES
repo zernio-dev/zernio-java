@@ -520,6 +520,7 @@ docs/CreateAdRule201Response.md
 docs/CreateAdRuleRequest.md
 docs/CreateAdSet201Response.md
 docs/CreateAdSetRequest.md
+docs/CreateAdSetRequestPromotedObject.md
 docs/CreateApiKey201Response.md
 docs/CreateApiKeyRequest.md
 docs/CreateBidStrategy201Response.md
@@ -1734,6 +1735,10 @@ docs/ListEmailFolders200Response.md
 docs/ListEmailMessages200Response.md
 docs/ListEmailThreads200Response.md
 docs/ListEventDestinations200Response.md
+docs/ListEvents200Response.md
+docs/ListEvents200ResponseEventsInner.md
+docs/ListEvents200ResponseEventsInnerClickIds.md
+docs/ListEvents200ResponseEventsInnerUtm.md
 docs/ListFacebookPages200Response.md
 docs/ListFacebookPages200ResponsePagesInner.md
 docs/ListFacebookTaggedPosts200Response.md
@@ -3690,6 +3695,7 @@ src/main/java/dev/zernio/model/CreateAdRule201Response.java
 src/main/java/dev/zernio/model/CreateAdRuleRequest.java
 src/main/java/dev/zernio/model/CreateAdSet201Response.java
 src/main/java/dev/zernio/model/CreateAdSetRequest.java
+src/main/java/dev/zernio/model/CreateAdSetRequestPromotedObject.java
 src/main/java/dev/zernio/model/CreateApiKey201Response.java
 src/main/java/dev/zernio/model/CreateApiKeyRequest.java
 src/main/java/dev/zernio/model/CreateBidStrategy201Response.java
@@ -4885,6 +4891,10 @@ src/main/java/dev/zernio/model/ListEmailFolders200Response.java
 src/main/java/dev/zernio/model/ListEmailMessages200Response.java
 src/main/java/dev/zernio/model/ListEmailThreads200Response.java
 src/main/java/dev/zernio/model/ListEventDestinations200Response.java
+src/main/java/dev/zernio/model/ListEvents200Response.java
+src/main/java/dev/zernio/model/ListEvents200ResponseEventsInner.java
+src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerClickIds.java
+src/main/java/dev/zernio/model/ListEvents200ResponseEventsInnerUtm.java
 src/main/java/dev/zernio/model/ListFacebookPages200Response.java
 src/main/java/dev/zernio/model/ListFacebookPages200ResponsePagesInner.java
 src/main/java/dev/zernio/model/ListFacebookTaggedPosts200Response.java
@@ -6215,3 +6225,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CreateAdSetRequestPromotedObjectTest.java
+src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerClickIdsTest.java
+src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerTest.java
+src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerUtmTest.java
+src/test/java/dev/zernio/model/ListEvents200ResponseTest.java

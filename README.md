@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.383.0
+- API version: 1.384.0
 
-- Build date: 2026-10-27T18:46:17.900441562Z[Etc/UTC]
+- Build date: 2026-10-27T18:59:54.193332101Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.383.0</version>
+  <version>1.384.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.383.0"
+compile "dev.zernio:zernio-sdk:1.384.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.383.0.jar`
+- `target/zernio-sdk-1.384.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1267,6 +1267,8 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**listCustomConversionGoalsWithHttpInfo**](docs/ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals
 *ConversionsApi* | [**listEventDestinations**](docs/ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations
 *ConversionsApi* | [**listEventDestinationsWithHttpInfo**](docs/ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations
+*ConversionsApi* | [**listEvents**](docs/ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events
+*ConversionsApi* | [**listEventsWithHttpInfo**](docs/ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events
 *ConversionsApi* | [**removeConversionAssociations**](docs/ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeConversionAssociationsWithHttpInfo**](docs/ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns
 *ConversionsApi* | [**removeCustomConversionGoal**](docs/ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal
@@ -2737,6 +2739,7 @@ Class | Method | HTTP request | Description
  - [CreateAdRuleRequest](docs/CreateAdRuleRequest.md)
  - [CreateAdSet201Response](docs/CreateAdSet201Response.md)
  - [CreateAdSetRequest](docs/CreateAdSetRequest.md)
+ - [CreateAdSetRequestPromotedObject](docs/CreateAdSetRequestPromotedObject.md)
  - [CreateApiKey201Response](docs/CreateApiKey201Response.md)
  - [CreateApiKeyRequest](docs/CreateApiKeyRequest.md)
  - [CreateBidStrategy201Response](docs/CreateBidStrategy201Response.md)
@@ -3932,6 +3935,10 @@ Class | Method | HTTP request | Description
  - [ListEmailMessages200Response](docs/ListEmailMessages200Response.md)
  - [ListEmailThreads200Response](docs/ListEmailThreads200Response.md)
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
+ - [ListEvents200Response](docs/ListEvents200Response.md)
+ - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
+ - [ListEvents200ResponseEventsInnerClickIds](docs/ListEvents200ResponseEventsInnerClickIds.md)
+ - [ListEvents200ResponseEventsInnerUtm](docs/ListEvents200ResponseEventsInnerUtm.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)
  - [ListFacebookPages200ResponsePagesInner](docs/ListFacebookPages200ResponsePagesInner.md)
  - [ListFacebookTaggedPosts200Response](docs/ListFacebookTaggedPosts200Response.md)

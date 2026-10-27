@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.383.0
+  version: 1.384.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44001,11 +44001,29 @@ paths:
       - application/json
     post:
       description: |-
-        Creates an empty Google ad group under an existing campaign, ready for ads to be added later.
+        Creates an empty ad group under an existing campaign, ready for ads to be added later.
 
-        Google Ads compliance row C.190: creates an ad group WITHOUT an ad,
+        Creates an ad group WITHOUT an ad (Google Ads compliance row C.190),
         under an existing campaign. Ads join it later via `adSetId`
-        on POST /v1/ads/create. Google only; every other platform returns 501.
+        on POST /v1/ads/create. Google Ads and Reddit Ads; every other platform returns 501.
+
+        **Reddit Ads** (`platform: reddit`): `adAccountId` (the Reddit ad
+        account id) is required and must be a selected ad account of the
+        connection (403 otherwise). When the campaign has no campaign budget,
+        send `budgetAmount` + `budgetType` (a lifetime budget needs
+        `endDate`); the ad group is optimized for the campaign's objective
+        (`promotedObject.customEventType` is required on a conversions
+        campaign, and the pixel must have received that event, else 422),
+        and bids with `bidStrategy`/`bidAmount` like POST /v1/ads/create.
+        Under campaign budget optimization the ad group takes the
+        campaign's bid, goal type, optimization event and pixel, and bid
+        fields return 400. The ad group must start no earlier than a future
+        campaign start and end no later than the campaign end (400
+        otherwise). `targeting` takes the same targeting object as
+        the other ad endpoints (no geo defaults to the US). A campaign of
+        another ad account returns 404, a Reddit Max campaign 422.
+        `maxCpc` and `customerId` are Google only (400 on Reddit), and the
+        Reddit fields return 400 on Google.
 
         Created `PAUSED` unless `status: ACTIVE`. The new ad group has no ad
         yet, so it will not appear in GET /v1/ads/tree (built purely from `ads`
@@ -44052,8 +44070,11 @@ paths:
             Returned with code `ads_allowance_exceeded` when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code `ad_account_not_selected` when the connection has selected ad accounts and the ad account this request targets is not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "422":
+          description: "Reddit: the campaign is a Reddit Max campaign, the ad account\
+            \ has no pixel, or the pixel never received the conversion event"
         "501":
-          description: Only supported on Google Ads
+          description: Only supported on Google Ads and Reddit Ads
       security:
       - bearerAuth: []
       summary: Create a standalone ad group
@@ -44062,6 +44083,7 @@ paths:
       x-resource-group: ads
       x-platforms:
       - google
+      - reddit
       x-content-type: application/json
       x-accepts:
       - application/json
@@ -59016,6 +59038,87 @@ paths:
       x-accepts:
       - application/json
   /v1/events:
+    get:
+      description: |
+        Lists the conversion events stored for a profile by `POST /v1/events`, newest first. Personal data is never
+        returned: `hasEmail`, `hasPhone` and `hasExternalId` only say whether the event carried that identifier.
+        Events sent with `testCode` are not stored, so they never appear here.
+
+        Paginate with `cursor`: pass the `nextCursor` of the previous page until it comes back `null`.
+      operationId: listEvents
+      parameters:
+      - explode: true
+        in: query
+        name: profileId
+        required: true
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 200
+          minimum: 1
+          type: integer
+        style: form
+      - description: "Only events at or after this time (ISO 8601, on the event time)."
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Only events before this time (ISO 8601, on the event time)."
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "Only events with this name, such as `Purchase`."
+        explode: true
+        in: query
+        name: eventName
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: '`nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listEvents_200_response"
+          description: A page of stored events.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: List stored events
+      tags:
+      - Conversions
+      x-resource-group: ads
+      x-accepts:
+      - application/json
     post:
       description: |
         Sends conversion events once and forwards them to every ad platform destination saved for the
@@ -145033,14 +145136,26 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/Pagination"
+    createAdSet_request_promotedObject:
+      description: Reddit only. The pixel and the conversion event the ad group optimizes
+        toward.
+      properties:
+        pixelId:
+          description: Reddit pixel id. Defaults to the ad account's first pixel.
+          type: string
+        customEventType:
+          description: "Conversion event (PURCHASE, LEAD, SIGN_UP, ADD_TO_CART, PAGE_VISIT).\
+            \ Required on a conversions campaign."
+          type: string
     createAdSet_request:
       properties:
         accountId:
-          description: Zernio SocialAccount id owning the Google Ads connection.
+          description: Zernio SocialAccount id owning the Google Ads or Reddit Ads
+            connection.
           type: string
         platform:
-          description: Only "google" is implemented today; every other value returns
-            501.
+          description: '"google" and "reddit" are implemented; every other value returns
+            501.'
           enum:
           - facebook
           - instagram
@@ -145053,8 +145168,8 @@ components:
           - reddit
           type: string
         campaignId:
-          description: Google platform campaign ID (numeric) the ad group is created
-            under.
+          description: Platform campaign ID the ad group is created under (numeric
+            on Google).
           type: string
         name:
           maxLength: 255
@@ -145072,13 +145187,52 @@ components:
             \ without one a 0.01 bid."
           type: number
         adAccountId:
-          description: "Platform ad account ID (Google customer ID, digits only).\
-            \ Only required when the connection has more than one."
+          description: "Platform ad account ID: the Google customer ID (digits only,\
+            \ only required when the connection has more than one) or the Reddit ad\
+            \ account id (required)."
           type: string
         customerId:
           deprecated: true
-          description: "Alias of adAccountId, kept for existing callers"
+          description: "Google only. Alias of adAccountId, kept for existing callers"
           type: string
+        budgetAmount:
+          description: "Reddit only. Budget of the new ad group, in the ad account's\
+            \ currency units. Required when the campaign has no campaign budget; not\
+            \ applied under campaign budget optimization."
+          type: number
+        budgetType:
+          description: Reddit only. Sent together with budgetAmount.
+          enum:
+          - daily
+          - lifetime
+          type: string
+        startDate:
+          description: "Reddit only. ISO 8601 start of the ad group. Defaults to now,\
+            \ or to the campaign start when it is in the future."
+          type: string
+        endDate:
+          description: Reddit only. ISO 8601 end of the ad group. Defaults to the
+            campaign end.
+          type: string
+        targeting:
+          $ref: "#/components/schemas/TargetingSpec"
+        promotedObject:
+          $ref: "#/components/schemas/createAdSet_request_promotedObject"
+        optimizationGoal:
+          description: Reddit only. VIDEO_VIEW_6S (default) or VIDEO_VIEW_15S on a
+            video views campaign.
+          type: string
+        bidStrategy:
+          description: Reddit only. Defaults to LOWEST_COST_WITHOUT_CAP. Not accepted
+            under campaign budget optimization.
+          enum:
+          - LOWEST_COST_WITHOUT_CAP
+          - LOWEST_COST_WITH_BID_CAP
+          - COST_CAP
+          type: string
+        bidAmount:
+          description: "Reddit only. Bid cap in currency units, sent with bidStrategy."
+          type: number
       required:
       - accountId
       - campaignId
@@ -145548,7 +145702,9 @@ components:
           $ref: "#/components/schemas/updateAdSet_request_placements"
         targeting:
           allOf:
-          - $ref: "#/components/schemas/TargetingSpec"
+          - allOf:
+            - $ref: "#/components/schemas/TargetingSpec"
+            nullable: true
           description: |
             Meta only (400 elsewhere). Targeting fields to change, same shape as the `targeting`
             object on POST /v1/ads/create. Only the keys you send change: Zernio reads the ad set's
@@ -159113,10 +159269,18 @@ components:
             ad's creative, the new ad is created PAUSED, and ad group settings
             (geo, languages, `demandGen.channels`/`audience`/`audienceId`/
             `adGroupName`) return 400. `validateOnly` is supported.
+
+            On Reddit Ads the `adSetId` is the AD GROUP id. Only the post
+            and the ad are created; the ad group keeps its budget,
+            schedule, targeting, bid and optimization, so `budgetAmount`,
+            `budgetType`, `startDate`, `endDate`, targeting fields,
+            `promotedObject`, `tracking.pixelId` and `optimizationGoal`
+            return 400. `goal` is not required. An ad group of another
+            ad account returns 404.
           type: string
         existingCampaignId:
           description: |
-            Meta, Google Ads, LinkedIn and TikTok. On TikTok: creates
+            Meta, Google Ads, LinkedIn, TikTok and Reddit Ads. On TikTok: creates
             the ad group and the ad under this existing campaign; the
             campaign is neither created nor activated and its
             objective must fit `goal`; not with `smartPlus`.
@@ -159142,8 +159306,26 @@ components:
             a new ad group, so geo and language fields return 400 there; the new
             ad group follows the campaign's targeting. On failure only the entities we
             authored are cleaned up; the pre-existing parent is left
-            untouched and is never (re)activated. Mutually exclusive
-            with `adSetId` and `creatives[]`.
+            untouched and is never (re)activated. On Reddit Ads:
+            creates a new ad group and the ad under this EXISTING
+            campaign; `goal` may be omitted (the campaign's objective
+            decides it) and any other goal returns 400 naming the one to
+            send. The ad group must start no earlier than a future
+            campaign start and end no later than the campaign end
+            (400 otherwise); without `endDate` it ends with the
+            campaign. When the campaign has
+            no campaign budget, send `budgetAmount`/`budgetType` for the
+            new ad group (400 without them); bid, conversion event and
+            pixel work as on a new campaign. Under campaign budget
+            optimization the ad group takes the campaign's bid,
+            goal type, optimization event and pixel, carries no budget
+            of its own (a budget in the request is not applied), and
+            bid fields or another conversion event or pixel return
+            400, as does an `endDate` when the campaign has no end
+            date. A
+            campaign of another ad account returns 404, a Reddit Max
+            campaign 422. If the ad fails, the new ad group is
+            archived. Mutually exclusive with `adSetId` and `creatives[]`.
           type: string
         phoneNumber:
           description: |
@@ -163937,6 +164119,156 @@ components:
           type: string
         goal:
           $ref: "#/components/schemas/GoogleCustomConversionGoal"
+    listEvents_200_response_events_inner_utm:
+      example:
+        campaign: campaign
+        source: source
+        medium: medium
+        content: content
+      properties:
+        source:
+          nullable: true
+          type: string
+        medium:
+          nullable: true
+          type: string
+        campaign:
+          nullable: true
+          type: string
+        content:
+          nullable: true
+          type: string
+    listEvents_200_response_events_inner_clickIds:
+      example:
+        gclid: gclid
+        fbc: fbc
+      properties:
+        gclid:
+          nullable: true
+          type: string
+        fbc:
+          nullable: true
+          type: string
+    listEvents_200_response_events_inner:
+      example:
+        eventId: eventId
+        hasExternalId: true
+        receivedAt: 2000-01-23T04:56:07.000+00:00
+        actionSource: actionSource
+        utm:
+          campaign: campaign
+          source: source
+          medium: medium
+          content: content
+        sourceUrl: sourceUrl
+        hasEmail: true
+        zrn: zrn
+        clickIds:
+          gclid: gclid
+          fbc: fbc
+        eventTime: 2000-01-23T04:56:07.000+00:00
+        hasPhone: true
+        eventName: eventName
+        currency: currency
+        value: 0.8008281904610115
+        destinationsSent: 6
+      properties:
+        eventId:
+          type: string
+        eventName:
+          type: string
+        eventTime:
+          format: date-time
+          type: string
+        receivedAt:
+          format: date-time
+          type: string
+        actionSource:
+          nullable: true
+          type: string
+        value:
+          nullable: true
+          type: number
+        currency:
+          nullable: true
+          type: string
+        sourceUrl:
+          description: "Origin, path and attribution parameters only."
+          nullable: true
+          type: string
+        utm:
+          $ref: "#/components/schemas/listEvents_200_response_events_inner_utm"
+        zrn:
+          description: Ad ID from the `zrn` parameter Zernio adds to links of ads
+            it creates.
+          nullable: true
+          type: string
+        clickIds:
+          $ref: "#/components/schemas/listEvents_200_response_events_inner_clickIds"
+        destinationsSent:
+          description: Destinations the event was forwarded to.
+          type: integer
+        hasEmail:
+          type: boolean
+        hasPhone:
+          type: boolean
+        hasExternalId:
+          type: boolean
+    listEvents_200_response:
+      example:
+        nextCursor: nextCursor
+        events:
+        - eventId: eventId
+          hasExternalId: true
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+          actionSource: actionSource
+          utm:
+            campaign: campaign
+            source: source
+            medium: medium
+            content: content
+          sourceUrl: sourceUrl
+          hasEmail: true
+          zrn: zrn
+          clickIds:
+            gclid: gclid
+            fbc: fbc
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          hasPhone: true
+          eventName: eventName
+          currency: currency
+          value: 0.8008281904610115
+          destinationsSent: 6
+        - eventId: eventId
+          hasExternalId: true
+          receivedAt: 2000-01-23T04:56:07.000+00:00
+          actionSource: actionSource
+          utm:
+            campaign: campaign
+            source: source
+            medium: medium
+            content: content
+          sourceUrl: sourceUrl
+          hasEmail: true
+          zrn: zrn
+          clickIds:
+            gclid: gclid
+            fbc: fbc
+          eventTime: 2000-01-23T04:56:07.000+00:00
+          hasPhone: true
+          eventName: eventName
+          currency: currency
+          value: 0.8008281904610115
+          destinationsSent: 6
+      properties:
+        events:
+          items:
+            $ref: "#/components/schemas/listEvents_200_response_events_inner"
+          type: array
+        nextCursor:
+          description: Pass as `cursor` to get the next page; `null` on the last page.
+          nullable: true
+          type: string
     sendEvents_request_destinations_inner:
       additionalProperties: {}
       properties:

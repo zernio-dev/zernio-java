@@ -38,6 +38,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCustomConversionGoalsWithHttpInfo**](ConversionsApi.md#listCustomConversionGoalsWithHttpInfo) | **GET** /v1/ads/conversions/custom-goals | List custom conversion goals |
 | [**listEventDestinations**](ConversionsApi.md#listEventDestinations) | **GET** /v1/events/destinations | List event destinations |
 | [**listEventDestinationsWithHttpInfo**](ConversionsApi.md#listEventDestinationsWithHttpInfo) | **GET** /v1/events/destinations | List event destinations |
+| [**listEvents**](ConversionsApi.md#listEvents) | **GET** /v1/events | List stored events |
+| [**listEventsWithHttpInfo**](ConversionsApi.md#listEventsWithHttpInfo) | **GET** /v1/events | List stored events |
 | [**removeConversionAssociations**](ConversionsApi.md#removeConversionAssociations) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeConversionAssociationsWithHttpInfo**](ConversionsApi.md#removeConversionAssociationsWithHttpInfo) | **DELETE** /v1/accounts/{accountId}/conversion-destinations/{destinationId}/associations | Remove associated campaigns |
 | [**removeCustomConversionGoal**](ConversionsApi.md#removeCustomConversionGoal) | **DELETE** /v1/ads/conversions/custom-goals/{goalId} | Remove a custom conversion goal |
@@ -2792,6 +2794,176 @@ ApiResponse<[**ListEventDestinations200Response**](ListEventDestinations200Respo
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event destinations. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+
+## listEvents
+
+> ListEvents200Response listEvents(profileId, limit, from, to, eventName, cursor)
+
+List stored events
+
+Lists the conversion events stored for a profile by &#x60;POST /v1/events&#x60;, newest first. Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        Integer limit = 50; // Integer | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
+        String eventName = "eventName_example"; // String | Only events with this name, such as `Purchase`.
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ListEvents200Response result = apiInstance.listEvents(profileId, limit, from, to, eventName, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
+| **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
+| **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListEvents200Response**](ListEvents200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of stored events. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Resource not found |  -  |
+
+## listEventsWithHttpInfo
+
+> ApiResponse<ListEvents200Response> listEvents listEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor)
+
+List stored events
+
+Lists the conversion events stored for a profile by &#x60;POST /v1/events&#x60;, newest first. Personal data is never returned: &#x60;hasEmail&#x60;, &#x60;hasPhone&#x60; and &#x60;hasExternalId&#x60; only say whether the event carried that identifier. Events sent with &#x60;testCode&#x60; are not stored, so they never appear here.  Paginate with &#x60;cursor&#x60;: pass the &#x60;nextCursor&#x60; of the previous page until it comes back &#x60;null&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.ConversionsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        ConversionsApi apiInstance = new ConversionsApi(defaultClient);
+        String profileId = "profileId_example"; // String | 
+        Integer limit = 50; // Integer | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only events at or after this time (ISO 8601, on the event time).
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only events before this time (ISO 8601, on the event time).
+        String eventName = "eventName_example"; // String | Only events with this name, such as `Purchase`.
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListEvents200Response> response = apiInstance.listEventsWithHttpInfo(profileId, limit, from, to, eventName, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling ConversionsApi#listEvents");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **profileId** | **String**|  | |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **from** | **OffsetDateTime**| Only events at or after this time (ISO 8601, on the event time). | [optional] |
+| **to** | **OffsetDateTime**| Only events before this time (ISO 8601, on the event time). | [optional] |
+| **eventName** | **String**| Only events with this name, such as &#x60;Purchase&#x60;. | [optional] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListEvents200Response**](ListEvents200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | A page of stored events. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
