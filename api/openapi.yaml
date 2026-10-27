@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.387.0
+  version: 1.388.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -91450,6 +91450,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -91984,6 +91985,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -92761,6 +92763,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -93295,6 +93298,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -97714,6 +97718,7 @@ components:
           page_id: page_id
           custom_event_type: custom_event_type
           pixel_id: pixel_id
+        learningStatus: LEARNING
         isSmartPlus: true
         ads:
         - bidStrategy: ""
@@ -98309,6 +98314,20 @@ components:
           items:
             type: string
           type: array
+        learningStatus:
+          description: "Meta only. Where the ad set stands in Meta's learning phase,\
+            \ as of the last sync: LEARNING while delivery is still being optimized\
+            \ (about 50 optimization events in 7 days end it), SUCCESS once it has\
+            \ left learning, FAIL when it could not gather enough events (Ads Manager's\
+            \ \"Learning limited\"). Null on other platforms and for ad sets not yet\
+            \ synced."
+          enum:
+          - LEARNING
+          - SUCCESS
+          - FAIL
+          - null
+          nullable: true
+          type: string
         promotedObject:
           $ref: "#/components/schemas/AdTreeAdSet_promotedObject"
         ads:
@@ -98518,6 +98537,7 @@ components:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          learningStatus: LEARNING
           isSmartPlus: true
           ads:
           - bidStrategy: ""
@@ -99052,6 +99072,7 @@ components:
             page_id: page_id
             custom_event_type: custom_event_type
             pixel_id: pixel_id
+          learningStatus: LEARNING
           isSmartPlus: true
           ads:
           - bidStrategy: ""
@@ -146316,6 +146337,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -146850,6 +146872,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -147627,6 +147650,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
@@ -148161,6 +148185,7 @@ components:
               page_id: page_id
               custom_event_type: custom_event_type
               pixel_id: pixel_id
+            learningStatus: LEARNING
             isSmartPlus: true
             ads:
             - bidStrategy: ""
