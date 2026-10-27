@@ -68,7 +68,7 @@ import dev.zernio.ApiClient;
   SendInboxMessageRequest.JSON_PROPERTY_LOCATION,
   SendInboxMessageRequest.JSON_PROPERTY_CONTACTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:12:28.873783422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:17:19.811810043Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class SendInboxMessageRequest {
   public static final String JSON_PROPERTY_ACCOUNT_ID = "accountId";
   @javax.annotation.Nonnull
@@ -393,7 +393,7 @@ public class SendInboxMessageRequest {
   private MessagingTypeEnum messagingType;
 
   /**
-   * Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.
+   * Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.
    */
   public enum MessageTagEnum {
     CONFIRMED_EVENT_UPDATE(String.valueOf("CONFIRMED_EVENT_UPDATE")),
@@ -984,7 +984,7 @@ public class SendInboxMessageRequest {
   }
 
   /**
-   * Facebook message tag for messaging outside 24h window. Requires messagingType MESSAGE_TAG. Instagram only supports HUMAN_AGENT.
+   * Facebook and Instagram. To reply after the 24h window, send HUMAN_AGENT with messagingType MESSAGE_TAG: it works up to 7 days after the person&#39;s last message, for replies typed by a person only (Meta does not allow it on automated messages). Meta retired the other tags, so they fail.
    * @return messageTag
    */
   @javax.annotation.Nullable
