@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.384.0
+- API version: 1.385.0
 
-- Build date: 2026-10-27T19:03:21.600654218Z[Etc/UTC]
+- Build date: 2026-10-27T19:16:42.809825659Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.384.0</version>
+  <version>1.385.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.384.0"
+compile "dev.zernio:zernio-sdk:1.385.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.384.0.jar`
+- `target/zernio-sdk-1.385.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -423,6 +423,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**getAdReviewWithHttpInfo**](docs/AdCampaignsApi.md#getAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad
 *AdCampaignsApi* | [**getAdSetDetails**](docs/AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
 *AdCampaignsApi* | [**getAdSetDetailsWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details
+*AdCampaignsApi* | [**getAdSetTargeting**](docs/AdCampaignsApi.md#getAdSetTargeting) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule
+*AdCampaignsApi* | [**getAdSetTargetingWithHttpInfo**](docs/AdCampaignsApi.md#getAdSetTargetingWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule
 *AdCampaignsApi* | [**getAdTree**](docs/AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdTreeWithHttpInfo**](docs/AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree
 *AdCampaignsApi* | [**getAdsTimeline**](docs/AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics
@@ -3221,6 +3223,7 @@ Class | Method | HTTP request | Description
  - [GetAdReview200ResponseReviewRejectionsInnerContent](docs/GetAdReview200ResponseReviewRejectionsInnerContent.md)
  - [GetAdReview200ResponseReviewReviewFeedback](docs/GetAdReview200ResponseReviewReviewFeedback.md)
  - [GetAdSetDetails200Response](docs/GetAdSetDetails200Response.md)
+ - [GetAdSetTargeting200Response](docs/GetAdSetTargeting200Response.md)
  - [GetAdTrackingTags200Response](docs/GetAdTrackingTags200Response.md)
  - [GetAdTree202Response](docs/GetAdTree202Response.md)
  - [GetAdVideoStatus200Response](docs/GetAdVideoStatus200Response.md)

@@ -54,6 +54,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdReviewWithHttpInfo**](AdCampaignsApi.md#getAdReviewWithHttpInfo) | **GET** /v1/ads/{adId}/review | Read the platform&#39;s review verdict for an ad |
 | [**getAdSetDetails**](AdCampaignsApi.md#getAdSetDetails) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
 | [**getAdSetDetailsWithHttpInfo**](AdCampaignsApi.md#getAdSetDetailsWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId} | Get live ad-set details |
+| [**getAdSetTargeting**](AdCampaignsApi.md#getAdSetTargeting) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule |
+| [**getAdSetTargetingWithHttpInfo**](AdCampaignsApi.md#getAdSetTargetingWithHttpInfo) | **GET** /v1/ads/ad-sets/{adSetId}/targeting | Read a Reddit ad group&#39;s targeting and schedule |
 | [**getAdTree**](AdCampaignsApi.md#getAdTree) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdTreeWithHttpInfo**](AdCampaignsApi.md#getAdTreeWithHttpInfo) | **GET** /v1/ads/tree | Get campaign tree |
 | [**getAdsTimeline**](AdCampaignsApi.md#getAdsTimeline) | **GET** /v1/ads/timeline | Get daily account metrics |
@@ -4135,6 +4137,162 @@ ApiResponse<[**GetAdSetDetails200Response**](GetAdSetDetails200Response.md)>
 | **400** | Invalid input, or Meta rejected the query; the message carries Meta&#39;s error |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdSetTargeting
+
+> GetAdSetTargeting200Response getAdSetTargeting(adSetId, platform)
+
+Read a Reddit ad group&#39;s targeting and schedule
+
+Shows a Reddit ad group&#39;s live targeting and schedule in the same shape PUT /v1/ads/ad-sets/{adSetId} takes, so you can prefill an editor.  Read live from Reddit on every call. Location and interest names are resolved with Reddit&#39;s targeting taxonomy; when Reddit cannot resolve them the ids stand in as names and a location that is not a two-letter country is listed under &#x60;regions&#x60;. Excluded DMAs are listed under &#x60;excludedLocations.regions&#x60;, since excluded locations have no metro list. Languages come back as lowercase ISO 639-1 codes. Targeting Zernio cannot edit (devices, platforms, carriers, automated expansion) is left out and kept on every edit. Reddit only; every other platform returns 501. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Reddit ad group ID
+        String platform = "reddit"; // String | Disambiguates when the same adSetId string exists on more than one connected platform.
+        try {
+            GetAdSetTargeting200Response result = apiInstance.getAdSetTargeting(adSetId, platform);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdSetTargeting");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Reddit ad group ID | |
+| **platform** | **String**| Disambiguates when the same adSetId string exists on more than one connected platform. | [optional] [enum: reddit] |
+
+### Return type
+
+[**GetAdSetTargeting200Response**](GetAdSetTargeting200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current ad group targeting and schedule |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad set not found |  -  |
+| **501** | The platform has no ad set targeting read (every platform but Reddit) |  -  |
+
+## getAdSetTargetingWithHttpInfo
+
+> ApiResponse<GetAdSetTargeting200Response> getAdSetTargeting getAdSetTargetingWithHttpInfo(adSetId, platform)
+
+Read a Reddit ad group&#39;s targeting and schedule
+
+Shows a Reddit ad group&#39;s live targeting and schedule in the same shape PUT /v1/ads/ad-sets/{adSetId} takes, so you can prefill an editor.  Read live from Reddit on every call. Location and interest names are resolved with Reddit&#39;s targeting taxonomy; when Reddit cannot resolve them the ids stand in as names and a location that is not a two-letter country is listed under &#x60;regions&#x60;. Excluded DMAs are listed under &#x60;excludedLocations.regions&#x60;, since excluded locations have no metro list. Languages come back as lowercase ISO 639-1 codes. Targeting Zernio cannot edit (devices, platforms, carriers, automated expansion) is left out and kept on every edit. Reddit only; every other platform returns 501. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String adSetId = "adSetId_example"; // String | Reddit ad group ID
+        String platform = "reddit"; // String | Disambiguates when the same adSetId string exists on more than one connected platform.
+        try {
+            ApiResponse<GetAdSetTargeting200Response> response = apiInstance.getAdSetTargetingWithHttpInfo(adSetId, platform);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#getAdSetTargeting");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **adSetId** | **String**| Reddit ad group ID | |
+| **platform** | **String**| Disambiguates when the same adSetId string exists on more than one connected platform. | [optional] [enum: reddit] |
+
+### Return type
+
+ApiResponse<[**GetAdSetTargeting200Response**](GetAdSetTargeting200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Current ad group targeting and schedule |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | Ad set not found |  -  |
+| **501** | The platform has no ad set targeting read (every platform but Reddit) |  -  |
 
 
 ## getAdTree
@@ -9947,7 +10105,7 @@ ApiResponse<[**UpdateAdKeyword200Response**](UpdateAdKeyword200Response.md)>
 
 Update an ad set
 
-Changes an ad set&#39;s settings, such as its budget, bid strategy, status or delivery options.  Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, Meta beneficiary and payer (&#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; for the EU, &#x60;regionalRegulatedCategories&#x60; / &#x60;regionalRegulationIdentities&#x60; for the regional regimes), and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   whose strategy (its own, or the campaign&#39;s under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP,   leaving the strategy untouched. Send &#x60;roasAverageFloor&#x60; WITHOUT &#x60;bidStrategy&#x60; the same way   to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an   incompatible current strategy is a 400. - Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only   &#x60;bidAmount&#x60; or &#x60;roasAverageFloor&#x60; is written on the ad set. A &#x60;bidStrategy&#x60; equal to the   campaign&#39;s is accepted; a different one is a 409 (change it with   PUT /v1/ads/campaigns/{campaignId}).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ad set whose campaign holds the budget (CBO), the response is 409 with code &#x60;invalid_field_value&#x60;. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  Reddit Ads: &#x60;budget&#x60; changes the ad group&#39;s amount; an ad group that spends its campaign budget returns 422 (update the campaign instead), and Reddit cannot switch a published budget between daily and lifetime, so &#x60;budget.type&#x60; must match the current one (422 otherwise). &#x60;name&#x60; renames the ad group. &#x60;bidStrategy&#x60; maps to the ad group&#39;s &#x60;bid_strategy&#x60;: LOWEST_COST_WITHOUT_CAP &#x3D; automatic bidding (BIDLESS), LOWEST_COST_WITH_BID_CAP &#x3D; MANUAL_BIDDING with &#x60;bidAmount&#x60; as the bid, COST_CAP &#x3D; MAXIMIZE_VOLUME with &#x60;bidAmount&#x60; as the cap; LOWEST_COST_WITH_MIN_ROAS returns 422.  &#x60;status&#x60; behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes: only the ad set&#39;s own switch is written, its ads keep theirs, and &#x60;statusUpdated&#x60; / &#x60;statusSkipped&#x60; report whether that switch was written or a live read showed it already in place.  Placements and targeting (Meta only): &#x60;placements&#x60; and &#x60;targeting&#x60; take the same shapes as POST /v1/ads/create. Meta replaces an ad set&#39;s targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back: custom audiences, geo, age, interest groups and &#x60;targeting_automation&#x60; you do not send are kept. &#x60;placements&#x60; replaces the whole placement set, &#x60;placements: null&#x60; returns the ad set to automatic placements, and omitting it leaves placements as they are. Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with &#x60;targeting&#x60; where that platform supports it). The live read and the &#x60;incomeTier&#x60; lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged. 
+Changes an ad set&#39;s settings, such as its budget, bid strategy, status or delivery options.  Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, Meta beneficiary and payer (&#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; for the EU, &#x60;regionalRegulatedCategories&#x60; / &#x60;regionalRegulationIdentities&#x60; for the regional regimes), and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   whose strategy (its own, or the campaign&#39;s under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP,   leaving the strategy untouched. Send &#x60;roasAverageFloor&#x60; WITHOUT &#x60;bidStrategy&#x60; the same way   to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an   incompatible current strategy is a 400. - Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only   &#x60;bidAmount&#x60; or &#x60;roasAverageFloor&#x60; is written on the ad set. A &#x60;bidStrategy&#x60; equal to the   campaign&#39;s is accepted; a different one is a 409 (change it with   PUT /v1/ads/campaigns/{campaignId}).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ad set whose campaign holds the budget (CBO), the response is 409 with code &#x60;invalid_field_value&#x60;. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  Reddit Ads: &#x60;budget&#x60; changes the ad group&#39;s amount; an ad group that spends its campaign budget returns 422 (update the campaign instead), and Reddit cannot switch a published budget between daily and lifetime, so &#x60;budget.type&#x60; must match the current one (422 otherwise). &#x60;name&#x60; renames the ad group. &#x60;bidStrategy&#x60; maps to the ad group&#39;s &#x60;bid_strategy&#x60;: LOWEST_COST_WITHOUT_CAP &#x3D; automatic bidding (BIDLESS), LOWEST_COST_WITH_BID_CAP &#x3D; MANUAL_BIDDING with &#x60;bidAmount&#x60; as the bid, COST_CAP &#x3D; MAXIMIZE_VOLUME with &#x60;bidAmount&#x60; as the cap; LOWEST_COST_WITH_MIN_ROAS returns 422.  &#x60;status&#x60; behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes: only the ad set&#39;s own switch is written, its ads keep theirs, and &#x60;statusUpdated&#x60; / &#x60;statusSkipped&#x60; report whether that switch was written or a live read showed it already in place.  Placements and targeting (Meta only): &#x60;placements&#x60; and &#x60;targeting&#x60; take the same shapes as POST /v1/ads/create. Meta replaces an ad set&#39;s targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back: custom audiences, geo, age, interest groups and &#x60;targeting_automation&#x60; you do not send are kept. &#x60;placements&#x60; replaces the whole placement set, &#x60;placements: null&#x60; returns the ad set to automatic placements, and omitting it leaves placements as they are. Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with &#x60;targeting&#x60; where that platform supports it). The live read and the &#x60;incomeTier&#x60; lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged.  Reddit ad group targeting and schedule: &#x60;targeting&#x60; (same shape as on create, &#x60;placements&#x60; is a 400) and &#x60;startDate&#x60; / &#x60;endDate&#x60; change the ad group with one PATCH to Reddit. Zernio reads the live ad group first and replaces only the targeting groups the request names: the included locations (&#x60;countries&#x60;, &#x60;regions&#x60;, &#x60;metros&#x60;, &#x60;cities&#x60;, &#x60;zips&#x60;) are one list on Reddit, so sending any of them replaces all included locations, and devices, platforms, carriers and automated expansion set in Reddit Ads Manager are kept. Read the current values with GET /v1/ads/ad-sets/{adSetId}/targeting. The schedule is checked against the campaign before anything in the request is written: an ad group cannot start before a campaign that starts in the future, cannot end after the campaign&#39;s end, and under campaign budget optimization it must end by the campaign end (and has no end date when the campaign has none); each returns 400 naming &#x60;startDate&#x60; or &#x60;endDate&#x60;. Zernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying. 
 
 ### Example
 
@@ -10012,7 +10170,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad set updated |  -  |
-| **400** | Invalid input, including &#x60;placements&#x60; or &#x60;targeting&#x60; on a platform other than Meta, a targeting field Meta cannot honour, &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;, or a &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;) |  -  |
+| **400** | Invalid input, including &#x60;placements&#x60; on a platform other than Meta, &#x60;targeting&#x60; on a platform other than Meta and Reddit, a Reddit &#x60;startDate&#x60; or &#x60;endDate&#x60; that is not a date, a Reddit schedule the campaign does not allow, a targeting field the platform cannot honour, &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;, or a &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad set not found |  -  |
@@ -10027,7 +10185,7 @@ public class Example {
 
 Update an ad set
 
-Changes an ad set&#39;s settings, such as its budget, bid strategy, status or delivery options.  Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, Meta beneficiary and payer (&#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; for the EU, &#x60;regionalRegulatedCategories&#x60; / &#x60;regionalRegulationIdentities&#x60; for the regional regimes), and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   whose strategy (its own, or the campaign&#39;s under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP,   leaving the strategy untouched. Send &#x60;roasAverageFloor&#x60; WITHOUT &#x60;bidStrategy&#x60; the same way   to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an   incompatible current strategy is a 400. - Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only   &#x60;bidAmount&#x60; or &#x60;roasAverageFloor&#x60; is written on the ad set. A &#x60;bidStrategy&#x60; equal to the   campaign&#39;s is accepted; a different one is a 409 (change it with   PUT /v1/ads/campaigns/{campaignId}).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ad set whose campaign holds the budget (CBO), the response is 409 with code &#x60;invalid_field_value&#x60;. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  Reddit Ads: &#x60;budget&#x60; changes the ad group&#39;s amount; an ad group that spends its campaign budget returns 422 (update the campaign instead), and Reddit cannot switch a published budget between daily and lifetime, so &#x60;budget.type&#x60; must match the current one (422 otherwise). &#x60;name&#x60; renames the ad group. &#x60;bidStrategy&#x60; maps to the ad group&#39;s &#x60;bid_strategy&#x60;: LOWEST_COST_WITHOUT_CAP &#x3D; automatic bidding (BIDLESS), LOWEST_COST_WITH_BID_CAP &#x3D; MANUAL_BIDDING with &#x60;bidAmount&#x60; as the bid, COST_CAP &#x3D; MAXIMIZE_VOLUME with &#x60;bidAmount&#x60; as the cap; LOWEST_COST_WITH_MIN_ROAS returns 422.  &#x60;status&#x60; behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes: only the ad set&#39;s own switch is written, its ads keep theirs, and &#x60;statusUpdated&#x60; / &#x60;statusSkipped&#x60; report whether that switch was written or a live read showed it already in place.  Placements and targeting (Meta only): &#x60;placements&#x60; and &#x60;targeting&#x60; take the same shapes as POST /v1/ads/create. Meta replaces an ad set&#39;s targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back: custom audiences, geo, age, interest groups and &#x60;targeting_automation&#x60; you do not send are kept. &#x60;placements&#x60; replaces the whole placement set, &#x60;placements: null&#x60; returns the ad set to automatic placements, and omitting it leaves placements as they are. Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with &#x60;targeting&#x60; where that platform supports it). The live read and the &#x60;incomeTier&#x60; lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged. 
+Changes an ad set&#39;s settings, such as its budget, bid strategy, status or delivery options.  Use this for ABO budget updates, ad-set-scoped pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, Meta beneficiary and payer (&#x60;dsaBeneficiary&#x60; / &#x60;dsaPayor&#x60; for the EU, &#x60;regionalRegulatedCategories&#x60; / &#x60;regionalRegulationIdentities&#x60; for the regional regimes), and Meta-only post-launch delivery settings via &#x60;platformSpecificData&#x60;. At least one updatable field is required.  Value rule sets (Meta only, see &#x60;/v1/ads/value-rule-sets&#x60;): - ATTACH or REPLACE: send &#x60;valueRuleSetId&#x60;. Attachment is driven by the id&#39;s   presence, so &#x60;valueRulesApplied: true&#x60; is optional. Sending a different id   replaces the previous association; there is no separate replace call. - DETACH: send &#x60;valueRulesApplied: false&#x60; and OMIT &#x60;valueRuleSetId&#x60;. - Sending &#x60;valueRulesApplied: false&#x60; TOGETHER with &#x60;valueRuleSetId&#x60; returns 400   &#x60;mutually_exclusive_fields&#x60;. This is deliberate: Meta attaches the rule set   whenever &#x60;value_rule_set_id&#x60; is present, even with &#x60;value_rules_applied&#x60; false,   so echoing stored state while asking to detach would silently keep the bid   adjustments live. - Eligibility: only ad sets on &#x60;LOWEST_COST_WITHOUT_CAP&#x60; or &#x60;COST_CAP&#x60;. Meta   rejects the rest server-side. - Read back with &#x60;GET /v1/ads/ad-sets/{adSetId}?fields&#x3D;value_rule_set_id&#x60;. Meta   does not document &#x60;value_rules_applied&#x60; as a readable ad-set field, so the   boolean cannot be read back.  Bid strategy compatibility (per Meta&#39;s spec): - &#x60;LOWEST_COST_WITHOUT_CAP&#x60;: no &#x60;bidAmount&#x60;, no &#x60;roasAverageFloor&#x60;. - &#x60;LOWEST_COST_WITH_BID_CAP&#x60; / &#x60;COST_CAP&#x60;: &#x60;bidAmount&#x60; REQUIRED (whole currency units). - &#x60;LOWEST_COST_WITH_MIN_ROAS&#x60;: &#x60;roasAverageFloor&#x60; REQUIRED (decimal multiplier, e.g. 2.0 &#x3D; 2.0x ROAS). - Meta only: send &#x60;bidAmount&#x60; WITHOUT &#x60;bidStrategy&#x60; to change the cap amount on an ad set   whose strategy (its own, or the campaign&#39;s under CBO) is COST_CAP / LOWEST_COST_WITH_BID_CAP,   leaving the strategy untouched. Send &#x60;roasAverageFloor&#x60; WITHOUT &#x60;bidStrategy&#x60; the same way   to change the floor of a LOWEST_COST_WITH_MIN_ROAS ad set. Either field against an   incompatible current strategy is a 400. - Meta CBO (the campaign holds the budget): the campaign also holds the bid strategy, so only   &#x60;bidAmount&#x60; or &#x60;roasAverageFloor&#x60; is written on the ad set. A &#x60;bidStrategy&#x60; equal to the   campaign&#39;s is accepted; a different one is a 409 (change it with   PUT /v1/ads/campaigns/{campaignId}).  Delivery settings are validated by Meta against the campaign objective; incompatible combinations (e.g. a billingEvent the optimization goal doesn&#39;t allow) surface as 400s from Meta.  When updating &#x60;budget&#x60; on an ad set whose campaign holds the budget (CBO), the response is 409 with code &#x60;invalid_field_value&#x60;. Send it to PUT /v1/ads/campaigns/{campaignId} instead.  Reddit Ads: &#x60;budget&#x60; changes the ad group&#39;s amount; an ad group that spends its campaign budget returns 422 (update the campaign instead), and Reddit cannot switch a published budget between daily and lifetime, so &#x60;budget.type&#x60; must match the current one (422 otherwise). &#x60;name&#x60; renames the ad group. &#x60;bidStrategy&#x60; maps to the ad group&#39;s &#x60;bid_strategy&#x60;: LOWEST_COST_WITHOUT_CAP &#x3D; automatic bidding (BIDLESS), LOWEST_COST_WITH_BID_CAP &#x3D; MANUAL_BIDDING with &#x60;bidAmount&#x60; as the bid, COST_CAP &#x3D; MAXIMIZE_VOLUME with &#x60;bidAmount&#x60; as the cap; LOWEST_COST_WITH_MIN_ROAS returns 422.  &#x60;status&#x60; behaves exactly as PUT /v1/ads/ad-sets/{adSetId}/status describes: only the ad set&#39;s own switch is written, its ads keep theirs, and &#x60;statusUpdated&#x60; / &#x60;statusSkipped&#x60; report whether that switch was written or a live read showed it already in place.  Placements and targeting (Meta only): &#x60;placements&#x60; and &#x60;targeting&#x60; take the same shapes as POST /v1/ads/create. Meta replaces an ad set&#39;s targeting wholesale, so Zernio reads the live targeting first, changes only what the request names and writes the merged spec back: custom audiences, geo, age, interest groups and &#x60;targeting_automation&#x60; you do not send are kept. &#x60;placements&#x60; replaces the whole placement set, &#x60;placements: null&#x60; returns the ad set to automatic placements, and omitting it leaves placements as they are. Other platforms return 400 for either field before anything in the request is written (use PUT /v1/ads/{adId} with &#x60;targeting&#x60; where that platform supports it). The live read and the &#x60;incomeTier&#x60; lookup run before any other field is written, so a 502 or 422 from them leaves the ad set unchanged.  Reddit ad group targeting and schedule: &#x60;targeting&#x60; (same shape as on create, &#x60;placements&#x60; is a 400) and &#x60;startDate&#x60; / &#x60;endDate&#x60; change the ad group with one PATCH to Reddit. Zernio reads the live ad group first and replaces only the targeting groups the request names: the included locations (&#x60;countries&#x60;, &#x60;regions&#x60;, &#x60;metros&#x60;, &#x60;cities&#x60;, &#x60;zips&#x60;) are one list on Reddit, so sending any of them replaces all included locations, and devices, platforms, carriers and automated expansion set in Reddit Ads Manager are kept. Read the current values with GET /v1/ads/ad-sets/{adSetId}/targeting. The schedule is checked against the campaign before anything in the request is written: an ad group cannot start before a campaign that starts in the future, cannot end after the campaign&#39;s end, and under campaign budget optimization it must end by the campaign end (and has no end date when the campaign has none); each returns 400 naming &#x60;startDate&#x60; or &#x60;endDate&#x60;. Zernio never resends the PATCH on its own, so after a 5xx read the ad group back before retrying. 
 
 ### Example
 
@@ -10095,7 +10253,7 @@ ApiResponse<[**UpdateAdSet200Response**](UpdateAdSet200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Ad set updated |  -  |
-| **400** | Invalid input, including &#x60;placements&#x60; or &#x60;targeting&#x60; on a platform other than Meta, a targeting field Meta cannot honour, &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;, or a &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;) |  -  |
+| **400** | Invalid input, including &#x60;placements&#x60; on a platform other than Meta, &#x60;targeting&#x60; on a platform other than Meta and Reddit, a Reddit &#x60;startDate&#x60; or &#x60;endDate&#x60; that is not a date, a Reddit schedule the campaign does not allow, a targeting field the platform cannot honour, &#x60;placements&#x60; sent both at the top level and inside &#x60;targeting&#x60;, or a &#x60;platformSpecificData.promotedObject&#x60; key Meta cannot change on an existing ad set (anything but &#x60;pixelId&#x60;, &#x60;customEventType&#x60;, &#x60;customEventStr&#x60;, &#x60;applicationId&#x60; and &#x60;productCatalogId&#x60;) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | Ad set not found |  -  |
