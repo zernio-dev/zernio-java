@@ -9,6 +9,7 @@ Legacy + attach shapes: one ad returned.
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**ad** | [**Ad**](Ad.md) |  |  [optional] |
+|**appliedDefaults** | [**AdAppliedDefaults**](AdAppliedDefaults.md) |  |  [optional] |
 |**message** | **String** |  |  [optional] |
 
 

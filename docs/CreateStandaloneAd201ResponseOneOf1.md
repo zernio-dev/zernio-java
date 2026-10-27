@@ -11,6 +11,7 @@ Multi-creative shape: N ads returned sharing platformCampaignId / platformAdSetI
 |**ads** | [**List&lt;Ad&gt;**](Ad.md) |  |  [optional] |
 |**platformCampaignId** | **String** |  |  [optional] |
 |**platformAdSetId** | **String** |  |  [optional] |
+|**appliedDefaults** | [**AdAppliedDefaults**](AdAppliedDefaults.md) |  |  [optional] |
 |**message** | **String** |  |  [optional] |
 
 

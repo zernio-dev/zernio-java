@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.376.0
+  version: 1.377.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -52526,7 +52526,7 @@ paths:
 
         **Meta required fields per shape** (a missing one is a 400 naming it in `param`):
 
-        - Every shape that builds a new ad set (no `adSetId`, `existingCampaignId` or `buyingType: "RESERVED"`): `budgetAmount` and `budgetType`, plus `endDate` for a lifetime budget.
+        - Every shape that builds a new ad set (no `adSetId`, `existingCampaignId` or `buyingType: "RESERVED"`): `budgetAmount`. `budgetType` defaults to daily, and a lifetime budget without `endDate` ends 7 days after it starts (see `appliedDefaults`).
         - Single image or video (the default), also with `adSetId`: `headline` (max 255), `body`, `callToAction`, exactly one of `imageUrl` / `video` (none for a catalog template creative, which ignores and does not upload any sent), and `linkUrl` unless the goal is `lead_generation` or `page_visits` or `leadGenFormId` is set.
         - `bodies[]` / `headlines[]` text variations: `body`, one list with 2+ items, `callToAction`, `imageUrl` or `video`, and `linkUrl` unless the goal is `lead_generation` or `leadGenFormId` is set. `headline` is not required.
         - `placementAssets`: `headline`, `body`, `callToAction`, and `linkUrl` with the same exemptions as the single shape; the media comes from `placementAssets`.
@@ -70330,6 +70330,55 @@ components:
       - error
       - platform
       - type
+    AdAppliedDefaults:
+      description: "What the create filled in for fields the request left out. Empty\
+        \ when every field was sent. A passing validateOnly returns it too, so a dry\
+        \ run previews these values before anything is created."
+      example:
+        budgetType: daily
+        goal: goal
+        endDate: endDate
+        name: name
+        countries:
+        - countries
+        - countries
+      properties:
+        name:
+          description: "Sent when `name` was omitted: `Ad <YYYY-MM-DD HH:MM:SS>` in\
+            \ UTC."
+          type: string
+        goal:
+          description: "Sent when `goal` was omitted. `lead_generation` with a `leadGenFormId`;\
+            \ `app_promotion` when `promotedObject` names an app; `conversions` with\
+            \ `promotedObject.pixelId` and `customEventType`; `traffic` when the ad\
+            \ has a link (`linkUrl`, a carousel card, `creatives[].linkUrl`, `dynamicCreative.linkUrls`\
+            \ or a LinkedIn carousel card); otherwise `engagement`. Each only when\
+            \ the platform offers it, falling back to `engagement`, then `awareness`,\
+            \ then the platform's first goal. Never inferred with `existingCampaignId`,\
+            \ `smartPlus` or the LinkedIn spotlight, follower and jobs formats: those\
+            \ still return 400 without `goal`."
+          type: string
+        budgetType:
+          description: Sent when `budgetAmount` came without `budgetType`.
+          enum:
+          - daily
+          type: string
+        endDate:
+          description: "Sent when a lifetime budget had no `endDate`: 7 days after\
+            \ the start. A start with an offset (or no start) gets a UTC instant;\
+            \ an offset-less start gets an offset-less end, read in the ad account\
+            \ timezone like the start; a date-only start gets the date 6 days later,\
+            \ which runs to 23:59:59. A daily budget never gets one and runs until\
+            \ paused."
+          type: string
+        countries:
+          description: "Sent when the request sent no countries and the ad gets the\
+            \ long-standing United States default. Not sent on attach, Google Performance\
+            \ Max or Demand Gen, or a Google ad group joining `existingCampaignId`,\
+            \ which keep their own geo."
+          items:
+            type: string
+          type: array
     AdTracking:
       description: "Meta, plus `urlTags` on ChatGPT (OpenAI) and `pixelId` on Reddit.\
         \ Meta: attaches pixel measurement to the ad regardless of the optimization\
@@ -153703,6 +153752,8 @@ components:
         adAccountId:
           type: string
         name:
+          description: "Omitted, the ad is named `Ad <YYYY-MM-DD HH:MM:SS>` (UTC)\
+            \ and the response reports it in `appliedDefaults.name`."
           maxLength: 255
           type: string
         campaignName:
@@ -153735,7 +153786,7 @@ components:
           $ref: "#/components/schemas/AdTracking"
         goal:
           description: |
-            Required on legacy and multi-creative shapes; the attach shape inherits it from the ad set. Available goals vary by platform.
+            Available goals vary by platform. Omitted, it is inferred from the ad (see `appliedDefaults.goal` in the response); the attach shape inherits it from the ad set.
 
             **Meta**
             - `conversions`: OUTCOME_SALES. Requires `promotedObject.pixelId` and `promotedObject.customEventType` with a commerce event such as PURCHASE or START_TRIAL, or `promotedObject.customConversionId` to optimise against a Custom Conversion, or `customEventType: OTHER` + `customEventStr` to optimise against a pixel custom event.
@@ -153912,12 +153963,13 @@ components:
             \ for some currencies and names it in the error."
           type: number
         budgetType:
-          description: "Required on legacy, multi-creative and Performance Max shapes.\
-            \ Inherited on attach. OpenAI Ads accepts both as the campaign's single\
-            \ spend cap. A lifetime cap can later switch to daily with PUT /v1/ads/campaigns/{campaignId},\
-            \ but OpenAI never switches a daily cap back to lifetime (422). Automatic\
-            \ bidding (Maximize Results) needs a daily budget. Reddit Ads: the ad\
-            \ group's daily or lifetime spend goal; lifetime needs `endDate`."
+          description: "Defaults to daily when `budgetAmount` is sent without it (reported\
+            \ in `appliedDefaults.budgetType`). Inherited on attach. OpenAI Ads accepts\
+            \ both as the campaign's single spend cap. A lifetime cap can later switch\
+            \ to daily with PUT /v1/ads/campaigns/{campaignId}, but OpenAI never switches\
+            \ a daily cap back to lifetime (422). Automatic bidding (Maximize Results)\
+            \ needs a daily budget. Reddit Ads: the ad group's daily or lifetime spend\
+            \ goal."
           enum:
           - daily
           - lifetime
@@ -154556,10 +154608,11 @@ components:
             ties to that subcode) and Meta's metaCode, metaSubcode and fbtraceId.
             Ignored when adSetId adds the ad to an existing ad set.
         endDate:
-          description: "Required for lifetime budgets. Read like `startDate` (account\
-            \ timezone on Meta, TikTok, X, Pinterest, OpenAI and Reddit; whole account-local\
-            \ days on Google; UTC on LinkedIn), and a date-only end runs to 23:59:59\
-            \ local."
+          description: "Omitted on a lifetime budget, the ad ends 7 days after it\
+            \ starts (reported in `appliedDefaults.endDate`); a daily budget without\
+            \ one runs until paused. Read like `startDate` (account timezone on Meta,\
+            \ TikTok, X, Pinterest, OpenAI and Reddit; whole account-local days on\
+            \ Google; UTC on LinkedIn), and a date-only end runs to 23:59:59 local."
           format: date-time
           type: string
         startDate:
@@ -155014,7 +155067,7 @@ components:
             Targeting works like on any TikTok ad (defaults to `countries: ["US"]` when
             omitted); TikTok automates delivery within it.
             The budget lives on the Smart+ campaign (Campaign Budget Optimization); a `lifetime`
-            budget additionally requires `endDate`. Cannot be combined with `adSetId`.
+            budget without `endDate` ends 7 days after it starts. Smart+ needs `goal` sent, it is never inferred. Cannot be combined with `adSetId`.
           type: boolean
         userOs:
           description: "Meta only. Operating systems and version ranges, such as iOS_ver_14.0_and_above\
@@ -155051,7 +155104,6 @@ components:
       required:
       - accountId
       - adAccountId
-      - name
     createStandaloneAd_200_response_results_inner:
       example:
         node: campaign
@@ -155082,6 +155134,14 @@ components:
     createStandaloneAd_200_response:
       example:
         validateOnly: true
+        appliedDefaults:
+          budgetType: daily
+          goal: goal
+          endDate: endDate
+          name: name
+          countries:
+          - countries
+          - countries
         message: message
         results:
         - node: campaign
@@ -155094,6 +155154,8 @@ components:
         validateOnly:
           description: Always true in a validate-only response.
           type: boolean
+        appliedDefaults:
+          $ref: "#/components/schemas/AdAppliedDefaults"
         results:
           items:
             $ref: "#/components/schemas/createStandaloneAd_200_response_results_inner"
@@ -155252,10 +155314,20 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+        appliedDefaults:
+          budgetType: daily
+          goal: goal
+          endDate: endDate
+          name: name
+          countries:
+          - countries
+          - countries
         message: message
       properties:
         ad:
           $ref: "#/components/schemas/Ad"
+        appliedDefaults:
+          $ref: "#/components/schemas/AdAppliedDefaults"
         message:
           type: string
     createStandaloneAd_201_response_oneOf_1:
@@ -155270,6 +155342,8 @@ components:
           type: string
         platformAdSetId:
           type: string
+        appliedDefaults:
+          $ref: "#/components/schemas/AdAppliedDefaults"
         message:
           type: string
     createStandaloneAd_201_response:

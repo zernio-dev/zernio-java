@@ -26,6 +26,7 @@ docs/AdActivationStatus.md
 docs/AdAnalyticsResponse.md
 docs/AdAnalyticsResponseAd.md
 docs/AdAnalyticsResponseAnalytics.md
+docs/AdAppliedDefaults.md
 docs/AdAudiencesApi.md
 docs/AdBudget.md
 docs/AdCampaign.md
@@ -3128,6 +3129,7 @@ src/main/java/dev/zernio/model/AdActivationStatus.java
 src/main/java/dev/zernio/model/AdAnalyticsResponse.java
 src/main/java/dev/zernio/model/AdAnalyticsResponseAd.java
 src/main/java/dev/zernio/model/AdAnalyticsResponseAnalytics.java
+src/main/java/dev/zernio/model/AdAppliedDefaults.java
 src/main/java/dev/zernio/model/AdBudget.java
 src/main/java/dev/zernio/model/AdCampaign.java
 src/main/java/dev/zernio/model/AdCampaignBudget.java
@@ -6039,8 +6041,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CountLeads200ResponseCountsTest.java
-src/test/java/dev/zernio/model/CountLeads200ResponseTest.java
-src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerFixTest.java
-src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerTest.java
-src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseTest.java
+src/test/java/dev/zernio/model/AdAppliedDefaultsTest.java
