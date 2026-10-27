@@ -34,6 +34,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdCampaignWithHttpInfo**](AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign |
 | [**deleteAdSet**](AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
 | [**deleteAdSetWithHttpInfo**](AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set |
+| [**dismissAdsAlert**](AdCampaignsApi.md#dismissAdsAlert) | **POST** /v1/ads/alerts/{alertId}/dismiss | Dismiss an ads alert |
+| [**dismissAdsAlertWithHttpInfo**](AdCampaignsApi.md#dismissAdsAlertWithHttpInfo) | **POST** /v1/ads/alerts/{alertId}/dismiss | Dismiss an ads alert |
 | [**dismissGoogleRecommendations**](AdCampaignsApi.md#dismissGoogleRecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
 | [**dismissGoogleRecommendationsWithHttpInfo**](AdCampaignsApi.md#dismissGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations |
 | [**duplicateAd**](AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad |
@@ -78,6 +80,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdSetsWithHttpInfo**](AdCampaignsApi.md#listAdSetsWithHttpInfo) | **GET** /v1/ads/ad-sets | List ad sets |
 | [**listAds**](AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads |
 | [**listAdsWithHttpInfo**](AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads |
+| [**listAdsAlerts**](AdCampaignsApi.md#listAdsAlerts) | **GET** /v1/ads/alerts | List ads that need attention |
+| [**listAdsAlertsWithHttpInfo**](AdCampaignsApi.md#listAdsAlertsWithHttpInfo) | **GET** /v1/ads/alerts | List ads that need attention |
 | [**listBidStrategies**](AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
 | [**listBidStrategiesWithHttpInfo**](AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies |
 | [**listCampaignAssets**](AdCampaignsApi.md#listCampaignAssets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets |
@@ -2529,6 +2533,158 @@ ApiResponse<[**DeleteAdSet200Response**](DeleteAdSet200Response.md)>
 | **501** | Operation not supported on this platform |  -  |
 
 
+## dismissAdsAlert
+
+> DismissAdsAlert200Response dismissAdsAlert(alertId)
+
+Dismiss an ads alert
+
+Hides an alert from &#x60;GET /v1/ads/alerts&#x60; for 30 days for the calling user. If the problem is still there after that, the alert comes back. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String alertId = "alertId_example"; // String | The `id` of an alert from GET /v1/ads/alerts.
+        try {
+            DismissAdsAlert200Response result = apiInstance.dismissAdsAlert(alertId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#dismissAdsAlert");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **alertId** | **String**| The &#x60;id&#x60; of an alert from GET /v1/ads/alerts. | |
+
+### Return type
+
+[**DismissAdsAlert200Response**](DismissAdsAlert200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dismissed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **503** | Dismissing is temporarily unavailable (code &#x60;feature_not_available&#x60;). |  -  |
+
+## dismissAdsAlertWithHttpInfo
+
+> ApiResponse<DismissAdsAlert200Response> dismissAdsAlert dismissAdsAlertWithHttpInfo(alertId)
+
+Dismiss an ads alert
+
+Hides an alert from &#x60;GET /v1/ads/alerts&#x60; for 30 days for the calling user. If the problem is still there after that, the alert comes back. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String alertId = "alertId_example"; // String | The `id` of an alert from GET /v1/ads/alerts.
+        try {
+            ApiResponse<DismissAdsAlert200Response> response = apiInstance.dismissAdsAlertWithHttpInfo(alertId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#dismissAdsAlert");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **alertId** | **String**| The &#x60;id&#x60; of an alert from GET /v1/ads/alerts. | |
+
+### Return type
+
+ApiResponse<[**DismissAdsAlert200Response**](DismissAdsAlert200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Dismissed. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+| **503** | Dismissing is temporarily unavailable (code &#x60;feature_not_available&#x60;). |  -  |
+
+
 ## dismissGoogleRecommendations
 
 > ApplyGoogleRecommendations200Response dismissGoogleRecommendations(dismissGoogleRecommendationsRequest)
@@ -3981,7 +4137,7 @@ ApiResponse<[**GetAdSetDetails200Response**](GetAdSetDetails200Response.md)>
 
 ## getAdTree
 
-> AdTreeResponse getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel)
+> AdTreeResponse getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare)
 
 Get campaign tree
 
@@ -4027,8 +4183,9 @@ public class Example {
         String sort = "newest"; // String | Campaign-level sort order. `newest` (default) / `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order by aggregated spend in the requested date range; campaigns with no spend land at the end.
         Integer timeIncrement = 1; // Integer | Set to `1` to also return a daily breakdown. Mirrors Meta Insights' `time_increment=1`: each node gains a `daily[]` array of per-day metrics (same fields as the aggregated `metrics`) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only `1` (daily) is supported. The daily series covers the same date range and uses the same source data as `metrics`, except `reach` on Meta and TikTok: the range total is the platform's de-duplicated value, so daily reach does not sum to it. See `dailyLevel` to control which levels carry it.
         String dailyLevel = "campaign"; // String | Which tree levels get the `daily[]` series when `timeIncrement=1`. `campaign` (default) attaches it on campaign nodes only: the common per-campaign-trend case, and the smallest payload. `adset` adds it on ad sets too; `ad` adds it on every ad in `ads[]` as well (heaviest: a long range × up to 100 ads per ad set). Scope with `campaignId` to keep `ad`-level responses small. Ignored when `timeIncrement` is unset.
+        String compare = "previous"; // String | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call.
         try {
-            AdTreeResponse result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel);
+            AdTreeResponse result = apiInstance.getAdTree(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAdTree");
@@ -4065,6 +4222,7 @@ public class Example {
 | **sort** | **String**| Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. | [optional] [default to newest] [enum: newest, oldest, spend_desc, spend_asc] |
 | **timeIncrement** | **Integer**| Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. | [optional] [enum: 1] |
 | **dailyLevel** | **String**| Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only: the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest: a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. | [optional] [default to campaign] [enum: campaign, adset, ad] |
+| **compare** | **String**| Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional] [enum: previous] |
 
 ### Return type
 
@@ -4090,7 +4248,7 @@ public class Example {
 
 ## getAdTreeWithHttpInfo
 
-> ApiResponse<AdTreeResponse> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel)
+> ApiResponse<AdTreeResponse> getAdTree getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare)
 
 Get campaign tree
 
@@ -4137,8 +4295,9 @@ public class Example {
         String sort = "newest"; // String | Campaign-level sort order. `newest` (default) / `oldest` order by the campaign's newest-ad createdAt. `spend_desc` / `spend_asc` order by aggregated spend in the requested date range; campaigns with no spend land at the end.
         Integer timeIncrement = 1; // Integer | Set to `1` to also return a daily breakdown. Mirrors Meta Insights' `time_increment=1`: each node gains a `daily[]` array of per-day metrics (same fields as the aggregated `metrics`) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only `1` (daily) is supported. The daily series covers the same date range and uses the same source data as `metrics`, except `reach` on Meta and TikTok: the range total is the platform's de-duplicated value, so daily reach does not sum to it. See `dailyLevel` to control which levels carry it.
         String dailyLevel = "campaign"; // String | Which tree levels get the `daily[]` series when `timeIncrement=1`. `campaign` (default) attaches it on campaign nodes only: the common per-campaign-trend case, and the smallest payload. `adset` adds it on ad sets too; `ad` adds it on every ad in `ads[]` as well (heaviest: a long range × up to 100 ads per ad set). Scope with `campaignId` to keep `ad`-level responses small. Ignored when `timeIncrement` is unset.
+        String compare = "previous"; // String | Set to `previous` to also read the period of the same length that ends the day before `fromDate`. Every campaign, ad set and ad gains `previousMetrics` (same fields as `metrics`) and the response gains `previousRange`, so a table can show the change against the previous period in one call.
         try {
-            ApiResponse<AdTreeResponse> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel);
+            ApiResponse<AdTreeResponse> response = apiInstance.getAdTreeWithHttpInfo(page, limit, source, platform, status, adAccountId, pageId, accountId, profileId, campaignId, updatedSince, search, fromDate, toDate, hasDelivery, minSpend, sort, timeIncrement, dailyLevel, compare);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4177,6 +4336,7 @@ public class Example {
 | **sort** | **String**| Campaign-level sort order. &#x60;newest&#x60; (default) / &#x60;oldest&#x60; order by the campaign&#39;s newest-ad createdAt. &#x60;spend_desc&#x60; / &#x60;spend_asc&#x60; order by aggregated spend in the requested date range; campaigns with no spend land at the end. | [optional] [default to newest] [enum: newest, oldest, spend_desc, spend_asc] |
 | **timeIncrement** | **Integer**| Set to &#x60;1&#x60; to also return a daily breakdown. Mirrors Meta Insights&#39; &#x60;time_increment&#x3D;1&#x60;: each node gains a &#x60;daily[]&#x60; array of per-day metrics (same fields as the aggregated &#x60;metrics&#x60;) alongside the range total, so you get per-entity daily trends in ONE call instead of calling the tree once per day. Only &#x60;1&#x60; (daily) is supported. The daily series covers the same date range and uses the same source data as &#x60;metrics&#x60;, except &#x60;reach&#x60; on Meta and TikTok: the range total is the platform&#39;s de-duplicated value, so daily reach does not sum to it. See &#x60;dailyLevel&#x60; to control which levels carry it. | [optional] [enum: 1] |
 | **dailyLevel** | **String**| Which tree levels get the &#x60;daily[]&#x60; series when &#x60;timeIncrement&#x3D;1&#x60;. &#x60;campaign&#x60; (default) attaches it on campaign nodes only: the common per-campaign-trend case, and the smallest payload. &#x60;adset&#x60; adds it on ad sets too; &#x60;ad&#x60; adds it on every ad in &#x60;ads[]&#x60; as well (heaviest: a long range × up to 100 ads per ad set). Scope with &#x60;campaignId&#x60; to keep &#x60;ad&#x60;-level responses small. Ignored when &#x60;timeIncrement&#x60; is unset. | [optional] [default to campaign] [enum: campaign, adset, ad] |
+| **compare** | **String**| Set to &#x60;previous&#x60; to also read the period of the same length that ends the day before &#x60;fromDate&#x60;. Every campaign, ad set and ad gains &#x60;previousMetrics&#x60; (same fields as &#x60;metrics&#x60;) and the response gains &#x60;previousRange&#x60;, so a table can show the change against the previous period in one call. | [optional] [enum: previous] |
 
 ### Return type
 
@@ -4203,7 +4363,7 @@ ApiResponse<[**AdTreeResponse**](AdTreeResponse.md)>
 
 ## getAdsTimeline
 
-> AdsTimelineResponse getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform)
+> AdsTimelineResponse getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, compare)
 
 Get daily account metrics
 
@@ -4235,8 +4395,9 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String platform = "facebook"; // String | Restrict to one platform.
+        String compare = "previous"; // String | Set to `previous` to also return `previousRows` for the period of the same length that ends the day before `fromDate`, with that period as `previousRange`. Needs a `fromDate` (sent or defaulted); `toDate` alone answers 400.
         try {
-            AdsTimelineResponse result = apiInstance.getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform);
+            AdsTimelineResponse result = apiInstance.getAdsTimeline(accountId, adAccountId, fromDate, toDate, platform, compare);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#getAdsTimeline");
@@ -4259,6 +4420,7 @@ public class Example {
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
+| **compare** | **String**| Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. | [optional] [enum: previous] |
 
 ### Return type
 
@@ -4286,7 +4448,7 @@ public class Example {
 
 ## getAdsTimelineWithHttpInfo
 
-> ApiResponse<AdsTimelineResponse> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform)
+> ApiResponse<AdsTimelineResponse> getAdsTimeline getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare)
 
 Get daily account metrics
 
@@ -4319,8 +4481,9 @@ public class Example {
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range.
         String platform = "facebook"; // String | Restrict to one platform.
+        String compare = "previous"; // String | Set to `previous` to also return `previousRows` for the period of the same length that ends the day before `fromDate`, with that period as `previousRange`. Needs a `fromDate` (sent or defaulted); `toDate` alone answers 400.
         try {
-            ApiResponse<AdsTimelineResponse> response = apiInstance.getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform);
+            ApiResponse<AdsTimelineResponse> response = apiInstance.getAdsTimelineWithHttpInfo(accountId, adAccountId, fromDate, toDate, platform, compare);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -4345,6 +4508,7 @@ public class Example {
 | **fromDate** | **LocalDate**| Inclusive start of metrics range (YYYY-MM-DD). Defaults to 90 days ago. | [optional] |
 | **toDate** | **LocalDate**| Inclusive end of metrics range (YYYY-MM-DD). Defaults to today. Max 730-day range. | [optional] |
 | **platform** | **String**| Restrict to one platform. | [optional] [enum: facebook, instagram, tiktok, linkedin, pinterest, google, twitter, openai, reddit] |
+| **compare** | **String**| Set to &#x60;previous&#x60; to also return &#x60;previousRows&#x60; for the period of the same length that ends the day before &#x60;fromDate&#x60;, with that period as &#x60;previousRange&#x60;. Needs a &#x60;fromDate&#x60; (sent or defaulted); &#x60;toDate&#x60; alone answers 400. | [optional] [enum: previous] |
 
 ### Return type
 
@@ -6314,6 +6478,160 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 |-------------|-------------|------------------|
 | **200** | Paginated ads |  -  |
 | **202** | Meta only. Historical data is incomplete and backfill remains pending. |  * Retry-After -  <br>  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
+## listAdsAlerts
+
+> ListAdsAlerts200Response listAdsAlerts(accountId, includeDismissed)
+
+List ads that need attention
+
+Lists what needs attention across your ads, most severe first: ads created in the last 90 days that were rejected, campaigns the platform reports delivery issues on, Meta ad accounts with a failed or overdue payment or disabled while holding live ads, campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals), and budgets spent to their daily cap yesterday.  Built from stored data and the last 7 days of synced metrics, so it costs no platform call. Each alert has a stable &#x60;id&#x60;; dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach.
+        Boolean includeDismissed = false; // Boolean | Also return dismissed alerts, with `dismissed: true`.
+        try {
+            ListAdsAlerts200Response result = apiInstance.listAdsAlerts(accountId, includeDismissed);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdsAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach. | [optional] |
+| **includeDismissed** | **Boolean**| Also return dismissed alerts, with &#x60;dismissed: true&#x60;. | [optional] [default to false] |
+
+### Return type
+
+[**ListAdsAlerts200Response**](ListAdsAlerts200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Alerts, most severe first. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+## listAdsAlertsWithHttpInfo
+
+> ApiResponse<ListAdsAlerts200Response> listAdsAlerts listAdsAlertsWithHttpInfo(accountId, includeDismissed)
+
+List ads that need attention
+
+Lists what needs attention across your ads, most severe first: ads created in the last 90 days that were rejected, campaigns the platform reports delivery issues on, Meta ad accounts with a failed or overdue payment or disabled while holding live ads, campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals), and budgets spent to their daily cap yesterday.  Built from stored data and the last 7 days of synced metrics, so it costs no platform call. Each alert has a stable &#x60;id&#x60;; dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach.
+        Boolean includeDismissed = false; // Boolean | Also return dismissed alerts, with `dismissed: true`.
+        try {
+            ApiResponse<ListAdsAlerts200Response> response = apiInstance.listAdsAlertsWithHttpInfo(accountId, includeDismissed);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignsApi#listAdsAlerts");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach. | [optional] |
+| **includeDismissed** | **Boolean**| Also return dismissed alerts, with &#x60;dismissed: true&#x60;. | [optional] [default to false] |
+
+### Return type
+
+ApiResponse<[**ListAdsAlerts200Response**](ListAdsAlerts200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Alerts, most severe first. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |

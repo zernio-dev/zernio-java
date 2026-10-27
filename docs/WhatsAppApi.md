@@ -5712,7 +5712,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  |  -  |
-| **400** | Invalid body. |  -  |
+| **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |
@@ -5789,7 +5789,7 @@ ApiResponse<[**SendWhatsAppConversion200Response**](SendWhatsAppConversion200Res
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Event submitted to Meta. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failures. A 200 does not mean Meta accepted the event; the status reflects \&quot;request reached Meta\&quot; only.  |  -  |
-| **400** | Invalid body. |  -  |
+| **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Conversation not found. |  -  |
 | **422** | Configuration missing (no &#x60;metaCapiDatasetId&#x60; on the account, set it via POST /v1/whatsapp/dataset) OR the resolved conversation has no captured &#x60;ctwa_clid&#x60;.  |  -  |

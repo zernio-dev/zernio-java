@@ -24,6 +24,7 @@ Campaign with nested ad sets and rolled-up metrics
 |**isBudgetScheduleEnabled** | **Boolean** | Meta-only. Mirrors Campaign.is_budget_schedule_enabled: true when the campaign uses budget scheduling (time-based budget changes). Independent of CBO/ABO. |  [optional] |
 |**currency** | **String** | ISO 4217 currency code (e.g. USD, EUR, CLP, JPY) for all budget amounts in this campaign node. Budgets are NOT normalized to USD. |  [optional] |
 |**metrics** | [**AdMetrics**](AdMetrics.md) |  |  [optional] |
+|**previousMetrics** | [**AdMetrics**](AdMetrics.md) | Only with &#x60;compare&#x3D;previous&#x60;. The same metrics over &#x60;previousRange&#x60;. |  [optional] |
 |**platformAdAccountId** | **String** |  |  [optional] |
 |**platformAdAccountName** | **String** | Human-readable advertiser/account name from the platform. Refreshed on every sync. |  [optional] |
 |**accountId** | **String** |  |  [optional] |

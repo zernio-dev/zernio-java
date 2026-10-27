@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.377.2
+- API version: 1.378.0
 
-- Build date: 2026-10-27T12:29:20.240262881Z[Etc/UTC]
+- Build date: 2026-10-27T13:16:50.367212750Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.377.2</version>
+  <version>1.378.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.377.2"
+compile "dev.zernio:zernio-sdk:1.378.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.377.2.jar`
+- `target/zernio-sdk-1.378.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -403,6 +403,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**deleteAdCampaignWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdCampaignWithHttpInfo) | **DELETE** /v1/ads/campaigns/{campaignId} | Delete a campaign
 *AdCampaignsApi* | [**deleteAdSet**](docs/AdCampaignsApi.md#deleteAdSet) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
 *AdCampaignsApi* | [**deleteAdSetWithHttpInfo**](docs/AdCampaignsApi.md#deleteAdSetWithHttpInfo) | **DELETE** /v1/ads/ad-sets/{adSetId} | Delete an ad set
+*AdCampaignsApi* | [**dismissAdsAlert**](docs/AdCampaignsApi.md#dismissAdsAlert) | **POST** /v1/ads/alerts/{alertId}/dismiss | Dismiss an ads alert
+*AdCampaignsApi* | [**dismissAdsAlertWithHttpInfo**](docs/AdCampaignsApi.md#dismissAdsAlertWithHttpInfo) | **POST** /v1/ads/alerts/{alertId}/dismiss | Dismiss an ads alert
 *AdCampaignsApi* | [**dismissGoogleRecommendations**](docs/AdCampaignsApi.md#dismissGoogleRecommendations) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
 *AdCampaignsApi* | [**dismissGoogleRecommendationsWithHttpInfo**](docs/AdCampaignsApi.md#dismissGoogleRecommendationsWithHttpInfo) | **POST** /v1/ads/recommendations/dismiss | Dismiss Google Ads recommendations
 *AdCampaignsApi* | [**duplicateAd**](docs/AdCampaignsApi.md#duplicateAd) | **POST** /v1/ads/{adId}/duplicate | Duplicate an ad
@@ -447,6 +449,8 @@ Class | Method | HTTP request | Description
 *AdCampaignsApi* | [**listAdSetsWithHttpInfo**](docs/AdCampaignsApi.md#listAdSetsWithHttpInfo) | **GET** /v1/ads/ad-sets | List ad sets
 *AdCampaignsApi* | [**listAds**](docs/AdCampaignsApi.md#listAds) | **GET** /v1/ads | List ads
 *AdCampaignsApi* | [**listAdsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsWithHttpInfo) | **GET** /v1/ads | List ads
+*AdCampaignsApi* | [**listAdsAlerts**](docs/AdCampaignsApi.md#listAdsAlerts) | **GET** /v1/ads/alerts | List ads that need attention
+*AdCampaignsApi* | [**listAdsAlertsWithHttpInfo**](docs/AdCampaignsApi.md#listAdsAlertsWithHttpInfo) | **GET** /v1/ads/alerts | List ads that need attention
 *AdCampaignsApi* | [**listBidStrategies**](docs/AdCampaignsApi.md#listBidStrategies) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies
 *AdCampaignsApi* | [**listBidStrategiesWithHttpInfo**](docs/AdCampaignsApi.md#listBidStrategiesWithHttpInfo) | **GET** /v1/ads/bid-strategies | List portfolio bid strategies
 *AdCampaignsApi* | [**listCampaignAssets**](docs/AdCampaignsApi.md#listCampaignAssets) | **GET** /v1/ads/campaigns/{campaignId}/assets | List campaign assets
@@ -2256,6 +2260,7 @@ Class | Method | HTTP request | Description
  - [AdTreeCampaignCampaignBudget](docs/AdTreeCampaignCampaignBudget.md)
  - [AdTreeCampaignPromotedObject](docs/AdTreeCampaignPromotedObject.md)
  - [AdTreeResponse](docs/AdTreeResponse.md)
+ - [AdTreeResponsePreviousRange](docs/AdTreeResponsePreviousRange.md)
  - [AddAccountCallouts201Response](docs/AddAccountCallouts201Response.md)
  - [AddAccountCallouts201ResponseCalloutsInner](docs/AddAccountCallouts201ResponseCalloutsInner.md)
  - [AddAccountCalloutsRequest](docs/AddAccountCalloutsRequest.md)
@@ -2300,8 +2305,12 @@ Class | Method | HTTP request | Description
  - [AdjustConversionsRequest](docs/AdjustConversionsRequest.md)
  - [AdjustConversionsRequestAdjustmentsInner](docs/AdjustConversionsRequestAdjustmentsInner.md)
  - [AdjustConversionsRequestAdjustmentsInnerUser](docs/AdjustConversionsRequestAdjustmentsInnerUser.md)
+ - [AdsAlert](docs/AdsAlert.md)
+ - [AdsAlertEntity](docs/AdsAlertEntity.md)
+ - [AdsAlertFix](docs/AdsAlertFix.md)
  - [AdsListResponse](docs/AdsListResponse.md)
  - [AdsTimelineResponse](docs/AdsTimelineResponse.md)
+ - [AdsTimelineResponsePreviousRange](docs/AdsTimelineResponsePreviousRange.md)
  - [AdsTimelineResponseRowsInner](docs/AdsTimelineResponseRowsInner.md)
  - [AnalyticsDashboardFollowers](docs/AnalyticsDashboardFollowers.md)
  - [AnalyticsDashboardFollowersByAccountInner](docs/AnalyticsDashboardFollowersByAccountInner.md)
@@ -2966,6 +2975,7 @@ Class | Method | HTTP request | Description
  - [DiscordRole](docs/DiscordRole.md)
  - [DiscordScheduledEvent](docs/DiscordScheduledEvent.md)
  - [DiscordScheduledEventEntityMetadata](docs/DiscordScheduledEventEntityMetadata.md)
+ - [DismissAdsAlert200Response](docs/DismissAdsAlert200Response.md)
  - [DismissGoogleRecommendationsRequest](docs/DismissGoogleRecommendationsRequest.md)
  - [DmButton](docs/DmButton.md)
  - [DownloadTikTokVideo200Response](docs/DownloadTikTokVideo200Response.md)
@@ -3726,6 +3736,8 @@ Class | Method | HTTP request | Description
  - [ListAdStudies200Response](docs/ListAdStudies200Response.md)
  - [ListAdVideos200Response](docs/ListAdVideos200Response.md)
  - [ListAds202Response](docs/ListAds202Response.md)
+ - [ListAdsAlerts200Response](docs/ListAdsAlerts200Response.md)
+ - [ListAdsAlerts200ResponseCounts](docs/ListAdsAlerts200ResponseCounts.md)
  - [ListAdsBusinessCenters200Response](docs/ListAdsBusinessCenters200Response.md)
  - [ListAdsInstagramAccounts200Response](docs/ListAdsInstagramAccounts200Response.md)
  - [ListAdsInstagramAccounts200ResponseAccountsInner](docs/ListAdsInstagramAccounts200ResponseAccountsInner.md)

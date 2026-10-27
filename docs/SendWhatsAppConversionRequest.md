@@ -19,7 +19,7 @@ In addition to the `required` list, at least one of `conversationId` or `phoneE1
 |**contentIds** | **List&lt;String&gt;** | Optional product / content identifiers. |  [optional] |
 |**email** | **String** | User email. Normalized + SHA-256 hashed before sending to Meta. |  [optional] |
 |**externalId** | **String** | Stable customer identifier. Lowercased + SHA-256 hashed before sending to Meta.  |  [optional] |
-|**testCode** | **String** | Meta &#x60;test_event_code&#x60; passthrough. Routes the event to the Test Events tab in Events Manager instead of the production dataset, useful for development.  |  [optional] |
+|**testCode** | **String** | Meta &#x60;test_event_code&#x60; passthrough, sent at the request root (a root-level &#x60;test_event_code&#x60; is accepted as an alias). The event shows in Events Manager&#39;s Test Events tab for the dataset whose current test code matches. Meta still processes it like any other event, so remove it in production.  |  [optional] |
 
 
 

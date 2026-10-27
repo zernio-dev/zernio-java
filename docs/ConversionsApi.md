@@ -3205,7 +3205,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only. For OpenAI Ads and Reddit, each 1000-event chunk is all-or-nothing, same as Meta.  |  -  |
-| **400** | Invalid body (missing accountId/destinationId/events, malformed event shape), or (Google Ads, param &#x60;destinationId&#x60;) the customer named in &#x60;destinationId&#x60; is not one of this connection&#39;s Google Ads accounts. |  -  |
+| **400** | Invalid body (missing accountId/destinationId/events, malformed event shape, a &#x60;test_event_code&#x60; that is not a non-empty string, &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values), or (Google Ads, param &#x60;destinationId&#x60;) the customer named in &#x60;destinationId&#x60; is not one of this connection&#39;s Google Ads accounts. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected, OR (for Reddit) the connection lacks the &#x60;adsconversions&#x60; permission (code &#x60;reconnect_required&#x60;, reconnect Reddit Ads) or the Reddit user has no role on the ad account that owns the pixel (code &#x60;insufficient_permissions&#x60;), OR (for Google Ads) code &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the Google Ads customer named in &#x60;destinationId&#x60; is not among them (param &#x60;destinationId&#x60;; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;). Add the customer to the selection (GET /v1/connect/googleads/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -3285,7 +3285,7 @@ ApiResponse<[**SendConversions200Response**](SendConversions200Response.md)>
 |-------------|-------------|------------------|
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **200** | Events processed. Inspect &#x60;eventsFailed&#x60; and &#x60;failures[]&#x60; to detect partial failure. For Meta, a batch is all-or-nothing (either every event in a chunk succeeds, or every event in the chunk is listed in failures). For Google, the API returns success/failure at the request level only. For OpenAI Ads and Reddit, each 1000-event chunk is all-or-nothing, same as Meta.  |  -  |
-| **400** | Invalid body (missing accountId/destinationId/events, malformed event shape), or (Google Ads, param &#x60;destinationId&#x60;) the customer named in &#x60;destinationId&#x60; is not one of this connection&#39;s Google Ads accounts. |  -  |
+| **400** | Invalid body (missing accountId/destinationId/events, malformed event shape, a &#x60;test_event_code&#x60; that is not a non-empty string, &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values), or (Google Ads, param &#x60;destinationId&#x60;) the customer named in &#x60;destinationId&#x60; is not one of this connection&#39;s Google Ads accounts. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (Ads add-on on legacy plans, included on usage-based plans), OR (for LinkedIn) the connected account lacks the &#x60;rw_conversions&#x60; scope and must be reconnected, OR (for Reddit) the connection lacks the &#x60;adsconversions&#x60; permission (code &#x60;reconnect_required&#x60;, reconnect Reddit Ads) or the Reddit user has no role on the ad account that owns the pixel (code &#x60;insufficient_permissions&#x60;), OR (for Google Ads) code &#x60;ad_account_not_selected&#x60;: the connection has selected ad accounts and the Google Ads customer named in &#x60;destinationId&#x60; is not among them (param &#x60;destinationId&#x60;; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;). Add the customer to the selection (GET /v1/connect/googleads/ads with adAccountIds, which replaces the selection) or use a connection that has it selected.  |  -  |
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
@@ -3362,7 +3362,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Events processed. Check each destination for partial failure. |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -3438,7 +3438,7 @@ ApiResponse<[**SendEvents200Response**](SendEvents200Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Events processed. Check each destination for partial failure. |  -  |
-| **400** | Invalid request |  -  |
+| **400** | Invalid body, including a &#x60;test_event_code&#x60; that is not a non-empty string, or &#x60;testCode&#x60; and &#x60;test_event_code&#x60; with different values (&#x60;param: test_event_code&#x60;). |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 

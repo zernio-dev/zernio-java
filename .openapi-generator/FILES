@@ -87,6 +87,7 @@ docs/AdTreeCampaignBudget.md
 docs/AdTreeCampaignCampaignBudget.md
 docs/AdTreeCampaignPromotedObject.md
 docs/AdTreeResponse.md
+docs/AdTreeResponsePreviousRange.md
 docs/AddAccountCallouts201Response.md
 docs/AddAccountCallouts201ResponseCalloutsInner.md
 docs/AddAccountCalloutsRequest.md
@@ -131,8 +132,12 @@ docs/AdjustConversions200ResponseFailuresInner.md
 docs/AdjustConversionsRequest.md
 docs/AdjustConversionsRequestAdjustmentsInner.md
 docs/AdjustConversionsRequestAdjustmentsInnerUser.md
+docs/AdsAlert.md
+docs/AdsAlertEntity.md
+docs/AdsAlertFix.md
 docs/AdsListResponse.md
 docs/AdsTimelineResponse.md
+docs/AdsTimelineResponsePreviousRange.md
 docs/AdsTimelineResponseRowsInner.md
 docs/AnalyticsApi.md
 docs/AnalyticsDashboardFollowers.md
@@ -814,6 +819,7 @@ docs/DiscordPlatformDataThreadFromMessage.md
 docs/DiscordRole.md
 docs/DiscordScheduledEvent.md
 docs/DiscordScheduledEventEntityMetadata.md
+docs/DismissAdsAlert200Response.md
 docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
 docs/DownloadTikTokVideo200Response.md
@@ -1589,6 +1595,8 @@ docs/ListAdSets200ResponseAdSetsInnerTargeting.md
 docs/ListAdStudies200Response.md
 docs/ListAdVideos200Response.md
 docs/ListAds202Response.md
+docs/ListAdsAlerts200Response.md
+docs/ListAdsAlerts200ResponseCounts.md
 docs/ListAdsBusinessCenters200Response.md
 docs/ListAdsInstagramAccounts200Response.md
 docs/ListAdsInstagramAccounts200ResponseAccountsInner.md
@@ -3183,6 +3191,7 @@ src/main/java/dev/zernio/model/AdTreeCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignCampaignBudget.java
 src/main/java/dev/zernio/model/AdTreeCampaignPromotedObject.java
 src/main/java/dev/zernio/model/AdTreeResponse.java
+src/main/java/dev/zernio/model/AdTreeResponsePreviousRange.java
 src/main/java/dev/zernio/model/AddAccountCallouts201Response.java
 src/main/java/dev/zernio/model/AddAccountCallouts201ResponseCalloutsInner.java
 src/main/java/dev/zernio/model/AddAccountCalloutsRequest.java
@@ -3227,8 +3236,12 @@ src/main/java/dev/zernio/model/AdjustConversions200ResponseFailuresInner.java
 src/main/java/dev/zernio/model/AdjustConversionsRequest.java
 src/main/java/dev/zernio/model/AdjustConversionsRequestAdjustmentsInner.java
 src/main/java/dev/zernio/model/AdjustConversionsRequestAdjustmentsInnerUser.java
+src/main/java/dev/zernio/model/AdsAlert.java
+src/main/java/dev/zernio/model/AdsAlertEntity.java
+src/main/java/dev/zernio/model/AdsAlertFix.java
 src/main/java/dev/zernio/model/AdsListResponse.java
 src/main/java/dev/zernio/model/AdsTimelineResponse.java
+src/main/java/dev/zernio/model/AdsTimelineResponsePreviousRange.java
 src/main/java/dev/zernio/model/AdsTimelineResponseRowsInner.java
 src/main/java/dev/zernio/model/AnalyticsDashboardFollowers.java
 src/main/java/dev/zernio/model/AnalyticsDashboardFollowersByAccountInner.java
@@ -3893,6 +3906,7 @@ src/main/java/dev/zernio/model/DiscordPlatformDataThreadFromMessage.java
 src/main/java/dev/zernio/model/DiscordRole.java
 src/main/java/dev/zernio/model/DiscordScheduledEvent.java
 src/main/java/dev/zernio/model/DiscordScheduledEventEntityMetadata.java
+src/main/java/dev/zernio/model/DismissAdsAlert200Response.java
 src/main/java/dev/zernio/model/DismissGoogleRecommendationsRequest.java
 src/main/java/dev/zernio/model/DmButton.java
 src/main/java/dev/zernio/model/DownloadTikTokVideo200Response.java
@@ -4653,6 +4667,8 @@ src/main/java/dev/zernio/model/ListAdSets200ResponseAdSetsInnerTargeting.java
 src/main/java/dev/zernio/model/ListAdStudies200Response.java
 src/main/java/dev/zernio/model/ListAdVideos200Response.java
 src/main/java/dev/zernio/model/ListAds202Response.java
+src/main/java/dev/zernio/model/ListAdsAlerts200Response.java
+src/main/java/dev/zernio/model/ListAdsAlerts200ResponseCounts.java
 src/main/java/dev/zernio/model/ListAdsBusinessCenters200Response.java
 src/main/java/dev/zernio/model/ListAdsInstagramAccounts200Response.java
 src/main/java/dev/zernio/model/ListAdsInstagramAccounts200ResponseAccountsInner.java
@@ -6041,3 +6057,11 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdTreeResponsePreviousRangeTest.java
+src/test/java/dev/zernio/model/AdsAlertEntityTest.java
+src/test/java/dev/zernio/model/AdsAlertFixTest.java
+src/test/java/dev/zernio/model/AdsAlertTest.java
+src/test/java/dev/zernio/model/AdsTimelineResponsePreviousRangeTest.java
+src/test/java/dev/zernio/model/DismissAdsAlert200ResponseTest.java
+src/test/java/dev/zernio/model/ListAdsAlerts200ResponseCountsTest.java
+src/test/java/dev/zernio/model/ListAdsAlerts200ResponseTest.java
