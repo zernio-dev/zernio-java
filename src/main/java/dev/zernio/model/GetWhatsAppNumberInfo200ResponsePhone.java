@@ -45,7 +45,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppNumberInfo200ResponsePhone.JSON_PROPERTY_PLATFORM_TYPE,
   GetWhatsAppNumberInfo200ResponsePhone.JSON_PROPERTY_HEALTH_STATUS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppNumberInfo200ResponsePhone {
   public static final String JSON_PROPERTY_DISPLAY_PHONE_NUMBER = "display_phone_number";
   @javax.annotation.Nullable

@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   MetaPlacementAssetsRulesInnerPlacements.JSON_PROPERTY_WHATSAPP_POSITIONS,
   MetaPlacementAssetsRulesInnerPlacements.JSON_PROPERTY_DEVICE_PLATFORMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaPlacementAssetsRulesInnerPlacements {
   /**
    * Gets or Sets publisherPlatforms

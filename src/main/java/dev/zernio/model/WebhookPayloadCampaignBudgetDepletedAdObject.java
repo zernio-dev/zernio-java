@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCampaignBudgetDepletedAdObject.JSON_PROPERTY_PLATFORM_AD_ACCOUNT_ID,
   WebhookPayloadCampaignBudgetDepletedAdObject.JSON_PROPERTY_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCampaignBudgetDepletedAdObject {
   /**
    * Always &#x60;CAMPAIGN&#x60;.

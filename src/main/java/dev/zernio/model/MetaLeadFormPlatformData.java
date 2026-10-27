@@ -47,6 +47,8 @@ import dev.zernio.ApiClient;
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_BODY,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_BUTTON_TEXT,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_BUTTON_TYPE,
+  MetaLeadFormPlatformData.JSON_PROPERTY_BUSINESS_PHONE_NUMBER,
+  MetaLeadFormPlatformData.JSON_PROPERTY_COUNTRY_CODE,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_WEBSITE_URL,
   MetaLeadFormPlatformData.JSON_PROPERTY_THANK_YOU_ENABLE_MESSENGER,
   MetaLeadFormPlatformData.JSON_PROPERTY_IS_OPTIMIZED_FOR_QUALITY,
@@ -56,7 +58,7 @@ import dev.zernio.ApiClient;
   MetaLeadFormPlatformData.JSON_PROPERTY_CONTEXT_CARD,
   MetaLeadFormPlatformData.JSON_PROPERTY_CUSTOM_DISCLAIMER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MetaLeadFormPlatformData {
   public static final String JSON_PROPERTY_QUESTIONS = "questions";
   @javax.annotation.Nonnull
@@ -89,6 +91,14 @@ public class MetaLeadFormPlatformData {
   public static final String JSON_PROPERTY_THANK_YOU_BUTTON_TYPE = "thankYouButtonType";
   @javax.annotation.Nullable
   private String thankYouButtonType;
+
+  public static final String JSON_PROPERTY_BUSINESS_PHONE_NUMBER = "businessPhoneNumber";
+  @javax.annotation.Nullable
+  private String businessPhoneNumber;
+
+  public static final String JSON_PROPERTY_COUNTRY_CODE = "countryCode";
+  @javax.annotation.Nullable
+  private String countryCode;
 
   public static final String JSON_PROPERTY_THANK_YOU_WEBSITE_URL = "thankYouWebsiteUrl";
   @javax.annotation.Nullable
@@ -307,7 +317,7 @@ public class MetaLeadFormPlatformData {
   }
 
   /**
-   * Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.
+   * Meta thank_you_page.button_type. Defaults to VIEW_WEBSITE. Case-insensitive, sent to Meta in uppercase. CALL_BUSINESS requires businessPhoneNumber and countryCode (a 400 otherwise). Meta rejects MESSAGE_BUSINESS on thank-you pages with (#100) This button type is not yet supported for Thank You Page.
    * @return thankYouButtonType
    */
   @javax.annotation.Nullable
@@ -322,6 +332,54 @@ public class MetaLeadFormPlatformData {
   @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
   public void setThankYouButtonType(@javax.annotation.Nullable String thankYouButtonType) {
     this.thankYouButtonType = thankYouButtonType;
+  }
+
+
+  public MetaLeadFormPlatformData businessPhoneNumber(@javax.annotation.Nullable String businessPhoneNumber) {
+    this.businessPhoneNumber = businessPhoneNumber;
+    return this;
+  }
+
+  /**
+   * International E.164 number the CALL_BUSINESS thank-you button dials (Meta thank_you_page.business_phone_number). It must start with + and the country calling code matching countryCode; spaces, dashes, dots and parentheses are stripped, and a local number such as 2025550123 is a 400. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level businessPhoneNumber is a 400.
+   * @return businessPhoneNumber
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getBusinessPhoneNumber() {
+    return businessPhoneNumber;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_BUSINESS_PHONE_NUMBER, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setBusinessPhoneNumber(@javax.annotation.Nullable String businessPhoneNumber) {
+    this.businessPhoneNumber = businessPhoneNumber;
+  }
+
+
+  public MetaLeadFormPlatformData countryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = countryCode;
+    return this;
+  }
+
+  /**
+   * ISO 3166-1 alpha-2 country of businessPhoneNumber (Meta thank_you_page.country_code), sent in uppercase. Required when thankYouButtonType is CALL_BUSINESS and a 400 with any other button type. Accepted only inside platformSpecificData: a top-level countryCode is a 400.
+   * @return countryCode
+   */
+  @javax.annotation.Nullable
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public String getCountryCode() {
+    return countryCode;
+  }
+
+
+  @JsonProperty(value = JSON_PROPERTY_COUNTRY_CODE, required = false)
+  @JsonInclude(value = JsonInclude.Include.USE_DEFAULTS)
+  public void setCountryCode(@javax.annotation.Nullable String countryCode) {
+    this.countryCode = countryCode;
   }
 
 
@@ -537,6 +595,8 @@ public class MetaLeadFormPlatformData {
         Objects.equals(this.thankYouBody, metaLeadFormPlatformData.thankYouBody) &&
         Objects.equals(this.thankYouButtonText, metaLeadFormPlatformData.thankYouButtonText) &&
         Objects.equals(this.thankYouButtonType, metaLeadFormPlatformData.thankYouButtonType) &&
+        Objects.equals(this.businessPhoneNumber, metaLeadFormPlatformData.businessPhoneNumber) &&
+        Objects.equals(this.countryCode, metaLeadFormPlatformData.countryCode) &&
         Objects.equals(this.thankYouWebsiteUrl, metaLeadFormPlatformData.thankYouWebsiteUrl) &&
         Objects.equals(this.thankYouEnableMessenger, metaLeadFormPlatformData.thankYouEnableMessenger) &&
         Objects.equals(this.isOptimizedForQuality, metaLeadFormPlatformData.isOptimizedForQuality) &&
@@ -549,7 +609,7 @@ public class MetaLeadFormPlatformData {
 
   @Override
   public int hashCode() {
-    return Objects.hash(questions, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, thankYouWebsiteUrl, thankYouEnableMessenger, isOptimizedForQuality, isPhoneSmsVerifyEnabled, blockDisplayForNonTargetedViewer, questionPageCustomHeadline, contextCard, customDisclaimer);
+    return Objects.hash(questions, privacyPolicyLinkText, followUpActionUrl, locale, thankYouTitle, thankYouBody, thankYouButtonText, thankYouButtonType, businessPhoneNumber, countryCode, thankYouWebsiteUrl, thankYouEnableMessenger, isOptimizedForQuality, isPhoneSmsVerifyEnabled, blockDisplayForNonTargetedViewer, questionPageCustomHeadline, contextCard, customDisclaimer);
   }
 
   @Override
@@ -564,6 +624,8 @@ public class MetaLeadFormPlatformData {
     sb.append("    thankYouBody: ").append(toIndentedString(thankYouBody)).append("\n");
     sb.append("    thankYouButtonText: ").append(toIndentedString(thankYouButtonText)).append("\n");
     sb.append("    thankYouButtonType: ").append(toIndentedString(thankYouButtonType)).append("\n");
+    sb.append("    businessPhoneNumber: ").append(toIndentedString(businessPhoneNumber)).append("\n");
+    sb.append("    countryCode: ").append(toIndentedString(countryCode)).append("\n");
     sb.append("    thankYouWebsiteUrl: ").append(toIndentedString(thankYouWebsiteUrl)).append("\n");
     sb.append("    thankYouEnableMessenger: ").append(toIndentedString(thankYouEnableMessenger)).append("\n");
     sb.append("    isOptimizedForQuality: ").append(toIndentedString(isOptimizedForQuality)).append("\n");
@@ -662,6 +724,16 @@ public class MetaLeadFormPlatformData {
     // add `thankYouButtonType` to the URL query string
     if (getThankYouButtonType() != null) {
       joiner.add(String.format(java.util.Locale.ROOT, "%sthankYouButtonType%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getThankYouButtonType()))));
+    }
+
+    // add `businessPhoneNumber` to the URL query string
+    if (getBusinessPhoneNumber() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%sbusinessPhoneNumber%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getBusinessPhoneNumber()))));
+    }
+
+    // add `countryCode` to the URL query string
+    if (getCountryCode() != null) {
+      joiner.add(String.format(java.util.Locale.ROOT, "%scountryCode%s=%s", prefix, suffix, ApiClient.urlEncode(ApiClient.valueToString(getCountryCode()))));
     }
 
     // add `thankYouWebsiteUrl` to the URL query string

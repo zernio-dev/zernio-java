@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   GetWhatsAppFlowsEncryptionKey200Response.JSON_PROPERTY_SIGNATURE_STATUS,
   GetWhatsAppFlowsEncryptionKey200Response.JSON_PROPERTY_REGISTERED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWhatsAppFlowsEncryptionKey200Response {
   public static final String JSON_PROPERTY_PUBLIC_KEY = "publicKey";
   private JsonNullable<String> publicKey = JsonNullable.<String>undefined();

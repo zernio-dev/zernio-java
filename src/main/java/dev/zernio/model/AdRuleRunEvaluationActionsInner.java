@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AdRuleRunEvaluationActionsInner.JSON_PROPERTY_PREVIOUS_DAILY_BUDGET,
   AdRuleRunEvaluationActionsInner.JSON_PROPERTY_NEW_DAILY_BUDGET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:17:39.966183685Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T03:26:18.764272519Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleRunEvaluationActionsInner {
   public static final String JSON_PROPERTY_OBJECT_ID = "objectId";
   @javax.annotation.Nonnull
