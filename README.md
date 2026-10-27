@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.370.0
+- API version: 1.371.0
 
-- Build date: 2026-10-27T01:44:08.515517394Z[Etc/UTC]
+- Build date: 2026-10-27T03:17:39.966183685Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.370.0</version>
+  <version>1.371.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.370.0"
+compile "dev.zernio:zernio-sdk:1.371.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.370.0.jar`
+- `target/zernio-sdk-1.371.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2215,6 +2215,7 @@ Class | Method | HTTP request | Description
  - [AdKeywordMetrics](docs/AdKeywordMetrics.md)
  - [AdKeywordQuality](docs/AdKeywordQuality.md)
  - [AdLead](docs/AdLead.md)
+ - [AdLeadConsent](docs/AdLeadConsent.md)
  - [AdMetrics](docs/AdMetrics.md)
  - [AdNegativeKeywordList](docs/AdNegativeKeywordList.md)
  - [AdNegativeKeywordListKeyword](docs/AdNegativeKeywordListKeyword.md)

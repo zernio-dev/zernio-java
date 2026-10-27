@@ -15,6 +15,7 @@
 |**formId** | **String** |  |  [optional] |
 |**fields** | **Map&lt;String, String&gt;** |  |  [optional] |
 |**fieldData** | **List&lt;Object&gt;** |  |  [optional] |
+|**consents** | [**List&lt;AdLeadConsent&gt;**](AdLeadConsent.md) | Meta lead forms only: the answer to every custom disclaimer checkbox, required or optional. Empty when the form has none, and may be empty on leads stored before 2026-10-22. LinkedIn leads do not carry the field. |  [optional] |
 
 
 

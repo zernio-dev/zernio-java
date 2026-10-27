@@ -47,6 +47,7 @@ docs/AdKeyword.md
 docs/AdKeywordMetrics.md
 docs/AdKeywordQuality.md
 docs/AdLead.md
+docs/AdLeadConsent.md
 docs/AdLibraryApi.md
 docs/AdMetrics.md
 docs/AdNegativeKeywordList.md
@@ -3137,6 +3138,7 @@ src/main/java/dev/zernio/model/AdKeyword.java
 src/main/java/dev/zernio/model/AdKeywordMetrics.java
 src/main/java/dev/zernio/model/AdKeywordQuality.java
 src/main/java/dev/zernio/model/AdLead.java
+src/main/java/dev/zernio/model/AdLeadConsent.java
 src/main/java/dev/zernio/model/AdMetrics.java
 src/main/java/dev/zernio/model/AdNegativeKeywordList.java
 src/main/java/dev/zernio/model/AdNegativeKeywordListKeyword.java
@@ -6023,4 +6025,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/MetaAdScheduleInnerTest.java
+src/test/java/dev/zernio/model/AdLeadConsentTest.java

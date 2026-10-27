@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.370.0
+  version: 1.371.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -68514,6 +68514,30 @@ components:
         `dashboard_url` (the enterprise contact form) to adjust the
         contract's limit.
   schemas:
+    AdLeadConsent:
+      description: "One custom disclaimer checkbox on a Meta lead form (for example\
+        \ a TCPA call or SMS consent), as Meta returns it in custom_disclaimer_responses."
+      example:
+        checkboxKey: checkboxKey
+        isChecked: true
+      properties:
+        checkboxKey:
+          description: "The checkbox key as Meta returns it: the one set in platformSpecificData.customDisclaimer.checkboxes[].key\
+            \ on POST /v1/ads/lead-forms, or otherwise a key Meta derives from the\
+            \ checkbox text, which can be long and contain spaces and punctuation."
+          type: string
+        isChecked:
+          type: boolean
+      required:
+      - checkboxKey
+      - isChecked
+    AdLeadConsents:
+      description: "Meta lead forms only: the answer to every custom disclaimer checkbox,\
+        \ required or optional. Empty when the form has none, and may be empty on\
+        \ leads stored before 2026-10-22. LinkedIn leads do not carry the field."
+      items:
+        $ref: "#/components/schemas/AdLeadConsent"
+      type: array
     AdLead:
       example:
         formId: formId
@@ -68527,6 +68551,11 @@ components:
         statusChangedAt: 2000-01-23T04:56:07.000+00:00
         adId: adId
         formName: formName
+        consents:
+        - checkboxKey: checkboxKey
+          isChecked: true
+        - checkboxKey: checkboxKey
+          isChecked: true
         createdTime: createdTime
         currency: currency
         id: id
@@ -68580,6 +68609,14 @@ components:
           description: Raw Meta field_data.
           items:
             type: object
+          type: array
+        consents:
+          description: "Meta lead forms only: the answer to every custom disclaimer\
+            \ checkbox, required or optional. Empty when the form has none, and may\
+            \ be empty on leads stored before 2026-10-22. LinkedIn leads do not carry\
+            \ the field."
+          items:
+            $ref: "#/components/schemas/AdLeadConsent"
           type: array
         status:
           description: "Meta leads only. `contacted` is set when the first WhatsApp\
@@ -76098,6 +76135,7 @@ components:
           campaignId: campaignId
           formName: formName
           isOrganic: true
+          consents: ""
           id: id
           fields:
             key: fields
@@ -154924,6 +154962,11 @@ components:
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
           formName: formName
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
           createdTime: createdTime
           currency: currency
           id: id
@@ -154945,6 +154988,11 @@ components:
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
           formName: formName
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
           createdTime: createdTime
           currency: currency
           id: id
@@ -155010,6 +155058,11 @@ components:
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
           formName: formName
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
           createdTime: createdTime
           currency: currency
           id: id
@@ -155491,6 +155544,11 @@ components:
         fieldData:
         - "{}"
         - "{}"
+        consents:
+        - checkboxKey: checkboxKey
+          isChecked: true
+        - checkboxKey: checkboxKey
+          isChecked: true
         createdTime: createdTime
         id: id
         fields:
@@ -155523,6 +155581,14 @@ components:
         fieldData:
           items:
             type: object
+          type: array
+        consents:
+          description: "Meta lead forms only: the answer to every custom disclaimer\
+            \ checkbox, required or optional. Empty when the form has none, and may\
+            \ be empty on leads stored before 2026-10-22. LinkedIn leads do not carry\
+            \ the field."
+          items:
+            $ref: "#/components/schemas/AdLeadConsent"
           type: array
     listFormLeads_200_response_meta:
       example:
@@ -155568,6 +155634,11 @@ components:
           fieldData:
           - "{}"
           - "{}"
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
           createdTime: createdTime
           id: id
           fields:
@@ -155579,6 +155650,11 @@ components:
           fieldData:
           - "{}"
           - "{}"
+          consents:
+          - checkboxKey: checkboxKey
+            isChecked: true
+          - checkboxKey: checkboxKey
+            isChecked: true
           createdTime: createdTime
           id: id
           fields:
@@ -168915,6 +168991,7 @@ components:
         campaignId: campaignId
         formName: formName
         isOrganic: true
+        consents: ""
         id: id
         fields:
           key: fields
@@ -168949,6 +169026,11 @@ components:
             type: string
           description: |
             Flattened question key -> answer map. For multiple-choice questions the value is the option key (e.g. "k1"), not the display label.
+        consents:
+          allOf:
+          - $ref: "#/components/schemas/AdLeadConsents"
+          description: "Sent on every delivery since 2026-10-25. Absent when an older\
+            \ event is redelivered, since redeliveries replay the stored payload."
         isOrganic:
           description: True when the lead came from an organic post rather than a
             paid ad
