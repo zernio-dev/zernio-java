@@ -22,6 +22,7 @@
 |**hasEmail** | **Boolean** |  |  [optional] |
 |**hasPhone** | **Boolean** |  |  [optional] |
 |**hasExternalId** | **Boolean** |  |  [optional] |
+|**ad** | [**ListEvents200ResponseEventsInnerAd**](ListEvents200ResponseEventsInnerAd.md) |  |  [optional] |
 
 
 

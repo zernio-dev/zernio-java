@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.385.0
+- API version: 1.386.0
 
-- Build date: 2026-10-27T19:16:42.809825659Z[Etc/UTC]
+- Build date: 2026-10-27T19:43:24.734078596Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.385.0</version>
+  <version>1.386.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.385.0"
+compile "dev.zernio:zernio-sdk:1.386.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.385.0.jar`
+- `target/zernio-sdk-1.386.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3940,6 +3940,7 @@ Class | Method | HTTP request | Description
  - [ListEventDestinations200Response](docs/ListEventDestinations200Response.md)
  - [ListEvents200Response](docs/ListEvents200Response.md)
  - [ListEvents200ResponseEventsInner](docs/ListEvents200ResponseEventsInner.md)
+ - [ListEvents200ResponseEventsInnerAd](docs/ListEvents200ResponseEventsInnerAd.md)
  - [ListEvents200ResponseEventsInnerClickIds](docs/ListEvents200ResponseEventsInnerClickIds.md)
  - [ListEvents200ResponseEventsInnerUtm](docs/ListEvents200ResponseEventsInnerUtm.md)
  - [ListFacebookPages200Response](docs/ListFacebookPages200Response.md)

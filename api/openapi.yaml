@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.385.0
+  version: 1.386.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72533,11 +72533,12 @@ components:
             \ value: '{{ad.id}}' }` is appended after your `urlTags`, which are sent\
             \ unchanged; a `zrn` key you send yourself is kept. Skipped for lead forms,\
             \ call ads, `existingCreativeId` and app promotion. Google (Display and\
-            \ Search): the ad's `final_url_suffix` becomes the suffix it would inherit\
-            \ (ad group, campaign or account) plus `&zrn={creative}`, so your account\
-            \ and campaign UTMs still apply; if that suffix cannot be read or Google\
-            \ rejects it, the ad is created untagged. Existing ads are never changed.\
-            \ Set `false` to create the ad with no Zernio tag."
+            \ Search): the ad's `final_url_suffix` is set to `zrn={creative}` only\
+            \ when the ad inherits no suffix from its ad group, campaign or account;\
+            \ when one exists the ad is left untouched (your suffix keeps applying)\
+            \ and attribution uses the click's `gclid`. If the inherited suffix cannot\
+            \ be read or Google rejects the tag, the ad is created untagged. Existing\
+            \ ads are never changed. Set `false` to create the ad with no Zernio tag."
           type: boolean
     MetaLeadForm:
       description: |
@@ -164289,9 +164290,52 @@ components:
         fbc:
           nullable: true
           type: string
+    listEvents_200_response_events_inner_ad:
+      description: "The ad behind the event, when Zernio can name it. Google: from\
+        \ the click behind `clickIds.gclid` (synced daily from Google Ads click_view\
+        \ for clicks up to 14 days before the event; gbraid/wbraid clicks are not\
+        \ resolved). Meta: from the `zrn` ad id, for Meta ads Zernio holds. `null`\
+        \ otherwise."
+      example:
+        adId: adId
+        campaignId: campaignId
+        customerId: customerId
+        adSetId: adSetId
+        platform: googleads
+        adGroupId: adGroupId
+      properties:
+        platform:
+          enum:
+          - googleads
+          - metaads
+          type: string
+        customerId:
+          description: Google Ads customer id (Google only).
+          type: string
+        campaignId:
+          nullable: true
+          type: string
+        adGroupId:
+          description: Google only.
+          nullable: true
+          type: string
+        adSetId:
+          description: Meta only.
+          nullable: true
+          type: string
+        adId:
+          nullable: true
+          type: string
     listEvents_200_response_events_inner:
       example:
         eventId: eventId
+        ad:
+          adId: adId
+          campaignId: campaignId
+          customerId: customerId
+          adSetId: adSetId
+          platform: googleads
+          adGroupId: adGroupId
         hasExternalId: true
         receivedAt: 2000-01-23T04:56:07.000+00:00
         actionSource: actionSource
@@ -164354,11 +164398,20 @@ components:
           type: boolean
         hasExternalId:
           type: boolean
+        ad:
+          $ref: "#/components/schemas/listEvents_200_response_events_inner_ad"
     listEvents_200_response:
       example:
         nextCursor: nextCursor
         events:
         - eventId: eventId
+          ad:
+            adId: adId
+            campaignId: campaignId
+            customerId: customerId
+            adSetId: adSetId
+            platform: googleads
+            adGroupId: adGroupId
           hasExternalId: true
           receivedAt: 2000-01-23T04:56:07.000+00:00
           actionSource: actionSource
@@ -164380,6 +164433,13 @@ components:
           value: 0.8008281904610115
           destinationsSent: 6
         - eventId: eventId
+          ad:
+            adId: adId
+            campaignId: campaignId
+            customerId: customerId
+            adSetId: adSetId
+            platform: googleads
+            adGroupId: adGroupId
           hasExternalId: true
           receivedAt: 2000-01-23T04:56:07.000+00:00
           actionSource: actionSource
