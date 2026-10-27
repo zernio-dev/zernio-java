@@ -116,6 +116,16 @@ Individual webhook configuration for receiving real-time notifications
 | WORKFLOW_RUN_FAILED | &quot;workflow.run.failed&quot; |
 | SUPPORT_RUN_COMPLETED | &quot;support.run.completed&quot; |
 | SUPPORT_RUN_FAILED | &quot;support.run.failed&quot; |
+| ACCOUNT_RATE_LIMITED | &quot;account.rate_limited&quot; |
+| CALENDAR_EVENT_CREATED | &quot;calendar.event.created&quot; |
+| CALENDAR_EVENT_UPDATED | &quot;calendar.event.updated&quot; |
+| CALENDAR_EVENT_DELETED | &quot;calendar.event.deleted&quot; |
+| FILE_CREATED | &quot;file.created&quot; |
+| FILE_UPDATED | &quot;file.updated&quot; |
+| FILE_DELETED | &quot;file.deleted&quot; |
+| FILE_PICKED | &quot;file.picked&quot; |
+| CONTACT_UPDATED | &quot;contact.updated&quot; |
+| CONTACT_DELETED | &quot;contact.deleted&quot; |
 
 
 
@@ -133,6 +143,9 @@ Individual webhook configuration for receiving real-time notifications
 | ACCOUNTS | &quot;accounts&quot; |
 | BILLING | &quot;billing&quot; |
 | WEBHOOKS | &quot;webhooks&quot; |
+| COMMERCE | &quot;commerce&quot; |
+| CALENDAR | &quot;calendar&quot; |
+| FILES | &quot;files&quot; |
 
 
 

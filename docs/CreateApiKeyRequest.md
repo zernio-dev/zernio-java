@@ -48,6 +48,9 @@
 | ACCOUNTS | &quot;accounts&quot; |
 | BILLING | &quot;billing&quot; |
 | WEBHOOKS | &quot;webhooks&quot; |
+| COMMERCE | &quot;commerce&quot; |
+| CALENDAR | &quot;calendar&quot; |
+| FILES | &quot;files&quot; |
 
 
 

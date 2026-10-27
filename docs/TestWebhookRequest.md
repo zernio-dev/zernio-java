@@ -34,6 +34,16 @@
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
 | ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
 | ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |
+| ACCOUNT_RATE_LIMITED | &quot;account.rate_limited&quot; |
+| CALENDAR_EVENT_CREATED | &quot;calendar.event.created&quot; |
+| CALENDAR_EVENT_UPDATED | &quot;calendar.event.updated&quot; |
+| CALENDAR_EVENT_DELETED | &quot;calendar.event.deleted&quot; |
+| FILE_CREATED | &quot;file.created&quot; |
+| FILE_UPDATED | &quot;file.updated&quot; |
+| FILE_DELETED | &quot;file.deleted&quot; |
+| FILE_PICKED | &quot;file.picked&quot; |
+| CONTACT_UPDATED | &quot;contact.updated&quot; |
+| CONTACT_DELETED | &quot;contact.deleted&quot; |
 | ANALYTICS_SYNCED | &quot;analytics.synced&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | MESSAGE_SENT | &quot;message.sent&quot; |

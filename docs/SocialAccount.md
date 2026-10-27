@@ -62,6 +62,8 @@
 | PHONE | &quot;phone&quot; |
 | RCS | &quot;rcs&quot; |
 | WHOPADS | &quot;whopads&quot; |
+| GOOGLE | &quot;google&quot; |
+| MICROSOFT | &quot;microsoft&quot; |
 | HUBSPOT | &quot;hubspot&quot; |
 | WEBFLOW | &quot;webflow&quot; |
 | GOOGLEANALYTICS | &quot;googleanalytics&quot; |
