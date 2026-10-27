@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.386.0
+  version: 1.387.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -45207,6 +45207,15 @@ paths:
         With `live=true` the ad's own switch (`configuredStatus`), its delivery status (`status`,
         `platformStatus`) and its ad set and campaign switches (`platformAdSetStatus`,
         `platformCampaignStatus`) are read live.
+
+        **Meta ads that are not synced yet.** Pass `accountId` with a Meta `platformAdId` to read an ad
+        Zernio has not synced (for example one created in Ads Manager on an ad account reached only
+        through a Facebook connection). The ad is read live from Meta and mapped exactly like a synced
+        row (name, `status`, `platformStatus`, `configuredStatus`, `platformAdSetId`,
+        `platformCampaignId`, campaign and ad set names, budgets, and `creative` with its `id`, body,
+        link, image and video), with `synced: false`, no `id` (it has no Zernio row) and `statusReadAt`
+        set to the time of the read. Synced ads answer `synced: true`. Only a numeric id takes this
+        path, so dark post ids (`{pageId}_{postId}`) keep the dark post lookup above.
       operationId: getAd
       parameters:
       - description: |
@@ -45219,6 +45228,7 @@ paths:
           type: string
         style: simple
       - $ref: "#/components/parameters/LiveStatusRead"
+      - $ref: "#/components/parameters/UnsyncedMetaAdAccountId"
       responses:
         "200":
           content:
@@ -45247,8 +45257,13 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "404":
           $ref: "#/components/responses/NotFound"
+        "501":
+          description: '`accountId` names a connection that is not Meta (unsynced
+            ad reads are Meta only).'
       security:
       - bearerAuth: []
       summary: Get ad details
@@ -46438,9 +46453,12 @@ paths:
 
         Renders an EXISTING ad per placement via Meta's `/{ad_id}/previews`. Each preview is an HTML
         `<iframe>` snippet embeddable directly. Unknown `formats` values return Meta's 400 verbatim.
+
+        **Meta ads that are not synced yet.** Pass `accountId` with a Meta platform ad id that is not in
+        Zernio's store to render it live through that connection; the response carries `synced: false`.
       operationId: getAdPreviews
       parameters:
-      - description: Zernio ad id (24-char hex).
+      - description: Zernio ad id (24-char hex) or Meta platform ad id.
         explode: false
         in: path
         name: adId
@@ -46448,6 +46466,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/UnsyncedMetaAdAccountId"
       - description: "Comma-separated Meta ad_format values (max 10), one preview\
           \ per format. Defaults to DESKTOP_FEED_STANDARD."
         explode: true
@@ -46481,7 +46500,8 @@ paths:
         "429":
           $ref: "#/components/responses/MetaRateLimited"
         "501":
-          description: Only supported on Meta (facebook/instagram)
+          description: Only supported on Meta (facebook/instagram). `accountId` naming
+            a connection that is not Meta also answers 501.
       security:
       - bearerAuth: []
       summary: Render previews of an existing ad
@@ -46529,6 +46549,10 @@ paths:
         `platformStatus`: TikTok reports `AD_STATUS_AUDIT` while the ad is in review and
         `AD_STATUS_AD_PRE_ONLINE` once it passed and is about to deliver (both map to
         `status: pending_review`); `AD_STATUS_AUDIT_DENY` maps to `rejected`.
+
+        **Meta ads that are not synced yet.** Pass `accountId` with a Meta platform ad id that is not in
+        Zernio's store to read its review live through that connection. The response then has
+        `adId: null`, `synced: false`, and nothing is stored. Synced ads answer `synced: true`.
       operationId: getAdReview
       parameters:
       - description: Zernio ad id (24-char hex) or the platform ad id.
@@ -46539,6 +46563,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/UnsyncedMetaAdAccountId"
       responses:
         "403":
           $ref: "#/components/responses/AdAccountNotSelected"
@@ -46559,7 +46584,8 @@ paths:
           $ref: "#/components/responses/RateLimited"
         "501":
           description: "Only supported on TikTok, Google and Meta (Facebook and Instagram\
-            \ ads)"
+            \ ads). `accountId` naming a connection that is not Meta also answers\
+            \ 501."
       security:
       - bearerAuth: []
       summary: Read the platform's review verdict for an ad
@@ -46668,6 +46694,9 @@ paths:
         URLs carry an `oe=<hex>` expiration (image_url ~24 h, video source ~12 d). Treat
         URLs as short-lived: re-fetch this endpoint before serving or downloading assets
         instead of caching URLs beyond that window.
+
+        **Meta ads that are not synced yet.** Pass `accountId` with a Meta platform ad id that is not in
+        Zernio's store to read its media live through that connection; the response carries `synced: false`.
       operationId: getAdMedia
       parameters:
       - description: Zernio ad id (24-char hex) or platform ad id.
@@ -46678,6 +46707,7 @@ paths:
         schema:
           type: string
         style: simple
+      - $ref: "#/components/parameters/UnsyncedMetaAdAccountId"
       responses:
         "409":
           description: "Several active connections on the API key's profiles reach\
@@ -46701,7 +46731,8 @@ paths:
         "422":
           description: No active Meta connection for this ad. Reconnect the account.
         "501":
-          description: Only supported on Meta (facebook/instagram)
+          description: Only supported on Meta (facebook/instagram). `accountId` naming
+            a connection that is not Meta also answers 501.
       security:
       - bearerAuth: []
       summary: Direct video and image URLs for an ad
@@ -70293,6 +70324,28 @@ components:
         default: false
         type: boolean
       style: form
+    UnsyncedMetaAdAccountId:
+      description: "Meta only. A Zernio connection id (Meta Ads or Facebook connection)\
+        \ used when `{adId}` is a Meta ad id that is not in Zernio's synced store,\
+        \ for example an ad created in Ads Manager on an ad account reached only through\
+        \ a Facebook connection. The ad is then read live from Meta through that connection\
+        \ and the response carries `synced: false`. The same rules as GET /v1/ads/campaigns/{campaignId}\
+        \ apply: a connection on a profile the API key cannot access answers 404,\
+        \ and an ad on an ad account outside the connection's selected ad accounts\
+        \ answers 403 `ad_account_not_selected`. An id Meta cannot read through the\
+        \ connection, or that is not an ad (a campaign or ad set id, for example),\
+        \ answers 404 `ad_not_found`, and a connection that is not Meta answers 501.\
+        \ Ads Meta reports as DELETED are returned too, with their status. Ignored\
+        \ when the ad is in the store (the stored ad's own connection is used). Without\
+        \ it an unsynced ad answers 404 `ad_not_found`. Writes (PUT, DELETE, status)\
+        \ still need the ad in the store."
+      explode: true
+      in: query
+      name: accountId
+      required: false
+      schema:
+        type: string
+      style: form
     CatalogId:
       description: Meta product catalog ID (from GET /v1/ads/catalogs)
       explode: false
@@ -90856,6 +90909,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -91004,6 +91058,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -91424,6 +91479,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -91572,6 +91628,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -91956,6 +92013,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -92104,6 +92162,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -92731,6 +92790,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -92879,6 +92939,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -93263,6 +93324,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -93411,6 +93473,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -97247,6 +97310,7 @@ components:
         updatedAt: 2000-01-23T04:56:07.000+00:00
         configuredStatus: ACTIVE
         goal: engagement
+        synced: true
         isExternal: true
         servingStatuses:
         - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -97470,6 +97534,11 @@ components:
         isExternal:
           description: True for ads synced from platform ad managers
           type: boolean
+        synced:
+          description: "Only on GET /v1/ads/{adId}. True when the ad comes from Zernio's\
+            \ synced store; false when it was read live from Meta because it is not\
+            \ synced yet (request made with `accountId`). An unsynced ad has no `id`."
+          type: boolean
         budget:
           $ref: "#/components/schemas/Ad_budget"
         metrics:
@@ -97674,6 +97743,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -97822,6 +97892,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -98476,6 +98547,7 @@ components:
             updatedAt: 2000-01-23T04:56:07.000+00:00
             configuredStatus: ACTIVE
             goal: engagement
+            synced: true
             isExternal: true
             servingStatuses:
             - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -98624,6 +98696,7 @@ components:
             updatedAt: 2000-01-23T04:56:07.000+00:00
             configuredStatus: ACTIVE
             goal: engagement
+            synced: true
             isExternal: true
             servingStatuses:
             - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -99008,6 +99081,7 @@ components:
             updatedAt: 2000-01-23T04:56:07.000+00:00
             configuredStatus: ACTIVE
             goal: engagement
+            synced: true
             isExternal: true
             servingStatuses:
             - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -99156,6 +99230,7 @@ components:
             updatedAt: 2000-01-23T04:56:07.000+00:00
             configuredStatus: ACTIVE
             goal: engagement
+            synced: true
             isExternal: true
             servingStatuses:
             - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -141502,6 +141577,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -141650,6 +141726,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -146268,6 +146345,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -146416,6 +146494,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -146800,6 +146879,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -146948,6 +147028,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -147575,6 +147656,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -147723,6 +147805,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -148107,6 +148190,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -148255,6 +148339,7 @@ components:
               updatedAt: 2000-01-23T04:56:07.000+00:00
               configuredStatus: ACTIVE
               goal: engagement
+              synced: true
               isExternal: true
               servingStatuses:
               - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -148830,6 +148915,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -148966,8 +149052,10 @@ components:
           description: Whether Google RSA details use the last successful cached response.
           type: boolean
         statusReadAt:
-          description: Only with `live=true`. When the switches were read from the
-            platform; null when the live read failed and the stored values were returned.
+          description: "With `live=true`, when the switches were read from the platform;\
+            \ null when the live read failed and the stored values were returned.\
+            \ Always set on an unsynced Meta ad read with `accountId`, the time of\
+            \ that read."
           format: date-time
           nullable: true
           type: string
@@ -149310,6 +149398,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -150235,6 +150324,7 @@ components:
     getAdPreviews_200_response:
       example:
         adId: adId
+        synced: true
         previews:
         - format: format
           html: html
@@ -150243,6 +150333,10 @@ components:
       properties:
         adId:
           type: string
+        synced:
+          description: False when the ad was read live from Meta because it is not
+            in Zernio's store (request made with `accountId`).
+          type: boolean
         previews:
           items:
             $ref: "#/components/schemas/generateAdPreviews_200_response_previews_inner"
@@ -150506,6 +150600,7 @@ components:
     getAdReview_200_response:
       example:
         adId: adId
+        synced: true
         review:
           forbiddenAges:
           - forbiddenAges
@@ -150592,11 +150687,17 @@ components:
         platform: platform
       properties:
         adId:
+          description: Zernio ad id; null for an unsynced Meta ad read with `accountId`.
+          nullable: true
           type: string
         platform:
           type: string
         platformAdId:
           type: string
+        synced:
+          description: False when the ad was read live from Meta because it is not
+            in Zernio's store.
+          type: boolean
         review:
           $ref: "#/components/schemas/getAdReview_200_response_review"
     getTikTokSmartPlusAdReview_200_response:
@@ -150821,6 +150922,7 @@ components:
     getAdMedia_200_response:
       example:
         adId: adId
+        synced: true
         media:
         - length: 0.8008281904610115
           index: 6
@@ -150842,6 +150944,10 @@ components:
           description: '''facebook'' or ''instagram''. Only Meta is supported for
             now.'
           type: string
+        synced:
+          description: False when the ad was read live from Meta because it is not
+            in Zernio's store (request made with `accountId`).
+          type: boolean
         media:
           items:
             $ref: "#/components/schemas/getAdMedia_200_response_media_inner"
@@ -157755,6 +157861,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
@@ -160337,6 +160444,7 @@ components:
           updatedAt: 2000-01-23T04:56:07.000+00:00
           configuredStatus: ACTIVE
           goal: engagement
+          synced: true
           isExternal: true
           servingStatuses:
           - ACCOUNT_TOTAL_BUDGET_HOLD
