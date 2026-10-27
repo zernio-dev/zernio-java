@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.374.1
+  version: 1.374.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -115720,7 +115720,7 @@ components:
           campaignName: campaignName
           platformPostId: platformPostId
         lastMessage: lastMessage
-        unreadCount: 0
+        unreadCount: 80
         whatsappUsername: whatsappUsername
         platform: platform
         url: url
@@ -115790,7 +115790,10 @@ components:
           - archived
           type: string
         unreadCount:
-          description: Number of unread messages
+          description: "Number of unread incoming messages, capped at 1000. Read from\
+            \ a replica, so it can trail a conversation you just marked read by a\
+            \ few seconds."
+          maximum: 1000
           nullable: true
           type: integer
         threadControl:
@@ -115954,7 +115957,7 @@ components:
             campaignName: campaignName
             platformPostId: platformPostId
           lastMessage: lastMessage
-          unreadCount: 0
+          unreadCount: 80
           whatsappUsername: whatsappUsername
           platform: platform
           url: url
@@ -116013,7 +116016,7 @@ components:
             campaignName: campaignName
             platformPostId: platformPostId
           lastMessage: lastMessage
-          unreadCount: 0
+          unreadCount: 80
           whatsappUsername: whatsappUsername
           platform: platform
           url: url
