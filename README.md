@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.381.0
+- API version: 1.383.0
 
-- Build date: 2026-10-27T16:46:03.154622127Z[Etc/UTC]
+- Build date: 2026-10-27T18:39:22.568848638Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.381.0</version>
+  <version>1.383.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.381.0"
+compile "dev.zernio:zernio-sdk:1.383.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.381.0.jar`
+- `target/zernio-sdk-1.383.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3736,6 +3736,7 @@ Class | Method | HTTP request | Description
  - [InstagramMentionedMedia](docs/InstagramMentionedMedia.md)
  - [InstagramPlatformData](docs/InstagramPlatformData.md)
  - [InstagramPlatformDataAudioConfiguration](docs/InstagramPlatformDataAudioConfiguration.md)
+ - [InstagramPlatformDataDroppedCollaboratorsInner](docs/InstagramPlatformDataDroppedCollaboratorsInner.md)
  - [InstagramPlatformDataTrialParams](docs/InstagramPlatformDataTrialParams.md)
  - [InstagramPlatformDataUserTagsInner](docs/InstagramPlatformDataUserTagsInner.md)
  - [InstagramTaggedMedia](docs/InstagramTaggedMedia.md)
