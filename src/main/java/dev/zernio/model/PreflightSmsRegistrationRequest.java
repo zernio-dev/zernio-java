@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   PreflightSmsRegistrationRequest.JSON_PROPERTY_CAMPAIGN,
   PreflightSmsRegistrationRequest.JSON_PROPERTY_MESSAGING_BRAND_NAME
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T12:18:15.656676408Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T12:22:12.531257064Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PreflightSmsRegistrationRequest {
   /**
    * Gets or Sets registrationType
