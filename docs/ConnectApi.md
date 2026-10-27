@@ -1184,6 +1184,7 @@ public class Example {
 | **200** | Bluesky connected successfully |  -  |
 | **400** | Invalid request - missing fields or invalid state format |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **500** | Internal error |  -  |
 
 ## connectBlueskyCredentialsWithHttpInfo
@@ -1260,6 +1261,7 @@ ApiResponse<[**ConnectBlueskyCredentials200Response**](ConnectBlueskyCredentials
 | **200** | Bluesky connected successfully |  -  |
 | **400** | Invalid request - missing fields or invalid state format |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **500** | Internal error |  -  |
 
 
@@ -7278,6 +7280,7 @@ public class Example {
 | **200** | List of Google Business Profile locations available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **500** | Failed to fetch locations (e.g., invalid token, insufficient permissions) |  -  |
 
 ## listGoogleBusinessLocationsWithHttpInfo
@@ -7368,6 +7371,7 @@ ApiResponse<[**ListGoogleBusinessLocations200Response**](ListGoogleBusinessLocat
 | **200** | List of Google Business Profile locations available for connection |  -  |
 | **400** | Missing required parameters (profileId or tempToken) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **500** | Failed to fetch locations (e.g., invalid token, insufficient permissions) |  -  |
 
 
@@ -9242,6 +9246,7 @@ public class Example {
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
@@ -9320,6 +9325,7 @@ ApiResponse<[**SelectLinkedInOrganization200Response**](SelectLinkedInOrganizati
 | **200** | LinkedIn account connected |  -  |
 | **400** | Missing required fields |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **422** | selections only. None of the accounts could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **409** | The sign-in behind tempToken was already used by an earlier selection or has expired (code oauth_sign_in_consumed); start a new sign-in or send refreshToken |  -  |
 | **500** | Failed to connect LinkedIn account |  -  |
