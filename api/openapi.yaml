@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.379.0
+  version: 1.380.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -54376,6 +54376,8 @@ paths:
         - `existingCreativeId`: no creative fields. Goal `page_likes`: `body` only.
         - Goal `lead_generation` always needs `leadGenFormId`, except with `existingCreativeId`.
 
+        **Meta activation.** Meta builds the campaign, ad set and ads PAUSED and switches the requested levels to ACTIVE as the last step. When Meta refuses that switch, or the connection drops, after Zernio's retries, the request still answers 201 and nothing is deleted: the refused level and every level below it stay PAUSED, while levels above it that already went ACTIVE stay ACTIVE (the ad comes back with `status: paused` and its `configuredStatus` as read back from Meta). A switch Meta applied although its answer was lost counts as ACTIVE, since Zernio reads the status back first. `message` says not everything is ACTIVE, and `warnings` carries one entry starting with `activation_failed:` that quotes Meta's code, subcode and message, names what was kept PAUSED and what was switched ACTIVE, and lists the calls that switch the PAUSED ones on later (PUT /v1/ads/campaigns/{campaignId}/status, PUT /v1/ads/ad-sets/{adSetId}/status and PUT /v1/ads/{adId}/status with status `active`, in that order). On the `creatives[]` shape only the ads Meta refused stay PAUSED when the campaign and ad set went through. A Reach and Frequency ad is created ACTIVE and is never listed as kept PAUSED. With an `Idempotency-Key` a retry replays this 201.
+
         LinkedIn creates a Single Image or Single Video Ad backed by a Direct Sponsored Content "dark post" authored by a Company Page (see `organizationId`). Supported goals are engagement, traffic, awareness, and video_views (video ads use the `video` field; video_views requires a video), and traffic ads require `linkUrl`.
 
         Reddit Ads (`accountId` of a `redditads` connection, `adAccountId` like `a2_abc123`) creates a campaign, an ad group carrying the budget, schedule, targeting and pixel, and an ad running a new promoted post authored by the ad account's first profile (422 when it has none). The creative format follows the body: `carouselCards` builds a carousel, `video` a video ad, `imageUrl` an image ad, and none of them a text ad, which cannot link out (`linkUrl` is a 400 there; `body` is required). Only the legacy single-creative shape is available: `creatives[]`, `adSetId`, `existingCampaignId` and `validateOnly` are refused. Reddit throttling surfaces as 429 `rate_limited` with `platform: reddit`; retry after a delay. To promote an existing Reddit post use POST /v1/ads/boost.
@@ -100864,7 +100866,11 @@ components:
             \ no such warning, because every ad routes conversations by the number\
             \ on its WhatsApp button), or the ad set joined a CBO campaign (`existingCampaignId`)\
             \ whose own bid strategy applies, so a different `bidStrategy` or a `roasAverageFloor`\
-            \ that strategy cannot take was not applied."
+            \ that strategy cannot take was not applied. Also present, as an entry\
+            \ starting with `activation_failed:`, when Meta refused the final switch\
+            \ to ACTIVE: nothing was deleted, and the entry names what was kept PAUSED\
+            \ and what was switched ACTIVE, and quotes Meta's error and the status\
+            \ calls that switch the PAUSED ones on later."
           items:
             type: string
           type: array
@@ -100904,7 +100910,11 @@ components:
             \ no such warning, because every ad routes conversations by the number\
             \ on its WhatsApp button), or the ad set joined a CBO campaign (`existingCampaignId`)\
             \ whose own bid strategy applies, so a different `bidStrategy` or a `roasAverageFloor`\
-            \ that strategy cannot take was not applied."
+            \ that strategy cannot take was not applied. Also present, as an entry\
+            \ starting with `activation_failed:`, when Meta refused the final switch\
+            \ to ACTIVE: nothing was deleted, and the entry names what was kept PAUSED\
+            \ and what was switched ACTIVE, and quotes Meta's error and the status\
+            \ calls that switch the PAUSED ones on later."
           items:
             type: string
           type: array
@@ -157509,7 +157519,15 @@ components:
           $ref: "#/components/schemas/InstagramVideoFallback"
         warnings:
           description: "Present with instagramVideoFallback: one human-readable line\
-            \ saying how the Instagram video was boosted."
+            \ saying how the Instagram video was boosted. On Meta also present, as\
+            \ an entry starting with `activation_failed:`, when Meta refused the final\
+            \ switch to ACTIVE of the campaign, ad set or ad this boost created: nothing\
+            \ was deleted, `message` says not everything is ACTIVE, and the entry\
+            \ names what was kept PAUSED and what was switched ACTIVE, and quotes\
+            \ Meta's error and the status calls that switch the PAUSED ones on later.\
+            \ A retry without Idempotency-Key inside the 10-minute dedup window that\
+            \ finds the stored ad PAUSED although it asks for ACTIVE gets a `replayed_paused:`\
+            \ entry with the same status calls instead."
           items:
             type: string
           type: array
@@ -160035,6 +160053,9 @@ components:
           campaignName: campaignName
           platformAdAccountId: platformAdAccountId
           status: ""
+        warnings:
+        - warnings
+        - warnings
         appliedDefaults:
           budgetType: daily
           goal: goal
@@ -160051,6 +160072,15 @@ components:
           $ref: "#/components/schemas/AdAppliedDefaults"
         message:
           type: string
+        warnings:
+          description: "Meta only, present only when needed. An `activation_failed:`\
+            \ entry means Meta refused the final switch to ACTIVE: the entry names\
+            \ what was kept PAUSED (the ad, and its ad set or campaign when Meta refused\
+            \ those) and what was switched ACTIVE, and quotes Meta's error and the\
+            \ status calls that switch the PAUSED ones on later."
+          items:
+            type: string
+          type: array
     createStandaloneAd_201_response_oneOf_1:
       description: "Multi-creative shape: N ads returned sharing platformCampaignId\
         \ / platformAdSetId."
@@ -160067,6 +160097,15 @@ components:
           $ref: "#/components/schemas/AdAppliedDefaults"
         message:
           type: string
+        warnings:
+          description: "Meta only, present only when needed. An `activation_failed:`\
+            \ entry means Meta refused the final switch to ACTIVE for the ads it names\
+            \ (or for their ad set or campaign): the entry names what was kept PAUSED\
+            \ and what was switched ACTIVE, and quotes Meta's error and the status\
+            \ calls that switch the PAUSED ones on later."
+          items:
+            type: string
+          type: array
     createStandaloneAd_201_response:
       oneOf:
       - $ref: "#/components/schemas/createStandaloneAd_201_response_oneOf"
@@ -172762,7 +172801,9 @@ components:
             \ (image/video download or upload), `campaign`, `adset`, `creative`, `ad`\
             \ (the ad POST itself, where Meta's code 31 / 3858385 hold and 100 / 1359188\
             \ payment rejections land), `activation` (switching the created objects\
-            \ on), or `other` (a read or check before any write)."
+            \ on; no longer returned, since a refused switch to ACTIVE now answers\
+            \ 201 with an `activation_failed:` warning and the objects kept PAUSED),\
+            \ or `other` (a read or check before any write)."
           enum:
           - media
           - campaign
