@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   HubSpotSettings.JSON_PROPERTY_SYNC_CONTACTS,
   HubSpotSettings.JSON_PROPERTY_LOG_MESSAGES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:08:33.615868574Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:12:28.873783422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class HubSpotSettings {
   public static final String JSON_PROPERTY_ID = "_id";
   @javax.annotation.Nonnull

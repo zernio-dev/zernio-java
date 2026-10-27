@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   CalendarAvailabilityRequestBuffer.JSON_PROPERTY_BEFORE,
   CalendarAvailabilityRequestBuffer.JSON_PROPERTY_AFTER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:08:33.615868574Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:12:28.873783422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CalendarAvailabilityRequestBuffer {
   public static final String JSON_PROPERTY_BEFORE = "before";
   @javax.annotation.Nullable

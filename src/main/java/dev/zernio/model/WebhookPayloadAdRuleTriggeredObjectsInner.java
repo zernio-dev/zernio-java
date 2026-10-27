@@ -43,7 +43,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadAdRuleTriggeredObjectsInner.JSON_PROPERTY_CONDITIONS,
   WebhookPayloadAdRuleTriggeredObjectsInner.JSON_PROPERTY_ACTIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:08:33.615868574Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T15:12:28.873783422Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadAdRuleTriggeredObjectsInner {
   public static final String JSON_PROPERTY_PLATFORM_ID = "platformId";
   @javax.annotation.Nonnull
