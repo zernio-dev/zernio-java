@@ -6,6 +6,8 @@ All URIs are relative to *https://zernio.com/api*
 |------------- | ------------- | -------------|
 | [**archiveLeadForm**](LeadGenApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
 | [**archiveLeadFormWithHttpInfo**](LeadGenApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form |
+| [**countLeads**](LeadGenApi.md#countLeads) | **GET** /v1/ads/leads/counts | Count leads by status |
+| [**countLeadsWithHttpInfo**](LeadGenApi.md#countLeadsWithHttpInfo) | **GET** /v1/ads/leads/counts | Count leads by status |
 | [**createLeadForm**](LeadGenApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createLeadFormWithHttpInfo**](LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form |
 | [**createTestLead**](LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead |
@@ -179,6 +181,160 @@ ApiResponse<[**ArchiveLeadForm200Response**](ArchiveLeadForm200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | The connection has selected ad accounts (its ad-account scope, set with the dashboard picker or GET /v1/connect/{platform}/ads with adAccountIds) and the ad account this request targets is not among them, so the connection may not act on it even though its token can reach it. Code &#x60;ad_account_not_selected&#x60;. &#x60;details&#x60; carries &#x60;accountId&#x60; (the connection), &#x60;adAccountId&#x60; (the refused ad account) and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (adAccountIds replaces the whole selection, so pass the ids already selected plus this one) or use a connection that has it selected. Connections without a selection keep reaching every ad account their token can manage. |  -  |
 | **404** | No lead form with that id on the Page this account manages. |  -  |
+
+
+## countLeads
+
+> CountLeads200Response countLeads(accountId, campaignId)
+
+Count leads by status
+
+Counts your team&#39;s stored Meta leads per status, for a status filter or a \&quot;new leads\&quot; badge.  Every status is present, with 0 when no lead has it. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String accountId = "accountId_example"; // String | Count one connected account only.
+        String campaignId = "campaignId_example"; // String | The platform campaign id the leads came from.
+        try {
+            CountLeads200Response result = apiInstance.countLeads(accountId, campaignId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#countLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Count one connected account only. | [optional] |
+| **campaignId** | **String**| The platform campaign id the leads came from. | [optional] |
+
+### Return type
+
+[**CountLeads200Response**](CountLeads200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead counts. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
+
+## countLeadsWithHttpInfo
+
+> ApiResponse<CountLeads200Response> countLeads countLeadsWithHttpInfo(accountId, campaignId)
+
+Count leads by status
+
+Counts your team&#39;s stored Meta leads per status, for a status filter or a \&quot;new leads\&quot; badge.  Every status is present, with 0 when no lead has it. Requires the Ads add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.LeadGenApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        LeadGenApi apiInstance = new LeadGenApi(defaultClient);
+        String accountId = "accountId_example"; // String | Count one connected account only.
+        String campaignId = "campaignId_example"; // String | The platform campaign id the leads came from.
+        try {
+            ApiResponse<CountLeads200Response> response = apiInstance.countLeadsWithHttpInfo(accountId, campaignId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling LeadGenApi#countLeads");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Count one connected account only. | [optional] |
+| **campaignId** | **String**| The platform campaign id the leads came from. | [optional] |
+
+### Return type
+
+ApiResponse<[**CountLeads200Response**](CountLeads200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Lead counts. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads add-on required. |  -  |
 
 
 ## createLeadForm
@@ -1133,7 +1289,7 @@ ApiResponse<[**ListLeadForms200Response**](ListLeadForms200Response.md)>
 
 ## listLeads
 
-> ListLeads200Response listLeads(formId, accountId, adAccountId, limit, since, cursor)
+> ListLeads200Response listLeads(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor)
 
 List submitted leads
 
@@ -1162,12 +1318,17 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Filter to a single lead form.
         String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
+        String accountIds = "accountIds_example"; // String | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed.
+        String status = "new,contacted"; // String | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified.
+        String campaignId = "campaignId_example"; // String | Meta only. The platform campaign id the lead came from.
+        String platform = "meta"; // String | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise).
+        String q = "q_example"; // String | Meta only. Case-insensitive text search over the lead's answers and the form name.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
         Integer since = 1757404800; // Integer | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000.
         String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
-            ListLeads200Response result = apiInstance.listLeads(formId, accountId, adAccountId, limit, since, cursor);
+            ListLeads200Response result = apiInstance.listLeads(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling LeadGenApi#listLeads");
@@ -1187,6 +1348,11 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Filter to a single lead form. | [optional] |
 | **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
+| **accountIds** | **String**| Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional] |
+| **status** | **String**| Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional] |
+| **campaignId** | **String**| Meta only. The platform campaign id the lead came from. | [optional] |
+| **platform** | **String**| meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). | [optional] [enum: meta, linkedin] |
+| **q** | **String**| Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional] |
@@ -1218,7 +1384,7 @@ public class Example {
 
 ## listLeadsWithHttpInfo
 
-> ApiResponse<ListLeads200Response> listLeads listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor)
+> ApiResponse<ListLeads200Response> listLeads listLeadsWithHttpInfo(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor)
 
 List submitted leads
 
@@ -1248,12 +1414,17 @@ public class Example {
         LeadGenApi apiInstance = new LeadGenApi(defaultClient);
         String formId = "formId_example"; // String | Filter to a single lead form.
         String accountId = "accountId_example"; // String | Filter to a single connected account. LinkedIn ads accounts switch to the live fetch.
+        String accountIds = "accountIds_example"; // String | Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed.
+        String status = "new,contacted"; // String | Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified.
+        String campaignId = "campaignId_example"; // String | Meta only. The platform campaign id the lead came from.
+        String platform = "meta"; // String | meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise).
+        String q = "q_example"; // String | Meta only. Case-insensitive text search over the lead's answers and the form name.
         String adAccountId = "adAccountId_example"; // String | LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder).
         Integer limit = 25; // Integer | 
         Integer since = 1757404800; // Integer | Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000.
         String cursor = "cursor_example"; // String | Keyset cursor from a previous response's pagination.cursor (Meta: AdLead id; LinkedIn: numeric start offset).
         try {
-            ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, adAccountId, limit, since, cursor);
+            ApiResponse<ListLeads200Response> response = apiInstance.listLeadsWithHttpInfo(formId, accountId, accountIds, status, campaignId, platform, q, adAccountId, limit, since, cursor);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -1275,6 +1446,11 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **formId** | **String**| Filter to a single lead form. | [optional] |
 | **accountId** | **String**| Filter to a single connected account. LinkedIn ads accounts switch to the live fetch. | [optional] |
+| **accountIds** | **String**| Meta only. Comma-separated connected account ids, to list several accounts at once. Without accountId or accountIds every account of the team is listed. | [optional] |
+| **status** | **String**| Meta only. Comma-separated lead statuses: new, contacted, unreachable, qualified, converted, disqualified. | [optional] |
+| **campaignId** | **String**| Meta only. The platform campaign id the lead came from. | [optional] |
+| **platform** | **String**| meta skips the LinkedIn live fetch; linkedin requires accountId to be a LinkedIn ads connection (400 otherwise). | [optional] [enum: meta, linkedin] |
+| **q** | **String**| Meta only. Case-insensitive text search over the lead&#39;s answers and the form name. | [optional] |
 | **adAccountId** | **String**| LinkedIn only: the LinkedIn ad account id whose responses to read (owner-scoped finder). | [optional] |
 | **limit** | **Integer**|  | [optional] [default to 25] |
 | **since** | **Integer**| Unix seconds; only leads created at/after this timestamp. Millisecond timestamps return 400 with instructions to divide by 1000. | [optional] |

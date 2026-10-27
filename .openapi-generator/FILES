@@ -456,6 +456,8 @@ docs/ConversionEventMessaging.md
 docs/ConversionEventUser.md
 docs/ConversionEventUserClickIds.md
 docs/ConversionsApi.md
+docs/CountLeads200Response.md
+docs/CountLeads200ResponseCounts.md
 docs/CreateAccountGroup201Response.md
 docs/CreateAccountGroup201ResponseGroup.md
 docs/CreateAccountGroupRequest.md
@@ -918,6 +920,9 @@ docs/GetAdAccountBilling200ResponsePaymentsAccountsInner.md
 docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
+docs/GetAdAccountHealth200Response.md
+docs/GetAdAccountHealth200ResponseChecksInner.md
+docs/GetAdAccountHealth200ResponseChecksInnerFix.md
 docs/GetAdAccountHierarchy200Response.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md
@@ -3531,6 +3536,8 @@ src/main/java/dev/zernio/model/ConversionEventItemsInner.java
 src/main/java/dev/zernio/model/ConversionEventMessaging.java
 src/main/java/dev/zernio/model/ConversionEventUser.java
 src/main/java/dev/zernio/model/ConversionEventUserClickIds.java
+src/main/java/dev/zernio/model/CountLeads200Response.java
+src/main/java/dev/zernio/model/CountLeads200ResponseCounts.java
 src/main/java/dev/zernio/model/CreateAccountGroup201Response.java
 src/main/java/dev/zernio/model/CreateAccountGroup201ResponseGroup.java
 src/main/java/dev/zernio/model/CreateAccountGroupRequest.java
@@ -3990,6 +3997,9 @@ src/main/java/dev/zernio/model/GetAdAccountBilling200ResponsePaymentsAccountsInn
 src/main/java/dev/zernio/model/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
+src/main/java/dev/zernio/model/GetAdAccountHealth200Response.java
+src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInner.java
+src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerFix.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInner.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.java
@@ -6029,3 +6039,8 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CountLeads200ResponseCountsTest.java
+src/test/java/dev/zernio/model/CountLeads200ResponseTest.java
+src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerFixTest.java
+src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerTest.java
+src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseTest.java

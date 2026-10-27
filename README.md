@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.375.1
+- API version: 1.376.0
 
-- Build date: 2026-10-27T11:12:28.405510458Z[Etc/UTC]
+- Build date: 2026-10-27T11:22:04.187468491Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.375.1</version>
+  <version>1.376.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.375.1"
+compile "dev.zernio:zernio-sdk:1.376.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.375.1.jar`
+- `target/zernio-sdk-1.376.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -251,6 +251,8 @@ Class | Method | HTTP request | Description
 *AdAccountsApi* | [**getAdAccountBillingWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountBillingWithHttpInfo) | **GET** /v1/ads/accounts/billing | Get ad account billing
 *AdAccountsApi* | [**getAdAccountFinance**](docs/AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances
 *AdAccountsApi* | [**getAdAccountFinanceWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances
+*AdAccountsApi* | [**getAdAccountHealth**](docs/AdAccountsApi.md#getAdAccountHealth) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads
+*AdAccountsApi* | [**getAdAccountHealthWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountHealthWithHttpInfo) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads
 *AdAccountsApi* | [**getAdAccountHierarchy**](docs/AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
 *AdAccountsApi* | [**getAdAccountHierarchyWithHttpInfo**](docs/AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy
 *AdAccountsApi* | [**getAdAccountLiveEntities**](docs/AdAccountsApi.md#getAdAccountLiveEntities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live
@@ -1449,6 +1451,8 @@ Class | Method | HTTP request | Description
 *InvitesApi* | [**createInviteTokenWithHttpInfo**](docs/InvitesApi.md#createInviteTokenWithHttpInfo) | **POST** /v1/invite/tokens | Create invite token
 *LeadGenApi* | [**archiveLeadForm**](docs/LeadGenApi.md#archiveLeadForm) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
 *LeadGenApi* | [**archiveLeadFormWithHttpInfo**](docs/LeadGenApi.md#archiveLeadFormWithHttpInfo) | **DELETE** /v1/ads/lead-forms/{formId} | Archive a lead form
+*LeadGenApi* | [**countLeads**](docs/LeadGenApi.md#countLeads) | **GET** /v1/ads/leads/counts | Count leads by status
+*LeadGenApi* | [**countLeadsWithHttpInfo**](docs/LeadGenApi.md#countLeadsWithHttpInfo) | **GET** /v1/ads/leads/counts | Count leads by status
 *LeadGenApi* | [**createLeadForm**](docs/LeadGenApi.md#createLeadForm) | **POST** /v1/ads/lead-forms | Create a lead form
 *LeadGenApi* | [**createLeadFormWithHttpInfo**](docs/LeadGenApi.md#createLeadFormWithHttpInfo) | **POST** /v1/ads/lead-forms | Create a lead form
 *LeadGenApi* | [**createTestLead**](docs/LeadGenApi.md#createTestLead) | **POST** /v1/ads/lead-forms/{formId}/test-leads | Create a test lead
@@ -2606,6 +2610,8 @@ Class | Method | HTTP request | Description
  - [ConversionEventMessaging](docs/ConversionEventMessaging.md)
  - [ConversionEventUser](docs/ConversionEventUser.md)
  - [ConversionEventUserClickIds](docs/ConversionEventUserClickIds.md)
+ - [CountLeads200Response](docs/CountLeads200Response.md)
+ - [CountLeads200ResponseCounts](docs/CountLeads200ResponseCounts.md)
  - [CreateAccountGroup201Response](docs/CreateAccountGroup201Response.md)
  - [CreateAccountGroup201ResponseGroup](docs/CreateAccountGroup201ResponseGroup.md)
  - [CreateAccountGroupRequest](docs/CreateAccountGroupRequest.md)
@@ -3065,6 +3071,9 @@ Class | Method | HTTP request | Description
  - [GetAdAccountBilling200ResponsePendingBudgetProposalsInner](docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md)
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
+ - [GetAdAccountHealth200Response](docs/GetAdAccountHealth200Response.md)
+ - [GetAdAccountHealth200ResponseChecksInner](docs/GetAdAccountHealth200ResponseChecksInner.md)
+ - [GetAdAccountHealth200ResponseChecksInnerFix](docs/GetAdAccountHealth200ResponseChecksInnerFix.md)
  - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
  - [GetAdAccountHierarchy200ResponseDirectCustomersInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md)
  - [GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md)

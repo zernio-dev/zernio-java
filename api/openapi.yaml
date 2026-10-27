@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.375.1
+  version: 1.376.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51158,6 +51158,67 @@ paths:
       - meta
       x-accepts:
       - application/json
+  /v1/ads/accounts/health:
+    get:
+      description: |-
+        Checks whether a Meta ad account can run ads right now, with a fix link for each problem.
+
+        Reads the account status, the payment method, the account spending limit, the Facebook Page
+        and its Instagram account, the Page's Lead Ads terms, the newest pixel event and the WhatsApp
+        number linked to the Page. Each check reads on its own: one this connection cannot see comes
+        back `unknown` instead of failing the request.
+
+        `status` is `blocked` when any check is `error` (ads will be refused), `attention` when one is
+        `warning`, else `ok`. `missing` marks an optional asset that is not set up (a pixel, a
+        WhatsApp number): only the ads that need it are affected. A `fix.url` is either a Meta page
+        or a Zernio dashboard path (starting with `/`).
+      operationId: getAdAccountHealth
+      parameters:
+      - description: Zernio SocialAccount id (posting or ads variant) used to resolve
+          the Meta token.
+        explode: true
+        in: query
+        name: accountId
+        required: true
+        schema:
+          type: string
+        style: form
+      - description: Meta ad account id (act_<n>).
+        explode: true
+        in: query
+        name: adAccountId
+        required: true
+        schema:
+          example: act_123
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getAdAccountHealth_200_response"
+          description: Account checks
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/AccountUnavailable"
+        "409":
+          $ref: "#/components/responses/AccountConnectionRequired"
+        "501":
+          description: Only supported on Meta (facebook/instagram)
+      security:
+      - bearerAuth: []
+      summary: Check an ad account before creating ads
+      tags:
+      - Ad Accounts
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      x-accepts:
+      - application/json
   /v1/ads/accounts/live:
     get:
       description: |-
@@ -52851,6 +52912,56 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Meta only. Comma-separated connected account ids, to list several\
+          \ accounts at once. Without accountId or accountIds every account of the\
+          \ team is listed."
+        explode: true
+        in: query
+        name: accountIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: "Meta only. Comma-separated lead statuses: new, contacted, unreachable,\
+          \ qualified, converted, disqualified."
+        explode: true
+        in: query
+        name: status
+        required: false
+        schema:
+          example: "new,contacted"
+          type: string
+        style: form
+      - description: Meta only. The platform campaign id the lead came from.
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: meta skips the LinkedIn live fetch; linkedin requires accountId
+          to be a LinkedIn ads connection (400 otherwise).
+        explode: true
+        in: query
+        name: platform
+        required: false
+        schema:
+          enum:
+          - meta
+          - linkedin
+          type: string
+        style: form
+      - description: Meta only. Case-insensitive text search over the lead's answers
+          and the form name.
+        explode: true
+        in: query
+        name: q
+        required: false
+        schema:
+          maxLength: 200
+          type: string
+        style: form
       - description: "LinkedIn only: the LinkedIn ad account id whose responses to\
           \ read (owner-scoped finder)."
         explode: true
@@ -52915,6 +53026,51 @@ paths:
       x-platforms:
       - meta
       - linkedin
+      x-accepts:
+      - application/json
+  /v1/ads/leads/counts:
+    get:
+      description: |
+        Counts your team's stored Meta leads per status, for a status filter or a "new leads" badge.
+
+        Every status is present, with 0 when no lead has it. Requires the Ads add-on.
+      operationId: countLeads
+      parameters:
+      - description: Count one connected account only.
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: The platform campaign id the leads came from.
+        explode: true
+        in: query
+        name: campaignId
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/countLeads_200_response"
+          description: Lead counts.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Ads add-on required.
+      summary: Count leads by status
+      tags:
+      - Lead Gen
+      x-resource-group: contacts
+      x-platforms:
+      - meta
       x-accepts:
       - application/json
   /v1/ads/leads/{id}:
@@ -68551,7 +68707,9 @@ components:
         - "{}"
         contactId: contactId
         campaignId: campaignId
+        conversationId: conversationId
         isOrganic: true
+        webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
         accountId: accountId
         statusChangedAt: 2000-01-23T04:56:07.000+00:00
         adId: adId
@@ -68652,6 +68810,17 @@ components:
           type: string
         firstContactedAt:
           description: When the first WhatsApp message to the lead was delivered.
+          format: date-time
+          nullable: true
+          type: string
+        conversationId:
+          description: The Inbox conversation a lead_received workflow opened with
+            the lead.
+          nullable: true
+          type: string
+        webhookDeliveredAt:
+          description: Meta leads only. When the `lead.received` webhook was delivered;
+            null while it has not been.
           format: date-time
           nullable: true
           type: string
@@ -144943,8 +145112,11 @@ components:
           type: string
         creativeSpec:
           additionalProperties: {}
-          description: Raw Meta creative spec forwarded verbatim to /generatepreviews.
-            Mutually exclusive with existingCreativeId.
+          description: "Raw Meta creative spec forwarded to /generatepreviews. Mutually\
+            \ exclusive with existingCreativeId. An `object_story_spec` without `page_id`\
+            \ or `instagram_user_id`, and a `source_instagram_media_id` spec without\
+            \ `instagram_user_id`, get the connection's Facebook Page and Instagram\
+            \ account, as a create would."
       required:
       - accountId
       - adAccountId
@@ -150605,6 +150777,91 @@ components:
           type: number
         fundingSource:
           $ref: "#/components/schemas/getAdAccountFinance_200_response_fundingSource"
+    getAdAccountHealth_200_response_checks_inner_fix:
+      example:
+        label: label
+        url: url
+      properties:
+        label:
+          type: string
+        url:
+          type: string
+    getAdAccountHealth_200_response_checks_inner:
+      example:
+        fix:
+          label: label
+          url: url
+        id: account_status
+        title: title
+        message: message
+        status: ok
+      properties:
+        id:
+          enum:
+          - account_status
+          - payment
+          - spend_cap
+          - page
+          - instagram
+          - lead_terms
+          - pixel
+          - whatsapp
+          type: string
+        status:
+          enum:
+          - ok
+          - warning
+          - error
+          - missing
+          - unknown
+          type: string
+        title:
+          type: string
+        message:
+          type: string
+        fix:
+          $ref: "#/components/schemas/getAdAccountHealth_200_response_checks_inner_fix"
+      required:
+      - id
+      - message
+      - status
+      - title
+    getAdAccountHealth_200_response:
+      example:
+        checkedAt: 2000-01-23T04:56:07.000+00:00
+        checks:
+        - fix:
+            label: label
+            url: url
+          id: account_status
+          title: title
+          message: message
+          status: ok
+        - fix:
+            label: label
+            url: url
+          id: account_status
+          title: title
+          message: message
+          status: ok
+        adAccountId: adAccountId
+        status: ok
+      properties:
+        adAccountId:
+          type: string
+        status:
+          enum:
+          - ok
+          - attention
+          - blocked
+          type: string
+        checkedAt:
+          format: date-time
+          type: string
+        checks:
+          items:
+            $ref: "#/components/schemas/getAdAccountHealth_200_response_checks_inner"
+          type: array
     getAdAccountLiveEntities_200_response_campaigns_inner_budget:
       description: "The campaign budget, same shape as the synced rows. Null when\
         \ the budget lives on the ad sets."
@@ -155046,7 +155303,9 @@ components:
           - "{}"
           contactId: contactId
           campaignId: campaignId
+          conversationId: conversationId
           isOrganic: true
+          webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -155072,7 +155331,9 @@ components:
           - "{}"
           contactId: contactId
           campaignId: campaignId
+          conversationId: conversationId
           isOrganic: true
+          webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -155108,6 +155369,46 @@ components:
           $ref: "#/components/schemas/searchTweets_200_response_pagination"
         meta:
           $ref: "#/components/schemas/listLeads_200_response_meta"
+    countLeads_200_response_counts:
+      example:
+        new: 0
+        contacted: 6
+        qualified: 5
+        unreachable: 1
+        disqualified: 2
+        converted: 5
+      properties:
+        new:
+          type: integer
+        contacted:
+          type: integer
+        unreachable:
+          type: integer
+        qualified:
+          type: integer
+        converted:
+          type: integer
+        disqualified:
+          type: integer
+    countLeads_200_response:
+      example:
+        total: 7
+        counts:
+          new: 0
+          contacted: 6
+          qualified: 5
+          unreachable: 1
+          disqualified: 2
+          converted: 5
+        status: success
+      properties:
+        status:
+          example: success
+          type: string
+        counts:
+          $ref: "#/components/schemas/countLeads_200_response_counts"
+        total:
+          type: integer
     updateLead_request:
       properties:
         status:
@@ -155142,7 +155443,9 @@ components:
           - "{}"
           contactId: contactId
           campaignId: campaignId
+          conversationId: conversationId
           isOrganic: true
+          webhookDeliveredAt: 2000-01-23T04:56:07.000+00:00
           accountId: accountId
           statusChangedAt: 2000-01-23T04:56:07.000+00:00
           adId: adId
@@ -167560,6 +167863,12 @@ components:
     ErrorResponse_details:
       additionalProperties: true
       description: |
+        Meta ads refusals customers hit most come back with their own `code` instead of
+        `platform_api_error`, the field to fix in `param`, and `details.fix` ({ label, url }) pointing at
+        the Meta page that resolves it: `ad_account_payment_required`, `ad_account_policy_not_accepted`,
+        `meta_security_check_required`, `meta_action_blocked`,
+        `whatsapp_number_not_linked` and `invalid_targeting`. Meta's own error stays in the message
+        and in `platformError`.
         Additional structured context (e.g. field-level validation errors), for example
         `privateReplyConsumed` on the private-reply endpoint's 400 when the comment's
         single reply is already spent, and `privateReplyOutcome: "unknown"` on its 502 when Meta

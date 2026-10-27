@@ -40,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**getAdAccountBillingWithHttpInfo**](AdAccountsApi.md#getAdAccountBillingWithHttpInfo) | **GET** /v1/ads/accounts/billing | Get ad account billing |
 | [**getAdAccountFinance**](AdAccountsApi.md#getAdAccountFinance) | **GET** /v1/ads/accounts/finance | Ad account finances |
 | [**getAdAccountFinanceWithHttpInfo**](AdAccountsApi.md#getAdAccountFinanceWithHttpInfo) | **GET** /v1/ads/accounts/finance | Ad account finances |
+| [**getAdAccountHealth**](AdAccountsApi.md#getAdAccountHealth) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads |
+| [**getAdAccountHealthWithHttpInfo**](AdAccountsApi.md#getAdAccountHealthWithHttpInfo) | **GET** /v1/ads/accounts/health | Check an ad account before creating ads |
 | [**getAdAccountHierarchy**](AdAccountsApi.md#getAdAccountHierarchy) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**getAdAccountHierarchyWithHttpInfo**](AdAccountsApi.md#getAdAccountHierarchyWithHttpInfo) | **GET** /v1/ads/accounts/hierarchy | Get manager account hierarchy |
 | [**getAdAccountLiveEntities**](AdAccountsApi.md#getAdAccountLiveEntities) | **GET** /v1/ads/accounts/live | Read an ad account&#39;s campaigns and ad sets live |
@@ -3052,6 +3054,164 @@ ApiResponse<[**GetAdAccountFinance200Response**](GetAdAccountFinance200Response.
 | **200** | Account finances |  -  |
 | **400** | Invalid input, or Meta rejected the query |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+
+## getAdAccountHealth
+
+> GetAdAccountHealth200Response getAdAccountHealth(accountId, adAccountId)
+
+Check an ad account before creating ads
+
+Checks whether a Meta ad account can run ads right now, with a fix link for each problem.  Reads the account status, the payment method, the account spending limit, the Facebook Page and its Instagram account, the Page&#39;s Lead Ads terms, the newest pixel event and the WhatsApp number linked to the Page. Each check reads on its own: one this connection cannot see comes back &#x60;unknown&#x60; instead of failing the request.  &#x60;status&#x60; is &#x60;blocked&#x60; when any check is &#x60;error&#x60; (ads will be refused), &#x60;attention&#x60; when one is &#x60;warning&#x60;, else &#x60;ok&#x60;. &#x60;missing&#x60; marks an optional asset that is not set up (a pixel, a WhatsApp number): only the ads that need it are affected. A &#x60;fix.url&#x60; is either a Meta page or a Zernio dashboard path (starting with &#x60;/&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "act_123"; // String | Meta ad account id (act_<n>).
+        try {
+            GetAdAccountHealth200Response result = apiInstance.getAdAccountHealth(accountId, adAccountId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountHealth");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+
+### Return type
+
+[**GetAdAccountHealth200Response**](GetAdAccountHealth200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account checks |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
+| **501** | Only supported on Meta (facebook/instagram) |  -  |
+
+## getAdAccountHealthWithHttpInfo
+
+> ApiResponse<GetAdAccountHealth200Response> getAdAccountHealth getAdAccountHealthWithHttpInfo(accountId, adAccountId)
+
+Check an ad account before creating ads
+
+Checks whether a Meta ad account can run ads right now, with a fix link for each problem.  Reads the account status, the payment method, the account spending limit, the Facebook Page and its Instagram account, the Page&#39;s Lead Ads terms, the newest pixel event and the WhatsApp number linked to the Page. Each check reads on its own: one this connection cannot see comes back &#x60;unknown&#x60; instead of failing the request.  &#x60;status&#x60; is &#x60;blocked&#x60; when any check is &#x60;error&#x60; (ads will be refused), &#x60;attention&#x60; when one is &#x60;warning&#x60;, else &#x60;ok&#x60;. &#x60;missing&#x60; marks an optional asset that is not set up (a pixel, a WhatsApp number): only the ads that need it are affected. A &#x60;fix.url&#x60; is either a Meta page or a Zernio dashboard path (starting with &#x60;/&#x60;).
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdAccountsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdAccountsApi apiInstance = new AdAccountsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token.
+        String adAccountId = "act_123"; // String | Meta ad account id (act_<n>).
+        try {
+            ApiResponse<GetAdAccountHealth200Response> response = apiInstance.getAdAccountHealthWithHttpInfo(accountId, adAccountId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdAccountsApi#getAdAccountHealth");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Zernio SocialAccount id (posting or ads variant) used to resolve the Meta token. | |
+| **adAccountId** | **String**| Meta ad account id (act_&lt;n&gt;). | |
+
+### Return type
+
+ApiResponse<[**GetAdAccountHealth200Response**](GetAdAccountHealth200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Account checks |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **501** | Only supported on Meta (facebook/instagram) |  -  |
 
 

@@ -26,6 +26,8 @@
 |**currency** | **String** |  |  [optional] |
 |**contactId** | **String** | The contact a lead_received workflow created or matched for this lead. |  [optional] |
 |**firstContactedAt** | **OffsetDateTime** | When the first WhatsApp message to the lead was delivered. |  [optional] |
+|**conversationId** | **String** | The Inbox conversation a lead_received workflow opened with the lead. |  [optional] |
+|**webhookDeliveredAt** | **OffsetDateTime** | Meta leads only. When the &#x60;lead.received&#x60; webhook was delivered; null while it has not been. |  [optional] |
 
 
 
