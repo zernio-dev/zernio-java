@@ -3813,7 +3813,7 @@ ApiResponse<[**GetAdReview200Response**](GetAdReview200Response.md)>
 
 Get live ad-set details
 
-Shows a Meta ad set&#39;s current settings straight from Meta, including its learning phase, budget, schedule and targeting.  Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
+Shows a Meta ad set&#39;s current settings straight from Meta, including its learning phase, budget, schedule and targeting.  Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule, dayparting (&#x60;adset_schedule&#x60;, &#x60;pacing_type&#x60;) and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
 
 ### Example
 
@@ -3892,7 +3892,7 @@ public class Example {
 
 Get live ad-set details
 
-Shows a Meta ad set&#39;s current settings straight from Meta, including its learning phase, budget, schedule and targeting.  Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
+Shows a Meta ad set&#39;s current settings straight from Meta, including its learning phase, budget, schedule and targeting.  Reads the ad set live from Meta, returned verbatim. The default projection includes &#x60;learning_stage_info&#x60; (learning-phase status: LEARNING / SUCCESS / FAIL / WAIVING; Meta omits its &#x60;status&#x60; key on paused ad sets), delivery settings, budgets, schedule, dayparting (&#x60;adset_schedule&#x60;, &#x60;pacing_type&#x60;) and targeting. &#x60;fields&#x60; is a raw-passthrough override; unknown fields return Meta&#39;s 400 verbatim.
 
 ### Example
 

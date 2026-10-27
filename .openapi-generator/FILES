@@ -1865,6 +1865,7 @@ docs/MessagingCarouselCard.md
 docs/MessengerGreeting.md
 docs/MessengerIceBreakerLocale.md
 docs/MessengerIceBreakerLocaleCallToActionsInner.md
+docs/MetaAdScheduleInner.md
 docs/MetaAdsPlatformData.md
 docs/MetaAssignedUser.md
 docs/MetaBusinessUser.md
@@ -4914,6 +4915,7 @@ src/main/java/dev/zernio/model/MessagingCarouselCard.java
 src/main/java/dev/zernio/model/MessengerGreeting.java
 src/main/java/dev/zernio/model/MessengerIceBreakerLocale.java
 src/main/java/dev/zernio/model/MessengerIceBreakerLocaleCallToActionsInner.java
+src/main/java/dev/zernio/model/MetaAdScheduleInner.java
 src/main/java/dev/zernio/model/MetaAdsPlatformData.java
 src/main/java/dev/zernio/model/MetaAssignedUser.java
 src/main/java/dev/zernio/model/MetaBusinessUser.java
@@ -6021,3 +6023,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/MetaAdScheduleInnerTest.java
