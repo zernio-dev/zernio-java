@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.380.1
+  version: 1.381.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44346,7 +44346,10 @@ paths:
         Changes an ad set's settings, such as its budget, bid strategy, status or delivery options.
 
         Use this for ABO budget updates, ad-set-scoped
-        pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, and
+        pause/resume, bid-strategy edits, Meta value-rule-set attach/detach, Meta
+        beneficiary and payer (`dsaBeneficiary` / `dsaPayor` for the EU,
+        `regionalRegulatedCategories` / `regionalRegulationIdentities` for the
+        regional regimes), and
         Meta-only post-launch delivery settings via `platformSpecificData`. At
         least one updatable field is required.
 
@@ -73105,7 +73108,7 @@ components:
         - name: name
           id: id
         regionalRegulationIdentities:
-          key: boostPost_request_regionalRegulationIdentities_value
+          key: updateAdSet_request_regionalRegulationIdentities_value
         audienceInclude:
         - audienceInclude
         - audienceInclude
@@ -73862,7 +73865,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
+            $ref: "#/components/schemas/updateAdSet_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through
@@ -145221,6 +145224,11 @@ components:
           - daily
           - lifetime
           type: string
+    updateAdSet_request_regionalRegulationIdentities_value:
+      anyOf:
+      - type: string
+      - format: int32
+        type: integer
     updateAdSet_request_smartTargeting:
       description: |
         TikTok only (a 400 elsewhere). TikTok Smart Targeting on the ad group: `audience` is
@@ -145466,6 +145474,50 @@ components:
             WEBSITE_CLICKS, MAX not on REACH or FOLLOWERS). On Reddit, see the mapping in the
             description above (LOWEST_COST_WITH_MIN_ROAS returns 422). Other platforms
             (linkedin, pinterest, google) return 501 Not Implemented when bidStrategy is set.
+        dsaBeneficiary:
+          description: |
+            Meta only (400 elsewhere, before anything in the request is written). Writes the ad
+            set's `dsa_beneficiary`, the legal entity that benefits from its ads, same field and
+            limits as `dsaBeneficiary` on POST /v1/ads/create. Only the fields you send are
+            written. It is the EU DSA field; for the regional regimes (Brazil, Malaysia,
+            Thailand, Australia, Singapore, Taiwan, India) use `regionalRegulatedCategories` and
+            `regionalRegulationIdentities` instead. Read it back with
+            GET /v1/ads/ad-sets/{adSetId}?accountId={accountId}&fields=dsa_beneficiary,dsa_payor.
+          maxLength: 100
+          minLength: 1
+          type: string
+        dsaPayor:
+          description: |
+            Meta only (400 elsewhere, before anything in the request is written). Writes the ad
+            set's `dsa_payor`, the legal entity that pays for its ads, same field and limits as
+            `dsaPayor` on POST /v1/ads/create. Can differ from `dsaBeneficiary`.
+          maxLength: 100
+          minLength: 1
+          type: string
+        regionalRegulatedCategories:
+          description: |
+            Meta only (400 elsewhere, before anything in the request is written). Writes the ad
+            set's `regional_regulated_categories`, same values as on POST /v1/ads/create
+            (AUSTRALIA_FINSERV, AUSTRALIA_UNIVERSAL, BRAZIL_REGULATION, INDIA_FINSERV,
+            MALAYSIA_UNIVERSAL, SINGAPORE_UNIVERSAL, TAIWAN_FINSERV, TAIWAN_UNIVERSAL,
+            THAILAND_UNIVERSAL). Send it with `regionalRegulationIdentities`. An empty array is a 400.
+          items:
+            minLength: 1
+            type: string
+          type: array
+        regionalRegulationIdentities:
+          additionalProperties:
+            $ref: "#/components/schemas/updateAdSet_request_regionalRegulationIdentities_value"
+          description: |
+            Meta only (400 elsewhere, before anything in the request is written). Writes the ad
+            set's `regional_regulation_identities`: the Verified identity IDs of the beneficiary
+            and payer for each declared category, same keys and validation as on
+            POST /v1/ads/create (for example `universal_beneficiary` / `universal_payer` for
+            BRAZIL_REGULATION, MALAYSIA_UNIVERSAL and THAILAND_UNIVERSAL). Send each ID as a
+            string of digits; an empty object is a 400. When Meta refuses the ad set for a missing
+            verified advertiser, the 400 `platform_api_error` names the keys the declared categories
+            expect in `details.expectedIdentityKeys`, as on create. Read both back with
+            GET /v1/ads/ad-sets/{adSetId}?accountId={accountId}&fields=regional_regulated_categories,regional_regulation_identities.
         smartTargeting:
           $ref: "#/components/schemas/updateAdSet_request_smartTargeting"
         placements:
@@ -156630,11 +156682,6 @@ components:
           items:
             $ref: "#/components/schemas/boostPost_request_tracking_urlTags_inner"
           type: array
-    boostPost_request_regionalRegulationIdentities_value:
-      anyOf:
-      - type: string
-      - format: int32
-        type: integer
     boostPost_request_sparkPosts_inner:
       properties:
         platformPostId:
@@ -157032,7 +157079,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
+            $ref: "#/components/schemas/updateAdSet_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through
@@ -159335,7 +159382,7 @@ components:
           type: array
         regionalRegulationIdentities:
           additionalProperties:
-            $ref: "#/components/schemas/boostPost_request_regionalRegulationIdentities_value"
+            $ref: "#/components/schemas/updateAdSet_request_regionalRegulationIdentities_value"
           description: |
             Meta only. Verified identity IDs of the beneficiary and payer for each declared
             regionalRegulatedCategories value. Meta may require them on ad sets created through

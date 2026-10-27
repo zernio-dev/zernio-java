@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.380.1
+- API version: 1.381.0
 
-- Build date: 2026-10-27T15:17:19.811810043Z[Etc/UTC]
+- Build date: 2026-10-27T16:46:03.154622127Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.380.1</version>
+  <version>1.381.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.380.1"
+compile "dev.zernio:zernio-sdk:1.381.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.380.1.jar`
+- `target/zernio-sdk-1.381.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2458,7 +2458,6 @@ Class | Method | HTTP request | Description
  - [BoostPostRequestPlatformSpecificData](docs/BoostPostRequestPlatformSpecificData.md)
  - [BoostPostRequestPromoCodesInner](docs/BoostPostRequestPromoCodesInner.md)
  - [BoostPostRequestPromotedObject](docs/BoostPostRequestPromotedObject.md)
- - [BoostPostRequestRegionalRegulationIdentitiesValue](docs/BoostPostRequestRegionalRegulationIdentitiesValue.md)
  - [BoostPostRequestSchedule](docs/BoostPostRequestSchedule.md)
  - [BoostPostRequestSmartTargeting](docs/BoostPostRequestSmartTargeting.md)
  - [BoostPostRequestSparkPostsInner](docs/BoostPostRequestSparkPostsInner.md)
@@ -4755,6 +4754,7 @@ Class | Method | HTTP request | Description
  - [UpdateAdSetRequestPlacements](docs/UpdateAdSetRequestPlacements.md)
  - [UpdateAdSetRequestPlatformSpecificData](docs/UpdateAdSetRequestPlatformSpecificData.md)
  - [UpdateAdSetRequestPlatformSpecificDataPromotedObject](docs/UpdateAdSetRequestPlatformSpecificDataPromotedObject.md)
+ - [UpdateAdSetRequestRegionalRegulationIdentitiesValue](docs/UpdateAdSetRequestRegionalRegulationIdentitiesValue.md)
  - [UpdateAdSetRequestSmartTargeting](docs/UpdateAdSetRequestSmartTargeting.md)
  - [UpdateAdSetStatus200Response](docs/UpdateAdSetStatus200Response.md)
  - [UpdateAdStatus200Response](docs/UpdateAdStatus200Response.md)
