@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   AdRuleObjectEvaluationConditionsInner.JSON_PROPERTY_ACTUAL,
   AdRuleObjectEvaluationConditionsInner.JSON_PROPERTY_MET
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T13:16:50.367212750Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T13:20:54.398924497Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleObjectEvaluationConditionsInner {
   /**
    * &#x60;ctr&#x60; is a percentage. &#x60;spend&#x60;, &#x60;cpc&#x60;, &#x60;cpm&#x60; and &#x60;cpa&#x60; are in the ad account currency.
