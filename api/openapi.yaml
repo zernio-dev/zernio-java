@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.388.0
+  version: 1.389.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -6305,6 +6305,21 @@ paths:
         name: fields
         required: false
         schema:
+          type: string
+        style: form
+      - description: "Only posts whose `updatedAt` is at or after this ISO 8601 timestamp,\
+          \ an offset or `Z` required. `updatedAt` moves when the post or any of its\
+          \ platforms changes (an edit, a status change, a platform publishing or\
+          \ failing), so to keep a copy in sync, send the time of your previous sync\
+          \ instead of reading every page again. Combines with the other filters and\
+          \ with `cursor`. Deleted posts are not returned. Not available with `source=external`."
+        example: 2026-10-27T18:00:00Z
+        explode: true
+        in: query
+        name: updatedSince
+        required: false
+        schema:
+          format: date-time
           type: string
         style: form
       - description: Which collection to read. `zernio` (default) returns posts authored
