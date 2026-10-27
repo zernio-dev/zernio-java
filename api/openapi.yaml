@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.377.0
+  version: 1.377.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -41589,6 +41589,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -42538,6 +42540,11 @@ paths:
               $ref: "#/components/schemas/duplicateAd_request"
         required: false
       responses:
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
         "200":
           content:
             application/json:
@@ -42660,6 +42667,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -44577,8 +44586,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/NotFound"
         "429":
@@ -44674,6 +44688,13 @@ paths:
           type: string
         style: form
       responses:
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "200":
           content:
             application/json:
@@ -44749,6 +44770,8 @@ paths:
           type: string
         style: simple
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "200":
           content:
             application/json:
@@ -44817,6 +44840,8 @@ paths:
           type: string
         style: simple
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "200":
           content:
             application/json:
@@ -44884,6 +44909,13 @@ paths:
           type: string
         style: simple
       responses:
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "200":
           content:
             application/json:
@@ -45563,6 +45595,11 @@ paths:
           type: string
         style: form
       responses:
+        "409":
+          description: "Several active connections on the API key's profiles reach\
+            \ the ad account of this ad (code `ambiguous_account`), so the connection\
+            \ to act with is ambiguous. Keep one of them connected or move the others\
+            \ to a profile this key cannot access."
         "200":
           content:
             application/json:
@@ -45635,6 +45672,8 @@ paths:
           type: string
         style: simple
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "200":
           content:
             application/json:
@@ -46522,6 +46561,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -46660,6 +46701,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -47222,7 +47265,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: The account or Meta asset is not accessible.
+          description: "The account or Meta asset is not accessible. Also returned\
+            \ with code `ad_account_not_selected` when the connection has selected\
+            \ ad accounts and the ad account this request targets is not among them;\
+            \ `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -47290,7 +47339,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: The account or Meta asset is not accessible.
+          description: "The account or Meta asset is not accessible. Also returned\
+            \ with code `ad_account_not_selected` when the connection has selected\
+            \ ad accounts and the ad account this request targets is not among them;\
+            \ `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "501":
@@ -48119,6 +48174,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -48255,6 +48312,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -48464,6 +48523,8 @@ paths:
           type: integer
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -48605,6 +48666,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -51030,7 +51093,12 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "Meta refused: the token lacks business_management or business\
-            \ admin access."
+            \ admin access. Also returned with code `ad_account_not_selected` when\
+            \ the connection has selected ad accounts and the ad account this request\
+            \ targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "429":
           $ref: "#/components/responses/RateLimited"
         "501":
@@ -51132,6 +51200,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -53569,6 +53639,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -53714,6 +53786,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -53917,6 +53991,8 @@ paths:
           type: string
         style: form
       responses:
+        "403":
+          $ref: "#/components/responses/AdAccountNotSelected"
         "409":
           $ref: "#/components/responses/AccountConnectionRequired"
         "404":
@@ -54448,8 +54524,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/AccountUnavailable"
         "409":
@@ -55982,8 +56063,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: Ads access required. Legacy plans need the Ads add-on; included
-            by default on usage-based plans.
+          description: "Ads access required. Legacy plans need the Ads add-on; included\
+            \ by default on usage-based plans. Also returned with code `ad_account_not_selected`\
+            \ when the connection has selected ad accounts and the ad account this\
+            \ request targets is not among them; `details` carries `accountId`, `adAccountId`\
+            \ and `selectedAdAccountIds`. Add the ad account to the selection (GET\
+            \ /v1/connect/{platform}/ads with adAccountIds, which replaces the selection)\
+            \ or use a connection that has it selected."
         "404":
           $ref: "#/components/responses/NotFound"
       security:
@@ -58540,7 +58626,13 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: "Ads access required, or the token lacks the ads permissions."
+          description: "Ads access required, or the token lacks the ads permissions.\
+            \ Also returned with code `ad_account_not_selected` when the connection\
+            \ has selected ad accounts and the ad account this request targets is\
+            \ not among them; `details` carries `accountId`, `adAccountId` and `selectedAdAccountIds`.\
+            \ Add the ad account to the selection (GET /v1/connect/{platform}/ads\
+            \ with adAccountIds, which replaces the selection) or use a connection\
+            \ that has it selected."
       security:
       - bearerAuth: []
       summary: List custom conversions
