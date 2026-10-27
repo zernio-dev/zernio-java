@@ -6225,8 +6225,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateAdSetRequestPromotedObjectTest.java
-src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerClickIdsTest.java
-src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerTest.java
-src/test/java/dev/zernio/model/ListEvents200ResponseEventsInnerUtmTest.java
-src/test/java/dev/zernio/model/ListEvents200ResponseTest.java

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   PurchaseWhatsAppPhoneNumber200ResponseOneOf.JSON_PROPERTY_MESSAGE,
   PurchaseWhatsAppPhoneNumber200ResponseOneOf.JSON_PROPERTY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:59:54.193332101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T19:03:21.600654218Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class PurchaseWhatsAppPhoneNumber200ResponseOneOf {
   public static final String JSON_PROPERTY_MESSAGE = "message";
   @javax.annotation.Nullable

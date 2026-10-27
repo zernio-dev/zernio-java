@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetWebhookLogs200Response.JSON_PROPERTY_LOGS,
   GetWebhookLogs200Response.JSON_PROPERTY_PAGINATION
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:59:54.193332101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T19:03:21.600654218Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetWebhookLogs200Response {
   public static final String JSON_PROPERTY_LOGS = "logs";
   @javax.annotation.Nullable

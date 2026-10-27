@@ -59,7 +59,7 @@ import com.fasterxml.jackson.databind.ser.std.StdSerializer;
 import dev.zernio.ApiClient;
 import dev.zernio.JSON;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T18:59:54.193332101Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-27T19:03:21.600654218Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 @JsonDeserialize(using = ListSlackChannels200Response.ListSlackChannels200ResponseDeserializer.class)
 @JsonSerialize(using = ListSlackChannels200Response.ListSlackChannels200ResponseSerializer.class)
 public class ListSlackChannels200Response extends AbstractOpenApiSchema {
