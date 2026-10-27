@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.374.2
+  version: 1.375.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -51892,6 +51892,12 @@ paths:
       responses:
         "404":
           $ref: "#/components/responses/AccountUnavailable"
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/boostPost_200_response"
+          description: "validateOnly dry-run passed (Meta), nothing was created"
         "201":
           content:
             application/json:
@@ -51899,7 +51905,9 @@ paths:
                 $ref: "#/components/schemas/boostPost_201_response"
           description: Ad created
         "400":
-          description: Missing required fields or invalid values
+          description: "Missing required fields or invalid values, `validateOnly:\
+            \ true` outside Meta, `dryRun` sent, or a Meta validateOnly validation\
+            \ failure (verbatim)"
         "401":
           $ref: "#/components/responses/Unauthorized"
         "429":
@@ -152237,11 +152245,70 @@ components:
           enum:
           - OUTCOME_ENGAGEMENT
           type: string
+        validateOnly:
+          default: false
+          description: |
+            Meta only (facebook, instagram and Meta ads connections). Dry-runs the boost with Meta's
+            execution_options validate_only: the campaign, ad set, creative (the post reference) and ad
+            are checked as sent, everything PAUSED, and nothing is created or stored on Meta or in Zernio.
+            Returns 200 with the same body as a validateOnly POST /v1/ads/create (`validateOnly`, `results`
+            per node, `message`). Idempotency-Key storage and the duplicate-boost guard are bypassed. Counts
+            toward the 30 Meta writes per ad account per 5 minutes. With `adSetId` only the ad is dry-run.
+            An Instagram video that Meta refuses as a direct reference (subcode 1815279) comes back as
+            `unverified` nodes, because the copy a real boost makes cannot be dry-run.
+            `true` on any other platform returns 400 naming `validateOnly` and creates nothing; `false` is
+            ignored. `dryRun` is not a field: sending it returns 400 instead of creating the ad.
+          type: boolean
       required:
       - accountId
       - adAccountId
       - goal
       - name
+    boostPost_200_response_results_inner:
+      example:
+        node: campaign
+        reason: reason
+        status: validated
+      properties:
+        node:
+          enum:
+          - campaign
+          - adSet
+          - creative
+          - ad
+          type: string
+        status:
+          enum:
+          - validated
+          - skipped
+          - unverified
+          type: string
+        reason:
+          description: "Why the node was skipped (it already exists with adSetId),\
+            \ why Meta could not dry-run it (on unverified), or what the dry run could\
+            \ not check (on validated)."
+          type: string
+    boostPost_200_response:
+      example:
+        validateOnly: true
+        message: message
+        results:
+        - node: campaign
+          reason: reason
+          status: validated
+        - node: campaign
+          reason: reason
+          status: validated
+      properties:
+        validateOnly:
+          description: Always true in a validate-only response.
+          type: boolean
+        results:
+          items:
+            $ref: "#/components/schemas/boostPost_200_response_results_inner"
+          type: array
+        message:
+          type: string
     boostPost_201_response:
       example:
         ad:

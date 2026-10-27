@@ -213,6 +213,8 @@ docs/BlogsApi.md
 docs/BlueskyPlatformData.md
 docs/BookmarkPost200Response.md
 docs/BookmarkPostRequest.md
+docs/BoostPost200Response.md
+docs/BoostPost200ResponseResultsInner.md
 docs/BoostPost201Response.md
 docs/BoostPostRequest.md
 docs/BoostPostRequestAttributionSpecInner.md
@@ -3298,6 +3300,8 @@ src/main/java/dev/zernio/model/BlogArticleImage.java
 src/main/java/dev/zernio/model/BlueskyPlatformData.java
 src/main/java/dev/zernio/model/BookmarkPost200Response.java
 src/main/java/dev/zernio/model/BookmarkPostRequest.java
+src/main/java/dev/zernio/model/BoostPost200Response.java
+src/main/java/dev/zernio/model/BoostPost200ResponseResultsInner.java
 src/main/java/dev/zernio/model/BoostPost201Response.java
 src/main/java/dev/zernio/model/BoostPostRequest.java
 src/main/java/dev/zernio/model/BoostPostRequestAttributionSpecInner.java
@@ -6025,3 +6029,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/BoostPost200ResponseResultsInnerTest.java
+src/test/java/dev/zernio/model/BoostPost200ResponseTest.java

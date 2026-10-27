@@ -779,7 +779,7 @@ ApiResponse<[**AttachCampaignAssets201Response**](AttachCampaignAssets201Respons
 
 ## boostPost
 
-> BoostPost201Response boostPost(boostPostRequest, idempotencyKey)
+> BoostPost200Response boostPost(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
@@ -809,7 +809,7 @@ public class Example {
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
-            BoostPost201Response result = apiInstance.boostPost(boostPostRequest, idempotencyKey);
+            BoostPost200Response result = apiInstance.boostPost(boostPostRequest, idempotencyKey);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#boostPost");
@@ -832,7 +832,7 @@ public class Example {
 
 ### Return type
 
-[**BoostPost201Response**](BoostPost201Response.md)
+[**BoostPost200Response**](BoostPost200Response.md)
 
 
 ### Authorization
@@ -848,8 +848,9 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | validateOnly dry-run passed (Meta), nothing was created |  -  |
 | **201** | Ad created |  -  |
-| **400** | Missing required fields or invalid values |  -  |
+| **400** | Missing required fields or invalid values, &#x60;validateOnly: true&#x60; outside Meta, &#x60;dryRun&#x60; sent, or a Meta validateOnly validation failure (verbatim) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. Also returned with code &#x60;insufficient_permissions&#x60; when the Facebook user behind the connection&#39;s token lacks the Advertise permission on the Meta ad account, or the token lacks &#x60;ads_management&#x60; (Meta subcode 2490585, 2490591 or 4841020; see &#x60;ErrorResponse.details&#x60;).  |  -  |
@@ -859,7 +860,7 @@ public class Example {
 
 ## boostPostWithHttpInfo
 
-> ApiResponse<BoostPost201Response> boostPost boostPostWithHttpInfo(boostPostRequest, idempotencyKey)
+> ApiResponse<BoostPost200Response> boostPost boostPostWithHttpInfo(boostPostRequest, idempotencyKey)
 
 Boost post as ad
 
@@ -890,7 +891,7 @@ public class Example {
         BoostPostRequest boostPostRequest = new BoostPostRequest(); // BoostPostRequest | 
         String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
         try {
-            ApiResponse<BoostPost201Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest, idempotencyKey);
+            ApiResponse<BoostPost200Response> response = apiInstance.boostPostWithHttpInfo(boostPostRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -915,7 +916,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**BoostPost201Response**](BoostPost201Response.md)>
+ApiResponse<[**BoostPost200Response**](BoostPost200Response.md)>
 
 
 ### Authorization
@@ -931,8 +932,9 @@ ApiResponse<[**BoostPost201Response**](BoostPost201Response.md)>
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **200** | validateOnly dry-run passed (Meta), nothing was created |  -  |
 | **201** | Ad created |  -  |
-| **400** | Missing required fields or invalid values |  -  |
+| **400** | Missing required fields or invalid values, &#x60;validateOnly: true&#x60; outside Meta, &#x60;dryRun&#x60; sent, or a Meta validateOnly validation failure (verbatim) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **429** | Meta only (code &#x60;rate_limited&#x60;). Meta places a security hold lasting days (code 31, subcode 3858385, \&quot;Please authenticate your account\&quot;) on ad accounts that receive bursts of ad writes, and it counts &#x60;validateOnly&#x60; checks as writes. To keep integrations out of that hold, Zernio runs creates for one Meta ad account one at a time (a parallel request waits up to 60 seconds for its turn) and allows at most 30 creates per ad account in any rolling 5 minutes, &#x60;validateOnly&#x60; included. A 429 here means one of the two was hit: wait &#x60;Retry-After&#x60; seconds and send creates for that ad account sequentially. Other ad accounts are not affected.  |  * Retry-After - Seconds remaining until the upstream quota resets. <br>  |
 | **403** | Ads access required. Legacy plans need the Ads add-on; included by default on usage-based plans. Also returned with code &#x60;ads_allowance_exceeded&#x60; when the team has no payment method on file and has reached the 500 free live ads: add a card to resume. Also returned with code &#x60;ad_account_not_selected&#x60; when the connection has selected ad accounts and the ad account this request targets is not among them; &#x60;details&#x60; carries &#x60;accountId&#x60;, &#x60;adAccountId&#x60; and &#x60;selectedAdAccountIds&#x60;. Add the ad account to the selection (GET /v1/connect/{platform}/ads with adAccountIds, which replaces the selection) or use a connection that has it selected. Also returned with code &#x60;insufficient_permissions&#x60; when the Facebook user behind the connection&#39;s token lacks the Advertise permission on the Meta ad account, or the token lacks &#x60;ads_management&#x60; (Meta subcode 2490585, 2490591 or 4841020; see &#x60;ErrorResponse.details&#x60;).  |  -  |
