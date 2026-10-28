@@ -10,17 +10,8 @@ Facebook and Instagram only: Meta delivers comments and messages to your app's o
 |------------ | ------------- | ------------- | -------------|
 |**callbackUrl** | **URI** |  |  |
 |**verifyToken** | **String** |  |  |
-|**_object** | [**ObjectEnum**](#ObjectEnum) | The webhook object to configure. |  |
+|**_object** | **OAuthAppWebhookObject** |  |  |
 |**fields** | **List&lt;String&gt;** | Subscribe the app to these fields. |  |
-
-
-
-## Enum: ObjectEnum
-
-| Name | Value |
-|---- | -----|
-| PAGE | &quot;page&quot; |
-| INSTAGRAM | &quot;instagram&quot; |
 
 
 

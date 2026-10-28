@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   GetAdAccountHealth200ResponseChecksInner.JSON_PROPERTY_MESSAGE,
   GetAdAccountHealth200ResponseChecksInner.JSON_PROPERTY_FIX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:40:22.981242399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GetAdAccountHealth200ResponseChecksInner {
   /**
    * Gets or Sets id

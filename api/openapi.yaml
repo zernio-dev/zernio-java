@@ -71542,6 +71542,12 @@ components:
       - redirectUri
       - scopeAreas
       - status
+    OAuthAppWebhookObject:
+      description: The webhook object to configure.
+      enum:
+      - page
+      - instagram
+      type: string
     OAuthAppSetup:
       example:
         redirectUri: https://openapi-generator.tech
@@ -173045,11 +173051,7 @@ components:
         verifyToken:
           type: string
         object:
-          description: The webhook object to configure.
-          enum:
-          - page
-          - instagram
-          type: string
+          $ref: "#/components/schemas/OAuthAppWebhookObject"
         fields:
           description: Subscribe the app to these fields.
           items:

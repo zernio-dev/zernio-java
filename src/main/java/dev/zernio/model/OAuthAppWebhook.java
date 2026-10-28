@@ -24,6 +24,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonTypeName;
 import com.fasterxml.jackson.annotation.JsonValue;
+import dev.zernio.model.OAuthAppWebhookObject;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,7 +42,7 @@ import dev.zernio.ApiClient;
   OAuthAppWebhook.JSON_PROPERTY_OBJECT,
   OAuthAppWebhook.JSON_PROPERTY_FIELDS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:40:22.981242399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class OAuthAppWebhook {
   public static final String JSON_PROPERTY_CALLBACK_URL = "callbackUrl";
   @javax.annotation.Nonnull
@@ -51,44 +52,9 @@ public class OAuthAppWebhook {
   @javax.annotation.Nonnull
   private String verifyToken;
 
-  /**
-   * The webhook object to configure.
-   */
-  public enum ObjectEnum {
-    PAGE(String.valueOf("page")),
-    
-    INSTAGRAM(String.valueOf("instagram"));
-
-    private String value;
-
-    ObjectEnum(String value) {
-      this.value = value;
-    }
-
-    @JsonValue
-    public String getValue() {
-      return value;
-    }
-
-    @Override
-    public String toString() {
-      return String.valueOf(value);
-    }
-
-    @JsonCreator
-    public static ObjectEnum fromValue(String value) {
-      for (ObjectEnum b : ObjectEnum.values()) {
-        if (b.value.equals(value)) {
-          return b;
-        }
-      }
-      throw new IllegalArgumentException("Unexpected value '" + value + "'");
-    }
-  }
-
   public static final String JSON_PROPERTY_OBJECT = "object";
   @javax.annotation.Nonnull
-  private ObjectEnum _object;
+  private OAuthAppWebhookObject _object;
 
   public static final String JSON_PROPERTY_FIELDS = "fields";
   @javax.annotation.Nonnull
@@ -145,26 +111,26 @@ public class OAuthAppWebhook {
   }
 
 
-  public OAuthAppWebhook _object(@javax.annotation.Nonnull ObjectEnum _object) {
+  public OAuthAppWebhook _object(@javax.annotation.Nonnull OAuthAppWebhookObject _object) {
     this._object = _object;
     return this;
   }
 
   /**
-   * The webhook object to configure.
+   * Get _object
    * @return _object
    */
   @javax.annotation.Nonnull
   @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public ObjectEnum getObject() {
+  public OAuthAppWebhookObject getObject() {
     return _object;
   }
 
 
   @JsonProperty(value = JSON_PROPERTY_OBJECT, required = true)
   @JsonInclude(value = JsonInclude.Include.ALWAYS)
-  public void setObject(@javax.annotation.Nonnull ObjectEnum _object) {
+  public void setObject(@javax.annotation.Nonnull OAuthAppWebhookObject _object) {
     this._object = _object;
   }
 

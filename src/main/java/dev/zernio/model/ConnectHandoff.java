@@ -44,7 +44,7 @@ import dev.zernio.ApiClient;
   ConnectHandoff.JSON_PROPERTY_ACCOUNTS,
   ConnectHandoff.JSON_PROPERTY_ERROR
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:40:22.981242399Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ConnectHandoff {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

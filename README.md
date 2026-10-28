@@ -4,7 +4,7 @@ Zernio API
 
 - API version: 1.393.0
 
-- Build date: 2026-10-28T10:40:22.981242399Z[Etc/UTC]
+- Build date: 2026-10-28T10:58:14.731478299Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -4197,6 +4197,7 @@ Class | Method | HTTP request | Description
  - [OAuthAppSetup](docs/OAuthAppSetup.md)
  - [OAuthAppSetupScopeAreasInner](docs/OAuthAppSetupScopeAreasInner.md)
  - [OAuthAppWebhook](docs/OAuthAppWebhook.md)
+ - [OAuthAppWebhookObject](docs/OAuthAppWebhookObject.md)
  - [OnBrandedCallingIdentityActionRequiredRequest](docs/OnBrandedCallingIdentityActionRequiredRequest.md)
  - [OnBrandedCallingIdentityActionRequiredRequestIdentity](docs/OnBrandedCallingIdentityActionRequiredRequestIdentity.md)
  - [OnBrandedCallingIdentityStatusUpdatedRequest](docs/OnBrandedCallingIdentityStatusUpdatedRequest.md)
