@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   GoogleListingGroupDimensionProductCategory.JSON_PROPERTY_CATEGORY_ID,
   GoogleListingGroupDimensionProductCategory.JSON_PROPERTY_LEVEL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T11:01:55.271001288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class GoogleListingGroupDimensionProductCategory {
   public static final String JSON_PROPERTY_CATEGORY_ID = "categoryId";
   @javax.annotation.Nullable

@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.JSON_PROPERTY_PROFILE_PICTURE_URL,
   ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount.JSON_PROPERTY_FOLLOWERS_COUNT
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T11:01:55.271001288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ListInstagramPages200ResponsePagesInnerInstagramBusinessAccount {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nullable

@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   CommentAutomationDmMedia.JSON_PROPERTY_TYPE,
   CommentAutomationDmMedia.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T11:01:55.271001288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommentAutomationDmMedia {
   /**
    * Gets or Sets type

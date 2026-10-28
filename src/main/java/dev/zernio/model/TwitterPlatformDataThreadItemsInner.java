@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   TwitterPlatformDataThreadItemsInner.JSON_PROPERTY_CONTENT,
   TwitterPlatformDataThreadItemsInner.JSON_PROPERTY_MEDIA_ITEMS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T10:58:14.731478299Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T11:01:55.271001288Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class TwitterPlatformDataThreadItemsInner {
   public static final String JSON_PROPERTY_CONTENT = "content";
   @javax.annotation.Nullable
