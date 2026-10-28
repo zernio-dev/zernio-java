@@ -31,6 +31,7 @@
 | POST_EXTERNAL_DELETED | &quot;post.external.deleted&quot; |
 | ACCOUNT_CONNECTED | &quot;account.connected&quot; |
 | ACCOUNT_DISCONNECTED | &quot;account.disconnected&quot; |
+| ACCOUNT_PERMISSIONS_CHANGED | &quot;account.permissions_changed&quot; |
 | ACCOUNT_ADS_INITIAL_SYNC_COMPLETED | &quot;account.ads.initial_sync_completed&quot; |
 | ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
 | ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |

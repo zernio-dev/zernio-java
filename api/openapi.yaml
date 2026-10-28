@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.390.0
+  version: 1.391.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -410,7 +410,7 @@ tags:
   name: Business Agent
 - description: |
     Configure webhooks for real-time notifications. Webhooks can be created from the dashboard (Settings → Webhooks) or via this API.
-    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.delivery_issue, campaign.budget.depleted, ad_account.status_changed, ad.video.processed, ad_rule.triggered, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, account.rate_limited, calendar.event.created, calendar.event.updated, calendar.event.deleted, file.created, file.updated, file.deleted, file.picked, contact.updated, contact.deleted, webhook.test.
+    Events: post.scheduled, post.published, post.failed, post.partial, post.cancelled, post.recycled, post.platform.published, post.platform.failed, post.platform.deleted, post.tiktok.url_resolved, post.external.created, post.external.updated, post.external.deleted, account.connected, account.disconnected, account.permissions_changed, account.ads.initial_sync_completed, account.ads.sync_failed, account.ads.sync_recovered, analytics.synced, message.received, conversation.started, conversation.control_changed, call.received, call.ended, call.failed, call.permission_request, message.sent, message.edited, message.deleted, message.delivered, message.read, message.played, message.failed, reaction.received, referral.received, comment.received, review.new, review.updated, lead.received, ad.status_changed, ad.review.approved, ad.review.rejected, ad.delivery_issue, campaign.budget.depleted, ad_account.status_changed, ad.video.processed, ad_rule.triggered, whatsapp.template.status_updated, whatsapp.template.category_updated, whatsapp.account.name_status_updated, whatsapp.account.quality_updated, whatsapp.account.status_updated, whatsapp.account.alert_received, whatsapp.contact.identity_changed, whatsapp.automatic_event, whatsapp.number.activated, whatsapp.number.declined, whatsapp.number.action_required, whatsapp.number.verification_required, whatsapp.number.suspended, whatsapp.number.reactivated, whatsapp.number.released, whatsapp.number.kyc_submitted, phone_number.stock_available, verification.approved, verification.failed, api.changelog.published, sms.registration.action_required, sms.registration.status_updated, branded_calling.identity.status_updated, branded_calling.identity.action_required, branded_calling.number.status_updated, rcs.agent.status_updated, commerce.product.created, commerce.product.updated, commerce.product.deleted, commerce.order.created, commerce.order.updated, commerce.order.refunded, contact.tag_added, contact.tag_removed, contact.field_changed, sequence.enrolled, sequence.exited, workflow.run.started, workflow.run.completed, workflow.run.failed, support.run.completed, support.run.failed, account.rate_limited, calendar.event.created, calendar.event.updated, calendar.event.deleted, file.created, file.updated, file.deleted, file.picked, contact.updated, contact.deleted, webhook.test.
     Headers: every delivery carries X-Zernio-Event (event name) and X-Zernio-Event-Id (the payload `id`, a UUID minted once per event and identical across every subscribed endpoint, every automatic retry and every redelivery, so dedupe on it). Security: optional HMAC-SHA256 signature in X-Zernio-Signature header. Configure a secret key to enable verification. Custom headers supported. Legacy X-Late-Event, X-Late-Event-Id and X-Late-Signature duplicates are still sent and will be removed in a future major version.
 
     Resource groups. Every event belongs to one group: post.* to publishing, message.*, reaction.*, conversation.*, call.* and whatsapp.automatic_event to messages, comment.* and review.* to engagement, lead.* and contact.* to contacts, sequence.* and workflow.run.* to messages, ad.*, ad_account.*, ad_rule.* and campaign.* to ads, account.*, whatsapp.template.* and whatsapp.account.* to accounts, analytics.* to analytics, whatsapp.number.*, verification.* and sms.registration.* to telephony, api.changelog.published and webhook.test to webhooks. Support Assistant events (support.run.*) belong to no single group: they need every resource group enabled and a first-party full-scope caller (a session or a full-scope key, never an OAuth token or a profile-scoped key). Two independent controls use that mapping. (1) A restricted (zrk_) API key can only subscribe to, test-fire, redeliver, or read delivery logs for events in the groups it holds, so it can never create a subscription broader than itself. (2) Each subscription carries its own `disabledResourceGroups` denylist: events in a disabled group are dropped before delivery to that endpoint, on live delivery and on every replay path, no matter which key or session created the subscription. Changing that denylist applies to every event emitted after the change; events already queued when it landed can still be delivered for up to five minutes after they were enqueued, because the delivery worker trusts a five-minute enqueue-time snapshot before re-checking. Absent or empty on a subscription means it receives everything it subscribes to, which is the behavior of every subscription created before the field existed.
@@ -10257,6 +10257,27 @@ paths:
         schema:
           type: string
         style: form
+      - description: "Connect through one of your own OAuth apps (see /v1/connect/oauth-apps),\
+          \ so the consent screen shows your app and the platform's limits are your\
+          \ app's. Without it the connect runs on Zernio's app, whatever apps the\
+          \ workspace has saved. Only platforms listed in `platforms` of GET /v1/connect/oauth-apps\
+          \ accept an app; any other, and connects that end on a destination picker\
+          \ (Facebook Pages, Instagram through Facebook Login), return 400. The connect\
+          \ requests the app's `scopeAreas`; `scopes` may narrow them but not add\
+          \ an area the app does not enable (400). If the user does not grant every\
+          \ requested area, the account still connects and the redirect carries `missing_permissions=<areas>`\
+          \ (the headless POST returns `missingPermissions`). If the platform refuses\
+          \ a permission your app is not approved for, the redirect carries `error=oauth_app_scope_not_allowed`.\
+          \ The account remembers the app, and token refresh, publishing and inbox\
+          \ run on it; reconnecting through another app, or without one, moves the\
+          \ account to that app."
+        explode: true
+        in: query
+        name: oauthAppId
+        required: false
+        schema:
+          type: string
+        style: form
       - description: "Only connect if the login lands on this platform account; any\
           \ other account ends the flow with `error=account_mismatch` (a 409 `account_mismatch`\
           \ on POST /v1/connect/instagram/select-account) and nothing is written.\
@@ -14532,6 +14553,267 @@ paths:
       - Connect
       x-resource-group: accounts
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/oauth-apps:
+    get:
+      description: "Your own OAuth apps on social platforms. A connect runs on one\
+        \ when it passes its id as `oauthAppId`: the consent screen then shows your\
+        \ app's name and logo, and the platform's rate limits and quotas are your\
+        \ app's. Add as many as you need, any number per platform. Also lists, in\
+        \ `platforms`, which platforms accept your own app and what to set up on each.\
+        \ Pages are ordered by id: pass `pagination.nextCursor` back as `cursor` until\
+        \ it is null. Like every OAuth-app call, it needs the account owner or a full-access\
+        \ team member, on a session or a full-scope API key."
+      operationId: listOAuthApps
+      parameters:
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`pagination.nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listOAuthApps_200_response"
+          description: "Your apps, and the platforms that accept one."
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List your OAuth apps
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    post:
+      description: "Saves your app's client ID and secret for a platform. The keys\
+        \ are checked with the platform first: keys it rejects return 400 OAUTH_APP_KEYS_REJECTED\
+        \ and are not saved; keys it could not check are saved with status `unchecked`.\
+        \ Allow the returned `redirectUri` in your app's settings on the platform\
+        \ before connecting. Only the account owner or a full-access team member can\
+        \ add apps, and not with a profile-scoped API key."
+      operationId: createOAuthApp
+      requestBody:
+        content:
+          application/json:
+            example:
+              platform: youtube
+              label: Acme
+              clientId: 1234567890-abc.apps.googleusercontent.com
+              clientSecret: GOCSPX-xxxxxxxx
+            schema:
+              $ref: "#/components/schemas/createOAuthApp_request"
+        required: true
+      responses:
+        "201":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createOAuthApp_201_response"
+          description: The app was saved.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings (INSUFFICIENT_PERMISSIONS).
+        "409":
+          description: The workspace already has an app with this client ID on this
+            platform (OAUTH_APP_ALREADY_EXISTS); `details.appId` names it. Rotate
+            its secret with PATCH instead.
+      security:
+      - bearerAuth: []
+      summary: Add an OAuth app
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/oauth-apps/{appId}:
+    delete:
+      description: "Removes the app. Accounts connected through it can no longer refresh\
+        \ their tokens, so when any are connected the call returns 409 OAUTH_APP_IN_USE\
+        \ with `details.accountCount` unless `confirm=true` is passed. With confirm,\
+        \ those accounts are marked as needing reconnection and each fires `account.disconnected`."
+      operationId: deleteOAuthApp
+      parameters:
+      - explode: true
+        in: query
+        name: confirm
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/deleteOAuthApp_200_response"
+          description: The app was removed.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings (INSUFFICIENT_PERMISSIONS).
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          description: Accounts are still connected through the app (OAUTH_APP_IN_USE);
+            resend with confirm=true.
+      security:
+      - bearerAuth: []
+      summary: Remove an OAuth app
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    get:
+      operationId: getOAuthApp
+      parameters:
+      - explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createOAuthApp_201_response"
+          description: The app.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Get an OAuth app
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-accepts:
+      - application/json
+    parameters:
+    - explode: false
+      in: path
+      name: appId
+      required: true
+      schema:
+        type: string
+      style: simple
+    patch:
+      description: "Renames the app or rotates its secret. A new secret is checked\
+        \ with the platform before it is saved, and takes effect for every account\
+        \ on the app at once; their tokens keep working. The client ID cannot change:\
+        \ a different client ID is a different app, so add it and reconnect the accounts\
+        \ through it."
+      operationId: updateOAuthApp
+      parameters:
+      - explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/updateOAuthApp_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createOAuthApp_201_response"
+          description: The updated app.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The caller cannot change workspace settings (INSUFFICIENT_PERMISSIONS).
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Update an OAuth app
+      tags:
+      - Connect
+      x-resource-group: accounts
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/connect/oauth-apps/{appId}/test:
+    post:
+      description: Checks the saved keys with the platform again and records the outcome
+        in `status` and `lastError`.
+      operationId: testOAuthApp
+      parameters:
+      - explode: false
+        in: path
+        name: appId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/createOAuthApp_201_response"
+          description: The app with the new check result.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Check an OAuth app's keys
+      tags:
+      - Connect
+      x-resource-group: accounts
       x-accepts:
       - application/json
   /v1/connect/pending-data:
@@ -71166,6 +71448,124 @@ components:
           type: array
         error:
           $ref: "#/components/schemas/ConnectHandoff_error"
+    OAuthApp:
+      example:
+        redirectUri: https://openapi-generator.tech
+        scopeAreas:
+        - posting
+        - posting
+        lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        clientId: clientId
+        lastError: lastError
+        accountCount: 0
+        id: id
+        label: label
+        platform: platform
+        status: ok
+      properties:
+        id:
+          description: "Pass it as `oauthAppId` on GET /v1/connect/{platform} to connect\
+            \ through this app."
+          type: string
+        platform:
+          description: "The platform the app belongs to, as in GET /v1/connect/{platform}."
+          type: string
+        label:
+          type: string
+        clientId:
+          description: The client ID (or app ID) of your app on the platform. The
+            secret is never returned.
+          type: string
+        scopeAreas:
+          description: The permission areas every connect through this app requests.
+            Pick only what your app is approved for on the platform.
+          items:
+            enum:
+            - posting
+            - analytics
+            - comments
+            - messaging
+            - ads
+            type: string
+          type: array
+        status:
+          description: "`ok`: the platform accepted the keys at the last check. `unchecked`:\
+            \ the check could not reach a verdict (see lastError). `invalid`: the\
+            \ platform rejected the keys; connects and token refreshes through this\
+            \ app will fail until the secret is rotated."
+          enum:
+          - ok
+          - unchecked
+          - invalid
+          type: string
+        lastCheckedAt:
+          format: date-time
+          nullable: true
+          type: string
+        lastError:
+          nullable: true
+          type: string
+        accountCount:
+          description: Connected accounts currently running on this app.
+          type: integer
+        redirectUri:
+          description: The OAuth redirect URI to allow in your app's settings on the
+            platform.
+          format: uri
+          type: string
+        createdAt:
+          format: date-time
+          type: string
+      required:
+      - accountCount
+      - clientId
+      - createdAt
+      - id
+      - label
+      - platform
+      - redirectUri
+      - scopeAreas
+      - status
+    OAuthAppSetup:
+      example:
+        redirectUri: https://openapi-generator.tech
+        scopeAreas:
+        - area: posting
+          scopes:
+          - scopes
+          - scopes
+        - area: posting
+          scopes:
+          - scopes
+          - scopes
+        coreScopes:
+        - coreScopes
+        - coreScopes
+        platform: platform
+      properties:
+        platform:
+          type: string
+        redirectUri:
+          description: Allow this OAuth redirect URI in your app on the platform.
+          format: uri
+          type: string
+        coreScopes:
+          description: "Requested on every connect, whatever areas the app enables."
+          items:
+            type: string
+          type: array
+        scopeAreas:
+          description: "The areas an app on this platform can enable, each with the\
+            \ scopes it requests."
+          items:
+            $ref: "#/components/schemas/OAuthAppSetup_scopeAreas_inner"
+          type: array
+      required:
+      - coreScopes
+      - platform
+      - redirectUri
+      - scopeAreas
     ConnectWelcomeScreen:
       example:
         showByDefault: true
@@ -77203,6 +77603,7 @@ components:
             - post.external.deleted
             - account.connected
             - account.disconnected
+            - account.permissions_changed
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
@@ -78135,6 +78536,64 @@ components:
       - event
       - id
       - stock
+      - timestamp
+    WebhookPayloadAccountPermissionsChanged:
+      description: "Webhook payload for account.permissions_changed events: an account\
+        \ connected through your own OAuth app hit a missing permission and stays\
+        \ connected for its other areas."
+      example:
+        test: true
+        profiles:
+        - externalId: tenant_42
+          id: id
+        - externalId: tenant_42
+          id: id
+        id: id
+        event: account.permissions_changed
+        account:
+          accountId: accountId
+          reason: reason
+          profileId: profileId
+          displayName: displayName
+          oauthAppId: oauthAppId
+          platform: platform
+          missingScopeAreas:
+          - posting
+          - posting
+          username: username
+        timestamp: 2000-01-23T04:56:07.000+00:00
+      properties:
+        id:
+          description: "Stable webhook event ID: the dedupe key, also sent as the\
+            \ X-Zernio-Event-Id header and identical on every retry and redelivery."
+          type: string
+        profiles:
+          description: "The profiles this event belongs to, each with the externalId\
+            \ you set on it (null when none is set). Present on every event tied to\
+            \ a profile and absent on events that belong to none. Events spanning\
+            \ several profiles (a post published to accounts of different profiles)\
+            \ list each once. Use it to route the event to your tenant without storing\
+            \ Zernio profile ids."
+          items:
+            $ref: "#/components/schemas/WebhookProfiles_inner"
+          type: array
+        test:
+          description: "Always true when present: only a sample sent by POST /v1/webhooks/test\
+            \ with an event carries it."
+          type: boolean
+        event:
+          enum:
+          - account.permissions_changed
+          type: string
+        account:
+          $ref: "#/components/schemas/WebhookPayloadAccountPermissionsChanged_account"
+        timestamp:
+          format: date-time
+          type: string
+      required:
+      - account
+      - event
+      - id
       - timestamp
     WebhookPayloadAccountDisconnected:
       description: Webhook payload for account disconnected events
@@ -87023,9 +87482,13 @@ components:
     SocialAccount:
       example:
         profileUrl: profileUrl
+        scopeAreas:
+        - scopeAreas
+        - scopeAreas
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
+        oauthAppId: oauthAppId
         rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
         isActive: true
         platform: tiktok
@@ -87096,6 +87559,19 @@ components:
             \ TikTok: the open_id of Zernio's TikTok app, which differs from the open_id\
             \ any other app sees for the same user. Either value can be passed back\
             \ as `expectedPlatformUserId` on GET /v1/connect/{platform}."
+          type: string
+        scopeAreas:
+          description: "Accounts connected through your own OAuth app: the permission\
+            \ areas the connect requested. Null on accounts connected through Zernio's\
+            \ app."
+          items:
+            type: string
+          nullable: true
+          type: array
+        oauthAppId:
+          description: The id of your own OAuth app this account connected through
+            (see /v1/connect/oauth-apps); null when it uses Zernio's app.
+          nullable: true
           type: string
         tiktokAccountType:
           description: "TikTok accounts only. The account type TikTok reported when\
@@ -87235,18 +87711,14 @@ components:
         metadata: "{}"
         followersLastUpdated: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
-        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+        oauthAppId: oauthAppId
         isActive: true
         platform: tiktok
         enabled: true
         parentAccountId: parentAccountId
-        profilePicture: profilePicture
-        needsReconnection: true
         lastUpdated: 2000-01-23T04:56:07.000+00:00
         currentFollowers: 6.027456183070403
         platformUserId: platformUserId
-        profileId: SocialAccount_profileId
-        tiktokAccountType: business
         accountStats:
           videoCount: 9.301444243932576
           pinCount: 4.145608029883936
@@ -87260,6 +87732,14 @@ components:
           followingCount: 2.3021358869347655
           listedCount: 1.4894159098541704
         dataPoints: 5.637376656633329
+        scopeAreas:
+        - scopeAreas
+        - scopeAreas
+        rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+        profilePicture: profilePicture
+        needsReconnection: true
+        profileId: SocialAccount_profileId
+        tiktokAccountType: business
         growth: 1.4658129805029452
         _id: _id
         followersCount: 0.8008281904610115
@@ -90614,9 +91094,13 @@ components:
           disconnected: 9
         accounts:
         - profileUrl: profileUrl
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          oauthAppId: oauthAppId
           rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
@@ -90631,9 +91115,13 @@ components:
           followersCount: 0.8008281904610115
           username: username
         - profileUrl: profileUrl
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          oauthAppId: oauthAppId
           rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
@@ -90697,18 +91185,14 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
-          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          oauthAppId: oauthAppId
           isActive: true
           platform: tiktok
           enabled: true
           parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          needsReconnection: true
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           currentFollowers: 6.027456183070403
           platformUserId: platformUserId
-          profileId: SocialAccount_profileId
-          tiktokAccountType: business
           accountStats:
             videoCount: 9.301444243932576
             pinCount: 4.145608029883936
@@ -90722,6 +91206,14 @@ components:
             followingCount: 2.3021358869347655
             listedCount: 1.4894159098541704
           dataPoints: 5.637376656633329
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          profilePicture: profilePicture
+          needsReconnection: true
+          profileId: SocialAccount_profileId
+          tiktokAccountType: business
           growth: 1.4658129805029452
           _id: _id
           followersCount: 0.8008281904610115
@@ -90731,18 +91223,14 @@ components:
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
-          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          oauthAppId: oauthAppId
           isActive: true
           platform: tiktok
           enabled: true
           parentAccountId: parentAccountId
-          profilePicture: profilePicture
-          needsReconnection: true
           lastUpdated: 2000-01-23T04:56:07.000+00:00
           currentFollowers: 6.027456183070403
           platformUserId: platformUserId
-          profileId: SocialAccount_profileId
-          tiktokAccountType: business
           accountStats:
             videoCount: 9.301444243932576
             pinCount: 4.145608029883936
@@ -90756,6 +91244,14 @@ components:
             followingCount: 2.3021358869347655
             listedCount: 1.4894159098541704
           dataPoints: 5.637376656633329
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
+          rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
+          profilePicture: profilePicture
+          needsReconnection: true
+          profileId: SocialAccount_profileId
+          tiktokAccountType: business
           growth: 1.4658129805029452
           _id: _id
           followersCount: 0.8008281904610115
@@ -114713,6 +115209,178 @@ components:
           type: object
       required:
       - showByDefault
+    listOAuthApps_200_response_pagination:
+      example:
+        nextCursor: nextCursor
+      properties:
+        nextCursor:
+          description: Null on the last page.
+          nullable: true
+          type: string
+      required:
+      - nextCursor
+    listOAuthApps_200_response:
+      example:
+        pagination:
+          nextCursor: nextCursor
+        apps:
+        - redirectUri: https://openapi-generator.tech
+          scopeAreas:
+          - posting
+          - posting
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          clientId: clientId
+          lastError: lastError
+          accountCount: 0
+          id: id
+          label: label
+          platform: platform
+          status: ok
+        - redirectUri: https://openapi-generator.tech
+          scopeAreas:
+          - posting
+          - posting
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          clientId: clientId
+          lastError: lastError
+          accountCount: 0
+          id: id
+          label: label
+          platform: platform
+          status: ok
+        platforms:
+        - redirectUri: https://openapi-generator.tech
+          scopeAreas:
+          - area: posting
+            scopes:
+            - scopes
+            - scopes
+          - area: posting
+            scopes:
+            - scopes
+            - scopes
+          coreScopes:
+          - coreScopes
+          - coreScopes
+          platform: platform
+        - redirectUri: https://openapi-generator.tech
+          scopeAreas:
+          - area: posting
+            scopes:
+            - scopes
+            - scopes
+          - area: posting
+            scopes:
+            - scopes
+            - scopes
+          coreScopes:
+          - coreScopes
+          - coreScopes
+          platform: platform
+      properties:
+        apps:
+          items:
+            $ref: "#/components/schemas/OAuthApp"
+          type: array
+        pagination:
+          $ref: "#/components/schemas/listOAuthApps_200_response_pagination"
+        platforms:
+          items:
+            $ref: "#/components/schemas/OAuthAppSetup"
+          type: array
+      required:
+      - apps
+      - pagination
+      - platforms
+    createOAuthApp_request:
+      additionalProperties: {}
+      properties:
+        platform:
+          description: One of the platforms listed in `platforms` of GET /v1/connect/oauth-apps.
+          type: string
+        label:
+          maxLength: 80
+          minLength: 1
+          type: string
+        clientId:
+          maxLength: 500
+          minLength: 1
+          type: string
+        clientSecret:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        scopeAreas:
+          description: Areas this app requests. Defaults to every area the platform
+            supports; an area the platform cannot request separately is a 400.
+          items:
+            enum:
+            - posting
+            - analytics
+            - comments
+            - messaging
+            - ads
+            type: string
+          type: array
+      required:
+      - clientId
+      - clientSecret
+      - label
+      - platform
+    createOAuthApp_201_response:
+      example:
+        app:
+          redirectUri: https://openapi-generator.tech
+          scopeAreas:
+          - posting
+          - posting
+          lastCheckedAt: 2000-01-23T04:56:07.000+00:00
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          clientId: clientId
+          lastError: lastError
+          accountCount: 0
+          id: id
+          label: label
+          platform: platform
+          status: ok
+      properties:
+        app:
+          $ref: "#/components/schemas/OAuthApp"
+      required:
+      - app
+    deleteOAuthApp_200_response:
+      example:
+        disconnectedAccounts: 0
+      properties:
+        disconnectedAccounts:
+          type: integer
+      required:
+      - disconnectedAccounts
+    updateOAuthApp_request:
+      additionalProperties: {}
+      properties:
+        label:
+          maxLength: 80
+          minLength: 1
+          type: string
+        clientSecret:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        scopeAreas:
+          description: Replaces the areas new connects request. Accounts already connected
+            keep what they were granted until they reconnect.
+          items:
+            enum:
+            - posting
+            - analytics
+            - comments
+            - messaging
+            - ads
+            type: string
+          type: array
     getPendingOAuthData_200_response_organizations_inner:
       example:
         urn: urn
@@ -115279,9 +115947,13 @@ components:
         message: message
         account:
           profileUrl: profileUrl
+          scopeAreas:
+          - scopeAreas
+          - scopeAreas
           metadata: "{}"
           followersLastUpdated: 2000-01-23T04:56:07.000+00:00
           displayName: displayName
+          oauthAppId: oauthAppId
           rateLimitedUntil: 2000-01-23T04:56:07.000+00:00
           isActive: true
           platform: tiktok
@@ -119073,6 +119745,7 @@ components:
             - post.external.deleted
             - account.connected
             - account.disconnected
+            - account.permissions_changed
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
@@ -119268,6 +119941,7 @@ components:
             - post.external.deleted
             - account.connected
             - account.disconnected
+            - account.permissions_changed
             - account.ads.initial_sync_completed
             - account.ads.sync_failed
             - account.ads.sync_recovered
@@ -119513,6 +120187,7 @@ components:
           - post.external.deleted
           - account.connected
           - account.disconnected
+          - account.permissions_changed
           - account.ads.initial_sync_completed
           - account.ads.sync_failed
           - account.ads.sync_recovered
@@ -172316,6 +172991,28 @@ components:
           description: "The other params the redirect flow appends for that error,\
             \ such as `is_user_fixable`, `reason`, `dashboard_url`, `request_id` and\
             \ `stage`. All optional."
+    OAuthAppSetup_scopeAreas_inner:
+      example:
+        area: posting
+        scopes:
+        - scopes
+        - scopes
+      properties:
+        area:
+          enum:
+          - posting
+          - analytics
+          - comments
+          - messaging
+          - ads
+          type: string
+        scopes:
+          items:
+            type: string
+          type: array
+      required:
+      - area
+      - scopes
     AnalyticsDashboardFollowers_byAccount_inner:
       example:
         accountId: accountId
@@ -174786,6 +175483,55 @@ components:
       required:
       - country
       - types
+    WebhookPayloadAccountPermissionsChanged_account:
+      example:
+        accountId: accountId
+        reason: reason
+        profileId: profileId
+        displayName: displayName
+        oauthAppId: oauthAppId
+        platform: platform
+        missingScopeAreas:
+        - posting
+        - posting
+        username: username
+      properties:
+        accountId:
+          type: string
+        profileId:
+          type: string
+        platform:
+          type: string
+        username:
+          type: string
+        displayName:
+          type: string
+        oauthAppId:
+          description: The OAuth app the account connected through.
+          type: string
+        missingScopeAreas:
+          description: "Every area now missing. Enable the permission on your app\
+            \ (or have the user grant it), then reconnect the account."
+          items:
+            enum:
+            - posting
+            - analytics
+            - comments
+            - messaging
+            - ads
+            type: string
+          type: array
+        reason:
+          description: The platform error that revealed it.
+          type: string
+      required:
+      - accountId
+      - missingScopeAreas
+      - oauthAppId
+      - platform
+      - profileId
+      - reason
+      - username
     WebhookPayloadAccountDisconnected_account:
       example:
         accountId: accountId
@@ -184943,6 +185689,7 @@ x-documentation:
     - `post.external.deleted` - A tracked native post was detected as removed from the platform. `post.deletedAt` carries the detection time. Coverage is bounded to the most recent posts the platform listing returns, and detection is a diff against posts a prior sync already indexed, so an account for which no post has ever been indexed never emits it.
     - `account.connected` - Account connected
     - `account.disconnected` - Account disconnected (token expired)
+    - `account.permissions_changed` - An account connected through your own OAuth app lost a permission area (for example posting) while staying connected
     - `account.rate_limited` - A Google or Microsoft mailbox entered a sending cooldown; sends answer 429 until `account.resetsAt`
     - `account.ads.initial_sync_completed` - Initial ads sync (discovery + 90-day backfill) completed for an ads-enabled account
     - `account.ads.sync_failed` - An ad account's ads stopped syncing (no successful sync for 24 hours, or every live ad at the retry cap). Fires once until it recovers

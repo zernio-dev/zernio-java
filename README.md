@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.390.0
+- API version: 1.391.0
 
-- Build date: 2026-10-28T03:41:19.757164807Z[Etc/UTC]
+- Build date: 2026-10-28T09:37:33.499234992Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.390.0</version>
+  <version>1.391.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.390.0"
+compile "dev.zernio:zernio-sdk:1.391.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.390.0.jar`
+- `target/zernio-sdk-1.391.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1113,10 +1113,14 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**connectWhopAdsCredentialsWithHttpInfo**](docs/ConnectApi.md#connectWhopAdsCredentialsWithHttpInfo) | **POST** /v1/connect/whop-ads/credentials | Connect a Whop account
 *ConnectApi* | [**connectWordPressWithApplicationPassword**](docs/ConnectApi.md#connectWordPressWithApplicationPassword) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
 *ConnectApi* | [**connectWordPressWithApplicationPasswordWithHttpInfo**](docs/ConnectApi.md#connectWordPressWithApplicationPasswordWithHttpInfo) | **POST** /v1/connect/wordpress/token | Connect self-hosted WordPress with an application password
+*ConnectApi* | [**createOAuthApp**](docs/ConnectApi.md#createOAuthApp) | **POST** /v1/connect/oauth-apps | Add an OAuth app
+*ConnectApi* | [**createOAuthAppWithHttpInfo**](docs/ConnectApi.md#createOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps | Add an OAuth app
 *ConnectApi* | [**createPinterestBoard**](docs/ConnectApi.md#createPinterestBoard) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createPinterestBoardWithHttpInfo**](docs/ConnectApi.md#createPinterestBoardWithHttpInfo) | **POST** /v1/accounts/{accountId}/pinterest-boards | Create Pinterest board
 *ConnectApi* | [**createYoutubePlaylist**](docs/ConnectApi.md#createYoutubePlaylist) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
 *ConnectApi* | [**createYoutubePlaylistWithHttpInfo**](docs/ConnectApi.md#createYoutubePlaylistWithHttpInfo) | **POST** /v1/accounts/{accountId}/youtube-playlists | Create YouTube playlist
+*ConnectApi* | [**deleteOAuthApp**](docs/ConnectApi.md#deleteOAuthApp) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
+*ConnectApi* | [**deleteOAuthAppWithHttpInfo**](docs/ConnectApi.md#deleteOAuthAppWithHttpInfo) | **DELETE** /v1/connect/oauth-apps/{appId} | Remove an OAuth app
 *ConnectApi* | [**getConnectHandoff**](docs/ConnectApi.md#getConnectHandoff) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectHandoffWithHttpInfo**](docs/ConnectApi.md#getConnectHandoffWithHttpInfo) | **GET** /v1/connect/handoffs/{handoffId} | Get a phone handoff
 *ConnectApi* | [**getConnectUrl**](docs/ConnectApi.md#getConnectUrl) | **GET** /v1/connect/{platform} | Get OAuth connect URL
@@ -1133,6 +1137,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**getHubSpotConnectUrlWithHttpInfo**](docs/ConnectApi.md#getHubSpotConnectUrlWithHttpInfo) | **GET** /v1/connect/hubspot | Get HubSpot OAuth connect URL
 *ConnectApi* | [**getLinkedInOrganizations**](docs/ConnectApi.md#getLinkedInOrganizations) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
 *ConnectApi* | [**getLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#getLinkedInOrganizationsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-organizations | List LinkedIn orgs
+*ConnectApi* | [**getOAuthApp**](docs/ConnectApi.md#getOAuthApp) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app
+*ConnectApi* | [**getOAuthAppWithHttpInfo**](docs/ConnectApi.md#getOAuthAppWithHttpInfo) | **GET** /v1/connect/oauth-apps/{appId} | Get an OAuth app
 *ConnectApi* | [**getPageWebhookSubscription**](docs/ConnectApi.md#getPageWebhookSubscription) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription
 *ConnectApi* | [**getPageWebhookSubscriptionWithHttpInfo**](docs/ConnectApi.md#getPageWebhookSubscriptionWithHttpInfo) | **GET** /v1/accounts/{accountId}/webhook-subscription | Read a Facebook Page&#39;s webhook subscription
 *ConnectApi* | [**getPendingOAuthData**](docs/ConnectApi.md#getPendingOAuthData) | **GET** /v1/connect/pending-data | Get pending OAuth data
@@ -1175,6 +1181,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**listInstagramPagesWithHttpInfo**](docs/ConnectApi.md#listInstagramPagesWithHttpInfo) | **GET** /v1/connect/instagram/select-account | List Pages with a linked Instagram account
 *ConnectApi* | [**listLinkedInOrganizations**](docs/ConnectApi.md#listLinkedInOrganizations) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
 *ConnectApi* | [**listLinkedInOrganizationsWithHttpInfo**](docs/ConnectApi.md#listLinkedInOrganizationsWithHttpInfo) | **GET** /v1/connect/linkedin/organizations | List LinkedIn orgs
+*ConnectApi* | [**listOAuthApps**](docs/ConnectApi.md#listOAuthApps) | **GET** /v1/connect/oauth-apps | List your OAuth apps
+*ConnectApi* | [**listOAuthAppsWithHttpInfo**](docs/ConnectApi.md#listOAuthAppsWithHttpInfo) | **GET** /v1/connect/oauth-apps | List your OAuth apps
 *ConnectApi* | [**listPinterestBoardsForSelection**](docs/ConnectApi.md#listPinterestBoardsForSelection) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
 *ConnectApi* | [**listPinterestBoardsForSelectionWithHttpInfo**](docs/ConnectApi.md#listPinterestBoardsForSelectionWithHttpInfo) | **GET** /v1/connect/pinterest/select-board | List Pinterest boards
 *ConnectApi* | [**listSlackChannels**](docs/ConnectApi.md#listSlackChannels) | **GET** /v1/connect/slack | List Slack channels for the channel picker
@@ -1203,6 +1211,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**setRedditPostFlairWithHttpInfo**](docs/ConnectApi.md#setRedditPostFlairWithHttpInfo) | **POST** /v1/accounts/{accountId}/reddit-flairs | Set Reddit post flair
 *ConnectApi* | [**startMicrosoftAdminConsent**](docs/ConnectApi.md#startMicrosoftAdminConsent) | **GET** /v1/connect/microsoft/admin-consent | Admin-consent link for a Microsoft tenant
 *ConnectApi* | [**startMicrosoftAdminConsentWithHttpInfo**](docs/ConnectApi.md#startMicrosoftAdminConsentWithHttpInfo) | **GET** /v1/connect/microsoft/admin-consent | Admin-consent link for a Microsoft tenant
+*ConnectApi* | [**testOAuthApp**](docs/ConnectApi.md#testOAuthApp) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys
+*ConnectApi* | [**testOAuthAppWithHttpInfo**](docs/ConnectApi.md#testOAuthAppWithHttpInfo) | **POST** /v1/connect/oauth-apps/{appId}/test | Check an OAuth app&#39;s keys
 *ConnectApi* | [**updateConnectWelcomeScreen**](docs/ConnectApi.md#updateConnectWelcomeScreen) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
 *ConnectApi* | [**updateConnectWelcomeScreenWithHttpInfo**](docs/ConnectApi.md#updateConnectWelcomeScreenWithHttpInfo) | **PUT** /v1/connect/welcome-screen | Save the welcome screen
 *ConnectApi* | [**updateFacebookPage**](docs/ConnectApi.md#updateFacebookPage) | **PUT** /v1/accounts/{accountId}/facebook-page | Update Facebook page
@@ -1211,6 +1221,8 @@ Class | Method | HTTP request | Description
 *ConnectApi* | [**updateGmbLocationWithHttpInfo**](docs/ConnectApi.md#updateGmbLocationWithHttpInfo) | **PUT** /v1/accounts/{accountId}/gmb-locations | Update Google Business Profile location
 *ConnectApi* | [**updateLinkedInOrganization**](docs/ConnectApi.md#updateLinkedInOrganization) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type
 *ConnectApi* | [**updateLinkedInOrganizationWithHttpInfo**](docs/ConnectApi.md#updateLinkedInOrganizationWithHttpInfo) | **PUT** /v1/accounts/{accountId}/linkedin-organization | Switch LinkedIn account type
+*ConnectApi* | [**updateOAuthApp**](docs/ConnectApi.md#updateOAuthApp) | **PATCH** /v1/connect/oauth-apps/{appId} | Update an OAuth app
+*ConnectApi* | [**updateOAuthAppWithHttpInfo**](docs/ConnectApi.md#updateOAuthAppWithHttpInfo) | **PATCH** /v1/connect/oauth-apps/{appId} | Update an OAuth app
 *ConnectApi* | [**updatePinterestBoards**](docs/ConnectApi.md#updatePinterestBoards) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board
 *ConnectApi* | [**updatePinterestBoardsWithHttpInfo**](docs/ConnectApi.md#updatePinterestBoardsWithHttpInfo) | **PUT** /v1/accounts/{accountId}/pinterest-boards | Set default Pinterest board
 *ConnectApi* | [**updateRedditSubreddits**](docs/ConnectApi.md#updateRedditSubreddits) | **PUT** /v1/accounts/{accountId}/reddit-subreddits | Set default subreddit
@@ -2878,6 +2890,8 @@ Class | Method | HTTP request | Description
  - [CreateMessagingAd201Response](docs/CreateMessagingAd201Response.md)
  - [CreateMessagingAdRequest](docs/CreateMessagingAdRequest.md)
  - [CreateMetaAdAccountRequest](docs/CreateMetaAdAccountRequest.md)
+ - [CreateOAuthApp201Response](docs/CreateOAuthApp201Response.md)
+ - [CreateOAuthAppRequest](docs/CreateOAuthAppRequest.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
  - [CreatePhoneNumberKycLinkRequestBranding](docs/CreatePhoneNumberKycLinkRequestBranding.md)
@@ -3039,6 +3053,7 @@ Class | Method | HTTP request | Description
  - [DeleteInboxConversation200ResponseData](docs/DeleteInboxConversation200ResponseData.md)
  - [DeleteInboxReviewReply200Response](docs/DeleteInboxReviewReply200Response.md)
  - [DeleteInboxReviewReplyRequest](docs/DeleteInboxReviewReplyRequest.md)
+ - [DeleteOAuthApp200Response](docs/DeleteOAuthApp200Response.md)
  - [DeleteSmsSenderId200Response](docs/DeleteSmsSenderId200Response.md)
  - [DeleteTestLead200Response](docs/DeleteTestLead200Response.md)
  - [DeleteTrackingTagEvent200Response](docs/DeleteTrackingTagEvent200Response.md)
@@ -4025,6 +4040,8 @@ Class | Method | HTTP request | Description
  - [ListLogs200ResponsePagination](docs/ListLogs200ResponsePagination.md)
  - [ListMetaBusinessUsers200Response](docs/ListMetaBusinessUsers200Response.md)
  - [ListMetaBusinesses200Response](docs/ListMetaBusinesses200Response.md)
+ - [ListOAuthApps200Response](docs/ListOAuthApps200Response.md)
+ - [ListOAuthApps200ResponsePagination](docs/ListOAuthApps200ResponsePagination.md)
  - [ListPageUsers200Response](docs/ListPageUsers200Response.md)
  - [ListPartnershipAdContent200Response](docs/ListPartnershipAdContent200Response.md)
  - [ListPartnershipAdContent200ResponseMediaInner](docs/ListPartnershipAdContent200ResponseMediaInner.md)
@@ -4176,6 +4193,9 @@ Class | Method | HTTP request | Description
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
  - [MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
  - [MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
+ - [OAuthApp](docs/OAuthApp.md)
+ - [OAuthAppSetup](docs/OAuthAppSetup.md)
+ - [OAuthAppSetupScopeAreasInner](docs/OAuthAppSetupScopeAreasInner.md)
  - [OnBrandedCallingIdentityActionRequiredRequest](docs/OnBrandedCallingIdentityActionRequiredRequest.md)
  - [OnBrandedCallingIdentityActionRequiredRequestIdentity](docs/OnBrandedCallingIdentityActionRequiredRequestIdentity.md)
  - [OnBrandedCallingIdentityStatusUpdatedRequest](docs/OnBrandedCallingIdentityStatusUpdatedRequest.md)
@@ -4905,6 +4925,7 @@ Class | Method | HTTP request | Description
  - [UpdateLeadRequest](docs/UpdateLeadRequest.md)
  - [UpdateLinkedInOrganization200Response](docs/UpdateLinkedInOrganization200Response.md)
  - [UpdateLinkedInOrganizationRequest](docs/UpdateLinkedInOrganizationRequest.md)
+ - [UpdateOAuthAppRequest](docs/UpdateOAuthAppRequest.md)
  - [UpdatePinterestBoardsRequest](docs/UpdatePinterestBoardsRequest.md)
  - [UpdatePostMetadata200Response](docs/UpdatePostMetadata200Response.md)
  - [UpdatePostMetadataRequest](docs/UpdatePostMetadataRequest.md)
@@ -5059,6 +5080,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadAccountConnectedAccount](docs/WebhookPayloadAccountConnectedAccount.md)
  - [WebhookPayloadAccountDisconnected](docs/WebhookPayloadAccountDisconnected.md)
  - [WebhookPayloadAccountDisconnectedAccount](docs/WebhookPayloadAccountDisconnectedAccount.md)
+ - [WebhookPayloadAccountPermissionsChanged](docs/WebhookPayloadAccountPermissionsChanged.md)
+ - [WebhookPayloadAccountPermissionsChangedAccount](docs/WebhookPayloadAccountPermissionsChangedAccount.md)
  - [WebhookPayloadAccountRateLimited](docs/WebhookPayloadAccountRateLimited.md)
  - [WebhookPayloadAccountRateLimitedAccount](docs/WebhookPayloadAccountRateLimitedAccount.md)
  - [WebhookPayloadAdAccountStatusChanged](docs/WebhookPayloadAdAccountStatusChanged.md)
