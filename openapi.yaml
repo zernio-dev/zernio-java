@@ -328,7 +328,7 @@ tags:
       `creator_campaigns` resource group.
   - name: Treasury
     description: "Fund a balance by card, then transfer money to payees (creators, ad accounts) through Zernio. The dashboard calls this your Balance. Requires usage-based billing. Every operation belongs to the `money` resource group. Every money write (top-ups, transfers, treasury settles, payout batches) needs an owner, admin or billing admin, signed in or through a full-access key they created. Reading the team's balance, top-ups, transfers and payees needs a full-access key or a signed-in session; a profile-scoped key answers 403."
-  - name: Creator Portal (public)
+  - name: Creator Portal
     description: |
       The pages a creator uses behind a campaign link: read the campaign, join, connect accounts,
       submit posts and set up payouts. No API key: the `token` in the path (an open invite token or
@@ -24439,7 +24439,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: recoverCreatorPortalLinks
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Email a creator their campaign links
       security: []
       description: |
@@ -24481,7 +24481,7 @@ paths:
     get:
       x-resource-group: "public"
       operationId: getCreatorPortal
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Read a creator invite or participant page
       security: []
       description: |
@@ -24509,7 +24509,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: joinCreatorCampaign
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Join a campaign
       security: []
       description: |
@@ -24555,7 +24555,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: startCreatorConnect
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Start connecting a creator account
       security: []
       description: |
@@ -24598,7 +24598,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: submitCreatorPost
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Submit a post
       security: []
       description: |
@@ -24651,7 +24651,7 @@ paths:
     get:
       x-resource-group: "public"
       operationId: getCreatorPayouts
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: List a creator's earnings history
       security: []
       description: |
@@ -24684,7 +24684,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: startCreatorPayouts
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Start payout onboarding
       security: []
       description: |
@@ -24730,7 +24730,7 @@ paths:
     post:
       x-resource-group: "public"
       operationId: createCreatorPayoutLogin
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Open the creator's Stripe dashboard
       security: []
       description: |
@@ -24764,7 +24764,7 @@ paths:
     get:
       x-resource-group: "public"
       operationId: getCreatorPayoutStatement
-      tags: [Creator Portal (public)]
+      tags: [Creator Portal]
       summary: Download a payout statement
       security: []
       description: |

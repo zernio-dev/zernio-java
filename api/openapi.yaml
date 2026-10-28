@@ -107,7 +107,7 @@ tags:
     An invalid, unknown or expired token always answers the same 404. Write operations are rate
     limited per token and IP address (429). Build your own creator experience on these, or send
     creators to the Zernio-hosted page at `https://zernio.com/join/{token}`.
-  name: Creator Portal (public)
+  name: Creator Portal
 - description: |
     Create, schedule, list, update, and delete posts across all connected accounts.
   name: Posts
@@ -4384,7 +4384,7 @@ paths:
       security: []
       summary: Email a creator their campaign links
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-content-type: application/json
       x-accepts:
@@ -4413,7 +4413,7 @@ paths:
       security: []
       summary: Read a creator invite or participant page
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-accepts:
       - application/json
@@ -4465,7 +4465,7 @@ paths:
       security: []
       summary: Join a campaign
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-content-type: application/json
       x-accepts:
@@ -4513,7 +4513,7 @@ paths:
       security: []
       summary: Start connecting a creator account
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-content-type: application/json
       x-accepts:
@@ -4583,7 +4583,7 @@ paths:
       security: []
       summary: Submit a post
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-content-type: application/json
       x-accepts:
@@ -4630,7 +4630,7 @@ paths:
       security: []
       summary: List a creator's earnings history
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-accepts:
       - application/json
@@ -4680,7 +4680,7 @@ paths:
       security: []
       summary: Start payout onboarding
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-content-type: application/json
       x-accepts:
@@ -4717,7 +4717,7 @@ paths:
       security: []
       summary: Open the creator's Stripe dashboard
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-accepts:
       - application/json
@@ -4758,7 +4758,7 @@ paths:
       security: []
       summary: Download a payout statement
       tags:
-      - Creator Portal (public)
+      - Creator Portal
       x-resource-group: public
       x-accepts:
       - application/json

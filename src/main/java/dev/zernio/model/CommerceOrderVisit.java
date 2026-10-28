@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CommerceOrderVisit.JSON_PROPERTY_SOURCE_TYPE,
   CommerceOrderVisit.JSON_PROPERTY_UTM
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T21:57:52.310749376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-28T22:12:16.460720376Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceOrderVisit {
   public static final String JSON_PROPERTY_OCCURRED_AT = "occurredAt";
   private JsonNullable<OffsetDateTime> occurredAt = JsonNullable.<OffsetDateTime>undefined();
