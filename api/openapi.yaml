@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.394.2
+  version: 1.395.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -72683,7 +72683,8 @@ components:
         name:
           type: string
         vertical:
-          description: "Catalog vertical (e.g. commerce, vehicles, hotels)"
+          description: "Catalog vertical as Meta reports it (e.g. commerce, services,\
+            \ vehicles, hotels)"
           nullable: true
           type: string
         productCount:
@@ -163509,17 +163510,29 @@ components:
           type: string
         vertical:
           default: commerce
+          description: "Meta catalog vertical. Use services for a professional services\
+            \ catalog (for example one linked to WhatsApp). local_service_business\
+            \ is a deprecated alias of local_service_businesses. The product endpoints\
+            \ under /v1/ads/catalogs/{catalogId}/products write commerce product items\
+            \ only."
           enum:
           - commerce
-          - vehicles
-          - hotels
-          - flights
+          - adoptable_pets
+          - apps_and_software
+          - articles_and_publications
           - destinations
+          - flights
+          - generic
           - home_listings
-          - local_service_business
+          - hotels
+          - local_service_businesses
+          - media_titles
+          - offer_items
           - offline_commerce
-          - ticketed_experiences
+          - services
           - transactable_items
+          - vehicles
+          - local_service_business
           type: string
       required:
       - accountId
