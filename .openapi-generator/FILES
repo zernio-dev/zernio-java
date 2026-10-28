@@ -6257,14 +6257,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CreateOAuthApp201ResponseTest.java
-src/test/java/dev/zernio/model/CreateOAuthAppRequestTest.java
-src/test/java/dev/zernio/model/DeleteOAuthApp200ResponseTest.java
-src/test/java/dev/zernio/model/ListOAuthApps200ResponsePaginationTest.java
-src/test/java/dev/zernio/model/ListOAuthApps200ResponseTest.java
-src/test/java/dev/zernio/model/OAuthAppSetupScopeAreasInnerTest.java
-src/test/java/dev/zernio/model/OAuthAppSetupTest.java
-src/test/java/dev/zernio/model/OAuthAppTest.java
-src/test/java/dev/zernio/model/UpdateOAuthAppRequestTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAccountPermissionsChangedAccountTest.java
-src/test/java/dev/zernio/model/WebhookPayloadAccountPermissionsChangedTest.java
