@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.389.0
+  version: 1.390.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -42054,6 +42054,109 @@ paths:
       x-content-type: application/json
       x-accepts:
       - application/json
+  /v1/ads/rules/activity:
+    get:
+      description: |
+        The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach.
+        Entries stay after a rule is renamed or deleted; `ruleName` is the rule's name when it acted.
+      operationId: listAdRuleActivity
+      parameters:
+      - explode: true
+        in: query
+        name: ruleId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Only changes of rules on this ads connection.
+        explode: true
+        in: query
+        name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: type
+        required: false
+        schema:
+          enum:
+          - pause
+          - activate
+          - adjust_budget
+          type: string
+        style: form
+      - description: "ISO 8601 date-time, inclusive."
+        explode: true
+        in: query
+        name: from
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - description: "ISO 8601 date-time, inclusive."
+        explode: true
+        in: query
+        name: to
+        required: false
+        schema:
+          format: date-time
+          type: string
+        style: form
+      - explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 50
+          maximum: 100
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdRuleActivity_200_response"
+          description: "Changes, newest first"
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: Ads access required (code `ads_addon_required`). Legacy plans
+            need the Ads add-on; included by default on usage-based plans.
+      security:
+      - bearerAuth: []
+      summary: List every change ad rules made
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
   /v1/ads/rules/{ruleId}:
     delete:
       description: |
@@ -42272,6 +42375,8 @@ paths:
     get:
       description: |
         Lists a rule's scheduled runs, newest first: what each run evaluated, matched and did.
+        Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days.
+        For every change across all rules, use `GET /v1/ads/rules/activity`.
       operationId: listAdRuleRuns
       parameters:
       - explode: false
@@ -100644,6 +100749,13 @@ components:
             status: done
           timezone: timezone
           today: 2000-01-23
+          rule:
+            accountId: accountId
+            level: campaign
+            profileId: profileId
+            name: name
+            platform: platform
+            platformAdAccountId: platformAdAccountId
           timezoneAssumed: true
           currency: currency
           matched:
@@ -100739,6 +100851,97 @@ components:
       - objectsEvaluated
       - outcome
       - ranAt
+    AdRuleActivityEntry:
+      example:
+        reason: reason
+        level: campaign
+        ranAt: 2000-01-23T04:56:07.000+00:00
+        adAccountId: adAccountId
+        previousDailyBudget: 0.8008281904610115
+        type: pause
+        platform: platform
+        accountId: accountId
+        ruleName: ruleName
+        objectName: objectName
+        newDailyBudget: 6.027456183070403
+        currency: currency
+        id: id
+        ruleId: ruleId
+        objectId: objectId
+        status: done
+      properties:
+        id:
+          description: Stable ID of this entry.
+          type: string
+        ranAt:
+          format: date-time
+          type: string
+        ruleId:
+          type: string
+        ruleName:
+          description: The rule's name when it acted.
+          type: string
+        platform:
+          type: string
+        accountId:
+          description: The ads connection the rule runs on.
+          type: string
+        adAccountId:
+          type: string
+        level:
+          enum:
+          - campaign
+          - adset
+          type: string
+        objectId:
+          description: Platform ID of the campaign or ad set.
+          type: string
+        objectName:
+          description: Its name when the rule acted.
+          nullable: true
+          type: string
+        type:
+          enum:
+          - pause
+          - activate
+          - adjust_budget
+          type: string
+        status:
+          enum:
+          - done
+          - skipped
+          - failed
+          type: string
+        reason:
+          description: "Why it was skipped or failed, for example `already_paused`."
+          nullable: true
+          type: string
+        previousDailyBudget:
+          nullable: true
+          type: number
+        newDailyBudget:
+          nullable: true
+          type: number
+        currency:
+          nullable: true
+          type: string
+      required:
+      - accountId
+      - adAccountId
+      - currency
+      - id
+      - level
+      - newDailyBudget
+      - objectId
+      - objectName
+      - platform
+      - previousDailyBudget
+      - ranAt
+      - reason
+      - ruleId
+      - ruleName
+      - status
+      - type
     AdKeyword:
       example:
         adSetName: adSetName
@@ -143113,6 +143316,53 @@ components:
           $ref: "#/components/schemas/AdRule"
       required:
       - rule
+    listAdRuleActivity_200_response:
+      example:
+        nextCursor: nextCursor
+        activity:
+        - reason: reason
+          level: campaign
+          ranAt: 2000-01-23T04:56:07.000+00:00
+          adAccountId: adAccountId
+          previousDailyBudget: 0.8008281904610115
+          type: pause
+          platform: platform
+          accountId: accountId
+          ruleName: ruleName
+          objectName: objectName
+          newDailyBudget: 6.027456183070403
+          currency: currency
+          id: id
+          ruleId: ruleId
+          objectId: objectId
+          status: done
+        - reason: reason
+          level: campaign
+          ranAt: 2000-01-23T04:56:07.000+00:00
+          adAccountId: adAccountId
+          previousDailyBudget: 0.8008281904610115
+          type: pause
+          platform: platform
+          accountId: accountId
+          ruleName: ruleName
+          objectName: objectName
+          newDailyBudget: 6.027456183070403
+          currency: currency
+          id: id
+          ruleId: ruleId
+          objectId: objectId
+          status: done
+      properties:
+        activity:
+          items:
+            $ref: "#/components/schemas/AdRuleActivityEntry"
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+      required:
+      - activity
+      - nextCursor
     updateAdRule_request:
       properties:
         name:
@@ -143154,6 +143404,13 @@ components:
               status: done
             timezone: timezone
             today: 2000-01-23
+            rule:
+              accountId: accountId
+              level: campaign
+              profileId: profileId
+              name: name
+              platform: platform
+              platformAdAccountId: platformAdAccountId
             timezoneAssumed: true
             currency: currency
             matched:
@@ -143218,6 +143475,13 @@ components:
               status: done
             timezone: timezone
             today: 2000-01-23
+            rule:
+              accountId: accountId
+              level: campaign
+              profileId: profileId
+              name: name
+              platform: platform
+              platformAdAccountId: platformAdAccountId
             timezoneAssumed: true
             currency: currency
             matched:
@@ -183276,6 +183540,33 @@ components:
         window: today
         value: 0.6027456183070403
         met: true
+    AdRuleRun_evaluation_rule:
+      description: "The rule as it was when this run happened, so its actions stay\
+        \ readable after the rule is renamed or deleted. Absent on runs recorded before\
+        \ October 2026."
+      example:
+        accountId: accountId
+        level: campaign
+        profileId: profileId
+        name: name
+        platform: platform
+        platformAdAccountId: platformAdAccountId
+      properties:
+        name:
+          type: string
+        profileId:
+          type: string
+        accountId:
+          type: string
+        platform:
+          type: string
+        platformAdAccountId:
+          type: string
+        level:
+          enum:
+          - campaign
+          - adset
+          type: string
     AdRuleRun_evaluation_actions_inner:
       example:
         reason: reason
@@ -183339,6 +183630,13 @@ components:
           status: done
         timezone: timezone
         today: 2000-01-23
+        rule:
+          accountId: accountId
+          level: campaign
+          profileId: profileId
+          name: name
+          platform: platform
+          platformAdAccountId: platformAdAccountId
         timezoneAssumed: true
         currency: currency
         matched:
@@ -183390,6 +183688,8 @@ components:
           objectId: objectId
           status: done
       properties:
+        rule:
+          $ref: "#/components/schemas/AdRuleRun_evaluation_rule"
         today:
           format: date
           type: string

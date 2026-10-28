@@ -10,6 +10,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**deleteAdRuleWithHttpInfo**](AdRulesApi.md#deleteAdRuleWithHttpInfo) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule |
 | [**getAdRule**](AdRulesApi.md#getAdRule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
 | [**getAdRuleWithHttpInfo**](AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule |
+| [**listAdRuleActivity**](AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made |
+| [**listAdRuleActivityWithHttpInfo**](AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleRuns**](AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**listAdRuleRunsWithHttpInfo**](AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**listAdRules**](AdRulesApi.md#listAdRules) | **GET** /v1/ads/rules | List ad rules |
@@ -479,13 +481,187 @@ ApiResponse<[**CreateAdRule201Response**](CreateAdRule201Response.md)>
 | **404** | Resource not found |  -  |
 
 
+## listAdRuleActivity
+
+> ListAdRuleActivity200Response listAdRuleActivity(ruleId, accountId, type, from, to, limit, cursor)
+
+List every change ad rules made
+
+The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | 
+        String accountId = "accountId_example"; // String | Only changes of rules on this ads connection.
+        String type = "pause"; // String | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | ISO 8601 date-time, inclusive.
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | ISO 8601 date-time, inclusive.
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ListAdRuleActivity200Response result = apiInstance.listAdRuleActivity(ruleId, accountId, type, from, to, limit, cursor);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleActivity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**|  | [optional] |
+| **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget] |
+| **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
+| **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+[**ListAdRuleActivity200Response**](ListAdRuleActivity200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Changes, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+## listAdRuleActivityWithHttpInfo
+
+> ApiResponse<ListAdRuleActivity200Response> listAdRuleActivity listAdRuleActivityWithHttpInfo(ruleId, accountId, type, from, to, limit, cursor)
+
+List every change ad rules made
+
+The permanent record of what your rules did: one entry per pause, reactivation or budget change (including skipped and failed attempts), newest first, across all rules of the profiles the key can reach. Entries stay after a rule is renamed or deleted; &#x60;ruleName&#x60; is the rule&#39;s name when it acted. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        String ruleId = "ruleId_example"; // String | 
+        String accountId = "accountId_example"; // String | Only changes of rules on this ads connection.
+        String type = "pause"; // String | 
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | ISO 8601 date-time, inclusive.
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | ISO 8601 date-time, inclusive.
+        Integer limit = 50; // Integer | 
+        String cursor = "cursor_example"; // String | `nextCursor` from the previous page.
+        try {
+            ApiResponse<ListAdRuleActivity200Response> response = apiInstance.listAdRuleActivityWithHttpInfo(ruleId, accountId, type, from, to, limit, cursor);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleActivity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ruleId** | **String**|  | [optional] |
+| **accountId** | **String**| Only changes of rules on this ads connection. | [optional] |
+| **type** | **String**|  | [optional] [enum: pause, activate, adjust_budget] |
+| **from** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
+| **to** | **OffsetDateTime**| ISO 8601 date-time, inclusive. | [optional] |
+| **limit** | **Integer**|  | [optional] [default to 50] |
+| **cursor** | **String**| &#x60;nextCursor&#x60; from the previous page. | [optional] |
+
+### Return type
+
+ApiResponse<[**ListAdRuleActivity200Response**](ListAdRuleActivity200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Changes, newest first |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
+
+
 ## listAdRuleRuns
 
 > ListAdRuleRuns200Response listAdRuleRuns(ruleId, limit, skip)
 
 List an ad rule&#39;s runs
 
-Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. 
+Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
 
 ### Example
 
@@ -563,7 +739,7 @@ public class Example {
 
 List an ad rule&#39;s runs
 
-Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. 
+Lists a rule&#39;s scheduled runs, newest first: what each run evaluated, matched and did. Runs that changed something (or tried to) are kept permanently, also after the rule is deleted; runs that changed nothing are dropped after about 31 days. For every change across all rules, use &#x60;GET /v1/ads/rules/activity&#x60;. 
 
 ### Example
 

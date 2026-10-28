@@ -8,6 +8,7 @@ The matched objects with their condition values, and what each action did.
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**rule** | [**AdRuleRunEvaluationRule**](AdRuleRunEvaluationRule.md) |  |  [optional] |
 |**today** | **LocalDate** |  |  [optional] |
 |**timezone** | **String** |  |  [optional] |
 |**timezoneAssumed** | **Boolean** |  |  [optional] |

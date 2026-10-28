@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.389.0
+- API version: 1.390.0
 
-- Build date: 2026-10-27T22:20:07.428511025Z[Etc/UTC]
+- Build date: 2026-10-28T03:41:19.757164807Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.389.0</version>
+  <version>1.390.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.389.0"
+compile "dev.zernio:zernio-sdk:1.390.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.389.0.jar`
+- `target/zernio-sdk-1.390.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -577,6 +577,8 @@ Class | Method | HTTP request | Description
 *AdRulesApi* | [**deleteAdRuleWithHttpInfo**](docs/AdRulesApi.md#deleteAdRuleWithHttpInfo) | **DELETE** /v1/ads/rules/{ruleId} | Delete an ad rule
 *AdRulesApi* | [**getAdRule**](docs/AdRulesApi.md#getAdRule) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
 *AdRulesApi* | [**getAdRuleWithHttpInfo**](docs/AdRulesApi.md#getAdRuleWithHttpInfo) | **GET** /v1/ads/rules/{ruleId} | Get an ad rule
+*AdRulesApi* | [**listAdRuleActivity**](docs/AdRulesApi.md#listAdRuleActivity) | **GET** /v1/ads/rules/activity | List every change ad rules made
+*AdRulesApi* | [**listAdRuleActivityWithHttpInfo**](docs/AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made
 *AdRulesApi* | [**listAdRuleRuns**](docs/AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
 *AdRulesApi* | [**listAdRuleRunsWithHttpInfo**](docs/AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
 *AdRulesApi* | [**listAdRules**](docs/AdRulesApi.md#listAdRules) | **GET** /v1/ads/rules | List ad rules
@@ -2300,6 +2302,7 @@ Class | Method | HTTP request | Description
  - [AdRuleActionOneOf1](docs/AdRuleActionOneOf1.md)
  - [AdRuleActionOneOf2](docs/AdRuleActionOneOf2.md)
  - [AdRuleActionOneOf3](docs/AdRuleActionOneOf3.md)
+ - [AdRuleActivityEntry](docs/AdRuleActivityEntry.md)
  - [AdRuleCondition](docs/AdRuleCondition.md)
  - [AdRuleConditions](docs/AdRuleConditions.md)
  - [AdRuleEvaluation](docs/AdRuleEvaluation.md)
@@ -2310,6 +2313,7 @@ Class | Method | HTTP request | Description
  - [AdRuleRunEvaluation](docs/AdRuleRunEvaluation.md)
  - [AdRuleRunEvaluationActionsInner](docs/AdRuleRunEvaluationActionsInner.md)
  - [AdRuleRunEvaluationNotification](docs/AdRuleRunEvaluationNotification.md)
+ - [AdRuleRunEvaluationRule](docs/AdRuleRunEvaluationRule.md)
  - [AdRuleSchedule](docs/AdRuleSchedule.md)
  - [AdSchedule](docs/AdSchedule.md)
  - [AdScheduleWindow](docs/AdScheduleWindow.md)
@@ -3832,6 +3836,7 @@ Class | Method | HTTP request | Description
  - [ListAdLabels200ResponseDataInner](docs/ListAdLabels200ResponseDataInner.md)
  - [ListAdLabels200ResponsePaging](docs/ListAdLabels200ResponsePaging.md)
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
+ - [ListAdRuleActivity200Response](docs/ListAdRuleActivity200Response.md)
  - [ListAdRuleRuns200Response](docs/ListAdRuleRuns200Response.md)
  - [ListAdRules200Response](docs/ListAdRules200Response.md)
  - [ListAdSets200Response](docs/ListAdSets200Response.md)

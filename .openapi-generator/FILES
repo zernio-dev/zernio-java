@@ -61,6 +61,7 @@ docs/AdRuleActionOneOf.md
 docs/AdRuleActionOneOf1.md
 docs/AdRuleActionOneOf2.md
 docs/AdRuleActionOneOf3.md
+docs/AdRuleActivityEntry.md
 docs/AdRuleCondition.md
 docs/AdRuleConditions.md
 docs/AdRuleEvaluation.md
@@ -71,6 +72,7 @@ docs/AdRuleRun.md
 docs/AdRuleRunEvaluation.md
 docs/AdRuleRunEvaluationActionsInner.md
 docs/AdRuleRunEvaluationNotification.md
+docs/AdRuleRunEvaluationRule.md
 docs/AdRuleSchedule.md
 docs/AdRulesApi.md
 docs/AdSchedule.md
@@ -1630,6 +1632,7 @@ docs/ListAdLabels200Response.md
 docs/ListAdLabels200ResponseDataInner.md
 docs/ListAdLabels200ResponsePaging.md
 docs/ListAdNegativeKeywordLists200Response.md
+docs/ListAdRuleActivity200Response.md
 docs/ListAdRuleRuns200Response.md
 docs/ListAdRules200Response.md
 docs/ListAdSets200Response.md
@@ -3256,6 +3259,7 @@ src/main/java/dev/zernio/model/AdRuleActionOneOf.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf1.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf2.java
 src/main/java/dev/zernio/model/AdRuleActionOneOf3.java
+src/main/java/dev/zernio/model/AdRuleActivityEntry.java
 src/main/java/dev/zernio/model/AdRuleCondition.java
 src/main/java/dev/zernio/model/AdRuleConditions.java
 src/main/java/dev/zernio/model/AdRuleEvaluation.java
@@ -3266,6 +3270,7 @@ src/main/java/dev/zernio/model/AdRuleRun.java
 src/main/java/dev/zernio/model/AdRuleRunEvaluation.java
 src/main/java/dev/zernio/model/AdRuleRunEvaluationActionsInner.java
 src/main/java/dev/zernio/model/AdRuleRunEvaluationNotification.java
+src/main/java/dev/zernio/model/AdRuleRunEvaluationRule.java
 src/main/java/dev/zernio/model/AdRuleSchedule.java
 src/main/java/dev/zernio/model/AdSchedule.java
 src/main/java/dev/zernio/model/AdScheduleWindow.java
@@ -4788,6 +4793,7 @@ src/main/java/dev/zernio/model/ListAdLabels200Response.java
 src/main/java/dev/zernio/model/ListAdLabels200ResponseDataInner.java
 src/main/java/dev/zernio/model/ListAdLabels200ResponsePaging.java
 src/main/java/dev/zernio/model/ListAdNegativeKeywordLists200Response.java
+src/main/java/dev/zernio/model/ListAdRuleActivity200Response.java
 src/main/java/dev/zernio/model/ListAdRuleRuns200Response.java
 src/main/java/dev/zernio/model/ListAdRules200Response.java
 src/main/java/dev/zernio/model/ListAdSets200Response.java
@@ -6229,3 +6235,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdRuleActivityEntryTest.java
+src/test/java/dev/zernio/model/AdRuleRunEvaluationRuleTest.java
+src/test/java/dev/zernio/model/ListAdRuleActivity200ResponseTest.java
