@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.393.0
+  version: 1.394.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -19339,9 +19339,9 @@ paths:
       x-accepts:
       - application/json
     patch:
-      description: Turn contact sync or message logging on or off for a connected
-        HubSpot portal. Send at least one field; omitted fields keep their value.
-        Settings survive reconnecting the same portal.
+      description: "Turn contact sync, message logging or deal reporting on or off\
+        \ for a connected HubSpot portal. Send at least one field; omitted fields\
+        \ keep their value. Settings survive reconnecting the same portal."
       operationId: updateHubSpotSettings
       parameters:
       - explode: false
@@ -87340,6 +87340,7 @@ components:
     HubSpotSettings:
       example:
         hubId: hubId
+        reportDeals: true
         _id: _id
         hubDomain: hubDomain
         scopes:
@@ -87375,12 +87376,17 @@ components:
         logMessages:
           description: Whether Zernio logs inbox messages on HubSpot contact timelines.
           type: boolean
+        reportDeals:
+          description: Whether Zernio sends closed-won deals as Purchase events to
+            the profile's event destinations.
+          type: boolean
       required:
       - _id
       - hubDomain
       - hubId
       - logMessages
       - platform
+      - reportDeals
       - scopes
       - syncContacts
     GoogleAnalyticsReport:
@@ -118568,6 +118574,7 @@ components:
       example:
         account:
           hubId: hubId
+          reportDeals: true
           _id: _id
           hubDomain: hubDomain
           scopes:
@@ -118589,11 +118596,18 @@ components:
           description: Log inbound and outbound inbox messages on the contact's HubSpot
             timeline.
           type: boolean
+        reportDeals:
+          description: "Send each deal that becomes closed won as a Purchase to the\
+            \ profile's event destinations, about once an hour. Requires the portal\
+            \ to have granted `crm.objects.deals.read`; otherwise 400. Deals closed\
+            \ before it was turned on are not sent."
+          type: boolean
     updateHubSpotSettings_200_response:
       example:
         message: message
         account:
           hubId: hubId
+          reportDeals: true
           _id: _id
           hubDomain: hubDomain
           scopes:
