@@ -4,6 +4,8 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**cancelTrackingWindow**](AnalyticsApi.md#cancelTrackingWindow) | **DELETE** /v1/analytics/tracking/{windowId} | Cancel a tracking window |
+| [**cancelTrackingWindowWithHttpInfo**](AnalyticsApi.md#cancelTrackingWindowWithHttpInfo) | **DELETE** /v1/analytics/tracking/{windowId} | Cancel a tracking window |
 | [**getAnalytics**](AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics |
 | [**getAnalyticsWithHttpInfo**](AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics |
 | [**getAnalyticsDashboard**](AnalyticsApi.md#getAnalyticsDashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard |
@@ -50,12 +52,18 @@ All URIs are relative to *https://zernio.com/api*
 | [**getLinkedInPostAnalyticsWithHttpInfo**](AnalyticsApi.md#getLinkedInPostAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats |
 | [**getLinkedInPostReactions**](AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
 | [**getLinkedInPostReactionsWithHttpInfo**](AnalyticsApi.md#getLinkedInPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions |
+| [**getPostAuthenticity**](AnalyticsApi.md#getPostAuthenticity) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score |
+| [**getPostAuthenticityWithHttpInfo**](AnalyticsApi.md#getPostAuthenticityWithHttpInfo) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score |
+| [**getPostSamples**](AnalyticsApi.md#getPostSamples) | **GET** /v1/analytics/samples | Get post samples |
+| [**getPostSamplesWithHttpInfo**](AnalyticsApi.md#getPostSamplesWithHttpInfo) | **GET** /v1/analytics/samples | Get post samples |
 | [**getPostTimeline**](AnalyticsApi.md#getPostTimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**getPostTimelineWithHttpInfo**](AnalyticsApi.md#getPostTimelineWithHttpInfo) | **GET** /v1/analytics/post-timeline | Get post analytics timeline |
 | [**getPostingFrequency**](AnalyticsApi.md#getPostingFrequency) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement |
 | [**getPostingFrequencyWithHttpInfo**](AnalyticsApi.md#getPostingFrequencyWithHttpInfo) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement |
 | [**getTikTokAccountInsights**](AnalyticsApi.md#getTikTokAccountInsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
 | [**getTikTokAccountInsightsWithHttpInfo**](AnalyticsApi.md#getTikTokAccountInsightsWithHttpInfo) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights |
+| [**getTrackingWindow**](AnalyticsApi.md#getTrackingWindow) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window |
+| [**getTrackingWindowWithHttpInfo**](AnalyticsApi.md#getTrackingWindowWithHttpInfo) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window |
 | [**getYouTubeChannelInsights**](AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights |
 | [**getYouTubeChannelInsightsWithHttpInfo**](AnalyticsApi.md#getYouTubeChannelInsightsWithHttpInfo) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights |
 | [**getYouTubeDailyViews**](AnalyticsApi.md#getYouTubeDailyViews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views |
@@ -68,6 +76,12 @@ All URIs are relative to *https://zernio.com/api*
 | [**listFacebookTaggedPostsWithHttpInfo**](AnalyticsApi.md#listFacebookTaggedPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in |
 | [**listFacebookVisitorPosts**](AnalyticsApi.md#listFacebookVisitorPosts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page |
 | [**listFacebookVisitorPostsWithHttpInfo**](AnalyticsApi.md#listFacebookVisitorPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page |
+| [**listPostAuthenticity**](AnalyticsApi.md#listPostAuthenticity) | **GET** /v1/analytics/authenticity | List authenticity scores |
+| [**listPostAuthenticityWithHttpInfo**](AnalyticsApi.md#listPostAuthenticityWithHttpInfo) | **GET** /v1/analytics/authenticity | List authenticity scores |
+| [**listTrackingWindows**](AnalyticsApi.md#listTrackingWindows) | **GET** /v1/analytics/tracking | List tracking windows |
+| [**listTrackingWindowsWithHttpInfo**](AnalyticsApi.md#listTrackingWindowsWithHttpInfo) | **GET** /v1/analytics/tracking | List tracking windows |
+| [**openTrackingWindow**](AnalyticsApi.md#openTrackingWindow) | **POST** /v1/analytics/tracking | Open a tracking window |
+| [**openTrackingWindowWithHttpInfo**](AnalyticsApi.md#openTrackingWindowWithHttpInfo) | **POST** /v1/analytics/tracking | Open a tracking window |
 | [**runGoogleAnalyticsRealtimeReport**](AnalyticsApi.md#runGoogleAnalyticsRealtimeReport) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report |
 | [**runGoogleAnalyticsRealtimeReportWithHttpInfo**](AnalyticsApi.md#runGoogleAnalyticsRealtimeReportWithHttpInfo) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report |
 | [**runGoogleAnalyticsReport**](AnalyticsApi.md#runGoogleAnalyticsReport) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report |
@@ -75,6 +89,158 @@ All URIs are relative to *https://zernio.com/api*
 | [**syncExternalPosts**](AnalyticsApi.md#syncExternalPosts) | **POST** /v1/posts/sync-external | Sync an external post |
 | [**syncExternalPostsWithHttpInfo**](AnalyticsApi.md#syncExternalPostsWithHttpInfo) | **POST** /v1/posts/sync-external | Sync an external post |
 
+
+
+## cancelTrackingWindow
+
+> TrackingWindowResponse cancelTrackingWindow(windowId)
+
+Cancel a tracking window
+
+Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String windowId = "windowId_example"; // String | 
+        try {
+            TrackingWindowResponse result = apiInstance.cancelTrackingWindow(windowId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#cancelTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **windowId** | **String**|  | |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The window after cancellation |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
+
+## cancelTrackingWindowWithHttpInfo
+
+> ApiResponse<TrackingWindowResponse> cancelTrackingWindow cancelTrackingWindowWithHttpInfo(windowId)
+
+Cancel a tracking window
+
+Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String windowId = "windowId_example"; // String | 
+        try {
+            ApiResponse<TrackingWindowResponse> response = apiInstance.cancelTrackingWindowWithHttpInfo(windowId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#cancelTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **windowId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**TrackingWindowResponse**](TrackingWindowResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The window after cancellation |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
 
 
 ## getAnalytics
@@ -3965,6 +4131,324 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 | **404** | Account or post not found |  -  |
 
 
+## getPostAuthenticity
+
+> PostAuthenticity getPostAuthenticity(postId)
+
+Get a post&#39;s authenticity score
+
+Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String postId = "postId_example"; // String | An external post id, a platform post id or a Zernio post id.
+        try {
+            PostAuthenticity result = apiInstance.getPostAuthenticity(postId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getPostAuthenticity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**| An external post id, a platform post id or a Zernio post id. | |
+
+### Return type
+
+[**PostAuthenticity**](PostAuthenticity.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post&#39;s authenticity score |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+## getPostAuthenticityWithHttpInfo
+
+> ApiResponse<PostAuthenticity> getPostAuthenticity getPostAuthenticityWithHttpInfo(postId)
+
+Get a post&#39;s authenticity score
+
+Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String postId = "postId_example"; // String | An external post id, a platform post id or a Zernio post id.
+        try {
+            ApiResponse<PostAuthenticity> response = apiInstance.getPostAuthenticityWithHttpInfo(postId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getPostAuthenticity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**| An external post id, a platform post id or a Zernio post id. | |
+
+### Return type
+
+ApiResponse<[**PostAuthenticity**](PostAuthenticity.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post&#39;s authenticity score |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+
+## getPostSamples
+
+> GetPostSamples200Response getPostSamples(postId, fromDate, toDate, limit)
+
+Get post samples
+
+Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String postId = "postId_example"; // String | The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id.
+        OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Earliest sample to return (ISO 8601).
+        OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Latest sample to return (ISO 8601).
+        Integer limit = 500; // Integer | Maximum number of samples.
+        try {
+            GetPostSamples200Response result = apiInstance.getPostSamples(postId, fromDate, toDate, limit);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getPostSamples");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**| The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id. | |
+| **fromDate** | **OffsetDateTime**| Earliest sample to return (ISO 8601). | [optional] |
+| **toDate** | **OffsetDateTime**| Latest sample to return (ISO 8601). | [optional] |
+| **limit** | **Integer**| Maximum number of samples. | [optional] [default to 500] |
+
+### Return type
+
+[**GetPostSamples200Response**](GetPostSamples200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Samples for the post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+## getPostSamplesWithHttpInfo
+
+> ApiResponse<GetPostSamples200Response> getPostSamples getPostSamplesWithHttpInfo(postId, fromDate, toDate, limit)
+
+Get post samples
+
+Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String postId = "postId_example"; // String | The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id.
+        OffsetDateTime fromDate = OffsetDateTime.now(); // OffsetDateTime | Earliest sample to return (ISO 8601).
+        OffsetDateTime toDate = OffsetDateTime.now(); // OffsetDateTime | Latest sample to return (ISO 8601).
+        Integer limit = 500; // Integer | Maximum number of samples.
+        try {
+            ApiResponse<GetPostSamples200Response> response = apiInstance.getPostSamplesWithHttpInfo(postId, fromDate, toDate, limit);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getPostSamples");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **postId** | **String**| The post to read samples for. Accepts an external post id, a platform post id or a Zernio post id. | |
+| **fromDate** | **OffsetDateTime**| Earliest sample to return (ISO 8601). | [optional] |
+| **toDate** | **OffsetDateTime**| Latest sample to return (ISO 8601). | [optional] |
+| **limit** | **Integer**| Maximum number of samples. | [optional] [default to 500] |
+
+### Return type
+
+ApiResponse<[**GetPostSamples200Response**](GetPostSamples200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Samples for the post |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post not found |  -  |
+
+
 ## getPostTimeline
 
 > GetPostTimeline200Response getPostTimeline(postId, fromDate, toDate)
@@ -4463,6 +4947,158 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 | **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
 | **404** | Account not found |  -  |
 | **412** | Missing user.info.stats scope |  -  |
+
+
+## getTrackingWindow
+
+> TrackingWindowResponse getTrackingWindow(windowId)
+
+Get a tracking window
+
+Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String windowId = "windowId_example"; // String | 
+        try {
+            TrackingWindowResponse result = apiInstance.getTrackingWindow(windowId);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **windowId** | **String**|  | |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The tracking window |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
+
+## getTrackingWindowWithHttpInfo
+
+> ApiResponse<TrackingWindowResponse> getTrackingWindow getTrackingWindowWithHttpInfo(windowId)
+
+Get a tracking window
+
+Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String windowId = "windowId_example"; // String | 
+        try {
+            ApiResponse<TrackingWindowResponse> response = apiInstance.getTrackingWindowWithHttpInfo(windowId);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#getTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **windowId** | **String**|  | |
+
+### Return type
+
+ApiResponse<[**TrackingWindowResponse**](TrackingWindowResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The tracking window |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Tracking window not found |  -  |
 
 
 ## getYouTubeChannelInsights
@@ -5519,6 +6155,502 @@ ApiResponse<[**ListFacebookVisitorPosts200Response**](ListFacebookVisitorPosts20
 | **404** | The account is not reachable by the caller (&#x60;account_not_found&#x60;). |  -  |
 | **409** | The account exists but is inactive or needs reconnection. Reconnect it, then read GET /v1/accounts for its current account ID before retrying. Code: ads_connection_required. |  -  |
 | **422** | The connection has no Facebook Page selected (&#x60;linked_account_required&#x60;). Select a Page or reconnect the account. |  -  |
+
+
+## listPostAuthenticity
+
+> ListPostAuthenticity200Response listPostAuthenticity(accountId, minScore, maxScore, from, to, limit, skip)
+
+List authenticity scores
+
+Lists the stored authenticity scores for one connected account, newest first. Scores are 0 to 100 and come from Zernio&#39;s own model over verified platform samples. Filter with &#x60;minScore&#x60; and &#x60;maxScore&#x60; to find posts that look inflated, and with &#x60;from&#x60; and &#x60;to&#x60; to bound when the score was computed. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected account to list scores for.
+        Integer minScore = 56; // Integer | Only scores at or above this value.
+        Integer maxScore = 56; // Integer | Only scores at or below this value.
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only scores computed at or after this time (ISO 8601).
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only scores computed at or before this time (ISO 8601).
+        Integer limit = 50; // Integer | Page size.
+        Integer skip = 0; // Integer | Number of scores to skip.
+        try {
+            ListPostAuthenticity200Response result = apiInstance.listPostAuthenticity(accountId, minScore, maxScore, from, to, limit, skip);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listPostAuthenticity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected account to list scores for. | |
+| **minScore** | **Integer**| Only scores at or above this value. | [optional] |
+| **maxScore** | **Integer**| Only scores at or below this value. | [optional] |
+| **from** | **OffsetDateTime**| Only scores computed at or after this time (ISO 8601). | [optional] |
+| **to** | **OffsetDateTime**| Only scores computed at or before this time (ISO 8601). | [optional] |
+| **limit** | **Integer**| Page size. | [optional] [default to 50] |
+| **skip** | **Integer**| Number of scores to skip. | [optional] [default to 0] |
+
+### Return type
+
+[**ListPostAuthenticity200Response**](ListPostAuthenticity200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Authenticity scores |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+## listPostAuthenticityWithHttpInfo
+
+> ApiResponse<ListPostAuthenticity200Response> listPostAuthenticity listPostAuthenticityWithHttpInfo(accountId, minScore, maxScore, from, to, limit, skip)
+
+List authenticity scores
+
+Lists the stored authenticity scores for one connected account, newest first. Scores are 0 to 100 and come from Zernio&#39;s own model over verified platform samples. Filter with &#x60;minScore&#x60; and &#x60;maxScore&#x60; to find posts that look inflated, and with &#x60;from&#x60; and &#x60;to&#x60; to bound when the score was computed. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | The connected account to list scores for.
+        Integer minScore = 56; // Integer | Only scores at or above this value.
+        Integer maxScore = 56; // Integer | Only scores at or below this value.
+        OffsetDateTime from = OffsetDateTime.now(); // OffsetDateTime | Only scores computed at or after this time (ISO 8601).
+        OffsetDateTime to = OffsetDateTime.now(); // OffsetDateTime | Only scores computed at or before this time (ISO 8601).
+        Integer limit = 50; // Integer | Page size.
+        Integer skip = 0; // Integer | Number of scores to skip.
+        try {
+            ApiResponse<ListPostAuthenticity200Response> response = apiInstance.listPostAuthenticityWithHttpInfo(accountId, minScore, maxScore, from, to, limit, skip);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listPostAuthenticity");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| The connected account to list scores for. | |
+| **minScore** | **Integer**| Only scores at or above this value. | [optional] |
+| **maxScore** | **Integer**| Only scores at or below this value. | [optional] |
+| **from** | **OffsetDateTime**| Only scores computed at or after this time (ISO 8601). | [optional] |
+| **to** | **OffsetDateTime**| Only scores computed at or before this time (ISO 8601). | [optional] |
+| **limit** | **Integer**| Page size. | [optional] [default to 50] |
+| **skip** | **Integer**| Number of scores to skip. | [optional] [default to 0] |
+
+### Return type
+
+ApiResponse<[**ListPostAuthenticity200Response**](ListPostAuthenticity200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Authenticity scores |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+
+## listTrackingWindows
+
+> ListTrackingWindows200Response listTrackingWindows(accountId, status, limit, skip)
+
+List tracking windows
+
+Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Only windows for this connected account.
+        String status = "open"; // String | Only windows in this status.
+        Integer limit = 50; // Integer | Page size.
+        Integer skip = 0; // Integer | Number of windows to skip.
+        try {
+            ListTrackingWindows200Response result = apiInstance.listTrackingWindows(accountId, status, limit, skip);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listTrackingWindows");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Only windows for this connected account. | [optional] |
+| **status** | **String**| Only windows in this status. | [optional] [enum: open, completing, completed, cancelled] |
+| **limit** | **Integer**| Page size. | [optional] [default to 50] |
+| **skip** | **Integer**| Number of windows to skip. | [optional] [default to 0] |
+
+### Return type
+
+[**ListTrackingWindows200Response**](ListTrackingWindows200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking windows |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+## listTrackingWindowsWithHttpInfo
+
+> ApiResponse<ListTrackingWindows200Response> listTrackingWindows listTrackingWindowsWithHttpInfo(accountId, status, limit, skip)
+
+List tracking windows
+
+Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        String accountId = "accountId_example"; // String | Only windows for this connected account.
+        String status = "open"; // String | Only windows in this status.
+        Integer limit = 50; // Integer | Page size.
+        Integer skip = 0; // Integer | Number of windows to skip.
+        try {
+            ApiResponse<ListTrackingWindows200Response> response = apiInstance.listTrackingWindowsWithHttpInfo(accountId, status, limit, skip);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#listTrackingWindows");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **accountId** | **String**| Only windows for this connected account. | [optional] |
+| **status** | **String**| Only windows in this status. | [optional] [enum: open, completing, completed, cancelled] |
+| **limit** | **Integer**| Page size. | [optional] [default to 50] |
+| **skip** | **Integer**| Number of windows to skip. | [optional] [default to 0] |
+
+### Return type
+
+ApiResponse<[**ListTrackingWindows200Response**](ListTrackingWindows200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Tracking windows |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+
+
+## openTrackingWindow
+
+> TrackingWindowResponse openTrackingWindow(openTrackingWindowRequest)
+
+Open a tracking window
+
+Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        OpenTrackingWindowRequest openTrackingWindowRequest = new OpenTrackingWindowRequest(); // OpenTrackingWindowRequest | 
+        try {
+            TrackingWindowResponse result = apiInstance.openTrackingWindow(openTrackingWindowRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#openTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **openTrackingWindowRequest** | [**OpenTrackingWindowRequest**](OpenTrackingWindowRequest.md)|  | |
+
+### Return type
+
+[**TrackingWindowResponse**](TrackingWindowResponse.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post already had a window; it is returned unchanged |  -  |
+| **201** | Window opened |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post or account not found |  -  |
+
+## openTrackingWindowWithHttpInfo
+
+> ApiResponse<TrackingWindowResponse> openTrackingWindow openTrackingWindowWithHttpInfo(openTrackingWindowRequest)
+
+Open a tracking window
+
+Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. Requires the Analytics add-on. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AnalyticsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
+        OpenTrackingWindowRequest openTrackingWindowRequest = new OpenTrackingWindowRequest(); // OpenTrackingWindowRequest | 
+        try {
+            ApiResponse<TrackingWindowResponse> response = apiInstance.openTrackingWindowWithHttpInfo(openTrackingWindowRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AnalyticsApi#openTrackingWindow");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **openTrackingWindowRequest** | [**OpenTrackingWindowRequest**](OpenTrackingWindowRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**TrackingWindowResponse**](TrackingWindowResponse.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The post already had a window; it is returned unchanged |  -  |
+| **201** | Window opened |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **402** | Analytics access required. Legacy plans need the Analytics add-on; included by default on usage-based plans. |  -  |
+| **403** | API key scope violation |  -  |
+| **404** | Post or account not found |  -  |
 
 
 ## runGoogleAnalyticsRealtimeReport

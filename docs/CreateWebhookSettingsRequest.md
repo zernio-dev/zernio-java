@@ -43,6 +43,8 @@
 | ACCOUNT_ADS_SYNC_FAILED | &quot;account.ads.sync_failed&quot; |
 | ACCOUNT_ADS_SYNC_RECOVERED | &quot;account.ads.sync_recovered&quot; |
 | ANALYTICS_SYNCED | &quot;analytics.synced&quot; |
+| POST_TRACKING_COMPLETED | &quot;post.tracking_completed&quot; |
+| POST_AUTHENTICITY_CHANGED | &quot;post.authenticity_changed&quot; |
 | MESSAGE_RECEIVED | &quot;message.received&quot; |
 | CONVERSATION_STARTED | &quot;conversation.started&quot; |
 | CONVERSATION_CONTROL_CHANGED | &quot;conversation.control_changed&quot; |
@@ -113,6 +115,19 @@
 | WORKFLOW_RUN_FAILED | &quot;workflow.run.failed&quot; |
 | SUPPORT_RUN_COMPLETED | &quot;support.run.completed&quot; |
 | SUPPORT_RUN_FAILED | &quot;support.run.failed&quot; |
+| CAMPAIGN_SUBMISSION_RECEIVED | &quot;campaign_submission.received&quot; |
+| CAMPAIGN_SUBMISSION_FLAGGED | &quot;campaign_submission.flagged&quot; |
+| CAMPAIGN_SUBMISSION_PENDING_REVIEW | &quot;campaign_submission.pending_review&quot; |
+| CAMPAIGN_SUBMISSION_APPROVED | &quot;campaign_submission.approved&quot; |
+| CAMPAIGN_SUBMISSION_REJECTED | &quot;campaign_submission.rejected&quot; |
+| CREATOR_CAMPAIGN_BUDGET_EXHAUSTED | &quot;creator_campaign.budget_exhausted&quot; |
+| CREATOR_CAMPAIGN_CLOSED | &quot;creator_campaign.closed&quot; |
+| CAMPAIGN_PAYOUT_PAYABLE | &quot;campaign_payout.payable&quot; |
+| CAMPAIGN_PAYOUT_SETTLED | &quot;campaign_payout.settled&quot; |
+| CAMPAIGN_PAYOUT_FAILED | &quot;campaign_payout.failed&quot; |
+| CAMPAIGN_PARTICIPANT_JOINED | &quot;campaign_participant.joined&quot; |
+| CAMPAIGN_PARTICIPANT_SUSPENDED | &quot;campaign_participant.suspended&quot; |
+| CAMPAIGN_PARTICIPANT_REMOVED | &quot;campaign_participant.removed&quot; |
 
 
 
@@ -131,6 +146,8 @@
 | BILLING | &quot;billing&quot; |
 | WEBHOOKS | &quot;webhooks&quot; |
 | COMMERCE | &quot;commerce&quot; |
+| CREATOR_CAMPAIGNS | &quot;creator_campaigns&quot; |
+| MONEY | &quot;money&quot; |
 | CALENDAR | &quot;calendar&quot; |
 | FILES | &quot;files&quot; |
 

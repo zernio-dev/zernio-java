@@ -54,6 +54,8 @@
 | BILLING | &quot;billing&quot; |
 | WEBHOOKS | &quot;webhooks&quot; |
 | COMMERCE | &quot;commerce&quot; |
+| CREATOR_CAMPAIGNS | &quot;creator_campaigns&quot; |
+| MONEY | &quot;money&quot; |
 | CALENDAR | &quot;calendar&quot; |
 | FILES | &quot;files&quot; |
 

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.396.0
+- API version: 1.397.0
 
-- Build date: 2026-10-28T17:23:33.563073473Z[Etc/UTC]
+- Build date: 2026-10-28T21:57:52.310749376Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.396.0</version>
+  <version>1.397.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.396.0"
+compile "dev.zernio:zernio-sdk:1.397.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.396.0.jar`
+- `target/zernio-sdk-1.397.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -599,6 +599,8 @@ Class | Method | HTTP request | Description
 *AdTargetingApi* | [**searchAdInterestsWithHttpInfo**](docs/AdTargetingApi.md#searchAdInterestsWithHttpInfo) | **GET** /v1/ads/interests | Search targeting interests
 *AdTargetingApi* | [**searchAdTargeting**](docs/AdTargetingApi.md#searchAdTargeting) | **GET** /v1/ads/targeting/search | Search targeting options
 *AdTargetingApi* | [**searchAdTargetingWithHttpInfo**](docs/AdTargetingApi.md#searchAdTargetingWithHttpInfo) | **GET** /v1/ads/targeting/search | Search targeting options
+*AnalyticsApi* | [**cancelTrackingWindow**](docs/AnalyticsApi.md#cancelTrackingWindow) | **DELETE** /v1/analytics/tracking/{windowId} | Cancel a tracking window
+*AnalyticsApi* | [**cancelTrackingWindowWithHttpInfo**](docs/AnalyticsApi.md#cancelTrackingWindowWithHttpInfo) | **DELETE** /v1/analytics/tracking/{windowId} | Cancel a tracking window
 *AnalyticsApi* | [**getAnalytics**](docs/AnalyticsApi.md#getAnalytics) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getAnalyticsWithHttpInfo) | **GET** /v1/analytics | Get post analytics
 *AnalyticsApi* | [**getAnalyticsDashboard**](docs/AnalyticsApi.md#getAnalyticsDashboard) | **GET** /v1/analytics/dashboard | Get an analytics dashboard
@@ -645,12 +647,18 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**getLinkedInPostAnalyticsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInPostAnalyticsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-analytics | Get LinkedIn post stats
 *AnalyticsApi* | [**getLinkedInPostReactions**](docs/AnalyticsApi.md#getLinkedInPostReactions) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions
 *AnalyticsApi* | [**getLinkedInPostReactionsWithHttpInfo**](docs/AnalyticsApi.md#getLinkedInPostReactionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-post-reactions | Get LinkedIn post reactions
+*AnalyticsApi* | [**getPostAuthenticity**](docs/AnalyticsApi.md#getPostAuthenticity) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score
+*AnalyticsApi* | [**getPostAuthenticityWithHttpInfo**](docs/AnalyticsApi.md#getPostAuthenticityWithHttpInfo) | **GET** /v1/posts/{postId}/authenticity | Get a post&#39;s authenticity score
+*AnalyticsApi* | [**getPostSamples**](docs/AnalyticsApi.md#getPostSamples) | **GET** /v1/analytics/samples | Get post samples
+*AnalyticsApi* | [**getPostSamplesWithHttpInfo**](docs/AnalyticsApi.md#getPostSamplesWithHttpInfo) | **GET** /v1/analytics/samples | Get post samples
 *AnalyticsApi* | [**getPostTimeline**](docs/AnalyticsApi.md#getPostTimeline) | **GET** /v1/analytics/post-timeline | Get post analytics timeline
 *AnalyticsApi* | [**getPostTimelineWithHttpInfo**](docs/AnalyticsApi.md#getPostTimelineWithHttpInfo) | **GET** /v1/analytics/post-timeline | Get post analytics timeline
 *AnalyticsApi* | [**getPostingFrequency**](docs/AnalyticsApi.md#getPostingFrequency) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement
 *AnalyticsApi* | [**getPostingFrequencyWithHttpInfo**](docs/AnalyticsApi.md#getPostingFrequencyWithHttpInfo) | **GET** /v1/analytics/posting-frequency | Get frequency vs engagement
 *AnalyticsApi* | [**getTikTokAccountInsights**](docs/AnalyticsApi.md#getTikTokAccountInsights) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
 *AnalyticsApi* | [**getTikTokAccountInsightsWithHttpInfo**](docs/AnalyticsApi.md#getTikTokAccountInsightsWithHttpInfo) | **GET** /v1/analytics/tiktok/account-insights | Get TikTok account-level insights
+*AnalyticsApi* | [**getTrackingWindow**](docs/AnalyticsApi.md#getTrackingWindow) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window
+*AnalyticsApi* | [**getTrackingWindowWithHttpInfo**](docs/AnalyticsApi.md#getTrackingWindowWithHttpInfo) | **GET** /v1/analytics/tracking/{windowId} | Get a tracking window
 *AnalyticsApi* | [**getYouTubeChannelInsights**](docs/AnalyticsApi.md#getYouTubeChannelInsights) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights
 *AnalyticsApi* | [**getYouTubeChannelInsightsWithHttpInfo**](docs/AnalyticsApi.md#getYouTubeChannelInsightsWithHttpInfo) | **GET** /v1/analytics/youtube/channel-insights | Get YouTube channel insights
 *AnalyticsApi* | [**getYouTubeDailyViews**](docs/AnalyticsApi.md#getYouTubeDailyViews) | **GET** /v1/analytics/youtube/daily-views | Get YouTube daily views
@@ -663,6 +671,12 @@ Class | Method | HTTP request | Description
 *AnalyticsApi* | [**listFacebookTaggedPostsWithHttpInfo**](docs/AnalyticsApi.md#listFacebookTaggedPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-tagged-posts | List the posts a Facebook Page is tagged in
 *AnalyticsApi* | [**listFacebookVisitorPosts**](docs/AnalyticsApi.md#listFacebookVisitorPosts) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page
 *AnalyticsApi* | [**listFacebookVisitorPostsWithHttpInfo**](docs/AnalyticsApi.md#listFacebookVisitorPostsWithHttpInfo) | **GET** /v1/accounts/{accountId}/facebook-visitor-posts | List visitor posts on a Facebook Page
+*AnalyticsApi* | [**listPostAuthenticity**](docs/AnalyticsApi.md#listPostAuthenticity) | **GET** /v1/analytics/authenticity | List authenticity scores
+*AnalyticsApi* | [**listPostAuthenticityWithHttpInfo**](docs/AnalyticsApi.md#listPostAuthenticityWithHttpInfo) | **GET** /v1/analytics/authenticity | List authenticity scores
+*AnalyticsApi* | [**listTrackingWindows**](docs/AnalyticsApi.md#listTrackingWindows) | **GET** /v1/analytics/tracking | List tracking windows
+*AnalyticsApi* | [**listTrackingWindowsWithHttpInfo**](docs/AnalyticsApi.md#listTrackingWindowsWithHttpInfo) | **GET** /v1/analytics/tracking | List tracking windows
+*AnalyticsApi* | [**openTrackingWindow**](docs/AnalyticsApi.md#openTrackingWindow) | **POST** /v1/analytics/tracking | Open a tracking window
+*AnalyticsApi* | [**openTrackingWindowWithHttpInfo**](docs/AnalyticsApi.md#openTrackingWindowWithHttpInfo) | **POST** /v1/analytics/tracking | Open a tracking window
 *AnalyticsApi* | [**runGoogleAnalyticsRealtimeReport**](docs/AnalyticsApi.md#runGoogleAnalyticsRealtimeReport) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report
 *AnalyticsApi* | [**runGoogleAnalyticsRealtimeReportWithHttpInfo**](docs/AnalyticsApi.md#runGoogleAnalyticsRealtimeReportWithHttpInfo) | **POST** /v1/analytics/googleanalytics/realtime | Run a Google Analytics (GA4) realtime report
 *AnalyticsApi* | [**runGoogleAnalyticsReport**](docs/AnalyticsApi.md#runGoogleAnalyticsReport) | **POST** /v1/analytics/googleanalytics/report | Run a Google Analytics (GA4) report
@@ -1301,6 +1315,78 @@ Class | Method | HTTP request | Description
 *ConversionsApi* | [**updateConversionDestinationWithHttpInfo**](docs/ConversionsApi.md#updateConversionDestinationWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/conversion-destinations/{destinationId} | Update a conversion destination
 *ConversionsApi* | [**updateCustomConversionGoal**](docs/ConversionsApi.md#updateCustomConversionGoal) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
 *ConversionsApi* | [**updateCustomConversionGoalWithHttpInfo**](docs/ConversionsApi.md#updateCustomConversionGoalWithHttpInfo) | **PATCH** /v1/ads/conversions/custom-goals/{goalId} | Update a custom conversion goal
+*CreatorCampaignsApi* | [**activateCreatorCampaign**](docs/CreatorCampaignsApi.md#activateCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
+*CreatorCampaignsApi* | [**activateCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#activateCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/activate | Activate creator campaign
+*CreatorCampaignsApi* | [**approveCampaignSubmission**](docs/CreatorCampaignsApi.md#approveCampaignSubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/approve | Approve campaign submission
+*CreatorCampaignsApi* | [**approveCampaignSubmissionWithHttpInfo**](docs/CreatorCampaignsApi.md#approveCampaignSubmissionWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/approve | Approve campaign submission
+*CreatorCampaignsApi* | [**closeCreatorCampaign**](docs/CreatorCampaignsApi.md#closeCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/close | Close creator campaign
+*CreatorCampaignsApi* | [**closeCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#closeCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/close | Close creator campaign
+*CreatorCampaignsApi* | [**createCampaignAdjustment**](docs/CreatorCampaignsApi.md#createCampaignAdjustment) | **POST** /v1/creator-campaigns/{campaignId}/adjustments | Create campaign adjustment
+*CreatorCampaignsApi* | [**createCampaignAdjustmentWithHttpInfo**](docs/CreatorCampaignsApi.md#createCampaignAdjustmentWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/adjustments | Create campaign adjustment
+*CreatorCampaignsApi* | [**createCampaignInviteLink**](docs/CreatorCampaignsApi.md#createCampaignInviteLink) | **POST** /v1/creator-campaigns/{campaignId}/invite-link | Create campaign invite link
+*CreatorCampaignsApi* | [**createCampaignInviteLinkWithHttpInfo**](docs/CreatorCampaignsApi.md#createCampaignInviteLinkWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/invite-link | Create campaign invite link
+*CreatorCampaignsApi* | [**createCampaignParticipant**](docs/CreatorCampaignsApi.md#createCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants | Invite campaign participant
+*CreatorCampaignsApi* | [**createCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#createCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants | Invite campaign participant
+*CreatorCampaignsApi* | [**createCampaignPayoutBatch**](docs/CreatorCampaignsApi.md#createCampaignPayoutBatch) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches | Pay creators with one card payment
+*CreatorCampaignsApi* | [**createCampaignPayoutBatchWithHttpInfo**](docs/CreatorCampaignsApi.md#createCampaignPayoutBatchWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/payout-batches | Pay creators with one card payment
+*CreatorCampaignsApi* | [**createCreatorCampaign**](docs/CreatorCampaignsApi.md#createCreatorCampaign) | **POST** /v1/creator-campaigns | Create creator campaign
+*CreatorCampaignsApi* | [**createCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#createCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns | Create creator campaign
+*CreatorCampaignsApi* | [**getCampaignParticipant**](docs/CreatorCampaignsApi.md#getCampaignParticipant) | **GET** /v1/creator-campaigns/{campaignId}/participants/{participantId} | Get campaign participant
+*CreatorCampaignsApi* | [**getCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#getCampaignParticipantWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/participants/{participantId} | Get campaign participant
+*CreatorCampaignsApi* | [**getCampaignReport**](docs/CreatorCampaignsApi.md#getCampaignReport) | **GET** /v1/creator-campaigns/{campaignId}/report | Get campaign report
+*CreatorCampaignsApi* | [**getCampaignReportWithHttpInfo**](docs/CreatorCampaignsApi.md#getCampaignReportWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/report | Get campaign report
+*CreatorCampaignsApi* | [**getCampaignSubmission**](docs/CreatorCampaignsApi.md#getCampaignSubmission) | **GET** /v1/creator-campaigns/{campaignId}/submissions/{submissionId} | Get campaign submission
+*CreatorCampaignsApi* | [**getCampaignSubmissionWithHttpInfo**](docs/CreatorCampaignsApi.md#getCampaignSubmissionWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/submissions/{submissionId} | Get campaign submission
+*CreatorCampaignsApi* | [**getCreatorCampaign**](docs/CreatorCampaignsApi.md#getCreatorCampaign) | **GET** /v1/creator-campaigns/{campaignId} | Get creator campaign
+*CreatorCampaignsApi* | [**getCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#getCreatorCampaignWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId} | Get creator campaign
+*CreatorCampaignsApi* | [**listCampaignLedger**](docs/CreatorCampaignsApi.md#listCampaignLedger) | **GET** /v1/creator-campaigns/{campaignId}/ledger | List campaign ledger
+*CreatorCampaignsApi* | [**listCampaignLedgerWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignLedgerWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/ledger | List campaign ledger
+*CreatorCampaignsApi* | [**listCampaignParticipants**](docs/CreatorCampaignsApi.md#listCampaignParticipants) | **GET** /v1/creator-campaigns/{campaignId}/participants | List campaign participants
+*CreatorCampaignsApi* | [**listCampaignParticipantsWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignParticipantsWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/participants | List campaign participants
+*CreatorCampaignsApi* | [**listCampaignPayables**](docs/CreatorCampaignsApi.md#listCampaignPayables) | **GET** /v1/creator-campaigns/{campaignId}/payables | List campaign payables
+*CreatorCampaignsApi* | [**listCampaignPayablesWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignPayablesWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/payables | List campaign payables
+*CreatorCampaignsApi* | [**listCampaignPayoutBatches**](docs/CreatorCampaignsApi.md#listCampaignPayoutBatches) | **GET** /v1/creator-campaigns/{campaignId}/payout-batches | List payout batches
+*CreatorCampaignsApi* | [**listCampaignPayoutBatchesWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignPayoutBatchesWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/payout-batches | List payout batches
+*CreatorCampaignsApi* | [**listCampaignSubmissions**](docs/CreatorCampaignsApi.md#listCampaignSubmissions) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions
+*CreatorCampaignsApi* | [**listCampaignSubmissionsWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignSubmissionsWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions
+*CreatorCampaignsApi* | [**listCreatorCampaigns**](docs/CreatorCampaignsApi.md#listCreatorCampaigns) | **GET** /v1/creator-campaigns | List creator campaigns
+*CreatorCampaignsApi* | [**listCreatorCampaignsWithHttpInfo**](docs/CreatorCampaignsApi.md#listCreatorCampaignsWithHttpInfo) | **GET** /v1/creator-campaigns | List creator campaigns
+*CreatorCampaignsApi* | [**pauseCreatorCampaign**](docs/CreatorCampaignsApi.md#pauseCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
+*CreatorCampaignsApi* | [**pauseCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#pauseCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
+*CreatorCampaignsApi* | [**raiseCreatorCampaignBudget**](docs/CreatorCampaignsApi.md#raiseCreatorCampaignBudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget
+*CreatorCampaignsApi* | [**raiseCreatorCampaignBudgetWithHttpInfo**](docs/CreatorCampaignsApi.md#raiseCreatorCampaignBudgetWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget
+*CreatorCampaignsApi* | [**reinstateCampaignParticipant**](docs/CreatorCampaignsApi.md#reinstateCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/reinstate | Reinstate campaign participant
+*CreatorCampaignsApi* | [**reinstateCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#reinstateCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/reinstate | Reinstate campaign participant
+*CreatorCampaignsApi* | [**rejectCampaignSubmission**](docs/CreatorCampaignsApi.md#rejectCampaignSubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reject | Reject campaign submission
+*CreatorCampaignsApi* | [**rejectCampaignSubmissionWithHttpInfo**](docs/CreatorCampaignsApi.md#rejectCampaignSubmissionWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reject | Reject campaign submission
+*CreatorCampaignsApi* | [**removeCampaignParticipant**](docs/CreatorCampaignsApi.md#removeCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/remove | Remove campaign participant
+*CreatorCampaignsApi* | [**removeCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#removeCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/remove | Remove campaign participant
+*CreatorCampaignsApi* | [**reopenCampaignSubmission**](docs/CreatorCampaignsApi.md#reopenCampaignSubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission
+*CreatorCampaignsApi* | [**reopenCampaignSubmissionWithHttpInfo**](docs/CreatorCampaignsApi.md#reopenCampaignSubmissionWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission
+*CreatorCampaignsApi* | [**settleCampaignParticipant**](docs/CreatorCampaignsApi.md#settleCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant
+*CreatorCampaignsApi* | [**settleCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#settleCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant
+*CreatorCampaignsApi* | [**suspendCampaignParticipant**](docs/CreatorCampaignsApi.md#suspendCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/suspend | Suspend campaign participant
+*CreatorCampaignsApi* | [**suspendCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#suspendCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/suspend | Suspend campaign participant
+*CreatorCampaignsApi* | [**updateCreatorCampaign**](docs/CreatorCampaignsApi.md#updateCreatorCampaign) | **PATCH** /v1/creator-campaigns/{campaignId} | Update creator campaign
+*CreatorCampaignsApi* | [**updateCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#updateCreatorCampaignWithHttpInfo) | **PATCH** /v1/creator-campaigns/{campaignId} | Update creator campaign
+*CreatorPortalPublicApi* | [**createCreatorPayoutLogin**](docs/CreatorPortalPublicApi.md#createCreatorPayoutLogin) | **POST** /public/creator-campaigns/{token}/payout-login | Open the creator&#39;s Stripe dashboard
+*CreatorPortalPublicApi* | [**createCreatorPayoutLoginWithHttpInfo**](docs/CreatorPortalPublicApi.md#createCreatorPayoutLoginWithHttpInfo) | **POST** /public/creator-campaigns/{token}/payout-login | Open the creator&#39;s Stripe dashboard
+*CreatorPortalPublicApi* | [**getCreatorPayoutStatement**](docs/CreatorPortalPublicApi.md#getCreatorPayoutStatement) | **GET** /public/creator-campaigns/{token}/payouts/{transferId}/statement | Download a payout statement
+*CreatorPortalPublicApi* | [**getCreatorPayoutStatementWithHttpInfo**](docs/CreatorPortalPublicApi.md#getCreatorPayoutStatementWithHttpInfo) | **GET** /public/creator-campaigns/{token}/payouts/{transferId}/statement | Download a payout statement
+*CreatorPortalPublicApi* | [**getCreatorPayouts**](docs/CreatorPortalPublicApi.md#getCreatorPayouts) | **GET** /public/creator-campaigns/{token}/payouts | List a creator&#39;s earnings history
+*CreatorPortalPublicApi* | [**getCreatorPayoutsWithHttpInfo**](docs/CreatorPortalPublicApi.md#getCreatorPayoutsWithHttpInfo) | **GET** /public/creator-campaigns/{token}/payouts | List a creator&#39;s earnings history
+*CreatorPortalPublicApi* | [**getCreatorPortal**](docs/CreatorPortalPublicApi.md#getCreatorPortal) | **GET** /public/creator-campaigns/{token} | Read a creator invite or participant page
+*CreatorPortalPublicApi* | [**getCreatorPortalWithHttpInfo**](docs/CreatorPortalPublicApi.md#getCreatorPortalWithHttpInfo) | **GET** /public/creator-campaigns/{token} | Read a creator invite or participant page
+*CreatorPortalPublicApi* | [**joinCreatorCampaign**](docs/CreatorPortalPublicApi.md#joinCreatorCampaign) | **POST** /public/creator-campaigns/{token} | Join a campaign
+*CreatorPortalPublicApi* | [**joinCreatorCampaignWithHttpInfo**](docs/CreatorPortalPublicApi.md#joinCreatorCampaignWithHttpInfo) | **POST** /public/creator-campaigns/{token} | Join a campaign
+*CreatorPortalPublicApi* | [**recoverCreatorPortalLinks**](docs/CreatorPortalPublicApi.md#recoverCreatorPortalLinks) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links
+*CreatorPortalPublicApi* | [**recoverCreatorPortalLinksWithHttpInfo**](docs/CreatorPortalPublicApi.md#recoverCreatorPortalLinksWithHttpInfo) | **POST** /public/creator-campaigns/recover-link | Email a creator their campaign links
+*CreatorPortalPublicApi* | [**startCreatorConnect**](docs/CreatorPortalPublicApi.md#startCreatorConnect) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account
+*CreatorPortalPublicApi* | [**startCreatorConnectWithHttpInfo**](docs/CreatorPortalPublicApi.md#startCreatorConnectWithHttpInfo) | **POST** /public/creator-campaigns/{token}/connect | Start connecting a creator account
+*CreatorPortalPublicApi* | [**startCreatorPayouts**](docs/CreatorPortalPublicApi.md#startCreatorPayouts) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding
+*CreatorPortalPublicApi* | [**startCreatorPayoutsWithHttpInfo**](docs/CreatorPortalPublicApi.md#startCreatorPayoutsWithHttpInfo) | **POST** /public/creator-campaigns/{token}/payouts | Start payout onboarding
+*CreatorPortalPublicApi* | [**submitCreatorPost**](docs/CreatorPortalPublicApi.md#submitCreatorPost) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post
+*CreatorPortalPublicApi* | [**submitCreatorPostWithHttpInfo**](docs/CreatorPortalPublicApi.md#submitCreatorPostWithHttpInfo) | **POST** /public/creator-campaigns/{token}/submissions | Submit a post
 *CustomFieldsApi* | [**clearContactFieldValue**](docs/CustomFieldsApi.md#clearContactFieldValue) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**clearContactFieldValueWithHttpInfo**](docs/CustomFieldsApi.md#clearContactFieldValueWithHttpInfo) | **DELETE** /v1/contacts/{contactId}/fields/{slug} | Clear custom field value
 *CustomFieldsApi* | [**createCustomField**](docs/CustomFieldsApi.md#createCustomField) | **POST** /v1/custom-fields | Create custom field
@@ -1551,6 +1637,10 @@ Class | Method | HTTP request | Description
 *LeadGenApi* | [**listLeadsWithHttpInfo**](docs/LeadGenApi.md#listLeadsWithHttpInfo) | **GET** /v1/ads/leads | List submitted leads
 *LeadGenApi* | [**updateLead**](docs/LeadGenApi.md#updateLead) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status
 *LeadGenApi* | [**updateLeadWithHttpInfo**](docs/LeadGenApi.md#updateLeadWithHttpInfo) | **PATCH** /v1/ads/leads/{id} | Update a lead&#39;s status
+*LedgerApi* | [**getLedgerBalances**](docs/LedgerApi.md#getLedgerBalances) | **GET** /v1/ledger/balances | Get ledger balances
+*LedgerApi* | [**getLedgerBalancesWithHttpInfo**](docs/LedgerApi.md#getLedgerBalancesWithHttpInfo) | **GET** /v1/ledger/balances | Get ledger balances
+*LedgerApi* | [**listLedgerEntries**](docs/LedgerApi.md#listLedgerEntries) | **GET** /v1/ledger/entries | List ledger entries
+*LedgerApi* | [**listLedgerEntriesWithHttpInfo**](docs/LedgerApi.md#listLedgerEntriesWithHttpInfo) | **GET** /v1/ledger/entries | List ledger entries
 *LinkedInMentionsApi* | [**getLinkedInMentions**](docs/LinkedInMentionsApi.md#getLinkedInMentions) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LinkedInMentionsApi* | [**getLinkedInMentionsWithHttpInfo**](docs/LinkedInMentionsApi.md#getLinkedInMentionsWithHttpInfo) | **GET** /v1/accounts/{accountId}/linkedin-mentions | Resolve LinkedIn mention
 *LogsApi* | [**listLogs**](docs/LogsApi.md#listLogs) | **GET** /v1/logs | List activity logs
@@ -1935,6 +2025,28 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**updateTrackingTagWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId} | Update a tracking tag
 *TrackingTagsApi* | [**updateTrackingTagEvent**](docs/TrackingTagsApi.md#updateTrackingTagEvent) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event
 *TrackingTagsApi* | [**updateTrackingTagEventWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagEventWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event
+*TreasuryApi* | [**cancelPayoutBatch**](docs/TreasuryApi.md#cancelPayoutBatch) | **POST** /v1/payout-batches/{batchId}/cancel | Cancel an unpaid payout batch
+*TreasuryApi* | [**cancelPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#cancelPayoutBatchWithHttpInfo) | **POST** /v1/payout-batches/{batchId}/cancel | Cancel an unpaid payout batch
+*TreasuryApi* | [**createPayeeOnboardingLink**](docs/TreasuryApi.md#createPayeeOnboardingLink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
+*TreasuryApi* | [**createPayeeOnboardingLinkWithHttpInfo**](docs/TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
+*TreasuryApi* | [**createTopup**](docs/TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up
+*TreasuryApi* | [**createTopupWithHttpInfo**](docs/TreasuryApi.md#createTopupWithHttpInfo) | **POST** /v1/balance/top-ups | Create a top-up
+*TreasuryApi* | [**createTransfer**](docs/TreasuryApi.md#createTransfer) | **POST** /v1/transfers | Create a transfer
+*TreasuryApi* | [**createTransferWithHttpInfo**](docs/TreasuryApi.md#createTransferWithHttpInfo) | **POST** /v1/transfers | Create a transfer
+*TreasuryApi* | [**getBalance**](docs/TreasuryApi.md#getBalance) | **GET** /v1/balance | Get balance
+*TreasuryApi* | [**getBalanceWithHttpInfo**](docs/TreasuryApi.md#getBalanceWithHttpInfo) | **GET** /v1/balance | Get balance
+*TreasuryApi* | [**getPayoutBatch**](docs/TreasuryApi.md#getPayoutBatch) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
+*TreasuryApi* | [**getPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#getPayoutBatchWithHttpInfo) | **GET** /v1/payout-batches/{batchId} | Get a payout batch
+*TreasuryApi* | [**getTopupReceipt**](docs/TreasuryApi.md#getTopupReceipt) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
+*TreasuryApi* | [**getTopupReceiptWithHttpInfo**](docs/TreasuryApi.md#getTopupReceiptWithHttpInfo) | **GET** /v1/balance/top-ups/{topupId}/receipt | Get a top-up receipt
+*TreasuryApi* | [**getTransfer**](docs/TreasuryApi.md#getTransfer) | **GET** /v1/transfers/{transferId} | Get a transfer
+*TreasuryApi* | [**getTransferWithHttpInfo**](docs/TreasuryApi.md#getTransferWithHttpInfo) | **GET** /v1/transfers/{transferId} | Get a transfer
+*TreasuryApi* | [**listPayees**](docs/TreasuryApi.md#listPayees) | **GET** /v1/payees | List payees
+*TreasuryApi* | [**listPayeesWithHttpInfo**](docs/TreasuryApi.md#listPayeesWithHttpInfo) | **GET** /v1/payees | List payees
+*TreasuryApi* | [**listTopups**](docs/TreasuryApi.md#listTopups) | **GET** /v1/balance/top-ups | List top-ups
+*TreasuryApi* | [**listTopupsWithHttpInfo**](docs/TreasuryApi.md#listTopupsWithHttpInfo) | **GET** /v1/balance/top-ups | List top-ups
+*TreasuryApi* | [**listTransfers**](docs/TreasuryApi.md#listTransfers) | **GET** /v1/transfers | List transfers
+*TreasuryApi* | [**listTransfersWithHttpInfo**](docs/TreasuryApi.md#listTransfersWithHttpInfo) | **GET** /v1/transfers | List transfers
 *TwitterEngagementApi* | [**bookmarkPost**](docs/TwitterEngagementApi.md#bookmarkPost) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**bookmarkPostWithHttpInfo**](docs/TwitterEngagementApi.md#bookmarkPostWithHttpInfo) | **POST** /v1/twitter/bookmark | Bookmark a tweet
 *TwitterEngagementApi* | [**followUser**](docs/TwitterEngagementApi.md#followUser) | **POST** /v1/twitter/follow | Follow a user
@@ -2420,6 +2532,7 @@ Class | Method | HTTP request | Description
  - [ApplyGoogleRecommendations200Response](docs/ApplyGoogleRecommendations200Response.md)
  - [ApplyGoogleRecommendationsRequest](docs/ApplyGoogleRecommendationsRequest.md)
  - [ApplyGoogleRecommendationsRequestRecommendationsInner](docs/ApplyGoogleRecommendationsRequestRecommendationsInner.md)
+ - [ApproveCampaignSubmission200Response](docs/ApproveCampaignSubmission200Response.md)
  - [ApproveWhatsAppGroupJoinRequestsRequest](docs/ApproveWhatsAppGroupJoinRequestsRequest.md)
  - [ArchiveLeadForm200Response](docs/ArchiveLeadForm200Response.md)
  - [AskSupportQuestion202Response](docs/AskSupportQuestion202Response.md)
@@ -2547,6 +2660,7 @@ Class | Method | HTTP request | Description
  - [BusinessAgentWebsiteInput](docs/BusinessAgentWebsiteInput.md)
  - [BusinessCenter](docs/BusinessCenter.md)
  - [BusyBlock](docs/BusyBlock.md)
+ - [CPM](docs/CPM.md)
  - [Calendar](docs/Calendar.md)
  - [CalendarAvailability200Response](docs/CalendarAvailability200Response.md)
  - [CalendarAvailability200ResponseData](docs/CalendarAvailability200ResponseData.md)
@@ -2568,6 +2682,7 @@ Class | Method | HTTP request | Description
  - [CallRecordBilling](docs/CallRecordBilling.md)
  - [CallRecordCallErrorsInner](docs/CallRecordCallErrorsInner.md)
  - [CallRecordTranscriptInner](docs/CallRecordTranscriptInner.md)
+ - [CampaignAdjustment](docs/CampaignAdjustment.md)
  - [CampaignAnalyticsResponse](docs/CampaignAnalyticsResponse.md)
  - [CampaignAnalyticsResponseAnalytics](docs/CampaignAnalyticsResponseAnalytics.md)
  - [CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner](docs/CampaignAnalyticsResponseAnalyticsBreakdownErrorsInner.md)
@@ -2579,6 +2694,28 @@ Class | Method | HTTP request | Description
  - [CampaignBidding](docs/CampaignBidding.md)
  - [CampaignBiddingBidSpec](docs/CampaignBiddingBidSpec.md)
  - [CampaignBiddingPortfolio](docs/CampaignBiddingPortfolio.md)
+ - [CampaignLedgerEntry](docs/CampaignLedgerEntry.md)
+ - [CampaignParticipant](docs/CampaignParticipant.md)
+ - [CampaignParticipantAccountsInner](docs/CampaignParticipantAccountsInner.md)
+ - [CampaignParticipantBalances](docs/CampaignParticipantBalances.md)
+ - [CampaignParticipantCreator](docs/CampaignParticipantCreator.md)
+ - [CampaignParticipantFlagsInner](docs/CampaignParticipantFlagsInner.md)
+ - [CampaignParticipantPayout](docs/CampaignParticipantPayout.md)
+ - [CampaignPayable](docs/CampaignPayable.md)
+ - [CampaignReport](docs/CampaignReport.md)
+ - [CampaignReportAuthenticityInner](docs/CampaignReportAuthenticityInner.md)
+ - [CampaignReportParticipantsInner](docs/CampaignReportParticipantsInner.md)
+ - [CampaignReportSpend](docs/CampaignReportSpend.md)
+ - [CampaignReportViews](docs/CampaignReportViews.md)
+ - [CampaignSettlement](docs/CampaignSettlement.md)
+ - [CampaignSubmission](docs/CampaignSubmission.md)
+ - [CampaignSubmissionAuthenticity](docs/CampaignSubmissionAuthenticity.md)
+ - [CampaignSubmissionCounts](docs/CampaignSubmissionCounts.md)
+ - [CampaignSubmissionDetail](docs/CampaignSubmissionDetail.md)
+ - [CampaignSubmissionDetailAllOfSamples](docs/CampaignSubmissionDetailAllOfSamples.md)
+ - [CampaignSubmissionFlag](docs/CampaignSubmissionFlag.md)
+ - [CampaignSubmissionPost](docs/CampaignSubmissionPost.md)
+ - [CampaignSubmissionWindow](docs/CampaignSubmissionWindow.md)
  - [CancelBroadcast200Response](docs/CancelBroadcast200Response.md)
  - [CancelPhoneNumberPortIn200Response](docs/CancelPhoneNumberPortIn200Response.md)
  - [ChangeCommerceCollectionChannels200Response](docs/ChangeCommerceCollectionChannels200Response.md)
@@ -2783,6 +2920,13 @@ Class | Method | HTTP request | Description
  - [CreateCalendarEvent201Response](docs/CreateCalendarEvent201Response.md)
  - [CreateCalendarEventRequest](docs/CreateCalendarEventRequest.md)
  - [CreateCallAdRequest](docs/CreateCallAdRequest.md)
+ - [CreateCampaignAdjustment201Response](docs/CreateCampaignAdjustment201Response.md)
+ - [CreateCampaignAdjustmentRequest](docs/CreateCampaignAdjustmentRequest.md)
+ - [CreateCampaignInviteLink201Response](docs/CreateCampaignInviteLink201Response.md)
+ - [CreateCampaignParticipant201Response](docs/CreateCampaignParticipant201Response.md)
+ - [CreateCampaignParticipantRequest](docs/CreateCampaignParticipantRequest.md)
+ - [CreateCampaignPayoutBatch201Response](docs/CreateCampaignPayoutBatch201Response.md)
+ - [CreateCampaignPayoutBatchRequest](docs/CreateCampaignPayoutBatchRequest.md)
  - [CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
  - [CreateCommentAutomationRequest](docs/CreateCommentAutomationRequest.md)
@@ -2822,6 +2966,8 @@ Class | Method | HTTP request | Description
  - [CreateConversionDestination201Response](docs/CreateConversionDestination201Response.md)
  - [CreateConversionDestinationRequest](docs/CreateConversionDestinationRequest.md)
  - [CreateConversionDestinationRequestValue](docs/CreateConversionDestinationRequestValue.md)
+ - [CreateCreatorCampaign201Response](docs/CreateCreatorCampaign201Response.md)
+ - [CreateCreatorCampaignRequest](docs/CreateCreatorCampaignRequest.md)
  - [CreateCustomConversionGoalRequest](docs/CreateCustomConversionGoalRequest.md)
  - [CreateCustomConversionRequest](docs/CreateCustomConversionRequest.md)
  - [CreateCustomField200Response](docs/CreateCustomField200Response.md)
@@ -2892,6 +3038,7 @@ Class | Method | HTTP request | Description
  - [CreateMetaAdAccountRequest](docs/CreateMetaAdAccountRequest.md)
  - [CreateOAuthApp201Response](docs/CreateOAuthApp201Response.md)
  - [CreateOAuthAppRequest](docs/CreateOAuthAppRequest.md)
+ - [CreatePayeeOnboardingLink200Response](docs/CreatePayeeOnboardingLink200Response.md)
  - [CreatePhoneNumberKycLink200Response](docs/CreatePhoneNumberKycLink200Response.md)
  - [CreatePhoneNumberKycLinkRequest](docs/CreatePhoneNumberKycLinkRequest.md)
  - [CreatePhoneNumberKycLinkRequestBranding](docs/CreatePhoneNumberKycLinkRequestBranding.md)
@@ -2968,10 +3115,14 @@ Class | Method | HTTP request | Description
  - [CreateTestLead200ResponseTestLead](docs/CreateTestLead200ResponseTestLead.md)
  - [CreateTestLeadRequest](docs/CreateTestLeadRequest.md)
  - [CreateTestLeadRequestFieldDataInner](docs/CreateTestLeadRequestFieldDataInner.md)
+ - [CreateTopup201Response](docs/CreateTopup201Response.md)
+ - [CreateTopupRequest](docs/CreateTopupRequest.md)
  - [CreateTrackingTag201Response](docs/CreateTrackingTag201Response.md)
  - [CreateTrackingTagEvent201Response](docs/CreateTrackingTagEvent201Response.md)
  - [CreateTrackingTagEventRequest](docs/CreateTrackingTagEventRequest.md)
  - [CreateTrackingTagRequest](docs/CreateTrackingTagRequest.md)
+ - [CreateTransferRequest](docs/CreateTransferRequest.md)
+ - [CreateTransferRequestReference](docs/CreateTransferRequestReference.md)
  - [CreateValueRuleSet201Response](docs/CreateValueRuleSet201Response.md)
  - [CreateValueRuleSetRequest](docs/CreateValueRuleSetRequest.md)
  - [CreateVerificationRequest](docs/CreateVerificationRequest.md)
@@ -3002,6 +3153,24 @@ Class | Method | HTTP request | Description
  - [CreateYoutubePlaylistRequest](docs/CreateYoutubePlaylistRequest.md)
  - [CreatedGoogleAdAccount](docs/CreatedGoogleAdAccount.md)
  - [CreatedMetaAdAccount](docs/CreatedMetaAdAccount.md)
+ - [CreatorCampaign](docs/CreatorCampaign.md)
+ - [CreatorCampaignBranding](docs/CreatorCampaignBranding.md)
+ - [CreatorCampaignCaps](docs/CreatorCampaignCaps.md)
+ - [CreatorCampaignEconomics](docs/CreatorCampaignEconomics.md)
+ - [CreatorCampaignEconomicsCpm](docs/CreatorCampaignEconomicsCpm.md)
+ - [CreatorCampaignEconomicsPerPost](docs/CreatorCampaignEconomicsPerPost.md)
+ - [CreatorCampaignEconomicsPool](docs/CreatorCampaignEconomicsPool.md)
+ - [CreatorPortalCampaign](docs/CreatorPortalCampaign.md)
+ - [CreatorPortalEconomics](docs/CreatorPortalEconomics.md)
+ - [CreatorPortalInvite](docs/CreatorPortalInvite.md)
+ - [CreatorPortalParticipant](docs/CreatorPortalParticipant.md)
+ - [CreatorPortalParticipantAccountsInner](docs/CreatorPortalParticipantAccountsInner.md)
+ - [CreatorPortalParticipantEarnings](docs/CreatorPortalParticipantEarnings.md)
+ - [CreatorPortalParticipantParticipant](docs/CreatorPortalParticipantParticipant.md)
+ - [CreatorPortalPayoutEntry](docs/CreatorPortalPayoutEntry.md)
+ - [CreatorPortalPayoutSetup](docs/CreatorPortalPayoutSetup.md)
+ - [CreatorPortalPayoutSetupTransfersInner](docs/CreatorPortalPayoutSetupTransfersInner.md)
+ - [CreatorPortalSubmission](docs/CreatorPortalSubmission.md)
  - [CrosspostDiscordMessage200Response](docs/CrosspostDiscordMessage200Response.md)
  - [CtwaAdRequestBody](docs/CtwaAdRequestBody.md)
  - [CtwaAdRequestBodyCitiesInner](docs/CtwaAdRequestBodyCitiesInner.md)
@@ -3264,6 +3433,8 @@ Class | Method | HTTP request | Description
  - [GetAnalyticsDashboard200Response](docs/GetAnalyticsDashboard200Response.md)
  - [GetAnalyticsDashboard200ResponseDailyInner](docs/GetAnalyticsDashboard200ResponseDailyInner.md)
  - [GetAnalyticsDashboard200ResponseDateRange](docs/GetAnalyticsDashboard200ResponseDateRange.md)
+ - [GetBalance200Response](docs/GetBalance200Response.md)
+ - [GetBalance200ResponsePendingReleasesInner](docs/GetBalance200ResponsePendingReleasesInner.md)
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)
  - [GetBestTimeToPost403Response](docs/GetBestTimeToPost403Response.md)
@@ -3287,6 +3458,9 @@ Class | Method | HTTP request | Description
  - [GetCampaignAnalytics202Response](docs/GetCampaignAnalytics202Response.md)
  - [GetCampaignBidding200Response](docs/GetCampaignBidding200Response.md)
  - [GetCampaignConversionGoals200Response](docs/GetCampaignConversionGoals200Response.md)
+ - [GetCampaignParticipant200Response](docs/GetCampaignParticipant200Response.md)
+ - [GetCampaignReport200Response](docs/GetCampaignReport200Response.md)
+ - [GetCampaignSubmission200Response](docs/GetCampaignSubmission200Response.md)
  - [GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
  - [GetCampaignTargeting200ResponseDevicesInner](docs/GetCampaignTargeting200ResponseDevicesInner.md)
  - [GetCampaignTargeting200ResponseExcludedLocationsInner](docs/GetCampaignTargeting200ResponseExcludedLocationsInner.md)
@@ -3311,6 +3485,8 @@ Class | Method | HTTP request | Description
  - [GetConversionsQuality200Response](docs/GetConversionsQuality200Response.md)
  - [GetConversionsQuality200ResponseRowsInner](docs/GetConversionsQuality200ResponseRowsInner.md)
  - [GetConversionsQuality200ResponseRowsInnerMatchKeysInner](docs/GetConversionsQuality200ResponseRowsInnerMatchKeysInner.md)
+ - [GetCreatorPayouts200Response](docs/GetCreatorPayouts200Response.md)
+ - [GetCreatorPortal200Response](docs/GetCreatorPortal200Response.md)
  - [GetDailyMetrics200Response](docs/GetDailyMetrics200Response.md)
  - [GetDailyMetrics200ResponseDailyDataInner](docs/GetDailyMetrics200ResponseDailyDataInner.md)
  - [GetDailyMetrics200ResponseDailyDataInnerMetrics](docs/GetDailyMetrics200ResponseDailyDataInnerMetrics.md)
@@ -3440,6 +3616,7 @@ Class | Method | HTTP request | Description
  - [GetIosFourteenCampaignLimits200ResponseLimits](docs/GetIosFourteenCampaignLimits200ResponseLimits.md)
  - [GetLeadForm200Response](docs/GetLeadForm200Response.md)
  - [GetLeadForm200ResponseForm](docs/GetLeadForm200ResponseForm.md)
+ - [GetLedgerBalances200Response](docs/GetLedgerBalances200Response.md)
  - [GetLinkedInAggregateAnalytics200Response](docs/GetLinkedInAggregateAnalytics200Response.md)
  - [GetLinkedInAggregateAnalytics400Response](docs/GetLinkedInAggregateAnalytics400Response.md)
  - [GetLinkedInAggregateAnalytics402Response](docs/GetLinkedInAggregateAnalytics402Response.md)
@@ -3478,6 +3655,7 @@ Class | Method | HTTP request | Description
  - [GetMessengerIceBreakers200Response](docs/GetMessengerIceBreakers200Response.md)
  - [GetMessengerMenu200Response](docs/GetMessengerMenu200Response.md)
  - [GetPageWebhookSubscription200Response](docs/GetPageWebhookSubscription200Response.md)
+ - [GetPayoutBatch200Response](docs/GetPayoutBatch200Response.md)
  - [GetPendingOAuthData200Response](docs/GetPendingOAuthData200Response.md)
  - [GetPendingOAuthData200ResponseOrganizationsInner](docs/GetPendingOAuthData200ResponseOrganizationsInner.md)
  - [GetPhoneNumber200Response](docs/GetPhoneNumber200Response.md)
@@ -3499,6 +3677,7 @@ Class | Method | HTTP request | Description
  - [GetPhoneNumberRemediation200Response](docs/GetPhoneNumberRemediation200Response.md)
  - [GetPinterestBoards200Response](docs/GetPinterestBoards200Response.md)
  - [GetPinterestBoards200ResponseBoardsInner](docs/GetPinterestBoards200ResponseBoardsInner.md)
+ - [GetPostSamples200Response](docs/GetPostSamples200Response.md)
  - [GetPostTimeline200Response](docs/GetPostTimeline200Response.md)
  - [GetPostTimeline200ResponseTimelineInner](docs/GetPostTimeline200ResponseTimelineInner.md)
  - [GetPostTimeline400Response](docs/GetPostTimeline400Response.md)
@@ -3545,6 +3724,7 @@ Class | Method | HTTP request | Description
  - [GetTikTokSmartPlusMaterialReport200Response](docs/GetTikTokSmartPlusMaterialReport200Response.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInner](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInner.md)
  - [GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics](docs/GetTikTokSmartPlusMaterialReport200ResponseRowsInnerMetrics.md)
+ - [GetTopupReceipt200Response](docs/GetTopupReceipt200Response.md)
  - [GetTrackingTag200Response](docs/GetTrackingTag200Response.md)
  - [GetTrackingTagDiagnostics200Response](docs/GetTrackingTagDiagnostics200Response.md)
  - [GetTrackingTagStats200Response](docs/GetTrackingTagStats200Response.md)
@@ -3774,8 +3954,11 @@ Class | Method | HTTP request | Description
  - [InstallTrackingTagOnStoreRequest](docs/InstallTrackingTagOnStoreRequest.md)
  - [InviteAdAccountToManagerRequest](docs/InviteAdAccountToManagerRequest.md)
  - [InviteAdAccountUserRequest](docs/InviteAdAccountUserRequest.md)
+ - [JoinCreatorCampaign201Response](docs/JoinCreatorCampaign201Response.md)
+ - [JoinCreatorCampaignRequest](docs/JoinCreatorCampaignRequest.md)
  - [KeywordEntry](docs/KeywordEntry.md)
  - [KeywordEntryOneOf](docs/KeywordEntryOneOf.md)
+ - [LedgerAccountSide](docs/LedgerAccountSide.md)
  - [LikeInboxComment200Response](docs/LikeInboxComment200Response.md)
  - [LikeInboxCommentRequest](docs/LikeInboxCommentRequest.md)
  - [LikePost200Response](docs/LikePost200Response.md)
@@ -3908,8 +4091,14 @@ Class | Method | HTTP request | Description
  - [ListCampaignAssets200ResponseImagesInner](docs/ListCampaignAssets200ResponseImagesInner.md)
  - [ListCampaignAssets200ResponseSitelinksInner](docs/ListCampaignAssets200ResponseSitelinksInner.md)
  - [ListCampaignAssets200ResponseStructuredSnippetsInner](docs/ListCampaignAssets200ResponseStructuredSnippetsInner.md)
+ - [ListCampaignLedger200Response](docs/ListCampaignLedger200Response.md)
+ - [ListCampaignLedger200ResponsePagination](docs/ListCampaignLedger200ResponsePagination.md)
  - [ListCampaignNegativeKeywords200Response](docs/ListCampaignNegativeKeywords200Response.md)
  - [ListCampaignNegativeKeywords200ResponseKeywordsInner](docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md)
+ - [ListCampaignParticipants200Response](docs/ListCampaignParticipants200Response.md)
+ - [ListCampaignPayables200Response](docs/ListCampaignPayables200Response.md)
+ - [ListCampaignPayoutBatches200Response](docs/ListCampaignPayoutBatches200Response.md)
+ - [ListCampaignSubmissions200Response](docs/ListCampaignSubmissions200Response.md)
  - [ListChangelog200Response](docs/ListChangelog200Response.md)
  - [ListCommentAutomationLogs200Response](docs/ListCommentAutomationLogs200Response.md)
  - [ListCommentAutomationLogs200ResponseMisses](docs/ListCommentAutomationLogs200ResponseMisses.md)
@@ -3943,6 +4132,7 @@ Class | Method | HTTP request | Description
  - [ListConversionDestinations200Response](docs/ListConversionDestinations200Response.md)
  - [ListConversionDestinations200ResponseDestinationsInner](docs/ListConversionDestinations200ResponseDestinationsInner.md)
  - [ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner](docs/ListConversionDestinations200ResponseDestinationsInnerConversionEventsInner.md)
+ - [ListCreatorCampaigns200Response](docs/ListCreatorCampaigns200Response.md)
  - [ListCustomConversionGoals200Response](docs/ListCustomConversionGoals200Response.md)
  - [ListCustomConversions200Response](docs/ListCustomConversions200Response.md)
  - [ListCustomFields200Response](docs/ListCustomFields200Response.md)
@@ -4026,6 +4216,9 @@ Class | Method | HTTP request | Description
  - [ListLeadForms200Response](docs/ListLeadForms200Response.md)
  - [ListLeads200Response](docs/ListLeads200Response.md)
  - [ListLeads200ResponseMeta](docs/ListLeads200ResponseMeta.md)
+ - [ListLedgerEntries200Response](docs/ListLedgerEntries200Response.md)
+ - [ListLedgerEntries200ResponseEntriesInner](docs/ListLedgerEntries200ResponseEntriesInner.md)
+ - [ListLedgerEntries200ResponsePagination](docs/ListLedgerEntries200ResponsePagination.md)
  - [ListLinkedInOrganizations200Response](docs/ListLinkedInOrganizations200Response.md)
  - [ListLinkedInOrganizations200ResponseOrganizationsInner](docs/ListLinkedInOrganizations200ResponseOrganizationsInner.md)
  - [ListLocalServicesLeadConversations200Response](docs/ListLocalServicesLeadConversations200Response.md)
@@ -4047,6 +4240,7 @@ Class | Method | HTTP request | Description
  - [ListPartnershipAdContent200ResponseMediaInner](docs/ListPartnershipAdContent200ResponseMediaInner.md)
  - [ListPartnershipAdPermissions200Response](docs/ListPartnershipAdPermissions200Response.md)
  - [ListPartnershipAdPermissions200ResponsePermissionsInner](docs/ListPartnershipAdPermissions200ResponsePermissionsInner.md)
+ - [ListPayees200Response](docs/ListPayees200Response.md)
  - [ListPhoneNumberCountries200Response](docs/ListPhoneNumberCountries200Response.md)
  - [ListPhoneNumberCountries200ResponseCountriesInner](docs/ListPhoneNumberCountries200ResponseCountriesInner.md)
  - [ListPhoneNumberCountries200ResponseCountriesInnerTypesInner](docs/ListPhoneNumberCountries200ResponseCountriesInnerTypesInner.md)
@@ -4059,6 +4253,7 @@ Class | Method | HTTP request | Description
  - [ListPhoneNumbers200ResponseSandboxTemplate](docs/ListPhoneNumbers200ResponseSandboxTemplate.md)
  - [ListPinterestBoardsForSelection200Response](docs/ListPinterestBoardsForSelection200Response.md)
  - [ListPinterestBoardsForSelection200ResponseBoardsInner](docs/ListPinterestBoardsForSelection200ResponseBoardsInner.md)
+ - [ListPostAuthenticity200Response](docs/ListPostAuthenticity200Response.md)
  - [ListProducts200Response](docs/ListProducts200Response.md)
  - [ListQueueSlots200Response](docs/ListQueueSlots200Response.md)
  - [ListQueueSlots200ResponseOneOf](docs/ListQueueSlots200ResponseOneOf.md)
@@ -4103,11 +4298,14 @@ Class | Method | HTTP request | Description
  - [ListTikTokSmartPlusReviews200ResponseListing](docs/ListTikTokSmartPlusReviews200ResponseListing.md)
  - [ListTikTokSmartPlusReviews200ResponseListingError](docs/ListTikTokSmartPlusReviews200ResponseListingError.md)
  - [ListTikTokSmartPlusReviews200ResponseReviewError](docs/ListTikTokSmartPlusReviews200ResponseReviewError.md)
+ - [ListTopups200Response](docs/ListTopups200Response.md)
  - [ListTrackingTagEvents200Response](docs/ListTrackingTagEvents200Response.md)
  - [ListTrackingTagPartners200Response](docs/ListTrackingTagPartners200Response.md)
  - [ListTrackingTagSharedAccounts200Response](docs/ListTrackingTagSharedAccounts200Response.md)
  - [ListTrackingTagUsers200Response](docs/ListTrackingTagUsers200Response.md)
  - [ListTrackingTags200Response](docs/ListTrackingTags200Response.md)
+ - [ListTrackingWindows200Response](docs/ListTrackingWindows200Response.md)
+ - [ListTransfers200Response](docs/ListTransfers200Response.md)
  - [ListUsers200Response](docs/ListUsers200Response.md)
  - [ListUsers200ResponseUsersInner](docs/ListUsers200ResponseUsersInner.md)
  - [ListValueRuleSets200Response](docs/ListValueRuleSets200Response.md)
@@ -4230,6 +4428,7 @@ Class | Method | HTTP request | Description
  - [OnWhatsAppNumberVerificationRequiredRequest](docs/OnWhatsAppNumberVerificationRequiredRequest.md)
  - [OnboardBusinessAgent201Response](docs/OnboardBusinessAgent201Response.md)
  - [OpenHoursInner](docs/OpenHoursInner.md)
+ - [OpenTrackingWindowRequest](docs/OpenTrackingWindowRequest.md)
  - [OrderImessageSender202Response](docs/OrderImessageSender202Response.md)
  - [OrderImessageSenderRequest](docs/OrderImessageSenderRequest.md)
  - [OrderImessageSenderRequestContact](docs/OrderImessageSenderRequestContact.md)
@@ -4239,7 +4438,11 @@ Class | Method | HTTP request | Description
  - [OwnedPhoneNumberProfileIdOneOf](docs/OwnedPhoneNumberProfileIdOneOf.md)
  - [Pagination](docs/Pagination.md)
  - [PauseWorkflow200Response](docs/PauseWorkflow200Response.md)
+ - [PayoutBatch](docs/PayoutBatch.md)
+ - [PayoutBatchItem](docs/PayoutBatchItem.md)
+ - [PayoutBatchItemCreator](docs/PayoutBatchItemCreator.md)
  - [Pending](docs/Pending.md)
+ - [PerPost](docs/PerPost.md)
  - [PhoneNumberStockWatch](docs/PhoneNumberStockWatch.md)
  - [PinDiscordMessage200Response](docs/PinDiscordMessage200Response.md)
  - [PinInboxComment200Response](docs/PinInboxComment200Response.md)
@@ -4250,9 +4453,12 @@ Class | Method | HTTP request | Description
  - [PlatformAnalytics](docs/PlatformAnalytics.md)
  - [PlatformTarget](docs/PlatformTarget.md)
  - [PlatformTargetAccountId](docs/PlatformTargetAccountId.md)
+ - [Pool](docs/Pool.md)
  - [PortfolioBidStrategy](docs/PortfolioBidStrategy.md)
  - [Post](docs/Post.md)
  - [PostAnalytics](docs/PostAnalytics.md)
+ - [PostAuthenticity](docs/PostAuthenticity.md)
+ - [PostAuthenticityReasonsInner](docs/PostAuthenticityReasonsInner.md)
  - [PostCreateResponse](docs/PostCreateResponse.md)
  - [PostDeleteResponse](docs/PostDeleteResponse.md)
  - [PostGetResponse](docs/PostGetResponse.md)
@@ -4260,6 +4466,7 @@ Class | Method | HTTP request | Description
  - [PostPublishIncompleteResponse](docs/PostPublishIncompleteResponse.md)
  - [PostPublishIncompleteResponsePlatformResultsInner](docs/PostPublishIncompleteResponsePlatformResultsInner.md)
  - [PostRetryResponse](docs/PostRetryResponse.md)
+ - [PostSample](docs/PostSample.md)
  - [PostUpdateResponse](docs/PostUpdateResponse.md)
  - [PostUserId](docs/PostUserId.md)
  - [PostsListResponse](docs/PostsListResponse.md)
@@ -4310,6 +4517,7 @@ Class | Method | HTTP request | Description
  - [QueueSlot](docs/QueueSlot.md)
  - [QueueSlotsResponse](docs/QueueSlotsResponse.md)
  - [QueueUpdateResponse](docs/QueueUpdateResponse.md)
+ - [RaiseCreatorCampaignBudgetRequest](docs/RaiseCreatorCampaignBudgetRequest.md)
  - [RcsAgent](docs/RcsAgent.md)
  - [RcsAgentProfile](docs/RcsAgentProfile.md)
  - [RcsAgentProfileEmail](docs/RcsAgentProfileEmail.md)
@@ -4340,6 +4548,8 @@ Class | Method | HTTP request | Description
  - [RcsSuggestionOneOf4](docs/RcsSuggestionOneOf4.md)
  - [RcsSuggestionOneOf5](docs/RcsSuggestionOneOf5.md)
  - [RcsTestDevice](docs/RcsTestDevice.md)
+ - [RecoverCreatorPortalLinks202Response](docs/RecoverCreatorPortalLinks202Response.md)
+ - [RecoverCreatorPortalLinksRequest](docs/RecoverCreatorPortalLinksRequest.md)
  - [RecyclingConfig](docs/RecyclingConfig.md)
  - [RecyclingState](docs/RecyclingState.md)
  - [RedditComment](docs/RedditComment.md)
@@ -4350,6 +4560,7 @@ Class | Method | HTTP request | Description
  - [RegisterImessageSenderRequest](docs/RegisterImessageSenderRequest.md)
  - [RegisterWhatsAppNumber200Response](docs/RegisterWhatsAppNumber200Response.md)
  - [RegisterWhatsAppNumberRequest](docs/RegisterWhatsAppNumberRequest.md)
+ - [RejectCampaignSubmissionRequest](docs/RejectCampaignSubmissionRequest.md)
  - [RejectWhatsAppGroupJoinRequestsRequest](docs/RejectWhatsAppGroupJoinRequestsRequest.md)
  - [ReleasePhoneNumber200Response](docs/ReleasePhoneNumber200Response.md)
  - [ReleasePhoneNumber200ResponsePhoneNumber](docs/ReleasePhoneNumber200ResponsePhoneNumber.md)
@@ -4638,6 +4849,8 @@ Class | Method | HTTP request | Description
  - [SetWhatsAppFlowsEncryptionKeyRequest](docs/SetWhatsAppFlowsEncryptionKeyRequest.md)
  - [SetWhatsappBusinessUsername200Response](docs/SetWhatsappBusinessUsername200Response.md)
  - [SetWhatsappBusinessUsernameRequest](docs/SetWhatsappBusinessUsernameRequest.md)
+ - [SettleCampaignParticipant201Response](docs/SettleCampaignParticipant201Response.md)
+ - [SettleCampaignParticipantRequest](docs/SettleCampaignParticipantRequest.md)
  - [ShareBrandedCallingIdentityForm200Response](docs/ShareBrandedCallingIdentityForm200Response.md)
  - [ShareBrandedCallingIdentityFormRequest](docs/ShareBrandedCallingIdentityFormRequest.md)
  - [ShareSmsRegistrationRequest](docs/ShareSmsRegistrationRequest.md)
@@ -4650,6 +4863,10 @@ Class | Method | HTTP request | Description
  - [SocialAccountProfileId](docs/SocialAccountProfileId.md)
  - [StartBusinessAgentEvalRun202Response](docs/StartBusinessAgentEvalRun202Response.md)
  - [StartBusinessAgentEvalRunRequest](docs/StartBusinessAgentEvalRunRequest.md)
+ - [StartCreatorConnect200Response](docs/StartCreatorConnect200Response.md)
+ - [StartCreatorConnectRequest](docs/StartCreatorConnectRequest.md)
+ - [StartCreatorPayouts200Response](docs/StartCreatorPayouts200Response.md)
+ - [StartCreatorPayoutsRequest](docs/StartCreatorPayoutsRequest.md)
  - [StartGoogleBusinessVerification200Response](docs/StartGoogleBusinessVerification200Response.md)
  - [StartGoogleBusinessVerification200ResponseVerification](docs/StartGoogleBusinessVerification200ResponseVerification.md)
  - [StartGoogleBusinessVerificationRequest](docs/StartGoogleBusinessVerificationRequest.md)
@@ -4665,6 +4882,8 @@ Class | Method | HTTP request | Description
  - [StartWhatsAppCallerIdVerificationRequest](docs/StartWhatsAppCallerIdVerificationRequest.md)
  - [StorePixelInstall](docs/StorePixelInstall.md)
  - [StorePixelInstallTagsInner](docs/StorePixelInstallTagsInner.md)
+ - [SubmitCreatorPost201Response](docs/SubmitCreatorPost201Response.md)
+ - [SubmitCreatorPostRequest](docs/SubmitCreatorPostRequest.md)
  - [SubmitFeedbackRequest](docs/SubmitFeedbackRequest.md)
  - [SubmitFeedbackRequestAgent](docs/SubmitFeedbackRequestAgent.md)
  - [SubmitPhoneNumberKyc200Response](docs/SubmitPhoneNumberKyc200Response.md)
@@ -4710,12 +4929,20 @@ Class | Method | HTTP request | Description
  - [TrackingTagInstallBlockedReason](docs/TrackingTagInstallBlockedReason.md)
  - [TrackingTagPartner](docs/TrackingTagPartner.md)
  - [TrackingTagUser](docs/TrackingTagUser.md)
+ - [TrackingWindow](docs/TrackingWindow.md)
+ - [TrackingWindowLatest](docs/TrackingWindowLatest.md)
+ - [TrackingWindowResponse](docs/TrackingWindowResponse.md)
  - [TransferVoiceCall200Response](docs/TransferVoiceCall200Response.md)
  - [TransferVoiceCallRequest](docs/TransferVoiceCallRequest.md)
  - [TrashEmailMessage200Response](docs/TrashEmailMessage200Response.md)
  - [TrashEmailMessage200ResponseData](docs/TrashEmailMessage200ResponseData.md)
  - [TrashFile200Response](docs/TrashFile200Response.md)
  - [TrashFile200ResponseData](docs/TrashFile200ResponseData.md)
+ - [TreasuryPayee](docs/TreasuryPayee.md)
+ - [TreasuryTopup](docs/TreasuryTopup.md)
+ - [TreasuryTopupPayoutBatch](docs/TreasuryTopupPayoutBatch.md)
+ - [TreasuryTransfer](docs/TreasuryTransfer.md)
+ - [TreasuryTransferReference](docs/TreasuryTransferReference.md)
  - [TriggerApiCallWorkflow201Response](docs/TriggerApiCallWorkflow201Response.md)
  - [TriggerApiCallWorkflowRequest](docs/TriggerApiCallWorkflowRequest.md)
  - [TriggerWorkflow200Response](docs/TriggerWorkflow200Response.md)
@@ -4859,6 +5086,7 @@ Class | Method | HTTP request | Description
  - [UpdateConversionActionRequest](docs/UpdateConversionActionRequest.md)
  - [UpdateConversionDestinationRequest](docs/UpdateConversionDestinationRequest.md)
  - [UpdateConversionDestinationRequestValue](docs/UpdateConversionDestinationRequestValue.md)
+ - [UpdateCreatorCampaignRequest](docs/UpdateCreatorCampaignRequest.md)
  - [UpdateCustomConversionGoal200Response](docs/UpdateCustomConversionGoal200Response.md)
  - [UpdateCustomConversionGoalRequest](docs/UpdateCustomConversionGoalRequest.md)
  - [UpdateCustomField200Response](docs/UpdateCustomField200Response.md)
@@ -5128,6 +5356,18 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCampaignBudgetDepleted](docs/WebhookPayloadCampaignBudgetDepleted.md)
  - [WebhookPayloadCampaignBudgetDepletedAdObject](docs/WebhookPayloadCampaignBudgetDepletedAdObject.md)
  - [WebhookPayloadCampaignBudgetDepletedBudget](docs/WebhookPayloadCampaignBudgetDepletedBudget.md)
+ - [WebhookPayloadCampaignParticipant](docs/WebhookPayloadCampaignParticipant.md)
+ - [WebhookPayloadCampaignParticipantParticipant](docs/WebhookPayloadCampaignParticipantParticipant.md)
+ - [WebhookPayloadCampaignPayout](docs/WebhookPayloadCampaignPayout.md)
+ - [WebhookPayloadCampaignPayoutCampaign](docs/WebhookPayloadCampaignPayoutCampaign.md)
+ - [WebhookPayloadCampaignPayoutPayout](docs/WebhookPayloadCampaignPayoutPayout.md)
+ - [WebhookPayloadCampaignPayoutPayoutFailure](docs/WebhookPayloadCampaignPayoutPayoutFailure.md)
+ - [WebhookPayloadCampaignPayoutPayoutSettlement](docs/WebhookPayloadCampaignPayoutPayoutSettlement.md)
+ - [WebhookPayloadCampaignSubmission](docs/WebhookPayloadCampaignSubmission.md)
+ - [WebhookPayloadCampaignSubmissionCreator](docs/WebhookPayloadCampaignSubmissionCreator.md)
+ - [WebhookPayloadCampaignSubmissionParticipant](docs/WebhookPayloadCampaignSubmissionParticipant.md)
+ - [WebhookPayloadCampaignSubmissionSubmission](docs/WebhookPayloadCampaignSubmissionSubmission.md)
+ - [WebhookPayloadCampaignSubmissionSubmissionFlagsInner](docs/WebhookPayloadCampaignSubmissionSubmissionFlagsInner.md)
  - [WebhookPayloadComment](docs/WebhookPayloadComment.md)
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)
@@ -5150,6 +5390,8 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadConversationControlChangedControl](docs/WebhookPayloadConversationControlChangedControl.md)
  - [WebhookPayloadConversationStarted](docs/WebhookPayloadConversationStarted.md)
  - [WebhookPayloadConversationStartedConversation](docs/WebhookPayloadConversationStartedConversation.md)
+ - [WebhookPayloadCreatorCampaign](docs/WebhookPayloadCreatorCampaign.md)
+ - [WebhookPayloadCreatorCampaignCampaign](docs/WebhookPayloadCreatorCampaignCampaign.md)
  - [WebhookPayloadExternalPost](docs/WebhookPayloadExternalPost.md)
  - [WebhookPayloadFile](docs/WebhookPayloadFile.md)
  - [WebhookPayloadFilePicked](docs/WebhookPayloadFilePicked.md)
@@ -5188,6 +5430,9 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPhoneNumberStockAvailableStock](docs/WebhookPayloadPhoneNumberStockAvailableStock.md)
  - [WebhookPayloadPhoneNumberStockAvailableStockTypesInner](docs/WebhookPayloadPhoneNumberStockAvailableStockTypesInner.md)
  - [WebhookPayloadPost](docs/WebhookPayloadPost.md)
+ - [WebhookPayloadPostAuthenticityChanged](docs/WebhookPayloadPostAuthenticityChanged.md)
+ - [WebhookPayloadPostAuthenticityChangedAuthenticity](docs/WebhookPayloadPostAuthenticityChangedAuthenticity.md)
+ - [WebhookPayloadPostAuthenticityChangedAuthenticityReasonsInner](docs/WebhookPayloadPostAuthenticityChangedAuthenticityReasonsInner.md)
  - [WebhookPayloadPostPlatform](docs/WebhookPayloadPostPlatform.md)
  - [WebhookPayloadPostPlatformAccount](docs/WebhookPayloadPostPlatformAccount.md)
  - [WebhookPayloadPostPlatformPlatform](docs/WebhookPayloadPostPlatformPlatform.md)
@@ -5195,6 +5440,10 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadPostPlatformPostPlatformsInner](docs/WebhookPayloadPostPlatformPostPlatformsInner.md)
  - [WebhookPayloadPostPost](docs/WebhookPayloadPostPost.md)
  - [WebhookPayloadPostPostPlatformsInner](docs/WebhookPayloadPostPostPlatformsInner.md)
+ - [WebhookPayloadPostTrackingCompleted](docs/WebhookPayloadPostTrackingCompleted.md)
+ - [WebhookPayloadPostTrackingCompletedFinal](docs/WebhookPayloadPostTrackingCompletedFinal.md)
+ - [WebhookPayloadPostTrackingCompletedPost](docs/WebhookPayloadPostTrackingCompletedPost.md)
+ - [WebhookPayloadPostTrackingCompletedWindow](docs/WebhookPayloadPostTrackingCompletedWindow.md)
  - [WebhookPayloadReaction](docs/WebhookPayloadReaction.md)
  - [WebhookPayloadReactionReaction](docs/WebhookPayloadReactionReaction.md)
  - [WebhookPayloadReactionReactionSender](docs/WebhookPayloadReactionReactionSender.md)
