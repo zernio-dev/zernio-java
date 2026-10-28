@@ -17,6 +17,7 @@
 |**lastError** | **String** |  |  [optional] |
 |**accountCount** | **Integer** | Connected accounts currently running on this app. |  |
 |**redirectUri** | **URI** | The OAuth redirect URI to allow in your app&#39;s settings on the platform. |  |
+|**webhook** | [**OAuthAppWebhook**](OAuthAppWebhook.md) |  |  [optional] |
 |**createdAt** | **OffsetDateTime** |  |  |
 
 
@@ -29,7 +30,6 @@
 | ANALYTICS | &quot;analytics&quot; |
 | COMMENTS | &quot;comments&quot; |
 | MESSAGING | &quot;messaging&quot; |
-| ADS | &quot;ads&quot; |
 
 
 
