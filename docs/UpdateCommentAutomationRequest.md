@@ -19,9 +19,9 @@
 |**dmMessage** | **String** |  |  [optional] |
 |**buttons** | [**List&lt;DmButton&gt;**](DmButton.md) | Inline DM buttons (1-3). Pass [] to clear all buttons. |  [optional] |
 |**template** | [**CommentAutomationTemplate**](CommentAutomationTemplate.md) |  |  [optional] |
-|**commentReply** | **String** |  |  [optional] |
+|**commentReply** | **String** | On LinkedIn, mention with &#x60;@[Name](urn:li:person:ID)&#x60; or &#x60;@[Name](urn:li:organization:ID)&#x60;, getting the URN from &#x60;GET /v1/accounts/{accountId}/linkedin-mentions&#x60;. The name must match the person&#39;s or Page&#39;s LinkedIn name exactly, or the mention renders as plain text. Profile or company URL mentions are not resolved here and are sent as plain text. |  [optional] |
 |**dmMessageVariations** | **List&lt;String&gt;** | Alternate DM texts for random rotation (see create). Pass [] to clear. |  [optional] |
-|**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies for random rotation. Pass [] to clear. |  [optional] |
+|**commentReplyVariations** | **List&lt;String&gt;** | Alternate public replies for random rotation. Pass [] to clear.  LinkedIn mentions follow the commentReply rules. |  [optional] |
 |**linkTracking** | **Boolean** | Wrap link buttons in a tracked redirect to count clicks. Pass false to send links untouched. |  [optional] |
 |**clickTag** | **String** | Tag applied to a contact when they click a tracked link (requires linkTracking). Empty string clears it. |  [optional] |
 |**alsoMatchInDms** | **Boolean** | Also fire these keywords on a plain inbound DM. Enabling it requires the automation to end up with at least one keyword (this request&#39;s keywords if you send them, otherwise the stored ones) and is rejected on story_reply automations. |  [optional] |

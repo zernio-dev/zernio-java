@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.413.1
+  version: 1.413.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -149829,9 +149829,10 @@ components:
             \ bubble. Mutually exclusive with buttons. dmMessage stays required: it\
             \ is what gets sent the moment the card is cleared."
         commentReply:
-          description: "Public reply to the comment. Optional on Instagram and Facebook;\
-            \ required on TikTok, Threads, LinkedIn and YouTube, where it is the automation's\
-            \ only action."
+          description: |-
+            Public reply to the comment. Optional on Instagram and Facebook; required on TikTok, Threads, LinkedIn and YouTube, where it is the automation's only action.
+
+            On LinkedIn, mention with `@[Name](urn:li:person:ID)` or `@[Name](urn:li:organization:ID)`, getting the URN from `GET /v1/accounts/{accountId}/linkedin-mentions`. The name must match the person's or Page's LinkedIn name exactly, or the mention renders as plain text. Profile or company URL mentions are not resolved here and are sent as plain text.
           type: string
         dmMessageVariations:
           description: "Optional alternate DM texts for random rotation. When set,\
@@ -149844,8 +149845,10 @@ components:
           maxItems: 5
           type: array
         commentReplyVariations:
-          description: "Optional alternate public replies, rotated at random alongside\
-            \ commentReply (picked independently of the DM). Up to 5."
+          description: |-
+            Optional alternate public replies, rotated at random alongside commentReply (picked independently of the DM). Up to 5.
+
+            LinkedIn mentions follow the commentReply rules.
           items:
             type: string
           maxItems: 5
@@ -150674,6 +150677,11 @@ components:
           - $ref: "#/components/schemas/CommentAutomationTemplate"
           nullable: true
         commentReply:
+          description: "On LinkedIn, mention with `@[Name](urn:li:person:ID)` or `@[Name](urn:li:organization:ID)`,\
+            \ getting the URN from `GET /v1/accounts/{accountId}/linkedin-mentions`.\
+            \ The name must match the person's or Page's LinkedIn name exactly, or\
+            \ the mention renders as plain text. Profile or company URL mentions are\
+            \ not resolved here and are sent as plain text."
           type: string
         dmMessageVariations:
           description: "Alternate DM texts for random rotation (see create). Pass\
@@ -150683,7 +150691,10 @@ components:
           maxItems: 5
           type: array
         commentReplyVariations:
-          description: "Alternate public replies for random rotation. Pass [] to clear."
+          description: |-
+            Alternate public replies for random rotation. Pass [] to clear.
+
+            LinkedIn mentions follow the commentReply rules.
           items:
             type: string
           maxItems: 5
