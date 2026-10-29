@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.412.0
+  version: 1.413.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -11034,6 +11034,10 @@ paths:
                   tokenExpiresAt: 2025-06-15T00:00:00Z
                   needsReconnect: false
                   issues: []
+                  ownerUserId: user_123
+                  disconnectReason: null
+                  disconnectionType: null
+                  unhealthySince: null
                 - accountId: def456
                   platform: twitter
                   username: mytwitter
@@ -11044,6 +11048,10 @@ paths:
                   needsReconnect: true
                   issues:
                   - Token expired
+                  ownerUserId: user_123
+                  disconnectReason: Token expired
+                  disconnectionType: unintentional
+                  unhealthySince: 2025-05-20T08:30:00Z
               schema:
                 $ref: "#/components/schemas/getAllAccountsHealth_200_response"
           description: Account health summary
@@ -11304,6 +11312,10 @@ paths:
                   missingRequired: []
                 issues: []
                 recommendations: []
+                ownerUserId: user_123
+                disconnectReason: null
+                disconnectionType: null
+                unhealthySince: null
               schema:
                 $ref: "#/components/schemas/getAccountHealth_200_response"
           description: Account health details
@@ -117831,6 +117843,7 @@ components:
         needsReconnect: true
         displayName: displayName
         tokenValid: true
+        unhealthySince: 2000-01-23T04:56:07.000+00:00
         messagingRestriction:
           lastSeenAt: 2000-01-23T04:56:07.000+00:00
           code: 2
@@ -117843,8 +117856,11 @@ components:
         - issues
         platform: platform
         accountId: accountId
+        disconnectReason: disconnectReason
         canPost: true
+        disconnectionType: intentional
         profileId: profileId
+        ownerUserId: ownerUserId
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
           status: ok
@@ -117887,6 +117903,38 @@ components:
           items:
             type: string
           type: array
+        ownerUserId:
+          description: "User id of the profile owner, not necessarily the team member\
+            \ who connected the account."
+          type: string
+        disconnectReason:
+          description: "Why the connection is broken or its token refresh is failing,\
+            \ from the most recent current cause. Null when the connection is healthy,\
+            \ including when the account is unhealthy for another reason (analytics,\
+            \ messaging restriction, missing analytics scopes), or when no cause is\
+            \ stored."
+          nullable: true
+          type: string
+        disconnectionType:
+          description: "intentional: deliberately disconnected by the user or by Zernio\
+            \ (for example a plan downgrade), not a token failure. unintentional:\
+            \ token expired or revoked, or an auth failure. Null when disconnectReason\
+            \ is null."
+          enum:
+          - intentional
+          - unintentional
+          - null
+          nullable: true
+          type: string
+        unhealthySince:
+          description: "When the earliest current stored cause was recorded (the start\
+            \ of the outage); for an intentional disconnect, when it was disconnected.\
+            \ Null when the connection is healthy, including when the account is unhealthy\
+            \ for another reason (analytics, messaging restriction, missing analytics\
+            \ scopes), or when the time is unknown."
+          format: date-time
+          nullable: true
+          type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
         messagingRestriction:
@@ -117903,6 +117951,7 @@ components:
         - needsReconnect: true
           displayName: displayName
           tokenValid: true
+          unhealthySince: 2000-01-23T04:56:07.000+00:00
           messagingRestriction:
             lastSeenAt: 2000-01-23T04:56:07.000+00:00
             code: 2
@@ -117915,8 +117964,11 @@ components:
           - issues
           platform: platform
           accountId: accountId
+          disconnectReason: disconnectReason
           canPost: true
+          disconnectionType: intentional
           profileId: profileId
+          ownerUserId: ownerUserId
           analyticsSync:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
@@ -117927,6 +117979,7 @@ components:
         - needsReconnect: true
           displayName: displayName
           tokenValid: true
+          unhealthySince: 2000-01-23T04:56:07.000+00:00
           messagingRestriction:
             lastSeenAt: 2000-01-23T04:56:07.000+00:00
             code: 2
@@ -117939,8 +117992,11 @@ components:
           - issues
           platform: platform
           accountId: accountId
+          disconnectReason: disconnectReason
           canPost: true
+          disconnectionType: intentional
           profileId: profileId
+          ownerUserId: ownerUserId
           analyticsSync:
             lastSyncedAt: 2000-01-23T04:56:07.000+00:00
             status: ok
@@ -118228,6 +118284,7 @@ components:
           needsRefresh: true
           expiresAt: 2000-01-23T04:56:07.000+00:00
         displayName: displayName
+        unhealthySince: 2000-01-23T04:56:07.000+00:00
         sendCap:
           limit: 0
           resetsAt: 2000-01-23T04:56:07.000+00:00
@@ -118248,6 +118305,8 @@ components:
         platform: platform
         push: active
         accountId: accountId
+        disconnectReason: disconnectReason
+        disconnectionType: intentional
         permissions:
           analytics:
           - scope: scope
@@ -118275,6 +118334,7 @@ components:
             required: true
             granted: true
           canFetchAnalytics: true
+        ownerUserId: ownerUserId
         integrationLane: business
         analyticsSync:
           lastSyncedAt: 2000-01-23T04:56:07.000+00:00
@@ -118341,6 +118401,38 @@ components:
           items:
             type: string
           type: array
+        ownerUserId:
+          description: "User id of the profile owner, not necessarily the team member\
+            \ who connected the account."
+          type: string
+        disconnectReason:
+          description: "Why the connection is broken or its token refresh is failing,\
+            \ from the most recent current cause. Null when the connection is healthy,\
+            \ including when the account is unhealthy for another reason (analytics,\
+            \ messaging restriction, missing analytics scopes), or when no cause is\
+            \ stored."
+          nullable: true
+          type: string
+        disconnectionType:
+          description: "intentional: deliberately disconnected by the user or by Zernio\
+            \ (for example a plan downgrade), not a token failure. unintentional:\
+            \ token expired or revoked, or an auth failure. Null when disconnectReason\
+            \ is null."
+          enum:
+          - intentional
+          - unintentional
+          - null
+          nullable: true
+          type: string
+        unhealthySince:
+          description: "When the earliest current stored cause was recorded (the start\
+            \ of the outage); for an intentional disconnect, when it was disconnected.\
+            \ Null when the connection is healthy, including when the account is unhealthy\
+            \ for another reason (analytics, messaging restriction, missing analytics\
+            \ scopes), or when the time is unknown."
+          format: date-time
+          nullable: true
+          type: string
         analyticsSync:
           $ref: "#/components/schemas/getAllAccountsHealth_200_response_accounts_inner_analyticsSync"
         messagingRestriction:
