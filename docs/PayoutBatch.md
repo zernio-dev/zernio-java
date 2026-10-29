@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** |  |  |
 |**campaignId** | **String** |  |  |
-|**status** | [**StatusEnum**](#StatusEnum) | &#x60;awaiting_payment&#x60; until the card payment completes; &#x60;paying&#x60; while transfers go out; then &#x60;paid&#x60;, &#x60;partially_failed&#x60; (some items failed or were skipped), &#x60;failed&#x60; (none paid) or &#x60;expired&#x60; (the Checkout expired unpaid, every amount is payable again). |  |
+|**status** | [**StatusEnum**](#StatusEnum) | &#x60;awaiting_payment&#x60; until the card charge succeeds (3D Secure included); &#x60;paying&#x60; while transfers go out; then &#x60;paid&#x60;, &#x60;partially_failed&#x60; (some items failed or were skipped), &#x60;failed&#x60; (the card was declined, or none paid) or &#x60;expired&#x60; (the payment was cancelled unpaid, every amount is payable again). |  |
 |**method** | [**MethodEnum**](#MethodEnum) |  |  |
 |**amountCents** | **Integer** | Total the creators receive. |  |
 |**feeCents** | **Integer** | Total Zernio fee. |  |

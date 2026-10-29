@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.414.1
+  version: 1.415.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -4153,11 +4153,11 @@ paths:
         Returns your team's balance:
 
         - the balance you can transfer
-        - card top-ups still on hold
+        - the part of it that cannot be paid out to creators yet (`payoutLockedCents`, `payoutLocks`)
         - top-ups still waiting for payment
         - your latest top-ups
 
-        Card top-ups become available after 7 days.
+        A card top-up is in `availableCents` as soon as it is paid. Transfers to payees can use it from 7 days after the charge, so a stolen card cannot be turned straight into payouts.
 
         A transfer debits its amount plus the fee added on top; the payee receives the full amount.
 
@@ -4225,11 +4225,19 @@ paths:
       x-accepts:
       - application/json
     post:
-      description: "Starts a Stripe Checkout session to fund your balance by card.\
-        \ Card top-ups pay Stripe's processing fee and become available after 7 days.\
-        \ Bank transfers are not available yet; `method: bank_transfer` returns 400.\
-        \ Needs an owner, admin or billing admin, signed in or through a full-access\
-        \ key they created."
+      description: |
+        Charges the billing owner's saved card (the default one, or `paymentMethodId`) for `amountCents` while the payer is present.
+
+        - `status: succeeded`: the card was charged. The top-up is credited to `availableCents` within seconds, net of Stripe's processing fee. Transfers to payees can use it from 7 days after the charge.
+        - `status: requires_action`: the bank asked for 3D Secure. Complete it with Stripe.js `handleNextAction({ clientSecret })`, then call `POST /v1/balance/top-ups/{topupId}/confirm`. One left unconfirmed is cancelled after 30 minutes.
+
+        ### Errors
+
+        - 402 `payment_required`: no saved card.
+        - 402 `card_declined`: the bank's reason.
+        - 400: `method: bank_transfer` (bank transfers are not available yet).
+
+        Needs an owner, admin or billing admin, signed in or through a full-access key they created.
       operationId: createTopup
       parameters:
       - $ref: "#/components/parameters/IdempotencyKeyHeader"
@@ -4245,13 +4253,21 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/createTopup_201_response"
-          description: Checkout session created
+          description: "The card was charged, or the bank asked for 3D Secure"
         "400":
           $ref: "#/components/responses/BadRequest"
         "402":
-          $ref: "#/components/responses/PaymentRequired"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "No saved card (code `payment_required`), or the bank declined\
+            \ the charge (code `card_declined`, the message is the reason), or a billing\
+            \ gate."
         "403":
           $ref: "#/components/responses/MoneyForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
         "409":
           $ref: "#/components/responses/IdempotencyKeyInFlight"
         "422":
@@ -4295,6 +4311,93 @@ paths:
         "404":
           $ref: "#/components/responses/NotFound"
       summary: Get a top-up receipt
+      tags:
+      - Treasury
+      x-resource-group: money
+      x-accepts:
+      - application/json
+  /v1/balance/top-ups/{topupId}/confirm:
+    post:
+      description: |
+        Call after 3D Secure. Reads the payment from Stripe, then:
+
+        - `succeeded`: paid, the top-up is credited.
+        - `failed`: the bank refused it.
+        - `pending`: Stripe is still settling the charge.
+
+        Safe to repeat. Needs an owner, admin or billing admin, signed in or through a full-access key they created.
+      operationId: confirmTopup
+      parameters:
+      - explode: false
+        in: path
+        name: topupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TreasuryTopup"
+          description: The top-up after confirming
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          $ref: "#/components/responses/MoneyForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      summary: Confirm a top-up
+      tags:
+      - Treasury
+      x-resource-group: money
+      x-accepts:
+      - application/json
+  /v1/balance/top-ups/{topupId}/cancel:
+    post:
+      description: |
+        Ends the payment of a pending top-up (3D Secure left unfinished), so it stops counting toward `pendingTopupCents`, and returns it as `expired`.
+
+        - When Stripe reports it already paid, the top-up is credited and comes back `succeeded`.
+        - A top-up that is no longer pending comes back unchanged.
+        - A creator payout payment (`purpose: payout_batch`) answers 409; cancel it from its campaign.
+
+        Needs an owner, admin or billing admin, signed in or through a full-access key they created.
+      operationId: cancelTopup
+      parameters:
+      - explode: false
+        in: path
+        name: topupId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TreasuryTopup"
+          description: The top-up after cancelling
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "402":
+          $ref: "#/components/responses/PaymentRequired"
+        "403":
+          $ref: "#/components/responses/MoneyForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+        "409":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: The top-up is a creator payout payment (code `invalid_resource_state`);
+            cancel it from its campaign.
+      summary: Cancel a top-up
       tags:
       - Treasury
       x-resource-group: money
@@ -4415,6 +4518,7 @@ paths:
         - 402: the balance does not cover the amount plus the fee.
         - 402: the balance is negative after a dispute or refund of a card top-up ("Your balance is negative after a dispute or refund of a card top-up. Add funds to cover it before sending transfers.").
         - 409: the payee has not finished onboarding, or the Idempotency-Key is still processing.
+        - 409 `payout_funds_locked`: money from a card top-up can be transferred from 7 days after the charge. The message names the amount and the day ("$100.00 from your card top-up on Oct 29 can be paid out from Nov 5.").
 
         ### Retries
 
@@ -4957,13 +5061,58 @@ paths:
       x-resource-group: money
       x-accepts:
       - application/json
+  /v1/payout-batches/{batchId}/confirm:
+    post:
+      description: |
+        Call after 3D Secure. Reads the batch's payment from Stripe, then:
+
+        - charge succeeded: pays the creators (`paying`, then `paid`).
+        - bank refused: ends the batch (`failed`) and makes every amount payable again.
+        - still settling: leaves it `awaiting_payment`.
+
+        Safe to repeat. Needs an owner, admin or billing admin, signed in or through a full-access key they created.
+      operationId: confirmPayoutBatch
+      parameters:
+      - description: Payout batch ID.
+        explode: false
+        in: path
+        name: batchId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getPayoutBatch_200_response"
+          description: The payout batch after confirming.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/MoneyForbidden"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Confirm a payout batch payment
+      tags:
+      - Treasury
+      x-resource-group: money
+      x-accepts:
+      - application/json
   /v1/payout-batches/{batchId}/cancel:
     post:
       description: |
-        Ends the Stripe Checkout of a batch that is still `awaiting_payment` and makes every amount
-        payable again right away, instead of after Stripe's 24-hour expiry. A batch that was already
-        paid is returned unchanged. Needs an owner, admin or billing admin, signed in or through a
-        full-access key they created.
+        Ends the payment of a batch that is still `awaiting_payment` (3D Secure left unfinished) and makes every amount payable again right away.
+
+        - When Stripe reports the charge already made, the batch is paid out instead.
+        - A batch that was already paid is returned unchanged.
+
+        Needs an owner, admin or billing admin, signed in or through a full-access key they created.
       operationId: cancelPayoutBatch
       parameters:
       - description: Payout batch ID.
@@ -74828,7 +74977,8 @@ paths:
     post:
       description: |
         Removes the participant from the campaign. Their earnings stay in the ledger. Removing an
-        already removed participant returns it unchanged.
+        `invited` participant revokes their invite: the link stops working. Removing an already
+        removed participant returns it unchanged.
       operationId: removeCampaignParticipant
       parameters:
       - description: Campaign ID.
@@ -74870,6 +75020,59 @@ paths:
       x-resource-group: creator_campaigns
       x-accepts:
       - application/json
+  /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite:
+    post:
+      description: |
+        Emails an `invited` participant their personal invite link again. The link does not change,
+        so a link you already sent keeps working. The email counts toward the daily invite email cap
+        of your workspace.
+
+        Answers 409 when the participant has already joined, was suspended or removed, has no email,
+        or the campaign is closed.
+      operationId: resendCampaignParticipantInvite
+      parameters:
+      - description: Campaign ID.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Participant ID.
+        explode: false
+        in: path
+        name: participantId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - $ref: "#/components/parameters/IdempotencyKeyHeader"
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignParticipant_200_response"
+          description: Invite email sent again
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+      security:
+      - bearerAuth: []
+      summary: Resend campaign participant invite
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
   /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle:
     post:
       description: |
@@ -74889,6 +75092,7 @@ paths:
 
         - The creator must have finished payout setup from their campaign page (409 otherwise).
         - A balance that does not cover the amount plus the fee answers 402.
+        - Money from a card top-up charged under 7 days ago cannot be paid out yet: a payout that needs it answers 409 `payout_funds_locked` with the day it can be sent.
 
         Set `recordOnly: true` to record a payout you made yourself instead of moving money through the treasury (the webhook then carries `recorded: true`).
 
@@ -75041,19 +75245,27 @@ paths:
       style: simple
     post:
       description: |
-        Pays exactly what is owed to the creators of a `treasury` campaign, through one Stripe Checkout card payment.
+        Pays exactly what is owed to the creators of a `treasury` campaign by charging the billing owner's saved card, with no redirect.
 
         ### How it works
 
         1. Every payable creator who finished payout setup (or only `participantIds`, minus `excludeParticipantIds`) is held in `settling`.
-        2. The response carries a Stripe Checkout `url` for the total plus the fee (4% per creator, 50 cent minimum).
-        3. Once the card payment completes, each creator gets a transfer funded by that charge, and the batch ends `paid` or `partially_failed`.
+        2. The saved card (the default one, or `paymentMethodId`) is charged the total plus the fee (4% per creator, 50 cent minimum) while the payer is present.
+        3. Once the charge succeeds, each creator gets a transfer funded by it, and the batch ends `paid` or `partially_failed`.
 
-        A creator whose payouts were disabled before the payment landed is skipped and stays payable. If the Checkout expires unpaid (24 hours), every amount is payable again.
+        A creator whose payouts were disabled before the payment landed is skipped and stays payable.
+
+        ### 3D Secure
+
+        `payment.status: requires_action` means the bank asked the payer to confirm. Complete it with Stripe.js `handleNextAction({ clientSecret })`, then call `POST /v1/payout-batches/{batchId}/confirm`.
+
+        One left unfinished is cancelled after 30 minutes and every amount is payable again. Cancel it sooner with `POST /v1/payout-batches/{batchId}/cancel`.
 
         ### Limits and errors
 
-        - 402: card payouts are limited to $2,000.00 gross per rolling 30 days by default. Over it the call answers "Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit."
+        - 402 `payment_required`: no saved card. Nothing is held.
+        - 402 `card_declined`: the bank's reason; every amount is payable again.
+        - 402: card payouts are limited to $10,000.00 gross per rolling 30 days by default. Over it the call answers "Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit."
         - 400: nothing payable ("Nothing is payable.").
 
         ### Access and retries
@@ -75084,7 +75296,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/createCampaignPayoutBatch_201_response"
-          description: Batch created; send the operator to `url` to pay.
+          description: "Batch created and the card charged, or the bank asked for\
+            \ 3D Secure."
         "400":
           $ref: "#/components/responses/BadRequest"
         "401":
@@ -75094,7 +75307,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponse"
-          description: Over the instant payout limit (code `payment_required`).
+          description: "Over the instant payout limit or no saved card (code `payment_required`),\
+            \ or the bank declined the charge (code `card_declined`)."
         "403":
           $ref: "#/components/responses/MoneyForbidden"
         "404":
@@ -75204,6 +75418,7 @@ paths:
           - post_deleted
           - account_restricted
           - low_authenticity
+          - x_read_cap
           type: string
         style: form
       - explode: true
@@ -75215,6 +75430,10 @@ paths:
           - tiktok
           - instagram
           - youtube
+          - threads
+          - pinterest
+          - facebook
+          - twitter
           type: string
         style: form
       - explode: true
@@ -76399,7 +76618,10 @@ components:
         economics:
           $ref: "#/components/schemas/CreatorPortalEconomics"
         maxPostAgeMinutes:
-          description: A post must be submitted within this many minutes of publishing.
+          description: "A post must be submitted within this many minutes of publishing.\
+            \ Null means any age. Either way, only posts published after the campaign\
+            \ started are accepted."
+          nullable: true
           type: integer
         holdDays:
           description: Days approved earnings stay owed before they become payable.
@@ -76671,12 +76893,12 @@ components:
     TreasuryTopup:
       example:
         createdAt: 2000-01-23T04:56:07.000+00:00
-        amountCents: 5
+        amountCents: 7
         succeededAt: 2000-01-23T04:56:07.000+00:00
         method: card
         purpose: balance
-        netCents: 7
-        stripeFeeCents: 2
+        netCents: 3
+        stripeFeeCents: 9
         id: id
         payoutBatch:
           campaignId: campaignId
@@ -76720,6 +76942,9 @@ components:
           nullable: true
           type: integer
         status:
+          description: "`pending` until the card is charged (or 3D Secure is finished)\
+            \ and credited. `expired` means it ended unpaid: cancelled, or 3D Secure\
+            \ left unfinished for 30 minutes. Only `pending` counts toward pendingTopupCents."
           enum:
           - pending
           - succeeded
@@ -76829,10 +77054,11 @@ components:
           nullable: true
           type: string
         status:
-          description: "`awaiting_payment` until the card payment completes; `paying`\
-            \ while transfers go out; then `paid`, `partially_failed` (some items\
-            \ failed or were skipped), `failed` (none paid) or `expired` (the Checkout\
-            \ expired unpaid, every amount is payable again)."
+          description: "`awaiting_payment` until the card charge succeeds (3D Secure\
+            \ included); `paying` while transfers go out; then `paid`, `partially_failed`\
+            \ (some items failed or were skipped), `failed` (the card was declined,\
+            \ or none paid) or `expired` (the payment was cancelled unpaid, every\
+            \ amount is payable again)."
           enum:
           - awaiting_payment
           - paying
@@ -85086,7 +85312,8 @@ components:
       example:
         maxAccountsPerParticipant: 1
         maxSubmissionsPerParticipantPerDay: 1
-        authenticityThreshold: 41.45608029883936
+        maxXReadSpendCents: 1
+        authenticityThreshold: 73.86281948385884
         maxParticipants: 1
       properties:
         maxParticipants:
@@ -85103,6 +85330,15 @@ components:
           description: "Accounts a participant can use in this campaign. Connecting\
             \ a new account past it answers 400; only the first accounts connected,\
             \ up to this count, can submit posts."
+          minimum: 1
+          type: integer
+        maxXReadSpendCents:
+          description: |
+            X campaigns only: what tracking X posts may cost in X reads, in cents. Unset means 5000 ($50).
+
+            X bills one read per tracked post per UTC day, and you pay it at cost through usage-based billing.
+
+            When it is spent, open X posts stop counting views and are flagged `x_read_cap`, and new X posts answer 409.
           minimum: 1
           type: integer
         authenticityThreshold:
@@ -85130,13 +85366,13 @@ components:
     CampaignSubmissionCounts:
       description: Number of submissions in each status.
       example:
-        approved: 7
-        pending_review: 6
-        expired: 4
-        rejected: 1
-        withdrawn: 5
+        approved: 1
+        pending_review: 7
+        expired: 5
+        rejected: 4
+        withdrawn: 9
         received: 1
-        tracking: 1
+        tracking: 6
       properties:
         received:
           type: integer
@@ -85163,6 +85399,7 @@ components:
     CreatorCampaign:
       example:
         trackingDays: 0
+        activatedAt: 2000-01-23T04:56:07.000+00:00
         branding: ""
         type: cpm
         holdDays: 6
@@ -85173,7 +85410,8 @@ components:
         caps:
           maxAccountsPerParticipant: 1
           maxSubmissionsPerParticipantPerDay: 1
-          authenticityThreshold: 41.45608029883936
+          maxXReadSpendCents: 1
+          authenticityThreshold: 73.86281948385884
           maxParticipants: 1
         createdAt: 2000-01-23T04:56:07.000+00:00
         hasOpenInvite: true
@@ -85191,13 +85429,13 @@ components:
         kind: clipping
         userId: userId
         submissionCounts:
-          approved: 7
-          pending_review: 6
-          expired: 4
-          rejected: 1
-          withdrawn: 5
+          approved: 1
+          pending_review: 7
+          expired: 5
+          rejected: 4
+          withdrawn: 9
           received: 1
-          tracking: 1
+          tracking: 6
         economics:
           maxPayoutPerClipCents: 1
           ratePer1kCents: 1
@@ -85206,8 +85444,9 @@ components:
           budgetCents: 0
         profileId: profileId
         payableScannedAt: 2000-01-23T04:56:07.000+00:00
-        consumedCents: 7
+        consumedCents: 1
         name: name
+        payableCents: 9
         status: draft
       properties:
         id:
@@ -85251,6 +85490,10 @@ components:
             - tiktok
             - instagram
             - youtube
+            - threads
+            - pinterest
+            - facebook
+            - twitter
             type: string
           type: array
         contentRules:
@@ -85274,8 +85517,17 @@ components:
           description: Days approved earnings are held before they become payable.
           type: integer
         maxPostAgeMinutes:
-          description: A post older than this when submitted is refused.
+          description: "A post older than this many minutes when submitted is refused.\
+            \ Null (the default) accepts any age. Either way, a post published before\
+            \ the campaign started (`startsAt`, or `activatedAt` without one) is refused."
+          nullable: true
           type: integer
+        activatedAt:
+          description: "When the campaign was first activated. Without `startsAt`,\
+            \ posts must be published after this moment."
+          format: date-time
+          nullable: true
+          type: string
         settlement:
           description: "none: settle records a payout made elsewhere. external: you\
             \ pay from your own rails on campaign_payout.payable and settle with your\
@@ -85326,7 +85578,12 @@ components:
           type: integer
         submissionCounts:
           $ref: "#/components/schemas/CampaignSubmissionCounts"
+        payableCents:
+          description: "What the campaign's creators can be paid now, summed over\
+            \ every participant's payable balance."
+          type: integer
       required:
+      - activatedAt
       - brandName
       - branding
       - budgetExhaustedAt
@@ -85345,6 +85602,7 @@ components:
       - maxPostAgeMinutes
       - name
       - participantCount
+      - payableCents
       - payableScannedAt
       - platforms
       - profileId
@@ -85400,12 +85658,19 @@ components:
           description: "Omitted, the campaign starts with authenticityThreshold 40\
             \ and no other caps."
         platforms:
-          description: Platforms creators may post on. At least one is needed to activate.
+          description: "Platforms creators may post on. At least one is needed to\
+            \ activate. `twitter` (X) needs usage-based billing: X reads are billed\
+            \ at cost, up to `caps.maxXReadSpendCents`, and X views are the post's\
+            \ impressions. `facebook` takes Page reels and videos only."
           items:
             enum:
             - tiktok
             - instagram
             - youtube
+            - threads
+            - pinterest
+            - facebook
+            - twitter
             type: string
           type: array
         contentRules:
@@ -85431,8 +85696,11 @@ components:
           minimum: 0
           type: integer
         maxPostAgeMinutes:
-          default: 60
+          description: Optional maximum age in minutes of a post when it is submitted.
+            Null or omitted (the default) accepts any age. Posts published before
+            the campaign started are always refused.
           minimum: 1
+          nullable: true
           type: integer
         settlement:
           default: none
@@ -85466,7 +85734,8 @@ components:
         caps:
           maxAccountsPerParticipant: 1
           maxSubmissionsPerParticipantPerDay: 1
-          authenticityThreshold: 41.45608029883936
+          maxXReadSpendCents: 1
+          authenticityThreshold: 73.86281948385884
           maxParticipants: 1
         maxPostAgeMinutes: 1
         economics:
@@ -85494,6 +85763,10 @@ components:
             - tiktok
             - instagram
             - youtube
+            - threads
+            - pinterest
+            - facebook
+            - twitter
             type: string
           type: array
         contentRules:
@@ -85517,7 +85790,9 @@ components:
           minimum: 0
           type: integer
         maxPostAgeMinutes:
+          description: Null removes the limit.
           minimum: 1
+          nullable: true
           type: integer
         settlement:
           enum:
@@ -85596,13 +85871,13 @@ components:
           username: username
         status: invited
         submissionCounts:
-          approved: 7
-          pending_review: 6
-          expired: 4
-          rejected: 1
-          withdrawn: 5
+          approved: 1
+          pending_review: 7
+          expired: 5
+          rejected: 4
+          withdrawn: 9
           received: 1
-          tracking: 1
+          tracking: 6
       properties:
         id:
           type: string
@@ -85665,6 +85940,7 @@ components:
           - post_deleted
           - account_restricted
           - low_authenticity
+          - x_read_cap
           type: string
         detail:
           type: string
@@ -85750,6 +86026,10 @@ components:
           - tiktok
           - instagram
           - youtube
+          - threads
+          - pinterest
+          - facebook
+          - twitter
           type: string
         platformPostId:
           type: string
@@ -85800,8 +86080,8 @@ components:
           nullable: true
           type: string
         viewsAtSubmission:
-          description: Views when the post was submitted; they never count toward
-            earnings.
+          description: Views when the post was submitted. They count toward earnings
+            like every later view.
           nullable: true
           type: integer
         viewsLatest:
@@ -85810,10 +86090,10 @@ components:
           nullable: true
           type: integer
         viewsEligible:
-          description: "Views gained after submission that count toward earnings,\
-            \ read at the tracking window end at the latest: once the window completes\
-            \ or is cancelled, the last read at or before its end is final and this\
-            \ value stops moving."
+          description: "Views that count toward earnings: every view the platform\
+            \ reports for the post, including those before submission, read at the\
+            \ tracking window end at the latest: once the window completes or is cancelled,\
+            \ the last read at or before its end is final and this value stops moving."
           nullable: true
           type: integer
         lastAccruedViews:
@@ -86181,13 +86461,13 @@ components:
     CampaignReport:
       example:
         submissions:
-          approved: 7
-          pending_review: 6
-          expired: 4
-          rejected: 1
-          withdrawn: 5
+          approved: 1
+          pending_review: 7
+          expired: 5
+          rejected: 4
+          withdrawn: 9
           received: 1
-          tracking: 1
+          tracking: 6
         spend:
           consumedCents: 6
           settledCents: 1
@@ -114388,9 +114668,32 @@ components:
           type: array
         pagination:
           $ref: "#/components/schemas/listLedgerEntries_200_response_pagination"
-    getBalance_200_response_pendingReleases_inner:
+    getBalance_200_response_payoutLocks_inner:
       example:
         amountCents: 1
+        chargedAt: 2000-01-23T04:56:07.000+00:00
+        topupId: topupId
+        unlocksAt: 2000-01-23T04:56:07.000+00:00
+      properties:
+        topupId:
+          type: string
+        amountCents:
+          type: integer
+        chargedAt:
+          format: date-time
+          type: string
+        unlocksAt:
+          description: "From this time transfers can use it: 7 days after the charge."
+          format: date-time
+          type: string
+      required:
+      - amountCents
+      - chargedAt
+      - topupId
+      - unlocksAt
+    getBalance_200_response_pendingReleases_inner:
+      example:
+        amountCents: 5
         topupId: topupId
         availableAt: 2000-01-23T04:56:07.000+00:00
       properties:
@@ -114410,20 +114713,20 @@ components:
       example:
         availableCents: 0
         pendingReleases:
-        - amountCents: 1
+        - amountCents: 5
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
-        - amountCents: 1
+        - amountCents: 5
           topupId: topupId
           availableAt: 2000-01-23T04:56:07.000+00:00
         recentTopups:
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 5
+          amountCents: 7
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
-          stripeFeeCents: 2
+          netCents: 3
+          stripeFeeCents: 9
           id: id
           payoutBatch:
             campaignId: campaignId
@@ -114431,33 +114734,54 @@ components:
           feeCoveredByZernio: true
           status: pending
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 5
+          amountCents: 7
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
-          stripeFeeCents: 2
+          netCents: 3
+          stripeFeeCents: 9
           id: id
           payoutBatch:
             campaignId: campaignId
             id: id
           feeCoveredByZernio: true
           status: pending
+        payoutLockedCents: 6
+        payoutLocks:
+        - amountCents: 1
+          chargedAt: 2000-01-23T04:56:07.000+00:00
+          topupId: topupId
+          unlocksAt: 2000-01-23T04:56:07.000+00:00
+        - amountCents: 1
+          chargedAt: 2000-01-23T04:56:07.000+00:00
+          topupId: topupId
+          unlocksAt: 2000-01-23T04:56:07.000+00:00
         currency: usd
-        pendingCents: 6
-        pendingTopupCents: 5
+        pendingCents: 5
+        pendingTopupCents: 2
       properties:
         availableCents:
-          description: Balance you can transfer now. Negative after a dispute or refund
-            of a top-up that was already spent; transfers are refused while it is
-            negative.
+          description: "Your balance, including card top-ups paid in the last 7 days\
+            \ (see payoutLockedCents). Negative after a dispute or refund of a top-up\
+            \ that was already spent; transfers are refused while it is negative."
           type: integer
+        payoutLockedCents:
+          description: "Part of availableCents from card top-ups charged in the last\
+            \ 7 days, net of refunds and disputes. Transfers to payees cannot use\
+            \ it yet; a transfer that needs it answers 409 `payout_funds_locked` with\
+            \ the day it can be sent."
+          type: integer
+        payoutLocks:
+          description: "The card top-ups behind payoutLockedCents, soonest first."
+          items:
+            $ref: "#/components/schemas/getBalance_200_response_payoutLocks_inner"
+          type: array
         pendingCents:
-          description: Paid card top-ups still on hold. Card top-ups become available
-            after 7 days.
+          description: Card top-ups paid before 2026-10-29 that were held and are
+            moving to availableCents (within the hour). Always 0 after that.
           type: integer
         pendingReleases:
-          description: "Card top-ups on hold, each with the time it becomes available."
+          description: The held card top-ups behind pendingCents.
           items:
             $ref: "#/components/schemas/getBalance_200_response_pendingReleases_inner"
           type: array
@@ -114476,12 +114800,12 @@ components:
       example:
         topups:
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 5
+          amountCents: 7
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
-          stripeFeeCents: 2
+          netCents: 3
+          stripeFeeCents: 9
           id: id
           payoutBatch:
             campaignId: campaignId
@@ -114489,12 +114813,12 @@ components:
           feeCoveredByZernio: true
           status: pending
         - createdAt: 2000-01-23T04:56:07.000+00:00
-          amountCents: 5
+          amountCents: 7
           succeededAt: 2000-01-23T04:56:07.000+00:00
           method: card
           purpose: balance
-          netCents: 7
-          stripeFeeCents: 2
+          netCents: 3
+          stripeFeeCents: 9
           id: id
           payoutBatch:
             campaignId: campaignId
@@ -114520,20 +114844,36 @@ components:
           - card
           - bank_transfer
           type: string
+        paymentMethodId:
+          description: A saved card of the billing owner's (`pm_...`). Defaults to
+            the default payment method.
+          type: string
       required:
       - amountCents
       - method
     createTopup_201_response:
       example:
         topupId: topupId
-        url: https://openapi-generator.tech
+        clientSecret: clientSecret
+        status: succeeded
       properties:
         topupId:
           type: string
-        url:
-          description: Stripe Checkout URL to send the payer to
-          format: uri
+        status:
+          enum:
+          - succeeded
+          - processing
+          - requires_action
           type: string
+        clientSecret:
+          description: PaymentIntent client secret for Stripe.js handleNextAction;
+            set only when status is requires_action
+          nullable: true
+          type: string
+      required:
+      - clientSecret
+      - status
+      - topupId
     getTopupReceipt_200_response:
       example:
         format: pdf
@@ -180982,9 +181322,10 @@ components:
       - nextCursor
     listCreatorCampaigns_200_response:
       example:
-        total: 9
+        total: 6
         campaigns:
         - trackingDays: 0
+          activatedAt: 2000-01-23T04:56:07.000+00:00
           branding: ""
           type: cpm
           holdDays: 6
@@ -180995,7 +181336,8 @@ components:
           caps:
             maxAccountsPerParticipant: 1
             maxSubmissionsPerParticipantPerDay: 1
-            authenticityThreshold: 41.45608029883936
+            maxXReadSpendCents: 1
+            authenticityThreshold: 73.86281948385884
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
@@ -181013,13 +181355,13 @@ components:
           kind: clipping
           userId: userId
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
           economics:
             maxPayoutPerClipCents: 1
             ratePer1kCents: 1
@@ -181028,10 +181370,12 @@ components:
             budgetCents: 0
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
-          consumedCents: 7
+          consumedCents: 1
           name: name
+          payableCents: 9
           status: draft
         - trackingDays: 0
+          activatedAt: 2000-01-23T04:56:07.000+00:00
           branding: ""
           type: cpm
           holdDays: 6
@@ -181042,7 +181386,8 @@ components:
           caps:
             maxAccountsPerParticipant: 1
             maxSubmissionsPerParticipantPerDay: 1
-            authenticityThreshold: 41.45608029883936
+            maxXReadSpendCents: 1
+            authenticityThreshold: 73.86281948385884
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
@@ -181060,13 +181405,13 @@ components:
           kind: clipping
           userId: userId
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
           economics:
             maxPayoutPerClipCents: 1
             ratePer1kCents: 1
@@ -181075,8 +181420,9 @@ components:
             budgetCents: 0
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
-          consumedCents: 7
+          consumedCents: 1
           name: name
+          payableCents: 9
           status: draft
       properties:
         campaigns:
@@ -181092,6 +181438,7 @@ components:
       example:
         campaign:
           trackingDays: 0
+          activatedAt: 2000-01-23T04:56:07.000+00:00
           branding: ""
           type: cpm
           holdDays: 6
@@ -181102,7 +181449,8 @@ components:
           caps:
             maxAccountsPerParticipant: 1
             maxSubmissionsPerParticipantPerDay: 1
-            authenticityThreshold: 41.45608029883936
+            maxXReadSpendCents: 1
+            authenticityThreshold: 73.86281948385884
             maxParticipants: 1
           createdAt: 2000-01-23T04:56:07.000+00:00
           hasOpenInvite: true
@@ -181120,13 +181468,13 @@ components:
           kind: clipping
           userId: userId
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
           economics:
             maxPayoutPerClipCents: 1
             ratePer1kCents: 1
@@ -181135,8 +181483,9 @@ components:
             budgetCents: 0
           profileId: profileId
           payableScannedAt: 2000-01-23T04:56:07.000+00:00
-          consumedCents: 7
+          consumedCents: 1
           name: name
+          payableCents: 9
           status: draft
       properties:
         campaign:
@@ -181188,13 +181537,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
         - creator:
             displayName: displayName
             id: id
@@ -181228,13 +181577,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
       properties:
         participants:
           items:
@@ -181293,13 +181642,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
       properties:
         participant:
           $ref: "#/components/schemas/CampaignParticipant"
@@ -181346,13 +181695,13 @@ components:
             username: username
           status: invited
           submissionCounts:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
       properties:
         participant:
           $ref: "#/components/schemas/CampaignParticipant"
@@ -181484,6 +181833,29 @@ components:
           maxItems: 500
           minItems: 1
           type: array
+        paymentMethodId:
+          description: A saved card of the billing owner's (`pm_...`). Defaults to
+            the default payment method.
+          type: string
+    createCampaignPayoutBatch_201_response_payment:
+      example:
+        clientSecret: clientSecret
+        status: succeeded
+      properties:
+        status:
+          enum:
+          - succeeded
+          - processing
+          - requires_action
+          type: string
+        clientSecret:
+          description: PaymentIntent client secret for Stripe.js handleNextAction;
+            set only when status is requires_action
+          nullable: true
+          type: string
+      required:
+      - clientSecret
+      - status
     createCampaignPayoutBatch_201_response:
       example:
         batch:
@@ -181518,17 +181890,17 @@ components:
             status: pending
           status: awaiting_payment
           finishedAt: 2000-01-23T04:56:07.000+00:00
-        url: https://openapi-generator.tech
+        payment:
+          clientSecret: clientSecret
+          status: succeeded
       properties:
         batch:
           $ref: "#/components/schemas/PayoutBatch"
-        url:
-          description: Stripe Checkout for the card payment.
-          format: uri
-          type: string
+        payment:
+          $ref: "#/components/schemas/createCampaignPayoutBatch_201_response_payment"
       required:
       - batch
-      - url
+      - payment
     createCampaignInviteLink_201_response:
       example:
         inviteUrl: https://openapi-generator.tech
@@ -181946,13 +182318,13 @@ components:
       example:
         report:
           submissions:
-            approved: 7
-            pending_review: 6
-            expired: 4
-            rejected: 1
-            withdrawn: 5
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
             received: 1
-            tracking: 1
+            tracking: 6
           spend:
             consumedCents: 6
             settledCents: 1
@@ -196378,7 +196750,7 @@ x-documentation:
     - `support.run.completed` - The Support Assistant finished a question. `run.status` is `completed`, or `needs_human` when the assistant handed the question to a person; `run.answer` holds the answer. The `run` object is exactly what `GET /v1/support/runs/{runId}` answers
     - `support.run.failed` - A Support Assistant question failed or expired. Failed runs are not billed, so `run.costUsd` is 0
     - `campaign_submission.received` - A creator submitted a post to a campaign and its tracking window opened
-    - `campaign_submission.flagged` - A submission gained a fraud flag it did not carry before, at submission (for example `duplicate_post` or `duplicate_media`) or on a later sync (`view_spike`, `low_authenticity`, `account_restricted`, `unreachable`, `post_deleted`); `submission.flags` lists every flag it carries
+    - `campaign_submission.flagged` - A submission gained a fraud flag it did not carry before, at submission (for example `duplicate_post` or `duplicate_media`) or on a later sync (`view_spike`, `low_authenticity`, `account_restricted`, `unreachable`, `post_deleted`, `x_read_cap`); `submission.flags` lists every flag it carries
     - `campaign_submission.pending_review` - A submission is ready for review: a CPM submission reached `minViewsToEarn` or a pool submission `minViewsToQualify`; per-post submissions on the first accrual pass after submission
     - `creator_campaign.budget_exhausted` - A campaign's earnings reached its budget; nothing more accrues until budget is freed. Fires once per campaign
     - `campaign_submission.approved` - An operator approved a submission; what it earned so far moves to owed with the campaign's hold, and later earnings post straight to owed

@@ -16,7 +16,7 @@ Every field is optional; send at least one. `economics` can only change while th
 |**endsAt** | **OffsetDateTime** |  |  [optional] |
 |**trackingDays** | **Integer** |  |  [optional] |
 |**holdDays** | **Integer** |  |  [optional] |
-|**maxPostAgeMinutes** | **Integer** |  |  [optional] |
+|**maxPostAgeMinutes** | **Integer** | Null removes the limit. |  [optional] |
 |**settlement** | [**SettlementEnum**](#SettlementEnum) |  |  [optional] |
 |**economics** | [**CreatorCampaignEconomics**](CreatorCampaignEconomics.md) |  |  [optional] |
 |**caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) |  |  [optional] |
@@ -31,6 +31,10 @@ Every field is optional; send at least one. `economics` can only change while th
 | TIKTOK | &quot;tiktok&quot; |
 | INSTAGRAM | &quot;instagram&quot; |
 | YOUTUBE | &quot;youtube&quot; |
+| THREADS | &quot;threads&quot; |
+| PINTEREST | &quot;pinterest&quot; |
+| FACEBOOK | &quot;facebook&quot; |
+| TWITTER | &quot;twitter&quot; |
 
 
 

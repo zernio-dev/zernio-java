@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.414.1
+- API version: 1.415.0
 
-- Build date: 2026-10-29T17:49:40.155728170Z[Etc/UTC]
+- Build date: 2026-10-29T18:46:36.628332350Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.414.1</version>
+  <version>1.415.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.414.1"
+compile "dev.zernio:zernio-sdk:1.415.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.414.1.jar`
+- `target/zernio-sdk-1.415.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1363,6 +1363,8 @@ Class | Method | HTTP request | Description
 *CreatorCampaignsApi* | [**removeCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#removeCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/remove | Remove campaign participant
 *CreatorCampaignsApi* | [**reopenCampaignSubmission**](docs/CreatorCampaignsApi.md#reopenCampaignSubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission
 *CreatorCampaignsApi* | [**reopenCampaignSubmissionWithHttpInfo**](docs/CreatorCampaignsApi.md#reopenCampaignSubmissionWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission
+*CreatorCampaignsApi* | [**resendCampaignParticipantInvite**](docs/CreatorCampaignsApi.md#resendCampaignParticipantInvite) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite | Resend campaign participant invite
+*CreatorCampaignsApi* | [**resendCampaignParticipantInviteWithHttpInfo**](docs/CreatorCampaignsApi.md#resendCampaignParticipantInviteWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite | Resend campaign participant invite
 *CreatorCampaignsApi* | [**settleCampaignParticipant**](docs/CreatorCampaignsApi.md#settleCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant
 *CreatorCampaignsApi* | [**settleCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#settleCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant
 *CreatorCampaignsApi* | [**suspendCampaignParticipant**](docs/CreatorCampaignsApi.md#suspendCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/suspend | Suspend campaign participant
@@ -2027,6 +2029,12 @@ Class | Method | HTTP request | Description
 *TrackingTagsApi* | [**updateTrackingTagEventWithHttpInfo**](docs/TrackingTagsApi.md#updateTrackingTagEventWithHttpInfo) | **PATCH** /v1/accounts/{accountId}/tracking-tags/{tagId}/events/{eventId} | Update a conversion event
 *TreasuryApi* | [**cancelPayoutBatch**](docs/TreasuryApi.md#cancelPayoutBatch) | **POST** /v1/payout-batches/{batchId}/cancel | Cancel an unpaid payout batch
 *TreasuryApi* | [**cancelPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#cancelPayoutBatchWithHttpInfo) | **POST** /v1/payout-batches/{batchId}/cancel | Cancel an unpaid payout batch
+*TreasuryApi* | [**cancelTopup**](docs/TreasuryApi.md#cancelTopup) | **POST** /v1/balance/top-ups/{topupId}/cancel | Cancel a top-up
+*TreasuryApi* | [**cancelTopupWithHttpInfo**](docs/TreasuryApi.md#cancelTopupWithHttpInfo) | **POST** /v1/balance/top-ups/{topupId}/cancel | Cancel a top-up
+*TreasuryApi* | [**confirmPayoutBatch**](docs/TreasuryApi.md#confirmPayoutBatch) | **POST** /v1/payout-batches/{batchId}/confirm | Confirm a payout batch payment
+*TreasuryApi* | [**confirmPayoutBatchWithHttpInfo**](docs/TreasuryApi.md#confirmPayoutBatchWithHttpInfo) | **POST** /v1/payout-batches/{batchId}/confirm | Confirm a payout batch payment
+*TreasuryApi* | [**confirmTopup**](docs/TreasuryApi.md#confirmTopup) | **POST** /v1/balance/top-ups/{topupId}/confirm | Confirm a top-up
+*TreasuryApi* | [**confirmTopupWithHttpInfo**](docs/TreasuryApi.md#confirmTopupWithHttpInfo) | **POST** /v1/balance/top-ups/{topupId}/confirm | Confirm a top-up
 *TreasuryApi* | [**createPayeeOnboardingLink**](docs/TreasuryApi.md#createPayeeOnboardingLink) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
 *TreasuryApi* | [**createPayeeOnboardingLinkWithHttpInfo**](docs/TreasuryApi.md#createPayeeOnboardingLinkWithHttpInfo) | **POST** /v1/payees/{payeeId}/onboarding-link | Create a payee onboarding link
 *TreasuryApi* | [**createTopup**](docs/TreasuryApi.md#createTopup) | **POST** /v1/balance/top-ups | Create a top-up
@@ -2931,6 +2939,7 @@ Class | Method | HTTP request | Description
  - [CreateCampaignParticipant201Response](docs/CreateCampaignParticipant201Response.md)
  - [CreateCampaignParticipantRequest](docs/CreateCampaignParticipantRequest.md)
  - [CreateCampaignPayoutBatch201Response](docs/CreateCampaignPayoutBatch201Response.md)
+ - [CreateCampaignPayoutBatch201ResponsePayment](docs/CreateCampaignPayoutBatch201ResponsePayment.md)
  - [CreateCampaignPayoutBatchRequest](docs/CreateCampaignPayoutBatchRequest.md)
  - [CreateCommentAutomation200Response](docs/CreateCommentAutomation200Response.md)
  - [CreateCommentAutomation200ResponseAutomation](docs/CreateCommentAutomation200ResponseAutomation.md)
@@ -3442,6 +3451,7 @@ Class | Method | HTTP request | Description
  - [GetAnalyticsDashboard200ResponseDailyInner](docs/GetAnalyticsDashboard200ResponseDailyInner.md)
  - [GetAnalyticsDashboard200ResponseDateRange](docs/GetAnalyticsDashboard200ResponseDateRange.md)
  - [GetBalance200Response](docs/GetBalance200Response.md)
+ - [GetBalance200ResponsePayoutLocksInner](docs/GetBalance200ResponsePayoutLocksInner.md)
  - [GetBalance200ResponsePendingReleasesInner](docs/GetBalance200ResponsePendingReleasesInner.md)
  - [GetBestTimeToPost200Response](docs/GetBestTimeToPost200Response.md)
  - [GetBestTimeToPost200ResponseSlotsInner](docs/GetBestTimeToPost200ResponseSlotsInner.md)

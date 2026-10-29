@@ -8,7 +8,7 @@
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
 |**batch** | [**PayoutBatch**](PayoutBatch.md) |  |  |
-|**url** | **URI** | Stripe Checkout for the card payment. |  |
+|**payment** | [**CreateCampaignPayoutBatch201ResponsePayment**](CreateCampaignPayoutBatch201ResponsePayment.md) |  |  |
 
 
 

@@ -22,7 +22,8 @@
 |**endsAt** | **OffsetDateTime** | No new submissions after this time; the campaign closes once every tracking window had its final read. |  |
 |**trackingDays** | **Integer** | How long each submitted post is tracked. |  |
 |**holdDays** | **Integer** | Days approved earnings are held before they become payable. |  |
-|**maxPostAgeMinutes** | **Integer** | A post older than this when submitted is refused. |  |
+|**maxPostAgeMinutes** | **Integer** | A post older than this many minutes when submitted is refused. Null (the default) accepts any age. Either way, a post published before the campaign started (&#x60;startsAt&#x60;, or &#x60;activatedAt&#x60; without one) is refused. |  |
+|**activatedAt** | **OffsetDateTime** | When the campaign was first activated. Without &#x60;startsAt&#x60;, posts must be published after this moment. |  |
 |**settlement** | [**SettlementEnum**](#SettlementEnum) | none: settle records a payout made elsewhere. external: you pay from your own rails on campaign_payout.payable and settle with your reference. treasury: settle moves the money from your Zernio balance to the creator&#39;s Stripe account, and the creator sets up payouts from their campaign page. |  |
 |**economics** | [**CreatorCampaignEconomics**](CreatorCampaignEconomics.md) |  |  |
 |**caps** | [**CreatorCampaignCaps**](CreatorCampaignCaps.md) |  |  |
@@ -36,6 +37,7 @@
 |**consumedCents** | **Integer** | Budget used so far: earnings accrued, approved or adjusted against the campaign. |  |
 |**participantCount** | **Integer** |  |  |
 |**submissionCounts** | [**CampaignSubmissionCounts**](CampaignSubmissionCounts.md) |  |  |
+|**payableCents** | **Integer** | What the campaign&#39;s creators can be paid now, summed over every participant&#39;s payable balance. |  |
 
 
 
@@ -67,6 +69,10 @@
 | TIKTOK | &quot;tiktok&quot; |
 | INSTAGRAM | &quot;instagram&quot; |
 | YOUTUBE | &quot;youtube&quot; |
+| THREADS | &quot;threads&quot; |
+| PINTEREST | &quot;pinterest&quot; |
+| FACEBOOK | &quot;facebook&quot; |
+| TWITTER | &quot;twitter&quot; |
 
 
 

@@ -20,7 +20,7 @@ The campaign as a creator sees it: terms, never the budget.
 |**endsAt** | **OffsetDateTime** |  |  |
 |**currency** | **String** |  |  |
 |**economics** | [**CreatorPortalEconomics**](CreatorPortalEconomics.md) |  |  |
-|**maxPostAgeMinutes** | **Integer** | A post must be submitted within this many minutes of publishing. |  |
+|**maxPostAgeMinutes** | **Integer** | A post must be submitted within this many minutes of publishing. Null means any age. Either way, only posts published after the campaign started are accepted. |  |
 |**holdDays** | **Integer** | Days approved earnings stay owed before they become payable. |  |
 |**trackingDays** | **Integer** | Days each submitted post is tracked for views. |  |
 

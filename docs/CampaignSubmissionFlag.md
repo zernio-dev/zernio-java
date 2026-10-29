@@ -26,6 +26,7 @@
 | POST_DELETED | &quot;post_deleted&quot; |
 | ACCOUNT_RESTRICTED | &quot;account_restricted&quot; |
 | LOW_AUTHENTICITY | &quot;low_authenticity&quot; |
+| X_READ_CAP | &quot;x_read_cap&quot; |
 
 
 

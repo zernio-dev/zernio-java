@@ -52,6 +52,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**removeCampaignParticipantWithHttpInfo**](CreatorCampaignsApi.md#removeCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/remove | Remove campaign participant |
 | [**reopenCampaignSubmission**](CreatorCampaignsApi.md#reopenCampaignSubmission) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission |
 | [**reopenCampaignSubmissionWithHttpInfo**](CreatorCampaignsApi.md#reopenCampaignSubmissionWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/submissions/{submissionId}/reopen | Reopen campaign submission |
+| [**resendCampaignParticipantInvite**](CreatorCampaignsApi.md#resendCampaignParticipantInvite) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite | Resend campaign participant invite |
+| [**resendCampaignParticipantInviteWithHttpInfo**](CreatorCampaignsApi.md#resendCampaignParticipantInviteWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite | Resend campaign participant invite |
 | [**settleCampaignParticipant**](CreatorCampaignsApi.md#settleCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant |
 | [**settleCampaignParticipantWithHttpInfo**](CreatorCampaignsApi.md#settleCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/settle | Settle campaign participant |
 | [**suspendCampaignParticipant**](CreatorCampaignsApi.md#suspendCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/suspend | Suspend campaign participant |
@@ -1021,7 +1023,7 @@ ApiResponse<[**CreateCampaignParticipant201Response**](CreateCampaignParticipant
 
 Pay creators with one card payment
 
-Pays exactly what is owed to the creators of a &#x60;treasury&#x60; campaign, through one Stripe Checkout card payment.  ### How it works  1. Every payable creator who finished payout setup (or only &#x60;participantIds&#x60;, minus &#x60;excludeParticipantIds&#x60;) is held in &#x60;settling&#x60;. 2. The response carries a Stripe Checkout &#x60;url&#x60; for the total plus the fee (4% per creator, 50 cent minimum). 3. Once the card payment completes, each creator gets a transfer funded by that charge, and the batch ends &#x60;paid&#x60; or &#x60;partially_failed&#x60;.  A creator whose payouts were disabled before the payment landed is skipped and stays payable. If the Checkout expires unpaid (24 hours), every amount is payable again.  ### Limits and errors  - 402: card payouts are limited to $2,000.00 gross per rolling 30 days by default. Over it the call answers \&quot;Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\&quot; - 400: nothing payable (\&quot;Nothing is payable.\&quot;).  ### Access and retries  Needs an owner, admin or billing admin, signed in or through a full-access key they created.  Send an &#x60;Idempotency-Key&#x60; so a retry never opens a second batch. 
+Pays exactly what is owed to the creators of a &#x60;treasury&#x60; campaign by charging the billing owner&#39;s saved card, with no redirect.  ### How it works  1. Every payable creator who finished payout setup (or only &#x60;participantIds&#x60;, minus &#x60;excludeParticipantIds&#x60;) is held in &#x60;settling&#x60;. 2. The saved card (the default one, or &#x60;paymentMethodId&#x60;) is charged the total plus the fee (4% per creator, 50 cent minimum) while the payer is present. 3. Once the charge succeeds, each creator gets a transfer funded by it, and the batch ends &#x60;paid&#x60; or &#x60;partially_failed&#x60;.  A creator whose payouts were disabled before the payment landed is skipped and stays payable.  ### 3D Secure  &#x60;payment.status: requires_action&#x60; means the bank asked the payer to confirm. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/payout-batches/{batchId}/confirm&#x60;.  One left unfinished is cancelled after 30 minutes and every amount is payable again. Cancel it sooner with &#x60;POST /v1/payout-batches/{batchId}/cancel&#x60;.  ### Limits and errors  - 402 &#x60;payment_required&#x60;: no saved card. Nothing is held. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason; every amount is payable again. - 402: card payouts are limited to $10,000.00 gross per rolling 30 days by default. Over it the call answers \&quot;Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\&quot; - 400: nothing payable (\&quot;Nothing is payable.\&quot;).  ### Access and retries  Needs an owner, admin or billing admin, signed in or through a full-access key they created.  Send an &#x60;Idempotency-Key&#x60; so a retry never opens a second batch. 
 
 ### Example
 
@@ -1087,10 +1089,10 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Batch created; send the operator to &#x60;url&#x60; to pay. |  -  |
+| **201** | Batch created and the card charged, or the bank asked for 3D Secure. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Over the instant payout limit (code &#x60;payment_required&#x60;). |  -  |
+| **402** | Over the instant payout limit or no saved card (code &#x60;payment_required&#x60;), or the bank declined the charge (code &#x60;card_declined&#x60;). |  -  |
 | **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
 | **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 | **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
@@ -1101,7 +1103,7 @@ public class Example {
 
 Pay creators with one card payment
 
-Pays exactly what is owed to the creators of a &#x60;treasury&#x60; campaign, through one Stripe Checkout card payment.  ### How it works  1. Every payable creator who finished payout setup (or only &#x60;participantIds&#x60;, minus &#x60;excludeParticipantIds&#x60;) is held in &#x60;settling&#x60;. 2. The response carries a Stripe Checkout &#x60;url&#x60; for the total plus the fee (4% per creator, 50 cent minimum). 3. Once the card payment completes, each creator gets a transfer funded by that charge, and the batch ends &#x60;paid&#x60; or &#x60;partially_failed&#x60;.  A creator whose payouts were disabled before the payment landed is skipped and stays payable. If the Checkout expires unpaid (24 hours), every amount is payable again.  ### Limits and errors  - 402: card payouts are limited to $2,000.00 gross per rolling 30 days by default. Over it the call answers \&quot;Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\&quot; - 400: nothing payable (\&quot;Nothing is payable.\&quot;).  ### Access and retries  Needs an owner, admin or billing admin, signed in or through a full-access key they created.  Send an &#x60;Idempotency-Key&#x60; so a retry never opens a second batch. 
+Pays exactly what is owed to the creators of a &#x60;treasury&#x60; campaign by charging the billing owner&#39;s saved card, with no redirect.  ### How it works  1. Every payable creator who finished payout setup (or only &#x60;participantIds&#x60;, minus &#x60;excludeParticipantIds&#x60;) is held in &#x60;settling&#x60;. 2. The saved card (the default one, or &#x60;paymentMethodId&#x60;) is charged the total plus the fee (4% per creator, 50 cent minimum) while the payer is present. 3. Once the charge succeeds, each creator gets a transfer funded by it, and the batch ends &#x60;paid&#x60; or &#x60;partially_failed&#x60;.  A creator whose payouts were disabled before the payment landed is skipped and stays payable.  ### 3D Secure  &#x60;payment.status: requires_action&#x60; means the bank asked the payer to confirm. Complete it with Stripe.js &#x60;handleNextAction({ clientSecret })&#x60;, then call &#x60;POST /v1/payout-batches/{batchId}/confirm&#x60;.  One left unfinished is cancelled after 30 minutes and every amount is payable again. Cancel it sooner with &#x60;POST /v1/payout-batches/{batchId}/cancel&#x60;.  ### Limits and errors  - 402 &#x60;payment_required&#x60;: no saved card. Nothing is held. - 402 &#x60;card_declined&#x60;: the bank&#39;s reason; every amount is payable again. - 402: card payouts are limited to $10,000.00 gross per rolling 30 days by default. Over it the call answers \&quot;Over your instant payout limit. Top up your balance to pay more this month, or contact support to raise the limit.\&quot; - 400: nothing payable (\&quot;Nothing is payable.\&quot;).  ### Access and retries  Needs an owner, admin or billing admin, signed in or through a full-access key they created.  Send an &#x60;Idempotency-Key&#x60; so a retry never opens a second batch. 
 
 ### Example
 
@@ -1170,10 +1172,10 @@ ApiResponse<[**CreateCampaignPayoutBatch201Response**](CreateCampaignPayoutBatch
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **201** | Batch created; send the operator to &#x60;url&#x60; to pay. |  -  |
+| **201** | Batch created and the card charged, or the bank asked for 3D Secure. |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **402** | Over the instant payout limit (code &#x60;payment_required&#x60;). |  -  |
+| **402** | Over the instant payout limit or no saved card (code &#x60;payment_required&#x60;), or the bank declined the charge (code &#x60;card_declined&#x60;). |  -  |
 | **403** | Refused (&#x60;insufficient_permissions&#x60;). One of:  - A restricted API key without the &#x60;money&#x60; resource group. - A profile-scoped API key. Money leaves the whole team&#39;s balance, so moving it needs a full-access key or a signed-in session (\&quot;Moving money needs a full-access key or a signed-in session.\&quot;). - A member or viewer, signed in or through a key they created. Only an owner, admin or billing admin moves money.  |  -  |
 | **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
 | **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
@@ -2660,8 +2662,8 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **status** | **String**|  | [optional] [enum: received, tracking, pending_review, approved, rejected, expired, withdrawn] |
 | **participantId** | **String**|  | [optional] |
-| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity] |
-| **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube] |
+| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap] |
+| **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube, threads, pinterest, facebook, twitter] |
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |
 | **q** | **String**| Only submissions whose creator name or post link contains this text, ignoring case. | [optional] |
@@ -2759,8 +2761,8 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **status** | **String**|  | [optional] [enum: received, tracking, pending_review, approved, rejected, expired, withdrawn] |
 | **participantId** | **String**|  | [optional] |
-| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity] |
-| **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube] |
+| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap] |
+| **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube, threads, pinterest, facebook, twitter] |
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |
 | **q** | **String**| Only submissions whose creator name or post link contains this text, ignoring case. | [optional] |
@@ -3611,7 +3613,7 @@ ApiResponse<[**ApproveCampaignSubmission200Response**](ApproveCampaignSubmission
 
 Remove campaign participant
 
-Removes the participant from the campaign. Their earnings stay in the ledger. Removing an already removed participant returns it unchanged. 
+Removes the participant from the campaign. Their earnings stay in the ledger. Removing an &#x60;invited&#x60; participant revokes their invite: the link stops working. Removing an already removed participant returns it unchanged. 
 
 ### Example
 
@@ -3687,7 +3689,7 @@ public class Example {
 
 Remove campaign participant
 
-Removes the participant from the campaign. Their earnings stay in the ledger. Removing an already removed participant returns it unchanged. 
+Removes the participant from the campaign. Their earnings stay in the ledger. Removing an &#x60;invited&#x60; participant revokes their invite: the link stops working. Removing an already removed participant returns it unchanged. 
 
 ### Example
 
@@ -3925,13 +3927,175 @@ ApiResponse<[**ApproveCampaignSubmission200Response**](ApproveCampaignSubmission
 | **422** | Idempotency-Key reused with a different request |  -  |
 
 
+## resendCampaignParticipantInvite
+
+> GetCampaignParticipant200Response resendCampaignParticipantInvite(campaignId, participantId, idempotencyKey)
+
+Resend campaign participant invite
+
+Emails an &#x60;invited&#x60; participant their personal invite link again. The link does not change, so a link you already sent keeps working. The email counts toward the daily invite email cap of your workspace.  Answers 409 when the participant has already joined, was suspended or removed, has no email, or the campaign is closed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Campaign ID.
+        String participantId = "participantId_example"; // String | Participant ID.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        try {
+            GetCampaignParticipant200Response result = apiInstance.resendCampaignParticipantInvite(campaignId, participantId, idempotencyKey);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorCampaignsApi#resendCampaignParticipantInvite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Campaign ID. | |
+| **participantId** | **String**| Participant ID. | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+
+### Return type
+
+[**GetCampaignParticipant200Response**](GetCampaignParticipant200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invite email sent again |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+## resendCampaignParticipantInviteWithHttpInfo
+
+> ApiResponse<GetCampaignParticipant200Response> resendCampaignParticipantInvite resendCampaignParticipantInviteWithHttpInfo(campaignId, participantId, idempotencyKey)
+
+Resend campaign participant invite
+
+Emails an &#x60;invited&#x60; participant their personal invite link again. The link does not change, so a link you already sent keeps working. The email counts toward the daily invite email cap of your workspace.  Answers 409 when the participant has already joined, was suspended or removed, has no email, or the campaign is closed. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Campaign ID.
+        String participantId = "participantId_example"; // String | Participant ID.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
+        try {
+            ApiResponse<GetCampaignParticipant200Response> response = apiInstance.resendCampaignParticipantInviteWithHttpInfo(campaignId, participantId, idempotencyKey);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorCampaignsApi#resendCampaignParticipantInvite");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Campaign ID. | |
+| **participantId** | **String**| Participant ID. | |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
+
+### Return type
+
+ApiResponse<[**GetCampaignParticipant200Response**](GetCampaignParticipant200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Invite email sent again |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+
 ## settleCampaignParticipant
 
 > SettleCampaignParticipant201Response settleCampaignParticipant(campaignId, participantId, settleCampaignParticipantRequest, idempotencyKey)
 
 Settle campaign participant
 
-Records a payout of the participant&#39;s payable balance and fires &#x60;campaign_payout.settled&#x60;.  Omit &#x60;amountCents&#x60; to settle the whole payable balance. An amount above it answers 400, and nothing payable answers 409. Send an &#x60;Idempotency-Key&#x60; so a retry never records the payout twice.  ### Settlement modes  - &#x60;none&#x60; settlement: records a payout you made elsewhere. - &#x60;external&#x60; settlement: pay from your own rails when &#x60;campaign_payout.payable&#x60; fires, then call this with your payout id in &#x60;externalReference&#x60; (required in this mode). - &#x60;treasury&#x60; settlement: transfers the amount from your Zernio balance to the creator&#39;s connected Stripe account, then records it with the Stripe transfer id as &#x60;externalReference&#x60;.  ### Treasury payouts  The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount and your balance is debited &#x60;totalCents&#x60;.  - The creator must have finished payout setup from their campaign page (409 otherwise). - A balance that does not cover the amount plus the fee answers 402.  Set &#x60;recordOnly: true&#x60; to record a payout you made yourself instead of moving money through the treasury (the webhook then carries &#x60;recorded: true&#x60;).  A treasury payout needs an owner, admin or billing admin, signed in or through a full-access key they created (403 otherwise). Recording with &#x60;recordOnly&#x60; does not.  #### While Stripe confirms the transfer  The amount sits in the participant&#39;s &#x60;settling&#x60; balance; a reject in that window cannot reverse it.  - If Stripe refuses the transfer, the amount returns to payable. - If Stripe does not answer, the amount stays in &#x60;settling&#x60;. The next settle call for this participant finishes that payout first (even with nothing payable left).  #### Conflicts (409)  - A retry asking for a different &#x60;amountCents&#x60; than the payout in progress answers 409 with the amount in progress. - A settle while another request is still waiting on Stripe for the same payout answers 409 (\&quot;This payout is being sent to Stripe right now. Try again in a minute.\&quot;). - A payout Stripe has not confirmed after 24 hours answers 409 (\&quot;This payout is being confirmed with Stripe. Try again after the next reconciliation (within 24 hours).\&quot;) until the daily reconciliation finishes it: settled if Stripe made the transfer, returned to payable if it did not. - A creator held by an unfinished payout batch answers 409 (\&quot;This creator is in a card payout that is not finished yet.\&quot;). 
+Records a payout of the participant&#39;s payable balance and fires &#x60;campaign_payout.settled&#x60;.  Omit &#x60;amountCents&#x60; to settle the whole payable balance. An amount above it answers 400, and nothing payable answers 409. Send an &#x60;Idempotency-Key&#x60; so a retry never records the payout twice.  ### Settlement modes  - &#x60;none&#x60; settlement: records a payout you made elsewhere. - &#x60;external&#x60; settlement: pay from your own rails when &#x60;campaign_payout.payable&#x60; fires, then call this with your payout id in &#x60;externalReference&#x60; (required in this mode). - &#x60;treasury&#x60; settlement: transfers the amount from your Zernio balance to the creator&#39;s connected Stripe account, then records it with the Stripe transfer id as &#x60;externalReference&#x60;.  ### Treasury payouts  The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount and your balance is debited &#x60;totalCents&#x60;.  - The creator must have finished payout setup from their campaign page (409 otherwise). - A balance that does not cover the amount plus the fee answers 402. - Money from a card top-up charged under 7 days ago cannot be paid out yet: a payout that needs it answers 409 &#x60;payout_funds_locked&#x60; with the day it can be sent.  Set &#x60;recordOnly: true&#x60; to record a payout you made yourself instead of moving money through the treasury (the webhook then carries &#x60;recorded: true&#x60;).  A treasury payout needs an owner, admin or billing admin, signed in or through a full-access key they created (403 otherwise). Recording with &#x60;recordOnly&#x60; does not.  #### While Stripe confirms the transfer  The amount sits in the participant&#39;s &#x60;settling&#x60; balance; a reject in that window cannot reverse it.  - If Stripe refuses the transfer, the amount returns to payable. - If Stripe does not answer, the amount stays in &#x60;settling&#x60;. The next settle call for this participant finishes that payout first (even with nothing payable left).  #### Conflicts (409)  - A retry asking for a different &#x60;amountCents&#x60; than the payout in progress answers 409 with the amount in progress. - A settle while another request is still waiting on Stripe for the same payout answers 409 (\&quot;This payout is being sent to Stripe right now. Try again in a minute.\&quot;). - A payout Stripe has not confirmed after 24 hours answers 409 (\&quot;This payout is being confirmed with Stripe. Try again after the next reconciliation (within 24 hours).\&quot;) until the daily reconciliation finishes it: settled if Stripe made the transfer, returned to payable if it did not. - A creator held by an unfinished payout batch answers 409 (\&quot;This creator is in a card payout that is not finished yet.\&quot;). 
 
 ### Example
 
@@ -4015,7 +4179,7 @@ public class Example {
 
 Settle campaign participant
 
-Records a payout of the participant&#39;s payable balance and fires &#x60;campaign_payout.settled&#x60;.  Omit &#x60;amountCents&#x60; to settle the whole payable balance. An amount above it answers 400, and nothing payable answers 409. Send an &#x60;Idempotency-Key&#x60; so a retry never records the payout twice.  ### Settlement modes  - &#x60;none&#x60; settlement: records a payout you made elsewhere. - &#x60;external&#x60; settlement: pay from your own rails when &#x60;campaign_payout.payable&#x60; fires, then call this with your payout id in &#x60;externalReference&#x60; (required in this mode). - &#x60;treasury&#x60; settlement: transfers the amount from your Zernio balance to the creator&#39;s connected Stripe account, then records it with the Stripe transfer id as &#x60;externalReference&#x60;.  ### Treasury payouts  The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount and your balance is debited &#x60;totalCents&#x60;.  - The creator must have finished payout setup from their campaign page (409 otherwise). - A balance that does not cover the amount plus the fee answers 402.  Set &#x60;recordOnly: true&#x60; to record a payout you made yourself instead of moving money through the treasury (the webhook then carries &#x60;recorded: true&#x60;).  A treasury payout needs an owner, admin or billing admin, signed in or through a full-access key they created (403 otherwise). Recording with &#x60;recordOnly&#x60; does not.  #### While Stripe confirms the transfer  The amount sits in the participant&#39;s &#x60;settling&#x60; balance; a reject in that window cannot reverse it.  - If Stripe refuses the transfer, the amount returns to payable. - If Stripe does not answer, the amount stays in &#x60;settling&#x60;. The next settle call for this participant finishes that payout first (even with nothing payable left).  #### Conflicts (409)  - A retry asking for a different &#x60;amountCents&#x60; than the payout in progress answers 409 with the amount in progress. - A settle while another request is still waiting on Stripe for the same payout answers 409 (\&quot;This payout is being sent to Stripe right now. Try again in a minute.\&quot;). - A payout Stripe has not confirmed after 24 hours answers 409 (\&quot;This payout is being confirmed with Stripe. Try again after the next reconciliation (within 24 hours).\&quot;) until the daily reconciliation finishes it: settled if Stripe made the transfer, returned to payable if it did not. - A creator held by an unfinished payout batch answers 409 (\&quot;This creator is in a card payout that is not finished yet.\&quot;). 
+Records a payout of the participant&#39;s payable balance and fires &#x60;campaign_payout.settled&#x60;.  Omit &#x60;amountCents&#x60; to settle the whole payable balance. An amount above it answers 400, and nothing payable answers 409. Send an &#x60;Idempotency-Key&#x60; so a retry never records the payout twice.  ### Settlement modes  - &#x60;none&#x60; settlement: records a payout you made elsewhere. - &#x60;external&#x60; settlement: pay from your own rails when &#x60;campaign_payout.payable&#x60; fires, then call this with your payout id in &#x60;externalReference&#x60; (required in this mode). - &#x60;treasury&#x60; settlement: transfers the amount from your Zernio balance to the creator&#39;s connected Stripe account, then records it with the Stripe transfer id as &#x60;externalReference&#x60;.  ### Treasury payouts  The transfer fee (4%, $0.50 minimum) is added on top: the creator receives the full amount and your balance is debited &#x60;totalCents&#x60;.  - The creator must have finished payout setup from their campaign page (409 otherwise). - A balance that does not cover the amount plus the fee answers 402. - Money from a card top-up charged under 7 days ago cannot be paid out yet: a payout that needs it answers 409 &#x60;payout_funds_locked&#x60; with the day it can be sent.  Set &#x60;recordOnly: true&#x60; to record a payout you made yourself instead of moving money through the treasury (the webhook then carries &#x60;recorded: true&#x60;).  A treasury payout needs an owner, admin or billing admin, signed in or through a full-access key they created (403 otherwise). Recording with &#x60;recordOnly&#x60; does not.  #### While Stripe confirms the transfer  The amount sits in the participant&#39;s &#x60;settling&#x60; balance; a reject in that window cannot reverse it.  - If Stripe refuses the transfer, the amount returns to payable. - If Stripe does not answer, the amount stays in &#x60;settling&#x60;. The next settle call for this participant finishes that payout first (even with nothing payable left).  #### Conflicts (409)  - A retry asking for a different &#x60;amountCents&#x60; than the payout in progress answers 409 with the amount in progress. - A settle while another request is still waiting on Stripe for the same payout answers 409 (\&quot;This payout is being sent to Stripe right now. Try again in a minute.\&quot;). - A payout Stripe has not confirmed after 24 hours answers 409 (\&quot;This payout is being confirmed with Stripe. Try again after the next reconciliation (within 24 hours).\&quot;) until the daily reconciliation finishes it: settled if Stripe made the transfer, returned to payable if it did not. - A creator held by an unfinished payout batch answers 409 (\&quot;This creator is in a card payout that is not finished yet.\&quot;). 
 
 ### Example
 
