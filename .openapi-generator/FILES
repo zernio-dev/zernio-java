@@ -82,6 +82,7 @@ docs/AdTargetingApi.md
 docs/AdTracking.md
 docs/AdTreeAdSet.md
 docs/AdTreeAdSetAdSetBudget.md
+docs/AdTreeAdSetAttributionSpecInner.md
 docs/AdTreeAdSetBudget.md
 docs/AdTreeAdSetPromotedObject.md
 docs/AdTreeCampaign.md
@@ -3436,6 +3437,7 @@ src/main/java/dev/zernio/model/AdStatus.java
 src/main/java/dev/zernio/model/AdTracking.java
 src/main/java/dev/zernio/model/AdTreeAdSet.java
 src/main/java/dev/zernio/model/AdTreeAdSetAdSetBudget.java
+src/main/java/dev/zernio/model/AdTreeAdSetAttributionSpecInner.java
 src/main/java/dev/zernio/model/AdTreeAdSetBudget.java
 src/main/java/dev/zernio/model/AdTreeAdSetPromotedObject.java
 src/main/java/dev/zernio/model/AdTreeCampaign.java
@@ -6543,3 +6545,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/AdTreeAdSetAttributionSpecInnerTest.java

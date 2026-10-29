@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.401.0
+  version: 1.402.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -97908,6 +97908,8 @@ components:
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -98366,6 +98368,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -98434,6 +98437,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -98441,8 +98449,13 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -98901,6 +98914,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -98969,6 +98983,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -98976,6 +98995,9 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -99221,6 +99243,8 @@ components:
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -99679,6 +99703,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -99747,6 +99772,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -99754,8 +99784,13 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -100214,6 +100249,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -100282,6 +100318,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -100289,6 +100330,9 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -104176,6 +104220,8 @@ components:
       example:
         bidStrategy: ""
         adSetName: adSetName
+        regionalRegulatedCategories:
+        - AUSTRALIA_FINSERV
         adCount: 7
         bidAmount: 1.0246457001441578
         servingStatuses:
@@ -104634,6 +104680,7 @@ components:
           video6SecFocusedViews: 3
         platformAdSetId: platformAdSetId
         createdTime: 2000-01-23T04:56:07.000+00:00
+        destinationType: WEBSITE
         metrics:
           conversions: 2.027123023002322
           videoAvgTimeWatchedActions: 6.878052220127876
@@ -104702,6 +104749,11 @@ components:
             post_engagement: 300
             offsite_conversion.fb_pixel_purchase: 42
           video6SecFocusedViews: 6
+        attributionSpec:
+        - eventType: CLICK_THROUGH
+          windowDays: 7
+        - eventType: VIEW_THROUGH
+          windowDays: 1
         status: ""
         budget:
           amount: 9.301444243932576
@@ -104709,6 +104761,9 @@ components:
           daily: 3.616076749251911
           lifetime: 2.027123023002322
           type: daily
+        regionalRegulationIdentities:
+          australia_finserv_beneficiary: "28663624249921857"
+          australia_finserv_payer: "28663624249921857"
       properties:
         platformAdSetId:
           type: string
@@ -104798,6 +104853,52 @@ components:
           type: string
         promotedObject:
           $ref: "#/components/schemas/AdTreeAdSet_promotedObject"
+        destinationType:
+          description: "Meta only. Where the ad set sends people (Meta `destination_type`),\
+            \ e.g. WEBSITE, MESSENGER, WHATSAPP, INSTAGRAM_DIRECT, ON_AD. Meta answers\
+            \ UNDEFINED for an ad set with no explicit destination. As of the last\
+            \ sync; null on other platforms and for ad sets not yet synced."
+          example: WEBSITE
+          nullable: true
+          type: string
+        attributionSpec:
+          description: "Meta only. The ad set's conversion attribution windows (Meta\
+            \ `attribution_spec`), in the same shape `attributionSpec` takes on ad\
+            \ creation so a clone can send it back unchanged. As of the last sync;\
+            \ null on other platforms, for ad sets not yet synced and when Meta reports\
+            \ none."
+          example:
+          - eventType: CLICK_THROUGH
+            windowDays: 7
+          - eventType: VIEW_THROUGH
+            windowDays: 1
+          items:
+            $ref: "#/components/schemas/AdTreeAdSet_attributionSpec_inner"
+          nullable: true
+          type: array
+        regionalRegulatedCategories:
+          description: "Meta only. Regional regulated categories declared on the ad\
+            \ set (Meta `regional_regulated_categories`), e.g. AUSTRALIA_FINSERV,\
+            \ TAIWAN_UNIVERSAL, SINGAPORE_UNIVERSAL or VOLUNTARY_VERIFICATION. As\
+            \ of the last sync; null on other platforms, for ad sets not yet synced\
+            \ and when Meta reports none."
+          example:
+          - AUSTRALIA_FINSERV
+          items:
+            type: string
+          nullable: true
+          type: array
+        regionalRegulationIdentities:
+          additionalProperties:
+            type: string
+          description: "Meta only. Verified identity IDs per regional regulation role\
+            \ (Meta `regional_regulation_identities`), keyed by Meta's role name.\
+            \ IDs are strings because they can exceed a JSON number's precision. As\
+            \ of the last sync; null on other platforms, for ad sets not yet synced\
+            \ and when Meta reports none."
+          example:
+            australia_finserv_beneficiary: "28663624249921857"
+            australia_finserv_payer: "28663624249921857"
         ads:
           description: "Individual ads within this ad set (capped at 100). When the\
             \ ad set has more than 100 ads these are the 100 highest-spending over\
@@ -104995,6 +105096,8 @@ components:
         adSets:
         - bidStrategy: ""
           adSetName: adSetName
+          regionalRegulatedCategories:
+          - AUSTRALIA_FINSERV
           adCount: 7
           bidAmount: 1.0246457001441578
           servingStatuses:
@@ -105453,6 +105556,7 @@ components:
             video6SecFocusedViews: 3
           platformAdSetId: platformAdSetId
           createdTime: 2000-01-23T04:56:07.000+00:00
+          destinationType: WEBSITE
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -105521,6 +105625,11 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 6
+          attributionSpec:
+          - eventType: CLICK_THROUGH
+            windowDays: 7
+          - eventType: VIEW_THROUGH
+            windowDays: 1
           status: ""
           budget:
             amount: 9.301444243932576
@@ -105528,8 +105637,13 @@ components:
             daily: 3.616076749251911
             lifetime: 2.027123023002322
             type: daily
+          regionalRegulationIdentities:
+            australia_finserv_beneficiary: "28663624249921857"
+            australia_finserv_payer: "28663624249921857"
         - bidStrategy: ""
           adSetName: adSetName
+          regionalRegulatedCategories:
+          - AUSTRALIA_FINSERV
           adCount: 7
           bidAmount: 1.0246457001441578
           servingStatuses:
@@ -105988,6 +106102,7 @@ components:
             video6SecFocusedViews: 3
           platformAdSetId: platformAdSetId
           createdTime: 2000-01-23T04:56:07.000+00:00
+          destinationType: WEBSITE
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -106056,6 +106171,11 @@ components:
               post_engagement: 300
               offsite_conversion.fb_pixel_purchase: 42
             video6SecFocusedViews: 6
+          attributionSpec:
+          - eventType: CLICK_THROUGH
+            windowDays: 7
+          - eventType: VIEW_THROUGH
+            windowDays: 1
           status: ""
           budget:
             amount: 9.301444243932576
@@ -106063,6 +106183,9 @@ components:
             daily: 3.616076749251911
             lifetime: 2.027123023002322
             type: daily
+          regionalRegulationIdentities:
+            australia_finserv_beneficiary: "28663624249921857"
+            australia_finserv_payer: "28663624249921857"
         metrics:
           conversions: 2.027123023002322
           videoAvgTimeWatchedActions: 6.878052220127876
@@ -153962,6 +154085,8 @@ components:
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -154420,6 +154545,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -154488,6 +154614,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -154495,8 +154626,13 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -154955,6 +155091,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -155023,6 +155160,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -155030,6 +155172,9 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -155275,6 +155420,8 @@ components:
           adSets:
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -155733,6 +155880,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -155801,6 +155949,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -155808,8 +155961,13 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           - bidStrategy: ""
             adSetName: adSetName
+            regionalRegulatedCategories:
+            - AUSTRALIA_FINSERV
             adCount: 7
             bidAmount: 1.0246457001441578
             servingStatuses:
@@ -156268,6 +156426,7 @@ components:
               video6SecFocusedViews: 3
             platformAdSetId: platformAdSetId
             createdTime: 2000-01-23T04:56:07.000+00:00
+            destinationType: WEBSITE
             metrics:
               conversions: 2.027123023002322
               videoAvgTimeWatchedActions: 6.878052220127876
@@ -156336,6 +156495,11 @@ components:
                 post_engagement: 300
                 offsite_conversion.fb_pixel_purchase: 42
               video6SecFocusedViews: 6
+            attributionSpec:
+            - eventType: CLICK_THROUGH
+              windowDays: 7
+            - eventType: VIEW_THROUGH
+              windowDays: 1
             status: ""
             budget:
               amount: 9.301444243932576
@@ -156343,6 +156507,9 @@ components:
               daily: 3.616076749251911
               lifetime: 2.027123023002322
               type: daily
+            regionalRegulationIdentities:
+              australia_finserv_beneficiary: "28663624249921857"
+              australia_finserv_payer: "28663624249921857"
           metrics:
             conversions: 2.027123023002322
             videoAvgTimeWatchedActions: 6.878052220127876
@@ -192737,6 +192904,20 @@ components:
           type: string
         page_id:
           type: string
+    AdTreeAdSet_attributionSpec_inner:
+      properties:
+        eventType:
+          enum:
+          - CLICK_THROUGH
+          - VIEW_THROUGH
+          - ENGAGED_VIDEO_VIEW
+          type: string
+        windowDays:
+          enum:
+          - 1
+          - 7
+          - 28
+          type: integer
     AdTreeCampaign_budget:
       description: "Effective budget (back-compat). For CBO this mirrors `campaignBudget`,\
         \ for ABO this mirrors the child ad-set budget. Use `budgetLevel` to disambiguate."
