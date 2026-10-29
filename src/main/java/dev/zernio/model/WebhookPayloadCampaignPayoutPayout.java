@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadCampaignPayoutPayout.JSON_PROPERTY_SETTLEMENT,
   WebhookPayloadCampaignPayoutPayout.JSON_PROPERTY_FAILURE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:01:23.565678580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:05:01.900704492Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadCampaignPayoutPayout {
   public static final String JSON_PROPERTY_PAYABLE_CENTS = "payableCents";
   @javax.annotation.Nonnull

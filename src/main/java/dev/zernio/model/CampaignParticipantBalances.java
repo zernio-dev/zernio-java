@@ -39,7 +39,7 @@ import dev.zernio.ApiClient;
   CampaignParticipantBalances.JSON_PROPERTY_SETTLING,
   CampaignParticipantBalances.JSON_PROPERTY_SETTLED
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:01:23.565678580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:05:01.900704492Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CampaignParticipantBalances {
   public static final String JSON_PROPERTY_ACCRUING = "accruing";
   @javax.annotation.Nonnull

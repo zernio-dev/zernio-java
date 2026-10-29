@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   CreateCampaignPayoutBatch201Response.JSON_PROPERTY_BATCH,
   CreateCampaignPayoutBatch201Response.JSON_PROPERTY_URL
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:01:23.565678580Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T12:05:01.900704492Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreateCampaignPayoutBatch201Response {
   public static final String JSON_PROPERTY_BATCH = "batch";
   @javax.annotation.Nonnull
