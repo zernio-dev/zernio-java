@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.408.1
+  version: 1.409.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -155101,7 +155101,6 @@ components:
             - feed
             - right_hand_column
             - marketplace
-            - video_feeds
             - story
             - search
             - instream_video
@@ -168171,7 +168170,6 @@ components:
             - feed
             - right_hand_column
             - marketplace
-            - video_feeds
             - story
             - search
             - instream_video
@@ -183943,7 +183941,6 @@ components:
             - feed
             - right_hand_column
             - marketplace
-            - video_feeds
             - story
             - search
             - instream_video
@@ -193476,7 +193473,6 @@ components:
             - feed
             - right_hand_column
             - marketplace
-            - video_feeds
             - story
             - search
             - instream_video

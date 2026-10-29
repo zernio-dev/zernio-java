@@ -39,7 +39,6 @@ Placements this asset is pinned to. At least one field must be set (an empty rul
 | FEED | &quot;feed&quot; |
 | RIGHT_HAND_COLUMN | &quot;right_hand_column&quot; |
 | MARKETPLACE | &quot;marketplace&quot; |
-| VIDEO_FEEDS | &quot;video_feeds&quot; |
 | STORY | &quot;story&quot; |
 | SEARCH | &quot;search&quot; |
 | INSTREAM_VIDEO | &quot;instream_video&quot; |

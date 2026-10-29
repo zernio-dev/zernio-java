@@ -39,7 +39,6 @@ Meta only (400 elsewhere). Manual placements, with the same object and enums as 
 | FEED | &quot;feed&quot; |
 | RIGHT_HAND_COLUMN | &quot;right_hand_column&quot; |
 | MARKETPLACE | &quot;marketplace&quot; |
-| VIDEO_FEEDS | &quot;video_feeds&quot; |
 | STORY | &quot;story&quot; |
 | SEARCH | &quot;search&quot; |
 | INSTREAM_VIDEO | &quot;instream_video&quot; |
