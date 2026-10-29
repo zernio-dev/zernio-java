@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.403.0
+  version: 1.404.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -122822,6 +122822,13 @@ components:
             \ the Cloud API registration with error 133005 and the number cannot send\
             \ messages."
           pattern: "^\\d{6}$"
+          type: string
+        oauthAppId:
+          description: "Your own WhatsApp OAuth app (see /v1/connect/oauth-apps) holding\
+            \ the Meta app the access token belongs to. The WABA's webhooks then go\
+            \ to that app's own callback URL and every delivery is checked against\
+            \ its app secret. Without it, deliveries come to Zernio's shared Meta\
+            \ webhook."
           type: string
       required:
       - accessToken
