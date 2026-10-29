@@ -2133,7 +2133,7 @@ ApiResponse<[**ListInboxLabels200Response**](ListInboxLabels200Response.md)>
 
 ## listInboxConversations
 
-> ListInboxConversations200Response listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId)
+> ListInboxConversations200Response listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags)
 
 List conversations
 
@@ -2168,8 +2168,9 @@ public class Example {
         Integer limit = 50; // Integer | Maximum number of conversations to return; values above 100 are served as 100.
         String cursor = "cursor_example"; // String | Pagination cursor for next page
         String accountId = "accountId_example"; // String | Filter by specific account ID
+        String tags = "tags_example"; // String | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder=requests.
         try {
-            ListInboxConversations200Response result = apiInstance.listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
+            ListInboxConversations200Response result = apiInstance.listInboxConversations(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling MessagesApi#listInboxConversations");
@@ -2195,6 +2196,7 @@ public class Example {
 | **limit** | **Integer**| Maximum number of conversations to return; values above 100 are served as 100. | [optional] [default to 50] |
 | **cursor** | **String**| Pagination cursor for next page | [optional] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
+| **tags** | **String**| Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder&#x3D;requests. | [optional] |
 
 ### Return type
 
@@ -2220,7 +2222,7 @@ public class Example {
 
 ## listInboxConversationsWithHttpInfo
 
-> ApiResponse<ListInboxConversations200Response> listInboxConversations listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId)
+> ApiResponse<ListInboxConversations200Response> listInboxConversations listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags)
 
 List conversations
 
@@ -2256,8 +2258,9 @@ public class Example {
         Integer limit = 50; // Integer | Maximum number of conversations to return; values above 100 are served as 100.
         String cursor = "cursor_example"; // String | Pagination cursor for next page
         String accountId = "accountId_example"; // String | Filter by specific account ID
+        String tags = "tags_example"; // String | Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder=requests.
         try {
-            ApiResponse<ListInboxConversations200Response> response = apiInstance.listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId);
+            ApiResponse<ListInboxConversations200Response> response = apiInstance.listInboxConversationsWithHttpInfo(profileId, platform, status, folder, sortOrder, limit, cursor, accountId, tags);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -2285,6 +2288,7 @@ public class Example {
 | **limit** | **Integer**| Maximum number of conversations to return; values above 100 are served as 100. | [optional] [default to 50] |
 | **cursor** | **String**| Pagination cursor for next page | [optional] |
 | **accountId** | **String**| Filter by specific account ID | [optional] |
+| **tags** | **String**| Comma-separated contact tags. Returns only conversations whose contact has any of them. Cannot be combined with folder&#x3D;requests. | [optional] |
 
 ### Return type
 

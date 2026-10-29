@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.415.0
+  version: 1.416.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -25981,6 +25981,15 @@ paths:
         explode: true
         in: query
         name: accountId
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Comma-separated contact tags. Returns only conversations whose
+          contact has any of them. Cannot be combined with folder=requests.
+        explode: true
+        in: query
+        name: tags
         required: false
         schema:
           type: string
