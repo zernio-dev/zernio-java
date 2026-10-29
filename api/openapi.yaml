@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.409.1
+  version: 1.410.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -77196,9 +77196,15 @@ components:
           - fields
           object: page
         label: label
+        slackEvents:
+          botEvents:
+          - botEvents
+          - botEvents
+          requestUrl: https://openapi-generator.tech
         platform: platform
         lastCheckedAt: 2000-01-23T04:56:07.000+00:00
         createdAt: 2000-01-23T04:56:07.000+00:00
+        hasSlackSigningSecret: true
         id: id
         sharedWebhookUrl: https://openapi-generator.tech
         status: ok
@@ -77262,6 +77268,12 @@ components:
           format: uri
           nullable: true
           type: string
+        hasSlackSigningSecret:
+          description: "Slack only: whether the signing secret of your Slack app is\
+            \ saved. Without it Zernio refuses every event sent to `slackEvents.requestUrl`."
+          type: boolean
+        slackEvents:
+          $ref: "#/components/schemas/OAuthApp_slackEvents"
         createdAt:
           format: date-time
           type: string
@@ -123490,9 +123502,15 @@ components:
             - fields
             object: page
           label: label
+          slackEvents:
+            botEvents:
+            - botEvents
+            - botEvents
+            requestUrl: https://openapi-generator.tech
           platform: platform
           lastCheckedAt: 2000-01-23T04:56:07.000+00:00
           createdAt: 2000-01-23T04:56:07.000+00:00
+          hasSlackSigningSecret: true
           id: id
           sharedWebhookUrl: https://openapi-generator.tech
           status: ok
@@ -123511,9 +123529,15 @@ components:
             - fields
             object: page
           label: label
+          slackEvents:
+            botEvents:
+            - botEvents
+            - botEvents
+            requestUrl: https://openapi-generator.tech
           platform: platform
           lastCheckedAt: 2000-01-23T04:56:07.000+00:00
           createdAt: 2000-01-23T04:56:07.000+00:00
+          hasSlackSigningSecret: true
           id: id
           sharedWebhookUrl: https://openapi-generator.tech
           status: ok
@@ -123579,6 +123603,13 @@ components:
           maxLength: 1000
           minLength: 1
           type: string
+        slackSigningSecret:
+          description: "Slack only: the signing secret from the app's Basic Information\
+            \ page. Needed to receive events from your Slack app; any other platform\
+            \ is a 400."
+          maxLength: 1000
+          minLength: 1
+          type: string
         scopeAreas:
           description: Areas this app requests. Defaults to every area the platform
             supports; an area the platform cannot request separately is a 400.
@@ -123613,9 +123644,15 @@ components:
             - fields
             object: page
           label: label
+          slackEvents:
+            botEvents:
+            - botEvents
+            - botEvents
+            requestUrl: https://openapi-generator.tech
           platform: platform
           lastCheckedAt: 2000-01-23T04:56:07.000+00:00
           createdAt: 2000-01-23T04:56:07.000+00:00
+          hasSlackSigningSecret: true
           id: id
           sharedWebhookUrl: https://openapi-generator.tech
           status: ok
@@ -123640,6 +123677,12 @@ components:
           minLength: 1
           type: string
         clientSecret:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        slackSigningSecret:
+          description: "Slack only: saves or replaces the signing secret from the\
+            \ app's Basic Information page; any other platform is a 400."
           maxLength: 1000
           minLength: 1
           type: string
@@ -182739,6 +182782,28 @@ components:
       - fields
       - object
       - verifyToken
+    OAuthApp_slackEvents:
+      description: |
+        Slack only; null on other platforms. Slack delivers messages and mentions to your app's own Request URL.
+
+        Save the app's signing secret first (`slackSigningSecret`), then set this Request URL under Event Subscriptions and subscribe the listed bot events. Zernio checks each delivery against that secret.
+      example:
+        botEvents:
+        - botEvents
+        - botEvents
+        requestUrl: https://openapi-generator.tech
+      properties:
+        requestUrl:
+          format: uri
+          type: string
+        botEvents:
+          description: Subscribe the app to these bot events.
+          items:
+            type: string
+          type: array
+      required:
+      - botEvents
+      - requestUrl
     OAuthAppSetup_scopeAreas_inner:
       example:
         area: posting

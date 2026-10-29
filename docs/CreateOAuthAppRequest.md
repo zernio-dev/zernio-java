@@ -11,6 +11,7 @@
 |**label** | **String** |  |  |
 |**clientId** | **String** |  |  |
 |**clientSecret** | **String** |  |  |
+|**slackSigningSecret** | **String** | Slack only: the signing secret from the app&#39;s Basic Information page. Needed to receive events from your Slack app; any other platform is a 400. |  [optional] |
 |**scopeAreas** | [**List&lt;ScopeAreasEnum&gt;**](#List&lt;ScopeAreasEnum&gt;) | Areas this app requests. Defaults to every area the platform supports; an area the platform cannot request separately is a 400. |  [optional] |
 
 

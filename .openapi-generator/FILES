@@ -2082,6 +2082,7 @@ docs/MoveWhatsAppNumberToProfileRequest.md
 docs/OAuthApp.md
 docs/OAuthAppSetup.md
 docs/OAuthAppSetupScopeAreasInner.md
+docs/OAuthAppSlackEvents.md
 docs/OAuthAppWebhook.md
 docs/OAuthAppWebhookObject.md
 docs/OnBrandedCallingIdentityActionRequiredRequest.md
@@ -5401,6 +5402,7 @@ src/main/java/dev/zernio/model/MoveWhatsAppNumberToProfileRequest.java
 src/main/java/dev/zernio/model/OAuthApp.java
 src/main/java/dev/zernio/model/OAuthAppSetup.java
 src/main/java/dev/zernio/model/OAuthAppSetupScopeAreasInner.java
+src/main/java/dev/zernio/model/OAuthAppSlackEvents.java
 src/main/java/dev/zernio/model/OAuthAppWebhook.java
 src/main/java/dev/zernio/model/OAuthAppWebhookObject.java
 src/main/java/dev/zernio/model/OnBrandedCallingIdentityActionRequiredRequest.java
@@ -6559,3 +6561,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/OAuthAppSlackEventsTest.java

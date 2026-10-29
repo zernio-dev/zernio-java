@@ -9,6 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**label** | **String** |  |  [optional] |
 |**clientSecret** | **String** |  |  [optional] |
+|**slackSigningSecret** | **String** | Slack only: saves or replaces the signing secret from the app&#39;s Basic Information page; any other platform is a 400. |  [optional] |
 |**scopeAreas** | [**List&lt;ScopeAreasEnum&gt;**](#List&lt;ScopeAreasEnum&gt;) | Replaces the areas new connects request. Accounts already connected keep what they were granted until they reconnect. |  [optional] |
 
 
