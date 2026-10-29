@@ -2,7 +2,7 @@
 
 # CommentAutomationDmMedia
 
-An image, video, audio clip or file sent right after the DM text as a second message (a Meta message carries one body, so text and attachment are two sends). On the comment trigger Meta may refuse the second message until the commenter replies; the DM then still counts as sent and the log row carries `mediaError`. 
+An image, video, audio clip or file sent right after the DM text as a second message (a Meta message carries one body, so text and attachment are two sends).  On the comment trigger, Meta may refuse the second message until the commenter replies. The DM then still counts as sent and the log row carries `mediaError`. 
 
 ## Properties
 

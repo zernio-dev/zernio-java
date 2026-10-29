@@ -2,7 +2,7 @@
 
 # InstagramPlatformDataAudioConfiguration
 
-Attach a licensed music track or original sound from the Instagram audio catalog to a Reel. Reels only (single video post, not a story or image). Requires an Instagram account connected via Facebook Login; classic Instagram Login accounts get a 400 (instagram_audio_requires_facebook_login). Get audio IDs from GET /v1/accounts/{accountId}/instagram/audio. If the track becomes unavailable by publish time (removed, region-blocked, licensing change), the post fails with a user-error; it is not published without the audio.
+Attach a licensed music track or original sound from the Instagram audio catalog to a Reel. Reels only (single video post, not a story or image).  - Requires an Instagram account connected via Facebook Login. Classic Instagram Login accounts get a 400 (instagram_audio_requires_facebook_login). - Get audio IDs from GET /v1/accounts/{accountId}/instagram/audio. - If the track becomes unavailable by publish time (removed, region-blocked, licensing change), the post fails with a user-error. It is not published without the audio. 
 
 ## Properties
 

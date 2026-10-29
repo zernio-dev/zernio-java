@@ -177,7 +177,7 @@ ApiResponse<[**GetProduct200Response**](GetProduct200Response.md)>
 
 List products
 
-Lists the products on the connected store in the platform&#39;s default order, each with its variants, options and images. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, e.g. &#x60;title:*shirt* vendor:Acme tag:summer&#x60;).  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400. A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
+Lists the products on the connected store in the platform&#39;s default order, each with its variants, options and images.  ### Paging and filters  - Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. - Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, e.g. &#x60;title:*shirt* vendor:Acme tag:summer&#x60;).  ### Platforms  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400.  A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
 
 ### Example
 
@@ -260,7 +260,7 @@ public class Example {
 
 List products
 
-Lists the products on the connected store in the platform&#39;s default order, each with its variants, options and images. Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;; &#x60;nextCursor&#x60; is null when there are no more pages. Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, e.g. &#x60;title:*shirt* vendor:Acme tag:summer&#x60;).  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400. A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
+Lists the products on the connected store in the platform&#39;s default order, each with its variants, options and images.  ### Paging and filters  - Cursor-paginated: pass &#x60;limit&#x60; (1-50, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;. &#x60;nextCursor&#x60; is null when there are no more pages. - Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, e.g. &#x60;title:*shirt* vendor:Acme tag:summer&#x60;).  ### Platforms  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400.  A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
 
 ### Example
 
@@ -347,7 +347,7 @@ ApiResponse<[**ListProducts200Response**](ListProducts200Response.md)>
 
 Update a product
 
-Partial-updates a product. Send any subset of &#x60;title&#x60;, &#x60;descriptionHtml&#x60;, &#x60;handle&#x60;, &#x60;vendor&#x60;, &#x60;productType&#x60;, &#x60;tags&#x60;, &#x60;status&#x60;, &#x60;seo&#x60; and &#x60;variants&#x60;; at least one field is required (an empty body returns 400). &#x60;tags&#x60; replaces the full tag list. &#x60;variants&#x60; updates the price and compare-at price of the listed variant ids only; other variants are untouched, and a variant id that does not belong to the product is a 400. Responds with the product as it is after the update.  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400. A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
+Partial-updates a product. Responds with the product as it is after the update.  ### Fields  Send any subset of these; at least one field is required (an empty body returns 400):  - &#x60;title&#x60; - &#x60;descriptionHtml&#x60; - &#x60;handle&#x60; - &#x60;vendor&#x60; - &#x60;productType&#x60; - &#x60;tags&#x60;: replaces the full tag list - &#x60;status&#x60; - &#x60;seo&#x60; - &#x60;variants&#x60;: updates the price and compare-at price of the listed variant ids only. Other variants are untouched, and a variant id that does not belong to the product is a 400.  ### Platform support  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400.  A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
 
 ### Example
 
@@ -426,7 +426,7 @@ public class Example {
 
 Update a product
 
-Partial-updates a product. Send any subset of &#x60;title&#x60;, &#x60;descriptionHtml&#x60;, &#x60;handle&#x60;, &#x60;vendor&#x60;, &#x60;productType&#x60;, &#x60;tags&#x60;, &#x60;status&#x60;, &#x60;seo&#x60; and &#x60;variants&#x60;; at least one field is required (an empty body returns 400). &#x60;tags&#x60; replaces the full tag list. &#x60;variants&#x60; updates the price and compare-at price of the listed variant ids only; other variants are untouched, and a variant id that does not belong to the product is a 400. Responds with the product as it is after the update.  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400. A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
+Partial-updates a product. Responds with the product as it is after the update.  ### Fields  Send any subset of these; at least one field is required (an empty body returns 400):  - &#x60;title&#x60; - &#x60;descriptionHtml&#x60; - &#x60;handle&#x60; - &#x60;vendor&#x60; - &#x60;productType&#x60; - &#x60;tags&#x60;: replaces the full tag list - &#x60;status&#x60; - &#x60;seo&#x60; - &#x60;variants&#x60;: updates the price and compare-at price of the listed variant ids only. Other variants are untouched, and a variant id that does not belong to the product is a 400.  ### Platform support  Supported on Shopify (platform &#x60;shopify&#x60;); accounts on other platforms return 400.  A store connected before product access was added answers 403 insufficient_permissions until the merchant reconnects it through &#x60;GET /v1/connect/shopify&#x60;. 
 
 ### Example
 

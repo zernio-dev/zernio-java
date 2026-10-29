@@ -17,7 +17,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Get ledger balances
 
-Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope. A scope owned by another team returns an empty balances object. A profile-scoped key (or a member limited to some profiles) only reads &#x60;campaign&#x60; and &#x60;participant&#x60; scopes of campaigns under its profiles; any other scope returns an empty balances object. 
+Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope.  These return an empty balances object:  - A scope owned by another team. - For a profile-scoped key (or a member limited to some profiles), any scope other than &#x60;campaign&#x60; and &#x60;participant&#x60; scopes of campaigns under its profiles. 
 
 ### Example
 
@@ -85,7 +85,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Balances per bucket in cents |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 ## getLedgerBalancesWithHttpInfo
 
@@ -93,7 +93,7 @@ public class Example {
 
 Get ledger balances
 
-Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope. A scope owned by another team returns an empty balances object. A profile-scoped key (or a member limited to some profiles) only reads &#x60;campaign&#x60; and &#x60;participant&#x60; scopes of campaigns under its profiles; any other scope returns an empty balances object. 
+Returns the balance of each bucket (for example accruing, owed, payable) for one ledger scope.  These return an empty balances object:  - A scope owned by another team. - For a profile-scoped key (or a member limited to some profiles), any scope other than &#x60;campaign&#x60; and &#x60;participant&#x60; scopes of campaigns under its profiles. 
 
 ### Example
 
@@ -164,7 +164,7 @@ ApiResponse<[**GetLedgerBalances200Response**](GetLedgerBalances200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Balances per bucket in cents |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 
 ## listLedgerEntries
@@ -173,7 +173,7 @@ ApiResponse<[**GetLedgerBalances200Response**](GetLedgerBalances200Response.md)>
 
 List ledger entries
 
-Lists ledger entries for your team, newest first. Filter by scope (matches either side of the entry), kind, or the reference that caused the entry. A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants; operator and platform scopes stay hidden from it. 
+Lists ledger entries for your team, newest first.  ### Filters  - scope (matches either side of the entry) - kind - the reference that caused the entry  ### Profile-scoped access  A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants. Operator and platform scopes stay hidden from it. 
 
 ### Example
 
@@ -249,7 +249,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | Ledger entries |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 
 ## listLedgerEntriesWithHttpInfo
 
@@ -257,7 +257,7 @@ public class Example {
 
 List ledger entries
 
-Lists ledger entries for your team, newest first. Filter by scope (matches either side of the entry), kind, or the reference that caused the entry. A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants; operator and platform scopes stay hidden from it. 
+Lists ledger entries for your team, newest first.  ### Filters  - scope (matches either side of the entry) - kind - the reference that caused the entry  ### Profile-scoped access  A profile-scoped key (or a member limited to some profiles) only sees entries of campaigns under its profiles and of their participants. Operator and platform scopes stay hidden from it. 
 
 ### Example
 
@@ -336,5 +336,5 @@ ApiResponse<[**ListLedgerEntries200Response**](ListLedgerEntries200Response.md)>
 |-------------|-------------|------------------|
 | **200** | Ledger entries |  -  |
 | **400** | Invalid request |  -  |
-| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases. (1) The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key: fix it by creating a key with the group enabled in the dashboard API keys tab and revoking the old one. (2) The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), which is never grantable to restricted keys; the error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; and the fix is a full-access key or the dashboard, never a new restricted key. (3) On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold, so a restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events). |  -  |
+| **403** | The API key is a restricted key (zrk_ prefix) and may not perform this operation. Three cases:  1. The operation&#39;s resource group (see the operation&#39;s x-resource-group) is disabled on the key. Fix: create a key with the group enabled in the dashboard API keys tab and revoke the old one. 2. The operation is admin-plane (x-resource-group admin-plane: API keys, invites, connected apps, member identity), never grantable to restricted keys. The error reads \&quot;Restricted API keys cannot manage API keys, invites, or member identity.\&quot; Fix: a full-access key or the dashboard, never a new restricted key. 3. On webhook subscription writes, delivery-log reads and replays, a named event maps to a resource group the key does not hold. A restricted key can never create or edit a subscription broader than itself (a no-messages key cannot subscribe to, test-fire, redeliver or read logs for message.* events).  |  -  |
 

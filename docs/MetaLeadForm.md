@@ -2,7 +2,7 @@
 
 # MetaLeadForm
 
-A Meta Lead Gen form as Graph returns it, in Meta's own snake_case. Read through GET /v1/ads/lead-forms/{formId}. Every setting POST /v1/ads/lead-forms writes is present here, so a form can be diffed against what was created and drift from edits made in Meta's form builder is detectable. A compound field is omitted entirely when the form has no value for it, and `fields` narrows the selection. 
+A Meta Lead Gen form as Graph returns it, in Meta's own snake_case. Read through GET /v1/ads/lead-forms/{formId}.  Every setting POST /v1/ads/lead-forms writes is present here, so you can diff a form against what was created and detect drift from edits made in Meta's form builder.  A compound field is omitted entirely when the form has no value for it, and `fields` narrows the selection. 
 
 ## Properties
 

@@ -2,7 +2,7 @@
 
 # CheckPhoneNumberAvailability200ResponseAreaAvailability
 
-Every area of the country's numbering plan (Google libphonenumber geocoding, one row per city: Madrid covers 910 to 919), in one of three states, refreshed every 6 hours from the carrier's own inventory counts. The same answer the dashboard picker and the public country pages show. Empty lists mean the pair has no cached coverage yet, not that the country has no areas. 
+Every area of the country's numbering plan (Google libphonenumber geocoding, one row per city: Madrid covers 910 to 919), each in one of three states.  Refreshed every 6 hours from the carrier's own inventory counts. The same answer the dashboard picker and the public country pages show.  Empty lists mean the pair has no cached coverage yet, not that the country has no areas. 
 
 ## Properties
 

@@ -10,8 +10,12 @@
 |**country** | **String** |  |  [optional] |
 |**numberType** | **String** |  |  [optional] |
 |**available** | **Boolean** | Whether deliverable voice inventory exists right now. |  [optional] |
+|**preOrderable** | **Boolean** | Nothing deliverable now, but this pair can be pre-ordered: submit KYC as usual and we buy regular stock the moment it returns, otherwise the carrier sources the number (usually 2 to 4 weeks, never guaranteed). Only document tiers (3/4) qualify. |  [optional] |
 |**addressConstraint** | [**AddressConstraintEnum**](#AddressConstraintEnum) |  |  [optional] |
-|**areas** | **List&lt;String&gt;** | For &#x60;geo&#x60; only — the area(s) the registered address must be in. |  [optional] |
+|**areas** | **List&lt;String&gt;** | For &#x60;geo&#x60; only: the area(s) the registered address must be in. |  [optional] |
+|**areaOptions** | [**List&lt;CheckPhoneNumberAvailability200ResponseAreaOptionsInner&gt;**](CheckPhoneNumberAvailability200ResponseAreaOptionsInner.md) | Live inventory grouped by area code. Equal to &#x60;areaAvailability.inStock&#x60;. Empty when out of stock (or the area lookup failed).  - **US and CA:** the full country inventory (every area code with stock, recognizable metros first, then alphabetical). - **Other countries:** largest stock first, listing the areas in the latest inventory page (up to 500 numbers, for most countries the entire pool).  Pass a chosen &#x60;ndc&#x60; as &#x60;areaCode&#x60; on POST /v1/phone-numbers/purchase (or on the KYC submit for regulated countries) to require that area.  |  [optional] |
+|**soldOutAreas** | [**List&lt;CheckPhoneNumberAvailability200ResponseSoldOutAreasInner&gt;**](CheckPhoneNumberAvailability200ResponseSoldOutAreasInner.md) | Every area of the country&#39;s numbering plan with nothing deliverable now: &#x60;areaAvailability.preOrder&#x60; plus &#x60;areaAvailability.outOfStock&#x60;, kept for older clients. Pass one as &#x60;areaCode&#x60; with &#x60;preOrder: true&#x60; on the KYC submit when &#x60;preOrderable&#x60; is true, or watch it with POST /v1/phone-numbers/stock-watches.  |  [optional] |
+|**areaAvailability** | [**CheckWhatsAppNumberAvailability200ResponseAreaAvailability**](CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md) |  |  [optional] |
 
 
 

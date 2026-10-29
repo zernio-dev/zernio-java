@@ -2,7 +2,7 @@
 
 # StartSmsRegistrationRequestCampaign
 
-Required for 10DLC. What you'll send and how recipients opt in/out. The opt-in/opt-out/help auto-responses (`optinMessage`, `optoutMessage`, `helpMessage`) are optional: when omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you. If you do send them, they must name the registered brand and carry the disclosures. Submissions that don't are rewritten to the compliant template before the campaign is filed. 
+Required for 10DLC. What you'll send and how recipients opt in/out.  The opt-in/opt-out/help auto-responses (`optinMessage`, `optoutMessage`, `helpMessage`) are optional. When omitted, a compliant, brand-named template with the carrier-required disclosures is generated for you.  If you send them, they must name the registered brand and carry the disclosures. Submissions that don't are rewritten to the compliant template before the campaign is filed. 
 
 ## Properties
 

@@ -2143,7 +2143,7 @@ ApiResponse<Void>
 
 Set FB Get Started button
 
-Set the Get Started button shown on a Facebook page&#39;s Messenger welcome screen. Meta requires it before a persistent menu can be set. Tapping it sends a postback with &#x60;payload&#x60;, which arrives as a &#x60;message.received&#x60; webhook carrying it in &#x60;metadata.postbackPayload&#x60;. Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow on the tap; the workflow must be active on this account and profile.
+Set the Get Started button shown on a Facebook page&#39;s Messenger welcome screen. Meta requires it before a persistent menu can be set.  Tapping it sends a postback with &#x60;payload&#x60;, which arrives as a &#x60;message.received&#x60; webhook carrying it in &#x60;metadata.postbackPayload&#x60;.  Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow on the tap; the workflow must be active on this account and profile. 
 
 ### Example
 
@@ -2218,7 +2218,7 @@ public class Example {
 
 Set FB Get Started button
 
-Set the Get Started button shown on a Facebook page&#39;s Messenger welcome screen. Meta requires it before a persistent menu can be set. Tapping it sends a postback with &#x60;payload&#x60;, which arrives as a &#x60;message.received&#x60; webhook carrying it in &#x60;metadata.postbackPayload&#x60;. Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow on the tap; the workflow must be active on this account and profile.
+Set the Get Started button shown on a Facebook page&#39;s Messenger welcome screen. Meta requires it before a persistent menu can be set.  Tapping it sends a postback with &#x60;payload&#x60;, which arrives as a &#x60;message.received&#x60; webhook carrying it in &#x60;metadata.postbackPayload&#x60;.  Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow on the tap; the workflow must be active on this account and profile. 
 
 ### Example
 
@@ -2451,7 +2451,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Set FB ice breakers
 
-Set up to 4 ice breakers per locale for a Facebook page (Meta&#39;s &#x60;ice_breakers&#x60; Messenger Profile field). One entry must use locale &#x60;default&#x60;. A tap sends a postback with the question&#39;s &#x60;payload&#x60;, which arrives as &#x60;message.received&#x60; with &#x60;metadata.postbackPayload&#x60;; use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow (it must be active on this account and profile). Replaces every locale already set.
+Set up to 4 ice breakers per locale for a Facebook page (Meta&#39;s &#x60;ice_breakers&#x60; Messenger Profile field). Replaces every locale already set.  - One entry must use locale &#x60;default&#x60;. - A tap sends a postback with the question&#39;s &#x60;payload&#x60;, which arrives as &#x60;message.received&#x60; with &#x60;metadata.postbackPayload&#x60;. - Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow (it must be active on this account and profile). 
 
 ### Example
 
@@ -2526,7 +2526,7 @@ public class Example {
 
 Set FB ice breakers
 
-Set up to 4 ice breakers per locale for a Facebook page (Meta&#39;s &#x60;ice_breakers&#x60; Messenger Profile field). One entry must use locale &#x60;default&#x60;. A tap sends a postback with the question&#39;s &#x60;payload&#x60;, which arrives as &#x60;message.received&#x60; with &#x60;metadata.postbackPayload&#x60;; use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow (it must be active on this account and profile). Replaces every locale already set.
+Set up to 4 ice breakers per locale for a Facebook page (Meta&#39;s &#x60;ice_breakers&#x60; Messenger Profile field). Replaces every locale already set.  - One entry must use locale &#x60;default&#x60;. - A tap sends a postback with the question&#39;s &#x60;payload&#x60;, which arrives as &#x60;message.received&#x60; with &#x60;metadata.postbackPayload&#x60;. - Use &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; to start a workflow (it must be active on this account and profile). 
 
 ### Example
 
@@ -2605,7 +2605,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Set persistent menu
 
-Set the persistent menu for a Facebook Messenger or Instagram account. Max 3 top-level items, max 5 nested items. On Facebook, Meta only shows a persistent menu on a page that has a Get Started button, so set one first with PUT /v1/accounts/{accountId}/messenger-get-started. A postback button whose payload is &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; starts that workflow when tapped; the workflow must be active on this account and profile.
+Set the persistent menu for a Facebook Messenger or Instagram account. Max 3 top-level items, max 5 nested items.  - On Facebook, Meta only shows a persistent menu on a page that has a Get Started button. Set one first with PUT /v1/accounts/{accountId}/messenger-get-started. - A postback button whose payload is &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; starts that workflow when tapped. The workflow must be active on this account and profile. 
 
 ### Example
 
@@ -2679,7 +2679,7 @@ null (empty response body)
 
 Set persistent menu
 
-Set the persistent menu for a Facebook Messenger or Instagram account. Max 3 top-level items, max 5 nested items. On Facebook, Meta only shows a persistent menu on a page that has a Get Started button, so set one first with PUT /v1/accounts/{accountId}/messenger-get-started. A postback button whose payload is &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; starts that workflow when tapped; the workflow must be active on this account and profile.
+Set the persistent menu for a Facebook Messenger or Instagram account. Max 3 top-level items, max 5 nested items.  - On Facebook, Meta only shows a persistent menu on a page that has a Get Started button. Set one first with PUT /v1/accounts/{accountId}/messenger-get-started. - A postback button whose payload is &#x60;zernio:workflow:&lt;workflowId&gt;&#x60; starts that workflow when tapped. The workflow must be active on this account and profile. 
 
 ### Example
 

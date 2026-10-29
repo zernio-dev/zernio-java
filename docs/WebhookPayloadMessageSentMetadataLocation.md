@@ -2,7 +2,7 @@
 
 # WebhookPayloadMessageSentMetadataLocation
 
-WhatsApp only. The location pin this message carries, in the same shape the inbox send API accepts. Present on API sends that passed `location`, and on Coexistence echoes of a pin shared from the WhatsApp Business app. The message `text` is only the emoji preview (`📍 <name>`); the pin itself lives here. 
+WhatsApp only. The location pin this message carries, in the same shape the inbox send API accepts.  Present on API sends that passed `location`, and on Coexistence echoes of a pin shared from the WhatsApp Business app.  The message `text` is only the emoji preview (`📍 <name>`); the pin itself lives here. 
 
 ## Properties
 

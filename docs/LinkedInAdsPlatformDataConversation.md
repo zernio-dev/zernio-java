@@ -2,7 +2,7 @@
 
 # LinkedInAdsPlatformDataConversation
 
-POST /v1/ads/create only. Conversation Ad: a choose-your-path message tree delivered to the member's LinkedIn inbox. Messages are flat nodes wired by local ids; each button either opens a url or leads to nextMessageId. Cycles, unknown ids and a missing firstMessageId return a 400. LinkedIn does not deliver message ads to EU members. Mutually exclusive with the other creative sources. 
+POST /v1/ads/create only. Conversation Ad: a choose-your-path message tree delivered to the member's LinkedIn inbox.  - Messages are flat nodes wired by local ids. Each button either opens a url or leads to nextMessageId. - Cycles, unknown ids and a missing firstMessageId return a 400. - LinkedIn does not deliver message ads to EU members. - Mutually exclusive with the other creative sources. 
 
 ## Properties
 

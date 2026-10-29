@@ -2,7 +2,7 @@
 
 # CtwaAdRequestBodyPlacements
 
-Manual ad placements on the shared ad set. Omit for automatic placements. When set, restricts delivery to the chosen surfaces, mapped onto the ad set's `targeting.{publisher_platforms, facebook_positions, instagram_positions, messenger_positions, audience_network_positions, threads_positions, whatsapp_positions, device_platforms}`. Enum membership is validated here; Meta additionally enforces co-selection rules and restricts which placements are eligible for click-to-WhatsApp ads, returning an actionable error which we surface. 
+Manual ad placements on the shared ad set. Omit for automatic placements.  When set, restricts delivery to the chosen surfaces, mapped onto the ad set's `targeting.{publisher_platforms, facebook_positions, instagram_positions, messenger_positions, audience_network_positions, threads_positions, whatsapp_positions, device_platforms}`.  Enum membership is validated here. Meta additionally enforces co-selection rules and restricts which placements are eligible for click-to-WhatsApp ads, returning an actionable error which we surface. 
 
 ## Properties
 

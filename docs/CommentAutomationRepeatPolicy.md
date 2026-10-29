@@ -2,7 +2,7 @@
 
 # CommentAutomationRepeatPolicy
 
-Whether a commenter can receive this automation's DM more than once.   * `once` (default) - one DM per person per door, ever.   * `every_comment` - every new matching comment is eligible again. One comment     is still answered at most once. `cooldownHours` suppresses a repeat sent to the     same person within that many hours. 
+Whether a commenter can receive this automation's DM more than once.  - `once` (default): one DM per person per door, ever. - `every_comment`: every new matching comment is eligible again; one comment is still answered at most once. `cooldownHours` suppresses a repeat to the same person within that many hours. 
 
 ## Properties
 

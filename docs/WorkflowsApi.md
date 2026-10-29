@@ -1713,7 +1713,7 @@ ApiResponse<[**PauseWorkflow200Response**](PauseWorkflow200Response.md)>
 
 Restore a workflow version
 
-Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore. The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+Replace the current graph with the named version&#39;s snapshot.  Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore.  The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 
 ### Example
 
@@ -1788,7 +1788,7 @@ public class Example {
 
 Restore a workflow version
 
-Replace the current graph with the named version&#39;s snapshot. Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore. The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
+Replace the current graph with the named version&#39;s snapshot.  Before the swap, the current graph is itself snapshotted as a new version, so a restore is reversible. The workflow must not be &#x60;active&#x60;: pause it first, then restore.  The returned workflow carries &#x60;restoredFromVersion&#x60; so the UI can surface which version was rolled back to. 
 
 ### Example
 
@@ -1867,7 +1867,7 @@ ApiResponse<[**RestoreWorkflowVersion200Response**](RestoreWorkflowVersion200Res
 
 Start an API-triggered workflow
 
-Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;. Pass exactly one target: &#x60;conversationId&#x60; (a conversation on the workflow&#39;s account), &#x60;contactId&#x60; (resolved to that contact&#39;s conversation on the workflow&#39;s account), or &#x60;to&#x60; (WhatsApp workflows only: a phone number, whose conversation is found or created). &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
+Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;.  Pass exactly one target:  - &#x60;conversationId&#x60;: a conversation on the workflow&#39;s account. - &#x60;contactId&#x60;: resolved to that contact&#39;s conversation on the workflow&#39;s account. - &#x60;to&#x60; (WhatsApp workflows only): a phone number, whose conversation is found or created.  &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
 
 ### Example
 
@@ -1942,7 +1942,7 @@ public class Example {
 
 Start an API-triggered workflow
 
-Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;. Pass exactly one target: &#x60;conversationId&#x60; (a conversation on the workflow&#39;s account), &#x60;contactId&#x60; (resolved to that contact&#39;s conversation on the workflow&#39;s account), or &#x60;to&#x60; (WhatsApp workflows only: a phone number, whose conversation is found or created). &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
+Starts a run of an active workflow whose trigger type is &#x60;api_call&#x60;.  Pass exactly one target:  - &#x60;conversationId&#x60;: a conversation on the workflow&#39;s account. - &#x60;contactId&#x60;: resolved to that contact&#39;s conversation on the workflow&#39;s account. - &#x60;to&#x60; (WhatsApp workflows only): a phone number, whose conversation is found or created.  &#x60;variables&#x60; are merged over the standard run variables, so each key is available as &#x60;{{key}}&#x60;. 
 
 ### Example
 
@@ -2175,7 +2175,7 @@ ApiResponse<[**TriggerWorkflow200Response**](TriggerWorkflow200Response.md)>
 
 Update workflow
 
-Update name, description, the graph, or reassign to a different account. The graph can be modified in any status, including &#x60;active&#x60;: a run already in progress reloads the saved graph at its next step, and a run parked on a node the edit removed completes instead of failing. Every graph edit is re-validated and an invalid graph answers 400 regardless of status. &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
+Update name, description, the graph, or reassign to a different account.  ### Editing the graph  The graph can be modified in any status, including &#x60;active&#x60;:  - A run already in progress reloads the saved graph at its next step. - A run parked on a node the edit removed completes instead of failing.  Every graph edit is re-validated, and an invalid graph answers 400 regardless of status.  ### Status and account  &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints.  Account swaps re-validate the graph against the new platform. For example, moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph. 
 
 ### Example
 
@@ -2250,7 +2250,7 @@ public class Example {
 
 Update workflow
 
-Update name, description, the graph, or reassign to a different account. The graph can be modified in any status, including &#x60;active&#x60;: a run already in progress reloads the saved graph at its next step, and a run parked on a node the edit removed completes instead of failing. Every graph edit is re-validated and an invalid graph answers 400 regardless of status. &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints. Account swaps re-validate the graph against the new platform (so e.g. moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph). 
+Update name, description, the graph, or reassign to a different account.  ### Editing the graph  The graph can be modified in any status, including &#x60;active&#x60;:  - A run already in progress reloads the saved graph at its next step. - A run parked on a node the edit removed completes instead of failing.  Every graph edit is re-validated, and an invalid graph answers 400 regardless of status.  ### Status and account  &#x60;status&#x60; is not a field of this request; use the activate and pause endpoints.  Account swaps re-validate the graph against the new platform. For example, moving from WhatsApp to Facebook surfaces a &#x60;start_call&#x60; node as an error instead of silently saving an unrunnable graph. 
 
 ### Example
 

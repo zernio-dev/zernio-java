@@ -14,7 +14,7 @@ One changed analytics snapshot. Metrics are the absolute values recorded at `syn
 |**platform** | **String** |  |  |
 |**platformPostId** | **String** | Platform-side post ID (for example the YouTube video ID) |  |
 |**publishedAt** | **OffsetDateTime** | When the post was published, ISO-8601 UTC |  |
-|**syncedAt** | **OffsetDateTime** | When the sync cycle that produced this snapshot STARTED, ISO-8601 UTC. This is NOT the order entries arrive in and it is not a resume point: a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Use &#x60;nextCursor&#x60; to resume.  |  |
+|**syncedAt** | **OffsetDateTime** | When the sync cycle that produced this snapshot STARTED, ISO-8601 UTC.  This is NOT the order entries arrive in and not a resume point: a slow cycle writes its rows after a faster cycle that started later, so &#x60;syncedAt&#x60; can go backwards between consecutive entries. Use &#x60;nextCursor&#x60; to resume.  |  |
 |**isDeleted** | **Boolean** | True when the post was detected as deleted on the platform at this sync |  |
 |**metrics** | [**AnalyticsDeltaEntryMetrics**](AnalyticsDeltaEntryMetrics.md) |  |  |
 

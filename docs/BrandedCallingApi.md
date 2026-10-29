@@ -47,7 +47,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Attach numbers to a verified identity
 
-Files a Letter of Authorization signed by you (Zernio is named as the authorized agent managing the numbers) and opens a vetting batch of up to 15 US numbers you own. The batch is all-or-nothing: one ineligible number refuses the whole call. Each number shows the identity once its own status reaches &#x60;verified&#x60;. A number belongs to one identity at a time. 
+Files a Letter of Authorization signed by you (Zernio is named as the authorized agent managing the numbers) and opens a vetting batch of up to 15 US numbers you own.  - The batch is all-or-nothing: one ineligible number refuses the whole call. - Each number shows the identity once its own status reaches &#x60;verified&#x60;. - A number belongs to one identity at a time. 
 
 ### Example
 
@@ -124,7 +124,7 @@ public class Example {
 
 Attach numbers to a verified identity
 
-Files a Letter of Authorization signed by you (Zernio is named as the authorized agent managing the numbers) and opens a vetting batch of up to 15 US numbers you own. The batch is all-or-nothing: one ineligible number refuses the whole call. Each number shows the identity once its own status reaches &#x60;verified&#x60;. A number belongs to one identity at a time. 
+Files a Letter of Authorization signed by you (Zernio is named as the authorized agent managing the numbers) and opens a vetting batch of up to 15 US numbers you own.  - The batch is all-or-nothing: one ineligible number refuses the whole call. - Each number shows the identity once its own status reaches &#x60;verified&#x60;. - A number belongs to one identity at a time. 
 
 ### Example
 
@@ -361,7 +361,7 @@ ApiResponse<[**BrandedCallingIdentity**](BrandedCallingIdentity.md)>
 
 Register a business for Branded Calling
 
-Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
+Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review.  Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;.  Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
 
 ### Example
 
@@ -385,7 +385,7 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingEnterpriseRequest createBrandedCallingEnterpriseRequest = new CreateBrandedCallingEnterpriseRequest(); // CreateBrandedCallingEnterpriseRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             BrandedCallingEnterprise result = apiInstance.createBrandedCallingEnterprise(createBrandedCallingEnterpriseRequest, idempotencyKey);
             System.out.println(result);
@@ -406,7 +406,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingEnterpriseRequest** | [**CreateBrandedCallingEnterpriseRequest**](CreateBrandedCallingEnterpriseRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -437,7 +437,7 @@ public class Example {
 
 Register a business for Branded Calling
 
-Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review. Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
+Stores the legal entity behind your caller identities. Nothing is filed with the carrier until the business&#39;s first identity passes review.  Only businesses registered in the US or Canada qualify (a FEIN or Canadian equivalent is required); any other country returns &#x60;422&#x60;.  Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of registering the business twice. 
 
 ### Example
 
@@ -462,7 +462,7 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingEnterpriseRequest createBrandedCallingEnterpriseRequest = new CreateBrandedCallingEnterpriseRequest(); // CreateBrandedCallingEnterpriseRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<BrandedCallingEnterprise> response = apiInstance.createBrandedCallingEnterpriseWithHttpInfo(createBrandedCallingEnterpriseRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -485,7 +485,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingEnterpriseRequest** | [**CreateBrandedCallingEnterpriseRequest**](CreateBrandedCallingEnterpriseRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -517,7 +517,7 @@ ApiResponse<[**BrandedCallingEnterprise**](BrandedCallingEnterprise.md)>
 
 Create a caller identity
 
-A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month while it is verified. The first month is charged when the carrier verifies the identity, never when it is filed: nothing is charged while it is in our review or carrier vetting, or if it is rejected. An edit that sends a verified identity back to vetting pauses the fee until it is verified again. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
+Creates a caller identity: what the callee sees (display name, logo and call reasons). It is backed by a registered business and three references the carrier vetting team phones.  ### Lifecycle  1. It starts in Zernio review (&#x60;requested&#x60;). 2. Once approved, the carrier emails the authorizer a 6-digit code. 3. Confirm the code with the verify-email endpoint, and the identity goes into carrier vetting on its own.  Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  ### Billing  - $100 per identity per month while it is verified. - The first month is charged when the carrier verifies the identity, never when it is filed. Nothing is charged while it is in our review or carrier vetting, or if it is rejected. - An edit that sends a verified identity back to vetting pauses the fee until it is verified again. - Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding).  The surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  ### Before you file  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce.  Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
 
 ### Example
 
@@ -541,7 +541,7 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingIdentityRequest createBrandedCallingIdentityRequest = new CreateBrandedCallingIdentityRequest(); // CreateBrandedCallingIdentityRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             BrandedCallingIdentity result = apiInstance.createBrandedCallingIdentity(createBrandedCallingIdentityRequest, idempotencyKey);
             System.out.println(result);
@@ -562,7 +562,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingIdentityRequest** | [**CreateBrandedCallingIdentityRequest**](CreateBrandedCallingIdentityRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -595,7 +595,7 @@ public class Example {
 
 Create a caller identity
 
-A caller identity is what the callee sees: display name, logo and call reasons, backed by a registered business and three references the carrier vetting team phones. It starts in Zernio review (&#x60;requested&#x60;). Once approved, the carrier emails the authorizer a 6-digit code; confirm it with the verify-email endpoint and the identity goes into carrier vetting on its own. Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  Billing: $100 per identity per month while it is verified. The first month is charged when the carrier verifies the identity, never when it is filed: nothing is charged while it is in our review or carrier vetting, or if it is rejected. An edit that sends a verified identity back to vetting pauses the fee until it is verified again. Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding); the surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce. Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
+Creates a caller identity: what the callee sees (display name, logo and call reasons). It is backed by a registered business and three references the carrier vetting team phones.  ### Lifecycle  1. It starts in Zernio review (&#x60;requested&#x60;). 2. Once approved, the carrier emails the authorizer a 6-digit code. 3. Confirm the code with the verify-email endpoint, and the identity goes into carrier vetting on its own.  Track it with &#x60;GET&#x60; or the &#x60;branded_calling.identity.status_updated&#x60; webhook.  ### Billing  - $100 per identity per month while it is verified. - The first month is charged when the carrier verifies the identity, never when it is filed. Nothing is charged while it is in our review or carrier vetting, or if it is rejected. - An edit that sends a verified identity back to vetting pauses the fee until it is verified again. - Branded calls add $0.10 each, counted on every outbound call from a verified branded number to a US destination (whether or not the callee&#39;s carrier displayed the branding).  The surcharge shows as &#x60;brandedCallUSD&#x60; on the call&#39;s billing and in &#x60;GET /v1/voice/calls/estimate&#x60; when you pass &#x60;from&#x60;.  ### Before you file  Run &#x60;POST /v1/branded-calling/identities/preflight&#x60; with the same body first to catch what the review would bounce.  Send an &#x60;Idempotency-Key&#x60; so a retry replays the original response instead of creating a second identity. 
 
 ### Example
 
@@ -620,7 +620,7 @@ public class Example {
 
         BrandedCallingApi apiInstance = new BrandedCallingApi(defaultClient);
         CreateBrandedCallingIdentityRequest createBrandedCallingIdentityRequest = new CreateBrandedCallingIdentityRequest(); // CreateBrandedCallingIdentityRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<BrandedCallingIdentity> response = apiInstance.createBrandedCallingIdentityWithHttpInfo(createBrandedCallingIdentityRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -643,7 +643,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createBrandedCallingIdentityRequest** | [**CreateBrandedCallingIdentityRequest**](CreateBrandedCallingIdentityRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -1983,7 +1983,7 @@ ApiResponse<[**ListBrandedCallingIdentityNumbers200Response**](ListBrandedCallin
 
 Dry-run a caller identity before creating it
 
-Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it without creating anything, with the same codes and fields the queued identity&#39;s findings carry. A &#x60;block&#x60; finding is what the review would bounce (two references sharing a phone, a reference inside the business, an invalid timezone); a &#x60;warn&#x60; finding slows vetting (a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer). &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
+Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it, without creating anything. Findings carry the same codes and fields as the queued identity&#39;s findings.  ### Finding levels  - &#x60;block&#x60;: what the review would bounce. Examples: two references sharing a phone, a reference inside the business, an invalid timezone. - &#x60;warn&#x60;: slows vetting. Examples: a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer.  &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
 
 ### Example
 
@@ -2056,7 +2056,7 @@ public class Example {
 
 Dry-run a caller identity before creating it
 
-Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it without creating anything, with the same codes and fields the queued identity&#39;s findings carry. A &#x60;block&#x60; finding is what the review would bounce (two references sharing a phone, a reference inside the business, an invalid timezone); a &#x60;warn&#x60; finding slows vetting (a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer). &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
+Validates the exact body &#x60;POST /v1/branded-calling/identities&#x60; takes and runs the same deterministic lints the review runs on it, without creating anything. Findings carry the same codes and fields as the queued identity&#39;s findings.  ### Finding levels  - &#x60;block&#x60;: what the review would bounce. Examples: two references sharing a phone, a reference inside the business, an invalid timezone. - &#x60;warn&#x60;: slows vetting. Examples: a display name that does not read as the business, a call reason outside the carrier catalogue, a public-mailbox authorizer, a logo that does not answer.  &#x60;ok&#x60; is true when there is no &#x60;block&#x60;. 
 
 ### Example
 
@@ -2285,7 +2285,7 @@ ApiResponse<[**ResendBrandedCallingAuthorizerCode200Response**](ResendBrandedCal
 
 Create a caller identity share link
 
-Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login: display name, logo, call reasons, the authorizer and the three references. What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires. Scope the link with &#x60;identityId&#x60; (complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;), with &#x60;enterpriseId&#x60; (a new identity for a registered business), or with neither (the business registers itself and its first identity). The person opening the link can forward a fresh one to someone else, which retires theirs. 
+Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login. It covers display name, logo, call reasons, the authorizer and the three references.  What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires.  ### Scoping the link  - &#x60;identityId&#x60;: complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;. - &#x60;enterpriseId&#x60;: a new identity for a registered business. - Neither: the business registers itself and its first identity.  The person opening the link can forward a fresh one to someone else, which retires theirs. 
 
 ### Example
 
@@ -2358,7 +2358,7 @@ public class Example {
 
 Create a caller identity share link
 
-Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login: display name, logo, call reasons, the authorizer and the three references. What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires. Scope the link with &#x60;identityId&#x60; (complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;), with &#x60;enterpriseId&#x60; (a new identity for a registered business), or with neither (the business registers itself and its first identity). The person opening the link can forward a fresh one to someone else, which retires theirs. 
+Creates a single-use link (valid 7 days) where the end business fills in the caller identity itself, with no Zernio login. It covers display name, logo, call reasons, the authorizer and the three references.  What it submits lands under your team as &#x60;requested&#x60;, the same review as an API submission, and &#x60;branded_calling.identity.status_updated&#x60; fires.  ### Scoping the link  - &#x60;identityId&#x60;: complete an identity that is &#x60;requested&#x60; or &#x60;changes_requested&#x60;. - &#x60;enterpriseId&#x60;: a new identity for a registered business. - Neither: the business registers itself and its first identity.  The person opening the link can forward a fresh one to someone else, which retires theirs. 
 
 ### Example
 

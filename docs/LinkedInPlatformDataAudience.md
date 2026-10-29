@@ -2,7 +2,7 @@
 
 # LinkedInPlatformDataAudience
 
-Organization pages only. Audience targeting for the post (Ads Manager's \"Targeted audience\"), sent as LinkedIn's distribution.targetEntities: OR inside a facet, AND across facets. LinkedIn rejects the post when the targeted audience is under 300 members, and Zernio rejects it on a personal profile. URN facets accept a full urn:li:<type>:<id> or the bare numeric id; find ids with GET /v1/ads/targeting/search?platform=linkedin (types country, region, industry, jobFunction, seniority, companySize).
+Organization pages only (Zernio rejects it on a personal profile). Audience targeting for the post (Ads Manager's \"Targeted audience\"), sent as LinkedIn's distribution.targetEntities: OR inside a facet, AND across facets.  LinkedIn rejects the post when the targeted audience is under 300 members.  URN facets accept a full urn:li:<type>:<id> or the bare numeric id. Find ids with GET /v1/ads/targeting/search?platform=linkedin (types country, region, industry, jobFunction, seniority, companySize). 
 
 ## Properties
 

@@ -3695,7 +3695,7 @@ ApiResponse<[**BusinessAgentSkill**](BusinessAgentSkill.md)>
 
 Get agent setup status
 
-One read that says where the merchant is: whether the number is eligible, whether the Meta Business Agent terms are accepted, whether an agent exists, whether it is on, and its settings. &#x60;manualSteps&#x60; lists what Zernio can verify is still pending (accepting the terms in WhatsApp Manager); &#x60;unverifiedSteps&#x60; lists what Meta exposes no state for (the payment method in Billing Hub). Never fails for those pre-setup states; it reports them as flags. 
+One read that says where the merchant is with the Meta Business Agent. It reports:  - whether the number is eligible - whether the Meta Business Agent terms are accepted - whether an agent exists - whether it is on - its settings  ### Pending steps  - &#x60;manualSteps&#x60; lists what Zernio can verify is still pending (accepting the terms in WhatsApp Manager). - &#x60;unverifiedSteps&#x60; lists what Meta exposes no state for (the payment method in Billing Hub).  Never fails for those pre-setup states; it reports them as flags. 
 
 ### Example
 
@@ -3769,7 +3769,7 @@ public class Example {
 
 Get agent setup status
 
-One read that says where the merchant is: whether the number is eligible, whether the Meta Business Agent terms are accepted, whether an agent exists, whether it is on, and its settings. &#x60;manualSteps&#x60; lists what Zernio can verify is still pending (accepting the terms in WhatsApp Manager); &#x60;unverifiedSteps&#x60; lists what Meta exposes no state for (the payment method in Billing Hub). Never fails for those pre-setup states; it reports them as flags. 
+One read that says where the merchant is with the Meta Business Agent. It reports:  - whether the number is eligible - whether the Meta Business Agent terms are accepted - whether an agent exists - whether it is on - its settings  ### Pending steps  - &#x60;manualSteps&#x60; lists what Zernio can verify is still pending (accepting the terms in WhatsApp Manager). - &#x60;unverifiedSteps&#x60; lists what Meta exposes no state for (the payment method in Billing Hub).  Never fails for those pre-setup states; it reports them as flags. 
 
 ### Example
 
@@ -5519,7 +5519,7 @@ ApiResponse<[**ListBusinessAgentWebsites200Response**](ListBusinessAgentWebsites
 
 Create the agent
 
-Creates the Meta Business Agent on the number and schedules Meta&#39;s data preparation. Requires the terms to be accepted; eligibility is checked first and an ineligible number answers 403 &#x60;business_agent_not_eligible&#x60;. Not idempotent: call it once, then configure knowledge and skills, then enable it through the settings. Configuration calls made in the first minute can still answer &#x60;business_agent_not_found&#x60; while Meta prepares the workspace. 
+Creates the Meta Business Agent on the number and schedules Meta&#39;s data preparation.  Requires the terms to be accepted. Eligibility is checked first, and an ineligible number answers 403 &#x60;business_agent_not_eligible&#x60;.  ### Setup order  Not idempotent: call it once, then:  1. Configure knowledge and skills. 2. Enable it through the settings.  Configuration calls made in the first minute can still answer &#x60;business_agent_not_found&#x60; while Meta prepares the workspace. 
 
 ### Example
 
@@ -5594,7 +5594,7 @@ public class Example {
 
 Create the agent
 
-Creates the Meta Business Agent on the number and schedules Meta&#39;s data preparation. Requires the terms to be accepted; eligibility is checked first and an ineligible number answers 403 &#x60;business_agent_not_eligible&#x60;. Not idempotent: call it once, then configure knowledge and skills, then enable it through the settings. Configuration calls made in the first minute can still answer &#x60;business_agent_not_found&#x60; while Meta prepares the workspace. 
+Creates the Meta Business Agent on the number and schedules Meta&#39;s data preparation.  Requires the terms to be accepted. Eligibility is checked first, and an ineligible number answers 403 &#x60;business_agent_not_eligible&#x60;.  ### Setup order  Not idempotent: call it once, then:  1. Configure knowledge and skills. 2. Enable it through the settings.  Configuration calls made in the first minute can still answer &#x60;business_agent_not_found&#x60; while Meta prepares the workspace. 
 
 ### Example
 
@@ -7871,7 +7871,7 @@ ApiResponse<[**BusinessAgentFaq**](BusinessAgentFaq.md)>
 
 Update agent settings
 
-Partial update: fields you omit keep their value. &#x60;rollout.enabled: true&#x60; turns the agent on for new conversations; &#x60;false&#x60; stops it on every thread. Turning it on for &#x60;EVERYONE&#x60; needs a payment method on the Business Agent billable account (Meta accepts the call but delivers nothing without one); &#x60;ALLOWLISTED_ONLY&#x60; does not, which is how you test with a few numbers before billing. &#x60;never_say_phrases&#x60; replaces the whole list. 
+Partial update: fields you omit keep their value.  - &#x60;rollout.enabled: true&#x60; turns the agent on for new conversations; &#x60;false&#x60; stops it on every thread. - Turning it on for &#x60;EVERYONE&#x60; needs a payment method on the Business Agent billable account (Meta accepts the call but delivers nothing without one). - &#x60;ALLOWLISTED_ONLY&#x60; does not need one, which is how you test with a few numbers before billing. - &#x60;never_say_phrases&#x60; replaces the whole list. 
 
 ### Example
 
@@ -7949,7 +7949,7 @@ public class Example {
 
 Update agent settings
 
-Partial update: fields you omit keep their value. &#x60;rollout.enabled: true&#x60; turns the agent on for new conversations; &#x60;false&#x60; stops it on every thread. Turning it on for &#x60;EVERYONE&#x60; needs a payment method on the Business Agent billable account (Meta accepts the call but delivers nothing without one); &#x60;ALLOWLISTED_ONLY&#x60; does not, which is how you test with a few numbers before billing. &#x60;never_say_phrases&#x60; replaces the whole list. 
+Partial update: fields you omit keep their value.  - &#x60;rollout.enabled: true&#x60; turns the agent on for new conversations; &#x60;false&#x60; stops it on every thread. - Turning it on for &#x60;EVERYONE&#x60; needs a payment method on the Business Agent billable account (Meta accepts the call but delivers nothing without one). - &#x60;ALLOWLISTED_ONLY&#x60; does not need one, which is how you test with a few numbers before billing. - &#x60;never_say_phrases&#x60; replaces the whole list. 
 
 ### Example
 
@@ -8499,7 +8499,7 @@ ApiResponse<[**BusinessAgentWebsite**](BusinessAgentWebsite.md)>
 
 Upload a knowledge file
 
-Accepted types: pdf, doc, docx, png, jpg, jpeg, plus csv and xlsx when Meta enabled extraction on the asset. Meta&#39;s limit is 100 MB. Two ways to send the file: - JSON &#x60;{ url, fileName }&#x60;: Zernio downloads the file (public https URL, no redirects,   capped at 100 MB) and forwards it. Use this for anything above a few megabytes. - multipart form-data with a &#x60;file&#x60; part (and an optional &#x60;fileName&#x60;): bounded by the   request body limit of about 4.5 MB; larger uploads must use the &#x60;url&#x60; form. Not idempotent. 
+Uploads a knowledge file. Not idempotent.  Accepted types: pdf, doc, docx, png, jpg, jpeg, plus csv and xlsx when Meta enabled extraction on the asset. Meta&#39;s limit is 100 MB.  ### Two ways to send the file  - JSON &#x60;{ url, fileName }&#x60;: Zernio downloads the file (public https URL, no redirects, capped at 100 MB) and forwards it. Use this for anything above a few megabytes. - multipart form-data with a &#x60;file&#x60; part (and an optional &#x60;fileName&#x60;): bounded by the request body limit of about 4.5 MB. Larger uploads must use the &#x60;url&#x60; form. 
 
 ### Example
 
@@ -8576,7 +8576,7 @@ public class Example {
 
 Upload a knowledge file
 
-Accepted types: pdf, doc, docx, png, jpg, jpeg, plus csv and xlsx when Meta enabled extraction on the asset. Meta&#39;s limit is 100 MB. Two ways to send the file: - JSON &#x60;{ url, fileName }&#x60;: Zernio downloads the file (public https URL, no redirects,   capped at 100 MB) and forwards it. Use this for anything above a few megabytes. - multipart form-data with a &#x60;file&#x60; part (and an optional &#x60;fileName&#x60;): bounded by the   request body limit of about 4.5 MB; larger uploads must use the &#x60;url&#x60; form. Not idempotent. 
+Uploads a knowledge file. Not idempotent.  Accepted types: pdf, doc, docx, png, jpg, jpeg, plus csv and xlsx when Meta enabled extraction on the asset. Meta&#39;s limit is 100 MB.  ### Two ways to send the file  - JSON &#x60;{ url, fileName }&#x60;: Zernio downloads the file (public https URL, no redirects, capped at 100 MB) and forwards it. Use this for anything above a few megabytes. - multipart form-data with a &#x60;file&#x60; part (and an optional &#x60;fileName&#x60;): bounded by the request body limit of about 4.5 MB. Larger uploads must use the &#x60;url&#x60; form. 
 
 ### Example
 

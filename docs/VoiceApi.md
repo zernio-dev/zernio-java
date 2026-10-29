@@ -49,7 +49,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Attach a number to a SIP trunk
 
-Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+Routes the number&#39;s calls to the trunk. The external platform receives its inbound directly and can present it as outbound caller ID.  While attached, Zernio-side voice features are off for this number: call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling. So the number must have Calls and WhatsApp calling disabled before attaching.  SMS and WhatsApp messaging are unaffected. 
 
 ### Example
 
@@ -127,7 +127,7 @@ public class Example {
 
 Attach a number to a SIP trunk
 
-Routes the number&#39;s calls to the trunk: the external platform receives its inbound directly and can present it as outbound caller ID. While attached, Zernio-side voice features are off for this number (call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling), so the number must have Calls and WhatsApp calling disabled before attaching. SMS and WhatsApp messaging are unaffected. 
+Routes the number&#39;s calls to the trunk. The external platform receives its inbound directly and can present it as outbound caller ID.  While attached, Zernio-side voice features are off for this number: call forwarding, IVR, voicemail, recording, the softphone, and WhatsApp calling. So the number must have Calls and WhatsApp calling disabled before attaching.  SMS and WhatsApp messaging are unaffected. 
 
 ### Example
 
@@ -363,7 +363,7 @@ ApiResponse<[**CreateSipTrunk201Response**](CreateSipTrunk201Response.md)>
 
 Place an outbound phone call
 
-Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override. Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  The 200 response means the call is dialing; the lifecycle continues asynchronously (track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks). Outbound calls are capped per rolling hour (429 when hit).  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
+Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Outbound calls are capped per rolling hour (429 when hit).  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -387,7 +387,7 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         CreateVoiceCallRequest createVoiceCallRequest = new CreateVoiceCallRequest(); // CreateVoiceCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             CreateVoiceCall200Response result = apiInstance.createVoiceCall(createVoiceCallRequest, idempotencyKey);
             System.out.println(result);
@@ -408,7 +408,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createVoiceCallRequest** | [**CreateVoiceCallRequest**](CreateVoiceCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -440,7 +440,7 @@ public class Example {
 
 Place an outbound phone call
 
-Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override. Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  The 200 response means the call is dialing; the lifecycle continues asynchronously (track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks). Outbound calls are capped per rolling hour (429 when hit).  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe; same key + same body replays the original response instead of dialing (and billing) a second call. 
+Dials &#x60;to&#x60; FROM one of your voice-enabled numbers and, on answer, bridges the callee to the number&#39;s stored forward destination, or to the per-call &#x60;forwardTo&#x60; override.  Destinations can be your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. An optional &#x60;greeting&#x60; is spoken to the callee before the bridge.  ### Response and limits  The 200 response means the call is dialing. The lifecycle continues asynchronously: track it via &#x60;GET /v1/voice/calls/{id}&#x60; or the &#x60;call.*&#x60; webhooks.  Outbound calls are capped per rolling hour (429 when hit).  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe. Same key + same body replays the original response instead of dialing (and billing) a second call. 
 
 ### Example
 
@@ -465,7 +465,7 @@ public class Example {
 
         VoiceApi apiInstance = new VoiceApi(defaultClient);
         CreateVoiceCallRequest createVoiceCallRequest = new CreateVoiceCallRequest(); // CreateVoiceCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<CreateVoiceCall200Response> response = apiInstance.createVoiceCallWithHttpInfo(createVoiceCallRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -488,7 +488,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createVoiceCallRequest** | [**CreateVoiceCallRequest**](CreateVoiceCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -521,7 +521,7 @@ ApiResponse<[**CreateVoiceCall200Response**](CreateVoiceCall200Response.md)>
 
 Mint a browser softphone session
 
-Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
+Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK.  1. Call this endpoint and register the browser with the returned session. 2. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call.  The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
 
 ### Example
 
@@ -589,7 +589,7 @@ This endpoint does not need any parameter.
 
 Mint a browser softphone session
 
-Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call. The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
+Step 1 of the two-step browser softphone handshake. Mints a WebRTC session (token + credential) the browser registers with the &#x60;@telnyx/webrtc&#x60; SDK.  1. Call this endpoint and register the browser with the returned session. 2. Once registered, call &#x60;POST /v1/voice/calls/web/dial&#x60; with the returned &#x60;credentialId&#x60; to place the call.  The split avoids bridging to a browser that has not finished registering. The token lives ~1 hour (it must outlive the whole call, not only the handshake). 
 
 ### Example
 
@@ -965,7 +965,7 @@ ApiResponse<[**DetachNumberFromSipTrunk200Response**](DetachNumberFromSipTrunk20
 
 Dial from the browser softphone
 
-Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
+Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers.  The callee&#39;s pickup then connects immediately, with no ringing after they answer.  - The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. - &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
 
 ### Example
 
@@ -1040,7 +1040,7 @@ public class Example {
 
 Dial from the browser softphone
 
-Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers, so the callee&#39;s pickup connects immediately with no ringing after they answer. The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
+Step 2 of the browser softphone handshake: rings the browser registered with the credential from &#x60;POST /v1/voice/calls/web&#x60; first, and dials the target only once the browser answers.  The callee&#39;s pickup then connects immediately, with no ringing after they answer.  - The call is logged as outbound (from &#x3D; your number, to &#x3D; target) and recorded per the number&#39;s settings. - &#x60;ringTimeoutSeconds&#x60; applies to the target&#39;s phone, not to the browser. 
 
 ### Example
 
@@ -1269,7 +1269,7 @@ ApiResponse<[**DisableVoiceOnNumber200Response**](DisableVoiceOnNumber200Respons
 
 Enable phone calling on a number
 
-Turns on regular phone (PSTN) calling for one of your numbers and configures how inbound calls are handled. Inbound calls route to &#x60;forwardTo&#x60;: your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. Optional extras: voicemail, business-hours windows, an IVR menu, a caller blocklist, recording, and transcription. A number can also be voice-enabled with no forward (outbound-only).  Idempotent, and doubles as the settings update: only fields present in the body are written. Omitting &#x60;forwardTo&#x60; preserves the current destination; sending an empty string clears it. 
+Turns on regular phone (PSTN) calling for one of your numbers and configures how inbound calls are handled.  Inbound calls route to &#x60;forwardTo&#x60;: your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. A number can also be voice-enabled with no forward (outbound-only).  Optional extras: voicemail, business-hours windows, an IVR menu, a caller blocklist, recording, and transcription.  ### Updating settings  Idempotent, and doubles as the settings update: only fields present in the body are written.  - Omitting &#x60;forwardTo&#x60; preserves the current destination. - Sending an empty string clears it. 
 
 ### Example
 
@@ -1346,7 +1346,7 @@ public class Example {
 
 Enable phone calling on a number
 
-Turns on regular phone (PSTN) calling for one of your numbers and configures how inbound calls are handled. Inbound calls route to &#x60;forwardTo&#x60;: your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. Optional extras: voicemail, business-hours windows, an IVR menu, a caller blocklist, recording, and transcription. A number can also be voice-enabled with no forward (outbound-only).  Idempotent, and doubles as the settings update: only fields present in the body are written. Omitting &#x60;forwardTo&#x60; preserves the current destination; sending an empty string clears it. 
+Turns on regular phone (PSTN) calling for one of your numbers and configures how inbound calls are handled.  Inbound calls route to &#x60;forwardTo&#x60;: your own AI voice agent (Vapi/Retell), a phone, or a SIP endpoint. A number can also be voice-enabled with no forward (outbound-only).  Optional extras: voicemail, business-hours windows, an IVR menu, a caller blocklist, recording, and transcription.  ### Updating settings  Idempotent, and doubles as the settings update: only fields present in the body are written.  - Omitting &#x60;forwardTo&#x60; preserves the current destination. - Sending an empty string clears it. 
 
 ### Example
 
@@ -1427,7 +1427,7 @@ ApiResponse<[**EnableVoiceOnNumber200Response**](EnableVoiceOnNumber200Response.
 
 Hang up a live call
 
-Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately). Works for PSTN calls and for WhatsApp calls (the &#x60;callId&#x60; returned by &#x60;POST /v1/whatsapp/calls&#x60;, or an inbound WhatsApp call id). A WhatsApp call forwarded to a &#x60;wss://&#x60; destination also ends automatically when that WebSocket closes. Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
+Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately).  ### Supported calls  - PSTN calls. - WhatsApp calls: the &#x60;callId&#x60; returned by &#x60;POST /v1/whatsapp/calls&#x60;, or an inbound WhatsApp call id.  A WhatsApp call forwarded to a &#x60;wss://&#x60; destination also ends automatically when that WebSocket closes.  ### Idempotency and timing  Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status.  Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
 
 ### Example
 
@@ -1500,7 +1500,7 @@ public class Example {
 
 Hang up a live call
 
-Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately). Works for PSTN calls and for WhatsApp calls (the &#x60;callId&#x60; returned by &#x60;POST /v1/whatsapp/calls&#x60;, or an inbound WhatsApp call id). A WhatsApp call forwarded to a &#x60;wss://&#x60; destination also ends automatically when that WebSocket closes. Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status. Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
+Hangs up a live call on demand, including an outbound call that is still ringing and has not been answered yet (the callee stops ringing immediately).  ### Supported calls  - PSTN calls. - WhatsApp calls: the &#x60;callId&#x60; returned by &#x60;POST /v1/whatsapp/calls&#x60;, or an inbound WhatsApp call id.  A WhatsApp call forwarded to a &#x60;wss://&#x60; destination also ends automatically when that WebSocket closes.  ### Idempotency and timing  Idempotent: ending a call that already ended (or never connected) returns success with the call&#39;s current status.  Final duration/cost are written asynchronously when the hangup event lands, so the call doc may briefly still show its prior status. 
 
 ### Example
 
@@ -1871,7 +1871,7 @@ ApiResponse<[**GetVoiceCall200Response**](GetVoiceCall200Response.md)>
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons. Same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice. Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line (PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;). 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -1950,7 +1950,7 @@ public class Example {
 
 Estimate call cost
 
-Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons. Same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice. Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line (PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;). 
+Pre-call cost estimate for a PSTN call: the carrier leg plus optional recording and transcription add-ons.  It uses the same billing formula as the post-call invoice, so the quote and the final charge can&#39;t disagree. The per-minute figure is deliberately conservative (the real cost comes from the settled carrier record after the call), so estimates trend slightly over the actual invoice.  Parity endpoint of &#x60;GET /v1/whatsapp/calls/estimate&#x60;, minus the Meta line. PSTN calls have no separate Meta bill, so &#x60;totalCostUSD&#x60; equals &#x60;billableCostUSD&#x60;. 
 
 ### Example
 
@@ -2635,7 +2635,7 @@ ApiResponse<[**RotateSipTrunkCredentials200Response**](RotateSipTrunkCredentials
 
 Blind-transfer a live call
 
-Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint). This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
+Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
 
 ### Example
 
@@ -2710,7 +2710,7 @@ public class Example {
 
 Blind-transfer a live call
 
-Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint). This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
+Moves the call&#39;s current leg to a new destination (a phone number or a SIP endpoint).  This is a BLIND transfer: control of the leg is handed off and the call ends normally when the transferred leg hangs up. The caller ID presented on the transfer leg is always your own number. 
 
 ### Example
 

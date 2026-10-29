@@ -2,7 +2,7 @@
 
 # CreateStandaloneAdRequestBrandIdentity
 
-TikTok only. Synthetic Brand Identity used when the ad attributes to a CUSTOMIZED_USER (instead of a real TT_USER @username). Required on the FIRST CUSTOMIZED_USER ad on a `tiktokads` SocialAccount with no cached identity; omit on subsequent ads (the identity is cached on the account after first creation). Non-TikTok platforms ignore this field.  Alternative: configure once via `PATCH /v1/connect/tiktok-ads`, then create ads without this field. 
+TikTok only; non-TikTok platforms ignore this field. Synthetic Brand Identity used when the ad attributes to a CUSTOMIZED_USER (instead of a real TT_USER @username).  Required on the FIRST CUSTOMIZED_USER ad on a `tiktokads` SocialAccount with no cached identity. Omit it on later ads: the identity is cached on the account after first creation.  Alternative: configure once via `PATCH /v1/connect/tiktok-ads`, then create ads without this field. 
 
 ## Properties
 

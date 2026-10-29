@@ -43,11 +43,11 @@ All URIs are relative to *https://zernio.com/api*
 
 ## checkWhatsAppNumberAvailability
 
-> CheckPhoneNumberAvailability200Response checkWhatsAppNumberAvailability(country, numberType, sms)
+> CheckWhatsAppNumberAvailability200Response checkWhatsAppNumberAvailability(country, numberType, sms)
 
 Check country availability
 
-Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  A pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). It tells you whether we have deliverable inventory, and what address the customer needs. Call this before starting the KYC form for regulated countries.  ### Address constraints  - &#x60;addressConstraint: geo&#x60;: the registered address MUST be in one of the returned &#x60;areas&#x60; (the only place we have stock). A different-area address passes pre-approval but the number can never be assigned. - &#x60;addressConstraint: country&#x60;: any in-country address works. - &#x60;addressConstraint: none&#x60;: field-only / instant country, no address. 
 
 ### Example
 
@@ -74,7 +74,7 @@ public class Example {
         String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         Boolean sms = true; // Boolean | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool.
         try {
-            CheckPhoneNumberAvailability200Response result = apiInstance.checkWhatsAppNumberAvailability(country, numberType, sms);
+            CheckWhatsAppNumberAvailability200Response result = apiInstance.checkWhatsAppNumberAvailability(country, numberType, sms);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppPhoneNumbersApi#checkWhatsAppNumberAvailability");
@@ -98,7 +98,7 @@ public class Example {
 
 ### Return type
 
-[**CheckPhoneNumberAvailability200Response**](CheckPhoneNumberAvailability200Response.md)
+[**CheckWhatsAppNumberAvailability200Response**](CheckWhatsAppNumberAvailability200Response.md)
 
 
 ### Authorization
@@ -120,11 +120,11 @@ public class Example {
 
 ## checkWhatsAppNumberAvailabilityWithHttpInfo
 
-> ApiResponse<CheckPhoneNumberAvailability200Response> checkWhatsAppNumberAvailability checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, sms)
+> ApiResponse<CheckWhatsAppNumberAvailability200Response> checkWhatsAppNumberAvailability checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, sms)
 
 Check country availability
 
-Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  Pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). Tells you whether we have deliverable inventory, and what address the customer needs:   - &#x60;addressConstraint: geo&#x60;  → the registered address MUST be in one of     the returned &#x60;areas&#x60; (the only place we have stock). A different-area     address passes pre-approval but the number can never be assigned.   - &#x60;addressConstraint: country&#x60; → any in-country address works.   - &#x60;addressConstraint: none&#x60; → field-only / instant country, no address. Call this before starting the KYC form for regulated countries. 
+Deprecated alias of &#x60;/v1/phone-numbers/availability&#x60;; same contract. New integrations should use that path.  A pre-purchase check, so you can warn BEFORE a customer invests in KYC (regulated review is async, 1-3 days). It tells you whether we have deliverable inventory, and what address the customer needs. Call this before starting the KYC form for regulated countries.  ### Address constraints  - &#x60;addressConstraint: geo&#x60;: the registered address MUST be in one of the returned &#x60;areas&#x60; (the only place we have stock). A different-area address passes pre-approval but the number can never be assigned. - &#x60;addressConstraint: country&#x60;: any in-country address works. - &#x60;addressConstraint: none&#x60;: field-only / instant country, no address. 
 
 ### Example
 
@@ -152,7 +152,7 @@ public class Example {
         String numberType = "local"; // String | Check a specific offered type (stock and address constraints are per type). Omitted = the country's default type.
         Boolean sms = true; // Boolean | Pass true when the buyer wants SMS: availability, areas, and areaOptions then describe the SMS-capable pool (an SMS purchase orders from it), not the wider voice-only pool.
         try {
-            ApiResponse<CheckPhoneNumberAvailability200Response> response = apiInstance.checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, sms);
+            ApiResponse<CheckWhatsAppNumberAvailability200Response> response = apiInstance.checkWhatsAppNumberAvailabilityWithHttpInfo(country, numberType, sms);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -178,7 +178,7 @@ public class Example {
 
 ### Return type
 
-ApiResponse<[**CheckPhoneNumberAvailability200Response**](CheckPhoneNumberAvailability200Response.md)>
+ApiResponse<[**CheckWhatsAppNumberAvailability200Response**](CheckWhatsAppNumberAvailability200Response.md)>
 
 
 ### Authorization
@@ -201,11 +201,11 @@ ApiResponse<[**CheckPhoneNumberAvailability200Response**](CheckPhoneNumberAvaila
 
 ## createWhatsAppNumberKycLink
 
-> CreatePhoneNumberKycLink200Response createWhatsAppNumberKycLink(createPhoneNumberKycLinkRequest)
+> CreatePhoneNumberKycLink200Response createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest)
 
 Create a hosted KYC link
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Creates a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team.  They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  ### Options  - White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). - Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). - Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
 
 ### Example
 
@@ -228,9 +228,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest = new CreatePhoneNumberKycLinkRequest(); // CreatePhoneNumberKycLinkRequest | 
+        CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = new CreateWhatsAppNumberKycLinkRequest(); // CreateWhatsAppNumberKycLinkRequest | 
         try {
-            CreatePhoneNumberKycLink200Response result = apiInstance.createWhatsAppNumberKycLink(createPhoneNumberKycLinkRequest);
+            CreatePhoneNumberKycLink200Response result = apiInstance.createWhatsAppNumberKycLink(createWhatsAppNumberKycLinkRequest);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling WhatsAppPhoneNumbersApi#createWhatsAppNumberKycLink");
@@ -248,7 +248,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createPhoneNumberKycLinkRequest** | [**CreatePhoneNumberKycLinkRequest**](CreatePhoneNumberKycLinkRequest.md)|  | |
+| **createWhatsAppNumberKycLinkRequest** | [**CreateWhatsAppNumberKycLinkRequest**](CreateWhatsAppNumberKycLinkRequest.md)|  | |
 
 ### Return type
 
@@ -273,11 +273,11 @@ public class Example {
 
 ## createWhatsAppNumberKycLinkWithHttpInfo
 
-> ApiResponse<CreatePhoneNumberKycLink200Response> createWhatsAppNumberKycLink createWhatsAppNumberKycLinkWithHttpInfo(createPhoneNumberKycLinkRequest)
+> ApiResponse<CreatePhoneNumberKycLink200Response> createWhatsAppNumberKycLink createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest)
 
 Create a hosted KYC link
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Create a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team. They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/share&#x60;; same contract. New integrations should use that path.  Creates a single-use, 7-day hosted KYC link that your end customer completes WITHOUT a Zernio login. Useful when the person who holds the ID and address is not your team.  They fill the regulated verification on a Zernio-hosted page; the number provisions under YOUR account once they submit. Only regulated (KYC) countries are valid: a country that does not require KYC returns 400.  ### Options  - White-label the page with &#x60;branding&#x60; (your company name, logo, brand color). - Supply &#x60;redirect_url&#x60; to send the end customer back to your own site after a successful submit (completion params are appended; see below). - Listen for the &#x60;whatsapp.number.kyc_submitted&#x60; webhook to react when the form is completed. 
 
 ### Example
 
@@ -301,9 +301,9 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        CreatePhoneNumberKycLinkRequest createPhoneNumberKycLinkRequest = new CreatePhoneNumberKycLinkRequest(); // CreatePhoneNumberKycLinkRequest | 
+        CreateWhatsAppNumberKycLinkRequest createWhatsAppNumberKycLinkRequest = new CreateWhatsAppNumberKycLinkRequest(); // CreateWhatsAppNumberKycLinkRequest | 
         try {
-            ApiResponse<CreatePhoneNumberKycLink200Response> response = apiInstance.createWhatsAppNumberKycLinkWithHttpInfo(createPhoneNumberKycLinkRequest);
+            ApiResponse<CreatePhoneNumberKycLink200Response> response = apiInstance.createWhatsAppNumberKycLinkWithHttpInfo(createWhatsAppNumberKycLinkRequest);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -323,7 +323,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **createPhoneNumberKycLinkRequest** | [**CreatePhoneNumberKycLinkRequest**](CreatePhoneNumberKycLinkRequest.md)|  | |
+| **createWhatsAppNumberKycLinkRequest** | [**CreateWhatsAppNumberKycLinkRequest**](CreateWhatsAppNumberKycLinkRequest.md)|  | |
 
 ### Return type
 
@@ -353,7 +353,7 @@ ApiResponse<[**CreatePhoneNumberKycLink200Response**](CreatePhoneNumberKycLink20
 
 Get number status
 
-Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+Live snapshot of a connected number straight from Meta.  ### Phone-number node  - display number - display name + approval - quality rating - messaging-limit tier - throughput - official-business badge - connection status - health_status  ### Owning WhatsApp Business Account  - name - business verification - timezone - health_status  ### Why live  It is fetched live because Meta updates quality/tier/name/health over time. The call also refreshes the cached values shown on the connection card. 
 
 ### Example
 
@@ -426,7 +426,7 @@ public class Example {
 
 Get number status
 
-Live snapshot of a connected number straight from Meta: the phone-number node (display number, display name + approval, quality rating, messaging-limit tier, throughput, official-business badge, connection status, health_status) and its owning WhatsApp Business Account (name, business verification, timezone, health_status). Fetched live because Meta updates quality/tier/name/health over time; the call also refreshes the cached values shown on the connection card. 
+Live snapshot of a connected number straight from Meta.  ### Phone-number node  - display number - display name + approval - quality rating - messaging-limit tier - throughput - official-business badge - connection status - health_status  ### Owning WhatsApp Business Account  - name - business verification - timezone - health_status  ### Why live  It is fetched live because Meta updates quality/tier/name/health over time. The call also refreshes the cached values shown on the connection card. 
 
 ### Example
 
@@ -655,7 +655,7 @@ ApiResponse<[**GetWhatsAppNumberKycForm200Response**](GetWhatsAppNumberKycForm20
 
 Get declined requirements
 
-Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET).  The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group).  Falls back to the full spec if the provider exposes no per-requirement flags. 
 
 ### Example
 
@@ -729,7 +729,7 @@ public class Example {
 
 Get declined requirements
 
-Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET). The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group). Falls back to the full spec if the provider exposes no per-requirement flags. 
+Deprecated alias of &#x60;/v1/phone-numbers/{id}/remediate&#x60;; same contract. New integrations should use that path.  For a number in &#x60;regulatory_declined&#x60;, returns ONLY the requirements the reviewer flagged declined, as a form spec (same shape as the KYC form GET).  The customer fixes only those, because Telnyx supports correcting a declined requirement group and re-submitting it (no new number/group).  Falls back to the full spec if the provider exposes no per-requirement flags. 
 
 ### Example
 
@@ -807,7 +807,7 @@ ApiResponse<[**GetWhatsAppNumberRemediation200Response**](GetWhatsAppNumberRemed
 
 Get phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track:  - Meta pre-verification (US sync path) - for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined)  When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user.  Or subscribe to the whatsapp.number.* webhooks instead of polling. 
 
 ### Example
 
@@ -880,7 +880,7 @@ public class Example {
 
 Get phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track Meta pre-verification (US sync path) and, for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined). When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user. (Or subscribe to the whatsapp.number.* webhooks instead of polling.) 
+Deprecated alias of &#x60;/v1/phone-numbers/{id}&#x60;; same contract. New integrations should use that path.  Retrieve the current status of a purchased phone number. Poll this to track:  - Meta pre-verification (US sync path) - for regulated (Tier 3/4) numbers, the async lifecycle: pending_regulatory → active (or regulatory_declined)  When a regulated number has an Onfido ID step, &#x60;onfidoVerificationUrl&#x60; appears here once the order is placed. Forward it to the end user.  Or subscribe to the whatsapp.number.* webhooks instead of polling. 
 
 ### Example
 
@@ -980,7 +980,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        String status = "provisioning"; // String | Filter by status (by default excludes released numbers). NOTE: `status=pending_regulatory` returns the \"provisioning\" view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. `verifying` is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches `active`. 
+        String status = "provisioning"; // String | Filter by status. By default, released numbers are excluded.  - `status=pending_regulatory` returns the \"provisioning\" view: numbers still in review PLUS ones declined in the last 30 days, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of disappearing. Re-submit declined numbers via POST /v1/whatsapp/phone-numbers/{id}/remediate. - `verifying`: the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code. Not billed until it reaches `active`. 
         String profileId = "profileId_example"; // String | Filter by profile
         try {
             ListPhoneNumbers200Response result = apiInstance.getWhatsAppPhoneNumbers(status, profileId);
@@ -1001,7 +1001,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **status** | **String**| Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  | [optional] [enum: provisioning, verifying, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
+| **status** | **String**| Filter by status. By default, released numbers are excluded.  - &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS ones declined in the last 30 days, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of disappearing. Re-submit declined numbers via POST /v1/whatsapp/phone-numbers/{id}/remediate. - &#x60;verifying&#x60;: the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code. Not billed until it reaches &#x60;active&#x60;.  | [optional] [enum: provisioning, verifying, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
 | **profileId** | **String**| Filter by profile | [optional] |
 
 ### Return type
@@ -1055,7 +1055,7 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         WhatsAppPhoneNumbersApi apiInstance = new WhatsAppPhoneNumbersApi(defaultClient);
-        String status = "provisioning"; // String | Filter by status (by default excludes released numbers). NOTE: `status=pending_regulatory` returns the \"provisioning\" view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. `verifying` is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches `active`. 
+        String status = "provisioning"; // String | Filter by status. By default, released numbers are excluded.  - `status=pending_regulatory` returns the \"provisioning\" view: numbers still in review PLUS ones declined in the last 30 days, so a failed registration surfaces (with `regulatoryDeclineReason`) instead of disappearing. Re-submit declined numbers via POST /v1/whatsapp/phone-numbers/{id}/remediate. - `verifying`: the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code. Not billed until it reaches `active`. 
         String profileId = "profileId_example"; // String | Filter by profile
         try {
             ApiResponse<ListPhoneNumbers200Response> response = apiInstance.getWhatsAppPhoneNumbersWithHttpInfo(status, profileId);
@@ -1078,7 +1078,7 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **status** | **String**| Filter by status (by default excludes released numbers). NOTE: &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS recently-declined (last 30 days) ones, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of silently disappearing. Declined numbers can be re-submitted via POST /v1/whatsapp/phone-numbers/{id}/remediate. &#x60;verifying&#x60; is the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code; the number is not billed until it reaches &#x60;active&#x60;.  | [optional] [enum: provisioning, verifying, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
+| **status** | **String**| Filter by status. By default, released numbers are excluded.  - &#x60;status&#x3D;pending_regulatory&#x60; returns the \&quot;provisioning\&quot; view: numbers still in review PLUS ones declined in the last 30 days, so a failed registration surfaces (with &#x60;regulatoryDeclineReason&#x60;) instead of disappearing. Re-submit declined numbers via POST /v1/whatsapp/phone-numbers/{id}/remediate. - &#x60;verifying&#x60;: the short-lived state after the number is provisioned on our side while WhatsApp confirms the activation code. Not billed until it reaches &#x60;active&#x60;.  | [optional] [enum: provisioning, verifying, pending_payment, pending_regulatory, regulatory_declined, active, suspended, releasing, released] |
 | **profileId** | **String**| Filter by profile | [optional] |
 
 ### Return type
@@ -1109,7 +1109,7 @@ ApiResponse<[**ListPhoneNumbers200Response**](ListPhoneNumbers200Response.md)>
 
 Get pricing analytics
 
-Message volume and approximate cost for one connected WhatsApp number, read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number. Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice. Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges) and answers out-of-range requests with an error. 
+Message volume and approximate cost for one connected WhatsApp number. Read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number.  Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice.  Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges), and answers out-of-range requests with an error. 
 
 ### Example
 
@@ -1135,7 +1135,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp account ID
         OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
         OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
-        String granularity = "HALF_HOUR"; // String | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with `param: granularity` and Meta's reason in `error`. Use DAILY for short or month-to-date ranges. 
+        String granularity = "HALF_HOUR"; // String | Size of each data point. Use DAILY for short or month-to-date ranges.  Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today). That is a 400 with `param: granularity` and Meta's reason in `error`. 
         String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
         String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
         String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
@@ -1163,7 +1163,7 @@ public class Example {
 | **accountId** | **String**| WhatsApp account ID | |
 | **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
 | **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
-| **granularity** | **String**| Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;. Use DAILY for short or month-to-date ranges.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **granularity** | **String**| Size of each data point. Use DAILY for short or month-to-date ranges.  Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today). That is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
 | **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
 | **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
 | **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
@@ -1188,7 +1188,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
-| **400** | Invalid query, or Meta refused it. When Meta refuses, &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner), &#x60;code&#x60; is &#x60;invalid_field_value&#x60;, &#x60;platformError&#x60; holds Meta&#39;s raw error, and &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY. Retrying the same query fails the same way.  |  -  |
+| **400** | Invalid query, or Meta refused it. Retrying the same query fails the same way.  When Meta refuses:  - &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner). - &#x60;code&#x60; is &#x60;invalid_field_value&#x60; and &#x60;platformError&#x60; holds Meta&#39;s raw error. - &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1198,7 +1198,7 @@ public class Example {
 
 Get pricing analytics
 
-Message volume and approximate cost for one connected WhatsApp number, read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number. Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice. Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges) and answers out-of-range requests with an error. 
+Message volume and approximate cost for one connected WhatsApp number. Read live from Meta&#39;s &#x60;pricing_analytics&#x60; on the WhatsApp Business Account and scoped to that account&#39;s phone number.  Meta&#39;s figures are approximate and can lag; Meta bills from its own invoice.  Meta limits how far back and how fine the data goes (for example HALF_HOUR only over short ranges), and answers out-of-range requests with an error. 
 
 ### Example
 
@@ -1225,7 +1225,7 @@ public class Example {
         String accountId = "accountId_example"; // String | WhatsApp account ID
         OffsetDateTime start = OffsetDateTime.now(); // OffsetDateTime | Range start, ISO 8601 date or date-time.
         OffsetDateTime end = OffsetDateTime.now(); // OffsetDateTime | Range end, ISO 8601 date or date-time. Must be after start.
-        String granularity = "HALF_HOUR"; // String | Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with `param: granularity` and Meta's reason in `error`. Use DAILY for short or month-to-date ranges. 
+        String granularity = "HALF_HOUR"; // String | Size of each data point. Use DAILY for short or month-to-date ranges.  Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today). That is a 400 with `param: granularity` and Meta's reason in `error`. 
         String dimensions = "PRICING_CATEGORY,COUNTRY"; // String | Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval.
         String metricTypes = "COST,VOLUME"; // String | Comma-separated: COST, VOLUME. Defaults to both.
         String pricingTypes = "REGULAR"; // String | Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT.
@@ -1255,7 +1255,7 @@ public class Example {
 | **accountId** | **String**| WhatsApp account ID | |
 | **start** | **OffsetDateTime**| Range start, ISO 8601 date or date-time. | |
 | **end** | **OffsetDateTime**| Range end, ISO 8601 date or date-time. Must be after start. | |
-| **granularity** | **String**| Size of each data point. Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today); that is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;. Use DAILY for short or month-to-date ranges.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
+| **granularity** | **String**| Size of each data point. Use DAILY for short or month-to-date ranges.  Meta refuses MONTHLY when the range is too short for a monthly bucket (for example a range that starts at the beginning of the current month and ends today). That is a 400 with &#x60;param: granularity&#x60; and Meta&#39;s reason in &#x60;error&#x60;.  | [enum: HALF_HOUR, DAILY, MONTHLY] |
 | **dimensions** | **String**| Comma-separated breakdowns: COUNTRY, PHONE, PRICING_CATEGORY, PRICING_TYPE, TIER. Without it each data point is a total for the interval. | [optional] |
 | **metricTypes** | **String**| Comma-separated: COST, VOLUME. Defaults to both. | [optional] |
 | **pricingTypes** | **String**| Comma-separated filter: REGULAR, FREE_CUSTOMER_SERVICE, FREE_ENTRY_POINT. | [optional] |
@@ -1280,7 +1280,7 @@ ApiResponse<[**GetWhatsAppPricingAnalytics200Response**](GetWhatsAppPricingAnaly
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Pricing data points for the range |  -  |
-| **400** | Invalid query, or Meta refused it. When Meta refuses, &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner), &#x60;code&#x60; is &#x60;invalid_field_value&#x60;, &#x60;platformError&#x60; holds Meta&#39;s raw error, and &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY. Retrying the same query fails the same way.  |  -  |
+| **400** | Invalid query, or Meta refused it. Retrying the same query fails the same way.  When Meta refuses:  - &#x60;error&#x60; carries Meta&#39;s own reason (for example \&quot;Too small time window to get monthly granularity data.\&quot; or that COST is not shown for businesses billed through a partner). - &#x60;code&#x60; is &#x60;invalid_field_value&#x60; and &#x60;platformError&#x60; holds Meta&#39;s raw error. - &#x60;param&#x60; is &#x60;granularity&#x60; when the range is too short for MONTHLY.  |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **404** | Resource not found |  -  |
 
@@ -1429,7 +1429,7 @@ ApiResponse<[**ListWhatsAppNumberCountries200Response**](ListWhatsAppNumberCount
 
 Move a number to another profile
 
-Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a Zernio-provisioned number from any profile but its own is rejected with a &#x60;409&#x60; (&#x60;WHATSAPP_NUMBER_PINNED_TO_PROFILE&#x60;). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  The destination profile may already hold other numbers. 
+Move a provisioned number to a different profile.  A number is not a single record. These all carry a profileId, and this endpoint moves them together:  - the number itself - hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) - the &#x60;whatsapp&#x60; account, once WhatsApp is connected  ### Why not &#x60;PATCH /v1/accounts/{accountId}&#x60;  That endpoint moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles.  Connecting a Zernio-provisioned number from any profile but its own is rejected with a &#x60;409&#x60; (&#x60;WHATSAPP_NUMBER_PINNED_TO_PROFILE&#x60;). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  ### Notes  - &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id. - The destination profile may already hold other numbers. 
 
 ### Example
 
@@ -1506,7 +1506,7 @@ public class Example {
 
 Move a number to another profile
 
-Move a provisioned number to a different profile.  A number is not a single record. Alongside the number itself there are hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) and, once WhatsApp is connected, the &#x60;whatsapp&#x60; account. They all carry a profileId and this endpoint moves them together.  Use this instead of &#x60;PATCH /v1/accounts/{accountId}&#x60;: that one moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles. Connecting a Zernio-provisioned number from any profile but its own is rejected with a &#x60;409&#x60; (&#x60;WHATSAPP_NUMBER_PINNED_TO_PROFILE&#x60;). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id.  The destination profile may already hold other numbers. 
+Move a provisioned number to a different profile.  A number is not a single record. These all carry a profileId, and this endpoint moves them together:  - the number itself - hidden telephony owner accounts (platform &#x60;phone&#x60;, plus &#x60;sms&#x60; when SMS is enabled) - the &#x60;whatsapp&#x60; account, once WhatsApp is connected  ### Why not &#x60;PATCH /v1/accounts/{accountId}&#x60;  That endpoint moves the account only and leaves the number itself pinned to its original profile, which splits the number across two profiles.  Connecting a Zernio-provisioned number from any profile but its own is rejected with a &#x60;409&#x60; (&#x60;WHATSAPP_NUMBER_PINNED_TO_PROFILE&#x60;). This endpoint is how you re-home the number first, so it can then be connected from the new profile.  ### Notes  - &#x60;id&#x60; is the number record id from &#x60;GET /v1/phone-numbers&#x60;, not an account id. - The destination profile may already hold other numbers. 
 
 ### Example
 
@@ -1587,7 +1587,7 @@ ApiResponse<[**MoveWhatsAppNumberToProfile200Response**](MoveWhatsAppNumberToPro
 
 Purchase phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan.  ### Payment-first purchase  The system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;.  With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect).  - No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;. - A regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  ### Price  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase. It is stamped on the number: later rate-card changes never move a number you already own. 
 
 ### Example
 
@@ -1653,7 +1653,7 @@ public class Example {
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
+| **409** | Conflict: duplicate-purchase protection, or no deliverable inventory for the request. Codes:  - PURCHASE_VELOCITY: another number was purchased within the last 10 minutes. Retry with allowMultiple: true to confirm. - AREA_CODE_UNAVAILABLE: the requested areaCode has no deliverable inventory right now. Pick another area or omit areaCode. - PHONE_NUMBER_UNAVAILABLE: search again and pick another number. - COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now. Pick another. - NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses. Pass an areaCode or try again for a fresh batch.  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
@@ -1665,7 +1665,7 @@ public class Example {
 
 Purchase phone number
 
-Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Payment-first: the system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;. With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect). No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;; a regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase, and it is stamped on the number: later rate-card changes never move a number you already own.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan. 
+Deprecated alias of &#x60;/v1/phone-numbers/purchase&#x60;; same contract. New integrations should use that path.  Requires usage-based billing (the Usage plan). The maximum number of phone numbers is determined by the user&#39;s plan.  ### Payment-first purchase  The system provisions a number and auto-assigns it, unless you pass &#x60;phoneNumber&#x60; to buy one exact number from &#x60;GET /v1/phone-numbers/available&#x60;.  With usage-based billing active and a payment method on file, the number provisions inline and bills per month on your usage-based invoice (there is no checkout redirect).  - No payment method on file returns &#x60;402 PAYMENT_REQUIRED&#x60;. - A regulated country returns &#x60;202&#x60; with &#x60;status: \&quot;kyc_required\&quot;&#x60; and a &#x60;kycUrl&#x60;.  ### Price  The monthly price is the one &#x60;GET /v1/phone-numbers/countries&#x60; quotes for that country and &#x60;numberType&#x60; at the time of purchase. It is stamped on the number: later rate-card changes never move a number you already own. 
 
 ### Example
 
@@ -1734,7 +1734,7 @@ ApiResponse<[**PurchaseWhatsAppPhoneNumber200Response**](PurchaseWhatsAppPhoneNu
 | **400** | Plan limit reached, profileId required, or country not available |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | A paid plan is required |  -  |
-| **409** | Either duplicate-purchase protection (code PURCHASE_VELOCITY: another number was purchased within the last 10 minutes; retry with allowMultiple: true to confirm), or the requested areaCode has no deliverable inventory right now (code AREA_CODE_UNAVAILABLE: pick another area or omit areaCode; PHONE_NUMBER_UNAVAILABLE: search again and pick another number; COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now, pick another; NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses, pass an areaCode or try again for a fresh batch).  |  -  |
+| **409** | Conflict: duplicate-purchase protection, or no deliverable inventory for the request. Codes:  - PURCHASE_VELOCITY: another number was purchased within the last 10 minutes. Retry with allowMultiple: true to confirm. - AREA_CODE_UNAVAILABLE: the requested areaCode has no deliverable inventory right now. Pick another area or omit areaCode. - PHONE_NUMBER_UNAVAILABLE: search again and pick another number. - COUNTRY_OUT_OF_STOCK: this country and type have no orderable numbers right now. Pick another. - NO_WHATSAPP_ELIGIBLE_NUMBER: every number the carrier offered is one WhatsApp refuses. Pass an areaCode or try again for a fresh batch.  |  -  |
 | **503** | The carrier could not take the order just now (code CARRIER_UNAVAILABLE); the number is not taken, retry the same request in a minute. |  -  |
 | **202** | Country requires end-user KYC before the number can be ordered. |  -  |
 | **402** | Payment method required (usage-based billing account with no card on file). Response body carries code: PAYMENT_REQUIRED; add a card, then retry. |  -  |
@@ -2235,7 +2235,7 @@ ApiResponse<[**SearchAvailableWhatsAppNumbers200Response**](SearchAvailableWhats
 
 Submit KYC
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio.  ### What happens on submit  1. Zernio builds and submits a regulatory requirement group and claims a pending_regulatory slot. 2. The number is ordered + activated once the provider approves (asynchronous).  A customer may hold several same-country numbers in review at once. A double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  ### ID-card documents  Carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  ### Check availability first  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
 
 ### Example
 
@@ -2299,7 +2299,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. When phoneNumber was sent and that exact number is no longer available (or WhatsApp cannot use it), code phone_number_unavailable with param phoneNumber: nothing was ordered, pick another number. |  -  |
+| **409** | A conflict on the KYC order. The &#x60;code&#x60; says why:  - area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created (see the pre-order note below). - area_code_unavailable: the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered. Pick another area, or a registered address in an area with stock. - country_out_of_stock: the whole country and type pool has nothing deliverable and cannot be pre-ordered. Choose an area with stock or set a stock watch. - phone_number_unavailable (param phoneNumber): phoneNumber was sent and that exact number is no longer available (or WhatsApp cannot use it). Nothing was ordered; pick another number.  **Pre-order**: details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode).  Also returned when reuse was requested but no prior approved verification exists for this country.  When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears, and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
@@ -2309,7 +2309,7 @@ public class Example {
 
 Submit KYC
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio. Builds + submits a regulatory requirement group and claims a pending_regulatory slot; the number is ordered + activated once the provider approves (asynchronous). A customer may hold several same-country numbers in review at once; a double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  For an ID-card document requirement, carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc&#x60;; same contract. New integrations should use that path.  Submit the end customer&#39;s KYC (textual values, uploaded documents, address) for a Tier 3/4 country. Documents are streamed straight to the number provider and are not stored by Zernio.  ### What happens on submit  1. Zernio builds and submits a regulatory requirement group and claims a pending_regulatory slot. 2. The number is ordered + activated once the provider approves (asynchronous).  A customer may hold several same-country numbers in review at once. A double-submit of the SAME attempt is deduped via &#x60;submissionId&#x60;.  ### ID-card documents  Carriers commonly require BOTH sides: combine the front and back into a single file before uploading (the dashboard does this automatically). A one-sided ID is a common decline reason; fix it via POST /v1/whatsapp/phone-numbers/{id}/remediate.  ### Check availability first  Before submitting, call GET /v1/whatsapp/phone-numbers/availability to check the country has deliverable inventory and, for geographic-match countries, which area the address must be in. Otherwise the submission can pass review yet never be assignable a number. 
 
 ### Example
 
@@ -2376,7 +2376,7 @@ ApiResponse<[**SubmitPhoneNumberKyc200Response**](SubmitPhoneNumberKyc200Respons
 |-------------|-------------|------------------|
 | **200** | KYC submitted (or already submitted); number pending review. |  -  |
 | **400** | Validation error (e.g. address not in-country, file too large) |  -  |
-| **409** | code area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created; details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode). Otherwise: reuse was requested but no prior approved verification exists for this country; or the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered (code: area_code_unavailable; pick another area, or a registered address in an area with stock); or the whole country and type pool has nothing deliverable and cannot be pre-ordered (code: country_out_of_stock; choose an area with stock or set a stock watch). When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears and details.undeliverableUntil carries it as an ISO timestamp. When phoneNumber was sent and that exact number is no longer available (or WhatsApp cannot use it), code phone_number_unavailable with param phoneNumber: nothing was ordered, pick another number. |  -  |
+| **409** | A conflict on the KYC order. The &#x60;code&#x60; says why:  - area_pre_order_available: the country requires the number to cover the registered address and that area has no stock, but the carrier can source one. Nothing was created (see the pre-order note below). - area_code_unavailable: the requested areaCode (or, in a geographic-match country, the area covering the registered address) has no deliverable inventory and cannot be pre-ordered. Pick another area, or a registered address in an area with stock. - country_out_of_stock: the whole country and type pool has nothing deliverable and cannot be pre-ordered. Choose an area with stock or set a stock watch. - phone_number_unavailable (param phoneNumber): phoneNumber was sent and that exact number is no longer available (or WhatsApp cannot use it). Nothing was ordered; pick another number.  **Pre-order**: details carries { areaCode, areaName, estimatedWeeks: \&quot;2-4\&quot;, billedWhenActive: true }. Show it to the customer and, once they agree, resend the same body with preOrder true (optionally with details.areaCode as areaCode).  Also returned when reuse was requested but no prior approved verification exists for this country.  When the only numbers the carrier lists failed WhatsApp registration recently and are held back, the message names the date the first one clears, and details.undeliverableUntil carries it as an ISO timestamp. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **503** | An upstream service or database is temporarily unavailable. Retry after the indicated delay. A timed-out write may have completed upstream; check its outcome before resubmitting. |  * Retry-After - Minimum delay in seconds before retrying. <br>  |
 
@@ -2387,7 +2387,7 @@ ApiResponse<[**SubmitPhoneNumberKyc200Response**](SubmitPhoneNumberKyc200Respons
 
 Upload a KYC document
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;.  ### Request format  - Send the RAW file bytes as the request body (not base64). - Put the filename in the &#x60;X-Filename&#x60; header. - Uploading documents one-per-request keeps each request under the ~4.5MB body limit.  The document streams straight to the number provider and is not stored by Zernio. 
 
 ### Example
 
@@ -2461,7 +2461,7 @@ public class Example {
 
 Upload a KYC document
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;. Send the RAW file bytes as the request body (not base64); put the filename in the &#x60;X-Filename&#x60; header. Uploading documents one-per-request keeps each request under the ~4.5MB body limit. The document streams straight to the number provider and is not stored by Zernio. 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/upload-document&#x60;; same contract. New integrations should use that path.  Upload ONE document and get back its provider document id, to reference from POST /v1/whatsapp/phone-numbers/kyc via &#x60;documents[].documentId&#x60;.  ### Request format  - Send the RAW file bytes as the request body (not base64). - Put the filename in the &#x60;X-Filename&#x60; header. - Uploading documents one-per-request keeps each request under the ~4.5MB body limit.  The document streams straight to the number provider and is not stored by Zernio. 
 
 ### Example
 
@@ -2539,7 +2539,7 @@ ApiResponse<[**UploadPhoneNumberKycDocument200Response**](UploadPhoneNumberKycDo
 
 Pre-validate KYC address
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration. It validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded.  The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe.  - Only the postal address is sent (no documents, no gov-ID fields). - A region (&#x60;administrative_area&#x60;) is required by the validator. When it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
 
 ### Example
 
@@ -2611,7 +2611,7 @@ public class Example {
 
 Pre-validate KYC address
 
-Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration: validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded. The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe. Only the postal address is sent (no documents, no gov-ID fields). A region (&#x60;administrative_area&#x60;) is required by the validator; when it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
+Deprecated alias of &#x60;/v1/phone-numbers/kyc/validate-address&#x60;; same contract. New integrations should use that path.  Optional early check for the address step of a Tier 4 (end-user identity) registration. It validates a postal address for deliverability BEFORE the full KYC submit, so it can be corrected before any documents are uploaded.  The full submit (POST /v1/whatsapp/phone-numbers/kyc) re-validates the address, so this call is purely a fast feedback path and skipping it is safe.  - Only the postal address is sent (no documents, no gov-ID fields). - A region (&#x60;administrative_area&#x60;) is required by the validator. When it is omitted the pre-check is skipped and &#x60;{ ok: true, skipped: true }&#x60; is returned (the final submit still validates). 
 
 ### Example
 

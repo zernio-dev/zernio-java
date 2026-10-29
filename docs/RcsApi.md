@@ -197,7 +197,7 @@ ApiResponse<[**AddRcsTestDevice201Response**](AddRcsTestDevice201Response.md)>
 
 Request an RCS agent
 
-Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. A profile can hold several agents. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). A profile can hold several agents.  The request lands in our review: nothing is filed with the carriers or billed until we submit it.  - Requires usage-based billing and a card on file. - Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
 
 ### Example
 
@@ -221,7 +221,7 @@ public class Example {
 
         RcsApi apiInstance = new RcsApi(defaultClient);
         CreateRcsAgentRequest createRcsAgentRequest = new CreateRcsAgentRequest(); // CreateRcsAgentRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             CreateRcsAgent201Response result = apiInstance.createRcsAgent(createRcsAgentRequest, idempotencyKey);
             System.out.println(result);
@@ -242,7 +242,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createRcsAgentRequest** | [**CreateRcsAgentRequest**](CreateRcsAgentRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -276,7 +276,7 @@ public class Example {
 
 Request an RCS agent
 
-Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). The request lands in our review: nothing is filed with the carriers or billed until we submit it. A profile can hold several agents. Requires usage-based billing and a card on file. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Requests a new agent for a profile, with a new company (&#x60;brand&#x60;) or an existing one (&#x60;brandId&#x60;, skips vetting when it is already verified). A profile can hold several agents.  The request lands in our review: nothing is filed with the carriers or billed until we submit it.  - Requires usage-based billing and a card on file. - Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
 
 ### Example
 
@@ -301,7 +301,7 @@ public class Example {
 
         RcsApi apiInstance = new RcsApi(defaultClient);
         CreateRcsAgentRequest createRcsAgentRequest = new CreateRcsAgentRequest(); // CreateRcsAgentRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<CreateRcsAgent201Response> response = apiInstance.createRcsAgentWithHttpInfo(createRcsAgentRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -324,7 +324,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **createRcsAgentRequest** | [**CreateRcsAgentRequest**](CreateRcsAgentRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -1405,7 +1405,7 @@ ApiResponse<[**UpdateYoutubeDefaultPlaylist200Response**](UpdateYoutubeDefaultPl
 
 Send the launch filing
 
-Sends the launch details the carriers review (campaign, consent and a public test video). US agents send them once they are in &#x60;testing&#x60;; we review them before they reach the carriers. Agents in other markets send them while still in review (&#x60;requested&#x60;, &#x60;changes_requested&#x60; or &#x60;brand_vetting&#x60;), because we file everything with the carriers at once; this saves the details without changing the status. 
+Sends the launch details the carriers review (campaign, consent and a public test video).  ### When to send  - **US agents**: send them once they are in &#x60;testing&#x60;. We review them before they reach the carriers. - **Other markets**: send them while still in review (&#x60;requested&#x60;, &#x60;changes_requested&#x60; or &#x60;brand_vetting&#x60;), because we file everything with the carriers at once. This saves the details without changing the status. 
 
 ### Example
 
@@ -1482,7 +1482,7 @@ public class Example {
 
 Send the launch filing
 
-Sends the launch details the carriers review (campaign, consent and a public test video). US agents send them once they are in &#x60;testing&#x60;; we review them before they reach the carriers. Agents in other markets send them while still in review (&#x60;requested&#x60;, &#x60;changes_requested&#x60; or &#x60;brand_vetting&#x60;), because we file everything with the carriers at once; this saves the details without changing the status. 
+Sends the launch details the carriers review (campaign, consent and a public test video).  ### When to send  - **US agents**: send them once they are in &#x60;testing&#x60;. We review them before they reach the carriers. - **Other markets**: send them while still in review (&#x60;requested&#x60;, &#x60;changes_requested&#x60; or &#x60;brand_vetting&#x60;), because we file everything with the carriers at once. This saves the details without changing the status. 
 
 ### Example
 
@@ -1563,7 +1563,7 @@ ApiResponse<[**CreateRcsAgent201Response**](CreateRcsAgent201Response.md)>
 
 Send an RCS message
 
-Sends from one of your agents. Use &#x60;text&#x60; for a plain message or &#x60;content&#x60; for rich content (card, carousel, media, suggestion chips). Before launch an agent only reaches test phones that accepted the invite. With the agent&#39;s &#x60;smsFallbackFrom&#x60; set, phones without RCS get &#x60;fallbackText&#x60; (default: the message&#39;s readable text) as SMS.  Replies and status arrive as webhooks with &#x60;platform: \&quot;rcs\&quot;&#x60;: &#x60;message.received&#x60; (a tapped chip carries its postback in &#x60;metadata.postbackPayload&#x60;), &#x60;message.delivered&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Sends an RCS message from one of your agents.  - Use &#x60;text&#x60; for a plain message or &#x60;content&#x60; for rich content (card, carousel, media, suggestion chips). - Before launch an agent only reaches test phones that accepted the invite. - With the agent&#39;s &#x60;smsFallbackFrom&#x60; set, phones without RCS get &#x60;fallbackText&#x60; (default: the message&#39;s readable text) as SMS.  Send an &#x60;Idempotency-Key&#x60; header to make retries safe.  ### Webhooks  Replies and status arrive as webhooks with &#x60;platform: \&quot;rcs\&quot;&#x60;:  - &#x60;message.received&#x60; (a tapped chip carries its postback in &#x60;metadata.postbackPayload&#x60;) - &#x60;message.delivered&#x60; - &#x60;message.read&#x60; - &#x60;message.failed&#x60; 
 
 ### Example
 
@@ -1587,7 +1587,7 @@ public class Example {
 
         RcsApi apiInstance = new RcsApi(defaultClient);
         SendRcsMessageRequest sendRcsMessageRequest = new SendRcsMessageRequest(); // SendRcsMessageRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             SendRcsMessage200Response result = apiInstance.sendRcsMessage(sendRcsMessageRequest, idempotencyKey);
             System.out.println(result);
@@ -1608,7 +1608,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendRcsMessageRequest** | [**SendRcsMessageRequest**](SendRcsMessageRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -1642,7 +1642,7 @@ public class Example {
 
 Send an RCS message
 
-Sends from one of your agents. Use &#x60;text&#x60; for a plain message or &#x60;content&#x60; for rich content (card, carousel, media, suggestion chips). Before launch an agent only reaches test phones that accepted the invite. With the agent&#39;s &#x60;smsFallbackFrom&#x60; set, phones without RCS get &#x60;fallbackText&#x60; (default: the message&#39;s readable text) as SMS.  Replies and status arrive as webhooks with &#x60;platform: \&quot;rcs\&quot;&#x60;: &#x60;message.received&#x60; (a tapped chip carries its postback in &#x60;metadata.postbackPayload&#x60;), &#x60;message.delivered&#x60;, &#x60;message.read&#x60; and &#x60;message.failed&#x60;. Send an &#x60;Idempotency-Key&#x60; header to make retries safe. 
+Sends an RCS message from one of your agents.  - Use &#x60;text&#x60; for a plain message or &#x60;content&#x60; for rich content (card, carousel, media, suggestion chips). - Before launch an agent only reaches test phones that accepted the invite. - With the agent&#39;s &#x60;smsFallbackFrom&#x60; set, phones without RCS get &#x60;fallbackText&#x60; (default: the message&#39;s readable text) as SMS.  Send an &#x60;Idempotency-Key&#x60; header to make retries safe.  ### Webhooks  Replies and status arrive as webhooks with &#x60;platform: \&quot;rcs\&quot;&#x60;:  - &#x60;message.received&#x60; (a tapped chip carries its postback in &#x60;metadata.postbackPayload&#x60;) - &#x60;message.delivered&#x60; - &#x60;message.read&#x60; - &#x60;message.failed&#x60; 
 
 ### Example
 
@@ -1667,7 +1667,7 @@ public class Example {
 
         RcsApi apiInstance = new RcsApi(defaultClient);
         SendRcsMessageRequest sendRcsMessageRequest = new SendRcsMessageRequest(); // SendRcsMessageRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<SendRcsMessage200Response> response = apiInstance.sendRcsMessageWithHttpInfo(sendRcsMessageRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1690,7 +1690,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **sendRcsMessageRequest** | [**SendRcsMessageRequest**](SendRcsMessageRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 

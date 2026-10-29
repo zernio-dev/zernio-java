@@ -2,7 +2,7 @@
 
 # UpdateAdSetRequestPlacements
 
-Meta only (400 elsewhere). Manual placements, same object and enums as `placements` on POST /v1/ads/create. Sending an object REPLACES the ad set's current placement set (`publisher_platforms`, every `*_positions` list and `device_platforms`); a position list you leave out is removed. `null` removes every placement key so Meta returns to automatic (Advantage+) placements. Omit to leave placements untouched. Meta enforces co-selection rules (e.g. a position needs its publisher platform) and its error is returned as is. Meta may also reject `null` or a narrower set when an ad's creative uses per-placement asset customization (`placementAssets`). An object with no non-empty list is a 400 (send `null` instead). Cannot be combined with `targeting.placements` (400). 
+Meta only (400 elsewhere). Manual placements, with the same object and enums as `placements` on POST /v1/ads/create.  - **Object:** REPLACES the ad set's current placement set (`publisher_platforms`, every `*_positions` list and `device_platforms`). A position list you leave out is removed. An object with no non-empty list is a 400 (send `null` instead). - **`null`:** removes every placement key, so Meta returns to automatic (Advantage+) placements. - **Omitted:** placements are left untouched.  Meta enforces co-selection rules (e.g. a position needs its publisher platform) and its error is returned as is. Meta may also reject `null` or a narrower set when an ad's creative uses per-placement asset customization (`placementAssets`).  Cannot be combined with `targeting.placements` (400). 
 
 ## Properties
 

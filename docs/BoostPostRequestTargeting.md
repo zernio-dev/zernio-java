@@ -2,7 +2,7 @@
 
 # BoostPostRequestTargeting
 
-Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo keys (`regions`/`cities`/`zips`/`metros`) resolve via GET /v1/ads/targeting/search?dimension=geo. City radius and lat/lng `customLocations` are Meta-only and preserve the boosted post's social proof (the ad references the existing post). On Reddit the whole `TargetingSpec` applies, including `communities`, `excludedCommunities`, `conversationKeywords`, `excludedConversationKeywords`, `interests`, `audienceInclude` / `audienceExclude` and `excludedLocations`; without any geo the ad targets the US. 
+Same geo/demographic fields as the `TargetingSpec` used by /v1/ads/create. Geo keys (`regions`/`cities`/`zips`/`metros`) resolve via GET /v1/ads/targeting/search?dimension=geo.  - Meta only: city radius and lat/lng `customLocations`. They preserve the boosted post's social proof (the ad references the existing post). - Reddit: the whole `TargetingSpec` applies, including `communities`, `excludedCommunities`, `conversationKeywords`, `excludedConversationKeywords`, `interests`, `audienceInclude` / `audienceExclude` and `excludedLocations`. Without any geo the ad targets the US. 
 
 ## Properties
 

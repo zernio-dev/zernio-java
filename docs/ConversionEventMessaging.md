@@ -2,7 +2,7 @@
 
 # ConversionEventMessaging
 
-Meta only, read when `actionSource` is `business_messaging` (Conversions API for Business Messaging). `channel` is sent as the event's `messaging_channel` (`instagram_direct` goes out as `instagram`). Each id lands in Meta's `user_data` unhashed, and an id that does not belong to `channel` is ignored. Meta accepts only its business messaging event names here (`LeadSubmitted`, `QualifiedLead`, `Purchase`, `AddToCart`, `InitiateCheckout`, `ViewContent`, `OrderCreated`, `OrderShipped`, `OrderDelivered`, `OrderCanceled`, `OrderReturned`, `CartAbandoned`, `RatingProvided`, `ReviewProvided`); `eventName` is forwarded unchanged. 
+Meta only, read when `actionSource` is `business_messaging` (Conversions API for Business Messaging).  - `channel` is sent as the event's `messaging_channel` (`instagram_direct` goes out as `instagram`). - Each id lands in Meta's `user_data` unhashed. An id that does not belong to `channel` is ignored.  Meta accepts only its business messaging event names here: `LeadSubmitted`, `QualifiedLead`, `Purchase`, `AddToCart`, `InitiateCheckout`, `ViewContent`, `OrderCreated`, `OrderShipped`, `OrderDelivered`, `OrderCanceled`, `OrderReturned`, `CartAbandoned`, `RatingProvided`, `ReviewProvided`. `eventName` is forwarded unchanged. 
 
 ## Properties
 

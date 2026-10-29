@@ -16,7 +16,7 @@ The conversation object included in conversation lifecycle webhook payloads (con
 |**participantUsername** | **String** | Contact&#39;s handle when the platform exposes one |  [optional] |
 |**participantPicture** | **String** |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  |
-|**contactId** | **String** | Zernio CRM Contact ID for the participant, when one exists. Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event.  |  [optional] |
+|**contactId** | **String** | Zernio CRM Contact ID for the participant, when one exists. Lets integrators seed the CRM straight from &#x60;conversation.started&#x60; without waiting for the first &#x60;message.*&#x60; event.  Resolved by joining &#x60;participantId&#x60; to the ContactChannel collection (the same join used by message.*, reaction.received, and call.* webhooks). Best-effort: omitted when no channel matches or &#x60;participantId&#x60; is absent.  |  [optional] |
 
 
 

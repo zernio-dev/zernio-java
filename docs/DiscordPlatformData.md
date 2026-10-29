@@ -2,7 +2,7 @@
 
 # DiscordPlatformData
 
-Discord message settings. Supports plain text (2,000 chars), rich embeds (up to 10), native polls, forum posts, threads, and announcement crossposts. Media attachments support images (JPEG, PNG, GIF, WebP), videos (MP4), and documents (up to 10 files, 25 MB each). Webhook identity (username + avatar) can be customized per-account via PATCH /v1/connect/discord or per-post via webhookUsername/webhookAvatarUrl. 
+Discord message settings.  - Content: plain text (2,000 chars), rich embeds (up to 10), native polls, forum posts, threads, and announcement crossposts. - Media: images (JPEG, PNG, GIF, WebP), videos (MP4), and documents (up to 10 files, 25 MB each). - Webhook identity (username + avatar): customize per account via PATCH /v1/connect/discord, or per post via webhookUsername/webhookAvatarUrl. 
 
 ## Properties
 

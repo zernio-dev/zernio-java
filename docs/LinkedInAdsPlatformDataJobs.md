@@ -2,7 +2,7 @@
 
 # LinkedInAdsPlatformDataJobs
 
-POST /v1/ads/create only. Dynamic Jobs Ad promoting your open roles, personalized with the viewer's profile photo. Requires goal job_applicants and a Company Page with active job postings. headline and buttonLabel take exactly one of preApproved or custom. logoUrl and organizationName default to the Company Page's. Mutually exclusive with the other creative sources. 
+POST /v1/ads/create only. Dynamic Jobs Ad promoting your open roles, personalized with the viewer's profile photo. Mutually exclusive with the other creative sources.  - Requires goal job_applicants and a Company Page with active job postings. - headline and buttonLabel take exactly one of preApproved or custom. - logoUrl and organizationName default to the Company Page's. 
 
 ## Properties
 

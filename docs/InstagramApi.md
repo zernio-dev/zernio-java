@@ -353,7 +353,7 @@ ApiResponse<[**InstagramBusinessDiscovery**](InstagramBusinessDiscovery.md)>
 
 Get a comment that mentions an Instagram account
 
-Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on. Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on.  Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  ### Requires Facebook Login  The Instagram account must be connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only.  Accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
 
 ### Example
 
@@ -430,7 +430,7 @@ public class Example {
 
 Get a comment that mentions an Instagram account
 
-Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on. Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  Requires an Instagram account connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+Returns a comment in which another Instagram user @mentioned the connected account, with the post it was left on.  Meta sends the comment ID in its mention notification and offers no list of mentions, so this reads one mention by ID. Meta answers an error when comments are disabled on that post.  ### Requires Facebook Login  The Instagram account must be connected via **Facebook Login**. Meta serves mentions on graph.facebook.com only.  Accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_mentions_require_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
 
 ### Example
 
@@ -823,7 +823,7 @@ ApiResponse<[**GetInstagramPublishingLimit200Response**](GetInstagramPublishingL
 
 Get Instagram story insights
 
-Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60;: fetched from Meta in real time (story is still active) - &#x60;cached&#x60;: fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60;: story has expired and Meta sent no &#x60;story_insights&#x60; webhook for it.   Meta sends it most reliably for accounts connected with Facebook Login or with their   linked Facebook Page connected, so read insights while the story is live if you need   final numbers.  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60;: fetched from Meta in real time (story is still active) - &#x60;cached&#x60;: fetched from a persisted &#x60;story_insights&#x60; webhook payload (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60;: story has expired and Meta sent no &#x60;story_insights&#x60; webhook for it  Meta sends that webhook most reliably for accounts connected with Facebook Login or with their linked Facebook Page connected. So read insights while the story is live if you need final numbers.  Meta can report an expired story as an empty successful result rather than an error. So an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  ### Field semantics  Field semantics follow Meta&#39;s API.  - Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. - The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
 
 ### Example
 
@@ -900,7 +900,7 @@ public class Example {
 
 Get Instagram story insights
 
-Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60;: fetched from Meta in real time (story is still active) - &#x60;cached&#x60;: fetched from a persisted &#x60;story_insights&#x60; webhook payload   (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60;: story has expired and Meta sent no &#x60;story_insights&#x60; webhook for it.   Meta sends it most reliably for accounts connected with Facebook Login or with their   linked Facebook Page connected, so read insights while the story is live if you need   final numbers.  Meta can report an expired story as an empty successful result rather than an error, so an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  Field semantics follow Meta&#39;s API. Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
+Returns metrics for a single story. The &#x60;source&#x60; field discriminates between three states:  - &#x60;live&#x60;: fetched from Meta in real time (story is still active) - &#x60;cached&#x60;: fetched from a persisted &#x60;story_insights&#x60; webhook payload (story has expired but we received its final-state metrics from Meta) - &#x60;unavailable&#x60;: story has expired and Meta sent no &#x60;story_insights&#x60; webhook for it  Meta sends that webhook most reliably for accounts connected with Facebook Login or with their linked Facebook Page connected. So read insights while the story is live if you need final numbers.  Meta can report an expired story as an empty successful result rather than an error. So an expired story resolves to &#x60;cached&#x60; or &#x60;unavailable&#x60; even though the upstream request itself succeeded.  ### Field semantics  Field semantics follow Meta&#39;s API.  - Counts below 5 may be returned as 0 due to Meta&#39;s privacy floor on small audiences. - The &#x60;navigation&#x60; field is the sum of &#x60;tapsForward + tapsBack + exits + swipesForward&#x60;. 
 
 ### Example
 
@@ -981,7 +981,7 @@ ApiResponse<[**GetInstagramStoryInsights200Response**](GetInstagramStoryInsights
 
 List the live broadcasts of an Instagram account
 
-Returns the live videos the connected Instagram account is broadcasting right now. Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error). Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  Requires an Instagram account connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+Returns the live videos the connected Instagram account is broadcasting right now.  Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error).  Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  ### Requires Facebook Login  The Instagram account must be connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only.  Accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
 
 ### Example
 
@@ -1056,7 +1056,7 @@ public class Example {
 
 List the live broadcasts of an Instagram account
 
-Returns the live videos the connected Instagram account is broadcasting right now. Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error). Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  Requires an Instagram account connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only, so accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
+Returns the live videos the connected Instagram account is broadcasting right now.  Meta only returns broadcasts in progress at the time of the request, so the list is empty when nothing is live (a 200, not an error).  Pair the returned &#x60;id&#x60; with comments flagged as live (the live_comments webhook field) or with a &#x60;live_comment&#x60; comment automation.  ### Requires Facebook Login  The Instagram account must be connected via **Facebook Login**. Meta documents the live_media edge on graph.facebook.com only.  Accounts connected with classic Instagram Login receive a 400 (&#x60;instagram_live_media_requires_facebook_login&#x60;) and must be reconnected choosing the Facebook option. 
 
 ### Example
 

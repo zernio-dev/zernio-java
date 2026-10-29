@@ -15,7 +15,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Look up a library template
 
-Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
+Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it.  Most importantly, it returns the template&#39;s &#x60;buttons&#x60;. A library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
 
 ### Example
 
@@ -92,7 +92,7 @@ public class Example {
 
 Look up a library template
 
-Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it. Most importantly it returns the template&#39;s &#x60;buttons&#x60;: a library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
+Look up a single pre-approved Template Library template by its exact name, to introspect its structure before importing it.  Most importantly, it returns the template&#39;s &#x60;buttons&#x60;. A library template with &#x60;URL&#x60; / &#x60;PHONE_NUMBER&#x60; buttons must be created with a matching &#x60;library_template_button_inputs&#x60; array (see Create Template), or Meta rejects it. Use this to discover which inputs to collect. 
 
 ### Example
 

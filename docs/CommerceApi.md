@@ -1577,7 +1577,7 @@ ApiResponse<[**ChangeCommerceProductTags200Response**](ChangeCommerceProductTags
 
 Sync a store into a Meta catalog
 
-Keeps a Meta product catalog in sync with the store, for catalog ads (&#x60;goal: catalog_sales&#x60;) and Shops. The first full run starts right away in the background; &#x60;runStatus&#x60; and the item counts report its outcome. Every active product variant that is published to the online store and has an image becomes a catalog item, grouped by product (&#x60;item_group_id&#x60;). After that, product changes on the store update the catalog within minutes, and a daily full run removes items for products or variants the store no longer has. Items are namespaced to the store, so a catalog can take several stores and a run never touches items it did not create.  &#x60;catalogAccountId&#x60; is a connected facebook, instagram or metaads account whose Meta login can manage the catalog (the catalog_management permission); find catalogs with &#x60;GET /v1/ads/catalogs&#x60;. 
+Keeps a Meta product catalog in sync with the store, for catalog ads (&#x60;goal: catalog_sales&#x60;) and Shops.  ### How the sync runs  1. The first full run starts right away in the background; &#x60;runStatus&#x60; and the item counts report its outcome. 2. After that, product changes on the store update the catalog within minutes. 3. A daily full run removes items for products or variants the store no longer has.  Every active product variant that is published to the online store and has an image becomes a catalog item, grouped by product (&#x60;item_group_id&#x60;).  Items are namespaced to the store, so a catalog can take several stores and a run never touches items it did not create.  ### Catalog account  &#x60;catalogAccountId&#x60; is a connected facebook, instagram or metaads account whose Meta login can manage the catalog (the catalog_management permission). Find catalogs with &#x60;GET /v1/ads/catalogs&#x60;. 
 
 ### Example
 
@@ -1652,7 +1652,7 @@ public class Example {
 
 Sync a store into a Meta catalog
 
-Keeps a Meta product catalog in sync with the store, for catalog ads (&#x60;goal: catalog_sales&#x60;) and Shops. The first full run starts right away in the background; &#x60;runStatus&#x60; and the item counts report its outcome. Every active product variant that is published to the online store and has an image becomes a catalog item, grouped by product (&#x60;item_group_id&#x60;). After that, product changes on the store update the catalog within minutes, and a daily full run removes items for products or variants the store no longer has. Items are namespaced to the store, so a catalog can take several stores and a run never touches items it did not create.  &#x60;catalogAccountId&#x60; is a connected facebook, instagram or metaads account whose Meta login can manage the catalog (the catalog_management permission); find catalogs with &#x60;GET /v1/ads/catalogs&#x60;. 
+Keeps a Meta product catalog in sync with the store, for catalog ads (&#x60;goal: catalog_sales&#x60;) and Shops.  ### How the sync runs  1. The first full run starts right away in the background; &#x60;runStatus&#x60; and the item counts report its outcome. 2. After that, product changes on the store update the catalog within minutes. 3. A daily full run removes items for products or variants the store no longer has.  Every active product variant that is published to the online store and has an image becomes a catalog item, grouped by product (&#x60;item_group_id&#x60;).  Items are namespaced to the store, so a catalog can take several stores and a run never touches items it did not create.  ### Catalog account  &#x60;catalogAccountId&#x60; is a connected facebook, instagram or metaads account whose Meta login can manage the catalog (the catalog_management permission). Find catalogs with &#x60;GET /v1/ads/catalogs&#x60;. 
 
 ### Example
 
@@ -2501,7 +2501,7 @@ ApiResponse<[**CreateCommercePage201Response**](CreateCommercePage201Response.md
 
 Create a product
 
-Creates a product with its options and variants. &#x60;status&#x60; defaults to &#x60;draft&#x60;: no platform offers a sandbox for product writes, so nothing goes on sale unless you ask for &#x60;active&#x60;. A product without &#x60;options&#x60; has exactly one variant. Images are fetched by the platform from the given URLs and may appear on the product a few seconds later. 
+Creates a product with its options and variants.  - &#x60;status&#x60; defaults to &#x60;draft&#x60;: no platform offers a sandbox for product writes, so nothing goes on sale unless you ask for &#x60;active&#x60;. - A product without &#x60;options&#x60; has exactly one variant. - Images are fetched by the platform from the given URLs and may appear on the product a few seconds later. 
 
 ### Example
 
@@ -2576,7 +2576,7 @@ public class Example {
 
 Create a product
 
-Creates a product with its options and variants. &#x60;status&#x60; defaults to &#x60;draft&#x60;: no platform offers a sandbox for product writes, so nothing goes on sale unless you ask for &#x60;active&#x60;. A product without &#x60;options&#x60; has exactly one variant. Images are fetched by the platform from the given URLs and may appear on the product a few seconds later. 
+Creates a product with its options and variants.  - &#x60;status&#x60; defaults to &#x60;draft&#x60;: no platform offers a sandbox for product writes, so nothing goes on sale unless you ask for &#x60;active&#x60;. - A product without &#x60;options&#x60; has exactly one variant. - Images are fetched by the platform from the given URLs and may appear on the product a few seconds later. 
 
 ### Example
 
@@ -6603,7 +6603,7 @@ ApiResponse<[**CreateCommerceProduct201Response**](CreateCommerceProduct201Respo
 
 Get a store
 
-Returns the connected store with its currency, country and the &#x60;capabilities&#x60; it supports, so an integration can tell up front which Commerce operations the store serves. On Shopify, stock, sales channels, discounts, navigation, metaobjects, markets, marketing and image removal need permissions the store owner approves separately: &#x60;missingCapabilities&#x60; lists what is not granted yet and &#x60;grantPermissionsUrl&#x60; is the page where the owner approves it. 
+Returns the connected store with its currency, country and the &#x60;capabilities&#x60; it supports, so an integration can tell up front which Commerce operations the store serves.  ### Shopify permissions  On Shopify, these need permissions the store owner approves separately: stock, sales channels, discounts, navigation, metaobjects, markets, marketing and image removal.  - &#x60;missingCapabilities&#x60; lists what is not granted yet. - &#x60;grantPermissionsUrl&#x60; is the page where the owner approves it. 
 
 ### Example
 
@@ -6678,7 +6678,7 @@ public class Example {
 
 Get a store
 
-Returns the connected store with its currency, country and the &#x60;capabilities&#x60; it supports, so an integration can tell up front which Commerce operations the store serves. On Shopify, stock, sales channels, discounts, navigation, metaobjects, markets, marketing and image removal need permissions the store owner approves separately: &#x60;missingCapabilities&#x60; lists what is not granted yet and &#x60;grantPermissionsUrl&#x60; is the page where the owner approves it. 
+Returns the connected store with its currency, country and the &#x60;capabilities&#x60; it supports, so an integration can tell up front which Commerce operations the store serves.  ### Shopify permissions  On Shopify, these need permissions the store owner approves separately: stock, sales channels, discounts, navigation, metaobjects, markets, marketing and image removal.  - &#x60;missingCapabilities&#x60; lists what is not granted yet. - &#x60;grantPermissionsUrl&#x60; is the page where the owner approves it. 
 
 ### Example
 
@@ -8491,7 +8491,7 @@ ApiResponse<[**ListCommerceMetaobjects200Response**](ListCommerceMetaobjects200R
 
 List orders
 
-The store&#39;s orders in one format for every platform, with what an invoice needs: line items with unit prices, discounts and tax per line, shipping and fee lines, billing details, payment status and refunds. Newest order first; with &#x60;updatedAfter&#x60;, oldest change first, so a sync can page forward from its last seen &#x60;updatedAt&#x60;. Start each sync a few minutes before the last &#x60;updatedAt&#x60; you saw and drop duplicates by &#x60;id&#x60;, since an order edited while you page can shift the list. Shopify returns at most 25 orders per page and, unless the store was granted access to all orders, only the last 60 days. Buyer fields (&#x60;customer&#x60; and addresses) are null when the store&#39;s approval does not cover buyer data. Needs orders.read.
+The store&#39;s orders in one format for every platform, with what an invoice needs. Needs orders.read.  Each order includes:  - line items with unit prices, discounts and tax per line - shipping and fee lines - billing details - payment status and refunds  ### Ordering and syncing  Newest order first. With &#x60;updatedAfter&#x60;, oldest change first, so a sync can page forward from its last seen &#x60;updatedAt&#x60;.  Start each sync a few minutes before the last &#x60;updatedAt&#x60; you saw and drop duplicates by &#x60;id&#x60;, since an order edited while you page can shift the list.  ### Limits  - Shopify returns at most 25 orders per page and, unless the store was granted access to all orders, only the last 60 days. - Buyer fields (&#x60;customer&#x60; and addresses) are null when the store&#39;s approval does not cover buyer data. 
 
 ### Example
 
@@ -8576,7 +8576,7 @@ public class Example {
 
 List orders
 
-The store&#39;s orders in one format for every platform, with what an invoice needs: line items with unit prices, discounts and tax per line, shipping and fee lines, billing details, payment status and refunds. Newest order first; with &#x60;updatedAfter&#x60;, oldest change first, so a sync can page forward from its last seen &#x60;updatedAt&#x60;. Start each sync a few minutes before the last &#x60;updatedAt&#x60; you saw and drop duplicates by &#x60;id&#x60;, since an order edited while you page can shift the list. Shopify returns at most 25 orders per page and, unless the store was granted access to all orders, only the last 60 days. Buyer fields (&#x60;customer&#x60; and addresses) are null when the store&#39;s approval does not cover buyer data. Needs orders.read.
+The store&#39;s orders in one format for every platform, with what an invoice needs. Needs orders.read.  Each order includes:  - line items with unit prices, discounts and tax per line - shipping and fee lines - billing details - payment status and refunds  ### Ordering and syncing  Newest order first. With &#x60;updatedAfter&#x60;, oldest change first, so a sync can page forward from its last seen &#x60;updatedAt&#x60;.  Start each sync a few minutes before the last &#x60;updatedAt&#x60; you saw and drop duplicates by &#x60;id&#x60;, since an order edited while you page can shift the list.  ### Limits  - Shopify returns at most 25 orders per page and, unless the store was granted access to all orders, only the last 60 days. - Buyer fields (&#x60;customer&#x60; and addresses) are null when the store&#39;s approval does not cover buyer data. 
 
 ### Example
 
@@ -9143,7 +9143,7 @@ ApiResponse<[**ListCommerceProductMetafields200Response**](ListCommerceProductMe
 
 List products
 
-Lists the store&#39;s products with their variants, options and images. Cursor-paginated: pass &#x60;limit&#x60; (1-100, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;, which is null on the last page. Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, passed through verbatim). A status the platform has no equivalent of returns an empty page. 
+Lists the store&#39;s products with their variants, options and images.  - Cursor-paginated: pass &#x60;limit&#x60; (1-100, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;, which is null on the last page. - Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, passed through verbatim). - A status the platform has no equivalent of returns an empty page. 
 
 ### Example
 
@@ -9228,7 +9228,7 @@ public class Example {
 
 List products
 
-Lists the store&#39;s products with their variants, options and images. Cursor-paginated: pass &#x60;limit&#x60; (1-100, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;, which is null on the last page. Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, passed through verbatim). A status the platform has no equivalent of returns an empty page. 
+Lists the store&#39;s products with their variants, options and images.  - Cursor-paginated: pass &#x60;limit&#x60; (1-100, default 20) and the &#x60;cursor&#x60; from a previous response&#39;s &#x60;nextCursor&#x60;, which is null on the last page. - Filter with &#x60;status&#x60; and/or &#x60;query&#x60; (the platform&#39;s product search syntax, passed through verbatim). - A status the platform has no equivalent of returns an empty page. 
 
 ### Example
 

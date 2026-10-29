@@ -27,7 +27,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Bulk create contacts
 
-Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. When accountId is set, each contact must carry a platformIdentifier; a row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
+Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact.  ### Accounts and platform  - accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId). - platform is always derived from the resolved account, never used to decide whether channels are created. A mismatched platform 404s as account not found.  ### Per-contact validation  - When accountId is set, each contact must carry a platformIdentifier. A row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. - On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits. A value that is not phone-shaped is rejected per contact and reported in errors[], not imported. 
 
 ### Example
 
@@ -90,7 +90,7 @@ public class Example {
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. An accountId on a platform with no contact channels rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
+| **400** | Returned when:  - a contact is missing the required field name; - a row carries platformIdentifier/accountId with no top-level accountId to attach it to; - an accountId is on a platform with no contact channels, which rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values).  A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 ## bulkCreateContactsWithHttpInfo
@@ -99,7 +99,7 @@ public class Example {
 
 Bulk create contacts
 
-Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact. accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId); platform is always derived from the resolved account, never used to decide whether channels are created, and a mismatched platform 404s as account not found. When accountId is set, each contact must carry a platformIdentifier; a row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits and a value that is not phone-shaped is rejected per contact and reported in errors[], not imported.
+Import up to 1000 contacts at a time. Skips duplicates, merging any new tags onto the existing contact.  ### Accounts and platform  - accountId is required whenever contacts carry a platformIdentifier (or a row-level accountId). - platform is always derived from the resolved account, never used to decide whether channels are created. A mismatched platform 404s as account not found.  ### Per-contact validation  - When accountId is set, each contact must carry a platformIdentifier. A row missing it is rejected individually (reported in errors[], HTTP 200), not a 400 for the whole import. - On phone platforms (whatsapp, sms) the platformIdentifier is normalized to digits. A value that is not phone-shaped is rejected per contact and reported in errors[], not imported. 
 
 ### Example
 
@@ -165,7 +165,7 @@ ApiResponse<[**BulkCreateContacts200Response**](BulkCreateContacts200Response.md
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
 | **200** | Bulk import results |  -  |
-| **400** | Contact missing required field name, or a row carries platformIdentifier/accountId with no top-level accountId to attach it to. A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. An accountId on a platform with no contact channels rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values). |  -  |
+| **400** | Returned when:  - a contact is missing the required field name; - a row carries platformIdentifier/accountId with no top-level accountId to attach it to; - an accountId is on a platform with no contact channels, which rejects the whole import (code: platform_not_supported, details.supportedPlatforms lists the valid values).  A row missing platformIdentifier while accountId IS set is not a 400: it is reported in errors[] under a 200. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 

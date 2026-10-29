@@ -359,7 +359,7 @@ ApiResponse<[**ListInboxReviews200Response**](ListInboxReviews200Response.md)>
 
 Reply to review
 
-Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
+Post a reply to a review. Requires accountId in request body.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown).  - Same key + same body: replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again. - Same key + different body: returns 422. - A key still in flight: returns 409.  Keys are retained for 24 hours and are scoped to the credential and to this exact path. Reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  ### Failed requests  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case.  After an ambiguous failure (a 5xx or a network timeout), fetch the review before retrying with the same key. Treat a missing reply as inconclusive rather than as proof nothing was sent. 
 
 ### Example
 
@@ -384,7 +384,7 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ReplyToInboxReview200Response result = apiInstance.replyToInboxReview(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println(result);
@@ -406,7 +406,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -440,7 +440,7 @@ public class Example {
 
 Reply to review
 
-Post a reply to a review. Requires accountId in request body.  **Idempotency:** send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown): same key + same body replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again; same key + different body returns 422; a key still in flight returns 409. Keys are retained for 24 hours and are scoped to the credential and to this exact path, so reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case. After an ambiguous failure (a 5xx or a network timeout) fetch the review before retrying with the same key, and treat a missing reply as inconclusive rather than as proof nothing was sent. 
+Post a reply to a review. Requires accountId in request body.  ### Idempotency  Send an &#x60;Idempotency-Key&#x60; header to make retries safe (e.g. after a client-side timeout where delivery is unknown).  - Same key + same body: replays the original response (with &#x60;Idempotent-Replayed: true&#x60;) instead of sending the reply to the platform again. - Same key + different body: returns 422. - A key still in flight: returns 409.  Keys are retained for 24 hours and are scoped to the credential and to this exact path. Reusing a key against a different reviewId returns 422 rather than replaying the other review&#39;s response.  ### Failed requests  Only successful (2xx) responses are stored for replay. If the request throws or returns a non-2xx status the key is released, so the header protects the \&quot;request succeeded but the response was lost\&quot; case.  After an ambiguous failure (a 5xx or a network timeout), fetch the review before retrying with the same key. Treat a missing reply as inconclusive rather than as proof nothing was sent. 
 
 ### Example
 
@@ -466,7 +466,7 @@ public class Example {
         ReviewsApi apiInstance = new ReviewsApi(defaultClient);
         String reviewId = "reviewId_example"; // String | Review ID (URL-encoded for Google Business Profile)
         ReplyToInboxReviewRequest replyToInboxReviewRequest = new ReplyToInboxReviewRequest(); // ReplyToInboxReviewRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<ReplyToInboxReview200Response> response = apiInstance.replyToInboxReviewWithHttpInfo(reviewId, replyToInboxReviewRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -490,7 +490,7 @@ public class Example {
 |------------- | ------------- | ------------- | -------------|
 | **reviewId** | **String**| Review ID (URL-encoded for Google Business Profile) | |
 | **replyToInboxReviewRequest** | [**ReplyToInboxReviewRequest**](ReplyToInboxReviewRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 

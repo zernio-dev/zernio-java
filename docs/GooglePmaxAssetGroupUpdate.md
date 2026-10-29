@@ -2,7 +2,7 @@
 
 # GooglePmaxAssetGroupUpdate
 
-Replacement assets for an existing Performance Max asset group, sent on PUT /v1/ads/{adId}. Google assets are immutable (AssetService only creates), so each field you send becomes new assets linked to the asset group, and the assets that role held are unlinked in the same atomic request. Send one field or many; a field you omit is left untouched. Re-sending a value the asset group already carries is a no-op for that asset, not a re-upload. Unlinked assets stay in the account's asset library: Google has no asset delete. At least one description must be 60 characters or fewer. Texts within each list must be distinct. 
+Replacement assets for an existing Performance Max asset group, sent on PUT /v1/ads/{adId}. Send one field or many; a field you omit is left untouched.  Google assets are immutable (AssetService only creates), so each field you send becomes new assets linked to the asset group, and the assets that role held are unlinked in the same atomic request. Re-sending a value the asset group already carries is a no-op for that asset, not a re-upload.  Unlinked assets stay in the account's asset library: Google has no asset delete.  At least one description must be 60 characters or fewer. Texts within each list must be distinct. 
 
 ## Properties
 

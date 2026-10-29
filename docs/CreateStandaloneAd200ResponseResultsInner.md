@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**node** | [**NodeEnum**](#NodeEnum) |  |  [optional] |
 |**status** | [**StatusEnum**](#StatusEnum) |  |  [optional] |
-|**reason** | **String** | Why the node could not be validated (on skipped), why Meta could not dry-run it although the other nodes passed (on unverified), or what the dry run could not check and what the request would do as sent (on validated). A Performance Max validation with no location targeting reports here that the campaign would run worldwide. |  [optional] |
+|**reason** | **String** | Explanation for the node&#39;s result:  - On skipped: why the node could not be validated. - On unverified: why Meta could not dry-run it although the other nodes passed. - On validated: what the dry run could not check, and what the request would do as sent. For example, a Performance Max validation with no location targeting reports here that the campaign would run worldwide. |  [optional] |
 
 
 

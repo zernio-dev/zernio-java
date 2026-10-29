@@ -1121,7 +1121,7 @@ ApiResponse<[**GetWhatsAppCallPermissions200Response**](GetWhatsAppCallPermissio
 
 Get a call recording
 
-Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+Resolves a fresh, playable MP3 URL for the call&#39;s recording.  Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played. This endpoint re-signs on demand.  - Default: responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint). - Pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
 
 ### Example
 
@@ -1199,7 +1199,7 @@ public class Example {
 
 Get a call recording
 
-Resolves a fresh, playable MP3 URL for the call&#39;s recording. Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played; this endpoint re-signs on demand. Default responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint); pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
+Resolves a fresh, playable MP3 URL for the call&#39;s recording.  Provider-signed recording URLs expire ~10 minutes after signing, so the &#x60;recordingUrl&#x60; stored on the call is usually stale by the time it is played. This endpoint re-signs on demand.  - Default: responds &#x60;302 Found&#x60; redirecting to the fresh URL (point an &#x60;&lt;audio&gt;&#x60; element or a link straight at this endpoint). - Pass &#x60;as&#x3D;json&#x60; to receive &#x60;{ url }&#x60; instead. 
 
 ### Example
 
@@ -1281,7 +1281,7 @@ ApiResponse<[**GetWhatsAppCallRecording200Response**](GetWhatsAppCallRecording20
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource).  Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored.  The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id. It additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 
@@ -1355,7 +1355,7 @@ public class Example {
 
 Get calling config for a number
 
-The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource). Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored. The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id, and additionally carries account-level extras (billing eligibility, current-period spend). 
+The WhatsApp Business Calling configuration of this number, keyed the same way as the POST/PATCH/DELETE below (full read-write on one sub-resource).  Encrypted secrets are never returned; only a boolean saying whether a SIP password is stored.  The account-scoped read (&#x60;GET /v1/whatsapp/calling?accountId&#x3D;&#x60;) remains for callers that only know the account id. It additionally carries account-level extras (billing eligibility, current-period spend). 
 
 ### Example
 
@@ -1433,7 +1433,7 @@ ApiResponse<[**GetWhatsAppCalling200Response**](GetWhatsAppCalling200Response.md
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
+Returns the local calling configuration snapshot for the connected WhatsApp account:  - whether calling is enabled; - the forward-to destination URI; - recording opt-in state; - the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling); - whether SIP digest credentials are stored (the encrypted password itself is never returned).  It also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 
@@ -1505,7 +1505,7 @@ public class Example {
 
 Get calling config for an account
 
-Returns the local calling configuration snapshot for the connected WhatsApp account: whether calling is enabled, the forward-to destination URI, recording opt-in state, the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling) and whether SIP digest credentials are stored (the encrypted password itself is never returned). Also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
+Returns the local calling configuration snapshot for the connected WhatsApp account:  - whether calling is enabled; - the forward-to destination URI; - recording opt-in state; - the phone number record id (use as &#x60;{id}&#x60; on the read-write calling sub-resource at /v1/phone-numbers/{id}/whatsapp/calling); - whether SIP digest credentials are stored (the encrypted password itself is never returned).  It also carries account-level extras (billing eligibility, current-period spend) that the number-keyed GET does not. 
 
 ### Example
 
@@ -1605,7 +1605,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             InitiateWhatsAppCall200Response result = apiInstance.initiateWhatsAppCall(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println(result);
@@ -1626,7 +1626,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -1682,7 +1682,7 @@ public class Example {
 
         WhatsAppCallingApi apiInstance = new WhatsAppCallingApi(defaultClient);
         InitiateWhatsAppCallRequest initiateWhatsAppCallRequest = new InitiateWhatsAppCallRequest(); // InitiateWhatsAppCallRequest | 
-        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.
+        String idempotencyKey = "idempotencyKey_example"; // String | Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. 
         try {
             ApiResponse<InitiateWhatsAppCall200Response> response = apiInstance.initiateWhatsAppCallWithHttpInfo(initiateWhatsAppCallRequest, idempotencyKey);
             System.out.println("Status code: " + response.getStatusCode());
@@ -1705,7 +1705,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **initiateWhatsAppCallRequest** | [**InitiateWhatsAppCallRequest**](InitiateWhatsAppCallRequest.md)|  | |
-| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe. Same key + same body replays the original response; same key + different body → 422; key still processing → 409. A request cut off mid-handler (for example by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours. | [optional] |
+| **idempotencyKey** | **String**| Optional client-generated unique key (e.g. a UUID) that makes retries safe.  - Same key + same body: replays the original response. - Same key + different body: 422. - Key still processing: 409.  A request cut off mid-handler (e.g. by a function timeout) can leave its key in progress, answering 409 until the key expires after 24 hours.  | [optional] |
 
 ### Return type
 
@@ -1907,7 +1907,7 @@ ApiResponse<[**ListWhatsAppCalls200Response**](ListWhatsAppCalls200Response.md)>
 
 Start caller-ID verification for a customer-brought number
 
-Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+Sends a one-time code to a customer-brought (BYO) WhatsApp number by SMS or voice call, to verify it as caller ID. Re-POST to resend.  BYO numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing). Until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config).  Zernio-purchased numbers never need this and get a 400. 
 
 ### Example
 
@@ -1984,7 +1984,7 @@ public class Example {
 
 Start caller-ID verification for a customer-brought number
 
-Customer-brought (BYO) WhatsApp numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing); until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config). This sends a one-time code to the number by SMS or voice call. Re-POST to resend. Zernio-purchased numbers never need this and get a 400. 
+Sends a one-time code to a customer-brought (BYO) WhatsApp number by SMS or voice call, to verify it as caller ID. Re-POST to resend.  BYO numbers cannot present themselves as caller ID on &#x60;tel:&#x60; call forwards until verified (carrier anti-spoofing). Until then forwarded calls show a Zernio number (&#x60;callerIdMode: platform&#x60; on the calling config).  Zernio-purchased numbers never need this and get a 400. 
 
 ### Example
 

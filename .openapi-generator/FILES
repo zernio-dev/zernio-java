@@ -393,6 +393,8 @@ docs/CheckPhoneNumberPortability200ResponseResultsInner.md
 docs/CheckPhoneNumberPortabilityRequest.md
 docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
+docs/CheckWhatsAppNumberAvailability200Response.md
+docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md
 docs/CommentAutomationActions.md
 docs/CommentAutomationAudience.md
 docs/CommentAutomationDmMedia.md
@@ -761,6 +763,7 @@ docs/CreateStandaloneAdRequestPlatformSpecificData.md
 docs/CreateStandaloneAdRequestRegionsInner.md
 docs/CreateStandaloneAdRequestRegionsInnerOneOf.md
 docs/CreateStandaloneAdRequestSitelinksInner.md
+docs/CreateStandaloneAdRequestSmartTargeting.md
 docs/CreateStandaloneAdRequestStructuredSnippetsInner.md
 docs/CreateStandaloneAdRequestTranslationsInner.md
 docs/CreateStandaloneAdRequestVideo.md
@@ -792,6 +795,7 @@ docs/CreateWhatsAppGroupChat201Response.md
 docs/CreateWhatsAppGroupChat201ResponseGroup.md
 docs/CreateWhatsAppGroupChatRequest.md
 docs/CreateWhatsAppGroupInviteLink200Response.md
+docs/CreateWhatsAppNumberKycLinkRequest.md
 docs/CreateWhatsAppSandboxSession200Response.md
 docs/CreateWhatsAppSandboxSessionRequest.md
 docs/CreateWhatsAppTemplate200Response.md
@@ -1015,6 +1019,7 @@ docs/GenerateKeywordIdeas200ResponsePaging.md
 docs/GenerateKeywordIdeasRequest.md
 docs/GeoRestriction.md
 docs/GetAccountHealth200Response.md
+docs/GetAccountHealth200ResponseMessagingRestriction.md
 docs/GetAccountHealth200ResponsePermissions.md
 docs/GetAccountHealth200ResponsePermissionsPostingInner.md
 docs/GetAccountHealth200ResponsePlatformConnection.md
@@ -3739,6 +3744,8 @@ src/main/java/dev/zernio/model/CheckPhoneNumberPortability200ResponseResultsInne
 src/main/java/dev/zernio/model/CheckPhoneNumberPortabilityRequest.java
 src/main/java/dev/zernio/model/CheckVerification200Response.java
 src/main/java/dev/zernio/model/CheckVerificationRequest.java
+src/main/java/dev/zernio/model/CheckWhatsAppNumberAvailability200Response.java
+src/main/java/dev/zernio/model/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.java
 src/main/java/dev/zernio/model/CommentAutomationActions.java
 src/main/java/dev/zernio/model/CommentAutomationAudience.java
 src/main/java/dev/zernio/model/CommentAutomationDmMedia.java
@@ -4100,6 +4107,7 @@ src/main/java/dev/zernio/model/CreateStandaloneAdRequestPlatformSpecificData.jav
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestRegionsInnerOneOf.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestSitelinksInner.java
+src/main/java/dev/zernio/model/CreateStandaloneAdRequestSmartTargeting.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestStructuredSnippetsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestTranslationsInner.java
 src/main/java/dev/zernio/model/CreateStandaloneAdRequestVideo.java
@@ -4131,6 +4139,7 @@ src/main/java/dev/zernio/model/CreateWhatsAppGroupChat201Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupChat201ResponseGroup.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupChatRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppGroupInviteLink200Response.java
+src/main/java/dev/zernio/model/CreateWhatsAppNumberKycLinkRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppSandboxSession200Response.java
 src/main/java/dev/zernio/model/CreateWhatsAppSandboxSessionRequest.java
 src/main/java/dev/zernio/model/CreateWhatsAppTemplate200Response.java
@@ -4347,6 +4356,7 @@ src/main/java/dev/zernio/model/GenerateKeywordIdeas200ResponsePaging.java
 src/main/java/dev/zernio/model/GenerateKeywordIdeasRequest.java
 src/main/java/dev/zernio/model/GeoRestriction.java
 src/main/java/dev/zernio/model/GetAccountHealth200Response.java
+src/main/java/dev/zernio/model/GetAccountHealth200ResponseMessagingRestriction.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissions.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePermissionsPostingInner.java
 src/main/java/dev/zernio/model/GetAccountHealth200ResponsePlatformConnection.java
@@ -6545,3 +6555,6 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/CheckWhatsAppNumberAvailability200ResponseAreaAvailabilityTest.java
+src/test/java/dev/zernio/model/CreateStandaloneAdRequestSmartTargetingTest.java
+src/test/java/dev/zernio/model/GetAccountHealth200ResponseMessagingRestrictionTest.java

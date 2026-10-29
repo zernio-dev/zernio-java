@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.404.0
+- API version: 1.405.0
 
-- Build date: 2026-10-29T11:16:10.891750423Z[Etc/UTC]
+- Build date: 2026-10-29T11:31:38.883938913Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.404.0</version>
+  <version>1.405.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.404.0"
+compile "dev.zernio:zernio-sdk:1.405.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.404.0.jar`
+- `target/zernio-sdk-1.405.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2747,6 +2747,8 @@ Class | Method | HTTP request | Description
  - [CheckPhoneNumberPortabilityRequest](docs/CheckPhoneNumberPortabilityRequest.md)
  - [CheckVerification200Response](docs/CheckVerification200Response.md)
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
+ - [CheckWhatsAppNumberAvailability200Response](docs/CheckWhatsAppNumberAvailability200Response.md)
+ - [CheckWhatsAppNumberAvailability200ResponseAreaAvailability](docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md)
  - [CommentAutomationActions](docs/CommentAutomationActions.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
  - [CommentAutomationDmMedia](docs/CommentAutomationDmMedia.md)
@@ -3108,6 +3110,7 @@ Class | Method | HTTP request | Description
  - [CreateStandaloneAdRequestRegionsInner](docs/CreateStandaloneAdRequestRegionsInner.md)
  - [CreateStandaloneAdRequestRegionsInnerOneOf](docs/CreateStandaloneAdRequestRegionsInnerOneOf.md)
  - [CreateStandaloneAdRequestSitelinksInner](docs/CreateStandaloneAdRequestSitelinksInner.md)
+ - [CreateStandaloneAdRequestSmartTargeting](docs/CreateStandaloneAdRequestSmartTargeting.md)
  - [CreateStandaloneAdRequestStructuredSnippetsInner](docs/CreateStandaloneAdRequestStructuredSnippetsInner.md)
  - [CreateStandaloneAdRequestTranslationsInner](docs/CreateStandaloneAdRequestTranslationsInner.md)
  - [CreateStandaloneAdRequestVideo](docs/CreateStandaloneAdRequestVideo.md)
@@ -3139,6 +3142,7 @@ Class | Method | HTTP request | Description
  - [CreateWhatsAppGroupChat201ResponseGroup](docs/CreateWhatsAppGroupChat201ResponseGroup.md)
  - [CreateWhatsAppGroupChatRequest](docs/CreateWhatsAppGroupChatRequest.md)
  - [CreateWhatsAppGroupInviteLink200Response](docs/CreateWhatsAppGroupInviteLink200Response.md)
+ - [CreateWhatsAppNumberKycLinkRequest](docs/CreateWhatsAppNumberKycLinkRequest.md)
  - [CreateWhatsAppSandboxSession200Response](docs/CreateWhatsAppSandboxSession200Response.md)
  - [CreateWhatsAppSandboxSessionRequest](docs/CreateWhatsAppSandboxSessionRequest.md)
  - [CreateWhatsAppTemplate200Response](docs/CreateWhatsAppTemplate200Response.md)
@@ -3355,6 +3359,7 @@ Class | Method | HTTP request | Description
  - [GenerateKeywordIdeasRequest](docs/GenerateKeywordIdeasRequest.md)
  - [GeoRestriction](docs/GeoRestriction.md)
  - [GetAccountHealth200Response](docs/GetAccountHealth200Response.md)
+ - [GetAccountHealth200ResponseMessagingRestriction](docs/GetAccountHealth200ResponseMessagingRestriction.md)
  - [GetAccountHealth200ResponsePermissions](docs/GetAccountHealth200ResponsePermissions.md)
  - [GetAccountHealth200ResponsePermissionsPostingInner](docs/GetAccountHealth200ResponsePermissionsPostingInner.md)
  - [GetAccountHealth200ResponsePlatformConnection](docs/GetAccountHealth200ResponsePlatformConnection.md)

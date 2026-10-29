@@ -693,7 +693,7 @@ ApiResponse<[**GetInboxSourceBreakdown200Response**](GetInboxSourceBreakdown200R
 
 Get top accounts by inbox volume
 
-Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+Leaderboard of accounts by inbox message volume. Max date range is 365 days.  - Each row is decorated with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). - Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. 
 
 ### Example
 
@@ -776,7 +776,7 @@ public class Example {
 
 Get top accounts by inbox volume
 
-Leaderboard of accounts by inbox message volume. Decorates each row with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. Max date range is 365 days. 
+Leaderboard of accounts by inbox message volume. Max date range is 365 days.  - Each row is decorated with display labels from the live SocialAccount record (so the UI shows username + displayName, not only an ID). - Accounts that no longer map to a SocialAccount surface as \&quot;(disconnected)\&quot; so the row stays visible. 
 
 ### Example
 

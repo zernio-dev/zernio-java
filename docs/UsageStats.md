@@ -2,7 +2,7 @@
 
 # UsageStats
 
-Plan and usage stats. The response shape depends on `billingSystem`:   * Stripe users (default): per-period counters like `usage.uploads` and     `usage.profiles` are returned, scoped by the plan's `limits`.   * Usage-based billing users: `limits` are unlimited (-1). The     `usage` block carries connected-account and per-X-operation counts,     and the `spend` block carries current-period costs plus the X cap. 
+Plan and usage stats. The response shape depends on `billingSystem`:  - Stripe users (default): per-period counters like `usage.uploads` and `usage.profiles`, scoped by the plan's `limits`. - Usage-based billing users: `limits` are unlimited (-1). The `usage` block carries connected-account and per-X-operation counts; the `spend` block carries current-period costs plus the X cap. 
 
 ## Properties
 
