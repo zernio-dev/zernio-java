@@ -97,7 +97,7 @@ All URIs are relative to *https://zernio.com/api*
 
 Cancel a tracking window
 
-Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. Requires the Analytics add-on. 
+Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. 
 
 ### Example
 
@@ -171,7 +171,7 @@ public class Example {
 
 Cancel a tracking window
 
-Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. Requires the Analytics add-on. 
+Stops tracking and returns the window with its final status. A window that already completed keeps its &#x60;completed&#x60; status and its final read. A cancelled window gets no final read and fires no &#x60;post.tracking_completed&#x60; webhook. 
 
 ### Example
 
@@ -451,7 +451,7 @@ ApiResponse<[**GetAnalytics200Response**](GetAnalytics200Response.md)>
 
 Get an analytics dashboard
 
-Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. Requires the Analytics add-on. 
+Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. 
 
 ### Example
 
@@ -538,7 +538,7 @@ public class Example {
 
 Get an analytics dashboard
 
-Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. Requires the Analytics add-on. 
+Everything an analytics dashboard needs in one call: window totals, follower growth, a per-day series, top posts, recent posts and, optionally, the same figures for the previous period. Daily and total metrics use received attribution: each day holds the engagement that arrived that day, on any post, so &#x60;totals&#x60; is always the sum of &#x60;daily&#x60;. &#x60;topPosts&#x60; and &#x60;recentPosts&#x60; list posts published in the window with their lifetime metrics. A post cross-posted to several platforms appears once per platform. All dates are UTC days. 
 
 ### Example
 
@@ -799,7 +799,7 @@ ApiResponse<[**AnalyticsDeltaResponse**](AnalyticsDeltaResponse.md)>
 
 Get best times to post
 
-Returns the best times to post based on historical engagement data. Groups all published posts by day of week and hour (UTC), calculating average engagement per slot. Use this to auto-schedule posts at optimal times. Requires the Analytics add-on. 
+Returns the best times to post based on historical engagement data. Groups all published posts by day of week and hour (UTC), calculating average engagement per slot. Use this to auto-schedule posts at optimal times. 
 
 ### Example
 
@@ -877,7 +877,7 @@ public class Example {
 
 Get best times to post
 
-Returns the best times to post based on historical engagement data. Groups all published posts by day of week and hour (UTC), calculating average engagement per slot. Use this to auto-schedule posts at optimal times. Requires the Analytics add-on. 
+Returns the best times to post based on historical engagement data. Groups all published posts by day of week and hour (UTC), calculating average engagement per slot. Use this to auto-schedule posts at optimal times. 
 
 ### Example
 
@@ -959,7 +959,7 @@ ApiResponse<[**GetBestTimeToPost200Response**](GetBestTimeToPost200Response.md)>
 
 Get content performance decay
 
-Returns how engagement accumulates over time after a post is published. Each bucket shows what percentage of the post&#39;s total engagement had been reached by that time window. Useful for understanding content lifespan (e.g. \&quot;posts reach 78% of total engagement within 24 hours\&quot;). Requires the Analytics add-on. 
+Returns how engagement accumulates over time after a post is published. Each bucket shows what percentage of the post&#39;s total engagement had been reached by that time window. Useful for understanding content lifespan (e.g. \&quot;posts reach 78% of total engagement within 24 hours\&quot;). 
 
 ### Example
 
@@ -1038,7 +1038,7 @@ public class Example {
 
 Get content performance decay
 
-Returns how engagement accumulates over time after a post is published. Each bucket shows what percentage of the post&#39;s total engagement had been reached by that time window. Useful for understanding content lifespan (e.g. \&quot;posts reach 78% of total engagement within 24 hours\&quot;). Requires the Analytics add-on. 
+Returns how engagement accumulates over time after a post is published. Each bucket shows what percentage of the post&#39;s total engagement had been reached by that time window. Useful for understanding content lifespan (e.g. \&quot;posts reach 78% of total engagement within 24 hours\&quot;). 
 
 ### Example
 
@@ -1121,7 +1121,7 @@ ApiResponse<[**GetContentDecay200Response**](GetContentDecay200Response.md)>
 
 Get daily aggregated metrics
 
-Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
+Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. 
 
 ### Example
 
@@ -1205,7 +1205,7 @@ public class Example {
 
 Get daily aggregated metrics
 
-Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. Requires the Analytics add-on. 
+Returns daily aggregated analytics metrics and a per-platform breakdown. Each day includes post count, platform distribution, and summed metrics (impressions, reach, likes, comments, shares, saves, clicks, views). Defaults to the last 180 days. 
 
 ### Example
 
@@ -1293,7 +1293,7 @@ ApiResponse<[**GetDailyMetrics200Response**](GetDailyMetrics200Response.md)>
 
 Get Facebook Page demographics
 
-Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on. 
+Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. 
 
 ### Example
 
@@ -1369,7 +1369,7 @@ public class Example {
 
 Get Facebook Page demographics
 
-Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. Requires the Analytics add-on. 
+Returns the follower breakdown of a connected Facebook Page by country and/or city, from Meta&#39;s latest daily snapshot. Country keys are ISO 3166-1 alpha-2 codes; city keys are \&quot;City, Region, Country\&quot; strings as Meta returns them. Meta removed age and gender demographics for Pages (page_fans_gender_age) on November 15 2025 with no replacement, so only country and city are available. Meta reports small counts at a privacy floor, so the long tail can show identical low values. 
 
 ### Example
 
@@ -1449,7 +1449,7 @@ ApiResponse<[**GetFacebookDemographics200Response**](GetFacebookDemographics200R
 
 Get Facebook Page insights
 
-Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. 
 
 ### Example
 
@@ -1535,7 +1535,7 @@ public class Example {
 
 Get Facebook Page insights
 
-Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns page-level Facebook insights (media views, views, post engagements, video metrics, follower counts). Response shape matches /v1/analytics/instagram/account-insights so the same client handling works across platforms.  Metric names track the current (post-November 2025) Meta Graph API. The legacy page_impressions / page_fans / page_fan_adds / page_fan_removes metrics were deprecated by Meta on November 15, 2025 and are NOT accepted by this endpoint. Use the replacements below. Because Meta did not provide direct adds/removes replacements, Zernio synthesizes followers_gained / followers_lost from the daily follower snapshotter.  Max 89 days, defaults to last 30 days. 
 
 ### Example
 
@@ -1625,7 +1625,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 Get Facebook post monetization earnings
 
-Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
 
 ### Example
 
@@ -1703,7 +1703,7 @@ public class Example {
 
 Get Facebook post monetization earnings
 
-Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request. Requires the Analytics add-on.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
+Returns lifetime monetization earnings for ONE Facebook post, read live from Meta on every request.  Earnings are CUMULATIVE since the post was published, not earnings within a date range, so this endpoint takes no since/until and the totals must not be summed across dates or across posts. Page-level daily earnings live on /v1/analytics/facebook/page-insights.  A post on a Page that is not enrolled in monetization, or that earned nothing, returns \&quot;total\&quot;: 0 rather than an error: Meta does not distinguish the two. A metric Meta returned no bucket for at all is reported in \&quot;unavailableMetrics\&quot; and omitted from \&quot;metrics\&quot;, never as a 0.  Amounts are the platform&#39;s raw numbers in the stated \&quot;unit\&quot; and are never rescaled by Zernio. Breakdown dimensions are not exposed and a \&quot;breakdown\&quot; param is rejected with 400. So are \&quot;since\&quot;, \&quot;until\&quot;, \&quot;period\&quot;, and \&quot;metricType\&quot;: scoping this endpoint to a window is not possible, and silently returning the lifetime total for one would let a caller sum a year of weekly requests into a figure ~52x the post&#39;s real earnings. 
 
 ### Example
 
@@ -2269,7 +2269,7 @@ ApiResponse<[**GetGoogleAnalyticsMetadata200Response**](GetGoogleAnalyticsMetada
 
 Get Google Business Profile performance metrics
 
-Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. 
 
 ### Example
 
@@ -2355,7 +2355,7 @@ public class Example {
 
 Get Google Business Profile performance metrics
 
-Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns daily performance metrics for a Google Business Profile location. Metrics include impressions (Maps/Search, desktop/mobile), website clicks, call clicks, direction requests, conversations, bookings, and food orders. Data may be delayed 2-3 days. Max 18 months of historical data. 
 
 ### Example
 
@@ -2445,7 +2445,7 @@ ApiResponse<[**GetGoogleBusinessPerformance200Response**](GetGoogleBusinessPerfo
 
 Get Google Business Profile search keywords
 
-Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. 
 
 ### Example
 
@@ -2527,7 +2527,7 @@ public class Example {
 
 Get Google Business Profile search keywords
 
-Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. Requires the Analytics add-on. 
+Returns search keywords that triggered impressions for a Google Business Profile location. Data is aggregated monthly. Keywords Google reports only as below a threshold have &#x60;impressions&#x60; 0 and &#x60;impressionsThreshold&#x60; set to that threshold. Returns up to 100 keywords per page. When &#x60;nextPageToken&#x60; is not null, pass it as &#x60;pageToken&#x60; with the same &#x60;startMonth&#x60; and &#x60;endMonth&#x60; to get the next page. Max 18 months of historical data. 
 
 ### Example
 
@@ -2613,7 +2613,7 @@ ApiResponse<[**GetGoogleBusinessSearchKeywords200Response**](GetGoogleBusinessSe
 
 Get Instagram insights
 
-Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. 
 
 ### Example
 
@@ -2702,7 +2702,7 @@ public class Example {
 
 Get Instagram insights
 
-Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns account-level Instagram insights such as reach, views, accounts engaged, and total interactions. These metrics reflect the entire account&#39;s performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics. Data may be delayed up to 48 hours. Max 90 days, defaults to last 30 days. 
 
 ### Example
 
@@ -2795,7 +2795,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 Get Instagram demographics
 
-Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. 
 
 ### Example
 
@@ -2876,7 +2876,7 @@ public class Example {
 
 Get Instagram demographics
 
-Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. Requires the Analytics add-on. 
+Returns audience demographic insights for an Instagram account, broken down by age, city, country, and/or gender. Requires at least 100 followers. Returns top 45 entries per dimension. Data may be delayed up to 48 hours. 
 
 ### Example
 
@@ -2961,7 +2961,7 @@ ApiResponse<[**InstagramDemographicsResponse**](InstagramDemographicsResponse.md
 
 Get Instagram follower history
 
-Returns a daily running Instagram follower count time series, served from Zernio&#39;s cross-platform daily snapshotter. Exists because Meta removed follower_count from the /insights endpoint in Graph API v22+ and never exposed a historical daily series via any public API.  Response envelope matches /v1/analytics/instagram/account-insights so the same client handling works. Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns a daily running Instagram follower count time series, served from Zernio&#39;s cross-platform daily snapshotter. Exists because Meta removed follower_count from the /insights endpoint in Graph API v22+ and never exposed a historical daily series via any public API.  Response envelope matches /v1/analytics/instagram/account-insights so the same client handling works. Max 89 days, defaults to last 30 days. 
 
 ### Example
 
@@ -3047,7 +3047,7 @@ public class Example {
 
 Get Instagram follower history
 
-Returns a daily running Instagram follower count time series, served from Zernio&#39;s cross-platform daily snapshotter. Exists because Meta removed follower_count from the /insights endpoint in Graph API v22+ and never exposed a historical daily series via any public API.  Response envelope matches /v1/analytics/instagram/account-insights so the same client handling works. Max 89 days, defaults to last 30 days. Requires the Analytics add-on. 
+Returns a daily running Instagram follower count time series, served from Zernio&#39;s cross-platform daily snapshotter. Exists because Meta removed follower_count from the /insights endpoint in Graph API v22+ and never exposed a historical daily series via any public API.  Response envelope matches /v1/analytics/instagram/account-insights so the same client handling works. Max 89 days, defaults to last 30 days. 
 
 ### Example
 
@@ -3137,7 +3137,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 Get Instagram online followers
 
-Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. Requires the Analytics add-on. 
+Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. 
 
 ### Example
 
@@ -3213,7 +3213,7 @@ public class Example {
 
 Get Instagram online followers
 
-Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. Requires the Analytics add-on. 
+Returns how many of an Instagram account&#39;s followers were online in each hour, for every day of the last 30 days that Meta has data for. Hour keys are \&quot;0\&quot; to \&quot;23\&quot; as Meta returns them. endTime is the end_time Meta returns for that day. Meta does not document the timezone of the hour keys. Data is delayed up to 48 hours, so the most recent days are left out until Meta fills them. Requires at least 100 followers; for smaller accounts days is empty. 
 
 ### Example
 
@@ -3629,7 +3629,7 @@ ApiResponse<[**GetLinkedInDemographics200Response**](GetLinkedInDemographics200R
 
 Get LinkedIn org analytics
 
-Returns aggregate analytics for a LinkedIn organization page. Parallel to /v1/accounts/{id}/linkedin-aggregate-analytics (which handles personal accounts only). Backed by LinkedIn&#39;s organizationalEntityShareStatistics, organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  Scope requirements: r_organization_social, r_organization_followers, and r_organization_admin must all be present on the account. Accounts connected before these scopes were included in the OAuth flow will return 412 with a reauth hint.  Enforced by this endpoint:   - Page-view metrics accept only metricType&#x3D;total_value (LinkedIn omits per-day     segmentation even when the API is called with DAY granularity, so a time-series     response would be meaningless).   - Date range capped at 89 days.  LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger ranges in a future release):   - Follower stats: rolling 12-month window, end must be no later than 2 days ago.   - Share stats: rolling 12-month window. 
+Returns aggregate analytics for a LinkedIn organization page. Parallel to /v1/accounts/{id}/linkedin-aggregate-analytics (which handles personal accounts only). Backed by LinkedIn&#39;s organizationalEntityShareStatistics, organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days.  Scope requirements: r_organization_social, r_organization_followers, and r_organization_admin must all be present on the account. Accounts connected before these scopes were included in the OAuth flow will return 412 with a reauth hint.  Enforced by this endpoint:   - Page-view metrics accept only metricType&#x3D;total_value (LinkedIn omits per-day     segmentation even when the API is called with DAY granularity, so a time-series     response would be meaningless).   - Date range capped at 89 days.  LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger ranges in a future release):   - Follower stats: rolling 12-month window, end must be no later than 2 days ago.   - Share stats: rolling 12-month window. 
 
 ### Example
 
@@ -3717,7 +3717,7 @@ public class Example {
 
 Get LinkedIn org analytics
 
-Returns aggregate analytics for a LinkedIn organization page. Parallel to /v1/accounts/{id}/linkedin-aggregate-analytics (which handles personal accounts only). Backed by LinkedIn&#39;s organizationalEntityShareStatistics, organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  Scope requirements: r_organization_social, r_organization_followers, and r_organization_admin must all be present on the account. Accounts connected before these scopes were included in the OAuth flow will return 412 with a reauth hint.  Enforced by this endpoint:   - Page-view metrics accept only metricType&#x3D;total_value (LinkedIn omits per-day     segmentation even when the API is called with DAY granularity, so a time-series     response would be meaningless).   - Date range capped at 89 days.  LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger ranges in a future release):   - Follower stats: rolling 12-month window, end must be no later than 2 days ago.   - Share stats: rolling 12-month window. 
+Returns aggregate analytics for a LinkedIn organization page. Parallel to /v1/accounts/{id}/linkedin-aggregate-analytics (which handles personal accounts only). Backed by LinkedIn&#39;s organizationalEntityShareStatistics, organizationalEntityFollowerStatistics, and organizationPageStatistics endpoints.  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days.  Scope requirements: r_organization_social, r_organization_followers, and r_organization_admin must all be present on the account. Accounts connected before these scopes were included in the OAuth flow will return 412 with a reauth hint.  Enforced by this endpoint:   - Page-view metrics accept only metricType&#x3D;total_value (LinkedIn omits per-day     segmentation even when the API is called with DAY granularity, so a time-series     response would be meaningless).   - Date range capped at 89 days.  LinkedIn-side platform limits (not re-enforced here, but worth knowing for larger ranges in a future release):   - Follower stats: rolling 12-month window, end must be no later than 2 days ago.   - Share stats: rolling 12-month window. 
 
 ### Example
 
@@ -4137,7 +4137,7 @@ ApiResponse<[**GetLinkedInPostReactions200Response**](GetLinkedInPostReactions20
 
 Get a post&#39;s authenticity score
 
-Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. Requires the Analytics add-on. 
+Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. 
 
 ### Example
 
@@ -4211,7 +4211,7 @@ public class Example {
 
 Get a post&#39;s authenticity score
 
-Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. Requires the Analytics add-on. 
+Returns Zernio&#39;s authenticity score for a post: an integer from 0 to 100 where higher means the view pattern looks more like organic viewing. The score is ours. It is computed only from the verified samples we fetched from the platform, never from anything the creator or caller reported, and &#x60;reasons&#x60; lists each factor that lowered it with its weight in points. &#x60;confidence&#x60; (0 to 1) says how much data the score rests on. A stored score newer than 30 minutes is returned as is, otherwise it is recomputed. The &#x60;post.authenticity_changed&#x60; webhook fires when a score crosses 40. 
 
 ### Example
 
@@ -4289,7 +4289,7 @@ ApiResponse<[**PostAuthenticity**](PostAuthenticity.md)>
 
 Get post samples
 
-Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. Requires the Analytics add-on. 
+Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. 
 
 ### Example
 
@@ -4370,7 +4370,7 @@ public class Example {
 
 Get post samples
 
-Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. Requires the Analytics add-on. 
+Returns the raw readings behind a post&#39;s numbers, oldest first. Each sample is one analytics sync: the views and engagement as the platform reported them at &#x60;syncedAt&#x60;. Zernio only stores what it fetched from the platform, so nothing here was self-reported. &#x60;shares&#x60; and &#x60;saves&#x60; are null on platforms that do not return that counter, which is different from a real zero. &#x60;watchSeconds&#x60; and &#x60;completionRate&#x60; are null when the platform gives no watch signal. 
 
 ### Example
 
@@ -4455,7 +4455,7 @@ ApiResponse<[**GetPostSamples200Response**](GetPostSamples200Response.md)>
 
 Get post analytics timeline
 
-Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. Requires the Analytics add-on. 
+Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. 
 
 ### Example
 
@@ -4534,7 +4534,7 @@ public class Example {
 
 Get post analytics timeline
 
-Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. Requires the Analytics add-on. 
+Returns a daily timeline of analytics metrics for a specific post, showing how impressions, likes, and other metrics evolved day-by-day since publishing. Each row represents one day of data per platform. For multi-platform Zernio posts, returns separate rows for each platform. 
 
 ### Example
 
@@ -4617,7 +4617,7 @@ ApiResponse<[**GetPostTimeline200Response**](GetPostTimeline200Response.md)>
 
 Get frequency vs engagement
 
-Returns the correlation between posting frequency (posts per week) and engagement rate, broken down by platform. Helps find the optimal posting cadence for each platform. Each row represents a specific (platform, posts_per_week) combination with the average engagement rate observed across all weeks matching that frequency. Requires the Analytics add-on. 
+Returns the correlation between posting frequency (posts per week) and engagement rate, broken down by platform. Helps find the optimal posting cadence for each platform. Each row represents a specific (platform, posts_per_week) combination with the average engagement rate observed across all weeks matching that frequency. 
 
 ### Example
 
@@ -4695,7 +4695,7 @@ public class Example {
 
 Get frequency vs engagement
 
-Returns the correlation between posting frequency (posts per week) and engagement rate, broken down by platform. Helps find the optimal posting cadence for each platform. Each row represents a specific (platform, posts_per_week) combination with the average engagement rate observed across all weeks matching that frequency. Requires the Analytics add-on. 
+Returns the correlation between posting frequency (posts per week) and engagement rate, broken down by platform. Helps find the optimal posting cadence for each platform. Each row represents a specific (platform, posts_per_week) combination with the average engagement rate observed across all weeks matching that frequency. 
 
 ### Example
 
@@ -4777,7 +4777,7 @@ ApiResponse<[**GetPostingFrequency200Response**](GetPostingFrequency200Response.
 
 Get TikTok account-level insights
 
-Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the Analytics add-on and the user.info.stats scope on the account (412 if missing).  Scope intentionally narrow: this ACCOUNT-level endpoint exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:   - account-level impressions / reach   - follower inflow / outflow breakdown   - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports profile views, website clicks, follows, full-watched rate, watch time, impression sources, viewer types and viewer countries per video on GET /v1/analytics?postId&#x3D;..., roughly 24-48h after publishing and only for posts active in the last 7 days. Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest; they must reconnect through the Business app. 
+Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the user.info.stats scope on the account (412 if missing).  Scope intentionally narrow: this ACCOUNT-level endpoint exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:   - account-level impressions / reach   - follower inflow / outflow breakdown   - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports profile views, website clicks, follows, full-watched rate, watch time, impression sources, viewer types and viewer countries per video on GET /v1/analytics?postId&#x3D;..., roughly 24-48h after publishing and only for posts active in the last 7 days. Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest; they must reconnect through the Business app. 
 
 ### Example
 
@@ -4864,7 +4864,7 @@ public class Example {
 
 Get TikTok account-level insights
 
-Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the Analytics add-on and the user.info.stats scope on the account (412 if missing).  Scope intentionally narrow: this ACCOUNT-level endpoint exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:   - account-level impressions / reach   - follower inflow / outflow breakdown   - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports profile views, website clicks, follows, full-watched rate, watch time, impression sources, viewer types and viewer countries per video on GET /v1/analytics?postId&#x3D;..., roughly 24-48h after publishing and only for posts active in the last 7 days. Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest; they must reconnect through the Business app. 
+Returns account-level TikTok insights from /v2/user/info/ (live) plus historical time series joined from Zernio&#39;s daily snapshotter (AccountStats).  Response shape matches /v1/analytics/instagram/account-insights. Max 89 days, defaults to last 30 days. Requires the user.info.stats scope on the account (412 if missing).  Scope intentionally narrow: this ACCOUNT-level endpoint exposes only the four counter metrics below. These account-level figures are not on any public TikTok API, for any account type:   - account-level impressions / reach   - follower inflow / outflow breakdown   - account-level watch time and audience demographics  TikTok&#39;s Research API doesn&#39;t expose them either, and is restricted to non-commercial academic use per TikTok&#39;s eligibility policy.  PER-VIDEO is a different story on the Business lane. An account connected through the TikTok for Business app reports profile views, website clicks, follows, full-watched rate, watch time, impression sources, viewer types and viewer countries per video on GET /v1/analytics?postId&#x3D;..., roughly 24-48h after publishing and only for posts active in the last 7 days. Accounts on the original TikTok integration get the basic counters there (views, likes, comments, shares) and zeros for the rest; they must reconnect through the Business app. 
 
 ### Example
 
@@ -4955,7 +4955,7 @@ ApiResponse<[**InstagramAccountInsightsResponse**](InstagramAccountInsightsRespo
 
 Get a tracking window
 
-Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. Requires the Analytics add-on. 
+Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. 
 
 ### Example
 
@@ -5029,7 +5029,7 @@ public class Example {
 
 Get a tracking window
 
-Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. Requires the Analytics add-on. 
+Returns one tracking window with the latest verified numbers we read from the platform. Once the window has completed, &#x60;finalReadAt&#x60; and &#x60;completionReason&#x60; say how it closed. 
 
 ### Example
 
@@ -5107,7 +5107,7 @@ ApiResponse<[**TrackingWindowResponse**](TrackingWindowResponse.md)>
 
 Get YouTube channel insights
 
-Returns channel-scoped aggregate metrics from YouTube Analytics API v2. Saves you from looping /v1/analytics/youtube/daily-views over every video when you only need channel totals.  Response shape matches /v1/analytics/instagram/account-insights so the same client handling works. Requires yt-analytics.readonly scope (412 with reauthorizeUrl if missing). Data has a 2-3 day delay (endDate is clamped accordingly). Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  NOT exposed: impressions (Studio thumbnail impressions) and impressionsClickThroughRate. YouTube Analytics API v2 does not expose these for any principal type, not channel owners, not Partner Program channels, not content owners with CMS access. The only way to get them is Studio CSV export. This is a Google-side limitation. 
+Returns channel-scoped aggregate metrics from YouTube Analytics API v2. Saves you from looping /v1/analytics/youtube/daily-views over every video when you only need channel totals.  Response shape matches /v1/analytics/instagram/account-insights so the same client handling works. Requires yt-analytics.readonly scope (412 with reauthorizeUrl if missing). Data has a 2-3 day delay (endDate is clamped accordingly). Max 89 days, defaults to last 30 days.  NOT exposed: impressions (Studio thumbnail impressions) and impressionsClickThroughRate. YouTube Analytics API v2 does not expose these for any principal type, not channel owners, not Partner Program channels, not content owners with CMS access. The only way to get them is Studio CSV export. This is a Google-side limitation. 
 
 ### Example
 
@@ -5197,7 +5197,7 @@ public class Example {
 
 Get YouTube channel insights
 
-Returns channel-scoped aggregate metrics from YouTube Analytics API v2. Saves you from looping /v1/analytics/youtube/daily-views over every video when you only need channel totals.  Response shape matches /v1/analytics/instagram/account-insights so the same client handling works. Requires yt-analytics.readonly scope (412 with reauthorizeUrl if missing). Data has a 2-3 day delay (endDate is clamped accordingly). Max 89 days, defaults to last 30 days. Requires the Analytics add-on.  NOT exposed: impressions (Studio thumbnail impressions) and impressionsClickThroughRate. YouTube Analytics API v2 does not expose these for any principal type, not channel owners, not Partner Program channels, not content owners with CMS access. The only way to get them is Studio CSV export. This is a Google-side limitation. 
+Returns channel-scoped aggregate metrics from YouTube Analytics API v2. Saves you from looping /v1/analytics/youtube/daily-views over every video when you only need channel totals.  Response shape matches /v1/analytics/instagram/account-insights so the same client handling works. Requires yt-analytics.readonly scope (412 with reauthorizeUrl if missing). Data has a 2-3 day delay (endDate is clamped accordingly). Max 89 days, defaults to last 30 days.  NOT exposed: impressions (Studio thumbnail impressions) and impressionsClickThroughRate. YouTube Analytics API v2 does not expose these for any principal type, not channel owners, not Partner Program channels, not content owners with CMS access. The only way to get them is Studio CSV export. This is a Google-side limitation. 
 
 ### Example
 
@@ -5469,7 +5469,7 @@ ApiResponse<[**YouTubeDailyViewsResponse**](YouTubeDailyViewsResponse.md)>
 
 Get YouTube demographics
 
-Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. 
 
 ### Example
 
@@ -5560,7 +5560,7 @@ public class Example {
 
 Get YouTube demographics
 
-Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. Requires the Analytics add-on. 
+Returns audience demographic insights for a YouTube channel, broken down by age, gender, and/or country. Pass videoId to get the audience profile of a single video instead of the whole channel. Age and gender values are viewer percentages (0-100). Country values are view counts. Data is based on signed-in viewers only, with a 2-3 day delay. YouTube suppresses demographics for videos with too few signed-in views, so low-traffic videos can return empty breakdowns. 
 
 ### Example
 
@@ -6339,7 +6339,7 @@ ApiResponse<[**ListPostAuthenticity200Response**](ListPostAuthenticity200Respons
 
 List tracking windows
 
-Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. Requires the Analytics add-on. 
+Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. 
 
 ### Example
 
@@ -6419,7 +6419,7 @@ public class Example {
 
 List tracking windows
 
-Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. Requires the Analytics add-on. 
+Lists the tracking windows you can see, newest first. Each window carries the latest verified numbers we read from the platform. 
 
 ### Example
 
@@ -6503,7 +6503,7 @@ ApiResponse<[**ListTrackingWindows200Response**](ListTrackingWindows200Response.
 
 Open a tracking window
 
-Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. Requires the Analytics add-on. 
+Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. 
 
 ### Example
 
@@ -6579,7 +6579,7 @@ public class Example {
 
 Open a tracking window
 
-Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. Requires the Analytics add-on. 
+Starts watching a post&#39;s views and engagement. Zernio fetches the numbers from the platform itself on its regular analytics sync, so every reading is verified: it is a value we read from the platform, never one the creator or the caller reported. The window runs for &#x60;trackingDays&#x60; (30 by default, 90 at most) and ends with one final read, after which the &#x60;post.tracking_completed&#x60; webhook fires. Identify the post with &#x60;postId&#x60; (an external post id from Zernio), or with &#x60;accountId&#x60; together with the post&#39;s &#x60;url&#x60;. Opening a window for a post that is already tracked returns the existing window with &#x60;200&#x60;. A new window returns &#x60;201&#x60;. 
 
 ### Example
 
