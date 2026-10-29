@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.407.0
+- API version: 1.408.0
 
-- Build date: 2026-10-29T11:51:13.984883968Z[Etc/UTC]
+- Build date: 2026-10-29T12:01:23.565678580Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.407.0</version>
+  <version>1.408.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.407.0"
+compile "dev.zernio:zernio-sdk:1.408.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.407.0.jar`
+- `target/zernio-sdk-1.408.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2407,6 +2407,8 @@ Class | Method | HTTP request | Description
  - [AdCreativeCarouselCardsInner](docs/AdCreativeCarouselCardsInner.md)
  - [AdCreativeCatalog](docs/AdCreativeCatalog.md)
  - [AdCreativeCatalogFormatTransformationSpecInner](docs/AdCreativeCatalogFormatTransformationSpecInner.md)
+ - [AdCreativeDescriptionsInner](docs/AdCreativeDescriptionsInner.md)
+ - [AdCreativeHeadlinesInner](docs/AdCreativeHeadlinesInner.md)
  - [AdDailyMetrics](docs/AdDailyMetrics.md)
  - [AdEngagementCounts](docs/AdEngagementCounts.md)
  - [AdFunnelCounts](docs/AdFunnelCounts.md)

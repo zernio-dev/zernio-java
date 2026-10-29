@@ -41,7 +41,7 @@
 |**bodies** | **List&lt;String&gt;** | Meta only. Multiple Text Options (Advantage+ Flexible Format): 1-5 primary-text variations that Meta optimises delivery across, WITHOUT enabling full Dynamic Creative (&#x60;dynamicCreative&#x60;).  Uses &#x60;optimization_type: DEGREES_OF_FREEDOM&#x60; on the asset feed, so multiple ads per ad set are allowed (unlike &#x60;dynamicCreative&#x60;, which is limited to one).  **Requirements:** &#x60;imageUrl&#x60; or &#x60;video&#x60;, &#x60;linkUrl&#x60;, &#x60;callToAction&#x60;, and &#x60;headlines&#x60;. The top-level &#x60;body&#x60; becomes &#x60;object_story_spec.link_data.message&#x60; (the preview text). On a video creative the copy lands in &#x60;video_data.message&#x60; / &#x60;video_data.title&#x60; instead of &#x60;link_data&#x60;.  Mutually exclusive with &#x60;dynamicCreative&#x60;, &#x60;carouselCards&#x60;, and &#x60;creatives[]&#x60;.  **With &#x60;placementAssets&#x60;:** the pool applies to the placement-customized creative instead (&#x60;optimization_type: PLACEMENT&#x60;). Every body carries the label of each rule that does not pin its own &#x60;body&#x60; (same for &#x60;headlines&#x60;), so Meta rotates options per placement while media stays pinned.  A rule&#39;s own &#x60;body&#x60; / &#x60;headline&#x60; stays pinned for that placement. &#x60;descriptions[]&#x60; cannot join a placement-customized creative (Meta refuses a second description per rule, subcode 1885878).  |  [optional] |
 |**headlines** | **List&lt;String&gt;** | Meta only. Headline variations for Multiple Text Options. Must be sent alongside &#x60;bodies&#x60;. The top-level &#x60;headline&#x60; field is used as the &#x60;object_story_spec.link_data.name&#x60; (&#x60;video_data.title&#x60; on a video creative).  |  [optional] |
 |**descriptions** | **List&lt;String&gt;** | Meta only. Optional description variations for Multiple Text Options. Sent alongside &#x60;bodies&#x60; and &#x60;headlines&#x60;. |  [optional] |
-|**callToAction** | [**CallToActionEnum**](#CallToActionEnum) | The ad&#39;s call-to-action button.  - **Meta:** required on legacy + attach shapes. - **TikTok:** honoured, passed through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. - **LinkedIn:** the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set. Accepts LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. - **Reddit** (image, video and carousel ads): accepts LEARN_MORE, SHOP_NOW, SIGN_UP, CONTACT_US, DOWNLOAD, GET_QUOTE, SUBSCRIBE, APPLY_NOW, BOOK_NOW, BUY_TICKETS, DONATE_NOW, GET_DIRECTIONS, GET_SHOWTIMES, LISTEN_NOW, ORDER_NOW, SEE_MENU, INSTALL_MOBILE_APP. Other values return 400. - **Google, Pinterest, and X:** ignored. |  [optional] |
+|**callToAction** | [**CallToActionEnum**](#CallToActionEnum) | The ad&#39;s call-to-action button.  - **Meta:** required on legacy + attach shapes. Accepts every call to action type Meta itself accepts (the enum lists them), including values such as SEE_DETAILS that ads synced from Meta carry. - **TikTok:** honoured, passed through to the Spark Ad creative&#39;s &#x60;call_to_action&#x60;. - **LinkedIn:** the CTA button on the ad; defaults to LEARN_MORE when &#x60;linkUrl&#x60; is set. Accepts LEARN_MORE, SIGN_UP, DOWNLOAD, SUBSCRIBE, REGISTER, JOIN, ATTEND, REQUEST_DEMO, VIEW_QUOTE, APPLY, SEE_MORE, SHOP_NOW, BUY_NOW. - **Reddit** (image, video and carousel ads): accepts LEARN_MORE, SHOP_NOW, SIGN_UP, CONTACT_US, DOWNLOAD, GET_QUOTE, SUBSCRIBE, APPLY_NOW, BOOK_NOW, BUY_TICKETS, DONATE_NOW, GET_DIRECTIONS, GET_SHOWTIMES, LISTEN_NOW, ORDER_NOW, SEE_MENU, INSTALL_MOBILE_APP. Other values return 400. - **Google, Pinterest, and X:** ignored. |  [optional] |
 |**linkUrl** | **URI** | The ad&#39;s destination URL. Required on legacy + attach shapes (skip for multi-creative). NOT required when &#x60;goal&#x60; is &#x60;lead_generation&#x60; (the ad opens a Lead Gen form instead).  - **LinkedIn:** required for &#x60;traffic&#x60; ads, optional for &#x60;engagement&#x60; / &#x60;awareness&#x60;. &#x60;imageUrl&#x60; + &#x60;linkUrl&#x60; publishes an ARTICLE-content creative (LinkedIn&#39;s article ad format), with the image as thumbnail and &#x60;longHeadline&#x60; as description. - **OpenAI Ads:** required (the chat card&#39;s target_url). - **Reddit:** required on image and video ads (the post&#39;s destination and the ad&#39;s click URL), the fallback for carousel cards without their own, and refused with 400 on text ads. |  [optional] |
 |**leadGenFormId** | **String** | Lead Gen form ID to attach to the ad&#39;s creative. REQUIRED when &#x60;goal&#x60; is &#x60;lead_generation&#x60;. Create one via POST /v1/ads/lead-forms.  - Meta (facebook/instagram): the leadgen_forms ID. The ad set&#39;s promoted_object.page_id, LEAD_GENERATION optimization and destination_type ON_AD are derived automatically from the goal. - Meta: also required on every ATTACH (&#x60;adSetId&#x60;) call targeting a lead ad set (the form attaches per-ad; Meta rejects a formless ad in a lead ad set). - Meta: &#x60;placementAssets&#x60;, &#x60;dynamicCreative&#x60; and &#x60;carouselCards&#x60; (multi-card Instant-Form lead ad) ARE supported on instant-form lead ads. &#x60;linkUrl&#x60; and per-card &#x60;linkUrl&#x60; are optional, forwarded as real destinations when sent, else falling back to Meta&#39;s lead-form link. - LinkedIn: the adForm ID. The creative&#39;s &#x60;leadgenCallToAction.destination&#x60; is set to &#x60;urn:li:adForm:{id}&#x60; and the campaign objective to MAX_LEAD. Forms must be owned by the sponsoredAccount (not the organization) for the URN to resolve. - Reddit: rejected with 400 on every goal (Reddit retired its native lead forms). |  [optional] |
 |**imageUrl** | **URI** | Image creative for Meta/Google/Pinterest/LinkedIn on legacy + attach shapes. Mutually exclusive with &#x60;video&#x60;.  - LinkedIn: required unless &#x60;video&#x60; is set. Uploaded to LinkedIn under the authoring Company Page (see &#x60;organizationId&#x60;); recommended ratio 1.91:1 (e.g. 1200×627). - Google: not required for Search campaigns. For Display, treated as the landscape image (alias of &#x60;images.landscape&#x60;); supply &#x60;images.square&#x60; alongside or the request is rejected. - TikTok: this field carries the VIDEO URL (the TikTok ads endpoint is video-only; the &#x60;imageUrl&#x60; name is kept for cross-platform consistency). - X: imageUrl + headline + linkUrl together build a website card (image, title and destination under the post; the URL is not added to the post text). Sending only some of them is a 400. - X: description, video and callToAction are rejected with 400 (promote a post that carries a video with POST /v1/ads/boost). - OpenAI Ads: required, uploaded as the chat card&#39;s image (OpenAI has no video ad format). - Reddit: builds an image ad (requires &#x60;linkUrl&#x60;). On a Reddit video ad it is the fallback for &#x60;video.thumbnailUrl&#x60;. |  [optional] |
@@ -244,40 +244,130 @@
 
 | Name | Value |
 |---- | -----|
-| LEARN_MORE | &quot;LEARN_MORE&quot; |
-| SHOP_NOW | &quot;SHOP_NOW&quot; |
-| SIGN_UP | &quot;SIGN_UP&quot; |
 | BOOK_TRAVEL | &quot;BOOK_TRAVEL&quot; |
 | CONTACT_US | &quot;CONTACT_US&quot; |
-| DOWNLOAD | &quot;DOWNLOAD&quot; |
-| GET_OFFER | &quot;GET_OFFER&quot; |
-| GET_QUOTE | &quot;GET_QUOTE&quot; |
-| SUBSCRIBE | &quot;SUBSCRIBE&quot; |
-| WATCH_MORE | &quot;WATCH_MORE&quot; |
-| ADD_TO_CART | &quot;ADD_TO_CART&quot; |
-| APPLY_NOW | &quot;APPLY_NOW&quot; |
-| BOOK_NOW | &quot;BOOK_NOW&quot; |
-| BUY_TICKETS | &quot;BUY_TICKETS&quot; |
 | DONATE | &quot;DONATE&quot; |
 | DONATE_NOW | &quot;DONATE_NOW&quot; |
+| DOWNLOAD | &quot;DOWNLOAD&quot; |
 | GET_DIRECTIONS | &quot;GET_DIRECTIONS&quot; |
+| GO_LIVE | &quot;GO_LIVE&quot; |
+| INTERESTED | &quot;INTERESTED&quot; |
+| LEARN_MORE | &quot;LEARN_MORE&quot; |
+| SEE_DETAILS | &quot;SEE_DETAILS&quot; |
+| LIKE_PAGE | &quot;LIKE_PAGE&quot; |
+| MESSAGE_PAGE | &quot;MESSAGE_PAGE&quot; |
+| RAISE_MONEY | &quot;RAISE_MONEY&quot; |
+| SAVE | &quot;SAVE&quot; |
+| SEND_TIP | &quot;SEND_TIP&quot; |
+| SHOP_NOW | &quot;SHOP_NOW&quot; |
+| SIGN_UP | &quot;SIGN_UP&quot; |
+| VIEW_INSTAGRAM_PROFILE | &quot;VIEW_INSTAGRAM_PROFILE&quot; |
+| INSTAGRAM_MESSAGE | &quot;INSTAGRAM_MESSAGE&quot; |
+| LOYALTY_LEARN_MORE | &quot;LOYALTY_LEARN_MORE&quot; |
+| PURCHASE_GIFT_CARDS | &quot;PURCHASE_GIFT_CARDS&quot; |
+| PAY_TO_ACCESS | &quot;PAY_TO_ACCESS&quot; |
+| SEE_MORE | &quot;SEE_MORE&quot; |
+| TRY_IN_CAMERA | &quot;TRY_IN_CAMERA&quot; |
+| WHATSAPP_LINK | &quot;WHATSAPP_LINK&quot; |
+| GET_IN_TOUCH | &quot;GET_IN_TOUCH&quot; |
+| TRY_NOW | &quot;TRY_NOW&quot; |
+| ASK_A_QUESTION | &quot;ASK_A_QUESTION&quot; |
+| START_A_CHAT | &quot;START_A_CHAT&quot; |
+| CHAT_NOW | &quot;CHAT_NOW&quot; |
+| ASK_US | &quot;ASK_US&quot; |
+| CHAT_WITH_US | &quot;CHAT_WITH_US&quot; |
+| SHOP_ON_RETAILER | &quot;SHOP_ON_RETAILER&quot; |
+| BOOK_NOW | &quot;BOOK_NOW&quot; |
+| CHECK_AVAILABILITY | &quot;CHECK_AVAILABILITY&quot; |
+| ORDER_NOW | &quot;ORDER_NOW&quot; |
+| WHATSAPP_MESSAGE | &quot;WHATSAPP_MESSAGE&quot; |
+| GET_MOBILE_APP | &quot;GET_MOBILE_APP&quot; |
+| INSTALL_MOBILE_APP | &quot;INSTALL_MOBILE_APP&quot; |
+| USE_MOBILE_APP | &quot;USE_MOBILE_APP&quot; |
+| INSTALL_APP | &quot;INSTALL_APP&quot; |
+| USE_APP | &quot;USE_APP&quot; |
+| PLAY_GAME | &quot;PLAY_GAME&quot; |
+| TRY_DEMO | &quot;TRY_DEMO&quot; |
+| WATCH_VIDEO | &quot;WATCH_VIDEO&quot; |
+| WATCH_MORE | &quot;WATCH_MORE&quot; |
+| OPEN_LINK | &quot;OPEN_LINK&quot; |
+| NO_BUTTON | &quot;NO_BUTTON&quot; |
+| LISTEN_MUSIC | &quot;LISTEN_MUSIC&quot; |
+| MOBILE_DOWNLOAD | &quot;MOBILE_DOWNLOAD&quot; |
+| GET_OFFER | &quot;GET_OFFER&quot; |
+| GET_OFFER_VIEW | &quot;GET_OFFER_VIEW&quot; |
+| BUY_NOW | &quot;BUY_NOW&quot; |
+| BUY_TICKETS | &quot;BUY_TICKETS&quot; |
+| UPDATE_APP | &quot;UPDATE_APP&quot; |
+| BET_NOW | &quot;BET_NOW&quot; |
+| ADD_TO_CART | &quot;ADD_TO_CART&quot; |
+| SELL_NOW | &quot;SELL_NOW&quot; |
 | GET_SHOWTIMES | &quot;GET_SHOWTIMES&quot; |
 | LISTEN_NOW | &quot;LISTEN_NOW&quot; |
-| ORDER_NOW | &quot;ORDER_NOW&quot; |
-| PLAY_GAME | &quot;PLAY_GAME&quot; |
+| GET_EVENT_TICKETS | &quot;GET_EVENT_TICKETS&quot; |
+| REMIND_ME | &quot;REMIND_ME&quot; |
+| SEARCH_MORE | &quot;SEARCH_MORE&quot; |
+| PRE_REGISTER | &quot;PRE_REGISTER&quot; |
+| SWIPE_UP_PRODUCT | &quot;SWIPE_UP_PRODUCT&quot; |
+| SWIPE_UP_SHOP | &quot;SWIPE_UP_SHOP&quot; |
+| PLAY_GAME_ON_FACEBOOK | &quot;PLAY_GAME_ON_FACEBOOK&quot; |
+| VISIT_WORLD | &quot;VISIT_WORLD&quot; |
+| OPEN_INSTANT_APP | &quot;OPEN_INSTANT_APP&quot; |
+| JOIN_GROUP | &quot;JOIN_GROUP&quot; |
+| GET_PROMOTIONS | &quot;GET_PROMOTIONS&quot; |
+| SEND_UPDATES | &quot;SEND_UPDATES&quot; |
+| INQUIRE_NOW | &quot;INQUIRE_NOW&quot; |
+| VISIT_PROFILE | &quot;VISIT_PROFILE&quot; |
+| CHAT_ON_WHATSAPP | &quot;CHAT_ON_WHATSAPP&quot; |
+| EXPLORE_MORE | &quot;EXPLORE_MORE&quot; |
+| CONFIRM | &quot;CONFIRM&quot; |
+| JOIN_CHANNEL | &quot;JOIN_CHANNEL&quot; |
+| MAKE_AN_APPOINTMENT | &quot;MAKE_AN_APPOINTMENT&quot; |
+| ASK_ABOUT_SERVICES | &quot;ASK_ABOUT_SERVICES&quot; |
+| BOOK_A_CONSULTATION | &quot;BOOK_A_CONSULTATION&quot; |
+| GET_A_QUOTE | &quot;GET_A_QUOTE&quot; |
+| BUY_VIA_MESSAGE | &quot;BUY_VIA_MESSAGE&quot; |
+| ASK_FOR_MORE_INFO | &quot;ASK_FOR_MORE_INFO&quot; |
+| VIEW_PRODUCT | &quot;VIEW_PRODUCT&quot; |
+| VIEW_CHANNEL | &quot;VIEW_CHANNEL&quot; |
+| WATCH_LIVE_VIDEO | &quot;WATCH_LIVE_VIDEO&quot; |
+| JOIN_LIVE_VIDEO | &quot;JOIN_LIVE_VIDEO&quot; |
+| IMAGINE | &quot;IMAGINE&quot; |
+| WATCH_NOW | &quot;WATCH_NOW&quot; |
+| STREAM_NOW | &quot;STREAM_NOW&quot; |
+| BUY_ACTIVITY_TICKETS | &quot;BUY_ACTIVITY_TICKETS&quot; |
+| CALL | &quot;CALL&quot; |
+| MISSED_CALL | &quot;MISSED_CALL&quot; |
+| CALL_NOW | &quot;CALL_NOW&quot; |
+| CALL_ME | &quot;CALL_ME&quot; |
+| APPLY_NOW | &quot;APPLY_NOW&quot; |
+| BUY | &quot;BUY&quot; |
+| GET_QUOTE | &quot;GET_QUOTE&quot; |
+| SUBSCRIBE | &quot;SUBSCRIBE&quot; |
+| RECORD_NOW | &quot;RECORD_NOW&quot; |
+| VOTE_NOW | &quot;VOTE_NOW&quot; |
+| GIVE_FREE_RIDES | &quot;GIVE_FREE_RIDES&quot; |
+| REGISTER_NOW | &quot;REGISTER_NOW&quot; |
+| OPEN_MESSENGER_EXT | &quot;OPEN_MESSENGER_EXT&quot; |
+| EVENT_RSVP | &quot;EVENT_RSVP&quot; |
+| CIVIC_ACTION | &quot;CIVIC_ACTION&quot; |
+| SEND_INVITES | &quot;SEND_INVITES&quot; |
+| REFER_FRIENDS | &quot;REFER_FRIENDS&quot; |
 | REQUEST_TIME | &quot;REQUEST_TIME&quot; |
 | SEE_MENU | &quot;SEE_MENU&quot; |
+| SEARCH | &quot;SEARCH&quot; |
+| TRY_IT | &quot;TRY_IT&quot; |
+| TRY_ON | &quot;TRY_ON&quot; |
+| LINK_CARD | &quot;LINK_CARD&quot; |
+| DIAL_CODE | &quot;DIAL_CODE&quot; |
+| FIND_YOUR_GROUPS | &quot;FIND_YOUR_GROUPS&quot; |
 | START_ORDER | &quot;START_ORDER&quot; |
-| INSTALL_MOBILE_APP | &quot;INSTALL_MOBILE_APP&quot; |
-| USE_APP | &quot;USE_APP&quot; |
 | REGISTER | &quot;REGISTER&quot; |
 | JOIN | &quot;JOIN&quot; |
 | ATTEND | &quot;ATTEND&quot; |
 | REQUEST_DEMO | &quot;REQUEST_DEMO&quot; |
 | VIEW_QUOTE | &quot;VIEW_QUOTE&quot; |
 | APPLY | &quot;APPLY&quot; |
-| SEE_MORE | &quot;SEE_MORE&quot; |
-| BUY_NOW | &quot;BUY_NOW&quot; |
 
 
 

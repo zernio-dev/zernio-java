@@ -10,8 +10,15 @@ Platform-specific creative data. Fields vary by platform.
 |------------ | ------------- | ------------- | -------------|
 |**assetGroup** | [**GooglePmaxAssetGroupInput**](GooglePmaxAssetGroupInput.md) | Initial Performance Max asset group input. Use the asset-groups endpoint for current Google assets. |  [optional] |
 |**assetGroupResourceName** | **String** | Google resource name of the created Performance Max asset group. |  [optional] |
-|**headlines** | [**List&lt;GoogleRsaHeadline&gt;**](GoogleRsaHeadline.md) | Google RSA only. Replaces the complete headline list. No padding or truncation on update. |  [optional] |
-|**descriptions** | [**List&lt;GoogleRsaDescription&gt;**](GoogleRsaDescription.md) | Google RSA only. Replaces the complete description list. No padding or truncation on update. |  [optional] |
+|**headlines** | [**List&lt;AdCreativeHeadlinesInner&gt;**](AdCreativeHeadlinesInner.md) | Google RSA: the headline assets as objects (3 to 15). Meta: every title variation of the creative (&#x60;asset_feed_spec.titles&#x60;) as strings, the same shape as the &#x60;headlines&#x60; create input. Present only with 2 or more titles; a single title is &#x60;headline&#x60;. |  [optional] |
+|**descriptions** | [**List&lt;AdCreativeDescriptionsInner&gt;**](AdCreativeDescriptionsInner.md) | Google RSA: the description assets as objects (2 to 4). Meta: every description variation of the creative (&#x60;asset_feed_spec.descriptions&#x60;) as strings, the same shape as the &#x60;descriptions&#x60; create input. Present only with 2 or more descriptions; a single one is &#x60;description&#x60;. |  [optional] |
+|**headline** | **String** | Meta: the creative&#39;s title (&#x60;link_data.name&#x60;, &#x60;video_data.title&#x60;, or the first &#x60;asset_feed_spec.titles&#x60; entry). Absent when the creative has none. |  [optional] |
+|**bodies** | **List&lt;String&gt;** | Meta: every primary text variation of the creative (&#x60;asset_feed_spec.bodies&#x60;), the same shape as the &#x60;bodies&#x60; create input. Present only with 2 or more texts; a single text is &#x60;body&#x60;. |  [optional] |
+|**description** | **String** | Meta: the creative&#39;s description under the title (&#x60;link_data.description&#x60;, &#x60;video_data.link_description&#x60;, or the first &#x60;asset_feed_spec.descriptions&#x60; entry). |  [optional] |
+|**callToAction** | **String** | Meta: the call to action type (&#x60;call_to_action.type&#x60;, or the first &#x60;asset_feed_spec.call_to_action_types&#x60; entry), e.g. LEARN_MORE or SIGN_UP. |  [optional] |
+|**leadGenFormId** | **String** | Meta: the instant form the call to action opens (&#x60;call_to_action.value.lead_gen_form_id&#x60;), the same value as the &#x60;leadGenFormId&#x60; create input. Absent on ads without a lead form. |  [optional] |
+|**imageHash** | **String** | Meta: the ad image hash (&#x60;image_hash&#x60;), reusable as &#x60;imageHash&#x60; on POST /v1/ads/create within the same ad account. &#x60;thumbnailUrl&#x60; and &#x60;mediaUrls&#x60; carry its stable full resolution permalink when Meta resolves it. |  [optional] |
+|**urlTags** | **String** | Meta: the creative&#39;s &#x60;url_tags&#x60; query string appended to the destination URL. |  [optional] |
 |**finalUrls** | **List&lt;URI&gt;** | Google RSA only. Replaces final URLs. Omitted lists stay unchanged. |  [optional] |
 |**thumbnailUrl** | **String** | Primary thumbnail/image URL |  [optional] |
 |**imageUrl** | **String** | Alternative image URL |  [optional] |
@@ -19,7 +26,7 @@ Platform-specific creative data. Fields vary by platform.
 |**assets** | [**AdCreativeAssets**](AdCreativeAssets.md) |  |  [optional] |
 |**videoId** | **String** | Meta video ID for VIDEO-type ads. Null for non-video ads. Callers that need an embeddable MP4 can call GET /{videoId}?fields&#x3D;source with the page access token. |  [optional] |
 |**videoUrl** | **String** | Public Facebook watch URL for VIDEO-type ads (https://www.facebook.com/watch/?v&#x3D;{videoId}). Null for non-video ads. |  [optional] |
-|**creativeId** | **String** | Meta ad creative id backing this ad. Reusable via existingCreativeId on POST /v1/ads/create. |  [optional] |
+|**creativeId** | **String** | Meta ad creative id backing this ad, refreshed from Meta on every sync. Reusable via existingCreativeId on POST /v1/ads/create, and readable raw through GET /v1/ads/creatives/{creativeId}. Ads synced from Meta also carry it as the legacy &#x60;id&#x60; key. |  [optional] |
 |**creativeFeatures** | [**Map&lt;String, InnerEnum&gt;**](#Map&lt;String, InnerEnum&gt;) | Meta only. The creativeFeatures map sent at creation (degrees_of_freedom_spec.creative_features_spec). Absent on ads synced from Meta. |  [optional] |
 |**catalog** | [**AdCreativeCatalog**](AdCreativeCatalog.md) |  |  [optional] |
 |**objectType** | **String** | Meta creative object_type (e.g. SHARE, VIDEO, PRIVACY_CHECK_FAIL, POST_DELETED). Use this to render state-aware previews: when Meta moderation strips image/video fields, only thumbnailUrl at 64x64 is available. |  [optional] |
