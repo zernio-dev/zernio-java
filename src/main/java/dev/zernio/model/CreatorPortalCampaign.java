@@ -53,7 +53,7 @@ import dev.zernio.ApiClient;
   CreatorPortalCampaign.JSON_PROPERTY_HOLD_DAYS,
   CreatorPortalCampaign.JSON_PROPERTY_TRACKING_DAYS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:31:38.883938913Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:35:17.602257153Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CreatorPortalCampaign {
   public static final String JSON_PROPERTY_ID = "id";
   @javax.annotation.Nonnull

@@ -6555,6 +6555,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/CheckWhatsAppNumberAvailability200ResponseAreaAvailabilityTest.java
-src/test/java/dev/zernio/model/CreateStandaloneAdRequestSmartTargetingTest.java
-src/test/java/dev/zernio/model/GetAccountHealth200ResponseMessagingRestrictionTest.java
