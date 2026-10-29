@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.409.0
+  version: 1.409.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -13342,6 +13342,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
         "404":
           description: The pending sign-in expired or was already used. Start the
             connect again.
@@ -13382,6 +13385,9 @@ paths:
             \ a reason in redirect_url"
         "400":
           $ref: "#/components/responses/BadRequest"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
         "404":
           description: The pending sign-in expired or was already used. Start the
             connect again.
@@ -17767,6 +17773,9 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "402":
           $ref: "#/components/responses/PaymentRequired"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
         "404":
           description: Profile not found
       summary: Connect a Discord channel
@@ -17885,7 +17894,8 @@ paths:
           $ref: "#/components/responses/Unauthorized"
         "403":
           description: "No access to the profile, or Slack connections are temporarily\
-            \ unavailable (code: feature_not_available)"
+            \ unavailable (code: feature_not_available), or the connect token was\
+            \ issued for a different profile or platform (INSUFFICIENT_PERMISSIONS)"
         "404":
           description: "Profile not found (start-OAuth mode), or no active Slack account\
             \ with that accountId for this user or their team (code: account_not_found)"
@@ -17917,7 +17927,8 @@ paths:
         "402":
           $ref: "#/components/responses/PaymentRequired"
         "403":
-          description: Slack connections are temporarily unavailable
+          description: "Slack connections are temporarily unavailable, or the connect\
+            \ token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS)"
         "404":
           description: Profile not found
         "422":
@@ -17974,7 +17985,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: No access to this profile
+          description: "No access to this profile, or the connect token was issued\
+            \ for a different profile or platform (INSUFFICIENT_PERMISSIONS)"
         "404":
           description: Profile not found
         "500":
@@ -18035,6 +18047,9 @@ paths:
           $ref: "#/components/responses/BadRequest"
         "401":
           $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: The connect token was issued for a different profile or platform
+            (INSUFFICIENT_PERMISSIONS).
         "404":
           description: Code not found
         "500":
@@ -18079,7 +18094,8 @@ paths:
         "401":
           $ref: "#/components/responses/Unauthorized"
         "403":
-          description: No access to this profile
+          description: "No access to this profile, or the connect token was issued\
+            \ for a different profile or platform (INSUFFICIENT_PERMISSIONS)"
         "404":
           description: Profile not found
         "500":

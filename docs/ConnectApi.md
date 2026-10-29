@@ -534,6 +534,7 @@ public class Example {
 | **200** | Connection status |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Code not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -611,6 +612,7 @@ ApiResponse<[**CompleteTelegramConnect200Response**](CompleteTelegramConnect200R
 | **200** | Connection status |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Code not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -1349,6 +1351,7 @@ null (empty response body)
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Profile not found |  -  |
 
 ## connectDiscordChannelWithHttpInfo
@@ -1426,6 +1429,7 @@ ApiResponse<Void>
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | Profile not found |  -  |
 
 
@@ -1804,7 +1808,7 @@ null (empty response body)
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
-| **403** | Slack connections are temporarily unavailable |  -  |
+| **403** | Slack connections are temporarily unavailable, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 
@@ -1882,7 +1886,7 @@ ApiResponse<Void>
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **402** | Payment method or enterprise contract required: the authenticated account hit a billing gate before the connection could proceed. Switch on &#x60;reason&#x60; to render the right prompt:  - &#x60;free_tier_exceeded&#x60;: the team has connected more accounts than the free tier allows. Add a payment method to continue (billed per additional connected account). - &#x60;twitter_passthrough&#x60;: connecting an X account requires a card on file from day one, because X API calls incur real per-call pass-through costs. Applies to the 1st X account, not only the 3rd+. - &#x60;enterprise_required&#x60;: the team&#39;s enterprise contract sets a connected-account cap and it has been reached. Self-service teams have NO cap (the $1/account rate continues at any scale). The user already has a card on file; this gate is about contract terms. - &#x60;card_verification_required&#x60;: the card on file was flagged at add time (prepaid, or issued in a different country than the billing address). A one-time verification charge of &#x60;details.verification_amount_cents&#x60; (USD) is pending; it is credited to the team&#39;s usage balance, not a fee.  **What to do:** redirect the end-user to &#x60;dashboard_url&#x60;.  - &#x60;free_tier_exceeded&#x60;, &#x60;twitter_passthrough&#x60;, &#x60;card_verification_required&#x60;: it opens the Zernio billing page (the add-payment-method drawer, or the verification step). The request succeeds once the card is on file (or verified, or paid). - &#x60;enterprise_required&#x60;: it opens the enterprise contact form (not the billing tab), to adjust the contract&#39;s limit.  |  -  |
-| **403** | Slack connections are temporarily unavailable |  -  |
+| **403** | Slack connections are temporarily unavailable, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **422** | channelIds only. None of the channels could be connected; &#x60;details.failed&#x60; lists each one with its reason. |  -  |
 
@@ -5946,7 +5950,7 @@ public class Example {
 | **200** | Access code generated |  -  |
 | **400** | Profile ID required or invalid format |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to this profile |  -  |
+| **403** | No access to this profile, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -6024,7 +6028,7 @@ ApiResponse<[**GetTelegramConnectStatus200Response**](GetTelegramConnectStatus20
 | **200** | Access code generated |  -  |
 | **400** | Profile ID required or invalid format |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to this profile |  -  |
+| **403** | No access to this profile, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -7240,7 +7244,7 @@ public class Example {
 | **200** | Telegram channel connected successfully |  -  |
 | **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to this profile |  -  |
+| **403** | No access to this profile, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -7318,7 +7322,7 @@ ApiResponse<[**InitiateTelegramConnect200Response**](InitiateTelegramConnect200R
 | **200** | Telegram channel connected successfully |  -  |
 | **400** | Chat ID required, bot not admin, or cannot access chat |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to this profile |  -  |
+| **403** | No access to this profile, or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found |  -  |
 | **500** | Internal error |  -  |
 
@@ -7582,6 +7586,7 @@ public class Example {
 | **200** | Properties the Google account can read |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
 
 ## listGoogleAnalyticsPropertiesWithHttpInfo
@@ -7664,6 +7669,7 @@ ApiResponse<[**ListGoogleAnalyticsProperties200Response**](ListGoogleAnalyticsPr
 | **200** | Properties the Google account can read |  -  |
 | **400** | Invalid request |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
 
 
@@ -8566,7 +8572,7 @@ public class Example {
 | **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
 | **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
+| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available), or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
 
 ## listSlackChannelsWithHttpInfo
@@ -8651,7 +8657,7 @@ ApiResponse<[**ListSlackChannels200Response**](ListSlackChannels200Response.md)>
 | **200** | Channel list (picker mode), or the OAuth URL when neither &#x60;pendingDataToken&#x60; nor &#x60;accountId&#x60; is sent |  -  |
 | **400** | Invalid profileId or accountId format, or pendingDataToken invalid, expired or issued for another profile (code: invalid_field_value) |  -  |
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
-| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available) |  -  |
+| **403** | No access to the profile, or Slack connections are temporarily unavailable (code: feature_not_available), or the connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS) |  -  |
 | **404** | Profile not found (start-OAuth mode), or no active Slack account with that accountId for this user or their team (code: account_not_found) |  -  |
 
 
@@ -9373,6 +9379,7 @@ public class Example {
 |-------------|-------------|------------------|
 | **200** | The property is connected, or the connect was refused with a reason in redirect_url |  -  |
 | **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
 | **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
@@ -9455,6 +9462,7 @@ ApiResponse<[**SelectGoogleAnalyticsProperty200Response**](SelectGoogleAnalytics
 |-------------|-------------|------------------|
 | **200** | The property is connected, or the connect was refused with a reason in redirect_url |  -  |
 | **400** | Invalid request |  -  |
+| **403** | The connect token was issued for a different profile or platform (INSUFFICIENT_PERMISSIONS). |  -  |
 | **404** | The pending sign-in expired or was already used. Start the connect again. |  -  |
 | **500** | Google or Zernio failed while saving. The pendingDataToken stays usable; retry. |  -  |
 
