@@ -56,7 +56,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T21:05:23.936020258Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T22:30:35.394548113Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class ReviewsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -307,7 +307,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -327,7 +327,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -349,7 +349,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
@@ -369,7 +369,7 @@ public class ReviewsApi {
 
   /**
    * List reviews
-   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile. 
+   * Fetch reviews from all connected Facebook Pages and Google Business Profile accounts. Aggregates data with filtering and sorting options. Supported platforms: Facebook, Google Business Profile.  Each account&#39;s reviews are read from the platform page by page within a 20-second budget per request, so very large accounts can come back truncated. Each account&#39;s listing is cached for up to 60 seconds. 
    * @param profileId  (optional)
    * @param platform  (optional)
    * @param minRating  (optional)
