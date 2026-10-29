@@ -128,7 +128,7 @@ import dev.zernio.ApiClient;
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATED_CATEGORIES,
   CtwaAdRequestBody.JSON_PROPERTY_REGIONAL_REGULATION_IDENTITIES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:11:32.288481742Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:16:10.891750423Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CtwaAdRequestBody {
   /**
    * Gets or Sets inner

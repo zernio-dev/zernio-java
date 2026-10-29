@@ -46,7 +46,7 @@ import dev.zernio.ApiClient;
   CommerceOrderAttribution.JSON_PROPERTY_LAST_VISIT,
   CommerceOrderAttribution.JSON_PROPERTY_CUSTOM_ATTRIBUTES
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:11:32.288481742Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-29T11:16:10.891750423Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class CommerceOrderAttribution {
   public static final String JSON_PROPERTY_READY = "ready";
   @javax.annotation.Nullable
