@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.413.2
+  version: 1.413.3
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -194419,9 +194419,10 @@ components:
           example: SIGN_UP
           type: string
         leadGenFormId:
-          description: "Meta: the instant form the call to action opens (`call_to_action.value.lead_gen_form_id`),\
-            \ the same value as the `leadGenFormId` create input. Absent on ads without\
-            \ a lead form."
+          description: "Meta: the instant form the call to action opens (`call_to_action.value.lead_gen_form_id`,\
+            \ or the asset feed's `call_to_actions` on a dynamic creative), the same\
+            \ value as the `leadGenFormId` create input. Absent on ads without a lead\
+            \ form."
           type: string
         imageHash:
           description: "Meta: the ad image hash (`image_hash`), reusable as `imageHash`\
