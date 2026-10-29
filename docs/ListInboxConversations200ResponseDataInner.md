@@ -11,6 +11,7 @@
 |**platform** | **String** |  |  [optional] |
 |**accountId** | **String** |  |  [optional] |
 |**accountUsername** | **String** |  |  [optional] |
+|**pageId** | **String** | The bare Facebook Page id behind the account, for Facebook and Instagram connected through Facebook Login. Null when the account has no Facebook Page. |  [optional] |
 |**participantId** | **String** |  |  [optional] |
 |**participantName** | **String** |  |  [optional] |
 |**participantPicture** | **String** |  |  [optional] |

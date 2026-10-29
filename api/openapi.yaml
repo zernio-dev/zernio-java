@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.413.3
+  version: 1.414.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -87639,6 +87639,7 @@ components:
         profileId: profileId
         displayName: displayName
         id: id
+        pageId: pageId
         platform: platform
         username: username
       properties:
@@ -87661,6 +87662,11 @@ components:
         username:
           type: string
         displayName:
+          type: string
+        pageId:
+          description: "The bare Facebook Page id behind the account, to route inbound\
+            \ messages by Page. Present for Facebook accounts and Instagram accounts\
+            \ connected through Facebook Login; omitted otherwise."
           type: string
       required:
       - id
@@ -87705,6 +87711,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -87792,6 +87799,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -87988,6 +87996,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -88115,6 +88124,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -88290,6 +88300,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         editCount: 6
@@ -88416,6 +88427,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -88548,6 +88560,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -88747,6 +88760,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -88908,6 +88922,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -89191,6 +89206,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -89279,6 +89295,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -89351,6 +89368,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -89418,6 +89436,7 @@ components:
           profileId: profileId
           displayName: displayName
           id: id
+          pageId: pageId
           platform: platform
           username: username
         timestamp: 2000-01-23T04:56:07.000+00:00
@@ -130277,6 +130296,7 @@ components:
           platformPostId: platformPostId
         lastMessage: lastMessage
         unreadCount: 80
+        pageId: pageId
         whatsappUsername: whatsappUsername
         platform: platform
         url: url
@@ -130308,6 +130328,12 @@ components:
         accountId:
           type: string
         accountUsername:
+          type: string
+        pageId:
+          description: "The bare Facebook Page id behind the account, for Facebook\
+            \ and Instagram connected through Facebook Login. Null when the account\
+            \ has no Facebook Page."
+          nullable: true
           type: string
         participantId:
           type: string
@@ -130504,6 +130530,7 @@ components:
             platformPostId: platformPostId
           lastMessage: lastMessage
           unreadCount: 80
+          pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
           url: url
@@ -130563,6 +130590,7 @@ components:
             platformPostId: platformPostId
           lastMessage: lastMessage
           unreadCount: 80
+          pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
           url: url
@@ -131309,6 +131337,7 @@ components:
           campaignName: campaignName
           platformPostId: platformPostId
         lastMessage: lastMessage
+        pageId: pageId
         whatsappUsername: whatsappUsername
         platform: platform
         instagramProfile:
@@ -131337,6 +131366,12 @@ components:
         accountId:
           type: string
         accountUsername:
+          type: string
+        pageId:
+          description: "The bare Facebook Page id behind the account, for Facebook\
+            \ and Instagram connected through Facebook Login. Null when the account\
+            \ has no Facebook Page."
+          nullable: true
           type: string
         platform:
           type: string
@@ -131426,6 +131461,7 @@ components:
             campaignName: campaignName
             platformPostId: platformPostId
           lastMessage: lastMessage
+          pageId: pageId
           whatsappUsername: whatsappUsername
           platform: platform
           instagramProfile:

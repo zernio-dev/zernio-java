@@ -14,6 +14,7 @@ The account context included in inbox webhook payloads.
 |**platform** | **String** |  |  |
 |**username** | **String** |  |  |
 |**displayName** | **String** |  |  [optional] |
+|**pageId** | **String** | The bare Facebook Page id behind the account, to route inbound messages by Page. Present for Facebook accounts and Instagram accounts connected through Facebook Login; omitted otherwise. |  [optional] |
 
 
 
