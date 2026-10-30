@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.424.0
+  version: 1.426.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75612,6 +75612,7 @@ paths:
           enum:
           - submittedAt
           - viewsEligible
+          - engagementsLatest
           - earnedCents
           - authenticityScore
           type: string
@@ -76701,8 +76702,12 @@ components:
         - platforms
         economics:
           maxPayoutPerClipCents: 1
+          metric: views
           ratePer1kCents: 0
           type: cpm
+          engagementTypes:
+          - likes
+          - likes
           minViewsToEarn: 6
         maxPostAgeMinutes: 5
         name: name
@@ -76790,18 +76795,19 @@ components:
       - $ref: "#/components/schemas/Pool"
     CreatorPortalSubmission:
       example:
-        rejectReason: rejectReason
         publishedAt: 2000-01-23T04:56:07.000+00:00
-        earnedCents: 6
         flags:
         - unreachable
         - unreachable
-        trackingEndsAt: 2000-01-23T04:56:07.000+00:00
-        id: id
         postId: postId
-        submittedAt: 2000-01-23T04:56:07.000+00:00
         platform: platform
         url: url
+        rejectReason: rejectReason
+        earnedCents: 1
+        trackingEndsAt: 2000-01-23T04:56:07.000+00:00
+        engagements: 6
+        id: id
+        submittedAt: 2000-01-23T04:56:07.000+00:00
         views: 0
         status: received
       properties:
@@ -76834,6 +76840,11 @@ components:
         views:
           description: Latest view count read for the post.
           type: integer
+        engagements:
+          description: The campaign engagement types summed at the latest read. Null
+            until the post is read.
+          nullable: true
+          type: integer
         earnedCents:
           type: integer
         rejectReason:
@@ -76855,6 +76866,7 @@ components:
           type: string
       required:
       - earnedCents
+      - engagements
       - flags
       - id
       - platform
@@ -76973,8 +76985,12 @@ components:
           - platforms
           economics:
             maxPayoutPerClipCents: 1
+            metric: views
             ratePer1kCents: 0
             type: cpm
+            engagementTypes:
+            - likes
+            - likes
             minViewsToEarn: 6
           maxPostAgeMinutes: 5
           name: name
@@ -85088,9 +85104,11 @@ components:
           - code: duplicate_post
             detail: detail
           id: id
+          viewsEligible: 6
           platform: tiktok
           platformPostId: platformPostId
           status: tracking
+          engagementsLatest: 1
         id: id
         event: campaign_submission.received
         participant:
@@ -85366,7 +85384,7 @@ components:
 
         Every type carries `budgetCents`, the most the campaign can pay out in total. Once earnings reach it, the campaign stops accruing and `creator_campaign.budget_exhausted` fires.
 
-        - `cpm`: `ratePer1kCents` per 1,000 eligible views, earned from `minViewsToEarn` views on, capped per post by `maxPayoutPerClipCents`.
+        - `cpm`: `ratePer1kCents` per 1,000 of the counted `metric` (views by default), earned once a post reaches `minViewsToEarn` of it, capped per post by `maxPayoutPerClipCents`.
         - `per_post`: `perApprovedPostCents` for each approved post, at most `maxPostsPerParticipant` per participant.
         - `pool`: `budgetCents` is split at close among approved posts by eligible views; a post needs `minViewsToQualify` views to share.
       discriminator:
@@ -85382,8 +85400,12 @@ components:
     CreatorCampaignEconomicsCpm:
       example:
         maxPayoutPerClipCents: 1
+        metric: views
         ratePer1kCents: 1
         type: cpm
+        engagementTypes:
+        - likes
+        - likes
         minViewsToEarn: 0
         budgetCents: 0
       properties:
@@ -85391,10 +85413,35 @@ components:
           enum:
           - cpm
           type: string
+        metric:
+          default: views
+          description: "What the rate pays on. `engagements` counts the `engagementTypes`\
+            \ as each platform reports them, and `minViewsToEarn` then applies to\
+            \ engagements. Fixed once the campaign leaves draft."
+          enum:
+          - views
+          - engagements
+          type: string
+        engagementTypes:
+          description: "With `metric: engagements`, the engagements that count. Missing\
+            \ means all four, and sending it on a views campaign answers 400. YouTube\
+            \ reports likes and comments only, Facebook and Threads have no saves,\
+            \ and Pinterest reports saves only."
+          items:
+            enum:
+            - likes
+            - comments
+            - shares
+            - saves
+            type: string
+          minItems: 1
+          type: array
         ratePer1kCents:
           minimum: 1
           type: integer
         minViewsToEarn:
+          description: "The count a post must reach before it earns, in the campaign\
+            \ metric (views or engagements)."
           minimum: 0
           type: integer
         maxPayoutPerClipCents:
@@ -85576,8 +85623,12 @@ components:
           tracking: 6
         economics:
           maxPayoutPerClipCents: 1
+          metric: views
           ratePer1kCents: 1
           type: cpm
+          engagementTypes:
+          - likes
+          - likes
           minViewsToEarn: 0
           budgetCents: 0
         profileId: profileId
@@ -85766,8 +85817,12 @@ components:
         settlement: none
         economics:
           maxPayoutPerClipCents: 1
+          metric: views
           ratePer1kCents: 1
           type: cpm
+          engagementTypes:
+          - likes
+          - likes
           minViewsToEarn: 0
           budgetCents: 0
         maxPostAgeMinutes: 1
@@ -85878,8 +85933,12 @@ components:
         maxPostAgeMinutes: 1
         economics:
           maxPayoutPerClipCents: 1
+          metric: views
           ratePer1kCents: 1
           type: cpm
+          engagementTypes:
+          - likes
+          - likes
           minViewsToEarn: 0
           budgetCents: 0
         name: name
@@ -86094,7 +86153,7 @@ components:
         reviewRound: 0
         trackingWindowId: trackingWindowId
         viewsAtSubmission: 6
-        authenticityConfidence: 3.616076749251911
+        authenticityConfidence: 2.027123023002322
         creatorId: creatorId
         reviewedAt: 2000-01-23T04:56:07.000+00:00
         flags:
@@ -86107,7 +86166,7 @@ components:
         viewsLatest: 1
         paidOutCents: 1
         externalPostId: externalPostId
-        accruedCents: 2
+        accruedCents: 7
         platform: tiktok
         participantId: participantId
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -86118,7 +86177,7 @@ components:
           accountHandle: accountHandle
           caption: caption
           thumbnailUrl: thumbnailUrl
-        authenticityScore: 93
+        authenticityScore: 36
         platformPostUrl: platformPostUrl
         id: id
         submittedAt: 2000-01-23T04:56:07.000+00:00
@@ -86129,24 +86188,25 @@ components:
         creator:
           displayName: displayName
           id: id
-        approvedCents: 7
+        approvedCents: 9
         campaignId: campaignId
         authenticity:
-          score: 2
+          score: 4
           reasons:
           - ""
           - ""
-          confidence: 4.145608029883936
-        lastAccruedViews: 5
+          confidence: 7.386281948385884
+        lastAccruedViews: 2
         reviewedBy: reviewedBy
         accountId: accountId
-        earnedCents: 7
+        earnedCents: 1
         window:
           id: id
           endsAt: 2000-01-23T04:56:07.000+00:00
           status: status
         platformPostId: platformPostId
         status: received
+        engagementsLatest: 5
       properties:
         id:
           type: string
@@ -86234,6 +86294,12 @@ components:
             \ the last read at or before its end is final and this value stops moving."
           nullable: true
           type: integer
+        engagementsLatest:
+          description: "The campaign engagement types summed at the latest read (all\
+            \ four on a views campaign), frozen at the tracking window end like `viewsEligible`.\
+            \ An `engagements` campaign earns on this count."
+          nullable: true
+          type: integer
         lastAccruedViews:
           type: integer
         accruedCents:
@@ -86290,6 +86356,7 @@ components:
       - creator
       - creatorId
       - earnedCents
+      - engagementsLatest
       - externalPostId
       - flags
       - id
@@ -86330,7 +86397,7 @@ components:
         reviewRound: 0
         trackingWindowId: trackingWindowId
         viewsAtSubmission: 6
-        authenticityConfidence: 3.616076749251911
+        authenticityConfidence: 2.027123023002322
         creatorId: creatorId
         reviewedAt: 2000-01-23T04:56:07.000+00:00
         flags:
@@ -86341,9 +86408,9 @@ components:
           raisedAt: 2000-01-23T04:56:07.000+00:00
           detail: detail
         viewsLatest: 1
-        paidOutCents: 7
+        paidOutCents: 1
         externalPostId: externalPostId
-        accruedCents: 2
+        accruedCents: 7
         platform: tiktok
         participantId: participantId
         createdAt: 2000-01-23T04:56:07.000+00:00
@@ -86354,48 +86421,49 @@ components:
           accountHandle: accountHandle
           caption: caption
           thumbnailUrl: thumbnailUrl
-        authenticityScore: 93
+        authenticityScore: 36
         platformPostUrl: platformPostUrl
         id: id
         submittedAt: 2000-01-23T04:56:07.000+00:00
         viewsEligible: 5
         mediaHash: mediaHash
-        releasedCents: 4
+        releasedCents: 7
         updatedAt: 2000-01-23T04:56:07.000+00:00
         creator:
           displayName: displayName
           id: id
-        approvedCents: 7
+        approvedCents: 9
         campaignId: campaignId
         authenticity:
-          score: 2
+          score: 4
           reasons:
           - ""
           - ""
-          confidence: 4.145608029883936
-        lastAccruedViews: 5
+          confidence: 7.386281948385884
+        lastAccruedViews: 2
         reviewedBy: reviewedBy
         samples:
-        - shares: 6
-          comments: 1
-          saves: 7
+        - shares: 7
+          comments: 6
+          saves: 1
           syncedAt: 2000-01-23T04:56:07.000+00:00
           views: 1
           likes: 1
-        - shares: 6
-          comments: 1
-          saves: 7
+        - shares: 7
+          comments: 6
+          saves: 1
           syncedAt: 2000-01-23T04:56:07.000+00:00
           views: 1
           likes: 1
         accountId: accountId
-        earnedCents: 2
+        earnedCents: 4
         window:
           id: id
           endsAt: 2000-01-23T04:56:07.000+00:00
           status: status
         platformPostId: platformPostId
         status: received
+        engagementsLatest: 5
     CampaignLedgerEntry:
       example:
         kind: accrual
@@ -86611,12 +86679,13 @@ components:
           settledCents: 1
           budgetCents: 0
         authenticity:
-        - count: 4
-          from: 3
-          to: 2
-        - count: 4
-          from: 3
-          to: 2
+        - count: 7
+          from: 2
+          to: 4
+        - count: 7
+          from: 2
+          to: 4
+        engagements: 2
         views:
           total: 5
           eligible: 5
@@ -86625,21 +86694,24 @@ components:
           creator:
             displayName: displayName
             id: id
-          settlingCents: 7
-          payableCents: 2
-          settledCents: 9
+          settlingCents: 9
+          payableCents: 7
+          settledCents: 3
         - participantId: participantId
           creator:
             displayName: displayName
             id: id
-          settlingCents: 7
-          payableCents: 2
-          settledCents: 9
+          settlingCents: 9
+          payableCents: 7
+          settledCents: 3
       properties:
         spend:
           $ref: "#/components/schemas/CampaignReport_spend"
         views:
           $ref: "#/components/schemas/CampaignReport_views"
+        engagements:
+          description: The campaign engagement types summed over the same submissions.
+          type: integer
         submissions:
           $ref: "#/components/schemas/CampaignSubmissionCounts"
         participants:
@@ -86654,6 +86726,7 @@ components:
           type: array
       required:
       - authenticity
+      - engagements
       - participants
       - spend
       - submissions
@@ -115367,18 +115440,19 @@ components:
     submitCreatorPost_201_response:
       example:
         submission:
-          rejectReason: rejectReason
           publishedAt: 2000-01-23T04:56:07.000+00:00
-          earnedCents: 6
           flags:
           - unreachable
           - unreachable
-          trackingEndsAt: 2000-01-23T04:56:07.000+00:00
-          id: id
           postId: postId
-          submittedAt: 2000-01-23T04:56:07.000+00:00
           platform: platform
           url: url
+          rejectReason: rejectReason
+          earnedCents: 1
+          trackingEndsAt: 2000-01-23T04:56:07.000+00:00
+          engagements: 6
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
           views: 0
           status: received
       properties:
@@ -181846,8 +181920,12 @@ components:
             tracking: 6
           economics:
             maxPayoutPerClipCents: 1
+            metric: views
             ratePer1kCents: 1
             type: cpm
+            engagementTypes:
+            - likes
+            - likes
             minViewsToEarn: 0
             budgetCents: 0
           profileId: profileId
@@ -181896,8 +181974,12 @@ components:
             tracking: 6
           economics:
             maxPayoutPerClipCents: 1
+            metric: views
             ratePer1kCents: 1
             type: cpm
+            engagementTypes:
+            - likes
+            - likes
             minViewsToEarn: 0
             budgetCents: 0
           profileId: profileId
@@ -181959,8 +182041,12 @@ components:
             tracking: 6
           economics:
             maxPayoutPerClipCents: 1
+            metric: views
             ratePer1kCents: 1
             type: cpm
+            engagementTypes:
+            - likes
+            - likes
             minViewsToEarn: 0
             budgetCents: 0
           profileId: profileId
@@ -182394,12 +182480,12 @@ components:
       - inviteUrl
     listCampaignSubmissions_200_response:
       example:
-        total: 1
+        total: 6
         submissions:
         - reviewRound: 0
           trackingWindowId: trackingWindowId
           viewsAtSubmission: 6
-          authenticityConfidence: 3.616076749251911
+          authenticityConfidence: 2.027123023002322
           creatorId: creatorId
           reviewedAt: 2000-01-23T04:56:07.000+00:00
           flags:
@@ -182412,7 +182498,7 @@ components:
           viewsLatest: 1
           paidOutCents: 1
           externalPostId: externalPostId
-          accruedCents: 2
+          accruedCents: 7
           platform: tiktok
           participantId: participantId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -182423,7 +182509,7 @@ components:
             accountHandle: accountHandle
             caption: caption
             thumbnailUrl: thumbnailUrl
-          authenticityScore: 93
+          authenticityScore: 36
           platformPostUrl: platformPostUrl
           id: id
           submittedAt: 2000-01-23T04:56:07.000+00:00
@@ -182434,28 +182520,29 @@ components:
           creator:
             displayName: displayName
             id: id
-          approvedCents: 7
+          approvedCents: 9
           campaignId: campaignId
           authenticity:
-            score: 2
+            score: 4
             reasons:
             - ""
             - ""
-            confidence: 4.145608029883936
-          lastAccruedViews: 5
+            confidence: 7.386281948385884
+          lastAccruedViews: 2
           reviewedBy: reviewedBy
           accountId: accountId
-          earnedCents: 7
+          earnedCents: 1
           window:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
           platformPostId: platformPostId
           status: received
+          engagementsLatest: 5
         - reviewRound: 0
           trackingWindowId: trackingWindowId
           viewsAtSubmission: 6
-          authenticityConfidence: 3.616076749251911
+          authenticityConfidence: 2.027123023002322
           creatorId: creatorId
           reviewedAt: 2000-01-23T04:56:07.000+00:00
           flags:
@@ -182468,7 +182555,7 @@ components:
           viewsLatest: 1
           paidOutCents: 1
           externalPostId: externalPostId
-          accruedCents: 2
+          accruedCents: 7
           platform: tiktok
           participantId: participantId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -182479,7 +182566,7 @@ components:
             accountHandle: accountHandle
             caption: caption
             thumbnailUrl: thumbnailUrl
-          authenticityScore: 93
+          authenticityScore: 36
           platformPostUrl: platformPostUrl
           id: id
           submittedAt: 2000-01-23T04:56:07.000+00:00
@@ -182490,24 +182577,25 @@ components:
           creator:
             displayName: displayName
             id: id
-          approvedCents: 7
+          approvedCents: 9
           campaignId: campaignId
           authenticity:
-            score: 2
+            score: 4
             reasons:
             - ""
             - ""
-            confidence: 4.145608029883936
-          lastAccruedViews: 5
+            confidence: 7.386281948385884
+          lastAccruedViews: 2
           reviewedBy: reviewedBy
           accountId: accountId
-          earnedCents: 7
+          earnedCents: 1
           window:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
           platformPostId: platformPostId
           status: received
+          engagementsLatest: 5
       properties:
         submissions:
           items:
@@ -182524,84 +182612,7 @@ components:
           reviewRound: 0
           trackingWindowId: trackingWindowId
           viewsAtSubmission: 6
-          authenticityConfidence: 3.616076749251911
-          creatorId: creatorId
-          reviewedAt: 2000-01-23T04:56:07.000+00:00
-          flags:
-          - code: duplicate_media
-            raisedAt: 2000-01-23T04:56:07.000+00:00
-            detail: detail
-          - code: duplicate_media
-            raisedAt: 2000-01-23T04:56:07.000+00:00
-            detail: detail
-          viewsLatest: 1
-          paidOutCents: 7
-          externalPostId: externalPostId
-          accruedCents: 2
-          platform: tiktok
-          participantId: participantId
-          createdAt: 2000-01-23T04:56:07.000+00:00
-          postPublishedAt: 2000-01-23T04:56:07.000+00:00
-          rejectReason: rejectReason
-          post:
-            publishedAt: 2000-01-23T04:56:07.000+00:00
-            accountHandle: accountHandle
-            caption: caption
-            thumbnailUrl: thumbnailUrl
-          authenticityScore: 93
-          platformPostUrl: platformPostUrl
-          id: id
-          submittedAt: 2000-01-23T04:56:07.000+00:00
-          viewsEligible: 5
-          mediaHash: mediaHash
-          releasedCents: 4
-          updatedAt: 2000-01-23T04:56:07.000+00:00
-          creator:
-            displayName: displayName
-            id: id
-          approvedCents: 7
-          campaignId: campaignId
-          authenticity:
-            score: 2
-            reasons:
-            - ""
-            - ""
-            confidence: 4.145608029883936
-          lastAccruedViews: 5
-          reviewedBy: reviewedBy
-          samples:
-          - shares: 6
-            comments: 1
-            saves: 7
-            syncedAt: 2000-01-23T04:56:07.000+00:00
-            views: 1
-            likes: 1
-          - shares: 6
-            comments: 1
-            saves: 7
-            syncedAt: 2000-01-23T04:56:07.000+00:00
-            views: 1
-            likes: 1
-          accountId: accountId
-          earnedCents: 2
-          window:
-            id: id
-            endsAt: 2000-01-23T04:56:07.000+00:00
-            status: status
-          platformPostId: platformPostId
-          status: received
-      properties:
-        submission:
-          $ref: "#/components/schemas/CampaignSubmissionDetail"
-      required:
-      - submission
-    approveCampaignSubmission_200_response:
-      example:
-        submission:
-          reviewRound: 0
-          trackingWindowId: trackingWindowId
-          viewsAtSubmission: 6
-          authenticityConfidence: 3.616076749251911
+          authenticityConfidence: 2.027123023002322
           creatorId: creatorId
           reviewedAt: 2000-01-23T04:56:07.000+00:00
           flags:
@@ -182614,7 +182625,7 @@ components:
           viewsLatest: 1
           paidOutCents: 1
           externalPostId: externalPostId
-          accruedCents: 2
+          accruedCents: 7
           platform: tiktok
           participantId: participantId
           createdAt: 2000-01-23T04:56:07.000+00:00
@@ -182625,7 +182636,85 @@ components:
             accountHandle: accountHandle
             caption: caption
             thumbnailUrl: thumbnailUrl
-          authenticityScore: 93
+          authenticityScore: 36
+          platformPostUrl: platformPostUrl
+          id: id
+          submittedAt: 2000-01-23T04:56:07.000+00:00
+          viewsEligible: 5
+          mediaHash: mediaHash
+          releasedCents: 7
+          updatedAt: 2000-01-23T04:56:07.000+00:00
+          creator:
+            displayName: displayName
+            id: id
+          approvedCents: 9
+          campaignId: campaignId
+          authenticity:
+            score: 4
+            reasons:
+            - ""
+            - ""
+            confidence: 7.386281948385884
+          lastAccruedViews: 2
+          reviewedBy: reviewedBy
+          samples:
+          - shares: 7
+            comments: 6
+            saves: 1
+            syncedAt: 2000-01-23T04:56:07.000+00:00
+            views: 1
+            likes: 1
+          - shares: 7
+            comments: 6
+            saves: 1
+            syncedAt: 2000-01-23T04:56:07.000+00:00
+            views: 1
+            likes: 1
+          accountId: accountId
+          earnedCents: 4
+          window:
+            id: id
+            endsAt: 2000-01-23T04:56:07.000+00:00
+            status: status
+          platformPostId: platformPostId
+          status: received
+          engagementsLatest: 5
+      properties:
+        submission:
+          $ref: "#/components/schemas/CampaignSubmissionDetail"
+      required:
+      - submission
+    approveCampaignSubmission_200_response:
+      example:
+        submission:
+          reviewRound: 0
+          trackingWindowId: trackingWindowId
+          viewsAtSubmission: 6
+          authenticityConfidence: 2.027123023002322
+          creatorId: creatorId
+          reviewedAt: 2000-01-23T04:56:07.000+00:00
+          flags:
+          - code: duplicate_media
+            raisedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+          - code: duplicate_media
+            raisedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+          viewsLatest: 1
+          paidOutCents: 1
+          externalPostId: externalPostId
+          accruedCents: 7
+          platform: tiktok
+          participantId: participantId
+          createdAt: 2000-01-23T04:56:07.000+00:00
+          postPublishedAt: 2000-01-23T04:56:07.000+00:00
+          rejectReason: rejectReason
+          post:
+            publishedAt: 2000-01-23T04:56:07.000+00:00
+            accountHandle: accountHandle
+            caption: caption
+            thumbnailUrl: thumbnailUrl
+          authenticityScore: 36
           platformPostUrl: platformPostUrl
           id: id
           submittedAt: 2000-01-23T04:56:07.000+00:00
@@ -182636,24 +182725,25 @@ components:
           creator:
             displayName: displayName
             id: id
-          approvedCents: 7
+          approvedCents: 9
           campaignId: campaignId
           authenticity:
-            score: 2
+            score: 4
             reasons:
             - ""
             - ""
-            confidence: 4.145608029883936
-          lastAccruedViews: 5
+            confidence: 7.386281948385884
+          lastAccruedViews: 2
           reviewedBy: reviewedBy
           accountId: accountId
-          earnedCents: 7
+          earnedCents: 1
           window:
             id: id
             endsAt: 2000-01-23T04:56:07.000+00:00
             status: status
           platformPostId: platformPostId
           status: received
+          engagementsLatest: 5
       properties:
         submission:
           $ref: "#/components/schemas/CampaignSubmission"
@@ -182812,12 +182902,13 @@ components:
             settledCents: 1
             budgetCents: 0
           authenticity:
-          - count: 4
-            from: 3
-            to: 2
-          - count: 4
-            from: 3
-            to: 2
+          - count: 7
+            from: 2
+            to: 4
+          - count: 7
+            from: 2
+            to: 4
+          engagements: 2
           views:
             total: 5
             eligible: 5
@@ -182826,16 +182917,16 @@ components:
             creator:
               displayName: displayName
               id: id
-            settlingCents: 7
-            payableCents: 2
-            settledCents: 9
+            settlingCents: 9
+            payableCents: 7
+            settledCents: 3
           - participantId: participantId
             creator:
               displayName: displayName
               id: id
-            settlingCents: 7
-            payableCents: 2
-            settledCents: 9
+            settlingCents: 9
+            payableCents: 7
+            settledCents: 3
       properties:
         report:
           $ref: "#/components/schemas/CampaignReport"
@@ -183562,14 +183653,34 @@ components:
     CPM:
       example:
         maxPayoutPerClipCents: 1
+        metric: views
         ratePer1kCents: 0
         type: cpm
+        engagementTypes:
+        - likes
+        - likes
         minViewsToEarn: 6
       properties:
         type:
           enum:
           - cpm
           type: string
+        metric:
+          description: What the rate pays on. Missing means views.
+          enum:
+          - views
+          - engagements
+          type: string
+        engagementTypes:
+          description: The engagements that count. Missing means all four.
+          items:
+            enum:
+            - likes
+            - comments
+            - shares
+            - saves
+            type: string
+          type: array
         ratePer1kCents:
           type: integer
         minViewsToEarn:
@@ -186582,9 +186693,11 @@ components:
         - code: duplicate_post
           detail: detail
         id: id
+        viewsEligible: 6
         platform: tiktok
         platformPostId: platformPostId
         status: tracking
+        engagementsLatest: 1
       properties:
         id:
           type: string
@@ -186602,11 +186715,21 @@ components:
         viewsAtSubmission:
           nullable: true
           type: integer
+        viewsEligible:
+          description: Views that count toward earnings at the latest read.
+          nullable: true
+          type: integer
+        engagementsLatest:
+          description: The campaign engagement types summed at the latest read. An
+            engagements campaign earns on this count.
+          nullable: true
+          type: integer
         flags:
           items:
             $ref: "#/components/schemas/WebhookPayloadCampaignSubmission_submission_flags_inner"
           type: array
       required:
+      - engagementsLatest
       - flags
       - id
       - platform
@@ -186614,6 +186737,7 @@ components:
       - platformPostUrl
       - status
       - viewsAtSubmission
+      - viewsEligible
     WebhookPayloadCreatorCampaign_campaign:
       example:
         name: name
@@ -186863,11 +186987,11 @@ components:
       description: "0 to 100, where 100 means the view pattern looks organic. Null\
         \ until the post is scored."
       example:
-        score: 2
+        score: 4
         reasons:
         - ""
         - ""
-        confidence: 4.145608029883936
+        confidence: 7.386281948385884
       properties:
         score:
           type: integer
@@ -186931,9 +187055,9 @@ components:
       - thumbnailUrl
     CampaignSubmissionDetail_allOf_samples:
       example:
-        shares: 6
-        comments: 1
-        saves: 7
+        shares: 7
+        comments: 6
+        saves: 1
         syncedAt: 2000-01-23T04:56:07.000+00:00
         views: 1
         likes: 1
@@ -186995,9 +187119,9 @@ components:
         creator:
           displayName: displayName
           id: id
-        settlingCents: 7
-        payableCents: 2
-        settledCents: 9
+        settlingCents: 9
+        payableCents: 7
+        settledCents: 3
       properties:
         participantId:
           type: string
@@ -187018,9 +187142,9 @@ components:
       - settlingCents
     CampaignReport_authenticity_inner:
       example:
-        count: 4
-        from: 3
-        to: 2
+        count: 7
+        from: 2
+        to: 4
       properties:
         from:
           type: integer

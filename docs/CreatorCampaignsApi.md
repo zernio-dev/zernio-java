@@ -2667,7 +2667,7 @@ public class Example {
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |
 | **q** | **String**| Only submissions whose creator name or post link contains this text, ignoring case. | [optional] |
-| **sort** | **String**| What to sort by. Posts with no value to sort by (not read yet, not scored) come last in either direction. | [optional] [default to submittedAt] [enum: submittedAt, viewsEligible, earnedCents, authenticityScore] |
+| **sort** | **String**| What to sort by. Posts with no value to sort by (not read yet, not scored) come last in either direction. | [optional] [default to submittedAt] [enum: submittedAt, viewsEligible, engagementsLatest, earnedCents, authenticityScore] |
 | **order** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
@@ -2766,7 +2766,7 @@ public class Example {
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |
 | **q** | **String**| Only submissions whose creator name or post link contains this text, ignoring case. | [optional] |
-| **sort** | **String**| What to sort by. Posts with no value to sort by (not read yet, not scored) come last in either direction. | [optional] [default to submittedAt] [enum: submittedAt, viewsEligible, earnedCents, authenticityScore] |
+| **sort** | **String**| What to sort by. Posts with no value to sort by (not read yet, not scored) come last in either direction. | [optional] [default to submittedAt] [enum: submittedAt, viewsEligible, engagementsLatest, earnedCents, authenticityScore] |
 | **order** | **String**|  | [optional] [default to desc] [enum: asc, desc] |
 | **limit** | **Integer**|  | [optional] [default to 50] |
 | **skip** | **Integer**|  | [optional] [default to 0] |
