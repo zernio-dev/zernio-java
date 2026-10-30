@@ -1132,6 +1132,7 @@ docs/GetCampaignBidding200Response.md
 docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignParticipant200Response.md
 docs/GetCampaignReport200Response.md
+docs/GetCampaignResultsTotals200Response.md
 docs/GetCampaignResultsUpload200Response.md
 docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md
 docs/GetCampaignSubmission200Response.md
@@ -4491,6 +4492,7 @@ src/main/java/dev/zernio/model/GetCampaignBidding200Response.java
 src/main/java/dev/zernio/model/GetCampaignConversionGoals200Response.java
 src/main/java/dev/zernio/model/GetCampaignParticipant200Response.java
 src/main/java/dev/zernio/model/GetCampaignReport200Response.java
+src/main/java/dev/zernio/model/GetCampaignResultsTotals200Response.java
 src/main/java/dev/zernio/model/GetCampaignResultsUpload200Response.java
 src/main/java/dev/zernio/model/GetCampaignResultsUpload200ResponseUnmatchedInner.java
 src/main/java/dev/zernio/model/GetCampaignSubmission200Response.java
@@ -6599,3 +6601,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetCampaignResultsTotals200ResponseTest.java

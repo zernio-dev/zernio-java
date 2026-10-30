@@ -4,17 +4,175 @@ All URIs are relative to *https://zernio.com/api*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**getCampaignResultsTotals**](AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
+| [**getCampaignResultsTotalsWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals |
 | [**getCampaignResultsUpload**](AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
 | [**getCampaignResultsUploadWithHttpInfo**](AdCampaignResultsApi.md#getCampaignResultsUploadWithHttpInfo) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload |
 | [**listCampaignResultMetrics**](AdCampaignResultsApi.md#listCampaignResultMetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**listCampaignResultMetricsWithHttpInfo**](AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics |
 | [**listCampaignResults**](AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign |
 | [**listCampaignResultsWithHttpInfo**](AdCampaignResultsApi.md#listCampaignResultsWithHttpInfo) | **GET** /v1/ads/campaign-results | List your results per campaign |
-| [**setCampaignResultMetric**](AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric |
-| [**setCampaignResultMetricWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric |
+| [**setCampaignResultMetric**](AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
+| [**setCampaignResultMetricWithHttpInfo**](AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula |
 | [**uploadCampaignResults**](AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 | [**uploadCampaignResultsWithHttpInfo**](AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign |
 
+
+
+## getCampaignResultsTotals
+
+> GetCampaignResultsTotals200Response getCampaignResultsTotals(fromDate, toDate, adAccountIds)
+
+Get your results totals
+
+Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest value only.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | 
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String adAccountIds = "adAccountIds_example"; // String | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see.
+        try {
+            GetCampaignResultsTotals200Response result = apiInstance.getCampaignResultsTotals(fromDate, toDate, adAccountIds);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultsTotals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**|  | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
+
+### Return type
+
+[**GetCampaignResultsTotals200Response**](GetCampaignResultsTotals200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The totals by metric key. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## getCampaignResultsTotalsWithHttpInfo
+
+> ApiResponse<GetCampaignResultsTotals200Response> getCampaignResultsTotals getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds)
+
+Get your results totals
+
+Each metric you send summed over a date range across every campaign of the ad accounts your key can see, or of the ones you name. Each day counts its newest value only.  Formulas are not computed here, since they also read the platform&#39;s numbers: apply one to these totals and the account&#39;s spend for the same range, or read it per campaign from &#x60;GET /v1/ads/tree?results&#x3D;true&#x60;. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdCampaignResultsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdCampaignResultsApi apiInstance = new AdCampaignResultsApi(defaultClient);
+        LocalDate fromDate = LocalDate.now(); // LocalDate | 
+        LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive. At most 400 days after `fromDate`.
+        String adAccountIds = "adAccountIds_example"; // String | Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see.
+        try {
+            ApiResponse<GetCampaignResultsTotals200Response> response = apiInstance.getCampaignResultsTotalsWithHttpInfo(fromDate, toDate, adAccountIds);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdCampaignResultsApi#getCampaignResultsTotals");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **fromDate** | **LocalDate**|  | |
+| **toDate** | **LocalDate**| Inclusive. At most 400 days after &#x60;fromDate&#x60;. | |
+| **adAccountIds** | **String**| Comma-separated platform ad account ids, at most 100. Omit for every ad account your key can see. | [optional] |
+
+### Return type
+
+ApiResponse<[**GetCampaignResultsTotals200Response**](GetCampaignResultsTotals200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The totals by metric key. |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## getCampaignResultsUpload
@@ -171,7 +329,7 @@ ApiResponse<[**GetCampaignResultsUpload200Response**](GetCampaignResultsUpload20
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind. A new key appears as a &#x60;count&#x60; labelled from the key; name it with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
@@ -238,7 +396,7 @@ This endpoint does not need any parameter.
 
 List your result metrics
 
-The metric keys your team has sent, with their label and kind. A new key appears as a &#x60;count&#x60; labelled from the key; name it with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
+The metric keys your team has sent, with their label and kind, then the formulas: your own and the built-in ones (&#x60;cac_percent&#x60;, &#x60;cost_per_sale&#x60;, &#x60;cost_per_qualified_lead&#x60;, &#x60;lead_to_sale&#x60;). A new key appears as a &#x60;count&#x60; labelled from the key; name it, or define a formula, with &#x60;PUT /v1/ads/campaign-results/metrics/{key}&#x60;. 
 
 ### Example
 
@@ -471,9 +629,9 @@ ApiResponse<[**ListCampaignResults200Response**](ListCampaignResults200Response.
 
 > SetCampaignResultMetric200Response setCampaignResultMetric(key, setCampaignResultMetricRequest)
 
-Name a result metric
+Name a result metric or define a formula
 
-Sets a metric key&#39;s label and kind: &#x60;count&#x60; for things you count (leads, sales) or &#x60;money&#x60; with its currency (revenue). 
+Sets a metric key&#39;s label and kind: &#x60;count&#x60; for things you count (leads, sales), &#x60;money&#x60; with its currency (revenue), &#x60;percent&#x60; or &#x60;ratio&#x60;.  Send &#x60;formula&#x60; to make it a computed metric: &#x60;+ - * /&#x60; and parentheses over &#x60;spend&#x60;, &#x60;impressions&#x60;, &#x60;clicks&#x60;, &#x60;conversions&#x60;, &#x60;purchase_value&#x60; and the metrics you send, at most 200 characters. A formula cannot read another formula.  It is computed per campaign over the summed values of the range, and has no value when an input is missing or a division is by zero. 
 
 ### Example
 
@@ -545,9 +703,9 @@ public class Example {
 
 > ApiResponse<SetCampaignResultMetric200Response> setCampaignResultMetric setCampaignResultMetricWithHttpInfo(key, setCampaignResultMetricRequest)
 
-Name a result metric
+Name a result metric or define a formula
 
-Sets a metric key&#39;s label and kind: &#x60;count&#x60; for things you count (leads, sales) or &#x60;money&#x60; with its currency (revenue). 
+Sets a metric key&#39;s label and kind: &#x60;count&#x60; for things you count (leads, sales), &#x60;money&#x60; with its currency (revenue), &#x60;percent&#x60; or &#x60;ratio&#x60;.  Send &#x60;formula&#x60; to make it a computed metric: &#x60;+ - * /&#x60; and parentheses over &#x60;spend&#x60;, &#x60;impressions&#x60;, &#x60;clicks&#x60;, &#x60;conversions&#x60;, &#x60;purchase_value&#x60; and the metrics you send, at most 200 characters. A formula cannot read another formula.  It is computed per campaign over the summed values of the range, and has no value when an input is missing or a division is by zero. 
 
 ### Example
 

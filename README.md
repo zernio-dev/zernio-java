@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.428.0
+- API version: 1.429.0
 
-- Build date: 2026-10-30T13:54:33.317009560Z[Etc/UTC]
+- Build date: 2026-10-30T14:06:23.682904793Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.428.0</version>
+  <version>1.429.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.428.0"
+compile "dev.zernio:zernio-sdk:1.429.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.428.0.jar`
+- `target/zernio-sdk-1.429.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -373,14 +373,16 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignResultsApi* | [**getCampaignResultsTotals**](docs/AdCampaignResultsApi.md#getCampaignResultsTotals) | **GET** /v1/ads/campaign-results/totals | Get your results totals
+*AdCampaignResultsApi* | [**getCampaignResultsTotalsWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsTotalsWithHttpInfo) | **GET** /v1/ads/campaign-results/totals | Get your results totals
 *AdCampaignResultsApi* | [**getCampaignResultsUpload**](docs/AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
 *AdCampaignResultsApi* | [**getCampaignResultsUploadWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsUploadWithHttpInfo) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
 *AdCampaignResultsApi* | [**listCampaignResultMetrics**](docs/AdCampaignResultsApi.md#listCampaignResultMetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
 *AdCampaignResultsApi* | [**listCampaignResultMetricsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
 *AdCampaignResultsApi* | [**listCampaignResults**](docs/AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign
 *AdCampaignResultsApi* | [**listCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultsWithHttpInfo) | **GET** /v1/ads/campaign-results | List your results per campaign
-*AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric
-*AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric
+*AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
+*AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric or define a formula
 *AdCampaignResultsApi* | [**uploadCampaignResults**](docs/AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign
 *AdCampaignResultsApi* | [**uploadCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign
 *AdCampaignsApi* | [**addAdKeywords**](docs/AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords
@@ -3491,6 +3493,7 @@ Class | Method | HTTP request | Description
  - [GetCampaignConversionGoals200Response](docs/GetCampaignConversionGoals200Response.md)
  - [GetCampaignParticipant200Response](docs/GetCampaignParticipant200Response.md)
  - [GetCampaignReport200Response](docs/GetCampaignReport200Response.md)
+ - [GetCampaignResultsTotals200Response](docs/GetCampaignResultsTotals200Response.md)
  - [GetCampaignResultsUpload200Response](docs/GetCampaignResultsUpload200Response.md)
  - [GetCampaignResultsUpload200ResponseUnmatchedInner](docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md)
  - [GetCampaignSubmission200Response](docs/GetCampaignSubmission200Response.md)

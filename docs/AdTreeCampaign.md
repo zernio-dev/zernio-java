@@ -8,6 +8,7 @@ Campaign with nested ad sets and rolled-up metrics
 
 | Name | Type | Description | Notes |
 |------------ | ------------- | ------------- | -------------|
+|**results** | **Map&lt;String, BigDecimal&gt;** | Only with &#x60;results&#x3D;true&#x60;. The values you sent for this campaign over the range, plus each formula they allow, by metric key. A metric with no value is absent. |  [optional] |
 |**platformCampaignId** | **String** |  |  [optional] |
 |**platform** | [**PlatformEnum**](#PlatformEnum) |  |  [optional] |
 |**campaignName** | **String** |  |  [optional] |
