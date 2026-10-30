@@ -69,7 +69,7 @@ import dev.zernio.ApiClient;
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_LATLNG,
   UpdateGoogleBusinessLocationDetailsRequest.JSON_PROPERTY_AD_WORDS_LOCATION_EXTENSIONS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateGoogleBusinessLocationDetailsRequest {
   public static final String JSON_PROPERTY_UPDATE_MASK = "updateMask";
   @javax.annotation.Nonnull

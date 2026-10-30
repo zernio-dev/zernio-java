@@ -47,7 +47,7 @@ import dev.zernio.ApiClient;
   UpdateProductRequest.JSON_PROPERTY_SEO,
   UpdateProductRequest.JSON_PROPERTY_VARIANTS
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class UpdateProductRequest {
   public static final String JSON_PROPERTY_TITLE = "title";
   @javax.annotation.Nullable

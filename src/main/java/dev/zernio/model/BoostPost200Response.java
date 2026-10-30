@@ -40,7 +40,7 @@ import dev.zernio.ApiClient;
   BoostPost200Response.JSON_PROPERTY_RESULTS,
   BoostPost200Response.JSON_PROPERTY_MESSAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BoostPost200Response {
   public static final String JSON_PROPERTY_VALIDATE_ONLY = "validateOnly";
   @javax.annotation.Nullable

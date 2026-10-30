@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   BusinessAgentConnectorInputUserAuthInjectionConfig.JSON_PROPERTY_FIELD_NAME,
   BusinessAgentConnectorInputUserAuthInjectionConfig.JSON_PROPERTY_PREFIX
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentConnectorInputUserAuthInjectionConfig {
   public static final String JSON_PROPERTY_LOCATION = "location";
   @javax.annotation.Nonnull

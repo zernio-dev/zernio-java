@@ -41,7 +41,7 @@ import dev.zernio.ApiClient;
   WebhookPayloadWhatsAppAccountQualityUpdatedQuality.JSON_PROPERTY_PREVIOUS_MESSAGING_LIMIT_TIER,
   WebhookPayloadWhatsAppAccountQualityUpdatedQuality.JSON_PROPERTY_DISPLAY_PHONE_NUMBER
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookPayloadWhatsAppAccountQualityUpdatedQuality {
   /**
    * The Meta webhook field that reported the change.

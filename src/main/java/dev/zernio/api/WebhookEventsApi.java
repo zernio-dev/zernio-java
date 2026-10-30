@@ -131,7 +131,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Consumer;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class WebhookEventsApi {
   /**
    * Utility class for extending HttpRequest.Builder functionality.
@@ -9624,7 +9624,7 @@ public class WebhookEventsApi {
 
   /**
    * Review deleted event
-   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
    * @param webhookPayloadReviewDeleted  (required)
    * @throws ApiException if fails to make API call
    */
@@ -9634,7 +9634,7 @@ public class WebhookEventsApi {
 
   /**
    * Review deleted event
-   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
    * @param webhookPayloadReviewDeleted  (required)
    * @param headers Optional headers to include in the request
    * @throws ApiException if fails to make API call
@@ -9645,7 +9645,7 @@ public class WebhookEventsApi {
 
   /**
    * Review deleted event
-   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
    * @param webhookPayloadReviewDeleted  (required)
    * @return ApiResponse&lt;Void&gt;
    * @throws ApiException if fails to make API call
@@ -9656,7 +9656,7 @@ public class WebhookEventsApi {
 
   /**
    * Review deleted event
-   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling: fires usually 6 to 12 hours after the review disappears, only for locations covered by a webhook subscribed to review.deleted or review.restored. If the review comes back, review.restored fires. May arrive for a review id you never received review.new for. A review hidden and restored by Google may produce review.deleted followed by review.restored, and a review.updated can arrive for a review previously reported by review.deleted (it is restored on the next check). Requires the Inbox add-on. 
+   * Google Business Profile stopped returning this review, for example after Google&#39;s spam filter removed it. Detected by polling, it usually fires 6 to 12 hours after the review disappears.  - Opt-in: only locations covered by a webhook subscribed to review.deleted or review.restored are checked. - If the review comes back, review.restored fires. A review Google hides and later restores produces review.deleted and then review.restored. - A review.updated can arrive for a review reported by review.deleted. The next check restores it. - It may arrive for a review id you never received review.new for. Ignore ids you do not know. 
    * @param webhookPayloadReviewDeleted  (required)
    * @param headers Optional headers to include in the request
    * @return ApiResponse&lt;Void&gt;

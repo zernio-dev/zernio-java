@@ -38,7 +38,7 @@ import dev.zernio.ApiClient;
   BusinessAgentConnectorInputAuthConfig.JSON_PROPERTY_OAUTH2_CLIENT_CREDENTIALS,
   BusinessAgentConnectorInputAuthConfig.JSON_PROPERTY_API_KEY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class BusinessAgentConnectorInputAuthConfig {
   public static final String JSON_PROPERTY_OAUTH2_CLIENT_CREDENTIALS = "oauth2_client_credentials";
   @javax.annotation.Nullable

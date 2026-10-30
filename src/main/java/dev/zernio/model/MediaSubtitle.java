@@ -37,7 +37,7 @@ import dev.zernio.ApiClient;
   MediaSubtitle.JSON_PROPERTY_URL,
   MediaSubtitle.JSON_PROPERTY_LANGUAGE
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:34:16.718029959Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-10-30T00:56:29.457748799Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class MediaSubtitle {
   public static final String JSON_PROPERTY_URL = "url";
   @javax.annotation.Nonnull
