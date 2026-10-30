@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.420.1
+  version: 1.421.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -13133,6 +13133,63 @@ paths:
           items:
             type: string
           type: array
+        style: form
+      - description: |
+          When `true`, `authUrl` opens on the Zernio-hosted welcome screen with your brand, as on GET /v1/connect/{platform}, naming the ads platform ("<brandName> wants to connect to your Meta Ads").
+
+          - With no `redirect_url`, the flow ends on the branded result page instead of the Zernio dashboard.
+          - Shown only with `welcome=true`: the workspace's saved "on by default" (`PUT /v1/connect/welcome-screen`) applies to GET /v1/connect/{platform} only, so ads links behave as before unless you opt in. The saved brand still fills in what the call leaves out.
+          - Cannot be combined with `headless=true` (400 `INVALID_FIELD_VALUE`).
+          - Responses with `alreadyConnected: true` carry no `authUrl`, so they show no screen.
+        explode: true
+        in: query
+        name: welcome
+        required: false
+        schema:
+          type: boolean
+        style: form
+      - description: "Welcome screen only: your product name in its heading. Same\
+          \ rules as on GET /v1/connect/{platform}."
+        explode: true
+        in: query
+        name: brandName
+        required: false
+        schema:
+          maxLength: 60
+          minLength: 1
+          type: string
+        style: form
+      - description: "Welcome screen only: https URL of your square logo. Rejected\
+          \ with 400 `INVALID_FIELD_VALUE` when the welcome screen is not shown."
+        explode: true
+        in: query
+        name: logoUrl
+        required: false
+        schema:
+          format: uri
+          maxLength: 2048
+          type: string
+        style: form
+      - description: "Welcome screen only: hex colour (`#RRGGBB`) of its button."
+        explode: true
+        in: query
+        name: primaryColor
+        required: false
+        schema:
+          pattern: "^#[0-9a-fA-F]{6}$"
+          type: string
+        style: form
+      - description: "Welcome screen only: a URL-encoded JSON object restyling and\
+          \ rewording the welcome screen and the result page, with the keys documented\
+          \ on GET /v1/connect/{platform}. Rejected when the welcome screen is not\
+          \ shown."
+        explode: true
+        in: query
+        name: welcomeTheme
+        required: false
+        schema:
+          maxLength: 4000
+          type: string
         style: form
       responses:
         "200":
