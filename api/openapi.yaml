@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.420.0
+  version: 1.420.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -808,9 +808,9 @@ paths:
         - clicks: always 0, because Meta exposes no link-click metric for stories
       operationId: getAnalytics
       parameters:
-      - description: Returns analytics for a single post. Accepts both Zernio Post
-          IDs and External Post IDs. Zernio IDs are auto-resolved to External Post
-          analytics.
+      - description: "Returns analytics for a single post. Accepts Zernio Post IDs,\
+          \ External Post IDs and the platform's native post ID. Zernio IDs are auto-resolved\
+          \ to External Post analytics."
         explode: true
         in: query
         name: postId
@@ -826,7 +826,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by profile ID (default "all")
+      - description: "Filter by profile ID (default \"all\"). With a native postId,\
+          \ selects that profile's copy of the post."
         explode: true
         in: query
         name: profileId
@@ -834,7 +835,8 @@ paths:
         schema:
           type: string
         style: form
-      - description: Filter by account ID
+      - description: "Filter by account ID. With a native postId, selects that account's\
+          \ copy of the post."
         explode: true
         in: query
         name: accountId

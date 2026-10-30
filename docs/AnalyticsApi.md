@@ -272,10 +272,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
+        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform's native post ID. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
-        String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String accountId = "accountId_example"; // String | Filter by account ID
+        String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\"). With a native postId, selects that profile's copy of the post.
+        String accountId = "accountId_example"; // String | Filter by account ID. With a native postId, selects that account's copy of the post.
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -303,10 +303,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
+| **postId** | **String**| Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform&#39;s native post ID. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
-| **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **accountId** | **String**| Filter by account ID | [optional] |
+| **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;). With a native postId, selects that profile&#39;s copy of the post. | [optional] |
+| **accountId** | **String**| Filter by account ID. With a native postId, selects that account&#39;s copy of the post. | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
@@ -372,10 +372,10 @@ public class Example {
         bearerAuth.setBearerToken("BEARER TOKEN");
 
         AnalyticsApi apiInstance = new AnalyticsApi(defaultClient);
-        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics.
+        String postId = "postId_example"; // String | Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform's native post ID. Zernio IDs are auto-resolved to External Post analytics.
         String platform = "platform_example"; // String | Filter by platform (default \"all\")
-        String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\")
-        String accountId = "accountId_example"; // String | Filter by account ID
+        String profileId = "profileId_example"; // String | Filter by profile ID (default \"all\"). With a native postId, selects that profile's copy of the post.
+        String accountId = "accountId_example"; // String | Filter by account ID. With a native postId, selects that account's copy of the post.
         String source = "all"; // String | Filter by post source: late (posted via Zernio API), external (synced from platform), all (default)
         LocalDate fromDate = LocalDate.now(); // LocalDate | Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days.
         LocalDate toDate = LocalDate.now(); // LocalDate | Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted.
@@ -405,10 +405,10 @@ public class Example {
 
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **postId** | **String**| Returns analytics for a single post. Accepts both Zernio Post IDs and External Post IDs. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
+| **postId** | **String**| Returns analytics for a single post. Accepts Zernio Post IDs, External Post IDs and the platform&#39;s native post ID. Zernio IDs are auto-resolved to External Post analytics. | [optional] |
 | **platform** | **String**| Filter by platform (default \&quot;all\&quot;) | [optional] |
-| **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;) | [optional] |
-| **accountId** | **String**| Filter by account ID | [optional] |
+| **profileId** | **String**| Filter by profile ID (default \&quot;all\&quot;). With a native postId, selects that profile&#39;s copy of the post. | [optional] |
+| **accountId** | **String**| Filter by account ID. With a native postId, selects that account&#39;s copy of the post. | [optional] |
 | **source** | **String**| Filter by post source: late (posted via Zernio API), external (synced from platform), all (default) | [optional] [default to all] [enum: all, late, external] |
 | **fromDate** | **LocalDate**| Inclusive lower bound (YYYY-MM-DD). Defaults to 90 days ago if omitted. Max range is 366 days. | [optional] |
 | **toDate** | **LocalDate**| Inclusive upper bound (YYYY-MM-DD). Defaults to today if omitted. | [optional] |
