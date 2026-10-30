@@ -2,7 +2,7 @@
 
 # ReviewWebhookReview
 
-Review data shared by review.new and review.updated payloads.
+Review data shared by review.new, review.updated and review.restored payloads.
 
 ## Properties
 

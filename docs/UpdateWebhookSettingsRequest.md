@@ -66,6 +66,8 @@
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
+| REVIEW_DELETED | &quot;review.deleted&quot; |
+| REVIEW_RESTORED | &quot;review.restored&quot; |
 | LEAD_RECEIVED | &quot;lead.received&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |

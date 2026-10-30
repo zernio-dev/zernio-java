@@ -90,6 +90,8 @@
 | COMMENT_RECEIVED | &quot;comment.received&quot; |
 | REVIEW_NEW | &quot;review.new&quot; |
 | REVIEW_UPDATED | &quot;review.updated&quot; |
+| REVIEW_DELETED | &quot;review.deleted&quot; |
+| REVIEW_RESTORED | &quot;review.restored&quot; |
 | AD_STATUS_CHANGED | &quot;ad.status_changed&quot; |
 | AD_REVIEW_APPROVED | &quot;ad.review.approved&quot; |
 | AD_REVIEW_REJECTED | &quot;ad.review.rejected&quot; |
