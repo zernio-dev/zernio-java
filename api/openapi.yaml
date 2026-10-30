@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.422.0
+  version: 1.423.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -2870,12 +2870,13 @@ paths:
   /v1/analytics/linkedin/demographics:
     get:
       description: |
-        Returns the lifetime follower breakdown of a connected LinkedIn organization page by job function, seniority, industry and company size.
+        Returns the lifetime follower breakdown of a connected LinkedIn organization page by job function, seniority, industry, company size, country and region. Without `breakdown` it returns function, seniority, industry and company size; country and region are returned only when requested.
 
         ### Labels
 
         - Function, seniority and industry are labelled with LinkedIn's standardized names (English) and keep the LinkedIn URN in `id`.
         - Company size is labelled as a range such as `2-10` or `10001+`.
+        - Country and region are labelled with LinkedIn's geo names (English) and keep `urn:li:geo:*` in `id`. A region is a LinkedIn market area, for example New York City Metropolitan Area.
 
         LinkedIn returns at most the top 100 values per breakdown and leaves out followers whose profile lacks that field, so a breakdown does not add up to the follower count.
 
@@ -2895,8 +2896,8 @@ paths:
           type: string
         style: form
       - description: |
-          Comma-separated list of demographic dimensions: function, seniority, industry, company_size.
-          Defaults to all four if omitted.
+          Comma-separated list of demographic dimensions: function, seniority, industry, company_size, country, region.
+          Defaults to function, seniority, industry and company_size if omitted. Country and region are returned only when requested.
         explode: true
         in: query
         name: breakdown
@@ -2936,6 +2937,14 @@ paths:
                       - dimension: 2-10
                         id: SIZE_2_TO_10
                         value: 690
+                      country:
+                      - dimension: United States
+                        id: urn:li:geo:103644278
+                        value: 820
+                      region:
+                      - dimension: New York City Metropolitan Area
+                        id: urn:li:geo:90000070
+                        value: 310
                     note: "Lifetime breakdown of the organization page followers.\
                       \ LinkedIn returns at most the top 100 values per breakdown\
                       \ and leaves out followers whose profile lacks that field, so\
@@ -114166,7 +114175,8 @@ components:
             \ no name for it"
           type: string
         id:
-          description: LinkedIn URN (urn:li:function:8) or staff count range (SIZE_2_TO_10)
+          description: LinkedIn URN (urn:li:function:8 or urn:li:geo:103644278) or
+            staff count range (SIZE_2_TO_10)
           type: string
         value:
           description: Followers (organic plus paid)
