@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.418.1
+  version: 1.419.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -10700,6 +10700,18 @@ paths:
         explode: true
         in: query
         name: excludeHidden
+        required: false
+        schema:
+          default: false
+          type: boolean
+        style: form
+      - description: |
+          When true, lists every ads account row, one per ad account. By default an API key or OAuth app sees each ads login once per profile and platform, as the single ads connection it had before rows per ad account: its oldest row.
+
+          Only changes the result once ads are connected as one row per ad account; until then the two shapes are the same. Applied before pagination. Accepts `true` or `false` in any letter case; any other value returns 400.
+        explode: true
+        in: query
+        name: adAccountRows
         required: false
         schema:
           default: false
