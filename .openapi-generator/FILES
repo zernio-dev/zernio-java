@@ -6599,15 +6599,3 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/api/AdCampaignResultsApiTest.java
-src/test/java/dev/zernio/model/CampaignResultMetricTest.java
-src/test/java/dev/zernio/model/GetCampaignResultsUpload200ResponseTest.java
-src/test/java/dev/zernio/model/GetCampaignResultsUpload200ResponseUnmatchedInnerTest.java
-src/test/java/dev/zernio/model/ListCampaignResultMetrics200ResponseTest.java
-src/test/java/dev/zernio/model/ListCampaignResults200ResponseCampaignsInnerTest.java
-src/test/java/dev/zernio/model/ListCampaignResults200ResponseTest.java
-src/test/java/dev/zernio/model/SetCampaignResultMetric200ResponseTest.java
-src/test/java/dev/zernio/model/SetCampaignResultMetricRequestTest.java
-src/test/java/dev/zernio/model/UploadCampaignResults202ResponseTest.java
-src/test/java/dev/zernio/model/UploadCampaignResultsRequestRowsInnerTest.java
-src/test/java/dev/zernio/model/UploadCampaignResultsRequestTest.java

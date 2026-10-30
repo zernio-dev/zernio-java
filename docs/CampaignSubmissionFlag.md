@@ -27,6 +27,8 @@
 | ACCOUNT_RESTRICTED | &quot;account_restricted&quot; |
 | LOW_AUTHENTICITY | &quot;low_authenticity&quot; |
 | X_READ_CAP | &quot;x_read_cap&quot; |
+| PAID_VIEWS | &quot;paid_views&quot; |
+| ORGANIC_UNVERIFIED | &quot;organic_unverified&quot; |
 
 
 

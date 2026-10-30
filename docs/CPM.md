@@ -10,6 +10,7 @@
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**metric** | [**MetricEnum**](#MetricEnum) | What the rate pays on. Missing means views. |  [optional] |
 |**engagementTypes** | [**List&lt;EngagementTypesEnum&gt;**](#List&lt;EngagementTypesEnum&gt;) | The engagements that count. Missing means all four. |  [optional] |
+|**organicViewsOnly** | **Boolean** | Only organic views count; views from ads do not. |  [optional] |
 |**ratePer1kCents** | **Integer** |  |  |
 |**minViewsToEarn** | **Integer** |  |  |
 |**maxPayoutPerClipCents** | **Integer** |  |  [optional] |

@@ -16,6 +16,7 @@
 |**publishedAt** | **OffsetDateTime** |  |  |
 |**views** | **Integer** | Latest view count read for the post. |  |
 |**engagements** | **Integer** | The campaign engagement types summed at the latest read. Null until the post is read. |  |
+|**viewsFromAds** | **Integer** | Views that came from ads the creator ran, on YouTube and X. Null where the platform does not report them or before the first read. |  |
 |**earnedCents** | **Integer** |  |  |
 |**rejectReason** | **String** |  |  |
 |**flags** | [**List&lt;FlagsEnum&gt;**](#List&lt;FlagsEnum&gt;) | Creator-safe flags only. Every other review flag shows as &#x60;under_review&#x60;. |  |

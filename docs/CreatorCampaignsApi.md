@@ -2662,7 +2662,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **status** | **String**|  | [optional] [enum: received, tracking, pending_review, approved, rejected, expired, withdrawn] |
 | **participantId** | **String**|  | [optional] |
-| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap] |
+| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap, paid_views, organic_unverified] |
 | **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube, threads, pinterest, facebook, twitter] |
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |
@@ -2761,7 +2761,7 @@ public class Example {
 | **campaignId** | **String**| Campaign ID. | |
 | **status** | **String**|  | [optional] [enum: received, tracking, pending_review, approved, rejected, expired, withdrawn] |
 | **participantId** | **String**|  | [optional] |
-| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap] |
+| **flag** | **String**|  | [optional] [enum: duplicate_media, duplicate_post, view_spike, linked_accounts, cross_operator, unreachable, post_deleted, account_restricted, low_authenticity, x_read_cap, paid_views, organic_unverified] |
 | **platform** | **String**|  | [optional] [enum: tiktok, instagram, youtube, threads, pinterest, facebook, twitter] |
 | **minScore** | **Integer**|  | [optional] |
 | **maxScore** | **Integer**|  | [optional] |

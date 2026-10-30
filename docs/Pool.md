@@ -10,6 +10,7 @@
 |**type** | [**TypeEnum**](#TypeEnum) |  |  |
 |**poolCents** | **Integer** |  |  |
 |**minViewsToQualify** | **Integer** |  |  |
+|**organicViewsOnly** | **Boolean** | Only organic views count; views from ads do not. |  [optional] |
 
 
 
