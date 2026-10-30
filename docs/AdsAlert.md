@@ -16,6 +16,7 @@
 |**platformAdAccountId** | **String** |  |  [optional] |
 |**entity** | [**AdsAlertEntity**](AdsAlertEntity.md) |  |  [optional] |
 |**adId** | **String** | The Zernio ad id when the entity is an ad, for GET /v1/ads/{adId}. |  [optional] |
+|**accountId** | **String** | The Zernio ads connection, on connection_lost and sync_failing alerts. |  [optional] |
 |**currency** | **String** |  |  [optional] |
 |**detectedAt** | **OffsetDateTime** |  |  [optional] |
 |**fix** | [**AdsAlertFix**](AdsAlertFix.md) |  |  [optional] |
@@ -32,6 +33,8 @@
 | PAYMENT | &quot;payment&quot; |
 | BUDGET_LIMITED | &quot;budget_limited&quot; |
 | SPEND_NO_RESULTS | &quot;spend_no_results&quot; |
+| CONNECTION_LOST | &quot;connection_lost&quot; |
+| SYNC_FAILING | &quot;sync_failing&quot; |
 
 
 

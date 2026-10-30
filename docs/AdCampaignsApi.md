@@ -6657,11 +6657,11 @@ ApiResponse<[**AdsListResponse**](AdsListResponse.md)>
 
 ## listAdsAlerts
 
-> ListAdsAlerts200Response listAdsAlerts(accountId, includeDismissed)
+> ListAdsAlerts200Response listAdsAlerts(accountId, profileId, includeDismissed)
 
 List ads that need attention
 
-Lists what needs attention across your ads, most severe first:  - ads created in the last 90 days that were rejected - campaigns the platform reports delivery issues on - Meta ad accounts with a failed or overdue payment, or disabled while holding live ads - campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals) - budgets spent to their daily cap yesterday  Built from stored data and the last 7 days of synced metrics, so it costs no platform call.  Each alert has a stable &#x60;id&#x60;. Dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
+Lists what needs attention across your ads, most severe first:  - ads created in the last 90 days that were rejected - campaigns the platform reports delivery issues on - Meta ad accounts with a failed or overdue payment, or disabled while holding live ads - campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals) - budgets spent to their daily cap yesterday - ads connections that need reconnecting while they still hold live ads - ad accounts whose sync has been failing  Built from stored data and the last 7 days of synced metrics, so it costs no platform call.  Each alert has a stable &#x60;id&#x60;. Dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
 
 ### Example
 
@@ -6685,9 +6685,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach.
+        String profileId = "profileId_example"; // String | Only alerts of the ads connections on this profile. Omit for every profile the API key can reach.
         Boolean includeDismissed = false; // Boolean | Also return dismissed alerts, with `dismissed: true`.
         try {
-            ListAdsAlerts200Response result = apiInstance.listAdsAlerts(accountId, includeDismissed);
+            ListAdsAlerts200Response result = apiInstance.listAdsAlerts(accountId, profileId, includeDismissed);
             System.out.println(result);
         } catch (ApiException e) {
             System.err.println("Exception when calling AdCampaignsApi#listAdsAlerts");
@@ -6706,6 +6707,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach. | [optional] |
+| **profileId** | **String**| Only alerts of the ads connections on this profile. Omit for every profile the API key can reach. | [optional] |
 | **includeDismissed** | **Boolean**| Also return dismissed alerts, with &#x60;dismissed: true&#x60;. | [optional] [default to false] |
 
 ### Return type
@@ -6732,11 +6734,11 @@ public class Example {
 
 ## listAdsAlertsWithHttpInfo
 
-> ApiResponse<ListAdsAlerts200Response> listAdsAlerts listAdsAlertsWithHttpInfo(accountId, includeDismissed)
+> ApiResponse<ListAdsAlerts200Response> listAdsAlerts listAdsAlertsWithHttpInfo(accountId, profileId, includeDismissed)
 
 List ads that need attention
 
-Lists what needs attention across your ads, most severe first:  - ads created in the last 90 days that were rejected - campaigns the platform reports delivery issues on - Meta ad accounts with a failed or overdue payment, or disabled while holding live ads - campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals) - budgets spent to their daily cap yesterday  Built from stored data and the last 7 days of synced metrics, so it costs no platform call.  Each alert has a stable &#x60;id&#x60;. Dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
+Lists what needs attention across your ads, most severe first:  - ads created in the last 90 days that were rejected - campaigns the platform reports delivery issues on - Meta ad accounts with a failed or overdue payment, or disabled while holding live ads - campaigns that spent on 3 or more of the last 7 days without a result (conversion, lead, purchase or conversation goals) - budgets spent to their daily cap yesterday - ads connections that need reconnecting while they still hold live ads - ad accounts whose sync has been failing  Built from stored data and the last 7 days of synced metrics, so it costs no platform call.  Each alert has a stable &#x60;id&#x60;. Dismiss one with &#x60;POST /v1/ads/alerts/{alertId}/dismiss&#x60; to hide it for 30 days. 
 
 ### Example
 
@@ -6761,9 +6763,10 @@ public class Example {
 
         AdCampaignsApi apiInstance = new AdCampaignsApi(defaultClient);
         String accountId = "accountId_example"; // String | Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach.
+        String profileId = "profileId_example"; // String | Only alerts of the ads connections on this profile. Omit for every profile the API key can reach.
         Boolean includeDismissed = false; // Boolean | Also return dismissed alerts, with `dismissed: true`.
         try {
-            ApiResponse<ListAdsAlerts200Response> response = apiInstance.listAdsAlertsWithHttpInfo(accountId, includeDismissed);
+            ApiResponse<ListAdsAlerts200Response> response = apiInstance.listAdsAlertsWithHttpInfo(accountId, profileId, includeDismissed);
             System.out.println("Status code: " + response.getStatusCode());
             System.out.println("Response headers: " + response.getHeaders());
             System.out.println("Response body: " + response.getData());
@@ -6784,6 +6787,7 @@ public class Example {
 | Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **accountId** | **String**| Only alerts of this ads connection (sibling-expanded like /v1/ads/tree). Omit for every ad account the API key can reach. | [optional] |
+| **profileId** | **String**| Only alerts of the ads connections on this profile. Omit for every profile the API key can reach. | [optional] |
 | **includeDismissed** | **Boolean**| Also return dismissed alerts, with &#x60;dismissed: true&#x60;. | [optional] [default to false] |
 
 ### Return type
