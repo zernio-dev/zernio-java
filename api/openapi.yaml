@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.418.0
+  version: 1.418.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -95549,6 +95549,9 @@ components:
           - hubspot
           - webflow
           - googleanalytics
+          - imessage
+          - tiktokshop
+          - microsoftads
           type: string
         profileId:
           $ref: "#/components/schemas/SocialAccount_profileId"
