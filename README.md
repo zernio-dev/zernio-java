@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.423.0
+- API version: 1.424.0
 
-- Build date: 2026-10-30T11:48:48.592193293Z[Etc/UTC]
+- Build date: 2026-10-30T12:11:58.196966045Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.423.0</version>
+  <version>1.424.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.423.0"
+compile "dev.zernio:zernio-sdk:1.424.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.423.0.jar`
+- `target/zernio-sdk-1.424.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -581,6 +581,8 @@ Class | Method | HTTP request | Description
 *AdRulesApi* | [**listAdRuleActivityWithHttpInfo**](docs/AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made
 *AdRulesApi* | [**listAdRuleRuns**](docs/AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
 *AdRulesApi* | [**listAdRuleRunsWithHttpInfo**](docs/AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs
+*AdRulesApi* | [**listAdRuleTemplates**](docs/AdRulesApi.md#listAdRuleTemplates) | **GET** /v1/ads/rules/templates | List ready-made ad rules
+*AdRulesApi* | [**listAdRuleTemplatesWithHttpInfo**](docs/AdRulesApi.md#listAdRuleTemplatesWithHttpInfo) | **GET** /v1/ads/rules/templates | List ready-made ad rules
 *AdRulesApi* | [**listAdRules**](docs/AdRulesApi.md#listAdRules) | **GET** /v1/ads/rules | List ad rules
 *AdRulesApi* | [**listAdRulesWithHttpInfo**](docs/AdRulesApi.md#listAdRulesWithHttpInfo) | **GET** /v1/ads/rules | List ad rules
 *AdRulesApi* | [**previewAdRule**](docs/AdRulesApi.md#previewAdRule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule
@@ -4054,6 +4056,8 @@ Class | Method | HTTP request | Description
  - [ListAdNegativeKeywordLists200Response](docs/ListAdNegativeKeywordLists200Response.md)
  - [ListAdRuleActivity200Response](docs/ListAdRuleActivity200Response.md)
  - [ListAdRuleRuns200Response](docs/ListAdRuleRuns200Response.md)
+ - [ListAdRuleTemplates200Response](docs/ListAdRuleTemplates200Response.md)
+ - [ListAdRuleTemplates200ResponseTemplatesInner](docs/ListAdRuleTemplates200ResponseTemplatesInner.md)
  - [ListAdRules200Response](docs/ListAdRules200Response.md)
  - [ListAdSets200Response](docs/ListAdSets200Response.md)
  - [ListAdSets200ResponseAdSetsInner](docs/ListAdSets200ResponseAdSetsInner.md)

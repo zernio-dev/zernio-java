@@ -9,7 +9,7 @@
 |------------ | ------------- | ------------- | -------------|
 |**id** | **String** | Zernio ad rule ID. |  |
 |**name** | **String** |  |  |
-|**level** | [**LevelEnum**](#LevelEnum) | Whether the rule evaluates campaigns or ad sets. |  |
+|**level** | [**LevelEnum**](#LevelEnum) | Whether the rule evaluates campaigns, ad sets or ads. |  |
 |**platformAdAccountId** | **String** | Platform-native ad account ID the rule watches. |  |
 
 
@@ -20,6 +20,7 @@
 |---- | -----|
 | CAMPAIGN | &quot;campaign&quot; |
 | ADSET | &quot;adset&quot; |
+| AD | &quot;ad&quot; |
 
 
 

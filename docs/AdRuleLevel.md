@@ -9,5 +9,7 @@
 
 * `ADSET` (value: `"adset"`)
 
+* `AD` (value: `"ad"`)
+
 
 

@@ -14,6 +14,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listAdRuleActivityWithHttpInfo**](AdRulesApi.md#listAdRuleActivityWithHttpInfo) | **GET** /v1/ads/rules/activity | List every change ad rules made |
 | [**listAdRuleRuns**](AdRulesApi.md#listAdRuleRuns) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
 | [**listAdRuleRunsWithHttpInfo**](AdRulesApi.md#listAdRuleRunsWithHttpInfo) | **GET** /v1/ads/rules/{ruleId}/runs | List an ad rule&#39;s runs |
+| [**listAdRuleTemplates**](AdRulesApi.md#listAdRuleTemplates) | **GET** /v1/ads/rules/templates | List ready-made ad rules |
+| [**listAdRuleTemplatesWithHttpInfo**](AdRulesApi.md#listAdRuleTemplatesWithHttpInfo) | **GET** /v1/ads/rules/templates | List ready-made ad rules |
 | [**listAdRules**](AdRulesApi.md#listAdRules) | **GET** /v1/ads/rules | List ad rules |
 | [**listAdRulesWithHttpInfo**](AdRulesApi.md#listAdRulesWithHttpInfo) | **GET** /v1/ads/rules | List ad rules |
 | [**previewAdRule**](AdRulesApi.md#previewAdRule) | **POST** /v1/ads/rules/{ruleId}/preview | Preview an ad rule |
@@ -813,6 +815,144 @@ ApiResponse<[**ListAdRuleRuns200Response**](ListAdRuleRuns200Response.md)>
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Ads access required (code &#x60;ads_addon_required&#x60;). Legacy plans need the Ads add-on; included by default on usage-based plans. |  -  |
 | **404** | Resource not found |  -  |
+
+
+## listAdRuleTemplates
+
+> ListAdRuleTemplates200Response listAdRuleTemplates()
+
+List ready-made ad rules
+
+Common rules to start from: stop losers, scale winners, pause ads with no conversions, creative fatigue and spend spike alerts.  Each template is a complete rule body. Add &#x60;name&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, adjust the thresholds to the ad account, and send it to &#x60;POST /v1/ads/rules&#x60;. Amounts are in the ad account currency. &#x60;platforms&#x60; lists the networks a template works on, or is null for all of them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        try {
+            ListAdRuleTemplates200Response result = apiInstance.listAdRuleTemplates();
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleTemplates");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+[**ListAdRuleTemplates200Response**](ListAdRuleTemplates200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The templates. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+
+## listAdRuleTemplatesWithHttpInfo
+
+> ApiResponse<ListAdRuleTemplates200Response> listAdRuleTemplates listAdRuleTemplatesWithHttpInfo()
+
+List ready-made ad rules
+
+Common rules to start from: stop losers, scale winners, pause ads with no conversions, creative fatigue and spend spike alerts.  Each template is a complete rule body. Add &#x60;name&#x60;, &#x60;accountId&#x60; and &#x60;adAccountId&#x60;, adjust the thresholds to the ad account, and send it to &#x60;POST /v1/ads/rules&#x60;. Amounts are in the ad account currency. &#x60;platforms&#x60; lists the networks a template works on, or is null for all of them. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.AdRulesApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        AdRulesApi apiInstance = new AdRulesApi(defaultClient);
+        try {
+            ApiResponse<ListAdRuleTemplates200Response> response = apiInstance.listAdRuleTemplatesWithHttpInfo();
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling AdRulesApi#listAdRuleTemplates");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+This endpoint does not need any parameter.
+
+### Return type
+
+ApiResponse<[**ListAdRuleTemplates200Response**](ListAdRuleTemplates200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | The templates. |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 
 
 ## listAdRules

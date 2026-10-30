@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.423.0
+  version: 1.424.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -44970,6 +44970,38 @@ paths:
       - x
       - reddit
       x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/rules/templates:
+    get:
+      description: |
+        Common rules to start from: stop losers, scale winners, pause ads with no conversions, creative fatigue and spend spike alerts.
+
+        Each template is a complete rule body. Add `name`, `accountId` and `adAccountId`, adjust the thresholds to the ad account, and send it to `POST /v1/ads/rules`. Amounts are in the ad account currency. `platforms` lists the networks a template works on, or is null for all of them.
+      operationId: listAdRuleTemplates
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listAdRuleTemplates_200_response"
+          description: The templates.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List ready-made ad rules
+      tags:
+      - Ad Rules
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
       x-accepts:
       - application/json
   /v1/ads/rules/activity:
@@ -90369,7 +90401,7 @@ components:
       description: |
         Webhook payload for the `ad_rule.triggered` event.
 
-        Fires when a scheduled run of a rule with a `notify` action finds campaigns or ad sets that meet every condition of the rule.
+        Fires when a scheduled run of a rule with a `notify` action finds campaigns, ad sets or ads that meet every condition of the rule.
 
         Each object is announced at most once per rule cooldown, so `objects` lists only the objects the run acted on, never the ones still in cooldown. A run where every matching object is still in cooldown sends nothing.
 
@@ -90481,7 +90513,7 @@ components:
         run:
           $ref: "#/components/schemas/WebhookPayloadAdRuleTriggered_run"
         objects:
-          description: "The campaigns or ad sets this run acted on, at the rule's\
+          description: "The campaigns, ad sets or ads this run acted on, at the rule's\
             \ `level`, including those whose action failed. Objects still in cooldown\
             \ are left out."
           items:
@@ -108982,11 +109014,12 @@ components:
             type: string
           type: array
     AdRuleLevel:
-      description: Whether the rule checks campaigns or ad sets. Each one is evaluated
-        on its own.
+      description: "Whether the rule checks campaigns, ad sets or single ads. Each\
+        \ one is evaluated on its own."
       enum:
       - campaign
       - adset
+      - ad
       type: string
     AdRuleCondition:
       example:
@@ -108997,7 +109030,8 @@ components:
       properties:
         metric:
           description: "`ctr` is a percentage. `spend`, `cpc`, `cpm` and `cpa` are\
-            \ in the ad account currency."
+            \ in the ad account currency. `reach` and `frequency` use the platform's\
+            \ de-duplicated reach, so they are accepted on Meta and TikTok only."
           enum:
           - spend
           - impressions
@@ -109008,6 +109042,8 @@ components:
           - cpm
           - cpa
           - roas
+          - reach
+          - frequency
           type: string
         window:
           description: Days in the ad account's own timezone. `last_7d` includes today.
@@ -153354,6 +153390,161 @@ components:
           $ref: "#/components/schemas/AdRule"
       required:
       - rule
+    listAdRuleTemplates_200_response_templates_inner:
+      example:
+        schedule:
+          everyMinutes: 6
+        cooldownMinutes: 0
+        level: campaign
+        name: name
+        description: description
+        id: stop_losers
+        conditions:
+          all:
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+          - op: '>'
+            metric: spend
+            window: today
+            value: 0.08008281904610115
+        actions:
+        - type: notify
+        - type: notify
+        platforms:
+        - platforms
+        - platforms
+      properties:
+        id:
+          example: stop_losers
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+        level:
+          $ref: "#/components/schemas/AdRuleLevel"
+        conditions:
+          $ref: "#/components/schemas/AdRuleConditions"
+        actions:
+          description: "Each type at most once, and at most one of `pause`, `activate`\
+            \ and `adjust_budget`."
+          items:
+            $ref: "#/components/schemas/AdRuleAction"
+          minItems: 1
+          type: array
+        schedule:
+          $ref: "#/components/schemas/AdRuleSchedule"
+        cooldownMinutes:
+          type: integer
+        platforms:
+          items:
+            type: string
+          nullable: true
+          type: array
+      required:
+      - actions
+      - conditions
+      - cooldownMinutes
+      - description
+      - id
+      - level
+      - name
+      - platforms
+      - schedule
+    listAdRuleTemplates_200_response:
+      example:
+        templates:
+        - schedule:
+            everyMinutes: 6
+          cooldownMinutes: 0
+          level: campaign
+          name: name
+          description: description
+          id: stop_losers
+          conditions:
+            all:
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+          actions:
+          - type: notify
+          - type: notify
+          platforms:
+          - platforms
+          - platforms
+        - schedule:
+            everyMinutes: 6
+          cooldownMinutes: 0
+          level: campaign
+          name: name
+          description: description
+          id: stop_losers
+          conditions:
+            all:
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+            - op: '>'
+              metric: spend
+              window: today
+              value: 0.08008281904610115
+          actions:
+          - type: notify
+          - type: notify
+          platforms:
+          - platforms
+          - platforms
+      properties:
+        templates:
+          items:
+            $ref: "#/components/schemas/listAdRuleTemplates_200_response_templates_inner"
+          type: array
+      required:
+      - templates
     listAdRuleActivity_200_response:
       example:
         nextCursor: nextCursor
@@ -189611,10 +189802,11 @@ components:
         name:
           type: string
         level:
-          description: Whether the rule evaluates campaigns or ad sets.
+          description: "Whether the rule evaluates campaigns, ad sets or ads."
           enum:
           - campaign
           - adset
+          - ad
           type: string
         platformAdAccountId:
           description: Platform-native ad account ID the rule watches.
@@ -189731,9 +189923,10 @@ components:
         reason:
           description: "Why the action was skipped or failed: `already_paused`, `already_active`,\
             \ `at_limit`, `budget_unknown`, `budget_not_daily`, `budget_level_mismatch`,\
-            \ `no_live_ads`, `ads_allowance_exceeded` (a reactivation or budget increase\
-            \ for a team past its free live-ads allowance), or the platform's message.\
-            \ Null when done."
+            \ `no_live_ads`, `daily_limit_reached` (held back by the action's `maxChangesPerDay`),\
+            \ `ads_allowance_exceeded` (a reactivation or budget increase for a team\
+            \ past its free live-ads allowance), or the platform's message. Null when\
+            \ done."
           nullable: true
           type: string
         previousDailyBudget:
@@ -195534,27 +195727,42 @@ components:
     AdRuleAction_oneOf_1:
       properties:
         type:
-          description: Pause the campaign or ad set.
+          description: "Pause the campaign, ad set or ad."
           enum:
           - pause
           type: string
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - type
     AdRuleAction_oneOf_2:
       properties:
         type:
-          description: "Reactivate a campaign or ad set a rule paused, once `cooldownMinutes`\
+          description: "Reactivate a campaign, ad set or ad a rule paused, once `cooldownMinutes`\
             \ has passed since the pause. Objects you paused yourself are never touched."
           enum:
           - activate
           type: string
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - type
     AdRuleAction_oneOf_3:
       properties:
         type:
-          description: "Change the daily budget. Google ad groups have no budget of\
-            \ their own, so on Google it needs a campaign-level rule."
+          description: "Change the daily budget. Not on ad-level rules (an ad has\
+            \ no budget), and on Google it needs a campaign-level rule (ad groups\
+            \ have no budget of their own)."
           enum:
           - adjust_budget
           type: string
@@ -195573,6 +195781,13 @@ components:
           description: "The budget never goes above this on an increase, or below\
             \ it on a decrease, in the ad account currency."
           type: number
+        maxChangesPerDay:
+          description: "At most this many objects changed in any 24 hours, across\
+            \ runs. Matches over the limit are skipped with `daily_limit_reached`\
+            \ and tried again later."
+          maximum: 100
+          minimum: 1
+          type: integer
       required:
       - direction
       - limit
@@ -197034,7 +197249,7 @@ x-documentation:
     - `campaign.budget.depleted` - A campaign Zernio already tracked ran out of budget (TikTok, the only network that reports it on the ad)
     - `ad_account.status_changed` - An ad account Zernio already tracked became `active`, `restricted`, `disabled` or `closed` (Meta, Google, TikTok, X)
     - `ad.video.processed` - Meta finished processing a video uploaded with `POST /v1/ads/videos` and `async: true`. `video.status` is `ready` (usable as `video.id`) or `error`
-    - `ad_rule.triggered` - A scheduled ad rule run found campaigns or ad sets meeting every condition, once per object per cooldown. `objects` lists the objects acted on
+    - `ad_rule.triggered` - A scheduled ad rule run found campaigns, ad sets or ads meeting every condition, once per object per cooldown. `objects` lists the objects acted on
     - `whatsapp.template.status_updated` - WhatsApp Business template completed (re)review by Meta. `template.status` carries the new state (APPROVED, REJECTED, PENDING, PAUSED, DISABLED, IN_APPEAL, PENDING_DELETION); `template.reason` is Meta's free-form reason or "NONE".
     - `whatsapp.template.category_updated` - Meta reclassified a WhatsApp Business template's category (drives tariff and marketing opt-out applicability). `template.changeType` is `scheduled` (24h advance notice) or `applied`; `template.category` is always the category right now.
     - `whatsapp.account.name_status_updated` - Meta finished reviewing a WhatsApp display-name change. `name.status` carries the outcome (APPROVED, DECLINED, PENDING_REVIEW). Fires only on a review outcome; a name applied without review (`name_status: AVAILABLE_WITHOUT_REVIEW`) produces no event.
