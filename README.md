@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.426.0
+- API version: 1.427.0
 
-- Build date: 2026-10-30T13:12:39.734273429Z[Etc/UTC]
+- Build date: 2026-10-30T13:26:06.665584548Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.426.0</version>
+  <version>1.427.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.426.0"
+compile "dev.zernio:zernio-sdk:1.427.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.426.0.jar`
+- `target/zernio-sdk-1.427.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -373,6 +373,16 @@ Class | Method | HTTP request | Description
 *AdAudiencesApi* | [**replaceAdAudienceCompaniesWithHttpInfo**](docs/AdAudiencesApi.md#replaceAdAudienceCompaniesWithHttpInfo) | **POST** /v1/ads/audiences/{audienceId}/companies | Replace audience companies
 *AdAudiencesApi* | [**updateAdAudience**](docs/AdAudiencesApi.md#updateAdAudience) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
 *AdAudiencesApi* | [**updateAdAudienceWithHttpInfo**](docs/AdAudiencesApi.md#updateAdAudienceWithHttpInfo) | **PUT** /v1/ads/audiences/{audienceId} | Update an audience
+*AdCampaignResultsApi* | [**getCampaignResultsUpload**](docs/AdCampaignResultsApi.md#getCampaignResultsUpload) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
+*AdCampaignResultsApi* | [**getCampaignResultsUploadWithHttpInfo**](docs/AdCampaignResultsApi.md#getCampaignResultsUploadWithHttpInfo) | **GET** /v1/ads/campaign-results/uploads/{uploadId} | Check a results upload
+*AdCampaignResultsApi* | [**listCampaignResultMetrics**](docs/AdCampaignResultsApi.md#listCampaignResultMetrics) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
+*AdCampaignResultsApi* | [**listCampaignResultMetricsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultMetricsWithHttpInfo) | **GET** /v1/ads/campaign-results/metrics | List your result metrics
+*AdCampaignResultsApi* | [**listCampaignResults**](docs/AdCampaignResultsApi.md#listCampaignResults) | **GET** /v1/ads/campaign-results | List your results per campaign
+*AdCampaignResultsApi* | [**listCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#listCampaignResultsWithHttpInfo) | **GET** /v1/ads/campaign-results | List your results per campaign
+*AdCampaignResultsApi* | [**setCampaignResultMetric**](docs/AdCampaignResultsApi.md#setCampaignResultMetric) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric
+*AdCampaignResultsApi* | [**setCampaignResultMetricWithHttpInfo**](docs/AdCampaignResultsApi.md#setCampaignResultMetricWithHttpInfo) | **PUT** /v1/ads/campaign-results/metrics/{key} | Name a result metric
+*AdCampaignResultsApi* | [**uploadCampaignResults**](docs/AdCampaignResultsApi.md#uploadCampaignResults) | **POST** /v1/ads/campaign-results | Upload your results per campaign
+*AdCampaignResultsApi* | [**uploadCampaignResultsWithHttpInfo**](docs/AdCampaignResultsApi.md#uploadCampaignResultsWithHttpInfo) | **POST** /v1/ads/campaign-results | Upload your results per campaign
 *AdCampaignsApi* | [**addAdKeywords**](docs/AdCampaignsApi.md#addAdKeywords) | **POST** /v1/ads/keywords | Add Search ad-group keywords
 *AdCampaignsApi* | [**addAdKeywordsWithHttpInfo**](docs/AdCampaignsApi.md#addAdKeywordsWithHttpInfo) | **POST** /v1/ads/keywords | Add Search ad-group keywords
 *AdCampaignsApi* | [**applyGoogleRecommendations**](docs/AdCampaignsApi.md#applyGoogleRecommendations) | **POST** /v1/ads/recommendations/apply | Apply Google Ads recommendations
@@ -2720,6 +2730,7 @@ Class | Method | HTTP request | Description
  - [CampaignReportParticipantsInner](docs/CampaignReportParticipantsInner.md)
  - [CampaignReportSpend](docs/CampaignReportSpend.md)
  - [CampaignReportViews](docs/CampaignReportViews.md)
+ - [CampaignResultMetric](docs/CampaignResultMetric.md)
  - [CampaignSettlement](docs/CampaignSettlement.md)
  - [CampaignSubmission](docs/CampaignSubmission.md)
  - [CampaignSubmissionAuthenticity](docs/CampaignSubmissionAuthenticity.md)
@@ -3480,6 +3491,8 @@ Class | Method | HTTP request | Description
  - [GetCampaignConversionGoals200Response](docs/GetCampaignConversionGoals200Response.md)
  - [GetCampaignParticipant200Response](docs/GetCampaignParticipant200Response.md)
  - [GetCampaignReport200Response](docs/GetCampaignReport200Response.md)
+ - [GetCampaignResultsUpload200Response](docs/GetCampaignResultsUpload200Response.md)
+ - [GetCampaignResultsUpload200ResponseUnmatchedInner](docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md)
  - [GetCampaignSubmission200Response](docs/GetCampaignSubmission200Response.md)
  - [GetCampaignTargeting200Response](docs/GetCampaignTargeting200Response.md)
  - [GetCampaignTargeting200ResponseDevicesInner](docs/GetCampaignTargeting200ResponseDevicesInner.md)
@@ -4120,6 +4133,9 @@ Class | Method | HTTP request | Description
  - [ListCampaignParticipants200Response](docs/ListCampaignParticipants200Response.md)
  - [ListCampaignPayables200Response](docs/ListCampaignPayables200Response.md)
  - [ListCampaignPayoutBatches200Response](docs/ListCampaignPayoutBatches200Response.md)
+ - [ListCampaignResultMetrics200Response](docs/ListCampaignResultMetrics200Response.md)
+ - [ListCampaignResults200Response](docs/ListCampaignResults200Response.md)
+ - [ListCampaignResults200ResponseCampaignsInner](docs/ListCampaignResults200ResponseCampaignsInner.md)
  - [ListCampaignSubmissions200Response](docs/ListCampaignSubmissions200Response.md)
  - [ListChangelog200Response](docs/ListChangelog200Response.md)
  - [ListCommentAutomationLogs200Response](docs/ListCommentAutomationLogs200Response.md)
@@ -4842,6 +4858,8 @@ Class | Method | HTTP request | Description
  - [SetBusinessAgentConnectorCredentialsRequestOneOf](docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf1](docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md)
  - [SetBusinessAgentConnectorCredentialsRequestOneOf2](docs/SetBusinessAgentConnectorCredentialsRequestOneOf2.md)
+ - [SetCampaignResultMetric200Response](docs/SetCampaignResultMetric200Response.md)
+ - [SetCampaignResultMetricRequest](docs/SetCampaignResultMetricRequest.md)
  - [SetCommentModerationRequest](docs/SetCommentModerationRequest.md)
  - [SetCommerceDiscountActiveRequest](docs/SetCommerceDiscountActiveRequest.md)
  - [SetCommercePriceListPrices200Response](docs/SetCommercePriceListPrices200Response.md)
@@ -5233,6 +5251,9 @@ Class | Method | HTTP request | Description
  - [UploadAdVideoRequest](docs/UploadAdVideoRequest.md)
  - [UploadBusinessAgentFileRequest](docs/UploadBusinessAgentFileRequest.md)
  - [UploadBusinessAgentFileRequest1](docs/UploadBusinessAgentFileRequest1.md)
+ - [UploadCampaignResults202Response](docs/UploadCampaignResults202Response.md)
+ - [UploadCampaignResultsRequest](docs/UploadCampaignResultsRequest.md)
+ - [UploadCampaignResultsRequestRowsInner](docs/UploadCampaignResultsRequestRowsInner.md)
  - [UploadFile201Response](docs/UploadFile201Response.md)
  - [UploadFileRequest](docs/UploadFileRequest.md)
  - [UploadFileRequest1](docs/UploadFileRequest1.md)

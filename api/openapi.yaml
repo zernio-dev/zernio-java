@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.426.0
+  version: 1.427.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -329,6 +329,9 @@ tags:
     Rules that check campaigns or ad sets on a schedule and pause, reactivate, rebudget or notify
     when their metrics cross a threshold. Requires the Ads add-on.
   name: Ad Rules
+- description: |
+    Your own results per campaign and day (qualified leads, sales, revenue), uploaded by API or file, so rules and reports use them next to spend. Requires the Ads add-on.
+  name: Ad Campaign Results
 - description: |
     The advertising structure: campaigns, ad sets and ads. Create standalone campaigns/ads, boost an organic post, duplicate at any level, pause/resume, and read the full tree and timeline. Campaigns are virtual aggregations of ads grouped by their platform campaign ID.
 
@@ -45389,6 +45392,277 @@ paths:
       - pinterest
       - x
       - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/campaign-results:
+    get:
+      description: |
+        Your results summed per campaign over a date range, one entry per campaign with every metric it has, for the ad accounts your key can see. Each day counts its newest value only.
+
+        Paginated by campaign: pass `nextCursor` back as `cursor` until it is null.
+      operationId: listCampaignResults
+      parameters:
+      - explode: true
+        in: query
+        name: fromDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: Inclusive. At most 400 days after `fromDate`.
+        explode: true
+        in: query
+        name: toDate
+        required: true
+        schema:
+          format: date
+          type: string
+        style: form
+      - description: "Comma-separated platform campaign ids, at most 500. Omit for\
+          \ all campaigns."
+        explode: true
+        in: query
+        name: campaignIds
+        required: false
+        schema:
+          type: string
+        style: form
+      - description: Campaigns per page.
+        explode: true
+        in: query
+        name: limit
+        required: false
+        schema:
+          default: 100
+          maximum: 500
+          minimum: 1
+          type: integer
+        style: form
+      - description: '`nextCursor` from the previous page.'
+        explode: true
+        in: query
+        name: cursor
+        required: false
+        schema:
+          type: string
+        style: form
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignResults_200_response"
+          description: One page of campaigns.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List your results per campaign
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+    post:
+      description: |
+        Sends your own daily numbers per campaign (qualified leads, sales, revenue...) so rules and reports can use them next to spend.
+
+        Name each row's campaign by `campaignId`, `utmCampaign` or `campaignName`. Rows are matched in the background: the `202` returns an `uploadId`, and `Location` points to `GET /v1/ads/campaign-results/uploads/{uploadId}`.
+
+        Re-sending a day replaces it. Send an `Idempotency-Key` to retry safely. Limits per team: 60 requests and 20,000 rows per hour, 512 KB per request.
+      operationId: uploadCampaignResults
+      parameters:
+      - description: A retry with the same key and body replays the first response
+          instead of uploading twice.
+        explode: false
+        in: header
+        name: Idempotency-Key
+        required: false
+        schema:
+          maxLength: 255
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/uploadCampaignResults_request"
+        required: true
+      responses:
+        "202":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/uploadCampaignResults_202_response"
+          description: Queued for matching.
+          headers:
+            Location:
+              description: "The upload, to check how its rows were matched."
+              explode: false
+              schema:
+                type: string
+              style: simple
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          description: Code `ads_addon_required` when the team has no ads access.
+        "409":
+          description: The same `Idempotency-Key` is still being processed. Retry
+            shortly.
+        "413":
+          description: "Code `payload_too_large`: the body is over 512 KB."
+        "422":
+          description: The `Idempotency-Key` was used with a different body.
+        "429":
+          $ref: "#/components/responses/RateLimited"
+      security:
+      - bearerAuth: []
+      summary: Upload your results per campaign
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-content-type: application/json
+      x-accepts:
+      - application/json
+  /v1/ads/campaign-results/uploads/{uploadId}:
+    get:
+      description: |
+        How an upload was matched: rows matched and unmatched, and up to 100 unmatched rows with why (`no_campaign` or `ambiguous`).
+
+        `status` turns `done` once every row is processed, usually within seconds. Uploads are kept for 30 days.
+      operationId: getCampaignResultsUpload
+      parameters:
+      - explode: false
+        in: path
+        name: uploadId
+        required: true
+        schema:
+          type: string
+        style: simple
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/getCampaignResultsUpload_200_response"
+          description: The upload's outcome.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "404":
+          $ref: "#/components/responses/NotFound"
+      security:
+      - bearerAuth: []
+      summary: Check a results upload
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/campaign-results/metrics:
+    get:
+      description: |
+        The metric keys your team has sent, with their label and kind. A new key appears as a `count` labelled from the key; name it with `PUT /v1/ads/campaign-results/metrics/{key}`.
+      operationId: listCampaignResultMetrics
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/listCampaignResultMetrics_200_response"
+          description: The metrics.
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: List your result metrics
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-accepts:
+      - application/json
+  /v1/ads/campaign-results/metrics/{key}:
+    put:
+      description: |
+        Sets a metric key's label and kind: `count` for things you count (leads, sales) or `money` with its currency (revenue).
+      operationId: setCampaignResultMetric
+      parameters:
+      - explode: false
+        in: path
+        name: key
+        required: true
+        schema:
+          pattern: "^[a-z][a-z0-9_]{0,39}$"
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/setCampaignResultMetric_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/setCampaignResultMetric_200_response"
+          description: The metric.
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+      security:
+      - bearerAuth: []
+      summary: Name a result metric
+      tags:
+      - Ad Campaign Results
+      x-resource-group: ads
+      x-platforms:
+      - meta
+      - google
+      - tiktok
+      - linkedin
+      - pinterest
+      - x
+      - reddit
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/ads/campaigns:
@@ -109086,6 +109360,32 @@ components:
           items:
             type: string
           type: array
+    CampaignResultMetric:
+      example:
+        kind: count
+        currency: currency
+        label: Qualified leads
+        key: qualified_leads
+      properties:
+        key:
+          example: qualified_leads
+          type: string
+        label:
+          example: Qualified leads
+          type: string
+        kind:
+          enum:
+          - count
+          - money
+          type: string
+        currency:
+          nullable: true
+          type: string
+      required:
+      - currency
+      - key
+      - kind
+      - label
     AdRuleLevel:
       description: "Whether the rule checks campaigns, ad sets or single ads. Each\
         \ one is evaluated on its own."
@@ -153850,6 +154150,248 @@ components:
           type: array
       required:
       - runs
+    listCampaignResults_200_response_campaigns_inner:
+      example:
+        adAccountId: adAccountId
+        campaignId: campaignId
+        values:
+          key: 0.8008281904610115
+        platform: platform
+      properties:
+        platform:
+          type: string
+        adAccountId:
+          type: string
+        campaignId:
+          type: string
+        values:
+          additionalProperties:
+            type: number
+      required:
+      - adAccountId
+      - campaignId
+      - platform
+      - values
+    listCampaignResults_200_response:
+      example:
+        fromDate: 2000-01-23
+        nextCursor: nextCursor
+        campaigns:
+        - adAccountId: adAccountId
+          campaignId: campaignId
+          values:
+            key: 0.8008281904610115
+          platform: platform
+        - adAccountId: adAccountId
+          campaignId: campaignId
+          values:
+            key: 0.8008281904610115
+          platform: platform
+        toDate: 2000-01-23
+      properties:
+        fromDate:
+          format: date
+          type: string
+        toDate:
+          format: date
+          type: string
+        campaigns:
+          items:
+            $ref: "#/components/schemas/listCampaignResults_200_response_campaigns_inner"
+          type: array
+        nextCursor:
+          nullable: true
+          type: string
+      required:
+      - campaigns
+      - fromDate
+      - nextCursor
+      - toDate
+    uploadCampaignResults_request_rows_inner:
+      description: "Exactly one of `campaignId`, `utmCampaign` or `campaignName`."
+      properties:
+        date:
+          description: "The day, at most 400 days ago."
+          format: date
+          type: string
+        campaignId:
+          description: The platform campaign id.
+          type: string
+        utmCampaign:
+          description: The `utm_campaign` value on the campaign's ads.
+          type: string
+        campaignName:
+          description: "The campaign's name, matched case-insensitively."
+          type: string
+        adAccountId:
+          description: Platform ad account id. Narrows matching to one ad account.
+          type: string
+        values:
+          additionalProperties:
+            minimum: 0
+            type: number
+          description: "Metric key (snake_case, up to 40 characters) to a non-negative\
+            \ number. 1 to 20 per row."
+          example:
+            qualified_leads: 14
+            sales: 2
+            revenue: 7800
+      required:
+      - date
+      - values
+    uploadCampaignResults_request:
+      properties:
+        rows:
+          items:
+            $ref: "#/components/schemas/uploadCampaignResults_request_rows_inner"
+          maxItems: 1000
+          minItems: 1
+          type: array
+      required:
+      - rows
+    uploadCampaignResults_202_response:
+      example:
+        uploadId: uploadId
+        rows: 0
+        status: queued
+      properties:
+        uploadId:
+          type: string
+        rows:
+          type: integer
+        status:
+          enum:
+          - queued
+          type: string
+      required:
+      - rows
+      - status
+      - uploadId
+    getCampaignResultsUpload_200_response_unmatched_inner:
+      example:
+        reason: no_campaign
+        index: 5
+        campaign: campaign
+      properties:
+        index:
+          description: The row's position in the request.
+          type: integer
+        campaign:
+          description: "The campaign id, UTM or name the row gave."
+          type: string
+        reason:
+          enum:
+          - no_campaign
+          - ambiguous
+          type: string
+    getCampaignResultsUpload_200_response:
+      example:
+        createdAt: 2000-01-23T04:56:07.000+00:00
+        completedAt: 2000-01-23T04:56:07.000+00:00
+        uploadId: uploadId
+        rowsReceived: 0
+        rowsMatched: 6
+        rowsUnmatched: 1
+        source: api
+        unmatched:
+        - reason: no_campaign
+          index: 5
+          campaign: campaign
+        - reason: no_campaign
+          index: 5
+          campaign: campaign
+        status: queued
+      properties:
+        uploadId:
+          type: string
+        status:
+          enum:
+          - queued
+          - done
+          - failed
+          type: string
+        source:
+          enum:
+          - api
+          - csv
+          - hubspot
+          type: string
+        rowsReceived:
+          type: integer
+        rowsMatched:
+          type: integer
+        rowsUnmatched:
+          type: integer
+        unmatched:
+          items:
+            $ref: "#/components/schemas/getCampaignResultsUpload_200_response_unmatched_inner"
+          type: array
+        createdAt:
+          format: date-time
+          type: string
+        completedAt:
+          format: date-time
+          nullable: true
+          type: string
+      required:
+      - completedAt
+      - createdAt
+      - rowsMatched
+      - rowsReceived
+      - rowsUnmatched
+      - source
+      - status
+      - unmatched
+      - uploadId
+    listCampaignResultMetrics_200_response:
+      example:
+        metrics:
+        - kind: count
+          currency: currency
+          label: Qualified leads
+          key: qualified_leads
+        - kind: count
+          currency: currency
+          label: Qualified leads
+          key: qualified_leads
+      properties:
+        metrics:
+          items:
+            $ref: "#/components/schemas/CampaignResultMetric"
+          type: array
+      required:
+      - metrics
+    setCampaignResultMetric_request:
+      properties:
+        label:
+          example: Qualified leads
+          maxLength: 80
+          type: string
+        kind:
+          enum:
+          - count
+          - money
+          type: string
+        currency:
+          description: "ISO 4217, money metrics only."
+          example: EUR
+          nullable: true
+          type: string
+      required:
+      - kind
+      - label
+    setCampaignResultMetric_200_response:
+      example:
+        metric:
+          kind: count
+          currency: currency
+          label: Qualified leads
+          key: qualified_leads
+      properties:
+        metric:
+          $ref: "#/components/schemas/CampaignResultMetric"
+      required:
+      - metric
     listAdCampaigns_200_response:
       example:
         pagination:

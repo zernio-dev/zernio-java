@@ -31,6 +31,7 @@ docs/AdAudiencesApi.md
 docs/AdBudget.md
 docs/AdCampaign.md
 docs/AdCampaignBudget.md
+docs/AdCampaignResultsApi.md
 docs/AdCampaignsApi.md
 docs/AdCreative.md
 docs/AdCreativeAssets.md
@@ -355,6 +356,7 @@ docs/CampaignReportAuthenticityInner.md
 docs/CampaignReportParticipantsInner.md
 docs/CampaignReportSpend.md
 docs/CampaignReportViews.md
+docs/CampaignResultMetric.md
 docs/CampaignSettlement.md
 docs/CampaignSubmission.md
 docs/CampaignSubmissionAuthenticity.md
@@ -1130,6 +1132,8 @@ docs/GetCampaignBidding200Response.md
 docs/GetCampaignConversionGoals200Response.md
 docs/GetCampaignParticipant200Response.md
 docs/GetCampaignReport200Response.md
+docs/GetCampaignResultsUpload200Response.md
+docs/GetCampaignResultsUpload200ResponseUnmatchedInner.md
 docs/GetCampaignSubmission200Response.md
 docs/GetCampaignTargeting200Response.md
 docs/GetCampaignTargeting200ResponseDevicesInner.md
@@ -1785,6 +1789,9 @@ docs/ListCampaignNegativeKeywords200ResponseKeywordsInner.md
 docs/ListCampaignParticipants200Response.md
 docs/ListCampaignPayables200Response.md
 docs/ListCampaignPayoutBatches200Response.md
+docs/ListCampaignResultMetrics200Response.md
+docs/ListCampaignResults200Response.md
+docs/ListCampaignResults200ResponseCampaignsInner.md
 docs/ListCampaignSubmissions200Response.md
 docs/ListChangelog200Response.md
 docs/ListCommentAutomationLogs200Response.md
@@ -2523,6 +2530,8 @@ docs/SetBusinessAgentConnectorCredentialsRequest.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf1.md
 docs/SetBusinessAgentConnectorCredentialsRequestOneOf2.md
+docs/SetCampaignResultMetric200Response.md
+docs/SetCampaignResultMetricRequest.md
 docs/SetCommentModerationRequest.md
 docs/SetCommerceDiscountActiveRequest.md
 docs/SetCommercePriceListPrices200Response.md
@@ -2921,6 +2930,9 @@ docs/UploadAdVideo202ResponseVideo.md
 docs/UploadAdVideoRequest.md
 docs/UploadBusinessAgentFileRequest.md
 docs/UploadBusinessAgentFileRequest1.md
+docs/UploadCampaignResults202Response.md
+docs/UploadCampaignResultsRequest.md
+docs/UploadCampaignResultsRequestRowsInner.md
 docs/UploadFile201Response.md
 docs/UploadFileRequest.md
 docs/UploadFileRequest1.md
@@ -3304,6 +3316,7 @@ src/main/java/dev/zernio/api/AccountSettingsApi.java
 src/main/java/dev/zernio/api/AccountsApi.java
 src/main/java/dev/zernio/api/AdAccountsApi.java
 src/main/java/dev/zernio/api/AdAudiencesApi.java
+src/main/java/dev/zernio/api/AdCampaignResultsApi.java
 src/main/java/dev/zernio/api/AdCampaignsApi.java
 src/main/java/dev/zernio/api/AdCreativesApi.java
 src/main/java/dev/zernio/api/AdInsightsApi.java
@@ -3717,6 +3730,7 @@ src/main/java/dev/zernio/model/CampaignReportAuthenticityInner.java
 src/main/java/dev/zernio/model/CampaignReportParticipantsInner.java
 src/main/java/dev/zernio/model/CampaignReportSpend.java
 src/main/java/dev/zernio/model/CampaignReportViews.java
+src/main/java/dev/zernio/model/CampaignResultMetric.java
 src/main/java/dev/zernio/model/CampaignSettlement.java
 src/main/java/dev/zernio/model/CampaignSubmission.java
 src/main/java/dev/zernio/model/CampaignSubmissionAuthenticity.java
@@ -4477,6 +4491,8 @@ src/main/java/dev/zernio/model/GetCampaignBidding200Response.java
 src/main/java/dev/zernio/model/GetCampaignConversionGoals200Response.java
 src/main/java/dev/zernio/model/GetCampaignParticipant200Response.java
 src/main/java/dev/zernio/model/GetCampaignReport200Response.java
+src/main/java/dev/zernio/model/GetCampaignResultsUpload200Response.java
+src/main/java/dev/zernio/model/GetCampaignResultsUpload200ResponseUnmatchedInner.java
 src/main/java/dev/zernio/model/GetCampaignSubmission200Response.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200Response.java
 src/main/java/dev/zernio/model/GetCampaignTargeting200ResponseDevicesInner.java
@@ -5117,6 +5133,9 @@ src/main/java/dev/zernio/model/ListCampaignNegativeKeywords200ResponseKeywordsIn
 src/main/java/dev/zernio/model/ListCampaignParticipants200Response.java
 src/main/java/dev/zernio/model/ListCampaignPayables200Response.java
 src/main/java/dev/zernio/model/ListCampaignPayoutBatches200Response.java
+src/main/java/dev/zernio/model/ListCampaignResultMetrics200Response.java
+src/main/java/dev/zernio/model/ListCampaignResults200Response.java
+src/main/java/dev/zernio/model/ListCampaignResults200ResponseCampaignsInner.java
 src/main/java/dev/zernio/model/ListCampaignSubmissions200Response.java
 src/main/java/dev/zernio/model/ListChangelog200Response.java
 src/main/java/dev/zernio/model/ListCommentAutomationLogs200Response.java
@@ -5839,6 +5858,8 @@ src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequest.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequestOneOf.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequestOneOf1.java
 src/main/java/dev/zernio/model/SetBusinessAgentConnectorCredentialsRequestOneOf2.java
+src/main/java/dev/zernio/model/SetCampaignResultMetric200Response.java
+src/main/java/dev/zernio/model/SetCampaignResultMetricRequest.java
 src/main/java/dev/zernio/model/SetCommentModerationRequest.java
 src/main/java/dev/zernio/model/SetCommerceDiscountActiveRequest.java
 src/main/java/dev/zernio/model/SetCommercePriceListPrices200Response.java
@@ -6230,6 +6251,9 @@ src/main/java/dev/zernio/model/UploadAdVideo202ResponseVideo.java
 src/main/java/dev/zernio/model/UploadAdVideoRequest.java
 src/main/java/dev/zernio/model/UploadBusinessAgentFileRequest.java
 src/main/java/dev/zernio/model/UploadBusinessAgentFileRequest1.java
+src/main/java/dev/zernio/model/UploadCampaignResults202Response.java
+src/main/java/dev/zernio/model/UploadCampaignResultsRequest.java
+src/main/java/dev/zernio/model/UploadCampaignResultsRequestRowsInner.java
 src/main/java/dev/zernio/model/UploadFile201Response.java
 src/main/java/dev/zernio/model/UploadFileRequest.java
 src/main/java/dev/zernio/model/UploadFileRequest1.java
@@ -6575,3 +6599,15 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/api/AdCampaignResultsApiTest.java
+src/test/java/dev/zernio/model/CampaignResultMetricTest.java
+src/test/java/dev/zernio/model/GetCampaignResultsUpload200ResponseTest.java
+src/test/java/dev/zernio/model/GetCampaignResultsUpload200ResponseUnmatchedInnerTest.java
+src/test/java/dev/zernio/model/ListCampaignResultMetrics200ResponseTest.java
+src/test/java/dev/zernio/model/ListCampaignResults200ResponseCampaignsInnerTest.java
+src/test/java/dev/zernio/model/ListCampaignResults200ResponseTest.java
+src/test/java/dev/zernio/model/SetCampaignResultMetric200ResponseTest.java
+src/test/java/dev/zernio/model/SetCampaignResultMetricRequestTest.java
+src/test/java/dev/zernio/model/UploadCampaignResults202ResponseTest.java
+src/test/java/dev/zernio/model/UploadCampaignResultsRequestRowsInnerTest.java
+src/test/java/dev/zernio/model/UploadCampaignResultsRequestTest.java
