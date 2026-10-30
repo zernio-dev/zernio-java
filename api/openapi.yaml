@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.417.0
+  version: 1.418.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -124219,6 +124219,17 @@ components:
           maxLength: 1000
           minLength: 1
           type: string
+        metaAppId:
+          description: "Instagram only: the numeric ID of the Meta app your Instagram\
+            \ app lives in. Zernio uses it with `metaAppSecret` to register the webhook.\
+            \ Send both or neither."
+          pattern: "^\\d{1,32}$"
+          type: string
+        metaAppSecret:
+          description: "Instagram only: the secret of that Meta app. Never returned."
+          maxLength: 1000
+          minLength: 1
+          type: string
         slackSigningSecret:
           description: "Slack only: the signing secret from the app's Basic Information\
             \ page. Needed to receive events from your Slack app; any other platform\
@@ -124293,6 +124304,17 @@ components:
           minLength: 1
           type: string
         clientSecret:
+          maxLength: 1000
+          minLength: 1
+          type: string
+        metaAppId:
+          description: "Instagram only: the numeric ID of the Meta app your Instagram\
+            \ app lives in. Zernio uses it with `metaAppSecret` to register the webhook.\
+            \ Send both or neither."
+          pattern: "^\\d{1,32}$"
+          type: string
+        metaAppSecret:
+          description: "Instagram only: the secret of that Meta app. Never returned."
           maxLength: 1000
           minLength: 1
           type: string
