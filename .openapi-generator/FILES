@@ -983,6 +983,7 @@ docs/ExternalPostWebhookPost.md
 docs/FacebookOrInstagramPost.md
 docs/FacebookPageInfo.md
 docs/FacebookPlatformData.md
+docs/FacebookPlatformDataFailedCollaboratorsInner.md
 docs/FacebookPostEarningsResponse.md
 docs/FacebookPostEarningsResponseMetricsValue.md
 docs/FacebookPostEarningsResponseUnavailableMetricsInner.md
@@ -4345,6 +4346,7 @@ src/main/java/dev/zernio/model/ExternalPostWebhookPost.java
 src/main/java/dev/zernio/model/FacebookOrInstagramPost.java
 src/main/java/dev/zernio/model/FacebookPageInfo.java
 src/main/java/dev/zernio/model/FacebookPlatformData.java
+src/main/java/dev/zernio/model/FacebookPlatformDataFailedCollaboratorsInner.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponse.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseMetricsValue.java
 src/main/java/dev/zernio/model/FacebookPostEarningsResponseUnavailableMetricsInner.java
@@ -6601,3 +6603,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/FacebookPlatformDataFailedCollaboratorsInnerTest.java
