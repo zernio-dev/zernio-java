@@ -399,6 +399,7 @@ docs/CheckVerification200Response.md
 docs/CheckVerificationRequest.md
 docs/CheckWhatsAppNumberAvailability200Response.md
 docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md
+docs/CommentAttachment.md
 docs/CommentAutomationActions.md
 docs/CommentAutomationAudience.md
 docs/CommentAutomationDmMedia.md
@@ -3105,7 +3106,6 @@ docs/WebhookPayloadComment.md
 docs/WebhookPayloadCommentAccount.md
 docs/WebhookPayloadCommentComment.md
 docs/WebhookPayloadCommentCommentAd.md
-docs/WebhookPayloadCommentCommentAttachment.md
 docs/WebhookPayloadCommentCommentAuthor.md
 docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md
 docs/WebhookPayloadCommentPost.md
@@ -3775,6 +3775,7 @@ src/main/java/dev/zernio/model/CheckVerification200Response.java
 src/main/java/dev/zernio/model/CheckVerificationRequest.java
 src/main/java/dev/zernio/model/CheckWhatsAppNumberAvailability200Response.java
 src/main/java/dev/zernio/model/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.java
+src/main/java/dev/zernio/model/CommentAttachment.java
 src/main/java/dev/zernio/model/CommentAutomationActions.java
 src/main/java/dev/zernio/model/CommentAutomationAudience.java
 src/main/java/dev/zernio/model/CommentAutomationDmMedia.java
@@ -6424,7 +6425,6 @@ src/main/java/dev/zernio/model/WebhookPayloadComment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentAccount.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentComment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAd.java
-src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAttachment.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAuthor.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentCommentAuthorInstagramProfile.java
 src/main/java/dev/zernio/model/WebhookPayloadCommentPost.java
@@ -6607,6 +6607,4 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
-src/test/java/dev/zernio/model/MoveCampaignParticipant200ResponseSubmissionsTest.java
-src/test/java/dev/zernio/model/MoveCampaignParticipant200ResponseTest.java
-src/test/java/dev/zernio/model/MoveCampaignParticipantRequestTest.java
+src/test/java/dev/zernio/model/CommentAttachmentTest.java

@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.437.0
+- API version: 1.438.0
 
-- Build date: 2026-11-02T14:02:38.732109372Z[Etc/UTC]
+- Build date: 2026-11-02T15:31:10.936946550Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.437.0</version>
+  <version>1.438.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.437.0"
+compile "dev.zernio:zernio-sdk:1.438.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.437.0.jar`
+- `target/zernio-sdk-1.438.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -2778,6 +2778,7 @@ Class | Method | HTTP request | Description
  - [CheckVerificationRequest](docs/CheckVerificationRequest.md)
  - [CheckWhatsAppNumberAvailability200Response](docs/CheckWhatsAppNumberAvailability200Response.md)
  - [CheckWhatsAppNumberAvailability200ResponseAreaAvailability](docs/CheckWhatsAppNumberAvailability200ResponseAreaAvailability.md)
+ - [CommentAttachment](docs/CommentAttachment.md)
  - [CommentAutomationActions](docs/CommentAutomationActions.md)
  - [CommentAutomationAudience](docs/CommentAutomationAudience.md)
  - [CommentAutomationDmMedia](docs/CommentAutomationDmMedia.md)
@@ -5427,7 +5428,6 @@ Class | Method | HTTP request | Description
  - [WebhookPayloadCommentAccount](docs/WebhookPayloadCommentAccount.md)
  - [WebhookPayloadCommentComment](docs/WebhookPayloadCommentComment.md)
  - [WebhookPayloadCommentCommentAd](docs/WebhookPayloadCommentCommentAd.md)
- - [WebhookPayloadCommentCommentAttachment](docs/WebhookPayloadCommentCommentAttachment.md)
  - [WebhookPayloadCommentCommentAuthor](docs/WebhookPayloadCommentCommentAuthor.md)
  - [WebhookPayloadCommentCommentAuthorInstagramProfile](docs/WebhookPayloadCommentCommentAuthorInstagramProfile.md)
  - [WebhookPayloadCommentPost](docs/WebhookPayloadCommentPost.md)

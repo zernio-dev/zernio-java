@@ -18,7 +18,7 @@
 |**parentCommentId** | **String** | Parent comment ID if this is a reply |  |
 |**isLive** | **Boolean** | Instagram only: true when the comment was made on a live broadcast (the live_comments webhook field). Absent on every other comment. |  [optional] |
 |**ad** | [**WebhookPayloadCommentCommentAd**](WebhookPayloadCommentCommentAd.md) |  |  [optional] |
-|**attachment** | [**WebhookPayloadCommentCommentAttachment**](WebhookPayloadCommentCommentAttachment.md) |  |  [optional] |
+|**attachment** | [**CommentAttachment**](CommentAttachment.md) | Facebook only. Present on graphic-only comments (sticker, GIF, photo) that carry no text: the webhook only includes it when the comment has no text. The REST comments API returns it whenever Facebook returns one, text or not.  |  [optional] |
 
 
 
