@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.436.0
+- API version: 1.437.0
 
-- Build date: 2026-11-02T12:29:41.716726355Z[Etc/UTC]
+- Build date: 2026-11-02T14:02:38.732109372Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.436.0</version>
+  <version>1.437.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.436.0"
+compile "dev.zernio:zernio-sdk:1.437.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.436.0.jar`
+- `target/zernio-sdk-1.437.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1365,6 +1365,8 @@ Class | Method | HTTP request | Description
 *CreatorCampaignsApi* | [**listCampaignSubmissionsWithHttpInfo**](docs/CreatorCampaignsApi.md#listCampaignSubmissionsWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions
 *CreatorCampaignsApi* | [**listCreatorCampaigns**](docs/CreatorCampaignsApi.md#listCreatorCampaigns) | **GET** /v1/creator-campaigns | List creator campaigns
 *CreatorCampaignsApi* | [**listCreatorCampaignsWithHttpInfo**](docs/CreatorCampaignsApi.md#listCreatorCampaignsWithHttpInfo) | **GET** /v1/creator-campaigns | List creator campaigns
+*CreatorCampaignsApi* | [**moveCampaignParticipant**](docs/CreatorCampaignsApi.md#moveCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign
+*CreatorCampaignsApi* | [**moveCampaignParticipantWithHttpInfo**](docs/CreatorCampaignsApi.md#moveCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign
 *CreatorCampaignsApi* | [**pauseCreatorCampaign**](docs/CreatorCampaignsApi.md#pauseCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
 *CreatorCampaignsApi* | [**pauseCreatorCampaignWithHttpInfo**](docs/CreatorCampaignsApi.md#pauseCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign
 *CreatorCampaignsApi* | [**raiseCreatorCampaignBudget**](docs/CreatorCampaignsApi.md#raiseCreatorCampaignBudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget
@@ -4432,6 +4434,9 @@ Class | Method | HTTP request | Description
  - [MoneyAmount](docs/MoneyAmount.md)
  - [MoveAccountToProfile200Response](docs/MoveAccountToProfile200Response.md)
  - [MoveAccountToProfileRequest](docs/MoveAccountToProfileRequest.md)
+ - [MoveCampaignParticipant200Response](docs/MoveCampaignParticipant200Response.md)
+ - [MoveCampaignParticipant200ResponseSubmissions](docs/MoveCampaignParticipant200ResponseSubmissions.md)
+ - [MoveCampaignParticipantRequest](docs/MoveCampaignParticipantRequest.md)
  - [MoveWhatsAppNumberToProfile200Response](docs/MoveWhatsAppNumberToProfile200Response.md)
  - [MoveWhatsAppNumberToProfileRequest](docs/MoveWhatsAppNumberToProfileRequest.md)
  - [OAuthApp](docs/OAuthApp.md)

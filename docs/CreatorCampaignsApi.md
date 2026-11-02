@@ -40,6 +40,8 @@ All URIs are relative to *https://zernio.com/api*
 | [**listCampaignSubmissionsWithHttpInfo**](CreatorCampaignsApi.md#listCampaignSubmissionsWithHttpInfo) | **GET** /v1/creator-campaigns/{campaignId}/submissions | List campaign submissions |
 | [**listCreatorCampaigns**](CreatorCampaignsApi.md#listCreatorCampaigns) | **GET** /v1/creator-campaigns | List creator campaigns |
 | [**listCreatorCampaignsWithHttpInfo**](CreatorCampaignsApi.md#listCreatorCampaignsWithHttpInfo) | **GET** /v1/creator-campaigns | List creator campaigns |
+| [**moveCampaignParticipant**](CreatorCampaignsApi.md#moveCampaignParticipant) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign |
+| [**moveCampaignParticipantWithHttpInfo**](CreatorCampaignsApi.md#moveCampaignParticipantWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/participants/{participantId}/move | Move participant to another campaign |
 | [**pauseCreatorCampaign**](CreatorCampaignsApi.md#pauseCreatorCampaign) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign |
 | [**pauseCreatorCampaignWithHttpInfo**](CreatorCampaignsApi.md#pauseCreatorCampaignWithHttpInfo) | **POST** /v1/creator-campaigns/{campaignId}/pause | Pause creator campaign |
 | [**raiseCreatorCampaignBudget**](CreatorCampaignsApi.md#raiseCreatorCampaignBudget) | **POST** /v1/creator-campaigns/{campaignId}/budget | Raise creator campaign budget |
@@ -2961,6 +2963,168 @@ ApiResponse<[**ListCreatorCampaigns200Response**](ListCreatorCampaigns200Respons
 | **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
 | **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
 | **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+
+
+## moveCampaignParticipant
+
+> MoveCampaignParticipant200Response moveCampaignParticipant(campaignId, participantId, moveCampaignParticipantRequest)
+
+Move participant to another campaign
+
+Moves a creator invited or joined into the wrong campaign to another campaign of the same owner. The participant keeps its id, status and portal link, which now opens the target.  Posts that fit the target (platform accepted, published after it started) move with it. Undecided posts that do not fit are rejected in this campaign with the reason; decided ones stay.  Answers 409 when the target is closed or full, the creator is already in it, the participant was removed, or any money touched the participation (ledger entries, a payout batch or a transfer). Money never moves between campaigns.  Fires &#x60;campaign_participant.removed&#x60; here and, for a creator who joined, &#x60;campaign_participant.joined&#x60; on the target. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Campaign the participant is in now.
+        String participantId = "participantId_example"; // String | Participant ID.
+        MoveCampaignParticipantRequest moveCampaignParticipantRequest = new MoveCampaignParticipantRequest(); // MoveCampaignParticipantRequest | 
+        try {
+            MoveCampaignParticipant200Response result = apiInstance.moveCampaignParticipant(campaignId, participantId, moveCampaignParticipantRequest);
+            System.out.println(result);
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorCampaignsApi#moveCampaignParticipant");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Reason: " + e.getResponseBody());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Campaign the participant is in now. | |
+| **participantId** | **String**| Participant ID. | |
+| **moveCampaignParticipantRequest** | [**MoveCampaignParticipantRequest**](MoveCampaignParticipantRequest.md)|  | |
+
+### Return type
+
+[**MoveCampaignParticipant200Response**](MoveCampaignParticipant200Response.md)
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Participant moved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
+
+## moveCampaignParticipantWithHttpInfo
+
+> ApiResponse<MoveCampaignParticipant200Response> moveCampaignParticipant moveCampaignParticipantWithHttpInfo(campaignId, participantId, moveCampaignParticipantRequest)
+
+Move participant to another campaign
+
+Moves a creator invited or joined into the wrong campaign to another campaign of the same owner. The participant keeps its id, status and portal link, which now opens the target.  Posts that fit the target (platform accepted, published after it started) move with it. Undecided posts that do not fit are rejected in this campaign with the reason; decided ones stay.  Answers 409 when the target is closed or full, the creator is already in it, the participant was removed, or any money touched the participation (ledger entries, a payout batch or a transfer). Money never moves between campaigns.  Fires &#x60;campaign_participant.removed&#x60; here and, for a creator who joined, &#x60;campaign_participant.joined&#x60; on the target. 
+
+### Example
+
+```java
+// Import classes:
+import dev.zernio.ApiClient;
+import dev.zernio.ApiException;
+import dev.zernio.ApiResponse;
+import dev.zernio.Configuration;
+import dev.zernio.auth.*;
+import dev.zernio.models.*;
+import dev.zernio.api.CreatorCampaignsApi;
+
+public class Example {
+    public static void main(String[] args) {
+        ApiClient defaultClient = Configuration.getDefaultApiClient();
+        defaultClient.setBasePath("https://zernio.com/api");
+        
+        // Configure HTTP bearer authorization: bearerAuth
+        HttpBearerAuth bearerAuth = (HttpBearerAuth) defaultClient.getAuthentication("bearerAuth");
+        bearerAuth.setBearerToken("BEARER TOKEN");
+
+        CreatorCampaignsApi apiInstance = new CreatorCampaignsApi(defaultClient);
+        String campaignId = "campaignId_example"; // String | Campaign the participant is in now.
+        String participantId = "participantId_example"; // String | Participant ID.
+        MoveCampaignParticipantRequest moveCampaignParticipantRequest = new MoveCampaignParticipantRequest(); // MoveCampaignParticipantRequest | 
+        try {
+            ApiResponse<MoveCampaignParticipant200Response> response = apiInstance.moveCampaignParticipantWithHttpInfo(campaignId, participantId, moveCampaignParticipantRequest);
+            System.out.println("Status code: " + response.getStatusCode());
+            System.out.println("Response headers: " + response.getHeaders());
+            System.out.println("Response body: " + response.getData());
+        } catch (ApiException e) {
+            System.err.println("Exception when calling CreatorCampaignsApi#moveCampaignParticipant");
+            System.err.println("Status code: " + e.getCode());
+            System.err.println("Response headers: " + e.getResponseHeaders());
+            System.err.println("Reason: " + e.getResponseBody());
+            e.printStackTrace();
+        }
+    }
+}
+```
+
+### Parameters
+
+
+| Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **campaignId** | **String**| Campaign the participant is in now. | |
+| **participantId** | **String**| Participant ID. | |
+| **moveCampaignParticipantRequest** | [**MoveCampaignParticipantRequest**](MoveCampaignParticipantRequest.md)|  | |
+
+### Return type
+
+ApiResponse<[**MoveCampaignParticipant200Response**](MoveCampaignParticipant200Response.md)>
+
+
+### Authorization
+
+[bearerAuth](../README.md#bearerAuth)
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Participant moved |  -  |
+| **400** | Invalid request |  -  |
+| **401** | Missing or invalid API key. &#x60;code&#x60; is &#x60;missing_credentials&#x60; when no Authorization header was sent and &#x60;invalid_credentials&#x60; when the key is unknown, revoked or expired. |  -  |
+| **403** | Refused. Code &#x60;feature_not_available&#x60;: creator campaigns run on usage-based billing and the workspace that owns the campaign is not on it yet (\&quot;Creator campaigns require usage-based billing...\&quot;; contact support to switch), or the campaign reached &#x60;caps.maxParticipants&#x60; (invites and joins only). Code &#x60;insufficient_permissions&#x60;: a restricted API key without the &#x60;creator_campaigns&#x60; resource group.  |  -  |
+| **404** | The campaign, participant or submission does not exist, belongs to another team, or sits in a profile this key cannot reach (code &#x60;resource_not_found&#x60;). |  -  |
+| **409** | The campaign, participant or submission is not in a state that allows this action (code &#x60;invalid_resource_state&#x60;); the message names the current state. Also returned while the same &#x60;Idempotency-Key&#x60; is still processing. |  -  |
 
 
 ## pauseCreatorCampaign

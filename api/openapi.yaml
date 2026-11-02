@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.436.0
+  version: 1.437.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -75617,6 +75617,71 @@ paths:
       tags:
       - Creator Campaigns
       x-resource-group: creator_campaigns
+      x-accepts:
+      - application/json
+  /v1/creator-campaigns/{campaignId}/participants/{participantId}/move:
+    post:
+      description: |
+        Moves a creator invited or joined into the wrong campaign to another campaign of the same
+        owner. The participant keeps its id, status and portal link, which now opens the target.
+
+        Posts that fit the target (platform accepted, published after it started) move with it.
+        Undecided posts that do not fit are rejected in this campaign with the reason; decided ones stay.
+
+        Answers 409 when the target is closed or full, the creator is already in it, the participant
+        was removed, or any money touched the participation (ledger entries, a payout batch or a
+        transfer). Money never moves between campaigns.
+
+        Fires `campaign_participant.removed` here and, for a creator who joined,
+        `campaign_participant.joined` on the target.
+      operationId: moveCampaignParticipant
+      parameters:
+      - description: Campaign the participant is in now.
+        explode: false
+        in: path
+        name: campaignId
+        required: true
+        schema:
+          type: string
+        style: simple
+      - description: Participant ID.
+        explode: false
+        in: path
+        name: participantId
+        required: true
+        schema:
+          type: string
+        style: simple
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/moveCampaignParticipant_request"
+        required: true
+      responses:
+        "200":
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/moveCampaignParticipant_200_response"
+          description: Participant moved
+        "400":
+          $ref: "#/components/responses/BadRequest"
+        "401":
+          $ref: "#/components/responses/Unauthorized"
+        "403":
+          $ref: "#/components/responses/CreatorCampaignForbidden"
+        "404":
+          $ref: "#/components/responses/CreatorCampaignNotFound"
+        "409":
+          $ref: "#/components/responses/CreatorCampaignConflict"
+      security:
+      - bearerAuth: []
+      summary: Move participant to another campaign
+      tags:
+      - Creator Campaigns
+      x-resource-group: creator_campaigns
+      x-content-type: application/json
       x-accepts:
       - application/json
   /v1/creator-campaigns/{campaignId}/participants/{participantId}/resend-invite:
@@ -183290,6 +183355,82 @@ components:
           $ref: "#/components/schemas/CampaignParticipant"
       required:
       - participant
+    moveCampaignParticipant_request:
+      properties:
+        targetCampaignId:
+          description: "Campaign to move the participant to. Same owner, not closed."
+          type: string
+      required:
+      - targetCampaignId
+    moveCampaignParticipant_200_response_submissions:
+      example:
+        rejected: 6
+        moved: 0
+      properties:
+        moved:
+          description: Posts that moved to the target.
+          type: integer
+        rejected:
+          description: Undecided posts rejected in this campaign because they did
+            not fit the target.
+          type: integer
+      required:
+      - moved
+      - rejected
+    moveCampaignParticipant_200_response:
+      example:
+        submissions:
+          rejected: 6
+          moved: 0
+        participant:
+          creator:
+            displayName: displayName
+            id: id
+            email: email
+          balances:
+            owed: 6
+            payable: 1
+            settled: 5
+            accruing: 0
+            settling: 5
+          campaignId: campaignId
+          joinedAt: 2000-01-23T04:56:07.000+00:00
+          flags:
+          - code: linked_accounts
+            raisedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+          - code: linked_accounts
+            raisedAt: 2000-01-23T04:56:07.000+00:00
+            detail: detail
+          payout:
+            status: not_started
+          id: id
+          accounts:
+          - accountId: accountId
+            verifiedAt: 2000-01-23T04:56:07.000+00:00
+            platform: platform
+            username: username
+          - accountId: accountId
+            verifiedAt: 2000-01-23T04:56:07.000+00:00
+            platform: platform
+            username: username
+          status: invited
+          submissionCounts:
+            approved: 1
+            pending_review: 7
+            expired: 5
+            rejected: 4
+            withdrawn: 9
+            received: 1
+            tracking: 6
+      properties:
+        participant:
+          $ref: "#/components/schemas/CampaignParticipant"
+        submissions:
+          $ref: "#/components/schemas/moveCampaignParticipant_200_response_submissions"
+      required:
+      - participant
+      - submissions
     settleCampaignParticipant_request:
       properties:
         amountCents:
