@@ -853,7 +853,7 @@ public class Example {
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **404** | Code &#x60;account_not_found&#x60; (&#x60;accountId&#x60;), or &#x60;post_not_found&#x60; (&#x60;postId&#x60;) when a Zernio post id matches no post this key can reach. A post published outside Zernio goes in platformPostId. |  -  |
 | **200** | validateOnly dry-run passed (Meta), nothing was created |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values, &#x60;validateOnly: true&#x60; outside Meta, &#x60;dryRun&#x60; sent, or a Meta validateOnly validation failure (verbatim) |  -  |
@@ -937,7 +937,7 @@ ApiResponse<[**BoostPost200Response**](BoostPost200Response.md)>
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
-| **404** | The account or requested resource was not found or is not accessible. An account ID may have been disconnected and removed. Read GET /v1/accounts for current account IDs. |  -  |
+| **404** | Code &#x60;account_not_found&#x60; (&#x60;accountId&#x60;), or &#x60;post_not_found&#x60; (&#x60;postId&#x60;) when a Zernio post id matches no post this key can reach. A post published outside Zernio goes in platformPostId. |  -  |
 | **200** | validateOnly dry-run passed (Meta), nothing was created |  -  |
 | **201** | Ad created |  -  |
 | **400** | Missing required fields or invalid values, &#x60;validateOnly: true&#x60; outside Meta, &#x60;dryRun&#x60; sent, or a Meta validateOnly validation failure (verbatim) |  -  |

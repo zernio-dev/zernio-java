@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.440.1
+  version: 1.440.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -58145,7 +58145,13 @@ paths:
         required: true
       responses:
         "404":
-          $ref: "#/components/responses/AccountUnavailable"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponse"
+          description: "Code `account_not_found` (`accountId`), or `post_not_found`\
+            \ (`postId`) when a Zernio post id matches no post this key can reach.\
+            \ A post published outside Zernio goes in platformPostId."
         "200":
           content:
             application/json:
@@ -169095,7 +169101,10 @@ components:
           example:
             auto_promotion_tag: OPT_IN
         postId:
-          description: Zernio post ID (provide this or platformPostId)
+          description: "The Zernio post id (24 hex characters) returned when the post\
+            \ was created through Zernio. Send this or platformPostId. A value that\
+            \ is not a Zernio id is boosted as the platform post id, the same as platformPostId;\
+            \ a Zernio id that matches no post is a 404 on postId."
           type: string
         platformPostId:
           description: |-
@@ -169109,7 +169118,7 @@ components:
           description: |-
             Zernio account id. Normally the connected posting account (facebook, instagram, tiktok, linkedin, pinterest, twitter), a googleads account or a redditads account.
 
-            TikTok: the TikTok Ads connection (platform tiktokads) is also accepted when the post brings its own authorization (sparkAuthCode or sparkPosts), so Spark ads need no organic TikTok account connected. Such a call must use platformPostId, not postId.
+            TikTok: the TikTok Ads connection (platform tiktokads) is also accepted when the post brings its own authorization (sparkAuthCode or sparkPosts), so Spark ads need no organic TikTok account connected. Such a call cannot use a Zernio postId: send the TikTok item id (as platformPostId, or in postId).
           type: string
         adAccountId:
           description: Platform ad account ID
