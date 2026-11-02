@@ -56,6 +56,7 @@ Campaign with nested ad sets and rolled-up metrics
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
+| MICROSOFT | &quot;microsoft&quot; |
 
 
 

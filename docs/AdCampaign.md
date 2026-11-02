@@ -54,6 +54,7 @@
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
+| MICROSOFT | &quot;microsoft&quot; |
 
 
 

@@ -25,6 +25,7 @@
 | TWITTER | &quot;twitter&quot; |
 | OPENAI | &quot;openai&quot; |
 | REDDIT | &quot;reddit&quot; |
+| MICROSOFT | &quot;microsoft&quot; |
 | GOOGLEADS | &quot;googleads&quot; |
 | TIKTOKADS | &quot;tiktokads&quot; |
 | LINKEDINADS | &quot;linkedinads&quot; |
@@ -32,6 +33,7 @@
 | XADS | &quot;xads&quot; |
 | OPENAIADS | &quot;openaiads&quot; |
 | REDDITADS | &quot;redditads&quot; |
+| MICROSOFTADS | &quot;microsoftads&quot; |
 
 
 
