@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.442.0
+- API version: 1.443.0
 
-- Build date: 2026-11-02T17:57:51.485792934Z[Etc/UTC]
+- Build date: 2026-11-02T18:16:02.949232284Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.442.0</version>
+  <version>1.443.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.442.0"
+compile "dev.zernio:zernio-sdk:1.443.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.442.0.jar`
+- `target/zernio-sdk-1.443.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -3408,8 +3408,9 @@ Class | Method | HTTP request | Description
  - [GetAdAccountFinance200Response](docs/GetAdAccountFinance200Response.md)
  - [GetAdAccountFinance200ResponseFundingSource](docs/GetAdAccountFinance200ResponseFundingSource.md)
  - [GetAdAccountHealth200Response](docs/GetAdAccountHealth200Response.md)
+ - [GetAdAccountHealth200ResponseBlockersInner](docs/GetAdAccountHealth200ResponseBlockersInner.md)
+ - [GetAdAccountHealth200ResponseBlockersInnerFix](docs/GetAdAccountHealth200ResponseBlockersInnerFix.md)
  - [GetAdAccountHealth200ResponseChecksInner](docs/GetAdAccountHealth200ResponseChecksInner.md)
- - [GetAdAccountHealth200ResponseChecksInnerFix](docs/GetAdAccountHealth200ResponseChecksInnerFix.md)
  - [GetAdAccountHierarchy200Response](docs/GetAdAccountHierarchy200Response.md)
  - [GetAdAccountHierarchy200ResponseDirectCustomersInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md)
  - [GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner](docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md)

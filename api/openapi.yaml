@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.442.0
+  version: 1.443.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -57335,14 +57335,33 @@ paths:
         - the Page's Lead Ads terms
         - the newest pixel event
         - the WhatsApp number linked to the Page
+        - the last refusal Meta gave a create or boost for a reason only the account owner can fix (`last_refusal`, see below)
 
         Each check reads on its own: one this connection cannot see comes back `unknown` instead of failing the request.
 
+        ### Remembered refusals
+
+        Meta cannot be asked about a code 31 security check up front. So `last_refusal` reports the last refusal of this kind that a create or boost met:
+
+        - a code 31 security check or a temporary block, remembered for the connection (`accountId`)
+        - a payment method, the non-discrimination policy or a disabled account, remembered for the ad account
+
+        It stays until a later create succeeds, or for 7 days (1 day for a temporary block).
+
         ### Reading the result
 
-        - `status` is `blocked` when any check is `error` (ads will be refused), `attention` when one is `warning`, else `ok`.
+        - `ready` is `false` when a create or boost would be refused. `blockers` lists why, each with the `code` a refused create returns (`ad_account_unusable`, `ad_account_payment_required`, `linked_account_required`, `meta_security_check_required`, `ad_account_policy_not_accepted`, ...), a `hint` and a `fix` link.
+        - `status` is `blocked` when any check is `error`, `attention` when one is `warning`, else `ok`. It also counts problems that stop delivery but not a create, such as a reached spending limit, so `status` can be `blocked` while `ready` is `true`.
+        - A check that is not `ok` carries the `code` of the create refusal it explains, when there is one: `whatsapp` (`missing`) carries `whatsapp_number_not_linked` and `lead_terms` (`missing`) carries `lead_ads_terms_not_accepted`, which only click-to-WhatsApp ads and lead ads hit.
         - `missing` marks an optional asset that is not set up (a pixel, a WhatsApp number): only the ads that need it are affected.
+        - An unsettled balance (`account_status` 3) is a `warning`: Meta still accepts creates on it while a payment method is set.
         - A `fix.url` is either a Meta page or a Zernio dashboard path (starting with `/`).
+
+        ### validateOnly
+
+        `POST /v1/ads/create` and `POST /v1/ads/boost` with `validateOnly: true` run the account status and payment checks first. A blocked account answers the same `code` with `details.hint` and `details.fix`, without a Meta dry run (Meta counts dry runs as ad writes).
+
+        They read the account state cached for up to 5 minutes. This endpoint always reads it fresh and refreshes that cache.
       operationId: getAdAccountHealth
       parameters:
       - description: Zernio SocialAccount id (posting or ads variant) used to resolve
@@ -167950,7 +167969,7 @@ components:
           type: number
         fundingSource:
           $ref: "#/components/schemas/getAdAccountFinance_200_response_fundingSource"
-    getAdAccountHealth_200_response_checks_inner_fix:
+    getAdAccountHealth_200_response_blockers_inner_fix:
       example:
         label: label
         url: url
@@ -167959,11 +167978,42 @@ components:
           type: string
         url:
           type: string
-    getAdAccountHealth_200_response_checks_inner:
+    getAdAccountHealth_200_response_blockers_inner:
       example:
+        code: ad_account_payment_required
         fix:
           label: label
           url: url
+        hint: hint
+        check: check
+        message: message
+      properties:
+        check:
+          description: "The `checks[].id` that blocks."
+          type: string
+        code:
+          description: The error code a refused create or boost returns for this reason.
+          example: ad_account_payment_required
+          type: string
+        message:
+          type: string
+        hint:
+          description: "What to do, in English."
+          type: string
+        fix:
+          $ref: "#/components/schemas/getAdAccountHealth_200_response_blockers_inner_fix"
+      required:
+      - check
+      - code
+      - hint
+      - message
+    getAdAccountHealth_200_response_checks_inner:
+      example:
+        code: code
+        fix:
+          label: label
+          url: url
+        hint: hint
         id: account_status
         title: title
         message: message
@@ -167979,6 +168029,7 @@ components:
           - lead_terms
           - pixel
           - whatsapp
+          - last_refusal
           type: string
         status:
           enum:
@@ -167992,8 +168043,14 @@ components:
           type: string
         message:
           type: string
+        code:
+          description: "When the check is not `ok`: the error code a create refused\
+            \ for this reason returns."
+          type: string
+        hint:
+          type: string
         fix:
-          $ref: "#/components/schemas/getAdAccountHealth_200_response_checks_inner_fix"
+          $ref: "#/components/schemas/getAdAccountHealth_200_response_blockers_inner_fix"
       required:
       - id
       - message
@@ -168003,21 +168060,41 @@ components:
       example:
         checkedAt: 2000-01-23T04:56:07.000+00:00
         checks:
-        - fix:
+        - code: code
+          fix:
             label: label
             url: url
+          hint: hint
           id: account_status
           title: title
           message: message
           status: ok
-        - fix:
+        - code: code
+          fix:
             label: label
             url: url
+          hint: hint
           id: account_status
           title: title
           message: message
           status: ok
         adAccountId: adAccountId
+        ready: true
+        blockers:
+        - code: ad_account_payment_required
+          fix:
+            label: label
+            url: url
+          hint: hint
+          check: check
+          message: message
+        - code: ad_account_payment_required
+          fix:
+            label: label
+            url: url
+          hint: hint
+          check: check
+          message: message
         status: ok
       properties:
         adAccountId:
@@ -168028,6 +168105,14 @@ components:
           - attention
           - blocked
           type: string
+        ready:
+          description: False when a create or boost on this ad account would be refused;
+            `blockers` says why.
+          type: boolean
+        blockers:
+          items:
+            $ref: "#/components/schemas/getAdAccountHealth_200_response_blockers_inner"
+          type: array
         checkedAt:
           format: date-time
           type: string
@@ -169622,6 +169707,7 @@ components:
 
             - Idempotency-Key storage and the duplicate-boost guard are bypassed.
             - Counts toward the 30 Meta writes per ad account per 5 minutes.
+            - Runs the account status and payment checks of GET /v1/ads/accounts/health first: an ad account that is not ready answers its blocker `code` (`ad_account_unusable`, `ad_account_payment_required`) with `details.hint` and `details.fix`, and Meta is not called.
             - With `adSetId`, only the ad is dry-run.
             - An Instagram video Meta refuses as a direct reference (subcode 1815279) comes back as `unverified` nodes, because the copy a real boost makes cannot be dry-run.
 
@@ -171168,6 +171254,8 @@ components:
             **Google Performance Max**: validates the complete atomic campaign and asset group, with no resource creation or local persistence. Validation still downloads image URLs and consumes quota.
 
             **Meta**: validates the inline campaign, ad set, creative and ad with execution_options validate_only. Nothing is uploaded or created; validation bypasses Idempotency-Key storage. Success returns 200 with per-node results; a Meta rejection returns an error.
+
+            Before the dry run, Meta validateOnly runs the account status and payment checks of GET /v1/ads/accounts/health: an ad account that is not ready answers its blocker `code` (`ad_account_unusable`, `ad_account_payment_required`) with `details.hint` and `details.fix`, and Meta is not called.
 
             - Supported: a single image or existing video.id (each also with bodies[] / headlines[] Multiple Text Options), all-image placementAssets with per-rule copy and text pools, or existingCreativeId.
             - Return 400: dynamicCreative, translations, carouselCards, placement videos, new video uploads, creatives[], adSetId, RESERVED buying.

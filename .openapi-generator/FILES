@@ -1043,8 +1043,9 @@ docs/GetAdAccountBilling200ResponsePendingBudgetProposalsInner.md
 docs/GetAdAccountFinance200Response.md
 docs/GetAdAccountFinance200ResponseFundingSource.md
 docs/GetAdAccountHealth200Response.md
+docs/GetAdAccountHealth200ResponseBlockersInner.md
+docs/GetAdAccountHealth200ResponseBlockersInnerFix.md
 docs/GetAdAccountHealth200ResponseChecksInner.md
-docs/GetAdAccountHealth200ResponseChecksInnerFix.md
 docs/GetAdAccountHierarchy200Response.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInner.md
 docs/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.md
@@ -4406,8 +4407,9 @@ src/main/java/dev/zernio/model/GetAdAccountBilling200ResponsePendingBudgetPropos
 src/main/java/dev/zernio/model/GetAdAccountFinance200Response.java
 src/main/java/dev/zernio/model/GetAdAccountFinance200ResponseFundingSource.java
 src/main/java/dev/zernio/model/GetAdAccountHealth200Response.java
+src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseBlockersInner.java
+src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseBlockersInnerFix.java
 src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInner.java
-src/main/java/dev/zernio/model/GetAdAccountHealth200ResponseChecksInnerFix.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200Response.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInner.java
 src/main/java/dev/zernio/model/GetAdAccountHierarchy200ResponseDirectCustomersInnerPendingInvitationsInner.java
@@ -6609,3 +6611,5 @@ src/main/java/dev/zernio/model/YouTubeScopeMissingResponse.java
 src/main/java/dev/zernio/model/YouTubeScopeMissingResponseScopeStatus.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponse.java
 src/main/java/dev/zernio/model/YouTubeVideoRetentionResponseRetentionCurveInner.java
+src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseBlockersInnerFixTest.java
+src/test/java/dev/zernio/model/GetAdAccountHealth200ResponseBlockersInnerTest.java
