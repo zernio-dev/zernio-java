@@ -20,7 +20,7 @@
 |**isExternal** | **Boolean** |  |  [optional] |
 |**isAd** | **Boolean** | True when this post&#39;s metrics include paid delivery, so organic reporting should exclude it.  Set for LinkedIn dark posts and for TikTok posts one of your TikTok ads promotes (Spark / boosted).  TikTok exposes no ad flag of its own. A video created by an uploaded-asset (non-Spark) TikTok ad is posted to the profile with a fresh organic id and cannot be detected, so those still report false.  |  [optional] |
 |**profileId** | **String** |  |  [optional] |
-|**thumbnailUrl** | **URI** | Cover image URL. Facebook and Instagram covers whose Meta CDN link expired are re-read from Meta and served from Zernio storage, so that URL does not expire and can be cached. |  [optional] |
+|**thumbnailUrl** | **URI** | Cover image URL. Facebook, Instagram and TikTok covers whose platform CDN link expired are re-read from the platform and served from Zernio storage, so that URL does not expire and can be cached. |  [optional] |
 |**mediaType** | [**MediaTypeEnum**](#MediaTypeEnum) |  |  [optional] |
 |**mediaItems** | [**List&lt;AnalyticsListResponsePostsInnerMediaItemsInner&gt;**](AnalyticsListResponsePostsInnerMediaItemsInner.md) | All media items for this post. Carousel posts contain one entry per slide.  - Facebook and Instagram images and video covers whose Meta CDN links expired are re-read and served from Zernio storage (non-expiring). - Facebook and Instagram video file URLs, and LinkedIn media URLs, stay the platform&#39;s signed links and are refreshed on read once they lapse.  |  [optional] |
 |**mediaProductType** | **String** | Instagram only: the platform media product type (e.g. FEED, REELS, STORY, AD). Absent when the platform did not report it. |  [optional] |
