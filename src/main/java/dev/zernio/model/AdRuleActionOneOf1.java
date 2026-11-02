@@ -36,7 +36,7 @@ import dev.zernio.ApiClient;
   AdRuleActionOneOf1.JSON_PROPERTY_TYPE,
   AdRuleActionOneOf1.JSON_PROPERTY_MAX_CHANGES_PER_DAY
 })
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-02T17:45:26.202855726Z[Etc/UTC]", comments = "Generator version: 7.19.0")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2026-11-02T17:49:54.152494899Z[Etc/UTC]", comments = "Generator version: 7.19.0")
 public class AdRuleActionOneOf1 {
   /**
    * Pause the campaign, ad set or ad.
