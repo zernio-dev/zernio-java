@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.440.2
+  version: 1.441.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -1946,10 +1946,16 @@ paths:
         - Up to 100 points (elapsedVideoTimeRatio 0.01-1.0), aggregated over the whole date range. YouTube does not support per-day retention breakdowns.
         - audienceWatchRatio: the absolute share of viewers watching at that point in the video. It can exceed 1 (rewinds and looping, common on Shorts).
         - relativeRetentionPerformance: compares against videos of similar length (0 = worst, 0.5 = median, 1 = best).
+        - Zernio returns exactly the buckets YouTube reports for the requested range and fills none in. A curve that ends before 1.0, or skips a position, means YouTube returned no row there for that range.
+        - The range ends at toDate (default 3 days ago), so recent views are included only with a later toDate.
 
         ### Empty curves
 
         YouTube returns an empty curve for videos with very few views or before analytics processing completes (2-3 day delay).
+
+        ### startedWatching and stoppedWatching
+
+        YouTube does not return segment-level data for every video. Zernio then fetches the curve without it: `segmentMetricsAvailable` is `false` and both fields are `0` placeholders in every point. When it is `true`, a `0` is the value YouTube reported.
       operationId: getYouTubeVideoRetention
       parameters:
       - description: "The YouTube video ID (e.g., \"dQw4w9WgXcQ\")"
@@ -2041,6 +2047,7 @@ paths:
                       startedWatching: 385
                       stoppedWatching: 11790
                       totalSegmentImpressions: 473492
+                    segmentMetricsAvailable: true
                     scopeStatus:
                       hasAnalyticsScope: true
               schema:
@@ -84034,6 +84041,7 @@ components:
         provisionalSince: 2000-01-23
         scopeStatus:
           hasAnalyticsScope: true
+        segmentMetricsAvailable: true
       properties:
         success:
           example: true
@@ -84065,10 +84073,16 @@ components:
             \ may still be revised by YouTube."
           format: date
           type: string
+        segmentMetricsAvailable:
+          description: "Whether YouTube returned startedWatching and stoppedWatching\
+            \ for this curve. When false, both are 0 placeholders in every point,\
+            \ not measured values."
+          type: boolean
         retentionCurve:
           description: "Up to 100 points covering the video timeline, aggregated over\
-            \ the date range. Can be empty when YouTube has no retention data for\
-            \ the video in the given range."
+            \ the date range. Contains only the buckets YouTube reports for that range\
+            \ and is never zero-filled, so it can end before 1.0, skip positions,\
+            \ or be empty."
           items:
             $ref: "#/components/schemas/YouTubeVideoRetentionResponse_retentionCurve_inner"
           type: array
@@ -186669,14 +186683,25 @@ components:
       description: |
         Additional structured context for the error (for example field-level validation errors). What it carries depends on the endpoint and platform.
 
-        **Meta ads refusals.** The ones customers hit most come back with their own `code` instead of `platform_api_error`, the field to fix in `param`, and `details.fix` ({ label, url }) pointing at the Meta page that resolves it:
+        **Meta ads refusals.** The ones customers hit most come back with their own `code` instead of `platform_api_error`, the field to fix in `param`, and an English `details.hint` saying how to fix it. `details.fix` ({ label, url }) links the Meta page that resolves it, when there is one.
 
-        - `ad_account_payment_required`
-        - `ad_account_policy_not_accepted`
-        - `meta_security_check_required`
-        - `meta_action_blocked`
-        - `whatsapp_number_not_linked`
-        - `invalid_targeting`
+        The code is picked from Meta's numeric `code` and `error_subcode`, never from the message, so it is the same whatever language Meta wrote `error_user_msg` in. Branch on `code` and show `details.hint`.
+
+        - `ad_account_payment_required`: the ad account has no usable payment method (subcode 1815010, 1359188).
+        - `ad_account_policy_not_accepted`: a business admin has to accept Meta's non-discrimination policy (subcode 2859002, 2859024).
+        - `lead_ads_terms_not_accepted`: the Facebook Page has not accepted the Lead Ads terms (subcode 1815089).
+        - `verified_advertiser_required`: the market requires a verified beneficiary and payer; send `regionalRegulationIdentities` (subcode 3858634, 3858636, 3858442, 3858548, 3858495).
+        - `ad_account_unusable`: the ad account is not active, or the business is restricted from advertising (subcode 1885316, 2446325, and 2490592, 4841021 below).
+        - `meta_security_check_required`: the Facebook user behind the connection is held at a security check (code 31).
+        - `meta_action_blocked`: Meta temporarily blocked the Facebook user from this action (subcode 2859015).
+        - `meta_ad_consent_required`: the Page or Instagram owner chose Meta without ads or less personalized ads (subcode 3858231, 3858412).
+        - `instagram_account_restricted`: Meta restricted the Instagram account the ad runs as (subcode 2207070).
+        - `insufficient_permissions`: the ad account cannot use the Instagram account, or the Facebook user has no advertiser permission on the Page (subcode 1815199, 1815202, 1885499, 1341012, and the Advertise permission case below).
+        - `whatsapp_number_not_linked`: the WhatsApp number is no longer linked to the Page (subcode 2446880).
+        - `invalid_targeting`: Meta refused the audience or a placement (subcode 1487079, 1870247, 2909035, 1870189, 1870188, 1487756, 1487843, 2490562).
+        - `post_not_boostable`: Meta does not allow the post to be promoted (subcode 2446187, 2875030, 1487472).
+        - `budget_too_low`: the budget is below Meta's minimum, which `platformError.error_user_msg` states (subcode 1885272).
+        - `meta_object_not_accessible`: Meta cannot load an object the request names (wrong ID, deleted, or no access); `platformError.message` names the ID (subcode 33, on ads routes only).
 
         Meta's own error stays in the message and in `platformError`.
 
@@ -187004,12 +187029,12 @@ components:
             \ 1 = best)"
           type: number
         startedWatching:
-          description: Viewers who started watching in this segment. 0 when YouTube
-            has no segment-level data for the video.
+          description: Viewers who started watching in this segment. A 0 placeholder
+            when segmentMetricsAvailable is false.
           type: integer
         stoppedWatching:
-          description: Viewers who stopped watching in this segment. 0 when YouTube
-            has no segment-level data for the video.
+          description: Viewers who stopped watching in this segment. A 0 placeholder
+            when segmentMetricsAvailable is false.
           type: integer
         totalSegmentImpressions:
           description: "Total views of this segment, including rewatches"
