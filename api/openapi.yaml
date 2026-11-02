@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.433.0
+  version: 1.433.1
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -128397,6 +128397,8 @@ components:
           type: string
         webhookAvatarUrl:
           description: Custom avatar URL. Empty string resets to default bot avatar.
+            Zernio upload URLs (temp/) are copied to permanent storage; an expired
+            one returns 400.
           type: string
         channelId:
           description: "Switch to a different channel in the same guild. Must be a\
