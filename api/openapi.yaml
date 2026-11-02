@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.432.1
+  version: 1.433.0
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -71,8 +71,6 @@ servers:
 security:
 - bearerAuth: []
 tags:
-- description: Media tools for authenticated API consumers.
-  name: Tools
 - description: Read-only access to double-entry ledger balances and entries for your
     team. Every operation belongs to the `money` resource group.
   name: Ledger
@@ -74568,78 +74566,6 @@ paths:
       x-platforms:
       - meta
       x-content-type: application/json
-      x-accepts:
-      - application/json
-  /v1/tools/tiktok/download:
-    get:
-      description: Get a download URL or list available formats for a TikTok video.
-        Requires Tools API access and uses the Tools API rate limit. Provider gateway
-        failures and provider-side access blocks return 503; an unavailable video
-        returns 404.
-      operationId: downloadTikTokVideo
-      parameters:
-      - description: TikTok video URL or numeric video ID.
-        example: https://www.tiktok.com/@example/video/7412345678901234567
-        explode: true
-        in: query
-        name: url
-        required: true
-        schema:
-          type: string
-        style: form
-      - description: Return a download URL or the available formats.
-        explode: true
-        in: query
-        name: action
-        required: false
-        schema:
-          default: download
-          enum:
-          - download
-          - formats
-          type: string
-        style: form
-      - description: Format ID from the formats response. Omit to select the first
-          available format.
-        explode: true
-        in: query
-        name: formatId
-        required: false
-        schema:
-          type: string
-        style: form
-      responses:
-        "200":
-          content:
-            application/json:
-              example:
-                success: true
-                title: TikTok by @example
-                format: MP4 • No watermark
-                downloadUrl: https://example.com/video.mp4
-              schema:
-                $ref: "#/components/schemas/downloadTikTokVideo_200_response"
-          description: Download URL or available formats.
-        "400":
-          description: "Missing or invalid url, action, or formatId."
-        "401":
-          $ref: "#/components/responses/Unauthorized"
-        "403":
-          description: Tools API access is required.
-        "404":
-          description: The video or a downloadable format was not found.
-        "429":
-          $ref: "#/components/responses/RateLimited"
-        "502":
-          $ref: "#/components/responses/UpstreamFailure"
-        "503":
-          $ref: "#/components/responses/TemporarilyUnavailable"
-      summary: Download a TikTok video
-      tags:
-      - Tools
-      x-resource-group: publishing
-      x-platforms:
-      - tiktok
       x-accepts:
       - application/json
   /v1/media/prepare:
@@ -182422,88 +182348,6 @@ components:
       properties:
         permission:
           $ref: "#/components/schemas/listPartnershipAdPermissions_200_response_permissions_inner"
-    downloadTikTokVideo_200_response_formats_inner:
-      example:
-        ext: ext
-        hasVideo: true
-        hasAudio: true
-        width: 1.4658129805029452
-        fps: 5.962133916683182
-        id: id
-        label: label
-        type: type
-        height: 6.027456183070403
-      properties:
-        id:
-          type: string
-        label:
-          type: string
-        ext:
-          type: string
-        type:
-          type: string
-        height:
-          type: number
-        width:
-          type: number
-        fps:
-          type: number
-        hasAudio:
-          type: boolean
-        hasVideo:
-          type: boolean
-    downloadTikTokVideo_200_response:
-      example:
-        duration: 0.8008281904610115
-        cover: cover
-        formats:
-        - ext: ext
-          hasVideo: true
-          hasAudio: true
-          width: 1.4658129805029452
-          fps: 5.962133916683182
-          id: id
-          label: label
-          type: type
-          height: 6.027456183070403
-        - ext: ext
-          hasVideo: true
-          hasAudio: true
-          width: 1.4658129805029452
-          fps: 5.962133916683182
-          id: id
-          label: label
-          type: type
-          height: 6.027456183070403
-        success: true
-        format: format
-        downloadUrl: downloadUrl
-        title: title
-      properties:
-        success:
-          type: boolean
-        title:
-          type: string
-        format:
-          description: Selected format label for action=download.
-          type: string
-        downloadUrl:
-          description: Media download URL for action=download.
-          type: string
-        duration:
-          description: Duration in seconds for action=formats.
-          type: number
-        cover:
-          description: Thumbnail URL for action=formats.
-          type: string
-        formats:
-          description: Available formats for action=formats.
-          items:
-            $ref: "#/components/schemas/downloadTikTokVideo_200_response_formats_inner"
-          type: array
-      required:
-      - success
-      - title
     prepareMedia_request:
       properties:
         url:

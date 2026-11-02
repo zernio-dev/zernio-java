@@ -923,8 +923,6 @@ docs/DiscordScheduledEventEntityMetadata.md
 docs/DismissAdsAlert200Response.md
 docs/DismissGoogleRecommendationsRequest.md
 docs/DmButton.md
-docs/DownloadTikTokVideo200Response.md
-docs/DownloadTikTokVideo200ResponseFormatsInner.md
 docs/DuplicateAd200Response.md
 docs/DuplicateAdCampaign200Response.md
 docs/DuplicateAdCampaignRequest.md
@@ -2640,7 +2638,6 @@ docs/TikTokReviewRejectionContent.md
 docs/TikTokSmartPlusAdLevelReview.md
 docs/TikTokSmartPlusMaterialReview.md
 docs/TikTokSmartPlusReviewStatus.md
-docs/ToolsApi.md
 docs/TrackingTag.md
 docs/TrackingTagDiagnostic.md
 docs/TrackingTagEvent.md
@@ -3382,7 +3379,6 @@ src/main/java/dev/zernio/api/SequencesApi.java
 src/main/java/dev/zernio/api/SlackApi.java
 src/main/java/dev/zernio/api/SmsApi.java
 src/main/java/dev/zernio/api/SupportAssistantApi.java
-src/main/java/dev/zernio/api/ToolsApi.java
 src/main/java/dev/zernio/api/TrackingTagsApi.java
 src/main/java/dev/zernio/api/TreasuryApi.java
 src/main/java/dev/zernio/api/TwitterEngagementApi.java
@@ -4287,8 +4283,6 @@ src/main/java/dev/zernio/model/DiscordScheduledEventEntityMetadata.java
 src/main/java/dev/zernio/model/DismissAdsAlert200Response.java
 src/main/java/dev/zernio/model/DismissGoogleRecommendationsRequest.java
 src/main/java/dev/zernio/model/DmButton.java
-src/main/java/dev/zernio/model/DownloadTikTokVideo200Response.java
-src/main/java/dev/zernio/model/DownloadTikTokVideo200ResponseFormatsInner.java
 src/main/java/dev/zernio/model/DuplicateAd200Response.java
 src/main/java/dev/zernio/model/DuplicateAdCampaign200Response.java
 src/main/java/dev/zernio/model/DuplicateAdCampaignRequest.java

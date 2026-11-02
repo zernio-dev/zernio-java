@@ -2,9 +2,9 @@
 
 Zernio API
 
-- API version: 1.432.1
+- API version: 1.433.0
 
-- Build date: 2026-11-01T21:43:08.770124598Z[Etc/UTC]
+- Build date: 2026-11-02T09:09:25.585830452Z[Etc/UTC]
 
 - Generator version: 7.19.0
 
@@ -60,7 +60,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>dev.zernio</groupId>
   <artifactId>zernio-sdk</artifactId>
-  <version>1.432.1</version>
+  <version>1.433.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -70,7 +70,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "dev.zernio:zernio-sdk:1.432.1"
+compile "dev.zernio:zernio-sdk:1.433.0"
 ```
 
 ### Others
@@ -83,7 +83,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-- `target/zernio-sdk-1.432.1.jar`
+- `target/zernio-sdk-1.433.0.jar`
 - `target/lib/*.jar`
 
 ## Getting Started
@@ -1995,8 +1995,6 @@ Class | Method | HTTP request | Description
 *SupportAssistantApi* | [**getSupportAnswerWithHttpInfo**](docs/SupportAssistantApi.md#getSupportAnswerWithHttpInfo) | **GET** /v1/support/runs/{runId} | Get a support answer
 *SupportAssistantApi* | [**listSupportAnswers**](docs/SupportAssistantApi.md#listSupportAnswers) | **GET** /v1/support/runs | List a thread&#39;s support answers
 *SupportAssistantApi* | [**listSupportAnswersWithHttpInfo**](docs/SupportAssistantApi.md#listSupportAnswersWithHttpInfo) | **GET** /v1/support/runs | List a thread&#39;s support answers
-*ToolsApi* | [**downloadTikTokVideo**](docs/ToolsApi.md#downloadTikTokVideo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
-*ToolsApi* | [**downloadTikTokVideoWithHttpInfo**](docs/ToolsApi.md#downloadTikTokVideoWithHttpInfo) | **GET** /v1/tools/tiktok/download | Download a TikTok video
 *TrackingTagsApi* | [**addTrackingTagSharedAccount**](docs/TrackingTagsApi.md#addTrackingTagSharedAccount) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**addTrackingTagSharedAccountWithHttpInfo**](docs/TrackingTagsApi.md#addTrackingTagSharedAccountWithHttpInfo) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/shared-accounts | Share with an ad account
 *TrackingTagsApi* | [**assignTrackingTagUser**](docs/TrackingTagsApi.md#assignTrackingTagUser) | **POST** /v1/accounts/{accountId}/tracking-tags/{tagId}/users | Assign a user to a tag
@@ -3287,8 +3285,6 @@ Class | Method | HTTP request | Description
  - [DismissAdsAlert200Response](docs/DismissAdsAlert200Response.md)
  - [DismissGoogleRecommendationsRequest](docs/DismissGoogleRecommendationsRequest.md)
  - [DmButton](docs/DmButton.md)
- - [DownloadTikTokVideo200Response](docs/DownloadTikTokVideo200Response.md)
- - [DownloadTikTokVideo200ResponseFormatsInner](docs/DownloadTikTokVideo200ResponseFormatsInner.md)
  - [DuplicateAd200Response](docs/DuplicateAd200Response.md)
  - [DuplicateAdCampaign200Response](docs/DuplicateAdCampaign200Response.md)
  - [DuplicateAdCampaignRequest](docs/DuplicateAdCampaignRequest.md)
