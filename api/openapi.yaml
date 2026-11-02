@@ -22,7 +22,7 @@ info:
     send is reused as that id.
   termsOfService: https://zernio.com/tos
   title: Zernio API
-  version: 1.433.1
+  version: 1.433.2
   x-logo:
     url: https://zernio.com/icon.png?v=3
   x-long-description: |
@@ -2481,7 +2481,7 @@ paths:
         These metrics reflect the entire account's performance across all content surfaces (feed, stories, explore, profile), and are fundamentally different from post-level metrics.
 
         - Data may be delayed up to 48 hours.
-        - Max 90 days, defaults to last 30 days.
+        - Max 90 days (30 for accounts connected through Facebook Login), defaults to last 30 days.
       operationId: getInstagramAccountInsights
       parameters:
       - description: The Zernio SocialAccount ID for the Instagram account
